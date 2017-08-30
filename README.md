@@ -1,0 +1,6 @@
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
+# Developmen 
+
+## precommit
+Not using lint-staged because it doesn't support hunks.

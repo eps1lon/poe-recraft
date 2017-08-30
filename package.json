@@ -1,0 +1,30 @@
+{
+  "name": "recraft",
+  "description": "dynamic craftable mods based on recent data mining",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/eps1lon/poe-recraft.git",
+    "type": "git"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.53.1",
+    "husky": "^0.14.3",
+    "prettier": "^1.6.1"
+  },
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-scripts": "1.0.12"
+  },
+  "scripts": {
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "flow": "flow",
+    "format": "prettier --single-quote --write src/**/*.js",
+    "prepush": "prettier --single-quote src/**/*.js && yarn test",
+    "start": "react-scripts start",
+    "test": "react-scripts test --env=jsdom"
+  }
+}
