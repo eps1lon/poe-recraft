@@ -9,6 +9,7 @@
     "type": "git"
   },
   "devDependencies": {
+    "cross-env": "^5.0.5",
     "flow-bin": "^0.53.1",
     "husky": "^0.14.3",
     "prettier": "^1.6.1"
@@ -22,8 +23,9 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "flow": "flow",
-    "format": "prettier --single-quote --write src/**/*.js",
-    "prepush": "prettier --single-quote src/**/*.js && yarn test",
+    "format": "prettier --write src/**/*.js",
+    "prepush":
+      "prettier --list-different src/**/*.js && cross-env CI=true yarn test",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom"
   }
