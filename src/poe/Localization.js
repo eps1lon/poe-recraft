@@ -10,7 +10,10 @@ type Option = {
 };
 
 type Data = {
-  [string]: Option[]
+  [string]: {
+    options: Option[],
+    params: string[]
+  }
 };
 
 type Range = [number, number];
@@ -110,7 +113,7 @@ export default class Localization {
     if (this.data[key] === undefined) {
       return null;
     } else {
-      const used_option = this.data[key].find(option => {
+      const used_option = this.data[key].options.find(option => {
         return option.and.every((range_string, j) => {
           return Localization.inRange(range_string, params[j]);
         });
