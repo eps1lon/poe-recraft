@@ -23,7 +23,10 @@ export default class RollableMod extends ApplicableMod implements Spawnable {
   constructor(props: ModProps) {
     super(props);
 
-    this.spawnable_flags = new FlagSet([]);
+    this.spawnable_flags = new FlagSet([
+      'NO_MATCHING_TAGS',
+      'SPAWNWEIGHT_ZERO'
+    ]);
     this.resetSpawnable();
 
     this.rollable = undefined;
