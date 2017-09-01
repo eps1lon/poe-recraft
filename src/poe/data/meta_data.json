@@ -1,0 +1,1396 @@
+{
+  "Equipment": {
+    "extends": "Item",
+    "LocalStats": [],
+    "Mods": {
+      "stat_description_list": ["Metadata/stat_descriptions.txt"],
+      "enable_rarity": ["normal", "magic", "rare", "unique"]
+    },
+    "Base": [],
+    "inheritance": ["Item", "Equipment"],
+    "tags": [0]
+  },
+  "Item": {
+    "extends": "nothing",
+    "Base": { "base_level": ["1\r"], "tag": ["default"] },
+    "inheritance": ["Item"],
+    "tags": [0]
+  },
+  "AbstractAmulet": {
+    "extends": "Equipment",
+    "Base": { "x_size": ["1\r"], "y_size": ["1\r"], "tag": ["amulet"] },
+    "Mods": { "inventory_type": ["Amulet"] },
+    "inheritance": ["Item", "Equipment", "AbstractAmulet"],
+    "tags": [0, 3]
+  },
+  "AbstractSocketableAmulet": {
+    "extends": "AbstractAmulet",
+    "AttributeRequirements": {
+      "strength_requirement": ["0\r"],
+      "dexterity_requirement": ["0\r"],
+      "intelligence_requirement": ["0\r"]
+    },
+    "Sockets": {
+      "socket_info": [
+        "0:1:1 1:9999:100 2:9999:90 3:9999:80 4:9999:30 5:9999:20 6:9999:5"
+      ]
+    },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractAmulet",
+      "AbstractSocketableAmulet"
+    ],
+    "tags": [0, 3]
+  },
+  "Talisman1_1": {
+    "extends": "AbstractSocketableAmulet",
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractAmulet",
+      "AbstractSocketableAmulet",
+      "Talisman1_1"
+    ],
+    "tags": [0, 3]
+  },
+  "Talisman4": {
+    "extends": "AbstractSocketableAmulet",
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractAmulet",
+      "AbstractSocketableAmulet",
+      "Talisman4"
+    ],
+    "tags": [0, 3]
+  },
+  "AbstractArmour": {
+    "extends": "Equipment",
+    "Base": { "tag": ["armour"] },
+    "AttributeRequirements": [],
+    "Quality": { "max_quality": ["20\r"] },
+    "Armour": [],
+    "Sockets": {
+      "socket_info": ["1:1:100 2:1:90 3:2:80 4:25:30 5:9999:20 6:9999:5"]
+    },
+    "inheritance": ["Item", "Equipment", "AbstractArmour"],
+    "tags": [0, 7]
+  },
+  "AbstractBodyArmour": {
+    "extends": "AbstractArmour",
+    "Base": { "tag": ["body_armour"] },
+    "Mods": { "inventory_type": ["BodyArmour"] },
+    "Sockets": {
+      "socket_info": ["1:1:50 2:1:120 3:2:100 4:25:30 5:35:5 6:50:1"]
+    },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractArmour",
+      "AbstractBodyArmour"
+    ],
+    "tags": [0, 7, 16]
+  },
+  "AbstractBoots": {
+    "extends": "AbstractArmour",
+    "Base": { "x_size": ["2\r"], "y_size": ["2\r"], "tag": ["boots"] },
+    "Mods": { "inventory_type": ["Boots"] },
+    "inheritance": ["Item", "Equipment", "AbstractArmour", "AbstractBoots"],
+    "tags": [0, 7, 4]
+  },
+  "AbstractGloves": {
+    "extends": "AbstractArmour",
+    "Base": { "x_size": ["2\r"], "y_size": ["2\r"], "tag": ["gloves"] },
+    "Mods": { "inventory_type": ["Gloves"] },
+    "inheritance": ["Item", "Equipment", "AbstractArmour", "AbstractGloves"],
+    "tags": [0, 7, 22]
+  },
+  "AbstractHelmet": {
+    "extends": "AbstractArmour",
+    "Base": { "x_size": ["2\r"], "y_size": ["2\r"], "tag": ["helmet"] },
+    "Mods": { "inventory_type": ["Helm"] },
+    "inheritance": ["Item", "Equipment", "AbstractArmour", "AbstractHelmet"],
+    "tags": [0, 7, 25]
+  },
+  "AbstractShield": {
+    "extends": "AbstractArmour",
+    "Base": { "x_size": ["2\r"], "y_size": ["2\r"], "tag": ["shield"] },
+    "Shield": { "block_percentage": ["0\r"] },
+    "Mods": { "inventory_type": ["Offhand"] },
+    "Sockets": {
+      "socket_info": ["1:1:50 2:1:120 3:2:100 4:9999:30 5:9999:20 6:9999:5"]
+    },
+    "inheritance": ["Item", "Equipment", "AbstractArmour", "AbstractShield"],
+    "tags": [0, 7, 1]
+  },
+  "AbstractBelt": {
+    "extends": "Equipment",
+    "Base": { "x_size": ["2\r"], "y_size": ["1\r"], "tag": ["belt"] },
+    "Mods": { "inventory_type": ["Belt"] },
+    "inheritance": ["Item", "Equipment", "AbstractBelt"],
+    "tags": [0, 26]
+  },
+  "AbstractCurrency": {
+    "extends": "Item",
+    "Base": { "x_size": ["1\r"], "y_size": ["1\r"] },
+    "Usable": [],
+    "inheritance": ["Item", "AbstractCurrency"],
+    "tags": [0]
+  },
+  "AbstractMicrotransaction": {
+    "extends": "AbstractCurrency",
+    "Stack": [],
+    "inheritance": ["Item", "AbstractCurrency", "AbstractMicrotransaction"],
+    "tags": [0]
+  },
+  "CurrencyImprint": {
+    "extends": "StackableCurrency",
+    "Imprint": [],
+    "inheritance": [
+      "Item",
+      "AbstractCurrency",
+      "StackableCurrency",
+      "CurrencyImprint"
+    ],
+    "tags": [0, 153]
+  },
+  "StackableCurrency": {
+    "extends": "AbstractCurrency",
+    "Base": { "tag": ["currency"] },
+    "Stack": [],
+    "inheritance": ["Item", "AbstractCurrency", "StackableCurrency"],
+    "tags": [0, 153]
+  },
+  "AbstractDivinationCard": {
+    "extends": "Item",
+    "Base": {
+      "x_size": ["1\r"],
+      "y_size": ["1\r"],
+      "tag": ["divination_card"]
+    },
+    "Stack": [],
+    "inheritance": ["Item", "AbstractDivinationCard"],
+    "tags": [0, 152]
+  },
+  "AbstractFlask": {
+    "extends": "Item",
+    "Base": {
+      "tag": ["flask"],
+      "x_size": ["1\r"],
+      "y_size": ["2\r"],
+      "description_text": ["ItemDescriptionFlask"]
+    },
+    "Quality": { "max_quality": ["20\r"] },
+    "LocalStats": [],
+    "Charges": { "max_charges": ["2\t\r"] },
+    "Mods": {
+      "stat_description_list": ["Metadata/stat_descriptions.txt"],
+      "enable_rarity": ["normal", "magic", "unique"],
+      "disable_rarity": ["rare"],
+      "inventory_type": ["Flask"]
+    },
+    "Usable": { "use_type": ["Usable"], "action": ["flask"] },
+    "Flask": [],
+    "inheritance": ["Item", "AbstractFlask"],
+    "tags": [0, 20]
+  },
+  "AbstractHybridFlask": {
+    "extends": "AbstractFlask",
+    "Base": { "tag": ["hybrid_flask"] },
+    "inheritance": ["Item", "AbstractFlask", "AbstractHybridFlask"],
+    "tags": [0, 20, 19]
+  },
+  "AbstractLifeFlask": {
+    "extends": "AbstractFlask",
+    "Base": { "tag": ["life_flask"] },
+    "inheritance": ["Item", "AbstractFlask", "AbstractLifeFlask"],
+    "tags": [0, 20, 17]
+  },
+  "AbstractManaFlask": {
+    "extends": "AbstractFlask",
+    "Base": { "tag": ["mana_flask"] },
+    "inheritance": ["Item", "AbstractFlask", "AbstractManaFlask"],
+    "tags": [0, 20, 18]
+  },
+  "AbstractUtilityFlask": {
+    "extends": "AbstractFlask",
+    "Base": { "tag": ["utility_flask"] },
+    "inheritance": ["Item", "AbstractFlask", "AbstractUtilityFlask"],
+    "tags": [0, 20, 46]
+  },
+  "CriticalUtilityFlask": {
+    "extends": "AbstractUtilityFlask",
+    "Base": { "tag": ["critical_utility_flask"] },
+    "inheritance": [
+      "Item",
+      "AbstractFlask",
+      "AbstractUtilityFlask",
+      "CriticalUtilityFlask"
+    ],
+    "tags": [0, 20, 46, 47]
+  },
+  "FlaskUtility1": {
+    "extends": "AbstractUtilityFlask",
+    "Base": { "description_text": ["ItemDescriptionFlaskUtility1"] },
+    "inheritance": [
+      "Item",
+      "AbstractFlask",
+      "AbstractUtilityFlask",
+      "FlaskUtility1"
+    ],
+    "tags": [0, 20, 46]
+  },
+  "AbstractSkillGem": {
+    "extends": "Item",
+    "Base": {
+      "tag": ["gem"],
+      "x_size": ["1\r"],
+      "y_size": ["1\r"],
+      "description_text": ["ItemDescriptionSkillGem"]
+    },
+    "SkillGem": [],
+    "Quality": { "max_quality": ["20\r"] },
+    "inheritance": ["Item", "AbstractSkillGem"],
+    "tags": [0, 27]
+  },
+  "ActiveSkillGem": {
+    "extends": "AbstractSkillGem",
+    "Base": { "description_text": ["ItemDescriptionActiveSkillGem"] },
+    "SkillGem": [],
+    "inheritance": ["Item", "AbstractSkillGem", "ActiveSkillGem"],
+    "tags": [0, 27]
+  },
+  "SupportSkillGem": {
+    "extends": "AbstractSkillGem",
+    "Base": {
+      "description_text": ["ItemDescriptionSupportSkillGem"],
+      "tag": ["support_gem"]
+    },
+    "SkillGem": [],
+    "inheritance": ["Item", "AbstractSkillGem", "SupportSkillGem"],
+    "tags": [0, 27, 169]
+  },
+  "AbstractHideoutDoodad": {
+    "extends": "Item",
+    "Base": { "x_size": ["1\r"], "y_size": ["1\r"] },
+    "Usable": [],
+    "Stack": [],
+    "inheritance": ["Item", "AbstractHideoutDoodad"],
+    "tags": [0]
+  },
+  "AbstractJewel": {
+    "extends": "Item",
+    "Base": {
+      "x_size": ["1\r"],
+      "y_size": ["1\r"],
+      "description_text": ["ItemDescriptionPassiveJewel"]
+    },
+    "LocalStats": [],
+    "Mods": {
+      "stat_description_list": ["Metadata/stat_descriptions.txt"],
+      "enable_rarity": ["magic", "rare", "unique"],
+      "inventory_type": ["passivejewels"]
+    },
+    "inheritance": ["Item", "AbstractJewel"],
+    "tags": [0]
+  },
+  "AbstractLabyrinthItem": {
+    "extends": "Item",
+    "Stack": { "max_stack_size": ["1\r"] },
+    "inheritance": ["Item", "AbstractLabyrinthItem"],
+    "tags": [0]
+  },
+  "BronzeKey": {
+    "extends": "AbstractLabyrinthItem",
+    "Base": { "description_text": ["TreasureKeyDescription"] },
+    "inheritance": ["Item", "AbstractLabyrinthItem", "BronzeKey"],
+    "tags": [0]
+  },
+  "GoldenKey": {
+    "extends": "AbstractLabyrinthItem",
+    "Base": { "description_text": ["GoldenKeyDescription"] },
+    "inheritance": ["Item", "AbstractLabyrinthItem", "GoldenKey"],
+    "tags": [0]
+  },
+  "LabyrinthTrinket": {
+    "extends": "AbstractLabyrinthItem",
+    "Base": { "x_size": ["1\r"], "y_size": ["1\r"] },
+    "inheritance": ["Item", "AbstractLabyrinthItem", "LabyrinthTrinket"],
+    "tags": [0]
+  },
+  "SilverKey": {
+    "extends": "AbstractLabyrinthItem",
+    "Base": { "description_text": ["SilverKeyDescription"] },
+    "inheritance": ["Item", "AbstractLabyrinthItem", "SilverKey"],
+    "tags": [0]
+  },
+  "AbstractMapFragment": {
+    "extends": "Item",
+    "Base": { "description_text": ["ItemDescriptionMapFragment"] },
+    "LocalStats": [],
+    "Mods": {
+      "stat_description_list": ["Metadata/stat_descriptions.txt"],
+      "inventory_type": ["Map"]
+    },
+    "inheritance": ["Item", "AbstractMapFragment"],
+    "tags": [0]
+  },
+  "AbstractMap": {
+    "extends": "Equipment",
+    "Base": { "tag": ["map"], "description_text": ["ItemDescriptionMap"] },
+    "LocalStats": [],
+    "Mods": [],
+    "Quality": { "max_quality": ["20\r"] },
+    "Map": [],
+    "inheritance": ["Item", "Equipment", "AbstractMap"],
+    "tags": [0, 57]
+  },
+  "MysteryBox1x1": {
+    "extends": "StackableCurrency",
+    "Imprint": [],
+    "inheritance": [
+      "Item",
+      "AbstractCurrency",
+      "StackableCurrency",
+      "MysteryBox1x1"
+    ],
+    "tags": [0, 153]
+  },
+  "MysteryBox1x2": {
+    "extends": "StackableCurrency",
+    "Imprint": [],
+    "inheritance": [
+      "Item",
+      "AbstractCurrency",
+      "StackableCurrency",
+      "MysteryBox1x2"
+    ],
+    "tags": [0, 153]
+  },
+  "MysteryBox1x3": {
+    "extends": "StackableCurrency",
+    "Imprint": [],
+    "inheritance": [
+      "Item",
+      "AbstractCurrency",
+      "StackableCurrency",
+      "MysteryBox1x3"
+    ],
+    "tags": [0, 153]
+  },
+  "MysteryBox1x4": {
+    "extends": "StackableCurrency",
+    "Imprint": [],
+    "inheritance": [
+      "Item",
+      "AbstractCurrency",
+      "StackableCurrency",
+      "MysteryBox1x4"
+    ],
+    "tags": [0, 153]
+  },
+  "MysteryBox2x1": {
+    "extends": "StackableCurrency",
+    "Imprint": [],
+    "inheritance": [
+      "Item",
+      "AbstractCurrency",
+      "StackableCurrency",
+      "MysteryBox2x1"
+    ],
+    "tags": [0, 153]
+  },
+  "MysteryBox2x2": {
+    "extends": "StackableCurrency",
+    "Imprint": [],
+    "inheritance": [
+      "Item",
+      "AbstractCurrency",
+      "StackableCurrency",
+      "MysteryBox2x2"
+    ],
+    "tags": [0, 153]
+  },
+  "MysteryBox2x3": {
+    "extends": "StackableCurrency",
+    "Imprint": [],
+    "inheritance": [
+      "Item",
+      "AbstractCurrency",
+      "StackableCurrency",
+      "MysteryBox2x3"
+    ],
+    "tags": [0, 153]
+  },
+  "MysteryBox2x4": {
+    "extends": "StackableCurrency",
+    "Imprint": [],
+    "inheritance": [
+      "Item",
+      "AbstractCurrency",
+      "StackableCurrency",
+      "MysteryBox2x4"
+    ],
+    "tags": [0, 153]
+  },
+  "MysteryBox3x2": {
+    "extends": "StackableCurrency",
+    "Imprint": [],
+    "inheritance": [
+      "Item",
+      "AbstractCurrency",
+      "StackableCurrency",
+      "MysteryBox3x2"
+    ],
+    "tags": [0, 153]
+  },
+  "MysteryBox3x3": {
+    "extends": "StackableCurrency",
+    "Imprint": [],
+    "inheritance": [
+      "Item",
+      "AbstractCurrency",
+      "StackableCurrency",
+      "MysteryBox3x3"
+    ],
+    "tags": [0, 153]
+  },
+  "AbstractQuestItem": {
+    "extends": "Item",
+    "Base": { "x_size": ["1\r"], "y_size": ["1\r"] },
+    "Quest": [],
+    "inheritance": ["Item", "AbstractQuestItem"],
+    "tags": [0]
+  },
+  "AllFlameLantern1": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a1q6minusHaveAllFlame"],
+      "remove_flag": ["a1q6minusDeliveredAllFlame"]
+    },
+    "inheritance": ["Item", "AllFlameLantern1"],
+    "tags": [0]
+  },
+  "GoldenHand": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a2q5minusHaveGoldenHand"],
+      "remove_flag": ["a2q5minusDeliveredGoldenHand"],
+      "extra_flag": ["a2q5minusReceivedQuest"]
+    },
+    "inheritance": ["Item", "GoldenHand"],
+    "tags": [0]
+  },
+  "InfernalTalc": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a3q5minusHaveTalc"],
+      "remove_flag": ["a3q5minusUsedTalc"]
+    },
+    "inheritance": ["Item", "InfernalTalc"],
+    "tags": [0]
+  },
+  "MedicineSet1": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a1q5minusHaveMedicineChest"],
+      "remove_flag": ["a1q5minusNessaCongratulated"],
+      "extra_flag": ["SeenMedicineChest"]
+    },
+    "inheritance": ["Item", "MedicineSet1"],
+    "tags": [0]
+  },
+  "PoisonSkillGem": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a2q6minusHaveSkillGem"],
+      "remove_flag": ["a2q9minusPoisonedTree"],
+      "extra_flag": ["a2q6minusHelenaInTown"],
+      "extra_flag2": ["SeenBalefulGem"]
+    },
+    "inheritance": ["Item", "PoisonSkillGem"],
+    "tags": [0]
+  },
+  "PoisonSpear": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a2q4minusHavePoisonSpear"],
+      "remove_flag": ["a2q9minusPoisonedTree"],
+      "extra_flag": ["a2q4minusReceivedQuest"],
+      "extra_flag2": ["a2bminusStartNewQuests"]
+    },
+    "inheritance": ["Item", "PoisonSpear"],
+    "tags": [0]
+  },
+  "RibbonSpool": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a3q4minusHaveRibbonSpool"],
+      "remove_flag": ["a3q4minusDeliveredSpool"],
+      "extra_flag": ["SeenRibbonSpool"]
+    },
+    "inheritance": ["Item", "RibbonSpool"],
+    "tags": [0]
+  },
+  "SewerKeys": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a3q11minusHaveSewerKeys"],
+      "remove_flag": ["a3q11minusUsedSewerKeys"]
+    },
+    "inheritance": ["Item", "SewerKeys"],
+    "tags": [0]
+  },
+  "SpikeSealKey": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a2q11minusHaveKey"],
+      "remove_flag": ["a1q9minusRoadOpened"],
+      "extra_flag": ["a2q11minusSeenKey"],
+      "extra_flag2": ["a1q9minusRoadBlocked"]
+    },
+    "inheritance": ["Item", "SpikeSealKey"],
+    "tags": [0]
+  },
+  "SulphiteFlask": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a3q5minusHaveSulphite"],
+      "remove_flag": ["a3q5minusDeliveredSulphite"],
+      "extra_flag": ["SeenSulphite"]
+    },
+    "inheritance": ["Item", "SulphiteFlask"],
+    "tags": [0]
+  },
+  "TolmanBracelet": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a3q2minusHaveTolmanItem"],
+      "remove_flag": ["a3q2minusDeliveredItem"],
+      "extra_flag": ["a3q2minusSeenTolmanItem"]
+    },
+    "inheritance": ["Item", "TolmanBracelet"],
+    "tags": [0]
+  },
+  "TowerKey": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a3q9minusHaveTowerKey"],
+      "remove_flag": ["a3q9minusUsedTowerKey"],
+      "extra_flag": ["SeenTowerKey"]
+    },
+    "inheritance": ["Item", "TowerKey"],
+    "tags": [0]
+  },
+  "Book-a4q6": {
+    "extends": "AbstractQuestItem",
+    "Base": {
+      "description_text": [
+        "ItemDescriptionBookPassivePointAnd2RespecPointsTasuni"
+      ]
+    },
+    "Quest": {
+      "use_flag": ["a4q6minusUsedRewardBook"],
+      "grant_flag": ["a4q6minusHaveRewardBook"],
+      "remove_flag": ["a4q6minusUsedRewardBook"],
+      "respec_points": ["2\r"]
+    },
+    "Usable": { "action": ["skill_book"], "use_type": ["Usable"] },
+    "Stack": { "function_text": ["ItemFunctionPassivePointAnd2RespecPoints"] },
+    "inheritance": ["Item", "AbstractQuestItem", "Book-a4q6"],
+    "tags": [0]
+  },
+  "DaressoGem": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a4q4minusHaveGem"],
+      "remove_flag": ["a4q4minusDeliveredGem"],
+      "extra_flag": ["a4q1minusGemQuestsReceived"]
+    },
+    "inheritance": ["Item", "DaressoGem"],
+    "tags": [0]
+  },
+  "KaomGem": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a4q3minusHaveGem"],
+      "remove_flag": ["a4q3minusDeliveredGem"],
+      "extra_flag": ["a4q1minusGemQuestsReceived"]
+    },
+    "inheritance": ["Item", "KaomGem"],
+    "tags": [0]
+  },
+  "Organ1": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a4q5minusHaveOrgan1"],
+      "remove_flag": ["a4q5minusDeliveredOrgan1"],
+      "extra_flag": ["a4q5minusSeenOrgan"]
+    },
+    "inheritance": ["Item", "Organ1"],
+    "tags": [0]
+  },
+  "Organ2": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a4q5minusHaveOrgan2"],
+      "remove_flag": ["a4q5minusDeliveredOrgan2"],
+      "extra_flag": ["a4q5minusSeenOrgan"]
+    },
+    "inheritance": ["Item", "Organ2"],
+    "tags": [0]
+  },
+  "Organ3": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a4q5minusHaveOrgan3"],
+      "remove_flag": ["a4q5minusDeliveredOrgan3"],
+      "extra_flag": ["a4q5minusSeenOrgan"]
+    },
+    "inheritance": ["Item", "Organ3"],
+    "tags": [0]
+  },
+  "RedBanner": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a4q2minusHaveBanner"],
+      "remove_flag": ["a4q2minusUsedBanner"],
+      "extra_flag": ["a4q2minusQuestReceived"]
+    },
+    "inheritance": ["Item", "RedBanner"],
+    "tags": [0]
+  },
+  "CombinedAmulet": {
+    "extends": "Item",
+    "Quest": {
+      "remove_flag": ["a2q8minusPlacedApex"],
+      "grant_flag": ["a2q8minusHaveApex"]
+    },
+    "inheritance": ["Item", "CombinedAmulet"],
+    "tags": [0]
+  },
+  "DexAmulet": {
+    "extends": "Item",
+    "Quest": {
+      "remove_flag": ["a2bminusDeliveredAmulets"],
+      "grant_flag": ["a2bminusHaveDexAmulet"],
+      "extra_flag": ["a2bminusKilledDexBandit"]
+    },
+    "inheritance": ["Item", "DexAmulet"],
+    "tags": [0]
+  },
+  "IntAmulet": {
+    "extends": "Item",
+    "Quest": {
+      "remove_flag": ["a2bminusDeliveredAmulets"],
+      "grant_flag": ["a2bminusHaveIntAmulet"],
+      "extra_flag": ["a2bminusKilledIntBandit"]
+    },
+    "inheritance": ["Item", "IntAmulet"],
+    "tags": [0]
+  },
+  "StrAmulet": {
+    "extends": "Item",
+    "Quest": {
+      "remove_flag": ["a2bminusDeliveredAmulets"],
+      "grant_flag": ["a2bminusHaveStrAmulet"],
+      "extra_flag": ["a2bminusKilledStrBandit"]
+    },
+    "inheritance": ["Item", "StrAmulet"],
+    "tags": [0]
+  },
+  "Bust1": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a3q11minusHaveBust1"],
+      "remove_flag": ["a3q11minusDeliveredBust1"],
+      "extra_flag": ["SeenBust1"]
+    },
+    "inheritance": ["Item", "Bust1"],
+    "tags": [0]
+  },
+  "Bust2": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a3q11minusHaveBust2"],
+      "remove_flag": ["a3q11minusDeliveredBust2"],
+      "extra_flag": ["SeenBust2"]
+    },
+    "inheritance": ["Item", "Bust2"],
+    "tags": [0]
+  },
+  "Bust3": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a3q11minusHaveBust3"],
+      "remove_flag": ["a3q11minusDeliveredBust3"],
+      "extra_flag": ["SeenBust3"]
+    },
+    "inheritance": ["Item", "Bust3"],
+    "tags": [0]
+  },
+  "Decanter": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a3q13minusHaveDecanter"],
+      "remove_flag": ["a3q13minusDecanterDelivered"],
+      "extra_flag": ["SeenDecanter"]
+    },
+    "inheritance": ["Item", "Decanter"],
+    "tags": [0]
+  },
+  "Fruit": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a3q13minusHavePlum"],
+      "remove_flag": ["a3q13minusPlumDelivered"],
+      "extra_flag": ["SeenPlum"]
+    },
+    "inheritance": ["Item", "Fruit"],
+    "tags": [0]
+  },
+  "Glyph1": {
+    "extends": "Item",
+    "Quest": {
+      "remove_flag": ["a1q4minusPlacedGlyphs"],
+      "grant_flag": ["a1q4minusHaveGlyph1"],
+      "extra_flag": ["a1q4minusKnowsAboutGlyphs"],
+      "extra_flag2": ["SeenShell1"]
+    },
+    "inheritance": ["Item", "Glyph1"],
+    "tags": [0]
+  },
+  "Glyph2": {
+    "extends": "Item",
+    "Quest": {
+      "remove_flag": ["a1q4minusPlacedGlyphs"],
+      "grant_flag": ["a1q4minusHaveGlyph2"],
+      "extra_flag": ["a1q4minusKnowsAboutGlyphs"],
+      "extra_flag2": ["SeenShell2"]
+    },
+    "inheritance": ["Item", "Glyph2"],
+    "tags": [0]
+  },
+  "Glyph3": {
+    "extends": "Item",
+    "Quest": {
+      "remove_flag": ["a1q4minusPlacedGlyphs"],
+      "grant_flag": ["a1q4minusHaveGlyph3"],
+      "extra_flag": ["a1q4minusKnowsAboutGlyphs"],
+      "extra_flag2": ["SeenShell3"]
+    },
+    "inheritance": ["Item", "Glyph3"],
+    "tags": [0]
+  },
+  "Page1": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a3q12minusHavePage1"],
+      "extra_flag": ["a3q12minusSeenPages"],
+      "remove_flag": ["a3q12minusDeliveredPages"]
+    },
+    "inheritance": ["Item", "Page1"],
+    "tags": [0]
+  },
+  "Page2": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a3q12minusHavePage2"],
+      "extra_flag": ["a3q12minusSeenPages"],
+      "remove_flag": ["a3q12minusDeliveredPages"]
+    },
+    "inheritance": ["Item", "Page2"],
+    "tags": [0]
+  },
+  "Page3": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a3q12minusHavePage3"],
+      "extra_flag": ["a3q12minusSeenPages"],
+      "remove_flag": ["a3q12minusDeliveredPages"]
+    },
+    "inheritance": ["Item", "Page3"],
+    "tags": [0]
+  },
+  "Page4": {
+    "extends": "Item",
+    "Quest": {
+      "grant_flag": ["a3q12minusHavePage4"],
+      "extra_flag": ["a3q12minusSeenPages"],
+      "remove_flag": ["a3q12minusDeliveredPages"]
+    },
+    "inheritance": ["Item", "Page4"],
+    "tags": [0]
+  },
+  "BanditRespecAlira": {
+    "extends": "AbstractQuestItem",
+    "Base": { "description_text": ["ItemDescriptionBanditRespecAlira"] },
+    "Quest": { "can_sell": ["true\r"] },
+    "Usable": { "action": ["respec_alira"], "use_type": ["Usable"] },
+    "Stack": { "function_text": ["ItemFunctionBanditRespecAlira"] },
+    "inheritance": ["Item", "AbstractQuestItem", "BanditRespecAlira"],
+    "tags": [0]
+  },
+  "BanditRespecEramir": {
+    "extends": "AbstractQuestItem",
+    "Base": { "description_text": ["ItemDescriptionBanditRespecEramir"] },
+    "Quest": { "can_sell": ["true\r"] },
+    "Usable": { "action": ["respec_eramir"], "use_type": ["Usable"] },
+    "Stack": { "function_text": ["ItemFunctionBanditRespecEramir"] },
+    "inheritance": ["Item", "AbstractQuestItem", "BanditRespecEramir"],
+    "tags": [0]
+  },
+  "BanditRespecKraityn": {
+    "extends": "AbstractQuestItem",
+    "Base": { "description_text": ["ItemDescriptionBanditRespecKraityn"] },
+    "Quest": { "can_sell": ["true\r"] },
+    "Usable": { "action": ["respec_kraityn"], "use_type": ["Usable"] },
+    "Stack": { "function_text": ["ItemFunctionBanditRespecKraityn"] },
+    "inheritance": ["Item", "AbstractQuestItem", "BanditRespecKraityn"],
+    "tags": [0]
+  },
+  "BanditRespecOak": {
+    "extends": "AbstractQuestItem",
+    "Base": { "description_text": ["ItemDescriptionBanditRespecOak"] },
+    "Quest": { "can_sell": ["true\r"] },
+    "Usable": { "action": ["respec_oak"], "use_type": ["Usable"] },
+    "Stack": { "function_text": ["ItemFunctionBanditRespecOak"] },
+    "inheritance": ["Item", "AbstractQuestItem", "BanditRespecOak"],
+    "tags": [0]
+  },
+  "Book-a1q6": {
+    "extends": "AbstractQuestItem",
+    "Base": { "description_text": ["ItemDescriptionBookPassivePointBestel"] },
+    "Quest": {
+      "use_flag": ["a1q6minusUsedRewardBook"],
+      "grant_flag": ["a1q6minusHaveRewardBook"],
+      "remove_flag": ["a1q6minusUsedRewardBook"]
+    },
+    "Usable": { "action": ["skill_book"], "use_type": ["Usable"] },
+    "Stack": { "function_text": ["ItemFunctionPassivePoint"] },
+    "inheritance": ["Item", "AbstractQuestItem", "Book-a1q6"],
+    "tags": [0]
+  },
+  "Book-a1q7": {
+    "extends": "AbstractQuestItem",
+    "Base": {
+      "description_text": ["ItemDescriptionBookPassivePointTarkleigh"]
+    },
+    "Quest": {
+      "use_flag": ["a1q7minusUsedRewardBook"],
+      "grant_flag": ["a1q7minusHaveRewardBook"],
+      "remove_flag": ["a1q7minusUsedRewardBook"]
+    },
+    "Usable": { "action": ["skill_book"], "use_type": ["Usable"] },
+    "Stack": { "function_text": ["ItemFunctionPassivePoint"] },
+    "inheritance": ["Item", "AbstractQuestItem", "Book-a1q7"],
+    "tags": [0]
+  },
+  "Book-a1q8": {
+    "extends": "AbstractQuestItem",
+    "Base": {
+      "description_text": ["ItemDescriptionBook2RespecPointsTarkleigh"]
+    },
+    "Quest": {
+      "use_flag": ["a1q8minusUsedRewardBook"],
+      "grant_flag": ["a1q8minusHaveRewardBook"],
+      "remove_flag": ["a1q8minusUsedRewardBook"],
+      "respec_points": ["2\r"]
+    },
+    "Usable": { "action": ["skill_book"], "use_type": ["Usable"] },
+    "Stack": { "function_text": ["ItemFunction2RespecPoints"] },
+    "inheritance": ["Item", "AbstractQuestItem", "Book-a1q8"],
+    "tags": [0]
+  },
+  "Book-a1q9": {
+    "extends": "AbstractQuestItem",
+    "Base": { "description_text": ["ItemDescriptionBookPassivePointBestel"] },
+    "Quest": {
+      "use_flag": ["a1q9minusUsedRewardBook"],
+      "grant_flag": ["a1q9minusHaveRewardBook"],
+      "remove_flag": ["a1q9minusUsedRewardBook"]
+    },
+    "Usable": { "action": ["skill_book"], "use_type": ["Usable"] },
+    "Stack": { "function_text": ["ItemFunctionPassivePoint"] },
+    "inheritance": ["Item", "AbstractQuestItem", "Book-a1q9"],
+    "tags": [0]
+  },
+  "Book-a2q5": {
+    "extends": "AbstractQuestItem",
+    "Base": { "description_text": ["ItemDescriptionBook2RespecPointsYeena"] },
+    "Quest": {
+      "use_flag": ["a2q5minusUsedRewardBook"],
+      "grant_flag": ["a2q5minusHaveRewardBook"],
+      "remove_flag": ["a2q5minusUsedRewardBook"],
+      "respec_points": ["2\r"]
+    },
+    "Usable": { "action": ["skill_book"], "use_type": ["Usable"] },
+    "Stack": { "function_text": ["ItemFunction2RespecPoints"] },
+    "inheritance": ["Item", "AbstractQuestItem", "Book-a2q5"],
+    "tags": [0]
+  },
+  "Book-a3q11v0": {
+    "extends": "AbstractQuestItem",
+    "Base": { "description_text": ["ItemDescriptionBookPassivePointHargan"] },
+    "Quest": {
+      "use_flag": ["a3q11minusUsedRewardBook"],
+      "grant_flag": ["a3q11minusHaveRewardBook"],
+      "remove_flag": ["a3q11minusUsedRewardBook"]
+    },
+    "Usable": { "action": ["skill_book"], "use_type": ["Usable"] },
+    "Stack": { "function_text": ["ItemFunctionPassivePoint"] },
+    "inheritance": ["Item", "AbstractQuestItem", "Book-a3q11v0"],
+    "tags": [0]
+  },
+  "Book-a3q11v1": {
+    "extends": "AbstractQuestItem",
+    "Base": {
+      "description_text": [
+        "ItemDescriptionBookPassivePointAndRespecPointHargan"
+      ]
+    },
+    "Quest": {
+      "use_flag": ["a3q11minusUsedRewardBook"],
+      "grant_flag": ["a3q11minusHaveRewardBook"],
+      "remove_flag": ["a3q11minusUsedRewardBook"],
+      "respec_points": ["1\r"]
+    },
+    "Usable": { "action": ["skill_book"], "use_type": ["Usable"] },
+    "Stack": { "function_text": ["ItemFunctionPassivePointAndRespecPoint"] },
+    "inheritance": ["Item", "AbstractQuestItem", "Book-a3q11v1"],
+    "tags": [0]
+  },
+  "Book-a3q11v2": {
+    "extends": "AbstractQuestItem",
+    "Base": {
+      "description_text": [
+        "ItemDescriptionBookPassivePointAnd2RespecPointsHargan"
+      ]
+    },
+    "Quest": {
+      "use_flag": ["a3q11minusUsedRewardBook"],
+      "grant_flag": ["a3q11minusHaveRewardBook"],
+      "remove_flag": ["a3q11minusUsedRewardBook"],
+      "respec_points": ["2\r"]
+    },
+    "Usable": { "action": ["skill_book"], "use_type": ["Usable"] },
+    "Stack": { "function_text": ["ItemFunctionPassivePointAnd2RespecPoints"] },
+    "inheritance": ["Item", "AbstractQuestItem", "Book-a3q11v2"],
+    "tags": [0]
+  },
+  "Book-a3q9": {
+    "extends": "AbstractQuestItem",
+    "Base": { "description_text": ["ItemDescriptionBook2PassivePointsGrigor"] },
+    "Quest": {
+      "use_flag": ["a3q9minusUsedRewardBook"],
+      "grant_flag": ["a3q9minusHaveRewardBook"],
+      "remove_flag": ["a3q9minusUsedRewardBook"]
+    },
+    "Usable": { "action": ["skill_book"], "use_type": ["Usable"] },
+    "Stack": { "function_text": ["ItemFunction2PassivePoints"] },
+    "inheritance": ["Item", "AbstractQuestItem", "Book-a3q9"],
+    "tags": [0]
+  },
+  "Descent2_1": {
+    "extends": "AbstractQuestItem",
+    "Base": { "description_text": ["ItemDescriptionBook2PassivePoints"] },
+    "Quest": {
+      "use_flag": ["Descent2Reward1"],
+      "remove_flag": ["Descent2Reward1"]
+    },
+    "Usable": { "action": ["skill_book"], "use_type": ["Usable"] },
+    "Stack": { "function_text": ["ItemFunction2PassivePoints"] },
+    "inheritance": ["Item", "AbstractQuestItem", "Descent2_1"],
+    "tags": [0]
+  },
+  "Descent2_2": {
+    "extends": "AbstractQuestItem",
+    "Base": { "description_text": ["ItemDescriptionBook2PassivePoints"] },
+    "Quest": {
+      "use_flag": ["Descent2Reward2"],
+      "remove_flag": ["Descent2Reward2"]
+    },
+    "Usable": { "action": ["skill_book"], "use_type": ["Usable"] },
+    "Stack": { "function_text": ["ItemFunction2PassivePoints"] },
+    "inheritance": ["Item", "AbstractQuestItem", "Descent2_2"],
+    "tags": [0]
+  },
+  "Descent2_3": {
+    "extends": "AbstractQuestItem",
+    "Base": { "description_text": ["ItemDescriptionBook2PassivePoints"] },
+    "Quest": {
+      "use_flag": ["Descent2Reward3"],
+      "remove_flag": ["Descent2Reward3"]
+    },
+    "Usable": { "action": ["skill_book"], "use_type": ["Usable"] },
+    "Stack": { "function_text": ["ItemFunction2PassivePoints"] },
+    "inheritance": ["Item", "AbstractQuestItem", "Descent2_3"],
+    "tags": [0]
+  },
+  "Descent2_4": {
+    "extends": "AbstractQuestItem",
+    "Base": { "description_text": ["ItemDescriptionBook2PassivePoints"] },
+    "Quest": {
+      "use_flag": ["Descent2Reward4"],
+      "remove_flag": ["Descent2Reward4"]
+    },
+    "Usable": { "action": ["skill_book"], "use_type": ["Usable"] },
+    "Stack": { "function_text": ["ItemFunction2PassivePoints"] },
+    "inheritance": ["Item", "AbstractQuestItem", "Descent2_4"],
+    "tags": [0]
+  },
+  "AbstractQuiver": {
+    "extends": "Equipment",
+    "Base": { "tag": ["quiver"], "x_size": ["2\r"], "y_size": ["3\r"] },
+    "LocalStats": [],
+    "Mods": { "inventory_type": ["Offhand"] },
+    "inheritance": ["Item", "Equipment", "AbstractQuiver"],
+    "tags": [0, 21]
+  },
+  "AbstractRelic": {
+    "extends": "Equipment",
+    "Base": { "tag": ["relic"] },
+    "LocalStats": [],
+    "Mods": [],
+    "Usable": [],
+    "inheritance": ["Item", "Equipment", "AbstractRelic"],
+    "tags": [0, 28]
+  },
+  "AbstractLargeRelic": {
+    "extends": "AbstractRelic",
+    "Base": { "x_size": ["2\r"], "y_size": ["2\r"] },
+    "LocalStats": [],
+    "Mods": { "inventory_type": ["altar_large"] },
+    "Usable": [],
+    "inheritance": ["Item", "Equipment", "AbstractRelic", "AbstractLargeRelic"],
+    "tags": [0, 28]
+  },
+  "AbstractMediumRelic": {
+    "extends": "AbstractRelic",
+    "Base": { "x_size": ["1\r"], "y_size": ["2\r"] },
+    "LocalStats": [],
+    "Mods": { "inventory_type": ["altar_medium"] },
+    "Usable": [],
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractRelic",
+      "AbstractMediumRelic"
+    ],
+    "tags": [0, 28]
+  },
+  "AbstractSmallRelic": {
+    "extends": "AbstractRelic",
+    "Base": { "x_size": ["1\r"], "y_size": ["1\r"] },
+    "LocalStats": [],
+    "Mods": { "inventory_type": ["altar_small"] },
+    "Usable": [],
+    "inheritance": ["Item", "Equipment", "AbstractRelic", "AbstractSmallRelic"],
+    "tags": [0, 28]
+  },
+  "AbstractRing": {
+    "extends": "Equipment",
+    "Base": { "x_size": ["1\r"], "y_size": ["1\r"], "tag": ["ring"] },
+    "Mods": { "inventory_type": ["Ring"] },
+    "inheritance": ["Item", "Equipment", "AbstractRing"],
+    "tags": [0, 2]
+  },
+  "AbstractSocketableRing": {
+    "extends": "AbstractRing",
+    "AttributeRequirements": {
+      "strength_requirement": ["0\r"],
+      "dexterity_requirement": ["0\r"],
+      "intelligence_requirement": ["0\r"]
+    },
+    "Sockets": {
+      "socket_info": [
+        "0:1:1 1:9999:100 2:9999:90 3:9999:80 4:9999:30 5:9999:20 6:9999:5"
+      ]
+    },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractRing",
+      "AbstractSocketableRing"
+    ],
+    "tags": [0, 2]
+  },
+  "Ring15": {
+    "extends": "AbstractSocketableRing",
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractRing",
+      "AbstractSocketableRing",
+      "Ring15"
+    ],
+    "tags": [0, 2]
+  },
+  "AbstractWeapon": {
+    "extends": "Equipment",
+    "AttributeRequirements": {
+      "strength_requirement": ["100\r"],
+      "dexterity_requirement": ["0\r"],
+      "intelligence_requirement": ["0\r"]
+    },
+    "Mods": { "inventory_type": ["Weapon\""] },
+    "Weapon": {
+      "minimum_attack_distance": ["0\r"],
+      "maximum_attack_distance": ["3\r"],
+      "minimum_damage": ["5\r"],
+      "maximum_damage": ["10\r"],
+      "weapon_speed": ["833\r"],
+      "critical_chance": ["500\r"],
+      "accuracy_rating": ["20\r"]
+    },
+    "Quality": { "max_quality": ["20\r"] },
+    "Base": { "tag": ["weapon"] },
+    "Sockets": {
+      "socket_info": ["1:1:50 2:1:120 3:2:100 4:9999:30 5:9999:20 6:9999:5"]
+    },
+    "inheritance": ["Item", "Equipment", "AbstractWeapon"],
+    "tags": [0, 8]
+  },
+  "AbstractOneHandWeapon": {
+    "extends": "AbstractWeapon",
+    "Base": { "tag": ["onehand"] },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractWeapon",
+      "AbstractOneHandWeapon"
+    ],
+    "tags": [0, 8, 23]
+  },
+  "AbstractClaw": {
+    "extends": "AbstractOneHandWeapon",
+    "Base": { "tag": ["claw", "one_hand_weapon"] },
+    "Weapon": { "weapon_class": ["Claw"] },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractWeapon",
+      "AbstractOneHandWeapon",
+      "AbstractClaw"
+    ],
+    "tags": [0, 8, 23, 14, 81]
+  },
+  "AbstractDagger": {
+    "extends": "AbstractOneHandWeapon",
+    "Base": { "tag": ["dagger", "one_hand_weapon"] },
+    "Weapon": { "weapon_class": ["Dagger"] },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractWeapon",
+      "AbstractOneHandWeapon",
+      "AbstractDagger"
+    ],
+    "tags": [0, 8, 23, 13, 81]
+  },
+  "AbstractOneHandAxe": {
+    "extends": "AbstractOneHandWeapon",
+    "Base": { "tag": ["axe", "one_hand_weapon"] },
+    "Weapon": { "weapon_class": ["OneHandAxe"] },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractWeapon",
+      "AbstractOneHandWeapon",
+      "AbstractOneHandAxe"
+    ],
+    "tags": [0, 8, 23, 15, 81]
+  },
+  "AbstractOneHandMace": {
+    "extends": "AbstractOneHandWeapon",
+    "Base": { "tag": ["mace", "one_hand_weapon"] },
+    "Weapon": { "weapon_class": ["OneHandMace"] },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractWeapon",
+      "AbstractOneHandWeapon",
+      "AbstractOneHandMace"
+    ],
+    "tags": [0, 8, 23, 11, 81]
+  },
+  "AbstractSceptre": {
+    "extends": "AbstractOneHandWeapon",
+    "Base": { "tag": ["sceptre", "one_hand_weapon"] },
+    "Weapon": { "weapon_class": ["Sceptre"] },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractWeapon",
+      "AbstractOneHandWeapon",
+      "AbstractSceptre"
+    ],
+    "tags": [0, 8, 23, 37, 81]
+  },
+  "AbstractOneHandSword": {
+    "extends": "AbstractOneHandWeapon",
+    "Base": { "tag": ["sword", "one_hand_weapon"] },
+    "Weapon": { "weapon_class": ["OneHandSword"] },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractWeapon",
+      "AbstractOneHandWeapon",
+      "AbstractOneHandSword"
+    ],
+    "tags": [0, 8, 23, 12, 81]
+  },
+  "AbstractOneHandSwordThrusting": {
+    "extends": "AbstractOneHandSword",
+    "Base": [],
+    "Weapon": { "weapon_class": ["OneHandSwordThrusting"] },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractWeapon",
+      "AbstractOneHandWeapon",
+      "AbstractOneHandSword",
+      "AbstractOneHandSwordThrusting"
+    ],
+    "tags": [0, 8, 23, 12, 81]
+  },
+  "AbstractWand": {
+    "extends": "AbstractOneHandWeapon",
+    "Base": { "tag": ["wand", "ranged", "one_hand_weapon"] },
+    "Weapon": { "weapon_class": ["Wand"] },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractWeapon",
+      "AbstractOneHandWeapon",
+      "AbstractWand"
+    ],
+    "tags": [0, 8, 23, 9, 32, 81]
+  },
+  "AbstractTwoHandWeapon": {
+    "extends": "AbstractWeapon",
+    "Base": { "tag": ["twohand"] },
+    "Sockets": {
+      "socket_info": ["1:1:50 2:1:120 3:2:100 4:25:30 5:35:5 6:50:1"]
+    },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractWeapon",
+      "AbstractTwoHandWeapon"
+    ],
+    "tags": [0, 8, 24]
+  },
+  "AbstractBow": {
+    "extends": "AbstractTwoHandWeapon",
+    "Base": { "tag": ["bow", "ranged", "two_hand_weapon"] },
+    "Weapon": { "weapon_class": ["Bow"] },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractWeapon",
+      "AbstractTwoHandWeapon",
+      "AbstractBow"
+    ],
+    "tags": [0, 8, 24, 5, 32, 82]
+  },
+  "AbstractFishingRod": {
+    "extends": "AbstractTwoHandWeapon",
+    "Base": { "remove_tag": ["weapon"], "tag": ["fishing_rod"] },
+    "Weapon": { "weapon_class": ["FishingRod"] },
+    "Sockets": {
+      "socket_info": ["1:1:50 2:1:120 3:2:100 4:25:30 5:9999:20 6:9999:5"]
+    },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractWeapon",
+      "AbstractTwoHandWeapon",
+      "AbstractFishingRod"
+    ],
+    "tags": { "0": 0, "2": 24, "3": 80 }
+  },
+  "AbstractStaff": {
+    "extends": "AbstractTwoHandWeapon",
+    "Base": { "tag": ["staff", "two_hand_weapon"] },
+    "Weapon": { "weapon_class": ["Staff"] },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractWeapon",
+      "AbstractTwoHandWeapon",
+      "AbstractStaff"
+    ],
+    "tags": [0, 8, 24, 10, 82]
+  },
+  "Staff1": {
+    "extends": "AbstractStaff",
+    "Sockets": {
+      "socket_info": ["1:1:50 2:1:120 3:2:100 4:9999:30 5:9999:20 6:9999:5"]
+    },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractWeapon",
+      "AbstractTwoHandWeapon",
+      "AbstractStaff",
+      "Staff1"
+    ],
+    "tags": [0, 8, 24, 10, 82]
+  },
+  "AbstractTwoHandAxe": {
+    "extends": "AbstractTwoHandWeapon",
+    "Base": { "tag": ["axe", "two_hand_weapon"] },
+    "Weapon": { "weapon_class": ["TwoHandAxe"] },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractWeapon",
+      "AbstractTwoHandWeapon",
+      "AbstractTwoHandAxe"
+    ],
+    "tags": [0, 8, 24, 15, 82]
+  },
+  "AbstractTwoHandMace": {
+    "extends": "AbstractTwoHandWeapon",
+    "Base": { "tag": ["mace", "two_hand_weapon"] },
+    "Weapon": { "weapon_class": ["TwoHandMace"] },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractWeapon",
+      "AbstractTwoHandWeapon",
+      "AbstractTwoHandMace"
+    ],
+    "tags": [0, 8, 24, 11, 82]
+  },
+  "AbstractTwoHandSword": {
+    "extends": "AbstractTwoHandWeapon",
+    "Base": { "tag": ["sword", "two_hand_weapon"] },
+    "Weapon": { "weapon_class": ["TwoHandSword"] },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractWeapon",
+      "AbstractTwoHandWeapon",
+      "AbstractTwoHandSword"
+    ],
+    "tags": [0, 8, 24, 12, 82]
+  },
+  "TwoHandSword1": {
+    "extends": "AbstractTwoHandSword",
+    "Sockets": {
+      "socket_info": ["1:1:50 2:1:120 3:2:100 4:9999:30 5:9999:20 6:9999:5"]
+    },
+    "inheritance": [
+      "Item",
+      "Equipment",
+      "AbstractWeapon",
+      "AbstractTwoHandWeapon",
+      "AbstractTwoHandSword",
+      "TwoHandSword1"
+    ],
+    "tags": [0, 8, 24, 12, 82]
+  }
+}

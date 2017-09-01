@@ -27,6 +27,7 @@ export type ModProps = {
   domain: number,
   name: string,
   correct_group: string,
+  generation_type: number,
   stat1_min: number,
   stat1_max: number,
   stat2_min: number,
@@ -81,4 +82,47 @@ export type BaseItemTypeProps = {
   implicit_mods: ModProps[],
   item_class: ItemClassProps,
   tags: TagProps[]
+};
+
+export type MetaDataMap = {
+  [mixed]: MetaDataProps
+};
+
+export type MetaDataProps = {
+  extends: $Keys<MetaDataMap>,
+  inheritance: $Keys<MetaDataMap>[],
+  tags: number[],
+  // generic fascades
+  [string]: {
+    [string]: string[]
+  },
+  // specific fascade
+  AttributeRequirements?: {
+    dexterity_requirement: string[],
+    intelligence_requirement: string[],
+    strength_requirement: string[]
+  },
+  Base?: {
+    tag: string[]
+  },
+  Quality?: {
+    max_quality: string[]
+  },
+  Sockets: {
+    socket_info: string
+  },
+  Weapon?: {
+    accuracy_rating?: string[],
+    critical_chance?: string[],
+    minimum_attack_distance?: string[],
+    maximum_attack_distance?: string[],
+    minimum_damage?: string[],
+    maximum_damage?: string[],
+    weapon_speed?: string[],
+    weapon_class?: string[]
+  }
+};
+
+export type GroupLocalization = {
+  [string]: string
 };
