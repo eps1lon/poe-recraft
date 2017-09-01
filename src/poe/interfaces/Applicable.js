@@ -3,12 +3,10 @@ import type FlagSet from '../FlagSet';
 import type ModContainer from '../ModContainer/';
 import type Mod from '../Mod/';
 
-type Success = any;
-
 export const mods = (
   collection: any[],
   mod_container: ModContainer,
-  success: Success
+  success: FlagSet
 ): Mod[] => {
   return collection.filter(thing => {
     return (
@@ -21,7 +19,7 @@ export const mods = (
 export const map = (
   collection: any[],
   mod_container: ModContainer,
-  success: Success
+  success: FlagSet
 ): Mod[] => {
   for (const thing of collection) {
     if (typeof thing.applicableTo === 'function') {
@@ -34,7 +32,7 @@ export const map = (
 export interface Applicable {
   applicable_flags: FlagSet,
 
-  applicableTo(ModContainer, Success): boolean,
+  applicableTo(ModContainer, FlagSet): boolean,
   resetApplicable(): void,
-  applicableCached(): void
+  applicableCached(): boolean
 }
