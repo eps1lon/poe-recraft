@@ -126,3 +126,31 @@ export type MetaDataProps = {
 export type GroupLocalization = {
   [string]: string
 };
+
+export type CraftingBenchOptionsProps = {
+  primary: number,
+  order: number,
+  master_level: number,
+  name: string,
+  crafting_bench_custom_action: number,
+  sockets: number,
+  socket_colours: string,
+  links: number,
+  item_quantity: number,
+  unknown1: string,
+  npc_master_key: number,
+  mods_key: number,
+  npc_master: {
+    row: number,
+    npc: {
+      name: string,
+      short_name: string
+    }
+  },
+  costs: {
+    amount: number,
+    base_item_type: BaseItemTypeProps
+  }[],
+  mod: ModProps,
+  item_classes: ItemClassProps[]
+};
