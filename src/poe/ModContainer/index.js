@@ -116,6 +116,16 @@ export default class ModContainer {
   }
 
   /**
+   * checks if theres more place for a mod with their generationtype
+   */
+  hasRoomFor(mod: Mod): boolean {
+    return (
+      this.numberOfModsOfType(mod.props.generation_type) <
+      this.maxModsOfType(mod)
+    );
+  }
+
+  /**
    * @abstract
    */
   maxModsOfType(mod: Mod): number {
