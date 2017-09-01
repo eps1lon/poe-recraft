@@ -2,26 +2,53 @@
 import type FlagSet from '../FlagSet';
 import type Item from '../ModContainer/Item';
 
+export interface Spawnable {
+  spawnweight: number,
+  spawnchance: ?number,
+  spawnable_flags: FlagSet,
+
+  spawnableOn(Item, string[]): boolean,
+  resetSpawnable(): void,
+  spawnableCached(): boolean
+}
+
+/**
+ * this is for objects for which we decide at runtime if they implemented that
+ * interface
+ * 
+ * its basically something like <T: ?Spawnable>
+ * which means that if any of the properties defined in Spawnable is != null
+ * then the hole interface is implemented
+ */
+export type MaybeSpawnable = {
+  spawnableOn?: (Item, string[]) => boolean,
+  spawnchance?: ?number,
+  spawnweight?: number
+};
+
+/** 
+ * experimental flow feature
+export const implementedBy = (thing: MaybeSpawnable): boolean %checks => {
+  return thing.spawnableOn != null;
+};*/
+
 export const mods = (
-  collection: any[],
+  collection: MaybeSpawnable[],
   item: Item,
   success: string[]
-): any[] => {
+): MaybeSpawnable[] => {
   return collection.filter(thing => {
-    return (
-      typeof thing.spawnableOn === 'function' &&
-      thing.spawnableOn(item, success)
-    );
+    return thing.spawnableOn != null && thing.spawnableOn(item, success);
   });
 };
 
 export const map = (
-  collection: any[],
+  collection: MaybeSpawnable[],
   item: Item,
   success: string[]
-): any[] => {
+): MaybeSpawnable[] => {
   for (const thing of collection) {
-    if (typeof thing.spawnableOn === 'function') {
+    if (thing.spawnableOn != null) {
       thing.spawnableOn(item, success);
     }
   }
@@ -29,11 +56,11 @@ export const map = (
 };
 
 export const calculateSpawnchance = (
-  collection: any[],
-  filter: any => boolean
+  collection: MaybeSpawnable[],
+  filter: MaybeSpawnable => boolean
 ) => {
   const sum_spawnweight = collection.reduce((sum, thing) => {
-    if (thing.spawnweight instanceof Number && filter(thing)) {
+    if (thing.spawnweight != null && filter(thing)) {
       return sum + thing.spawnweight;
     } else {
       return sum;
@@ -41,20 +68,10 @@ export const calculateSpawnchance = (
   }, 0);
 
   return collection.map(thing => {
-    if (thing.spawnweight instanceof Number && filter(thing)) {
+    if (filter(thing) && thing.spawnweight != null) {
       thing.spawnchance = thing.spawnweight / sum_spawnweight;
     }
 
     return thing;
   });
 };
-
-export interface Spawnable {
-  spawnweight_cached: number,
-  spawnchance: ?number,
-  spawnable_flags: FlagSet,
-
-  spawnableOn(Item): boolean,
-  resetSpawnable(): void,
-  spawnableCached(): boolean
-}
