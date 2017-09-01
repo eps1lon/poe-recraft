@@ -7,7 +7,7 @@ type Tag = string;
 
 export default class ModContainer {
   mods: Mod[];
-  tags: Tag[];
+  tags: TagProps[];
 
   constructor(mods: Mod[] = []) {
     this.mods = mods;
@@ -17,7 +17,7 @@ export default class ModContainer {
   /**
    *  adds a new non-existing mod
    */
-  addModd(mod: Mod): boolean {
+  addMod(mod: Mod): boolean {
     if (!this.hasMod(mod)) {
       this.mods.push(mod);
       return true;
@@ -78,16 +78,16 @@ export default class ModContainer {
     const tags = this.getTags();
 
     return all_tags.filter(tag => {
-      return tags.indexOf(tag.primary) !== -1;
+      return tags.find(other => other.primary === tag.primary) !== undefined;
     });
   }
 
   /**
    * tags of the mods in the container
    */
-  getTags(): number[] {
+  getTags(): TagProps[] {
     return this.mods.reduce((tags, mod) => {
-      return tags.concat(mod.props.tags.map(tag => tag.primary));
+      return tags.concat(mod.props.tags);
     }, []);
   }
 
