@@ -1,22 +1,19 @@
 // @flow
 import type { StatProps } from './data/schema';
-import type { Translateable } from './interfaces/';
 import type { ValueRange } from './ValueRange';
 
-class Stat implements Translateable {
+export default class Stat {
   static localization = null;
 
   props: StatProps;
-  values: ?ValueRange;
+  values: ValueRange;
 
   constructor(props: StatProps) {
     this.props = props;
-    this.values = null;
+    this.values = [0, 0];
   }
 
-  t(other_stats, localization = Stat.localization) {
-    const { id } = this.props;
-
-    return '';
+  valueString() {
+    return `(${this.values.toString()})`;
   }
 }
