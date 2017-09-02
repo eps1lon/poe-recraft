@@ -39,7 +39,7 @@ export default class MasterMod extends ApplicableMod {
     return `${this.props.name}(${short_name}) Level: ${master_level}`;
   }
 
-  applicableTo(item: Item, success: string[]): boolean {
+  applicableTo(item: Item, success: string[] = []): boolean {
     super.applicableTo(item, success);
 
     const { item_classes } = this.bench;
