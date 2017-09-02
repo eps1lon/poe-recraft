@@ -91,7 +91,8 @@ export type MetaDataMap = {
 export type MetaDataProps = {
   extends: $Keys<MetaDataMap>,
   inheritance: $Keys<MetaDataMap>[],
-  tags: number[],
+  // FIXME they're actually just keys
+  tags: TagProps[],
   // generic fascades
   [string]: {
     [string]: string[]
