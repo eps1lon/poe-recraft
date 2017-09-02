@@ -16,21 +16,41 @@ export default class MasterBench extends ModGenerator<MasterMod> {
     );
   }
 
+  chosen_option: ?CraftingBenchOptionsProps;
   options: CraftingBenchOptionsProps[];
 
   constructor(options: CraftingBenchOptionsProps[]) {
     super(options.map(option => new MasterMod(option.mod, option)));
 
     this.options = options;
+    this.chosen_option = undefined;
   }
 
-  /**
-   *  applies a chosen craftingbenchoption
-   */
-  applyTo(item: Item, options_index: number): boolean {
+  chooseOption(options_index: number): void {
     const option = this.options[options_index];
 
     if (option === undefined) {
+      throw new RangeError();
+    } else {
+      this.chosen_option = option;
+    }
+  }
+
+  applyOptionTo(item: Item, options_index: number): boolean {
+    this.chooseOption(options_index);
+
+    return this.applyTo(item);
+  }
+
+  /**
+   * applies a chosen craftingbenchoption
+   * 
+   * cant overload extended method. so we have to set the chosen option before
+   */
+  applyTo(item: Item): boolean {
+    const option = this.chosen_option;
+
+    if (option == null) {
       return false;
     } else {
       const mod = this.mods.find(

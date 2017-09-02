@@ -24,7 +24,7 @@ export default class ModGenerator<T: Mod> implements Applicable {
     this.resetApplicable();
   }
 
-  applyTo(item: Item): * {
+  applyTo(item: Item): boolean {
     throw new AbstractMethod('applyTo');
   }
 
