@@ -38,7 +38,7 @@ export default class RollableMod extends ApplicableMod implements Spawnable {
     this.spawnable_flags.reset();
   }
 
-  spawnableOn(item: Item, success: string[]): boolean {
+  spawnableOn(item: Item, success: string[] = []): boolean {
     const item_tags = item.getTags();
 
     const spawnweight = this.props.spawn_weights.find(({ tag }) =>
