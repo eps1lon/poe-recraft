@@ -9,6 +9,8 @@
     "type": "git"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-flow-runtime": "^0.11.1",
     "cross-env": "^5.0.5",
     "fetch-mock": "^5.12.2",
     "flow-bin": "^0.53.1",
@@ -36,7 +38,8 @@
     "eject": "react-scripts eject",
     "flow": "flow",
     "format": "prettier --write src/**/*.js",
-    "prepush": "prettier --list-different src/**/*.js && cross-env CI=true yarn test",
+    "prepush":
+      "prettier --list-different src/**/*.js && cross-env CI=true yarn test",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom"
   }
