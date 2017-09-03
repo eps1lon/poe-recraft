@@ -1,7 +1,11 @@
+// @flow
+import type { StoreEnhancer } from 'redux';
+
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { apiMiddleware } from 'redux-api-middleware';
 
+import type { State } from '../reducers/rootReducer';
 import rootReducer from '../reducers/rootReducer';
 
 import SagaManager from '../sagas/SagaManager';
@@ -17,22 +21,17 @@ const sagaMiddleware = createSagaMiddleware();
 
 const middlewares = [sagaMiddleware, apiMiddleware];
 
-const storeEnhancers = [];
+const middlewareEnhancer = applyMiddleware(...middlewares);
+
+let storeEnhancer = middlewareEnhancer;
 
 if (__DEV__ && window.devToolsExtension) {
   // If the user has the "Redux DevTools" browser extension installed, use that.
-  storeEnhancers.push(window.devToolsExtension());
+  storeEnhancer = compose(middlewareEnhancer, window.devToolsExtension());
 }
 
-const middlewareEnhancer = applyMiddleware(...middlewares);
-storeEnhancers.unshift(middlewareEnhancer);
-
-export default function configureStore(initialState) {
-  const store = createStore(
-    rootReducer,
-    initialState,
-    compose(...storeEnhancers)
-  );
+export default function configureStore(initialState: State) {
+  const store = createStore(rootReducer, initialState, storeEnhancer);
 
   // run sagas
   SagaManager.startSagas(sagaMiddleware);
