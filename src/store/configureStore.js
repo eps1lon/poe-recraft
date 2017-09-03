@@ -3,6 +3,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { apiMiddleware } from 'redux-api-middleware';
 
+import createLogger from './createLogger';
 import type { State } from '../reducers/rootReducer';
 import rootReducer from '../reducers/rootReducer';
 
@@ -17,7 +18,7 @@ const __DEV__ = process.env.NODE_ENV !== 'production';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const middlewares = [sagaMiddleware, apiMiddleware];
+const middlewares = [sagaMiddleware, apiMiddleware, createLogger()];
 
 const middlewareEnhancer = applyMiddleware(...middlewares);
 
