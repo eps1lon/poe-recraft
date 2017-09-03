@@ -20,7 +20,11 @@ export default class MasterBench extends ModGenerator<MasterMod> {
   options: CraftingBenchOptionsProps[];
 
   constructor(options: CraftingBenchOptionsProps[]) {
-    super(options.map(option => new MasterMod(option)));
+    super(
+      options
+        .filter(option => option.mod != null)
+        .map(option => new MasterMod(option))
+    );
 
     this.options = options;
     this.chosen_option = undefined;
@@ -54,9 +58,12 @@ export default class MasterBench extends ModGenerator<MasterMod> {
       return false;
     } else {
       const mod = this.mods.find(
-        mod => mod.props.primary === option.mod.primary
+        mod => option.mod != null && mod.props.primary === option.mod.primary
       );
 
+      /**
+       * TODO customactions for no mod
+       */
       if (mod === undefined) {
         return false;
       } else {

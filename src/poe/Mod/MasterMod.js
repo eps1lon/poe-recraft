@@ -19,7 +19,9 @@ export default class MasterMod extends ApplicableMod {
   );
 
   static build(mod: ModProps, options: CraftingBenchOptionsProps[]): MasterMod {
-    const option = options.find(option => option.mod.primary === mod.primary);
+    const option = options.find(
+      option => option.mod != null && option.mod.primary === mod.primary
+    );
 
     if (option === undefined) {
       throw new Error(`option not found for mod ${mod.primary}`);
@@ -31,6 +33,10 @@ export default class MasterMod extends ApplicableMod {
   option: CraftingBenchOptionsProps;
 
   constructor(option: CraftingBenchOptionsProps) {
+    if (option.mod == null) {
+      throw new Error('the provided option doesnt have a mod');
+    }
+
     super(option.mod);
 
     // we need the benchoption here because it holds the info for the
