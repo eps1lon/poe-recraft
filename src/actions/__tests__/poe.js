@@ -35,13 +35,13 @@ describe('async actions', () => {
     expect(dispatched).toContainEqual({
       meta: undefined,
       payload: undefined,
-      type: 'REQUEST'
+      type: 'POE/ITEMS_REQUEST'
     });
 
     const success = dispatched[1];
     expect(success).toEqual({
       meta: undefined,
-      type: 'SUCCESS',
+      type: 'POE/ITEMS_SUCCESS',
       payload: []
     });
   });
