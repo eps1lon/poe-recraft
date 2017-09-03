@@ -1,3 +1,5 @@
 import { combineReducers } from 'redux';
 
-export default combineReducers({});
+import poe from './poe';
+
+export default combineReducers({ poe });

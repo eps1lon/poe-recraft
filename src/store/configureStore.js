@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { apiMiddleware } from 'redux-api-middleware';
 
 import rootReducer from '../reducers/rootReducer';
 
@@ -14,7 +15,7 @@ const __DEV__ = process.env.NODE_ENV !== 'production';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const middlewares = [sagaMiddleware];
+const middlewares = [sagaMiddleware, apiMiddleware];
 
 const storeEnhancers = [];
 
