@@ -140,7 +140,7 @@ export type CraftingBenchOptionsProps = {
   item_quantity: number,
   unknown1: string,
   npc_master_key: number,
-  mods_key: number,
+  mods_key: ?number,
   npc_master: {
     row: number,
     npc: {
@@ -152,6 +152,6 @@ export type CraftingBenchOptionsProps = {
     amount: number,
     base_item_type: BaseItemTypeProps
   }[],
-  mod: ModProps,
+  mod: ?ModProps,
   item_classes: ItemClassProps[]
 };
