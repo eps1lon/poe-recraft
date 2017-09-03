@@ -86,8 +86,7 @@ export type BaseItemTypeProps = {
 
 export type MetaDataProps = {
   extends: string,
-  inheritance: string,
-  // FIXME they're actually just keys
+  inheritance: string[],
   tags: TagProps[],
   // generic fascades
   [string]: {
@@ -100,13 +99,19 @@ export type MetaDataProps = {
     strength_requirement: string[]
   },
   Base?: {
-    tag: string[]
+    tag?: string[],
+    x_size?: string[],
+    y_size?: string[]
   },
   Quality?: {
     max_quality: string[]
   },
-  Sockets: {
-    socket_info: string
+  Sockets?: {
+    socket_info: string[]
+  },
+  Usable?: {
+    action: string[],
+    use_type: string[]
   },
   Weapon?: {
     accuracy_rating?: string[],
@@ -121,7 +126,7 @@ export type MetaDataProps = {
 };
 
 export type MetaDataMap = {
-  [mixed]: MetaDataProps
+  [string]: MetaDataProps
 };
 
 export type GroupLocalization = {

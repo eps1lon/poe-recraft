@@ -6,6 +6,7 @@ import {
   CraftingBenchOptionsProps,
   ModProps,
   MetaDataMap,
+  MetaDataProps,
   TagProps
 } from '../schema_runtime';
 import fs from 'fs';
@@ -20,10 +21,11 @@ const data: { file: string, type: any }[] = [
     file: 'baseitemtypes.json',
     type: t.array(BaseItemTypeProps)
   },
+  //**
   {
     file: 'meta_data.json',
     type: MetaDataMap
-  },
+  }, //*/
   {
     file: 'mods.json',
     type: t.array(ModProps)
@@ -33,6 +35,12 @@ const data: { file: string, type: any }[] = [
     type: t.array(TagProps)
   }
 ];
+
+it('should match meta_data', () => {
+  const meta_data = require('../../../../public/data/meta_data.json');
+
+  MetaDataProps.assert(meta_data.AbstractTwoHandSword);
+});
 
 it('should match the provided props', () => {
   for (const { file, type } of data) {
