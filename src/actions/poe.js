@@ -5,9 +5,7 @@ import { apiEndpoint } from '../selectors/poe';
 export function getItems() {
   return {
     [RSAA]: {
-      endpoint: state => {
-        return apiEndpoint(state, 'data/baseitemtypes.json');
-      },
+      endpoint: apiEndpoint('data/baseitemtypes.json'),
       method: 'GET',
       types: ['REQUEST', 'SUCCESS', 'FAILURE']
     }

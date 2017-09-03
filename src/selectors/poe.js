@@ -1,3 +1,3 @@
-export function apiEndpoint(state, endpoint) {
-  return `${state.poe.api_root}/${endpoint}`;
+export function apiEndpoint(endpoint) {
+  return state => `${state.poe.api_root}/${endpoint}`;
 }
