@@ -5,7 +5,8 @@ import {
   BaseItemTypeProps,
   CraftingBenchOptionsProps,
   ModProps,
-  MetaDataMap
+  MetaDataMap,
+  TagProps
 } from '../schema_runtime';
 import fs from 'fs';
 import path from 'path';
@@ -26,6 +27,10 @@ const data: { file: string, type: any }[] = [
   {
     file: 'mods.json',
     type: t.array(ModProps)
+  },
+  {
+    file: 'tags.json',
+    type: t.array(TagProps)
   }
 ];
 
