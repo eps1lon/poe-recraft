@@ -36,7 +36,7 @@ export default class ModGenerator<T: Mod> implements Applicable {
     return this.getAvailableMods();
   }
 
-  map(item: Item, success: string[] = []): T[] {
+  mapFor(item: Item, success: string[] = []): T[] {
     return this.getAvailableMods();
   }
 
@@ -57,6 +57,19 @@ export default class ModGenerator<T: Mod> implements Applicable {
 
     // TODO spawnweight
     return mods[Math.floor(Math.random() * (mods.length - 1))];
+  }
+
+  /**
+   * adds a mod from chooseMod ignoring if it's applicable
+   * @param {Item} item 
+   */
+  rollMod(item: Item): boolean {
+    const mod = this.chooseMod(item);
+    if (mod != null) {
+      return item.addMod(mod);
+    } else {
+      return false;
+    }
   }
 
   name(): string {

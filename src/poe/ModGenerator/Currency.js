@@ -23,11 +23,12 @@ export default class Currency extends ModGenerator<RollableMod> {
     'MIRRORED'
   );
 
-  static build<T: Currency>(
+  // build<T: Currency>(currency: Class<T>): T not working
+  static build(
     mods: ModProps[],
     filter: ModProps => boolean = filterNone,
-    currency: Class<T>
-  ): T {
+    currency: Class<$Subtype<Currency>>
+  ): $Subtype<Currency> {
     const rollable_mods = mods
       .filter(props => props.spawn_weights.length > 0 && filter(props))
       .map(props => new RollableMod(props));

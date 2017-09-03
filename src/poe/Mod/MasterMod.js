@@ -18,6 +18,16 @@ export default class MasterMod extends ApplicableMod {
     'NO_MULTIMOD'
   );
 
+  static build(mod: ModProps, options: CraftingBenchOptionsProps[]): MasterMod {
+    const option = options.find(option => option.mod.primary === mod.primary);
+
+    if (option === undefined) {
+      throw new Error(`option not found for mod ${mod.primary}`);
+    }
+
+    return new MasterMod(option);
+  }
+
   option: CraftingBenchOptionsProps;
 
   constructor(option: CraftingBenchOptionsProps) {

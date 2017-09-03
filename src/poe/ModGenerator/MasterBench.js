@@ -20,7 +20,7 @@ export default class MasterBench extends ModGenerator<MasterMod> {
   options: CraftingBenchOptionsProps[];
 
   constructor(options: CraftingBenchOptionsProps[]) {
-    super(options.map(option => new MasterMod(option.mod, option)));
+    super(options.map(option => new MasterMod(option)));
 
     this.options = options;
     this.chosen_option = undefined;
