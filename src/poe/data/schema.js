@@ -84,13 +84,9 @@ export type BaseItemTypeProps = {
   tags: TagProps[]
 };
 
-export type MetaDataMap = {
-  [mixed]: MetaDataProps
-};
-
 export type MetaDataProps = {
-  extends: $Keys<MetaDataMap>,
-  inheritance: $Keys<MetaDataMap>[],
+  extends: string,
+  inheritance: string,
   // FIXME they're actually just keys
   tags: TagProps[],
   // generic fascades
@@ -122,6 +118,10 @@ export type MetaDataProps = {
     weapon_speed?: string[],
     weapon_class?: string[]
   }
+};
+
+export type MetaDataMap = {
+  [mixed]: MetaDataProps
 };
 
 export type GroupLocalization = {
