@@ -18,12 +18,14 @@ export default class MasterMod extends ApplicableMod {
     'NO_MULTIMOD'
   );
 
-  bench: CraftingBenchOptionsProps;
+  option: CraftingBenchOptionsProps;
 
-  constructor(mod_props: ModProps, bench_props: CraftingBenchOptionsProps) {
-    super(mod_props);
+  constructor(option: CraftingBenchOptionsProps) {
+    super(option.mod);
 
-    this.bench = bench_props;
+    // we need the benchoption here because it holds the info for the
+    // applicable itemclass
+    this.option = option;
 
     // extend ApplicableMod initial applicable flags
     this.applicable_flags = new FlagSet(MasterMod.APPLICABLE_FLAGS);
@@ -34,7 +36,7 @@ export default class MasterMod extends ApplicableMod {
    * modname with basic stats
    */
   name() {
-    const { master_level, npc_master: { npc: { short_name } } } = this.bench;
+    const { master_level, npc_master: { npc: { short_name } } } = this.option;
 
     return `${this.props.name}(${short_name}) Level: ${master_level}`;
   }
@@ -42,7 +44,7 @@ export default class MasterMod extends ApplicableMod {
   applicableTo(item: Item, success: string[] = []): boolean {
     super.applicableTo(item, success);
 
-    const { item_classes } = this.bench;
+    const { item_classes } = this.option;
 
     const no_matching_item_class =
       item_classes.find(
