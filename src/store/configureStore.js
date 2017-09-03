@@ -1,6 +1,4 @@
 // @flow
-import type { StoreEnhancer } from 'redux';
-
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { apiMiddleware } from 'redux-api-middleware';
