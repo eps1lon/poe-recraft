@@ -1,6 +1,8 @@
 // @flow
 import React, { PureComponent } from 'react';
 
+import ItemSection from './ItemSection';
+
 import './index.css';
 
 export type Props = {
@@ -21,14 +23,17 @@ class App extends PureComponent<Props> {
   render() {
     const { version } = this.props;
 
-    return (
+    return [
       <header>
         <a href="">Path of Exile Mod Repository</a>
         <span id="client">
           (Patch: <em id="game_version">{version}</em>)
         </span>
-      </header>
-    );
+      </header>,
+      <div id="content">
+        <ItemSection />
+      </div>
+    ];
   }
 }
 
