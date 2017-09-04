@@ -45,6 +45,8 @@ export default class MetaData {
           return +fascade[key][0];
         case 'array':
           return fascade[key];
+        default:
+          throw new Error(`unrecognized expect '${expect}`);
       }
     } else {
       return undefined;
