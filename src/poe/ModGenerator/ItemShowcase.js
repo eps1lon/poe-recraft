@@ -103,6 +103,7 @@ export default class ItemShowcase extends ModGenerator<ShowcaseMod> {
       }
     });
 
+    item.rarity = old_rarity;
     return mods;
   }
 
