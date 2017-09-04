@@ -7,6 +7,17 @@ import ApplicableMod from './ApplicableMod';
 import FlagSet from '../FlagSet';
 import META_MODs from '../Mod/meta_mods';
 
+export class OptionNotFound extends Error {
+  // cra doesnt have babel-plugin-transform-builtin-extend which can cause
+  // tricky edge cases so we stick with duck typing
+  static type = 'OptionNotFound';
+  type = OptionNotFound.type;
+
+  constructor(mod: ModProps) {
+    super(`option not found for mod ${mod.primary}`);
+  }
+}
+
 /**
  * TODO
  * serialize()
@@ -24,7 +35,7 @@ export default class MasterMod extends ApplicableMod {
     );
 
     if (option === undefined) {
-      throw new Error(`option not found for mod ${mod.primary}`);
+      throw new OptionNotFound(mod);
     }
 
     return new MasterMod(option);
