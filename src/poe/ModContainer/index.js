@@ -3,8 +3,6 @@ import { AbstractMethod } from '../../exceptions/';
 import type { TagProps } from '../data/schema';
 import type Mod from '../Mod/';
 
-type Tag = string;
-
 export default class ModContainer {
   mods: Mod[];
   tags: TagProps[];
