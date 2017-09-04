@@ -24,13 +24,13 @@ class App extends PureComponent<Props> {
     const { version } = this.props;
 
     return [
-      <header>
+      <header key="header">
         <a href="">Path of Exile Mod Repository</a>
         <span id="client">
           (Patch: <em id="game_version">{version}</em>)
         </span>
       </header>,
-      <div id="content">
+      <div key="content" id="content">
         <ItemSection />
       </div>
     ];
