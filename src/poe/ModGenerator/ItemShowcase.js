@@ -2,8 +2,6 @@
 import type Item from '../ModContainer/Item';
 import type { CraftingBenchOptionsProps, ModProps } from '../data/schema';
 
-import FlagSet from '../FlagSet';
-import Mod from '../Mod/';
 import ApplicableMod from '../Mod/ApplicableMod';
 import MasterMod from '../Mod/MasterMod';
 import RollableMod from '../Mod/RollableMod';

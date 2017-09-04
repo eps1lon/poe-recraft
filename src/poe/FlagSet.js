@@ -94,7 +94,6 @@ export default class FlagSet {
    * the callback returns true
    */
   filterBits(filter_cb: (boolean, string, SetMap) => boolean): SetMap {
-    const filtered = {};
     const unfiltered = this.setMap();
 
     return Object.keys(unfiltered).reduce((filtered, flag) => {

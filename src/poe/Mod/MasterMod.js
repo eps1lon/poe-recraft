@@ -1,5 +1,4 @@
 // @flow
-import type { Applicable, Spawnable } from '../interfaces/';
 import type { CraftingBenchOptionsProps, ModProps } from '../data/schema';
 import type Item from '../ModContainer/Item';
 

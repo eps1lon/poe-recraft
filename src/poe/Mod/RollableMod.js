@@ -1,5 +1,5 @@
 // @flow
-import type { Applicable, Spawnable } from '../interfaces/';
+import type { Spawnable } from '../interfaces/';
 import type { ModProps } from '../data/schema';
 import type Item from '../ModContainer/Item';
 

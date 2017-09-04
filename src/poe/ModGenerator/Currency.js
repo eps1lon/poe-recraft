@@ -2,7 +2,6 @@
 import type Item from '../ModContainer/Item';
 import type { ModProps } from '../data/schema';
 
-import { AbstractMethod } from '../../exceptions/';
 import FlagSet from '../FlagSet';
 import RollableMod from '../Mod/RollableMod';
 import ModGenerator from './';
