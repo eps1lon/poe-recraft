@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from 'react';
 
-import ItemSection from './ItemSection';
+import ItemSection from '../containers/ItemSection';
 
 import './index.css';
 
