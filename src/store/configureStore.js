@@ -18,7 +18,7 @@ const __DEV__ = process.env.NODE_ENV !== 'production';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const middlewares = [sagaMiddleware, apiMiddleware, createLogger()];
+const middlewares = [apiMiddleware, sagaMiddleware, createLogger()];
 
 const middlewareEnhancer = applyMiddleware(...middlewares);
 
