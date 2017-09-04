@@ -8,6 +8,7 @@ import ApplicableMod from '../Mod/ApplicableMod';
 import MasterMod from '../Mod/MasterMod';
 import RollableMod from '../Mod/RollableMod';
 import ModGenerator from './';
+import MasterBench from './MasterBench';
 import Talisman from './Talisman';
 import Transmute from './Transmute';
 import Vaal from './Vaal';
@@ -20,27 +21,21 @@ export type ShowcaseMod = ApplicableMod | RollableMod | MasterMod;
  * applicableByteHuman
  */
 export default class ItemShowcase extends ModGenerator<ShowcaseMod> {
-  static modFilter(mod: ModProps): boolean {
-    return (
-      Talisman.modFilter(mod) || Transmute.modFilter(mod) || Vaal.modFilter(mod)
-    );
-  }
-
   static build(
     props: ModProps[],
     options: CraftingBenchOptionsProps[]
   ): ItemShowcase {
-    const mods = props.filter(ItemShowcase.modFilter).map(props => {
-      if (props.generation_type === Mod.TYPE.TALISMAN) {
-        return new ApplicableMod(props);
-      } else if (props.domain === Mod.DOMAIN.MASTER) {
-        return MasterMod.build(props, options);
-      } else if (props.spawn_weights.length > 0) {
-        return new RollableMod(props);
-      } else {
-        throw new Error(`could not build mod for ${props.primary}`);
-      }
-    });
+    const master = new MasterBench(options);
+    const talisman = Talisman.build(props);
+    const transmute = Transmute.build(props);
+    const vaal = Vaal.build(props);
+
+    const mods = [
+      ...talisman.mods,
+      ...transmute.mods,
+      ...vaal.mods,
+      ...master.mods
+    ];
 
     return new ItemShowcase(mods);
   }
