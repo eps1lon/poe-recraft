@@ -9,12 +9,18 @@ import {
 } from '../actions/poe';
 import App from '../components/App';
 
-const Root = ({ store, init }) => {
+const Root = ({ store, init, version }) => {
   return (
     <Provider store={store}>
-      <App init={init} />
+      <App {...{ init, version }} />
     </Provider>
   );
+};
+
+const mapStateToProps = state => {
+  return {
+    version: state.poe.version
+  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -28,4 +34,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Root);
+export default connect(mapStateToProps, mapDispatchToProps)(Root);

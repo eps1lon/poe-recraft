@@ -1,14 +1,34 @@
-import React, { Component } from 'react';
+// @flow
+import React, { PureComponent } from 'react';
 
 import './index.css';
 
-class App extends Component {
+export type Props = {
+  version: string,
+  init: () => void
+};
+
+class App extends PureComponent<Props> {
+  static defaultProps = {
+    version: 'undefined'
+  };
+  props: Props;
+
   componentDidMount() {
     this.props.init();
   }
 
   render() {
-    return <div className="App">Recraft</div>;
+    const { version } = this.props;
+
+    return (
+      <header>
+        <a href="">Path of Exile Mod Repository</a>
+        <span id="client">
+          (Patch: <em id="game_version">{version}</em>)
+        </span>
+      </header>
+    );
   }
 }
 

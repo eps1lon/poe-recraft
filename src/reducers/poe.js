@@ -12,7 +12,8 @@ export type State = {
   items: BaseItemTypeProps[],
   benchoptions: CraftingBenchOptionsProps[],
   metadata: MetaDataMap,
-  mods: ModProps[]
+  mods: ModProps[],
+  version: string
 };
 
 const initial: State = {
@@ -20,7 +21,8 @@ const initial: State = {
   items: [],
   benchoptions: [],
   metadata: {},
-  mods: []
+  mods: [],
+  version: '3.0.1c'
 };
 
 // TODO add normalizr
