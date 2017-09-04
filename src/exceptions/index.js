@@ -1,5 +1,2 @@
-import AbstractMethod from './AbstractMethod';
-
-export default {
-  AbstractMethod
-};
+// @flow
+export { default as AbstractMethod } from './AbstractMethod';
