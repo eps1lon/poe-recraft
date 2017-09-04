@@ -13,7 +13,7 @@ import META_MODs from '../Mod/meta_mods';
  * applicableByteHuman
  */
 export default class MasterMod extends ApplicableMod {
-  static APPLICABLE_FLAGS = super.APPLICABLE_FLAGS.concat(
+  static APPLICABLE_FLAGS = ApplicableMod.APPLICABLE_FLAGS.concat(
     'WRONG_ITEMCLASS',
     'NO_MULTIMOD'
   );
