@@ -11,6 +11,10 @@ import Stat from '../Stat';
 
 export type Rarity = 'normal' | 'magic' | 'rare' | 'unique' | 'showcase';
 
+export type LocalStats = {
+  [string]: ValueRange | string
+};
+
 /**
  * 
  * Item Class extends @link ModContainer
@@ -259,16 +263,16 @@ export default class Item extends ModContainer {
 
   requirements() {
     const requirements = {
-      Level: this.requiredLevel(),
-      Str: -1,
-      Dex: -1,
-      Int: -1
+      level: this.requiredLevel(),
+      str: 0,
+      dex: 0,
+      int: 0
     };
 
     if (this.props.component_attribute_requirement != null) {
-      requirements.Str = this.props.component_attribute_requirement.req_str;
-      requirements.Dex = this.props.component_attribute_requirement.req_dex;
-      requirements.Int = this.props.component_attribute_requirement.req_int;
+      requirements.str = this.props.component_attribute_requirement.req_str;
+      requirements.dex = this.props.component_attribute_requirement.req_dex;
+      requirements.int = this.props.component_attribute_requirement.req_int;
     }
 
     return requirements;
@@ -328,6 +332,21 @@ export default class Item extends ModContainer {
           return stats;
         }, stats);
       }, {});
+  }
+
+  /**
+   * TODO
+   */
+  localStats(): LocalStats {
+    const stats = this.stats();
+
+    if (this.props.component_armour != null) {
+      return {
+        physical_damage_reduction: String(this.props.component_armour.armour)
+      };
+    } else {
+      return { error: 'could not  build' };
+    }
   }
 
   corrupt() {

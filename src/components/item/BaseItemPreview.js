@@ -3,12 +3,21 @@ import React from 'react';
 
 import type Item from '../../poe/ModContainer/Item';
 
+import { MetaData, LocalStats, Requirements, Mods } from './statsgroup/';
+import { Corrupted } from '../poe/stats/';
+
 export type Props = {
   item: Item
 };
 
 const BaseItemPreview = ({ item }: Props) => {
-  console.log(item);
+  const groups = [
+    { key: 'meta_data', component: MetaData },
+    { key: 'local_stats', component: LocalStats },
+    { key: 'requirements', component: Requirements },
+    { key: 'mods', component: Mods }
+  ];
+
   return (
     <div className="itembox">
       <span className="itemboxheader double-line">
@@ -17,6 +26,8 @@ const BaseItemPreview = ({ item }: Props) => {
         <span className="baseName">{item.baseName()}</span>
         <span className="itemboxheader-right" />
       </span>
+      {groups.map(Group => <Group.component key={Group.key} item={item} />)}
+      {item.corrupted && <Corrupted />}
     </div>
   );
 };
