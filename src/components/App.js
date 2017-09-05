@@ -1,6 +1,7 @@
 // @flow
 import React, { PureComponent } from 'react';
 
+import AvailableMods from '../containers/AvailableMods';
 import ItemSection from '../containers/ItemSection';
 
 import './index.css';
@@ -31,6 +32,7 @@ class App extends PureComponent<Props> {
         </span>
       </header>,
       <div key="content" id="content">
+        <AvailableMods />
         <ItemSection />
       </div>
     ];
