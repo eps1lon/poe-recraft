@@ -9,7 +9,10 @@ export default class FlagSet {
     const new_flag_set = flag_set.clone();
 
     for (const flag of blacklist) {
-      new_flag_set.disable(flag);
+      try {
+        // we dont care about excess flags here
+        new_flag_set.disable(flag);
+      } catch (err) {}
     }
 
     return new_flag_set;
