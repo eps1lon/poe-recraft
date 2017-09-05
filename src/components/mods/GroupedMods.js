@@ -2,6 +2,7 @@
 import React from 'react';
 
 import type Mod from '../../poe/Mod/';
+import RollableMod from '../../poe/Mod/RollableMod';
 
 export type Props = {
   mods: Mod[]
@@ -31,7 +32,7 @@ const groupMods = (mods: Mod[]): Map<string, Mod[]> => {
 const GroupedMods = ({ mods }: Props) => {
   const groups = groupMods(mods);
 
-  return Array.from(groups).map(([group, mod]) => {
+  return Array.from(groups).map(([group, mods]) => {
     return [
       <tbody
         key="group"

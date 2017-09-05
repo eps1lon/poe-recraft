@@ -51,6 +51,8 @@ export default class RollableMod extends ApplicableMod implements Spawnable {
     } else if (spawnweight.value <= 0) {
       this.spawnweight = 0;
       this.spawnable_flags.enable('SPAWNWEIGHT_ZERO');
+    } else {
+      this.spawnweight = spawnweight.value;
     }
 
     return !FlagSet.flagsBlacklisted(this.spawnable_flags, success).anySet();
