@@ -24,7 +24,11 @@ const AvailableMods = ({ prefixes, suffixes, implicits }: Props) => {
           Collapse All
         </a>
       </h3>
-      <ModsTable className="implicits" mods={[]} options={{ grouped: false }} />
+      <ModsTable
+        className="implicits"
+        mods={implicits}
+        options={{ grouped: false }}
+      />
       <div id="affixes">
         <ModsTable
           className="prefixes"

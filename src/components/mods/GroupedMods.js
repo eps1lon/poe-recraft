@@ -1,8 +1,11 @@
 // @flow
 import React from 'react';
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
 
 import type Mod from '../../poe/Mod/';
-import RollableMod from '../../poe/Mod/RollableMod';
+
+import UngroupedMods from './UngroupedMods';
 
 export type Props = {
   mods: Mod[]
@@ -28,41 +31,42 @@ const groupMods = (mods: Mod[]): Map<string, Mod[]> => {
   return groups;
 };
 
+const columns = [
+  {
+    accessor: '0',
+    id: 'correct_group',
+    className: 'correct-group'
+  },
+  {
+    accessor: '1.length',
+    id: 'tally',
+    className: 'group-mods-tally'
+  }
+];
+
+const defaultSorted = ['correct_group'];
+
+const SubComponent = ({ original: [group, mods], ...row }) => {
+  return <UngroupedMods mods={mods} />;
+};
+
 // TODO spawnchance, flags, mod#t
 const GroupedMods = ({ mods }: Props) => {
   const groups = groupMods(mods);
 
-  return Array.from(groups).map(([group, mods]) => {
-    return [
-      <tbody
-        key="group"
-        className="correct_group not_rollable tablesorter-no-sort"
-      >
-        <tr>
-          <th colspan="5" className="correct_group">
-            {group}
-          </th>
-        </tr>
-      </tbody>,
-      <tbody key="mods" className="mods">
-        {mods.map(mod => {
-          return (
-            <tr id={mod.domId()} className="mod applicable">
-              <td className="ilvl">{mod.props.level}</td>
-              <td className="stats">{mod.props.stats.map(stat => stat.id)}</td>
-              <td className="name">{mod.name()}</td>
-              <td className="spawn_chance">{0}</td>
-              <td>
-                <button type="button" className="add_mod">
-                  add
-                </button>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    ];
-  });
+  return (
+    <ReactTable
+      {...{
+        data: Array.from(groups),
+        className: 'correct-group',
+        columns,
+        defaultSorted,
+        SubComponent,
+        showPagination: false,
+        minRows: 1
+      }}
+    />
+  );
 };
 
 export default GroupedMods;

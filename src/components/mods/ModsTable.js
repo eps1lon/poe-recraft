@@ -23,22 +23,12 @@ const ModsTable = ({ className, human = className, mods, options }: Props) => {
 
   const Mods = grouped ? GroupedMods : UngroupedMods;
 
-  return (
-    <table className={`mods ${className}`}>
-      <caption id="implicits-caption">
-        {human} /<span className="count">{mods.length}</span>
-      </caption>
-      <thead>
-        <tr>
-          <th className="ilvl">iLvl</th>
-          <th className="stats {sorter: false}">Stats</th>
-          <th className="spawn_chance">Chance</th>
-          <th className="{sorter: false}" />
-        </tr>
-      </thead>
-      <Mods mods={mods} />
-    </table>
-  );
+  return [
+    <h4 key="caption" id="implicits-caption">
+      {human} /<span className="count">{mods.length}</span>
+    </h4>,
+    <Mods key="mods" className={className} mods={mods} />
+  ];
 };
 
 export default ModsTable;
