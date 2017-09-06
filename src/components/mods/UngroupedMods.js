@@ -40,22 +40,22 @@ const columns = [
 const defaultSorted = [{ id: 'ilvl' }];
 
 // TODO spawnchance, flags, mod#t
-const UngroupedMods = ({ className, mods }: Props) => {
+const UngroupedMods = ({ className = '', mods }: Props) => {
   return (
     <ReactTable
       {...{
-        className: className,
+        className: `mods ${className}`,
         data: mods,
         columns,
         defaultSorted,
         showPagination: false,
         minRows: 1,
         getTrProps: (state, rowInfo) => {
-          const original = rowInfo !== undefined && rowInfo.original;
+          const mod = rowInfo !== undefined && rowInfo.original;
 
-          if (original instanceof Mod) {
+          if (mod instanceof Mod) {
             return {
-              className: original.modType()
+              className: `mod ${mod.constructor.name} ${mod.modType()}`
             };
           } else {
             return {};
