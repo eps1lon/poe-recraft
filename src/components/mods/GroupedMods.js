@@ -51,19 +51,40 @@ const SubComponent = ({ original: [group, mods], ...row }) => {
 };
 
 // TODO spawnchance, flags, mod#t
-const GroupedMods = ({ className, mods }: Props) => {
+const GroupedMods = ({ className = '', mods }: Props) => {
   const groups = groupMods(mods);
 
   return (
     <ReactTable
       {...{
         data: Array.from(groups),
-        className: className,
+        className: `grouped ${className}`,
         columns,
         defaultSorted,
         SubComponent,
         showPagination: false,
-        minRows: 1
+        minRows: 1,
+        getTrProps: (state, rowInfo, column, instance) => {
+          if (rowInfo != null) {
+            const { viewIndex } = rowInfo;
+
+            const new_expanded = state.expanded[viewIndex] ? false : {};
+            const new_state = {
+              expanded: {
+                ...state.expanded,
+                [viewIndex]: new_expanded
+              }
+            };
+
+            return {
+              onClick: (e, handleOriginal) => {
+                instance.setState(new_state);
+              }
+            };
+          } else {
+            return {};
+          }
+        }
       }}
     />
   );
