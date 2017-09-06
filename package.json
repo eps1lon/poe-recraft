@@ -38,18 +38,15 @@
     "reselect": "^3.0.1"
   },
   "scripts": {
-    "build-css":
-      "node-sass-chokidar --include-path ./node_modules src/ -o src/",
+    "build-css": "node-sass-chokidar --include-path ./node_modules src/ -o src/",
     "build": "npm run build-css && react-scripts build",
     "eject": "react-scripts eject",
     "flow": "flow",
     "format": "prettier --write src/**/*.js",
-    "prepush":
-      "prettier --list-different src/**/*.js && cross-env CI=true yarn test",
+    "prepush": "prettier --list-different src/**/*.js && cross-env CI=true yarn test",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "test": "react-scripts test --env=jsdom",
-    "watch-css":
-      "npm run build-css && node-sass-chokidar --include-path ./node_modules src/ -o src/ --watch"
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./node_modules src/ -o src/ --watch"
   }
 }
