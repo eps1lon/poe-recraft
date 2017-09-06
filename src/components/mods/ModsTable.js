@@ -1,5 +1,7 @@
 // @flow
 import React from 'react';
+import './ModsTable.css';
+import 'react-table/react-table.css';
 
 import type Mod from '../../poe/Mod/';
 
