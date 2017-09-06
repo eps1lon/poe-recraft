@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import './ModsTable.css';
 
 import type Mod from '../../poe/Mod/';
 
@@ -24,12 +23,14 @@ const ModsTable = ({ className, human = className, mods, options }: Props) => {
 
   const Mods = grouped ? GroupedMods : UngroupedMods;
 
-  return [
-    <h4 key="caption" id={`${className}-caption`}>
-      {human} /<span className="count">{mods.length}</span>
-    </h4>,
-    <Mods key="mods" className={className} mods={mods} />
-  ];
+  return (
+    <div className={className}>
+      <h4 id={`${className}-caption`}>
+        {human} /<span className="count">{mods.length}</span>
+      </h4>,
+      <Mods mods={mods} />
+    </div>
+  );
 };
 
 export default ModsTable;

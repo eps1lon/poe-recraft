@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import './AvailableMods.css';
 
 import type Mod from '../../poe/Mod/';
 
@@ -11,7 +12,7 @@ export type Props = {
   suffixes: Mod[]
 };
 
-// TODO add implicits
+// TODO hide implicits by default => toggleable
 const AvailableMods = ({ prefixes, suffixes, implicits }: Props) => {
   return (
     <section id="available_mods">
