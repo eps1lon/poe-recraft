@@ -25,7 +25,7 @@ const ModsTable = ({ className, human = className, mods, options }: Props) => {
   const Mods = grouped ? GroupedMods : UngroupedMods;
 
   return [
-    <h4 key="caption" id="implicits-caption">
+    <h4 key="caption" id={`${className}-caption`}>
       {human} /<span className="count">{mods.length}</span>
     </h4>,
     <Mods key="mods" className={className} mods={mods} />

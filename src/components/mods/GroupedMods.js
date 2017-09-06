@@ -7,6 +7,7 @@ import type Mod from '../../poe/Mod/';
 import UngroupedMods from './UngroupedMods';
 
 export type Props = {
+  className: string,
   mods: Mod[]
 };
 
@@ -46,18 +47,18 @@ const columns = [
 const defaultSorted = ['correct_group'];
 
 const SubComponent = ({ original: [group, mods], ...row }) => {
-  return <UngroupedMods mods={mods} />;
+  return <UngroupedMods className="correct-group" mods={mods} />;
 };
 
 // TODO spawnchance, flags, mod#t
-const GroupedMods = ({ mods }: Props) => {
+const GroupedMods = ({ className, mods }: Props) => {
   const groups = groupMods(mods);
 
   return (
     <ReactTable
       {...{
         data: Array.from(groups),
-        className: 'correct-group',
+        className: className,
         columns,
         defaultSorted,
         SubComponent,

@@ -6,6 +6,7 @@ import Mod from '../../poe/Mod/';
 import RollableMod from '../../poe/Mod/RollableMod';
 
 export type Props = {
+  className: string,
   mods: Mod[]
 };
 
@@ -39,11 +40,11 @@ const columns = [
 const defaultSorted = [{ id: 'ilvl' }];
 
 // TODO spawnchance, flags, mod#t
-const UngroupedMods = ({ mods }: Props) => {
+const UngroupedMods = ({ className, mods }: Props) => {
   return (
     <ReactTable
       {...{
-        className: 'mods',
+        className: className,
         data: mods,
         columns,
         defaultSorted,
