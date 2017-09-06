@@ -6,7 +6,7 @@ import Mod from '../../poe/Mod/';
 import RollableMod from '../../poe/Mod/RollableMod';
 
 export type Props = {
-  className: string,
+  className?: string,
   mods: Mod[]
 };
 

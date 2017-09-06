@@ -7,7 +7,7 @@ import type Mod from '../../poe/Mod/';
 import UngroupedMods from './UngroupedMods';
 
 export type Props = {
-  className: string,
+  className?: string,
   mods: Mod[]
 };
 
