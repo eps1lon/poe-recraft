@@ -1,6 +1,6 @@
 // @flow
 import type { Spawnable } from '../interfaces/';
-import type { ModProps } from '../data/schema';
+import type { SpawnWeightProps, ModProps } from '../data/schema';
 import type Item from '../ModContainer/Item';
 
 import ApplicableMod from './ApplicableMod';
@@ -38,14 +38,18 @@ export default class RollableMod extends ApplicableMod implements Spawnable {
     this.spawnable_flags.reset();
   }
 
-  spawnableOn(item: Item, success: string[] = []): boolean {
+  spawnweightFor(item: Item): ?SpawnWeightProps {
     const item_tags = item.getTags();
 
-    const spawnweight = this.props.spawn_weights.find(({ tag }) =>
+    return this.props.spawn_weights.find(({ tag }) =>
       item_tags.find(item_tag => tag.primary === item_tag.primary)
     );
+  }
 
-    if (spawnweight === undefined) {
+  spawnableOn(item: Item, success: string[] = []): boolean {
+    const spawnweight = this.spawnweightFor(item);
+
+    if (spawnweight == null) {
       this.spawnable_flags.enable('NO_MATCHING_TAGS');
       return false;
     } else if (spawnweight.value <= 0) {
