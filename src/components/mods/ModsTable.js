@@ -4,6 +4,7 @@ import React from 'react';
 import type FlagSet from '../../poe/FlagSet';
 import type Mod from '../../poe/Mod/';
 
+import withModHandles from '../../containers/withModHandles';
 import GroupedMods from './GroupedMods';
 import UngroupedMods from './UngroupedMods';
 
@@ -35,7 +36,7 @@ const ModsTable = ({
 }: Props) => {
   const { grouped = false, exclude = [] } = options;
 
-  const Mods = grouped ? GroupedMods : UngroupedMods;
+  const Mods = withModHandles(grouped ? GroupedMods : UngroupedMods);
 
   return (
     <div className={className}>

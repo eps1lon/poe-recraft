@@ -11,44 +11,51 @@ export type Props = {
   details: GeneratorDetails[],
   options: {
     exclude?: string[]
-  }
+  },
+  onAddMod: (mod: Mod) => mixed
 };
-
-const all_columns = [
-  {
-    accessor: 'mod.props.level',
-    className: 'ilvl',
-    id: 'ilvl',
-    Header: 'iLvl'
-  },
-  {
-    accessor: (details: GeneratorDetails) =>
-      details.mod.props.stats.map(({ id }) => id).join(','),
-    className: 'stats',
-    Header: 'Stats',
-    id: 'stats'
-  },
-  {
-    accessor: 'mod.props.name',
-    className: 'name',
-    Header: 'Name',
-    id: 'name'
-  },
-  {
-    accessor: (details: GeneratorDetails) => String(details.spawnweight),
-    className: 'spawn-chance',
-    Header: 'Chance',
-    id: 'chance'
-  }
-];
 
 const defaultSorted = [{ id: 'ilvl', desc: true }];
 
 // TODO spawnchance, flags, mod#t
-const UngroupedMods = ({ className = '', details, options }: Props) => {
+const UngroupedMods = (props: Props) => {
+  const { className = '', details, options, onAddMod } = props;
   const { exclude = [] } = options;
 
-  const columns = all_columns.filter(({ id }) => !exclude.includes(id));
+  const columns = [
+    {
+      accessor: 'mod.props.level',
+      className: 'ilvl',
+      id: 'ilvl',
+      Header: 'iLvl'
+    },
+    {
+      accessor: (details: GeneratorDetails) =>
+        details.mod.props.stats.map(({ id }) => id).join(','),
+      className: 'stats',
+      Header: 'Stats',
+      id: 'stats'
+    },
+    {
+      accessor: 'mod.props.name',
+      className: 'name',
+      Header: 'Name',
+      id: 'name'
+    },
+    {
+      accessor: (details: GeneratorDetails) => String(details.spawnweight),
+      className: 'spawn-chance',
+      Header: 'Chance',
+      id: 'chance'
+    },
+    {
+      Header: 'add',
+      id: 'add_mod',
+      Cell: ({ original: mod }) => {
+        return <button onClick={() => onAddMod(mod)}>addMod</button>;
+      }
+    }
+  ].filter(({ id }) => !exclude.includes(id));
 
   return (
     <ReactTable
@@ -78,7 +85,8 @@ const UngroupedMods = ({ className = '', details, options }: Props) => {
 };
 
 UngroupedMods.defaultProps = {
-  options: {}
+  options: {},
+  onAddMod: () => undefined
 };
 
 export default UngroupedMods;
