@@ -53,7 +53,9 @@ const UngroupedMods = ({ className = '', details }: Props) => {
         showPagination: false,
         minRows: 1,
         getTrProps: (state, rowInfo) => {
-          const mod = rowInfo !== undefined && rowInfo.original;
+          // rowInfo.original.mod || undefined
+          const mod =
+            rowInfo !== undefined && rowInfo.original && rowInfo.original.mod;
 
           if (mod instanceof Mod) {
             return {
