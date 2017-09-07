@@ -2,7 +2,7 @@
 import { all, fork, put, select, take } from 'redux-saga/effects';
 
 import { combineLatest } from './util';
-import { setItem } from '../actions/item';
+import { setItem, setItemClass } from '../actions/item';
 import { defaultItem } from '../selectors/item';
 
 function* setDefaultItem() {
@@ -19,7 +19,7 @@ function* initDefaultItem(): Generator<*, *, *> {
 
   // set again on class change
   while (true) {
-    yield take('SET_ITEM_CLASS');
+    yield take(setItemClass.toString());
     yield setDefaultItem();
   }
 }
