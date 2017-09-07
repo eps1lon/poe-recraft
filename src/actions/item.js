@@ -13,3 +13,4 @@ export const setItemClass = createAction(
 );
 
 export const addMod = createAction('ADD_MOD', (mod: Mod) => mod);
+export const removeMod = createAction('REMOVE_MOD', (mod: Mod) => mod);

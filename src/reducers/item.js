@@ -4,7 +4,7 @@ import { handleActions } from 'redux-actions';
 import type Item from '../poe/ModContainer/Item';
 import type { ItemClassProps } from '../poe/data/schema';
 
-import { addMod, setItem, setItemClass } from '../actions/item';
+import { addMod, removeMod, setItem, setItemClass } from '../actions/item';
 
 export type State = {
   item_class: ItemClassProps,
@@ -44,6 +44,18 @@ const reducer = handleActions(
         return {
           ...state,
           item: crafted
+        };
+      } else {
+        return state;
+      }
+    },
+    [removeMod.toString()](state: State, { payload: mod }) {
+      const { item } = state;
+
+      if (item != null) {
+        return {
+          ...state,
+          item: item.removeMod(mod)
         };
       } else {
         return state;
