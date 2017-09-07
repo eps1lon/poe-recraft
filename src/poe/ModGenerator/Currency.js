@@ -35,45 +35,50 @@ export default class Currency extends ModGenerator<RollableMod> {
     return new currency(rollable_mods);
   }
 
-  constructor(mods: RollableMod[]) {
-    super(mods);
+  modsFor(item: Item, whitelist: string[] = []) {
+    return this.getAvailableMods()
+      .map(mod => {
+        const applicable_flags = mod.applicableTo(item);
+        const spawnable_flags = mod.spawnableOn(item);
+        const spawnweight = mod.spawnweightFor(item);
 
-    this.applicable_flags = new FlagSet(Currency.APPLICABLE_FLAGS);
-    this.resetApplicable();
-  }
+        const is_applicable = !FlagSet.flagsBlacklisted(
+          applicable_flags,
+          whitelist
+        ).anySet();
 
-  /**
-   * maps Mod::applicableTo and Mod::spawnableOn to all available mods
-   */
-  mapFor(item: Item, success: string[] = []): RollableMod[] {
-    return this.getAvailableMods().map(mod => {
-      mod.applicableTo(item, success);
-      mod.spawnableOn(item);
+        const is_spawnable = !FlagSet.flagsBlacklisted(
+          spawnable_flags,
+          whitelist
+        ).anySet();
 
-      return mod;
-    });
-  }
+        const is_rollable = is_applicable && is_spawnable && spawnweight > 0;
 
-  /**
-   * greps Mod::applicableTo and Mod::spawnableOn to all available mods
-   */
-  modsFor(item: Item, success: string[] = []): RollableMod[] {
-    return this.getAvailableMods().filter(
-      mod => mod.applicableTo(item, success) && mod.spawnableOn(item)
-    );
+        if (is_rollable) {
+          return {
+            mod,
+            applicable: applicable_flags,
+            spawnable: spawnable_flags,
+            spawnweight: spawnweight
+          };
+        } else {
+          return null;
+        }
+      })
+      .filter(Boolean);
   }
 
   /**
    * currency only applies to items
    */
-  applicableTo(item: Item, success: string[] = []): boolean {
-    this.resetApplicable();
+  applicableTo(item: Item, success: string[] = []): FlagSet {
+    const applicable_flags = new FlagSet(Currency.APPLICABLE_FLAGS);
 
     if (item.corrupted) {
-      this.applicable_flags.enable('CORRUPTED');
+      applicable_flags.enable('CORRUPTED');
     }
 
-    return !FlagSet.flagsBlacklisted(this.applicable_flags, success).anySet();
+    return applicable_flags;
   }
 
   name() {

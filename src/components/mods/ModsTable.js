@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 
+import type FlagSet from '../../poe/FlagSet';
 import type Mod from '../../poe/Mod/';
 
 import GroupedMods from './GroupedMods';
@@ -10,15 +11,27 @@ type Options = {
   grouped: boolean
 };
 
+export type GeneratorDetails = {
+  mod: Mod,
+  applicable?: FlagSet,
+  spawnable?: FlagSet,
+  spawnweight?: number
+};
+
 export type Props = {
   className: string,
   human?: string,
-  mods: Mod[],
+  details: GeneratorDetails[],
   options: Options
 };
 
 // TODO sortable
-const ModsTable = ({ className, human = className, mods, options }: Props) => {
+const ModsTable = ({
+  className,
+  human = className,
+  details,
+  options
+}: Props) => {
   const { grouped } = options;
 
   const Mods = grouped ? GroupedMods : UngroupedMods;
@@ -26,9 +39,9 @@ const ModsTable = ({ className, human = className, mods, options }: Props) => {
   return (
     <div className={className}>
       <h4 id={`${className}-caption`}>
-        {human} /<span className="count">{mods.length}</span>
+        {human} /<span className="count">{details.length}</span>
       </h4>,
-      <Mods mods={mods} />
+      <Mods details={details} />
     </div>
   );
 };

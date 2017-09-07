@@ -2,9 +2,10 @@
 import { createSelector } from 'reselect';
 
 import type { State } from '../reducers/rootReducer';
+import type FlagSet from '../poe/FlagSet';
 import type Item from '../poe/ModContainer/Item';
-import type ModGenerator from '../poe/ModGenerator/';
 import type Mod from '../poe/Mod/';
+import type ModGenerator from '../poe/ModGenerator/';
 
 import ItemShowcase from '../poe/ModGenerator/ItemShowcase';
 
@@ -12,24 +13,37 @@ export function buildSowcase(state: State): ItemShowcase {
   const mods = state.poe.mods;
   const options = state.poe.benchoptions;
 
-  return ItemShowcase.build(mods, options);
+  return new ItemShowcase(mods, options);
 }
+
+export type GeneratorDetails = {
+  mod: Mod,
+  applicable?: FlagSet,
+  spawnable?: FlagSet,
+  spawnweight?: number
+};
+
+export type AvailableMods = {
+  prefixes: GeneratorDetails[],
+  suffixes: GeneratorDetails[],
+  implicits: GeneratorDetails[]
+};
 
 const availableMods = (
   item: ?Item,
   generator: ?ModGenerator<*>,
   whitelist: string[] = []
-) => {
-  let prefixes: Mod[] = [];
-  let suffixes: Mod[] = [];
-  let implicits: Mod[] = [];
+): AvailableMods => {
+  let prefixes = [];
+  let suffixes = [];
+  let implicits = [];
 
   if (item != null && generator != null) {
-    const mods = generator.modsFor(item, whitelist);
+    const details = generator.modsFor(item, whitelist);
 
-    prefixes = mods.filter(mod => mod.isPrefix());
-    suffixes = mods.filter(mod => mod.isSuffix());
-    implicits = mods.filter(mod => mod.implicitCandidate());
+    prefixes = details.filter(({ mod }) => mod.isPrefix());
+    suffixes = details.filter(({ mod }) => mod.isSuffix());
+    implicits = details.filter(({ mod }) => mod.implicitCandidate());
   }
 
   return {

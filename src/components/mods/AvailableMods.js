@@ -2,14 +2,14 @@
 import React from 'react';
 import './AvailableMods.css';
 
-import type Mod from '../../poe/Mod/';
+import type { GeneratorDetails } from './ModsTable';
 
 import ModsTable from './ModsTable';
 
 export type Props = {
-  implicits: Mod[],
-  prefixes: Mod[],
-  suffixes: Mod[]
+  implicits: GeneratorDetails[],
+  prefixes: GeneratorDetails[],
+  suffixes: GeneratorDetails[]
 };
 
 // TODO hide implicits by default => toggleable
@@ -27,18 +27,18 @@ const AvailableMods = ({ prefixes, suffixes, implicits }: Props) => {
       </h3>
       <ModsTable
         className="implicits"
-        mods={implicits}
+        details={implicits}
         options={{ grouped: false }}
       />
       <div id="affixes">
         <ModsTable
           className="prefixes"
-          mods={prefixes}
+          details={prefixes}
           options={{ grouped: true }}
         />
         <ModsTable
           className="suffixes"
-          mods={suffixes}
+          details={suffixes}
           options={{ grouped: true }}
         />
       </div>

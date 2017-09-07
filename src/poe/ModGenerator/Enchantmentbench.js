@@ -2,6 +2,7 @@
 import type Item from '../ModContainer/Item';
 import type { ModProps } from '../data/schema';
 
+import FlagSet from '../FlagSet';
 import Mod from '../Mod/';
 import Currency from './Currency';
 
@@ -38,8 +39,8 @@ export default class Enchantmentbench extends Currency {
     }
   }
 
-  applicableTo(item: Item, success: string[] = []): boolean {
-    return true;
+  applicableTo(item: Item, success: string[] = []): FlagSet {
+    return new FlagSet([]);
   }
 
   name() {

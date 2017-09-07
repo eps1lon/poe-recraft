@@ -38,12 +38,16 @@ export default class FlagSet {
     return this.flags.indexOf(name) !== -1;
   }
 
-  add(name: string) {
-    if (!this.exists(name)) {
-      this.flags.push(name);
-    } else {
-      console.error('`' + name + '` already set in', this.flags);
+  add(...names: string[]) {
+    for (const name of names) {
+      if (!this.exists(name)) {
+        this.flags.push(name);
+      } else {
+        console.error('`' + name + '` already set in', this.flags);
+      }
     }
+
+    return this;
   }
 
   isSet(name: string): boolean {
@@ -109,5 +113,24 @@ export default class FlagSet {
         return filtered;
       }
     }, {});
+  }
+
+  append(other: FlagSet) {
+    const new_flags = [...this.flags, ...other.flags];
+    const merged = new FlagSet(new_flags);
+
+    //merged.value = this.value | (other.value << this.flags.length);
+    for (const flag of this.flags) {
+      if (this.isSet(flag)) {
+        merged.enable(flag);
+      }
+    }
+    for (const flag of other.flags) {
+      if (other.isSet(flag)) {
+        merged.enable(flag);
+      }
+    }
+
+    return merged;
   }
 }

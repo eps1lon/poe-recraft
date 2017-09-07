@@ -6,6 +6,13 @@ import type Mod from '../Mod/';
 import { AbstractMethod } from '../../exceptions/';
 import FlagSet from '../FlagSet';
 
+export type GeneratorDetails = {
+  mod: Mod,
+  applicable?: FlagSet,
+  spawnable?: FlagSet,
+  spawnweight?: number
+};
+
 /**
  * @abstract
  * TODO:
@@ -14,14 +21,10 @@ import FlagSet from '../FlagSet';
 export default class ModGenerator<T: Mod> implements Applicable {
   static APPLICABLE_FLAGS = [];
 
-  applicable_flags: FlagSet;
   mods: T[];
 
   constructor(mods: T[]) {
     this.mods = mods;
-
-    this.applicable_flags = new FlagSet(ModGenerator.APPLICABLE_FLAGS);
-    this.resetApplicable();
   }
 
   applyTo(item: Item): boolean {
@@ -32,31 +35,25 @@ export default class ModGenerator<T: Mod> implements Applicable {
     return this.mods.slice();
   }
 
-  modsFor(item: Item, success: string[] = []): T[] {
-    return this.getAvailableMods();
+  modsFor(item: Item, whitelist: string[] = []): GeneratorDetails[] {
+    throw new AbstractMethod('ModGenerator#modsFor');
   }
 
-  mapFor(item: Item, success: string[] = []): T[] {
-    return this.getAvailableMods();
-  }
-
-  applicableTo(item: Item, success: string[] = []): boolean {
+  applicableTo(item: Item): FlagSet {
     throw new AbstractMethod('applicableTo');
   }
 
-  applicableCached(): boolean {
-    return !this.applicable_flags.anySet();
-  }
-
-  resetApplicable(): void {
-    this.applicable_flags.reset();
-  }
-
-  chooseMod(item: Item): ?T {
-    const mods = this.modsFor(item);
+  // would like to return ?T but i cant make Details to be generic
+  chooseMod(item: Item): ?Mod {
+    const details = this.modsFor(item);
+    const detail = details[Math.floor(Math.random() * (details.length - 1))];
 
     // TODO spawnweight
-    return mods[Math.floor(Math.random() * (mods.length - 1))];
+    if (detail != null) {
+      return detail.mod;
+    } else {
+      return undefined;
+    }
   }
 
   /**

@@ -2,35 +2,37 @@
 import React from 'react';
 import ReactTable from 'react-table';
 
+import type { GeneratorDetails } from './ModsTable';
+
 import Mod from '../../poe/Mod/';
-import RollableMod from '../../poe/Mod/RollableMod';
 
 export type Props = {
   className?: string,
-  mods: Mod[]
+  details: GeneratorDetails[]
 };
 
 const columns = [
   {
-    accessor: 'props.level',
+    accessor: 'mod.props.level',
     className: 'ilvl',
     id: 'ilvl',
     Header: 'iLvl'
   },
   {
-    accessor: (mod: Mod) => mod.props.stats.map(({ id }) => id).join(','),
+    accessor: (details: GeneratorDetails) =>
+      details.mod.props.stats.map(({ id }) => id).join(','),
     className: 'stats',
     Header: 'Stats',
     id: 'stats'
   },
   {
-    accessor: 'props.name',
+    accessor: 'mod.props.name',
     className: 'name',
     Header: 'Name',
     id: 'name'
   },
   {
-    accessor: (mod: Mod) => mod instanceof RollableMod && mod.spawnweight,
+    accessor: (details: GeneratorDetails) => String(details.spawnweight),
     className: 'spawn-chance',
     Header: 'Chance',
     id: 'chance'
@@ -40,12 +42,12 @@ const columns = [
 const defaultSorted = [{ id: 'ilvl' }];
 
 // TODO spawnchance, flags, mod#t
-const UngroupedMods = ({ className = '', mods }: Props) => {
+const UngroupedMods = ({ className = '', details }: Props) => {
   return (
     <ReactTable
       {...{
         className: `mods ${className}`,
-        data: mods,
+        data: details,
         columns,
         defaultSorted,
         showPagination: false,

@@ -1,13 +1,8 @@
 // @flow
-import _ from 'lodash';
-
 import type Item from '../ModContainer/Item';
-import type { ModProps } from '../data/schema';
 
 import FlagSet from '../FlagSet';
-import Mod from '../Mod/';
 import META_MODS from '../Mod/meta_mods';
-import RollableMod from '../Mod/RollableMod';
 import Currency from './Currency';
 
 /**
@@ -15,16 +10,13 @@ import Currency from './Currency';
  * applicableByteHuman
  */
 export default class Scouring extends Currency {
+  static ADDITIONAL_APPLICABLE_FLAGS = ['ALREADY_WHITE', 'UNIQUE'];
   static APPLICABLE_FLAGS = Currency.APPLICABLE_FLAGS.concat(
-    'ALREADY_WHITE',
-    'UNIQUE'
+    Scouring.ADDITIONAL_APPLICABLE_FLAGS
   );
 
   constructor() {
     super([]);
-
-    this.applicable_flags = new FlagSet(Scouring.APPLICABLE_FLAGS);
-    this.resetApplicable();
   }
 
   /**
@@ -32,7 +24,7 @@ export default class Scouring extends Currency {
    * considers locked affixes metamods
    */
   applyTo(item: Item): boolean {
-    if (this.applicableTo(item)) {
+    if (!this.applicableTo(item).anySet()) {
       const locked_prefixes =
         item.getImplicitIndexOfModWithPrimary(META_MODS.LOCKED_PREFIXES) !== -1;
       const locked_suffixes =
@@ -71,19 +63,21 @@ export default class Scouring extends Currency {
   /**
    * checks if normal or unique rarity and returns false
    */
-  applicableTo(item: Item, success: string[] = []): boolean {
-    super.applicableTo(item, success);
+  applicableTo(item: Item, success: string[] = []): FlagSet {
+    const applicable_flags = super
+      .applicableTo(item)
+      .add(...Scouring.ADDITIONAL_APPLICABLE_FLAGS);
 
     switch (item.rarity) {
       case 'normal':
-        this.applicable_flags.enable('ALREADY_WHITE');
+        applicable_flags.enable('ALREADY_WHITE');
         break;
       case 'unique':
-        this.applicable_flags.enable('UNIQUE');
+        applicable_flags.enable('UNIQUE');
         break;
     }
 
-    return !FlagSet.flagsBlacklisted(this.applicable_flags, success).anySet();
+    return applicable_flags;
   }
 
   name() {

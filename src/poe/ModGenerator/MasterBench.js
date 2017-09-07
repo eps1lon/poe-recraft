@@ -2,6 +2,7 @@
 import type Item from '../ModContainer/Item';
 import type { CraftingBenchOptionsProps } from '../data/schema';
 
+import FlagSet from '../FlagSet';
 import MasterMod from '../Mod/MasterMod';
 import ModGenerator from './';
 
@@ -89,28 +90,40 @@ export default class MasterBench extends ModGenerator<MasterMod> {
   /**
    * every item is welcome
    */
-  applicableTo(item: Item): boolean {
-    return true;
+  applicableTo(item: Item): FlagSet {
+    // empty flags
+    return new FlagSet([]);
   }
 
   /**
    * greps mod::applicableTo 
    */
-  modsFor(item: Item, success: string[] = []): MasterMod[] {
+  modsFor(item: Item, whitelist: string[] = []) {
     // simulate blue if white
     const old_rarity = item.rarity;
     if (old_rarity === 'normal') {
       item.rarity = 'magic';
     }
 
-    const mods = this.getAvailableMods().filter(mod => {
-      return mod.applicableTo(item, success);
-    });
+    const details = this.getAvailableMods()
+      .map(mod => {
+        const applicable_flags = mod.applicableTo(item);
+
+        if (FlagSet.flagsBlacklisted(applicable_flags, whitelist).anySet()) {
+          return null;
+        } else {
+          return {
+            mod,
+            applicable: applicable_flags
+          };
+        }
+      })
+      .filter(Boolean);
 
     // reroll
     item.rarity = old_rarity;
 
-    return mods;
+    return details;
   }
 
   /**

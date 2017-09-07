@@ -4,7 +4,6 @@ import type { ModProps } from '../data/schema';
 
 import FlagSet from '../FlagSet';
 import Mod from '../Mod/';
-import RollableMod from '../Mod/RollableMod';
 import Currency from './Currency';
 
 /**
@@ -12,7 +11,10 @@ import Currency from './Currency';
  * applicableByteHuman
  */
 export default class Transmute extends Currency {
-  static APPLICABLE_FLAGS = Currency.APPLICABLE_FLAGS.concat('NOT_WHITE');
+  static ADDITIONAL_APPLICABLE_FLAGS = ['NOT_WHITE'];
+  static APPLICABLE_FLAGS = Currency.APPLICABLE_FLAGS.concat(
+    Transmute.ADDITIONAL_APPLICABLE_FLAGS
+  );
 
   static modFilter(mod: ModProps): boolean {
     // prefix/suffix only
@@ -23,13 +25,6 @@ export default class Transmute extends Currency {
 
   static build(mods: ModProps[]): Transmute {
     return super.build(mods, Transmute.modFilter, Transmute);
-  }
-
-  constructor(mods: RollableMod[]) {
-    super(mods);
-
-    this.applicable_flags = new FlagSet(Transmute.APPLICABLE_FLAGS);
-    this.resetApplicable();
   }
 
   /**
@@ -55,37 +50,26 @@ export default class Transmute extends Currency {
   /**
    * maps mod::applicableTo as if it were already magic
    */
-  mapFor(item: Item, success: string[] = []): RollableMod[] {
+  modsFor(item: Item, whitelist: string[] = []) {
     // simulate upgrade
     const old_rarity = item.rarity;
     item.rarity = 'magic';
-    const mods = super.mapFor(item, success);
+    const mods = super.modsFor(item, whitelist);
     item.rarity = old_rarity;
 
     return mods;
   }
 
-  /**
-   * maps mod::applicableTo as if it were already magic
-   */
-  modsFor(item: Item, success: string[] = []): RollableMod[] {
-    // simulate upgrade
-    const old_rarity = item.rarity;
-    item.rarity = 'magic';
-    const mods = super.modsFor(item, success);
-    item.rarity = old_rarity;
-
-    return mods;
-  }
-
-  applicableTo(item: Item, success: string[] = []): boolean {
-    super.applicableTo(item, success);
+  applicableTo(item: Item): FlagSet {
+    const applicable_flags = super
+      .applicableTo(item)
+      .add(...Transmute.ADDITIONAL_APPLICABLE_FLAGS);
 
     if (item.rarity !== 'normal') {
-      this.applicable_flags.enable('NOT_WHITE');
+      applicable_flags.enable('NOT_WHITE');
     }
 
-    return !FlagSet.flagsBlacklisted(this.applicable_flags, success).anySet();
+    return applicable_flags;
   }
 
   name() {

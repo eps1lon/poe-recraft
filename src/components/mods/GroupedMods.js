@@ -2,20 +2,22 @@
 import React from 'react';
 import ReactTable from 'react-table';
 
-import type Mod from '../../poe/Mod/';
+import type { GeneratorDetails } from './ModsTable';
 
 import UngroupedMods from './UngroupedMods';
 
 export type Props = {
   className?: string,
-  mods: Mod[]
+  details: GeneratorDetails[]
 };
 
-const groupMods = (mods: Mod[]): Map<string, Mod[]> => {
-  const groups: Map<string, Mod[]> = new Map();
+const groupMods = (
+  details: GeneratorDetails[]
+): Map<string, GeneratorDetails[]> => {
+  const groups: Map<string, GeneratorDetails[]> = new Map();
 
-  for (const mod of mods) {
-    const group = mod.props.correct_group;
+  for (const detail of details) {
+    const group = detail.mod.props.correct_group;
 
     let grouped_mods = groups.get(group);
 
@@ -25,7 +27,7 @@ const groupMods = (mods: Mod[]): Map<string, Mod[]> => {
     }
 
     // mutate
-    grouped_mods.push(mod);
+    grouped_mods.push(detail);
   }
 
   return groups;
@@ -46,13 +48,13 @@ const columns = [
 
 const defaultSorted = ['correct_group'];
 
-const SubComponent = ({ original: [group, mods], ...row }) => {
-  return <UngroupedMods className="correct-group" mods={mods} />;
+const SubComponent = ({ original: [group, details], ...row }) => {
+  return <UngroupedMods className="correct-group" details={details} />;
 };
 
 // TODO spawnchance, flags, mod#t
-const GroupedMods = ({ className = '', mods }: Props) => {
-  const groups = groupMods(mods);
+const GroupedMods = ({ className = '', details }: Props) => {
+  const groups = groupMods(details);
 
   return (
     <ReactTable

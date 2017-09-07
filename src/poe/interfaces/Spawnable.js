@@ -3,13 +3,8 @@ import type FlagSet from '../FlagSet';
 import type Item from '../ModContainer/Item';
 
 export interface Spawnable {
-  spawnweight: number,
-  spawnchance: ?number,
-  spawnable_flags: FlagSet,
-
-  spawnableOn(Item, string[]): boolean,
-  resetSpawnable(): void,
-  spawnableCached(): boolean
+  spawnweightFor(Item): number,
+  spawnableOn(Item): FlagSet
 }
 
 /**
@@ -21,9 +16,9 @@ export interface Spawnable {
  * then the hole interface is implemented
  */
 export type MaybeSpawnable = {
-  spawnableOn?: (Item, string[]) => boolean,
-  spawnchance?: ?number,
-  spawnweight?: number
+  // spawnweight(Item)?
+  spawnweightFor?: Item => number,
+  spawnableOn?: Item => FlagSet
 };
 
 /** 
@@ -32,46 +27,29 @@ export const implementedBy = (thing: MaybeSpawnable): boolean %checks => {
   return thing.spawnableOn != null;
 };*/
 
-export const mods = (
-  collection: MaybeSpawnable[],
-  item: Item,
-  success: string[]
-): MaybeSpawnable[] => {
-  return collection.filter(thing => {
-    return thing.spawnableOn != null && thing.spawnableOn(item, success);
-  });
-};
-
-export const map = (
-  collection: MaybeSpawnable[],
-  item: Item,
-  success: string[]
-): MaybeSpawnable[] => {
-  for (const thing of collection) {
-    if (thing.spawnableOn != null) {
-      thing.spawnableOn(item, success);
-    }
-  }
-  return collection;
-};
-
 export const calculateSpawnchance = (
+  item: Item,
   collection: MaybeSpawnable[],
   filter: MaybeSpawnable => boolean
-) => {
+): { thing: MaybeSpawnable, spawnchance: number }[] => {
   const sum_spawnweight = collection.reduce((sum, thing) => {
-    if (thing.spawnweight != null && filter(thing)) {
-      return sum + thing.spawnweight;
+    if (thing.spawnweightFor != null && filter(thing)) {
+      return sum + thing.spawnweightFor(item);
     } else {
       return sum;
     }
   }, 0);
 
   return collection.map(thing => {
-    if (filter(thing) && thing.spawnweight != null) {
-      thing.spawnchance = thing.spawnweight / sum_spawnweight;
+    let spawnchance = 0;
+
+    if (thing.spawnweightFor != null && filter(thing)) {
+      spawnchance = thing.spawnweightFor(item) / sum_spawnweight;
     }
 
-    return thing;
+    return {
+      spawnchance,
+      thing
+    };
   });
 };

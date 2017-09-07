@@ -3,9 +3,9 @@ import _ from 'lodash';
 
 import type Item from '../ModContainer/Item';
 import type { ModProps } from '../data/schema';
+import type { GeneratorDetails } from './';
 
 import FlagSet from '../FlagSet';
-import Mod from '../Mod/';
 import RollableMod from '../Mod/RollableMod';
 import Currency from './Currency';
 import Transmute from './Transmute';
@@ -15,24 +15,20 @@ import Transmute from './Transmute';
  * applicableByteHuman
  */
 export default class Alchemy extends Currency {
-  static APPLICABLE_FLAGS = Currency.APPLICABLE_FLAGS.concat('NOT_WHITE');
+  static ADDITIONAL_APPLICABLE_FLAGS = ['NOT_WHITE'];
+  static APPLICABLE_FLAGS = Currency.APPLICABLE_FLAGS.concat(
+    Alchemy.ADDITIONAL_APPLICABLE_FLAGS
+  );
 
   static build(mods: ModProps[]): Alchemy {
     return super.build(mods, Transmute.modFilter, Alchemy);
-  }
-
-  constructor(mods: RollableMod[]) {
-    super(mods);
-
-    this.applicable_flags = new FlagSet(Alchemy.APPLICABLE_FLAGS);
-    this.resetApplicable();
   }
 
   /**
    *  adds 1-2 mods
    */
   applyTo(item: Item): boolean {
-    if (this.applicableTo(item)) {
+    if (!this.applicableTo(item).anySet()) {
       // upgrade to rare
       item.rarity = 'rare';
 
@@ -60,37 +56,26 @@ export default class Alchemy extends Currency {
   /**
    * maps mod::applicableTo as if it were already magic
    */
-  mapFor(item: Item, success: string[] = []): RollableMod[] {
+  modsFor(item: Item, whitelist: string[] = []) {
     // simulate upgrade
     const old_rarity = item.rarity;
     item.rarity = 'magic';
-    const mods = super.mapFor(item, success);
+    const mods = super.modsFor(item, whitelist);
     item.rarity = old_rarity;
 
     return mods;
   }
 
-  /**
-   * maps mod::applicableTo as if it were already magic
-   */
-  modsFor(item: Item, success: string[] = []): RollableMod[] {
-    // simulate upgrade
-    const old_rarity = item.rarity;
-    item.rarity = 'magic';
-    const mods = super.modsFor(item, success);
-    item.rarity = old_rarity;
-
-    return mods;
-  }
-
-  applicableTo(item: Item, success: string[] = []): boolean {
-    super.applicableTo(item, success);
+  applicableTo(item: Item): FlagSet {
+    const applicable_flags = super
+      .applicableTo(item)
+      .add(...Alchemy.ADDITIONAL_APPLICABLE_FLAGS);
 
     if (item.rarity !== 'normal') {
-      this.applicable_flags.enable('NOT_WHITE');
+      applicable_flags.enable('NOT_WHITE');
     }
 
-    return !FlagSet.flagsBlacklisted(this.applicable_flags, success).anySet();
+    return applicable_flags;
   }
 
   name() {

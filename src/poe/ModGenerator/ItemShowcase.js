@@ -19,10 +19,12 @@ export type ShowcaseMod = ApplicableMod | RollableMod | MasterMod;
  * applicableByteHuman
  */
 export default class ItemShowcase extends ModGenerator<ShowcaseMod> {
-  static build(
-    props: ModProps[],
-    options: CraftingBenchOptionsProps[]
-  ): ItemShowcase {
+  master: MasterBench;
+  talisman: Talisman;
+  transmute: Transmute;
+  vaal: Vaal;
+
+  constructor(props: ModProps[], options: CraftingBenchOptionsProps[]) {
     const master = new MasterBench(options);
     const talisman = Talisman.build(props);
     const transmute = Transmute.build(props);
@@ -35,7 +37,12 @@ export default class ItemShowcase extends ModGenerator<ShowcaseMod> {
       ...master.mods
     ];
 
-    return new ItemShowcase(mods);
+    super(mods);
+
+    this.master = master;
+    this.talisman = talisman;
+    this.transmute = transmute;
+    this.vaal = vaal;
   }
 
   /**
@@ -46,65 +53,16 @@ export default class ItemShowcase extends ModGenerator<ShowcaseMod> {
   }
 
   /**
-   * maps mod::applicableTo and (if implemented) mod::spawnableOn 
-   * if we have all the space for mods we need
-   */
-  mapFor(item: Item, success: string[] = []): ShowcaseMod[] {
-    // simulate showcase
-    const old_rarity = item.rarity;
-    item.rarity = 'showcase';
-
-    const mods = this.getAvailableMods().filter(mod => {
-      mod.applicableTo(item, success);
-
-      if (mod instanceof RollableMod) {
-        mod.spawnableOn(item, success);
-      }
-
-      // vaals replace so we dont care about full or not
-      if (mod.isType('vaal')) {
-        mod.applicable_flags.disable('DOMAIN_FULL');
-      }
-
-      return mod;
-    });
-
-    item.rarity = old_rarity;
-    return mods;
-  }
-
-  /**
    * greps mod::applicableTo and (if implemented) mod::spawnableOn 
    * if we have all the space for mods we need
    */
-  modsFor(item: Item, success: string[] = []): ShowcaseMod[] {
-    // simulate showcase
-    const old_rarity = item.rarity;
-    item.rarity = 'showcase';
-
-    const mods = this.getAvailableMods().filter(mod => {
-      const is_applicable = mod.applicableTo(item, success);
-
-      // dont care if mod is no RollableMod
-      let is_spawnable = true;
-      if (mod instanceof RollableMod) {
-        is_spawnable = mod.spawnableOn(item);
-      }
-
-      if (is_applicable && is_spawnable) {
-        // vaals replace so we dont care about full or not
-        if (mod.isType('vaal')) {
-          mod.applicable_flags.disable('DOMAIN_FULL');
-        }
-
-        return true;
-      } else {
-        return false;
-      }
-    });
-
-    item.rarity = old_rarity;
-    return mods;
+  modsFor(item: Item, whitelist: string[] = []) {
+    return [
+      ...this.master.modsFor(item, whitelist),
+      ...this.talisman.modsFor(item, whitelist),
+      ...this.transmute.modsFor(item, whitelist),
+      ...this.vaal.modsFor(item, whitelist)
+    ];
   }
 
   name() {

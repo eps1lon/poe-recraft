@@ -23,9 +23,9 @@ export class OptionNotFound extends Error {
  * applicableByteHuman
  */
 export default class MasterMod extends ApplicableMod {
+  static ADDITIONAL_APPLICABLE_FLAGS = ['WRONG_ITEMCLASS', 'NO_MULTIMOD'];
   static APPLICABLE_FLAGS = ApplicableMod.APPLICABLE_FLAGS.concat(
-    'WRONG_ITEMCLASS',
-    'NO_MULTIMOD'
+    MasterMod.ADDITIONAL_APPLICABLE_FLAGS
   );
 
   static build(mod: ModProps, options: CraftingBenchOptionsProps[]): MasterMod {
@@ -52,10 +52,6 @@ export default class MasterMod extends ApplicableMod {
     // we need the benchoption here because it holds the info for the
     // applicable itemclass
     this.option = option;
-
-    // extend ApplicableMod initial applicable flags
-    this.applicable_flags = new FlagSet(MasterMod.APPLICABLE_FLAGS);
-    this.resetApplicable();
   }
 
   /**
@@ -67,8 +63,10 @@ export default class MasterMod extends ApplicableMod {
     return `${this.props.name}(${short_name}) Level: ${master_level}`;
   }
 
-  applicableTo(item: Item, success: string[] = []): boolean {
-    super.applicableTo(item, success);
+  applicableTo(item: Item, success: string[] = []): FlagSet {
+    const applicable_flags = super
+      .applicableTo(item)
+      .add(...MasterMod.ADDITIONAL_APPLICABLE_FLAGS);
 
     const { item_classes } = this.option;
 
@@ -78,7 +76,7 @@ export default class MasterMod extends ApplicableMod {
       ) === undefined;
 
     if (no_matching_item_class) {
-      this.applicable_flags.enable('WRONG_ITEMCLASS');
+      applicable_flags.enable('WRONG_ITEMCLASS');
     }
 
     // grep MasterMods and set failure if we cant multimod
@@ -88,9 +86,9 @@ export default class MasterMod extends ApplicableMod {
       undefined;
 
     if (master_mods.length > 0 && has_no_multi_mod) {
-      this.applicable_flags.enable('NO_MULTIMOD');
+      applicable_flags.enable('NO_MULTIMOD');
     }
 
-    return !FlagSet.flagsBlacklisted(this.applicable_flags, success).anySet();
+    return applicable_flags;
   }
 }
