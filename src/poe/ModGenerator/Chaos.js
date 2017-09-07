@@ -26,20 +26,23 @@ export default class Chaos extends Currency {
   /**
    *  rerolls properties of magic
    */
-  applyTo(item: Item): boolean {
+  applyTo(item: Item): Item {
     if (!this.applicableTo(item).anySet()) {
       // TODO actually considers *_cannot_be_changed?
       // granted via scouring but is this true for ingame alts?
-      new Scouring().applyTo(item);
+      const scoured_item = new Scouring().applyTo(item);
+
+      let reforged_item = new Alchemy(this.mods).applyTo(scoured_item);
+
       // no complete scour?
-      if (!new Alchemy(this.mods).applyTo(item)) {
+      if (reforged_item === scoured_item) {
         // TODO correlate count
-        new Exalted(this.mods).applyTo(item);
+        reforged_item = new Exalted(this.mods).applyTo(reforged_item);
       }
 
-      return true;
+      return reforged_item;
     } else {
-      return false;
+      return item;
     }
   }
 

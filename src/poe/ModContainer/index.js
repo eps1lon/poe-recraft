@@ -4,44 +4,42 @@ import type { TagProps } from '../data/schema';
 import type Mod from '../Mod/';
 
 export default class ModContainer {
-  mods: Mod[];
-  tags: TagProps[];
+  +mods: Mod[];
+  +tags: TagProps[];
 
   constructor(mods: Mod[] = []) {
-    this.mods = mods;
-    this.tags = [];
+    (this: any).mods = mods;
+    (this: any).tags = [];
   }
 
   /**
    *  adds a new non-existing mod
    */
-  addMod(mod: Mod): boolean {
+  addMod(mod: Mod) {
     if (!this.hasMod(mod)) {
-      this.mods.push(mod);
-      return true;
+      return new this.constructor(this.mods.concat(mod));
     } else {
-      return false;
+      return this;
     }
   }
 
   /**
    * truncates mods
    */
-  removeAllMods(): void {
-    this.mods = [];
+  removeAllMods() {
+    return new this.constructor([]);
   }
 
   /**
    * removes an existing mod
    */
-  removeMod(mod: Mod): number | boolean {
-    const index = this.indexOfMod(mod);
-
-    if (index !== -1) {
-      this.mods.splice(index, 1);
-      return index;
+  removeMod(other: Mod) {
+    if (this.hasMod(other)) {
+      return new this.constructor(
+        this.mods.filter(mod => mod.props.primary !== other.props.primary)
+      );
     } else {
-      return false;
+      return this;
     }
   }
 

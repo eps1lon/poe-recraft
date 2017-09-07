@@ -27,30 +27,30 @@ export default class Alchemy extends Currency {
   /**
    *  adds 1-2 mods
    */
-  applyTo(item: Item): boolean {
+  applyTo(item: Item): Item {
     if (!this.applicableTo(item).anySet()) {
       // upgrade to rare
-      item.rarity = 'rare';
+      let alched_item = item.setRarity('rare');
 
       const new_mods = _.random(4, 6);
       for (let rolled_mods = 1; rolled_mods <= new_mods; rolled_mods += 1) {
-        this.rollMod(item);
+        alched_item = this.rollMod(alched_item);
       }
 
-      const prefixes = item.getPrefixes().length;
-      const suffixes = item.getSuffixes().length;
+      const prefixes = alched_item.getPrefixes().length;
+      const suffixes = alched_item.getSuffixes().length;
       const diff = Math.abs(prefixes - suffixes);
       const missing_mods = Math.max(0, diff - 1);
 
       // correct differences between #prefixes, #suffixes >= 2
       for (let rolled_mods = 1; rolled_mods <= missing_mods; rolled_mods += 1) {
-        this.rollMod(item);
+        alched_item = this.rollMod(alched_item);
       }
 
-      return true;
+      return alched_item;
     }
 
-    return false;
+    return item;
   }
 
   /**
@@ -58,12 +58,7 @@ export default class Alchemy extends Currency {
    */
   modsFor(item: Item, whitelist: string[] = []) {
     // simulate upgrade
-    const old_rarity = item.rarity;
-    item.rarity = 'magic';
-    const mods = super.modsFor(item, whitelist);
-    item.rarity = old_rarity;
-
-    return mods;
+    return super.modsFor(item.setRarity('rare'), whitelist);
   }
 
   applicableTo(item: Item): FlagSet {

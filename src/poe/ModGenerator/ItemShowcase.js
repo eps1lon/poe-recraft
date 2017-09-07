@@ -49,7 +49,7 @@ export default class ItemShowcase extends ModGenerator<ShowcaseMod> {
    * only abstract showcase, not for actual usage
    */
   applyTo(item: Item) {
-    return false;
+    return item;
   }
 
   /**

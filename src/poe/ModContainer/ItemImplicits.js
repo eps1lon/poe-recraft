@@ -11,7 +11,7 @@ export default class ItemImplicits extends ModContainer {
     if (this.hasRoomFor(mod)) {
       return super.addMod(mod);
     } else {
-      return false;
+      return this;
     }
   }
 

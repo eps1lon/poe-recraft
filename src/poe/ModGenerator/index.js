@@ -27,7 +27,7 @@ export default class ModGenerator<T: Mod> implements Applicable {
     this.mods = mods;
   }
 
-  applyTo(item: Item): boolean {
+  applyTo(item: Item): Item {
     throw new AbstractMethod('applyTo');
   }
 
@@ -60,12 +60,12 @@ export default class ModGenerator<T: Mod> implements Applicable {
    * adds a mod from chooseMod ignoring if it's applicable
    * @param {Item} item 
    */
-  rollMod(item: Item): boolean {
+  rollMod(item: Item): Item {
     const mod = this.chooseMod(item);
     if (mod != null) {
       return item.addMod(mod);
     } else {
-      return false;
+      return item;
     }
   }
 

@@ -40,7 +40,7 @@ export default class MasterMod extends ApplicableMod {
     return new MasterMod(option);
   }
 
-  option: CraftingBenchOptionsProps;
+  +option: CraftingBenchOptionsProps;
 
   constructor(option: CraftingBenchOptionsProps) {
     if (option.mod == null) {
@@ -51,7 +51,8 @@ export default class MasterMod extends ApplicableMod {
 
     // we need the benchoption here because it holds the info for the
     // applicable itemclass
-    this.option = option;
+    // Covariant property `option` incompatible with contravariant use in
+    (this: any).option = option;
   }
 
   /**
@@ -72,7 +73,7 @@ export default class MasterMod extends ApplicableMod {
 
     const no_matching_item_class =
       item_classes.find(
-        item_class => item_class.primary === item.props.item_class.primary
+        item_class => item_class.primary === item.baseitem.item_class.primary
       ) === undefined;
 
     if (no_matching_item_class) {

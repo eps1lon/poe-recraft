@@ -2,7 +2,6 @@
 import type { BaseItemTypeProps, MetaDataMap, TagProps } from '../data/schema';
 import type { ValueRange } from '../ValueRange';
 
-import ApplicableMod from '../Mod/ApplicableMod';
 import ItemImplicits from './ItemImplicits';
 import MetaData from '../MetaData';
 import Mod from '../Mod/';
@@ -15,9 +14,29 @@ export type LocalStats = {
   [string]: ValueRange | string
 };
 
+export type ItemProps = {
+  +corrupted: boolean,
+  +item_level: number,
+  +mirrored: boolean,
+  +random_name: string,
+  +rarity: Rarity
+};
+
+export type ItemProperty = $Keys<ItemProps>;
+
+export type ItemBuilder = {
+  affixes: Mod[],
+  baseitem: BaseItemTypeProps,
+  implicits: Mod[],
+  meta_data: MetaData,
+  props: ItemProps,
+  tags: TagProps[]
+};
+
 /**
  * 
- * Item Class extends @link ModContainer
+ * Item Class extends ModContainer
+ * class Item mixins ModContainer, BaseItem
  * 
  * represents an ingame item (boots, maps, rings for example)
  * the class only represents the explicits and is a fascade for an 
@@ -25,6 +44,14 @@ export type LocalStats = {
  */
 export default class Item extends ModContainer {
   static MAX_ILVL = 100;
+
+  static default_props: ItemProps = {
+    corrupted: false,
+    item_level: Item.MAX_ILVL,
+    mirrored: false,
+    random_name: 'Random Name',
+    rarity: 'normal'
+  };
 
   static build(props: BaseItemTypeProps, meta_datas: MetaDataMap) {
     const clazz = props.inherits_from.split(/[\\/]/).pop();
@@ -37,6 +64,12 @@ export default class Item extends ModContainer {
     }
   }
 
+  static withBuilder(builder: ItemBuilder) {
+    const { affixes, baseitem, implicits, meta_data, props, tags } = builder;
+
+    return new Item(baseitem, meta_data, props, implicits, affixes, tags);
+  }
+
   static applyStat(
     value: ValueRange | number,
     stat: Stat,
@@ -45,65 +78,127 @@ export default class Item extends ModContainer {
     throw new Error('not implemented');
   }
 
-  corrupted: boolean;
-  implicits: ModContainer;
-  item_level: number;
-  meta_data: MetaData;
-  mirrored: boolean;
-  props: BaseItemTypeProps;
-  random_name: string;
-  rarity: Rarity;
+  +baseitem: BaseItemTypeProps;
+  +implicits: ModContainer;
+  +meta_data: MetaData;
+  +props: ItemProps;
+  +tags: TagProps[];
 
-  constructor(props: BaseItemTypeProps, meta_data: MetaData) {
-    super([]);
+  constructor(
+    baseitem: BaseItemTypeProps,
+    meta_data: MetaData,
+    props: ItemProps = Item.default_props,
+    implicits: Mod[] = [],
+    affixes: Mod[] = [],
+    tags: TagProps[] = []
+  ) {
+    super(affixes);
 
-    // default
-    this.corrupted = false;
-    this.item_level = Item.MAX_ILVL;
-    this.mirrored = false;
-    this.random_name = 'Random Name';
-    this.rarity = 'normal';
+    (this: any).baseitem = baseitem;
+    (this: any).meta_data = meta_data;
+    (this: any).props = props;
+    (this: any).tags = tags;
 
-    this.meta_data = meta_data;
-    this.props = props;
-
-    this.implicits = new ItemImplicits([]);
-    for (const implicit of this.props.implicit_mods) {
-      if (!this.implicits.addMod(new ApplicableMod(implicit))) {
-        console.log(implicit, 'addMod returned false');
-      }
-    }
+    (this: any).implicits = new ItemImplicits(implicits);
+    // TODO implicits
   }
 
+  builder(): ItemBuilder {
+    return {
+      affixes: this.mods,
+      baseitem: this.baseitem,
+      implicits: this.implicits.mods,
+      meta_data: this.meta_data,
+      props: this.props,
+      tags: this.tags
+    };
+  }
+
+  // batch mutations
+  withMutations(mutate: ItemBuilder => ItemBuilder): Item {
+    const builder = mutate(this.builder());
+
+    return Item.withBuilder(builder);
+  }
   /**
    * adds a mod if theres room for it
    * no sophisticated domain check. only if affix type is full or not
    */
-  addMod(mod: Mod) {
+  addMod(other: Mod) {
     const has_room_for_affix =
-      (mod.isPrefix() && this.getPrefixes().length < this.maxPrefixes()) ||
-      (mod.isSuffix() && this.getSuffixes().length < this.maxSuffixes());
+      (other.isPrefix() && this.getPrefixes().length < this.maxPrefixes()) ||
+      (other.isSuffix() && this.getSuffixes().length < this.maxSuffixes());
 
     if (has_room_for_affix) {
-      return super.addMod(mod);
+      return this.withMutations(builder => {
+        return {
+          ...builder,
+          affixes: builder.affixes.concat(other)
+        };
+      });
     } else {
-      return false;
+      return this;
     }
   }
 
-  addImplicit(mod: Mod): boolean {
-    return this.implicits.addMod(mod);
+  /**
+   * truncates mods
+   */
+  removeAllMods() {
+    return this.withMutations(builder => {
+      return {
+        ...builder,
+        affixes: []
+      };
+    });
   }
 
-  removeAllImplicits(): void {
-    return this.implicits.removeAllMods();
+  /**
+   * removes an existing mod
+   */
+  removeMod(other: Mod) {
+    if (this.hasMod(other)) {
+      return this.withMutations(builder => {
+        return {
+          ...builder,
+          affixes: builder.affixes.filter(
+            mod => mod.props.primary !== other.props.primary
+          )
+        };
+      });
+    } else {
+      return this;
+    }
   }
 
-  removeImplicit(mod: Mod): boolean | number {
-    return this.implicits.removeMod(mod);
+  addImplicit(mod: Mod) {
+    const builder = this.builder();
+
+    return Item.withBuilder({
+      ...builder,
+      implicits: this.implicits.addMod(mod).mods
+    });
   }
 
-  getImplicit(primary: number): ?Mod {
+  removeAllImplicits() {
+    const builder = this.builder();
+
+    return Item.withBuilder({
+      ...builder,
+      implicits: this.implicits.removeAllMods().mods
+    });
+  }
+
+  removeImplicit(mod: Mod) {
+    const builder = this.builder();
+
+    return Item.withBuilder({
+      ...builder,
+      implicits: this.implicits.removeMod(mod).mods
+    });
+  }
+
+  getImplicit(primary: number) {
     return this.implicits.getMod(primary);
   }
 
@@ -120,10 +215,14 @@ export default class Item extends ModContainer {
    */
   addTag(tag: TagProps) {
     if (this.hasTag(tag)) {
-      this.tags.push(tag);
-      return true;
+      return this.withMutations(builder => {
+        return {
+          ...builder,
+          tags: this.tags.concat(tag)
+        };
+      });
     } else {
-      return false;
+      return this;
     }
   }
 
@@ -131,11 +230,13 @@ export default class Item extends ModContainer {
    * removes an existing tag
    */
   removeTag(other: TagProps) {
-    const index = this.tags.findIndex(tag => other.primary === tag.primary);
-
     if (this.hasTag(other)) {
-      this.tags.splice(index, 1);
-      return true;
+      return this.withMutations(builder => {
+        return {
+          ...builder,
+          tags: this.tags.filter(tag => tag.primary !== other.primary)
+        };
+      });
     } else {
       return false;
     }
@@ -170,7 +271,7 @@ export default class Item extends ModContainer {
    * maximum number of prefixes
    */
   maxPrefixes(): number {
-    switch (this.rarity) {
+    switch (this.props.rarity) {
       case 'normal':
         return 0;
       case 'magic':
@@ -234,12 +335,12 @@ export default class Item extends ModContainer {
     if (this.rarity === 'magic') {
       return '';
     } else {
-      return this.props.name;
+      return this.baseitem.name;
     }
   }
 
   itemName(): string {
-    switch (this.rarity) {
+    switch (this.props.rarity) {
       case 'magic':
         var name = '';
         // prefix
@@ -247,7 +348,7 @@ export default class Item extends ModContainer {
           name += this.getPrefixes()[0].props.name + ' ';
         }
         // + base_name
-        name += this.props.name;
+        name += this.baseitem.name;
         // + suffix
         if (this.getSuffixes().length) {
           name += ' ' + this.getSuffixes()[0].props.name;
@@ -255,7 +356,7 @@ export default class Item extends ModContainer {
 
         return name;
       case 'rare':
-        return this.random_name;
+        return this.props.random_name;
       default:
         return '';
     }
@@ -269,10 +370,10 @@ export default class Item extends ModContainer {
       int: 0
     };
 
-    if (this.props.component_attribute_requirement != null) {
-      requirements.str = this.props.component_attribute_requirement.req_str;
-      requirements.dex = this.props.component_attribute_requirement.req_dex;
-      requirements.int = this.props.component_attribute_requirement.req_int;
+    if (this.baseitem.component_attribute_requirement != null) {
+      requirements.str = this.baseitem.component_attribute_requirement.req_str;
+      requirements.dex = this.baseitem.component_attribute_requirement.req_dex;
+      requirements.int = this.baseitem.component_attribute_requirement.req_int;
     }
 
     return requirements;
@@ -280,34 +381,42 @@ export default class Item extends ModContainer {
 
   requiredLevel() {
     return Math.max(
-      this.props.drop_level,
+      this.baseitem.drop_level,
       ...this.getAllMods().map(mod => Math.floor(0.8 * mod.props.level))
     );
   }
 
   itemclassName(): string {
-    return this.props.item_class.name;
+    return this.baseitem.item_class.name;
   }
 
   rarityIdent(): string {
-    return this.rarity;
+    return this.props.rarity;
   }
 
   /**
    * attempts to upgrade the rarity
    * @returns {Boolean} true on change in rarity
    */
-  upgradeRarity(): boolean {
-    switch (this.rarity) {
+  upgradeRarity(): Item {
+    let new_rarity: Rarity;
+
+    switch (this.props.rarity) {
       case 'normal':
       case 'showcase':
-        this.rarity = 'magic';
-        return true;
+        new_rarity = 'magic';
+        break;
       case 'magic':
-        this.rarity = 'rare';
-        return true;
+        new_rarity = 'rare';
+        break;
       default:
-        return false;
+        new_rarity = this.props.rarity;
+    }
+
+    if (new_rarity !== this.props.rarity) {
+      return this.setRarity(new_rarity);
+    } else {
+      return this;
     }
   }
 
@@ -340,28 +449,45 @@ export default class Item extends ModContainer {
   localStats(): LocalStats {
     const stats = this.stats();
 
-    if (this.props.component_armour != null) {
+    if (this.baseitem.component_armour != null) {
       return {
-        physical_damage_reduction: String(this.props.component_armour.armour)
+        physical_damage_reduction: String(this.baseitem.component_armour.armour)
       };
     } else {
       return { error: 'could not  build' };
     }
   }
 
-  corrupt() {
-    if (this.corrupted) {
+  corrupt(): Item {
+    if (this.props.corrupted) {
       throw new Error('invalid state: is already corrupted');
     } else {
-      this.corrupted = true;
+      return this._setProperty('corrupted', true);
     }
   }
 
-  mirror() {
-    if (this.mirrored) {
+  mirror(): Item {
+    if (this.props.mirrored) {
       throw new Error('invalid state: is already mirrored');
     } else {
-      this.mirrored = true;
+      return this._setProperty('mirrored', true);
     }
+  }
+
+  setRarity(rarity: Rarity): Item {
+    return this._setProperty('rarity', rarity);
+  }
+
+  // private
+  _setProperty(prop: ItemProperty, value: any): Item {
+    return this.withMutations(builder => {
+      return {
+        ...builder,
+        props: {
+          ...builder.props,
+          [prop]: value
+        }
+      };
+    });
   }
 }

@@ -1,5 +1,5 @@
 // @flow
-import type Item from '../ModContainer/Item';
+import type Item, { Rarity } from '../ModContainer/Item';
 
 import FlagSet from '../FlagSet';
 import META_MODS from '../Mod/meta_mods';
@@ -23,40 +23,46 @@ export default class Scouring extends Currency {
    * applies Orb of Scouring to an item
    * considers locked affixes metamods
    */
-  applyTo(item: Item): boolean {
+  applyTo(item: Item): Item {
     if (!this.applicableTo(item).anySet()) {
+      let scoured_item: Item = item;
+
       const locked_prefixes =
-        item.getImplicitIndexOfModWithPrimary(META_MODS.LOCKED_PREFIXES) !== -1;
+        scoured_item.getImplicitIndexOfModWithPrimary(
+          META_MODS.LOCKED_PREFIXES
+        ) !== -1;
       const locked_suffixes =
-        item.getImplicitIndexOfModWithPrimary(META_MODS.LOCKED_SUFFIXES) !== -1;
+        scoured_item.getImplicitIndexOfModWithPrimary(
+          META_MODS.LOCKED_SUFFIXES
+        ) !== -1;
 
       if (!locked_prefixes) {
-        for (const prefix of item.getPrefixes()) {
-          item.removeMod(prefix);
+        for (const prefix of scoured_item.getPrefixes()) {
+          scoured_item = scoured_item.removeMod(prefix);
         }
       }
 
       if (!locked_suffixes) {
-        for (const suffix of item.getSuffixes()) {
-          item.removeMod(suffix);
+        for (const suffix of scoured_item.getSuffixes()) {
+          scoured_item = scoured_item.removeMod(suffix);
         }
       }
 
       // set correct rarity
-      const remaining_prefixes = item.getPrefixes().length;
-      const remaining_suffixes = item.getSuffixes().length;
+      const remaining_prefixes = scoured_item.getPrefixes().length;
+      const remaining_suffixes = scoured_item.getSuffixes().length;
+
+      let new_rarity: Rarity = 'magic';
 
       if (remaining_prefixes === 0 && remaining_suffixes === 0) {
-        item.rarity = 'normal';
+        new_rarity = 'normal';
       } else if (remaining_prefixes > 1 || remaining_suffixes > 1) {
-        item.rarity = 'rare';
-      } else {
-        item.rarity = 'magic';
+        new_rarity = 'rare';
       }
 
-      return true;
+      return scoured_item.setRarity(new_rarity);
     } else {
-      return false;
+      return item;
     }
   }
 
@@ -68,7 +74,7 @@ export default class Scouring extends Currency {
       .applicableTo(item)
       .add(...Scouring.ADDITIONAL_APPLICABLE_FLAGS);
 
-    switch (item.rarity) {
+    switch (item.props.rarity) {
       case 'normal':
         applicable_flags.enable('ALREADY_WHITE');
         break;

@@ -32,10 +32,11 @@ export default class Mod {
     return `mod_${id}`;
   }
 
-  props: ModProps;
+  +props: ModProps;
 
   constructor(props: ModProps) {
-    this.props = props;
+    // Covariant property `option` incompatible with contravariant use in
+    (this: any).props = props;
   }
 
   isType(type: string) {

@@ -24,19 +24,17 @@ export default class Enchantmentbench extends Currency {
   /**
    * replaces implicits with new enchantment mod
    */
-  applyTo(item: Item): boolean {
+  applyTo(item: Item): Item {
     if (this.applicableTo(item)) {
-      item.removeAllImplicits();
+      const blank_item = item.removeAllImplicits();
 
-      const enchantment = this.chooseMod(item);
+      const enchantment = this.chooseMod(blank_item);
       if (enchantment != null) {
-        return item.addImplicit(enchantment);
-      } else {
-        return false;
+        return blank_item.addImplicit(enchantment);
       }
-    } else {
-      return false;
     }
+
+    return item;
   }
 
   applicableTo(item: Item, success: string[] = []): FlagSet {

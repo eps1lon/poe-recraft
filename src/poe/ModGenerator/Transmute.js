@@ -30,21 +30,22 @@ export default class Transmute extends Currency {
   /**
    *  adds 1-2 mods
    */
-  applyTo(item: Item): boolean {
-    if (this.applicableTo(item)) {
-      // upgrade to rare
-      item.rarity = 'magic';
+  applyTo(item: Item): Item {
+    let new_item = item;
 
-      this.rollMod(item);
+    if (this.applicableTo(item)) {
+      new_item = item.setRarity('magic');
+
+      new_item = this.rollMod(item);
 
       if (Math.random() <= 0.5) {
-        this.rollMod(item);
+        new_item = this.rollMod(item);
       }
 
-      return true;
+      return new_item;
     }
 
-    return false;
+    return new_item;
   }
 
   /**
@@ -52,12 +53,7 @@ export default class Transmute extends Currency {
    */
   modsFor(item: Item, whitelist: string[] = []) {
     // simulate upgrade
-    const old_rarity = item.rarity;
-    item.rarity = 'magic';
-    const mods = super.modsFor(item, whitelist);
-    item.rarity = old_rarity;
-
-    return mods;
+    return super.modsFor(item.setRarity('magic'), whitelist);
   }
 
   applicableTo(item: Item): FlagSet {

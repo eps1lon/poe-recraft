@@ -27,7 +27,7 @@ const BaseItemPreview = ({ item }: Props) => {
         <span className="itemboxheader-right" />
       </span>
       {groups.map(Group => <Group.component key={Group.key} item={item} />)}
-      {item.corrupted && <Corrupted />}
+      {item.props.corrupted && <Corrupted />}
     </div>
   );
 };

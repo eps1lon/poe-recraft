@@ -31,7 +31,7 @@ const Requirements = ({ item }: Props) => {
     <Statsgroup className="requirements">
       {[
         ['Requires ', ...intersperse(elements)], //
-        <span key={'ilvl'}>{item.item_level}</span>
+        <span key={'ilvl'}>{item.props.item_level}</span>
       ]}
     </Statsgroup>
   );

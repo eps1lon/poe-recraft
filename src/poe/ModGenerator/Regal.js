@@ -24,14 +24,12 @@ export default class Regal extends Currency {
   /**
    *  adds 1-2 mods
    */
-  applyTo(item: Item): boolean {
+  applyTo(item: Item): Item {
     if (!this.applicableTo(item).anySet()) {
       // upgrade to rare
-      item.rarity = 'rare';
-
-      return this.rollMod(item);
+      return this.rollMod(item.setRarity('rare'));
     } else {
-      return false;
+      return item;
     }
   }
 
@@ -40,12 +38,7 @@ export default class Regal extends Currency {
    */
   modsFor(item: Item, whitelist: string[] = []) {
     // simulate upgrade
-    const old_rarity = item.rarity;
-    item.rarity = 'rare';
-    const mods = super.modsFor(item, whitelist);
-    item.rarity = old_rarity;
-
-    return mods;
+    return super.modsFor(item.setRarity('rare'), whitelist);
   }
 
   applicableTo(item: Item, success: string[] = []): FlagSet {

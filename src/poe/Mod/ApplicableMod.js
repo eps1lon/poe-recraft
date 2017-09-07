@@ -24,7 +24,7 @@ export default class ApplicableMod extends Mod implements Applicable {
       applicable_flags.enable('DOMAIN_FULL');
     }
 
-    if (this.props.level > item.item_level) {
+    if (this.props.level > item.props.item_level) {
       applicable_flags.enable('LOWER_ILVL');
     }
 

@@ -23,11 +23,11 @@ export default class Exalted extends Currency {
   /**
    * adds one random property
    */
-  applyTo(item: Item): boolean {
+  applyTo(item: Item): Item {
     if (!this.applicableTo(item).anySet()) {
       return this.rollMod(item);
     } else {
-      return false;
+      return item;
     }
   }
 

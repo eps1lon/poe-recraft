@@ -23,20 +23,23 @@ export default class Vaal extends Currency {
    * replaces implicit with vaal implicit
    * TODO: white sockets, reroll (brick(, nothing
    */
-  applyTo(item: Item): boolean {
+  applyTo(item: Item): Item {
     if (this.applicableTo(item)) {
-      item.removeAllImplicits();
+      const blank_item = item.removeAllImplicits();
 
-      const implicit = this.chooseMod(item);
-      if (implicit != null && item.addImplicit(implicit)) {
-        item.corrupt();
-        return true;
-      } else {
-        return false;
+      const implicit = this.chooseMod(blank_item);
+
+      if (implicit != null) {
+        const vaaled_item = blank_item.addImplciit(implicit);
+
+        if (vaaled_item !== blank_item) {
+          return vaaled_item.corrupt();
+        }
       }
     }
 
-    return false;
+    // nothing changed
+    return item;
   }
 
   name() {
