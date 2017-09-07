@@ -123,6 +123,9 @@ export default class Item extends ModContainer {
   /**
    * adds a mod if theres room for it
    * no sophisticated domain check. only if affix type is full or not
+   * 
+   * TODO defer to addImplicit if implicit candidate or just silently dont
+   * change anything?
    */
   addMod(other: Mod) {
     const has_room_for_affix =

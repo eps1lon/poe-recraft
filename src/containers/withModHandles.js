@@ -3,9 +3,11 @@ import type { Dispatch } from 'redux';
 
 import { connect } from 'react-redux';
 
+import { addMod } from '../actions/item';
+
 const mapDispatchToProps = (dispatch: Dispatch<*>) => {
   return {
-    onAddMod: mod => console.log('add', mod)
+    onAddMod: mod => dispatch(addMod(mod))
   };
 };
 

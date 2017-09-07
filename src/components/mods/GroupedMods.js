@@ -9,7 +9,8 @@ import UngroupedMods from './UngroupedMods';
 export type Props = {
   className?: string,
   details: GeneratorDetails[],
-  options: {}
+  options: {},
+  onAddMod: (mod: Mod) => mixed
 };
 
 const groupMods = (
@@ -49,12 +50,21 @@ const columns = [
 
 const defaultSorted = ['correct_group'];
 
-const SubComponent = ({ original: [group, details], ...row }) => {
-  return <UngroupedMods className="correct-group" details={details} />;
+const subComponentWithHandles = ({ onAddMod }) => ({
+  original: [group, details],
+  ...row
+}) => {
+  return (
+    <UngroupedMods
+      className="correct-group"
+      details={details}
+      onAddMod={onAddMod}
+    />
+  );
 };
 
 // TODO spawnchance, flags, mod#t
-const GroupedMods = ({ className = '', details }: Props) => {
+const GroupedMods = ({ className = '', details, onAddMod }: Props) => {
   const groups = groupMods(details);
 
   return (
@@ -64,7 +74,7 @@ const GroupedMods = ({ className = '', details }: Props) => {
         className: `grouped ${className}`,
         columns,
         defaultSorted,
-        SubComponent,
+        SubComponent: subComponentWithHandles({ onAddMod }),
         showPagination: false,
         minRows: 1,
         getTrProps: (state, rowInfo, column, instance) => {
@@ -94,7 +104,8 @@ const GroupedMods = ({ className = '', details }: Props) => {
 };
 
 GroupedMods.defaultProps = {
-  options: {}
+  options: {},
+  onAddMod: () => undefined
 };
 
 export default GroupedMods;
