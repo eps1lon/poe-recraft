@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactTable from 'react-table';
 
+import type Mod from '../../poe/Mod/';
 import type { GeneratorDetails } from './ModsTable';
 
 import UngroupedMods from './UngroupedMods';
