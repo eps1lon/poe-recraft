@@ -22,7 +22,7 @@ export default class FlagSet {
   value: number;
 
   constructor(names: string[]) {
-    this.flags = names;
+    this.flags = names.slice(); // shallow copy
     this.value = 0;
   }
 
