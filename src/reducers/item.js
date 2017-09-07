@@ -1,4 +1,5 @@
 // @flow
+import type { ReduxActionType } from 'redux-actions';
 import { handleActions } from 'redux-actions';
 
 import type Item from '../poe/ModContainer/Item';
@@ -19,13 +20,19 @@ export const initial: State = {
 // return types are not type checked by flow!
 const reducer = handleActions(
   {
-    [setItem.toString()](state: State, action: any) {
+    [setItem.toString()](
+      state: State,
+      action: ReduxActionType<typeof setItem>
+    ): State {
       return {
         ...state,
         item: action.payload
       };
     },
-    [addMod.toString()](state: State, { payload: mod }) {
+    [addMod.toString()](
+      state: State,
+      { payload: mod }: ReduxActionType<typeof addMod>
+    ): State {
       const { item } = state;
 
       if (item != null) {
@@ -49,7 +56,10 @@ const reducer = handleActions(
         return state;
       }
     },
-    [removeMod.toString()](state: State, { payload: mod }) {
+    [removeMod.toString()](
+      state: State,
+      { payload: mod }: ReduxActionType<typeof removeMod>
+    ): State {
       const { item } = state;
 
       if (item != null) {
@@ -61,10 +71,13 @@ const reducer = handleActions(
         return state;
       }
     },
-    [setItemClass.toString()](state: State, action: any) {
+    [setItemClass.toString()](
+      state: State,
+      { payload: item_class }: ReduxActionType<typeof setItemClass>
+    ): State {
       return {
         ...state,
-        item_class: action.payload
+        item_class
       };
     }
   },
