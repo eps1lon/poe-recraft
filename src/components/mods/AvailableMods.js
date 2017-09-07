@@ -28,7 +28,7 @@ const AvailableMods = ({ prefixes, suffixes, implicits }: Props) => {
       <ModsTable
         className="implicits"
         details={implicits}
-        options={{ grouped: false }}
+        options={{ grouped: false, exclude: ['name'] }}
       />
       <div id="affixes">
         <ModsTable

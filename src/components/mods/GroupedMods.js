@@ -8,7 +8,8 @@ import UngroupedMods from './UngroupedMods';
 
 export type Props = {
   className?: string,
-  details: GeneratorDetails[]
+  details: GeneratorDetails[],
+  options: {}
 };
 
 const groupMods = (
@@ -90,6 +91,10 @@ const GroupedMods = ({ className = '', details }: Props) => {
       }}
     />
   );
+};
+
+GroupedMods.defaultProps = {
+  options: {}
 };
 
 export default GroupedMods;

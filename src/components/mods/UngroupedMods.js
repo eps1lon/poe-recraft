@@ -8,10 +8,13 @@ import Mod from '../../poe/Mod/';
 
 export type Props = {
   className?: string,
-  details: GeneratorDetails[]
+  details: GeneratorDetails[],
+  options: {
+    exclude?: string[]
+  }
 };
 
-const columns = [
+const all_columns = [
   {
     accessor: 'mod.props.level',
     className: 'ilvl',
@@ -42,7 +45,11 @@ const columns = [
 const defaultSorted = [{ id: 'ilvl' }];
 
 // TODO spawnchance, flags, mod#t
-const UngroupedMods = ({ className = '', details }: Props) => {
+const UngroupedMods = ({ className = '', details, options }: Props) => {
+  const { exclude = [] } = options;
+
+  const columns = all_columns.filter(({ id }) => !exclude.includes(id));
+
   return (
     <ReactTable
       {...{
@@ -68,6 +75,10 @@ const UngroupedMods = ({ className = '', details }: Props) => {
       }}
     />
   );
+};
+
+UngroupedMods.defaultProps = {
+  options: {}
 };
 
 export default UngroupedMods;

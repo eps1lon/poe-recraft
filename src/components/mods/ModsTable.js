@@ -8,7 +8,8 @@ import GroupedMods from './GroupedMods';
 import UngroupedMods from './UngroupedMods';
 
 type Options = {
-  grouped: boolean
+  grouped?: boolean,
+  exclude?: string[]
 };
 
 export type GeneratorDetails = {
@@ -32,7 +33,7 @@ const ModsTable = ({
   details,
   options
 }: Props) => {
-  const { grouped } = options;
+  const { grouped = false, exclude = [] } = options;
 
   const Mods = grouped ? GroupedMods : UngroupedMods;
 
@@ -40,8 +41,8 @@ const ModsTable = ({
     <div className={className}>
       <h4 id={`${className}-caption`}>
         {human} /<span className="count">{details.length}</span>
-      </h4>,
-      <Mods details={details} />
+      </h4>
+      <Mods details={details} options={{ exclude }} />
     </div>
   );
 };
