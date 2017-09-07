@@ -1,9 +1,10 @@
 // @flow
+import { handleActions } from 'redux-actions';
+
 import type Item from '../poe/ModContainer/Item';
 import type { ItemClassProps } from '../poe/data/schema';
 
-import type { Action as ItemAction } from '../actions/item';
-import { SET_ITEM, SET_ITEM_CLASS } from '../actions/item';
+import { setItem, setItemClass } from '../actions/item';
 
 export type State = {
   item_class: ItemClassProps,
@@ -15,21 +16,23 @@ export const initial: State = {
   item: undefined
 };
 
-const reducer = (state: State = initial, action: ItemAction) => {
-  switch (action.type) {
-    case SET_ITEM:
+// return types are not type checked by flow!
+const reducer = handleActions(
+  {
+    [setItem.toString()](state: State, action: any) {
       return {
         ...state,
         item: action.payload
       };
-    case SET_ITEM_CLASS:
+    },
+    [setItemClass.toString()](state: State, action: any) {
       return {
         ...state,
         item_class: action.payload
       };
-    default:
-      return state;
-  }
-};
+    }
+  },
+  initial
+);
 
 export default reducer;
