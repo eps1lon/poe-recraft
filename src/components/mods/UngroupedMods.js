@@ -42,7 +42,7 @@ const all_columns = [
   }
 ];
 
-const defaultSorted = [{ id: 'ilvl' }];
+const defaultSorted = [{ id: 'ilvl', desc: true }];
 
 // TODO spawnchance, flags, mod#t
 const UngroupedMods = ({ className = '', details, options }: Props) => {
