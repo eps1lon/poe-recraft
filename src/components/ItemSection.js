@@ -13,7 +13,6 @@ export type Props = {
 
 const ItemSection = (props: Props) => {
   const { item } = props;
-  console.log(item, item != null);
 
   return (
     <section id="item">

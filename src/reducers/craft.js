@@ -2,22 +2,22 @@
 import reduceReducers from 'reduce-reducers';
 
 import type { Action as CraftAction } from '../actions/craft';
-import type Item from '../poe/ModContainer/Item';
 import type ModGenerator from '../poe/ModGenerator/';
+import type { State as ItemState } from './item';
 
 import { SET_GENERATOR } from '../actions/craft';
-import item from './item';
+import item, { initial as initial_item_state } from './item';
 
 export type State = {
-  itemclass: ?string,
-  item: ?Item,
   mod_generator: ?ModGenerator<*>
-};
+} & ItemState;
 
 const initial: State = {
-  itemclass: undefined,
-  item: undefined,
-  mod_generator: undefined
+  mod_generator: undefined,
+  // we need to spread the initial here because only the
+  // 1st reducer in reduce-reducer gets undefined
+  // every subsequent reducer has the 1st initial state
+  ...initial_item_state
 };
 
 const reducer = (state: State = initial, action: CraftAction): State => {

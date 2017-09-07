@@ -1,7 +1,8 @@
+// @flow
 import React from 'react';
 
-import type { Props as ItemClassProps } from './ItemClass';
-import ItemClass from './ItemClass';
+import type { ItemClassProps } from '../../poe/data/schema';
+import ItemClass from '../../containers/ItemClass';
 
 export type Props = {
   name: string,
@@ -14,7 +15,7 @@ const ItemClassGroup = (props: Props) => {
     <h3 key="heading">{props.human}</h3>,
     <ul key="classes" className={`item-class-group ${props.name}`}>
       {props.classes.map(itemclass => (
-        <ItemClass key={itemclass.name} {...itemclass} />
+        <ItemClass key={itemclass.primary} {...itemclass} />
       ))}
     </ul>
   ];

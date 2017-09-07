@@ -6,47 +6,47 @@ const groups: ItemClassGroupProps[] = [
     name: 'weapons',
     human: 'Weapons',
     classes: [
-      { name: 'claws', human: 'Claws' },
-      { name: 'daggers', human: 'Daggers' },
-      { name: 'sceptres', human: 'Sceptres' },
-      { name: 'bows', human: 'Bows' },
-      { name: 'quivers', human: 'Quivers' },
-      { name: 'wands', human: 'Wands' },
-      { name: 'staves', human: 'Staves' },
-      { name: '1h_axes', human: '1H Axes' },
-      { name: '2h_axes', human: '2H Axes' },
-      { name: '1h_maces', human: '1H Maces' },
-      { name: '2h_maces', human: '2H Maces' },
-      { name: '1h_swords', human: '1H Swords' },
-      { name: '1h_swords_thrusting', human: '1H Thrusting Swords' },
-      { name: '2h_swords', human: '2H Swords' }
+      { primary: 6, name: 'Claws' },
+      { primary: 7, name: 'Daggers' },
+      { primary: 32, name: 'Sceptres' },
+      { primary: 13, name: 'Bows' },
+      { primary: 19, name: 'Quivers' },
+      { primary: 8, name: 'Wands' },
+      { primary: 14, name: 'Staves' },
+      { primary: 11, name: 'One Hand Axes' },
+      { primary: 16, name: 'Two Hand Axes' },
+      { primary: 12, name: 'One HandMaces' },
+      { primary: 17, name: 'Two Hand Maces' },
+      { primary: 9, name: 'One Hand Swords' },
+      { primary: 10, name: 'Thrusting One Hand Swords' },
+      { primary: 15, name: 'Two Hand Swords' }
     ]
   },
   {
     name: 'armours',
     human: 'Armour',
     classes: [
-      { name: 'body_armours', human: 'Body Armours' },
-      { name: 'boots', human: 'Boots' },
-      { name: 'gloves', human: 'Gloves' },
-      { name: 'helmets', human: 'Helmets' },
-      { name: 'shields', human: 'Shields' }
+      { primary: 24, name: 'Body Armours' },
+      { primary: 23, name: 'Boots' },
+      { primary: 22, name: 'Gloves' },
+      { primary: 25, name: 'Helmets' },
+      { primary: 26, name: 'Shields' }
     ]
   },
   {
     name: 'equipment',
     human: 'Jewelry',
     classes: [
-      { name: 'amulets', human: 'Amulets' },
-      { name: 'rings', human: 'Rings' },
-      { name: 'belts', human: 'Belts' },
-      { name: 'jewels', human: 'Jewels' }
+      { primary: 4, name: 'Amulets' },
+      { primary: 5, name: 'Rings' },
+      { primary: 21, name: 'Belts' },
+      { primary: 41, name: 'Jewels' }
     ]
   },
   {
     name: 'misc',
     human: 'Misc',
-    classes: [{ name: 'maps', human: 'Maps' }]
+    classes: [{ primary: 25, name: 'Maps' }]
   }
 ];
 
