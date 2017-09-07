@@ -51,8 +51,8 @@ const UngroupedMods = (props: Props) => {
     {
       Header: 'add',
       id: 'add_mod',
-      Cell: ({ original: mod }) => {
-        return <button onClick={() => onAddMod(mod)}>addMod</button>;
+      Cell: ({ original: details }: { original: GeneratorDetails }) => {
+        return <button onClick={() => onAddMod(details.mod)}>addMod</button>;
       }
     }
   ].filter(({ id }) => !exclude.includes(id));
