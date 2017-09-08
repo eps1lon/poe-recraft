@@ -3,11 +3,8 @@ import React from 'react';
 
 import type ModContainer from '../../../poe/ModContainer/';
 
-import withModHandles from '../../../containers/withModHandles';
+import { Mods } from '../../../containers/poe/mods';
 import Statsgroup from './';
-import { Mods } from '../../poe/mods/';
-
-const ModsWithHandles = withModHandles(Mods);
 
 export type Props = {
   className: string,
@@ -18,7 +15,8 @@ const ModStats = ({ className, container }: Props) => {
   return (
     <Statsgroup className={className}>
       {[
-        <ModsWithHandles
+        <Mods
+          key="mods"
           className={`mods ${className}`}
           mods={container.mods}
         />

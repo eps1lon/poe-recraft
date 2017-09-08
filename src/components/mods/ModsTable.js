@@ -4,9 +4,8 @@ import React from 'react';
 import type FlagSet from '../../poe/FlagSet';
 import type Mod from '../../poe/Mod/';
 
-import withModHandles from '../../containers/withModHandles';
-import GroupedMods from './GroupedMods';
-import UngroupedMods from './UngroupedMods';
+import GroupedMods from '../../containers/mods/GroupedMods';
+import UngroupedMods from '../../containers/mods/UngroupedMods';
 
 type Options = {
   grouped?: boolean,
@@ -36,14 +35,14 @@ const ModsTable = ({
 }: Props) => {
   const { grouped = false, exclude = [] } = options;
 
-  const Mods = withModHandles(grouped ? GroupedMods : UngroupedMods);
+  const Mods = grouped ? GroupedMods : UngroupedMods;
 
   return (
     <div className={className}>
       <h4 id={`${className}-caption`}>
         {human} /<span className="count">{details.length}</span>
       </h4>
-      <Mods details={details} options={{ exclude }} />
+      <Mods className={className} details={details} options={{ exclude }} />
     </div>
   );
 };

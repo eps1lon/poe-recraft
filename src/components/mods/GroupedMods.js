@@ -2,16 +2,25 @@
 import React from 'react';
 import ReactTable from 'react-table';
 
-import type Mod from '../../poe/Mod/';
+import type { ReactTableExpanded } from '../../reducers/gui/expanded';
+
 import type { GeneratorDetails } from './ModsTable';
 
-import UngroupedMods from './UngroupedMods';
+import UngroupedMods from '../../containers/mods/UngroupedMods';
 
 export type Props = {
-  className?: string,
+  className: string,
   details: GeneratorDetails[],
   options: {},
-  onAddMod: (mod: Mod) => mixed
+  expanded: ReactTableExpanded,
+  onTableExpandedChange: (string, ReactTableExpanded) => any
+};
+
+const default_props = {
+  expanded: {},
+  options: {},
+  onCollapse: () => undefined,
+  onTableExpandedChange: () => undefined
 };
 
 const groupMods = (
@@ -46,26 +55,25 @@ const columns = [
     accessor: '1.length',
     id: 'tally',
     className: 'group-mods-tally'
+  },
+  // hide the default expander because we want the hole row
+  // to be the expander
+  {
+    expander: true,
+    id: 'expander',
+    show: false
   }
 ];
 
 const defaultSorted = ['correct_group'];
 
-const subComponentWithHandles = ({ onAddMod }) => ({
-  original: [group, details],
-  ...row
-}) => {
-  return (
-    <UngroupedMods
-      className="correct-group"
-      details={details}
-      onAddMod={onAddMod}
-    />
-  );
+const SubComponent = ({ original: [group, details], ...row }) => {
+  return <UngroupedMods className="correct-group" details={details} />;
 };
 
 // TODO spawnchance, flags, mod#t
-const GroupedMods = ({ className = '', details, onAddMod }: Props) => {
+const GroupedMods = (props: Props) => {
+  const { className, details, onTableExpandedChange, expanded } = props;
   const groups = groupMods(details);
 
   return (
@@ -75,7 +83,8 @@ const GroupedMods = ({ className = '', details, onAddMod }: Props) => {
         className: `grouped ${className}`,
         columns,
         defaultSorted,
-        SubComponent: subComponentWithHandles({ onAddMod }),
+        expanded,
+        SubComponent,
         showPagination: false,
         minRows: 1,
         getTrProps: (state, rowInfo, column, instance) => {
@@ -83,30 +92,28 @@ const GroupedMods = ({ className = '', details, onAddMod }: Props) => {
             const { viewIndex } = rowInfo;
 
             const new_expanded = state.expanded[viewIndex] ? false : {};
-            const new_state = {
-              expanded: {
-                ...state.expanded,
-                [viewIndex]: new_expanded
-              }
+            const new_expanded_state = {
+              ...state.expanded,
+              [viewIndex]: new_expanded
             };
 
             return {
               onClick: (e, handleOriginal) => {
-                instance.setState(new_state);
+                instance.props.onExpandedChange(new_expanded_state);
               }
             };
           } else {
             return {};
           }
+        },
+        onExpandedChange: expanded => {
+          onTableExpandedChange(className, expanded);
         }
       }}
     />
   );
 };
 
-GroupedMods.defaultProps = {
-  options: {},
-  onAddMod: () => undefined
-};
+GroupedMods.defaultProps = default_props;
 
 export default GroupedMods;
