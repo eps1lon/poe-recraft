@@ -28,10 +28,6 @@ export default class Mod {
     ENCHANTMENT: 10
   };
 
-  static domId(id: number) {
-    return `mod_${id}`;
-  }
-
   +props: ModProps;
 
   constructor(props: ModProps) {
@@ -95,9 +91,5 @@ export default class Mod {
 
   name() {
     return this.props.name;
-  }
-
-  domId() {
-    return Mod.domId(this.props.primary);
   }
 }
