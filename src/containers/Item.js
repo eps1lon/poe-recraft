@@ -53,7 +53,7 @@ export default class Item extends Container {
     rarity: 'normal',
   };
 
-  static build(props: BaseItemTypeProps, meta_datas: MetaDataMap) {
+  static build(props: BaseItemTypeProps, meta_datas: MetaDataMap): Item {
     const clazz = props.inherits_from.split(/[\\/]/).pop();
     const meta_data = MetaData.build(clazz, meta_datas);
 
@@ -121,7 +121,7 @@ export default class Item extends Container {
     return Item.withBuilder(builder);
   }
 
-  addMod(other: Mod) {
+  addMod(other: Mod): Item {
     if (other.isAffix()) {
       return this.addAffix(other);
     } else if (other.implicitCandidate()) {
@@ -134,7 +134,7 @@ export default class Item extends Container {
   /**
    * truncates mods
    */
-  removeAllMods() {
+  removeAllMods(): Item {
     return this.withMutations(builder => {
       return {
         ...builder,
@@ -146,7 +146,7 @@ export default class Item extends Container {
   /**
    * removes an existing mod
    */
-  removeMod(other: Mod) {
+  removeMod(other: Mod): Item {
     if (this.hasMod(other)) {
       return this.withMutations(builder => {
         return {
@@ -165,7 +165,7 @@ export default class Item extends Container {
    * adds a mod if theres room for it
    * no sophisticated domain check. only if affix type is full or not
    */
-  addAffix(other: Mod) {
+  addAffix(other: Mod): Item {
     const has_room_for_affix =
       (other.isPrefix() && this.getPrefixes().length < this.maxPrefixes()) ||
       (other.isSuffix() && this.getSuffixes().length < this.maxSuffixes());
@@ -182,7 +182,7 @@ export default class Item extends Container {
     }
   }
 
-  addImplicit(mod: Mod) {
+  addImplicit(mod: Mod): Item {
     const builder = this.builder();
 
     return Item.withBuilder({
@@ -191,7 +191,7 @@ export default class Item extends Container {
     });
   }
 
-  removeAllImplicits() {
+  removeAllImplicits(): Item {
     const builder = this.builder();
 
     return Item.withBuilder({
@@ -207,7 +207,7 @@ export default class Item extends Container {
   /**
    * adds a new tag to the item if its not already presen
    */
-  addTag(tag: TagProps) {
+  addTag(tag: TagProps): Item {
     if (this.hasTag(tag)) {
       return this.withMutations(builder => {
         return {
@@ -223,7 +223,7 @@ export default class Item extends Container {
   /**
    * removes an existing tag
    */
-  removeTag(other: TagProps) {
+  removeTag(other: TagProps): Item {
     if (this.hasTag(other)) {
       return this.withMutations(builder => {
         return {
@@ -232,11 +232,11 @@ export default class Item extends Container {
         };
       });
     } else {
-      return false;
+      return this;
     }
   }
 
-  get affixes(): Container {
+  get affixes(): Item {
     return this;
   }
 
