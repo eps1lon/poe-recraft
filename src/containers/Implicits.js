@@ -3,7 +3,7 @@ import { Mod } from '../mods/';
 
 import { Container } from './';
 
-export default class ItemImplicits extends Container {
+export default class Implicits extends Container {
   /**
    * @override
    */

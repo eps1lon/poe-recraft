@@ -191,6 +191,15 @@ export default class Item extends Container {
     });
   }
 
+  removeAllImplicits() {
+    const builder = this.builder();
+
+    return Item.withBuilder({
+      ...builder,
+      implicits: this.implicits.removeAllMods().mods
+    });
+  }
+
   hasTag(other: TagProps) {
     return this.tags.find(tag => tag.primary === other.primary) === undefined;
   }
@@ -225,6 +234,18 @@ export default class Item extends Container {
     } else {
       return false;
     }
+  }
+
+  get affixes(): Container {
+    return this;
+  }
+
+  getPrefixes() {
+    return this.affixes.mods.filter(mod => mod.isPrefix());
+  }
+
+  getSuffixes() {
+    return this.affixes.mods.filter(mod => mod.isSuffix());
   }
 
   /**

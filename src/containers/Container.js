@@ -7,7 +7,7 @@ export default class Container {
   +mods: Mod[];
   +tags: TagProps[];
 
-  constructor(mods: Mod[] = []) {
+  constructor(mods: Mod[]) {
     (this: any).mods = mods;
     (this: any).tags = [];
   }
