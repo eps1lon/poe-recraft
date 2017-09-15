@@ -30,7 +30,7 @@ export default class Vaal extends Currency {
       const implicit = this.chooseMod(blank_item);
 
       if (implicit != null) {
-        const vaaled_item = blank_item.addImplciit(implicit);
+        const vaaled_item = blank_item.addImplicit(implicit);
 
         if (vaaled_item !== blank_item) {
           return vaaled_item.corrupt();
