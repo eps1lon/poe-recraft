@@ -7,8 +7,9 @@
   "scripts": {
     "build": "npm run build:clean && npm run build:lib && npm run build:flow",
     "build:clean": "rimraf lib",
-    "build:lib": "babel -d lib src --ignore '**/__tests__/**'",
-    "build:flow": "flow-copy-source -v -i '**/__tests__/**' src lib",
+    "build:lib": "babel -d lib src --ignore '**/(__tests__|__fixtures__)/**'",
+    "build:flow":
+      "flow-copy-source -v -i '**/(__tests__|__fixtures__)/**' src lib",
     "flow": "flow",
     "format": "prettier --write src/**/*.js",
     "prepublish": "npm run build",
