@@ -87,18 +87,6 @@ export default class Container {
     }, []);
   }
 
-  getPrefixes(): Mod[] {
-    return this.mods.filter(mod => mod.isPrefix());
-  }
-
-  getSuffixes(): Mod[] {
-    return this.mods.filter(mod => mod.isSuffix());
-  }
-
-  getAffixes(): Mod[] {
-    return [...this.getPrefixes(), ...this.getSuffixes()];
-  }
-
   asArray(): Mod[] {
     return this.mods;
   }

@@ -26,6 +26,7 @@ export default class ItemImplicits extends Container {
         return 1;
       case Mod.TYPE.VAAL:
         return 1;
+      // no other generation types allowed
       default:
         return -1;
     }

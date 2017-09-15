@@ -2,7 +2,7 @@
 import type { BaseItemTypeProps, MetaDataMap, TagProps } from '../data/schema';
 import type { ValueRange } from '../ValueRange';
 
-import ItemImplicits from './ItemImplicits';
+import Implicits from './Implicits';
 import MetaData from '../MetaData';
 import { Mod } from '../mods/';
 import { Container } from './';
@@ -99,7 +99,7 @@ export default class Item extends Container {
     (this: any).props = props;
     (this: any).tags = tags;
 
-    (this: any).implicits = new ItemImplicits(implicits);
+    (this: any).implicits = new Implicits(implicits);
     // TODO implicits
   }
 
@@ -120,25 +120,12 @@ export default class Item extends Container {
 
     return Item.withBuilder(builder);
   }
-  /**
-   * adds a mod if theres room for it
-   * no sophisticated domain check. only if affix type is full or not
-   * 
-   * TODO defer to addImplicit if implicit candidate or just silently dont
-   * change anything?
-   */
-  addMod(other: Mod) {
-    const has_room_for_affix =
-      (other.isPrefix() && this.getPrefixes().length < this.maxPrefixes()) ||
-      (other.isSuffix() && this.getSuffixes().length < this.maxSuffixes());
 
-    if (has_room_for_affix) {
-      return this.withMutations(builder => {
-        return {
-          ...builder,
-          affixes: builder.affixes.concat(other)
-        };
-      });
+  addMod(other: Mod) {
+    if (other.isAffix()) {
+      return this.addAffix(other);
+    } else if (other.isImplicitCandidate()) {
+      return this.addImplicit(other);
     } else {
       return this;
     }
@@ -174,6 +161,27 @@ export default class Item extends Container {
     }
   }
 
+  /**
+   * adds a mod if theres room for it
+   * no sophisticated domain check. only if affix type is full or not
+   */
+  addAffix(other: Mod) {
+    const has_room_for_affix =
+      (other.isPrefix() && this.getPrefixes().length < this.maxPrefixes()) ||
+      (other.isSuffix() && this.getSuffixes().length < this.maxSuffixes());
+
+    if (has_room_for_affix) {
+      return this.withMutations(builder => {
+        return {
+          ...builder,
+          affixes: builder.affixes.concat(other)
+        };
+      });
+    } else {
+      return this;
+    }
+  }
+
   addImplicit(mod: Mod) {
     const builder = this.builder();
 
@@ -181,32 +189,6 @@ export default class Item extends Container {
       ...builder,
       implicits: this.implicits.addMod(mod).mods
     });
-  }
-
-  removeAllImplicits() {
-    const builder = this.builder();
-
-    return Item.withBuilder({
-      ...builder,
-      implicits: this.implicits.removeAllMods().mods
-    });
-  }
-
-  removeImplicit(mod: Mod) {
-    const builder = this.builder();
-
-    return Item.withBuilder({
-      ...builder,
-      implicits: this.implicits.removeMod(mod).mods
-    });
-  }
-
-  getImplicit(primary: number) {
-    return this.implicits.getMod(primary);
-  }
-
-  getImplicitIndexOfModWithPrimary(primary: number) {
-    return this.implicits.indexOfModWithPrimary(primary);
   }
 
   hasTag(other: TagProps) {
