@@ -11,7 +11,7 @@ import Stat from '../Stat';
 export type Rarity = 'normal' | 'magic' | 'rare' | 'unique' | 'showcase';
 
 export type LocalStats = {
-  [string]: ValueRange | string
+  [string]: ValueRange | string,
 };
 
 export type ItemProps = {
@@ -19,10 +19,10 @@ export type ItemProps = {
   +item_level: number,
   +mirrored: boolean,
   +random_name: string,
-  +rarity: Rarity
+  +rarity: Rarity,
 };
 
-export type ItemProperty = $Keys<ItemProps>;
+export type ItemProperty = $Keys<ItemProps>; // eslint-disable-line no-undef
 
 export type ItemBuilder = {
   affixes: Mod[],
@@ -30,7 +30,7 @@ export type ItemBuilder = {
   implicits: Mod[],
   meta_data: MetaData,
   props: ItemProps,
-  tags: TagProps[]
+  tags: TagProps[],
 };
 
 /**
@@ -50,7 +50,7 @@ export default class Item extends Container {
     item_level: Item.MAX_ILVL,
     mirrored: false,
     random_name: 'Random Name',
-    rarity: 'normal'
+    rarity: 'normal',
   };
 
   static build(props: BaseItemTypeProps, meta_datas: MetaDataMap) {
@@ -73,7 +73,7 @@ export default class Item extends Container {
   static applyStat(
     value: ValueRange | number,
     stat: Stat,
-    precision: number
+    precision: number, // eslint-disable-line no-unused-vars
   ): ValueRange {
     throw new Error('not implemented');
   }
@@ -90,7 +90,7 @@ export default class Item extends Container {
     props: ItemProps = Item.default_props,
     implicits: Mod[] = [],
     affixes: Mod[] = [],
-    tags: TagProps[] = []
+    tags: TagProps[] = [],
   ) {
     super(affixes);
 
@@ -110,7 +110,7 @@ export default class Item extends Container {
       implicits: this.implicits.mods,
       meta_data: this.meta_data,
       props: this.props,
-      tags: this.tags
+      tags: this.tags,
     };
   }
 
@@ -138,7 +138,7 @@ export default class Item extends Container {
     return this.withMutations(builder => {
       return {
         ...builder,
-        affixes: []
+        affixes: [],
       };
     });
   }
@@ -152,8 +152,8 @@ export default class Item extends Container {
         return {
           ...builder,
           affixes: builder.affixes.filter(
-            mod => mod.props.primary !== other.props.primary
-          )
+            mod => mod.props.primary !== other.props.primary,
+          ),
         };
       });
     } else {
@@ -174,7 +174,7 @@ export default class Item extends Container {
       return this.withMutations(builder => {
         return {
           ...builder,
-          affixes: builder.affixes.concat(other)
+          affixes: builder.affixes.concat(other),
         };
       });
     } else {
@@ -187,7 +187,7 @@ export default class Item extends Container {
 
     return Item.withBuilder({
       ...builder,
-      implicits: this.implicits.addMod(mod).mods
+      implicits: this.implicits.addMod(mod).mods,
     });
   }
 
@@ -196,7 +196,7 @@ export default class Item extends Container {
 
     return Item.withBuilder({
       ...builder,
-      implicits: this.implicits.removeAllMods().mods
+      implicits: this.implicits.removeAllMods().mods,
     });
   }
 
@@ -212,7 +212,7 @@ export default class Item extends Container {
       return this.withMutations(builder => {
         return {
           ...builder,
-          tags: this.tags.concat(tag)
+          tags: this.tags.concat(tag),
         };
       });
     } else {
@@ -228,7 +228,7 @@ export default class Item extends Container {
       return this.withMutations(builder => {
         return {
           ...builder,
-          tags: this.tags.filter(tag => tag.primary !== other.primary)
+          tags: this.tags.filter(tag => tag.primary !== other.primary),
         };
       });
     } else {
@@ -346,18 +346,18 @@ export default class Item extends Container {
   }
 
   itemName(): string {
+    let name = '';
     switch (this.props.rarity) {
       case 'magic':
-        var name = '';
         // prefix
         if (this.getPrefixes().length) {
-          name += this.getPrefixes()[0].props.name + ' ';
+          name += `${this.getPrefixes()[0].props.name} `;
         }
         // + base_name
         name += this.baseitem.name;
         // + suffix
         if (this.getSuffixes().length) {
-          name += ' ' + this.getSuffixes()[0].props.name;
+          name += ` ${this.getSuffixes()[0].props.name}`;
         }
 
         return name;
@@ -373,7 +373,7 @@ export default class Item extends Container {
       level: this.requiredLevel(),
       str: 0,
       dex: 0,
-      int: 0
+      int: 0,
     };
 
     if (this.baseitem.component_attribute_requirement != null) {
@@ -388,7 +388,7 @@ export default class Item extends Container {
   requiredLevel() {
     return Math.max(
       this.baseitem.drop_level,
-      ...this.getAllMods().map(mod => Math.floor(0.8 * mod.props.level))
+      ...this.getAllMods().map(mod => Math.floor(0.8 * mod.props.level)),
     );
   }
 
@@ -434,17 +434,23 @@ export default class Item extends Container {
       .concat(this.getImplicits())
       .reduce((stats, mod) => {
         // flattened
-        return mod.statsJoined().reduce((stats, stat) => {
+        return mod.statsJoined().reduce((joined, stat) => {
           const { id } = stat.props;
+          const existing = joined[id];
 
+          // TODO fix typing
           // group by stat.Id
-          if (stats[id] instanceof Stat) {
-            stats[id].values.add(stat.values);
+          if (existing instanceof Stat) {
+            return {
+              ...joined,
+              [id]: existing.values.add(stat.values),
+            };
           } else {
-            stats[id] = stat;
+            return {
+              ...joined,
+              [id]: existing,
+            };
           }
-
-          return stats;
         }, stats);
       }, {});
   }
@@ -453,11 +459,11 @@ export default class Item extends Container {
    * TODO
    */
   localStats(): LocalStats {
-    const stats = this.stats();
-
     if (this.baseitem.component_armour != null) {
       return {
-        physical_damage_reduction: String(this.baseitem.component_armour.armour)
+        physical_damage_reduction: String(
+          this.baseitem.component_armour.armour,
+        ),
       };
     } else {
       return { error: 'could not  build' };
@@ -468,7 +474,7 @@ export default class Item extends Container {
     if (this.props.corrupted) {
       throw new Error('invalid state: is already corrupted');
     } else {
-      return this._setProperty('corrupted', true);
+      return this.setProperty('corrupted', true);
     }
   }
 
@@ -476,23 +482,23 @@ export default class Item extends Container {
     if (this.props.mirrored) {
       throw new Error('invalid state: is already mirrored');
     } else {
-      return this._setProperty('mirrored', true);
+      return this.setProperty('mirrored', true);
     }
   }
 
   setRarity(rarity: Rarity): Item {
-    return this._setProperty('rarity', rarity);
+    return this.setProperty('rarity', rarity);
   }
 
   // private
-  _setProperty(prop: ItemProperty, value: any): Item {
+  setProperty(prop: ItemProperty, value: any): Item {
     return this.withMutations(builder => {
       return {
         ...builder,
         props: {
           ...builder.props,
-          [prop]: value
-        }
+          [prop]: value,
+        },
       };
     });
   }

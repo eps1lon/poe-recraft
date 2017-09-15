@@ -2,7 +2,6 @@
 import type { Item } from '../containers/';
 import type { ModProps } from '../data/schema';
 
-import { type Flags } from '../Flags';
 import { Mod } from '../mods/';
 import Currency from './Currency';
 

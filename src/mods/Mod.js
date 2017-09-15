@@ -12,7 +12,7 @@ export default class Mod {
     MAP: 5,
     STANCE: 9,
     MASTER: 10,
-    JEWEL: 11
+    JEWEL: 11,
   };
 
   static TYPE = {
@@ -25,7 +25,7 @@ export default class Mod {
     TORMENT: 7,
     TEMPEST: 8,
     TALISMAN: 9,
-    ENCHANTMENT: 10
+    ENCHANTMENT: 10,
   };
 
   +props: ModProps;
@@ -67,7 +67,7 @@ export default class Mod {
 
       stat.values = [
         +this.props[`stat${i + 1}_min`],
-        +this.props[`stat${i + 1}_max`]
+        +this.props[`stat${i + 1}_max`],
       ];
 
       return stat;

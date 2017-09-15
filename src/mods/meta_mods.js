@@ -5,7 +5,7 @@ const META_MODS = {
   NO_ATTACK_MODS: 4707,
   NO_CASTER_MODS: 4708,
   MULTIMOD: 4709,
-  LLD_MOD: 4652
+  LLD_MOD: 4652,
 };
 
 export default Object.freeze(META_MODS);

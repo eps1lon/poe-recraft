@@ -2,7 +2,7 @@
 import type { Item } from '../containers/';
 import type { CraftingBenchOptionsProps } from '../data/schema';
 
-import { type Flags, anySet } from '../Flags';
+import { anySet } from '../Flags';
 import { MasterMod } from '../mods/';
 import Generator from './Generator';
 
@@ -13,7 +13,7 @@ import Generator from './Generator';
 export default class MasterBench extends Generator<MasterMod> {
   static build(options: CraftingBenchOptionsProps[], master_primary: number) {
     return new MasterBench(
-      options.filter(({ npc_master_key }) => npc_master_key === master_primary)
+      options.filter(({ npc_master_key }) => npc_master_key === master_primary),
     );
   }
 
@@ -24,7 +24,7 @@ export default class MasterBench extends Generator<MasterMod> {
     super(
       options
         .filter(option => option.mod != null)
-        .map(option => new MasterMod(option))
+        .map(option => new MasterMod(option)),
     );
 
     this.options = options;
@@ -57,7 +57,8 @@ export default class MasterBench extends Generator<MasterMod> {
 
     if (option != null) {
       const mod = this.mods.find(
-        mod => option.mod != null && mod.props.primary === option.mod.primary
+        needle =>
+          option.mod != null && needle.props.primary === option.mod.primary,
       );
 
       /**
@@ -81,6 +82,7 @@ export default class MasterBench extends Generator<MasterMod> {
   /**
    * every item is welcome
    */
+  // eslint-disable-next-line no-unused-vars
   applicableTo(item: Item) {
     // empty flags
     return {};
@@ -105,7 +107,7 @@ export default class MasterBench extends Generator<MasterMod> {
         } else {
           return {
             mod,
-            applicable: applicable_flags
+            applicable: applicable_flags,
           };
         }
       })

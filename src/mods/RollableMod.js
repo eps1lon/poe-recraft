@@ -9,20 +9,20 @@ import { type Flags } from '../Flags';
 export type SpawnableFlag = 'no_matching_tags' | 'spawnweight_zero';
 export type SpawnableFlags = Flags<SpawnableFlag>;
 
-/* TODO: 
+/* TODO:
  * serialize()
  */
 export default class RollableMod extends ApplicableMod implements Spawnable {
   static SPAWNABLE_FLAGS: SpawnableFlags = {
     no_matching_tags: false,
-    spawnweight_zero: false
+    spawnweight_zero: false,
   };
 
   spawnweightPropsOf(item: Item): ?SpawnWeightProps {
     const item_tags = item.getTags();
 
     return this.props.spawn_weights.find(({ tag }) =>
-      item_tags.find(item_tag => tag.primary === item_tag.primary)
+      item_tags.find(item_tag => tag.primary === item_tag.primary),
     );
   }
 
@@ -31,7 +31,7 @@ export default class RollableMod extends ApplicableMod implements Spawnable {
     const spawnweight = this.spawnweightPropsOf(item);
 
     if (spawnweight == null) {
-      spawnable_flags.no_matching_tags;
+      spawnable_flags.no_matching_tags = true;
     } else if (spawnweight.value <= 0) {
       spawnable_flags.spawnweight_zero = true;
     }

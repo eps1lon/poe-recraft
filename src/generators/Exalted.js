@@ -5,7 +5,7 @@ import type { ModProps } from '../data/schema';
 import { type Flags, anySet } from '../Flags';
 import Currency, {
   type ApplicableFlag as CurrencyApplicableFlag,
-  type ApplicableFlags as CurrencyApplicableFlags
+  type ApplicableFlags as CurrencyApplicableFlags,
 } from './Currency';
 import Transmute from './Transmute';
 
@@ -19,7 +19,7 @@ export type ApplicableFlags = CurrencyApplicableFlags | Flags<ApplicableFlag>;
 export default class Exalted extends Currency {
   static APPLICABLE_FLAGS: ApplicableFlags = {
     ...Currency.APPLICABLE_FLAGS,
-    not_rare: false
+    not_rare: false,
   };
 
   static build(mods: ModProps[]): Exalted {

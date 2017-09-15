@@ -3,13 +3,11 @@ import _ from 'lodash';
 
 import type { Item } from '../containers/';
 import type { ModProps } from '../data/schema';
-import type { GeneratorDetails } from './';
 import { type Flags, anySet } from '../Flags';
 
-import { RollableMod } from '../mods/';
 import Currency, {
   type ApplicableFlag as CurrencyApplicableFlag,
-  type ApplicableFlags as CurrencyApplicableFlags
+  type ApplicableFlags as CurrencyApplicableFlags,
 } from './Currency';
 import Transmute from './Transmute';
 
@@ -23,7 +21,7 @@ export type ApplicableFlags = CurrencyApplicableFlags | Flags<ApplicableFlag>;
 export default class Alchemy extends Currency {
   static APPLICABLE_FLAGS: ApplicableFlags = {
     ...Currency.APPLICABLE_FLAGS,
-    not_white: false
+    not_white: false,
   };
 
   static build(mods: ModProps[]): Alchemy {
@@ -69,7 +67,7 @@ export default class Alchemy extends Currency {
 
   applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = {
-      ...Alchemy.APPLICABLE_FLAGS
+      ...Alchemy.APPLICABLE_FLAGS,
     };
 
     if (item.rarity !== 'normal') {

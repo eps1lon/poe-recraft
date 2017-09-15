@@ -10,7 +10,7 @@ export type GeneratorDetails = {
   mod: Mod,
   applicable?: Flags<*>,
   spawnable?: Flags<*>,
-  spawnweight?: number
+  spawnweight?: number,
 };
 
 /**
@@ -25,6 +25,7 @@ export default class Generator<T: Mod> implements Applicable {
     this.mods = mods;
   }
 
+  // eslint-disable-next-line no-unused-vars
   applyTo(item: Item): Item {
     throw new AbstractMethod('applyTo');
   }
@@ -33,10 +34,12 @@ export default class Generator<T: Mod> implements Applicable {
     return this.mods.slice();
   }
 
+  // eslint-disable-next-line no-unused-vars
   modsFor(item: Item, whitelist: string[] = []): GeneratorDetails[] {
     throw new AbstractMethod('ModGenerator#modsFor');
   }
 
+  // eslint-disable-next-line no-unused-vars
   applicableTo(item: Item): Flags<*> {
     throw new AbstractMethod('applicableTo');
   }

@@ -5,7 +5,7 @@ import type { ModProps } from '../data/schema';
 import { type Flags, anySet } from '../Flags';
 import Currency, {
   type ApplicableFlag as CurrencyApplicableFlag,
-  type ApplicableFlags as CurrencyApplicableFlags
+  type ApplicableFlags as CurrencyApplicableFlags,
 } from './Currency';
 import Alchemy from './Alchemy';
 import Exalted from './Exalted';
@@ -21,7 +21,7 @@ export type ApplicableFlags = CurrencyApplicableFlags | Flags<ApplicableFlag>;
 export default class Chaos extends Currency {
   static APPLICABLE_FLAGS: ApplicableFlags = {
     ...Currency.APPLICABLE_FLAGS,
-    not_rare: false
+    not_rare: false,
   };
 
   static build(mods: ModProps[]): Chaos {

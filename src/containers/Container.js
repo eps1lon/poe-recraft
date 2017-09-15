@@ -1,7 +1,7 @@
 // @flow
 import { AbstractMethod } from '../exceptions/';
 import type { TagProps } from '../data/schema';
-import type { Mod } from '../mods/';
+import type Mod from '../mods/Mod';
 
 export default class Container {
   +mods: Mod[];
@@ -15,7 +15,7 @@ export default class Container {
   /**
    *  adds a new non-existing mod
    */
-  addMod(mod: Mod) {
+  addMod(mod: Mod): Container {
     if (!this.hasMod(mod)) {
       return new this.constructor(this.mods.concat(mod));
     } else {
@@ -36,7 +36,7 @@ export default class Container {
   removeMod(other: Mod) {
     if (this.hasMod(other)) {
       return new this.constructor(
-        this.mods.filter(mod => mod.props.primary !== other.props.primary)
+        this.mods.filter(mod => mod.props.primary !== other.props.primary),
       );
     } else {
       return this;
@@ -112,6 +112,7 @@ export default class Container {
   /**
    * @abstract
    */
+  // eslint-disable-next-line no-unused-vars
   maxModsOfType(mod: Mod): number {
     throw new AbstractMethod('maxModsOfType');
   }

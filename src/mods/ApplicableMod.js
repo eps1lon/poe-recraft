@@ -21,7 +21,7 @@ export default class ApplicableMod extends Mod implements Applicable {
     already_present: false,
     wrong_domain: false,
     lower_ilvl: false,
-    above_lld_level: false
+    above_lld_level: false,
   };
 
   applicableTo(item: Item): ApplicableFlags {

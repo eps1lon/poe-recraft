@@ -23,20 +23,21 @@ export default class Currency extends Generator<RollableMod> {
   static APPLICABLE_FLAGS: ApplicableFlags = {
     not_an_item: false,
     corrupted: false,
-    mirrored: false
+    mirrored: false,
   };
 
   // build<T: Currency>(currency: Class<T>): T not working
   static build(
     mods: ModProps[],
     filter: ModProps => boolean = filterNone,
-    currency: Class<$Subtype<Currency>>
+    CurrencyClass: Class<$Subtype<Currency>>, // eslint-disable-line no-undef
+    // eslint-disable-next-line no-undef
   ): $Subtype<Currency> {
     const rollable_mods = mods
       .filter(props => props.spawn_weights.length > 0 && filter(props))
       .map(props => new RollableMod(props));
 
-    return new currency(rollable_mods);
+    return new CurrencyClass(rollable_mods);
   }
 
   modsFor(item: Item, whitelist: string[] = []) {
@@ -57,7 +58,7 @@ export default class Currency extends Generator<RollableMod> {
             mod,
             applicable: applicable_flags,
             spawnable: spawnable_flags,
-            spawnweight: spawnweight
+            spawnweight,
           };
         } else {
           return null;

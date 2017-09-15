@@ -5,7 +5,7 @@ import type { Flags } from '../Flags';
 
 import ApplicableMod, {
   type ApplicableFlag as BaseApplicableFlag,
-  type ApplicableFlags as BaseApplicableFlags
+  type ApplicableFlags as BaseApplicableFlags,
 } from './ApplicableMod';
 import { metaMods as META_MODs } from './';
 
@@ -36,12 +36,12 @@ export default class MasterMod extends ApplicableMod {
   static APPLICABLE_FLAGS: ApplicableFlags = {
     ...ApplicableMod.APPLICABLE_FLAGS,
     wrong_itemclass: false,
-    no_multimod: false
+    no_multimod: false,
   };
 
   static build(mod: ModProps, options: CraftingBenchOptionsProps[]): MasterMod {
     const option = options.find(
-      option => option.mod != null && option.mod.primary === mod.primary
+      needle => needle.mod != null && needle.mod.primary === mod.primary,
     );
 
     if (option === undefined) {
@@ -79,14 +79,14 @@ export default class MasterMod extends ApplicableMod {
     const applicable_flags = {
       ...super.applicableTo(item),
       wrong_itemclass: false,
-      no_multimod: false
+      no_multimod: false,
     };
 
     const { item_classes } = this.option;
 
     const no_matching_item_class =
       item_classes.find(
-        item_class => item_class.primary === item.baseitem.item_class.primary
+        item_class => item_class.primary === item.baseitem.item_class.primary,
       ) === undefined;
 
     if (no_matching_item_class) {

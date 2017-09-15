@@ -32,7 +32,7 @@ export default class ItemShowcase extends ModGenerator<ShowcaseMod> {
       ...talisman.mods,
       ...transmute.mods,
       ...vaal.mods,
-      ...master.mods
+      ...master.mods,
     ];
 
     super(mods);
@@ -59,7 +59,7 @@ export default class ItemShowcase extends ModGenerator<ShowcaseMod> {
       ...this.master.modsFor(item, whitelist),
       ...this.talisman.modsFor(item, whitelist),
       ...this.transmute.modsFor(item, whitelist),
-      ...this.vaal.modsFor(item, whitelist)
+      ...this.vaal.modsFor(item, whitelist),
     ];
   }
 

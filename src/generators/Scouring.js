@@ -4,7 +4,7 @@ import type { Item, Rarity } from '../containers/';
 import { type Flags, anySet } from '../Flags';
 import Currency, {
   type ApplicableFlag as CurrencyApplicableFlag,
-  type ApplicableFlags as CurrencyApplicableFlags
+  type ApplicableFlags as CurrencyApplicableFlags,
 } from './Currency';
 import { metaMods as META_MODS } from './';
 
@@ -19,7 +19,7 @@ export default class Scouring extends Currency {
   static APPLICABLE_FLAGS: ApplicableFlags = {
     ...Currency.APPLICABLE_FLAGS,
     not_white: false,
-    unique: false
+    unique: false,
   };
 
   constructor() {
@@ -30,9 +30,9 @@ export default class Scouring extends Currency {
    * applies Orb of Scouring to an item
    * considers locked affixes metamods
    */
-  applyTo(item: Item): Item {
-    if (!anySet(this.applicableTo(item))) {
-      let scoured_item: Item = item;
+  applyTo(other: Item): Item {
+    if (!anySet(this.applicableTo(other))) {
+      let scoured_item: Item = other;
 
       const locked_prefixes =
         scoured_item.indexOfModWithPrimary(META_MODS.LOCKED_PREFIXES) !== -1;
@@ -40,15 +40,15 @@ export default class Scouring extends Currency {
         scoured_item.indexOfModWithPrimary(META_MODS.LOCKED_SUFFIXES) !== -1;
 
       if (!locked_prefixes) {
-        for (const prefix of scoured_item.getPrefixes()) {
-          scoured_item = scoured_item.removeMod(prefix);
-        }
+        scoured_item = scoured_item
+          .getPrefixes()
+          .reduce((item, prefix) => item.removeMod(prefix), scoured_item);
       }
 
       if (!locked_suffixes) {
-        for (const suffix of scoured_item.getSuffixes()) {
-          scoured_item = scoured_item.removeMod(suffix);
-        }
+        scoured_item = scoured_item
+          .getSuffixes()
+          .reduce((item, suffix) => item.removeMod(suffix), scoured_item);
       }
 
       // set correct rarity
@@ -65,7 +65,7 @@ export default class Scouring extends Currency {
 
       return scoured_item.setRarity(new_rarity);
     } else {
-      return item;
+      return other;
     }
   }
 
@@ -82,6 +82,8 @@ export default class Scouring extends Currency {
       case 'unique':
         applicable_flags.enable('UNIQUE');
         break;
+      default:
+      // noop
     }
 
     return applicable_flags;

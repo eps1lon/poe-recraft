@@ -1,22 +1,22 @@
 // @flow
 export type TagProps = {
   primary: number,
-  id: string
+  id: string,
 };
 
 export type ModTypeProps = {
-  primary: number
+  primary: number,
 };
 
 export type SpawnWeightProps = {
   value: number,
-  tag: TagProps
+  tag: TagProps,
 };
 
 export type StatProps = {
   primary: number,
   id: string,
-  text: string
+  text: string,
 };
 
 export type ModProps = {
@@ -40,7 +40,7 @@ export type ModProps = {
   mod_type: ModTypeProps,
   spawn_weights: SpawnWeightProps[],
   stats: StatProps[],
-  tags: TagProps[]
+  tags: TagProps[],
 };
 
 export type WeaponTypeProps = {
@@ -48,24 +48,24 @@ export type WeaponTypeProps = {
   speed: number,
   damage_min: number,
   damage_max: number,
-  range_max: number
+  range_max: number,
 };
 
 export type AttributeRequirementProps = {
   req_str: number,
   req_dex: number,
-  req_int: number
+  req_int: number,
 };
 
 export type ArmourProps = {
   armour: number,
   evasion: number,
-  energy_shield: number
+  energy_shield: number,
 };
 
 export type ItemClassProps = {
   primary: number,
-  name: string
+  name: string,
 };
 
 export type BaseItemTypeProps = {
@@ -80,7 +80,7 @@ export type BaseItemTypeProps = {
   component_armour: ?ArmourProps,
   implicit_mods: ModProps[],
   item_class: ItemClassProps,
-  tags: TagProps[]
+  tags: TagProps[],
 };
 
 export type MetaDataProps = {
@@ -89,28 +89,28 @@ export type MetaDataProps = {
   tags: TagProps[],
   // generic fascades
   [string]: {
-    [string]: string[]
+    [string]: string[],
   },
   // specific fascade
   AttributeRequirements?: {
     dexterity_requirement: string[],
     intelligence_requirement: string[],
-    strength_requirement: string[]
+    strength_requirement: string[],
   },
   Base?: {
     tag?: string[],
     x_size?: string[],
-    y_size?: string[]
+    y_size?: string[],
   },
   Quality?: {
-    max_quality: string[]
+    max_quality: string[],
   },
   Sockets?: {
-    socket_info: string[]
+    socket_info: string[],
   },
   Usable?: {
     action: string[],
-    use_type: string[]
+    use_type: string[],
   },
   Weapon?: {
     accuracy_rating?: string[],
@@ -120,16 +120,16 @@ export type MetaDataProps = {
     minimum_damage?: string[],
     maximum_damage?: string[],
     weapon_speed?: string[],
-    weapon_class?: string[]
-  }
+    weapon_class?: string[],
+  },
 };
 
 export type MetaDataMap = {
-  [string]: MetaDataProps
+  [string]: MetaDataProps,
 };
 
 export type GroupLocalization = {
-  [string]: string
+  [string]: string,
 };
 
 export type CraftingBenchOptionsProps = {
@@ -149,13 +149,13 @@ export type CraftingBenchOptionsProps = {
     row: number,
     npc: {
       name: string,
-      short_name: string
-    }
+      short_name: string,
+    },
   },
   costs: {
     amount: number,
-    base_item_type: BaseItemTypeProps
+    base_item_type: BaseItemTypeProps,
   }[],
   mod: ?ModProps,
-  item_classes: ItemClassProps[]
+  item_classes: ItemClassProps[],
 };

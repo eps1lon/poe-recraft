@@ -2,10 +2,10 @@
 import type { Item } from '../containers/';
 import type { ModProps } from '../data/schema';
 
-import { type Flags, anySet } from '../Flags';
+import { type Flags } from '../Flags';
 import Currency, {
   type ApplicableFlag as CurrencyApplicableFlag,
-  type ApplicableFlags as CurrencyApplicableFlags
+  type ApplicableFlags as CurrencyApplicableFlags,
 } from './Currency';
 import { Mod } from '../mods/';
 
@@ -19,7 +19,7 @@ export type ApplicableFlags = CurrencyApplicableFlags | Flags<ApplicableFlag>;
 export default class Transmute extends Currency {
   static APPLICABLE_FLAGS: ApplicableFlags = {
     ...Currency.APPLICABLE_FLAGS,
-    not_white: false
+    not_white: false,
   };
 
   static modFilter(mod: ModProps): boolean {

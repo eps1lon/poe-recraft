@@ -5,9 +5,8 @@ import type { ModProps } from '../data/schema';
 import { type Flags, anySet } from '../Flags';
 import Currency, {
   type ApplicableFlag as CurrencyApplicableFlag,
-  type ApplicableFlags as CurrencyApplicableFlags
+  type ApplicableFlags as CurrencyApplicableFlags,
 } from './Currency';
-import { RollableMod } from '../mods/';
 import Transmute from './Transmute';
 
 export type ApplicableFlag = CurrencyApplicableFlag | 'not_magic';
@@ -20,7 +19,7 @@ export type ApplicableFlags = CurrencyApplicableFlags | Flags<ApplicableFlag>;
 export default class Regal extends Currency {
   static APPLICABLE_FLAGS: ApplicableFlags = {
     ...Currency.APPLICABLE_FLAGS,
-    not_magic: false
+    not_magic: false,
   };
 
   static build(mods: ModProps[]): Regal {
