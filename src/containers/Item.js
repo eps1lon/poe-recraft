@@ -124,7 +124,7 @@ export default class Item extends Container {
   addMod(other: Mod) {
     if (other.isAffix()) {
       return this.addAffix(other);
-    } else if (other.isImplicitCandidate()) {
+    } else if (other.implicitCandidate()) {
       return this.addImplicit(other);
     } else {
       return this;

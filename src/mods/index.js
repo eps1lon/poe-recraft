@@ -1,3 +1,4 @@
+// @flow
 // api surface
 export { default as ApplicableMod } from './ApplicableMod';
 export { default as MasterMod, OptionNotFound } from './MasterMod';
