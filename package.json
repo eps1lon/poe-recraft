@@ -3,14 +3,12 @@
   "version": "0.0.2",
   "description": "reverse engineerd behavior of Mods in Path of Exile",
   "main": "lib/index.js",
-  "files": [
-    "lib/"
-  ],
+  "files": ["lib/"],
   "scripts": {
     "build": "npm run build:clean && npm run build:lib && npm run build:flow",
     "build:clean": "rimraf lib",
-    "build:lib": "babel -d lib src --ignore '**/(__tests__|__fixtures__)/**'",
-    "build:flow": "flow-copy-source -v -i '**/(__tests__|__fixtures__)/**' src lib",
+    "build:lib": "babel -d lib src --ignore \"**/__*__/**\"",
+    "build:flow": "flow-copy-source -v -i \"**/__*__/**\" src lib",
     "flow": "flow",
     "format": "prettier --write src/**/*.js",
     "lint": "eslint src/**/*.js",
@@ -21,10 +19,7 @@
     "type": "git",
     "url": "git+https://github.com/eps1lon/poe-mods.git"
   },
-  "keywords": [
-    "js",
-    "poe"
-  ],
+  "keywords": ["js", "poe"],
   "author": "eps1lon",
   "license": "MIT",
   "bugs": {
