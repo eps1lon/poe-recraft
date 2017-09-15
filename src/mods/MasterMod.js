@@ -90,7 +90,7 @@ export default class MasterMod extends ApplicableMod {
       ) === undefined;
 
     if (no_matching_item_class) {
-      applicable_flags.enable('WRONG_ITEMCLASS');
+      applicable_flags.wrong_itemclass = true;
     }
 
     // grep MasterMods and set failure if we cant multimod
@@ -100,7 +100,7 @@ export default class MasterMod extends ApplicableMod {
       undefined;
 
     if (master_mods.length > 0 && has_no_multi_mod) {
-      applicable_flags.enable('NO_MULTIMOD');
+      applicable_flags.no_multimod = true;
     }
 
     return applicable_flags;
