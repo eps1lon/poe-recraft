@@ -82,9 +82,14 @@ export default class Container {
    * tags of the mods in the container
    */
   getTags(): TagProps[] {
-    return this.mods.reduce((tags, mod) => {
-      return tags.concat(mod.props.tags);
-    }, []);
+    return this.mods
+      .reduce((tags, mod) => {
+        return tags.concat(mod.props.tags);
+      }, [])
+      .filter(
+        // unique by id
+        (tag, i, tags) => tags.findIndex(other => other.id === tag.id) === i,
+      );
   }
 
   asArray(): Mod[] {
