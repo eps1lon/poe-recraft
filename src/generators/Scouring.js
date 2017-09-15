@@ -35,13 +35,9 @@ export default class Scouring extends Currency {
       let scoured_item: Item = item;
 
       const locked_prefixes =
-        scoured_item.getImplicitIndexOfModWithPrimary(
-          META_MODS.LOCKED_PREFIXES
-        ) !== -1;
+        scoured_item.indexOfModWithPrimary(META_MODS.LOCKED_PREFIXES) !== -1;
       const locked_suffixes =
-        scoured_item.getImplicitIndexOfModWithPrimary(
-          META_MODS.LOCKED_SUFFIXES
-        ) !== -1;
+        scoured_item.indexOfModWithPrimary(META_MODS.LOCKED_SUFFIXES) !== -1;
 
       if (!locked_prefixes) {
         for (const prefix of scoured_item.getPrefixes()) {
