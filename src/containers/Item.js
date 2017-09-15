@@ -30,7 +30,6 @@ export type ItemBuilder = {
   implicits: Mod[],
   meta_data: MetaData,
   props: ItemProps,
-  tags: TagProps[],
 };
 
 /**
@@ -65,9 +64,9 @@ export default class Item extends Container {
   }
 
   static withBuilder(builder: ItemBuilder) {
-    const { affixes, baseitem, implicits, meta_data, props, tags } = builder;
+    const { affixes, baseitem, implicits, meta_data, props } = builder;
 
-    return new Item(baseitem, meta_data, props, implicits, affixes, tags);
+    return new Item(baseitem, meta_data, props, implicits, affixes);
   }
 
   static applyStat(
@@ -82,7 +81,6 @@ export default class Item extends Container {
   +implicits: Container;
   +meta_data: MetaData;
   +props: ItemProps;
-  +tags: TagProps[];
 
   constructor(
     baseitem: BaseItemTypeProps,
@@ -90,14 +88,12 @@ export default class Item extends Container {
     props: ItemProps = Item.default_props,
     implicits: Mod[] = [],
     affixes: Mod[] = [],
-    tags: TagProps[] = [],
   ) {
     super(affixes);
 
     (this: any).baseitem = baseitem;
     (this: any).meta_data = meta_data;
     (this: any).props = props;
-    (this: any).tags = tags;
 
     (this: any).implicits = new Implicits(implicits);
     // TODO implicits
@@ -110,7 +106,6 @@ export default class Item extends Container {
       implicits: this.implicits.mods,
       meta_data: this.meta_data,
       props: this.props,
-      tags: this.tags,
     };
   }
 
@@ -166,15 +161,11 @@ export default class Item extends Container {
    * no sophisticated domain check. only if affix type is full or not
    */
   addAffix(other: Mod): Item {
-    const has_room_for_affix =
-      (other.isPrefix() && this.getPrefixes().length < this.maxPrefixes()) ||
-      (other.isSuffix() && this.getSuffixes().length < this.maxSuffixes());
-
-    if (has_room_for_affix) {
+    if (this.hasRoomFor(other)) {
       return this.withMutations(builder => {
         return {
           ...builder,
-          affixes: builder.affixes.concat(other),
+          affixes: new Container(builder.affixes).addMod(other).mods,
         };
       });
     } else {
@@ -200,42 +191,6 @@ export default class Item extends Container {
     });
   }
 
-  hasTag(other: TagProps) {
-    return this.tags.find(tag => tag.primary === other.primary) === undefined;
-  }
-
-  /**
-   * adds a new tag to the item if its not already presen
-   */
-  addTag(tag: TagProps): Item {
-    if (this.hasTag(tag)) {
-      return this.withMutations(builder => {
-        return {
-          ...builder,
-          tags: this.tags.concat(tag),
-        };
-      });
-    } else {
-      return this;
-    }
-  }
-
-  /**
-   * removes an existing tag
-   */
-  removeTag(other: TagProps): Item {
-    if (this.hasTag(other)) {
-      return this.withMutations(builder => {
-        return {
-          ...builder,
-          tags: this.tags.filter(tag => tag.primary !== other.primary),
-        };
-      });
-    } else {
-      return this;
-    }
-  }
-
   get affixes(): Item {
     return this;
   }
@@ -252,7 +207,9 @@ export default class Item extends Container {
    * returns tags of item + tags from mods
    */
   getTags(): TagProps[] {
-    return super.getTags().concat(this.meta_data.props.tags, this.tags);
+    return super
+      .getTags()
+      .concat(this.meta_data.props.tags, this.baseitem.tags);
   }
   /**
    * returns the max possible number of the given generation type
@@ -264,10 +221,6 @@ export default class Item extends Container {
         return this.maxPrefixes();
       case Mod.TYPE.SUFFIX:
         return this.maxSuffixes();
-      case Mod.TYPE.VAAL:
-      case Mod.TYPE.ENCHANTMENT:
-      case Mod.TYPE.TALISMAN:
-        return this.implicits.maxModsOfType(mod);
       default:
         return -1;
     }
