@@ -73,3 +73,39 @@ it('should consider the tags of meta data, baseitem and its mods', () => {
 
   expect(paganWand.getTags()).toHaveLength(8);
 });
+
+it('should make a mirrored version', () => {
+  const item = Item.build(greavesProps, meta_datas);
+  const mirrored = item.mirror();
+
+  expect(mirrored).not.toBe(item);
+  expect(item.props.mirrored).toBe(false);
+  expect(mirrored.props.mirrored).toBe(true);
+});
+
+it('should not be mirrorable if it is already mirrored', () => {
+  const item = Item.build(greavesProps, meta_datas);
+  const mirrored = item.mirror();
+
+  expect(() => mirrored.mirror()).toThrowError(
+    'invalid state: is already mirrored',
+  );
+});
+
+it('should make a corrupted version', () => {
+  const item = Item.build(greavesProps, meta_datas);
+  const corrupted = item.corrupt();
+
+  expect(corrupted).not.toBe(item);
+  expect(item.props.corrupted).toBe(false);
+  expect(corrupted.props.corrupted).toBe(true);
+});
+
+it('should not be corruptable if it is already corrupted', () => {
+  const item = Item.build(greavesProps, meta_datas);
+  const corrupted = item.corrupt();
+
+  expect(() => corrupted.corrupt()).toThrowError(
+    'invalid state: is already corrupted',
+  );
+});
