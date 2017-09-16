@@ -43,7 +43,7 @@ export default class Augment extends Currency {
   applicableTo(item: Item, success: string[] = []): ApplicableFlags {
     const applicable_flags = { ...Augment.APPLICABLE_FLAGS };
 
-    if (item.rarity !== 'magic') {
+    if (item.props.rarity !== 'magic') {
       applicable_flags.not_magic = true;
     }
 
