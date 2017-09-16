@@ -17,8 +17,8 @@ export interface Spawnable {
  */
 export type MaybeSpawnable = {
   // spawnweight(Item)?
-  spawnweightFor?: Item => number,
-  spawnableOn?: Item => Flags<*>,
+  +spawnweightFor?: Item => number,
+  +spawnableOn?: Item => Flags<*>,
 };
 
 /** 
