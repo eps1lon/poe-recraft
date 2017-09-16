@@ -70,7 +70,7 @@ export default class Alchemy extends Currency {
       ...Alchemy.APPLICABLE_FLAGS,
     };
 
-    if (item.rarity !== 'normal') {
+    if (item.props.rarity !== 'normal') {
       applicable_flags.not_white = true;
     }
 
