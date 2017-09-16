@@ -52,8 +52,8 @@ export default class Alteration extends Currency {
   applicableTo(item: Item, success: string[] = []): ApplicableFlags {
     const applicable_flags = { ...Alteration.APPLICABLE_FLAGS };
 
-    if (item.rarity !== 'magic') {
-      applicable_flags.not_magic = false;
+    if (item.props.rarity !== 'magic') {
+      applicable_flags.not_magic = true;
     }
 
     return applicable_flags;

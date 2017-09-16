@@ -6,7 +6,7 @@ import Currency, {
   type ApplicableFlag as CurrencyApplicableFlag,
   type ApplicableFlags as CurrencyApplicableFlags,
 } from './Currency';
-import { metaMods as META_MODS } from './';
+import { metaMods as META_MODS } from '../mods/';
 
 export type ApplicableFlag = CurrencyApplicableFlag | 'not_white' | 'unique';
 export type ApplicableFlags = CurrencyApplicableFlags | Flags<ApplicableFlag>;
