@@ -27,10 +27,13 @@ export const implementedBy = (thing: MaybeSpawnable): boolean %checks => {
   return thing.spawnableOn != null;
 }; */
 
+// filter nothing
+const allowAll = () => true;
+
 export const calculateSpawnchance = (
   item: Item,
   collection: MaybeSpawnable[],
-  filter: MaybeSpawnable => boolean,
+  filter?: MaybeSpawnable => boolean = allowAll,
 ): { thing: MaybeSpawnable, spawnchance: number }[] => {
   const sum_spawnweight = collection.reduce((sum, thing) => {
     if (thing.spawnweightFor != null && filter(thing)) {
