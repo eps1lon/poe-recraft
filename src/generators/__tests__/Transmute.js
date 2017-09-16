@@ -44,7 +44,7 @@ it('should only apply to white items', () => {
   });
 });
 
-it.only('should add mods while upgrading the item to magic', () => {
+it('should add mods while upgrading the item to magic', () => {
   const transmute = Transmute.build(mods);
   const craftable = greaves;
 
