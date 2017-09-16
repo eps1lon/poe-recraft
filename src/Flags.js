@@ -20,14 +20,12 @@ type ExtendedFlags = BaseFlags | Flags<BaseFlag>; // Flags<ExtendedFlag> polymor
  */
 
 export type Flags<T> = {
-  [T]: boolean
+  [T]: boolean,
 };
 
 export const anySet = (flags: Flags<*>, whitelist: any[] = []) => {
   // ignore every key in which is in whitelist and no flag set (===true)
-  return (
-    Object.entries(flags).filter(
-      (key, value) => whitelist.includes(key) || !value
-    ).length > 0
+  return Object.entries(flags).some(
+    ([key, value]) => !whitelist.includes(key) && value,
   );
 };
