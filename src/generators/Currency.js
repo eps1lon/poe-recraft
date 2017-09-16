@@ -15,9 +15,6 @@ export type ApplicableFlags = Flags<ApplicableFlag>;
 /**
  * abstract representation of ingame currency which only accepts
  * prefixes, suffixes and implicits
- * 
- * TODO:
- * applicableByteHuman
  */
 export default class Currency extends Generator<RollableMod> {
   static APPLICABLE_FLAGS: ApplicableFlags = {
