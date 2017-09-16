@@ -1,5 +1,5 @@
 // @flow
-import type { Item } from '../containers/';
+import type Item from '../containers/Item';
 import type { ModProps } from '../data/schema';
 
 import { type Flags } from '../Flags';
@@ -65,7 +65,7 @@ export default class Transmute extends Currency {
   applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = { ...Transmute.APPLICABLE_FLAGS };
 
-    if (item.rarity !== 'normal') {
+    if (item.props.rarity !== 'normal') {
       applicable_flags.not_white = true;
     }
 
