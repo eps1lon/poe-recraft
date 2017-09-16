@@ -1,6 +1,7 @@
 // @flow
 import Transmute from '../Transmute';
 import { Item } from '../../containers/';
+import { anySet } from '../../Flags';
 import { findByPrimary } from '../../__fixtures__/util';
 
 const baseitemtypes = require('../../__fixtures__/baseitemtypes.json');
@@ -41,4 +42,17 @@ it('should only apply to white items', () => {
     mirrored: false,
     not_an_item: false,
   });
+});
+
+it.only('should add mods while upgrading the item to magic', () => {
+  const transmute = Transmute.build(mods);
+  const craftable = greaves;
+
+  expect(anySet(transmute.applicableTo(craftable))).toBe(false);
+
+  const crafted = transmute.applyTo(craftable);
+
+  expect(crafted).not.toBe(craftable);
+  expect(crafted.props).toEqual(craftable.setRarity('magic').props);
+  expect(crafted.mods.length).toBeGreaterThan(0);
 });

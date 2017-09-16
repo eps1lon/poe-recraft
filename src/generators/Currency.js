@@ -44,11 +44,11 @@ export default class Currency extends Generator<RollableMod> {
         const spawnable_flags = mod.spawnableOn(item);
         const spawnweight = mod.spawnweightFor(item);
 
-        const is_applicable = anySet(applicable_flags, whitelist);
+        const is_applicable = !anySet(applicable_flags, whitelist);
 
-        const is_spawnable = anySet(spawnable_flags, whitelist);
+        const is_spawnable = !anySet(spawnable_flags, whitelist);
 
-        const is_rollable = is_applicable && is_spawnable && spawnweight > 0;
+        const is_rollable = is_applicable && is_spawnable;
 
         if (is_rollable) {
           return {

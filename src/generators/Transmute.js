@@ -42,10 +42,10 @@ export default class Transmute extends Currency {
     if (this.applicableTo(item)) {
       new_item = item.setRarity('magic');
 
-      new_item = this.rollMod(item);
+      new_item = this.rollMod(new_item);
 
       if (Math.random() <= 0.5) {
-        new_item = this.rollMod(item);
+        new_item = this.rollMod(new_item);
       }
 
       return new_item;
