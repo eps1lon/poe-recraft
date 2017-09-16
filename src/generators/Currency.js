@@ -70,8 +70,12 @@ export default class Currency extends Generator<RollableMod> {
   applicableTo(item: Item, success: string[] = []): ApplicableFlags {
     const applicable_flags = { ...Currency.APPLICABLE_FLAGS };
 
-    if (item.corrupted) {
+    if (item.props.corrupted) {
       applicable_flags.corrupted = true;
+    }
+
+    if (item.props.mirrored) {
+      applicable_flags.mirrored = true;
     }
 
     return applicable_flags;
