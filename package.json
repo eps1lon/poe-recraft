@@ -13,7 +13,8 @@
     "format": "prettier --write src/**/*.js",
     "lint": "eslint src/**/*.js",
     "prepublishOnly": "npm run build",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -50,5 +51,10 @@
   },
   "dependencies": {
     "lodash": "^4.17.4"
+  },
+  "jest": {
+    "collectCoverage": false,
+    "collectCoverageFrom": ["src/**/*.js"],
+    "coverageDirectory": "coverage"
   }
 }
