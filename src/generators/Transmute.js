@@ -2,7 +2,7 @@
 import type Item from '../containers/Item';
 import type { ModProps } from '../data/schema';
 
-import { type Flags } from '../Flags';
+import { type Flags, anySet } from '../Flags';
 import Currency, {
   type ApplicableFlag as CurrencyApplicableFlag,
   type ApplicableFlags as CurrencyApplicableFlags,
@@ -39,7 +39,7 @@ export default class Transmute extends Currency {
   applyTo(item: Item): Item {
     let new_item = item;
 
-    if (this.applicableTo(item)) {
+    if (!anySet(this.applicableTo(item))) {
       new_item = item.setRarity('magic');
 
       new_item = this.rollMod(new_item);
