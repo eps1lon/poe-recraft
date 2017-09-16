@@ -15,15 +15,6 @@ it('should build', () => {
   expect(transmute).toBeInstanceOf(Transmute);
 });
 
-it('should have a mods getter which will prevent mutation', () => {
-  const transmute = Transmute.build(mods);
-
-  const available_mods = transmute.getAvailableMods();
-
-  expect(available_mods.length).toBeGreaterThan(0);
-  expect(available_mods).not.toBe(transmute.mods);
-});
-
 it('should only have prefixes and suffixes', () => {
   const transmute = Transmute.build(mods);
 
