@@ -30,6 +30,11 @@ export default class Generator<T: Mod> implements Applicable {
     throw new AbstractMethod('applyTo');
   }
 
+  /**
+   * returns a copy of #mods
+   * 
+   * we can stick with a shallow copy since Mod are supposed to be immutable
+   */
   getAvailableMods(): T[] {
     return this.mods.slice();
   }
