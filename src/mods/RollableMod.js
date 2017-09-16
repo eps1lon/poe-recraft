@@ -31,6 +31,9 @@ export default class RollableMod extends ApplicableMod implements Spawnable {
     const spawnweight = this.spawnweightPropsOf(item);
 
     if (spawnweight == null) {
+      // at first glance this shouldn't be happening
+      // since every mod seems to have a spawnweight for the default
+      // tag which every equipment seems to have
       spawnable_flags.no_matching_tags = true;
     } else if (spawnweight.value <= 0) {
       spawnable_flags.spawnweight_zero = true;
