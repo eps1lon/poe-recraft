@@ -1,13 +1,13 @@
 // @flow
 import Transmute from '../Transmute';
 import { Item } from '../../containers/';
-import { RollableMod } from '../../mods/';
 import { findByPrimary } from '../../__fixtures__/util';
 
 const baseitemtypes = require('../../__fixtures__/baseitemtypes.json');
-const craftingbenchoptions = require('../../__fixtures__/craftingbenchoptions.json');
 const meta_datas = require('../../__fixtures__/meta_data.json');
 const mods = require('../../__fixtures__/mods.json');
+
+const greaves = Item.build(findByPrimary(baseitemtypes, 1650), meta_datas);
 
 it('should build', () => {
   const transmute = Transmute.build(mods);
@@ -34,12 +34,18 @@ it('should only have prefixes and suffixes', () => {
 
 it('should only apply to white items', () => {
   const transmute = Transmute.build(mods);
-  const greaves = Item.build(findByPrimary(baseitemtypes, 1650), meta_datas);
 
   expect(greaves.props.rarity).toBe('normal');
 
   expect(transmute.applicableTo(greaves)).toEqual({
     not_white: false,
+    corrupted: false,
+    mirrored: false,
+    not_an_item: false,
+  });
+
+  expect(transmute.applicableTo(greaves.setRarity('magic'))).toEqual({
+    not_white: true,
     corrupted: false,
     mirrored: false,
     not_an_item: false,
