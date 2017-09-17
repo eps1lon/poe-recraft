@@ -43,8 +43,8 @@ export default class Exalted extends Currency {
   applicableTo(item: Item, success: string[] = []): ApplicableFlags {
     const applicable_flags = { ...Exalted.APPLICABLE_FLAGS };
 
-    if (item.rarity !== 'rare') {
-      applicable_flags.enable('NOT_RARE');
+    if (item.props.rarity !== 'rare') {
+      applicable_flags.not_rare = true;
     }
 
     return applicable_flags;
