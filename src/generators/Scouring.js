@@ -8,7 +8,7 @@ import Currency, {
 } from './Currency';
 import { metaMods as META_MODS } from '../mods/';
 
-export type ApplicableFlag = CurrencyApplicableFlag | 'not_white' | 'unique';
+export type ApplicableFlag = CurrencyApplicableFlag | 'normal' | 'unique';
 export type ApplicableFlags = CurrencyApplicableFlags | Flags<ApplicableFlag>;
 
 /**
@@ -18,7 +18,7 @@ export type ApplicableFlags = CurrencyApplicableFlags | Flags<ApplicableFlag>;
 export default class Scouring extends Currency {
   static APPLICABLE_FLAGS: ApplicableFlags = {
     ...Currency.APPLICABLE_FLAGS,
-    not_white: false,
+    normal: false,
     unique: false,
   };
 
@@ -55,12 +55,12 @@ export default class Scouring extends Currency {
       const remaining_prefixes = scoured_item.getPrefixes().length;
       const remaining_suffixes = scoured_item.getSuffixes().length;
 
-      let new_rarity: Rarity = 'magic';
+      let new_rarity: Rarity;
 
       if (remaining_prefixes === 0 && remaining_suffixes === 0) {
         new_rarity = 'normal';
-      } else if (remaining_prefixes > 1 || remaining_suffixes > 1) {
-        new_rarity = 'rare';
+      } else {
+        new_rarity = other.props.rarity;
       }
 
       return scoured_item.setRarity(new_rarity);
@@ -77,10 +77,10 @@ export default class Scouring extends Currency {
 
     switch (item.props.rarity) {
       case 'normal':
-        applicable_flags.enable('ALREADY_WHITE');
+        applicable_flags.normal = true;
         break;
       case 'unique':
-        applicable_flags.enable('UNIQUE');
+        applicable_flags.unique = true;
         break;
       default:
       // noop
