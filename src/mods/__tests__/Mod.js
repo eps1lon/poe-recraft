@@ -26,8 +26,8 @@ it('should know its type', () => {
 
 it('should fill in the value range for its stats', () => {
   expect(
-    ofBrute.statsJoined().find(stat => stat.props.id === 'additional_strength')
+    ofBrute.statsJoined().find(stat => stat.props.id === 'additional_strength'),
   ).toMatchObject({
-    values: [8, 12]
+    values: [8, 12],
   });
 });

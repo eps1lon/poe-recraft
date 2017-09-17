@@ -1,7 +1,6 @@
 // @flow
 import Alteration from '../Alteration';
 import { Item } from '../../containers/';
-import { anySet } from '../../Flags';
 import { findByPrimary } from '../../__fixtures__/util';
 
 const baseitemtypes = require('../../__fixtures__/baseitemtypes.json');

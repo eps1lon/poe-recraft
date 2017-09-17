@@ -32,7 +32,7 @@ export default class MetaData {
   valueOf(
     fascade_key: string,
     key: string,
-    expect: ExpectedType
+    expect: ExpectedType,
   ): ?(number | string | string[]) {
     const fascade = this.props[fascade_key];
     const fascade_is_object = fascade != null && typeof fascade === 'object';

@@ -2,7 +2,6 @@
 import Scouring from '../Scouring';
 import { Item } from '../../containers/';
 import { ApplicableMod } from '../../mods/';
-import { anySet } from '../../Flags';
 import { findByPrimary } from '../../__fixtures__/util';
 
 const baseitemtypes = require('../../__fixtures__/baseitemtypes.json');
