@@ -67,12 +67,10 @@ export default class Mod {
 
   statsJoined(): Stat[] {
     return this.props.stats.map((stat_props, i) => {
-      const stat = new Stat(stat_props);
-
-      stat.values = [
+      const stat = new Stat(stat_props, [
         +this.props[`stat${i + 1}_min`],
         +this.props[`stat${i + 1}_max`],
-      ];
+      ]);
 
       return stat;
     });

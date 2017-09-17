@@ -392,7 +392,7 @@ export default class Item extends Container {
   stats() {
     return this.asArray()
       .concat(this.getImplicits())
-      .reduce((stats, mod) => {
+      .reduce((stats, mod: Mod) => {
         // flattened
         return mod.statsJoined().reduce((joined, stat) => {
           const { id } = stat.props;
@@ -403,12 +403,12 @@ export default class Item extends Container {
           if (existing instanceof Stat) {
             return {
               ...joined,
-              [id]: existing.values.add(stat.values),
+              [id]: existing.add(stat.values),
             };
           } else {
             return {
               ...joined,
-              [id]: existing,
+              [id]: stat,
             };
           }
         }, stats);

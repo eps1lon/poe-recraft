@@ -1,6 +1,7 @@
 // @flow
 import { Item } from '../';
-import { Mod } from '../../mods/';
+import { Mod, RollableMod } from '../../mods/';
+import Stat from '../../Stat';
 import { findByPrimary } from '../../__fixtures__/util';
 
 const baseitemtypes = require('../../__fixtures__/baseitemtypes.json');
@@ -114,4 +115,40 @@ it('should not be corruptable if it is already corrupted', () => {
   expect(() => corrupted.corrupt()).toThrowError(
     'invalid state: is already corrupted',
   );
+});
+
+it('should have stats grouped by id', () => {
+  const weapon = Item.build(
+    findByPrimary(baseitemtypes, 1025),
+    meta_datas,
+  ).setRarity('rare');
+
+  const ipd = new RollableMod(findByPrimary(mods, 793));
+  const ipd_acc = new RollableMod(findByPrimary(mods, 790));
+
+  const crafted = weapon.addMod(ipd).addMod(ipd_acc);
+
+  expect(
+    Object.entries(crafted.stats()).map(([stat_id, stat]) => {
+      if (!(stat instanceof Stat)) throw new Error('stat is not a Stat');
+
+      return {
+        stat: stat_id,
+        values: stat.values,
+      };
+    }),
+  ).toEqual([
+    {
+      stat: 'local_physical_damage_+%',
+      values: [140, 163],
+    },
+    {
+      stat: 'local_accuracy_rating',
+      values: [135, 169],
+    },
+    {
+      stat: 'critical_strike_chance_+%',
+      values: [30, 30],
+    },
+  ]);
 });
