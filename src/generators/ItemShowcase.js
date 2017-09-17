@@ -3,7 +3,7 @@ import type { Item } from '../containers/';
 import type { CraftingBenchOptionsProps, ModProps } from '../data/schema';
 
 import { ApplicableMod, MasterMod, RollableMod } from '../mods/';
-import ModGenerator from './';
+import Generator from './Generator';
 import MasterBench from './MasterBench';
 import Talisman from './Talisman';
 import Transmute from './Transmute';
@@ -13,10 +13,8 @@ export type ShowcaseMod = ApplicableMod | RollableMod | MasterMod;
 
 /**
  * Masterbench/Currency hybrid
- * TODO:
- * applicableByteHuman
  */
-export default class ItemShowcase extends ModGenerator<ShowcaseMod> {
+export default class ItemShowcase extends Generator<ShowcaseMod> {
   master: MasterBench;
   talisman: Talisman;
   transmute: Transmute;
