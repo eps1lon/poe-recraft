@@ -27,7 +27,7 @@ export default class Regal extends Currency {
   }
 
   /**
-   *  adds 1-2 mods
+   *  adds 1 mod
    */
   applyTo(item: Item): Item {
     if (!anySet(this.applicableTo(item))) {
@@ -49,8 +49,8 @@ export default class Regal extends Currency {
   applicableTo(item: Item, success: string[] = []): ApplicableFlags {
     const applicable_flags = { ...Regal.APPLICABLE_FLAGS };
 
-    if (item.rarity !== 'rare') {
-      applicable_flags.enable('NOT_MAGIC');
+    if (item.props.rarity !== 'magic') {
+      applicable_flags.not_magic = true;
     }
 
     return applicable_flags;
