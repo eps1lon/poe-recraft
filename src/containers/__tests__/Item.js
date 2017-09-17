@@ -152,3 +152,21 @@ it('should have stats grouped by id', () => {
     },
   ]);
 });
+
+it('should upgrade rarity normla->magic-rare', () => {
+  const normal = Item.build(greavesProps, meta_datas);
+
+  const magic = normal.upgradeRarity();
+
+  expect(magic).not.toBe(normal);
+  expect(magic.props.rarity).toBe('magic');
+
+  const rare = magic.upgradeRarity();
+
+  expect(rare).not.toBe(magic);
+  expect(rare.props.rarity).toBe('rare');
+
+  const also_rare = rare.upgradeRarity();
+
+  expect(also_rare).toBe(rare);
+});
