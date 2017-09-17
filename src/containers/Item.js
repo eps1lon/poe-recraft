@@ -221,6 +221,8 @@ export default class Item extends Container {
         return this.maxPrefixes();
       case Mod.TYPE.SUFFIX:
         return this.maxSuffixes();
+      case Mod.TYPE.VAAL:
+        return 1;
       default:
         return -1;
     }

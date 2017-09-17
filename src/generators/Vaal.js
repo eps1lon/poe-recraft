@@ -2,6 +2,7 @@
 import type { Item } from '../containers/';
 import type { ModProps } from '../data/schema';
 
+import { anySet } from '../Flags';
 import { Mod } from '../mods/';
 import Currency from './Currency';
 
@@ -24,7 +25,7 @@ export default class Vaal extends Currency {
    * TODO: white sockets, reroll (brick(, nothing
    */
   applyTo(item: Item): Item {
-    if (this.applicableTo(item)) {
+    if (!anySet(this.applicableTo(item))) {
       const blank_item = item.removeAllImplicits();
 
       const implicit = this.chooseMod(blank_item);
