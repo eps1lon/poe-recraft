@@ -46,7 +46,7 @@ export default class ApplicableMod extends Mod implements Applicable {
     const has_leo_meta_mod =
       item.indexOfModWithPrimary(META_MODS.LLD_MOD) !== -1;
 
-    if (this.props.level > 28 && has_leo_meta_mod) {
+    if (this.props.level > 36 && has_leo_meta_mod) {
       applicable_flags.above_lld_level = true;
     }
 
