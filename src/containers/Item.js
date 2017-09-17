@@ -390,29 +390,27 @@ export default class Item extends Container {
    * stats of mods combined
    */
   stats() {
-    return this.asArray()
-      .concat(this.getImplicits())
-      .reduce((stats, mod: Mod) => {
-        // flattened
-        return mod.statsJoined().reduce((joined, stat) => {
-          const { id } = stat.props;
-          const existing = joined[id];
+    return this.getAllMods().reduce((stats, mod: Mod) => {
+      // flattened
+      return mod.statsJoined().reduce((joined, stat) => {
+        const { id } = stat.props;
+        const existing = joined[id];
 
-          // TODO fix typing
-          // group by stat.Id
-          if (existing instanceof Stat) {
-            return {
-              ...joined,
-              [id]: existing.add(stat.values),
-            };
-          } else {
-            return {
-              ...joined,
-              [id]: stat,
-            };
-          }
-        }, stats);
-      }, {});
+        // TODO fix typing
+        // group by stat.Id
+        if (existing instanceof Stat) {
+          return {
+            ...joined,
+            [id]: existing.add(stat.values),
+          };
+        } else {
+          return {
+            ...joined,
+            [id]: stat,
+          };
+        }
+      }, stats);
+    }, {});
   }
 
   /**
