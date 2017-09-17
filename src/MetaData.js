@@ -1,8 +1,6 @@
 // @flow
 import type { MetaDataProps, MetaDataMap } from './data/schema';
 
-type ExpectedType = 'number' | 'string' | 'array';
-
 /**
  * class Metadata
  * 
@@ -27,29 +25,5 @@ export default class MetaData {
 
   isA(other: string): boolean {
     return other === this.clazz || this.props.inheritance.indexOf(other) !== -1;
-  }
-
-  valueOf(
-    fascade_key: string,
-    key: string,
-    expect: ExpectedType,
-  ): ?(number | string | string[]) {
-    const fascade = this.props[fascade_key];
-    const fascade_is_object = fascade != null && typeof fascade === 'object';
-
-    if (fascade_is_object && Array.isArray(fascade[key])) {
-      switch (expect) {
-        case 'string':
-          return fascade[key][0];
-        case 'number':
-          return +fascade[key][0];
-        case 'array':
-          return fascade[key];
-        default:
-          throw new Error(`unrecognized expect '${expect}`);
-      }
-    } else {
-      return undefined;
-    }
   }
 }

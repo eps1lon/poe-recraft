@@ -41,18 +41,6 @@ export default class Container {
     }
   }
 
-  /**
-   * gets a mod by primary
-   */
-  getMod(primary: number): ?Mod {
-    const index = this.indexOfModWithPrimary(primary);
-
-    if (index !== -1) {
-      return this.mods[index];
-    }
-    return undefined;
-  }
-
   indexOfModWithPrimary(primary: number): number {
     return this.mods.findIndex(mod => mod.props.primary === primary);
   }
@@ -63,17 +51,6 @@ export default class Container {
 
   hasMod(mod: Mod): boolean {
     return this.indexOfMod(mod) !== -1;
-  }
-
-  /**
-   * intersects all tags with the ones on the item
-   */
-  getTagsWithProps(all_tags: TagProps[]): TagProps[] {
-    const tags = this.getTags();
-
-    return all_tags.filter(tag => {
-      return tags.find(other => other.primary === tag.primary) !== undefined;
-    });
   }
 
   /**

@@ -90,8 +90,4 @@ export default class Mod {
       return entry[0].toLowerCase();
     }
   }
-
-  name() {
-    return this.props.name;
-  }
 }
