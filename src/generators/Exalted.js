@@ -49,8 +49,4 @@ export default class Exalted extends Currency {
 
     return applicable_flags;
   }
-
-  name() {
-    return 'Exalted Orb';
-  }
 }

@@ -42,8 +42,4 @@ export default class Vaal extends Currency {
     // nothing changed
     return item;
   }
-
-  name() {
-    return 'Vaal Orb';
-  }
 }

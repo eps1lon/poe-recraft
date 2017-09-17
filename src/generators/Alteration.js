@@ -58,8 +58,4 @@ export default class Alteration extends Currency {
 
     return applicable_flags;
   }
-
-  name() {
-    return 'Orb of Alteration';
-  }
 }

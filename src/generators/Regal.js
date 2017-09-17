@@ -55,8 +55,4 @@ export default class Regal extends Currency {
 
     return applicable_flags;
   }
-
-  name() {
-    return 'Regal Orb';
-  }
 }

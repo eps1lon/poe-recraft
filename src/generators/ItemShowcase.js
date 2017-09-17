@@ -60,8 +60,4 @@ export default class ItemShowcase extends Generator<ShowcaseMod> {
       ...this.vaal.modsFor(item, whitelist),
     ];
   }
-
-  name() {
-    return 'Item Showcase';
-  }
 }

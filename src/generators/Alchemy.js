@@ -76,8 +76,4 @@ export default class Alchemy extends Currency {
 
     return applicable_flags;
   }
-
-  name() {
-    return 'Orb of Alchemy';
-  }
 }

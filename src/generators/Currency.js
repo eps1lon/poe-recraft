@@ -80,8 +80,4 @@ export default class Currency extends Generator<RollableMod> {
 
     return applicable_flags;
   }
-
-  name() {
-    return 'AbstractCurrency';
-  }
 }

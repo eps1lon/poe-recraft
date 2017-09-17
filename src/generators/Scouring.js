@@ -88,8 +88,4 @@ export default class Scouring extends Currency {
 
     return applicable_flags;
   }
-
-  name() {
-    return 'Orb of Scouring';
-  }
 }

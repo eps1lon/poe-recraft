@@ -113,8 +113,4 @@ export default class MasterBench extends Generator<MasterMod> {
       })
       .filter(Boolean);
   }
-
-  name(): string {
-    return this.options[0].npc_master.npc.short_name;
-  }
 }

@@ -60,8 +60,4 @@ export default class Chaos extends Currency {
 
     return applicable_flags;
   }
-
-  name() {
-    return 'Chaos Orb';
-  }
 }

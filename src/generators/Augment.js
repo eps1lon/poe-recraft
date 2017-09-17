@@ -49,8 +49,4 @@ export default class Augment extends Currency {
 
     return applicable_flags;
   }
-
-  name() {
-    return 'Orb of Augmentation';
-  }
 }

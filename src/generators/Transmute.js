@@ -71,8 +71,4 @@ export default class Transmute extends Currency {
 
     return applicable_flags;
   }
-
-  name() {
-    return 'Orb of Transmutation';
-  }
 }

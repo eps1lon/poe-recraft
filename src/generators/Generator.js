@@ -74,8 +74,4 @@ export default class Generator<T: Mod> implements Applicable {
       return item;
     }
   }
-
-  name(): string {
-    return 'AbstractModGenerator';
-  }
 }

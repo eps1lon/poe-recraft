@@ -41,8 +41,4 @@ export default class Enchantmentbench extends Currency {
     // replace so ignore full domain
     return super.modsFor(item, [...whitelist, 'domain_full']);
   }
-
-  name() {
-    return 'Enchantmentbench';
-  }
 }
