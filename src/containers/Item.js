@@ -59,7 +59,13 @@ export default class Item extends Container {
     if (meta_data == null) {
       throw new Error(`meta_data for ${clazz} not found`);
     } else {
-      return new Item(props, meta_data);
+      return new Item(
+        props,
+        meta_data,
+        Item.default_props,
+        props.implicit_mods.map(mod_props => new Mod(mod_props)),
+        [],
+      );
     }
   }
 
@@ -96,7 +102,6 @@ export default class Item extends Container {
     (this: any).props = props;
 
     (this: any).implicits = new Implicits(implicits);
-    // TODO implicits
   }
 
   builder(): ItemBuilder {

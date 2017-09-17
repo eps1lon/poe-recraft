@@ -12,13 +12,19 @@ const greavesProps = findByPrimary(baseitemtypes, 1650);
 const ofBrute = new Mod(findByPrimary(mods, 0));
 const sturdy = new Mod(findByPrimary(mods, 1465));
 const plusLevel = new Mod(findByPrimary(mods, 5215));
-const bladesOnHit = new Mod(findByPrimary(mods, 7058));
 const craftedCastSpeed = new Mod(findByPrimary(mods, 5653));
 
-it('should build', () => {
+it('should build with the implicits of the baseitem', () => {
   const item = Item.build(greavesProps, meta_datas);
 
   expect(item).toBeInstanceOf(Item);
+
+  const gripped_gloves = Item.build(
+    findByPrimary(baseitemtypes, 1761),
+    meta_datas,
+  );
+
+  expect(gripped_gloves.implicits.mods).toHaveLength(1);
 });
 
 it('should know to which container it should add', () => {
