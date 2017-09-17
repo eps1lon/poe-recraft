@@ -47,6 +47,10 @@ export default class Mod {
     return this.isType('suffix');
   }
 
+  isEnchantment() {
+    return this.isType('enchantment');
+  }
+
   isPremade() {
     return this.isType('premade');
   }

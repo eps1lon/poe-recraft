@@ -2,6 +2,7 @@
 import type { Item } from '../containers/';
 import type { ModProps } from '../data/schema';
 
+import { anySet } from '../Flags';
 import { Mod } from '../mods/';
 import Currency from './Currency';
 
@@ -24,7 +25,7 @@ export default class Enchantmentbench extends Currency {
    * replaces implicits with new enchantment mod
    */
   applyTo(item: Item): Item {
-    if (this.applicableTo(item)) {
+    if (!anySet(this.applicableTo(item))) {
       const blank_item = item.removeAllImplicits();
 
       const enchantment = this.chooseMod(blank_item);
@@ -36,8 +37,9 @@ export default class Enchantmentbench extends Currency {
     return item;
   }
 
-  applicableTo(item: Item, success: string[] = []) {
-    return {};
+  modsFor(item: Item, whitelist: string[] = []) {
+    // replace so ignore full domain
+    return super.modsFor(item, [...whitelist, 'domain_full']);
   }
 
   name() {
