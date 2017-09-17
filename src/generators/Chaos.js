@@ -41,7 +41,7 @@ export default class Chaos extends Currency {
 
       // no complete scour?
       if (reforged_item === scoured_item) {
-        // TODO correlate count
+        // TODO meta_mods
         reforged_item = new Exalted(this.mods).applyTo(reforged_item);
       }
 
@@ -54,8 +54,8 @@ export default class Chaos extends Currency {
   applicableTo(item: Item, success: string[] = []): ApplicableFlags {
     const applicable_flags = { ...Chaos.APPLICABLE_FLAGS };
 
-    if (item.rarity !== 'rare') {
-      applicable_flags.enable('NOT_RARE');
+    if (item.props.rarity !== 'rare') {
+      applicable_flags.not_rare = true;
     }
 
     return applicable_flags;
