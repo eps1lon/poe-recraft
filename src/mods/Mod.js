@@ -90,4 +90,8 @@ export default class Mod {
       return entry[0].toLowerCase();
     }
   }
+
+  requiredLevel(): number {
+    return Math.floor(this.props.level * 0.8);
+  }
 }

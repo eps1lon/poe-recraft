@@ -347,7 +347,7 @@ export default class Item extends Container {
   requiredLevel() {
     return Math.max(
       this.baseitem.drop_level,
-      ...this.getAllMods().map(mod => Math.floor(0.8 * mod.props.level)),
+      ...this.getAllMods().map(mod => mod.requiredLevel()),
     );
   }
 

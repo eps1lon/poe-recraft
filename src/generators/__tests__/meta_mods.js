@@ -60,8 +60,7 @@ describe('no_*_mods', () => {
 });
 
 describe('leo pvp mod', () => {
-  // 36 mod levels guarantess item lvl requirement <= 28
-  it('should exclude mods above level 36', () => {
+  it('should exclude mods above required level 28', () => {
     const weapon = Item.build(
       findByPrimary(baseitemtypes, 1025),
       meta_datas,
@@ -79,7 +78,7 @@ describe('leo pvp mod', () => {
     expect(
       exalted
         .modsFor(weapon.addMod(leo_mod))
-        .every(({ mod }) => mod.props.level <= 36),
+        .every(({ mod }) => mod.requiredLevel() <= 28),
     ).toBe(true);
   });
 });
