@@ -22,7 +22,7 @@ const Mods = ({ className, mods, onRemoveMod }: Props) => {
             key={mod.props.primary}
             className={`mod mod-type-${String(mod.modType())}`}
           >
-            <em className="name">{mod.name()}</em>
+            <em className="name">{mod.props.name}</em>
             <button className="remove_mod" onClick={() => onRemoveMod(mod)}>
               Remove
             </button>
