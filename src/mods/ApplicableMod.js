@@ -2,7 +2,7 @@
 import type { Applicable } from '../interfaces/';
 import type { Item } from '../containers/';
 
-import { type Flags } from '../Flags';
+import { type Flags } from '../util/Flags';
 import Mod from './Mod';
 import META_MODS from './meta_mods';
 

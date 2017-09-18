@@ -1,7 +1,7 @@
 // @flow
-import type { Item, Rarity } from '../containers/';
+import type { Item, Rarity } from '../containers';
 
-import { type Flags, anySet } from '../Flags';
+import { type Flags, anySet } from '../util/Flags';
 import Currency, {
   type ApplicableFlag as CurrencyApplicableFlag,
   type ApplicableFlags as CurrencyApplicableFlags,

@@ -3,8 +3,8 @@ import type { Applicable } from '../interfaces';
 import type { Item } from '../containers/';
 import type { Mod } from '../mods/';
 
-import { AbstractMethod } from '../exceptions/';
-import { type Flags } from '../Flags';
+import { AbstractMethod } from '../exceptions';
+import { type Flags } from '../util/Flags';
 
 export type GeneratorDetails = {
   mod: Mod,

@@ -1,7 +1,7 @@
 // @flow
 import { Item } from '../';
 import { Mod, RollableMod } from '../../mods/';
-import Stat from '../../Stat';
+import Stat from '../../util/Stat';
 import { findByPrimary } from '../../__fixtures__/util';
 
 const baseitemtypes = require('../../__fixtures__/baseitemtypes.json');

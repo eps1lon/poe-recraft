@@ -1,7 +1,7 @@
 // @flow
-import type { ModProps } from '../data/schema';
+import type { ModProps } from '../schema';
 
-import Stat from '../Stat';
+import Stat from '../util/Stat';
 
 export default class Mod {
   static DOMAIN = {

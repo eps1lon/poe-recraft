@@ -1,7 +1,7 @@
 // @flow
-import { Mod } from '../mods/';
+import { Mod } from '../mods';
 
-import { Container } from './';
+import Container from './Container';
 
 export default class Implicits extends Container {
   /**

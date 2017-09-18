@@ -1,9 +1,9 @@
 // @flow
-import type { Item } from '../containers/';
-import type { CraftingBenchOptionsProps } from '../data/schema';
+import type { Item } from '../containers';
+import type { CraftingBenchOptionsProps } from '../schema';
 
-import { anySet } from '../Flags';
-import { MasterMod } from '../mods/';
+import { anySet } from '../util/Flags';
+import { MasterMod } from '../mods';
 import Generator from './Generator';
 
 /**

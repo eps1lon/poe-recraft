@@ -1,12 +1,12 @@
 // @flow
-import type { BaseItemTypeProps, MetaDataMap, TagProps } from '../data/schema';
-import type { ValueRange } from '../ValueRange';
+import type { BaseItemTypeProps, MetaDataMap, TagProps } from '../schema';
+import type { ValueRange } from '../util/ValueRange';
 
 import Implicits from './Implicits';
-import MetaData from '../MetaData';
-import { Mod, metaMods as META_MODS } from '../mods/';
-import { Container } from './';
-import Stat from '../Stat';
+import MetaData from '../util/MetaData';
+import { Mod, metaMods as META_MODS } from '../mods';
+import Container from './Container';
+import Stat from '../util/Stat';
 
 export type Rarity = 'normal' | 'magic' | 'rare' | 'unique' | 'showcase';
 

@@ -1,7 +1,7 @@
 // @flow
-import type { ModProps } from '../data/schema';
+import type { ModProps } from '../schema';
 
-import { Mod } from '../mods/';
+import { Mod } from '../mods';
 import Currency from './Currency';
 
 /**

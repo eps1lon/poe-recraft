@@ -1,8 +1,8 @@
 // @flow
-import type { Item } from '../containers/';
-import type { ModProps } from '../data/schema';
+import type { Item } from '../containers';
+import type { ModProps } from '../schema';
 
-import { type Flags, anySet } from '../Flags';
+import { type Flags, anySet } from '../util/Flags';
 import Currency, {
   type ApplicableFlag as CurrencyApplicableFlag,
   type ApplicableFlags as CurrencyApplicableFlags,

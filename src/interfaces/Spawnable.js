@@ -1,6 +1,6 @@
 // @flow
-import type { Flags } from '../Flags';
-import type { Item } from '../containers/';
+import type { Flags } from '../util/Flags';
+import type { Item } from '../containers';
 
 export interface Spawnable {
   spawnweightFor(Item): number,

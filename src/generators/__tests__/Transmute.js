@@ -1,7 +1,7 @@
 // @flow
 import Transmute from '../Transmute';
 import { Item } from '../../containers/';
-import { anySet } from '../../Flags';
+import { anySet } from '../../util/Flags';
 import { findByPrimary } from '../../__fixtures__/util';
 
 const baseitemtypes = require('../../__fixtures__/baseitemtypes.json');

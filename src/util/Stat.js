@@ -1,5 +1,5 @@
 // @flow
-import type { StatProps } from './data/schema';
+import type { StatProps } from '../schema';
 import { type ValueRange, add, mult } from './ValueRange';
 
 export default class Stat {

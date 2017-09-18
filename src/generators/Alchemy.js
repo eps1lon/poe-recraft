@@ -1,9 +1,9 @@
 // @flow
 import _ from 'lodash';
 
-import type { Item } from '../containers/';
-import type { ModProps } from '../data/schema';
-import { type Flags, anySet } from '../Flags';
+import type { Item } from '../containers';
+import type { ModProps } from '../schema';
+import { type Flags, anySet } from '../util/Flags';
 
 import Currency, {
   type ApplicableFlag as CurrencyApplicableFlag,
@@ -15,8 +15,6 @@ export type ApplicableFlag = CurrencyApplicableFlag | 'not_white';
 export type ApplicableFlags = CurrencyApplicableFlags | Flags<ApplicableFlag>;
 
 /**
- * TODO:
- * applicableByteHuman
  */
 export default class Alchemy extends Currency {
   static APPLICABLE_FLAGS: ApplicableFlags = {

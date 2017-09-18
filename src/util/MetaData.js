@@ -1,5 +1,5 @@
 // @flow
-import type { MetaDataProps, MetaDataMap } from './data/schema';
+import type { MetaDataProps, MetaDataMap } from '../schema';
 
 /**
  * class Metadata

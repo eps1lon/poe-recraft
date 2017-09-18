@@ -1,7 +1,7 @@
 // @flow
-import type { CraftingBenchOptionsProps, ModProps } from '../data/schema';
+import type { CraftingBenchOptionsProps, ModProps } from '../schema';
 import type { Item } from '../containers/';
-import type { Flags } from '../Flags';
+import type { Flags } from '../util/Flags';
 
 import ApplicableMod, {
   type ApplicableFlag as BaseApplicableFlag,
