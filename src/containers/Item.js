@@ -4,7 +4,7 @@ import type { ValueRange } from '../ValueRange';
 
 import Implicits from './Implicits';
 import MetaData from '../MetaData';
-import { Mod } from '../mods/';
+import { Mod, metaMods as META_MODS } from '../mods/';
 import { Container } from './';
 import Stat from '../Stat';
 
@@ -299,6 +299,14 @@ export default class Item extends Container {
 
   getAllMods() {
     return this.asArray().concat(this.getImplicits());
+  }
+
+  lockedPrefixes(): boolean {
+    return this.indexOfModWithPrimary(META_MODS.LOCKED_PREFIXES) !== -1;
+  }
+
+  lockedSuffixes(): boolean {
+    return this.indexOfModWithPrimary(META_MODS.LOCKED_SUFFIXES) !== -1;
   }
 
   nameLines(): string[] {

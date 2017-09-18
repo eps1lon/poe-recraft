@@ -6,7 +6,6 @@ import Currency, {
   type ApplicableFlag as CurrencyApplicableFlag,
   type ApplicableFlags as CurrencyApplicableFlags,
 } from './Currency';
-import { metaMods as META_MODS } from '../mods/';
 
 export type ApplicableFlag = CurrencyApplicableFlag | 'normal' | 'unique';
 export type ApplicableFlags = CurrencyApplicableFlags | Flags<ApplicableFlag>;
@@ -34,10 +33,8 @@ export default class Scouring extends Currency {
     if (!anySet(this.applicableTo(other))) {
       let scoured_item: Item = other;
 
-      const locked_prefixes =
-        scoured_item.indexOfModWithPrimary(META_MODS.LOCKED_PREFIXES) !== -1;
-      const locked_suffixes =
-        scoured_item.indexOfModWithPrimary(META_MODS.LOCKED_SUFFIXES) !== -1;
+      const locked_prefixes = scoured_item.lockedPrefixes();
+      const locked_suffixes = scoured_item.lockedSuffixes();
 
       if (!locked_prefixes) {
         scoured_item = scoured_item
