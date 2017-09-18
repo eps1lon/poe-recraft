@@ -188,3 +188,30 @@ it('should upgrade rarity normla->magic-rare', () => {
 
   expect(also_rare).toBe(rare);
 });
+
+it('should generate the name lines like ingame', () => {
+  const normal = Item.build(greavesProps, meta_datas);
+
+  expect(normal.nameLines()).toEqual(['Iron Greaves']);
+
+  const magic = normal.setRarity('magic');
+
+  expect(magic.nameLines()).toEqual(['Iron Greaves']);
+  expect(magic.addMod(ofBrute).nameLines()).toEqual([
+    'Iron Greaves of the Brute',
+  ]);
+  expect(
+    magic
+      .addMod(ofBrute)
+      .addMod(sturdy)
+      .nameLines(),
+  ).toEqual(['Sturdy Iron Greaves of the Brute']);
+
+  const rare = normal.setRarity('rare');
+
+  expect(rare.nameLines()).toEqual(['Random Name', 'Iron Greaves']);
+
+  const unique = normal.setRarity('unique');
+
+  expect(unique.nameLines()).toEqual(['TODO unique name?', 'Iron Greaves']);
+});

@@ -301,34 +301,29 @@ export default class Item extends Container {
     return this.asArray().concat(this.getImplicits());
   }
 
-  baseName(): string {
-    if (this.rarity === 'magic') {
-      return '';
+  nameLines(): string[] {
+    const { rarity } = this.props;
+    if (rarity === 'normal') {
+      return [this.baseitem.name];
+    } else if (rarity === 'magic') {
+      const prefix = this.getPrefixes()[0];
+      const suffix = this.getSuffixes()[0];
+
+      return [
+        [
+          prefix && prefix.props.name,
+          this.baseitem.name,
+          suffix && suffix.props.name,
+        ]
+          .filter(Boolean)
+          .join(' '),
+      ];
+    } else if (rarity === 'rare' || rarity === 'showcase') {
+      return [this.props.random_name, this.baseitem.name];
+    } else if (rarity === 'unique') {
+      return ['TODO unique name?', this.baseitem.name];
     } else {
-      return this.baseitem.name;
-    }
-  }
-
-  itemName(): string {
-    let name = '';
-    switch (this.props.rarity) {
-      case 'magic':
-        // prefix
-        if (this.getPrefixes().length) {
-          name += `${this.getPrefixes()[0].props.name} `;
-        }
-        // + base_name
-        name += this.baseitem.name;
-        // + suffix
-        if (this.getSuffixes().length) {
-          name += ` ${this.getSuffixes()[0].props.name}`;
-        }
-
-        return name;
-      case 'rare':
-        return this.props.random_name;
-      default:
-        return '';
+      throw new Error(`unrecognized rarity ${rarity}`);
     }
   }
 
