@@ -14,7 +14,7 @@ export default class Stat {
   }
 
   valueString() {
-    return `(${this.values.toString()})`;
+    return `(${this.values[0]} - ${this.values[1]})`;
   }
 
   set(values: ValueRange) {
