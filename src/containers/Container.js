@@ -3,17 +3,17 @@ import { AbstractMethod } from '../exceptions';
 import type { TagProps } from '../schema';
 import type { Mod } from '../mods';
 
-export default class Container {
-  +mods: Mod[];
+export default class Container<T: Mod> {
+  +mods: T[];
 
-  constructor(mods: Mod[]) {
+  constructor(mods: T[]) {
     (this: any).mods = mods;
   }
 
   /**
    *  adds a new non-existing mod
    */
-  addMod(mod: Mod): Container {
+  addMod(mod: T): Container<T> {
     if (!this.hasMod(mod)) {
       return new this.constructor(this.mods.concat(mod));
     } else {
@@ -24,14 +24,14 @@ export default class Container {
   /**
    * truncates mods
    */
-  removeAllMods() {
+  removeAllMods(): Container<T> {
     return new this.constructor([]);
   }
 
   /**
    * removes an existing mod
    */
-  removeMod(other: Mod) {
+  removeMod(other: T): Container<T> {
     if (this.hasMod(other)) {
       return new this.constructor(
         this.mods.filter(mod => mod.props.primary !== other.props.primary),
@@ -45,11 +45,11 @@ export default class Container {
     return this.mods.findIndex(mod => mod.props.primary === primary);
   }
 
-  indexOfMod(mod: Mod): number {
+  indexOfMod(mod: T): number {
     return this.indexOfModWithPrimary(mod.props.primary);
   }
 
-  hasMod(mod: Mod): boolean {
+  hasMod(mod: T): boolean {
     return this.indexOfMod(mod) !== -1;
   }
 
@@ -67,7 +67,7 @@ export default class Container {
       );
   }
 
-  asArray(): Mod[] {
+  asArray(): T[] {
     return this.mods;
   }
 
@@ -82,7 +82,7 @@ export default class Container {
   /**
    * checks if theres more place for a mod with their generationtype
    */
-  hasRoomFor(mod: Mod): boolean {
+  hasRoomFor(mod: T): boolean {
     return (
       this.numberOfModsOfType(mod.props.generation_type) <
       this.maxModsOfType(mod)
@@ -93,7 +93,7 @@ export default class Container {
    * @abstract
    */
   // eslint-disable-next-line no-unused-vars
-  maxModsOfType(mod: Mod): number {
+  maxModsOfType(mod: T): number {
     throw new AbstractMethod('maxModsOfType');
   }
 }

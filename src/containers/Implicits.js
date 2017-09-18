@@ -3,13 +3,14 @@ import { Mod } from '../mods';
 
 import Container from './Container';
 
-export default class Implicits extends Container {
+export default class Implicits extends Container<Mod> {
   /**
    * @override
    */
-  addMod(mod: Mod) {
+  addMod(mod: Mod): Implicits {
     if (this.hasRoomFor(mod)) {
-      return super.addMod(mod);
+      // calling super.addMod will return Container<T> instead of Implicits
+      return new Implicits(super.addMod(mod).mods);
     } else {
       return this;
     }

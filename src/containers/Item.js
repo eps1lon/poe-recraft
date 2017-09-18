@@ -41,7 +41,7 @@ export type ItemBuilder = {
  * the class only represents the explicits and is a fascade for an 
  * additional implicit container
  */
-export default class Item extends Container {
+export default class Item extends Container<Mod> {
   static MAX_ILVL = 100;
 
   static default_props: ItemProps = {
@@ -84,7 +84,7 @@ export default class Item extends Container {
   }
 
   +baseitem: BaseItemTypeProps;
-  +implicits: Container;
+  +implicits: Implicits;
   +meta_data: MetaData;
   +props: ItemProps;
 
@@ -121,7 +121,7 @@ export default class Item extends Container {
     return Item.withBuilder(builder);
   }
 
-  addMod(other: Mod): Item {
+  addMod(other: Mod) {
     if (other.isAffix()) {
       return this.addAffix(other);
     } else if (other.implicitCandidate()) {
@@ -134,7 +134,7 @@ export default class Item extends Container {
   /**
    * truncates mods
    */
-  removeAllMods(): Item {
+  removeAllMods() {
     if (this.affixes.mods.length > 0) {
       return this.withMutations(builder => {
         return {
@@ -150,7 +150,7 @@ export default class Item extends Container {
   /**
    * removes an existing mod
    */
-  removeMod(other: Mod): Item {
+  removeMod(other: Mod) {
     if (this.hasMod(other)) {
       return this.withMutations(builder => {
         return {
@@ -169,7 +169,7 @@ export default class Item extends Container {
    * adds a mod if theres room for it
    * no sophisticated domain check. only if affix type is full or not
    */
-  addAffix(other: Mod): Item {
+  addAffix(other: Mod) {
     if (this.hasRoomFor(other)) {
       return this.withMutations(builder => {
         return {
@@ -182,7 +182,7 @@ export default class Item extends Container {
     }
   }
 
-  addImplicit(mod: Mod): Item {
+  addImplicit(mod: Mod) {
     const builder = this.builder();
 
     return Item.withBuilder({
@@ -191,7 +191,7 @@ export default class Item extends Container {
     });
   }
 
-  removeAllImplicits(): Item {
+  removeAllImplicits() {
     const builder = this.builder();
 
     return Item.withBuilder({
@@ -200,7 +200,7 @@ export default class Item extends Container {
     });
   }
 
-  get affixes(): Item {
+  get affixes(): Container<Mod> {
     return this;
   }
 
