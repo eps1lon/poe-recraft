@@ -3,8 +3,13 @@ import type { Spawnable } from '../interfaces/';
 import type { SpawnWeightProps } from '../schema';
 import type { Item } from '../containers/';
 
-import ApplicableMod from './ApplicableMod';
+import ApplicableMod, {
+  type ApplicableFlag,
+  type ApplicableFlags,
+} from './ApplicableMod';
 import { type Flags } from '../util/Flags';
+
+export type { ApplicableFlag, ApplicableFlags };
 
 export type SpawnableFlag = 'no_matching_tags' | 'spawnweight_zero';
 export type SpawnableFlags = Flags<SpawnableFlag>;
