@@ -215,3 +215,31 @@ it('should generate the name lines like ingame', () => {
 
   expect(unique.nameLines()).toEqual(['TODO unique name?', 'Iron Greaves']);
 });
+
+it('should consider its mods for its required level', () => {
+  const greaves = Item.build(
+    findByPrimary(baseitemtypes, 1652),
+    meta_datas,
+  ).setRarity('rare');
+
+  expect(greaves.requiredLevel()).toBe(23);
+  // 17 mod
+  expect(greaves.addMod(new Mod(findByPrimary(mods, 2))).requiredLevel()).toBe(
+    23,
+  );
+  // 26 mod
+  expect(greaves.addMod(new Mod(findByPrimary(mods, 3))).requiredLevel()).toBe(
+    26,
+  );
+});
+
+it('should have attr requirements', () => {
+  const greaves = Item.build(findByPrimary(baseitemtypes, 1652), meta_datas);
+
+  expect(greaves.requirements()).toEqual({
+    level: 23,
+    str: 44,
+    dex: 0,
+    int: 0,
+  });
+});
