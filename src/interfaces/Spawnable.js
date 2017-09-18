@@ -1,10 +1,11 @@
 // @flow
 import type { Flags } from '../util/Flags';
 import type { Item } from '../containers';
+import type { Taggable } from './Taggable';
 
 export interface Spawnable {
-  spawnweightFor(Item): number,
-  spawnableOn(Item): Flags<*>,
+  spawnweightFor(Taggable): number,
+  spawnableOn(Taggable): Flags<*>,
 }
 
 /**
@@ -17,8 +18,8 @@ export interface Spawnable {
  */
 export type MaybeSpawnable = {
   // spawnweight(Item)?
-  +spawnweightFor?: Item => number,
-  +spawnableOn?: Item => Flags<*>,
+  +spawnweightFor?: Taggable => number,
+  +spawnableOn?: Taggable => Flags<*>,
 };
 
 /** 

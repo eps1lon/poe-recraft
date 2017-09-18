@@ -1,9 +1,10 @@
 // @flow
 import { AbstractMethod } from '../exceptions';
+import type { Taggable } from '../interfaces';
 import type { TagProps } from '../schema';
 import type { Mod } from '../mods';
 
-export default class Container<T: Mod> {
+export default class Container<T: Mod> implements Taggable {
   +mods: T[];
 
   constructor(mods: T[]) {
