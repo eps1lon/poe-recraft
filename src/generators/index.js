@@ -1,3 +1,4 @@
+// @flow
 // api surface
 export { default as Alchemy } from './Alchemy';
 export { default as Alteration } from './Alteration';
