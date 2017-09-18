@@ -67,6 +67,24 @@ it('should only remove affixes', () => {
   expect(item.removeAllMods().implicits.mods).toHaveLength(1);
 });
 
+it('should not change with no mods when removing', () => {
+  const item = Item.build(greavesProps, meta_datas).setRarity('rare');
+
+  expect(item.removeAllMods()).toBe(item);
+
+  const with_mods = item.addMod(sturdy);
+
+  expect(with_mods.removeAllMods()).not.toBe(with_mods);
+  expect(with_mods.removeMod(ofBrute)).toBe(with_mods);
+});
+
+it('changes referentiel equality', () => {
+  const item = Item.build(greavesProps, meta_datas)
+    .setRarity('rare')
+    .addMod(sturdy);
+  expect(item.addMod(sturdy)).not.toBe(item);
+});
+
 it('should consider the tags of meta data, baseitem and its mods', () => {
   const item = Item.build(greavesProps, meta_datas).setRarity('rare');
 

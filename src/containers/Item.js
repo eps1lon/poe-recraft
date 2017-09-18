@@ -135,12 +135,16 @@ export default class Item extends Container {
    * truncates mods
    */
   removeAllMods(): Item {
-    return this.withMutations(builder => {
-      return {
-        ...builder,
-        affixes: [],
-      };
-    });
+    if (this.affixes.mods.length > 0) {
+      return this.withMutations(builder => {
+        return {
+          ...builder,
+          affixes: [],
+        };
+      });
+    } else {
+      return this;
+    }
   }
 
   /**
