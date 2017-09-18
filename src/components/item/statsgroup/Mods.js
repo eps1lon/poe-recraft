@@ -1,7 +1,6 @@
 // @flow
+import type { Item } from 'poe-mods/lib/containers';
 import React from 'react';
-
-import type Item from '../../../poe/ModContainer/Item';
 
 import ModStats from './ModStats';
 

@@ -1,7 +1,6 @@
 // @flow
+import type { Mod } from 'poe-mods/lib/mods';
 import React from 'react';
-
-import type Mod from '../../../poe/Mod/';
 
 export type Props = {
   className: string,

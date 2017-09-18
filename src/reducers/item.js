@@ -1,9 +1,8 @@
 // @flow
+import type { ItemClassProps } from 'poe-mods/lib/schema';
+import type { Item } from 'poe-mods/lib/containers';
 import type { ReduxActionType } from 'redux-actions';
 import { handleActions } from 'redux-actions';
-
-import type Item from '../poe/ModContainer/Item';
-import type { ItemClassProps } from '../poe/data/schema';
 
 import { addMod, removeMod, setItem, setItemClass } from '../actions/item';
 

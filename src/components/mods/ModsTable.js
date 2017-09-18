@@ -1,8 +1,7 @@
 // @flow
+import type { Mod } from 'poe-mods/lib/mods';
+import type { Flags } from 'poe-mods/lib/util';
 import React from 'react';
-
-import type FlagSet from '../../poe/FlagSet';
-import type Mod from '../../poe/Mod/';
 
 import GroupedMods from '../../containers/mods/GroupedMods';
 import UngroupedMods from '../../containers/mods/UngroupedMods';
@@ -14,8 +13,8 @@ type Options = {
 
 export type GeneratorDetails = {
   mod: Mod,
-  applicable?: FlagSet,
-  spawnable?: FlagSet,
+  applicable?: Flags<*>,
+  spawnable?: Flags<*>,
   spawnweight?: number
 };
 

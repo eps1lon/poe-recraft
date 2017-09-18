@@ -1,5 +1,5 @@
 // @flow
-import type ModGenerator from '../poe/ModGenerator/';
+import type { Generator as ModGenerator } from 'poe-mods/lib/generators';
 
 export const SET_GENERATOR = 'CRAFT/SET_GENERATOR';
 

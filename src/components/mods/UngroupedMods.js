@@ -1,10 +1,9 @@
 // @flow
+import { Mod } from 'poe-mods/lib/mods';
 import React from 'react';
 import ReactTable from 'react-table';
 
 import type { GeneratorDetails } from './ModsTable';
-
-import Mod from '../../poe/Mod/';
 
 export type Props = {
   className?: string,

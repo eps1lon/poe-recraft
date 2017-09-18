@@ -1,7 +1,7 @@
 // @flow
+import type { ItemClassProps } from 'poe-mods/lib/schema';
 import React from 'react';
 
-import type { ItemClassProps } from '../../poe/data/schema';
 import ItemClass from '../../containers/ItemClass';
 
 export type Props = {

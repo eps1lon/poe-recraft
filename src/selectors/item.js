@@ -1,8 +1,8 @@
 // @flow
-import type { State } from '../reducers/rootReducer';
-import type { ItemClassProps } from '../poe/data/schema';
+import type { ItemClassProps } from 'poe-mods/lib/schema';
+import { Item } from 'poe-mods/lib/containers';
 
-import Item from '../poe/ModContainer/Item';
+import type { State } from '../reducers/rootReducer';
 
 export function itemsForClass(item_class: ItemClassProps) {
   return (state: State) => {

@@ -6,7 +6,7 @@ import type {
   CraftingBenchOptionsProps,
   MetaDataMap,
   ModProps
-} from '../poe/data/schema';
+} from 'poe-mods/lib/schema';
 
 import { apiEndpoint } from '../selectors/poe';
 

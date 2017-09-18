@@ -1,11 +1,12 @@
 // @flow
-import type { Action } from '../actions/poe';
 import type {
   BaseItemTypeProps,
   CraftingBenchOptionsProps,
   MetaDataMap,
   ModProps
-} from '../poe/data/schema';
+} from 'poe-mods/lib/schema';
+
+import type { Action } from '../actions/poe';
 
 export type State = {
   api_root: string,
