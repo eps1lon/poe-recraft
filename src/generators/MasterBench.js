@@ -4,7 +4,7 @@ import type { CraftingBenchOptionsProps } from '../schema';
 
 import { anySet } from '../util/Flags';
 import { MasterMod } from '../mods';
-import Generator from './Generator';
+import Generator, { type GeneratorDetails } from './Generator';
 
 /**
  * TODO

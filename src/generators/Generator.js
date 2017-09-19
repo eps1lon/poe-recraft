@@ -6,8 +6,8 @@ import type { Mod } from '../mods/';
 import { AbstractMethod } from '../exceptions';
 import { type Flags } from '../util/Flags';
 
-export type GeneratorDetails = {
-  mod: Mod,
+export type GeneratorDetails<T: Mod> = {
+  mod: T,
   applicable?: Flags<*>,
   spawnable?: Flags<*>,
   spawnweight?: number,
@@ -40,7 +40,7 @@ export default class Generator<T: Mod> implements Applicable {
   }
 
   // eslint-disable-next-line no-unused-vars
-  modsFor(item: Item, whitelist: string[] = []): GeneratorDetails[] {
+  modsFor(item: Item, whitelist: string[] = []): GeneratorDetails<T>[] {
     throw new AbstractMethod('ModGenerator#modsFor');
   }
 
@@ -50,7 +50,7 @@ export default class Generator<T: Mod> implements Applicable {
   }
 
   // would like to return ?T but i cant make Details to be generic
-  chooseMod(item: Item): ?Mod {
+  chooseMod(item: Item): ?T {
     const details = this.modsFor(item);
     const detail = details[Math.floor(Math.random() * (details.length - 1))];
 

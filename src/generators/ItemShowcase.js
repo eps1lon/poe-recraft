@@ -3,7 +3,7 @@ import type { Item } from '../containers/';
 import type { CraftingBenchOptionsProps, ModProps } from '../schema';
 
 import { ApplicableMod, MasterMod, RollableMod } from '../mods/';
-import Generator from './Generator';
+import Generator, { type GeneratorDetails } from './Generator';
 import MasterBench from './MasterBench';
 import Talisman from './Talisman';
 import Transmute from './Transmute';
@@ -53,11 +53,17 @@ export default class ItemShowcase extends Generator<ShowcaseMod> {
    * if we have all the space for mods we need
    */
   modsFor(item: Item, whitelist: string[] = []) {
-    return [
+    const details = [
       ...this.master.modsFor(item, whitelist),
       ...this.talisman.modsFor(item, whitelist),
       ...this.transmute.modsFor(item, whitelist),
       ...this.vaal.modsFor(item, whitelist),
     ];
+
+    // flow cant merge object types
+    // { mod: OneMod, prop: number } | { mod: AnotherMod, prop: number }
+    // will not become { mod: OneMod | AnotherMod, prop: number }
+    // and for some reason ['a', 'b'] cant be cast to Array<number | string>
+    return ((details: any): GeneratorDetails<ShowcaseMod>[]);
   }
 }
