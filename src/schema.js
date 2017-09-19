@@ -159,3 +159,21 @@ export type CraftingBenchOptionsProps = {
   mod: ?ModProps,
   item_classes: ItemClassProps[],
 };
+
+export type WorldAreaProps = {
+  row: number,
+  id: string,
+  name: string,
+  area_level: number,
+  tags: TagProps[],
+  area_tags: TagProps[],
+  mods: ModProps[],
+};
+
+export type AtlasNodeProps = {
+  row: number,
+  x: number,
+  y: number,
+  adjacent: number[],
+  world_area: WorldAreaProps,
+};
