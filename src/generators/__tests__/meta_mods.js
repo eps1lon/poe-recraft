@@ -1,6 +1,15 @@
+// @flow
 import { Item } from '../../containers/';
-import { Alteration, Augment, Chaos, Exalted, Regal, Scouring } from '../';
-import { RollableMod, MasterMod, metaMods as META_MODS } from '../../mods';
+import {
+  Alteration,
+  Augment,
+  Chaos,
+  Exalted,
+  MasterBench,
+  Regal,
+  Scouring,
+} from '../';
+import { Mod, MasterMod, metaMods as META_MODS } from '../../mods';
 import { findByPrimary } from '../../__fixtures__/util';
 
 const baseitemtypes = require('../../__fixtures__/baseitemtypes.json');
@@ -84,6 +93,8 @@ describe('leo pvp mod', () => {
 });
 
 describe('multimod', () => {
+  const bench = new MasterBench([]);
+
   it('should allow more than one crafted mod', () => {
     const craftable_greaves = Item.build(
       findByPrimary(baseitemtypes, 1650),
@@ -103,7 +114,7 @@ describe('multimod', () => {
       craftingbenchoptions,
     );
 
-    expect(craftedLife.applicableTo(craftable_greaves)).toEqual({
+    expect(bench.isModApplicableTo(craftedLife, craftable_greaves)).toEqual({
       above_lld_level: false,
       already_present: false,
       domain_full: false,
@@ -114,7 +125,10 @@ describe('multimod', () => {
     });
 
     expect(
-      craftedArmour.applicableTo(craftable_greaves.addMod(craftedLife)),
+      bench.isModApplicableTo(
+        craftedArmour,
+        craftable_greaves.addMod(craftedLife),
+      ),
     ).toEqual({
       above_lld_level: false,
       already_present: false,
@@ -126,7 +140,8 @@ describe('multimod', () => {
     });
 
     expect(
-      craftedArmour.applicableTo(
+      bench.isModApplicableTo(
+        craftedArmour,
         craftable_greaves.addMod(multimod).addMod(craftedLife),
       ),
     ).toEqual({
@@ -143,10 +158,10 @@ describe('multimod', () => {
 
 // see http://i.imgur.com/sNpdDBS.jpg
 describe('lock_*', () => {
-  const ipd = new RollableMod(findByPrimary(mods, 793));
-  const flatphys = new RollableMod(findByPrimary(mods, 938));
-  const ias = new RollableMod(findByPrimary(mods, 1904));
-  const crit = new RollableMod(findByPrimary(mods, 2170));
+  const ipd = new Mod(findByPrimary(mods, 793));
+  const flatphys = new Mod(findByPrimary(mods, 938));
+  const ias = new Mod(findByPrimary(mods, 1904));
+  const crit = new Mod(findByPrimary(mods, 2170));
 
   const weapon = Item.build(findByPrimary(baseitemtypes, 1025), meta_datas);
 

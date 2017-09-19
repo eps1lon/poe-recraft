@@ -97,4 +97,19 @@ export default class Container<T: Mod> implements Taggable {
   maxModsOfType(mod: T): number {
     throw new AbstractMethod('maxModsOfType');
   }
+
+  /**
+   * @abstract
+   */
+  // eslint-disable-next-line no-unused-vars
+  inDomainOf(mod_domain: number): boolean {
+    throw new AbstractMethod('inDomainOf');
+  }
+
+  /**
+   * @abstract
+   */
+  level(): number {
+    throw new AbstractMethod('level');
+  }
 }

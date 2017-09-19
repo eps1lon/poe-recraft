@@ -3,25 +3,20 @@ import type { Item } from '../containers';
 import type { ModProps } from '../schema';
 
 import { type Flags, anySet } from '../util/Flags';
-import Currency, {
-  type ApplicableFlag as CurrencyApplicableFlag,
-  type ApplicableFlags as CurrencyApplicableFlags,
-} from './Currency';
+import ItemOrb, {
+  type ApplicableFlag as BaseApplicableFlag,
+  type ApplicableFlags as BaseApplicableFlags,
+} from './ItemOrb';
 import Transmute from './Transmute';
 
-export type ApplicableFlag = CurrencyApplicableFlag | 'not_rare';
-export type ApplicableFlags = CurrencyApplicableFlags | Flags<ApplicableFlag>;
+export type ApplicableFlag = BaseApplicableFlag | 'not_rare';
+export type ApplicableFlags = BaseApplicableFlags | Flags<ApplicableFlag>;
 
 /**
  * TODO:
  * applicableByteHuman
  */
-export default class Exalted extends Currency {
-  static APPLICABLE_FLAGS: ApplicableFlags = {
-    ...Currency.APPLICABLE_FLAGS,
-    not_rare: false,
-  };
-
+export default class Exalted extends ItemOrb {
   static build(mods: ModProps[]): Exalted {
     return super.build(mods, Transmute.modFilter, Exalted);
   }
@@ -41,7 +36,10 @@ export default class Exalted extends Currency {
    * item needs to be magic
    */
   applicableTo(item: Item, success: string[] = []): ApplicableFlags {
-    const applicable_flags = { ...Exalted.APPLICABLE_FLAGS };
+    const applicable_flags = {
+      ...super.applicableTo(item),
+      not_rare: false,
+    };
 
     if (item.props.rarity !== 'rare') {
       applicable_flags.not_rare = true;

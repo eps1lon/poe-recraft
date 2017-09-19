@@ -293,6 +293,10 @@ export default class Item extends Container<Mod> {
     }
   }
 
+  level() {
+    return this.props.item_level;
+  }
+
   getImplicits() {
     return this.implicits.asArray();
   }

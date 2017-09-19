@@ -34,14 +34,12 @@ it('should only apply to blue items', () => {
     not_magic: true,
     corrupted: false,
     mirrored: false,
-    not_an_item: false,
   });
 
   expect(alteration.applicableTo(greaves.setRarity('magic'))).toEqual({
     not_magic: false,
     corrupted: false,
     mirrored: false,
-    not_an_item: false,
   });
 });
 

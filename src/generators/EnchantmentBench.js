@@ -4,7 +4,7 @@ import type { ModProps } from '../schema';
 
 import { anySet } from '../util/Flags';
 import { Mod } from '../mods';
-import Currency from './Currency';
+import ItemOrb from './ItemOrb';
 
 /**
  * ingame representation of a enchantment bench
@@ -12,7 +12,7 @@ import Currency from './Currency';
  * TODO:
  * applicableByteHuman
  */
-export default class Enchantmentbench extends Currency {
+export default class Enchantmentbench extends ItemOrb {
   static modFilter(mod: ModProps): boolean {
     return [Mod.TYPE.ENCHANTMENT].indexOf(mod.generation_type) !== -1;
   }

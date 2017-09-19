@@ -2,19 +2,17 @@
 import type { Item } from '../containers/';
 import type { CraftingBenchOptionsProps, ModProps } from '../schema';
 
-import { ApplicableMod, MasterMod, RollableMod } from '../mods/';
+import { Mod } from '../mods/';
 import Generator, { type GeneratorDetails } from './Generator';
 import MasterBench from './MasterBench';
 import Talisman from './Talisman';
 import Transmute from './Transmute';
 import Vaal from './Vaal';
 
-export type ShowcaseMod = ApplicableMod | RollableMod | MasterMod;
-
 /**
  * Masterbench/Currency hybrid
  */
-export default class ItemShowcase extends Generator<ShowcaseMod, Item> {
+export default class ItemShowcase extends Generator<Mod, Item> {
   master: MasterBench;
   talisman: Talisman;
   transmute: Transmute;
@@ -64,6 +62,6 @@ export default class ItemShowcase extends Generator<ShowcaseMod, Item> {
     // { mod: OneMod, prop: number } | { mod: AnotherMod, prop: number }
     // will not become { mod: OneMod | AnotherMod, prop: number }
     // and for some reason ['a', 'b'] cant be cast to Array<number | string>
-    return ((details: any): GeneratorDetails<ShowcaseMod>[]);
+    return ((details: any): GeneratorDetails<Mod>[]);
   }
 }

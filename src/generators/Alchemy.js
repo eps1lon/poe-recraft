@@ -5,23 +5,18 @@ import type { Item } from '../containers';
 import type { ModProps } from '../schema';
 import { type Flags, anySet } from '../util/Flags';
 
-import Currency, {
-  type ApplicableFlag as CurrencyApplicableFlag,
-  type ApplicableFlags as CurrencyApplicableFlags,
-} from './Currency';
+import ItemOrb, {
+  type ApplicableFlag as BaseApplicableFlag,
+  type ApplicableFlags as BaseApplicableFlags,
+} from './ItemOrb';
 import Transmute from './Transmute';
 
-export type ApplicableFlag = CurrencyApplicableFlag | 'not_white';
-export type ApplicableFlags = CurrencyApplicableFlags | Flags<ApplicableFlag>;
+export type ApplicableFlag = BaseApplicableFlag | 'not_white';
+export type ApplicableFlags = BaseApplicableFlags | Flags<ApplicableFlag>;
 
 /**
  */
-export default class Alchemy extends Currency {
-  static APPLICABLE_FLAGS: ApplicableFlags = {
-    ...Currency.APPLICABLE_FLAGS,
-    not_white: false,
-  };
-
+export default class Alchemy extends ItemOrb {
   static build(mods: ModProps[]): Alchemy {
     return super.build(mods, Transmute.modFilter, Alchemy);
   }
@@ -65,7 +60,8 @@ export default class Alchemy extends Currency {
 
   applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = {
-      ...Alchemy.APPLICABLE_FLAGS,
+      ...super.applicableTo(item),
+      not_white: false,
     };
 
     if (item.props.rarity !== 'normal') {

@@ -33,14 +33,12 @@ it('should only apply to white items', () => {
     not_white: false,
     corrupted: false,
     mirrored: false,
-    not_an_item: false,
   });
 
   expect(transmute.applicableTo(greaves.setRarity('magic'))).toEqual({
     not_white: true,
     corrupted: false,
     mirrored: false,
-    not_an_item: false,
   });
 });
 

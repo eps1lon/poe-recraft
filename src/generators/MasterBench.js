@@ -2,13 +2,23 @@
 import type { Item } from '../containers';
 import type { CraftingBenchOptionsProps } from '../schema';
 
-import { anySet } from '../util/Flags';
-import { MasterMod } from '../mods';
-import Generator from './Generator';
+import { type Flags, anySet } from '../util/Flags';
+import { MasterMod, metaMods as META_MODs } from '../mods';
+
+import Generator, {
+  type ModApplicableFlag as BaseModApplicableFlag,
+  type ModApplicableFlags as BaseModApplicableFlags,
+} from './Generator';
+
+export type ModApplicableFlag =
+  | BaseModApplicableFlag
+  | 'wrong_itemclass'
+  | 'no_multimod';
+export type ModApplicableFlags =
+  | BaseModApplicableFlags
+  | Flags<ModApplicableFlag>;
 
 /**
- * TODO
- * applicableByteHuman()
  */
 export default class MasterBench extends Generator<MasterMod, Item> {
   static build(options: CraftingBenchOptionsProps[], master_primary: number) {
@@ -69,7 +79,7 @@ export default class MasterBench extends Generator<MasterMod, Item> {
         const crafted_item =
           item.props.rarity === 'normal' ? item.setRarity('magic') : item;
 
-        if (mod.applicableTo(crafted_item)) {
+        if (this.isModApplicableTo(mod, crafted_item)) {
           return crafted_item.addMod(mod);
         }
       }
@@ -100,7 +110,7 @@ export default class MasterBench extends Generator<MasterMod, Item> {
 
     return this.getAvailableMods()
       .map(mod => {
-        const applicable_flags = mod.applicableTo(simulated_item);
+        const applicable_flags = this.isModApplicableTo(mod, simulated_item);
 
         if (anySet(applicable_flags, whitelist)) {
           return null;
@@ -112,5 +122,36 @@ export default class MasterBench extends Generator<MasterMod, Item> {
         }
       })
       .filter(Boolean);
+  }
+
+  isModApplicableTo(mod: MasterMod, item: Item): ModApplicableFlags {
+    const applicable_flags = {
+      ...super.isModApplicableTo(mod, item),
+      wrong_itemclass: false,
+      no_multimod: false,
+    };
+
+    const { item_classes } = mod.option;
+
+    const no_matching_item_class =
+      item_classes.find(
+        item_class => item_class.primary === item.baseitem.item_class.primary,
+      ) === undefined;
+
+    if (no_matching_item_class) {
+      applicable_flags.wrong_itemclass = true;
+    }
+
+    // grep MasterMods and set failure if we cant multimod
+    const master_mods = item.mods.filter(other => other instanceof MasterMod);
+    const has_no_multi_mod =
+      master_mods.find(other => other.props.primary === META_MODs.MULTIMOD) ===
+      undefined;
+
+    if (master_mods.length > 0 && has_no_multi_mod) {
+      applicable_flags.no_multimod = true;
+    }
+
+    return applicable_flags;
   }
 }

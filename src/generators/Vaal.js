@@ -4,13 +4,13 @@ import type { ModProps } from '../schema';
 
 import { anySet } from '../util/Flags';
 import { Mod } from '../mods';
-import Currency from './Currency';
+import ItemOrb from './ItemOrb';
 
 /**
  * TODO:
  * applicableByteHuman
  */
-export default class Vaal extends Currency {
+export default class Vaal extends ItemOrb {
   static modFilter(mod: ModProps): boolean {
     // vaal implicits
     return [Mod.TYPE.VAAL].indexOf(mod.generation_type) !== -1;

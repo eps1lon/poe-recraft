@@ -3,25 +3,20 @@ import type { Item } from '../containers';
 import type { ModProps } from '../schema';
 
 import { type Flags, anySet } from '../util/Flags';
-import Currency, {
-  type ApplicableFlag as CurrencyApplicableFlag,
-  type ApplicableFlags as CurrencyApplicableFlags,
-} from './Currency';
+import ItemOrb, {
+  type ApplicableFlag as BaseApplicableFlag,
+  type ApplicableFlags as BaseApplicableFlags,
+} from './ItemOrb';
 import { Mod } from '../mods';
 
-export type ApplicableFlag = CurrencyApplicableFlag | 'not_white';
-export type ApplicableFlags = CurrencyApplicableFlags | Flags<ApplicableFlag>;
+export type ApplicableFlag = BaseApplicableFlag | 'not_white';
+export type ApplicableFlags = BaseApplicableFlags | Flags<ApplicableFlag>;
 
 /**
  * TODO:
  * applicableByteHuman
  */
-export default class Transmute extends Currency {
-  static APPLICABLE_FLAGS: ApplicableFlags = {
-    ...Currency.APPLICABLE_FLAGS,
-    not_white: false,
-  };
-
+export default class Transmute extends ItemOrb {
   static modFilter(mod: ModProps): boolean {
     // prefix/suffix only
     return (
@@ -63,7 +58,10 @@ export default class Transmute extends Currency {
   }
 
   applicableTo(item: Item): ApplicableFlags {
-    const applicable_flags = { ...Transmute.APPLICABLE_FLAGS };
+    const applicable_flags = {
+      ...super.applicableTo(item),
+      not_white: false,
+    };
 
     if (item.props.rarity !== 'normal') {
       applicable_flags.not_white = true;

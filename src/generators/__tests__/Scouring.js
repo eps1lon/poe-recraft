@@ -1,7 +1,7 @@
 // @flow
 import Scouring from '../Scouring';
 import { Item } from '../../containers/';
-import { ApplicableMod } from '../../mods/';
+import { Mod } from '../../mods/';
 import { findByPrimary } from '../../__fixtures__/util';
 
 const baseitemtypes = require('../../__fixtures__/baseitemtypes.json');
@@ -18,7 +18,6 @@ it('should not work on uniques or normal items', () => {
   expect(scour.applicableTo(greaves)).toEqual({
     corrupted: false,
     mirrored: false,
-    not_an_item: false,
     unique: false,
     normal: true,
   });
@@ -26,7 +25,6 @@ it('should not work on uniques or normal items', () => {
   expect(scour.applicableTo(greaves.setRarity('unique'))).toEqual({
     corrupted: false,
     mirrored: false,
-    not_an_item: false,
     unique: true,
     normal: false,
   });
@@ -34,7 +32,6 @@ it('should not work on uniques or normal items', () => {
   expect(scour.applicableTo(greaves.setRarity('magic'))).toEqual({
     corrupted: false,
     mirrored: false,
-    not_an_item: false,
     unique: false,
     normal: false,
   });
@@ -42,7 +39,6 @@ it('should not work on uniques or normal items', () => {
   expect(scour.applicableTo(greaves.setRarity('rare'))).toEqual({
     corrupted: false,
     mirrored: false,
-    not_an_item: false,
     unique: false,
     normal: false,
   });
@@ -51,8 +47,8 @@ it('should not work on uniques or normal items', () => {
 it('should remove mods and downgrade to normal', () => {
   const scour = new Scouring();
 
-  const movement = new ApplicableMod(findByPrimary(mods, 1503));
-  const life = new ApplicableMod(findByPrimary(mods, 198));
+  const movement = new Mod(findByPrimary(mods, 1503));
+  const life = new Mod(findByPrimary(mods, 198));
 
   // pre
   const magic_greaves = greaves.setRarity('magic').addMod(movement);

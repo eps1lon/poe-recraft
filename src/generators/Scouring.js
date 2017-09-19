@@ -2,25 +2,19 @@
 import type { Item, Rarity } from '../containers';
 
 import { type Flags, anySet } from '../util/Flags';
-import Currency, {
-  type ApplicableFlag as CurrencyApplicableFlag,
-  type ApplicableFlags as CurrencyApplicableFlags,
-} from './Currency';
+import ItemOrb, {
+  type ApplicableFlag as BaseApplicableFlag,
+  type ApplicableFlags as BaseApplicableFlags,
+} from './ItemOrb';
 
-export type ApplicableFlag = CurrencyApplicableFlag | 'normal' | 'unique';
-export type ApplicableFlags = CurrencyApplicableFlags | Flags<ApplicableFlag>;
+export type ApplicableFlag = BaseApplicableFlag | 'normal' | 'unique';
+export type ApplicableFlags = BaseApplicableFlags | Flags<ApplicableFlag>;
 
 /**
  * TODO:
  * applicableByteHuman
  */
-export default class Scouring extends Currency {
-  static APPLICABLE_FLAGS: ApplicableFlags = {
-    ...Currency.APPLICABLE_FLAGS,
-    normal: false,
-    unique: false,
-  };
-
+export default class Scouring extends ItemOrb {
   constructor() {
     super([]);
   }
@@ -70,7 +64,11 @@ export default class Scouring extends Currency {
    * checks if normal or unique rarity and returns false
    */
   applicableTo(item: Item, success: string[] = []): ApplicableFlags {
-    const applicable_flags = { ...Scouring.APPLICABLE_FLAGS };
+    const applicable_flags = {
+      ...super.applicableTo(item),
+      normal: false,
+      unique: false,
+    };
 
     switch (item.props.rarity) {
       case 'normal':

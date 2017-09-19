@@ -1,6 +1,6 @@
 // @flow
 import { Item } from '../';
-import { Mod, RollableMod } from '../../mods/';
+import { Mod } from '../../mods/';
 import Stat from '../../util/Stat';
 import { findByPrimary } from '../../__fixtures__/util';
 
@@ -141,8 +141,8 @@ it('should have stats grouped by id', () => {
     meta_datas,
   ).setRarity('rare');
 
-  const ipd = new RollableMod(findByPrimary(mods, 793));
-  const ipd_acc = new RollableMod(findByPrimary(mods, 790));
+  const ipd = new Mod(findByPrimary(mods, 793));
+  const ipd_acc = new Mod(findByPrimary(mods, 790));
 
   const crafted = weapon.addMod(ipd).addMod(ipd_acc);
 

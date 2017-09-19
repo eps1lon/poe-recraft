@@ -3,25 +3,20 @@ import type { Item } from '../containers';
 import type { ModProps } from '../schema';
 
 import { type Flags, anySet } from '../util/Flags';
-import Currency, {
-  type ApplicableFlag as CurrencyApplicableFlag,
-  type ApplicableFlags as CurrencyApplicableFlags,
-} from './Currency';
+import ItemOrb, {
+  type ApplicableFlag as BaseApplicableFlag,
+  type ApplicableFlags as BaseApplicableFlags,
+} from './ItemOrb';
 import Transmute from './Transmute';
 
-export type ApplicableFlag = CurrencyApplicableFlag | 'not_magic';
-export type ApplicableFlags = CurrencyApplicableFlags | Flags<ApplicableFlag>;
+export type ApplicableFlag = BaseApplicableFlag | 'not_magic';
+export type ApplicableFlags = BaseApplicableFlags | Flags<ApplicableFlag>;
 
 /**
  * TODO:
  * applicableByteHuman
  */
-export default class Regal extends Currency {
-  static APPLICABLE_FLAGS: ApplicableFlags = {
-    ...Currency.APPLICABLE_FLAGS,
-    not_magic: false,
-  };
-
+export default class Regal extends ItemOrb {
   static build(mods: ModProps[]): Regal {
     return super.build(mods, Transmute.modFilter, Regal);
   }
@@ -47,7 +42,10 @@ export default class Regal extends Currency {
   }
 
   applicableTo(item: Item, success: string[] = []): ApplicableFlags {
-    const applicable_flags = { ...Regal.APPLICABLE_FLAGS };
+    const applicable_flags = {
+      ...super.applicableTo(item),
+      not_magic: false,
+    };
 
     if (item.props.rarity !== 'magic') {
       applicable_flags.not_magic = true;
