@@ -15,19 +15,13 @@ export default class AtlasNode extends Container<Mod> {
     (this: any).props = props;
   }
 
-  inSextantRange(atlas: AtlasNode[]): AtlasNode[] {
-    return atlas.filter(
-      other => this.isInSextantRange(other) && this !== other,
-    );
-  }
-
   /**
    * returns a list of nodes with sextant distance <= depth
    * sextant distance:
    * (a, b) => 1, if a.isInSextantRange(b)
    *           +inf, otherwise
    */
-  inSextantRangeWithDepth(atlas: AtlasNode[], max_depth: number): AtlasNode[] {
+  inSextantRange(atlas: AtlasNode[], max_depth: number = 1): AtlasNode[] {
     let expand = [this];
     const in_range: Set<AtlasNode> = new Set();
 
@@ -40,9 +34,12 @@ export default class AtlasNode extends Container<Mod> {
       expand = expand.reduce((nodes, node) => {
         in_range.add(node);
 
-        const new_nodes = node
-          .inSextantRange(atlas)
-          .filter(new_node => !in_range.has(new_node));
+        const new_nodes = atlas.filter(
+          new_node =>
+            node.isInSextantRange(new_node) &&
+            node !== new_node &&
+            !in_range.has(new_node),
+        );
 
         return nodes.concat(new_nodes);
       }, []);

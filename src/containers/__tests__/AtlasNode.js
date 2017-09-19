@@ -33,8 +33,8 @@ it('should collect maps in range', () => {
     villa,
   ]);
 
-  expect(affected).toHaveLength(3);
-  expect(affected).toEqual([arid, strand, villa]);
+  expect(affected).toHaveLength(4);
+  expect(affected).toEqual([dunes, arid, strand, villa]);
 });
 
 it('should be able to incrementally get maps in range', () => {
@@ -47,13 +47,11 @@ it('should be able to incrementally get maps in range', () => {
 
   const dunes = getNode(26);
 
-  expect(dunes.inSextantRangeWithDepth(atlas, 0).map(ids)).toEqual([
-    'MapAtlasDunes',
-  ]);
+  expect(dunes.inSextantRange(atlas, 0).map(ids)).toEqual(['MapAtlasDunes']);
 
   expect(
     dunes
-      .inSextantRangeWithDepth(atlas, 1)
+      .inSextantRange(atlas, 1)
       .map(ids)
       .sort(),
   ).toEqual([
@@ -66,7 +64,7 @@ it('should be able to incrementally get maps in range', () => {
 
   expect(
     dunes
-      .inSextantRangeWithDepth(atlas, 2)
+      .inSextantRange(atlas, 2)
       .map(ids)
       .sort(),
   ).toEqual([
