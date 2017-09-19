@@ -4,13 +4,13 @@ import type { CraftingBenchOptionsProps } from '../schema';
 
 import { anySet } from '../util/Flags';
 import { MasterMod } from '../mods';
-import Generator, { type GeneratorDetails } from './Generator';
+import Generator from './Generator';
 
 /**
  * TODO
  * applicableByteHuman()
  */
-export default class MasterBench extends Generator<MasterMod> {
+export default class MasterBench extends Generator<MasterMod, Item> {
   static build(options: CraftingBenchOptionsProps[], master_primary: number) {
     return new MasterBench(
       options.filter(({ npc_master_key }) => npc_master_key === master_primary),

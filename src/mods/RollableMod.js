@@ -1,7 +1,6 @@
 // @flow
 import type { Spawnable, Taggable } from '../interfaces/';
 import type { SpawnWeightProps } from '../schema';
-import type { Item } from '../containers/';
 
 import ApplicableMod, {
   type ApplicableFlag,

@@ -15,7 +15,7 @@ export type ApplicableFlag =
 
 export type ApplicableFlags = Flags<ApplicableFlag>;
 
-export default class ApplicableMod extends Mod implements Applicable {
+export default class ApplicableMod extends Mod implements Applicable<Item> {
   static APPLICABLE_FLAGS: ApplicableFlags = {
     domain_full: false,
     already_present: false,

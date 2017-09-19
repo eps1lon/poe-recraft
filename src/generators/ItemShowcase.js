@@ -14,7 +14,7 @@ export type ShowcaseMod = ApplicableMod | RollableMod | MasterMod;
 /**
  * Masterbench/Currency hybrid
  */
-export default class ItemShowcase extends Generator<ShowcaseMod> {
+export default class ItemShowcase extends Generator<ShowcaseMod, Item> {
   master: MasterBench;
   talisman: Talisman;
   transmute: Transmute;

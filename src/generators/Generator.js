@@ -1,6 +1,6 @@
 // @flow
 import type { Applicable } from '../interfaces';
-import type { Item } from '../containers/';
+import type { Container } from '../containers/';
 import type { Mod } from '../mods/';
 
 import { AbstractMethod } from '../exceptions';
@@ -18,7 +18,8 @@ export type GeneratorDetails<T: Mod> = {
  * TODO:
  * applicableByteHuman()
  */
-export default class Generator<T: Mod> implements Applicable {
+export default class Generator<T: Mod, C: Container<*>>
+  implements Applicable<C> {
   mods: T[];
 
   constructor(mods: T[]) {
@@ -26,7 +27,7 @@ export default class Generator<T: Mod> implements Applicable {
   }
 
   // eslint-disable-next-line no-unused-vars
-  applyTo(item: Item): Item {
+  applyTo(container: C): C {
     throw new AbstractMethod('applyTo');
   }
 
@@ -40,18 +41,17 @@ export default class Generator<T: Mod> implements Applicable {
   }
 
   // eslint-disable-next-line no-unused-vars
-  modsFor(item: Item, whitelist: string[] = []): GeneratorDetails<T>[] {
+  modsFor(container: C, whitelist: string[] = []): GeneratorDetails<T>[] {
     throw new AbstractMethod('ModGenerator#modsFor');
   }
 
   // eslint-disable-next-line no-unused-vars
-  applicableTo(item: Item): Flags<*> {
+  applicableTo(container: C): Flags<*> {
     throw new AbstractMethod('applicableTo');
   }
 
-  // would like to return ?T but i cant make Details to be generic
-  chooseMod(item: Item): ?T {
-    const details = this.modsFor(item);
+  chooseMod(container: C): ?T {
+    const details = this.modsFor(container);
     const detail = details[Math.floor(Math.random() * (details.length - 1))];
 
     // TODO spawnweight
@@ -66,12 +66,12 @@ export default class Generator<T: Mod> implements Applicable {
    * adds a mod from chooseMod ignoring if it's applicable
    * @param {Item} item 
    */
-  rollMod(item: Item): Item {
-    const mod = this.chooseMod(item);
+  rollMod(container: C): C {
+    const mod = this.chooseMod(container);
     if (mod != null) {
-      return item.addMod(mod);
+      return container.addMod(mod);
     } else {
-      return item;
+      return container;
     }
   }
 }

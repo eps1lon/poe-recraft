@@ -1,8 +1,8 @@
 // @flow
 import type { Flags } from '../util/Flags';
-import type { Item } from '../containers';
+import type { Container } from '../containers';
 
-export interface Applicable {
+export interface Applicable<T: Container<*>> {
   // isApplicableTo(Item, string[]): boolean,
-  applicableTo(Item): Flags<*>,
+  applicableTo(T): Flags<*>,
 }
