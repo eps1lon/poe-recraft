@@ -1,5 +1,6 @@
 // @flow
-import type { ModProps } from '../schema';
+import type { ModProps, SpawnWeightProps } from '../schema';
+import { type Taggable } from '../interfaces';
 
 import Stat from '../util/Stat';
 
@@ -13,6 +14,7 @@ export default class Mod {
     STANCE: 9,
     MASTER: 10,
     JEWEL: 11,
+    ATLAS: 12,
   };
 
   static TYPE = {
@@ -93,5 +95,23 @@ export default class Mod {
 
   requiredLevel(): number {
     return Math.floor(this.props.level * 0.8);
+  }
+
+  spawnweightPropsFor(other: Taggable): ?SpawnWeightProps {
+    const other_tags = other.getTags();
+
+    return this.props.spawn_weights.find(({ tag }) =>
+      other_tags.find(item_tag => tag.primary === item_tag.primary),
+    );
+  }
+
+  spawnweightFor(other: Taggable): number {
+    const spawnweight = this.spawnweightPropsFor(other);
+
+    if (spawnweight == null) {
+      return 0;
+    } else {
+      return spawnweight.value;
+    }
   }
 }

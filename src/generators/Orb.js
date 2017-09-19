@@ -50,20 +50,12 @@ export default class Orb<M: Mod, C: Container<*>> extends Generator<M, C> {
     }
   }
 
-  spawnweightPropsOf(mod: M, container: C): ?SpawnWeightProps {
-    const item_tags = container.getTags();
-
-    return mod.props.spawn_weights.find(({ tag }) =>
-      item_tags.find(item_tag => tag.primary === item_tag.primary),
-    );
-  }
-
   isModSpawnableOn(mod: M, container: C): SpawnableFlags {
     const spawnable_flags: SpawnableFlags = {
       no_matching_tags: false,
       spawnweight_zero: false,
     };
-    const spawnweight = this.spawnweightPropsOf(mod, container);
+    const spawnweight = mod.spawnweightPropsFor(container);
 
     if (spawnweight == null) {
       // at first glance this shouldn't be happening
@@ -77,22 +69,12 @@ export default class Orb<M: Mod, C: Container<*>> extends Generator<M, C> {
     return spawnable_flags;
   }
 
-  spawnweightOfModFor(mod: M, container: C): number {
-    const spawnweight = this.spawnweightPropsOf(mod, container);
-
-    if (spawnweight == null) {
-      return 0;
-    } else {
-      return spawnweight.value;
-    }
-  }
-
   modsFor(container: C, whitelist: string[] = []): GeneratorDetails<M>[] {
     return this.getAvailableMods()
       .map((mod: M) => {
         const applicable_flags = this.isModApplicableTo(mod, container);
         const spawnable_flags = this.isModSpawnableOn(mod, container);
-        const spawnweight = this.spawnweightOfModFor(mod, container);
+        const spawnweight = mod.spawnweightFor(container);
 
         const is_applicable = !anySet(applicable_flags, whitelist);
 

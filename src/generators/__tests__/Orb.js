@@ -24,18 +24,18 @@ it('should consider tags', () => {
     meta_datas,
   ).setRarity('rare');
 
-  expect(orb.spawnweightOfModFor(ipd, weapon)).toBe(1000);
+  expect(ipd.spawnweightFor(weapon)).toBe(1000);
   expect(orb.isModSpawnableOn(ipd, weapon)).toEqual({
     no_matching_tags: false,
     spawnweight_zero: false,
   });
-  expect(orb.spawnweightOfModFor(ipd, weapon.addMod(no_attack_mods))).toBe(0);
+  expect(ipd.spawnweightFor(weapon.addMod(no_attack_mods))).toBe(0);
   expect(orb.isModSpawnableOn(ipd, weapon.addMod(no_attack_mods))).toEqual({
     no_matching_tags: false,
     spawnweight_zero: true,
   });
 
-  expect(orb.spawnweightOfModFor(sturdy, weapon)).toBe(0);
+  expect(sturdy.spawnweightFor(weapon)).toBe(0);
   expect(orb.isModSpawnableOn(sturdy, weapon)).toEqual({
     no_matching_tags: false,
     spawnweight_zero: true,
