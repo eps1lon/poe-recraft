@@ -1,3 +1,4 @@
+// @flow
 import Mod from '../Mod';
 import { findByPrimary } from '../../__fixtures__/util';
 
@@ -30,4 +31,15 @@ it('should fill in the value range for its stats', () => {
   ).toMatchObject({
     values: [8, 12],
   });
+});
+
+it('should fallback to the default spawnweight if defined', () => {
+  const taggable = {
+    getTags() {
+      return [{ id: 'dummy_tag', primary: 1 }];
+    },
+  };
+  const sextant_mod = new Mod(findByPrimary(mods, 8776));
+
+  expect(sextant_mod.spawnweightFor(taggable));
 });

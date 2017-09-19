@@ -98,11 +98,22 @@ export default class Mod {
   }
 
   spawnweightPropsFor(other: Taggable): ?SpawnWeightProps {
+    const { spawn_weights } = this.props;
     const other_tags = other.getTags();
 
-    return this.props.spawn_weights.find(({ tag }) =>
+    const match = spawn_weights.find(({ tag }) =>
       other_tags.find(item_tag => tag.primary === item_tag.primary),
     );
+
+    if (match == null) {
+      const default_spawnweight = spawn_weights.find(
+        ({ tag }) => tag.primary === 0,
+      );
+
+      return default_spawnweight;
+    } else {
+      return match;
+    }
   }
 
   spawnweightFor(other: Taggable): number {
