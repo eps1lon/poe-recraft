@@ -4,19 +4,45 @@ import type { Taggable } from '../interfaces';
 import type { TagProps } from '../schema';
 import type { Mod } from '../mods';
 
-export default class Container<T: Mod> implements Taggable {
+export type Builder<T: Mod> = {
+  mods: T[],
+};
+
+export default class Container<T: Mod, B: Builder<T>> implements Taggable {
   +mods: T[];
+
+  static withBuilder(builder: B): Container<T, B> {
+    return new Container(builder.mods);
+  }
 
   constructor(mods: T[]) {
     (this: any).mods = mods;
   }
 
+  builder(): B {
+    const builder: $Shape<B> = { mods: this.mods };
+
+    return builder;
+  }
+
+  // batch mutations
+  withMutations(mutate: B => B): this {
+    const builder = mutate(this.builder());
+
+    return this.constructor.withBuilder(builder);
+  }
+
   /**
    *  adds a new non-existing mod
    */
-  addMod(mod: T): Container<T> {
+  addMod(mod: T): this {
     if (!this.hasMod(mod)) {
-      return new this.constructor(this.mods.concat(mod));
+      return this.withMutations(builder => {
+        return {
+          ...builder,
+          mods: builder.mods.concat(mod),
+        };
+      });
     } else {
       return this;
     }
@@ -25,18 +51,28 @@ export default class Container<T: Mod> implements Taggable {
   /**
    * truncates mods
    */
-  removeAllMods(): Container<T> {
-    return new this.constructor([]);
+  removeAllMods(): this {
+    return this.withMutations(builder => {
+      return {
+        ...builder,
+        mods: [],
+      };
+    });
   }
 
   /**
    * removes an existing mod
    */
-  removeMod(other: T): Container<T> {
+  removeMod(other: T): this {
     if (this.hasMod(other)) {
-      return new this.constructor(
-        this.mods.filter(mod => mod.props.primary !== other.props.primary),
-      );
+      return this.withMutations(builder => {
+        return {
+          ...builder,
+          mods: this.mods.filter(
+            mod => mod.props.primary !== other.props.primary,
+          ),
+        };
+      });
     } else {
       return this;
     }

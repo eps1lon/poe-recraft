@@ -25,7 +25,7 @@ export type ItemProps = {
 export type ItemProperty = $Keys<ItemProps>; // eslint-disable-line no-undef
 
 export type ItemBuilder = {
-  affixes: Mod[],
+  mods: Mod[],
   baseitem: BaseItemTypeProps,
   implicits: Mod[],
   meta_data: MetaData,
@@ -41,7 +41,7 @@ export type ItemBuilder = {
  * the class only represents the explicits and is a fascade for an 
  * additional implicit container
  */
-export default class Item extends Container<Mod> {
+export default class Item extends Container<Mod, ItemBuilder> {
   static MAX_ILVL = 100;
 
   static default_props: ItemProps = {
@@ -70,9 +70,9 @@ export default class Item extends Container<Mod> {
   }
 
   static withBuilder(builder: ItemBuilder) {
-    const { affixes, baseitem, implicits, meta_data, props } = builder;
+    const { mods, baseitem, implicits, meta_data, props } = builder;
 
-    return new Item(baseitem, meta_data, props, implicits, affixes);
+    return new Item(baseitem, meta_data, props, implicits, mods);
   }
 
   static applyStat(
@@ -106,7 +106,7 @@ export default class Item extends Container<Mod> {
 
   builder(): ItemBuilder {
     return {
-      affixes: this.mods,
+      mods: this.mods,
       baseitem: this.baseitem,
       implicits: this.implicits.mods,
       meta_data: this.meta_data,
@@ -114,14 +114,7 @@ export default class Item extends Container<Mod> {
     };
   }
 
-  // batch mutations
-  withMutations(mutate: ItemBuilder => ItemBuilder): Item {
-    const builder = mutate(this.builder());
-
-    return Item.withBuilder(builder);
-  }
-
-  addMod(other: Mod) {
+  addMod(other: Mod): this {
     if (other.isAffix()) {
       return this.addAffix(other);
     } else if (other.implicitCandidate()) {
@@ -134,12 +127,12 @@ export default class Item extends Container<Mod> {
   /**
    * truncates mods
    */
-  removeAllMods() {
+  removeAllMods(): this {
     if (this.affixes.mods.length > 0) {
       return this.withMutations(builder => {
         return {
           ...builder,
-          affixes: [],
+          mods: [],
         };
       });
     } else {
@@ -150,12 +143,12 @@ export default class Item extends Container<Mod> {
   /**
    * removes an existing mod
    */
-  removeMod(other: Mod) {
+  removeMod(other: Mod): this {
     if (this.hasMod(other)) {
       return this.withMutations(builder => {
         return {
           ...builder,
-          affixes: builder.affixes.filter(
+          mods: builder.mods.filter(
             mod => mod.props.primary !== other.props.primary,
           ),
         };
@@ -169,12 +162,12 @@ export default class Item extends Container<Mod> {
    * adds a mod if theres room for it
    * no sophisticated domain check. only if affix type is full or not
    */
-  addAffix(other: Mod) {
+  addAffix(other: Mod): this {
     if (this.hasRoomFor(other)) {
       return this.withMutations(builder => {
         return {
           ...builder,
-          affixes: new Container(builder.affixes).addMod(other).mods,
+          mods: new Container(builder.mods).addMod(other).mods,
         };
       });
     } else {
@@ -182,25 +175,25 @@ export default class Item extends Container<Mod> {
     }
   }
 
-  addImplicit(mod: Mod) {
-    const builder = this.builder();
-
-    return Item.withBuilder({
-      ...builder,
-      implicits: this.implicits.addMod(mod).mods,
+  addImplicit(mod: Mod): this {
+    return this.withMutations(builder => {
+      return {
+        ...builder,
+        implicits: this.implicits.addMod(mod).mods,
+      };
     });
   }
 
-  removeAllImplicits() {
-    const builder = this.builder();
-
-    return Item.withBuilder({
-      ...builder,
-      implicits: this.implicits.removeAllMods().mods,
+  removeAllImplicits(): this {
+    return this.withMutations(builder => {
+      return {
+        ...builder,
+        implicits: this.implicits.removeAllMods().mods,
+      };
     });
   }
 
-  get affixes(): Container<Mod> {
+  get affixes(): Container<Mod, ItemBuilder> {
     return this;
   }
 
@@ -460,7 +453,7 @@ export default class Item extends Container<Mod> {
   }
 
   // private
-  setProperty(prop: ItemProperty, value: any): Item {
+  setProperty(prop: ItemProperty, value: any): this {
     return this.withMutations(builder => {
       return {
         ...builder,

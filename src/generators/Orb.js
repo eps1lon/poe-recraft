@@ -11,7 +11,7 @@ const filterNone = () => true;
 export type SpawnableFlag = 'no_matching_tags' | 'spawnweight_zero';
 export type SpawnableFlags = Flags<SpawnableFlag>;
 
-export default class Orb<M: Mod, C: Container<*>> extends Generator<M, C> {
+export default class Orb<M: Mod, C: Container<*, *>> extends Generator<M, C> {
   static build(
     mods: ModProps[],
     filter: ModProps => boolean = filterNone,

@@ -1,16 +1,16 @@
 // @flow
 import { Mod } from '../mods';
 
-import Container from './Container';
+import Container, { type Builder } from './Container';
 
-export default class Implicits extends Container<Mod> {
+export default class Implicits extends Container<Mod, Builder<Mod>> {
   /**
    * @override
    */
-  addMod(mod: Mod): Implicits {
+  addMod(mod: Mod): this {
     if (this.hasRoomFor(mod)) {
       // calling super.addMod will return Container<T> instead of Implicits
-      return new Implicits(super.addMod(mod).mods);
+      return super.addMod(mod);
     } else {
       return this;
     }

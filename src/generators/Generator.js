@@ -25,7 +25,7 @@ export type ModApplicableFlags = Flags<ModApplicableFlag>;
  * TODO:
  * applicableByteHuman()
  */
-export default class Generator<M: Mod, C: Container<*>> {
+export default class Generator<M: Mod, C: Container<*, *>> {
   mods: M[];
 
   constructor(mods: M[]) {
