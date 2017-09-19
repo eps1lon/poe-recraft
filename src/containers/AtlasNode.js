@@ -6,13 +6,29 @@ import Container from './Container';
 
 export const SEXTANT_RANGE = 55; // http://poecraft.com/atlas has 55
 
-export default class AtlasNode extends Container<Mod> {
+export type Builder = {
+  mods: Mod[],
+  props: AtlasNodeProps,
+};
+
+export default class AtlasNode extends Container<Mod, Builder> {
   +props: AtlasNodeProps;
+
+  static withBuilder(builder: Builder): AtlasNode {
+    return new AtlasNode(builder.mods, builder.props);
+  }
 
   constructor(mods: Mod[], props: AtlasNodeProps) {
     super(mods);
 
     (this: any).props = props;
+  }
+
+  builder(): Builder {
+    return {
+      mods: this.mods,
+      props: this.props,
+    };
   }
 
   /**
@@ -69,6 +85,50 @@ export default class AtlasNode extends Container<Mod> {
     return this.inSextantRange(atlas).reduce(
       (mods, other) => mods.concat(other.mods),
       this.mods,
+    );
+  }
+
+  getTags() {
+    return super
+      .getTags()
+      .concat(this.props.world_area.tags)
+      .filter(
+        // unique by id
+        (tag, i, tags) => tags.findIndex(other => other.id === tag.id) === i,
+      );
+  }
+
+  maxModsOfType(): number {
+    return Number.POSITIVE_INFINITY;
+  }
+
+  inDomainOf(mod_domain: number): boolean {
+    return mod_domain === Mod.DOMAIN.ATLAS;
+  }
+
+  level(): number {
+    return this.props.world_area.area_level;
+  }
+
+  affectingMods(atlas: AtlasNode[]): Mod[] {
+    return atlas.reduce((mods, other) => {
+      if (this.isInSextantRange(other)) {
+        return mods.concat(other.mods);
+      } else {
+        return mods;
+      }
+    }, this.mods);
+  }
+
+  activeMods(atlas: AtlasNode[]): Mod[] {
+    return this.affectingMods(atlas).filter(
+      mod => mod.spawnweightFor(this) > 0,
+    );
+  }
+
+  inactiveMods(atlas: AtlasNode[]): Mod[] {
+    return this.affectingMods(atlas).filter(
+      mod => mod.spawnweightFor(this) <= 0,
     );
   }
 }

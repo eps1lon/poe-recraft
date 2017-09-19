@@ -161,7 +161,7 @@ export type CraftingBenchOptionsProps = {
 };
 
 export type WorldAreaProps = {
-  row: number,
+  primary: number,
   id: string,
   name: string,
   area_level: number,
