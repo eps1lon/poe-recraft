@@ -137,14 +137,19 @@ export default class Sextant extends Orb<Mod, AtlasNode> {
           // this shouldn't be happening spawnweight should be > 0
           // if the flag is not set. only exception is whitelist
           const corrupted_state =
-            adjacent_with_spawnweight === undefined &&
+            adjacent_with_spawnweight == null &&
             !whitelist.includes('spawnweight_zero');
 
           if (corrupted_state) {
             throw new CorruptedState(
               'spawnweight should be > 0 if spawnweight_zero is false',
             );
-          } else {
+          } else if (adjacent_with_spawnweight != null) {
+            // we need to assure Flow that whitelist.includes didnt
+            // mutate adjacent_with_spawnweight although we wouldnt care about
+            // it because we dont care if it went from null > any
+            // we just need to be sure that it didnt go from any > null
+            // and this is given since it's the first check in the expression
             spawnweight_with_adjacents = mod.spawnweightFor(
               adjacent_with_spawnweight,
             );
