@@ -3,7 +3,7 @@ import type { Container } from '../containers/';
 import { type Mod, metaMods as META_MODS } from '../mods/';
 
 import { AbstractMethod } from '../exceptions';
-import { type Flags } from '../util/Flags';
+import { type Flags, anySet } from '../util/Flags';
 
 export type GeneratorDetails<M: Mod> = {
   mod: M,
@@ -22,8 +22,6 @@ export type ModApplicableFlags = Flags<ModApplicableFlag>;
 
 /**
  * @abstract
- * TODO:
- * applicableByteHuman()
  */
 export default class Generator<M: Mod, C: Container<*, *>> {
   mods: M[];
@@ -54,6 +52,11 @@ export default class Generator<M: Mod, C: Container<*, *>> {
   // eslint-disable-next-line no-unused-vars
   applicableTo(container: C): Flags<*> {
     throw new AbstractMethod('applicableTo');
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  isApplicableTo(container: C, whitelist: string[] = []): boolean {
+    return !anySet(this.applicableTo(container), whitelist);
   }
 
   isModApplicableTo(mod: M, container: C): ModApplicableFlags {

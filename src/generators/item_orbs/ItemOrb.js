@@ -1,9 +1,9 @@
 // @flow
-import type { Item } from '../containers';
-import { Mod } from '../mods';
-import { type Flags } from '../util/Flags';
+import type { Item } from '../../containers';
+import { Mod } from '../../mods';
+import { type Flags } from '../../util/Flags';
 
-import Orb from './Orb';
+import Orb from '../Orb';
 
 export type ApplicableFlag = 'corrupted' | 'mirrored';
 export type ApplicableFlags = Flags<ApplicableFlag>;
@@ -12,7 +12,7 @@ export default class ItemOrb extends Orb<Mod, Item> {
   /**
    * currency only applies to items
    */
-  applicableTo(item: Item, success: string[] = []): ApplicableFlags {
+  applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = {
       corrupted: false,
       mirrored: false,

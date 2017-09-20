@@ -1,10 +1,10 @@
 // @flow
 import _ from 'lodash';
 
-import type { Item } from '../containers';
-import type { ModProps } from '../schema';
+import type { Item } from '../../containers';
+import type { ModProps } from '../../schema';
 
-import { type Flags, anySet } from '../util/Flags';
+import { type Flags, anySet } from '../../util/Flags';
 import ItemOrb, {
   type ApplicableFlag as BaseApplicableFlag,
   type ApplicableFlags as BaseApplicableFlags,
@@ -70,7 +70,7 @@ export default class Chaos extends ItemOrb {
     }
   }
 
-  applicableTo(item: Item, success: string[] = []): ApplicableFlags {
+  applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = {
       ...super.applicableTo(item),
       not_rare: false,

@@ -5,9 +5,7 @@ import type { CraftingBenchOptionsProps, ModProps } from '../schema';
 import { Mod } from '../mods/';
 import Generator, { type GeneratorDetails } from './Generator';
 import MasterBench from './MasterBench';
-import Talisman from './Talisman';
-import Transmute from './Transmute';
-import Vaal from './Vaal';
+import { Talisman, Transmute, Vaal } from './item_orbs/';
 
 /**
  * Masterbench/Currency hybrid

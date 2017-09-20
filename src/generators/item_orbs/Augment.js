@@ -1,8 +1,8 @@
 // @flow
-import type { Item } from '../containers';
-import type { ModProps } from '../schema';
+import type { Item } from '../../containers';
+import type { ModProps } from '../../schema';
 
-import { type Flags, anySet } from '../util/Flags';
+import { type Flags, anySet } from '../../util/Flags';
 import ItemOrb, {
   type ApplicableFlag as BaseApplicableFlag,
   type ApplicableFlags as BaseApplicableFlags,
@@ -16,32 +16,26 @@ export type ApplicableFlags = BaseApplicableFlags | Flags<ApplicableFlag>;
  * TODO:
  * applicableByteHuman
  */
-export default class Regal extends ItemOrb {
-  static build(mods: ModProps[]): Regal {
-    return super.build(mods, Transmute.modFilter, Regal);
+export default class Augment extends ItemOrb {
+  static build(mods: ModProps[]): Augment {
+    return super.build(mods, Transmute.modFilter, Augment);
   }
 
   /**
-   *  adds 1 mod
+   * adds one random property
    */
   applyTo(item: Item): Item {
     if (!anySet(this.applicableTo(item))) {
-      // upgrade to rare
-      return this.rollMod(item.setRarity('rare'));
+      return this.rollMod(item);
     } else {
       return item;
     }
   }
 
   /**
-   * maps mod::applicableTo as if it were already magic
+   * item needs to be magic
    */
-  modsFor(item: Item, whitelist: string[] = []) {
-    // simulate upgrade
-    return super.modsFor(item.setRarity('rare'), whitelist);
-  }
-
-  applicableTo(item: Item, success: string[] = []): ApplicableFlags {
+  applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = {
       ...super.applicableTo(item),
       not_magic: false,

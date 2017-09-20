@@ -1,6 +1,6 @@
 // @flow
 import type { Container } from '../containers';
-import type { ModProps, SpawnWeightProps } from '../schema';
+import type { ModProps } from '../schema';
 import { Mod } from '../mods';
 import { type Flags, anySet } from '../util/Flags';
 
@@ -11,6 +11,9 @@ const filterNone = () => true;
 export type SpawnableFlag = 'no_matching_tags' | 'spawnweight_zero';
 export type SpawnableFlags = Flags<SpawnableFlag>;
 
+/**
+ * @abstract
+ */
 export default class Orb<M: Mod, C: Container<*, *>> extends Generator<M, C> {
   static build(
     mods: ModProps[],

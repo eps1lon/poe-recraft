@@ -1,9 +1,9 @@
 // @flow
 import _ from 'lodash';
 
-import type { Item } from '../containers';
-import type { ModProps } from '../schema';
-import { type Flags, anySet } from '../util/Flags';
+import type { Item } from '../../containers';
+import type { ModProps } from '../../schema';
+import { type Flags, anySet } from '../../util/Flags';
 
 import ItemOrb, {
   type ApplicableFlag as BaseApplicableFlag,
@@ -14,8 +14,6 @@ import Transmute from './Transmute';
 export type ApplicableFlag = BaseApplicableFlag | 'not_white';
 export type ApplicableFlags = BaseApplicableFlags | Flags<ApplicableFlag>;
 
-/**
- */
 export default class Alchemy extends ItemOrb {
   static build(mods: ModProps[]): Alchemy {
     return super.build(mods, Transmute.modFilter, Alchemy);

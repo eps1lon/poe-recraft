@@ -1,24 +1,24 @@
 // @flow
-import type { Item } from '../containers';
-import type { ModProps } from '../schema';
+import type { Item } from '../../containers';
+import type { ModProps } from '../../schema';
 
-import { type Flags, anySet } from '../util/Flags';
+import { type Flags, anySet } from '../../util/Flags';
 import ItemOrb, {
   type ApplicableFlag as BaseApplicableFlag,
   type ApplicableFlags as BaseApplicableFlags,
 } from './ItemOrb';
 import Transmute from './Transmute';
 
-export type ApplicableFlag = BaseApplicableFlag | 'not_magic';
+export type ApplicableFlag = BaseApplicableFlag | 'not_rare';
 export type ApplicableFlags = BaseApplicableFlags | Flags<ApplicableFlag>;
 
 /**
  * TODO:
  * applicableByteHuman
  */
-export default class Augment extends ItemOrb {
-  static build(mods: ModProps[]): Augment {
-    return super.build(mods, Transmute.modFilter, Augment);
+export default class Exalted extends ItemOrb {
+  static build(mods: ModProps[]): Exalted {
+    return super.build(mods, Transmute.modFilter, Exalted);
   }
 
   /**
@@ -35,14 +35,14 @@ export default class Augment extends ItemOrb {
   /**
    * item needs to be magic
    */
-  applicableTo(item: Item, success: string[] = []): ApplicableFlags {
+  applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = {
       ...super.applicableTo(item),
-      not_magic: false,
+      not_rare: false,
     };
 
-    if (item.props.rarity !== 'magic') {
-      applicable_flags.not_magic = true;
+    if (item.props.rarity !== 'rare') {
+      applicable_flags.not_rare = true;
     }
 
     return applicable_flags;

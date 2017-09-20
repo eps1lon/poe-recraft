@@ -1,7 +1,7 @@
 // @flow
-import type { Item, Rarity } from '../containers';
+import type { Item, Rarity } from '../../containers';
 
-import { type Flags, anySet } from '../util/Flags';
+import { type Flags, anySet } from '../../util/Flags';
 import ItemOrb, {
   type ApplicableFlag as BaseApplicableFlag,
   type ApplicableFlags as BaseApplicableFlags,
@@ -63,7 +63,7 @@ export default class Scouring extends ItemOrb {
   /**
    * checks if normal or unique rarity and returns false
    */
-  applicableTo(item: Item, success: string[] = []): ApplicableFlags {
+  applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = {
       ...super.applicableTo(item),
       normal: false,
