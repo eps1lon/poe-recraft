@@ -155,3 +155,44 @@ it('should consider adjacents for spawnweight if it is zero', () => {
   expect(rollable_mods.map(({ mod }) => mod)).toContain(breach_mod);
   expect(rollable_mods.every(({ spawnweight }) => spawnweight > 0)).toBe(true);
 });
+
+it('should consider sextant types', () => {
+  const sextant = Sextant.build(mods);
+
+  const low_tier_map = getNode(12); // marshes
+  const mid_tier_map = getNode(76); // courtyard
+  const high_tier_map = getNode(105); // plaza
+
+  expect(sextant.type).toBe(Sextant.type.master);
+  expect(sextant.applicableTo(low_tier_map)).toEqual({
+    wrong_tier_group: false,
+  });
+  expect(sextant.applicableTo(mid_tier_map)).toEqual({
+    wrong_tier_group: false,
+  });
+  expect(sextant.applicableTo(high_tier_map)).toEqual({
+    wrong_tier_group: false,
+  });
+
+  sextant.type = Sextant.type.journeyman;
+  expect(sextant.applicableTo(low_tier_map)).toEqual({
+    wrong_tier_group: false,
+  });
+  expect(sextant.applicableTo(mid_tier_map)).toEqual({
+    wrong_tier_group: false,
+  });
+  expect(sextant.applicableTo(high_tier_map)).toEqual({
+    wrong_tier_group: true,
+  });
+
+  sextant.type = Sextant.type.apprentice;
+  expect(sextant.applicableTo(low_tier_map)).toEqual({
+    wrong_tier_group: false,
+  });
+  expect(sextant.applicableTo(mid_tier_map)).toEqual({
+    wrong_tier_group: true,
+  });
+  expect(sextant.applicableTo(high_tier_map)).toEqual({
+    wrong_tier_group: true,
+  });
+});

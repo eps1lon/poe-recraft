@@ -12,6 +12,9 @@ import Orb, {
 export type SpawnableFlag = BaseSpawnableFlag | 'no_adjacents_with_spawnweight';
 export type SpawnableFlags = BaseSpawnableFlags | Flags<SpawnableFlag>;
 
+export type ApplicableFlag = 'wrong_tier_group';
+export type ApplicableFlags = Flags<ApplicableFlag>;
+
 export class ContextUndefined extends Error {
   constructor(context: string) {
     super(`context not set, set ${context}`);
@@ -25,7 +28,11 @@ export class CorruptedState extends Error {
 }
 
 export default class Sextant extends Orb<Mod, AtlasNode> {
-  atlas: ?(AtlasNode[]);
+  static type = {
+    apprentice: 1,
+    journeyman: 2,
+    master: 3,
+  };
 
   static modFilter(mod: ModProps): boolean {
     return mod.domain === Mod.DOMAIN.ATLAS;
@@ -53,6 +60,9 @@ export default class Sextant extends Orb<Mod, AtlasNode> {
       );
   }
 
+  atlas: ?(AtlasNode[]);
+  type: $Values<typeof Sextant.type> = Sextant.type.master;
+
   applyTo(node: AtlasNode): AtlasNode {
     const rolled = super.rollMod(node);
 
@@ -67,8 +77,21 @@ export default class Sextant extends Orb<Mod, AtlasNode> {
 
   // applicable to any node for now
   // eslint-disable-next-line no-unused-vars
-  applicableTo(node: AtlasNode) {
-    return {};
+  applicableTo(node: AtlasNode): ApplicableFlags {
+    const applicable_flags = {
+      wrong_tier_group: false,
+    };
+
+    const area_ranges = {
+      [Sextant.type.apprentice]: 72,
+      [Sextant.type.journeyman]: 77,
+      [Sextant.type.master]: 84,
+    };
+
+    applicable_flags.wrong_tier_group =
+      node.props.world_area.area_level > area_ranges[this.type];
+
+    return applicable_flags;
   }
 
   // I'm not sure how it determines the spawnweight
