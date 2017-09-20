@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "reverse engineerd behavior of Mods in Path of Exile",
   "main": "lib/index.js",
-  "files": [
-    "lib/"
-  ],
+  "files": ["lib/"],
   "scripts": {
     "build": "npm run build:clean && npm run build:lib && npm run build:flow",
     "build:clean": "rimraf lib",
@@ -13,19 +11,18 @@
     "build:flow": "flow-copy-source -v -i \"**/__*__/**\" src lib",
     "flow": "flow",
     "format": "prettier --write src/**/*.js",
+    "format:check": "prettier --list-different src/**/*.js",
     "lint": "eslint src/**/*.js",
     "prepublishOnly": "npm run build",
     "test": "jest --watch",
+    "test:check": "jest --ci",
     "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eps1lon/poe-mods.git"
   },
-  "keywords": [
-    "js",
-    "poe"
-  ],
+  "keywords": ["js", "poe"],
   "author": "eps1lon",
   "license": "MIT",
   "bugs": {
@@ -50,6 +47,7 @@
     "flow-bin": "^0.54.1",
     "flow-copy-source": "^1.2.1",
     "jest": "^20.0.4",
+    "pre-push": "^0.1.1",
     "prettier": "^1.6.1",
     "regenerator-runtime": "^0.11.0",
     "rimraf": "^2.6.2"
@@ -59,9 +57,8 @@
   },
   "jest": {
     "collectCoverage": false,
-    "collectCoverageFrom": [
-      "src/**/*.js"
-    ],
+    "collectCoverageFrom": ["src/**/*.js"],
     "coverageDirectory": "coverage"
-  }
+  },
+  "pre-push": ["lint", "format:check", "test:check"]
 }
