@@ -22,7 +22,7 @@ export type ItemProps = {
   +rarity: Rarity,
 };
 
-export type ItemProperty = $Keys<ItemProps>; // eslint-disable-line no-undef
+export type ItemProperty = $Keys<ItemProps>;
 
 export type ItemBuilder = {
   mods: Mod[],
