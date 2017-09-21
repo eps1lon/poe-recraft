@@ -46,13 +46,4 @@ export default class MasterMod extends Mod {
     // Covariant property `option` incompatible with contravariant use in
     (this: any).option = option;
   }
-
-  /**
-   * modname with basic stats
-   */
-  name() {
-    const { master_level, npc_master: { npc: { short_name } } } = this.option;
-
-    return `${this.props.name}(${short_name}) Level: ${master_level}`;
-  }
 }
