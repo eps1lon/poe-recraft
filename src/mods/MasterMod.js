@@ -20,8 +20,14 @@ export class OptionNotFound extends Error {
  * applicableByteHuman
  */
 export default class MasterMod extends Mod {
-  static build(mod: ModProps, options: CraftingBenchOptionsProps[]): MasterMod {
-    const option = options.find(
+  static option_props_list: ?(CraftingBenchOptionsProps[]);
+
+  static build(mod: ModProps): MasterMod {
+    if (this.option_props_list == null) {
+      throw new Error(`${String(this.name)} option props list not set`);
+    }
+
+    const option = this.option_props_list.find(
       needle => needle.mod != null && needle.mod.primary === mod.primary,
     );
 
@@ -29,7 +35,7 @@ export default class MasterMod extends Mod {
       throw new OptionNotFound(mod);
     }
 
-    return new MasterMod(option);
+    return new this(option);
   }
 
   +option: CraftingBenchOptionsProps;

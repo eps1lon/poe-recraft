@@ -1,10 +1,11 @@
 // @flow
+import { type Buildable, type Taggable } from '../interfaces';
 import type { ModProps, SpawnWeightProps } from '../schema';
-import { type Taggable } from '../interfaces';
+import { withPrimaryFinder } from '../util/mixins';
 
 import Stat from '../util/Stat';
 
-export default class Mod {
+class Mod implements Buildable<ModProps> {
   static DOMAIN = {
     ITEM: 1,
     FLASK: 2,
@@ -29,6 +30,10 @@ export default class Mod {
     TALISMAN: 9,
     ENCHANTMENT: 10,
   };
+
+  static build(props: ModProps) {
+    return new this(props);
+  }
 
   +props: ModProps;
 
@@ -126,3 +131,5 @@ export default class Mod {
     }
   }
 }
+
+export default withPrimaryFinder(Mod);

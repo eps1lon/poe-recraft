@@ -83,10 +83,6 @@ export type BaseItemTypeProps = {
   tags: TagProps[],
 };
 
-export type GroupLocalization = {
-  [string]: string,
-};
-
 export type CraftingBenchOptionsProps = {
   primary: number,
   order: number,

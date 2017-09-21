@@ -1,9 +1,8 @@
 // @flow
 import EnchantmentBench from '../EnchantmentBench';
 import { Item } from '../../../containers/';
-import { findByPrimary } from '../../../__fixtures__/util';
 
-const baseitemtypes = require('../../../__fixtures__/baseitemtypes.json');
+Item.all = require('../../../__fixtures__/baseitemtypes.json');
 const mods = require('../../../__fixtures__/mods.json');
 
 it('should build', () => {
@@ -21,7 +20,7 @@ it('should only have prefixes and suffixes', () => {
 it('should add an enchantment while preserving props', () => {
   const bench = EnchantmentBench.build(mods);
 
-  const boots = Item.build(findByPrimary(baseitemtypes, 1650));
+  const boots = Item.fromPrimary(1650);
 
   const crafted_boots = bench.applyTo(boots);
 
@@ -30,7 +29,7 @@ it('should add an enchantment while preserving props', () => {
   expect(crafted_boots.implicits.mods).toHaveLength(1);
   expect(crafted_boots.implicits.mods[0].isEnchantment()).toBe(true);
 
-  const gloves = Item.build(findByPrimary(baseitemtypes, 1761));
+  const gloves = Item.fromPrimary(1761);
 
   expect(gloves.implicits.mods[0].isEnchantment()).toBe(false);
 
@@ -41,7 +40,7 @@ it('should add an enchantment while preserving props', () => {
   expect(crafted_gloves.implicits.mods).toHaveLength(1);
   expect(crafted_gloves.implicits.mods[0].isEnchantment()).toBe(true);
 
-  const helmet = Item.build(findByPrimary(baseitemtypes, 1544));
+  const helmet = Item.fromPrimary(1544);
 
   expect(helmet.implicits.mods[0].isEnchantment()).toBe(false);
 

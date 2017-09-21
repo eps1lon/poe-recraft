@@ -1,16 +1,15 @@
 // @flow
-import { Container } from '../';
 import { Mod } from '../../mods/';
 
-import { findByPrimary } from '../../__fixtures__/util';
+import Container from '../Container';
 
-const mods = require('../../__fixtures__/mods.json');
+Mod.all = require('../../__fixtures__/mods.json');
 
-const sturdy = new Mod(findByPrimary(mods, 1465));
-const plusLevel = new Mod(findByPrimary(mods, 5215));
-const craftedCastSpeed = new Mod(findByPrimary(mods, 5653));
-const craftedSpellDamage = new Mod(findByPrimary(mods, 5660));
-const essenceWeaponRange = new Mod(findByPrimary(mods, 4467));
+const sturdy = Mod.fromPrimary(1465);
+const plusLevel = Mod.fromPrimary(5215);
+const craftedCastSpeed = Mod.fromPrimary(5653);
+const craftedSpellDamage = Mod.fromPrimary(5660);
+const essenceWeaponRange = Mod.fromPrimary(4467);
 
 it('should not crash', () => {
   const mc_1 = new Container([]);

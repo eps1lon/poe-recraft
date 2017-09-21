@@ -1,5 +1,7 @@
 // @flow
 import type { Item } from '../containers';
+import { type Buildable } from '../interfaces';
+import { withPrimaryFinder } from '../util/mixins';
 import type { CraftingBenchOptionsProps } from '../schema';
 
 import { type Flags, anySet } from '../util/Flags';
@@ -20,15 +22,10 @@ export type ModApplicableFlags =
 
 /**
  */
-export default class MasterBenchOption extends Generator<MasterMod, Item> {
-  static build(options: CraftingBenchOptionsProps[], option_primary: number) {
-    const option = options.find(({ primary }) => primary === option_primary);
-
-    if (option === undefined) {
-      throw new Error(`option '${option_primary}' not found`);
-    }
-
-    return new MasterBenchOption(option);
+class MasterBenchOption extends Generator<MasterMod, Item>
+  implements Buildable<CraftingBenchOptionsProps> {
+  static build(option: CraftingBenchOptionsProps) {
+    return new this(option);
   }
 
   +props: CraftingBenchOptionsProps;
@@ -134,3 +131,5 @@ export default class MasterBenchOption extends Generator<MasterMod, Item> {
     return applicable_flags;
   }
 }
+
+export default withPrimaryFinder(MasterBenchOption);

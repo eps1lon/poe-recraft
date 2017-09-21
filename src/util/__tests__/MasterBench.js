@@ -1,10 +1,9 @@
 // @flow
 import { Item } from '../../containers';
-import { findByPrimary } from '../../__fixtures__/util';
 
 import MasterBench from '../MasterBench';
 
-const baseitemtypes = require('../../__fixtures__/baseitemtypes.json');
+Item.all = require('../../__fixtures__/baseitemtypes.json');
 const craftingbenchoptions = require('../../__fixtures__/craftingbenchoptions.json');
 
 it('should build', () => {
@@ -23,7 +22,7 @@ it('should throw if the specified master key was not found', () => {
 });
 
 it('should apply an option', () => {
-  const greaves = Item.build(findByPrimary(baseitemtypes, 1650));
+  const greaves = Item.fromPrimary(1650);
   const haku = MasterBench.build(craftingbenchoptions, 6);
 
   expect(
@@ -32,7 +31,7 @@ it('should apply an option', () => {
 });
 
 it('throw if the option was not found', () => {
-  const greaves = Item.build(findByPrimary(baseitemtypes, 1650));
+  const greaves = Item.fromPrimary(1650);
   const haku = MasterBench.build(craftingbenchoptions, 6);
 
   expect(() => haku.applyOptionTo(greaves, 213324234)).toThrowError(

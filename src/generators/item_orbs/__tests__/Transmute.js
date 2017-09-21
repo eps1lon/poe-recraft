@@ -2,12 +2,11 @@
 import Transmute from '../Transmute';
 import { Item } from '../../../containers/';
 import { anySet } from '../../../util/Flags';
-import { findByPrimary } from '../../../__fixtures__/util';
 
-const baseitemtypes = require('../../../__fixtures__/baseitemtypes.json');
+Item.all = require('../../../__fixtures__/baseitemtypes.json');
 const mods = require('../../../__fixtures__/mods.json');
 
-const greaves = Item.build(findByPrimary(baseitemtypes, 1650));
+const greaves = Item.fromPrimary(1650);
 
 it('should build', () => {
   const transmute = Transmute.build(mods);

@@ -2,13 +2,11 @@
 import { Implicits } from '../';
 import { Mod } from '../../mods/';
 
-import { findByPrimary } from '../../__fixtures__/util';
+Mod.all = require('../../__fixtures__/mods.json');
 
-const mods = require('../../__fixtures__/mods.json');
-
-const sturdy = new Mod(findByPrimary(mods, 1465));
-const plusLevel = new Mod(findByPrimary(mods, 5215));
-const bladesOnHit = new Mod(findByPrimary(mods, 7058));
+const sturdy = Mod.fromPrimary(1465);
+const plusLevel = Mod.fromPrimary(5215);
+const bladesOnHit = Mod.fromPrimary(7058);
 
 it('should not crash', () => {
   const implicits = new Implicits([]);

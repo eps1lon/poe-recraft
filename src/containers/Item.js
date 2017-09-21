@@ -1,10 +1,9 @@
 // @flow
-import type { BaseItemTypeProps, TagProps } from '../schema';
-import type { ValueRange } from '../util/ValueRange';
-
-import MetaData from '../util/MetaData';
+import { type Buildable } from '../interfaces';
 import { Mod, metaMods as META_MODS } from '../mods';
-import Stat from '../util/Stat';
+import type { BaseItemTypeProps, TagProps } from '../schema';
+import { MetaData, Stat, type ValueRange } from '../util';
+import { withPrimaryFinder } from '../util/mixins';
 
 import Container from './Container';
 import Implicits from './Implicits';
@@ -42,7 +41,8 @@ export type ItemBuilder = {
  * the class only represents the explicits and is a fascade for an 
  * additional implicit container
  */
-export default class Item extends Container<Mod, ItemBuilder> {
+class Item extends Container<Mod, ItemBuilder>
+  implements Buildable<BaseItemTypeProps> {
   static MAX_ILVL = 100;
 
   static default_props: ItemProps = {
@@ -60,7 +60,7 @@ export default class Item extends Container<Mod, ItemBuilder> {
     if (meta_data == null) {
       throw new Error(`meta_data for ${clazz} not found`);
     } else {
-      return new Item(
+      return new this(
         props,
         meta_data,
         Item.default_props,
@@ -73,7 +73,7 @@ export default class Item extends Container<Mod, ItemBuilder> {
   static withBuilder(builder: ItemBuilder) {
     const { mods, baseitem, implicits, meta_data, props } = builder;
 
-    return new Item(baseitem, meta_data, props, implicits, mods);
+    return new this(baseitem, meta_data, props, implicits, mods);
   }
 
   static applyStat(
@@ -466,3 +466,5 @@ export default class Item extends Container<Mod, ItemBuilder> {
     });
   }
 }
+
+export default withPrimaryFinder(Item);

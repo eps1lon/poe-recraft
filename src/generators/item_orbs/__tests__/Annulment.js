@@ -1,16 +1,15 @@
 // @flow
 import { Item } from '../../../containers';
-import { findByPrimary } from '../../../__fixtures__/util';
 import { Alchemy } from '../index';
 import { metaMods as META_MODS, Mod, MasterMod } from '../../../mods';
 
 import Annulment from '../Annulment';
 
-const baseitemtypes = require('../../../__fixtures__/baseitemtypes.json');
-const craftingbenchoptions = require('../../../__fixtures__/craftingbenchoptions.json');
-const mods = require('../../../__fixtures__/mods.json');
+Item.all = require('../../../__fixtures__/baseitemtypes.json');
+MasterMod.option_props_list = require('../../../__fixtures__/craftingbenchoptions.json');
+Mod.all = require('../../../__fixtures__/mods.json');
 
-const greaves = Item.build(findByPrimary(baseitemtypes, 1650));
+const greaves = Item.fromPrimary(1650);
 
 it('should only work on certain items', () => {
   const annul = new Annulment();
@@ -24,7 +23,7 @@ it('should only work on certain items', () => {
 
 it('should remove one mod while preserving rarity', () => {
   const annul = new Annulment();
-  const alchemy = Alchemy.build(mods);
+  const alchemy = Alchemy.build(Mod.all);
 
   // random testing
   for (let tries = 1; tries <= 10; tries += 1) {
@@ -49,16 +48,13 @@ it('should remove one mod while preserving rarity', () => {
 it('should consider meta mods', () => {
   const annul = new Annulment();
 
-  const life = new Mod(findByPrimary(mods, 198));
-  const armour = new Mod(findByPrimary(mods, 1035));
-  const ms = new Mod(findByPrimary(mods, 1503));
-  const res = new Mod(findByPrimary(mods, 2232));
-  const strength = new Mod(findByPrimary(mods, 0));
+  const life = Mod.fromPrimary(198);
+  const armour = Mod.fromPrimary(1035);
+  const ms = Mod.fromPrimary(1503);
+  const res = Mod.fromPrimary(2232);
+  const strength = Mod.fromPrimary(0);
 
-  const locked_prefixes = MasterMod.build(
-    findByPrimary(mods, META_MODS.LOCKED_PREFIXES),
-    craftingbenchoptions,
-  );
+  const locked_prefixes = MasterMod.fromPrimary(META_MODS.LOCKED_PREFIXES);
 
   const crafted = greaves
     .setRarity('rare')

@@ -2,14 +2,13 @@
 import { calculateSpawnchance } from '../util';
 
 import { Mod } from '../../mods/';
-import { findByPrimary } from '../../__fixtures__/util';
 
-const mods = require('../../__fixtures__/mods.json');
+Mod.all = require('../../__fixtures__/mods.json');
 
 it('should calculate spawnchances from weights', () => {
-  const wicked = new Mod(findByPrimary(mods, 793));
-  const vicious = new Mod(findByPrimary(mods, 794));
-  const wickedCrafted = new Mod(findByPrimary(mods, 5749));
+  const wicked = Mod.fromPrimary(793);
+  const vicious = Mod.fromPrimary(794);
+  const wickedCrafted = Mod.fromPrimary(5749);
 
   const collection = [
     {

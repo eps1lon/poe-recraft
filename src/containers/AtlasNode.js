@@ -1,6 +1,8 @@
 // @flow
 import { Mod } from '../mods';
+import { type Buildable } from '../interfaces';
 import { type AtlasNodeProps } from '../schema';
+import { withPrimaryFinder } from '../util/mixins';
 
 import Container from './Container';
 
@@ -11,8 +13,13 @@ export type Builder = {
   props: AtlasNodeProps,
 };
 
-export default class AtlasNode extends Container<Mod, Builder> {
+class AtlasNode extends Container<Mod, Builder>
+  implements Buildable<AtlasNodeProps> {
   +props: AtlasNodeProps;
+
+  static build(props: AtlasNodeProps) {
+    return new this([], props);
+  }
 
   static withBuilder(builder: Builder): AtlasNode {
     return new AtlasNode(builder.mods, builder.props);
@@ -132,3 +139,5 @@ export default class AtlasNode extends Container<Mod, Builder> {
     );
   }
 }
+
+export default withPrimaryFinder(AtlasNode);

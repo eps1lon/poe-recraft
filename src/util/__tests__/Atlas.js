@@ -2,12 +2,13 @@
 import { AtlasNode } from '../../containers';
 import { Sextant } from '../../generators';
 import { Mod } from '../../mods';
-import { findByPrimary } from '../../__fixtures__/util';
 
 import Atlas from '../Atlas';
 
 const atlas_props = require('../../__fixtures__/atlas.json');
 const mods = require('../../__fixtures__/mods.json');
+
+Mod.all = mods;
 
 it('should build', () => {
   const atlas = Atlas.build(atlas_props);
@@ -35,7 +36,7 @@ it('should return a new only if it changed', () => {
 
 it('should add mods', () => {
   const atlas = Atlas.build(atlas_props);
-  const invasion_mod = new Mod(findByPrimary(mods, 8772));
+  const invasion_mod = Mod.fromPrimary(8772);
 
   const with_mods = atlas.addMod(invasion_mod, 'Dunes');
 
@@ -48,7 +49,7 @@ it('should add mods', () => {
 });
 
 it('should remove mods', () => {
-  const invasion_mod = new Mod(findByPrimary(mods, 8772));
+  const invasion_mod = Mod.fromPrimary(8772);
   const atlas = Atlas.build(atlas_props).addMod(invasion_mod, 'Dunes');
 
   const without_mods = atlas.removeMod(invasion_mod, 'Dunes');
@@ -62,8 +63,8 @@ it('should remove mods', () => {
 });
 
 it('should be resettable', () => {
-  const invasion_mod = new Mod(findByPrimary(mods, 8772));
-  const magick_packs_mod = new Mod(findByPrimary(mods, 8794));
+  const invasion_mod = Mod.fromPrimary(8772);
+  const magick_packs_mod = Mod.fromPrimary(8794);
   const atlas = Atlas.build(atlas_props)
     .addMod(invasion_mod, 'Dunes')
     .addMod(magick_packs_mod, 'Arcade');

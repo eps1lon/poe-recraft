@@ -3,10 +3,9 @@ import Generator from '../Generator';
 
 import { Item } from '../../containers/';
 import { Mod } from '../../mods';
-import { findByPrimary } from '../../__fixtures__/util';
 
-const baseitemtypes = require('../../__fixtures__/baseitemtypes.json');
-const mods = require('../../__fixtures__/mods.json');
+Item.all = require('../../__fixtures__/baseitemtypes.json');
+Mod.all = require('../../__fixtures__/mods.json');
 
 it('should have a mods getter which will prevent mutation', () => {
   const generator = new Generator([]);
@@ -20,11 +19,11 @@ it('should have a mods getter which will prevent mutation', () => {
 it('should work like ingame', () => {
   const generator: Generator<Mod, Item> = new Generator([]);
 
-  const greaves = Item.build(findByPrimary(baseitemtypes, 1650));
+  const greaves = Item.fromPrimary(1650);
 
-  const ofBrute = new Mod(findByPrimary(mods, 0));
-  const ofWrestler = new Mod(findByPrimary(mods, 1));
-  const sturdy = new Mod(findByPrimary(mods, 1465));
+  const ofBrute = Mod.fromPrimary(0);
+  const ofWrestler = Mod.fromPrimary(1);
+  const sturdy = Mod.fromPrimary(1465);
 
   // normal items cant have mods
   expect(generator.isModApplicableTo(ofBrute, greaves)).toEqual({

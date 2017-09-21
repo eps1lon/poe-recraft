@@ -10,28 +10,22 @@ import {
   Scouring,
 } from '../';
 import { Mod, MasterMod, metaMods as META_MODS } from '../../mods';
-import { findByPrimary } from '../../__fixtures__/util';
 
-const baseitemtypes = require('../../__fixtures__/baseitemtypes.json');
+Item.all = require('../../__fixtures__/baseitemtypes.json');
 const craftingbenchoptions = require('../../__fixtures__/craftingbenchoptions.json');
 const mods = require('../../__fixtures__/mods.json');
 
+MasterBenchOption.all = craftingbenchoptions;
+MasterMod.option_props_list = craftingbenchoptions;
+Mod.all = mods;
+
 describe('no_*_mods', () => {
-  const weapon = Item.build(findByPrimary(baseitemtypes, 1025)).setRarity(
-    'rare',
-  );
+  const weapon = Item.fromPrimary(1025).setRarity('rare');
 
-  const no_attack_mods = MasterMod.build(
-    findByPrimary(mods, META_MODS.NO_ATTACK_MODS),
-    craftingbenchoptions,
-  );
+  const no_attack_mods = MasterMod.fromPrimary(META_MODS.NO_ATTACK_MODS);
+  const no_caster_mods = MasterMod.fromPrimary(META_MODS.NO_CASTER_MODS);
 
-  const no_caster_mods = MasterMod.build(
-    findByPrimary(mods, META_MODS.NO_CASTER_MODS),
-    craftingbenchoptions,
-  );
-
-  const exalted = Exalted.build(mods);
+  const exalted = Exalted.build(Mod.all);
 
   // pre
   expect(
@@ -68,16 +62,11 @@ describe('no_*_mods', () => {
 
 describe('leo pvp mod', () => {
   it('should exclude mods above required level 28', () => {
-    const weapon = Item.build(findByPrimary(baseitemtypes, 1025)).setRarity(
-      'rare',
-    );
+    const weapon = Item.fromPrimary(1025).setRarity('rare');
 
-    const leo_mod = MasterMod.build(
-      findByPrimary(mods, META_MODS.LLD_MOD),
-      craftingbenchoptions,
-    );
+    const leo_mod = MasterMod.fromPrimary(META_MODS.LLD_MOD);
 
-    const exalted = Exalted.build(mods);
+    const exalted = Exalted.build(Mod.all);
 
     expect(weapon.props.item_level).toBeGreaterThan(50);
 
@@ -90,25 +79,14 @@ describe('leo pvp mod', () => {
 });
 
 describe('multimod', () => {
-  const bench = MasterBenchOption.build(craftingbenchoptions, 1);
+  const bench = MasterBenchOption.fromPrimary(1);
 
   it('should allow more than one crafted mod', () => {
-    const craftable_greaves = Item.build(
-      findByPrimary(baseitemtypes, 1650),
-    ).setRarity('rare');
+    const craftable_greaves = Item.fromPrimary(1650).setRarity('rare');
 
-    const craftedLife = MasterMod.build(
-      findByPrimary(mods, 5596),
-      craftingbenchoptions,
-    );
-    const craftedArmour = MasterMod.build(
-      findByPrimary(mods, 5550),
-      craftingbenchoptions,
-    );
-    const multimod = MasterMod.build(
-      findByPrimary(mods, META_MODS.MULTIMOD),
-      craftingbenchoptions,
-    );
+    const craftedLife = MasterMod.fromPrimary(5596);
+    const craftedArmour = MasterMod.fromPrimary(5550);
+    const multimod = MasterMod.fromPrimary(META_MODS.MULTIMOD);
 
     expect(bench.isModApplicableTo(craftedLife, craftable_greaves)).toEqual({
       above_lld_level: false,
@@ -154,22 +132,16 @@ describe('multimod', () => {
 
 // see http://i.imgur.com/sNpdDBS.jpg
 describe('lock_*', () => {
-  const ipd = new Mod(findByPrimary(mods, 793));
-  const flatphys = new Mod(findByPrimary(mods, 938));
-  const ias = new Mod(findByPrimary(mods, 1904));
-  const crit = new Mod(findByPrimary(mods, 2170));
+  const ipd = Mod.fromPrimary(793);
+  const flatphys = Mod.fromPrimary(938);
+  const ias = Mod.fromPrimary(1904);
+  const crit = Mod.fromPrimary(2170);
 
-  const weapon = Item.build(findByPrimary(baseitemtypes, 1025));
+  const weapon = Item.fromPrimary(1025);
 
-  const locked_prefixes = MasterMod.build(
-    findByPrimary(mods, META_MODS.LOCKED_PREFIXES),
-    craftingbenchoptions,
-  );
+  const locked_prefixes = MasterMod.fromPrimary(META_MODS.LOCKED_PREFIXES);
 
-  const locked_suffixes = MasterMod.build(
-    findByPrimary(mods, META_MODS.LOCKED_SUFFIXES),
-    craftingbenchoptions,
-  );
+  const locked_suffixes = MasterMod.fromPrimary(META_MODS.LOCKED_SUFFIXES);
 
   describe('with alteration', () => {
     const alteration = Alteration.build(mods);

@@ -1,9 +1,10 @@
 import AtlasNode from '../AtlasNode';
 import { Mod } from '../../mods';
-import { findByPrimary } from '../../__fixtures__/util';
 
 const atlas_nodes_props = require('../../__fixtures__/atlas.json');
-const mods = require('../../__fixtures__/mods.json');
+Mod.all = require('../../__fixtures__/mods.json');
+
+AtlasNode.all = atlas_nodes_props;
 
 let atlas;
 
@@ -13,13 +14,31 @@ const getNodeIndex = primary =>
 const ids = ({ props: { world_area: { id } } }) => id;
 
 beforeEach(() => {
-  atlas = atlas_nodes_props.map(node_props => new AtlasNode([], node_props));
+  atlas = AtlasNode.all.map(node_props => new AtlasNode([], node_props));
+});
+
+it('should build', () => {
+  expect(AtlasNode.fromPrimary(26)).toBeInstanceOf(AtlasNode);
+});
+
+it('should throw if props is not set', () => {
+  AtlasNode.all = undefined;
+  expect(() => AtlasNode.fromPrimary(26)).toThrowError(
+    'AtlasNode props list not set',
+  );
+  AtlasNode.all = atlas_nodes_props;
+});
+
+it('should throw the node was not found', () => {
+  expect(() => AtlasNode.fromPrimary(26132465329)).toThrowError(
+    "AtlasNode primary '26132465329' not found",
+  );
 });
 
 it('should know sextant ranges', () => {
-  const dunes = new AtlasNode([], findByPrimary(atlas_nodes_props, 26));
-  const oasis = new AtlasNode([], findByPrimary(atlas_nodes_props, 7));
-  const strand = new AtlasNode([], findByPrimary(atlas_nodes_props, 37));
+  const dunes = AtlasNode.fromPrimary(26);
+  const oasis = AtlasNode.fromPrimary(7);
+  const strand = AtlasNode.fromPrimary(37);
 
   expect(dunes.isInSextantRange(strand)).toBe(true);
   expect(strand.isInSextantRange(dunes)).toBe(true);
@@ -29,12 +48,12 @@ it('should know sextant ranges', () => {
 });
 
 it('should collect maps in range', () => {
-  const arid = new AtlasNode([], findByPrimary(atlas_nodes_props, 8));
-  const dunes = new AtlasNode([], findByPrimary(atlas_nodes_props, 26));
-  const oasis = new AtlasNode([], findByPrimary(atlas_nodes_props, 7));
-  const peninsula = new AtlasNode([], findByPrimary(atlas_nodes_props, 25));
-  const strand = new AtlasNode([], findByPrimary(atlas_nodes_props, 37));
-  const villa = new AtlasNode([], findByPrimary(atlas_nodes_props, 22));
+  const arid = AtlasNode.fromPrimary(8);
+  const dunes = AtlasNode.fromPrimary(26);
+  const oasis = AtlasNode.fromPrimary(7);
+  const peninsula = AtlasNode.fromPrimary(25);
+  const strand = AtlasNode.fromPrimary(37);
+  const villa = AtlasNode.fromPrimary(22);
 
   const affected = dunes.inSextantRange([
     arid,
@@ -93,17 +112,15 @@ it('should be able to incrementally get maps in range', () => {
 });
 
 it('should consider its area level', () => {
-  expect(new AtlasNode([], findByPrimary(atlas_nodes_props, 26)).level()).toBe(
-    72,
-  );
+  expect(AtlasNode.fromPrimary(26).level()).toBe(72);
 });
 
 it('should know by which mods its affected', () => {
   const strand_index = getNodeIndex(37);
   const waka_index = getNodeIndex(38);
 
-  const master_mod = new Mod(findByPrimary(mods, 8760));
-  const invasion_mod = new Mod(findByPrimary(mods, 8772));
+  const master_mod = Mod.fromPrimary(8760);
+  const invasion_mod = Mod.fromPrimary(8772);
 
   atlas[waka_index] = atlas[waka_index].addMod(master_mod);
 
