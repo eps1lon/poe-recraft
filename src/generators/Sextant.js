@@ -2,7 +2,7 @@
 import type { AtlasNode } from '../containers';
 import { Mod } from '../mods';
 import { type ModProps } from '../schema';
-import { type Flags } from '../util/Flags';
+import { type Flags, anySet } from '../util/Flags';
 
 import Orb, {
   type SpawnableFlag as BaseSpawnableFlag,
@@ -64,15 +64,19 @@ export default class Sextant extends Orb<Mod, AtlasNode> {
   type: $Values<typeof Sextant.type> = Sextant.type.master;
 
   applyTo(node: AtlasNode): AtlasNode {
-    const rolled = super.rollMod(node);
+    if (!anySet(this.applicableTo(node))) {
+      const rolled = super.rollMod(node);
 
-    if (rolled !== node) {
-      // something change
-      // reset the context to signal that it has to be mutated
-      this.atlas = undefined;
+      if (rolled !== node) {
+        // something change
+        // reset the context to signal that it has to be mutated
+        this.atlas = undefined;
+      }
+
+      return rolled;
+    } else {
+      return node;
     }
-
-    return rolled;
   }
 
   // applicable to any node for now

@@ -174,6 +174,10 @@ it('should consider sextant types', () => {
     wrong_tier_group: false,
   });
 
+  sextant.atlas = atlas;
+  // master on red map
+  expect(sextant.applyTo(high_tier_map)).not.toBe(high_tier_map);
+
   sextant.type = Sextant.type.journeyman;
   expect(sextant.applicableTo(low_tier_map)).toEqual({
     wrong_tier_group: false,
@@ -185,6 +189,10 @@ it('should consider sextant types', () => {
     wrong_tier_group: true,
   });
 
+  sextant.atlas = atlas;
+  // journeyman on red map
+  expect(sextant.applyTo(high_tier_map)).toBe(high_tier_map);
+
   sextant.type = Sextant.type.apprentice;
   expect(sextant.applicableTo(low_tier_map)).toEqual({
     wrong_tier_group: false,
@@ -195,4 +203,8 @@ it('should consider sextant types', () => {
   expect(sextant.applicableTo(high_tier_map)).toEqual({
     wrong_tier_group: true,
   });
+
+  sextant.atlas = atlas;
+  // apprentice on yellow map
+  expect(sextant.applyTo(mid_tier_map)).toBe(mid_tier_map);
 });
