@@ -31,12 +31,16 @@ export default class MasterBenchOption extends Generator<MasterMod, Item> {
     return new MasterBenchOption(option);
   }
 
-  option: CraftingBenchOptionsProps;
+  +props: CraftingBenchOptionsProps;
 
   constructor(option: CraftingBenchOptionsProps) {
     super([new MasterMod(option)]);
 
-    this.option = option;
+    (this: any).props = option;
+  }
+
+  get mod(): ?MasterMod {
+    return this.mods[0];
   }
 
   /**
@@ -45,12 +49,12 @@ export default class MasterBenchOption extends Generator<MasterMod, Item> {
    * cant overload extended method. so we have to set the chosen option before
    */
   applyTo(item: Item): Item {
-    const mod = this.mods[0];
+    const mod: ?MasterMod = this.mods[0];
 
     /**
        * TODO customactions for no mod
        */
-    if (mod !== undefined) {
+    if (mod != null) {
       // white gets upgraded to blue
       const crafted_item =
         item.props.rarity === 'normal' ? item.setRarity('magic') : item;

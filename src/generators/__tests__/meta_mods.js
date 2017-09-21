@@ -5,7 +5,7 @@ import {
   Augment,
   Chaos,
   Exalted,
-  MasterBench,
+  MasterBenchOption,
   Regal,
   Scouring,
 } from '../';
@@ -93,7 +93,7 @@ describe('leo pvp mod', () => {
 });
 
 describe('multimod', () => {
-  const bench = new MasterBench([]);
+  const bench = MasterBenchOption.build(craftingbenchoptions, 1);
 
   it('should allow more than one crafted mod', () => {
     const craftable_greaves = Item.build(

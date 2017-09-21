@@ -3,8 +3,8 @@ import type { Item } from '../containers/';
 import type { CraftingBenchOptionsProps, ModProps } from '../schema';
 
 import { Mod } from '../mods/';
+import { MasterBench } from '../util';
 import Generator, { type GeneratorDetails } from './Generator';
-import MasterBench from './MasterBench';
 import { Talisman, Transmute, Vaal } from './item_orbs/';
 
 /**
@@ -17,7 +17,7 @@ export default class ItemShowcase extends Generator<Mod, Item> {
   vaal: Vaal;
 
   constructor(props: ModProps[], options: CraftingBenchOptionsProps[]) {
-    const master = new MasterBench(options);
+    const master = MasterBench.build(options);
     const talisman = Talisman.build(props);
     const transmute = Transmute.build(props);
     const vaal = Vaal.build(props);
@@ -26,7 +26,7 @@ export default class ItemShowcase extends Generator<Mod, Item> {
       ...talisman.mods,
       ...transmute.mods,
       ...vaal.mods,
-      ...master.mods,
+      ...master.getAvailableMods(),
     ];
 
     super(mods);

@@ -7,7 +7,6 @@ import { findByPrimary } from '../../__fixtures__/util';
 const craftingbenchoptions = require('../../__fixtures__/craftingbenchoptions.json');
 const baseitemtypes = require('../../__fixtures__/baseitemtypes.json');
 const meta_datas = require('../../__fixtures__/meta_data.json');
-const mods = require('../../__fixtures__/mods.json');
 
 it('should build with master mods', () => {
   const haku_life = MasterBenchOption.build(craftingbenchoptions, 1);
@@ -35,13 +34,10 @@ it('should apply the chosen option', () => {
 });
 
 describe('applicable mods', () => {
-  const bench = new MasterBenchOption([]);
+  const bench = MasterBenchOption.build(craftingbenchoptions, 1);
   const greaves = Item.build(findByPrimary(baseitemtypes, 1650), meta_datas);
 
-  const craftedLife = MasterMod.build(
-    findByPrimary(mods, 5596),
-    craftingbenchoptions,
-  );
+  const craftedLife = bench.mods[0];
 
   it('should check for equipment type', () => {
     const weapon = Item.build(
