@@ -2,6 +2,7 @@
 // api surface
 export { default as Alchemy } from './Alchemy';
 export { default as Alteration } from './Alteration';
+export { default as Annulment } from './Annulment';
 export { default as Augment } from './Augment';
 export { default as Chaos } from './Chaos';
 export { default as EnchantmentBench } from './EnchantmentBench';
