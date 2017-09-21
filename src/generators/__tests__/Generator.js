@@ -6,7 +6,6 @@ import { Mod } from '../../mods';
 import { findByPrimary } from '../../__fixtures__/util';
 
 const baseitemtypes = require('../../__fixtures__/baseitemtypes.json');
-const meta_datas = require('../../__fixtures__/meta_data.json');
 const mods = require('../../__fixtures__/mods.json');
 
 it('should have a mods getter which will prevent mutation', () => {
@@ -21,7 +20,7 @@ it('should have a mods getter which will prevent mutation', () => {
 it('should work like ingame', () => {
   const generator: Generator<Mod, Item> = new Generator([]);
 
-  const greaves = Item.build(findByPrimary(baseitemtypes, 1650), meta_datas);
+  const greaves = Item.build(findByPrimary(baseitemtypes, 1650));
 
   const ofBrute = new Mod(findByPrimary(mods, 0));
   const ofWrestler = new Mod(findByPrimary(mods, 1));

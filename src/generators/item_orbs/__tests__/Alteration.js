@@ -4,10 +4,9 @@ import { Item } from '../../../containers/';
 import { findByPrimary } from '../../../__fixtures__/util';
 
 const baseitemtypes = require('../../../__fixtures__/baseitemtypes.json');
-const meta_datas = require('../../../__fixtures__/meta_data.json');
 const mods = require('../../../__fixtures__/mods.json');
 
-const greaves = Item.build(findByPrimary(baseitemtypes, 1650), meta_datas);
+const greaves = Item.build(findByPrimary(baseitemtypes, 1650));
 
 it('should build', () => {
   const alteration = Alteration.build(mods);

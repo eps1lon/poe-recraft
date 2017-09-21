@@ -3,7 +3,6 @@ import type { Item } from '../containers';
 import { MasterBenchOption } from '../generators';
 import type { CraftingBenchOptionsProps } from '../schema';
 
-import { anySet } from '../util/Flags';
 import { MasterMod } from '../mods';
 
 type OptionId = number;

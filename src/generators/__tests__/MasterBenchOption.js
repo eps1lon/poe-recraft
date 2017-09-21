@@ -6,7 +6,6 @@ import { findByPrimary } from '../../__fixtures__/util';
 
 const craftingbenchoptions = require('../../__fixtures__/craftingbenchoptions.json');
 const baseitemtypes = require('../../__fixtures__/baseitemtypes.json');
-const meta_datas = require('../../__fixtures__/meta_data.json');
 
 it('should build with master mods', () => {
   const haku_life = MasterBenchOption.build(craftingbenchoptions, 1);
@@ -24,7 +23,7 @@ it('should throw when picking an unavailable option', () => {
 
 it('should apply the chosen option', () => {
   const haku_life = MasterBenchOption.build(craftingbenchoptions, 1);
-  const greaves = Item.build(findByPrimary(baseitemtypes, 1650), meta_datas);
+  const greaves = Item.build(findByPrimary(baseitemtypes, 1650));
 
   const crafted = haku_life.applyTo(greaves);
 
@@ -35,15 +34,14 @@ it('should apply the chosen option', () => {
 
 describe('applicable mods', () => {
   const bench = MasterBenchOption.build(craftingbenchoptions, 1);
-  const greaves = Item.build(findByPrimary(baseitemtypes, 1650), meta_datas);
+  const greaves = Item.build(findByPrimary(baseitemtypes, 1650));
 
   const craftedLife = bench.mods[0];
 
   it('should check for equipment type', () => {
-    const weapon = Item.build(
-      findByPrimary(baseitemtypes, 1025),
-      meta_datas,
-    ).setRarity('magic');
+    const weapon = Item.build(findByPrimary(baseitemtypes, 1025)).setRarity(
+      'magic',
+    );
 
     expect(bench.isModApplicableTo(craftedLife, weapon)).toEqual({
       above_lld_level: false,
@@ -55,10 +53,9 @@ describe('applicable mods', () => {
       wrong_itemclass: true,
     });
 
-    const jewel = Item.build(
-      findByPrimary(baseitemtypes, 2273),
-      meta_datas,
-    ).setRarity('magic');
+    const jewel = Item.build(findByPrimary(baseitemtypes, 2273)).setRarity(
+      'magic',
+    );
 
     expect(bench.isModApplicableTo(craftedLife, jewel)).toEqual({
       above_lld_level: false,

@@ -1,12 +1,13 @@
 // @flow
-import type { BaseItemTypeProps, MetaDataMap, TagProps } from '../schema';
+import type { BaseItemTypeProps, TagProps } from '../schema';
 import type { ValueRange } from '../util/ValueRange';
 
-import Implicits from './Implicits';
 import MetaData from '../util/MetaData';
 import { Mod, metaMods as META_MODS } from '../mods';
-import Container from './Container';
 import Stat from '../util/Stat';
+
+import Container from './Container';
+import Implicits from './Implicits';
 
 export type Rarity = 'normal' | 'magic' | 'rare' | 'unique' | 'showcase';
 
@@ -52,9 +53,9 @@ export default class Item extends Container<Mod, ItemBuilder> {
     rarity: 'normal',
   };
 
-  static build(props: BaseItemTypeProps, meta_datas: MetaDataMap): Item {
+  static build(props: BaseItemTypeProps): Item {
     const clazz = props.inherits_from.split(/[\\/]/).pop();
-    const meta_data = MetaData.build(clazz, meta_datas);
+    const meta_data = MetaData.build(clazz);
 
     if (meta_data == null) {
       throw new Error(`meta_data for ${clazz} not found`);

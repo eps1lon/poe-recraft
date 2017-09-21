@@ -6,7 +6,6 @@ import { findByPrimary } from '../../__fixtures__/util';
 
 const baseitemtypes = require('../../__fixtures__/baseitemtypes.json');
 const craftingbenchoptions = require('../../__fixtures__/craftingbenchoptions.json');
-const meta_datas = require('../../__fixtures__/meta_data.json');
 const mods = require('../../__fixtures__/mods.json');
 
 it('should consider tags', () => {
@@ -19,10 +18,9 @@ it('should consider tags', () => {
   const ipd = new Mod(findByPrimary(mods, 793));
   const sturdy = new Mod(findByPrimary(mods, 1465));
 
-  const weapon = Item.build(
-    findByPrimary(baseitemtypes, 1025),
-    meta_datas,
-  ).setRarity('rare');
+  const weapon = Item.build(findByPrimary(baseitemtypes, 1025)).setRarity(
+    'rare',
+  );
 
   expect(ipd.spawnweightFor(weapon)).toBe(1000);
   expect(orb.isModSpawnableOn(ipd, weapon)).toEqual({

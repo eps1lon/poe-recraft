@@ -14,14 +14,12 @@ import { findByPrimary } from '../../__fixtures__/util';
 
 const baseitemtypes = require('../../__fixtures__/baseitemtypes.json');
 const craftingbenchoptions = require('../../__fixtures__/craftingbenchoptions.json');
-const meta_datas = require('../../__fixtures__/meta_data.json');
 const mods = require('../../__fixtures__/mods.json');
 
 describe('no_*_mods', () => {
-  const weapon = Item.build(
-    findByPrimary(baseitemtypes, 1025),
-    meta_datas,
-  ).setRarity('rare');
+  const weapon = Item.build(findByPrimary(baseitemtypes, 1025)).setRarity(
+    'rare',
+  );
 
   const no_attack_mods = MasterMod.build(
     findByPrimary(mods, META_MODS.NO_ATTACK_MODS),
@@ -70,10 +68,9 @@ describe('no_*_mods', () => {
 
 describe('leo pvp mod', () => {
   it('should exclude mods above required level 28', () => {
-    const weapon = Item.build(
-      findByPrimary(baseitemtypes, 1025),
-      meta_datas,
-    ).setRarity('rare');
+    const weapon = Item.build(findByPrimary(baseitemtypes, 1025)).setRarity(
+      'rare',
+    );
 
     const leo_mod = MasterMod.build(
       findByPrimary(mods, META_MODS.LLD_MOD),
@@ -98,7 +95,6 @@ describe('multimod', () => {
   it('should allow more than one crafted mod', () => {
     const craftable_greaves = Item.build(
       findByPrimary(baseitemtypes, 1650),
-      meta_datas,
     ).setRarity('rare');
 
     const craftedLife = MasterMod.build(
@@ -163,7 +159,7 @@ describe('lock_*', () => {
   const ias = new Mod(findByPrimary(mods, 1904));
   const crit = new Mod(findByPrimary(mods, 2170));
 
-  const weapon = Item.build(findByPrimary(baseitemtypes, 1025), meta_datas);
+  const weapon = Item.build(findByPrimary(baseitemtypes, 1025));
 
   const locked_prefixes = MasterMod.build(
     findByPrimary(mods, META_MODS.LOCKED_PREFIXES),

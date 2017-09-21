@@ -5,7 +5,6 @@ import Stat from '../../util/Stat';
 import { findByPrimary } from '../../__fixtures__/util';
 
 const baseitemtypes = require('../../__fixtures__/baseitemtypes.json');
-const meta_datas = require('../../__fixtures__/meta_data.json');
 const mods = require('../../__fixtures__/mods.json');
 
 const greavesProps = findByPrimary(baseitemtypes, 1650);
@@ -16,20 +15,17 @@ const plusLevel = new Mod(findByPrimary(mods, 5215));
 const craftedCastSpeed = new Mod(findByPrimary(mods, 5653));
 
 it('should build with the implicits of the baseitem', () => {
-  const item = Item.build(greavesProps, meta_datas);
+  const item = Item.build(greavesProps);
 
   expect(item).toBeInstanceOf(Item);
 
-  const gripped_gloves = Item.build(
-    findByPrimary(baseitemtypes, 1761),
-    meta_datas,
-  );
+  const gripped_gloves = Item.build(findByPrimary(baseitemtypes, 1761));
 
   expect(gripped_gloves.implicits.mods).toHaveLength(1);
 });
 
 it('should know to which container it should add', () => {
-  const item = Item.build(greavesProps, meta_datas).setRarity('rare');
+  const item = Item.build(greavesProps).setRarity('rare');
 
   expect(item.implicits.mods).toHaveLength(0);
   expect(item.addMod(sturdy).implicits.mods).toHaveLength(0);
@@ -41,7 +37,7 @@ it('should know to which container it should add', () => {
 });
 
 it('should also not hold duplicate mods', () => {
-  const item = Item.build(greavesProps, meta_datas).setRarity('rare');
+  const item = Item.build(greavesProps).setRarity('rare');
 
   expect(item.affixes.mods).toHaveLength(0);
   expect(item.addMod(sturdy).affixes.mods).toHaveLength(1);
@@ -55,7 +51,7 @@ it('should also not hold duplicate mods', () => {
 });
 
 it('should only remove affixes', () => {
-  const item = Item.build(greavesProps, meta_datas)
+  const item = Item.build(greavesProps)
     .setRarity('rare')
     .addMod(plusLevel)
     .addMod(sturdy);
@@ -68,7 +64,7 @@ it('should only remove affixes', () => {
 });
 
 it('should not change with no mods when removing', () => {
-  const item = Item.build(greavesProps, meta_datas).setRarity('rare');
+  const item = Item.build(greavesProps).setRarity('rare');
 
   expect(item.removeAllMods()).toBe(item);
 
@@ -79,28 +75,27 @@ it('should not change with no mods when removing', () => {
 });
 
 it('changes referentiel equality', () => {
-  const item = Item.build(greavesProps, meta_datas)
+  const item = Item.build(greavesProps)
     .setRarity('rare')
     .addMod(sturdy);
   expect(item.addMod(sturdy)).not.toBe(item);
 });
 
 it('should consider the tags of meta data, baseitem and its mods', () => {
-  const item = Item.build(greavesProps, meta_datas).setRarity('rare');
+  const item = Item.build(greavesProps).setRarity('rare');
 
   expect(item.getTags()).toHaveLength(4);
   expect(item.addMod(craftedCastSpeed).getTags()).toHaveLength(5);
 
-  const paganWand = Item.build(
-    findByPrimary(baseitemtypes, 1011),
-    meta_datas,
-  ).setRarity('rare');
+  const paganWand = Item.build(findByPrimary(baseitemtypes, 1011)).setRarity(
+    'rare',
+  );
 
   expect(paganWand.getTags()).toHaveLength(8);
 });
 
 it('should make a mirrored version', () => {
-  const item = Item.build(greavesProps, meta_datas);
+  const item = Item.build(greavesProps);
   const mirrored = item.mirror();
 
   expect(mirrored).not.toBe(item);
@@ -109,7 +104,7 @@ it('should make a mirrored version', () => {
 });
 
 it('should not be mirrorable if it is already mirrored', () => {
-  const item = Item.build(greavesProps, meta_datas);
+  const item = Item.build(greavesProps);
   const mirrored = item.mirror();
 
   expect(() => mirrored.mirror()).toThrowError(
@@ -118,7 +113,7 @@ it('should not be mirrorable if it is already mirrored', () => {
 });
 
 it('should make a corrupted version', () => {
-  const item = Item.build(greavesProps, meta_datas);
+  const item = Item.build(greavesProps);
   const corrupted = item.corrupt();
 
   expect(corrupted).not.toBe(item);
@@ -127,7 +122,7 @@ it('should make a corrupted version', () => {
 });
 
 it('should not be corruptable if it is already corrupted', () => {
-  const item = Item.build(greavesProps, meta_datas);
+  const item = Item.build(greavesProps);
   const corrupted = item.corrupt();
 
   expect(() => corrupted.corrupt()).toThrowError(
@@ -136,10 +131,9 @@ it('should not be corruptable if it is already corrupted', () => {
 });
 
 it('should have stats grouped by id', () => {
-  const weapon = Item.build(
-    findByPrimary(baseitemtypes, 1025),
-    meta_datas,
-  ).setRarity('rare');
+  const weapon = Item.build(findByPrimary(baseitemtypes, 1025)).setRarity(
+    'rare',
+  );
 
   const ipd = new Mod(findByPrimary(mods, 793));
   const ipd_acc = new Mod(findByPrimary(mods, 790));
@@ -172,7 +166,7 @@ it('should have stats grouped by id', () => {
 });
 
 it('should upgrade rarity normla->magic-rare', () => {
-  const normal = Item.build(greavesProps, meta_datas);
+  const normal = Item.build(greavesProps);
 
   const magic = normal.upgradeRarity();
 
@@ -190,7 +184,7 @@ it('should upgrade rarity normla->magic-rare', () => {
 });
 
 it('should generate the name lines like ingame', () => {
-  const normal = Item.build(greavesProps, meta_datas);
+  const normal = Item.build(greavesProps);
 
   expect(normal.nameLines()).toEqual(['Iron Greaves']);
 
@@ -217,10 +211,9 @@ it('should generate the name lines like ingame', () => {
 });
 
 it('should consider its mods for its required level', () => {
-  const greaves = Item.build(
-    findByPrimary(baseitemtypes, 1652),
-    meta_datas,
-  ).setRarity('rare');
+  const greaves = Item.build(findByPrimary(baseitemtypes, 1652)).setRarity(
+    'rare',
+  );
 
   expect(greaves.requiredLevel()).toBe(23);
   // 17 mod
@@ -234,7 +227,7 @@ it('should consider its mods for its required level', () => {
 });
 
 it('should have attr requirements', () => {
-  const greaves = Item.build(findByPrimary(baseitemtypes, 1652), meta_datas);
+  const greaves = Item.build(findByPrimary(baseitemtypes, 1652));
 
   expect(greaves.requirements()).toEqual({
     level: 23,

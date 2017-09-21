@@ -1,4 +1,3 @@
-// @flow
 import { Item } from 'poe-mods/containers';
 import { Transmute } from 'poe-mods';
 
