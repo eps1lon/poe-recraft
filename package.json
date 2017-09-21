@@ -1,9 +1,11 @@
 {
   "name": "poe-mods",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "reverse engineered behavior of Mods in Path of Exile",
   "main": "lib/index.js",
-  "files": ["lib/"],
+  "files": [
+    "lib/"
+  ],
   "scripts": {
     "build": "npm run build:clean && npm run build:lib && npm run build:flow",
     "build:clean": "rimraf lib",
@@ -22,7 +24,10 @@
     "type": "git",
     "url": "git+https://github.com/eps1lon/poe-mods.git"
   },
-  "keywords": ["js", "poe"],
+  "keywords": [
+    "js",
+    "poe"
+  ],
   "author": "eps1lon",
   "license": "MIT",
   "bugs": {
@@ -57,8 +62,14 @@
   },
   "jest": {
     "collectCoverage": false,
-    "collectCoverageFrom": ["src/**/*.js"],
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
     "coverageDirectory": "coverage"
   },
-  "pre-push": ["lint", "format:check", "test:check"]
+  "pre-push": [
+    "lint",
+    "format:check",
+    "test:check"
+  ]
 }
