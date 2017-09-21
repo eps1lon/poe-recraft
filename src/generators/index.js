@@ -15,5 +15,5 @@ export {
 } from './item_orbs/';
 
 export { default as ItemShowcase } from './ItemShowcase';
-export { default as MasterBench } from './MasterBench';
+export { default as MasterBenchOption } from './MasterBenchOption';
 export { default as Sextant } from './Sextant';
