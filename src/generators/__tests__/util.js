@@ -1,14 +1,14 @@
 // @flow
+import { createTables } from '../../__fixtures__/util';
+
 import { calculateSpawnchance } from '../util';
 
-import { Mod } from '../../mods/';
-
-Mod.all = require('../../__fixtures__/mods.json');
+const { mods } = createTables();
 
 it('should calculate spawnchances from weights', () => {
-  const wicked = Mod.fromPrimary(793);
-  const vicious = Mod.fromPrimary(794);
-  const wickedCrafted = Mod.fromPrimary(5749);
+  const wicked = mods.fromPrimary(793);
+  const vicious = mods.fromPrimary(794);
+  const wickedCrafted = mods.fromPrimary(5749);
 
   const collection = [
     {

@@ -3,7 +3,7 @@ import type { Item } from '../containers';
 import { MasterBenchOption } from '../generators';
 import type { CraftingBenchOptionsProps } from '../schema';
 
-import { MasterMod } from '../mods';
+import { Mod } from '../mods';
 
 type OptionId = number;
 
@@ -47,7 +47,7 @@ export default class MasterBench {
     return option.applyTo(item);
   }
 
-  getAvailableMods(): MasterMod[] {
+  getAvailableMods(): Mod[] {
     return this.options.map(({ mod }) => mod).filter(Boolean);
   }
 

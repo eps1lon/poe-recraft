@@ -1,21 +1,21 @@
 // @flow
-import Transmute from '../Transmute';
-import { Item } from '../../../containers/';
+import { createTables } from '../../../__fixtures__/util';
 import { anySet } from '../../../util/Flags';
 
-Item.all = require('../../../__fixtures__/baseitemtypes.json');
-const mods = require('../../../__fixtures__/mods.json');
+import Transmute from '../Transmute';
 
-const greaves = Item.fromPrimary(1650);
+const { items, mods } = createTables();
+
+const greaves = items.fromPrimary(1650);
 
 it('should build', () => {
-  const transmute = Transmute.build(mods);
+  const transmute = Transmute.build(mods.all());
 
   expect(transmute).toBeInstanceOf(Transmute);
 });
 
 it('should only have prefixes and suffixes', () => {
-  const transmute = Transmute.build(mods);
+  const transmute = Transmute.build(mods.all());
 
   expect(
     transmute.getAvailableMods().every(mod => mod.isPrefix() || mod.isSuffix()),
@@ -23,7 +23,7 @@ it('should only have prefixes and suffixes', () => {
 });
 
 it('should only apply to white items', () => {
-  const transmute = Transmute.build(mods);
+  const transmute = Transmute.build(mods.all());
 
   expect(greaves.props.rarity).toBe('normal');
 
@@ -41,7 +41,7 @@ it('should only apply to white items', () => {
 });
 
 it('should add mods while upgrading the item to magic', () => {
-  const transmute = Transmute.build(mods);
+  const transmute = Transmute.build(mods.all());
   const craftable = greaves;
 
   expect(anySet(transmute.applicableTo(craftable))).toBe(false);

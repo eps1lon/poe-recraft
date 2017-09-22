@@ -1,15 +1,14 @@
 // @flow
-import { Mod } from '../../mods/';
-
+import { createTables } from '../../__fixtures__/util';
 import Container from '../Container';
 
-Mod.all = require('../../__fixtures__/mods.json');
+const { mods } = createTables();
 
-const sturdy = Mod.fromPrimary(1465);
-const plusLevel = Mod.fromPrimary(5215);
-const craftedCastSpeed = Mod.fromPrimary(5653);
-const craftedSpellDamage = Mod.fromPrimary(5660);
-const essenceWeaponRange = Mod.fromPrimary(4467);
+const sturdy = mods.fromPrimary(1465);
+const plusLevel = mods.fromPrimary(5215);
+const craftedCastSpeed = mods.fromPrimary(5653);
+const craftedSpellDamage = mods.fromPrimary(5660);
+const essenceWeaponRange = mods.fromPrimary(4467);
 
 it('should not crash', () => {
   const mc_1 = new Container([]);

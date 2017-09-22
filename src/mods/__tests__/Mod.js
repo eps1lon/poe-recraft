@@ -1,24 +1,16 @@
 // @flow
+import { createTables } from '../../__fixtures__/util';
+
 import Mod from '../Mod';
 
-const mods = require('../../__fixtures__/mods.json');
+const { mods } = createTables();
 
-Mod.all = mods;
-
-const ofBrute = Mod.fromPrimary(0);
-const sturdy = Mod.fromPrimary(1465);
-const plusLevel = Mod.fromPrimary(5215);
+const ofBrute = mods.fromPrimary(0);
+const sturdy = mods.fromPrimary(1465);
+const plusLevel = mods.fromPrimary(5215);
 
 it('should build', () => {
-  expect(Mod.fromPrimary(1650)).toBeInstanceOf(Mod);
-
-  Mod.all = undefined;
-  expect(() => Mod.fromPrimary(1650)).toThrowError('Mod props list not set');
-  Mod.all = mods;
-
-  expect(() => Mod.fromPrimary(1600050)).toThrowError(
-    "Mod primary '1600050' not found",
-  );
+  expect(mods.fromPrimary(1650)).toBeInstanceOf(Mod);
 });
 
 it('should know its type', () => {
@@ -52,7 +44,7 @@ it('should fallback to the default spawnweight if defined', () => {
       return [{ id: 'dummy_tag', primary: 1 }];
     },
   };
-  const sextant_mod = Mod.fromPrimary(8776);
+  const sextant_mod = mods.fromPrimary(8776);
 
   expect(sextant_mod.spawnweightFor(taggable));
 });

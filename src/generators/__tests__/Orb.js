@@ -1,20 +1,20 @@
 // @flow
-import Orb from '../Orb';
+import { createTables } from '../../__fixtures__/util';
 import { Item } from '../../containers/';
-import { metaMods as META_MODS, Mod, MasterMod } from '../../mods';
+import { metaMods as META_MODS, Mod } from '../../mods';
 
-Item.all = require('../../__fixtures__/baseitemtypes.json');
-MasterMod.option_props_list = require('../../__fixtures__/craftingbenchoptions.json');
-Mod.all = require('../../__fixtures__/mods.json');
+import Orb from '../Orb';
+
+const { items, mods } = createTables();
 
 it('should consider tags', () => {
   const orb: Orb<Mod, Item> = new Orb([]);
 
-  const no_attack_mods = MasterMod.fromPrimary(META_MODS.NO_ATTACK_MODS);
-  const ipd = Mod.fromPrimary(793);
-  const sturdy = Mod.fromPrimary(1465);
+  const no_attack_mods = mods.fromPrimary(META_MODS.NO_ATTACK_MODS);
+  const ipd = mods.fromPrimary(793);
+  const sturdy = mods.fromPrimary(1465);
 
-  const weapon = Item.fromPrimary(1025).setRarity('rare');
+  const weapon = items.fromPrimary(1025).setRarity('rare');
 
   expect(ipd.spawnweightFor(weapon)).toBe(1000);
   expect(orb.isModSpawnableOn(ipd, weapon)).toEqual({

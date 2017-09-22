@@ -1,47 +1,60 @@
+// @flow
+import { createTables } from '../../__fixtures__/util';
 import { AtlasNode } from '../../containers';
 
 import Sextant from '../Sextant';
 
-const atlas_nodes_props = require('../../__fixtures__/atlas.json');
-const mods = require('../../__fixtures__/mods.json');
+const { atlas: atlas_nodes_props, mods } = createTables();
 
-let atlas;
+let atlas: AtlasNode[];
 
-const getNode = primary => atlas.find(node => node.props.primary === primary);
+function getFromCollection<T: { +props: { primary: number } }>(
+  primary: number,
+  collection: T[],
+): T {
+  const node = collection.find(other => other.props.primary === primary);
+
+  if (node === undefined) throw new Error(`node ${primary} not found`);
+
+  return node;
+}
+
 const getNodeIndex = primary =>
   atlas.findIndex(node => node.props.primary === primary);
 
 const modIds = ({ props: { id } }) => id;
 
 beforeEach(() => {
-  atlas = atlas_nodes_props.map(node_props => new AtlasNode([], node_props));
+  atlas = atlas_nodes_props
+    .all()
+    .map(node_props => new AtlasNode([], node_props));
 });
 
 it('should build', () => {
-  const sextant = Sextant.build(mods);
+  const sextant = Sextant.build(mods.all());
 
   expect(sextant).toBeInstanceOf(Sextant);
   expect(sextant.getAvailableMods()).toMatchSnapshot();
 });
 
 it('should consider maplevel', () => {
-  const sextant = Sextant.build(mods);
+  const sextant = Sextant.build(mods.all());
   sextant.atlas = atlas;
 
-  const dunes = getNode(26);
+  const dunes = getFromCollection(26, atlas);
 
   expect(sextant.modsFor(dunes).every(({ mod }) => mod.props.level <= 72)).toBe(
     true,
   );
 
-  const cemetery = getNode(53);
+  const cemetery = getFromCollection(53, atlas);
   const cemetery_mods = sextant.modsFor(cemetery);
   // all apprentice
   expect(cemetery_mods.every(({ mod }) => mod.props.level <= 75)).toBe(true);
   // some journeyman's
   expect(cemetery_mods.some(({ mod }) => mod.props.level >= 73)).toBe(true);
 
-  const chimera = getNode(120);
+  const chimera = getFromCollection(120, atlas);
   const chimera_mods = sextant.modsFor(chimera);
   // all apprentice
   expect(chimera_mods.every(({ mod }) => mod.props.level <= 83)).toBe(true);
@@ -53,11 +66,10 @@ it('should consider maplevel', () => {
 
 describe('sextant blocking', () => {
   it('should work deterministically', () => {
-    const sextant = Sextant.build(mods);
+    const sextant = Sextant.build(mods.all());
     sextant.atlas = atlas;
 
-    const getMod = primary =>
-      sextant.mods.find(({ props }) => primary === props.primary);
+    const getMod = primary => getFromCollection(primary, sextant.mods);
 
     // this is the map on which we wanna block
     const dunes_index = getNodeIndex(26);
@@ -122,9 +134,9 @@ describe('sextant blocking', () => {
 });
 
 it('shouldnt mutate its context', () => {
-  const sextant = Sextant.build(mods);
+  const sextant = Sextant.build(mods.all());
 
-  const dunes = getNode(26);
+  const dunes = getFromCollection(26, atlas);
 
   expect(() => sextant.applyTo(dunes)).toThrowError(
     'context not set, set atlas',
@@ -133,8 +145,8 @@ it('shouldnt mutate its context', () => {
   sextant.atlas = atlas;
   const rolled = sextant.applyTo(dunes);
 
-  expect(getNode(26)).toBe(dunes);
-  expect(getNode(26)).not.toBe(rolled);
+  expect(getFromCollection(26, atlas)).toBe(dunes);
+  expect(getFromCollection(26, atlas)).not.toBe(rolled);
 
   expect(() => sextant.applyTo(rolled)).toThrowError(
     'context not set, set atlas',
@@ -142,7 +154,7 @@ it('shouldnt mutate its context', () => {
 });
 
 it('should consider adjacents for spawnweight if it is zero', () => {
-  const sextant = Sextant.build(mods);
+  const sextant = Sextant.build(mods.all());
   sextant.atlas = atlas;
 
   const getMod = primary =>
@@ -153,15 +165,19 @@ it('should consider adjacents for spawnweight if it is zero', () => {
 
   const rollable_mods = sextant.modsFor(atlas[waka_index]);
   expect(rollable_mods.map(({ mod }) => mod)).toContain(breach_mod);
-  expect(rollable_mods.every(({ spawnweight }) => spawnweight > 0)).toBe(true);
+  expect(
+    rollable_mods.every(
+      ({ spawnweight }) => spawnweight != null && spawnweight > 0,
+    ),
+  ).toBe(true);
 });
 
 it('should consider sextant types', () => {
-  const sextant = Sextant.build(mods);
+  const sextant = Sextant.build(mods.all());
 
-  const low_tier_map = getNode(12); // marshes
-  const mid_tier_map = getNode(76); // courtyard
-  const high_tier_map = getNode(105); // plaza
+  const low_tier_map = getFromCollection(12, atlas); // marshes
+  const mid_tier_map = getFromCollection(76, atlas); // courtyard
+  const high_tier_map = getFromCollection(105, atlas); // plaza
 
   expect(sextant.type).toBe(Sextant.type.master);
   expect(sextant.applicableTo(low_tier_map)).toEqual({

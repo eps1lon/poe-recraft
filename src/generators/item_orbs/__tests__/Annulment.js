@@ -1,15 +1,13 @@
 // @flow
-import { Item } from '../../../containers';
+import { createTables } from '../../../__fixtures__/util';
 import { Alchemy } from '../index';
-import { metaMods as META_MODS, Mod, MasterMod } from '../../../mods';
+import { metaMods as META_MODS } from '../../../mods';
 
 import Annulment from '../Annulment';
 
-Item.all = require('../../../__fixtures__/baseitemtypes.json');
-MasterMod.option_props_list = require('../../../__fixtures__/craftingbenchoptions.json');
-Mod.all = require('../../../__fixtures__/mods.json');
+const { items, mods } = createTables();
 
-const greaves = Item.fromPrimary(1650);
+const greaves = items.fromPrimary(1650);
 
 it('should only work on certain items', () => {
   const annul = new Annulment();
@@ -23,7 +21,7 @@ it('should only work on certain items', () => {
 
 it('should remove one mod while preserving rarity', () => {
   const annul = new Annulment();
-  const alchemy = Alchemy.build(Mod.all);
+  const alchemy = Alchemy.build(mods.all());
 
   // random testing
   for (let tries = 1; tries <= 10; tries += 1) {
@@ -48,13 +46,13 @@ it('should remove one mod while preserving rarity', () => {
 it('should consider meta mods', () => {
   const annul = new Annulment();
 
-  const life = Mod.fromPrimary(198);
-  const armour = Mod.fromPrimary(1035);
-  const ms = Mod.fromPrimary(1503);
-  const res = Mod.fromPrimary(2232);
-  const strength = Mod.fromPrimary(0);
+  const life = mods.fromPrimary(198);
+  const armour = mods.fromPrimary(1035);
+  const ms = mods.fromPrimary(1503);
+  const res = mods.fromPrimary(2232);
+  const strength = mods.fromPrimary(0);
 
-  const locked_prefixes = MasterMod.fromPrimary(META_MODS.LOCKED_PREFIXES);
+  const locked_prefixes = mods.fromPrimary(META_MODS.LOCKED_PREFIXES);
 
   const crafted = greaves
     .setRarity('rare')

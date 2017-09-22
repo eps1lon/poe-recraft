@@ -1,11 +1,11 @@
 // @flow
-import Generator from '../Generator';
-
+import { createTables } from '../../__fixtures__/util';
 import { Item } from '../../containers/';
 import { Mod } from '../../mods';
 
-Item.all = require('../../__fixtures__/baseitemtypes.json');
-Mod.all = require('../../__fixtures__/mods.json');
+import Generator from '../Generator';
+
+const { items, mods } = createTables();
 
 it('should have a mods getter which will prevent mutation', () => {
   const generator = new Generator([]);
@@ -19,11 +19,11 @@ it('should have a mods getter which will prevent mutation', () => {
 it('should work like ingame', () => {
   const generator: Generator<Mod, Item> = new Generator([]);
 
-  const greaves = Item.fromPrimary(1650);
+  const greaves = items.fromPrimary(1650);
 
-  const ofBrute = Mod.fromPrimary(0);
-  const ofWrestler = Mod.fromPrimary(1);
-  const sturdy = Mod.fromPrimary(1465);
+  const ofBrute = mods.fromPrimary(0);
+  const ofWrestler = mods.fromPrimary(1);
+  const sturdy = mods.fromPrimary(1465);
 
   // normal items cant have mods
   expect(generator.isModApplicableTo(ofBrute, greaves)).toEqual({

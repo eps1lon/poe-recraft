@@ -1,20 +1,19 @@
 // @flow
+import { createTables } from '../../../__fixtures__/util';
 import Chaos from '../Chaos';
-import { Item } from '../../../containers/';
 
-Item.all = require('../../../__fixtures__/baseitemtypes.json');
-const mods = require('../../../__fixtures__/mods.json');
+const { items, mods } = createTables();
 
-const greaves = Item.fromPrimary(1650);
+const greaves = items.fromPrimary(1650);
 
 it('should build', () => {
-  const chaos = Chaos.build(mods);
+  const chaos = Chaos.build(mods.all());
 
   expect(chaos).toBeInstanceOf(Chaos);
 });
 
 it('should only have prefixes and suffixes', () => {
-  const chaos = Chaos.build(mods);
+  const chaos = Chaos.build(mods.all());
 
   expect(
     chaos.getAvailableMods().every(mod => mod.isPrefix() || mod.isSuffix()),
@@ -22,7 +21,7 @@ it('should only have prefixes and suffixes', () => {
 });
 
 it('should only apply to rare items', () => {
-  const chaos = Chaos.build(mods);
+  const chaos = Chaos.build(mods.all());
 
   expect(greaves.props.rarity).toBe('normal');
 
@@ -40,7 +39,7 @@ it('should only apply to rare items', () => {
 });
 
 it('should reroll mods', () => {
-  const chaos = Chaos.build(mods);
+  const chaos = Chaos.build(mods.all());
   const craftable = greaves.setRarity('rare');
 
   expect(craftable.mods).toHaveLength(0);

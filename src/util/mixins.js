@@ -7,6 +7,13 @@ const defaultPrimaryFinder = primary => (props: any) =>
 /**
  * careful when using this. Flow doesnt check static methods on interfaces
  * a static build
+ * 
+ * Deprecated:
+ * mixins have a couple of problems that are all solveable with little hacks
+ * but in the end we can always use component composition. Especially in this
+ * case it doesn't seem right to mix to Entity with the table. This code
+ * will be removed in the future and is just include for documentation 
+ * purposes
  */
 export function withPrimaryFinder<P, T: Buildable<P>>(
   superclass: Class<T>,

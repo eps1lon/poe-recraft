@@ -1,23 +1,20 @@
 // @flow
+import { createTables } from '../../__fixtures__/util';
 import { AtlasNode } from '../../containers';
 import { Sextant } from '../../generators';
-import { Mod } from '../../mods';
 
 import Atlas from '../Atlas';
 
-const atlas_props = require('../../__fixtures__/atlas.json');
-const mods = require('../../__fixtures__/mods.json');
-
-Mod.all = mods;
+const { atlas: atlas_props, mods } = createTables();
 
 it('should build', () => {
-  const atlas = Atlas.build(atlas_props);
+  const atlas = Atlas.build(atlas_props.all());
 
   expect(atlas).toBeInstanceOf(Atlas);
 });
 
 it('should have a human readable getter', () => {
-  const atlas = Atlas.build(atlas_props);
+  const atlas = Atlas.build(atlas_props.all());
 
   expect(atlas.get('Dunes')).toBeInstanceOf(AtlasNode);
   expect(atlas.get('HighGardens')).toBeInstanceOf(AtlasNode);
@@ -27,7 +24,7 @@ it('should have a human readable getter', () => {
 });
 
 it('should return a new only if it changed', () => {
-  const atlas = Atlas.build(atlas_props);
+  const atlas = Atlas.build(atlas_props.all());
 
   expect(atlas.withMutations(b => b)).toBe(atlas);
   // created a new reference, not checking shallow equal
@@ -35,8 +32,8 @@ it('should return a new only if it changed', () => {
 });
 
 it('should add mods', () => {
-  const atlas = Atlas.build(atlas_props);
-  const invasion_mod = Mod.fromPrimary(8772);
+  const atlas = Atlas.build(atlas_props.all());
+  const invasion_mod = mods.fromPrimary(8772);
 
   const with_mods = atlas.addMod(invasion_mod, 'Dunes');
 
@@ -49,8 +46,8 @@ it('should add mods', () => {
 });
 
 it('should remove mods', () => {
-  const invasion_mod = Mod.fromPrimary(8772);
-  const atlas = Atlas.build(atlas_props).addMod(invasion_mod, 'Dunes');
+  const invasion_mod = mods.fromPrimary(8772);
+  const atlas = Atlas.build(atlas_props.all()).addMod(invasion_mod, 'Dunes');
 
   const without_mods = atlas.removeMod(invasion_mod, 'Dunes');
 
@@ -63,9 +60,9 @@ it('should remove mods', () => {
 });
 
 it('should be resettable', () => {
-  const invasion_mod = Mod.fromPrimary(8772);
-  const magick_packs_mod = Mod.fromPrimary(8794);
-  const atlas = Atlas.build(atlas_props)
+  const invasion_mod = mods.fromPrimary(8772);
+  const magick_packs_mod = mods.fromPrimary(8794);
+  const atlas = Atlas.build(atlas_props.all())
     .addMod(invasion_mod, 'Dunes')
     .addMod(magick_packs_mod, 'Arcade');
 
@@ -86,8 +83,8 @@ it('should be resettable', () => {
 });
 
 it('should calc mods from sextants', () => {
-  const atlas = Atlas.build(atlas_props);
-  const sextant = Sextant.build(mods);
+  const atlas = Atlas.build(atlas_props.all());
+  const sextant = Sextant.build(mods.all());
 
   const available_mods = atlas
     .modsFor(sextant, 'Dunes')
@@ -97,8 +94,8 @@ it('should calc mods from sextants', () => {
 });
 
 it('should apply sextants', () => {
-  const atlas = Atlas.build(atlas_props);
-  const sextant = Sextant.build(mods);
+  const atlas = Atlas.build(atlas_props.all());
+  const sextant = Sextant.build(mods.all());
 
   const crafted = atlas.applySextant(sextant, 'Dunes');
 

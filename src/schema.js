@@ -122,7 +122,7 @@ export type WorldAreaProps = {
 };
 
 export type AtlasNodeProps = {
-  row: number,
+  primary: number,
   x: number,
   y: number,
   adjacent: number[],

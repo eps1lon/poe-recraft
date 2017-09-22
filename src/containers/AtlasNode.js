@@ -2,7 +2,6 @@
 import { Mod } from '../mods';
 import { type Buildable } from '../interfaces';
 import { type AtlasNodeProps } from '../schema';
-import { withPrimaryFinder } from '../util/mixins';
 
 import Container from './Container';
 
@@ -13,12 +12,12 @@ export type Builder = {
   props: AtlasNodeProps,
 };
 
-class AtlasNode extends Container<Mod, Builder>
+export default class AtlasNode extends Container<Mod, Builder>
   implements Buildable<AtlasNodeProps> {
   +props: AtlasNodeProps;
 
   static build(props: AtlasNodeProps) {
-    return new this([], props);
+    return new AtlasNode([], props);
   }
 
   static withBuilder(builder: Builder): AtlasNode {
@@ -139,5 +138,3 @@ class AtlasNode extends Container<Mod, Builder>
     );
   }
 }
-
-export default withPrimaryFinder(AtlasNode);

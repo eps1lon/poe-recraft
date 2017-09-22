@@ -1,31 +1,17 @@
 // @flow
-import { Item } from '../../containers/';
-import {
-  Alteration,
-  Augment,
-  Chaos,
-  Exalted,
-  MasterBenchOption,
-  Regal,
-  Scouring,
-} from '../';
-import { Mod, MasterMod, metaMods as META_MODS } from '../../mods';
+import { createTables } from '../../__fixtures__/util';
+import { Alteration, Augment, Chaos, Exalted, Regal, Scouring } from '../';
+import { metaMods as META_MODS } from '../../mods';
 
-Item.all = require('../../__fixtures__/baseitemtypes.json');
-const craftingbenchoptions = require('../../__fixtures__/craftingbenchoptions.json');
-const mods = require('../../__fixtures__/mods.json');
-
-MasterBenchOption.all = craftingbenchoptions;
-MasterMod.option_props_list = craftingbenchoptions;
-Mod.all = mods;
+const { craftingbenchoptions: options, items, mods } = createTables();
 
 describe('no_*_mods', () => {
-  const weapon = Item.fromPrimary(1025).setRarity('rare');
+  const weapon = items.fromPrimary(1025).setRarity('rare');
 
-  const no_attack_mods = MasterMod.fromPrimary(META_MODS.NO_ATTACK_MODS);
-  const no_caster_mods = MasterMod.fromPrimary(META_MODS.NO_CASTER_MODS);
+  const no_attack_mods = mods.fromPrimary(META_MODS.NO_ATTACK_MODS);
+  const no_caster_mods = mods.fromPrimary(META_MODS.NO_CASTER_MODS);
 
-  const exalted = Exalted.build(Mod.all);
+  const exalted = Exalted.build(mods.all());
 
   // pre
   expect(
@@ -62,11 +48,11 @@ describe('no_*_mods', () => {
 
 describe('leo pvp mod', () => {
   it('should exclude mods above required level 28', () => {
-    const weapon = Item.fromPrimary(1025).setRarity('rare');
+    const weapon = items.fromPrimary(1025).setRarity('rare');
 
-    const leo_mod = MasterMod.fromPrimary(META_MODS.LLD_MOD);
+    const leo_mod = mods.fromPrimary(META_MODS.LLD_MOD);
 
-    const exalted = Exalted.build(Mod.all);
+    const exalted = Exalted.build(mods.all());
 
     expect(weapon.props.item_level).toBeGreaterThan(50);
 
@@ -79,14 +65,14 @@ describe('leo pvp mod', () => {
 });
 
 describe('multimod', () => {
-  const bench = MasterBenchOption.fromPrimary(1);
+  const bench = options.fromPrimary(1);
 
   it('should allow more than one crafted mod', () => {
-    const craftable_greaves = Item.fromPrimary(1650).setRarity('rare');
+    const craftable_greaves = items.fromPrimary(1650).setRarity('rare');
 
-    const craftedLife = MasterMod.fromPrimary(5596);
-    const craftedArmour = MasterMod.fromPrimary(5550);
-    const multimod = MasterMod.fromPrimary(META_MODS.MULTIMOD);
+    const craftedLife = mods.fromPrimary(5596);
+    const craftedArmour = mods.fromPrimary(5550);
+    const multimod = mods.fromPrimary(META_MODS.MULTIMOD);
 
     expect(bench.isModApplicableTo(craftedLife, craftable_greaves)).toEqual({
       above_lld_level: false,
@@ -132,19 +118,19 @@ describe('multimod', () => {
 
 // see http://i.imgur.com/sNpdDBS.jpg
 describe('lock_*', () => {
-  const ipd = Mod.fromPrimary(793);
-  const flatphys = Mod.fromPrimary(938);
-  const ias = Mod.fromPrimary(1904);
-  const crit = Mod.fromPrimary(2170);
+  const ipd = mods.fromPrimary(793);
+  const flatphys = mods.fromPrimary(938);
+  const ias = mods.fromPrimary(1904);
+  const crit = mods.fromPrimary(2170);
 
-  const weapon = Item.fromPrimary(1025);
+  const weapon = items.fromPrimary(1025);
 
-  const locked_prefixes = MasterMod.fromPrimary(META_MODS.LOCKED_PREFIXES);
+  const locked_prefixes = mods.fromPrimary(META_MODS.LOCKED_PREFIXES);
 
-  const locked_suffixes = MasterMod.fromPrimary(META_MODS.LOCKED_SUFFIXES);
+  const locked_suffixes = mods.fromPrimary(META_MODS.LOCKED_SUFFIXES);
 
   describe('with alteration', () => {
-    const alteration = Alteration.build(mods);
+    const alteration = Alteration.build(mods.all());
     const craftable = weapon.setRarity('magic');
 
     it('should not change prefixes', () => {
@@ -181,7 +167,7 @@ describe('lock_*', () => {
   });
 
   describe('with augment', () => {
-    const augment = Augment.build(mods);
+    const augment = Augment.build(mods.all());
     const craftable = weapon.setRarity('magic');
 
     it('should be able to add prefixes', () => {
@@ -216,7 +202,7 @@ describe('lock_*', () => {
   });
 
   describe('with chaos', () => {
-    const chaos = Chaos.build(mods);
+    const chaos = Chaos.build(mods.all());
     const craftable = weapon
       .setRarity('rare')
       .addMod(ipd)
@@ -283,7 +269,7 @@ describe('lock_*', () => {
   });
 
   describe('with exalted', () => {
-    const exalted = Exalted.build(mods);
+    const exalted = Exalted.build(mods.all());
     const craftable = weapon.setRarity('rare');
 
     it('should be able to add prefixes', () => {
@@ -318,7 +304,7 @@ describe('lock_*', () => {
   });
 
   describe('with regal', () => {
-    const regal = Regal.build(mods);
+    const regal = Regal.build(mods.all());
     const craftable = weapon.setRarity('magic');
 
     it('should be able to add prefixes', () => {

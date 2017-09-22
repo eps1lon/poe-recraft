@@ -1,29 +1,28 @@
 // @flow
-import { Mod } from '../../mods/';
-import Stat from '../../util/Stat';
+import { Stat } from '../../util';
+import { createTables } from '../../__fixtures__/util';
 
 import Item from '../Item';
 
-Item.all = require('../../__fixtures__/baseitemtypes.json');
-Mod.all = require('../../__fixtures__/mods.json');
+const { items, mods } = createTables();
 
-const ofBrute = Mod.fromPrimary(0);
-const sturdy = Mod.fromPrimary(1465);
-const plusLevel = Mod.fromPrimary(5215);
-const craftedCastSpeed = Mod.fromPrimary(5653);
+const ofBrute = mods.fromPrimary(0);
+const sturdy = mods.fromPrimary(1465);
+const plusLevel = mods.fromPrimary(5215);
+const craftedCastSpeed = mods.fromPrimary(5653);
 
 it('should build with the implicits of the baseitem', () => {
-  const item = Item.fromPrimary(1650);
+  const item = items.fromPrimary(1650);
 
   expect(item).toBeInstanceOf(Item);
 
-  const gripped_gloves = Item.fromPrimary(1761);
+  const gripped_gloves = items.fromPrimary(1761);
 
   expect(gripped_gloves.implicits.mods).toHaveLength(1);
 });
 
 it('should know to which container it should add', () => {
-  const item = Item.fromPrimary(1650).setRarity('rare');
+  const item = items.fromPrimary(1650).setRarity('rare');
 
   expect(item.implicits.mods).toHaveLength(0);
   expect(item.addMod(sturdy).implicits.mods).toHaveLength(0);
@@ -35,7 +34,7 @@ it('should know to which container it should add', () => {
 });
 
 it('should also not hold duplicate mods', () => {
-  const item = Item.fromPrimary(1650).setRarity('rare');
+  const item = items.fromPrimary(1650).setRarity('rare');
 
   expect(item.affixes.mods).toHaveLength(0);
   expect(item.addMod(sturdy).affixes.mods).toHaveLength(1);
@@ -49,7 +48,8 @@ it('should also not hold duplicate mods', () => {
 });
 
 it('should only remove affixes', () => {
-  const item = Item.fromPrimary(1650)
+  const item = items
+    .fromPrimary(1650)
     .setRarity('rare')
     .addMod(plusLevel)
     .addMod(sturdy);
@@ -62,7 +62,7 @@ it('should only remove affixes', () => {
 });
 
 it('should not change with no mods when removing', () => {
-  const item = Item.fromPrimary(1650).setRarity('rare');
+  const item = items.fromPrimary(1650).setRarity('rare');
 
   expect(item.removeAllMods()).toBe(item);
 
@@ -73,25 +73,26 @@ it('should not change with no mods when removing', () => {
 });
 
 it('changes referentiel equality', () => {
-  const item = Item.fromPrimary(1650)
+  const item = items
+    .fromPrimary(1650)
     .setRarity('rare')
     .addMod(sturdy);
   expect(item.addMod(sturdy)).not.toBe(item);
 });
 
 it('should consider the tags of meta data, baseitem and its mods', () => {
-  const item = Item.fromPrimary(1650).setRarity('rare');
+  const item = items.fromPrimary(1650).setRarity('rare');
 
   expect(item.getTags()).toHaveLength(4);
   expect(item.addMod(craftedCastSpeed).getTags()).toHaveLength(5);
 
-  const paganWand = Item.fromPrimary(1011).setRarity('rare');
+  const paganWand = items.fromPrimary(1011).setRarity('rare');
 
   expect(paganWand.getTags()).toHaveLength(8);
 });
 
 it('should make a mirrored version', () => {
-  const item = Item.fromPrimary(1650);
+  const item = items.fromPrimary(1650);
   const mirrored = item.mirror();
 
   expect(mirrored).not.toBe(item);
@@ -100,7 +101,7 @@ it('should make a mirrored version', () => {
 });
 
 it('should not be mirrorable if it is already mirrored', () => {
-  const item = Item.fromPrimary(1650);
+  const item = items.fromPrimary(1650);
   const mirrored = item.mirror();
 
   expect(() => mirrored.mirror()).toThrowError(
@@ -109,7 +110,7 @@ it('should not be mirrorable if it is already mirrored', () => {
 });
 
 it('should make a corrupted version', () => {
-  const item = Item.fromPrimary(1650);
+  const item = items.fromPrimary(1650);
   const corrupted = item.corrupt();
 
   expect(corrupted).not.toBe(item);
@@ -118,7 +119,7 @@ it('should make a corrupted version', () => {
 });
 
 it('should not be corruptable if it is already corrupted', () => {
-  const item = Item.fromPrimary(1650);
+  const item = items.fromPrimary(1650);
   const corrupted = item.corrupt();
 
   expect(() => corrupted.corrupt()).toThrowError(
@@ -127,10 +128,10 @@ it('should not be corruptable if it is already corrupted', () => {
 });
 
 it('should have stats grouped by id', () => {
-  const weapon = Item.fromPrimary(1025).setRarity('rare');
+  const weapon = items.fromPrimary(1025).setRarity('rare');
 
-  const ipd = Mod.fromPrimary(793);
-  const ipd_acc = Mod.fromPrimary(790);
+  const ipd = mods.fromPrimary(793);
+  const ipd_acc = mods.fromPrimary(790);
 
   const crafted = weapon.addMod(ipd).addMod(ipd_acc);
 
@@ -160,7 +161,7 @@ it('should have stats grouped by id', () => {
 });
 
 it('should upgrade rarity normla->magic-rare', () => {
-  const normal = Item.fromPrimary(1650);
+  const normal = items.fromPrimary(1650);
 
   const magic = normal.upgradeRarity();
 
@@ -178,7 +179,7 @@ it('should upgrade rarity normla->magic-rare', () => {
 });
 
 it('should generate the name lines like ingame', () => {
-  const normal = Item.fromPrimary(1650);
+  const normal = items.fromPrimary(1650);
 
   expect(normal.nameLines()).toEqual(['Iron Greaves']);
 
@@ -205,17 +206,17 @@ it('should generate the name lines like ingame', () => {
 });
 
 it('should consider its mods for its required level', () => {
-  const greaves = Item.fromPrimary(1652).setRarity('rare');
+  const greaves = items.fromPrimary(1652).setRarity('rare');
 
   expect(greaves.requiredLevel()).toBe(23);
   // 17 mod
-  expect(greaves.addMod(Mod.fromPrimary(2)).requiredLevel()).toBe(23);
+  expect(greaves.addMod(mods.fromPrimary(2)).requiredLevel()).toBe(23);
   // 26 mod
-  expect(greaves.addMod(Mod.fromPrimary(3)).requiredLevel()).toBe(26);
+  expect(greaves.addMod(mods.fromPrimary(3)).requiredLevel()).toBe(26);
 });
 
 it('should have attr requirements', () => {
-  const greaves = Item.fromPrimary(1652);
+  const greaves = items.fromPrimary(1652);
 
   expect(greaves.requirements()).toEqual({
     level: 23,

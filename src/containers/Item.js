@@ -3,7 +3,6 @@ import { type Buildable } from '../interfaces';
 import { Mod, metaMods as META_MODS } from '../mods';
 import type { BaseItemTypeProps, TagProps } from '../schema';
 import { MetaData, Stat, type ValueRange } from '../util';
-import { withPrimaryFinder } from '../util/mixins';
 
 import Container from './Container';
 import Implicits from './Implicits';
@@ -41,7 +40,7 @@ export type ItemBuilder = {
  * the class only represents the explicits and is a fascade for an 
  * additional implicit container
  */
-class Item extends Container<Mod, ItemBuilder>
+export default class Item extends Container<Mod, ItemBuilder>
   implements Buildable<BaseItemTypeProps> {
   static MAX_ILVL = 100;
 
@@ -466,5 +465,3 @@ class Item extends Container<Mod, ItemBuilder>
     });
   }
 }
-
-export default withPrimaryFinder(Item);

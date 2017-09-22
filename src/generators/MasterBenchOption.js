@@ -1,11 +1,10 @@
 // @flow
 import type { Item } from '../containers';
 import { type Buildable } from '../interfaces';
-import { withPrimaryFinder } from '../util/mixins';
 import type { CraftingBenchOptionsProps } from '../schema';
 
 import { type Flags, anySet } from '../util/Flags';
-import { MasterMod, metaMods as META_MODs } from '../mods';
+import { metaMods as META_MODs, Mod } from '../mods';
 
 import Generator, {
   type ModApplicableFlag as BaseModApplicableFlag,
@@ -22,17 +21,17 @@ export type ModApplicableFlags =
 
 /**
  */
-class MasterBenchOption extends Generator<MasterMod, Item>
+export default class MasterBenchOption extends Generator<Mod, Item>
   implements Buildable<CraftingBenchOptionsProps> {
   static build(option: CraftingBenchOptionsProps) {
-    return new this(option);
+    return new MasterBenchOption(option);
   }
 
   +props: CraftingBenchOptionsProps;
 
   constructor(option: CraftingBenchOptionsProps) {
     if (option.mod != null) {
-      super([new MasterMod(option.mod)]);
+      super([new Mod(option.mod)]);
     } else {
       super([]);
     }
@@ -40,7 +39,7 @@ class MasterBenchOption extends Generator<MasterMod, Item>
     (this: any).props = option;
   }
 
-  get mod(): ?MasterMod {
+  get mod(): ?Mod {
     return this.mods[0];
   }
 
@@ -106,7 +105,12 @@ class MasterBenchOption extends Generator<MasterMod, Item>
       .filter(Boolean);
   }
 
-  isModApplicableTo(mod: MasterMod, item: Item): ModApplicableFlags {
+  /**
+   * checks if the given mod is applicable to the item
+   * 
+   * remember that this doesn't check if
+   */
+  isModApplicableTo(mod: Mod, item: Item): ModApplicableFlags {
     const applicable_flags = {
       ...super.isModApplicableTo(mod, item),
       wrong_itemclass: false,
@@ -125,7 +129,7 @@ class MasterBenchOption extends Generator<MasterMod, Item>
     }
 
     // grep MasterMods and set failure if we cant multimod
-    const master_mods = item.mods.filter(other => other instanceof MasterMod);
+    const master_mods = item.mods.filter(other => other.isMasterMod());
     const has_no_multi_mod =
       master_mods.find(other => other.props.primary === META_MODs.MULTIMOD) ===
       undefined;
@@ -137,5 +141,3 @@ class MasterBenchOption extends Generator<MasterMod, Item>
     return applicable_flags;
   }
 }
-
-export default withPrimaryFinder(MasterBenchOption);

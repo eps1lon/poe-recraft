@@ -1,20 +1,19 @@
 // @flow
+import { createTables } from '../../../__fixtures__/util';
 import Regal from '../Regal';
-import { Item } from '../../../containers/';
 
-Item.all = require('../../../__fixtures__/baseitemtypes.json');
-const mods = require('../../../__fixtures__/mods.json');
+const { items, mods } = createTables();
 
-const greaves = Item.fromPrimary(1650);
+const greaves = items.fromPrimary(1650);
 
 it('should build', () => {
-  const regal = Regal.build(mods);
+  const regal = Regal.build(mods.all());
 
   expect(regal).toBeInstanceOf(Regal);
 });
 
 it('should only have prefixes and suffixes', () => {
-  const regal = Regal.build(mods);
+  const regal = Regal.build(mods.all());
 
   expect(
     regal.getAvailableMods().every(mod => mod.isPrefix() || mod.isSuffix()),
@@ -22,7 +21,7 @@ it('should only have prefixes and suffixes', () => {
 });
 
 it('should only apply to magic items', () => {
-  const regal = Regal.build(mods);
+  const regal = Regal.build(mods.all());
 
   expect(greaves.props.rarity).toBe('normal');
 
@@ -40,7 +39,7 @@ it('should only apply to magic items', () => {
 });
 
 it('should add mods while upgrading the item to rare', () => {
-  const regal = Regal.build(mods);
+  const regal = Regal.build(mods.all());
   const craftable = greaves.setRarity('magic');
 
   expect(craftable.mods).toHaveLength(0);

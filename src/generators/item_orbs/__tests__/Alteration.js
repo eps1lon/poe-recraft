@@ -1,20 +1,20 @@
 // @flow
+import { createTables } from '../../../__fixtures__/util';
+
 import Alteration from '../Alteration';
-import { Item } from '../../../containers/';
 
-Item.all = require('../../../__fixtures__/baseitemtypes.json');
-const mods = require('../../../__fixtures__/mods.json');
+const { items, mods } = createTables();
 
-const greaves = Item.fromPrimary(1650);
+const greaves = items.fromPrimary(1650);
 
 it('should build', () => {
-  const alteration = Alteration.build(mods);
+  const alteration = Alteration.build(mods.all());
 
   expect(alteration).toBeInstanceOf(Alteration);
 });
 
 it('should only have prefixes and suffixes', () => {
-  const alteration = Alteration.build(mods);
+  const alteration = Alteration.build(mods.all());
 
   expect(
     alteration
@@ -24,7 +24,7 @@ it('should only have prefixes and suffixes', () => {
 });
 
 it('should only apply to blue items', () => {
-  const alteration = Alteration.build(mods);
+  const alteration = Alteration.build(mods.all());
 
   expect(greaves.props.rarity).toBe('normal');
 
@@ -42,7 +42,7 @@ it('should only apply to blue items', () => {
 });
 
 it('should reroll mods', () => {
-  const alteration = Alteration.build(mods);
+  const alteration = Alteration.build(mods.all());
   const craftable = greaves.setRarity('magic');
 
   expect(craftable.mods).toHaveLength(0);

@@ -1,29 +1,28 @@
 // @flow
-import { Item } from '../../containers';
+import { createTables } from '../../__fixtures__/util';
 
 import MasterBench from '../MasterBench';
 
-Item.all = require('../../__fixtures__/baseitemtypes.json');
-const craftingbenchoptions = require('../../__fixtures__/craftingbenchoptions.json');
+const { craftingbenchoptions, items } = createTables();
 
 it('should build', () => {
-  const all_masters = MasterBench.build(craftingbenchoptions);
+  const all_masters = MasterBench.build(craftingbenchoptions.all());
 
   expect(all_masters).toBeInstanceOf(MasterBench);
 
-  const haku = MasterBench.build(craftingbenchoptions, 6);
+  const haku = MasterBench.build(craftingbenchoptions.all(), 6);
   expect(haku).toBeInstanceOf(MasterBench);
 });
 
 it('should throw if the specified master key was not found', () => {
-  expect(() => MasterBench.build(craftingbenchoptions, 324166)).toThrowError(
-    "no options found for '324166'",
-  );
+  expect(() =>
+    MasterBench.build(craftingbenchoptions.all(), 324166),
+  ).toThrowError("no options found for '324166'");
 });
 
 it('should apply an option', () => {
-  const greaves = Item.fromPrimary(1650);
-  const haku = MasterBench.build(craftingbenchoptions, 6);
+  const greaves = items.fromPrimary(1650);
+  const haku = MasterBench.build(craftingbenchoptions.all(), 6);
 
   expect(
     haku.applyOptionTo(greaves, 1).affixes.mods.map(({ props: { id } }) => id),
@@ -31,8 +30,8 @@ it('should apply an option', () => {
 });
 
 it('throw if the option was not found', () => {
-  const greaves = Item.fromPrimary(1650);
-  const haku = MasterBench.build(craftingbenchoptions, 6);
+  const greaves = items.fromPrimary(1650);
+  const haku = MasterBench.build(craftingbenchoptions.all(), 6);
 
   expect(() => haku.applyOptionTo(greaves, 213324234)).toThrowError(
     "option '213324234' not found",

@@ -1,4 +1,4 @@
-import { Item } from 'poe-mods/containers';
+import { Transmute } from 'poe-mods';
 import { Transmute } from 'poe-mods';
 
 // data has to be provided. see eps1lon/poedb

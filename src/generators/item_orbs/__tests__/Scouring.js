@@ -1,12 +1,10 @@
 // @flow
+import { createTables } from '../../../__fixtures__/util';
 import Scouring from '../Scouring';
-import { Item } from '../../../containers/';
-import { Mod } from '../../../mods/';
 
-Item.all = require('../../../__fixtures__/baseitemtypes.json');
-Mod.all = require('../../../__fixtures__/mods.json');
+const { items, mods } = createTables();
 
-const greaves = Item.fromPrimary(1650);
+const greaves = items.fromPrimary(1650);
 
 it('should not work on uniques or normal items', () => {
   const scour = new Scouring();
@@ -45,8 +43,8 @@ it('should not work on uniques or normal items', () => {
 it('should remove mods and downgrade to normal', () => {
   const scour = new Scouring();
 
-  const movement = Mod.fromPrimary(1503);
-  const life = Mod.fromPrimary(198);
+  const movement = mods.fromPrimary(1503);
+  const life = mods.fromPrimary(198);
 
   // pre
   const magic_greaves = greaves.setRarity('magic').addMod(movement);

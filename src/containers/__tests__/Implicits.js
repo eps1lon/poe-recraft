@@ -1,12 +1,13 @@
 // @flow
-import { Implicits } from '../';
-import { Mod } from '../../mods/';
+import { createTables } from '../../__fixtures__/util';
 
-Mod.all = require('../../__fixtures__/mods.json');
+import Implicits from '../Implicits';
 
-const sturdy = Mod.fromPrimary(1465);
-const plusLevel = Mod.fromPrimary(5215);
-const bladesOnHit = Mod.fromPrimary(7058);
+const { mods } = createTables();
+
+const sturdy = mods.fromPrimary(1465);
+const plusLevel = mods.fromPrimary(5215);
+const bladesOnHit = mods.fromPrimary(7058);
 
 it('should not crash', () => {
   const implicits = new Implicits([]);

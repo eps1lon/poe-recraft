@@ -1,11 +1,10 @@
 // @flow
 import { type Buildable, type Taggable } from '../interfaces';
 import type { ModProps, SpawnWeightProps } from '../schema';
-import { withPrimaryFinder } from '../util/mixins';
 
 import Stat from '../util/Stat';
 
-class Mod implements Buildable<ModProps> {
+export default class Mod implements Buildable<ModProps> {
   static DOMAIN = {
     ITEM: 1,
     FLASK: 2,
@@ -64,6 +63,10 @@ class Mod implements Buildable<ModProps> {
 
   isAffix() {
     return this.isPrefix() || this.isSuffix();
+  }
+
+  isMasterMod(): boolean {
+    return this.props.domain === Mod.DOMAIN.MASTER;
   }
 
   implicitCandidate() {
@@ -131,5 +134,3 @@ class Mod implements Buildable<ModProps> {
     }
   }
 }
-
-export default withPrimaryFinder(Mod);
