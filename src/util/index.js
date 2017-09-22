@@ -11,4 +11,10 @@ export { default as MasterBench } from './MasterBench';
 export { default as MetaData } from './MetaData';
 export { default as PropsTable } from './PropsTable';
 export { default as Stat } from './Stat';
+export {
+  verifyAtlas,
+  verifyCraftingBenchOptions,
+  verifyItems,
+  verifyMods,
+} from './verifySchema';
 export { tables };
