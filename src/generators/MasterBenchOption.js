@@ -31,7 +31,11 @@ class MasterBenchOption extends Generator<MasterMod, Item>
   +props: CraftingBenchOptionsProps;
 
   constructor(option: CraftingBenchOptionsProps) {
-    super([new MasterMod(option)]);
+    if (option.mod != null) {
+      super([new MasterMod(option.mod)]);
+    } else {
+      super([]);
+    }
 
     (this: any).props = option;
   }
@@ -46,7 +50,7 @@ class MasterBenchOption extends Generator<MasterMod, Item>
    * cant overload extended method. so we have to set the chosen option before
    */
   applyTo(item: Item): Item {
-    const mod: ?MasterMod = this.mods[0];
+    const { mod } = this;
 
     /**
        * TODO customactions for no mod
@@ -59,6 +63,8 @@ class MasterBenchOption extends Generator<MasterMod, Item>
       if (this.isModApplicableTo(mod, crafted_item)) {
         return crafted_item.addMod(mod);
       }
+    } else {
+      throw new Error('customactions are not implemented yet');
     }
 
     // nothing changed
@@ -107,7 +113,7 @@ class MasterBenchOption extends Generator<MasterMod, Item>
       no_multimod: false,
     };
 
-    const { item_classes } = mod.option;
+    const { item_classes } = this.props;
 
     const no_matching_item_class =
       item_classes.find(

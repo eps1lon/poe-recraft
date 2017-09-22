@@ -11,8 +11,7 @@ it('should build with master mods', () => {
   const haku_life = MasterBenchOption.fromPrimary(1);
 
   expect(haku_life).toBeInstanceOf(MasterBenchOption);
-  expect(haku_life.mods.length).toBeGreaterThan(0);
-  expect(haku_life.mods.every(mod => mod instanceof MasterMod)).toBe(true);
+  expect(haku_life.mod).toBeInstanceOf(MasterMod);
 });
 
 it('should throw when picking an unavailable option', () => {

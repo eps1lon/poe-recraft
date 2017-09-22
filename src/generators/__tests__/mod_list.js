@@ -13,6 +13,7 @@ const showcase = new ItemShowcase(mods, craftingbenchoptions);
 
 const formatForSnapshot = ({ mod, ...props }) => ({
   mod: mod.props.id,
+  type: mod.constructor.name,
   ...props,
 });
 
