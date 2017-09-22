@@ -19,6 +19,22 @@ it('should only work on certain items', () => {
   expect(annul.isApplicableTo(greaves.corrupt())).toBe(false);
 });
 
+it('doesnt have any mods', () => {
+  const annul = new Annulment();
+
+  expect(annul.modsFor(greaves.setRarity('magic'))).toHaveLength(0);
+});
+
+it('should not change the item if nothing changes', () => {
+  const annul = new Annulment();
+
+  // not applicable
+  expect(annul.applyTo(greaves)).toBe(greaves);
+
+  const applicable = greaves.setRarity('magic');
+  expect(annul.applyTo(applicable)).toBe(applicable);
+});
+
 it('should remove one mod while preserving rarity', () => {
   const annul = new Annulment();
   const alchemy = Alchemy.build(mods.all());

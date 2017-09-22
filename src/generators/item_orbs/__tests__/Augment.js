@@ -30,6 +30,7 @@ it('should only apply to magic items', () => {
     corrupted: false,
     mirrored: false,
   });
+  expect(augment.applyTo(greaves)).toBe(greaves);
 
   expect(augment.applicableTo(greaves.setRarity('magic'))).toEqual({
     not_magic: false,

@@ -17,13 +17,16 @@ it('should not work on uniques or normal items', () => {
     unique: false,
     normal: true,
   });
+  expect(scour.applyTo(greaves)).toBe(greaves);
 
-  expect(scour.applicableTo(greaves.setRarity('unique'))).toEqual({
+  const unique = greaves.setRarity('unique');
+  expect(scour.applicableTo(unique)).toEqual({
     corrupted: false,
     mirrored: false,
     unique: true,
     normal: false,
   });
+  expect(scour.applyTo(unique)).toBe(unique);
 
   expect(scour.applicableTo(greaves.setRarity('magic'))).toEqual({
     corrupted: false,

@@ -30,6 +30,7 @@ it('should only apply to rare items', () => {
     corrupted: false,
     mirrored: false,
   });
+  expect(chaos.applyTo(greaves)).toBe(greaves);
 
   expect(chaos.applicableTo(greaves.setRarity('rare'))).toEqual({
     not_rare: false,

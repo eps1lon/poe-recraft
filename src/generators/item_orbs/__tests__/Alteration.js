@@ -33,6 +33,7 @@ it('should only apply to blue items', () => {
     corrupted: false,
     mirrored: false,
   });
+  expect(alteration.applyTo(greaves)).toBe(greaves);
 
   expect(alteration.applicableTo(greaves.setRarity('magic'))).toEqual({
     not_magic: false,

@@ -30,6 +30,7 @@ it('should only apply to rare items', () => {
     corrupted: false,
     mirrored: false,
   });
+  expect(exalted.applyTo(greaves)).toBe(greaves);
 
   expect(exalted.applicableTo(greaves.setRarity('rare'))).toEqual({
     not_rare: false,
