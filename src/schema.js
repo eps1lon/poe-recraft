@@ -117,7 +117,7 @@ export type WorldAreaProps = {
   name: string,
   area_level: number,
   tags: TagProps[],
-  area_tags: TagProps[],
+  area_type_tags: TagProps[],
   mods: ModProps[],
 };
 
