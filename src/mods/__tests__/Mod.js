@@ -48,3 +48,15 @@ it('should fallback to the default spawnweight if defined', () => {
 
   expect(sextant_mod.spawnweightFor(taggable));
 });
+
+it('should have a string represantation of its generation type', () => {
+  const suffix = mods.fromPrimary(2617);
+  expect(suffix.modType()).toBe('suffix');
+
+  const enchantment = mods.fromPrimary(7058);
+  expect(enchantment.modType()).toBe('enchantment');
+
+  expect(
+    new Mod({ ...enchantment.props, generation_type: -1 }).modType(),
+  ).toBeUndefined();
+});
