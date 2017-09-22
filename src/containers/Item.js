@@ -75,14 +75,6 @@ export default class Item extends Container<Mod, ItemBuilder>
     return new this(baseitem, meta_data, props, implicits, mods);
   }
 
-  static applyStat(
-    value: ValueRange | number,
-    stat: Stat,
-    precision: number, // eslint-disable-line no-unused-vars
-  ): ValueRange {
-    throw new Error('not implemented');
-  }
-
   +baseitem: BaseItemTypeProps;
   +implicits: Implicits;
   +meta_data: MetaData;
@@ -356,10 +348,6 @@ export default class Item extends Container<Mod, ItemBuilder>
     );
   }
 
-  itemclassName(): string {
-    return this.baseitem.item_class.name;
-  }
-
   rarityIdent(): string {
     return this.props.rarity;
   }
@@ -428,7 +416,7 @@ export default class Item extends Container<Mod, ItemBuilder>
         ),
       };
     } else {
-      return { error: 'could not  build' };
+      throw new Error('could not build');
     }
   }
 

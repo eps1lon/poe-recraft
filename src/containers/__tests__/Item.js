@@ -1,4 +1,5 @@
 // @flow
+import { Mod } from '../../mods';
 import { Stat } from '../../util';
 import { createTables } from '../../__fixtures__/util';
 
@@ -19,6 +20,42 @@ it('should build with the implicits of the baseitem', () => {
   const gripped_gloves = items.fromPrimary(1761);
 
   expect(gripped_gloves.implicits.mods).toHaveLength(1);
+});
+
+it('should not allow to much affixes', () => {
+  const greaves = items.fromPrimary(1650);
+
+  expect(greaves.maxModsOfType(ofBrute)).toBe(0);
+  expect(greaves.maxModsOfType(ofBrute)).toBe(0);
+  expect(greaves.setRarity('magic').maxModsOfType(ofBrute)).toBe(1);
+  expect(greaves.setRarity('rare').maxModsOfType(ofBrute)).toBe(3);
+  expect(greaves.setRarity('showcase').maxModsOfType(ofBrute)).toBe(3);
+  expect(greaves.setRarity('unique').maxModsOfType(ofBrute)).toBe(
+    Number.POSITIVE_INFINITY,
+  );
+
+  const jewel = items.fromPrimary(2273);
+  expect(jewel.maxModsOfType(ofBrute)).toBe(0);
+  expect(jewel.setRarity('magic').maxModsOfType(ofBrute)).toBe(1);
+  expect(jewel.setRarity('rare').maxModsOfType(ofBrute)).toBe(2);
+  expect(jewel.setRarity('showcase').maxModsOfType(ofBrute)).toBe(2);
+  expect(jewel.setRarity('unique').maxModsOfType(ofBrute)).toBe(
+    Number.POSITIVE_INFINITY,
+  );
+});
+
+it('should know about allowed mod domains', () => {
+  const greaves = items.fromPrimary(1650);
+  expect(greaves.modDomainEquiv()).toBe(Mod.DOMAIN.ITEM);
+
+  const jewel = items.fromPrimary(2273);
+  expect(jewel.modDomainEquiv()).toBe(Mod.DOMAIN.JEWEL);
+
+  const flask = items.fromPrimary(1807);
+  expect(flask.modDomainEquiv()).toBe(Mod.DOMAIN.FLASK);
+
+  const map = items.fromPrimary(2276);
+  expect(map.modDomainEquiv()).toBe(Mod.DOMAIN.MAP);
 });
 
 it('should know to which container it should add', () => {
@@ -160,7 +197,7 @@ it('should have stats grouped by id', () => {
   ]);
 });
 
-it('should upgrade rarity normla->magic-rare', () => {
+it('should upgrade rarity normal->magic-rare', () => {
   const normal = items.fromPrimary(1650);
 
   const magic = normal.upgradeRarity();
@@ -224,4 +261,24 @@ it('should have attr requirements', () => {
     dex: 0,
     int: 0,
   });
+});
+
+it('should have a string represantation of its rarity', () => {
+  const item = items.fromPrimary(1650);
+
+  expect(item.rarityIdent()).toEqual('normal');
+  expect(item.setRarity('magic').rarityIdent()).toEqual('magic');
+  expect(item.setRarity('rare').rarityIdent()).toEqual('rare');
+  expect(item.setRarity('unique').rarityIdent()).toEqual('unique');
+  expect(item.setRarity('showcase').rarityIdent()).toEqual('showcase');
+});
+
+it('should have a skeleton version of local stats', () => {
+  const armour = items.fromPrimary(1650);
+  expect(armour.localStats()).toEqual({
+    physical_damage_reduction: '6',
+  });
+
+  const weapon = items.fromPrimary(1025);
+  expect(() => weapon.localStats()).toThrowError('could not build');
 });
