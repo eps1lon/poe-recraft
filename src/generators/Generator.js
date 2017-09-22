@@ -32,7 +32,17 @@ export default class Generator<M: Mod, C: Container<*, *>> {
 
   // eslint-disable-next-line no-unused-vars
   applyTo(container: C): C {
-    throw new AbstractMethod('applyTo');
+    throw new AbstractMethod(`${this.constructor.name}#applyTo`);
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  modsFor(container: C, whitelist: string[] = []): GeneratorDetails<M>[] {
+    throw new AbstractMethod(`${this.constructor.name}#modsFor`);
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  applicableTo(container: C): Flags<*> {
+    throw new AbstractMethod(`${this.constructor.name}#applicableTo`);
   }
 
   /**
@@ -42,16 +52,6 @@ export default class Generator<M: Mod, C: Container<*, *>> {
    */
   getAvailableMods(): M[] {
     return this.mods.slice();
-  }
-
-  // eslint-disable-next-line no-unused-vars
-  modsFor(container: C, whitelist: string[] = []): GeneratorDetails<M>[] {
-    throw new AbstractMethod('ModGenerator#modsFor');
-  }
-
-  // eslint-disable-next-line no-unused-vars
-  applicableTo(container: C): Flags<*> {
-    throw new AbstractMethod('applicableTo');
   }
 
   // eslint-disable-next-line no-unused-vars

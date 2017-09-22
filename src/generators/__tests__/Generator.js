@@ -7,6 +7,29 @@ import Generator from '../Generator';
 
 const { items, mods } = createTables();
 
+it('is abstract and throws if access in a non abstract way', () => {
+  const generator = new Generator([]);
+  const item = items.fromPrimary(1);
+
+  expect(() => generator.applyTo(item)).toThrowError(
+    'override abstract method Generator#applyTo',
+  );
+
+  expect(() => generator.modsFor(item)).toThrowError(
+    'override abstract method Generator#modsFor',
+  );
+
+  expect(() => generator.applicableTo(item)).toThrowError(
+    'override abstract method Generator#applicableTo',
+  );
+
+  class StillAbstractGenerator extends Generator<*, *> {}
+
+  expect(() => new StillAbstractGenerator([]).applyTo(item)).toThrowError(
+    'override abstract method StillAbstractGenerator#applyTo',
+  );
+});
+
 it('should have a mods getter which will prevent mutation', () => {
   const generator = new Generator([]);
 
