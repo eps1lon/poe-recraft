@@ -1,7 +1,7 @@
 // @flow
 import { Buildable } from '../interfaces';
 
-type PropsWithPrimary = {
+export type PropsWithPrimary = {
   primary: number,
 };
 
