@@ -14,8 +14,20 @@ it('should build with master mods', () => {
   expect(haku_life.mod != null && haku_life.mod.isMasterMod()).toBe(true);
 });
 
-it('should throw when picking an unavailable option', () => {
-  expect(() => options.fromPrimary(1111111)).toThrow();
+it('should build with no mods on custom actions', () => {
+  const remove_crafted_mod = options.fromPrimary(0);
+
+  expect(remove_crafted_mod.mods).toHaveLength(0);
+  expect(remove_crafted_mod.mod).not.toBe(expect.anything());
+});
+
+it('doesnt support custom actions yet', () => {
+  const greaves = items.fromPrimary(1650);
+  const remove_crafted_mod = options.fromPrimary(0);
+
+  expect(() => remove_crafted_mod.applyTo(greaves)).toThrowError(
+    'customactions are not implemented yet',
+  );
 });
 
 it('should apply the chosen option', () => {
@@ -27,6 +39,13 @@ it('should apply the chosen option', () => {
   expect(crafted).not.toBe(greaves);
   expect(crafted.props.rarity).toBe('magic');
   expect(crafted.mods[0].props.name).toEqual('Stalwart');
+});
+
+it('should return the same item if it cant apply', () => {
+  const jewel = items.fromPrimary(2273).setRarity('magic');
+  const haku_life = options.fromPrimary(1);
+
+  expect(haku_life.applyTo(jewel)).toBe(jewel);
 });
 
 describe('applicable mods', () => {
@@ -45,6 +64,8 @@ describe('applicable mods', () => {
       lower_ilvl: false,
       no_multimod: false,
       wrong_domain: false,
+    });
+    expect(bench.applicableTo(weapon)).toEqual({
       wrong_itemclass: true,
     });
 
@@ -57,6 +78,8 @@ describe('applicable mods', () => {
       lower_ilvl: false,
       no_multimod: false,
       wrong_domain: true,
+    });
+    expect(bench.applicableTo(jewel)).toEqual({
       wrong_itemclass: true,
     });
   });
@@ -69,7 +92,6 @@ describe('applicable mods', () => {
       lower_ilvl: false,
       no_multimod: false,
       wrong_domain: false,
-      wrong_itemclass: false,
     });
   });
 
@@ -83,7 +105,6 @@ describe('applicable mods', () => {
       lower_ilvl: false,
       no_multimod: false,
       wrong_domain: false,
-      wrong_itemclass: false,
     });
     expect(
       bench.isModApplicableTo(craftedLife, greaves.setRarity('rare')),
@@ -94,7 +115,6 @@ describe('applicable mods', () => {
       lower_ilvl: false,
       no_multimod: false,
       wrong_domain: false,
-      wrong_itemclass: false,
     });
   });
 });

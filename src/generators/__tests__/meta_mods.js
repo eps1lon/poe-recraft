@@ -81,6 +81,8 @@ describe('multimod', () => {
       lower_ilvl: false,
       no_multimod: false,
       wrong_domain: false,
+    });
+    expect(bench.applicableTo(craftable_greaves)).toEqual({
       wrong_itemclass: false,
     });
 
@@ -96,6 +98,8 @@ describe('multimod', () => {
       lower_ilvl: false,
       no_multimod: true,
       wrong_domain: false,
+    });
+    expect(bench.applicableTo(craftable_greaves.addMod(craftedLife))).toEqual({
       wrong_itemclass: false,
     });
 
@@ -111,8 +115,12 @@ describe('multimod', () => {
       lower_ilvl: false,
       no_multimod: false,
       wrong_domain: false,
-      wrong_itemclass: false,
     });
+    expect(
+      bench.applicableTo(
+        craftable_greaves.addMod(multimod).addMod(craftedLife),
+      ),
+    ).toEqual({ wrong_itemclass: false });
   });
 });
 
