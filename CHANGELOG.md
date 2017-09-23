@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.3.4..HEAD)
 ### Fixed
 - Output path in `dev:schema` script
+### Changed
+- Reduced required properties for `AtlasNodeProps`, `BaseItemTypeProps`, `CraftingBenchOptionsProps` and `ModProps`.
+
+  Basically unnnecessary properties were removed
 
 ## [1.3.4](https://github.com/eps1lon/poe-mods/compare/v1.3.3...v1.3.4)  (2017-09-23)
 ### Added

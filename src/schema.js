@@ -16,7 +16,6 @@ export type SpawnWeightProps = {
 export type StatProps = {
   primary: number,
   id: string,
-  text: string,
 };
 
 export type ModProps = {
@@ -71,8 +70,6 @@ export type ItemClassProps = {
 export type BaseItemTypeProps = {
   primary: number,
   name: string,
-  width: number,
-  height: number,
   drop_level: number,
   inherits_from: string,
   weapon_type: ?WeaponTypeProps,
@@ -85,7 +82,6 @@ export type BaseItemTypeProps = {
 
 export type CraftingBenchOptionsProps = {
   primary: number,
-  order: number,
   master_level: number,
   name: string,
   crafting_bench_custom_action: number,
@@ -93,7 +89,6 @@ export type CraftingBenchOptionsProps = {
   socket_colours: string,
   links: number,
   item_quantity: number,
-  unknown1: string,
   npc_master_key: number,
   mods_key: ?number,
   npc_master: {
