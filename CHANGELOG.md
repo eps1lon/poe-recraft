@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.3.2..HEAD)
 
+## [1.3.3](https://github.com/eps1lon/poe-mods/compare/v1.3.2...v1.3.3)  (2017-09-23)
+### Changed
+- Import of Orb of Annulment is now possible via ```import { Annulment } from 'poe-mods'```. It was previously hidden under `poe-mods/lib/generators/item_orbs/index`
+- Explicitly name the exports in `index.js` for easier lookup of available methods
+- Follow module resolution convention that `module` is resolved to `module/index` if `module.js` is not available.
+
 ## [1.3.2](https://github.com/eps1lon/poe-mods/compare/v1.3.1...v1.3.2)  (2017-09-23)
 ### Fixed
 - Added missing dependency `flow-runtime`. It used to be in devDependency.
