@@ -18,6 +18,6 @@ const runtime = babel.transformFileSync(
 );
 
 fs.writeFileSync(
-  path.join(__dirname, '../src/util/generated/schema.js'),
+  path.join(__dirname, '../src/helpers/generated/schema.js'),
   runtime.code,
 );
