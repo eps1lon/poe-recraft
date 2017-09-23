@@ -11,6 +11,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Reduced required properties for `AtlasNodeProps`, `BaseItemTypeProps`, `CraftingBenchOptionsProps` and `ModProps`.
 
   Basically unnnecessary properties were removed
+- Removed unsafe getter/setter option in flowconfig. It was ignored if the package
+  was consumed by a third party so we added potentially more dangerous `$FlowFixMe`
+  annotations. They should periodically be ignored on a Flow check.
 
 ## [1.3.4](https://github.com/eps1lon/poe-mods/compare/v1.3.3...v1.3.4)  (2017-09-23)
 ### Added

@@ -39,6 +39,7 @@ export default class MasterBenchOption extends Generator<Mod, Item>
     (this: any).props = option;
   }
 
+  // $FlowFixMe Mod is designed about having no side-effects
   get mod(): ?Mod {
     return this.mods[0];
   }

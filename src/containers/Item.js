@@ -185,6 +185,7 @@ export default class Item extends Container<Mod, ItemBuilder>
     });
   }
 
+  // $FlowFixMe Item is designed about having no side-effects
   get affixes(): Container<Mod, ItemBuilder> {
     return this;
   }
