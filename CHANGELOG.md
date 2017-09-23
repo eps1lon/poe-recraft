@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.3.2..HEAD)
 
-## [1.3.1](https://github.com/eps1lon/poe-mods/compare/v1.3.1...v1.3.2)  (2017-09-23)
+## [1.3.2](https://github.com/eps1lon/poe-mods/compare/v1.3.1...v1.3.2)  (2017-09-23)
 ### Fixed
 - Added missing dependency `flow-runtime`. It used to be in devDependency.
 
