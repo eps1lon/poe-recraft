@@ -1,4 +1,8 @@
 // @flow
+import { type GeneratorDetails } from './generators/Generator';
+import type { Flags, ValueRange } from './util';
+
+export type { Flags, GeneratorDetails, ValueRange };
 
 // API definition
 
@@ -20,6 +24,9 @@ export {
   Sextant,
 } from './generators/index';
 
+export { AtlasNode, Item, Implicits } from './containers';
+export { Mod } from './mods';
+
 export { default as Atlas } from './helpers/Atlas';
 export { default as MasterBench } from './helpers/MasterBench';
 
@@ -36,3 +43,5 @@ export {
   verifyItems,
   verifyMods,
 } from './helpers/verifySchema';
+
+export { anySet, Stat } from './util';
