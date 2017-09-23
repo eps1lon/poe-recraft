@@ -1,9 +1,9 @@
 // @flow
-import type { Item } from '../containers/';
+import type { Item } from '../containers';
+import MasterBench from '../helpers/MasterBench';
+import { Mod } from '../mods';
 import type { CraftingBenchOptionsProps, ModProps } from '../schema';
 
-import { Mod } from '../mods/';
-import { MasterBench } from '../util';
 import Generator, { type GeneratorDetails } from './Generator';
 import { Talisman, Transmute, Vaal } from './item_orbs/';
 

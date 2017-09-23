@@ -19,7 +19,7 @@ function createTable<P: PropsWithPrimary>(
   return new PropsTable(props, constructor);
 }
 
-export const createAtlas = (props: AtlasNodeProps[]) => {
+export const createAtlasNodes = (props: AtlasNodeProps[]) => {
   return createTable(props, AtlasNode);
 };
 
@@ -27,7 +27,7 @@ export const createItems = (props: BaseItemTypeProps[]) => {
   return createTable(props, Item);
 };
 
-export const createCraftingBenchOptions = (
+export const createMasterBenchOptions = (
   props: CraftingBenchOptionsProps[],
 ) => {
   return createTable(props, MasterBenchOption);

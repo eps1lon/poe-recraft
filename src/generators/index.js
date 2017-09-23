@@ -2,6 +2,7 @@
 // api surface
 export {
   Alchemy,
+  Annulment,
   Alteration,
   Augment,
   Chaos,

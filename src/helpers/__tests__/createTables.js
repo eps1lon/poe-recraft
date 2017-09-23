@@ -9,13 +9,13 @@ const items = require('../../__fixtures__/baseitemtypes.json');
 const mods = require('../../__fixtures__/mods.json');
 
 it('should build an atlas table', () => {
-  const table = tables.createAtlas(atlas);
+  const table = tables.createAtlasNodes(atlas);
 
   expect(table).toBeInstanceOf(PropsTable);
 });
 
 it('should build an options table', () => {
-  const table = tables.createCraftingBenchOptions(options);
+  const table = tables.createMasterBenchOptions(options);
 
   expect(table).toBeInstanceOf(PropsTable);
 });

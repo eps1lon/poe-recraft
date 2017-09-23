@@ -12,7 +12,7 @@ import type {
 import { AtlasNode, Item } from '../containers';
 import { MasterBenchOption } from '../generators';
 import { Mod } from '../mods';
-import { PropsTable } from '../util';
+import PropsTable from '../helpers/PropsTable';
 
 const json_cache = {};
 

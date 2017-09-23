@@ -1,11 +1,11 @@
 // @flow
 
 import {
-  verifyAtlas,
-  verifyCraftingBenchOptions,
+  verifyAtlasNodes,
+  verifyMasterBenchOptions,
   verifyItems,
   verifyMods,
-} from '../util';
+} from '../';
 
 const atlas = require('../__fixtures__/atlas.json');
 const baseitemtypes = require('../__fixtures__/baseitemtypes.json');
@@ -14,11 +14,11 @@ const mods = require('../__fixtures__/mods.json');
 
 describe('schema', () => {
   it('should verify atlas', () => {
-    verifyAtlas(atlas);
+    verifyAtlasNodes(atlas);
   });
 
   it('should verify craftingbenchoptions', () => {
-    verifyCraftingBenchOptions(craftingbenchoptions);
+    verifyMasterBenchOptions(craftingbenchoptions);
   });
 
   it('should verify items', () => {
