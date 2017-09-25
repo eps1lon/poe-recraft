@@ -1,4 +1,3 @@
-// @flow
 import { createItems, createMods, Transmute } from '../../index';
 
 const fetchMock = require('fetch-mock');
