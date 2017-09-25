@@ -54,12 +54,16 @@ export default class ImmutableContainer<T: Mod, B: Builder<T>>
    * truncates mods
    */
   removeAllMods(): this {
-    return this.withMutations(builder => {
-      return {
-        ...builder,
-        mods: [],
-      };
-    });
+    if (this.mods.length > 0) {
+      return this.withMutations(builder => {
+        return {
+          ...builder,
+          mods: [],
+        };
+      });
+    } else {
+      return this;
+    }
   }
 
   /**

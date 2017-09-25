@@ -61,7 +61,7 @@ it('should work like ingame', () => {
   expect(
     generator.isModApplicableTo(
       ofBrute,
-      greaves.setRarity('magic').addMod(ofBrute),
+      greaves.rarity.set('magic').addMod(ofBrute),
     ),
   ).toEqual({
     above_lld_level: false,
@@ -75,7 +75,7 @@ it('should work like ingame', () => {
   expect(
     generator.isModApplicableTo(
       ofWrestler,
-      greaves.setRarity('rare').addMod(ofBrute),
+      greaves.rarity.set('rare').addMod(ofBrute),
     ),
   ).toEqual({
     above_lld_level: false,
@@ -89,7 +89,7 @@ it('should work like ingame', () => {
   expect(
     generator.isModApplicableTo(
       ofBrute,
-      greaves.setRarity('magic').setProperty('item_level', 0),
+      greaves.rarity.set('magic').setProperty('item_level', 0),
     ),
   ).toEqual({
     above_lld_level: false,
@@ -103,7 +103,7 @@ it('should work like ingame', () => {
   expect(
     generator.isModApplicableTo(
       sturdy,
-      greaves.setRarity('magic').addMod(ofBrute),
+      greaves.rarity.set('magic').addMod(ofBrute),
     ),
   ).toEqual({
     above_lld_level: false,
@@ -115,7 +115,7 @@ it('should work like ingame', () => {
 
   // place for affixes => everything is fine
   expect(
-    generator.isModApplicableTo(ofBrute, greaves.setRarity('magic')),
+    generator.isModApplicableTo(ofBrute, greaves.rarity.set('magic')),
   ).toEqual({
     above_lld_level: false,
     already_present: false,

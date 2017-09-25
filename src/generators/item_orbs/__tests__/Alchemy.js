@@ -24,7 +24,7 @@ it('should only have prefixes and suffixes', () => {
 it('should only apply to white items', () => {
   const alchemy = Alchemy.build(mods.all());
 
-  expect(greaves.props.rarity).toBe('normal');
+  expect(greaves.rarity.toString()).toBe('normal');
 
   expect(alchemy.applicableTo(greaves)).toEqual({
     not_white: false,
@@ -32,7 +32,7 @@ it('should only apply to white items', () => {
     mirrored: false,
   });
 
-  expect(alchemy.applicableTo(greaves.setRarity('magic'))).toEqual({
+  expect(alchemy.applicableTo(greaves.rarity.set('magic'))).toEqual({
     not_white: true,
     corrupted: false,
     mirrored: false,

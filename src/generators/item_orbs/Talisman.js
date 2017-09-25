@@ -9,8 +9,8 @@ import ItemOrb from './ItemOrb';
  */
 export default class Talisman extends ItemOrb {
   static modFilter(mod: ModProps): boolean {
-    // talisman wildcard
-    return [Mod.TYPE.ENCHANTMENT].indexOf(mod.generation_type) !== -1;
+    // no mods
+    return false;
   }
 
   static build(mods: ModProps[]): Talisman {

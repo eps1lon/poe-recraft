@@ -23,7 +23,7 @@ export default class Regal extends ItemOrb {
   applyTo(item: Item): Item {
     if (!anySet(this.applicableTo(item))) {
       // upgrade to rare
-      return this.rollMod(item.setRarity('rare'));
+      return this.rollMod(item.rarity.set('rare'));
     } else {
       return item;
     }
@@ -34,7 +34,7 @@ export default class Regal extends ItemOrb {
    */
   modsFor(item: Item, whitelist: string[] = []) {
     // simulate upgrade
-    return super.modsFor(item.setRarity('rare'), whitelist);
+    return super.modsFor(item.rarity.set('rare'), whitelist);
   }
 
   applicableTo(item: Item): ApplicableFlags {
@@ -43,7 +43,7 @@ export default class Regal extends ItemOrb {
       not_magic: false,
     };
 
-    if (item.props.rarity !== 'magic') {
+    if (!item.rarity.isMagic()) {
       applicable_flags.not_magic = true;
     }
 

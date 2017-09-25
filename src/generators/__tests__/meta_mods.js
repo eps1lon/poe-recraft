@@ -6,7 +6,7 @@ import { metaMods as META_MODS } from '../../mods';
 const { craftingbenchoptions: options, items, mods } = createTables();
 
 describe('no_*_mods', () => {
-  const weapon = items.fromPrimary(1025).setRarity('rare');
+  const weapon = items.fromPrimary(1025).rarity.set('rare');
 
   const no_attack_mods = mods.fromPrimary(META_MODS.NO_ATTACK_MODS);
   const no_caster_mods = mods.fromPrimary(META_MODS.NO_CASTER_MODS);
@@ -48,7 +48,7 @@ describe('no_*_mods', () => {
 
 describe('leo pvp mod', () => {
   it('should exclude mods above required level 28', () => {
-    const weapon = items.fromPrimary(1025).setRarity('rare');
+    const weapon = items.fromPrimary(1025).rarity.set('rare');
 
     const leo_mod = mods.fromPrimary(META_MODS.LLD_MOD);
 
@@ -68,7 +68,7 @@ describe('multimod', () => {
   const bench = options.fromPrimary(1);
 
   it('should allow more than one crafted mod', () => {
-    const craftable_greaves = items.fromPrimary(1650).setRarity('rare');
+    const craftable_greaves = items.fromPrimary(1650).rarity.set('rare');
 
     const craftedLife = mods.fromPrimary(5596);
     const craftedArmour = mods.fromPrimary(5550);
@@ -139,80 +139,80 @@ describe('lock_*', () => {
 
   describe('with alteration', () => {
     const alteration = Alteration.build(mods.all());
-    const craftable = weapon.setRarity('magic');
+    const craftable = weapon.rarity.set('magic');
 
     it('should not change prefixes', () => {
       const pre = craftable.addMod(ipd).addMod(locked_prefixes);
 
-      expect(pre.mods).toHaveLength(2);
+      expect(pre.affixes.mods).toHaveLength(2);
 
       // random testing
       for (let tries = 1; tries <= 10; tries += 1) {
         const post = alteration.applyTo(pre);
 
         expect(post).not.toBe(pre);
-        expect(post.mods.length).toBeGreaterThanOrEqual(1);
-        expect(post.mods).toContain(ipd);
-        expect(post.mods).not.toContain(locked_prefixes);
+        expect(post.affixes.mods.length).toBeGreaterThanOrEqual(1);
+        expect(post.affixes.mods).toContain(ipd);
+        expect(post.affixes.mods).not.toContain(locked_prefixes);
       }
     });
 
     it('should not change suffixes', () => {
       const pre = craftable.addMod(ias).addMod(locked_suffixes);
 
-      expect(pre.mods).toHaveLength(2);
+      expect(pre.affixes.mods).toHaveLength(2);
 
       // random testing
       for (let tries = 1; tries <= 10; tries += 1) {
         const post = alteration.applyTo(pre);
 
         expect(post).not.toBe(pre);
-        expect(post.mods.length).toBeGreaterThanOrEqual(1);
-        expect(post.mods).toContain(ias);
-        expect(post.mods).not.toContain(locked_prefixes);
+        expect(post.affixes.mods.length).toBeGreaterThanOrEqual(1);
+        expect(post.affixes.mods).toContain(ias);
+        expect(post.affixes.mods).not.toContain(locked_prefixes);
       }
     });
   });
 
   describe('with augment', () => {
     const augment = Augment.build(mods.all());
-    const craftable = weapon.setRarity('magic');
+    const craftable = weapon.rarity.set('magic');
 
     it('should be able to add prefixes', () => {
       const pre = craftable.addMod(locked_prefixes);
 
-      expect(pre.mods).toHaveLength(1);
+      expect(pre.affixes.mods).toHaveLength(1);
 
       // random testing
       for (let tries = 1; tries <= 10; tries += 1) {
         const post = augment.applyTo(pre);
 
         expect(post).not.toBe(pre);
-        expect(post.mods).toHaveLength(2);
-        expect(post.mods).toContain(locked_prefixes);
+        expect(post.affixes.mods).toHaveLength(2);
+        expect(post.affixes.mods).toContain(locked_prefixes);
       }
     });
 
     it('should be able to add suffixes', () => {
       const pre = craftable.addMod(locked_suffixes);
 
-      expect(pre.mods).toHaveLength(1);
+      expect(pre.affixes.mods).toHaveLength(1);
 
       // random testing
       for (let tries = 1; tries <= 10; tries += 1) {
         const post = augment.applyTo(pre);
 
         expect(post).not.toBe(pre);
-        expect(post.mods).toHaveLength(2);
-        expect(post.mods).toContain(locked_suffixes);
+        expect(post.affixes.mods).toHaveLength(2);
+        expect(post.affixes.mods).toContain(locked_suffixes);
       }
     });
   });
 
   describe('with chaos', () => {
     const chaos = Chaos.build(mods.all());
-    const craftable = weapon
-      .setRarity('rare')
+    const craftable = weapon.rarity
+      .set('rare')
       .addMod(ipd)
       .addMod(flatphys)
       .addMod(ias)
@@ -221,191 +221,191 @@ describe('lock_*', () => {
     it('should not change prefixes', () => {
       const pre = craftable.addMod(locked_prefixes);
 
-      expect(pre.mods).toHaveLength(5);
-      expect(pre.getPrefixes()).toHaveLength(2);
-      expect(pre.getSuffixes()).toHaveLength(3);
+      expect(pre.affixes.mods).toHaveLength(5);
+      expect(pre.affixes.getPrefixes()).toHaveLength(2);
+      expect(pre.affixes.getSuffixes()).toHaveLength(3);
 
       // random testing
       for (let tries = 1; tries <= 10; tries += 1) {
         const post = chaos.applyTo(pre);
 
         expect(post).not.toBe(pre);
-        expect(post.getPrefixes()).toHaveLength(2);
-        expect(post.mods).toContain(ipd);
-        expect(post.mods).toContain(flatphys);
-        expect(post.mods).not.toContain(locked_prefixes);
-        expect(post.getSuffixes().length).toBeGreaterThanOrEqual(2);
+        expect(post.affixes.getPrefixes()).toHaveLength(2);
+        expect(post.affixes.mods).toContain(ipd);
+        expect(post.affixes.mods).toContain(flatphys);
+        expect(post.affixes.mods).not.toContain(locked_prefixes);
+        expect(post.affixes.getSuffixes().length).toBeGreaterThanOrEqual(2);
       }
     });
 
     it('should not change suffixes', () => {
       const pre = craftable.addMod(locked_suffixes);
 
-      expect(pre.mods).toHaveLength(5);
-      expect(pre.getPrefixes()).toHaveLength(3);
-      expect(pre.getSuffixes()).toHaveLength(2);
+      expect(pre.affixes.mods).toHaveLength(5);
+      expect(pre.affixes.getPrefixes()).toHaveLength(3);
+      expect(pre.affixes.getSuffixes()).toHaveLength(2);
 
       // random testing
       for (let tries = 1; tries <= 10; tries += 1) {
         const post = chaos.applyTo(pre);
 
         expect(post).not.toBe(pre);
-        expect(post.getSuffixes()).toHaveLength(2);
-        expect(post.mods).toContain(ias);
-        expect(post.mods).toContain(crit);
-        expect(post.mods).not.toContain(locked_suffixes);
-        expect(post.getPrefixes().length).toBeGreaterThanOrEqual(2);
+        expect(post.affixes.getSuffixes()).toHaveLength(2);
+        expect(post.affixes.mods).toContain(ias);
+        expect(post.affixes.mods).toContain(crit);
+        expect(post.affixes.mods).not.toContain(locked_suffixes);
+        expect(post.affixes.getPrefixes().length).toBeGreaterThanOrEqual(2);
       }
     });
 
     it('should stay the same with both', () => {
-      const pre = weapon
-        .setRarity('rare')
+      const pre = weapon.rarity
+        .set('rare')
         .addMod(ias)
         .addMod(locked_prefixes)
         .addMod(locked_suffixes);
 
-      expect(pre.mods).toHaveLength(3);
+      expect(pre.affixes.mods).toHaveLength(3);
 
       const post = chaos.applyTo(pre);
 
-      expect(post.mods).toHaveLength(3);
-      expect(post.mods).toContain(ias);
-      expect(post.mods).toContain(locked_prefixes);
-      expect(post.mods).toContain(locked_suffixes);
+      expect(post.affixes.mods).toHaveLength(3);
+      expect(post.affixes.mods).toContain(ias);
+      expect(post.affixes.mods).toContain(locked_prefixes);
+      expect(post.affixes.mods).toContain(locked_suffixes);
     });
   });
 
   describe('with exalted', () => {
     const exalted = Exalted.build(mods.all());
-    const craftable = weapon.setRarity('rare');
+    const craftable = weapon.rarity.set('rare');
 
     it('should be able to add prefixes', () => {
       const pre = craftable.addMod(locked_prefixes);
 
-      expect(pre.mods).toHaveLength(1);
+      expect(pre.affixes.mods).toHaveLength(1);
 
       // random testing
       for (let tries = 1; tries <= 10; tries += 1) {
         const post = exalted.applyTo(pre);
 
         expect(post).not.toBe(pre);
-        expect(post.mods).toHaveLength(2);
-        expect(post.mods).toContain(locked_prefixes);
+        expect(post.affixes.mods).toHaveLength(2);
+        expect(post.affixes.mods).toContain(locked_prefixes);
       }
     });
 
     it('should be able to add suffixes', () => {
       const pre = craftable.addMod(locked_suffixes);
 
-      expect(pre.mods).toHaveLength(1);
+      expect(pre.affixes.mods).toHaveLength(1);
 
       // random testing
       for (let tries = 1; tries <= 10; tries += 1) {
         const post = exalted.applyTo(pre);
 
         expect(post).not.toBe(pre);
-        expect(post.mods).toHaveLength(2);
-        expect(post.mods).toContain(locked_suffixes);
+        expect(post.affixes.mods).toHaveLength(2);
+        expect(post.affixes.mods).toContain(locked_suffixes);
       }
     });
   });
 
   describe('with regal', () => {
     const regal = Regal.build(mods.all());
-    const craftable = weapon.setRarity('magic');
+    const craftable = weapon.rarity.set('magic');
 
     it('should be able to add prefixes', () => {
       const pre = craftable.addMod(locked_prefixes);
 
-      expect(pre.mods).toHaveLength(1);
+      expect(pre.affixes.mods).toHaveLength(1);
 
       // random testing
       for (let tries = 1; tries <= 10; tries += 1) {
         const post = regal.applyTo(pre);
 
         expect(post).not.toBe(pre);
-        expect(post.mods).toHaveLength(2);
-        expect(post.mods).toContain(locked_prefixes);
+        expect(post.affixes.mods).toHaveLength(2);
+        expect(post.affixes.mods).toContain(locked_prefixes);
       }
     });
 
     it('should be able to add suffixes', () => {
       const pre = craftable.addMod(locked_suffixes);
 
-      expect(pre.mods).toHaveLength(1);
+      expect(pre.affixes.mods).toHaveLength(1);
 
       // random testing
       for (let tries = 1; tries <= 10; tries += 1) {
         const post = regal.applyTo(pre);
 
         expect(post).not.toBe(pre);
-        expect(post.mods).toHaveLength(2);
-        expect(post.mods).toContain(locked_suffixes);
+        expect(post.affixes.mods).toHaveLength(2);
+        expect(post.affixes.mods).toContain(locked_suffixes);
       }
     });
   });
 
   describe('with scour', () => {
     const scouring = new Scouring();
-    const craftable = weapon
-      .setRarity('rare')
+    const craftable = weapon.rarity
+      .set('rare')
       .addMod(flatphys)
       .addMod(ias);
 
     it('should not change prefixes', () => {
       const pre = craftable.addMod(locked_prefixes);
 
-      expect(pre.mods).toHaveLength(3);
-      expect(pre.getPrefixes()).toHaveLength(1);
-      expect(pre.getSuffixes()).toHaveLength(2);
+      expect(pre.affixes.mods).toHaveLength(3);
+      expect(pre.affixes.getPrefixes()).toHaveLength(1);
+      expect(pre.affixes.getSuffixes()).toHaveLength(2);
 
       // random testing
       for (let tries = 1; tries <= 10; tries += 1) {
         const post = scouring.applyTo(pre);
 
         expect(post).not.toBe(pre);
-        expect(post.getPrefixes()).toHaveLength(1);
-        expect(post.getSuffixes()).toHaveLength(0);
+        expect(post.affixes.getPrefixes()).toHaveLength(1);
+        expect(post.affixes.getSuffixes()).toHaveLength(0);
         expect(post.mods).toContain(flatphys);
-        expect(post.props.rarity).toBe('rare');
+        expect(post.rarity.toString()).toBe('rare');
       }
     });
 
     it('should not change suffixes', () => {
       const pre = craftable.addMod(locked_suffixes);
 
-      expect(pre.mods).toHaveLength(3);
-      expect(pre.getPrefixes()).toHaveLength(2);
-      expect(pre.getSuffixes()).toHaveLength(1);
+      expect(pre.affixes.mods).toHaveLength(3);
+      expect(pre.affixes.getPrefixes()).toHaveLength(2);
+      expect(pre.affixes.getSuffixes()).toHaveLength(1);
 
       // random testing
       for (let tries = 1; tries <= 10; tries += 1) {
         const post = scouring.applyTo(pre);
 
         expect(post).not.toBe(pre);
-        expect(post.getPrefixes()).toHaveLength(0);
-        expect(post.getSuffixes()).toHaveLength(1);
-        expect(post.mods).toContain(ias);
-        expect(post.props.rarity).toBe('rare');
+        expect(post.affixes.getPrefixes()).toHaveLength(0);
+        expect(post.affixes.getSuffixes()).toHaveLength(1);
+        expect(post.affixes.mods).toContain(ias);
+        expect(post.rarity.toString()).toBe('rare');
       }
     });
 
     it('should stay the same with both', () => {
-      const pre = weapon
-        .setRarity('rare')
+      const pre = weapon.rarity
+        .set('rare')
         .addMod(ias)
         .addMod(locked_prefixes)
         .addMod(locked_suffixes);
 
-      expect(pre.mods).toHaveLength(3);
+      expect(pre.affixes.mods).toHaveLength(3);
 
       const post = scouring.applyTo(pre);
 
-      expect(post.mods).toHaveLength(3);
-      expect(post.mods).toContain(ias);
-      expect(post.mods).toContain(locked_prefixes);
-      expect(post.mods).toContain(locked_suffixes);
+      expect(post.affixes.mods).toHaveLength(3);
+      expect(post.affixes.mods).toContain(ias);
+      expect(post.affixes.mods).toContain(locked_prefixes);
+      expect(post.affixes.mods).toContain(locked_suffixes);
     });
   });
 });

@@ -37,7 +37,7 @@ export default class Exalted extends ItemOrb {
       not_rare: false,
     };
 
-    if (item.props.rarity !== 'rare') {
+    if (!item.rarity.isRare()) {
       applicable_flags.not_rare = true;
     }
 

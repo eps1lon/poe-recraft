@@ -27,8 +27,8 @@ export default class Chaos extends ItemOrb {
    */
   applyTo(item: Item): Item {
     if (!anySet(this.applicableTo(item))) {
-      const locked_prefixes = item.lockedPrefixes();
-      const locked_suffixes = item.lockedSuffixes();
+      const locked_prefixes = item.affixes.lockedPrefixes();
+      const locked_suffixes = item.affixes.lockedSuffixes();
 
       if (locked_prefixes && locked_suffixes) {
         // TODO rerolls name so it is actually a new item
@@ -73,7 +73,7 @@ export default class Chaos extends ItemOrb {
       not_rare: false,
     };
 
-    if (item.props.rarity !== 'rare') {
+    if (!item.rarity.isRare()) {
       applicable_flags.not_rare = true;
     }
 

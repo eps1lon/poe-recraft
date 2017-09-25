@@ -9,7 +9,7 @@ const greaves = items.fromPrimary(1650);
 it('should not work on uniques or normal items', () => {
   const scour = new Scouring();
 
-  expect(greaves.props.rarity).toBe('normal');
+  expect(greaves.rarity.toString()).toBe('normal');
 
   expect(scour.applicableTo(greaves)).toEqual({
     corrupted: false,
@@ -19,7 +19,7 @@ it('should not work on uniques or normal items', () => {
   });
   expect(scour.applyTo(greaves)).toBe(greaves);
 
-  const unique = greaves.setRarity('unique');
+  const unique = greaves.rarity.set('unique');
   expect(scour.applicableTo(unique)).toEqual({
     corrupted: false,
     mirrored: false,
@@ -28,14 +28,14 @@ it('should not work on uniques or normal items', () => {
   });
   expect(scour.applyTo(unique)).toBe(unique);
 
-  expect(scour.applicableTo(greaves.setRarity('magic'))).toEqual({
+  expect(scour.applicableTo(greaves.rarity.set('magic'))).toEqual({
     corrupted: false,
     mirrored: false,
     unique: false,
     normal: false,
   });
 
-  expect(scour.applicableTo(greaves.setRarity('rare'))).toEqual({
+  expect(scour.applicableTo(greaves.rarity.set('rare'))).toEqual({
     corrupted: false,
     mirrored: false,
     unique: false,
@@ -50,9 +50,9 @@ it('should remove mods and downgrade to normal', () => {
   const life = mods.fromPrimary(198);
 
   // pre
-  const magic_greaves = greaves.setRarity('magic').addMod(movement);
+  const magic_greaves = greaves.rarity.set('magic').addMod(movement);
 
-  expect(magic_greaves.props.rarity).toBe('magic');
+  expect(magic_greaves.rarity.toString()).toBe('magic');
   expect(magic_greaves.mods).toHaveLength(1);
 
   // to test
@@ -60,16 +60,16 @@ it('should remove mods and downgrade to normal', () => {
 
   // post
   expect(scoured_magic).not.toBe(magic_greaves);
-  expect(scoured_magic.props.rarity).toBe('normal');
+  expect(scoured_magic.rarity.toString()).toBe('normal');
   expect(scoured_magic.mods).toHaveLength(0);
 
   // pre
-  const rare_greaves = greaves
-    .setRarity('rare')
+  const rare_greaves = greaves.rarity
+    .set('rare')
     .addMod(movement)
     .addMod(life);
 
-  expect(rare_greaves.props.rarity).toBe('rare');
+  expect(rare_greaves.rarity.toString()).toBe('rare');
   expect(rare_greaves.mods).toHaveLength(2);
 
   // to test
@@ -77,6 +77,6 @@ it('should remove mods and downgrade to normal', () => {
 
   // post
   expect(scoured_rare).not.toBe(rare_greaves);
-  expect(scoured_rare.props.rarity).toBe('normal');
+  expect(scoured_rare.rarity.toString()).toBe('normal');
   expect(scoured_rare.mods).toHaveLength(0);
 });

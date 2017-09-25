@@ -37,12 +37,12 @@ it('should apply the chosen option', () => {
   const crafted = haku_life.applyTo(greaves);
 
   expect(crafted).not.toBe(greaves);
-  expect(crafted.props.rarity).toBe('magic');
+  expect(crafted.rarity.toString()).toBe('magic');
   expect(crafted.mods[0].props.name).toEqual('Stalwart');
 });
 
 it('should return the same item if it cant apply', () => {
-  const jewel = items.fromPrimary(2273).setRarity('magic');
+  const jewel = items.fromPrimary(2273).rarity.set('magic');
   const haku_life = options.fromPrimary(1);
 
   expect(haku_life.applyTo(jewel)).toBe(jewel);
@@ -55,7 +55,7 @@ describe('applicable mods', () => {
   const craftedLife = bench.mods[0];
 
   it('should check for equipment type', () => {
-    const weapon = items.fromPrimary(1025).setRarity('magic');
+    const weapon = items.fromPrimary(1025).rarity.set('magic');
 
     expect(bench.isModApplicableTo(craftedLife, weapon)).toEqual({
       above_lld_level: false,
@@ -69,7 +69,7 @@ describe('applicable mods', () => {
       wrong_itemclass: true,
     });
 
-    const jewel = items.fromPrimary(2273).setRarity('magic');
+    const jewel = items.fromPrimary(2273).rarity.set('magic');
 
     expect(bench.isModApplicableTo(craftedLife, jewel)).toEqual({
       above_lld_level: false,
@@ -97,7 +97,7 @@ describe('applicable mods', () => {
 
   it('should work on magic and rares', () => {
     expect(
-      bench.isModApplicableTo(craftedLife, greaves.setRarity('magic')),
+      bench.isModApplicableTo(craftedLife, greaves.rarity.set('magic')),
     ).toEqual({
       above_lld_level: false,
       already_present: false,
@@ -107,7 +107,7 @@ describe('applicable mods', () => {
       wrong_domain: false,
     });
     expect(
-      bench.isModApplicableTo(craftedLife, greaves.setRarity('rare')),
+      bench.isModApplicableTo(craftedLife, greaves.rarity.set('rare')),
     ).toEqual({
       above_lld_level: false,
       already_present: false,

@@ -5,7 +5,7 @@ import { type Mod } from '../mods';
 export interface Container<T: Mod> extends Taggable {
   addMod(T): *,
   removeMod(T): *,
-  removeAllMods(T): *,
+  removeAllMods(): *,
   hasMod(T): boolean,
   hasRoomFor(T): boolean,
 

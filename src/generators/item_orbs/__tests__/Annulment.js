@@ -13,8 +13,8 @@ it('should only work on certain items', () => {
   const annul = new Annulment();
 
   expect(annul.isApplicableTo(greaves)).toBe(false);
-  expect(annul.isApplicableTo(greaves.setRarity('magic'))).toBe(true);
-  expect(annul.isApplicableTo(greaves.setRarity('rare'))).toBe(true);
+  expect(annul.isApplicableTo(greaves.rarity.set('magic'))).toBe(true);
+  expect(annul.isApplicableTo(greaves.rarity.set('rare'))).toBe(true);
   expect(annul.isApplicableTo(greaves.mirror())).toBe(false);
   expect(annul.isApplicableTo(greaves.corrupt())).toBe(false);
 });
@@ -22,7 +22,7 @@ it('should only work on certain items', () => {
 it('doesnt have any mods', () => {
   const annul = new Annulment();
 
-  expect(annul.modsFor(greaves.setRarity('magic'))).toHaveLength(0);
+  expect(annul.modsFor(greaves.rarity.set('magic'))).toHaveLength(0);
 });
 
 it('should not change the item if nothing changes', () => {
@@ -31,7 +31,7 @@ it('should not change the item if nothing changes', () => {
   // not applicable
   expect(annul.applyTo(greaves)).toBe(greaves);
 
-  const applicable = greaves.setRarity('magic');
+  const applicable = greaves.rarity.set('magic');
   expect(annul.applyTo(applicable)).toBe(applicable);
 });
 
@@ -42,7 +42,7 @@ it('should remove one mod while preserving rarity', () => {
   // random testing
   for (let tries = 1; tries <= 10; tries += 1) {
     let crafted = alchemy.applyTo(greaves);
-    const pre_rarity = crafted.props.rarity;
+    const pre_rarity = crafted.rarity.toString();
 
     let old_mods_tally = crafted.affixes.mods.length;
     expect(old_mods_tally).toBeGreaterThan(0);
@@ -52,7 +52,7 @@ it('should remove one mod while preserving rarity', () => {
       const new_mods_tally = crafted.affixes.mods.length;
 
       expect(old_mods_tally - new_mods_tally).toBe(1);
-      expect(crafted.props.rarity).toBe(pre_rarity);
+      expect(crafted.rarity.toString()).toBe(pre_rarity);
 
       old_mods_tally = new_mods_tally;
     }
@@ -70,8 +70,8 @@ it('should consider meta mods', () => {
 
   const locked_prefixes = mods.fromPrimary(META_MODS.LOCKED_PREFIXES);
 
-  const crafted = greaves
-    .setRarity('rare')
+  const crafted = greaves.rarity
+    .set('rare')
     .addMod(life)
     .addMod(armour)
     .addMod(ms)
@@ -79,9 +79,9 @@ it('should consider meta mods', () => {
     .addMod(strength)
     .addMod(locked_prefixes);
 
-  expect(crafted.getPrefixes()).toHaveLength(3);
+  expect(crafted.affixes.getPrefixes()).toHaveLength(3);
 
   for (let tries = 1; tries <= 20; tries += 1) {
-    expect(annul.applyTo(crafted).getPrefixes()).toHaveLength(3);
+    expect(annul.applyTo(crafted).affixes.getPrefixes()).toHaveLength(3);
   }
 });

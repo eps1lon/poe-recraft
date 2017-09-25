@@ -27,7 +27,7 @@ export default class Vaal extends ItemOrb {
       const implicit = this.chooseMod(blank_item);
 
       if (implicit != null) {
-        const vaaled_item = blank_item.addImplicit(implicit);
+        const vaaled_item = blank_item.addMod(implicit);
 
         if (vaaled_item !== blank_item) {
           return vaaled_item.corrupt();

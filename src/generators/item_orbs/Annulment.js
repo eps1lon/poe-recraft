@@ -1,7 +1,7 @@
 // @flow
 import _ from 'lodash';
 
-import type { Item, Rarity } from '../../containers';
+import type { Item } from '../../containers';
 
 import { type Flags, anySet } from '../../util/Flags';
 import ItemOrb, {
@@ -19,8 +19,8 @@ export default class Annulment extends ItemOrb {
 
   applyTo(item: Item): Item {
     if (!anySet(this.applicableTo(item))) {
-      const locked_prefixes = item.lockedPrefixes();
-      const locked_suffixes = item.lockedSuffixes();
+      const locked_prefixes = item.affixes.lockedPrefixes();
+      const locked_suffixes = item.affixes.lockedSuffixes();
 
       const mods = item.affixes.mods.filter(mod => {
         return (
@@ -49,7 +49,7 @@ export default class Annulment extends ItemOrb {
       not_magic_rare: false,
     };
 
-    if (!['magic', 'rare', 'showcase'].includes(item.props.rarity)) {
+    if (!item.rarity.isMagic() && !item.rarity.isRare()) {
       applicable_flags.not_magic_rare = true;
     }
 
