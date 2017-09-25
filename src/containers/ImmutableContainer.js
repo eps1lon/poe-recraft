@@ -1,18 +1,20 @@
 // @flow
 import { AbstractMethod } from '../exceptions';
-import type { Taggable } from '../interfaces';
 import type { TagProps } from '../schema';
 import type { Mod } from '../mods';
+
+import type { Container } from './Container';
 
 export type Builder<T: Mod> = {
   mods: T[],
 };
 
-export default class Container<T: Mod, B: Builder<T>> implements Taggable {
+export default class ImmutableContainer<T: Mod, B: Builder<T>>
+  implements Container<T> {
   +mods: T[];
 
-  static withBuilder(builder: B): Container<T, B> {
-    return new Container(builder.mods);
+  static withBuilder(builder: B): ImmutableContainer<T, B> {
+    return new ImmutableContainer(builder.mods);
   }
 
   constructor(mods: T[]) {
