@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Added `AtlasNode`, `Mod`, `Implicits`, `Item`, `Stat` and `anySet` to API exports 
 - Added `Flags` and `GeneratorDetails` type exports
+- Added `AtlasNode#humanId` for easier usage in `Atlas#method(HumanId)`
 
 ## [1.3.3](https://github.com/eps1lon/poe-mods/compare/v1.3.2...v1.3.3)  (2017-09-23)
 ### Changed

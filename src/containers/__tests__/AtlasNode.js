@@ -122,3 +122,12 @@ it('should know by which mods its affected', () => {
   expect(atlas[waka_index].activeMods(atlas)).toContain(invasion_mod);
   expect(atlas[waka_index].inactiveMods(atlas)).not.toContain(invasion_mod);
 });
+
+it('has a human readable identifier', () => {
+  expect(atlas_nodes.fromPrimary(8).humanId()).toBe('AridLake');
+  expect(atlas_nodes.fromPrimary(26).humanId()).toBe('Dunes');
+  expect(atlas_nodes.fromPrimary(7).humanId()).toBe('Oasis');
+  expect(atlas_nodes.fromPrimary(25).humanId()).toBe('DryPeninsula');
+  expect(atlas_nodes.fromPrimary(37).humanId()).toBe('Strand');
+  expect(atlas_nodes.fromPrimary(22).humanId()).toBe('Villa');
+});

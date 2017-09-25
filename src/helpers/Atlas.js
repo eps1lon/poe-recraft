@@ -4,9 +4,9 @@ import { Sextant } from '../generators';
 import { type Mod } from '../mods';
 import { type AtlasNodeProps } from '../schema';
 
-type AtlasNodeId = string;
+type HumanId = string;
 
-type AtlasNodes = Map<AtlasNodeId, AtlasNode>;
+type AtlasNodes = Map<HumanId, AtlasNode>;
 
 type Builder = {
   nodes: AtlasNodes,
@@ -20,13 +20,9 @@ type AtlasSextant = Sextant; // sextant.atlas defined
  * main purpose is for reducer like usage in redux
  */
 export default class Atlas {
-  static nodeId(node: AtlasNodeProps): AtlasNodeId {
-    return node.world_area.id.replace(/MapAtlas/, '');
-  }
-
   static buildLookupTable(atlas: AtlasNodeProps[]): AtlasNodes {
     return atlas.reduce((nodes, props) => {
-      return nodes.set(Atlas.nodeId(props), new AtlasNode([], props));
+      return nodes.set(AtlasNode.humanId(props), new AtlasNode([], props));
     }, new Map());
   }
 
@@ -54,7 +50,7 @@ export default class Atlas {
   /**
    * wrapper for map get that ensures a node or throws
    */
-  get(id: AtlasNodeId): AtlasNode {
+  get(id: HumanId): AtlasNode {
     const node = this.nodes.get(id);
 
     if (node == null) {
@@ -103,15 +99,15 @@ export default class Atlas {
     });
   }
 
-  addMod(mod: Mod, node_id: AtlasNodeId): this {
+  addMod(mod: Mod, node_id: HumanId): this {
     return this.mutateNode(node_id, node => node.addMod(mod));
   }
 
-  removeMod(mod: Mod, node_id: AtlasNodeId): this {
+  removeMod(mod: Mod, node_id: HumanId): this {
     return this.mutateNode(node_id, node => node.removeMod(mod));
   }
 
-  mutateNode(node_id: AtlasNodeId, mutate: AtlasNode => AtlasNode): this {
+  mutateNode(node_id: HumanId, mutate: AtlasNode => AtlasNode): this {
     const target = this.get(node_id);
     const mutated = mutate(target);
 
@@ -127,19 +123,19 @@ export default class Atlas {
     }
   }
 
-  applySextant(sextant: Sextant, node_id: AtlasNodeId): this {
+  applySextant(sextant: Sextant, node_id: HumanId): this {
     const sextant_on_atlas = this.prepareSextant(sextant);
 
     return this.mutateNode(node_id, node => sextant_on_atlas.applyTo(node));
   }
 
-  modsFor(sextant: Sextant, node_id: AtlasNodeId) {
+  modsFor(sextant: Sextant, node_id: HumanId) {
     const sextant_on_atlas = this.prepareSextant(sextant);
 
     return sextant_on_atlas.modsFor(this.get(node_id));
   }
 
-  blockedMods(node_id: AtlasNodeId): Mod[] {
+  blockedMods(node_id: HumanId): Mod[] {
     const target = this.get(node_id);
 
     return Sextant.blockedMods(target, this.asArray());

@@ -12,8 +12,14 @@ export type Builder = {
   props: AtlasNodeProps,
 };
 
+type HumanId = string;
+
 export default class AtlasNode extends Container<Mod, Builder>
   implements Buildable<AtlasNodeProps> {
+  static humanId(props: AtlasNodeProps): HumanId {
+    return props.world_area.id.replace(/MapAtlas/, '');
+  }
+
   +props: AtlasNodeProps;
 
   static build(props: AtlasNodeProps) {
@@ -136,5 +142,9 @@ export default class AtlasNode extends Container<Mod, Builder>
     return this.affectingMods(atlas).filter(
       mod => mod.spawnweightFor(this) <= 0,
     );
+  }
+
+  humanId(): HumanId {
+    return AtlasNode.humanId(this.props);
   }
 }
