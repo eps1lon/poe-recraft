@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.3.5..HEAD)
 ### Added
 - `PropsTable#from(finder)` builds an instance from the props for which the predicate is true
+### Changed
+- Duplicate affecting Mods are now excluded on `AtlasNode`
 
 ## [1.3.5](https://github.com/eps1lon/poe-mods/compare/v1.3.4..v1.3.5) (2017-09-25)
 ### Added

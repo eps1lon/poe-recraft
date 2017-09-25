@@ -129,7 +129,7 @@ export default class AtlasNode extends Container<Mod, Builder>
       } else {
         return mods;
       }
-    }, this.mods);
+    }, []); // this.mods will be passed on atlas.reduce
   }
 
   activeMods(atlas: AtlasNode[]): Mod[] {
