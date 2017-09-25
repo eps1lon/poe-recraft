@@ -1,6 +1,6 @@
 # Path of Exile Mods [![Build Status](https://travis-ci.org/eps1lon/poe-mods.svg?branch=master)](https://travis-ci.org/eps1lon/poe-mods) [![Coverage Status](https://coveralls.io/repos/github/eps1lon/poe-mods/badge.svg?branch=master)](https://coveralls.io/github/eps1lon/poe-mods?branch=master)
 
-Reverse engineered behavior of Mods in Path of Exile.
+Emulates interaction of Mods with Items, Atlas etc. in Path of Exile.
 
 # Install
 
