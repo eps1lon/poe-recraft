@@ -29,20 +29,28 @@ export default class PropsTable<P: PropsWithPrimary, T: Buildable<P>> {
     return this.table.find(finder);
   }
 
-  findByPrimary(primary: number): ?P {
-    return this.find(other => other.primary === primary);
+  /**
+   * Builds an instance for the properties for which the provided predicate is
+   * true. Returns for the first value for which the predicate is true
+   */
+  from(finder: P => boolean): T {
+    const props = this.find(finder);
+
+    if (props == null) {
+      throw new NotFound(this.instance_constructor.name, `with custom finder`);
+    }
+
+    return this.instance_constructor.build(props);
   }
 
   fromPrimary(primary: number): T {
-    const props = this.findByPrimary(primary);
-
-    if (props == null) {
+    try {
+      return this.from(other => other.primary === primary);
+    } catch (err) {
       throw new NotFound(
         this.instance_constructor.name,
         `with primary '${primary}'`,
       );
     }
-
-    return this.instance_constructor.build(props);
   }
 }
