@@ -65,7 +65,7 @@ export default class Sextant extends Orb<Mod, AtlasNode> {
 
   applyTo(node: AtlasNode): AtlasNode {
     if (!anySet(this.applicableTo(node))) {
-      const rolled = super.rollMod(node);
+      const rolled = super.rollMod(node.removeAllMods());
 
       if (rolled !== node) {
         // something change

@@ -224,3 +224,19 @@ it('should consider sextant types', () => {
   // apprentice on yellow map
   expect(sextant.applyTo(mid_tier_map)).toBe(mid_tier_map);
 });
+
+it('should reroll', () => {
+  const sextant = Sextant.build(mods.all());
+
+  let marshes = getFromCollection(12, atlas);
+
+  for (let tries = 1; tries <= 10; tries += 1) {
+    sextant.atlas = atlas;
+    const crafted = sextant.applyTo(marshes);
+
+    expect(crafted).not.toBe(marshes);
+    expect(crafted.mods).toHaveLength(1);
+
+    marshes = crafted;
+  }
+});
