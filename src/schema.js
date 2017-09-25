@@ -70,6 +70,8 @@ export type ItemClassProps = {
 export type BaseItemTypeProps = {
   primary: number,
   name: string,
+  width: number,
+  height: number,
   drop_level: number,
   inherits_from: string,
   weapon_type: ?WeaponTypeProps,

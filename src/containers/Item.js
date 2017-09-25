@@ -19,6 +19,7 @@ export type ItemProps = {
   +mirrored: boolean,
   +random_name: string,
   +rarity: Rarity,
+  +sockets?: number,
 };
 
 export type ItemProperty = $Keys<ItemProps>;
@@ -44,7 +45,7 @@ export default class Item extends Container<Mod, ItemBuilder>
   implements Buildable<BaseItemTypeProps> {
   static MAX_ILVL = 100;
 
-  static default_props: ItemProps = {
+  static default_props = {
     corrupted: false,
     item_level: Item.MAX_ILVL,
     mirrored: false,
@@ -441,6 +442,23 @@ export default class Item extends Container<Mod, ItemBuilder>
     return this.setProperty('rarity', rarity);
   }
 
+  // TODO: what about Corroded Blades or other similar 1x4 Items. Confirm
+  // that they also only can have max 4 sockets like Rods or act like small_Staff
+  maxSockets(): number {
+    const by_stats = this._maxSocketsOverride();
+
+    // tags take priority
+    if (by_stats != null) {
+      return by_stats;
+    } else {
+      return Math.min(
+        this._maxSocketsByDimensions(),
+        this._maxSocketsByLevel(),
+        this._maxSocketsByMetaData(),
+      );
+    }
+  }
+
   // private
   setProperty(prop: ItemProperty, value: any): this {
     return this.withMutations(builder => {
@@ -452,5 +470,60 @@ export default class Item extends Container<Mod, ItemBuilder>
         },
       };
     });
+  }
+
+  _maxSocketsByMetaData(): number {
+    const { meta_data } = this;
+
+    if (meta_data.isA('AbstractShield')) {
+      return 3;
+    } else if (meta_data.isA('AbstractArmour')) {
+      return 6;
+    } else if (meta_data.isA('AbstractOneHandWeapon')) {
+      return 3;
+    } else if (meta_data.isA('AbstractFishingRod')) {
+      return 4;
+    } else if (meta_data.isA('AbstractTwoHandWeapon')) {
+      return 6;
+    } else if (meta_data.isA('Equipment')) {
+      return 0;
+    } else {
+      throw new Error(
+        `Can't determine sockes from meta data for ${meta_data.clazz}`,
+      );
+    }
+  }
+
+  _maxSocketsByLevel(): number {
+    if (this.props.item_level <= 1) {
+      return 2;
+    } else if (this.props.item_level <= 2) {
+      return 3;
+    } else if (this.props.item_level <= 25) {
+      return 4;
+    } else if (this.props.item_level <= 35) {
+      return 5;
+    } else {
+      return 6;
+    }
+  }
+
+  _maxSocketsByDimensions(): number {
+    const { width, height } = this.baseitem;
+
+    return width * height;
+  }
+
+  _maxSocketsOverride(): ?number {
+    const stats = this.stats();
+    const tags = this.getTags();
+
+    if (stats.local_has_X_sockets != null) {
+      return stats.local_has_X_sockets.values[1];
+    } else if (tags.find(({ id }) => id === 'small_staff') !== undefined) {
+      return 3;
+    }
+
+    return undefined;
   }
 }

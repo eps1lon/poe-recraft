@@ -282,3 +282,46 @@ it('should have a skeleton version of local stats', () => {
   const weapon = items.fromPrimary(1025);
   expect(() => weapon.localStats()).toThrowError('could not build');
 });
+
+describe('sockets', () => {
+  it('should have no more than 4 on boots, gloves, helmets', () => {
+    expect(items.fromPrimary(1544).maxSockets()).toBe(4); // Bone Helmet
+    expect(items.fromPrimary(1708).maxSockets()).toBe(4); // Iron Gauntlets
+    expect(items.fromPrimary(1650).maxSockets()).toBe(4); // Iron Greaves
+    expect(items.fromPrimary(1312).maxSockets()).toBe(4); // Fishing Rod
+  });
+
+  it('should have no more than 3 on shields and 1H', () => {
+    expect(items.fromPrimary(1099).maxSockets()).toBe(3); // Rusted Sword
+    expect(items.fromPrimary(1092).maxSockets()).toBe(3); // Siege Axe
+    expect(items.fromPrimary(1135).maxSockets()).toBe(3); // Estoc
+    expect(items.fromPrimary(1412).maxSockets()).toBe(3); // War Buckler
+    expect(items.fromPrimary(1005).maxSockets()).toBe(3); // Driftwood Wand
+  });
+
+  it('should have no sockets on jewelry', () => {
+    expect(items.fromPrimary(1335).maxSockets()).toBe(0); // Amber Amulet
+  });
+
+  it('should have no more than 6 on armour and 2H', () => {
+    expect(items.fromPrimary(1545).maxSockets()).toBe(6); // Plate West
+    expect(items.fromPrimary(1004).maxSockets()).toBe(6); // Key Blade
+    expect(items.fromPrimary(1244).maxSockets()).toBe(6); // Judgement Staff
+  });
+
+  it('should check level restrictions', () => {
+    const staff = items.fromPrimary(1244);
+
+    expect(staff.setProperty('item_level', 1).maxSockets()).toBe(2);
+    expect(staff.setProperty('item_level', 2).maxSockets()).toBe(3);
+    expect(staff.setProperty('item_level', 25).maxSockets()).toBe(4);
+    expect(staff.setProperty('item_level', 35).maxSockets()).toBe(5);
+    expect(staff.setProperty('item_level', 67).maxSockets()).toBe(6);
+  });
+
+  it('should check tags', () => {
+    expect(items.fromPrimary(1224).maxSockets()).toBe(3); // Gnarled Staff
+    expect(items.fromPrimary(1328).maxSockets()).toBe(1); // Unset
+    expect(items.fromPrimary(1347).maxSockets()).toBe(1); // Black Maw Talisman
+  });
+});

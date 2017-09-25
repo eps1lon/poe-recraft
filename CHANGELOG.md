@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.3.4..HEAD)
 ### Added
 - Orb Generators now consider the spawnweight when choosing a Mod
+- Maximum number of sockets for Items
 ### Fixed
 - Output path in `dev:schema` script
 ### Changed
