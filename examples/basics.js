@@ -1,13 +1,20 @@
-import { Transmute } from 'poe-mods';
-import { tables } from 'poe-mods/util';
+import { createItems, createMods, Transmute } from 'poe-mods';
 
 // data has to be provided. see eps1lon/poedb
-const items = tables.createItems(require('./items.json'));
-const mods = tables.createMods(require('./mods.json'));
-
-const greaves = items.find(mod => mod.name === 'Iron Greaves');
-
-const transmute = Transmute.build(mods.all());
-
-console.log(transmute.modsFor(greaves).map(({ mod }) => mod)); // => GeneratorDetails[]
-console.log(transmute.applyTo(greaves)); // => Item
+Promise.all([
+  fetch('/items.json')
+    .then(body => body.json())
+    .then(props => createItems(props))
+    .then(items => {
+      return items.from(item => {
+        return item.name === 'Iron Greaves';
+      });
+    }),
+  fetch('/mods.json')
+    .then(body => body.json())
+    .then(props => createMods(props))
+    .then(mods => Transmute.build(mods.all())),
+]).then(([greaves, transmute]) => {
+  console.log(transmute.modsFor(greaves).map(({ mod }) => mod)); // => GeneratorDetails[]
+  console.log(transmute.applyTo(greaves)); // => Item
+});
