@@ -1,6 +1,6 @@
 // @flow
 import { createTables } from '../../__fixtures__/util';
-import Container from '../Container';
+import ImmutableContainer from '../ImmutableContainer';
 
 const { mods } = createTables();
 
@@ -11,13 +11,13 @@ const craftedSpellDamage = mods.fromPrimary(5660);
 const essenceWeaponRange = mods.fromPrimary(4467);
 
 it('should not crash', () => {
-  const mc_1 = new Container([]);
+  const mc_1 = new ImmutableContainer([]);
 
   expect(mc_1.mods).toHaveLength(0);
 });
 
 it('should not hold duplicate mods', () => {
-  const container = new Container([]);
+  const container = new ImmutableContainer([]);
 
   expect(container.mods).toHaveLength(0);
   expect(container.addMod(sturdy).mods).toHaveLength(1);
@@ -31,7 +31,7 @@ it('should not hold duplicate mods', () => {
 });
 
 it('should consider the tags of its mods', () => {
-  const container = new Container([]);
+  const container = new ImmutableContainer([]);
 
   expect(container.getTags()).toHaveLength(0);
   expect(container.addMod(sturdy).getTags()).toHaveLength(0);

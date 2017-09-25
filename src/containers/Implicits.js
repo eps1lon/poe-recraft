@@ -1,9 +1,9 @@
 // @flow
 import { Mod } from '../mods';
 
-import Container, { type Builder } from './Container';
+import ImmutableContainer, { type Builder } from './ImmutableContainer';
 
-export default class Implicits extends Container<Mod, Builder<Mod>> {
+export default class Implicits extends ImmutableContainer<Mod, Builder<Mod>> {
   /**
    * @override
    */

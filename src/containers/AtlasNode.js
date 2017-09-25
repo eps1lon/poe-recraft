@@ -3,7 +3,7 @@ import { Mod } from '../mods';
 import { type Buildable } from '../interfaces';
 import { type AtlasNodeProps } from '../schema';
 
-import Container from './Container';
+import ImmutableContainer from './ImmutableContainer';
 
 export const SEXTANT_RANGE = 55; // http://poecraft.com/atlas has 55
 
@@ -14,7 +14,7 @@ export type Builder = {
 
 type HumanId = string;
 
-export default class AtlasNode extends Container<Mod, Builder>
+export default class AtlasNode extends ImmutableContainer<Mod, Builder>
   implements Buildable<AtlasNodeProps> {
   static humanId(props: AtlasNodeProps): HumanId {
     return props.world_area.id.replace(/MapAtlas/, '');

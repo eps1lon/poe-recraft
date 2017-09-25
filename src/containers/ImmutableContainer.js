@@ -52,16 +52,12 @@ export default class Container<T: Mod, B: Builder<T>> implements Taggable {
    * truncates mods
    */
   removeAllMods(): this {
-    if (this.mods.length === 0) {
-      return this;
-    } else {
-      return this.withMutations(builder => {
-        return {
-          ...builder,
-          mods: [],
-        };
-      });
-    }
+    return this.withMutations(builder => {
+      return {
+        ...builder,
+        mods: [],
+      };
+    });
   }
 
   /**

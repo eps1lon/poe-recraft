@@ -4,7 +4,7 @@ import { Mod, metaMods as META_MODS } from '../mods';
 import type { BaseItemTypeProps, TagProps } from '../schema';
 import { MetaData, Stat, type ValueRange } from '../util';
 
-import Container from './Container';
+import ImmutableContainer from './ImmutableContainer';
 import Implicits from './Implicits';
 
 export type Rarity = 'normal' | 'magic' | 'rare' | 'unique' | 'showcase';
@@ -41,7 +41,7 @@ export type ItemBuilder = {
  * the class only represents the explicits and is a fascade for an 
  * additional implicit container
  */
-export default class Item extends Container<Mod, ItemBuilder>
+export default class Item extends ImmutableContainer<Mod, ItemBuilder>
   implements Buildable<BaseItemTypeProps> {
   static MAX_ILVL = 100;
 
@@ -160,7 +160,7 @@ export default class Item extends Container<Mod, ItemBuilder>
       return this.withMutations(builder => {
         return {
           ...builder,
-          mods: new Container(builder.mods).addMod(other).mods,
+          mods: new ImmutableContainer(builder.mods).addMod(other).mods,
         };
       });
     } else {
@@ -187,7 +187,7 @@ export default class Item extends Container<Mod, ItemBuilder>
   }
 
   // $FlowFixMe Item is designed about having no side-effects
-  get affixes(): Container<Mod, ItemBuilder> {
+  get affixes(): ImmutableContainer<Mod, ItemBuilder> {
     return this;
   }
 
