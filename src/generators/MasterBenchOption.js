@@ -54,8 +54,8 @@ export default class MasterBenchOption extends Generator<Mod, Item>
       const { mod } = this;
 
       /**
-             * TODO customactions for no mod
-             */
+       * TODO customactions for no mod
+       */
       if (mod != null) {
         // white gets upgraded to blue
         const crafted_item =

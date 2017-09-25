@@ -16,10 +16,7 @@ import Transmute from './Transmute';
 
 export type ApplicableFlag = BaseApplicableFlag | 'not_rare';
 export type ApplicableFlags = BaseApplicableFlags | Flags<ApplicableFlag>;
-/**
- * TODO:
- * applicableByteHuman
- */
+
 export default class Chaos extends ItemOrb {
   static build(mods: ModProps[]): Chaos {
     return super.build(mods, Transmute.modFilter, Chaos);

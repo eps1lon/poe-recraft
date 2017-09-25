@@ -8,9 +8,6 @@ import ItemOrb from './ItemOrb';
 
 /**
  * ingame representation of a enchantment bench
- * 
- * TODO:
- * applicableByteHuman
  */
 export default class Enchantmentbench extends ItemOrb {
   static modFilter(mod: ModProps): boolean {

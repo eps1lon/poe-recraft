@@ -10,10 +10,6 @@ import ItemOrb, {
 export type ApplicableFlag = BaseApplicableFlag | 'normal' | 'unique';
 export type ApplicableFlags = BaseApplicableFlags | Flags<ApplicableFlag>;
 
-/**
- * TODO:
- * applicableByteHuman
- */
 export default class Scouring extends ItemOrb {
   constructor() {
     super([]);

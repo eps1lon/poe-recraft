@@ -6,10 +6,6 @@ import { anySet } from '../../util/Flags';
 import { Mod } from '../../mods';
 import ItemOrb from './ItemOrb';
 
-/**
- * TODO:
- * applicableByteHuman
- */
 export default class Vaal extends ItemOrb {
   static modFilter(mod: ModProps): boolean {
     // vaal implicits

@@ -12,10 +12,6 @@ import Transmute from './Transmute';
 export type ApplicableFlag = BaseApplicableFlag | 'not_magic';
 export type ApplicableFlags = BaseApplicableFlags | Flags<ApplicableFlag>;
 
-/**
- * TODO:
- * applicableByteHuman
- */
 export default class Augment extends ItemOrb {
   static build(mods: ModProps[]): Augment {
     return super.build(mods, Transmute.modFilter, Augment);

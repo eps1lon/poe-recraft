@@ -12,10 +12,6 @@ import { Mod } from '../../mods';
 export type ApplicableFlag = BaseApplicableFlag | 'not_white';
 export type ApplicableFlags = BaseApplicableFlags | Flags<ApplicableFlag>;
 
-/**
- * TODO:
- * applicableByteHuman
- */
 export default class Transmute extends ItemOrb {
   static modFilter(mod: ModProps): boolean {
     // prefix/suffix only
