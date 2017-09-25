@@ -13,7 +13,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Changed
 - Reduced required properties for `AtlasNodeProps`, `BaseItemTypeProps`, `CraftingBenchOptionsProps` and `ModProps`.
 
-  Basically unnnecessary properties were removed
+  Basically unnecessary properties were removed
 - Removed unsafe getter/setter option in flowconfig. It was ignored if the package
   was consumed by a third party so we added potentially more dangerous `$FlowFixMe`
   annotations. They should periodically be ignored on a Flow check.
