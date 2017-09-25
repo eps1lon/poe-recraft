@@ -3,6 +3,7 @@ import type { Container } from '../containers';
 import type { ModProps } from '../schema';
 import { Mod } from '../mods';
 import { type Flags, anySet } from '../util/Flags';
+import { choose } from '../util/rng';
 
 import Generator, { type GeneratorDetails } from './Generator';
 
@@ -30,9 +31,14 @@ export default class Orb<M: Mod, C: Container<*, *>> extends Generator<M, C> {
 
   chooseMod(container: C): ?M {
     const details = this.modsFor(container);
-    const detail = details[Math.floor(Math.random() * (details.length - 1))];
+    const detail = choose(details, other => {
+      if (other.spawnweight == null) {
+        throw new Error('optional spawnweight not allowed when choosing');
+      }
 
-    // TODO spawnweight
+      return other.spawnweight;
+    });
+
     if (detail != null) {
       return detail.mod;
     } else {

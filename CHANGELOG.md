@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.3.4..HEAD)
+### Added
+- Orb Generators now consider the spawnweight when choosing a Mod
 ### Fixed
 - Output path in `dev:schema` script
 ### Changed
