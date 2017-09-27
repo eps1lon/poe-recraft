@@ -7,7 +7,7 @@ import Statsgroup from './';
 
 export type Props = {
   className: string,
-  container: ModContainer
+  container: ModContainer<*>
 };
 
 const ModStats = ({ className, container }: Props) => {

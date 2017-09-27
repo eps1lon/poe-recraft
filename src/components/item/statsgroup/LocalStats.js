@@ -10,7 +10,7 @@ export type Props = {
 };
 
 const LocalStats = ({ item }: Props) => {
-  const stats = item.localStats();
+  const stats = item.stats.local();
   const has_stats = Object.keys(stats).length > 0;
 
   return (

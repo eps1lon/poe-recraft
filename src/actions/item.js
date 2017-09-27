@@ -1,6 +1,5 @@
 // @flow
-import type { Item } from 'poe-mods/lib/containers';
-import type { Mod } from 'poe-mods/lib/mods';
+import type { Item, Mod } from 'poe-mods';
 import type { ItemClassProps } from 'poe-mods/lib/schema';
 
 import { createAction } from 'redux-actions';

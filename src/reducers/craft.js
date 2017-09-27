@@ -1,5 +1,5 @@
 // @flow
-import type { Generator } from 'poe-mods/lib/generators';
+import type { Generator } from 'poe-mods';
 import reduceReducers from 'reduce-reducers';
 
 import type { Action as CraftAction } from '../actions/craft';
@@ -9,7 +9,7 @@ import { SET_GENERATOR } from '../actions/craft';
 import item, { initial as initial_item_state } from './item';
 
 export type State = {
-  mod_generator: ?Generator<*>
+  mod_generator: ?Generator<*, *>
 } & ItemState;
 
 const initial: State = {

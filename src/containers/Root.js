@@ -1,12 +1,7 @@
 import React from 'react';
 import { connect, Provider } from 'react-redux';
 
-import {
-  getItems,
-  getBenchoptions,
-  getMetadata,
-  getMods
-} from '../actions/poe';
+import { getItems, getBenchoptions, getMods } from '../actions/poe';
 import App from '../components/App';
 
 const Root = ({ store, init, version }) => {
@@ -28,7 +23,6 @@ const mapDispatchToProps = dispatch => {
     init: () => {
       dispatch(getItems());
       dispatch(getBenchoptions());
-      dispatch(getMetadata());
       dispatch(getMods());
     }
   };

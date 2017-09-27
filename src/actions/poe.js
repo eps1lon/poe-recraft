@@ -4,7 +4,6 @@ import { RSAA } from 'redux-api-middleware';
 import type {
   BaseItemTypeProps,
   CraftingBenchOptionsProps,
-  MetaDataMap,
   ModProps
 } from 'poe-mods/lib/schema';
 
@@ -38,14 +37,6 @@ export function getBenchoptions() {
   return getEndpoint('data/craftingbenchoptions.json', 'BENCH');
 }
 
-export type MetadataSuccessAction = {
-  type: 'POE/META_DATA_SUCCESS',
-  payload: MetaDataMap
-};
-export function getMetadata() {
-  return getEndpoint('data/meta_data.json', 'META_DATA');
-}
-
 export type ModsSuccessAction = {
   type: 'POE/MODS_SUCCESS',
   payload: ModProps[]
@@ -57,5 +48,4 @@ export function getMods() {
 export type Action =
   | ItemsSuccessAction
   | BenchSuccessAction
-  | MetadataSuccessAction
   | ModsSuccessAction;

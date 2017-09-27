@@ -52,7 +52,7 @@ function addModHandle(
 
     // try at least one time to make more room for mods
     if (!added) {
-      crafted = crafted.upgradeRarity().addMod(mod);
+      crafted = crafted.rarity.upgrade().addMod(mod);
     }
 
     console.log('changed?', crafted !== item);

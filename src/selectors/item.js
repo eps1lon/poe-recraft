@@ -13,11 +13,9 @@ export function itemsForClass(item_class: ItemClassProps) {
 }
 
 export function defaultItem(state: State): Item {
-  // TODO selected itemclass
   const item_class = state.craft.item_class;
-  const meta_data = state.poe.metadata;
 
   const items_of_class = itemsForClass(item_class)(state);
 
-  return Item.build(items_of_class[0], meta_data);
+  return Item.build(items_of_class[0]);
 }

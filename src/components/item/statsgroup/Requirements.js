@@ -11,7 +11,7 @@ export type Props = {
 };
 
 const Requirements = ({ item }: Props) => {
-  const requirements = item.requirements();
+  const requirements = item.requirements.list();
 
   const relevant_requirements = Object.entries(requirements).filter(
     ([key, value]) =>

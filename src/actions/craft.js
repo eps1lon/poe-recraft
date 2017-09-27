@@ -5,9 +5,9 @@ export const SET_GENERATOR = 'CRAFT/SET_GENERATOR';
 
 export type SetGeneratorAction = {
   type: 'CRAFT/SET_GENERATOR',
-  payload: Generator<*>
+  payload: Generator<*, *>
 };
-export function setGenerator(generator: Generator<*>): SetGeneratorAction {
+export function setGenerator(generator: Generator<*, *>): SetGeneratorAction {
   return {
     type: SET_GENERATOR,
     payload: generator

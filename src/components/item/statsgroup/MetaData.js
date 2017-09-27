@@ -12,7 +12,7 @@ const MetaData = ({ item }: Props) => {
   return (
     <Statsgroup className="meta-data">
       {[
-        item.itemclassName(),
+        item.baseitem.item_class.name,
         item
           .getTags()
           .map(({ id }) => id)

@@ -21,7 +21,7 @@ const BaseItemPreview = ({ item }: Props) => {
     <div className="itembox">
       <span className="itemboxheader double-line">
         <span className="itemboxheader-left" />
-        <span className="itemName">{item.nameLines().join('\n')}</span>
+        <span className="itemName">{item.name.lines().join('\n')}</span>
         <span className="itemboxheader-right" />
       </span>
       {groups.map(Group => <Group.component key={Group.key} item={item} />)}

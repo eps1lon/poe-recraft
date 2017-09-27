@@ -1,14 +1,9 @@
 // @flow
+import type { Item, Flags, Generator, Mod } from 'poe-mods';
+import { ItemShowcase } from 'poe-mods';
 import { createSelector } from 'reselect';
 
 import type { State } from '../reducers/rootReducer';
-
-import type { Item } from 'poe-mods/lib/containers';
-import type { Generator } from 'poe-mods/lib/generators';
-import type { Mod } from 'poe-mods/lib/mods';
-import type { Flags } from 'poe-mods/lib/util';
-
-import { ItemShowcase } from 'poe-mods';
 
 export function buildSowcase(state: State): ItemShowcase {
   const mods = state.poe.mods;
@@ -32,7 +27,7 @@ export type AvailableMods = {
 
 const availableMods = (
   item: ?Item,
-  generator: ?Generator<*>,
+  generator: ?Generator<*, *>,
   whitelist: string[] = []
 ): AvailableMods => {
   let prefixes = [];
@@ -56,7 +51,7 @@ const availableMods = (
 
 const whitelistedAvailableMods = (whitelist: string[]) => (
   item: ?Item,
-  generator: ?Generator<*>
+  generator: ?Generator<*, *>
 ) => availableMods(item, generator, whitelist);
 
 export const cachedAvailableMods = (whitelist: string[]) =>

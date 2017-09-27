@@ -13,7 +13,7 @@ function* setDefaultItem() {
 
 function* initDefaultItem(): Generator<*, *, *> {
   // first init
-  const combine_actions = ['POE/META_DATA_SUCCESS', 'POE/ITEMS_SUCCESS'];
+  const combine_actions = ['POE/ITEMS_SUCCESS'];
 
   yield combineLatest(combine_actions, setDefaultItem, { break_out: true });
 
