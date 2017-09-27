@@ -1,8 +1,9 @@
 // @flow
-import { type GeneratorDetails } from './generators/Generator';
+import type Generator, { GeneratorDetails } from './generators/Generator';
+import type Container from './containers/Container';
 import type { Flags, ValueRange } from './util';
 
-export type { Flags, GeneratorDetails, ValueRange };
+export type { Container, Flags, Generator, GeneratorDetails, ValueRange };
 
 // API definition
 

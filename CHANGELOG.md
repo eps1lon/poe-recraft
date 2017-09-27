@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
   Component return a new Item instance with these values.
 ### Added
 - `PropsTable#from(finder)` builds an instance from the props for which the predicate is true
+- polymorphic types `Generator` and `Container` to exports
 ### Changed
 - Duplicate affecting Mods are now excluded on `AtlasNode`
 
