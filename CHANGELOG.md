@@ -3,12 +3,13 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.4.0...HEAD)
 
-## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.3.5...HEAD)
+## [1.4.0](https://github.com/eps1lon/poe-mods/compare/v1.3.5...v1.4.0) (2017-09-27)
 ### Breaking
 - public API for `Item`: Items now have different components. This was necessary
   for future additions of stats, links and more. The class itself got to bloated
-  and this helps learning about the API. Component methods that would mutate the 
+  and this helps to discover the API. Component methods that would mutate the 
   Component return a new Item instance with these values.
 ### Added
 - `PropsTable#from(finder)` builds an instance from the props for which the predicate is true
