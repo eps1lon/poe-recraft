@@ -27,7 +27,7 @@ export default class Enchantmentbench extends ItemOrb {
 
       const enchantment = this.chooseMod(blank_item);
       if (enchantment != null) {
-        return blank_item.addImplicit(enchantment);
+        return blank_item.addMod(enchantment);
       }
     }
 

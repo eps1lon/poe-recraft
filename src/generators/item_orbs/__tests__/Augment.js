@@ -23,7 +23,7 @@ it('should only have prefixes and suffixes', () => {
 it('should only apply to magic items', () => {
   const augment = Augment.build(mods.all());
 
-  expect(greaves.props.rarity).toBe('normal');
+  expect(greaves.rarity.toString()).toBe('normal');
 
   expect(augment.applicableTo(greaves)).toEqual({
     not_magic: true,
@@ -32,7 +32,7 @@ it('should only apply to magic items', () => {
   });
   expect(augment.applyTo(greaves)).toBe(greaves);
 
-  expect(augment.applicableTo(greaves.setRarity('magic'))).toEqual({
+  expect(augment.applicableTo(greaves.rarity.set('magic'))).toEqual({
     not_magic: false,
     corrupted: false,
     mirrored: false,
@@ -41,19 +41,19 @@ it('should only apply to magic items', () => {
 
 it('should add one mods', () => {
   const augment = Augment.build(mods.all());
-  const craftable = greaves.setRarity('magic');
+  const craftable = greaves.rarity.set('magic');
 
   expect(craftable.mods).toHaveLength(0);
 
   const crafted = augment.applyTo(craftable);
 
   expect(crafted).not.toBe(craftable);
-  expect(crafted.props).toEqual(craftable.setRarity('magic').props);
+  expect(crafted.props).toEqual(craftable.rarity.set('magic').props);
   expect(crafted.mods).toHaveLength(1);
 
   const twice_crafte = augment.applyTo(crafted);
 
   expect(twice_crafte).not.toBe(crafted);
-  expect(twice_crafte.props).toEqual(craftable.setRarity('magic').props);
+  expect(twice_crafte.props).toEqual(craftable.rarity.set('magic').props);
   expect(twice_crafte.mods).toHaveLength(2);
 });

@@ -58,8 +58,9 @@ export default class MasterBenchOption extends Generator<Mod, Item>
        */
       if (mod != null) {
         // white gets upgraded to blue
-        const crafted_item =
-          item.props.rarity === 'normal' ? item.setRarity('magic') : item;
+        const crafted_item = item.rarity.isNormal()
+          ? item.rarity.set('magic')
+          : item;
 
         if (this.isModApplicableTo(mod, crafted_item)) {
           return crafted_item.addMod(mod);
@@ -97,8 +98,9 @@ export default class MasterBenchOption extends Generator<Mod, Item>
     // TODO look into why we simulate another rarity why is a MasterMod not
     // applicable to white items?
     // simulate blue if white
-    const simulated_item =
-      item.props.rarity === 'normal' ? item.setRarity('magic') : item;
+    const simulated_item = item.rarity.isNormal()
+      ? item.rarity.set('magic')
+      : item;
 
     return this.getAvailableMods()
       .map(mod => {

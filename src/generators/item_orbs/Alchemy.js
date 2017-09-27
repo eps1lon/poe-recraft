@@ -25,15 +25,15 @@ export default class Alchemy extends ItemOrb {
   applyTo(item: Item): Item {
     if (!anySet(this.applicableTo(item))) {
       // upgrade to rare
-      let alched_item = item.setRarity('rare');
+      let alched_item = item.rarity.set('rare');
 
       const new_mods = _.random(4, 6);
       for (let rolled_mods = 1; rolled_mods <= new_mods; rolled_mods += 1) {
         alched_item = this.rollMod(alched_item);
       }
 
-      const prefixes = alched_item.getPrefixes().length;
-      const suffixes = alched_item.getSuffixes().length;
+      const prefixes = alched_item.affixes.getPrefixes().length;
+      const suffixes = alched_item.affixes.getSuffixes().length;
       const diff = Math.abs(prefixes - suffixes);
       const missing_mods = Math.max(0, diff - 1);
 
@@ -53,7 +53,7 @@ export default class Alchemy extends ItemOrb {
    */
   modsFor(item: Item, whitelist: string[] = []) {
     // simulate upgrade
-    return super.modsFor(item.setRarity('rare'), whitelist);
+    return super.modsFor(item.rarity.set('rare'), whitelist);
   }
 
   applicableTo(item: Item): ApplicableFlags {
@@ -62,7 +62,7 @@ export default class Alchemy extends ItemOrb {
       not_white: false,
     };
 
-    if (item.props.rarity !== 'normal') {
+    if (!item.rarity.isNormal()) {
       applicable_flags.not_white = true;
     }
 

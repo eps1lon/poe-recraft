@@ -7,6 +7,7 @@ const mods = require('../../__fixtures__/mods.json');
 
 fetchMock.get('/items.json', items);
 fetchMock.get('/mods.json', mods);
+console.log = () => {};
 
 it('shouldnt crash', () => {
   // data has to be provided. see eps1lon/poedb

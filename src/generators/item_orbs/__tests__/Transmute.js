@@ -25,7 +25,7 @@ it('should only have prefixes and suffixes', () => {
 it('should only apply to white items', () => {
   const transmute = Transmute.build(mods.all());
 
-  expect(greaves.props.rarity).toBe('normal');
+  expect(greaves.rarity.toString()).toBe('normal');
 
   expect(transmute.applicableTo(greaves)).toEqual({
     not_white: false,
@@ -33,7 +33,7 @@ it('should only apply to white items', () => {
     mirrored: false,
   });
 
-  expect(transmute.applicableTo(greaves.setRarity('magic'))).toEqual({
+  expect(transmute.applicableTo(greaves.rarity.set('magic'))).toEqual({
     not_white: true,
     corrupted: false,
     mirrored: false,
@@ -49,6 +49,6 @@ it('should add mods while upgrading the item to magic', () => {
   const crafted = transmute.applyTo(craftable);
 
   expect(crafted).not.toBe(craftable);
-  expect(crafted.props).toEqual(craftable.setRarity('magic').props);
+  expect(crafted.props).toEqual(craftable.rarity.set('magic').props);
   expect(crafted.mods.length).toBeGreaterThan(0);
 });

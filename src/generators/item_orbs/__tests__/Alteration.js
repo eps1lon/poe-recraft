@@ -26,7 +26,7 @@ it('should only have prefixes and suffixes', () => {
 it('should only apply to blue items', () => {
   const alteration = Alteration.build(mods.all());
 
-  expect(greaves.props.rarity).toBe('normal');
+  expect(greaves.rarity.toString()).toBe('normal');
 
   expect(alteration.applicableTo(greaves)).toEqual({
     not_magic: true,
@@ -35,7 +35,7 @@ it('should only apply to blue items', () => {
   });
   expect(alteration.applyTo(greaves)).toBe(greaves);
 
-  expect(alteration.applicableTo(greaves.setRarity('magic'))).toEqual({
+  expect(alteration.applicableTo(greaves.rarity.set('magic'))).toEqual({
     not_magic: false,
     corrupted: false,
     mirrored: false,
@@ -44,7 +44,7 @@ it('should only apply to blue items', () => {
 
 it('should reroll mods', () => {
   const alteration = Alteration.build(mods.all());
-  const craftable = greaves.setRarity('magic');
+  const craftable = greaves.rarity.set('magic');
 
   expect(craftable.mods).toHaveLength(0);
 

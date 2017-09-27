@@ -14,7 +14,7 @@ it('should consider tags', () => {
   const ipd = mods.fromPrimary(793);
   const sturdy = mods.fromPrimary(1465);
 
-  const weapon = items.fromPrimary(1025).setRarity('rare');
+  const weapon = items.fromPrimary(1025).rarity.set('rare');
 
   expect(ipd.spawnweightFor(weapon)).toBe(1000);
   expect(orb.isModSpawnableOn(ipd, weapon)).toEqual({

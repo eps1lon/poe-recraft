@@ -15,7 +15,7 @@ export type SpawnableFlags = Flags<SpawnableFlag>;
 /**
  * @abstract
  */
-export default class Orb<M: Mod, C: Container<*, *>> extends Generator<M, C> {
+export default class Orb<M: Mod, C: Container<*>> extends Generator<M, C> {
   static build(
     mods: ModProps[],
     filter: ModProps => boolean = filterNone,

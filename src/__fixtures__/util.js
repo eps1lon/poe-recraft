@@ -9,9 +9,7 @@ import type {
   ModProps,
 } from '../schema';
 
-import { AtlasNode, Item } from '../containers';
-import { MasterBenchOption } from '../generators';
-import { Mod } from '../mods';
+import { AtlasNode, Item, MasterBenchOption, Mod } from '../index';
 import PropsTable from '../helpers/PropsTable';
 
 const json_cache = {};

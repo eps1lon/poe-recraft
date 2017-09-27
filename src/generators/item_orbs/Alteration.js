@@ -46,7 +46,7 @@ export default class Alteration extends ItemOrb {
       not_magic: false,
     };
 
-    if (item.props.rarity !== 'magic') {
+    if (!item.rarity.isMagic()) {
       applicable_flags.not_magic = true;
     }
 

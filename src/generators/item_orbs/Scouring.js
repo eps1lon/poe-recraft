@@ -1,5 +1,5 @@
 // @flow
-import type { Item, Rarity } from '../../containers';
+import type { Item } from '../../containers';
 
 import { type Flags, anySet } from '../../util/Flags';
 import ItemOrb, {
@@ -23,34 +23,32 @@ export default class Scouring extends ItemOrb {
     if (!anySet(this.applicableTo(other))) {
       let scoured_item: Item = other;
 
-      const locked_prefixes = scoured_item.lockedPrefixes();
-      const locked_suffixes = scoured_item.lockedSuffixes();
+      const locked_prefixes = scoured_item.affixes.lockedPrefixes();
+      const locked_suffixes = scoured_item.affixes.lockedSuffixes();
 
       if (!locked_prefixes) {
-        scoured_item = scoured_item
+        scoured_item = scoured_item.affixes
           .getPrefixes()
           .reduce((item, prefix) => item.removeMod(prefix), scoured_item);
       }
 
       if (!locked_suffixes) {
-        scoured_item = scoured_item
+        scoured_item = scoured_item.affixes
           .getSuffixes()
           .reduce((item, suffix) => item.removeMod(suffix), scoured_item);
       }
 
       // set correct rarity
-      const remaining_prefixes = scoured_item.getPrefixes().length;
-      const remaining_suffixes = scoured_item.getSuffixes().length;
+      const remaining_prefixes = scoured_item.affixes.getPrefixes().length;
+      const remaining_suffixes = scoured_item.affixes.getSuffixes().length;
 
-      let new_rarity: Rarity;
+      let new_rarity = other.rarity.toString();
 
       if (remaining_prefixes === 0 && remaining_suffixes === 0) {
         new_rarity = 'normal';
-      } else {
-        new_rarity = other.props.rarity;
       }
 
-      return scoured_item.setRarity(new_rarity);
+      return scoured_item.rarity.set(new_rarity);
     } else {
       return other;
     }
@@ -66,15 +64,10 @@ export default class Scouring extends ItemOrb {
       unique: false,
     };
 
-    switch (item.props.rarity) {
-      case 'normal':
-        applicable_flags.normal = true;
-        break;
-      case 'unique':
-        applicable_flags.unique = true;
-        break;
-      default:
-      // noop
+    if (item.rarity.isNormal()) {
+      applicable_flags.normal = true;
+    } else if (item.rarity.isUnique()) {
+      applicable_flags.unique = true;
     }
 
     return applicable_flags;
