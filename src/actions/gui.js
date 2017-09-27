@@ -8,6 +8,12 @@ export const collapse = createAction(
 );
 export type CollapseAction = ReduxActionType<typeof collapse>;
 
+export const expand = createAction(
+  'EXPAND',
+  (component: GuiIdent) => component
+);
+export type ExpandAction = ReduxActionType<typeof expand>;
+
 export const setTableExpanded = createAction(
   'SET_TABLE_EXPANDED',
   (component: GuiIdent, expanded: ReactTableExpanded) => ({

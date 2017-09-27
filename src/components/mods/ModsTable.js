@@ -20,30 +20,47 @@ export type GeneratorDetails = {
 
 export type Props = {
   className: string,
+  expanded: boolean,
   human?: string,
   details: GeneratorDetails[],
-  options: Options
+  options: Options,
+  onToggle: (string, boolean) => void
+};
+
+const defaultProps = {
+  expanded: true,
+  onToggle: () => {} // noop
 };
 
 // TODO sortable
-const ModsTable = ({
-  className,
-  human = className,
-  details,
-  options
-}: Props) => {
+const ModsTable = (props: Props) => {
+  const {
+    className,
+    expanded,
+    human = className,
+    details,
+    onToggle,
+    options
+  } = props;
   const { grouped = false, exclude = [] } = options;
 
+  const onCaptionClick = () => onToggle(className, expanded);
+
+  // Table componenent
   const Mods = grouped ? GroupedMods : UngroupedMods;
 
   return (
     <div className={className}>
-      <h4 id={`${className}-caption`}>
+      <h4 id={`${className}-caption`} onClick={onCaptionClick}>
         {human} /<span className="count">{details.length}</span>
       </h4>
-      <Mods className={className} details={details} options={{ exclude }} />
+      {expanded && (
+        <Mods className={className} details={details} options={{ exclude }} />
+      )}
     </div>
   );
 };
+
+ModsTable.defaultProps = defaultProps;
 
 export default ModsTable;

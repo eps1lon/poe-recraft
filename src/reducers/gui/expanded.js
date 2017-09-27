@@ -4,6 +4,8 @@ import { handleActions } from 'redux-actions';
 import {
   collapse,
   type CollapseAction,
+  expand,
+  type ExpandAction,
   setTableExpanded,
   type SetTableExpandedAction
 } from '../../actions/gui';
@@ -27,6 +29,7 @@ const initial: State = {
 export default handleActions(
   {
     [collapse.toString()]: collapseHandle,
+    [expand.toString()]: expandHandle,
     [setTableExpanded.toString()]: setTableExpandedHandle
   },
   initial
@@ -35,12 +38,18 @@ export default handleActions(
 function collapseHandle(state: State = initial, action: CollapseAction): State {
   const { payload: ident } = action;
 
-  // cast undefined to false
-  const expanded = Boolean(state.misc.get(ident));
+  return {
+    ...state,
+    misc: new Map(state.misc).set(ident, false)
+  };
+}
+
+function expandHandle(state: State = initial, action: ExpandAction): State {
+  const { payload: ident } = action;
 
   return {
     ...state,
-    misc: new Map(state.misc).set(ident, !expanded)
+    misc: new Map(state.misc).set(ident, true)
   };
 }
 
