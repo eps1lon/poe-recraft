@@ -67,12 +67,16 @@ const UngroupedMods = (props: Props) => {
         minRows: 1,
         getTrProps: (state, rowInfo) => {
           // rowInfo.original.mod || undefined
-          const mod =
-            rowInfo !== undefined && rowInfo.original && rowInfo.original.mod;
+          const mod: ?Mod =
+            rowInfo !== undefined && rowInfo.original
+              ? rowInfo.original.mod
+              : null;
 
           if (mod instanceof Mod) {
             return {
-              className: `mod ${mod.constructor.name} ${mod.modType()}`
+              className: `mod domain-${mod.props.domain} ${String(
+                mod.modType()
+              )}`
             };
           } else {
             return {};
