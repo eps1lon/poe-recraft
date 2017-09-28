@@ -22,7 +22,7 @@ export type State = {
 };
 
 const initial: State = {
-  misc: new Map(),
+  misc: new Map().set('implicits', false),
   tables: new Map()
 };
 
