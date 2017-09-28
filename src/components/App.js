@@ -3,8 +3,7 @@ import React, { PureComponent } from 'react';
 
 import AvailableMods from '../containers/AvailableMods';
 import ItemSection from '../containers/ItemSection';
-import class_groups from './class_groups';
-import { ItemclassPicker } from './itemclass_picker';
+import ItemclassPicker from '../containers/itemclass_picker/Picker';
 
 import './index.css';
 
@@ -32,7 +31,7 @@ class App extends PureComponent<Props> {
         <span id="client">
           (Patch: <em id="game_version">{version}</em>)
         </span>
-        <ItemclassPicker groups={class_groups} />
+        <ItemclassPicker />
       </header>,
       <div key="content" id="content">
         <AvailableMods />

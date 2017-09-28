@@ -5,6 +5,7 @@ import { Nav, NavDropdown, DropdownToggle } from 'reactstrap';
 import GroupDropdown from './GroupDropdown';
 
 export type Props = {
+  active: ?string,
   groups: Array<{
     human: string,
     name: string,
@@ -34,7 +35,7 @@ export default class ItemClassGroup extends PureComponent<Props, State> {
   }
 
   render() {
-    const { groups } = this.props;
+    const { active, groups } = this.props;
     const { expanded } = this.state;
 
     return (
@@ -42,6 +43,7 @@ export default class ItemClassGroup extends PureComponent<Props, State> {
         {groups.map(group => {
           return (
             <NavDropdown
+              className={active === group.name ? 'active' : ''}
               isOpen={expanded[group.name]}
               toggle={this.toggle(group.name)}
             >

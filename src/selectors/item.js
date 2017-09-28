@@ -19,3 +19,7 @@ export function defaultItem(state: State): Item {
 
   return Item.build(items_of_class[0]);
 }
+
+export function activeItemclass(state: State): number {
+  return state.craft.item_class.primary;
+}
