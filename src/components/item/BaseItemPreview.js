@@ -1,12 +1,18 @@
 // @flow
-import * as containers from 'poe-mods/lib/containers';
+import { type Item } from 'poe-mods';
 import React from 'react';
 
-import { MetaData, LocalStats, Requirements, Mods } from './statsgroup/';
+import {
+  MetaData,
+  LocalStats,
+  Requirements,
+  Mods,
+  CatchUnsupportedStatsGroup
+} from './statsgroup/';
 import { Corrupted } from '../poe/stats/';
 
 export type Props = {
-  item: containers.Item
+  item: Item
 };
 
 const BaseItemPreview = ({ item }: Props) => {
@@ -24,7 +30,11 @@ const BaseItemPreview = ({ item }: Props) => {
         <span className="itemName">{item.name.lines().join('\n')}</span>
         <span className="itemboxheader-right" />
       </span>
-      {groups.map(Group => <Group.component key={Group.key} item={item} />)}
+      {groups.map(Group => (
+        <CatchUnsupportedStatsGroup group={Group.key} item={item}>
+          <Group.component key={Group.key} item={item} />
+        </CatchUnsupportedStatsGroup>
+      ))}
       {item.props.corrupted && <Corrupted />}
     </div>
   );
