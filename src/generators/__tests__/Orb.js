@@ -1,7 +1,8 @@
 // @flow
 import { createTables } from '../../__fixtures__/util';
-import { Item } from '../../containers/';
-import { metaMods as META_MODS, Mod } from '../../mods';
+import Item from '../../containers/item';
+import META_MODS from '../../mods/meta_mods';
+import Mod from '../../mods/Mod';
 
 import Orb from '../Orb';
 

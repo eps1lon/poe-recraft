@@ -1,5 +1,6 @@
 // @flow
-import { type Buildable, type Taggable } from '../interfaces';
+import { type Buildable } from '../interfaces/Buildable';
+import { type Taggable } from '../interfaces/Taggable';
 import type { ModProps, SpawnWeightProps } from '../schema';
 
 import Stat from '../util/Stat';

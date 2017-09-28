@@ -1,7 +1,7 @@
 // @flow
 import { AbstractMethod } from '../exceptions';
 import type { TagProps } from '../schema';
-import type { Mod } from '../mods';
+import type Mod from '../mods/Mod';
 
 import type { Container } from './Container';
 

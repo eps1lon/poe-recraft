@@ -1,7 +1,7 @@
 // @flow
-import { Mod } from '../../../mods';
+import Mod from '../../../mods/Mod';
 import type PropsTable from '../../../helpers/PropsTable';
-import { Stat } from '../../../util';
+import Stat from '../../../util/Stat';
 import type { BaseItemTypeProps, ModProps } from '../../../schema';
 import { createTables } from '../../../__fixtures__/util';
 

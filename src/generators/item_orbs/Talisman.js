@@ -1,7 +1,7 @@
 // @flow
 import type { ModProps } from '../../schema';
 
-import { Mod } from '../../mods';
+import Mod from '../../mods/Mod';
 import ItemOrb from './ItemOrb';
 
 /**

@@ -5,7 +5,7 @@ import {
   verifyMasterBenchOptions,
   verifyItems,
   verifyMods,
-} from '../';
+} from '../helpers/verifySchema';
 
 const atlas = require('../__fixtures__/atlas.json');
 const baseitemtypes = require('../__fixtures__/baseitemtypes.json');

@@ -1,6 +1,6 @@
 // @flow
 import { createTables } from '../../__fixtures__/util';
-import { AtlasNode } from '../../containers';
+import AtlasNode from '../../containers/AtlasNode';
 
 import Sextant from '../Sextant';
 
@@ -147,7 +147,6 @@ it('shouldnt mutate its context', () => {
 
   expect(getFromCollection(26, atlas)).toBe(dunes);
   expect(getFromCollection(26, atlas)).not.toBe(rolled);
-
   expect(() => sextant.applyTo(rolled)).toThrowError(
     'context not set, set atlas',
   );

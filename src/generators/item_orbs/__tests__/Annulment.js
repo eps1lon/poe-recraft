@@ -1,7 +1,7 @@
 // @flow
 import { createTables } from '../../../__fixtures__/util';
-import { Alchemy } from '../index';
-import { metaMods as META_MODS } from '../../../mods';
+import Alchemy from '../Alchemy';
+import META_MODS from '../../../mods/meta_mods';
 
 import Annulment from '../Annulment';
 

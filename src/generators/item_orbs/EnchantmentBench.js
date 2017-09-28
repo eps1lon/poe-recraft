@@ -1,9 +1,9 @@
 // @flow
-import type { Item } from '../../containers';
+import type Item from '../../containers/item';
 import type { ModProps } from '../../schema';
 
 import { anySet } from '../../util/Flags';
-import { Mod } from '../../mods';
+import Mod from '../../mods/Mod';
 import ItemOrb from './ItemOrb';
 
 /**

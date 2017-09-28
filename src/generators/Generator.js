@@ -1,8 +1,9 @@
 // @flow
-import type { Container } from '../containers/';
-import { type Mod, metaMods as META_MODS } from '../mods/';
+import type { Container } from '../containers/Container';
+import type Mod from '../mods/Mod';
+import META_MODS from '../mods/meta_mods';
 
-import { AbstractMethod } from '../exceptions';
+import AbstractMethod from '../exceptions/AbstractMethod';
 import { type Flags, anySet } from '../util/Flags';
 
 export type GeneratorDetails<M: Mod> = {

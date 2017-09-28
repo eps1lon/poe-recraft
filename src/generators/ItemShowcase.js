@@ -1,11 +1,13 @@
 // @flow
-import type { Item } from '../containers';
+import type Item from '../containers/item/Item';
 import MasterBench from '../helpers/MasterBench';
-import { Mod } from '../mods';
+import Mod from '../mods/Mod';
 import type { CraftingBenchOptionsProps, ModProps } from '../schema';
 
 import Generator, { type GeneratorDetails } from './Generator';
-import { EnchantmentBench, Transmute, Vaal } from './item_orbs/';
+import EnchantmentBench from './item_orbs/EnchantmentBench';
+import Transmute from './item_orbs/Transmute';
+import Vaal from './item_orbs/Vaal';
 
 /**
  * Masterbench/Currency hybrid

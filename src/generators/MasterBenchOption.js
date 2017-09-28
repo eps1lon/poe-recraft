@@ -1,5 +1,5 @@
 // @flow
-import type { Item } from '../containers';
+import type Item from '../containers/item/Item';
 import { type Buildable } from '../interfaces';
 import type { CraftingBenchOptionsProps } from '../schema';
 

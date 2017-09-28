@@ -1,7 +1,7 @@
 // @flow
 import { createTables } from '../../__fixtures__/util';
-import { Item } from '../../containers/';
-import { Mod } from '../../mods';
+import Item from '../../containers/item';
+import Mod from '../../mods/Mod';
 
 import Generator from '../Generator';
 

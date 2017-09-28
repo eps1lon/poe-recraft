@@ -1,7 +1,12 @@
 // @flow
 import { createTables } from '../../__fixtures__/util';
-import { Alteration, Augment, Chaos, Exalted, Regal, Scouring } from '../';
-import { metaMods as META_MODS } from '../../mods';
+import Alteration from '../item_orbs/Alteration';
+import Augment from '../item_orbs/Augment';
+import Chaos from '../item_orbs/Chaos';
+import Exalted from '../item_orbs/Exalted';
+import Regal from '../item_orbs/Regal';
+import Scouring from '../item_orbs/Scouring';
+import META_MODS from '../../mods/meta_mods';
 
 const { craftingbenchoptions: options, items, mods } = createTables();
 

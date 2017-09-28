@@ -1,6 +1,6 @@
 // @flow
 import { createTables } from '../../__fixtures__/util';
-import { Mod } from '../../mods/';
+import Mod from '../../mods/Mod';
 
 import MasterBenchOption from '../MasterBenchOption';
 

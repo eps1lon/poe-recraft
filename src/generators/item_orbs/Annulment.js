@@ -1,7 +1,7 @@
 // @flow
 import _ from 'lodash';
 
-import type { Item } from '../../containers';
+import type Item from '../../containers/item';
 
 import { type Flags, anySet } from '../../util/Flags';
 import ItemOrb, {

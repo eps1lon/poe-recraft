@@ -1,6 +1,6 @@
 // @flow
-import type { Item } from '../../containers';
-import { Mod } from '../../mods';
+import type Item from '../../containers/item';
+import Mod from '../../mods/Mod';
 import { type Flags } from '../../util/Flags';
 
 import Orb from '../Orb';

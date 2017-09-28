@@ -1,6 +1,6 @@
 // @flow
-import type { AtlasNode } from '../containers';
-import { Mod } from '../mods';
+import type AtlasNode from '../containers/AtlasNode';
+import Mod from '../mods/Mod';
 import { type ModProps } from '../schema';
 import { type Flags, anySet } from '../util/Flags';
 

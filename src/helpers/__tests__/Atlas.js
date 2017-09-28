@@ -1,7 +1,7 @@
 // @flow
 import { createTables } from '../../__fixtures__/util';
-import { AtlasNode } from '../../containers';
-import { Sextant } from '../../generators';
+import AtlasNode from '../../containers/AtlasNode';
+import Sextant from '../../generators/Sextant';
 
 import Atlas from '../Atlas';
 

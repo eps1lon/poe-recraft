@@ -1,6 +1,6 @@
 // @flow
-import { Mod } from '../mods';
-import { type Buildable } from '../interfaces';
+import Mod from '../mods/Mod';
+import type { Buildable } from '../interfaces/Buildable';
 import { type AtlasNodeProps } from '../schema';
 
 import ImmutableContainer from './ImmutableContainer';

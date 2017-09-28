@@ -1,5 +1,5 @@
 // @flow
-import { MasterBenchOption } from '../../generators';
+import MasterBenchOption from '../../generators/MasterBenchOption';
 
 import PropsTable from '../PropsTable';
 

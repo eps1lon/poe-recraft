@@ -1,5 +1,5 @@
 // @flow
-import type { Item } from '../../containers';
+import type Item from '../../containers/item';
 import type { ModProps } from '../../schema';
 
 import { type Flags, anySet } from '../../util/Flags';
