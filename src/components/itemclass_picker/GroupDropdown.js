@@ -14,7 +14,7 @@ const GroupDropdown = (props: Props) => {
   return (
     <DropdownMenu>
       {classes.map(({ primary, name }) => (
-        <ItemClass primary={primary} name={name} />
+        <ItemClass key={primary} primary={primary} name={name} />
       ))}
     </DropdownMenu>
   );

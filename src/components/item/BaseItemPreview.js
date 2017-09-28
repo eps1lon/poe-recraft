@@ -31,7 +31,11 @@ const BaseItemPreview = ({ item }: Props) => {
         <span className="itemboxheader-right" />
       </span>
       {groups.map(Group => (
-        <CatchUnsupportedStatsGroup group={Group.key} item={item}>
+        <CatchUnsupportedStatsGroup
+          key={Group.key}
+          group={Group.key}
+          item={item}
+        >
           <Group.component key={Group.key} item={item} />
         </CatchUnsupportedStatsGroup>
       ))}

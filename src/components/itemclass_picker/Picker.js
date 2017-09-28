@@ -43,6 +43,7 @@ export default class ItemClassGroup extends PureComponent<Props, State> {
         {groups.map(group => {
           return (
             <NavDropdown
+              key={group.name}
               className={active === group.name ? 'active' : ''}
               isOpen={expanded[group.name]}
               toggle={this.toggle(group.name)}
