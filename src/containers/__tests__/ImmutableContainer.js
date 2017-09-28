@@ -59,3 +59,27 @@ it('should consider the tags of its mods', () => {
       .getTags(),
   ).toHaveLength(2);
 });
+
+it('should sum its stats grouped by stat id considering affixes/implicits', () => {
+  const container = new ImmutableContainer([]);
+
+  expect(container.stats()).toEqual({});
+
+  const with_ipd = container.addMod(mods.fromPrimary(797));
+  const with_ipd_stats = with_ipd.stats();
+  expect(
+    Object.keys(with_ipd_stats).map(id => [id, with_ipd_stats[id].values]),
+  ).toEqual([['local_physical_damage_+%', [155, 169]]]);
+
+  const with_hybrid_and_ipd = with_ipd.addMod(mods.fromPrimary(784));
+  const with_hybrid_and_ipd_stats = with_hybrid_and_ipd.stats();
+  expect(
+    Object.keys(with_hybrid_and_ipd_stats).map(id => [
+      id,
+      with_hybrid_and_ipd_stats[id].values,
+    ]),
+  ).toEqual([
+    ['local_physical_damage_+%', [175, 193]],
+    ['local_accuracy_rating', [8, 30]],
+  ]);
+});

@@ -188,38 +188,51 @@ it('should not be corruptable if it is already corrupted', () => {
   );
 });
 
-it('should have stats grouped by id', () => {
-  const weapon = items.fromPrimary(1025).rarity.set('rare');
+it('should sum its stats grouped by stat id', () => {
+  const formatStats = stats =>
+    Object.keys(stats).map(id => [id, stats[id].values]);
 
-  const ipd = mods.fromPrimary(793);
-  const ipd_acc = mods.fromPrimary(790);
+  const bow = items.fromPrimary(1214);
 
-  const crafted = weapon.addMod(ipd).addMod(ipd_acc);
+  const ipd = mods.fromPrimary(797);
+  const ipd_acc = mods.fromPrimary(784);
+  const crit = mods.fromPrimary(2171);
+
+  expect(formatStats(bow.stats())).toEqual([
+    ['local_critical_strike_chance_+%', [30, 50]],
+  ]);
+
+  expect(formatStats(bow.addMod(ipd).stats())).toEqual([
+    ['local_critical_strike_chance_+%', [30, 50]],
+    ['local_physical_damage_+%', [155, 169]],
+  ]);
 
   expect(
-    Object.entries(crafted.stats.list())
-      .map(([stat_id, stat]) => {
-        if (!(stat instanceof Stat)) throw new Error('stat is not a Stat');
-
-        return {
-          stat: stat_id,
-          values: stat.values,
-        };
-      })
-      .sort((a, b) => a.stat.localeCompare(b.stat)),
+    formatStats(
+      bow
+        .addMod(ipd)
+        .addMod(ipd_acc)
+        .stats(),
+    ),
   ).toEqual([
-    {
-      stat: 'critical_strike_chance_+%',
-      values: [30, 30],
-    },
-    {
-      stat: 'local_accuracy_rating',
-      values: [135, 169],
-    },
-    {
-      stat: 'local_physical_damage_+%',
-      values: [140, 163],
-    },
+    ['local_critical_strike_chance_+%', [30, 50]],
+    ['local_physical_damage_+%', [175, 193]],
+    ['local_accuracy_rating', [8, 30]],
+  ]);
+
+  expect(
+    formatStats(
+      bow
+        .addMod(ipd)
+        .addMod(ipd_acc)
+        .addMod(crit)
+        .stats(),
+    ),
+  ).toEqual([
+    ['local_critical_strike_chance_+%', [30, 50]],
+    ['local_physical_damage_+%', [175, 193]],
+    ['local_accuracy_rating', [8, 30]],
+    ['critical_strike_chance_+%', [15, 19]],
   ]);
 });
 
@@ -311,16 +324,6 @@ it('should have a string represantation of its rarity', () => {
 
 it('should always have rarity', () => {
   expect(items.fromPrimary(1650).rarity.any()).toBe(true);
-});
-
-it('should have a skeleton version of local stats', () => {
-  const armour = items.fromPrimary(1650);
-  expect(armour.stats.local()).toEqual({
-    physical_damage_reduction: '6',
-  });
-
-  const weapon = items.fromPrimary(1025);
-  expect(() => weapon.stats.local()).toThrowError('could not build');
 });
 
 it('should have any if it has any mods', () => {

@@ -2,7 +2,8 @@
 import { type Container } from '../Container';
 import { Mod } from '../../mods';
 import type { TagProps, BaseItemTypeProps } from '../../schema';
-import { MetaData } from '../../util';
+import MetaData from '../../util/MetaData';
+import type Stat from '../../util/Stat';
 
 import BaseItem from './BaseItem';
 import type { Component } from './Component';
@@ -55,7 +56,6 @@ type ItemBuilder = {
   rarity: RarityBuilder,
   requirements: RequirementsBuilder,
   sockets: SocketsBuilder,
-  stats: StatsBuilder,
 };
 
 export default class Item extends BaseItem<ItemBuilder>
@@ -86,7 +86,6 @@ export default class Item extends BaseItem<ItemBuilder>
       rarity: RarityTypes.normal,
       requirements: baseitem.component_attribute_requirement,
       sockets: 0,
-      stats: {},
     });
   }
 
@@ -102,7 +101,6 @@ export default class Item extends BaseItem<ItemBuilder>
   rarity: Rarity<Item> & Component<Item, RarityBuilder>;
   requirements: Requirements & Component<Item, RequirementsBuilder>;
   sockets: Sockets & Component<Item, SocketsBuilder>;
-  stats: Stats & Component<Item, StatsBuilder>;
 
   constructor(builder: ItemBuilder) {
     super(builder.baseitem);
@@ -117,7 +115,6 @@ export default class Item extends BaseItem<ItemBuilder>
     this.rarity = new ItemRarity(this, builder.rarity);
     this.requirements = new ItemRequirements(this, builder.requirements);
     this.sockets = new ItemSockets(this, builder.sockets);
-    this.stats = new ItemStats(this, builder.stats);
   }
 
   builder(): ItemBuilder {
@@ -131,7 +128,6 @@ export default class Item extends BaseItem<ItemBuilder>
       rarity: this.rarity.builder(),
       requirements: this.requirements.builder(),
       sockets: this.sockets.builder(),
-      stats: this.stats.builder(),
     };
   }
 
@@ -225,6 +221,40 @@ export default class Item extends BaseItem<ItemBuilder>
     return this.mods.length > 0;
   }
 
+  stats(): { [string]: Stat } {
+    // merge implicit stats and affix stats by adding its stats
+    const a: { [string]: Stat } = this.implicits.stats();
+    const b: { [string]: Stat } = this.affixes.stats();
+
+    // assume that keys are unique
+    return [
+      ...Object.keys(a),
+      ...Object.keys(b),
+    ].reduce((stats: { [string]: Stat }, key: string) => {
+      const left: ?Stat = a[key];
+      const right: ?Stat = b[key];
+
+      if (stats[key] != null) {
+        // already merged
+        return stats;
+      } else {
+        let merged: Stat;
+
+        if (left != null && right != null) {
+          merged = left.add(right.values);
+        } else if (right != null) {
+          merged = right;
+        } else if (left != null) {
+          merged = left;
+        }
+
+        return {
+          ...stats,
+          [key]: merged,
+        };
+      }
+    }, {});
+  }
   // End Container implementation
 
   removeAllImplicits(): this {

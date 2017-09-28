@@ -1,6 +1,7 @@
 // @flow
 import type { Taggable } from '../interfaces/Taggable';
 import type Mod from '../mods/Mod';
+import type Stat from '../util/Stat';
 
 export interface Container<T: Mod> extends Taggable {
   addMod(T): *,
@@ -15,6 +16,8 @@ export interface Container<T: Mod> extends Taggable {
   maxModsOfType(T): number,
   inDomainOf(number): boolean,
   level(): number,
+
+  stats(): { [string]: Stat },
 
   asArray(): T[],
   +mods: T[],

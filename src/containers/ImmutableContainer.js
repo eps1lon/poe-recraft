@@ -2,6 +2,7 @@
 import { AbstractMethod } from '../exceptions';
 import type { TagProps } from '../schema';
 import type Mod from '../mods/Mod';
+import Stat from '../util/Stat';
 
 import type { Container } from './Container';
 
@@ -137,6 +138,34 @@ export default class ImmutableContainer<T: Mod, B: Builder<T>>
    */
   any(): boolean {
     return this.mods.length > 0;
+  }
+
+  /**
+   * lists all the stats that are offered by its mods
+   * 
+   * mods can have multiple stats so we sum their values grouped by stat id
+   */
+  stats(): { [string]: Stat } {
+    return this.mods.reduce((stats: { [string]: Stat }, mod: Mod) => {
+      // flattened
+      return mod.statsJoined().reduce((joined, stat) => {
+        const { id } = stat.props;
+        const existing = joined[id];
+
+        // group by stat.Id
+        if (existing instanceof Stat) {
+          return {
+            ...joined,
+            [id]: existing.add(stat.values),
+          };
+        } else {
+          return {
+            ...joined,
+            [id]: stat,
+          };
+        }
+      }, stats);
+    }, {});
   }
 
   /**

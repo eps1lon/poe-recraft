@@ -87,7 +87,7 @@ export default class ItemSockets implements Sockets, Component<Item, Builder> {
   }
 
   _maxOverride(): ?number {
-    const stats = this.parent.stats.list();
+    const stats = this.parent.stats();
     const tags = this.parent.getTags();
 
     if (stats.local_has_X_sockets != null) {
