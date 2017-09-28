@@ -1,7 +1,6 @@
 // @flow
 import Mod from '../../../mods/Mod';
 import type PropsTable from '../../../helpers/PropsTable';
-import Stat from '../../../util/Stat';
 import type { BaseItemTypeProps, ModProps } from '../../../schema';
 import { createTables } from '../../../__fixtures__/util';
 
@@ -236,96 +235,6 @@ it('should sum its stats grouped by stat id', () => {
   ]);
 });
 
-it('should upgrade rarity normal->magic-rare', () => {
-  const normal = items.fromPrimary(1650);
-
-  const magic = normal.rarity.upgrade();
-
-  expect(magic).not.toBe(normal);
-  expect(magic.rarity.toString()).toBe('magic');
-
-  const rare = magic.rarity.upgrade();
-
-  expect(rare).not.toBe(magic);
-  expect(rare.rarity.toString()).toBe('rare');
-
-  const also_rare = rare.rarity.upgrade();
-
-  expect(also_rare).toBe(rare);
-});
-
-it('should generate the name lines like ingame', () => {
-  const normal = items.fromPrimary(1650);
-
-  expect(normal.name.lines()).toEqual(['Iron Greaves']);
-
-  const magic = normal.rarity.set('magic');
-
-  expect(magic.name.lines()).toEqual(['Iron Greaves']);
-  expect(magic.addMod(ofBrute).name.lines()).toEqual([
-    'Iron Greaves of the Brute',
-  ]);
-  expect(
-    magic
-      .addMod(ofBrute)
-      .addMod(sturdy)
-      .name.lines(),
-  ).toEqual(['Sturdy Iron Greaves of the Brute']);
-
-  const rare = normal.rarity.set('rare');
-
-  expect(rare.name.lines()).toEqual(['Random Name', 'Iron Greaves']);
-
-  const unique = normal.rarity.set('unique');
-
-  expect(unique.name.lines()).toEqual(['TODO unique name?', 'Iron Greaves']);
-});
-
-it('should always have a name', () => {
-  expect(items.fromPrimary(1650).name.any()).toBe(true);
-});
-
-it('should consider its mods for its required level', () => {
-  const greaves = items.fromPrimary(1652).rarity.set('rare');
-
-  expect(greaves.requirements.level()).toBe(23);
-  // 17 modrequirements.level
-  expect(greaves.addMod(mods.fromPrimary(2)).requirements.level()).toBe(23);
-  // 26 mod
-  expect(greaves.addMod(mods.fromPrimary(3)).requirements.level()).toBe(26);
-});
-
-it('should have attr requirements', () => {
-  const greaves = items.fromPrimary(1652);
-
-  expect(greaves.requirements.list()).toEqual({
-    level: 23,
-    str: 44,
-    dex: 0,
-    int: 0,
-  });
-});
-
-it('should have requirements if any are greater than zero', () => {
-  expect(items.fromPrimary(2276).requirements.any()).toBe(false);
-
-  expect(items.fromPrimary(1652).requirements.any()).toBe(true);
-});
-
-it('should have a string represantation of its rarity', () => {
-  const item = items.fromPrimary(1650);
-
-  expect(item.rarity.toString()).toEqual('normal');
-  expect(item.rarity.set('magic').rarity.toString()).toEqual('magic');
-  expect(item.rarity.set('rare').rarity.toString()).toEqual('rare');
-  expect(item.rarity.set('unique').rarity.toString()).toEqual('unique');
-  expect(item.rarity.set('showcase').rarity.toString()).toEqual('showcase');
-});
-
-it('should always have rarity', () => {
-  expect(items.fromPrimary(1650).rarity.any()).toBe(true);
-});
-
 it('should have any if it has any mods', () => {
   const gripped_gloves = items.fromPrimary(1761);
 
@@ -335,51 +244,4 @@ it('should have any if it has any mods', () => {
 
   expect(greaves.any()).toBe(false);
   expect(greaves.addMod(sturdy).any()).toBe(true);
-});
-
-describe('sockets', () => {
-  it('should have no more than 4 on boots, gloves, helmets', () => {
-    expect(items.fromPrimary(1544).sockets.max()).toBe(4); // Bone Helmet
-    expect(items.fromPrimary(1708).sockets.max()).toBe(4); // Iron Gauntlets
-    expect(items.fromPrimary(1650).sockets.max()).toBe(4); // Iron Greaves
-    expect(items.fromPrimary(1312).sockets.max()).toBe(4); // Fishing Rod
-  });
-
-  it('should have no more than 3 on shields and 1H', () => {
-    expect(items.fromPrimary(1099).sockets.max()).toBe(3); // Rusted Sword
-    expect(items.fromPrimary(1092).sockets.max()).toBe(3); // Siege Axe
-    expect(items.fromPrimary(1135).sockets.max()).toBe(3); // Estoc
-    expect(items.fromPrimary(1412).sockets.max()).toBe(3); // War Buckler
-    expect(items.fromPrimary(1005).sockets.max()).toBe(3); // Driftwood Wand
-  });
-
-  it('should have no sockets on jewelry', () => {
-    expect(items.fromPrimary(1335).sockets.max()).toBe(0); // Amber Amulet
-  });
-
-  it('should have no more than 6 on armour and 2H', () => {
-    expect(items.fromPrimary(1545).sockets.max()).toBe(6); // Plate West
-    expect(items.fromPrimary(1004).sockets.max()).toBe(6); // Key Blade
-    expect(items.fromPrimary(1244).sockets.max()).toBe(6); // Judgement Staff
-  });
-
-  it('should check level restrictions', () => {
-    const staff = items.fromPrimary(1244);
-
-    expect(staff.setProperty('item_level', 1).sockets.max()).toBe(2);
-    expect(staff.setProperty('item_level', 2).sockets.max()).toBe(3);
-    expect(staff.setProperty('item_level', 25).sockets.max()).toBe(4);
-    expect(staff.setProperty('item_level', 35).sockets.max()).toBe(5);
-    expect(staff.setProperty('item_level', 67).sockets.max()).toBe(6);
-  });
-
-  it('should check tags', () => {
-    expect(items.fromPrimary(1224).sockets.max()).toBe(3); // Gnarled Staff
-    expect(items.fromPrimary(1328).sockets.max()).toBe(1); // Unset
-    expect(items.fromPrimary(1347).sockets.max()).toBe(1); // Black Maw Talisman
-  });
-
-  it('should have not have any currently', () => {
-    expect(items.fromPrimary(1244).sockets.any()).toBe(false);
-  });
 });
