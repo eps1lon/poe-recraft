@@ -30,6 +30,14 @@ it('should not hold duplicate mods', () => {
   ).toHaveLength(2);
 });
 
+it('should have any if it has mods', () => {
+  const container = new ImmutableContainer([]);
+
+  expect(container.any()).toBe(false);
+
+  expect(container.addMod(sturdy).any()).toBe(true);
+});
+
 it('should consider the tags of its mods', () => {
   const container = new ImmutableContainer([]);
 

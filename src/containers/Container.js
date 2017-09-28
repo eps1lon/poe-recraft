@@ -8,6 +8,7 @@ export interface Container<T: Mod> extends Taggable {
   removeAllMods(): *,
   hasMod(T): boolean,
   hasRoomFor(T): boolean,
+  any(): boolean,
 
   indexOfModWithPrimary(number): number,
 

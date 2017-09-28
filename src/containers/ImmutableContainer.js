@@ -133,6 +133,13 @@ export default class ImmutableContainer<T: Mod, B: Builder<T>>
   }
 
   /**
+   * checks if this container has any mods
+   */
+  any(): boolean {
+    return this.mods.length > 0;
+  }
+
+  /**
    * @abstract
    */
   // eslint-disable-next-line no-unused-vars

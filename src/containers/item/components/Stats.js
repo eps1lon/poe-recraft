@@ -68,4 +68,11 @@ export default class ItemStats implements Stats, Component<Item, Builder> {
       throw new Error('could not build localStats');
     }
   }
+
+  /**
+   * method stub. remove mod stats and move to container
+   */
+  any(): boolean {
+    return false;
+  }
 }

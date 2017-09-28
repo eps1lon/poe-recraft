@@ -268,6 +268,10 @@ it('should generate the name lines like ingame', () => {
   expect(unique.name.lines()).toEqual(['TODO unique name?', 'Iron Greaves']);
 });
 
+it('should always have a name', () => {
+  expect(items.fromPrimary(1650).name.any()).toBe(true);
+});
+
 it('should consider its mods for its required level', () => {
   const greaves = items.fromPrimary(1652).rarity.set('rare');
 
@@ -289,6 +293,12 @@ it('should have attr requirements', () => {
   });
 });
 
+it('should have requirements if any are greater than zero', () => {
+  expect(items.fromPrimary(2276).requirements.any()).toBe(false);
+
+  expect(items.fromPrimary(1652).requirements.any()).toBe(true);
+});
+
 it('should have a string represantation of its rarity', () => {
   const item = items.fromPrimary(1650);
 
@@ -299,6 +309,10 @@ it('should have a string represantation of its rarity', () => {
   expect(item.rarity.set('showcase').rarity.toString()).toEqual('showcase');
 });
 
+it('should always have rarity', () => {
+  expect(items.fromPrimary(1650).rarity.any()).toBe(true);
+});
+
 it('should have a skeleton version of local stats', () => {
   const armour = items.fromPrimary(1650);
   expect(armour.stats.local()).toEqual({
@@ -307,6 +321,17 @@ it('should have a skeleton version of local stats', () => {
 
   const weapon = items.fromPrimary(1025);
   expect(() => weapon.stats.local()).toThrowError('could not build');
+});
+
+it('should have any if it has any mods', () => {
+  const gripped_gloves = items.fromPrimary(1761);
+
+  expect(gripped_gloves.any()).toBe(true);
+
+  const greaves = items.fromPrimary(1650);
+
+  expect(greaves.any()).toBe(false);
+  expect(greaves.addMod(sturdy).any()).toBe(true);
 });
 
 describe('sockets', () => {
@@ -349,5 +374,9 @@ describe('sockets', () => {
     expect(items.fromPrimary(1224).sockets.max()).toBe(3); // Gnarled Staff
     expect(items.fromPrimary(1328).sockets.max()).toBe(1); // Unset
     expect(items.fromPrimary(1347).sockets.max()).toBe(1); // Black Maw Talisman
+  });
+
+  it('should have not have any currently', () => {
+    expect(items.fromPrimary(1244).sockets.any()).toBe(false);
   });
 });

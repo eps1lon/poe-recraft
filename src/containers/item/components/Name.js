@@ -45,4 +45,8 @@ export default class ItemName implements Name, Component<Item, Builder> {
       throw new Error(`unrecognized rarity ${String(this.parent.rarity)}`);
     }
   }
+
+  any(): boolean {
+    return true;
+  }
 }

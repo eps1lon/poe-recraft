@@ -40,10 +40,14 @@ export default class ItemName
   }
 
   level(): number {
-    return Math.max(
-      this.parent.baseitem.drop_level,
-      ...this.parent.mods.map(mod => mod.requiredLevel()),
-    );
+    if (this.parent.meta_data.isA('AbstractMap')) {
+      return 0;
+    } else {
+      return Math.max(
+        this.parent.baseitem.drop_level,
+        ...this.parent.mods.map(mod => mod.requiredLevel()),
+      );
+    }
   }
 
   list() {
@@ -53,5 +57,9 @@ export default class ItemName
       dex: this.dex,
       int: this.int,
     };
+  }
+
+  any(): boolean {
+    return Object.values(this.list()).some(value => value !== 0);
   }
 }

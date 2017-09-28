@@ -220,6 +220,11 @@ export default class Item extends BaseItem<ItemBuilder>
   level(): number {
     return this.props.item_level;
   }
+
+  any(): boolean {
+    return this.mods.length > 0;
+  }
+
   // End Container implementation
 
   removeAllImplicits(): this {

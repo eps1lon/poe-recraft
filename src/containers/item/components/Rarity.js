@@ -98,4 +98,9 @@ export default class ItemRarity
 
     return entry[0];
   }
+
+  any(): boolean {
+    // ItemRarity always has a rarity
+    return true;
+  }
 }

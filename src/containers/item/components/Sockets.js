@@ -38,6 +38,10 @@ export default class ItemSockets implements Sockets, Component<Item, Builder> {
     }
   }
 
+  any(): boolean {
+    return this.amount > 0;
+  }
+
   _maxByMetaData(): number {
     const { meta_data } = this.parent;
 
