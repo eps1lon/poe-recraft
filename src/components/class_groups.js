@@ -1,7 +1,5 @@
 // @flow
-import type { Props as ItemClassGroupProps } from './item/ItemClassGroup';
-
-const groups: ItemClassGroupProps[] = [
+const groups = [
   {
     name: 'weapons',
     human: 'Weapons',
