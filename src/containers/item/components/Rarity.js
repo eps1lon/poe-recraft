@@ -96,7 +96,7 @@ export default class ItemRarity
       );
     }
 
-    return entry[0];
+    return ((entry[0]: any): RarityIdent);
   }
 
   any(): boolean {
