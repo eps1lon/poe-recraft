@@ -1,11 +1,11 @@
 // @flow
 import type { Generator } from 'poe-mods';
 import reduceReducers from 'reduce-reducers';
+import { handleActions } from 'redux-actions';
 
-import type { Action as CraftAction } from '../actions/craft';
 import type { State as ItemState } from './item';
 
-import { SET_GENERATOR } from '../actions/craft';
+import { setGenerator, type SetGeneratorAction } from '../actions/craft';
 import item, { initial as initial_item_state } from './item';
 
 export type State = {
@@ -20,16 +20,18 @@ const initial: State = {
   ...initial_item_state
 };
 
-const reducer = (state: State = initial, action: CraftAction): State => {
-  switch (action.type) {
-    case SET_GENERATOR:
-      return {
-        ...state,
-        mod_generator: action.payload
-      };
-    default:
-      return state;
-  }
-};
+const reducer = handleActions(
+  {
+    [setGenerator.toString()]: setGeneratorHandle
+  },
+  initial
+);
+
+function setGeneratorHandle(state: State, action: SetGeneratorAction): State {
+  return {
+    ...state,
+    mod_generator: action.payload
+  };
+}
 
 export default reduceReducers(reducer, item);
