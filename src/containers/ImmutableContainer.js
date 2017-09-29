@@ -12,14 +12,14 @@ export type Builder<T: Mod> = {
 
 export default class ImmutableContainer<T: Mod, B: Builder<T>>
   implements Container<T> {
-  +mods: T[];
+  mods: T[];
 
   static withBuilder(builder: B): ImmutableContainer<T, B> {
     return new ImmutableContainer(builder.mods);
   }
 
   constructor(mods: T[]) {
-    (this: any).mods = mods;
+    this.mods = mods;
   }
 
   builder(): B {

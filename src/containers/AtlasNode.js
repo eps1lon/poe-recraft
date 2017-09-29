@@ -20,7 +20,7 @@ export default class AtlasNode extends ImmutableContainer<Mod, Builder>
     return props.world_area.id.replace(/MapAtlas/, '');
   }
 
-  +props: AtlasNodeProps;
+  props: AtlasNodeProps;
 
   static build(props: AtlasNodeProps) {
     return new AtlasNode([], props);
@@ -33,7 +33,7 @@ export default class AtlasNode extends ImmutableContainer<Mod, Builder>
   constructor(mods: Mod[], props: AtlasNodeProps) {
     super(mods);
 
-    (this: any).props = props;
+    this.props = props;
   }
 
   builder(): Builder {

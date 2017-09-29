@@ -1,5 +1,6 @@
 // @flow
 import { createTables } from '../../__fixtures__/util';
+import { type AtlasNodeProps } from '../../schema';
 
 import AtlasNode from '../AtlasNode';
 
@@ -7,13 +8,16 @@ const { atlas: atlas_nodes, mods } = createTables();
 
 let atlas;
 
-const getNode = primary => atlas.find(node => node.props.primary === primary);
-const getNodeIndex = primary =>
-  atlas.findIndex(node => node.props.primary === primary);
+const getNode = (primary: number) =>
+  atlas.find((node: AtlasNode) => node.props.primary === primary);
+const getNodeIndex = (primary: number) =>
+  atlas.findIndex((node: AtlasNode) => node.props.primary === primary);
 const ids = ({ props: { world_area: { id } } }) => id;
 
 beforeEach(() => {
-  atlas = atlas_nodes.all().map(node_props => new AtlasNode([], node_props));
+  atlas = atlas_nodes
+    .all()
+    .map((node_props: AtlasNodeProps) => new AtlasNode([], node_props));
 });
 
 it('should build', () => {

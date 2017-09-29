@@ -7,7 +7,7 @@ import type Stat from '../../calculator/Stat';
 
 import BaseItem from './BaseItem';
 import type { Component } from './Component';
-import Affixes from './components/Affixes';
+import ItemAffixes from './components/Affixes';
 import ItemSockets, {
   type Sockets,
   type Builder as SocketsBuilder,
@@ -96,8 +96,8 @@ export default class Item extends BaseItem<ItemBuilder>
     return new Item(builder);
   }
 
-  affixes: Affixes;
-  implicits: Container<Mod>;
+  affixes: ItemAffixes;
+  implicits: Implicits;
   meta_data: MetaData;
   name: Name & Component<Item, NameBuilder>;
   props: ItemProps;
@@ -113,13 +113,13 @@ export default class Item extends BaseItem<ItemBuilder>
     this.meta_data = builder.meta_data;
 
     // components
-    this.affixes = new Affixes(this, builder.affixes);
-    this.implicits = new Implicits(this, builder.implicits);
     this.name = new ItemName(this, builder.name);
     this.properties = new ItemProperties(this, builder.properties);
     this.rarity = new ItemRarity(this, builder.rarity);
     this.requirements = new ItemRequirements(this, builder.requirements);
     this.sockets = new ItemSockets(this, builder.sockets);
+    this.affixes = new ItemAffixes(this, builder.affixes);
+    this.implicits = new Implicits(this, builder.implicits);
   }
 
   builder(): ItemBuilder {
@@ -298,7 +298,7 @@ export default class Item extends BaseItem<ItemBuilder>
   // End state
 
   // private
-  _mutateAffixes(mutate: (Container<Mod>) => Container<Mod>): this {
+  _mutateAffixes(mutate: ItemAffixes => ItemAffixes): this {
     return this.withMutations(builder => {
       return {
         ...builder,
@@ -315,7 +315,7 @@ export default class Item extends BaseItem<ItemBuilder>
     return this._mutateAffixes(affixes => affixes.removeMod(other));
   }
 
-  _mutateImplicits(mutate: (Container<Mod>) => Container<Mod>): this {
+  _mutateImplicits(mutate: Implicits => Implicits): this {
     return this.withMutations(builder => {
       return {
         ...builder,
