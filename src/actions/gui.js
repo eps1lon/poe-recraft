@@ -14,6 +14,12 @@ export const expand = createAction(
 );
 export type ExpandAction = ReduxActionType<typeof expand>;
 
+export const toggle = createAction(
+  'TOGGLE',
+  (component: GuiIdent) => component
+);
+export type ToggleAction = ReduxActionType<typeof toggle>;
+
 export const setTableExpanded = createAction(
   'SET_TABLE_EXPANDED',
   (component: GuiIdent, expanded: ReactTableExpanded) => ({

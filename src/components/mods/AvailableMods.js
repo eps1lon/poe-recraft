@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+
 import './AvailableMods.css';
 
 import type { GeneratorDetails } from './ModsTable';
@@ -12,19 +13,10 @@ export type Props = {
   suffixes: GeneratorDetails[]
 };
 
-// TODO hide implicits by default => toggleable
 const AvailableMods = ({ prefixes, suffixes, implicits }: Props) => {
   return (
     <section id="available_mods">
-      <h3>
-        available Mods
-        <a id="expand_mods" href="#available_mods">
-          Expand All
-        </a>/
-        <a id="collapse_mods" href="#available_mods">
-          Collapse All
-        </a>
-      </h3>
+      <h3>available Mods</h3>
       <ModsTable
         className="implicits"
         details={implicits}

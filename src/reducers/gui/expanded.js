@@ -6,6 +6,8 @@ import {
   type CollapseAction,
   expand,
   type ExpandAction,
+  toggle,
+  type ToggleAction,
   setTableExpanded,
   type SetTableExpandedAction,
   toggleGeneratorModal,
@@ -32,6 +34,7 @@ export default handleActions(
   {
     [collapse.toString()]: collapseHandle,
     [expand.toString()]: expandHandle,
+    [toggle.toString()]: toggleHandle,
     [setTableExpanded.toString()]: setTableExpandedHandle,
     [toggleGeneratorModal.toString()]: toggleGeneratorModalHandle
   },
@@ -53,6 +56,15 @@ function expandHandle(state: State = initial, action: ExpandAction): State {
   return {
     ...state,
     misc: new Map(state.misc).set(ident, true)
+  };
+}
+
+function toggleHandle(state: State = initial, action: ToggleAction): State {
+  const { payload: ident } = action;
+
+  return {
+    ...state,
+    misc: new Map(state.misc).set(ident, !Boolean(state.misc.get(ident)))
   };
 }
 
