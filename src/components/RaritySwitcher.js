@@ -20,12 +20,8 @@ const RaritySwitcher = (props: Props) => {
     onChange(event.currentTarget.value);
 
   return (
-    <select onChange={handleChange}>
-      {available.map(rarity => (
-        <option value={rarity} selected={rarity === selected}>
-          {rarity}
-        </option>
-      ))}
+    <select onChange={handleChange} value={selected}>
+      {available.map(rarity => <option value={rarity}>{rarity}</option>)}
     </select>
   );
 };
