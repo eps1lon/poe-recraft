@@ -34,8 +34,8 @@ class App extends PureComponent<Props> {
         <ItemclassPicker />
       </header>,
       <div key="content" id="content">
-        <AvailableMods />
         <ItemSection />
+        <AvailableMods />
       </div>
     ];
   }

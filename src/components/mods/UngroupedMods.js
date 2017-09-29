@@ -26,33 +26,39 @@ const UngroupedMods = (props: Props) => {
       accessor: 'mod.props.level',
       className: 'ilvl',
       id: 'ilvl',
-      Header: 'iLvl'
+      Header: 'iLvl',
+      minWidth: 15
     },
     {
       accessor: (details: GeneratorDetails) =>
         details.mod.props.stats.map(({ id }) => id).join(','),
       className: 'stats',
       Header: 'Stats',
-      id: 'stats'
+      id: 'stats',
+      minWidth: 200
     },
     {
       accessor: 'mod.props.name',
       className: 'name',
       Header: 'Name',
-      id: 'name'
+      id: 'name',
+      minWidth: 80
     },
     {
-      accessor: (details: GeneratorDetails) => String(details.spawnweight),
+      accessor: (details: GeneratorDetails) =>
+        String(details.spawnweight || 'none'),
       className: 'spawn-chance',
       Header: 'Chance',
-      id: 'chance'
+      id: 'chance',
+      minWidth: 30
     },
     {
-      Header: 'add',
+      Header: '',
       id: 'add_mod',
       Cell: ({ original: details }: { original: GeneratorDetails }) => {
-        return <button onClick={() => onAddMod(details.mod)}>addMod</button>;
-      }
+        return <button onClick={() => onAddMod(details.mod)}>add</button>;
+      },
+      minWdth: 30
     }
   ].filter(({ id }) => !exclude.includes(id));
 
