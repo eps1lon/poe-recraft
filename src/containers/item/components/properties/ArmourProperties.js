@@ -1,6 +1,9 @@
 // @flow
+import _ from 'lodash';
+
 import type { Properties, Property } from './ComputedProperties';
 import type Item from '../../Item';
+import Stat from '../../../../calculator/Stat';
 import Value from '../../../../calculator/Value';
 
 export interface ArmourProperties extends Properties {
@@ -23,42 +26,26 @@ export default function build(item: Item): ArmourProperties {
   const { armour, evasion, energy_shield } = component_armour;
 
   const props = {
-    armour: {
-      type: 'simple',
-      value: new Value([armour, armour], ['local', 'defences', 'armour']),
-    },
-    evasion: {
-      type: 'simple',
-      value: new Value([evasion, evasion], ['local', 'defences', 'evasion']),
-    },
-    energy_shield: {
-      type: 'simple',
-      value: new Value(
-        [energy_shield, energy_shield],
-        ['local', 'defences', 'energy_shield'],
-      ),
-    },
+    armour: new Value([armour, armour], ['local', 'defences', 'armour']),
+    evasion: new Value([evasion, evasion], ['local', 'defences', 'evasion']),
+    energy_shield: new Value(
+      [energy_shield, energy_shield],
+      ['local', 'defences', 'energy_shield'],
+    ),
   };
 
   const stats = item.stats();
+  // Flow false positive when using Object.values
+  const stats_as_array: Stat[] = Object.keys(stats).map(id => stats[id]);
 
-  const augmented_armour = props.armour.value
-    .augmentWith(Object.keys(stats).map(id => stats[id]))
-    .compute();
+  const augmented_props = _.mapValues(props, (value: Value) => {
+    const augmented = value.augmentWith(stats_as_array).compute();
 
-  return (({
-    armour: {
-      type:
-        augmented_armour === props.armour.value.base ? 'simple' : 'augmented',
-      values: augmented_armour.asTuple(),
-    },
-    evasion: {
-      type: 'simple',
-      values: [evasion, evasion],
-    },
-    energy_shield: {
-      type: 'simple',
-      values: [energy_shield, energy_shield],
-    },
-  }: any): ArmourProperties);
+    return {
+      type: augmented === value.base ? 'simple' : 'augmented',
+      values: augmented.asTuple(),
+    };
+  });
+
+  return augmented_props;
 }

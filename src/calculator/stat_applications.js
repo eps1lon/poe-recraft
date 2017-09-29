@@ -662,7 +662,7 @@ const applications: { [string]: Application } = {
     type: 'flat',
   },
   'local_armour_and_energy_shield_+%': {
-    classification: [],
+    classification: ['local', ['armour', 'energy_shield']],
     type: 'inc',
   },
   'local_armour_and_evasion_+%': {
@@ -890,11 +890,11 @@ const applications: { [string]: Application } = {
     type: 'inc',
   },
   local_energy_shield: {
-    classification: [],
+    classification: ['local', 'energy_shield'],
     type: 'flat',
   },
   'local_energy_shield_+%': {
-    classification: [],
+    classification: ['local', 'energy_shield'],
     type: 'inc',
   },
   'local_evasion_and_energy_shield_+%': {

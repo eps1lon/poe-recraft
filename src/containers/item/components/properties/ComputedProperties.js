@@ -1,8 +1,6 @@
 // @flow
-import type ValueRange from '../../../../calculator/ValueRange';
-
 export interface Property {
-  values: ValueRange,
+  values: [number, number],
   type: 'simple' | 'augmented',
 }
 

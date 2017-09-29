@@ -6,12 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.4.0...HEAD)
 ### Breaking
 - Removed the `Stats` component from `Item` for Stats from Mods can directly be
-  access via `#stats`. Things like ES or damage will be properties of 
+  access via `#stats`. Things like ES or damage are now properties of 
   specialized classes.
 - `ValueRange` is now a specialized class as opposed to being a tuple
 ### Added
 - `Container#any` and `ItemComponent#any` helpers
-- `Properties` item component. Currently only `ArmourProperties` are implemented
+- `Properties` item component. Currently only `ArmourProperties` are implemented.
 
 ## [1.4.0](https://github.com/eps1lon/poe-mods/compare/v1.3.5...v1.4.0) (2017-09-27)
 ### Breaking
