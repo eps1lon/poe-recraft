@@ -3,7 +3,7 @@ import { type Container } from '../Container';
 import { Mod } from '../../mods';
 import type { TagProps, BaseItemTypeProps } from '../../schema';
 import MetaData from '../../util/MetaData';
-import type Stat from '../../util/Stat';
+import type Stat from '../../calculator/Stat';
 
 import BaseItem from './BaseItem';
 import type { Component } from './Component';
@@ -26,10 +26,10 @@ import ItemRequirements, {
   type Requirements,
   type Builder as RequirementsBuilder,
 } from './components/Requirements';
-import ItemStats, {
-  type Stats,
-  type Builder as StatsBuilder,
-} from './components/Stats';
+import ItemProperties, {
+  type Properties,
+  type Builder as PropertiesBuilder,
+} from './components/properties/ItemProperties';
 
 export type ItemProps = {
   +corrupted: boolean,
@@ -53,6 +53,7 @@ type ItemBuilder = {
   meta_data: MetaData,
   name: NameBuilder,
   props: ItemProps,
+  properties: PropertiesBuilder,
   rarity: RarityBuilder,
   requirements: RequirementsBuilder,
   sockets: SocketsBuilder,
@@ -79,10 +80,12 @@ export default class Item extends BaseItem<ItemBuilder>
       meta_data,
       name: 'Random Name',
       props: {
+        // more like misc
         corrupted: false,
         item_level: 100,
         mirrored: false,
       },
+      properties: null,
       rarity: RarityTypes.normal,
       requirements: baseitem.component_attribute_requirement,
       sockets: 0,
@@ -98,6 +101,7 @@ export default class Item extends BaseItem<ItemBuilder>
   meta_data: MetaData;
   name: Name & Component<Item, NameBuilder>;
   props: ItemProps;
+  properties: Properties & Component<Item, *>;
   rarity: Rarity<Item> & Component<Item, RarityBuilder>;
   requirements: Requirements & Component<Item, RequirementsBuilder>;
   sockets: Sockets & Component<Item, SocketsBuilder>;
@@ -112,6 +116,7 @@ export default class Item extends BaseItem<ItemBuilder>
     this.affixes = new Affixes(this, builder.affixes);
     this.implicits = new Implicits(this, builder.implicits);
     this.name = new ItemName(this, builder.name);
+    this.properties = new ItemProperties(this, builder.properties);
     this.rarity = new ItemRarity(this, builder.rarity);
     this.requirements = new ItemRequirements(this, builder.requirements);
     this.sockets = new ItemSockets(this, builder.sockets);
@@ -125,6 +130,7 @@ export default class Item extends BaseItem<ItemBuilder>
       meta_data: this.meta_data,
       name: this.name.builder(),
       props: this.props,
+      properties: this.properties.builder(),
       rarity: this.rarity.builder(),
       requirements: this.requirements.builder(),
       sockets: this.sockets.builder(),

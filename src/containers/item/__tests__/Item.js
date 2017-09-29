@@ -198,12 +198,12 @@ it('should sum its stats grouped by stat id', () => {
   const crit = mods.fromPrimary(2171);
 
   expect(formatStats(bow.stats())).toEqual([
-    ['local_critical_strike_chance_+%', [30, 50]],
+    ['local_critical_strike_chance_+%', { min: 30, max: 50 }],
   ]);
 
   expect(formatStats(bow.addMod(ipd).stats())).toEqual([
-    ['local_critical_strike_chance_+%', [30, 50]],
-    ['local_physical_damage_+%', [155, 169]],
+    ['local_critical_strike_chance_+%', { min: 30, max: 50 }],
+    ['local_physical_damage_+%', { min: 155, max: 169 }],
   ]);
 
   expect(
@@ -214,9 +214,9 @@ it('should sum its stats grouped by stat id', () => {
         .stats(),
     ),
   ).toEqual([
-    ['local_critical_strike_chance_+%', [30, 50]],
-    ['local_physical_damage_+%', [175, 193]],
-    ['local_accuracy_rating', [8, 30]],
+    ['local_critical_strike_chance_+%', { min: 30, max: 50 }],
+    ['local_physical_damage_+%', { min: 175, max: 193 }],
+    ['local_accuracy_rating', { min: 8, max: 30 }],
   ]);
 
   expect(
@@ -228,10 +228,10 @@ it('should sum its stats grouped by stat id', () => {
         .stats(),
     ),
   ).toEqual([
-    ['local_critical_strike_chance_+%', [30, 50]],
-    ['local_physical_damage_+%', [175, 193]],
-    ['local_accuracy_rating', [8, 30]],
-    ['critical_strike_chance_+%', [15, 19]],
+    ['local_critical_strike_chance_+%', { min: 30, max: 50 }],
+    ['local_physical_damage_+%', { min: 175, max: 193 }],
+    ['local_accuracy_rating', { min: 8, max: 30 }],
+    ['critical_strike_chance_+%', { min: 15, max: 19 }],
   ]);
 });
 

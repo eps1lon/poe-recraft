@@ -3,7 +3,7 @@ import { type Buildable } from '../interfaces/Buildable';
 import { type Taggable } from '../interfaces/Taggable';
 import type { ModProps, SpawnWeightProps } from '../schema';
 
-import Stat from '../util/Stat';
+import Stat from '../calculator/Stat';
 
 export default class Mod implements Buildable<ModProps> {
   static DOMAIN = {

@@ -34,7 +34,7 @@ it('should fill in the value range for its stats', () => {
   expect(
     ofBrute.statsJoined().find(stat => stat.props.id === 'additional_strength'),
   ).toMatchObject({
-    values: [8, 12],
+    values: { min: 8, max: 12 },
   });
 });
 

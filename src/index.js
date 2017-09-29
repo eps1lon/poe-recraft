@@ -1,9 +1,11 @@
 // @flow
+import type Stat from './calculator/Stat';
+import type ValueRange from './calculator/ValueRange';
 import type Generator, { GeneratorDetails } from './generators/Generator';
 import type Container from './containers/Container';
-import type { Flags, ValueRange } from './util';
+import type { Flags } from './util';
 
-export type { Container, Flags, Generator, GeneratorDetails, ValueRange };
+export type { Container, Flags, Generator, GeneratorDetails, Stat, ValueRange };
 
 // API definition
 
@@ -45,4 +47,4 @@ export {
   verifyMods,
 } from './helpers/verifySchema';
 
-export { anySet, Stat } from './util';
+export { anySet } from './util';

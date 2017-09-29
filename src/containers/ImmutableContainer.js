@@ -2,7 +2,7 @@
 import { AbstractMethod } from '../exceptions';
 import type { TagProps } from '../schema';
 import type Mod from '../mods/Mod';
-import Stat from '../util/Stat';
+import Stat from '../calculator/Stat';
 
 import type { Container } from './Container';
 

@@ -1,7 +1,7 @@
 // @flow
 import type { Taggable } from '../interfaces/Taggable';
 import type Mod from '../mods/Mod';
-import type Stat from '../util/Stat';
+import type Stat from '../calculator/Stat';
 
 export interface Container<T: Mod> extends Taggable {
   addMod(T): *,
