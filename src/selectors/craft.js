@@ -52,3 +52,8 @@ export const cachedAvailableMods = (whitelist: string[]) =>
     (state: State) => state.craft.mod_generator,
     whitelistedAvailableMods(whitelist)
   );
+
+export const activeGenerator = (state: State) =>
+  state.craft.mod_generator
+    ? state.craft.mod_generator.constructor.name
+    : undefined;

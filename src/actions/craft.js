@@ -10,4 +10,10 @@ export const setGenerator = createAction(
 );
 export type SetGeneratorAction = ReduxActionType<typeof setGenerator>;
 
+export const useGenerator = createAction(
+  'CRAFT/USE_GENERATOR',
+  (type: string) => type
+);
+export type UseGeneratorAction = ReduxActionType<typeof useGenerator>;
+
 export type Action = SetGeneratorAction;
