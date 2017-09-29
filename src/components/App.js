@@ -2,6 +2,7 @@
 import React, { PureComponent } from 'react';
 
 import AvailableMods from '../containers/AvailableMods';
+import GeneratorModal from '../containers/GeneratorModal';
 import ItemSection from '../containers/ItemSection';
 import ItemclassPicker from '../containers/itemclass_picker/Picker';
 
@@ -32,6 +33,7 @@ class App extends PureComponent<Props> {
           (Patch: <em id="game_version">{version}</em>)
         </span>
         <ItemclassPicker />
+        <GeneratorModal />
       </header>,
       <div key="content" id="content">
         <ItemSection />

@@ -1,16 +1,8 @@
 // @flow
 import type { Item, Flags, Generator, Mod } from 'poe-mods';
-import { ItemShowcase } from 'poe-mods';
 import { createSelector } from 'reselect';
 
 import type { State } from '../reducers/rootReducer';
-
-export function buildSowcase(state: State): ItemShowcase {
-  const mods = state.poe.mods;
-  const options = state.poe.benchoptions;
-
-  return new ItemShowcase(mods, options);
-}
 
 export type GeneratorDetails = {
   mod: Mod,

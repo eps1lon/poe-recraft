@@ -7,7 +7,9 @@ import {
   expand,
   type ExpandAction,
   setTableExpanded,
-  type SetTableExpandedAction
+  type SetTableExpandedAction,
+  toggleGeneratorModal,
+  type ToggleGeneratorModalAction
 } from '../../actions/gui';
 
 export type GuiIdent = string;
@@ -30,7 +32,8 @@ export default handleActions(
   {
     [collapse.toString()]: collapseHandle,
     [expand.toString()]: expandHandle,
-    [setTableExpanded.toString()]: setTableExpandedHandle
+    [setTableExpanded.toString()]: setTableExpandedHandle,
+    [toggleGeneratorModal.toString()]: toggleGeneratorModalHandle
   },
   initial
 );
@@ -62,5 +65,18 @@ function setTableExpandedHandle(
   return {
     ...state,
     tables: new Map(state.tables).set(component, expanded)
+  };
+}
+
+function toggleGeneratorModalHandle(
+  state: State,
+  action: ToggleGeneratorModalAction
+): State {
+  return {
+    ...state,
+    misc: state.misc.set(
+      'generator-modal',
+      !Boolean(state.misc.get('generator-modal'))
+    )
   };
 }

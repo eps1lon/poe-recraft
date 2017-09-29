@@ -22,3 +22,11 @@ export const setTableExpanded = createAction(
   })
 );
 export type SetTableExpandedAction = ReduxActionType<typeof setTableExpanded>;
+
+export const toggleGeneratorModal = createAction(
+  'TOGGLE_GENERATOR_MODAL',
+  () => {}
+);
+export type ToggleGeneratorModalAction = ReduxActionType<
+  typeof toggleGeneratorModal
+>;
