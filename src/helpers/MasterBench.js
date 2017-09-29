@@ -1,6 +1,6 @@
 // @flow
-import type { Item } from '../containers';
-import { MasterBenchOption } from '../generators';
+import type Item from '../containers/item/Item';
+import MasterBenchOption from '../generators/MasterBenchOption';
 import type { CraftingBenchOptionsProps } from '../schema';
 
 import { Mod } from '../mods';

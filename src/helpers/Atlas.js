@@ -1,7 +1,7 @@
 // @flow
-import { AtlasNode } from '../containers';
-import { Sextant } from '../generators';
-import { type Mod } from '../mods';
+import AtlasNode from '../containers/AtlasNode';
+import Sextant from '../generators/Sextant';
+import type Mod from '../mods/Mod';
 import { type AtlasNodeProps } from '../schema';
 
 type HumanId = string;

@@ -6,10 +6,11 @@ import type {
   ModProps,
 } from '../schema';
 
-import { AtlasNode, Item } from '../containers';
-import { MasterBenchOption } from '../generators';
-import { Buildable } from '../interfaces';
-import { Mod } from '../mods';
+import AtlasNode from '../containers/AtlasNode';
+import Item from '../containers/item/Item';
+import MasterBenchOption from '../generators/MasterBenchOption';
+import { type Buildable } from '../interfaces/Buildable';
+import Mod from '../mods/Mod';
 import PropsTable, { type PropsWithPrimary } from './PropsTable';
 
 function createTable<P: PropsWithPrimary>(
