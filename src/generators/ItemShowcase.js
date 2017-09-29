@@ -5,8 +5,8 @@ import Mod from '../mods/Mod';
 import type { CraftingBenchOptionsProps, ModProps } from '../schema';
 
 import Generator, { type GeneratorDetails } from './Generator';
+import Alchemy from './item_orbs/Alchemy';
 import EnchantmentBench from './item_orbs/EnchantmentBench';
-import Transmute from './item_orbs/Transmute';
 import Vaal from './item_orbs/Vaal';
 
 /**
@@ -15,18 +15,18 @@ import Vaal from './item_orbs/Vaal';
 export default class ItemShowcase extends Generator<Mod, Item> {
   enchantment: EnchantmentBench;
   master: MasterBench;
-  transmute: Transmute;
+  explicits: Alchemy;
   vaal: Vaal;
 
   constructor(props: ModProps[], options: CraftingBenchOptionsProps[]) {
     const enchantment = EnchantmentBench.build(props);
     const master = MasterBench.build(options);
-    const transmute = Transmute.build(props);
+    const explicits = Alchemy.build(props);
     const vaal = Vaal.build(props);
 
     const mods = [
       ...enchantment.mods,
-      ...transmute.mods,
+      ...explicits.mods,
       ...vaal.mods,
       ...master.getAvailableMods(),
     ];
@@ -35,7 +35,7 @@ export default class ItemShowcase extends Generator<Mod, Item> {
 
     this.enchantment = enchantment;
     this.master = master;
-    this.transmute = transmute;
+    this.explicits = explicits;
     this.vaal = vaal;
   }
 
@@ -54,7 +54,7 @@ export default class ItemShowcase extends Generator<Mod, Item> {
     const details = [
       ...this.master.modsFor(item, whitelist),
       ...this.enchantment.modsFor(item, whitelist),
-      ...this.transmute.modsFor(item, whitelist),
+      ...this.explicits.modsFor(item, whitelist),
       ...this.vaal.modsFor(item, whitelist),
     ];
 
