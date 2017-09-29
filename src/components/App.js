@@ -1,6 +1,7 @@
 // @flow
 import React, { PureComponent } from 'react';
 
+import ApplyGenerator from '../containers/ApplyGenerator';
 import AvailableMods from '../containers/AvailableMods';
 import GeneratorModal from '../containers/GeneratorModal';
 import ItemSection from '../containers/ItemSection';
@@ -34,6 +35,7 @@ class App extends PureComponent<Props> {
         </span>
         <ItemclassPicker />
         <GeneratorModal />
+        <ApplyGenerator />
       </header>,
       <div key="content" id="content">
         <ItemSection />
