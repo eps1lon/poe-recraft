@@ -11,5 +11,10 @@ export const setItemClass = createAction(
   (item_class: ItemClassProps) => item_class
 );
 
+export const setRarity = createAction(
+  'SET_RARITY',
+  (rarity: 'normal' | 'magic' | 'rare') => rarity
+);
+
 export const addMod = createAction('ADD_MOD', (mod: Mod) => mod);
 export const removeMod = createAction('REMOVE_MOD', (mod: Mod) => mod);

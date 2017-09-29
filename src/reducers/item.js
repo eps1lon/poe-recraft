@@ -4,7 +4,13 @@ import type { Item } from 'poe-mods/lib/containers';
 import type { ReduxActionType } from 'redux-actions';
 import { handleActions } from 'redux-actions';
 
-import { addMod, removeMod, setItem, setItemClass } from '../actions/item';
+import {
+  addMod,
+  removeMod,
+  setItem,
+  setItemClass,
+  setRarity
+} from '../actions/item';
 
 export type State = {
   item_class: ItemClassProps,
@@ -22,7 +28,8 @@ export default handleActions(
     [setItem.toString()]: setItemHandle,
     [addMod.toString()]: addModHandle,
     [removeMod.toString()]: removeModHandle,
-    [setItemClass.toString()]: setItemClassHandle
+    [setItemClass.toString()]: setItemClassHandle,
+    [setRarity.toString()]: setRarityHandle
   },
   initial
 );
@@ -90,4 +97,20 @@ function setItemClassHandle(
     ...state,
     item_class
   };
+}
+
+function setRarityHandle(
+  state: State,
+  action: ReduxActionType<typeof setRarity>
+): State {
+  const { item } = state;
+
+  if (item != null) {
+    return {
+      ...state,
+      item: item.rarity.set(action.payload)
+    };
+  } else {
+    return state;
+  }
 }
