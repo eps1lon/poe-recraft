@@ -1,5 +1,5 @@
 // @flow
-import type { Mod } from 'poe-mods/lib/mods';
+import type { Mod } from 'poe-mods';
 import type { Dispatch } from 'redux';
 
 import { addMod, removeMod } from 'actions/item';

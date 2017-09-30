@@ -1,5 +1,5 @@
 // @flow
-import { Mod } from 'poe-mods/lib/mods';
+import { Mod } from 'poe-mods';
 import React from 'react';
 import ReactTable from 'react-table';
 

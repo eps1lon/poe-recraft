@@ -1,6 +1,6 @@
 // @flow
 import type { ItemClassProps } from 'poe-mods/lib/schema';
-import { Item } from 'poe-mods/lib/containers';
+import { Item } from 'poe-mods';
 
 import type { State } from 'reducers/rootReducer';
 

@@ -1,6 +1,6 @@
 // @flow
-import type { Mod } from 'poe-mods/lib/mods';
-import type { Flags } from 'poe-mods/lib/util';
+import type { Mod } from 'poe-mods';
+import type { Flags } from 'poe-mods';
 import React from 'react';
 import { Button } from 'reactstrap';
 
