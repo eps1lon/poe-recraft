@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 
 import class_groups from './class_groups';
 
-import Picker from '../../components/itemclass_picker/Picker';
-import { type State } from '../../reducers/rootReducer';
-import { activeItemclass } from '../../selectors/item';
+import Picker from 'components/itemclass_picker/Picker';
+import { type State } from 'reducers/rootReducer';
+import { activeItemclass } from 'selectors/item';
 
 const mapStateToProps = (state: State) => {
   const active_item_class = activeItemclass(state);

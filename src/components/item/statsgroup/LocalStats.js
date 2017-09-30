@@ -3,7 +3,7 @@ import type { Item } from 'poe-mods';
 import React from 'react';
 
 import Statsgroup from './';
-import { Value } from '../../poe/stats/';
+import { Value } from 'components/poe/stats/';
 
 export type Props = {
   item: Item

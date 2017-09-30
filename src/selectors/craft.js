@@ -2,7 +2,7 @@
 import type { Item, Flags, Generator, Mod } from 'poe-mods';
 import { createSelector } from 'reselect';
 
-import type { State } from '../reducers/rootReducer';
+import type { State } from 'reducers/rootReducer';
 
 export type GeneratorDetails = {
   mod: Mod,

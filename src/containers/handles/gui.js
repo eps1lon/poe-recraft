@@ -1,8 +1,8 @@
 // @flow
 import type { Dispatch } from 'redux';
-import type { GuiIdent, ReactTableExpanded } from '../../reducers/gui/expanded';
 
-import { collapse, setTableExpanded } from '../../actions/gui';
+import { collapse, setTableExpanded } from 'actions/gui';
+import type { GuiIdent, ReactTableExpanded } from 'reducers/gui/expanded';
 
 export type ExpandedHandles = {
   onCollapse: GuiIdent => any,

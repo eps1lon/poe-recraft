@@ -2,9 +2,9 @@
 import { connect } from 'react-redux';
 import { type Dispatch } from 'redux';
 
-import { collapse, expand, toggle } from '../../actions/gui';
-import ModsTable, { type Props } from '../../components/mods/ModsTable';
-import { type State } from '../../reducers/rootReducer';
+import { collapse, expand, toggle } from 'actions/gui';
+import ModsTable, { type Props } from 'components/mods/ModsTable';
+import { type State } from 'reducers/rootReducer';
 
 const mapStateToProps = (state: State, props: Props) => {
   return {

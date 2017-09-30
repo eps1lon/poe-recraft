@@ -2,7 +2,7 @@
 import type { Mod } from 'poe-mods/lib/mods';
 import type { Dispatch } from 'redux';
 
-import { addMod, removeMod } from '../../actions/item';
+import { addMod, removeMod } from 'actions/item';
 
 export type ModHandles = {
   onAddMod: Mod => any,

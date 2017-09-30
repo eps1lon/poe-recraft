@@ -3,8 +3,8 @@ import type { Item } from 'poe-mods/lib/containers';
 import React from 'react';
 
 import Statsgroup from './';
-import { Value } from '../../poe/stats/';
-import { intersperse } from '../../util';
+import { Value } from 'components/poe/stats/';
+import { intersperse } from 'components/util';
 
 export type Props = {
   item: Item

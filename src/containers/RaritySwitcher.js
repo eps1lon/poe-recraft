@@ -2,9 +2,9 @@
 import type { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
-import { setRarity } from '../actions/item';
-import AvailableMods from '../components/RaritySwitcher';
-import type { State } from '../reducers/rootReducer';
+import { setRarity } from 'actions/item';
+import AvailableMods from 'components/RaritySwitcher';
+import type { State } from 'reducers/rootReducer';
 
 const mapStateToProps = (state: State) => {
   return {

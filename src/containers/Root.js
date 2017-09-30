@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect, Provider } from 'react-redux';
 
-import { getItems, getBenchoptions, getMods } from '../actions/poe';
-import App from '../components/App';
+import { getItems, getBenchoptions, getMods } from 'actions/poe';
+import App from 'components/App';
 
 const Root = ({ store, init, version }) => {
   return (

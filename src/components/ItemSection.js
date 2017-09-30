@@ -3,7 +3,7 @@ import type { Item } from 'poe-mods/lib/containers';
 import React from 'react';
 
 import BaseItemPreview from './item/BaseItemPreview';
-import RaritySwitcher from '../containers/RaritySwitcher';
+import RaritySwitcher from 'containers/RaritySwitcher';
 
 export type Props = {
   item: ?Item

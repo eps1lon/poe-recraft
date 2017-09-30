@@ -2,8 +2,8 @@
 import { all, fork, put, select, take } from 'redux-saga/effects';
 
 import { combineLatest } from './util';
-import { setItem, setItemClass } from '../actions/item';
-import { defaultItem } from '../selectors/item';
+import { setItem, setItemClass } from 'actions/item';
+import { defaultItem } from 'selectors/item';
 
 function* setDefaultItem() {
   const item = yield select(defaultItem);

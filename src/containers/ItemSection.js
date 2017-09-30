@@ -1,8 +1,8 @@
 // @flow
 import { connect } from 'react-redux';
 
-import ItemSection from '../components/ItemSection';
-import type { State } from '../reducers/rootReducer';
+import ItemSection from 'components/ItemSection';
+import type { State } from 'reducers/rootReducer';
 
 const mapStateToProps = (state: State) => {
   return {

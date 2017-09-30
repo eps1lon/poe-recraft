@@ -10,7 +10,7 @@ import {
   type SetGeneratorAction,
   applyGenerator,
   type ApplyGeneratorAction
-} from '../actions/craft';
+} from 'actions/craft';
 import item, { initial as initial_item_state } from './item';
 
 export type State = {

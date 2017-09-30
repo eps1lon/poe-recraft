@@ -1,6 +1,6 @@
 // @flow
 import { createAction, type ReduxActionType } from 'redux-actions';
-import type { GuiIdent, ReactTableExpanded } from '../reducers/gui/expanded';
+import type { GuiIdent, ReactTableExpanded } from 'reducers/gui/expanded';
 
 export const collapse = createAction(
   'COLLAPSE',

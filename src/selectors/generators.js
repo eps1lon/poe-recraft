@@ -11,7 +11,7 @@ import {
   Transmute
 } from 'poe-mods';
 
-import type { State } from '../reducers/rootReducer';
+import type { State } from 'reducers/rootReducer';
 
 export function buildShowcase(state: State): ItemShowcase {
   const mods = state.poe.mods;

@@ -2,8 +2,8 @@
 import { all, fork, put, select, take } from 'redux-saga/effects';
 
 import { combineLatest } from './util';
-import { setGenerator, useGenerator } from '../actions/craft';
-import { buildShowcase, buildGeneratorFactory } from '../selectors/generators';
+import { setGenerator, useGenerator } from 'actions/craft';
+import { buildShowcase, buildGeneratorFactory } from 'selectors/generators';
 
 function* initShowcase(): Generator<*, *, *> {
   yield combineLatest(['POE/MODS_SUCCESS', 'POE/BENCH_SUCCESS'], function*() {

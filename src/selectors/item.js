@@ -2,7 +2,7 @@
 import type { ItemClassProps } from 'poe-mods/lib/schema';
 import { Item } from 'poe-mods/lib/containers';
 
-import type { State } from '../reducers/rootReducer';
+import type { State } from 'reducers/rootReducer';
 
 export function itemsForClass(item_class: ItemClassProps) {
   return (state: State) => {

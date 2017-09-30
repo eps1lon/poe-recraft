@@ -1,5 +1,5 @@
 // @flow
-import type { State as PoeState } from '../reducers/poe';
+import type { State as PoeState } from 'reducers/poe';
 
 type State = {
   poe: PoeState

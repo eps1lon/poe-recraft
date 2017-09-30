@@ -5,7 +5,7 @@ import './AvailableMods.css';
 
 import type { GeneratorDetails } from './ModsTable';
 
-import ModsTable from '../../containers/mods/ModsTable';
+import ModsTable from 'containers/mods/ModsTable';
 
 export type Props = {
   implicits: GeneratorDetails[],

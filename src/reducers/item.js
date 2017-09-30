@@ -10,7 +10,7 @@ import {
   setItem,
   setItemClass,
   setRarity
-} from '../actions/item';
+} from 'actions/item';
 
 export type State = {
   item_class: ItemClassProps,

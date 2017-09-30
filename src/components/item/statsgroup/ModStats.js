@@ -2,7 +2,7 @@
 import type { Container as ModContainer } from 'poe-mods/lib/containers';
 import React from 'react';
 
-import { Mods } from '../../../containers/poe/mods';
+import { Mods } from 'containers/poe/mods';
 import Statsgroup from './';
 
 export type Props = {

@@ -2,11 +2,10 @@
 import React from 'react';
 import ReactTable from 'react-table';
 
-import type { ReactTableExpanded } from '../../reducers/gui/expanded';
+import UngroupedMods from 'containers/mods/UngroupedMods';
+import type { ReactTableExpanded } from 'reducers/gui/expanded';
 
 import type { GeneratorDetails } from './ModsTable';
-
-import UngroupedMods from '../../containers/mods/UngroupedMods';
 
 export type Props = {
   className: string,

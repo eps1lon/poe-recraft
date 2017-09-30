@@ -2,7 +2,7 @@
 import React from 'react';
 import { DropdownMenu } from 'reactstrap';
 
-import ItemClass from '../../containers/itemclass_picker/ItemClass';
+import ItemClass from 'containers/itemclass_picker/ItemClass';
 
 export type Props = {
   classes: { primary: number, name: string }[]

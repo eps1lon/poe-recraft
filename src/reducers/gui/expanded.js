@@ -12,7 +12,7 @@ import {
   type SetTableExpandedAction,
   toggleGeneratorModal,
   type ToggleGeneratorModalAction
-} from '../../actions/gui';
+} from 'actions/gui';
 
 export type GuiIdent = string;
 

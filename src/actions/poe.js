@@ -7,7 +7,7 @@ import type {
   ModProps
 } from 'poe-mods/lib/schema';
 
-import { apiEndpoint } from '../selectors/poe';
+import { apiEndpoint } from 'selectors/poe';
 
 function getEndpoint(endpoint: string, name: string) {
   return {

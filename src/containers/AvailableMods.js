@@ -1,10 +1,9 @@
 // @flow
 import { connect } from 'react-redux';
 
-import type { State } from '../reducers/rootReducer';
-
-import AvailableMods from '../components/mods/AvailableMods';
-import { cachedAvailableMods } from '../selectors/craft';
+import AvailableMods from 'components/mods/AvailableMods';
+import type { State } from 'reducers/rootReducer';
+import { cachedAvailableMods } from 'selectors/craft';
 
 const whitelist = [
   'LOWER_ILVL',

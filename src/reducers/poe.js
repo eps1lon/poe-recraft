@@ -5,7 +5,7 @@ import type {
   ModProps
 } from 'poe-mods/lib/schema';
 
-import type { Action } from '../actions/poe';
+import type { Action } from 'actions/poe';
 
 export type State = {
   api_root: string,

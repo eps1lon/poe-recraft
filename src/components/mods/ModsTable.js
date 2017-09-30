@@ -4,8 +4,8 @@ import type { Flags } from 'poe-mods/lib/util';
 import React from 'react';
 import { Button } from 'reactstrap';
 
-import GroupedMods from '../../containers/mods/GroupedMods';
-import UngroupedMods from '../../containers/mods/UngroupedMods';
+import GroupedMods from 'containers/mods/GroupedMods';
+import UngroupedMods from 'containers/mods/UngroupedMods';
 
 type Options = {
   grouped?: boolean,
