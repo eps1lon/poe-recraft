@@ -1,3 +1,3 @@
-import i18n from './I18N';
-
-export default i18n;
+export { default as formatStats } from './formatStats';
+export { default as formatValueRange } from './locallize/formatValueRange';
+export { default as formatValue } from './locallize/formatValue';
