@@ -3,7 +3,7 @@ import type {
   BaseItemTypeProps,
   CraftingBenchOptionsProps,
   ModProps
-} from 'poe-mods/lib/schema';
+} from 'selectors/schema';
 
 import type { Action } from 'actions/poe';
 

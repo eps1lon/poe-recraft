@@ -1,8 +1,8 @@
 // @flow
 import type { Item, Mod } from 'poe-mods';
-import type { ItemClassProps } from 'poe-mods/lib/schema';
-
 import { createAction } from 'redux-actions';
+
+import type { ItemClassProps } from 'selectors/schema';
 
 export const setItem = createAction('SET_ITEM', (item: Item) => item);
 

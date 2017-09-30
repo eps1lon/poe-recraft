@@ -1,13 +1,12 @@
 // @flow
 import { RSAA } from 'redux-api-middleware';
 
+import { apiEndpoint } from 'selectors/poe';
 import type {
   BaseItemTypeProps,
   CraftingBenchOptionsProps,
   ModProps
-} from 'poe-mods/lib/schema';
-
-import { apiEndpoint } from 'selectors/poe';
+} from 'selectors/schema';
 
 function getEndpoint(endpoint: string, name: string) {
   return {

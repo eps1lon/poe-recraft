@@ -1,5 +1,4 @@
 // @flow
-import type { ItemClassProps } from 'poe-mods/lib/schema';
 import type { Item } from 'poe-mods';
 import type { ReduxActionType } from 'redux-actions';
 import { handleActions } from 'redux-actions';
@@ -11,6 +10,7 @@ import {
   setItemClass,
   setRarity
 } from 'actions/item';
+import type { ItemClassProps } from 'selectors/schema';
 
 export type State = {
   item_class: ItemClassProps,
