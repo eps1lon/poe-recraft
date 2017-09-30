@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Changed
 - `Itemshowcase` now considers the item to be rare. Previously possible explicit
   mods were hidden once the Item had one prefix or suffix.
+### Fixed
+- `Container` interface is now exported correctly
 
 ## [1.5.0](https://github.com/eps1lon/poe-mods/compare/v1.4.0...v1.5.0) (2017-09-29)
 ### Breaking

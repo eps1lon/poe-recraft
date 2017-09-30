@@ -2,7 +2,7 @@
 import type Stat from './calculator/Stat';
 import type ValueRange from './calculator/ValueRange';
 import type Generator, { GeneratorDetails } from './generators/Generator';
-import type Container from './containers/Container';
+import type { Container } from './containers/Container';
 import type { Flags } from './util';
 
 export type { Container, Flags, Generator, GeneratorDetails, Stat, ValueRange };
