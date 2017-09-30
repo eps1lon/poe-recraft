@@ -1,5 +1,6 @@
 // @flow
 import React, { PureComponent } from 'react';
+import { Nav, NavItem } from 'reactstrap';
 
 import ApplyGenerator from '../containers/ApplyGenerator';
 import AvailableMods from '../containers/AvailableMods';
@@ -33,9 +34,15 @@ class App extends PureComponent<Props> {
         <span id="client">
           (Patch: <em id="game_version">{version}</em>)
         </span>
-        <ItemclassPicker />
-        <GeneratorModal />
-        <ApplyGenerator />
+        <Nav tabs>
+          <ItemclassPicker />
+          <NavItem>
+            <GeneratorModal />
+          </NavItem>
+          <NavItem>
+            <ApplyGenerator />
+          </NavItem>
+        </Nav>
       </header>,
       <div key="content" id="content">
         <ItemSection />

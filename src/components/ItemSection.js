@@ -14,8 +14,6 @@ const ItemSection = (props: Props) => {
 
   return (
     <section id="item">
-      <h2>Item</h2>
-
       {item != null && <BaseItemPreview item={item} />}
       <RaritySwitcher available={['normal', 'magic', 'rare']} />
     </section>

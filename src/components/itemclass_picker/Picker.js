@@ -38,24 +38,20 @@ export default class ItemClassGroup extends PureComponent<Props, State> {
     const { active, groups } = this.props;
     const { expanded } = this.state;
 
-    return (
-      <Nav tabs>
-        {groups.map(group => {
-          return (
-            <NavDropdown
-              key={group.name}
-              className={active === group.name ? 'active' : ''}
-              isOpen={expanded[group.name]}
-              toggle={this.toggle(group.name)}
-            >
-              <DropdownToggle nav caret>
-                {group.human}
-              </DropdownToggle>
-              <GroupDropdown classes={group.classes} />
-            </NavDropdown>
-          );
-        })}
-      </Nav>
-    );
+    return groups.map(group => {
+      return (
+        <NavDropdown
+          key={group.name}
+          className={active === group.name ? 'active' : ''}
+          isOpen={expanded[group.name]}
+          toggle={this.toggle(group.name)}
+        >
+          <DropdownToggle nav caret>
+            {group.human}
+          </DropdownToggle>
+          <GroupDropdown classes={group.classes} />
+        </NavDropdown>
+      );
+    });
   }
 }
