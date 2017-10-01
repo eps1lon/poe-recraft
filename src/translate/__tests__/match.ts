@@ -1,4 +1,4 @@
-import { matchesSingle, matches } from '../util';
+import { matchesSingle, matches } from '../match';
 
 it('matches wildcar values', () => {
   expect(matchesSingle('#', 5)).toBe(true);
