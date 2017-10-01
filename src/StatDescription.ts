@@ -1,10 +1,14 @@
+export interface StatLocaleData {
+  [key: string]: Translation;
+}
+
 // generated format from stat_descriptions.ne
-export interface Descriptions {
+export interface ParsedDescriptions {
   [key: string]: Description;
 }
 
 export interface Description {
-  others?: StatIdentifier[];
+  stats: StatIdentifier[];
   languages: Languages;
 }
 
