@@ -98,7 +98,10 @@ IndexNumber -> [0-9]:+ {% (...args) => +ebnfToString(args) %}
   // (for  | bar) => [[foo | bar]]
   const pipeId = ([[id]]) => id
 
-  //const fromPairs = pairs => pairs
+  // mutable: aim is to be as performant as possible
   const fromPairs = pairs => 
-    pairs.reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {})
+    pairs.reduce((obj, [key, value]) => Object.assign(obj, { [key]: value }), {})
+  // immutable
+  //const fromPairs = pairs => 
+  //  pairs.reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {})
 %}

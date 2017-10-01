@@ -8,9 +8,11 @@ function id(x) {return x[0]; }
   // (for  | bar) => [[foo | bar]]
   const pipeId = ([[id]]) => id
 
-  //const fromPairs = pairs => pairs
   const fromPairs = pairs => 
-    pairs.reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {})
+    pairs.reduce((obj, [key, value]) => Object.assign(obj, { [key]: value }), {})
+  // immutable
+  //const fromPairs = pairs => 
+  //  pairs.reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {})
 var grammar = {
     Lexer: undefined,
     ParserRules: [
