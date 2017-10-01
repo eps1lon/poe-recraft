@@ -18,7 +18,7 @@ var grammar = {
     {"name": "main$ebnf$1", "symbols": ["main$ebnf$1", "NoDescription"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "main$ebnf$2", "symbols": []},
     {"name": "main$ebnf$2", "symbols": ["main$ebnf$2", "Description"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "main", "symbols": ["main$ebnf$1", "main$ebnf$2"], "postprocess": ([no_desc, desc]) => ({ no_desc, desc: desc })},
+    {"name": "main", "symbols": ["main$ebnf$1", "main$ebnf$2"], "postprocess": ([no_desc, desc]) => ({ no_desc, desc: fromPairs(desc) })},
     {"name": "StatIdentifier$ebnf$1", "symbols": [/[a-zA-Z0-9_\+\-\%]/]},
     {"name": "StatIdentifier$ebnf$1", "symbols": ["StatIdentifier$ebnf$1", /[a-zA-Z0-9_\+\-\%]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "StatIdentifier", "symbols": ["StatIdentifier$ebnf$1"], "postprocess": ebnfToString},
@@ -28,7 +28,7 @@ var grammar = {
     {"name": "NoDescription", "symbols": ["NoDescription$string$1", "StatIdentifier", "Newline"], "postprocess": ([, id]) => id},
     {"name": "Description$ebnf$1", "symbols": []},
     {"name": "Description$ebnf$1", "symbols": ["Description$ebnf$1", "Newline"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "Description", "symbols": ["DescriptionHeader", "DescriptionBody", "Description$ebnf$1"], "postprocess": ([header, [body]]) => header ? [header, body] : body},
+    {"name": "Description", "symbols": ["DescriptionHeader", "DescriptionBody", "Description$ebnf$1"], "postprocess": ([header, body]) => [header || body.stats[0], body]},
     {"name": "DescriptionHeader$string$1", "symbols": [{"literal":"d"}, {"literal":"e"}, {"literal":"s"}, {"literal":"c"}, {"literal":"r"}, {"literal":"i"}, {"literal":"p"}, {"literal":"t"}, {"literal":"i"}, {"literal":"o"}, {"literal":"n"}], "postprocess": function joiner(d) {return d.join('');}},
     {"name": "DescriptionHeader$ebnf$1$subexpression$1", "symbols": [{"literal":" "}, "StatIdentifier"]},
     {"name": "DescriptionHeader$ebnf$1", "symbols": ["DescriptionHeader$ebnf$1$subexpression$1"], "postprocess": id},
@@ -36,25 +36,22 @@ var grammar = {
     {"name": "DescriptionHeader", "symbols": ["DescriptionHeader$string$1", "DescriptionHeader$ebnf$1", "Newline"], "postprocess": ([, ident]) => ident ? ident[1] : null},
     {"name": "DescriptionBody$ebnf$1", "symbols": []},
     {"name": "DescriptionBody$ebnf$1", "symbols": ["DescriptionBody$ebnf$1", "TranslationLanguage"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "DescriptionBody", "symbols": ["OtherStats", "Translation", "DescriptionBody$ebnf$1"], "postprocess":  
-        ([identOrOthers, english, others]) => [
-          identOrOthers.length === 1 
-            // ident
-            ? [identOrOthers[0], fromPairs([['english', english], ...others])] 
-            // others
-            : fromPairs([['others', identOrOthers], ['english', english], ...others]), 
-        ]
+    {"name": "DescriptionBody", "symbols": ["Stats", "Translation", "DescriptionBody$ebnf$1"], "postprocess":  
+        ([stats, english, others]) => ({
+          stats,
+          languages: fromPairs([['English', english], ...others])
+        })
           },
-    {"name": "OtherStats", "symbols": ["Whitespaces", "IndexNumber", {"literal":" "}, "StatIdentifiers", "Newline"], "postprocess": ([, , , identifiers]) => identifiers},
-    {"name": "TranslationLanguage", "symbols": ["Language", "Newline", "Translation"], "postprocess": ([language, , translation]) => [language, translation]},
-    {"name": "Translation", "symbols": ["Whitespaces", "IndexNumber", "Newline", "TranslationMatchers"], "postprocess": ([, , , matchers]) => ({ matchers })},
+    {"name": "Stats", "symbols": ["Whitespaces", "IndexNumber", {"literal":" "}, "StatIdentifiers", "Newline"], "postprocess": ([, , , identifiers]) => identifiers},
+    {"name": "TranslationLanguage", "symbols": ["Language", "Newline", "Translation"], "postprocess": ([language, , translations]) => [language, translations]},
+    {"name": "Translation", "symbols": ["Whitespaces", "IndexNumber", "Newline", "Translations"], "postprocess": ([, , , translations]) => translations},
     {"name": "Language$string$1", "symbols": [{"literal":"l"}, {"literal":"a"}, {"literal":"n"}, {"literal":"g"}], "postprocess": function joiner(d) {return d.join('');}},
     {"name": "Language", "symbols": ["Whitespaces", "Language$string$1", "Whitespaces", "StringLiteral"], "postprocess": ([, , ,text]) => text},
-    {"name": "TranslationMatchers$ebnf$1$subexpression$1", "symbols": ["Whitespaces", "TranslationMatcher", "Newline"]},
-    {"name": "TranslationMatchers$ebnf$1", "symbols": ["TranslationMatchers$ebnf$1$subexpression$1"]},
-    {"name": "TranslationMatchers$ebnf$1$subexpression$2", "symbols": ["Whitespaces", "TranslationMatcher", "Newline"]},
-    {"name": "TranslationMatchers$ebnf$1", "symbols": ["TranslationMatchers$ebnf$1", "TranslationMatchers$ebnf$1$subexpression$2"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "TranslationMatchers", "symbols": ["TranslationMatchers$ebnf$1"], "postprocess": ([matchers]) => matchers.map(([, matcher]) => matcher)},
+    {"name": "Translations$ebnf$1$subexpression$1", "symbols": ["Whitespaces", "TranslationMatcher", "Newline"]},
+    {"name": "Translations$ebnf$1", "symbols": ["Translations$ebnf$1$subexpression$1"]},
+    {"name": "Translations$ebnf$1$subexpression$2", "symbols": ["Whitespaces", "TranslationMatcher", "Newline"]},
+    {"name": "Translations$ebnf$1", "symbols": ["Translations$ebnf$1", "Translations$ebnf$1$subexpression$2"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "Translations", "symbols": ["Translations$ebnf$1"], "postprocess": ([matchers]) => matchers.map(([, matcher]) => matcher)},
     {"name": "TranslationMatcher$ebnf$1", "symbols": ["Whitespaces"], "postprocess": id},
     {"name": "TranslationMatcher$ebnf$1", "symbols": [], "postprocess": function(d) {return null;}},
     {"name": "TranslationMatcher", "symbols": ["Matchers", "Whitespaces", "StringLiteral", "OptionalFormatters", "TranslationMatcher$ebnf$1"], "postprocess": ([matchers, , text, formatters]) => ({ matchers, text, formatters})},

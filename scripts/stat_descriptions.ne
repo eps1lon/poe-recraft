@@ -1,6 +1,6 @@
 main -> 
   NoDescription:* Description:* 
-  {% ([no_desc, desc]) => ({ no_desc, desc: desc }) %}
+  {% ([no_desc, desc]) => ({ no_desc, desc: fromPairs(desc) }) %}
 
 StatIdentifier -> [a-zA-Z0-9_\+\-\%]:+ {% ebnfToString %}
 StatIdentifiers -> 
@@ -15,41 +15,38 @@ NoDescription ->
 Description -> 
   DescriptionHeader DescriptionBody Newline:* 
   # if header then header has the identifier, so use this as key
-  {% ([header, [body]]) => header ? [header, body] : body %}
+  {% ([header, body]) => [header || body.stats[0], body] %}
 
 DescriptionHeader -> 
   "description" (" " StatIdentifier):? Newline
   {% ([, ident]) => ident ? ident[1] : null %}
 
 DescriptionBody ->
-  OtherStats Translation TranslationLanguage:*
+  Stats Translation TranslationLanguage:*
   {% 
-    ([identOrOthers, english, others]) => [
-      identOrOthers.length === 1 
-        // ident
-        ? [identOrOthers[0], fromPairs([['english', english], ...others])] 
-        // others
-        : fromPairs([['others', identOrOthers], ['english', english], ...others]), 
-    ]
+    ([stats, english, others]) => ({
+      stats,
+      languages: fromPairs([['English', english], ...others])
+    })
   %}
 
-OtherStats ->
+Stats ->
   Whitespaces IndexNumber " " StatIdentifiers Newline
   {% ([, , , identifiers]) => identifiers %}
 
 TranslationLanguage ->
   Language Newline Translation 
-  {% ([language, , translation]) => [language, translation] %}
+  {% ([language, , translations]) => [language, translations] %}
 
 Translation -> 
-  Whitespaces IndexNumber Newline TranslationMatchers
-  {% ([, , , matchers]) => ({ matchers }) %}
+  Whitespaces IndexNumber Newline Translations
+  {% ([, , , translations]) => translations %}
 
 Language -> 
   Whitespaces "lang" Whitespaces StringLiteral 
   {% ([, , ,text]) => text %}
 
-TranslationMatchers ->
+Translations ->
   (Whitespaces TranslationMatcher Newline):+
   {% ([matchers]) => matchers.map(([, matcher]) => matcher) %}
 
