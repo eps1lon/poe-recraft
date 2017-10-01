@@ -46,7 +46,7 @@ Translation ->
   {% ([, , , matchers]) => ({ matchers }) %}
 
 Language -> 
-  Whitespaces "lang" Whitespaces Text 
+  Whitespaces "lang" Whitespaces StringLiteral 
   {% ([, , ,text]) => text %}
 
 TranslationMatchers ->
@@ -54,9 +54,24 @@ TranslationMatchers ->
   {% ([matchers]) => matchers.map(([, matcher]) => matcher) %}
 
 TranslationMatcher -> 
-  Matcher Whitespaces Text 
-  {% ([matcher, , text]) => ({ matcher, text, }) %}
+  Matcher Whitespaces StringLiteral OptionalFormatters
+  {% ([matcher, , text, formatters]) => ({ matcher, text, formatters}) %}
 
+# Formatters
+OptionalFormatters -> (" " Formatters):? {% ([matched]) => matched ? matched[1] : [] %}
+Formatters -> 
+    Formatter
+	{% ([formatter]) => [formatter] %}
+  | Formatter " " Formatters 
+    {% ([formatter, , formatters]) => [formatter, ...formatters] %}
+Formatter -> FormatterIdentifier " " FormatterArgument {% ([id, , arg]) => ({ id, arg }) %}
+FormatterIdentifier -> [a-zA-Z0-9_]:+ {% ebnfToString %}
+FormatterArgument -> (IndexNumber | ReminderIdentifier) {% pipeId %}
+ReminderIdentifier -> CamelCase {% id %}
+# not actual camelcase but it does the job
+CamelCase -> [a-zA-Z]:+ {% ebnfToString %}
+
+# Matching
 Matcher -> (Bound | RangeBound) {% pipeId %}
 Bound -> (Any | Number) {% pipeId %}
 RangeBound -> Bound "|" Bound {% ([left, sep, right]) => [left, right] %}
@@ -66,14 +81,14 @@ Number ->
   ("+" | "-" | null) [0-9]:+ 
   {% ([[sign], digits]) => +`${sign || '+'}${digits.join('')}` %}
 
-Text -> "\"" [^"]:+ "\"" {% ([, text]) => text.join('') %}
+StringLiteral -> "\"" [^"]:+ "\"" {% ([, text]) => text.join('') %}
 
 # util
 Newline -> "\r\n" {% id %}
 Whitespace -> " " | "\t"
 Whitespaces -> Whitespace:+ {% ebnfToString %}
-IndexNumber -> [0-9]:+
-
+IndexNumber -> [0-9]:+ {% (...args) => +ebnfToString(args) %}
+ 
 @{%
   const ebnfToString = ([chars]) => chars.join('');
 
