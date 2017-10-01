@@ -32,7 +32,7 @@ export interface Formatter {
 type ArrayIndex = number;
 type ReminderIdentifier = string;
 
-type Matcher = Range | Value;
-type Range = [Value, Value];
-type Value = AnyValue | number;
-type AnyValue = '#';
+export type Matcher = Range | Value;
+export type Range = [Value, Value];
+export type Value = AnyValue | number;
+export type AnyValue = '#';

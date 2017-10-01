@@ -15,7 +15,8 @@
     "compile-grammars": "node scripts/compileGrammars",
     "compile-grammars:watch": "node scripts/watchGrammars",
     "test": "jest --watch",
-    "test:check": "jest"
+    "test:check": "jest",
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,7 @@
     "typescript": "^2.5.3"
   },
   "jest": {
+    "mapCoverage": true,
     "transform": {
       "^.+\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
