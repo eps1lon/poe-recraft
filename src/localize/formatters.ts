@@ -9,7 +9,7 @@ type Formatter = (value: number) => number | string;
 const formatters: { [key: string]: Formatter } = {
   deciseconds_to_seconds: n => n * 10,
   divide_by_one_hundred: n => n / 100,
-  per_minute_to_per_second: n => n / 60,
+  per_minute_to_per_second: n => Math.round(n / 60),
   milliseconds_to_seconds: n => n / 1000,
   negate: n => -n,
   divide_by_one_hundred_and_negate: n => -n / 100,

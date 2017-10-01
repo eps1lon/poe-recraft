@@ -9,7 +9,7 @@ it('should match all the formats', () => {
 
   expect(factory('divide_by_one_hundred')(340)).toBeCloseTo(3.4, 5);
 
-  expect(factory('per_minute_to_per_second')(10)).toBeCloseTo(0.1666666, 5);
+  expect(factory('per_minute_to_per_second')(10)).toBe(0);
 
   expect(factory('milliseconds_to_seconds')(400)).toBeCloseTo(0.4, 5);
 
