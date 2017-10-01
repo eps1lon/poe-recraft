@@ -3,7 +3,7 @@ import { AnyValue, Matcher, Range, Value } from '../StatDescription';
 const isRange = (matcher: Matcher): matcher is Range =>
   Array.isArray(matcher) && matcher.length === 2;
 
-export function matchesSingle(matcher, arg: number): boolean {
+export function matchesSingle(matcher: Matcher, arg: number): boolean {
   return matches([matcher], [arg]);
 }
 
