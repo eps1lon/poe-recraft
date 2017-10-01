@@ -2,7 +2,7 @@ main ->
   NoDescription:* Description:* 
   {% ([no_desc, desc]) => ({ no_desc, desc: desc }) %}
 
-StatIdentifier -> [a-zA-Z0-9_\+\-\%]:+ {% joinEbnf %}
+StatIdentifier -> [a-zA-Z0-9_\+\-\%]:+ {% ebnfToString %}
 StatIdentifiers -> 
     StatIdentifier {% ident => [ident[0]] %}
   | StatIdentifier " " StatIdentifiers
@@ -14,7 +14,8 @@ NoDescription ->
 
 Description -> 
   DescriptionHeader DescriptionBody Newline:* 
-  {% ([header, body]) => header ? [header, ...body] : body %}
+  # if header then header has the identifier, so use this as key
+  {% ([header, [body]]) => header ? [header, body] : body %}
 
 DescriptionHeader -> 
   "description" (" " StatIdentifier):? Newline
@@ -25,30 +26,32 @@ DescriptionBody ->
   {% 
     ([identOrOthers, english, others]) => [
       identOrOthers.length === 1 
-        ? { [identOrOthers[0]]: fromPairs([['english', english], ...others]) }
+        // ident
+        ? [identOrOthers[0], fromPairs([['english', english], ...others])] 
+        // others
         : fromPairs([['others', identOrOthers], ['english', english], ...others]), 
     ]
   %}
-
-DescriptionIdentifier ->
-  Whitespaces "1 " StatIdentifier Newline
-  {% ([, , ident]) => ident %}
 
 OtherStats ->
   Whitespaces Number " " StatIdentifiers Newline
   {% ([, , , identifiers]) => identifiers %}
 
-Translation -> 
-  Whitespaces Number Newline Whitespaces TranslationMatcher Newline
-  {% ([, , , , translation]) => translation %}
-
 TranslationLanguage ->
   Language Newline Translation 
   {% ([language, , translation]) => [language, translation] %}
 
+Translation -> 
+  Whitespaces Number Newline TranslationMatchers
+  {% ([, , , matchers]) => ({ matchers }) %}
+
 Language -> 
   Whitespaces "lang" Whitespaces Text 
   {% ([, , ,text]) => text %}
+
+TranslationMatchers ->
+  (Whitespaces TranslationMatcher Newline):+
+  {% ([matchers]) => matchers.map(([, matcher]) => matcher) %}
 
 TranslationMatcher -> 
   Matcher Whitespaces Text 
@@ -64,8 +67,9 @@ Whitespaces -> Whitespace:+
 Number -> [0-9]:+
 
 @{%
-  const joinEbnf = ([chars]) => chars.join('');
+  const ebnfToString = ([chars]) => chars.join('');
 
+  //const fromPairs = pairs => pairs
   const fromPairs = pairs => 
     pairs.reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {})
 %}
