@@ -54,7 +54,7 @@ TranslationMatcher ->
   Matchers Whitespaces StringLiteral OptionalFormatters Whitespaces:?
   {% ([matchers, , text, formatters]) => ({ matchers, text, formatters}) %}
 
-# Formatters
+# Formatter
 OptionalFormatters -> (" " Formatters):? {% ([matched]) => matched ? matched[1] : [] %}
 Formatters -> 
     Formatter

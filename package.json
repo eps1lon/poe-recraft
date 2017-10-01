@@ -10,7 +10,10 @@
     "ci": "npm run format:check && npm run lint && npm run test:check",
     "format": "prettier --write src/**/*.ts",
     "format:check": "prettier --list-different src/**/*.ts",
+    "generate-locale-data": "node scripts/generateLocaleData",
     "lint": "tslint src/**/*.ts",
+    "compile-grammars": "node scripts/compileGrammars",
+    "compile-grammars:watch": "node scripts/watchGrammars",
     "test": "jest --watch",
     "test:check": "jest"
   },
