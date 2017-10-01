@@ -54,8 +54,8 @@ TranslationMatchers ->
   {% ([matchers]) => matchers.map(([, matcher]) => matcher) %}
 
 TranslationMatcher -> 
-  Matcher Whitespaces StringLiteral OptionalFormatters Whitespaces:?
-  {% ([matcher, , text, formatters]) => ({ matcher, text, formatters}) %}
+  Matchers Whitespaces StringLiteral OptionalFormatters Whitespaces:?
+  {% ([matchers, , text, formatters]) => ({ matchers, text, formatters}) %}
 
 # Formatters
 OptionalFormatters -> (" " Formatters):? {% ([matched]) => matched ? matched[1] : [] %}
@@ -72,6 +72,11 @@ ReminderIdentifier -> CamelCase {% id %}
 CamelCase -> [a-zA-Z]:+ {% ebnfToString %}
 
 # Matching
+Matchers -> 
+    Matcher
+	{% ([matcher]) => [matcher] %}
+  | Matcher " " Matchers 
+    {% ([matcher, , matchers]) => [matcher, ...matchers] %}
 Matcher -> (Bound | RangeBound) {% pipeId %}
 Bound -> (Any | Number) {% pipeId %}
 RangeBound -> Bound "|" Bound {% ([left, sep, right]) => [left, right] %}
