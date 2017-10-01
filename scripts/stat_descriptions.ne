@@ -39,16 +39,16 @@ TranslationLanguage ->
   {% ([language, , translations]) => [language, translations] %}
 
 Translation -> 
-  Whitespaces IndexNumber Newline Translations
-  {% ([, , , translations]) => translations %}
+  Whitespaces IndexNumber Whitespaces:? Newline Translations
+  {% ([, , , , translations]) => translations %}
 
 Language -> 
-  Whitespaces "lang" Whitespaces StringLiteral 
+  Whitespaces:? "lang" Whitespaces StringLiteral 
   {% ([, , ,text]) => text %}
 
 Translations ->
-  (Whitespaces TranslationMatcher Newline):+
-  {% ([matchers]) => matchers.map(([, matcher]) => matcher) %}
+  (Whitespaces TranslationMatcher Newline Blankline:*):+
+  {% ([[[, translation]]]) => translation %}
 
 TranslationMatcher -> 
   Matchers Whitespaces StringLiteral OptionalFormatters Whitespaces:?
@@ -87,6 +87,7 @@ StringLiteral -> "\"" [^"]:+ "\"" {% ([, text]) => text.join('') %}
 
 # util
 Newline -> "\r\n" {% id %}
+Blankline -> Whitespaces:? Newline
 Whitespace -> " " | "\t"
 Whitespaces -> Whitespace:+ {% ebnfToString %}
 IndexNumber -> [0-9]:+ {% (...args) => +ebnfToString(args) %}

@@ -10,12 +10,9 @@ const readFile = promisify(fs.readFile);
 
 const parser = new Parser(Grammar.fromCompiled(grammar));
 
-readFile(
-  path.join(__dirname, './tmp/StatDescriptions/stat_descriptions_dev.txt'),
-  {
-    encoding: 'utf-8'
-  }
-)
+readFile(path.join(__dirname, './stat_descriptions_dev.txt'), {
+  encoding: 'utf-8'
+})
   .then(text => {
     console.log(typeof text);
     parser.feed(text);
