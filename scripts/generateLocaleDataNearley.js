@@ -4,7 +4,7 @@ const fs = require('fs');
 const { Grammar, Parser } = require('nearley');
 const path = require('path');
 
-const grammar = require('./stat_descriptions.js');
+const grammar = require('./grammars/generated/stat_descriptions.js');
 
 const readFile = promisify(fs.readFile);
 

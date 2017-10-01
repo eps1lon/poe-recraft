@@ -7,12 +7,6 @@ function id(x) {return x[0]; }
 
   // (for  | bar) => [[foo | bar]]
   const pipeId = ([[id]]) => id
-
-  const fromPairs = pairs => 
-    pairs.reduce((obj, [key, value]) => Object.assign(obj, { [key]: value }), {})
-  // immutable
-  //const fromPairs = pairs => 
-  //  pairs.reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {})
 var grammar = {
     Lexer: undefined,
     ParserRules: [
@@ -20,7 +14,7 @@ var grammar = {
     {"name": "main$ebnf$1", "symbols": ["main$ebnf$1", "NoDescription"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "main$ebnf$2", "symbols": []},
     {"name": "main$ebnf$2", "symbols": ["main$ebnf$2", "Description"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "main", "symbols": ["main$ebnf$1", "main$ebnf$2"], "postprocess": ([no_desc, desc]) => ({ no_desc, desc: fromPairs(desc) })},
+    {"name": "main", "symbols": ["main$ebnf$1", "main$ebnf$2"], "postprocess": ([no_desc, desc]) => ({ no_desc, desc: desc })},
     {"name": "StatIdentifier$ebnf$1", "symbols": [/[a-zA-Z0-9_\+\-\%]/]},
     {"name": "StatIdentifier$ebnf$1", "symbols": ["StatIdentifier$ebnf$1", /[a-zA-Z0-9_\+\-\%]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "StatIdentifier", "symbols": ["StatIdentifier$ebnf$1"], "postprocess": ebnfToString},
@@ -41,7 +35,7 @@ var grammar = {
     {"name": "DescriptionBody", "symbols": ["Stats", "Translation", "DescriptionBody$ebnf$1"], "postprocess":  
         ([stats, english, others]) => ({
           stats,
-          languages: fromPairs([['English', english], ...others])
+          languages: [['English', english], ...others]
         })
           },
     {"name": "Stats", "symbols": ["Whitespaces", "IndexNumber", {"literal":" "}, "StatIdentifiers", "Newline"], "postprocess": ([, , , identifiers]) => identifiers},

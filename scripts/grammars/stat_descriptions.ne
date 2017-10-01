@@ -1,6 +1,6 @@
 main -> 
   NoDescription:* Description:* 
-  {% ([no_desc, desc]) => ({ no_desc, desc: fromPairs(desc) }) %}
+  {% ([no_desc, desc]) => ({ no_desc, desc: desc }) %}
 
 StatIdentifier -> [a-zA-Z0-9_\+\-\%]:+ {% ebnfToString %}
 StatIdentifiers -> 
@@ -26,7 +26,7 @@ DescriptionBody ->
   {% 
     ([stats, english, others]) => ({
       stats,
-      languages: fromPairs([['English', english], ...others])
+      languages: [['English', english], ...others]
     })
   %}
 
@@ -97,11 +97,4 @@ IndexNumber -> [0-9]:+ {% (...args) => +ebnfToString(args) %}
 
   // (for  | bar) => [[foo | bar]]
   const pipeId = ([[id]]) => id
-
-  // mutable: aim is to be as performant as possible
-  const fromPairs = pairs => 
-    pairs.reduce((obj, [key, value]) => Object.assign(obj, { [key]: value }), {})
-  // immutable
-  //const fromPairs = pairs => 
-  //  pairs.reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {})
 %}
