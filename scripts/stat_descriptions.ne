@@ -34,7 +34,7 @@ DescriptionBody ->
   %}
 
 OtherStats ->
-  Whitespaces Number " " StatIdentifiers Newline
+  Whitespaces IndexNumber " " StatIdentifiers Newline
   {% ([, , , identifiers]) => identifiers %}
 
 TranslationLanguage ->
@@ -42,7 +42,7 @@ TranslationLanguage ->
   {% ([language, , translation]) => [language, translation] %}
 
 Translation -> 
-  Whitespaces Number Newline TranslationMatchers
+  Whitespaces IndexNumber Newline TranslationMatchers
   {% ([, , , matchers]) => ({ matchers }) %}
 
 Language -> 
@@ -57,17 +57,28 @@ TranslationMatcher ->
   Matcher Whitespaces Text 
   {% ([matcher, , text]) => ({ matcher, text, }) %}
 
-Matcher -> "#" {% id %}
+Matcher -> (Bound | RangeBound) {% pipeId %}
+Bound -> (Any | Number) {% pipeId %}
+RangeBound -> Bound "|" Bound {% ([left, sep, right]) => [left, right] %}
+Any -> "#" {% id %}
+
+Number -> 
+  ("+" | "-" | null) [0-9]:+ 
+  {% ([[sign], digits]) => +`${sign || '+'}${digits.join('')}` %}
+
 Text -> "\"" [^"]:+ "\"" {% ([, text]) => text.join('') %}
 
 # util
 Newline -> "\r\n" {% id %}
 Whitespace -> " " | "\t"
-Whitespaces -> Whitespace:+
-Number -> [0-9]:+
+Whitespaces -> Whitespace:+ {% ebnfToString %}
+IndexNumber -> [0-9]:+
 
 @{%
   const ebnfToString = ([chars]) => chars.join('');
+
+  // (for  | bar) => [[foo | bar]]
+  const pipeId = ([[id]]) => id
 
   //const fromPairs = pairs => pairs
   const fromPairs = pairs => 

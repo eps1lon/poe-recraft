@@ -5,6 +5,9 @@ function id(x) {return x[0]; }
 
   const ebnfToString = ([chars]) => chars.join('');
 
+  // (for  | bar) => [[foo | bar]]
+  const pipeId = ([[id]]) => id
+
   //const fromPairs = pairs => pairs
   const fromPairs = pairs => 
     pairs.reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {})
@@ -42,9 +45,9 @@ var grammar = {
             : fromPairs([['others', identOrOthers], ['english', english], ...others]), 
         ]
           },
-    {"name": "OtherStats", "symbols": ["Whitespaces", "Number", {"literal":" "}, "StatIdentifiers", "Newline"], "postprocess": ([, , , identifiers]) => identifiers},
+    {"name": "OtherStats", "symbols": ["Whitespaces", "IndexNumber", {"literal":" "}, "StatIdentifiers", "Newline"], "postprocess": ([, , , identifiers]) => identifiers},
     {"name": "TranslationLanguage", "symbols": ["Language", "Newline", "Translation"], "postprocess": ([language, , translation]) => [language, translation]},
-    {"name": "Translation", "symbols": ["Whitespaces", "Number", "Newline", "TranslationMatchers"], "postprocess": ([, , , matchers]) => ({ matchers })},
+    {"name": "Translation", "symbols": ["Whitespaces", "IndexNumber", "Newline", "TranslationMatchers"], "postprocess": ([, , , matchers]) => ({ matchers })},
     {"name": "Language$string$1", "symbols": [{"literal":"l"}, {"literal":"a"}, {"literal":"n"}, {"literal":"g"}], "postprocess": function joiner(d) {return d.join('');}},
     {"name": "Language", "symbols": ["Whitespaces", "Language$string$1", "Whitespaces", "Text"], "postprocess": ([, , ,text]) => text},
     {"name": "TranslationMatchers$ebnf$1$subexpression$1", "symbols": ["Whitespaces", "TranslationMatcher", "Newline"]},
@@ -53,7 +56,20 @@ var grammar = {
     {"name": "TranslationMatchers$ebnf$1", "symbols": ["TranslationMatchers$ebnf$1", "TranslationMatchers$ebnf$1$subexpression$2"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "TranslationMatchers", "symbols": ["TranslationMatchers$ebnf$1"], "postprocess": ([matchers]) => matchers.map(([, matcher]) => matcher)},
     {"name": "TranslationMatcher", "symbols": ["Matcher", "Whitespaces", "Text"], "postprocess": ([matcher, , text]) => ({ matcher, text, })},
-    {"name": "Matcher", "symbols": [{"literal":"#"}], "postprocess": id},
+    {"name": "Matcher$subexpression$1", "symbols": ["Bound"]},
+    {"name": "Matcher$subexpression$1", "symbols": ["RangeBound"]},
+    {"name": "Matcher", "symbols": ["Matcher$subexpression$1"], "postprocess": pipeId},
+    {"name": "Bound$subexpression$1", "symbols": ["Any"]},
+    {"name": "Bound$subexpression$1", "symbols": ["Number"]},
+    {"name": "Bound", "symbols": ["Bound$subexpression$1"], "postprocess": pipeId},
+    {"name": "RangeBound", "symbols": ["Bound", {"literal":"|"}, "Bound"], "postprocess": ([left, sep, right]) => [left, right]},
+    {"name": "Any", "symbols": [{"literal":"#"}], "postprocess": id},
+    {"name": "Number$subexpression$1", "symbols": [{"literal":"+"}]},
+    {"name": "Number$subexpression$1", "symbols": [{"literal":"-"}]},
+    {"name": "Number$subexpression$1", "symbols": []},
+    {"name": "Number$ebnf$1", "symbols": [/[0-9]/]},
+    {"name": "Number$ebnf$1", "symbols": ["Number$ebnf$1", /[0-9]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "Number", "symbols": ["Number$subexpression$1", "Number$ebnf$1"], "postprocess": ([[sign], digits]) => +`${sign || '+'}${digits.join('')}`},
     {"name": "Text$ebnf$1", "symbols": [/[^"]/]},
     {"name": "Text$ebnf$1", "symbols": ["Text$ebnf$1", /[^"]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "Text", "symbols": [{"literal":"\""}, "Text$ebnf$1", {"literal":"\""}], "postprocess": ([, text]) => text.join('')},
@@ -63,10 +79,10 @@ var grammar = {
     {"name": "Whitespace", "symbols": [{"literal":"\t"}]},
     {"name": "Whitespaces$ebnf$1", "symbols": ["Whitespace"]},
     {"name": "Whitespaces$ebnf$1", "symbols": ["Whitespaces$ebnf$1", "Whitespace"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "Whitespaces", "symbols": ["Whitespaces$ebnf$1"]},
-    {"name": "Number$ebnf$1", "symbols": [/[0-9]/]},
-    {"name": "Number$ebnf$1", "symbols": ["Number$ebnf$1", /[0-9]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "Number", "symbols": ["Number$ebnf$1"]}
+    {"name": "Whitespaces", "symbols": ["Whitespaces$ebnf$1"], "postprocess": ebnfToString},
+    {"name": "IndexNumber$ebnf$1", "symbols": [/[0-9]/]},
+    {"name": "IndexNumber$ebnf$1", "symbols": ["IndexNumber$ebnf$1", /[0-9]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "IndexNumber", "symbols": ["IndexNumber$ebnf$1"]}
 ]
   , ParserStart: "main"
 }
