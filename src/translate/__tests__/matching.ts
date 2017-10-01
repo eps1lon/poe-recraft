@@ -29,6 +29,9 @@ it('matches ranges', () => {
   expect(matchesSingle([0, '#'], Number.POSITIVE_INFINITY)).toBe(true);
   expect(matchesSingle([0, '#'], 0)).toBe(true);
   expect(matchesSingle([0, '#'], 3)).toBe(true);
+
+  expect(matchesSingle(['#', 5], -1)).toBe(true);
+  expect(matchesSingle(['#', 5], 6)).toBe(false);
 });
 
 it('returns false if not enough args are proved', () => {
