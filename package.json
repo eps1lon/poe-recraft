@@ -2,7 +2,14 @@
   "name": "poe-i18n",
   "version": "0.0.1-alpha",
   "description": "i18n utility for Path of Exile",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "src"
+  ],
   "scripts": {
     "build": "npm run build:browser && npm run build:commonjs && npm run build:es",
     "build:browser": "tsc --module System --outFile dist/index.js",
@@ -16,6 +23,7 @@
     "lint": "tslint src/**/*.ts",
     "compile-grammars": "node scripts/compileGrammars",
     "compile-grammars:watch": "node scripts/watchGrammars",
+    "prepublishOnly": "npm run build",
     "test": "jest --watch",
     "test:check": "jest",
     "test:coverage": "jest --coverage"
