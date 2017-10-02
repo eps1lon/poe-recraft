@@ -38,11 +38,11 @@ readdir(in_dir).then(files => {
     const processed = unprocessed.reduce((partial, [id, description]) => {
       const { stats, languages } = description;
 
-      languages.forEach(([language, translation]) => {
+      languages.forEach(([language, translations]) => {
         const code = codes[language];
 
         try {
-          partial.get(code)[id] = translation;
+          partial.get(code)[id] = { stats, translations };
         } catch (err) {
           console.log(code, language);
           throw err;
