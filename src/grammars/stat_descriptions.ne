@@ -47,8 +47,8 @@ Language ->
   {% ([, , ,text]) => text %}
 
 Translations ->
-  (Whitespaces:? TranslationMatcher Newline Blankline:*):+
-  {% ([[[, translation]]]) => translation %}
+  (Whitespaces TranslationMatcher Newline Blankline:*):+
+  {% ([translations]) => translations.map(([, translation]) => translation) %}
 
 TranslationMatcher -> 
   Matchers Whitespaces StringLiteral OptionalFormatters Whitespaces:?
