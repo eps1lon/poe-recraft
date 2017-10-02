@@ -72,8 +72,9 @@ System.register("localize/formatters", [], function (exports_3, context_3) {
     var __moduleName = context_3 && context_3.id;
     function factory(formatter_id) {
         const formatter = formatters[formatter_id];
-        if (formatter === undefined)
+        if (formatter === undefined) {
             throw new Error(`'${formatter_id}' not found`);
+        }
         return formatter;
     }
     exports_3("default", factory);
