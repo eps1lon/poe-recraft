@@ -34,7 +34,7 @@ var grammar = {
     {"name": "DescriptionHeader$ebnf$2", "symbols": [], "postprocess": function(d) {return null;}},
     {"name": "DescriptionHeader$ebnf$3", "symbols": ["StatIdentifier"], "postprocess": id},
     {"name": "DescriptionHeader$ebnf$3", "symbols": [], "postprocess": function(d) {return null;}},
-    {"name": "DescriptionHeader", "symbols": ["DescriptionHeader$ebnf$1", "DescriptionHeader$string$1", "DescriptionHeader$ebnf$2", "DescriptionHeader$ebnf$3", "Newline"], "postprocess": ([, ident]) => ident ? ident[1] : null},
+    {"name": "DescriptionHeader", "symbols": ["DescriptionHeader$ebnf$1", "DescriptionHeader$string$1", "DescriptionHeader$ebnf$2", "DescriptionHeader$ebnf$3", "Newline"], "postprocess": ([, , ident]) => ident ? ident[1] : null},
     {"name": "DescriptionBody$ebnf$1", "symbols": []},
     {"name": "DescriptionBody$ebnf$1", "symbols": ["DescriptionBody$ebnf$1", "TranslationLanguage"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "DescriptionBody", "symbols": ["Stats", "Translation", "DescriptionBody$ebnf$1"], "postprocess":  
@@ -48,7 +48,7 @@ var grammar = {
     {"name": "Stats", "symbols": ["Whitespaces", "IndexNumber", "Whitespaces", "StatIdentifiers", "Stats$ebnf$1", "Newline"], "postprocess": ([, , , identifiers]) => identifiers},
     {"name": "TranslationLanguage$ebnf$1", "symbols": []},
     {"name": "TranslationLanguage$ebnf$1", "symbols": ["TranslationLanguage$ebnf$1", "Blankline"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "TranslationLanguage", "symbols": ["Language", "Newline", "TranslationLanguage$ebnf$1", "Translation"], "postprocess": ([language, , translations]) => [language, translations]},
+    {"name": "TranslationLanguage", "symbols": ["Language", "Newline", "TranslationLanguage$ebnf$1", "Translation"], "postprocess": ([language, , , translations]) => [language, translations]},
     {"name": "Translation$ebnf$1", "symbols": ["Whitespaces"], "postprocess": id},
     {"name": "Translation$ebnf$1", "symbols": [], "postprocess": function(d) {return null;}},
     {"name": "Translation$ebnf$2", "symbols": ["Whitespaces"], "postprocess": id},
