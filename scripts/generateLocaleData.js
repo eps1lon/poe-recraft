@@ -2,7 +2,6 @@
 const { promisify } = require('util');
 const fs = require('fs');
 const path = require('path');
-const { Transform } = require('stream');
 const { Grammar, Parser } = require('nearley');
 
 const grammar = Grammar.fromCompiled(
@@ -10,14 +9,14 @@ const grammar = Grammar.fromCompiled(
 );
 
 const readdir = promisify(fs.readdir);
-const readFile = promisify(fs.readFile);
-const writeFile = promisify(fs.writeFile);
 
-const txt_dir = path.join(__dirname, './');
+const txt_dir = path.join(__dirname, '../locale-data/raw');
 const json_dir = path.join(__dirname, '../locale-data/unprocessed');
 
+const isDescriptionFile = file => file === 'stat_descriptions.txt'; //file => file.endsWith('.txt');
+
 readdir(txt_dir).then(files => {
-  files.filter(file => file.endsWith('.txt')).forEach(file => {
+  files.filter(isDescriptionFile).forEach(file => {
     const text = fs.readFileSync(path.join(txt_dir, file), {
       encoding: 'utf8'
     });
@@ -30,6 +29,8 @@ readdir(txt_dir).then(files => {
     const regex = /^[ \t]*description/gm;
     let chunk_start = 0;
 
+    // stream every description .* token into the parser
+    // and transform it into a json output stream
     while ((token = regex.exec(text)) !== null) {
       const chunk = text.substring(chunk_start, token.index);
       const parser = new Parser(grammar);
