@@ -16,6 +16,7 @@
     "build:commonjs": "tsc --module CommonJS --outDir lib",
     "build:es": "tsc --module ES6 --outDir es",
     "clean": "rimraf coverage lib dist es",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "format": "prettier --write src/**/*.ts",
     "format:check": "prettier --list-different src/**/*.ts",
     "generate-locale-data": "node scripts/generateLocaleData",
@@ -25,6 +26,7 @@
     "prepublishOnly": "npm run build",
     "test": "jest --watch",
     "test:check": "jest",
+    "test:ci": "jest --ci --coverage --runInBand",
     "test:coverage": "jest --coverage"
   },
   "repository": {
@@ -43,6 +45,7 @@
   "homepage": "https://github.com/eps1lon/poe-i18n#readme",
   "devDependencies": {
     "@types/jest": "^21.1.1",
+    "coveralls": "^3.0.0",
     "jest": "^21.2.0",
     "moo": "^0.4.3",
     "nearley": "^2.11.0",
