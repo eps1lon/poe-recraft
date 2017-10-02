@@ -1,5 +1,5 @@
 import formatStats from '../formatStats';
-import { StatLocaleData } from '../StatDescription';
+import { StatLocaleData } from '../types/StatDescription';
 
 const locale: StatLocaleData = {
   'weapon_physical_damage_+%': {
@@ -54,4 +54,6 @@ it('should translate douple stat lines', () => {
   ).toEqual(['Adds 1 to 56 Physical Damage to Attacks']);
 });
 
-it('should translate collections of stats', () => {});
+it.skip('should translate collections of stats', () => {
+  //
+});

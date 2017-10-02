@@ -27,7 +27,9 @@ const formatters: { [key: string]: Formatter } = {
 export default function factory(formatter_id: string): Formatter {
   const formatter = formatters[formatter_id];
 
-  if (formatter === undefined) throw new Error(`'${formatter_id}' not found`);
+  if (formatter === undefined) {
+    throw new Error(`'${formatter_id}' not found`);
+  }
 
   return formatter;
 }
