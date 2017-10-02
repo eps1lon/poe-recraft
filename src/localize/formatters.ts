@@ -1,4 +1,4 @@
-type Formatter = (value: number) => number | string;
+export type Formatter = (value: number) => number | string;
 
 // usually everything in poe is rounded down but in this case
 // it's done properly

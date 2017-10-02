@@ -1,6 +1,6 @@
 import formatValue from './formatValue';
 
-type Options = {};
+export type Options = {};
 
 export default function formatValueRange(
   values: [number, number],

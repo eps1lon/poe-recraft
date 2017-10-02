@@ -17,7 +17,7 @@ export interface LanguageDescription {
   languages: Languages;
 }
 
-type StatIdentifier = string;
+export type StatIdentifier = string;
 
 export interface Languages {
   [key: string]: Translation[];
@@ -34,8 +34,8 @@ export interface Formatter {
   arg: ArrayIndex | ReminderIdentifier;
 }
 
-type ArrayIndex = number;
-type ReminderIdentifier = string;
+export type ArrayIndex = number;
+export type ReminderIdentifier = string;
 
 export type Matcher = Range | Value;
 export type Range = [Value, Value];

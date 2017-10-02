@@ -1,15 +1,13 @@
 import formatFactory from '../localize/formatters';
 import { Formatter } from '../types/StatDescription';
 
-type Param = number;
-type Params = Param[];
+export type Params = number[];
 type PreparedParams = Array<number | string>;
-type Formatters = Formatter[];
 
 export default function printf(
   text: string,
   params: Params,
-  formatters: Formatters = []
+  formatters: Formatter[] = []
 ): string {
   const prepared = prepareParams(params, formatters);
 
@@ -24,7 +22,10 @@ export default function printf(
   return formatted.replace('%%', '%');
 }
 
-function prepareParams(params: Params, formatters: Formatters): PreparedParams {
+function prepareParams(
+  params: Params,
+  formatters: Formatter[]
+): PreparedParams {
   const prepared: PreparedParams = [...params];
 
   formatters.forEach((formatter, i) => {

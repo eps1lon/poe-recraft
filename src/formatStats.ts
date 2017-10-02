@@ -6,12 +6,12 @@ import {
 import { matches } from './translate/match';
 import printf from './translate/printf';
 
-type Stat = {
+export type Stat = {
   id: string;
   value: number;
 };
 type Options = {};
-type TranslatedStats = string[];
+export type TranslatedStats = string[];
 
 export default function formatStats(
   stats: Stat[],
