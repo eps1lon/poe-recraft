@@ -14,7 +14,7 @@ const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 
 const txt_dir = path.join(__dirname, './');
-const json_dir = path.join(__dirname, '../locale-data/json');
+const json_dir = path.join(__dirname, '../locale-data/unprocessed');
 
 readdir(txt_dir).then(files => {
   files.filter(file => file.endsWith('.txt')).forEach(file => {
@@ -22,10 +22,12 @@ readdir(txt_dir).then(files => {
       encoding: 'utf8'
     });
 
-    const out = fs.createWriteStream(path.join(__dirname, './test.json'));
+    const out = fs.createWriteStream(
+      path.join(json_dir, path.basename(file, '.txt') + '.json')
+    );
     out.write('[\n');
 
-    const regex = /^description/gm;
+    const regex = /^[ \t]*description/gm;
     let chunk_start = 0;
 
     while ((token = regex.exec(text)) !== null) {
@@ -36,6 +38,7 @@ readdir(txt_dir).then(files => {
         try {
           parser.feed(chunk);
         } catch (err) {
+          console.log(file);
           console.log(chunk);
           throw err;
         }
