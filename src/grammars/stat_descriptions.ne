@@ -1,6 +1,6 @@
 main -> 
-  NoDescription:* Description:* 
-  {% ([no_desc, desc]) => ({ no_desc, desc: desc }) %}
+  Blankline:* NoDescription:* Description:* 
+  {% ([, no_desc, desc]) => (desc) %}
 
 StatIdentifier -> [a-zA-Z0-9_\+\-\%]:+ {% ebnfToString %}
 StatIdentifiers -> 
@@ -18,7 +18,7 @@ Description ->
   {% ([header, body]) => [header || body.stats[0], body] %}
 
 DescriptionHeader -> 
-  "description" (" " StatIdentifier):? Newline
+  "description" Whitespaces:? StatIdentifier:? Newline
   {% ([, ident]) => ident ? ident[1] : null %}
 
 DescriptionBody ->
@@ -31,7 +31,7 @@ DescriptionBody ->
   %}
 
 Stats ->
-  Whitespaces IndexNumber " " StatIdentifiers Newline
+  Whitespaces IndexNumber Whitespaces StatIdentifiers Newline
   {% ([, , , identifiers]) => identifiers %}
 
 TranslationLanguage ->
@@ -39,11 +39,11 @@ TranslationLanguage ->
   {% ([language, , translations]) => [language, translations] %}
 
 Translation -> 
-  Whitespaces IndexNumber Whitespaces:? Newline Translations
+  Whitespaces:? IndexNumber Whitespaces:? Newline Translations
   {% ([, , , , translations]) => translations %}
 
 Language -> 
-  Whitespaces:? "lang" Whitespaces StringLiteral 
+  Whitespaces:? "lang" Whitespaces StringLiteral Whitespaces:?
   {% ([, , ,text]) => text %}
 
 Translations ->
@@ -61,7 +61,11 @@ Formatters ->
 	{% ([formatter]) => [formatter] %}
   | Formatter " " Formatters 
     {% ([formatter, , formatters]) => [formatter, ...formatters] %}
-Formatter -> FormatterIdentifier " " FormatterArgument {% ([id, , arg]) => ({ id, arg }) %}
+Formatter -> (NullaryFormatter | UnaryFormatter) {% pipeId %}
+NullaryFormatter -> "canonical_line"
+UnaryFormatter -> 
+  FormatterIdentifier Whitespaces FormatterArgument
+  {% ([id, , arg]) => ({ id, arg }) %}
 FormatterIdentifier -> [a-zA-Z0-9_]:+ {% ebnfToString %}
 FormatterArgument -> (IndexNumber | ReminderIdentifier) {% pipeId %}
 ReminderIdentifier -> CamelCase {% id %}
