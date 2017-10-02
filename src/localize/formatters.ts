@@ -24,8 +24,6 @@ const formatters: { [key: string]: Formatter } = {
   '60%_of_value': n => n * 0.6
 };
 
-const identity = n => n;
-
 export default function factory(formatter_id: string): Formatter {
   const formatter = formatters[formatter_id];
 

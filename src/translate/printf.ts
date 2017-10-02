@@ -1,5 +1,5 @@
 import formatFactory from '../localize/formatters';
-import { Formatter } from '../StatDescription';
+import { Formatter } from '../types/StatDescription';
 
 type Param = number;
 type Params = Param[];

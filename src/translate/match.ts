@@ -1,4 +1,4 @@
-import { AnyValue, Matcher, Range, Value } from '../StatDescription';
+import { AnyValue, Matcher, Range, Value } from '../types/StatDescription';
 
 const isRange = (matcher: Matcher): matcher is Range =>
   Array.isArray(matcher) && matcher.length === 2;
