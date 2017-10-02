@@ -1,8 +1,15 @@
-import { Description, StatLocaleData, Translation } from './StatDescription';
-import { Stat } from './types';
+import {
+  Description,
+  StatLocaleData,
+  Translation
+} from './types/StatDescription';
 import { matches } from './translate/match';
 import printf from './translate/printf';
 
+type Stat = {
+  id: string;
+  value: number;
+};
 type Options = {};
 type TranslatedStats = string[];
 
