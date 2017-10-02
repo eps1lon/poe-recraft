@@ -10,8 +10,8 @@ const grammar = Grammar.fromCompiled(
 
 const readdir = promisify(fs.readdir);
 
-const txt_dir = path.join(__dirname, '../locale-data/raw');
-const json_dir = path.join(__dirname, '../locale-data/unprocessed');
+const txt_dir = path.join(__dirname, '../tmp/raw');
+const json_dir = path.join(__dirname, '../tmp/unprocessed');
 
 const isDescriptionFile = file => file === 'stat_descriptions.txt'; //file => file.endsWith('.txt');
 
