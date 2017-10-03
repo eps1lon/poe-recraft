@@ -6,38 +6,67 @@ import {
   Translation
 } from './types/StatDescription';
 
+// arg types
 export type Stat = {
   id: string;
   value: number;
 };
-type Options = {};
+export type Options = {
+  data?: StatLocaleData;
+};
+// return type
 export type TranslatedStats = string[];
 
-export default function formatStats(
-  stats: Stat[],
-  locale_data: StatLocaleData
-): TranslatedStats {
-  // translated lines
-  const lines: string[] = [];
-  // array of stat_ids for which hash lookup failed
-  const untranslated: Map<string, Stat> = new Map(
-    stats.map((stat: Stat) => [stat.id, stat] as [string, Stat])
-  );
+const initial_options: Options = {
+  data: undefined
+};
 
-  lines.push(...formatWithFinder(untranslated, id => locale_data[id]));
-
-  lines.push(
-    ...formatWithFinder(untranslated, id => findDescription(id, locale_data))
-  );
-
-  if (untranslated.size > 0) {
-    throw new Error(
-      'no descriptions found for ' + Array.from(untranslated.keys()).join(',')
-    );
-  }
-
-  return lines;
+export interface FormatStats {
+  (stats: Stat[], options?: Options): TranslatedStats;
+  options: Options;
+  configure(options: Options): void;
 }
+
+const formatStats: FormatStats = Object.assign(
+  (stats: Stat[], options: Options = {}): TranslatedStats => {
+    const { data } = Object.assign({}, formatStats.options, options);
+
+    if (data === undefined) {
+      throw new Error(
+        'locale data not provided. Set it either via passed option or #configure'
+      );
+    }
+
+    // translated lines
+    const lines: string[] = [];
+    // array of stat_ids for which hash lookup failed
+    const untranslated: Map<string, Stat> = new Map(
+      stats.map((stat: Stat) => [stat.id, stat] as [string, Stat])
+    );
+
+    lines.push(...formatWithFinder(untranslated, id => data[id]));
+
+    lines.push(
+      ...formatWithFinder(untranslated, id => findDescription(id, data))
+    );
+
+    if (untranslated.size > 0) {
+      throw new Error(
+        'no descriptions found for ' + Array.from(untranslated.keys()).join(',')
+      );
+    }
+
+    return lines;
+  },
+  {
+    options: initial_options,
+    configure: (options: Options) => {
+      formatStats.options = options;
+    }
+  }
+);
+
+export default formatStats;
 
 /**
  * O(n) lookup if hash lookup fails

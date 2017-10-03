@@ -11,6 +11,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
   include `always_freeze`. By defaulting to 0 we are able to translate it but 
   allow translations like `5 - 0 added Physical Damage` when omitting 
   `local_maximum_added_physical_damage`.
+- `formatStats` is now called with an options object instead of the whole locale data.
+  At the same time you can permanently set it via `formatStats.configure`. 
+  `configure` just takes the same option argument and `formatStats` will use
+  those as default for future calls.
 
 ## [0.1.3](https://github.com/eps1lon/poe-mods/compare/v0.1.2...v0.1.3) (2017-20-03)
 ### Fixed
