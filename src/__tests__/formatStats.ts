@@ -7,7 +7,7 @@ it('should translate single stat line', () => {
   expect(() =>
     formatStats([{ id: 'weapon_physical_damage_+%', value: 0 }], locale)
   ).toThrowError(
-    'matching translation not found for weapon_physical_damage_+%'
+    "matching translation not found for 'weapon_physical_damage_+%'"
   );
 });
 
@@ -79,7 +79,7 @@ it('should translate douple stat lines', () => {
       locale
     )
   ).toThrow(
-    "stat 'attack_maximum_added_physical_damage' required for translation not provided"
+    "matching translation not found for 'attack_minimum_added_physical_damage'"
   );
 
   expect(

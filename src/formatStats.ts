@@ -67,7 +67,7 @@ function formatWithFinder(
       const translation = translate(description, stats);
 
       if (translation === undefined) {
-        throw new Error(`matching translation not found for ${stat.id}`);
+        throw new Error(`matching translation not found for '${stat.id}'`);
       } else {
         // mark as translated
         description.stats.forEach(translated_id => stats.delete(translated_id));
@@ -95,17 +95,21 @@ function translate(
   }
 
   // intersect the required stat_ids from the desc with the provided
-  const required_stats = stats.map(stat_id => {
-    const stat = provided.get(stat_id);
+  const required_stats = stats
+    .map(stat_id => {
+      const stat = provided.get(stat_id);
 
-    if (stat === undefined) {
-      throw new Error(
-        `stat '${stat_id}' required for translation not provided`
-      );
-    }
-
-    return stat;
-  });
+      // since stats[] is used as an aggregator and alias collection
+      // we can't throw here
+      // it will still throw if the stat was actually required and not an
+      // alias since it wont be marked as translated
+      if (stat === undefined) {
+        return null;
+      } else {
+        return stat;
+      }
+    })
+    .filter((stat: Stat | null): stat is Stat => stat !== null);
 
   const translation = matchingTranslation(translations, required_stats);
 
