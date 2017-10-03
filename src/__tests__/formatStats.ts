@@ -1,66 +1,7 @@
-import formatStats from '../formatStats';
 import { StatLocaleData } from '../types/StatDescription';
 
-const locale: StatLocaleData = {
-  'weapon_physical_damage_+%': {
-    stats: ['weapon_physical_damage_+%'],
-    translations: [
-      {
-        matchers: [[1, '#']],
-        text: '%1%%% increased Physical Damage with Weapons',
-        formatters: []
-      }
-    ]
-  },
-  attack_minimum_added_physical_damage: {
-    stats: [
-      'attack_minimum_added_physical_damage',
-      'attack_maximum_added_physical_damage'
-    ],
-    translations: [
-      {
-        matchers: ['#', '#'],
-        text: 'Adds %1% to %2% Physical Damage to Attacks',
-        formatters: []
-      }
-    ]
-  },
-  item_generation_cannot_change_suffixes: {
-    stats: ['item_generation_cannot_change_suffixes'],
-    translations: [
-      {
-        matchers: ['#'],
-        text: 'Suffixes Cannot Be Changed',
-        formatters: []
-      }
-    ]
-  },
-  'attack_speed_+%_while_leeching': {
-    stats: ['attack_speed_+%_while_leeching'],
-    translations: [
-      {
-        matchers: [[1, '#']],
-        text: '%1%%% increased Attack Speed while Leeching',
-        formatters: []
-      },
-      {
-        matchers: [['#', -1]],
-        text: '%1%%% reduced Attack Speed while Leeching',
-        formatters: [
-          {
-            id: 'negate',
-            arg: 1
-          }
-        ]
-      }
-    ]
-  },
-  item_drop_slots: {
-    stats: ['item_drop_slots'],
-    translations: [],
-    no_description: true
-  }
-};
+import locale from '../__fixtures__/english';
+import formatStats from '../formatStats';
 
 it('should translate single stat line', () => {
   expect(() =>
@@ -174,5 +115,26 @@ it('should translate collections of stats', () => {
 it('should return the id with a hint for no_desc stats', () => {
   expect(formatStats([{ id: 'item_drop_slots', value: 3 }], locale)).toEqual([
     'item_drop_slots (hidden)'
+  ]);
+});
+
+it('should translate collections that threw in production', () => {
+  // this one only threw because the translation was not provided which was
+  // fixed in 8d1cd8f8a1433a843e36250f893e64c72e98a005
+  expect(
+    formatStats(
+      [
+        { id: 'additional_strength', value: 51 },
+        { id: 'base_life_regeneration_rate_per_minute', value: 241 },
+        { id: 'base_maximum_life', value: 24 },
+        { id: 'local_base_physical_damage_reduction_rating', value: 24 }
+      ],
+      locale
+    ).sort()
+  ).toEqual([
+    '+24 to Armour',
+    '+24 to maximum Life',
+    '+51 to Strength',
+    '4 Life Regenerated per second'
   ]);
 });
