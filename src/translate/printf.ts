@@ -29,13 +29,19 @@ function prepareParams(
   const prepared: PreparedParams = [...params];
 
   formatters.forEach((formatter, i) => {
-    const target_param = params[+formatter.arg - 1];
+    if (typeof formatter.arg === 'number') {
+      const target_param = params[+formatter.arg - 1];
 
-    if (target_param !== undefined) {
-      prepared[+formatter.arg - 1] = formatFactory(formatter.id)(target_param);
-    } else {
-      throw new Error(`no param given for formatter ${i}`);
+      if (target_param !== undefined) {
+        prepared[+formatter.arg - 1] = formatFactory(formatter.id)(
+          target_param
+        );
+      } else {
+        throw new Error(`no param given for formatter '${formatter.id}'`);
+      }
     }
+    // nothing to to for strings. used in remindestring arg which doesnt alter
+    // the params
   });
 
   return prepared;

@@ -2,8 +2,22 @@ import printf from '../printf';
 
 it('throws if params and formatters dont match', () => {
   expect(() => printf('empty', [], [{ id: 'negate', arg: 1 }])).toThrowError(
-    'no param given for formatter 0'
+    "no param given for formatter 'negate'"
   );
+
+  // but not for reminderstrings
+  expect(
+    printf(
+      'unaltered',
+      [],
+      [
+        {
+          id: 'reminderstring',
+          arg: 'ReminderTextUncappedResist'
+        }
+      ]
+    )
+  ).toEqual('unaltered');
 });
 
 it('format somewhat similar to printf', () => {
