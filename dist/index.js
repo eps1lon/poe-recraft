@@ -154,19 +154,6 @@ System.register("translate/printf", ["localize/formatters"], function (exports_4
 System.register("formatStats", ["translate/match", "translate/printf"], function (exports_5, context_5) {
     "use strict";
     var __moduleName = context_5 && context_5.id;
-    function formatStats(stats, locale_data) {
-        // translated lines
-        const lines = [];
-        // array of stat_ids for which hash lookup failed
-        const untranslated = new Map(stats.map((stat) => [stat.id, stat]));
-        lines.push(...formatWithFinder(untranslated, id => locale_data[id]));
-        lines.push(...formatWithFinder(untranslated, id => findDescription(id, locale_data)));
-        if (untranslated.size > 0) {
-            throw new Error('no descriptions found for ' + Array.from(untranslated.keys()).join(','));
-        }
-        return lines;
-    }
-    exports_5("default", formatStats);
     /**
      * O(n) lookup if hash lookup fails
      *
@@ -209,12 +196,12 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
         const required_stats = stats
             .map(stat_id => {
             const stat = provided.get(stat_id);
-            // since stats[] is used as an aggregator and alias collection
-            // we can't throw here
-            // it will still throw if the stat was actually required and not an
-            // alias since it wont be marked as translated
+            // default the value to 0
             if (stat === undefined) {
-                return null;
+                return {
+                    id: stat_id,
+                    value: 0
+                };
             }
             else {
                 return stat;
@@ -233,7 +220,33 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
         const args = stats.map(({ value }) => value);
         return translations.find(translation => match_1.matches(translation.matchers, args));
     }
-    var match_1, printf_1, NO_DESCRIPTION;
+    function formatWithFallback(stats, fallback) {
+        if (fallback === Fallback.throw) {
+            if (stats.size > 0) {
+                throw new Error('no descriptions found for ' + Array.from(stats.keys()).join(','));
+            }
+            else {
+                return [];
+            }
+        }
+        else if (fallback === Fallback.id) {
+            return Array.from(stats.keys());
+        }
+        else if (fallback === Fallback.skip) {
+            return [];
+        }
+        else if (typeof fallback === 'function') {
+            return Array.from(stats.entries())
+                .map(([id, stat]) => fallback(id, stat))
+                .filter((line) => typeof line === 'string');
+        }
+        else {
+            // should ts recognize that this is unreachable code? enums can prob
+            // be extended at runtime an therfore somebody could mess with them
+            throw new Error(`unrecognized fallback type '${fallback}'`);
+        }
+    }
+    var match_1, printf_1, Fallback, initial_options, formatStats, NO_DESCRIPTION;
     return {
         setters: [
             function (match_1_1) {
@@ -244,6 +257,36 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
             }
         ],
         execute: function () {
+            (function (Fallback) {
+                Fallback[Fallback["throw"] = 0] = "throw";
+                Fallback[Fallback["id"] = 1] = "id";
+                Fallback[Fallback["skip"] = 2] = "skip";
+            })(Fallback || (Fallback = {}));
+            exports_5("Fallback", Fallback);
+            initial_options = {
+                data: undefined,
+                fallback: Fallback.throw
+            };
+            formatStats = Object.assign((stats, options = {}) => {
+                const { data, fallback } = Object.assign({}, formatStats.options, options);
+                if (data === undefined) {
+                    throw new Error('locale data not provided. Set it either via passed option or #configure');
+                }
+                // translated lines
+                const lines = [];
+                // array of stat_ids for which hash lookup failed
+                const untranslated = new Map(stats.map((stat) => [stat.id, stat]));
+                lines.push(...formatWithFinder(untranslated, id => data[id]));
+                lines.push(...formatWithFinder(untranslated, id => findDescription(id, data)));
+                lines.push(...formatWithFallback(untranslated, fallback));
+                return lines;
+            }, {
+                options: initial_options,
+                configure: (options) => {
+                    formatStats.options = Object.assign({}, formatStats.options, options);
+                }
+            });
+            exports_5("default", formatStats);
             NO_DESCRIPTION = 'NO_DESCRIPTION';
         }
     };
@@ -286,7 +329,8 @@ System.register("index", ["formatStats", "localize/formatValueRange", "localize/
         setters: [
             function (formatStats_1_1) {
                 exports_8({
-                    "formatStats": formatStats_1_1["default"]
+                    "formatStats": formatStats_1_1["default"],
+                    "Fallback": formatStats_1_1["Fallback"]
                 });
             },
             function (formatValueRange_1_1) {

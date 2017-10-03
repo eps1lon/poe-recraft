@@ -54,8 +54,28 @@ declare module "formatStats" {
         id: string;
         value: number;
     };
+    export type OptionalOptions = {
+        data?: StatLocaleData;
+        fallback?: Fallback | FallbackCallback;
+    };
     export type TranslatedStats = string[];
-    export default function formatStats(stats: Stat[], locale_data: StatLocaleData): TranslatedStats;
+    export type FallbackCallback = (id: string, stat: Stat) => string | null;
+    export enum Fallback {
+        throw = 0,
+        id = 1,
+        skip = 2,
+    }
+    export type Options = {
+        data?: StatLocaleData;
+        fallback: Fallback | FallbackCallback;
+    };
+    export interface FormatStats {
+        (stats: Stat[], options?: OptionalOptions): TranslatedStats;
+        options: Options;
+        configure(options: OptionalOptions): void;
+    }
+    const formatStats: FormatStats;
+    export default formatStats;
 }
 declare module "localize/formatValue" {
     export type Options = {};
@@ -66,7 +86,7 @@ declare module "localize/formatValueRange" {
     export default function formatValueRange(values: [number, number], options: Options): string;
 }
 declare module "index" {
-    export { default as formatStats } from "formatStats";
+    export { default as formatStats, Fallback } from "formatStats";
     export { default as formatValueRange } from "localize/formatValueRange";
     export { default as formatValue } from "localize/formatValue";
 }
