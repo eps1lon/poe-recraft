@@ -20,8 +20,13 @@ const Stats = ({ className, stats }: Props) => {
     };
   });
 
+  const options = {
+    data: locale,
+    fallback: id => id === 'dummy_stat_display_nothing' ? null : id
+  }
+
   try {
-    return formatStats(stats_for_i18n, locale).map((translation, i) => {
+    return formatStats(stats_for_i18n, options).map((translation, i) => {
       return (
         <div key={i} className={className}>
           {translation}
@@ -29,7 +34,7 @@ const Stats = ({ className, stats }: Props) => {
       );
     });
   } catch (err) {
-    console.warn(err.message, Object.keys(stats));
+    console.warn(err.message, stats);
     return Object.keys(stats).map(id => {
       return (
         <div key={id} className={className}>
