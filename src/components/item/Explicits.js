@@ -17,7 +17,11 @@ const Explicits = ({ item }: Props) => {
   } else {
     return [
       // $FlowFixMe no it's not
-      <Stats key="stats" stats={affixes.stats()} className="implicits" />,
+      <Stats
+        key="stats"
+        stats={affixes.stats()}
+        className="explicit augmented"
+      />,
       <Separator key="sep" />
     ];
   }
