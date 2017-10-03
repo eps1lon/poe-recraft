@@ -23,7 +23,7 @@ const Properties = ({ item }: Props) => {
   }
 
   if (properties.any()) {
-    return [...property_displays, <Separator key="sep" />];
+    return [...property_displays];
   } else {
     return null;
   }

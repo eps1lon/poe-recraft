@@ -51,8 +51,8 @@ const Requirements = ({ item }: Props) => {
       });
 
     return [
-      <div key="requirements">Requires {displayed}</div>,
-      <Separator key="sep" />
+      <Separator key="sep" />,
+      <div key="requirements">Requires {displayed}</div>
     ];
   } else {
     return null;

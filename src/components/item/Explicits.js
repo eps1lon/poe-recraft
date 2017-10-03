@@ -16,13 +16,13 @@ const Explicits = ({ item }: Props) => {
     return null;
   } else {
     return [
+      <Separator key="sep" />,
       // $FlowFixMe no it's not
       <Stats
         key="stats"
         stats={affixes.stats()}
         className="explicit augmented"
-      />,
-      <Separator key="sep" />
+      />
     ];
   }
 };
