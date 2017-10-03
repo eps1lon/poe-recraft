@@ -1,6 +1,6 @@
 main -> 
   Blankline:* NoDescription:* Description:* 
-  {% ([, no_desc, desc]) => (desc) %}
+  {% ([, no_desc, desc]) => ({ no_desc, desc }) %}
 
 StatIdentifier -> [a-zA-Z0-9_\+\-\%]:+ {% ebnfToString %}
 StatIdentifiers -> 

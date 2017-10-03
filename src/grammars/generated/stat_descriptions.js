@@ -16,7 +16,7 @@ var grammar = {
     {"name": "main$ebnf$2", "symbols": ["main$ebnf$2", "NoDescription"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "main$ebnf$3", "symbols": []},
     {"name": "main$ebnf$3", "symbols": ["main$ebnf$3", "Description"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "main", "symbols": ["main$ebnf$1", "main$ebnf$2", "main$ebnf$3"], "postprocess": ([, no_desc, desc]) => (desc)},
+    {"name": "main", "symbols": ["main$ebnf$1", "main$ebnf$2", "main$ebnf$3"], "postprocess": ([, no_desc, desc]) => ({ no_desc, desc })},
     {"name": "StatIdentifier$ebnf$1", "symbols": [/[a-zA-Z0-9_\+\-\%]/]},
     {"name": "StatIdentifier$ebnf$1", "symbols": ["StatIdentifier$ebnf$1", /[a-zA-Z0-9_\+\-\%]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "StatIdentifier", "symbols": ["StatIdentifier$ebnf$1"], "postprocess": ebnfToString},

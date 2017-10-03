@@ -28,6 +28,9 @@ readdir(txt_dir).then(files => {
 
     const regex = /^[ \t]*description/gm;
     let chunk_start = 0;
+    // used to stream a join method
+    // we could just use join() but then we had to keep the hole array in memory
+    let first = true;
 
     // stream every description .* token into the parser
     // and transform it into a json output stream
@@ -45,14 +48,10 @@ readdir(txt_dir).then(files => {
         }
 
         const [results] = parser.results;
+        const { no_desc, desc } = results;
 
-        results.forEach(result => {
-          if (chunk_start > 0) {
-            out.write(',\n');
-          }
-
-          out.write(JSON.stringify(result, null, 2));
-        });
+        first = writeNoDesc(no_desc, first, out);
+        first = writeDesc(desc, first, out);
       }
 
       chunk_start = token.index;
@@ -63,3 +62,31 @@ readdir(txt_dir).then(files => {
     out.end();
   });
 });
+
+function writeNoDesc(identifiers, first, outstream) {
+  return write(identifiers, first, outstream, identifier => [
+    identifier,
+    { stats: [], languages: [], no_description: true }
+  ]);
+}
+
+// return false if something was written (i.e. set first to false)
+function writeDesc(descriptions, first, outstream) {
+  return write(descriptions, first, outstream, ([ident, description]) => [
+    ident,
+    description
+  ]);
+}
+
+function write(things, first, outstream, map = thing => thing) {
+  things.forEach(thing => {
+    if (!first) {
+      outstream.write(',\n');
+    }
+
+    outstream.write(JSON.stringify(map(thing), null, 2));
+    first = false;
+  });
+
+  return first;
+}

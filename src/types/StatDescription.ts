@@ -5,6 +5,7 @@ export interface StatLocaleData {
 export interface Description {
   stats: string[];
   translations: Translation[];
+  no_description?: boolean;
 }
 
 // generated format from stat_descriptions.ne
