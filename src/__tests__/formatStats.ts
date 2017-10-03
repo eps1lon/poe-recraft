@@ -1,7 +1,7 @@
 import { StatLocaleData } from '../types/StatDescription';
 
 import data from '../__fixtures__/english';
-import formatStats, { Fallback } from '../formatStats';
+import formatStats, { Fallback, Stat } from '../formatStats';
 
 it('should translate single stat line', () => {
   expect(() =>
@@ -190,4 +190,20 @@ it('should throw if we provide an unrecognize fallback', () => {
       fallback: 345678
     })
   ).toThrowError("unrecognized fallback type '345678'");
+});
+
+it('should support custom fallback methods', () => {
+  expect(
+    formatStats(
+      [
+        { id: 'from_armour_movement_speed_+%', value: -3 },
+        { id: 'dummy_stat_display_nothing', value: -3 }
+      ],
+      {
+        data,
+        fallback: (id: string, stat: Stat) =>
+          id === 'dummy_stat_display_nothing' ? null : id
+      }
+    )
+  ).toEqual(['from_armour_movement_speed_+%']);
 });

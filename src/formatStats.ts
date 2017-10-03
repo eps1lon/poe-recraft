@@ -14,10 +14,12 @@ export type Stat = {
 
 export type OptionalOptions = {
   data?: StatLocaleData;
-  fallback?: Fallback;
+  fallback?: Fallback | FallbackCallback;
 };
 // return type
 export type TranslatedStats = string[];
+
+export type FallbackCallback = (id: string, stat: Stat) => string | null;
 
 export enum Fallback {
   throw, // throw if no stat was found
@@ -26,7 +28,7 @@ export enum Fallback {
 }
 export type Options = {
   data?: StatLocaleData;
-  fallback: Fallback;
+  fallback: Fallback | FallbackCallback;
 };
 
 const initial_options: Options = {
@@ -170,7 +172,7 @@ function matchingTranslation(translations: Translation[], stats: Stat[]) {
 
 function formatWithFallback(
   stats: Map<string, Stat>,
-  fallback: Fallback
+  fallback: Fallback | FallbackCallback
 ): string[] {
   if (fallback === Fallback.throw) {
     if (stats.size > 0) {
@@ -184,6 +186,10 @@ function formatWithFallback(
     return Array.from(stats.keys());
   } else if (fallback === Fallback.skip) {
     return [];
+  } else if (typeof fallback === 'function') {
+    return Array.from(stats.entries())
+      .map(([id, stat]) => fallback(id, stat))
+      .filter((line): line is string => typeof line === 'string');
   } else {
     // should ts recognize that this is unreachable code? enums can prob
     // be extended at runtime an therfore somebody could mess with them
