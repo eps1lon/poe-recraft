@@ -4,7 +4,9 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.5.0...HEAD)
+## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.5.1...HEAD)
+
+## [1.5.1](https://github.com/eps1lon/poe-mods/compare/v1.5.0...v1.5.1)
 ### Changed
 - `Itemshowcase` now considers the item to be rare. Previously possible explicit
   mods were hidden once the Item had one prefix or suffix.
