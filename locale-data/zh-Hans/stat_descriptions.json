@@ -3121,16 +3121,65 @@
       }
     ]
   },
-  "\t": {
-    "stats": ["keystone_mana_shield"],
+  "attack_damage_+%": {
+    "stats": ["attack_damage_+%"],
     "translations": [
       {
-        "matchers": ["#"],
-        "text": "心灵升华",
+        "matchers": [[1, "#"]],
+        "text": "增加 %1%%% 攻击伤害",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "减少 %1%%% 攻击伤害",
         "formatters": [
           {
-            "id": "reminderstring",
-            "arg": "ReminderTextKeystoneMindOverMatter"
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "unique_ryuslathas_clutches_maximum_physical_attack_damage_+%_final": {
+    "stats": [
+      "unique_ryuslathas_clutches_maximum_physical_attack_damage_+%_final"
+    ],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "攻击额外增加最大 %1%%% 物理总伤害",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "攻击额外减少最大 %1%%% 物理总伤害",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "unique_ryuslathas_clutches_minimum_physical_attack_damage_+%_final": {
+    "stats": [
+      "unique_ryuslathas_clutches_minimum_physical_attack_damage_+%_final"
+    ],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "攻击额外增加最小 %1%%% 物理总伤害",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "攻击额外减少最小 %1%%% 物理总伤害",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
           }
         ]
       }
@@ -7282,6 +7331,446 @@
       }
     ]
   },
+  "evasion_and_physical_damage_reduction_rating_+%": {
+    "stats": ["evasion_and_physical_damage_reduction_rating_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "增加 %1%%% 闪避值与护甲",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "减少 %1%%% 闪避值与护甲",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "physical_damage_reduction_rating_+%_while_fortify_is_active": {
+    "stats": ["physical_damage_reduction_rating_+%_while_fortify_is_active"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "获得护体时增加 %1%%% 护甲",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "获得护体时减少 %1%%% 护甲",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "base_evasion_rating": {
+    "stats": ["base_evasion_rating"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "%1$+d 点闪避",
+        "formatters": []
+      }
+    ]
+  },
+  "evasion_rating_+_when_on_low_life": {
+    "stats": ["evasion_rating_+_when_on_low_life"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "濒血时增加 %1% 闪避",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextLowLife"
+          }
+        ]
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "濒血时减少 %1% 闪避",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextLowLife"
+          }
+        ]
+      }
+    ]
+  },
+  "evasion_rating_+_when_on_full_life": {
+    "stats": ["evasion_rating_+_when_on_full_life"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "满血时增加 %1% 闪避",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "满血时减少 %1% 减少闪避",
+        "formatters": []
+      }
+    ]
+  },
+  "local_base_evasion_rating": {
+    "stats": ["local_base_evasion_rating"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "该装备的闪避值 %1$+d 点",
+        "formatters": []
+      }
+    ]
+  },
+  "evasion_rating_+%": {
+    "stats": ["evasion_rating_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "增加 %1%%% 闪避",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "减少 %1%%% 闪避",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "local_evasion_rating_+%": {
+    "stats": ["local_evasion_rating_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "该装备的闪避值增加 %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "该装备的闪避值减少 %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "evasion_rating_+%_while_onslaught_is_active": {
+    "stats": ["evasion_rating_+%_while_onslaught_is_active"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "获得猛攻时增加 %1%%% 闪避",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "获得猛攻时减少 %1%%% 闪避",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "local_armour_and_energy_shield_+%": {
+    "stats": ["local_armour_and_energy_shield_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "该装备的护甲与能量护盾增加 %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "该装备的护甲与能量护盾减少 %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "local_armour_and_evasion_+%": {
+    "stats": ["local_armour_and_evasion_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "该装备的护甲与闪避增加 %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "该装备的护甲与闪避减少 %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "local_evasion_and_energy_shield_+%": {
+    "stats": ["local_evasion_and_energy_shield_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "该装备的闪避与能量护盾增加 %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "该装备的闪避与能量护盾减少 %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "local_armour_and_evasion_and_energy_shield_+%": {
+    "stats": ["local_armour_and_evasion_and_energy_shield_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "该装备的护甲, 闪避和能量护盾增加 %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "该装备的护甲, 闪避和能量护盾减少 %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "evasion_rating_+%_per_frenzy_charge": {
+    "stats": ["evasion_rating_+%_per_frenzy_charge"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "每个狂怒球增加 %1%%% 闪避",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "每个狂怒球减少 %1%%% 闪避",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "base_maximum_life": {
+    "stats": ["base_maximum_life"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "%1$+d 最大生命",
+        "formatters": []
+      }
+    ]
+  },
+  "maximum_life_+%": {
+    "stats": ["maximum_life_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "增加 %1%%% 最大生命",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "减少 %1%%% 最大生命",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "monster_life_+%_final_from_rarity": {
+    "stats": ["monster_life_+%_final_from_rarity"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "额外增加 %1%%% 总最大生命",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "额外减少 %1%%% 总最大生命",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "monster_life_+%_final_from_map": {
+    "stats": ["monster_life_+%_final_from_map"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "额外增加 %1%%% 总最大生命",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "额外减少 %1%%% 总最大生命",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "base_life_regeneration_rate_per_minute": {
+    "stats": ["base_life_regeneration_rate_per_minute"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1% 每秒生命回复",
+        "formatters": [
+          {
+            "id": "per_minute_to_per_second",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "life_regeneration_rate_per_minute_%_per_endurance_charge": {
+    "stats": ["life_regeneration_rate_per_minute_%_per_endurance_charge"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "每个耐力球增加 %1%%% 每秒生命回复",
+        "formatters": [
+          {
+            "id": "per_minute_to_per_second",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "base_maximum_mana": {
+    "stats": ["base_maximum_mana"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "%1$+d 最大魔力",
+        "formatters": []
+      }
+    ]
+  },
+  "maximum_mana_+%": {
+    "stats": ["maximum_mana_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "增加 %1%%% 最大魔力",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "减少 %1%%% 最大魔力",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "mana_regeneration_rate_per_minute_%": {
+    "stats": ["mana_regeneration_rate_per_minute_%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% 每秒魔力回复",
+        "formatters": [
+          {
+            "id": "per_minute_to_per_second",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "base_mana_regeneration_rate_per_minute": {
+    "stats": ["base_mana_regeneration_rate_per_minute"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "每秒 %1% 基础魔力回复",
+        "formatters": [
+          {
+            "id": "per_minute_to_per_second",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "mana_regeneration_rate_+%": {
+    "stats": ["mana_regeneration_rate_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "增加 %1%%% 魔力回复速度",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "减少 %1%%% 魔力回复速度",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
   "mana_regeneration_rate_per_minute_%_per_power_charge": {
     "stats": ["mana_regeneration_rate_per_minute_%_per_power_charge"],
     "translations": [
@@ -10112,6 +10601,21 @@
       }
     ]
   },
+  "num_of_additional_chains_at_max_frenzy_charges": {
+    "stats": ["num_of_additional_chains_at_max_frenzy_charges"],
+    "translations": [
+      {
+        "matchers": [1],
+        "text": "当你拥有最大数量的狂怒球时技能额外连锁 1 次",
+        "formatters": []
+      },
+      {
+        "matchers": [[2, "#"]],
+        "text": "当你拥有最大数量的狂怒球时技能额外连锁 %1% 次",
+        "formatters": []
+      }
+    ]
+  },
   "add_frenzy_charge_on_critical_strike": {
     "stats": ["add_frenzy_charge_on_critical_strike"],
     "translations": [
@@ -10975,6 +11479,26 @@
       {
         "matchers": [["#", -1]],
         "text": "增加 %1%%% 技能魔力消耗",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "mana_cost_+%_while_on_full_energy_shield": {
+    "stats": ["mana_cost_+%_while_on_full_energy_shield"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "能量护盾全满时增加 %1%%% 技能魔力消耗",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "能量护盾全满时减少 %1%%% 技能魔力消耗",
         "formatters": [
           {
             "id": "negate",
@@ -15267,6 +15791,66 @@
       }
     ]
   },
+  "chaos_damage_taken_+%": {
+    "stats": ["chaos_damage_taken_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "增加 %1%%% 受到的混沌伤害",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "减少 %1%%% 受到的混沌伤害",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "damage_taken_+%_while_es_full": {
+    "stats": ["damage_taken_+%_while_es_full"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "能量护盾全满时增加 %1%%% 受到的伤害",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "能量护盾全满时减少 %1%%% 受到的伤害",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "degen_effect_+%": {
+    "stats": ["degen_effect_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "增加 %1%%% 受到的持续性伤害 ",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "减少 %1%%% 受到的持续性伤害",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
   "physical_ranged_attack_damage_taken_+": {
     "stats": ["physical_ranged_attack_damage_taken_+"],
     "translations": [
@@ -15274,6 +15858,46 @@
         "matchers": ["#"],
         "text": "%1$+d 承受的投射物攻击的物理伤害",
         "formatters": []
+      }
+    ]
+  },
+  "damage_taken_+%_from_skeletons": {
+    "stats": ["damage_taken_+%_from_skeletons"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "受到魔侍的伤害增加 %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "受到魔侍的伤害减少 %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "damage_taken_+%_from_ghosts": {
+    "stats": ["damage_taken_+%_from_ghosts"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "受到鬼魂的伤害增加 %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "受到鬼魂的伤害减少 %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
       }
     ]
   },
@@ -17144,6 +17768,16 @@
       }
     ]
   },
+  "additional_block_chance_%_for_1_second_every_5_seconds": {
+    "stats": ["additional_block_chance_%_for_1_second_every_5_seconds"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "每 5 秒获得 %1%%% 额外攻击格挡率并持续 1 秒",
+        "formatters": []
+      }
+    ]
+  },
   "with_bow_additional_block_%": {
     "stats": ["with_bow_additional_block_%"],
     "translations": [
@@ -17661,6 +18295,36 @@
       }
     ]
   },
+  "gain_phasing_while_at_maximum_frenzy_charges": {
+    "stats": ["gain_phasing_while_at_maximum_frenzy_charges"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "你在拥有最大数量的狂怒球时得到迷踪状态",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextPhasing"
+          }
+        ]
+      }
+    ]
+  },
+  "gain_phasing_while_you_have_onslaught": {
+    "stats": ["gain_phasing_while_you_have_onslaught"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "你在获得猛攻时得到迷踪状态",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextPhasing"
+          }
+        ]
+      }
+    ]
+  },
   "gain_phasing_for_4_seconds_on_begin_es_recharge": {
     "stats": ["gain_phasing_for_4_seconds_on_begin_es_recharge"],
     "translations": [
@@ -17697,6 +18361,26 @@
         "matchers": ["#"],
         "text": "迷踪状态时增加 %1%%% 物品稀有度",
         "formatters": []
+      }
+    ]
+  },
+  "mana_regeneration_rate_+%_while_phasing": {
+    "stats": ["mana_regeneration_rate_+%_while_phasing"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "迷踪状态增加 %1%%% 魔力回复速度",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "迷踪状态减少 %1%%% 魔力回复速度",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
       }
     ]
   },
@@ -19733,6 +20417,21 @@
       }
     ]
   },
+  "local_display_aura_base_chaos_damage_to_deal_per_minute": {
+    "stats": ["local_display_aura_base_chaos_damage_to_deal_per_minute"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "每秒对附近敌人造成 %1% 混沌伤害",
+        "formatters": [
+          {
+            "id": "per_minute_to_per_second_0dp",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
   "deaths_oath_debuff_on_kill_duration_ms": {
     "stats": [
       "deaths_oath_debuff_on_kill_duration_ms",
@@ -19821,6 +20520,26 @@
       {
         "matchers": ["#"],
         "text": "%1%%% 伤害优先从魔力扣除",
+        "formatters": []
+      }
+    ]
+  },
+  "local_display_aura_damage_+%": {
+    "stats": ["local_display_aura_damage_+%"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "你跟队友增加 %1%%% 伤害",
+        "formatters": []
+      }
+    ]
+  },
+  "local_display_aura_curse_effect_on_self_+%": {
+    "stats": ["local_display_aura_curse_effect_on_self_+%"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "附近敌人增加 %1%%% 被诅咒的效果",
         "formatters": []
       }
     ]
@@ -19942,6 +20661,26 @@
         "matchers": [[1, "#"]],
         "text": "%1$+d 被击中回复魔力",
         "formatters": []
+      }
+    ]
+  },
+  "elemental_reflect_damage_taken_+%": {
+    "stats": ["elemental_reflect_damage_taken_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "增加 %1%%% 反射火焰, 冰霜, 闪电伤害",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "减少 %1%%% 反射火焰, 冰霜, 闪电伤害",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
       }
     ]
   },
@@ -21393,6 +22132,43 @@
       }
     ]
   },
+  "local_unique_flask_cannot_recover_life_while_healing": {
+    "stats": ["local_unique_flask_cannot_recover_life_while_healing"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "药剂使用期间你无法生命回复",
+        "formatters": []
+      }
+    ]
+  },
+  "local_unique_flask_recover_%_maximum_life_when_effect_reaches_duration": {
+    "stats": [
+      "local_unique_flask_recover_%_maximum_life_when_effect_reaches_duration"
+    ],
+    "translations": [
+      {
+        "matchers": [[1, 99]],
+        "text": "药剂消退时回复 %1%%% 最大生命",
+        "formatters": []
+      },
+      {
+        "matchers": [[100, "#"]],
+        "text": "药剂消退时回复 100%% 最大生命",
+        "formatters": []
+      }
+    ]
+  },
+  "local_unique_flask_no_mana_cost_while_healing": {
+    "stats": ["local_unique_flask_no_mana_cost_while_healing"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "药剂使用期间你的法术不消耗魔力",
+        "formatters": []
+      }
+    ]
+  },
   "shock_X_nearby_enemies_for_2_s_on_killing_shocked_enemy": {
     "stats": ["shock_X_nearby_enemies_for_2_s_on_killing_shocked_enemy"],
     "translations": [
@@ -21418,6 +22194,21 @@
           {
             "id": "reminderstring",
             "arg": "ReminderTextIgniteNonHitNoDuration"
+          }
+        ]
+      }
+    ]
+  },
+  "gain_rare_monster_mods_on_kill_ms": {
+    "stats": ["gain_rare_monster_mods_on_kill_ms"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "当你杀死稀有怪物时你会获得该怪物属性 %1% 秒",
+        "formatters": [
+          {
+            "id": "milliseconds_to_seconds",
+            "arg": 1
           }
         ]
       }
@@ -21560,6 +22351,16 @@
             "arg": 1
           }
         ]
+      }
+    ]
+  },
+  "unique_lose_all_endurance_charges_when_hit": {
+    "stats": ["unique_lose_all_endurance_charges_when_hit"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "被击中时你失去所有的耐力球",
+        "formatters": []
       }
     ]
   },
@@ -22428,6 +23229,16 @@
       }
     ]
   },
+  "local_display_aura_damage_+%_allies_only": {
+    "stats": ["local_display_aura_damage_+%_allies_only"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "附近的队友获得增加 %1%%% 伤害",
+        "formatters": []
+      }
+    ]
+  },
   "minion_attack_speed_+%": {
     "stats": ["minion_attack_speed_+%"],
     "translations": [
@@ -22887,6 +23698,21 @@
       {
         "matchers": [[1, "#"]],
         "text": "获得等同 %1%%% 物理伤害的一个随机火焰, 冰霜, 闪电伤害",
+        "formatters": []
+      }
+    ]
+  },
+  "local_unique_flask_instantly_recovers_%_maximum_life": {
+    "stats": ["local_unique_flask_instantly_recovers_%_maximum_life"],
+    "translations": [
+      {
+        "matchers": [[1, 99]],
+        "text": "使用时回复生命上限 %1%%% 的生命",
+        "formatters": []
+      },
+      {
+        "matchers": [[100, "#"]],
+        "text": "使用时回复全部生命",
         "formatters": []
       }
     ]
@@ -23620,6 +24446,46 @@
             "arg": 1
           }
         ]
+      }
+    ]
+  },
+  "reduce_enemy_elemental_resistance_%": {
+    "stats": ["reduce_enemy_elemental_resistance_%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "伤害穿透 %1%%% 火焰, 冰霜, 闪电抗性",
+        "formatters": []
+      }
+    ]
+  },
+  "base_reduce_enemy_fire_resistance_%": {
+    "stats": ["base_reduce_enemy_fire_resistance_%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "伤害穿透 %1%%% 火焰抗性",
+        "formatters": []
+      }
+    ]
+  },
+  "base_reduce_enemy_cold_resistance_%": {
+    "stats": ["base_reduce_enemy_cold_resistance_%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "伤害穿透 %1%%% 冰霜抗性",
+        "formatters": []
+      }
+    ]
+  },
+  "base_reduce_enemy_lightning_resistance_%": {
+    "stats": ["base_reduce_enemy_lightning_resistance_%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "伤害穿透 %1%%% 闪电抗性",
+        "formatters": []
       }
     ]
   },
@@ -25744,6 +26610,18 @@
       }
     ]
   },
+  "local_unique_jewel_split_arrow_fires_additional_arrow_with_x_dex_in_radius": {
+    "stats": [
+      "local_unique_jewel_split_arrow_fires_additional_arrow_with_x_dex_in_radius"
+    ],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "范围内配置 %1$d 点敏捷即可增加分裂箭矢一支额外的箭矢",
+        "formatters": []
+      }
+    ]
+  },
   "split_arrow_number_of_additional_arrows": {
     "stats": ["split_arrow_number_of_additional_arrows"],
     "translations": [
@@ -26144,6 +27022,26 @@
         "matchers": ["#"],
         "text": "每 1%% 攻击格挡率 %1$+d%% 基础暴击伤害",
         "formatters": []
+      }
+    ]
+  },
+  "critical_strike_chance_+%_vs_bleeding_enemies": {
+    "stats": ["critical_strike_chance_+%_vs_bleeding_enemies"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "对流血的敌人增加 %1%%% 攻击和法术暴击率",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "对流血的敌人减少 %1%%% 攻击和法术暴击率",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
       }
     ]
   },
@@ -41078,6 +41976,21 @@
       }
     ]
   },
+  "gain_elemental_penetration_for_4_seconds_on_mine_detonation": {
+    "stats": ["gain_elemental_penetration_for_4_seconds_on_mine_detonation"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "近期内你若有引爆地雷, 伤害穿透 %1%%% 火焰, 冰霜, 闪电抗性",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextRecently"
+          }
+        ]
+      }
+    ]
+  },
   "base_cold_immunity": {
     "stats": ["base_cold_immunity"],
     "translations": [
@@ -43109,6 +44022,486 @@
       }
     ]
   },
+  "attack_and_cast_speed_+%_while_on_consecrated_ground": {
+    "stats": ["attack_and_cast_speed_+%_while_on_consecrated_ground"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "在奉献地面增加 %1%%% 攻击和施法速度",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "在奉献地面減少 %1%%% 攻击和施法速度",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "mine_arming_speed_+%": {
+    "stats": ["mine_arming_speed_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "减少 %1%%% 地雷冷却速度",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "增加 %1%%% 地雷冷却速度",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "flasks_%_chance_to_not_consume_charges": {
+    "stats": ["flasks_%_chance_to_not_consume_charges"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "%1%%% 几率使用药剂时不消耗充能",
+        "formatters": []
+      }
+    ]
+  },
+  "physical_damage_+%_for_4_seconds_when_you_block_a_unique_enemy_hit": {
+    "stats": [
+      "physical_damage_+%_for_4_seconds_when_you_block_a_unique_enemy_hit"
+    ],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "格挡传奇怪物后的短时间内, 增加 %1%%% 物理伤害",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextRecently"
+          }
+        ]
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "格挡传奇怪物后的短时间内, 減少 %1%%% 物理伤害",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextRecently"
+          }
+        ]
+      }
+    ]
+  },
+  "your_consecrated_ground_grants_damage_+%": {
+    "stats": ["your_consecrated_ground_grants_damage_+%"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "你制造的奉献地面增加你与友军 %1%%% 伤害",
+        "formatters": []
+      }
+    ]
+  },
+  "attack_speed_+%_if_enemy_not_killed_recently": {
+    "stats": ["attack_speed_+%_if_enemy_not_killed_recently"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "若近期内没有击败增加 %1%%% 攻击速度",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextRecently"
+          }
+        ]
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "若近期内没有击败减少 %1%%% 攻击速度",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextRecently"
+          }
+        ]
+      }
+    ]
+  },
+  "physical_damage_+%_while_at_maximum_frenzy_charges_final": {
+    "stats": ["physical_damage_+%_while_at_maximum_frenzy_charges_final"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "达到最大狂怒球时额外增加 %1%%% 物理总伤害",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "达到最大狂怒球时额外减少 %1%%% 物理总伤害",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "physical_damage_taken_+%_while_at_maximum_endurance_charges": {
+    "stats": ["physical_damage_taken_+%_while_at_maximum_endurance_charges"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "达到最大耐力球时增加 %1%%% 受到的物理伤害",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "达到最大耐力球时減少 %1%%% 受到的物理伤害",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "totem_damage_leeched_as_life_to_you_permyriad": {
+    "stats": ["totem_damage_leeched_as_life_to_you_permyriad"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "你偷取等同 %1%%% 你图腾造成伤害的生命",
+        "formatters": [
+          {
+            "id": "divide_by_one_hundred",
+            "arg": 1
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextLifeLeech"
+          }
+        ]
+      }
+    ]
+  },
+  "attack_speed_+%_per_200_accuracy_rating": {
+    "stats": ["attack_speed_+%_per_200_accuracy_rating"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "每 200 命中值增加 %1%%% 攻击速度",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "每 200 命中值減少 %1%%% 攻击速度",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "gain_maximum_endurance_charges_on_endurance_charge_gained_%_chance": {
+    "stats": [
+      "gain_maximum_endurance_charges_on_endurance_charge_gained_%_chance"
+    ],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "获得耐力球时有 %1%%% 几率转而以提升你的耐力球最大上限",
+        "formatters": []
+      }
+    ]
+  },
+  "elementalist_skill_area_of_effect_+%_for_4_seconds_every_10_seconds": {
+    "stats": [
+      "elementalist_skill_area_of_effect_+%_for_4_seconds_every_10_seconds"
+    ],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "每 10 秒增加 %1%%% 范围技能的范围 4 秒",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "每 10 秒减少 %1%%% 范围技能的范围 4 秒",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "physical_damage_%_to_add_as_chaos_vs_bleeding_enemies": {
+    "stats": ["physical_damage_%_to_add_as_chaos_vs_bleeding_enemies"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "对流血的敌人获得等同 %1%%% 物理伤害的额外混沌伤害",
+        "formatters": []
+      }
+    ]
+  },
+  "elemental_resistances_+%_for_you_and_allies_affected_by_your_auras": {
+    "stats": [
+      "elemental_resistances_+%_for_you_and_allies_affected_by_your_auras"
+    ],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "你和友军受到你的光环影响时有 %1$+d%% 火焰, 冰霜, 闪电抗性",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "你和友军受到你的光环影响时有 %1$+d%% 火焰, 冰霜, 闪电抗性",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "phasing_%_for_3_seconds_on_trap_triggered_by_an_enemy": {
+    "stats": [
+      "phasing_%_for_3_seconds_on_trap_triggered_by_an_enemy",
+      "phasing_on_trap_triggered_by_an_enemy_ms"
+    ],
+    "translations": [
+      {
+        "matchers": [["#", 99], 0],
+        "text": "陷阱被敌人触发时有 %1%%% 几率获得 3 秒暗影迷踪",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextPhasing"
+          }
+        ]
+      },
+      {
+        "matchers": [[100, "#"], 0],
+        "text": "陷阱被敌人触发时获得 3 秒暗影迷踪",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextPhasing"
+          }
+        ]
+      },
+      {
+        "matchers": [["#", 99], [1, "#"]],
+        "text": "陷阱被敌人触发时有 %1%%% 几率获得 %2% 秒暗影迷踪",
+        "formatters": [
+          {
+            "id": "milliseconds_to_seconds",
+            "arg": 2
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextPhasing"
+          }
+        ]
+      },
+      {
+        "matchers": [[100, "#"], [1, "#"]],
+        "text": "陷阱被敌人触发时获得 %2% 秒暗影迷踪",
+        "formatters": [
+          {
+            "id": "milliseconds_to_seconds",
+            "arg": 2
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextPhasing"
+          }
+        ]
+      }
+    ]
+  },
+  "gain_x_life_on_trap_triggered_by_an_enemy": {
+    "stats": ["gain_x_life_on_trap_triggered_by_an_enemy"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "你的陷阱被敌人触发时回复 %1% 生命",
+        "formatters": []
+      }
+    ]
+  },
+  "gain_x_es_on_trap_triggered_by_an_enemy": {
+    "stats": ["gain_x_es_on_trap_triggered_by_an_enemy"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "你的陷阱被敌人触发时回复 %1% 能量护盾",
+        "formatters": []
+      }
+    ]
+  },
+  "attack_skills_additional_totems_allowed": {
+    "stats": ["attack_skills_additional_totems_allowed"],
+    "translations": [
+      {
+        "matchers": [1],
+        "text": "攻击技能可以召唤额外 1 个图腾",
+        "formatters": []
+      },
+      {
+        "matchers": [[2, "#"]],
+        "text": "攻击技能可以召唤额外 %1% 个图腾",
+        "formatters": []
+      }
+    ]
+  },
+  "poison_from_critical_strikes_damage_+%_final": {
+    "stats": ["poison_from_critical_strikes_damage_+%_final"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "你暴击造成的中毒总伤害额外增加 %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "你暴击造成的中毒总伤害额外减少 %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "bleed_damage_+%_vs_maimed_enemies_final": {
+    "stats": ["bleed_damage_+%_vs_maimed_enemies_final"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "你对瘫痪敌人造成的流血总伤害额外增加 %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "你对瘫痪敌人造成的流血总伤害额外减少 %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "flask_charges_+%_from_enemies_with_status_ailments": {
+    "stats": ["flask_charges_+%_from_enemies_with_status_ailments"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "击败受元素异常状态影响的敌人\\n增加 %1%%% 药剂充能",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextElementalStatusAilments"
+          }
+        ]
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "击败受元素异常状态影响的敌人\\n减少 %1%%% 药剂充能",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextElementalStatusAilments"
+          }
+        ]
+      }
+    ]
+  },
+  "armour_and_evasion_+%_while_fortified": {
+    "stats": ["armour_and_evasion_+%_while_fortified"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "护体时增加 %1%%% 护甲和闪避",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "护体时减少 %1%%% 护甲和闪避",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "melee_damage_+%_while_fortified": {
+    "stats": ["melee_damage_+%_while_fortified"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "护体时增加 %1%%% 近战伤害",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "护体时减少 %1%%% 近战伤害",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "desecrate_creates_X_additional_corpses": {
+    "stats": ["desecrate_creates_X_additional_corpses"],
+    "translations": [
+      {
+        "matchers": [1],
+        "text": "腐化地面制造 1 个额外灵柩",
+        "formatters": []
+      },
+      {
+        "matchers": [[2, "#"]],
+        "text": "腐化地面制造 %1% 个额外灵柩",
+        "formatters": []
+      }
+    ]
+  },
   "damage_+%_if_you_have_consumed_a_corpse_recently": {
     "stats": ["damage_+%_if_you_have_consumed_a_corpse_recently"],
     "translations": [
@@ -43177,6 +44570,43 @@
           {
             "id": "reminderstring",
             "arg": "ReminderTextIntimidate"
+          }
+        ]
+      }
+    ]
+  },
+  "taunted_enemies_damage_+%_final_vs_non_taunt_target": {
+    "stats": ["taunted_enemies_damage_+%_final_vs_non_taunt_target"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "被你嘲讽的敌人对其他目标造成的击中和异常状态总伤害额外增加 %1%%%",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextTaunt"
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextDamagingAilments"
+          }
+        ]
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "被你嘲讽的敌人对其他目标造成的击中和异常状态总伤害额外减少 %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextTaunt"
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextDamagingAilments"
           }
         ]
       }
@@ -53181,6 +54611,21 @@
           {
             "id": "reminderstring",
             "arg": "ReminderTextKeystoneIronReflexes"
+          }
+        ]
+      }
+    ]
+  },
+  "keystone_mana_shield": {
+    "stats": ["keystone_mana_shield"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "心灵升华",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextKeystoneMindOverMatter"
           }
         ]
       }

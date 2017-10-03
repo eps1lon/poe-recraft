@@ -3220,16 +3220,65 @@
       }
     ]
   },
-  "\t": {
-    "stats": ["keystone_mana_shield"],
+  "attack_damage_+%": {
+    "stats": ["attack_damage_+%"],
     "translations": [
       {
-        "matchers": ["#"],
-        "text": "Mente sobre Materia",
+        "matchers": [[1, "#"]],
+        "text": "Daño de Ataque aumentado un %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Daño de Ataque reducido un %1%%%",
         "formatters": [
           {
-            "id": "reminderstring",
-            "arg": "ReminderTextKeystoneMindOverMatter"
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "unique_ryuslathas_clutches_maximum_physical_attack_damage_+%_final": {
+    "stats": [
+      "unique_ryuslathas_clutches_maximum_physical_attack_damage_+%_final"
+    ],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% más Daño de Ataque Físico Máximo",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% menos Daño de Ataque Físico Máximo",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "unique_ryuslathas_clutches_minimum_physical_attack_damage_+%_final": {
+    "stats": [
+      "unique_ryuslathas_clutches_minimum_physical_attack_damage_+%_final"
+    ],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% más Daño de Ataque Físico Mínimo",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% menos Daño de Ataque Físico Mínimo",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
           }
         ]
       }
@@ -7492,6 +7541,447 @@
       }
     ]
   },
+  "evasion_and_physical_damage_reduction_rating_+%": {
+    "stats": ["evasion_and_physical_damage_reduction_rating_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Evasión y Armadura aumentadas un %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Evasión y Armadura reducidas un %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "physical_damage_reduction_rating_+%_while_fortify_is_active": {
+    "stats": ["physical_damage_reduction_rating_+%_while_fortify_is_active"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Armadura aumentada un %1%%% mientras tienes Fortificar activo",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Armadura reducida un %1%%% mientras tienes Fortificar activo",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "base_evasion_rating": {
+    "stats": ["base_evasion_rating"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "%1$+d de Evasión",
+        "formatters": []
+      }
+    ]
+  },
+  "evasion_rating_+_when_on_low_life": {
+    "stats": ["evasion_rating_+_when_on_low_life"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Ganas %1% de Evasión cuando tienes la Vida Baja",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextLowLife"
+          }
+        ]
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Pierdes %1% de Evasión cuando tienes la Vida Baja",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextLowLife"
+          }
+        ]
+      }
+    ]
+  },
+  "evasion_rating_+_when_on_full_life": {
+    "stats": ["evasion_rating_+_when_on_full_life"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Ganas %1% de Evasión cuando tienes la Vida Llena",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Pierdes %1% de Evasión cuando tienes la Vida Llena",
+        "formatters": []
+      }
+    ]
+  },
+  "local_base_evasion_rating": {
+    "stats": ["local_base_evasion_rating"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "%1$+d de Evasión",
+        "formatters": []
+      }
+    ]
+  },
+  "evasion_rating_+%": {
+    "stats": ["evasion_rating_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Evasión aumentada un %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Evasión reducida un %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "local_evasion_rating_+%": {
+    "stats": ["local_evasion_rating_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Evasión aumentada un %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Evasión reducida un %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "evasion_rating_+%_while_onslaught_is_active": {
+    "stats": ["evasion_rating_+%_while_onslaught_is_active"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Evasión aumentada un %1%%% mientras Fervor esté activo",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Evasión reducida un %1%%% mientras Fervor esté activo",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "local_armour_and_energy_shield_+%": {
+    "stats": ["local_armour_and_energy_shield_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Armadura y Escudo de Energía aumentados un %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Armadura y Escudo de Energía reducidos un %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "local_armour_and_evasion_+%": {
+    "stats": ["local_armour_and_evasion_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Armadura y Evasión aumentados un %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Armadura y Evasión reducidos un %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "local_evasion_and_energy_shield_+%": {
+    "stats": ["local_evasion_and_energy_shield_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Evasión y Escudo de Energía aumentados un %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Evasión y Escudo de Energía reducidos un %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "local_armour_and_evasion_and_energy_shield_+%": {
+    "stats": ["local_armour_and_evasion_and_energy_shield_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Armadura, Evasión y Escudo de Energía aumentados un %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Armadura, Evasión y Escudo de Energía reducidos un %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "evasion_rating_+%_per_frenzy_charge": {
+    "stats": ["evasion_rating_+%_per_frenzy_charge"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Evasión aumentada un %1%%% por cada Carga de Frenesí",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Evasión reducida un %1%%% por cada Carga de Frenesí",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "base_maximum_life": {
+    "stats": ["base_maximum_life"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "%1$+d de Vida máxima",
+        "formatters": []
+      }
+    ]
+  },
+  "maximum_life_+%": {
+    "stats": ["maximum_life_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Vida máxima aumentada un %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Vida máxima reducida un %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "monster_life_+%_final_from_rarity": {
+    "stats": ["monster_life_+%_final_from_rarity"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% más Vida máxima",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% menos Vida máxima",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "monster_life_+%_final_from_map": {
+    "stats": ["monster_life_+%_final_from_map"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% más Vida máxima",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% menos Vida máxima",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "base_life_regeneration_rate_per_minute": {
+    "stats": ["base_life_regeneration_rate_per_minute"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1% de Vida Regenerada por segundo",
+        "formatters": [
+          {
+            "id": "per_minute_to_per_second",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "life_regeneration_rate_per_minute_%_per_endurance_charge": {
+    "stats": ["life_regeneration_rate_per_minute_%_per_endurance_charge"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "%1%%% de Vida máxima Regenerada por segundo por cada Carga de Aguante",
+        "formatters": [
+          {
+            "id": "per_minute_to_per_second",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "base_maximum_mana": {
+    "stats": ["base_maximum_mana"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "%1$+d de Maná máximo",
+        "formatters": []
+      }
+    ]
+  },
+  "maximum_mana_+%": {
+    "stats": ["maximum_mana_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Maná máximo aumentada un %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Maná máximo reducida un %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "mana_regeneration_rate_per_minute_%": {
+    "stats": ["mana_regeneration_rate_per_minute_%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% de Maná Regenerado por segundo",
+        "formatters": [
+          {
+            "id": "per_minute_to_per_second",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "base_mana_regeneration_rate_per_minute": {
+    "stats": ["base_mana_regeneration_rate_per_minute"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% de Maná Regenerado por segundo",
+        "formatters": [
+          {
+            "id": "per_minute_to_per_second",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "mana_regeneration_rate_+%": {
+    "stats": ["mana_regeneration_rate_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Regeneración de Maná aumentada un %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Regeneración de Maná reducida un %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
   "mana_regeneration_rate_per_minute_%_per_power_charge": {
     "stats": ["mana_regeneration_rate_per_minute_%_per_power_charge"],
     "translations": [
@@ -10362,6 +10852,23 @@
       }
     ]
   },
+  "num_of_additional_chains_at_max_frenzy_charges": {
+    "stats": ["num_of_additional_chains_at_max_frenzy_charges"],
+    "translations": [
+      {
+        "matchers": [1],
+        "text":
+          "Las Habilidades se Encadenan una vez adicional cuando tienes el Máximo de Cargas de Frenesí",
+        "formatters": []
+      },
+      {
+        "matchers": [[2, "#"]],
+        "text":
+          "Las Habilidades se Encadenan %1% veces adicionales cuando tienes el Máximo de Cargas de Frenesí",
+        "formatters": []
+      }
+    ]
+  },
   "add_frenzy_charge_on_critical_strike": {
     "stats": ["add_frenzy_charge_on_critical_strike"],
     "translations": [
@@ -11239,6 +11746,28 @@
       {
         "matchers": [["#", -1]],
         "text": "Coste de Maná de las Habilidades aumentado un %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "mana_cost_+%_while_on_full_energy_shield": {
+    "stats": ["mana_cost_+%_while_on_full_energy_shield"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Coste de Maná de las Habilidades aumentado un %1%%% mientras tengas el Escudo de Energía Lleno",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Coste de Maná de las Habilidades reducido un %1%%% mientras tengas el Escudo de Energía Lleno",
         "formatters": [
           {
             "id": "negate",
@@ -15642,6 +16171,68 @@
       }
     ]
   },
+  "chaos_damage_taken_+%": {
+    "stats": ["chaos_damage_taken_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Daño de Caos recibido aumentado un %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Daño de Caos recibido reducido un %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "damage_taken_+%_while_es_full": {
+    "stats": ["damage_taken_+%_while_es_full"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Daño recibido aumentado un %1%%% mientras tengas el Escudo de Energía Lleno",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Daño recibido reducido un %1%%% mientras tengas el Escudo de Energía Lleno",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "degen_effect_+%": {
+    "stats": ["degen_effect_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Daño recibido por Daño Degenerativo aumentado un %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Daño recibido por Daño Degenerativo reducido un %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
   "physical_ranged_attack_damage_taken_+": {
     "stats": ["physical_ranged_attack_damage_taken_+"],
     "translations": [
@@ -15649,6 +16240,46 @@
         "matchers": ["#"],
         "text": "%1$+d de Daño Físico recibido de Ataques de Proyectiles",
         "formatters": []
+      }
+    ]
+  },
+  "damage_taken_+%_from_skeletons": {
+    "stats": ["damage_taken_+%_from_skeletons"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Daño recibido de Esqueletos aumentado un %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Daño recibido de Esqueletos reducido un %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "damage_taken_+%_from_ghosts": {
+    "stats": ["damage_taken_+%_from_ghosts"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Daño recibido de Fantasmas aumentado un %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Daño recibido de Fantasmas reducido un %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
       }
     ]
   },
@@ -17594,6 +18225,17 @@
       }
     ]
   },
+  "additional_block_chance_%_for_1_second_every_5_seconds": {
+    "stats": ["additional_block_chance_%_for_1_second_every_5_seconds"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "%1%%% de Probabilidad de Bloqueo adicional por 1 segundo cada 5 segundos",
+        "formatters": []
+      }
+    ]
+  },
   "with_bow_additional_block_%": {
     "stats": ["with_bow_additional_block_%"],
     "translations": [
@@ -18129,6 +18771,37 @@
       }
     ]
   },
+  "gain_phasing_while_at_maximum_frenzy_charges": {
+    "stats": ["gain_phasing_while_at_maximum_frenzy_charges"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "Tienes Traspasar mientras tengas el máximo de Cargas de Frenesí",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextPhasing"
+          }
+        ]
+      }
+    ]
+  },
+  "gain_phasing_while_you_have_onslaught": {
+    "stats": ["gain_phasing_while_you_have_onslaught"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "Tienes Traspasar mientras tengas Fervor",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextPhasing"
+          }
+        ]
+      }
+    ]
+  },
   "gain_phasing_for_4_seconds_on_begin_es_recharge": {
     "stats": ["gain_phasing_for_4_seconds_on_begin_es_recharge"],
     "translations": [
@@ -18168,6 +18841,28 @@
         "text":
           "Rareza de los Ítems encontrados aumentada un %1%%% mientras estés Traspasando",
         "formatters": []
+      }
+    ]
+  },
+  "mana_regeneration_rate_+%_while_phasing": {
+    "stats": ["mana_regeneration_rate_+%_while_phasing"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Índice de Regeneración de Maná aumentado un %1%%% mientras Traspasas",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Índice de Regeneración de Maná reducido un %1%%% mientras Traspasas",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
       }
     ]
   },
@@ -20273,6 +20968,22 @@
       }
     ]
   },
+  "local_display_aura_base_chaos_damage_to_deal_per_minute": {
+    "stats": ["local_display_aura_base_chaos_damage_to_deal_per_minute"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "Inflige %1% de Daño de Caos por segundo a los Enemigos cercanos",
+        "formatters": [
+          {
+            "id": "per_minute_to_per_second_0dp",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
   "deaths_oath_debuff_on_kill_duration_ms": {
     "stats": [
       "deaths_oath_debuff_on_kill_duration_ms",
@@ -20367,6 +21078,27 @@
       {
         "matchers": ["#"],
         "text": "%1%%% del Daño es tomado del Maná antes que de la Vida",
+        "formatters": []
+      }
+    ]
+  },
+  "local_display_aura_damage_+%": {
+    "stats": ["local_display_aura_damage_+%"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "Tú y tus aliados cercanos ganan Daño aumentado un %1%%%",
+        "formatters": []
+      }
+    ]
+  },
+  "local_display_aura_curse_effect_on_self_+%": {
+    "stats": ["local_display_aura_curse_effect_on_self_+%"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "Los Enemigos cercanos tienen aumentado un %1%%% el Efecto de Maldiciones sobre ellos",
         "formatters": []
       }
     ]
@@ -20490,6 +21222,26 @@
         "matchers": [[1, "#"]],
         "text": "%1$+d de Maná ganado cuando eres Golpeado",
         "formatters": []
+      }
+    ]
+  },
+  "elemental_reflect_damage_taken_+%": {
+    "stats": ["elemental_reflect_damage_taken_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% de aumento al Daño Elemental Reflejado recibido",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% de reducción al Daño Elemental Reflejado recibido",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
       }
     ]
   },
@@ -22011,6 +22763,46 @@
       }
     ]
   },
+  "local_unique_flask_cannot_recover_life_while_healing": {
+    "stats": ["local_unique_flask_cannot_recover_life_while_healing"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "No se Aplica Recuperación de Vida durante el efecto del Frasco",
+        "formatters": []
+      }
+    ]
+  },
+  "local_unique_flask_recover_%_maximum_life_when_effect_reaches_duration": {
+    "stats": [
+      "local_unique_flask_recover_%_maximum_life_when_effect_reaches_duration"
+    ],
+    "translations": [
+      {
+        "matchers": [[1, 99]],
+        "text":
+          "Recupera %1%%% de tu Vida máxima al finalizar el efecto del Frasco",
+        "formatters": []
+      },
+      {
+        "matchers": [[100, "#"]],
+        "text": "Recupera la Vida Máxima al finalizar el efecto del Frasco",
+        "formatters": []
+      }
+    ]
+  },
+  "local_unique_flask_no_mana_cost_while_healing": {
+    "stats": ["local_unique_flask_no_mana_cost_while_healing"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "Tus Habilidades no tiene Coste de Maná durante el efecto del Frasco",
+        "formatters": []
+      }
+    ]
+  },
   "shock_X_nearby_enemies_for_2_s_on_killing_shocked_enemy": {
     "stats": ["shock_X_nearby_enemies_for_2_s_on_killing_shocked_enemy"],
     "translations": [
@@ -22038,6 +22830,22 @@
           {
             "id": "reminderstring",
             "arg": "ReminderTextIgniteNonHitNoDuration"
+          }
+        ]
+      }
+    ]
+  },
+  "gain_rare_monster_mods_on_kill_ms": {
+    "stats": ["gain_rare_monster_mods_on_kill_ms"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "Cuando Matas un monstruo Raro, ganas sus modificadores por %1% segundos",
+        "formatters": [
+          {
+            "id": "milliseconds_to_seconds",
+            "arg": 1
           }
         ]
       }
@@ -22186,6 +22994,16 @@
             "arg": 1
           }
         ]
+      }
+    ]
+  },
+  "unique_lose_all_endurance_charges_when_hit": {
+    "stats": ["unique_lose_all_endurance_charges_when_hit"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "Pierdes todas las Cargas de Aguante al ser Golpeado",
+        "formatters": []
       }
     ]
   },
@@ -23075,6 +23893,16 @@
       }
     ]
   },
+  "local_display_aura_damage_+%_allies_only": {
+    "stats": ["local_display_aura_damage_+%_allies_only"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "Los aliados cercanos ganan %1%%% de Daño aumentado",
+        "formatters": []
+      }
+    ]
+  },
   "minion_attack_speed_+%": {
     "stats": ["minion_attack_speed_+%"],
     "translations": [
@@ -23553,6 +24381,21 @@
         "matchers": [[1, "#"]],
         "text":
           "Gana %1%%% del Daño Físico como Daño Extra de un Elemento aleatorio",
+        "formatters": []
+      }
+    ]
+  },
+  "local_unique_flask_instantly_recovers_%_maximum_life": {
+    "stats": ["local_unique_flask_instantly_recovers_%_maximum_life"],
+    "translations": [
+      {
+        "matchers": [[1, 99]],
+        "text": "Recupera %1%%% de tu Vida Máxima al utilizarlo",
+        "formatters": []
+      },
+      {
+        "matchers": [[100, "#"]],
+        "text": "Recupera la Vida Máxima al utilizarlo",
         "formatters": []
       }
     ]
@@ -24352,6 +25195,46 @@
             "arg": 1
           }
         ]
+      }
+    ]
+  },
+  "reduce_enemy_elemental_resistance_%": {
+    "stats": ["reduce_enemy_elemental_resistance_%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "El Daño Penetra %1%%% de las Resistencias Elementales",
+        "formatters": []
+      }
+    ]
+  },
+  "base_reduce_enemy_fire_resistance_%": {
+    "stats": ["base_reduce_enemy_fire_resistance_%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "El Daño Penetra %1%%% de la Resistencia al Fuego",
+        "formatters": []
+      }
+    ]
+  },
+  "base_reduce_enemy_cold_resistance_%": {
+    "stats": ["base_reduce_enemy_cold_resistance_%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "El Daño Penetra %1%%% de la Resistencia al Hielo",
+        "formatters": []
+      }
+    ]
+  },
+  "base_reduce_enemy_lightning_resistance_%": {
+    "stats": ["base_reduce_enemy_lightning_resistance_%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "El Daño Penetra %1%%% de la Resistencia al Rayo",
+        "formatters": []
       }
     ]
   },
@@ -26547,6 +27430,19 @@
       }
     ]
   },
+  "local_unique_jewel_split_arrow_fires_additional_arrow_with_x_dex_in_radius": {
+    "stats": [
+      "local_unique_jewel_split_arrow_fires_additional_arrow_with_x_dex_in_radius"
+    ],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "Flecha Dividida disparará una flecha adicional con %1$d de Destreza de Pasivas Asignadas dentro del Radio",
+        "formatters": []
+      }
+    ]
+  },
   "split_arrow_number_of_additional_arrows": {
     "stats": ["split_arrow_number_of_additional_arrows"],
     "translations": [
@@ -26959,6 +27855,28 @@
         "text":
           "%1$+d%% al Multiplicador de Golpe Crítico por cada 1%% de Probabilidad de Bloqueo",
         "formatters": []
+      }
+    ]
+  },
+  "critical_strike_chance_+%_vs_bleeding_enemies": {
+    "stats": ["critical_strike_chance_+%_vs_bleeding_enemies"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Probabilidad de Golpe Crítico aumenta un %1%%% contra Enemigos con Sangrado",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Probabilidad de Golpe Crítico reducida un %1%%% contra Enemigos con Sangrado",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
       }
     ]
   },
@@ -42072,6 +42990,22 @@
       }
     ]
   },
+  "gain_elemental_penetration_for_4_seconds_on_mine_detonation": {
+    "stats": ["gain_elemental_penetration_for_4_seconds_on_mine_detonation"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "El Daño Penetra %1%%% de Resistencias Elementales si has Detonado Minas Recientemente",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextRecently"
+          }
+        ]
+      }
+    ]
+  },
   "base_cold_immunity": {
     "stats": ["base_cold_immunity"],
     "translations": [
@@ -44176,6 +45110,525 @@
       }
     ]
   },
+  "attack_and_cast_speed_+%_while_on_consecrated_ground": {
+    "stats": ["attack_and_cast_speed_+%_while_on_consecrated_ground"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Velocidad de Ataque y de Lanzamiento de Hechizos aumentada un %1%%% mientras estás en Suelo Consagrado",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Velocidad de Ataque y de Lanzamiento de Hechizos reducida un %1%%% mientras estás en Suelo Consagrado",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "mine_arming_speed_+%": {
+    "stats": ["mine_arming_speed_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Velocidad de Activación de Minas aumentada un %1%%%",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Velocidad de Activación de Minas reducida un %1%%%",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "flasks_%_chance_to_not_consume_charges": {
+    "stats": ["flasks_%_chance_to_not_consume_charges"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "%1%%% de probabilidad de no consumir Cargas cuando usas tus Frascos",
+        "formatters": []
+      }
+    ]
+  },
+  "physical_damage_+%_for_4_seconds_when_you_block_a_unique_enemy_hit": {
+    "stats": [
+      "physical_damage_+%_for_4_seconds_when_you_block_a_unique_enemy_hit"
+    ],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Daño Físico aumentado un %1%%% si Bloqueaste un Golpe de un Enemigo Único Recientemente",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextRecently"
+          }
+        ]
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Daño Físico reducido un %1%%% si Bloqueaste un Golpe de un Enemigo Único Recientemente",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextRecently"
+          }
+        ]
+      }
+    ]
+  },
+  "your_consecrated_ground_grants_damage_+%": {
+    "stats": ["your_consecrated_ground_grants_damage_+%"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "El Suelo Consagrado que tú creas otorga %1%%% de aumento de Daño a ti y a tus Aliados",
+        "formatters": []
+      }
+    ]
+  },
+  "attack_speed_+%_if_enemy_not_killed_recently": {
+    "stats": ["attack_speed_+%_if_enemy_not_killed_recently"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Velocidad de Ataque aumentada un %1%%% si no Mataste Recientemente",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextRecently"
+          }
+        ]
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Velocidad de Ataque reducida un %1%%% si no Mataste Recientemente",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextRecently"
+          }
+        ]
+      }
+    ]
+  },
+  "physical_damage_+%_while_at_maximum_frenzy_charges_final": {
+    "stats": ["physical_damage_+%_while_at_maximum_frenzy_charges_final"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "%1%%% más Daño Físico mientras tengas el máximo de Cargas de Frenesí",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "%1%%% menos Daño Físico mientras tengas el máximo de Cargas de Frenesí",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "physical_damage_taken_+%_while_at_maximum_endurance_charges": {
+    "stats": ["physical_damage_taken_+%_while_at_maximum_endurance_charges"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Daño Físico recibido aumentado un %1%%% mientras tengas el máximo de Cargas de Aguante",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Daño Físico recibido reducido un %1%%% mientras tengas el máximo de Cargas de Aguante",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "totem_damage_leeched_as_life_to_you_permyriad": {
+    "stats": ["totem_damage_leeched_as_life_to_you_permyriad"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "%1%%% del Daño infligido por tus Tótems se Absorbe como Vida para ti",
+        "formatters": [
+          {
+            "id": "divide_by_one_hundred",
+            "arg": 1
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextLifeLeech"
+          }
+        ]
+      }
+    ]
+  },
+  "attack_speed_+%_per_200_accuracy_rating": {
+    "stats": ["attack_speed_+%_per_200_accuracy_rating"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Velocidad de Ataque aumentada un %1%%% por cada 200 puntos de Precisión",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Velocidad de Ataque reducida un %1%%% por cada 200 puntos de Precisión",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "gain_maximum_endurance_charges_on_endurance_charge_gained_%_chance": {
+    "stats": [
+      "gain_maximum_endurance_charges_on_endurance_charge_gained_%_chance"
+    ],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "%1%%% de probabilidad de que si fueras a ganar Cargas de Aguante, en su lugar ganas hasta tu número máximo de Cargas de Aguante",
+        "formatters": []
+      }
+    ]
+  },
+  "elementalist_skill_area_of_effect_+%_for_4_seconds_every_10_seconds": {
+    "stats": [
+      "elementalist_skill_area_of_effect_+%_for_4_seconds_every_10_seconds"
+    ],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Cada 10 segundos, ganas un aumento de %1%%% de Área de Efecto de Habilidades de Área por 4 segundos",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Cada 10 segundos, ganas una reducción %1%%% de Área de Efecto de Habilidades de Área por 4 segundos",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "physical_damage_%_to_add_as_chaos_vs_bleeding_enemies": {
+    "stats": ["physical_damage_%_to_add_as_chaos_vs_bleeding_enemies"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "%1%%% de Daño Físico ganado como Daño de Caos Extra contra\\nEnemigos con Sangrado",
+        "formatters": []
+      }
+    ]
+  },
+  "elemental_resistances_+%_for_you_and_allies_affected_by_your_auras": {
+    "stats": [
+      "elemental_resistances_+%_for_you_and_allies_affected_by_your_auras"
+    ],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Tú y tus Aliados afectados por tus Auras tienen %1$+d%% a todas las Resistencias Elementales",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Tú y tus Aliados afectados por tus Auras tienen %1$+d%% a todas las Resistencias Elementales",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "phasing_%_for_3_seconds_on_trap_triggered_by_an_enemy": {
+    "stats": [
+      "phasing_%_for_3_seconds_on_trap_triggered_by_an_enemy",
+      "phasing_on_trap_triggered_by_an_enemy_ms"
+    ],
+    "translations": [
+      {
+        "matchers": [["#", 99], 0],
+        "text":
+          "%1%%% de probabilidad de ganar Traspasar por 3 segundos cuando tu Trampa sea activada por un Enemigo",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextPhasing"
+          }
+        ]
+      },
+      {
+        "matchers": [[100, "#"], 0],
+        "text":
+          "Ganas Traspasar por 3 segundos cuando tu Trampa sea activada por un Enemigo",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextPhasing"
+          }
+        ]
+      },
+      {
+        "matchers": [["#", 99], [1, "#"]],
+        "text":
+          "%1%%% de probabilidad de ganar Traspasar por %2% segundos cuando tu Trampa sea activada por un Enemigo",
+        "formatters": [
+          {
+            "id": "milliseconds_to_seconds",
+            "arg": 2
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextPhasing"
+          }
+        ]
+      },
+      {
+        "matchers": [[100, "#"], [1, "#"]],
+        "text":
+          "Ganas Traspasar por %2% segundos cuando tu Trampa sea activada por un Enemigo",
+        "formatters": [
+          {
+            "id": "milliseconds_to_seconds",
+            "arg": 2
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextPhasing"
+          }
+        ]
+      }
+    ]
+  },
+  "gain_x_life_on_trap_triggered_by_an_enemy": {
+    "stats": ["gain_x_life_on_trap_triggered_by_an_enemy"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "Recuperas %1% de Vida cuando tu Trampa sea activada por un Enemigo",
+        "formatters": []
+      }
+    ]
+  },
+  "gain_x_es_on_trap_triggered_by_an_enemy": {
+    "stats": ["gain_x_es_on_trap_triggered_by_an_enemy"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "Recuperas %1% de Escudo de Energía cuando tu Trampa sea activada por un Enemigo",
+        "formatters": []
+      }
+    ]
+  },
+  "attack_skills_additional_totems_allowed": {
+    "stats": ["attack_skills_additional_totems_allowed"],
+    "translations": [
+      {
+        "matchers": [1],
+        "text":
+          "Las Habilidades de Ataque pueden tener 1 Tótem adicional invocado a la vez",
+        "formatters": []
+      },
+      {
+        "matchers": [[2, "#"]],
+        "text":
+          "Las Habilidades de Ataque pueden tener %1% Tótems adicionales invocados a la vez",
+        "formatters": []
+      }
+    ]
+  },
+  "poison_from_critical_strikes_damage_+%_final": {
+    "stats": ["poison_from_critical_strikes_damage_+%_final"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "El Veneno que infliges con Golpes Críticos inflige %1%%% más Daño",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "El Veneno que infliges con Golpes Críticos inflige %1%%% menos Daño",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "bleed_damage_+%_vs_maimed_enemies_final": {
+    "stats": ["bleed_damage_+%_vs_maimed_enemies_final"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "El Sangrado que infliges a Enemigos Lisiados inflige %1%%% más Daño",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "El Sangrado que infliges a Enemigos Lisiados inflige %1%%% menos Daño",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "flask_charges_+%_from_enemies_with_status_ailments": {
+    "stats": ["flask_charges_+%_from_enemies_with_status_ailments"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Los Enemigos afectados por Achaques Elementales que tú Matas\\notorgan %1%%% de Cargas de Frascos aumentadas",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextElementalStatusAilments"
+          }
+        ]
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Los Enemigos afectados por Achaques Elementales que tú Matas\\notorgan %1%%% de Cargas de Frascos reducidas",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextElementalStatusAilments"
+          }
+        ]
+      }
+    ]
+  },
+  "armour_and_evasion_+%_while_fortified": {
+    "stats": ["armour_and_evasion_+%_while_fortified"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Armadura y Evasión aumentandas un %1%%% mientras tengas Fortificar",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Armadura y Evasión reducidas un %1%%% mientras tengas Fortificar",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "melee_damage_+%_while_fortified": {
+    "stats": ["melee_damage_+%_while_fortified"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Daño Cuerpo a Cuerpo aumentado un %1%%% mientras tengas Fortificar",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Daño Cuerpo a Cuerpo reducido un %1%%% mientras tengas Fortificar",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "desecrate_creates_X_additional_corpses": {
+    "stats": ["desecrate_creates_X_additional_corpses"],
+    "translations": [
+      {
+        "matchers": [1],
+        "text": "Profanar crea un Cadáver adicional",
+        "formatters": []
+      },
+      {
+        "matchers": [[2, "#"]],
+        "text": "Profanar crea %1% Cadáveres adicionales",
+        "formatters": []
+      }
+    ]
+  },
   "damage_+%_if_you_have_consumed_a_corpse_recently": {
     "stats": ["damage_+%_if_you_have_consumed_a_corpse_recently"],
     "translations": [
@@ -44249,6 +45702,45 @@
           {
             "id": "reminderstring",
             "arg": "ReminderTextIntimidate"
+          }
+        ]
+      }
+    ]
+  },
+  "taunted_enemies_damage_+%_final_vs_non_taunt_target": {
+    "stats": ["taunted_enemies_damage_+%_final_vs_non_taunt_target"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Los Enemigos que Provocas infligen %1%%% más Daño con Golpes y Achaques contra otros objetivos",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextTaunt"
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextDamagingAilments"
+          }
+        ]
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Los Enemigos que Provocas infligen %1%%% menos Daño con Golpes y Achaques contra otros objetivos",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextTaunt"
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextDamagingAilments"
           }
         ]
       }
@@ -54640,6 +56132,21 @@
           {
             "id": "reminderstring",
             "arg": "ReminderTextKeystoneIronReflexes"
+          }
+        ]
+      }
+    ]
+  },
+  "keystone_mana_shield": {
+    "stats": ["keystone_mana_shield"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "Mente sobre Materia",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextKeystoneMindOverMatter"
           }
         ]
       }

@@ -34,7 +34,7 @@ var grammar = {
     {"name": "DescriptionHeader$ebnf$2", "symbols": [], "postprocess": function(d) {return null;}},
     {"name": "DescriptionHeader$ebnf$3", "symbols": ["StatIdentifier"], "postprocess": id},
     {"name": "DescriptionHeader$ebnf$3", "symbols": [], "postprocess": function(d) {return null;}},
-    {"name": "DescriptionHeader", "symbols": ["DescriptionHeader$ebnf$1", "DescriptionHeader$string$1", "DescriptionHeader$ebnf$2", "DescriptionHeader$ebnf$3", "Newline"], "postprocess": ([, , ident]) => ident ? ident[1] : null},
+    {"name": "DescriptionHeader", "symbols": ["DescriptionHeader$ebnf$1", "DescriptionHeader$string$1", "DescriptionHeader$ebnf$2", "DescriptionHeader$ebnf$3", "Newline"], "postprocess": ([, , , ident]) => ident ? ident[1] : null},
     {"name": "DescriptionBody$ebnf$1", "symbols": []},
     {"name": "DescriptionBody$ebnf$1", "symbols": ["DescriptionBody$ebnf$1", "TranslationLanguage"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "DescriptionBody", "symbols": ["Stats", "Translation", "DescriptionBody$ebnf$1"], "postprocess":  

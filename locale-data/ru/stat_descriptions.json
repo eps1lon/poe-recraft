@@ -3309,16 +3309,65 @@
       }
     ]
   },
-  "\t": {
-    "stats": ["keystone_mana_shield"],
+  "attack_damage_+%": {
+    "stats": ["attack_damage_+%"],
     "translations": [
       {
-        "matchers": ["#"],
-        "text": "Разум превыше материи",
+        "matchers": [[1, "#"]],
+        "text": "%1%%% увеличение урона от атак",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% уменьшение урона от атак",
         "formatters": [
           {
-            "id": "reminderstring",
-            "arg": "ReminderTextKeystoneMindOverMatter"
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "unique_ryuslathas_clutches_maximum_physical_attack_damage_+%_final": {
+    "stats": [
+      "unique_ryuslathas_clutches_maximum_physical_attack_damage_+%_final"
+    ],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "На %1%%% больше максимума физического урона от атак",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "На %1%%% меньше максимума физического урона от атак",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "unique_ryuslathas_clutches_minimum_physical_attack_damage_+%_final": {
+    "stats": [
+      "unique_ryuslathas_clutches_minimum_physical_attack_damage_+%_final"
+    ],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "На %1%%% больше минимума физического урона от атак",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "На %1%%% меньше минимума физического урона от атак",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
           }
         ]
       }
@@ -7509,6 +7558,447 @@
       }
     ]
   },
+  "evasion_and_physical_damage_reduction_rating_+%": {
+    "stats": ["evasion_and_physical_damage_reduction_rating_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% увеличение уклонения и брони",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% уменьшение уклонения и брони",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "physical_damage_reduction_rating_+%_while_fortify_is_active": {
+    "stats": ["physical_damage_reduction_rating_+%_while_fortify_is_active"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% повышение брони при Укреплении",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% снижение брони при Укреплении",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "base_evasion_rating": {
+    "stats": ["base_evasion_rating"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "%1$+d к уклонению",
+        "formatters": []
+      }
+    ]
+  },
+  "evasion_rating_+_when_on_low_life": {
+    "stats": ["evasion_rating_+_when_on_low_life"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Вы получаете %1% уклонения при малом количестве здоровья",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextLowLife"
+          }
+        ]
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Вы теряете %1% уклонения при малом количестве здоровья",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextLowLife"
+          }
+        ]
+      }
+    ]
+  },
+  "evasion_rating_+_when_on_full_life": {
+    "stats": ["evasion_rating_+_when_on_full_life"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Вы получаете %1% уклонения при полном здоровье",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Вы теряете %1% уклонения при полном здоровье",
+        "formatters": []
+      }
+    ]
+  },
+  "local_base_evasion_rating": {
+    "stats": ["local_base_evasion_rating"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "%1$+d к уклонению",
+        "formatters": []
+      }
+    ]
+  },
+  "evasion_rating_+%": {
+    "stats": ["evasion_rating_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% увеличение уклонения",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% уменьшение уклонения",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "local_evasion_rating_+%": {
+    "stats": ["local_evasion_rating_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% увеличение уклонения",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% уменьшение уклонения",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "evasion_rating_+%_while_onslaught_is_active": {
+    "stats": ["evasion_rating_+%_while_onslaught_is_active"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% увеличение уклонения при Боевом раже",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% уменьшение уклонения при Боевом раже",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "local_armour_and_energy_shield_+%": {
+    "stats": ["local_armour_and_energy_shield_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% повышение брони и энергетического щита",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% снижение брони и энергетического щита",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "local_armour_and_evasion_+%": {
+    "stats": ["local_armour_and_evasion_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% повышение брони и уклонения",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% снижение брони и уклонения",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "local_evasion_and_energy_shield_+%": {
+    "stats": ["local_evasion_and_energy_shield_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% увеличение уклонения и энергетического щита",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% уменьшение уклонения и энергетического щита",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "local_armour_and_evasion_and_energy_shield_+%": {
+    "stats": ["local_armour_and_evasion_and_energy_shield_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% повышение брони, уклонения и энергетического щита",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% снижение брони, уклонения и энергетического щита",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "evasion_rating_+%_per_frenzy_charge": {
+    "stats": ["evasion_rating_+%_per_frenzy_charge"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% увеличение уклонения за заряд ярости",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% уменьшение уклонения за заряд ярости",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "base_maximum_life": {
+    "stats": ["base_maximum_life"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "%1$+d к максимуму здоровья",
+        "formatters": []
+      }
+    ]
+  },
+  "maximum_life_+%": {
+    "stats": ["maximum_life_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% повышение максимума здоровья",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% снижение максимума здоровья",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "monster_life_+%_final_from_rarity": {
+    "stats": ["monster_life_+%_final_from_rarity"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "На %1%%% больше максимума здоровья",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "На %1%%% меньше максимума здоровья",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "monster_life_+%_final_from_map": {
+    "stats": ["monster_life_+%_final_from_map"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "На %1%%% больше максимума здоровья",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "На %1%%% меньше максимума здоровья",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "base_life_regeneration_rate_per_minute": {
+    "stats": ["base_life_regeneration_rate_per_minute"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Регенерирует %1% здоровья в секунду",
+        "formatters": [
+          {
+            "id": "per_minute_to_per_second",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "life_regeneration_rate_per_minute_%_per_endurance_charge": {
+    "stats": ["life_regeneration_rate_per_minute_%_per_endurance_charge"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Регенерирует %1%%% от максимума здоровья за заряд выносливости",
+        "formatters": [
+          {
+            "id": "per_minute_to_per_second",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "base_maximum_mana": {
+    "stats": ["base_maximum_mana"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "%1$+d к максимуму маны",
+        "formatters": []
+      }
+    ]
+  },
+  "maximum_mana_+%": {
+    "stats": ["maximum_mana_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% повышение максимума маны",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% снижение максимума маны",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "mana_regeneration_rate_per_minute_%": {
+    "stats": ["mana_regeneration_rate_per_minute_%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Регенерирует %1%%% маны в секунду",
+        "formatters": [
+          {
+            "id": "per_minute_to_per_second",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "base_mana_regeneration_rate_per_minute": {
+    "stats": ["base_mana_regeneration_rate_per_minute"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1% регенерации маны в секунду",
+        "formatters": [
+          {
+            "id": "per_minute_to_per_second",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "mana_regeneration_rate_+%": {
+    "stats": ["mana_regeneration_rate_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% повышение скорости регенерации маны",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% снижение скорости регенерации маны",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
   "mana_regeneration_rate_per_minute_%_per_power_charge": {
     "stats": ["mana_regeneration_rate_per_minute_%_per_power_charge"],
     "translations": [
@@ -10388,6 +10878,23 @@
       }
     ]
   },
+  "num_of_additional_chains_at_max_frenzy_charges": {
+    "stats": ["num_of_additional_chains_at_max_frenzy_charges"],
+    "translations": [
+      {
+        "matchers": [1],
+        "text":
+          "Умения поражают дополнительную цель при максимуме зарядов ярости",
+        "formatters": []
+      },
+      {
+        "matchers": [[2, "#"]],
+        "text":
+          "Умения поражают дополнительных целей при максимуме зарядов ярости: %1%",
+        "formatters": []
+      }
+    ]
+  },
   "add_frenzy_charge_on_critical_strike": {
     "stats": ["add_frenzy_charge_on_critical_strike"],
     "translations": [
@@ -11257,6 +11764,28 @@
       {
         "matchers": [["#", -1]],
         "text": "%1%%% повышение затрат маны умений",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "mana_cost_+%_while_on_full_energy_shield": {
+    "stats": ["mana_cost_+%_while_on_full_energy_shield"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "%1%%% повышение затрат маны умений при полном энергетическом щите",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "%1%%% снижение затрат маны умений при полном энергетическом щите",
         "formatters": [
           {
             "id": "negate",
@@ -15623,6 +16152,68 @@
       }
     ]
   },
+  "chaos_damage_taken_+%": {
+    "stats": ["chaos_damage_taken_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% увеличение получаемого урона хаосом",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% уменьшение получаемого урона хаосом",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "damage_taken_+%_while_es_full": {
+    "stats": ["damage_taken_+%_while_es_full"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "%1%%% увеличение получаемого урона при полном энергетическом щите",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "%1%%% уменьшение получаемого урона при полном энергетическом щите",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "degen_effect_+%": {
+    "stats": ["degen_effect_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% увеличение получаемого постепенного урона",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% уменьшение получаемого постепенного урона",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
   "physical_ranged_attack_damage_taken_+": {
     "stats": ["physical_ranged_attack_damage_taken_+"],
     "translations": [
@@ -15630,6 +16221,46 @@
         "matchers": ["#"],
         "text": "%1$+d физического урона, получаемого от атак снарядами",
         "formatters": []
+      }
+    ]
+  },
+  "damage_taken_+%_from_skeletons": {
+    "stats": ["damage_taken_+%_from_skeletons"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% увеличение урона, получаемого от скелетов",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% уменьшение урона, получаемого от скелетов",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "damage_taken_+%_from_ghosts": {
+    "stats": ["damage_taken_+%_from_ghosts"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% увеличение урона, получаемого от призраков",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% уменьшение урона, получаемого от призраков",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
       }
     ]
   },
@@ -17544,6 +18175,16 @@
       }
     ]
   },
+  "additional_block_chance_%_for_1_second_every_5_seconds": {
+    "stats": ["additional_block_chance_%_for_1_second_every_5_seconds"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "%1%%% дополнительный шанс блока на 1 секунду каждые 5 секунд",
+        "formatters": []
+      }
+    ]
+  },
   "with_bow_additional_block_%": {
     "stats": ["with_bow_additional_block_%"],
     "translations": [
@@ -18088,6 +18729,36 @@
       }
     ]
   },
+  "gain_phasing_while_at_maximum_frenzy_charges": {
+    "stats": ["gain_phasing_while_at_maximum_frenzy_charges"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "Вы получаете Форму призрака при максимуме зарядов ярости",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextPhasing"
+          }
+        ]
+      }
+    ]
+  },
+  "gain_phasing_while_you_have_onslaught": {
+    "stats": ["gain_phasing_while_you_have_onslaught"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "Вы получаете Форму призрака, находясь в Боевом раже",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextPhasing"
+          }
+        ]
+      }
+    ]
+  },
   "gain_phasing_for_4_seconds_on_begin_es_recharge": {
     "stats": ["gain_phasing_for_4_seconds_on_begin_es_recharge"],
     "translations": [
@@ -18125,6 +18796,26 @@
         "matchers": ["#"],
         "text": "%1%%% повышение редкости находимых предметов в Форме призрака",
         "formatters": []
+      }
+    ]
+  },
+  "mana_regeneration_rate_+%_while_phasing": {
+    "stats": ["mana_regeneration_rate_+%_while_phasing"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% повышение скорости регенерации маны в Форме призрака",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% снижение скорости регенерации маны в Форме призрака",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
       }
     ]
   },
@@ -20221,6 +20912,21 @@
       }
     ]
   },
+  "local_display_aura_base_chaos_damage_to_deal_per_minute": {
+    "stats": ["local_display_aura_base_chaos_damage_to_deal_per_minute"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "Наносит %1% урона хаосом в секунду ближайшим врагам",
+        "formatters": [
+          {
+            "id": "per_minute_to_per_second_0dp",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
   "deaths_oath_debuff_on_kill_duration_ms": {
     "stats": [
       "deaths_oath_debuff_on_kill_duration_ms",
@@ -20315,6 +21021,27 @@
       {
         "matchers": ["#"],
         "text": "%1%%% от урона берется сначала из маны вместо здоровья",
+        "formatters": []
+      }
+    ]
+  },
+  "local_display_aura_damage_+%": {
+    "stats": ["local_display_aura_damage_+%"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "Вы и ближайшие союзники получаете %1%%% увеличение урона",
+        "formatters": []
+      }
+    ]
+  },
+  "local_display_aura_curse_effect_on_self_+%": {
+    "stats": ["local_display_aura_curse_effect_on_self_+%"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "Ближайшие враги получают %1%%% усиление эффекта проклятий на них",
         "formatters": []
       }
     ]
@@ -20437,6 +21164,26 @@
         "matchers": [[1, "#"]],
         "text": "%1$+d маны за каждый удар по вам",
         "formatters": []
+      }
+    ]
+  },
+  "elemental_reflect_damage_taken_+%": {
+    "stats": ["elemental_reflect_damage_taken_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% увеличение получаемого отражённого урона от стихий",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% уменьшение получаемого отражённого урона от стихий",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
       }
     ]
   },
@@ -21942,6 +22689,46 @@
       }
     ]
   },
+  "local_unique_flask_cannot_recover_life_while_healing": {
+    "stats": ["local_unique_flask_cannot_recover_life_while_healing"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "Никакое другое восстановление здоровья не применяется во время действия этого флакона",
+        "formatters": []
+      }
+    ]
+  },
+  "local_unique_flask_recover_%_maximum_life_when_effect_reaches_duration": {
+    "stats": [
+      "local_unique_flask_recover_%_maximum_life_when_effect_reaches_duration"
+    ],
+    "translations": [
+      {
+        "matchers": [[1, 99]],
+        "text":
+          "Восстанавливает %1%%% от максимума здоровья к окончанию действия эффекта флакона",
+        "formatters": []
+      },
+      {
+        "matchers": [[100, "#"]],
+        "text":
+          "Восстанавливает максимум здоровья к окончанию действия эффекта флакона",
+        "formatters": []
+      }
+    ]
+  },
+  "local_unique_flask_no_mana_cost_while_healing": {
+    "stats": ["local_unique_flask_no_mana_cost_while_healing"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "Ваши умения не требуют маны во время действия эффекта флакона",
+        "formatters": []
+      }
+    ]
+  },
   "shock_X_nearby_enemies_for_2_s_on_killing_shocked_enemy": {
     "stats": ["shock_X_nearby_enemies_for_2_s_on_killing_shocked_enemy"],
     "translations": [
@@ -21969,6 +22756,22 @@
           {
             "id": "reminderstring",
             "arg": "ReminderTextIgniteNonHitNoDuration"
+          }
+        ]
+      }
+    ]
+  },
+  "gain_rare_monster_mods_on_kill_ms": {
+    "stats": ["gain_rare_monster_mods_on_kill_ms"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "При убийстве редкого монстра вы получаете все его свойства на %1% секунд",
+        "formatters": [
+          {
+            "id": "milliseconds_to_seconds",
+            "arg": 1
           }
         ]
       }
@@ -22114,6 +22917,16 @@
             "arg": 1
           }
         ]
+      }
+    ]
+  },
+  "unique_lose_all_endurance_charges_when_hit": {
+    "stats": ["unique_lose_all_endurance_charges_when_hit"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "Вы теряете все заряды выносливости при получении удара",
+        "formatters": []
       }
     ]
   },
@@ -23006,6 +23819,16 @@
       }
     ]
   },
+  "local_display_aura_damage_+%_allies_only": {
+    "stats": ["local_display_aura_damage_+%_allies_only"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "Ближайшие союзники получают %1%%% увеличение урона",
+        "formatters": []
+      }
+    ]
+  },
   "minion_attack_speed_+%": {
     "stats": ["minion_attack_speed_+%"],
     "translations": [
@@ -23497,6 +24320,22 @@
         "matchers": [[1, "#"]],
         "text":
           "Дарует %1%%% физического урона в виде дополнительного урона от случайной стихии",
+        "formatters": []
+      }
+    ]
+  },
+  "local_unique_flask_instantly_recovers_%_maximum_life": {
+    "stats": ["local_unique_flask_instantly_recovers_%_maximum_life"],
+    "translations": [
+      {
+        "matchers": [[1, 99]],
+        "text":
+          "Восстанавливает %1%%% от вашего максимума здоровья при использовании",
+        "formatters": []
+      },
+      {
+        "matchers": [[100, "#"]],
+        "text": "Восстанавливает полное здоровье при использовании",
         "formatters": []
       }
     ]
@@ -24249,6 +25088,46 @@
             "arg": 1
           }
         ]
+      }
+    ]
+  },
+  "reduce_enemy_elemental_resistance_%": {
+    "stats": ["reduce_enemy_elemental_resistance_%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Урон пробивает %1%%% сопротивления стихиям",
+        "formatters": []
+      }
+    ]
+  },
+  "base_reduce_enemy_fire_resistance_%": {
+    "stats": ["base_reduce_enemy_fire_resistance_%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Урон пробивает %1%%% сопротивления огню",
+        "formatters": []
+      }
+    ]
+  },
+  "base_reduce_enemy_cold_resistance_%": {
+    "stats": ["base_reduce_enemy_cold_resistance_%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Урон пробивает %1%%% сопротивления холоду",
+        "formatters": []
+      }
+    ]
+  },
+  "base_reduce_enemy_lightning_resistance_%": {
+    "stats": ["base_reduce_enemy_lightning_resistance_%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Урон пробивает %1%%% сопротивления молнии",
+        "formatters": []
       }
     ]
   },
@@ -26463,6 +27342,19 @@
       }
     ]
   },
+  "local_unique_jewel_split_arrow_fires_additional_arrow_with_x_dex_in_radius": {
+    "stats": [
+      "local_unique_jewel_split_arrow_fires_additional_arrow_with_x_dex_in_radius"
+    ],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "Расколотая стрела будет выпускать дополнительную стрелу за %1$d ловкости в радиусе",
+        "formatters": []
+      }
+    ]
+  },
   "split_arrow_number_of_additional_arrows": {
     "stats": ["split_arrow_number_of_additional_arrows"],
     "translations": [
@@ -26903,6 +27795,28 @@
         "matchers": ["#"],
         "text": "%1$+d%% к множителю критического удара за 1%% шанс блока",
         "formatters": []
+      }
+    ]
+  },
+  "critical_strike_chance_+%_vs_bleeding_enemies": {
+    "stats": ["critical_strike_chance_+%_vs_bleeding_enemies"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "%1%%% повышение шанса критического удара по истекающим кровью врагам",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "%1%%% снижение шанса критического удара по истекающим кровью врагам",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
       }
     ]
   },
@@ -42490,6 +43404,22 @@
       }
     ]
   },
+  "gain_elemental_penetration_for_4_seconds_on_mine_detonation": {
+    "stats": ["gain_elemental_penetration_for_4_seconds_on_mine_detonation"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Урон пробивает %1%%% сопротивления стихиям, если недавно вы взорвали мину",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextRecently"
+          }
+        ]
+      }
+    ]
+  },
   "base_cold_immunity": {
     "stats": ["base_cold_immunity"],
     "translations": [
@@ -44581,6 +45511,514 @@
       }
     ]
   },
+  "attack_and_cast_speed_+%_while_on_consecrated_ground": {
+    "stats": ["attack_and_cast_speed_+%_while_on_consecrated_ground"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "%1%%% повышение скорости атаки и сотворения чар на освященной земле",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "%1%%% снижение скорости атаки и сотворения чар на освященной земле",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "mine_arming_speed_+%": {
+    "stats": ["mine_arming_speed_+%"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% повышение скорости установки мин",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% снижение скорости установки мин",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "flasks_%_chance_to_not_consume_charges": {
+    "stats": ["flasks_%_chance_to_not_consume_charges"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "%1%%% шанс, что ваши флаконы не будут расходовать заряды",
+        "formatters": []
+      }
+    ]
+  },
+  "physical_damage_+%_for_4_seconds_when_you_block_a_unique_enemy_hit": {
+    "stats": [
+      "physical_damage_+%_for_4_seconds_when_you_block_a_unique_enemy_hit"
+    ],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "%1%%% увеличение физического урона, если недавно вы заблокировали удар от уникального врага",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextRecently"
+          }
+        ]
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "%1%%% уменьшение физического урона, если недавно вы заблокировали удар от уникального врага",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextRecently"
+          }
+        ]
+      }
+    ]
+  },
+  "your_consecrated_ground_grants_damage_+%": {
+    "stats": ["your_consecrated_ground_grants_damage_+%"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "Созданная вами освященная земля дарует %1%%% увеличение урона вам и вашим союзникам",
+        "formatters": []
+      }
+    ]
+  },
+  "attack_speed_+%_if_enemy_not_killed_recently": {
+    "stats": ["attack_speed_+%_if_enemy_not_killed_recently"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "%1%%% повышение скорости атаки, если вы недавно не совершали убийство",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextRecently"
+          }
+        ]
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "%1%%% снижение скорости атаки, если вы недавно не совершали убийство",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextRecently"
+          }
+        ]
+      }
+    ]
+  },
+  "physical_damage_+%_while_at_maximum_frenzy_charges_final": {
+    "stats": ["physical_damage_+%_while_at_maximum_frenzy_charges_final"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "На %1%%% больше физического урона при максимуме зарядов ярости",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "На %1%%% меньше физического урона при максимуме зарядов ярости",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "physical_damage_taken_+%_while_at_maximum_endurance_charges": {
+    "stats": ["physical_damage_taken_+%_while_at_maximum_endurance_charges"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "%1%%% увеличение получаемого физического урона при максимуме зарядов выносливости",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "%1%%% уменьшение получаемого физического урона при максимуме зарядов выносливости",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "totem_damage_leeched_as_life_to_you_permyriad": {
+    "stats": ["totem_damage_leeched_as_life_to_you_permyriad"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "%1%%% от урона, нанесенного вашими тотемами, похищается вами в виде здоровья",
+        "formatters": [
+          {
+            "id": "divide_by_one_hundred",
+            "arg": 1
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextLifeLeech"
+          }
+        ]
+      }
+    ]
+  },
+  "attack_speed_+%_per_200_accuracy_rating": {
+    "stats": ["attack_speed_+%_per_200_accuracy_rating"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% повышение скорости атаки за 200 меткости",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% снижение скорости атаки за 200 меткости",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "gain_maximum_endurance_charges_on_endurance_charge_gained_%_chance": {
+    "stats": [
+      "gain_maximum_endurance_charges_on_endurance_charge_gained_%_chance"
+    ],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "%1%%% шанс, что при получении зарядов выносливости, вы получите максимум зарядов выносливости",
+        "formatters": []
+      }
+    ]
+  },
+  "elementalist_skill_area_of_effect_+%_for_4_seconds_every_10_seconds": {
+    "stats": [
+      "elementalist_skill_area_of_effect_+%_for_4_seconds_every_10_seconds"
+    ],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Каждые 10 секунд на 4 секунды получает %1%%% увеличение области действия умений, действующих по области",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Каждые 10 секунд на 4 секунды получает %1%%% уменьшение области действия умений, действующих по области",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "physical_damage_%_to_add_as_chaos_vs_bleeding_enemies": {
+    "stats": ["physical_damage_%_to_add_as_chaos_vs_bleeding_enemies"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "Наносит %1%%% от физического урона по истекающим кровью врагам в виде\\nдополнительного урона хаосом",
+        "formatters": []
+      }
+    ]
+  },
+  "elemental_resistances_+%_for_you_and_allies_affected_by_your_auras": {
+    "stats": [
+      "elemental_resistances_+%_for_you_and_allies_affected_by_your_auras"
+    ],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Находясь под действием ваших аур, вы и ваши союзники получаете %1$+d%% к сопротивлению всем стихиям",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Находясь под действием ваших аур, вы и ваши союзники получаете %1$+d%% к сопротивлению всем стихиям",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "phasing_%_for_3_seconds_on_trap_triggered_by_an_enemy": {
+    "stats": [
+      "phasing_%_for_3_seconds_on_trap_triggered_by_an_enemy",
+      "phasing_on_trap_triggered_by_an_enemy_ms"
+    ],
+    "translations": [
+      {
+        "matchers": [["#", 99], 0],
+        "text":
+          "%1%%% шанс войти в Форму призрака на 3 секунды, если вашу ловушку активирует враг",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextPhasing"
+          }
+        ]
+      },
+      {
+        "matchers": [[100, "#"], 0],
+        "text":
+          "Форма призрака на 3 секунды, если вашу ловушку активирует враг",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextPhasing"
+          }
+        ]
+      },
+      {
+        "matchers": [["#", 99], [1, "#"]],
+        "text":
+          "%1%%% шанс войти в Форму призрака на %2% секунды, если вашу ловушку активирует враг",
+        "formatters": [
+          {
+            "id": "milliseconds_to_seconds",
+            "arg": 2
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextPhasing"
+          }
+        ]
+      },
+      {
+        "matchers": [[100, "#"], [1, "#"]],
+        "text":
+          "Форма призрака на %2% секунды, если вашу ловушку активирует враг",
+        "formatters": [
+          {
+            "id": "milliseconds_to_seconds",
+            "arg": 2
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextPhasing"
+          }
+        ]
+      }
+    ]
+  },
+  "gain_x_life_on_trap_triggered_by_an_enemy": {
+    "stats": ["gain_x_life_on_trap_triggered_by_an_enemy"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "Восстанавливает %1% здоровья, если вашу ловушку активирует враг",
+        "formatters": []
+      }
+    ]
+  },
+  "gain_x_es_on_trap_triggered_by_an_enemy": {
+    "stats": ["gain_x_es_on_trap_triggered_by_an_enemy"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text":
+          "Восстанавливает %1% энергетического щита, если вашу ловушку активирует враг",
+        "formatters": []
+      }
+    ]
+  },
+  "attack_skills_additional_totems_allowed": {
+    "stats": ["attack_skills_additional_totems_allowed"],
+    "translations": [
+      {
+        "matchers": [1],
+        "text": "Умения атаки могут установить 1 дополнительный тотем",
+        "formatters": []
+      },
+      {
+        "matchers": [[2, "#"]],
+        "text": "Умения атаки могут установить дополнительных тотемов: %1%",
+        "formatters": []
+      }
+    ]
+  },
+  "poison_from_critical_strikes_damage_+%_final": {
+    "stats": ["poison_from_critical_strikes_damage_+%_final"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "Яд от критических ударов наносит на %1%%% больше урона",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "Яд от критических ударов наносит на %1%%% меньше урона",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "bleed_damage_+%_vs_maimed_enemies_final": {
+    "stats": ["bleed_damage_+%_vs_maimed_enemies_final"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Кровотечение на изувеченных врагах наносит на %1%%% больше урона",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Кровотечение на изувеченных врагах наносит на %1%%% меньше урона",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "flask_charges_+%_from_enemies_with_status_ailments": {
+    "stats": ["flask_charges_+%_from_enemies_with_status_ailments"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Вы получаете %1%%% увеличение зарядов флакона за убийство врагов,\\nнаходящихся под действием стихийных состояний",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextElementalStatusAilments"
+          }
+        ]
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Вы получаете %1%%% уменьшение зарядов флакона за убийство врагов,\\nнаходящихся под действием стихийных состояний",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextElementalStatusAilments"
+          }
+        ]
+      }
+    ]
+  },
+  "armour_and_evasion_+%_while_fortified": {
+    "stats": ["armour_and_evasion_+%_while_fortified"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% увеличение брони и уклонения при Укреплении",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% уменьшение брони и уклонения при Укреплении",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "melee_damage_+%_while_fortified": {
+    "stats": ["melee_damage_+%_while_fortified"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text": "%1%%% увеличение урона в ближнем бою при Укреплении",
+        "formatters": []
+      },
+      {
+        "matchers": [["#", -1]],
+        "text": "%1%%% уменьшение урона в ближнем бою при Укреплении",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          }
+        ]
+      }
+    ]
+  },
+  "desecrate_creates_X_additional_corpses": {
+    "stats": ["desecrate_creates_X_additional_corpses"],
+    "translations": [
+      {
+        "matchers": [1],
+        "text": "Осквернение создает дополнительный труп",
+        "formatters": []
+      },
+      {
+        "matchers": [[2, "#"]],
+        "text": "Осквернение создает дополнительных трупов: %1%",
+        "formatters": []
+      }
+    ]
+  },
   "damage_+%_if_you_have_consumed_a_corpse_recently": {
     "stats": ["damage_+%_if_you_have_consumed_a_corpse_recently"],
     "translations": [
@@ -44651,6 +46089,45 @@
           {
             "id": "reminderstring",
             "arg": "ReminderTextIntimidate"
+          }
+        ]
+      }
+    ]
+  },
+  "taunted_enemies_damage_+%_final_vs_non_taunt_target": {
+    "stats": ["taunted_enemies_damage_+%_final_vs_non_taunt_target"],
+    "translations": [
+      {
+        "matchers": [[1, "#"]],
+        "text":
+          "Спровоцированные вами враги наносят на %1%%% больше урона от ударов и состояний по другим целям",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextTaunt"
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextDamagingAilments"
+          }
+        ]
+      },
+      {
+        "matchers": [["#", -1]],
+        "text":
+          "Спровоцированные вами враги наносят на %1%%% меньше урона от ударов и состояний по другим целям",
+        "formatters": [
+          {
+            "id": "negate",
+            "arg": 1
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextTaunt"
+          },
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextDamagingAilments"
           }
         ]
       }
@@ -56454,6 +57931,21 @@
           {
             "id": "reminderstring",
             "arg": "ReminderTextKeystoneIronReflexes"
+          }
+        ]
+      }
+    ]
+  },
+  "keystone_mana_shield": {
+    "stats": ["keystone_mana_shield"],
+    "translations": [
+      {
+        "matchers": ["#"],
+        "text": "Разум превыше материи",
+        "formatters": [
+          {
+            "id": "reminderstring",
+            "arg": "ReminderTextKeystoneMindOverMatter"
           }
         ]
       }
