@@ -1,4 +1,4 @@
-import { StatLocaleData } from '../../types/StatDescription';
+import { StatLocaleData } from '../types/StatDescription';
 
 const english: StatLocaleData = {
   'weapon_physical_damage_+%': {
@@ -101,6 +101,41 @@ const english: StatLocaleData = {
         matchers: ['#'],
         text: '%1$+d to maximum Life',
         formatters: []
+      }
+    ]
+  },
+  'base_chance_to_freeze_%': {
+    stats: ['base_chance_to_freeze_%', 'always_freeze'],
+    translations: [
+      {
+        matchers: ['#', [1, '#']],
+        text: 'Always Freezes Enemies on Hit',
+        formatters: [
+          {
+            id: 'reminderstring',
+            arg: 'ReminderTextFreeze'
+          }
+        ]
+      },
+      {
+        matchers: [[100, '#'], 0],
+        text: 'Always Freeze',
+        formatters: [
+          {
+            id: 'reminderstring',
+            arg: 'ReminderTextFreeze'
+          }
+        ]
+      },
+      {
+        matchers: [[1, 99], 0],
+        text: '%1%%% chance to Freeze',
+        formatters: [
+          {
+            id: 'reminderstring',
+            arg: 'ReminderTextFreeze'
+          }
+        ]
       }
     ]
   }

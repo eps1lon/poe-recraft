@@ -99,12 +99,12 @@ function translate(
     .map(stat_id => {
       const stat = provided.get(stat_id);
 
-      // since stats[] is used as an aggregator and alias collection
-      // we can't throw here
-      // it will still throw if the stat was actually required and not an
-      // alias since it wont be marked as translated
+      // default the value to 0
       if (stat === undefined) {
-        return null;
+        return {
+          id: stat_id,
+          value: 0
+        };
       } else {
         return stat;
       }

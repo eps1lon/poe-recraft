@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v0.1.3...HEAD)
+### Changed
+- `formatStats` now defaults to `0` for stats not provided instead of throwing.
+  This was necessary to translate e.g. `chance_to_freeze` on Wands which didn't
+  include `always_freeze`. By defaulting to 0 we are able to translate it but 
+  allow translations like `5 - 0 added Physical Damage` when omitting 
+  `local_maximum_added_physical_damage`.
 
 ## [0.1.3](https://github.com/eps1lon/poe-mods/compare/v0.1.2...v0.1.3) (2017-20-03)
 ### Fixed

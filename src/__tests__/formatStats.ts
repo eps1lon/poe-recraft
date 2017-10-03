@@ -73,15 +73,6 @@ it('should throw if something was not translated', () => {
 });
 
 it('should translate douple stat lines', () => {
-  expect(() =>
-    formatStats(
-      [{ id: 'attack_minimum_added_physical_damage', value: 1 }],
-      locale
-    )
-  ).toThrow(
-    "matching translation not found for 'attack_minimum_added_physical_damage'"
-  );
-
   expect(
     formatStats(
       [
@@ -118,7 +109,7 @@ it('should return the id with a hint for no_desc stats', () => {
   ]);
 });
 
-it('should translate collections that threw in production', () => {
+it('should translate production bug 1', () => {
   // this one only threw because the translation was not provided which was
   // fixed in 8d1cd8f8a1433a843e36250f893e64c72e98a005
   expect(
@@ -137,4 +128,26 @@ it('should translate collections that threw in production', () => {
     '+51 to Strength',
     '4 Life Regenerated per second'
   ]);
+});
+
+it('should translate if not enough stats are provided by defaulting to 0', () => {
+  // this is not a behavior that I like but to which I have to conform since
+  // the descriptions are provided that way in the .txt
+  // adding exception rules to every stat for which we default to 0 is just
+  // not a viable option
+
+  expect(
+    formatStats(
+      [{ id: 'attack_minimum_added_physical_damage', value: 1 }],
+      locale
+    )
+  ).toEqual(['Adds 1 to 0 Physical Damage to Attacks']);
+
+  expect(
+    formatStats([{ id: 'always_freeze', value: 1 }], locale).sort()
+  ).toEqual(['Always Freezes Enemies on Hit']);
+
+  expect(
+    formatStats([{ id: 'base_chance_to_freeze_%', value: 12 }], locale).sort()
+  ).toEqual(['12% chance to Freeze']);
 });
