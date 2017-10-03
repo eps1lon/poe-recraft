@@ -126,13 +126,17 @@ System.register("translate/printf", ["localize/formatters"], function (exports_4
     function prepareParams(params, formatters) {
         const prepared = [...params];
         formatters.forEach((formatter, i) => {
-            const target_param = params[+formatter.arg - 1];
-            if (target_param !== undefined) {
-                prepared[+formatter.arg - 1] = formatters_1.default(formatter.id)(target_param);
+            if (typeof formatter.arg === 'number') {
+                const target_param = params[+formatter.arg - 1];
+                if (target_param !== undefined) {
+                    prepared[+formatter.arg - 1] = formatters_1.default(formatter.id)(target_param);
+                }
+                else {
+                    throw new Error(`no param given for formatter '${formatter.id}'`);
+                }
             }
-            else {
-                throw new Error(`no param given for formatter ${i}`);
-            }
+            // nothing to to for strings. used in remindestring arg which doesnt alter
+            // the params
         });
         return prepared;
     }
@@ -180,7 +184,7 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
             if (description !== undefined) {
                 const translation = translate(description, stats);
                 if (translation === undefined) {
-                    throw new Error(`matching translation not found for ${stat.id}`);
+                    throw new Error(`matching translation not found for '${stat.id}'`);
                 }
                 else {
                     // mark as translated
@@ -202,13 +206,21 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
             return NO_DESCRIPTION;
         }
         // intersect the required stat_ids from the desc with the provided
-        const required_stats = stats.map(stat_id => {
+        const required_stats = stats
+            .map(stat_id => {
             const stat = provided.get(stat_id);
+            // since stats[] is used as an aggregator and alias collection
+            // we can't throw here
+            // it will still throw if the stat was actually required and not an
+            // alias since it wont be marked as translated
             if (stat === undefined) {
-                throw new Error(`stat '${stat_id}' required for translation not provided`);
+                return null;
             }
-            return stat;
-        });
+            else {
+                return stat;
+            }
+        })
+            .filter((stat) => stat !== null);
         const translation = matchingTranslation(translations, required_stats);
         if (translation === undefined) {
             return undefined;
