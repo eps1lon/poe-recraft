@@ -184,15 +184,23 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
                 }
                 else {
                     // mark as translated
-                    description.stats.forEach(stat_id => stats.delete(stat_id));
-                    lines.push(translation);
+                    description.stats.forEach(translated_id => stats.delete(translated_id));
+                    if (translation === NO_DESCRIPTION) {
+                        lines.push(`${stat_id} (hidden)`);
+                    }
+                    else {
+                        lines.push(translation);
+                    }
                 }
             }
         }
         return lines;
     }
     function translate(description, provided) {
-        const { stats, translations } = description;
+        const { stats, no_description, translations } = description;
+        if (no_description === true) {
+            return NO_DESCRIPTION;
+        }
         // intersect the required stat_ids from the desc with the provided
         const required_stats = stats.map(stat_id => {
             const stat = provided.get(stat_id);
@@ -213,7 +221,7 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
         const args = stats.map(({ value }) => value);
         return translations.find(translation => match_1.matches(translation.matchers, args));
     }
-    var match_1, printf_1;
+    var match_1, printf_1, NO_DESCRIPTION;
     return {
         setters: [
             function (match_1_1) {
@@ -224,6 +232,7 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
             }
         ],
         execute: function () {
+            NO_DESCRIPTION = 'NO_DESCRIPTION';
         }
     };
 });

@@ -4,7 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v0.1.1...HEAD)
+## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v0.1.2...HEAD)
+
+## [0.1.2](https://github.com/eps1lon/poe-mods/compare/v0.1.1...v0.1.2) (2017-20-03)
+### Added
+- Some missing translations in `locale-data`. They were missing because of some
+  rogue whitespace in the descriptions.txt
 ### Changed
 - Hidden stats are now returned as `{stat_id} (hidden)` instead of throwing
 

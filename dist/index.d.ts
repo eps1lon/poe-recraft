@@ -5,6 +5,7 @@ declare module "types/StatDescription" {
     export interface Description {
         stats: string[];
         translations: Translation[];
+        no_description?: boolean;
     }
     export interface ParsedDescriptions {
         [key: string]: LanguageDescription;
