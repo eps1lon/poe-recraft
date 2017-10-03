@@ -1,7 +1,7 @@
 import { StatLocaleData } from '../types/StatDescription';
 
 import data from '../__fixtures__/english';
-import formatStats from '../formatStats';
+import formatStats, { Fallback } from '../formatStats';
 
 it('should translate single stat line', () => {
   expect(() =>
@@ -163,4 +163,31 @@ it('can be configured to use global local data', () => {
   expect(
     formatStats([{ id: 'base_chance_to_freeze_%', value: 12 }]).sort()
   ).toEqual(['12% chance to Freeze']);
+});
+
+it('should support id fallback', () => {
+  expect(
+    formatStats([{ id: 'from_armour_movement_speed_+%', value: -3 }], {
+      data,
+      fallback: Fallback.id
+    })
+  ).toEqual(['from_armour_movement_speed_+%']);
+});
+
+it('should support skipping fallback', () => {
+  expect(
+    formatStats([{ id: 'from_armour_movement_speed_+%', value: -3 }], {
+      data,
+      fallback: Fallback.skip
+    })
+  ).toEqual([]);
+});
+
+it('should throw if we provide an unrecognize fallback', () => {
+  expect(() =>
+    formatStats([{ id: 'from_armour_movement_speed_+%', value: -3 }], {
+      data,
+      fallback: 345678
+    })
+  ).toThrowError("unrecognized fallback type '345678'");
 });

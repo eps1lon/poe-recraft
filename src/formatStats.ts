@@ -11,25 +11,38 @@ export type Stat = {
   id: string;
   value: number;
 };
-export type Options = {
+
+export type OptionalOptions = {
   data?: StatLocaleData;
+  fallback?: Fallback;
 };
 // return type
 export type TranslatedStats = string[];
 
+export enum Fallback {
+  throw, // throw if no stat was found
+  id,
+  skip
+}
+export type Options = {
+  data?: StatLocaleData;
+  fallback: Fallback;
+};
+
 const initial_options: Options = {
-  data: undefined
+  data: undefined,
+  fallback: Fallback.throw
 };
 
 export interface FormatStats {
-  (stats: Stat[], options?: Options): TranslatedStats;
+  (stats: Stat[], options?: OptionalOptions): TranslatedStats;
   options: Options;
-  configure(options: Options): void;
+  configure(options: OptionalOptions): void;
 }
 
 const formatStats: FormatStats = Object.assign(
-  (stats: Stat[], options: Options = {}): TranslatedStats => {
-    const { data } = Object.assign({}, formatStats.options, options);
+  (stats: Stat[], options: OptionalOptions = {}): TranslatedStats => {
+    const { data, fallback } = Object.assign({}, formatStats.options, options);
 
     if (data === undefined) {
       throw new Error(
@@ -50,18 +63,14 @@ const formatStats: FormatStats = Object.assign(
       ...formatWithFinder(untranslated, id => findDescription(id, data))
     );
 
-    if (untranslated.size > 0) {
-      throw new Error(
-        'no descriptions found for ' + Array.from(untranslated.keys()).join(',')
-      );
-    }
+    lines.push(...formatWithFallback(untranslated, fallback));
 
     return lines;
   },
   {
     options: initial_options,
-    configure: (options: Options) => {
-      formatStats.options = options;
+    configure: (options: OptionalOptions) => {
+      formatStats.options = Object.assign({}, formatStats.options, options);
     }
   }
 );
@@ -157,4 +166,27 @@ function matchingTranslation(translations: Translation[], stats: Stat[]) {
   const args = stats.map(({ value }) => value);
 
   return translations.find(translation => matches(translation.matchers, args));
+}
+
+function formatWithFallback(
+  stats: Map<string, Stat>,
+  fallback: Fallback
+): string[] {
+  if (fallback === Fallback.throw) {
+    if (stats.size > 0) {
+      throw new Error(
+        'no descriptions found for ' + Array.from(stats.keys()).join(',')
+      );
+    } else {
+      return [];
+    }
+  } else if (fallback === Fallback.id) {
+    return Array.from(stats.keys());
+  } else if (fallback === Fallback.skip) {
+    return [];
+  } else {
+    // should ts recognize that this is unreachable code? enums can prob
+    // be extended at runtime an therfore somebody could mess with them
+    throw new Error(`unrecognized fallback type '${fallback}'`);
+  }
 }

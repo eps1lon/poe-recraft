@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v0.1.3...HEAD)
+### Added
+- `formatStats` now has a `fallback` option. Possible options can be found in
+  the documentation.
 ### Changed
 - `formatStats` now defaults to `0` for stats not provided instead of throwing.
   This was necessary to translate e.g. `chance_to_freeze` on Wands which didn't
