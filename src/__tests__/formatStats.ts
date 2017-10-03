@@ -54,6 +54,11 @@ const locale: StatLocaleData = {
         ]
       }
     ]
+  },
+  item_drop_slots: {
+    stats: ['item_drop_slots'],
+    translations: [],
+    no_description: true
   }
 };
 
@@ -163,4 +168,11 @@ it('should translate collections of stats', () => {
   expect(translated).toContain('Adds 20 to 300 Physical Damage to Attacks');
   expect(translated).toContain('Suffixes Cannot Be Changed');
   expect(translated).toContain('25% increased Physical Damage with Weapons');
+});
+
+// they are save in the .txt with `no_description id`
+it('should return the id with a hint for no_desc stats', () => {
+  expect(formatStats([{ id: 'item_drop_slots', value: 3 }], locale)).toEqual([
+    'item_drop_slots (hidden)'
+  ]);
 });

@@ -1,10 +1,10 @@
+import { matches } from './translate/match';
+import printf from './translate/printf';
 import {
   Description,
   StatLocaleData,
   Translation
 } from './types/StatDescription';
-import { matches } from './translate/match';
-import printf from './translate/printf';
 
 export type Stat = {
   id: string;
@@ -51,6 +51,8 @@ function findDescription(stat_id: string, locale_data: StatLocaleData) {
   );
 }
 
+const NO_DESCRIPTION = 'NO_DESCRIPTION';
+
 // stats will get mutated
 function formatWithFinder(
   stats: Map<string, Stat>,
@@ -68,8 +70,13 @@ function formatWithFinder(
         throw new Error(`matching translation not found for ${stat.id}`);
       } else {
         // mark as translated
-        description.stats.forEach(stat_id => stats.delete(stat_id));
-        lines.push(translation);
+        description.stats.forEach(translated_id => stats.delete(translated_id));
+
+        if (translation === NO_DESCRIPTION) {
+          lines.push(`${stat_id} (hidden)`);
+        } else {
+          lines.push(translation);
+        }
       }
     }
   }
@@ -81,7 +88,11 @@ function translate(
   description: Description,
   provided: Map<string, Stat>
 ): string | undefined {
-  const { stats, translations } = description;
+  const { stats, no_description, translations } = description;
+
+  if (no_description === true) {
+    return NO_DESCRIPTION;
+  }
 
   // intersect the required stat_ids from the desc with the provided
   const required_stats = stats.map(stat_id => {
