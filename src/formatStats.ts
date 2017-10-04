@@ -1,4 +1,4 @@
-import { matches } from './translate/match';
+import { Match, matches } from './translate/match';
 import printf from './translate/printf';
 import {
   Description,
@@ -167,7 +167,11 @@ function translate(
 function matchingTranslation(translations: Translation[], stats: Stat[]) {
   const args = stats.map(({ value }) => value);
 
-  return translations.find(translation => matches(translation.matchers, args));
+  return translations.find(translation => {
+    return matches(args, translation.matchers).every(
+      match => match === Match.subset || match === Match.exact
+    );
+  });
 }
 
 function formatWithFallback(
