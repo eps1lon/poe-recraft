@@ -7,6 +7,7 @@ import ReactTable from 'react-table';
 import { disabled } from 'util/mods';
 import FlagsTooltip from './FlagsTooltip';
 import { type GeneratorDetails } from './ModsTable';
+import Stats from '../poe/Stats';
 
 export type Props = {
   className?: string,
@@ -38,7 +39,15 @@ const UngroupedMods = (props: Props) => {
         return (
           <div>
             <span id={id}>
-              {details.mod.props.stats.map(({ id }) => id).join(',')}
+              <Stats
+                className="stats"
+                stats={details.mod
+                  .statsJoined()
+                  .map(stat => ({
+                    id: stat.props.id,
+                    value: stat.values.asTuple()
+                  }))}
+              />
             </span>
             <FlagsTooltip
               id={id}
