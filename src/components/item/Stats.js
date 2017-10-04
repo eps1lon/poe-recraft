@@ -16,7 +16,7 @@ const Stats = ({ className, stats }: Props) => {
 
     return {
       id,
-      value: values.min
+      value: [values.min, values.max]
     };
   });
 
