@@ -2,8 +2,6 @@
 import { type Item } from 'poe-mods';
 import React from 'react';
 
-import Separator from './Separator';
-
 import ArmourDisplay from './properties/Armour';
 
 type Props = {

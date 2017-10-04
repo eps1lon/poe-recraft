@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import GeneratorPicker from './GeneratorPicker';
 

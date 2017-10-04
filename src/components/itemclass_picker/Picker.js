@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from 'react';
-import { Nav, NavDropdown, DropdownToggle } from 'reactstrap';
+import { NavDropdown, DropdownToggle } from 'reactstrap';
 
 import GroupDropdown from './GroupDropdown';
 
