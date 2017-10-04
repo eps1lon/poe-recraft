@@ -1,5 +1,5 @@
 // @flow
-import type { Item } from 'poe-mods';
+import { Item } from 'poe-mods';
 import type { ReduxActionType } from 'redux-actions';
 import { handleActions } from 'redux-actions';
 
@@ -40,7 +40,7 @@ function setItemHandle(
 ): State {
   return {
     ...state,
-    item: action.payload
+    item: Item.build(action.payload)
   };
 }
 
