@@ -36,3 +36,9 @@ export const toggleGeneratorModal = createAction(
 export type ToggleGeneratorModalAction = ReduxActionType<
   typeof toggleGeneratorModal
 >;
+
+export const toggleBaseItemModal = createAction(
+  'TOGGLE_BASEITEM_MODAL',
+  () => {}
+);
+export type ToggleBaseItemModal = ReduxActionType<typeof toggleBaseItemModal>;

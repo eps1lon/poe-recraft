@@ -11,7 +11,9 @@ import {
   setTableExpanded,
   type SetTableExpandedAction,
   toggleGeneratorModal,
-  type ToggleGeneratorModalAction
+  type ToggleGeneratorModalAction,
+  toggleBaseItemModal,
+  type ToggleBaseItemModal
 } from 'actions/gui';
 
 export type GuiIdent = string;
@@ -36,7 +38,8 @@ export default handleActions(
     [expand.toString()]: expandHandle,
     [toggle.toString()]: toggleHandle,
     [setTableExpanded.toString()]: setTableExpandedHandle,
-    [toggleGeneratorModal.toString()]: toggleGeneratorModalHandle
+    [toggleGeneratorModal.toString()]: toggleGeneratorModalHandle,
+    [toggleBaseItemModal.toString()]: toggleBaseItemModalHandle
   },
   initial
 );
@@ -89,6 +92,19 @@ function toggleGeneratorModalHandle(
     misc: state.misc.set(
       'generator-modal',
       !Boolean(state.misc.get('generator-modal'))
+    )
+  };
+}
+
+function toggleBaseItemModalHandle(
+  state: State,
+  action: ToggleGeneratorModalAction
+): State {
+  return {
+    ...state,
+    misc: state.misc.set(
+      'baseitem-modal',
+      !Boolean(state.misc.get('baseitem-modal'))
     )
   };
 }

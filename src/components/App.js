@@ -4,6 +4,7 @@ import { Nav, NavItem } from 'reactstrap';
 
 import ApplyGenerator from 'containers/ApplyGenerator';
 import AvailableMods from 'containers/AvailableMods';
+import BaseItemModal from 'containers/BaseItemModal';
 import GeneratorModal from 'containers/GeneratorModal';
 import ItemSection from 'containers/ItemSection';
 import ItemclassPicker from 'containers/itemclass_picker/Picker';
@@ -36,6 +37,9 @@ class App extends PureComponent<Props> {
         </span>
         <Nav tabs>
           <ItemclassPicker />
+          <NavItem>
+            <BaseItemModal />
+          </NavItem>
           <NavItem>
             <GeneratorModal />
           </NavItem>
