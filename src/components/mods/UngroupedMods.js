@@ -39,15 +39,7 @@ const UngroupedMods = (props: Props) => {
         return (
           <div>
             <span id={id}>
-              <Stats
-                className="stats"
-                stats={details.mod
-                  .statsJoined()
-                  .map(stat => ({
-                    id: stat.props.id,
-                    value: stat.values.asTuple()
-                  }))}
-              />
+              <Stats className="stats" stats={details.mod.statsJoined()} />
             </span>
             <FlagsTooltip
               id={id}

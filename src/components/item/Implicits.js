@@ -3,7 +3,7 @@ import { type Item } from 'poe-mods';
 import React from 'react';
 
 import Separator from './Separator';
-import Stats from './Stats';
+import Stats from '../poe/Stats';
 
 type Props = {
   item: Item
@@ -17,10 +17,9 @@ const Implicits = ({ item }: Props) => {
   } else {
     return [
       <Separator key="sep" />,
-      // $FlowFixMe no it's not
       <Stats
         key="stats"
-        stats={implicits.stats()}
+        stats={Object.values(implicits.stats())}
         className="implicit augmented"
       />
     ];
