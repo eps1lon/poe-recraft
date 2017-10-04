@@ -1,86 +1,113 @@
-System.register("types/StatDescription", [], function (exports_1, context_1) {
+System.register("translate/match", [], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
+    // does a value match a matcher
+    function matchesSingle(value, matcher) {
+        return matches([value], [matcher])[0];
+    }
+    exports_1("matchesSingle", matchesSingle);
+    function matches(values, matchers) {
+        return matchers.map((matcher, i) => match(values[i], matcher));
+    }
+    exports_1("matches", matches);
+    // interval matching
+    function match(value, matcher) {
+        if (value === undefined) {
+            return Match.none;
+        }
+        const A = rangeCast(value);
+        const B = rangeCast(matcher);
+        if (A[0] === B[0] && A[1] === B[1]) {
+            return Match.exact;
+        }
+        else if (A[0] >= B[0] && A[1] <= B[1]) {
+            return Match.subset;
+        }
+        else if (A[0] <= B[0] && A[1] >= B[1]) {
+            return Match.superset;
+        }
+        else if (A[0] >= B[0] && A[0] <= B[1] && A[1] > B[1]) {
+            return Match.partial_upper;
+        }
+        else if (A[1] >= B[0] && A[1] <= B[1] && A[0] < B[0]) {
+            return Match.partial_lower;
+        }
+        else {
+            return Match.none;
+        }
+    }
+    function rangeCast(value) {
+        const [lower, upper] = isBoundedRange(value) ? value : [value, value];
+        return [
+            lower === '#' ? Number.NEGATIVE_INFINITY : lower,
+            upper === '#' ? Number.POSITIVE_INFINITY : upper
+        ];
+    }
+    function isBoundedRange(matcher) {
+        return Array.isArray(matcher) && matcher.length === 2;
+    }
+    var Match;
+    return {
+        setters: [],
+        execute: function () {
+            // types of interval overlap
+            (function (Match) {
+                Match[Match["exact"] = 0] = "exact";
+                Match[Match["subset"] = 1] = "subset";
+                Match[Match["superset"] = 2] = "superset";
+                Match[Match["partial_upper"] = 3] = "partial_upper";
+                Match[Match["partial_lower"] = 4] = "partial_lower";
+                Match[Match["none"] = 5] = "none"; // A \minus B = A
+            })(Match || (Match = {}));
+            exports_1("Match", Match);
+        }
+    };
+});
+System.register("types/StatDescription", [], function (exports_2, context_2) {
+    "use strict";
+    var __moduleName = context_2 && context_2.id;
     return {
         setters: [],
         execute: function () {
         }
     };
 });
-System.register("translate/match", [], function (exports_2, context_2) {
+System.register("types/StatValue", [], function (exports_3, context_3) {
     "use strict";
-    var __moduleName = context_2 && context_2.id;
-    function matchesSingle(matcher, arg) {
-        return matches([matcher], [arg]);
-    }
-    exports_2("matchesSingle", matchesSingle);
-    function matches(matchers, args) {
-        return matchers.every((matcher, i) => match(matcher, args[i]));
-    }
-    exports_2("matches", matches);
-    function match(matcher, target) {
-        if (target === undefined) {
-            return false;
-        }
-        if (isRange(matcher)) {
-            return matchRange(matcher, target);
-        }
-        else {
-            return matchValue(matcher, target);
-        }
-    }
-    function matchRange(range, target) {
-        return lowerBound(range[0], target) && upperBound(range[1], target);
-    }
-    function matchValue(value, target) {
-        if (isAnyValue(value)) {
-            return true;
-        }
-        else {
-            return value === target;
-        }
-    }
-    function lowerBound(value, target) {
-        if (isAnyValue(value)) {
-            return true;
-        }
-        else {
-            return value <= target;
-        }
-    }
-    function upperBound(value, target) {
-        if (isAnyValue(value)) {
-            return true;
-        }
-        else {
-            return target <= value;
-        }
-    }
-    function isAnyValue(value) {
-        return value === '#';
-    }
+    var __moduleName = context_3 && context_3.id;
     var isRange;
     return {
         setters: [],
         execute: function () {
-            isRange = (matcher) => Array.isArray(matcher) && matcher.length === 2;
+            exports_3("isRange", isRange = (value) => Array.isArray(value) && value.length === 2);
         }
     };
 });
-System.register("localize/formatters", [], function (exports_3, context_3) {
+System.register("localize/formatters", ["types/StatValue"], function (exports_4, context_4) {
     "use strict";
-    var __moduleName = context_3 && context_3.id;
+    var __moduleName = context_4 && context_4.id;
     function factory(formatter_id) {
-        const formatter = formatters[formatter_id];
-        if (formatter === undefined) {
+        if (!formatters.hasOwnProperty(formatter_id)) {
             throw new Error(`'${formatter_id}' not found`);
         }
-        return formatter;
+        const formatter = formatters[formatter_id];
+        return (value) => {
+            if (StatValue_1.isRange(value)) {
+                return `(${formatter(value[0])} - ${formatter(value[1])})`;
+            }
+            else {
+                return String(formatter(value));
+            }
+        };
     }
-    exports_3("default", factory);
-    var formatters;
+    exports_4("default", factory);
+    var StatValue_1, formatters;
     return {
-        setters: [],
+        setters: [
+            function (StatValue_1_1) {
+                StatValue_1 = StatValue_1_1;
+            }
+        ],
         execute: function () {
             // usually everything in poe is rounded down but in this case
             // it's done properly
@@ -103,43 +130,47 @@ System.register("localize/formatters", [], function (exports_3, context_3) {
                 milliseconds_to_seconds_0dp: n => (n / 1000).toFixed(0),
                 milliseconds_to_seconds_2dp: n => (n / 1000).toFixed(2),
                 multiplicative_damage_modifier: n => n,
-                '60%_of_value': n => n * 0.6
+                '60%_of_value': n => n * 0.6,
+                id: n => n
             };
         }
     };
 });
-System.register("translate/printf", ["localize/formatters"], function (exports_4, context_4) {
+System.register("localize/formatValues", ["localize/formatters"], function (exports_5, context_5) {
     "use strict";
-    var __moduleName = context_4 && context_4.id;
-    function printf(text, params, formatters = []) {
-        const prepared = prepareParams(params, formatters);
-        // reduce ignoring initial value type. tilted right now...
-        let formatted = text;
-        prepared.forEach((param, i) => {
-            formatted = formatted
-                .replace(`%${i + 1}%`, String(param))
-                .replace(`%${i + 1}$+d`, `+${String(param)}`);
-        });
-        return formatted.replace('%%', '%');
-    }
-    exports_4("default", printf);
-    function prepareParams(params, formatters) {
-        const prepared = [...params];
+    var __moduleName = context_5 && context_5.id;
+    function formatValues(values, options) {
+        const { formatters } = options;
+        if (formatters === undefined) {
+            throw new Error('formatters not set');
+        }
+        const formatted = [...values];
         formatters.forEach((formatter, i) => {
             if (typeof formatter.arg === 'number') {
-                const target_param = params[+formatter.arg - 1];
+                const target_param = values[+formatter.arg - 1];
                 if (target_param !== undefined) {
-                    prepared[+formatter.arg - 1] = formatters_1.default(formatter.id)(target_param);
+                    formatted[+formatter.arg - 1] = formatValue(target_param, {
+                        formatter
+                    });
                 }
                 else {
                     throw new Error(`no param given for formatter '${formatter.id}'`);
                 }
             }
-            // nothing to to for strings. used in remindestring arg which doesnt alter
-            // the params
         });
-        return prepared;
+        return formatted.map(value => typeof value === 'string'
+            ? value
+            : formatValue(value, { formatter: { id: 'id', arg: 1 } }));
     }
+    exports_5("formatValues", formatValues);
+    function formatValue(value, options) {
+        const { formatter } = options;
+        if (formatter === undefined) {
+            throw new Error('no formatter given');
+        }
+        return String(formatters_1.default(formatter.id)(value));
+    }
+    exports_5("formatValue", formatValue);
     var formatters_1;
     return {
         setters: [
@@ -151,9 +182,32 @@ System.register("translate/printf", ["localize/formatters"], function (exports_4
         }
     };
 });
-System.register("formatStats", ["translate/match", "translate/printf"], function (exports_5, context_5) {
+System.register("translate/printf", ["localize/formatValues"], function (exports_6, context_6) {
     "use strict";
-    var __moduleName = context_5 && context_5.id;
+    var __moduleName = context_6 && context_6.id;
+    function printf(text, params, formatters = []) {
+        const prepared = formatValues_1.formatValues(params, { formatters });
+        return prepared
+            .reduce((formatted, param, i) => formatted
+            .replace(`%${i + 1}%`, String(param))
+            .replace(`%${i + 1}$+d`, `+${String(param)}`), text)
+            .replace('%%', '%');
+    }
+    exports_6("default", printf);
+    var formatValues_1;
+    return {
+        setters: [
+            function (formatValues_1_1) {
+                formatValues_1 = formatValues_1_1;
+            }
+        ],
+        execute: function () {
+        }
+    };
+});
+System.register("formatStats", ["translate/match", "translate/printf"], function (exports_7, context_7) {
+    "use strict";
+    var __moduleName = context_7 && context_7.id;
     /**
      * O(n) lookup if hash lookup fails
      *
@@ -218,7 +272,9 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
     }
     function matchingTranslation(translations, stats) {
         const args = stats.map(({ value }) => value);
-        return translations.find(translation => match_1.matches(translation.matchers, args));
+        return translations.find(translation => {
+            return match_1.matches(args, translation.matchers).every(match => match === match_1.Match.subset || match === match_1.Match.exact);
+        });
     }
     function formatWithFallback(stats, fallback) {
         if (fallback === Fallback.throw) {
@@ -262,7 +318,7 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
                 Fallback[Fallback["id"] = 1] = "id";
                 Fallback[Fallback["skip"] = 2] = "skip";
             })(Fallback || (Fallback = {}));
-            exports_5("Fallback", Fallback);
+            exports_7("Fallback", Fallback);
             initial_options = {
                 data: undefined,
                 fallback: Fallback.throw
@@ -286,61 +342,48 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
                     formatStats.options = Object.assign({}, formatStats.options, options);
                 }
             });
-            exports_5("default", formatStats);
+            exports_7("default", formatStats);
             NO_DESCRIPTION = 'NO_DESCRIPTION';
         }
     };
 });
-System.register("localize/formatValue", [], function (exports_6, context_6) {
+System.register("localize/formatValueRange", ["localize/formatValues"], function (exports_8, context_8) {
     "use strict";
-    var __moduleName = context_6 && context_6.id;
-    function formatValue(value, options) {
-        return '';
-    }
-    exports_6("default", formatValue);
-    return {
-        setters: [],
-        execute: function () {
-        }
-    };
-});
-System.register("localize/formatValueRange", ["localize/formatValue"], function (exports_7, context_7) {
-    "use strict";
-    var __moduleName = context_7 && context_7.id;
+    var __moduleName = context_8 && context_8.id;
     function formatValueRange(values, options) {
-        return `${formatValue_1.default(values[0], options)} - ${formatValue_1.default(values[1], options)}`;
+        return `${formatValues_2.formatValue(values[0], options)} - ${formatValues_2.formatValue(values[1], options)}`;
     }
-    exports_7("default", formatValueRange);
-    var formatValue_1;
+    exports_8("default", formatValueRange);
+    var formatValues_2;
     return {
         setters: [
-            function (formatValue_1_1) {
-                formatValue_1 = formatValue_1_1;
+            function (formatValues_2_1) {
+                formatValues_2 = formatValues_2_1;
             }
         ],
         execute: function () {
         }
     };
 });
-System.register("index", ["formatStats", "localize/formatValueRange", "localize/formatValue"], function (exports_8, context_8) {
+System.register("index", ["formatStats", "localize/formatValueRange", "localize/formatValues"], function (exports_9, context_9) {
     "use strict";
-    var __moduleName = context_8 && context_8.id;
+    var __moduleName = context_9 && context_9.id;
     return {
         setters: [
             function (formatStats_1_1) {
-                exports_8({
+                exports_9({
                     "formatStats": formatStats_1_1["default"],
                     "Fallback": formatStats_1_1["Fallback"]
                 });
             },
             function (formatValueRange_1_1) {
-                exports_8({
+                exports_9({
                     "formatValueRange": formatValueRange_1_1["default"]
                 });
             },
-            function (formatValue_2_1) {
-                exports_8({
-                    "formatValue": formatValue_2_1["default"]
+            function (formatValues_3_1) {
+                exports_9({
+                    "formatValue": formatValues_3_1["formatValue"]
                 });
             }
         ],

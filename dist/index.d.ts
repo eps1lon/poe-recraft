@@ -1,3 +1,18 @@
+declare module "translate/match" {
+    export type Boundary = number | '#';
+    export type BoundedRange = [Boundary, Boundary];
+    export type Value = Boundary | BoundedRange;
+    export enum Match {
+        exact = 0,
+        subset = 1,
+        superset = 2,
+        partial_upper = 3,
+        partial_lower = 4,
+        none = 5,
+    }
+    export function matchesSingle(value: Value, matcher: Value): Match;
+    export function matches(values: Value[], matchers: Value[]): Match[];
+}
 declare module "types/StatDescription" {
     export interface StatLocaleData {
         [key: string]: Description;
@@ -34,25 +49,36 @@ declare module "types/StatDescription" {
     export type Value = AnyValue | number;
     export type AnyValue = '#';
 }
-declare module "translate/match" {
-    import { Matcher } from "types/StatDescription";
-    export function matchesSingle(matcher: Matcher, arg: number): boolean;
-    export function matches(matchers: Matcher[], args: number[]): boolean;
+declare module "types/StatValue" {
+    export type StatValue = number | Range;
+    export type Range = [number, number];
+    export const isRange: (value: StatValue) => value is [number, number];
 }
 declare module "localize/formatters" {
+    import { StatValue } from "types/StatValue";
     export type Formatter = (value: number) => number | string;
-    export default function factory(formatter_id: string): Formatter;
+    export default function factory<T>(formatter_id: string): (value: StatValue) => string;
+}
+declare module "localize/formatValues" {
+    import { Formatter } from "types/StatDescription";
+    import { StatValue } from "types/StatValue";
+    export type Options = {
+        formatter?: Formatter;
+        formatters?: Formatter[];
+    };
+    export function formatValues(values: StatValue[], options: Options): string[];
+    export function formatValue(value: StatValue, options: Options): string;
 }
 declare module "translate/printf" {
     import { Formatter } from "types/StatDescription";
-    export type Params = number[];
+    export type Params = Array<number | [number, number]>;
     export default function printf(text: string, params: Params, formatters?: Formatter[]): string;
 }
 declare module "formatStats" {
     import { StatLocaleData } from "types/StatDescription";
     export type Stat = {
         id: string;
-        value: number;
+        value: number | [number, number];
     };
     export type OptionalOptions = {
         data?: StatLocaleData;
@@ -77,10 +103,6 @@ declare module "formatStats" {
     const formatStats: FormatStats;
     export default formatStats;
 }
-declare module "localize/formatValue" {
-    export type Options = {};
-    export default function formatValue(value: number, options: Options): string;
-}
 declare module "localize/formatValueRange" {
     export type Options = {};
     export default function formatValueRange(values: [number, number], options: Options): string;
@@ -88,5 +110,5 @@ declare module "localize/formatValueRange" {
 declare module "index" {
     export { default as formatStats, Fallback } from "formatStats";
     export { default as formatValueRange } from "localize/formatValueRange";
-    export { default as formatValue } from "localize/formatValue";
+    export { formatValue } from "localize/formatValues";
 }
