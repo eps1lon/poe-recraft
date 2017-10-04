@@ -11,10 +11,7 @@ export enum Match {
   superset, // A \supseteq B
   partial_upper, // forall x in A and x in B: forall y in B and y not in A x >= y i.e. A overlaps the upper region of B
   partial_lower, // forall x in A and x in B: forall y in B and y not in A x <= y i.e. A overlaps the lower region of B
-  none, // A \minus B = A
-  // helper
-  true = exact | subset | superset | partial_lower | partial_upper,
-  false = none
+  none // A \minus B = A
 }
 
 // does a value match a matcher
