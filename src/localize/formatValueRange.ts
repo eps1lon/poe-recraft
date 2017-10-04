@@ -1,4 +1,4 @@
-import formatValue from './formatValue';
+import { formatValue } from './formatValues';
 
 export type Options = {};
 
