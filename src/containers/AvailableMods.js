@@ -6,11 +6,11 @@ import type { State } from 'reducers/rootReducer';
 import { cachedAvailableMods } from 'selectors/craft';
 
 const whitelist = [
-  'LOWER_ILVL',
-  'DOMAIN_FULL',
-  'ALREADY_PRESENT',
-  'NO_MULTIMOD',
-  'ABOVE_LLD_LEVEL'
+  'lower_ilvl',
+  'domain_full',
+  'already_present',
+  'no_multimod',
+  'above_lld_level'
 ];
 
 const getAvailableMods = cachedAvailableMods(whitelist);

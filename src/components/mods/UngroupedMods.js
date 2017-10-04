@@ -1,9 +1,12 @@
 // @flow
+import classNames from 'classnames';
 import { Mod } from 'poe-mods';
 import React from 'react';
 import ReactTable from 'react-table';
 
-import type { GeneratorDetails } from './ModsTable';
+import { disabled } from 'util/mods';
+import FlagsTooltip from './FlagsTooltip';
+import { type GeneratorDetails } from './ModsTable';
 
 export type Props = {
   className?: string,
@@ -30,8 +33,20 @@ const UngroupedMods = (props: Props) => {
       minWidth: 15
     },
     {
-      accessor: (details: GeneratorDetails) =>
-        details.mod.props.stats.map(({ id }) => id).join(','),
+      accessor: (details: GeneratorDetails) => {
+        const id = `${details.mod.props.id}-stats`;
+        return (
+          <div>
+            <span id={id}>
+              {details.mod.props.stats.map(({ id }) => id).join(',')}
+            </span>
+            <FlagsTooltip
+              id={id}
+              flags={[details.applicable, details.spawnable]}
+            />
+          </div>
+        );
+      },
       className: 'stats',
       Header: 'Stats',
       id: 'stats',
@@ -56,7 +71,11 @@ const UngroupedMods = (props: Props) => {
       Header: '',
       id: 'add_mod',
       Cell: ({ original: details }: { original: GeneratorDetails }) => {
-        return <button onClick={() => onAddMod(details.mod)}>add</button>;
+        return (
+          !disabled(details) && (
+            <button onClick={() => onAddMod(details.mod)}>add</button>
+          )
+        );
       },
       minWdth: 30
     }
@@ -80,9 +99,11 @@ const UngroupedMods = (props: Props) => {
 
           if (mod instanceof Mod) {
             return {
-              className: `mod domain-${mod.props.domain} ${String(
-                mod.modType()
-              )}`
+              className: classNames(
+                `mod domain-${mod.props.domain}`,
+                mod.modType(),
+                { disabled: disabled(rowInfo.original) }
+              )
             };
           } else {
             return {};
