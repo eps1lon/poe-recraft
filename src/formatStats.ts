@@ -9,7 +9,7 @@ import {
 // arg types
 export type Stat = {
   id: string;
-  value: number;
+  value: number | [number, number];
 };
 
 export type OptionalOptions = {

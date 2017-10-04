@@ -207,3 +207,19 @@ it('should support custom fallback methods', () => {
     )
   ).toEqual(['from_armour_movement_speed_+%']);
 });
+
+it('should support ranges for given stats', () => {
+  expect(
+    formatStats(
+      [
+        { id: 'base_chance_to_freeze_%', value: [12, 15] },
+        { id: 'attack_minimum_added_physical_damage', value: [1, 3] },
+        { id: 'attack_maximum_added_physical_damage', value: [13, 18] }
+      ],
+      { data }
+    ).sort()
+  ).toEqual([
+    '(12 - 15)% chance to Freeze',
+    'Adds (1 - 3) to (13 - 18) Physical Damage to Attacks'
+  ]);
+});

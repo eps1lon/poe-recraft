@@ -1,3 +1,5 @@
+import { isRange, StatValue } from '../types/StatValue';
+
 export type Formatter = (value: number) => number | string;
 
 // usually everything in poe is rounded down but in this case
@@ -21,15 +23,24 @@ const formatters: { [key: string]: Formatter } = {
   milliseconds_to_seconds_0dp: n => (n / 1000).toFixed(0),
   milliseconds_to_seconds_2dp: n => (n / 1000).toFixed(2),
   multiplicative_damage_modifier: n => n,
-  '60%_of_value': n => n * 0.6
+  '60%_of_value': n => n * 0.6,
+  id: n => n
 };
 
-export default function factory(formatter_id: string): Formatter {
-  const formatter = formatters[formatter_id];
-
-  if (formatter === undefined) {
+export default function factory<T>(
+  formatter_id: string
+): (value: StatValue) => string {
+  if (!formatters.hasOwnProperty(formatter_id)) {
     throw new Error(`'${formatter_id}' not found`);
   }
 
-  return formatter;
+  const formatter = formatters[formatter_id];
+
+  return (value: StatValue) => {
+    if (isRange(value)) {
+      return `(${formatter(value[0])} - ${formatter(value[1])})`;
+    } else {
+      return String(formatter(value));
+    }
+  };
 }
