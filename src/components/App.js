@@ -4,7 +4,7 @@ import { Nav, NavItem } from 'reactstrap';
 
 import ApplyGenerator from 'containers/ApplyGenerator';
 import AvailableMods from 'containers/AvailableMods';
-import BaseItemModal from 'containers/BaseItemModal';
+import BaseItemModal from 'containers/baseitem_picker/Modal';
 import GeneratorModal from 'containers/GeneratorModal';
 import ItemSection from 'containers/ItemSection';
 import ItemclassPicker from 'containers/itemclass_picker/Picker';

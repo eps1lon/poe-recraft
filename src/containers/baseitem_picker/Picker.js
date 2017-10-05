@@ -4,8 +4,7 @@ import type { Dispatch } from 'redux';
 import { createSelector } from 'reselect';
 
 import { setItem } from 'actions/item';
-import { toggleBaseItemModal } from 'actions/gui';
-import Modal from 'components/baseitem_picker/Modal';
+import Picker from 'components/baseitem_picker/Picker';
 import type { State } from 'reducers/rootReducer';
 import { activeBaseitem, itemsForClass, activeItemclass } from 'selectors/item';
 import { type BaseItemTypeProps } from 'selectors/schema';
@@ -19,16 +18,14 @@ const baseitemsSelector = createSelector(
 const mapStateToProps = (state: State) => {
   return {
     active: activeBaseitem(state),
-    baseitems: baseitemsSelector(state),
-    is_open: state.gui.expanded.misc.get('baseitem-modal')
+    baseitems: baseitemsSelector(state)
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<*>) => {
   return {
-    onChange: (item: BaseItemTypeProps) => dispatch(setItem(item)),
-    onToggle: () => dispatch(toggleBaseItemModal())
+    onChange: (item: BaseItemTypeProps) => dispatch(setItem(item))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default connect(mapStateToProps, mapDispatchToProps)(Picker);
