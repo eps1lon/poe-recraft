@@ -48,8 +48,10 @@ readdir(txt_dir).then(files => {
         }
 
         const [results] = parser.results;
-        const { no_desc, desc } = results;
+        const { includes, has_identifiers, no_desc, desc } = results;
 
+        first = writeIncludes(includes, first, out);
+        first = writeIdentifiers(has_identifiers, first, out);
         first = writeNoDesc(no_desc, first, out);
         first = writeDesc(desc, first, out);
       }
@@ -62,6 +64,22 @@ readdir(txt_dir).then(files => {
     out.end();
   });
 });
+
+function writeIdentifiers(has_identifiers, first, outstream) {
+  if (has_identifiers != null) {
+    return write([['$hasIdentifiers', has_identifiers]], first, outstream);
+  } else {
+    return first;
+  }
+}
+
+function writeIncludes(includes, first, outstream) {
+  if (includes != null) {
+    return write(includes, first, outstream, include => ['$includes', include]);
+  } else {
+    return first;
+  }
+}
 
 function writeNoDesc(identifiers, first, outstream) {
   return write(identifiers, first, outstream, identifier => [

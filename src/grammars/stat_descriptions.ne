@@ -1,6 +1,12 @@
 main -> 
-  Blankline:* NoDescription:* Description:* 
-  {% ([, no_desc, desc]) => ({ no_desc, desc }) %}
+  Blankline:* Include:* HasIdentifiers:? NoDescription:* Description:* 
+  {% ([, includes, has_identifiers, no_desc, desc]) => ({ includes, has_identifiers, no_desc, desc }) %}
+
+Include -> "include " StringLiteral Newline:+ {% ([, include]) => include %}
+
+HasIdentifiers ->
+  ("has_identifiers" | "no_identifiers" ) Newline:+
+  {% ([directive]) => directive === 'has_identifiers' %}
 
 StatIdentifier -> [a-zA-Z0-9_\+\-\%]:+ {% ebnfToString %}
 StatIdentifiers -> 
@@ -18,7 +24,7 @@ Description ->
   {% ([header, body]) => [header || body.stats[0], body] %}
 
 DescriptionHeader -> 
-  Whitespaces:? "description" Whitespaces:? StatIdentifier:? Newline
+  Whitespaces:? "description" Whitespaces:? StatIdentifier:? Newline:+
   {% ([, , , ident]) => ident ? ident[1] : null %}
 
 DescriptionBody ->

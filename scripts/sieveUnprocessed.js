@@ -35,27 +35,38 @@ readdir(in_dir).then(files => {
       console.warn(`could not parse ${file}`);
     }
 
-    const processed = unprocessed.reduce((partial, [id, description]) => {
-      const { stats, no_description } = description;
-      let { languages } = description;
+    const processed = unprocessed.reduce((partial, [key, value]) => {
+      // meta data
+      if (key.startsWith('$')) {
+        Object.values(codes).forEach(code => {
+          if (Array.isArray(partial.get(code)[key])) {
+            partial.get(code)[key].push(value);
+          } else {
+            partial.get(code)[key] = value;
+          }
+        });
+      } else {
+        const { stats, no_description } = value;
+        let { languages } = value;
 
-      if (no_description === true) {
-        languages = Object.entries(codes).map(([code]) => [code, {}]);
+        if (no_description === true) {
+          languages = Object.entries(codes).map(([code]) => [code, {}]);
+        }
+
+        languages.forEach(([language, translations]) => {
+          const code = codes[language];
+
+          try {
+            partial.get(code)[key] = { no_description, stats, translations };
+          } catch (err) {
+            console.log(code, language);
+            throw err;
+          }
+        });
       }
 
-      languages.forEach(([language, translations]) => {
-        const code = codes[language];
-
-        try {
-          partial.get(code)[id] = { no_description, stats, translations };
-        } catch (err) {
-          console.log(code, language);
-          throw err;
-        }
-      });
-
       return partial;
-    }, new Map(Object.values(codes).map(code => [code, {}])));
+    }, new Map(Object.values(codes).map(code => [code, { $includes: [] }])));
 
     for (const [code, descriptions] of processed) {
       try {
