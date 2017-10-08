@@ -50,3 +50,8 @@ it('should support ranges', () => {
   expect(factory('negate')([-20, -10])).toBe('(20 - 10)');
   expect(factory('per_minute_to_per_second_0dp')([120, 240])).toBe('(2 - 4)');
 });
+
+it('should not display as range if min == max', () => {
+  expect(factory('id')([-10, -10])).toBe('-10');
+  expect(factory('id')([-10, -11])).toBe('(-10 - -11)');
+});

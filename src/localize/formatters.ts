@@ -38,7 +38,11 @@ export default function factory<T>(
 
   return (value: StatValue) => {
     if (isRange(value)) {
-      return `(${formatter(value[0])} - ${formatter(value[1])})`;
+      if (value[0] === value[1]) {
+        return String(formatter(value[0]));
+      } else {
+        return `(${formatter(value[0])} - ${formatter(value[1])})`;
+      }
     } else {
       return String(formatter(value));
     }
