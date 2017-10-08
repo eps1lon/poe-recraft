@@ -4,15 +4,16 @@ import type { Dispatch } from 'redux';
 import { createSelector } from 'reselect';
 
 import { setItem } from 'actions/item';
-import Picker from 'components/baseitem_picker/Picker';
+import Picker, { type Props } from 'components/baseitem_picker/Picker';
 import type { State } from 'reducers/rootReducer';
-import { activeBaseitem, itemsForClass, activeItemclass } from 'selectors/item';
+import { filterItems } from 'selectors/baseitemfilter';
+import { activeBaseitem } from 'selectors/item';
 import { type BaseItemTypeProps } from 'selectors/schema';
 
 const baseitemsSelector = createSelector(
-  activeItemclass,
+  (state: State) => state.baseitemfilter,
   (state: State) => state.poe.items,
-  (item_class, items) => itemsForClass(item_class, items)
+  ({ item_class, tags }, items) => filterItems({ item_class, tags }, items)
 );
 
 const mapStateToProps = (state: State) => {
@@ -22,9 +23,10 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<*>) => {
+const mapDispatchToProps = (dispatch: Dispatch<*>, ownProps: Props) => {
   return {
-    onChange: (item: BaseItemTypeProps) => dispatch(setItem(item))
+    onChange: (item: BaseItemTypeProps) =>
+      ownProps.onChange(item) && dispatch(setItem(item))
   };
 };
 

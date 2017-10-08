@@ -2,15 +2,15 @@
 import type { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
-import { setItemClass } from 'actions/item';
+import { setItemClass } from 'actions/baseitemfilter';
 import ItemClass from 'components/itemclass_picker/ItemClass';
 import { type State } from 'reducers/rootReducer';
-import { activeItemclass } from 'selectors/item';
+import { activeItemClass } from 'selectors/baseitemfilter';
 import type { ItemClassProps } from 'selectors/schema';
 
 const mapStateToProps = (state: State) => {
   return {
-    active: activeItemclass(state)
+    active: activeItemClass(state)
   };
 };
 

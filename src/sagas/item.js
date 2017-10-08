@@ -2,7 +2,8 @@
 import { all, fork, put, select, take } from 'redux-saga/effects';
 
 import { combineLatest } from './util';
-import { setItem, setItemClass } from 'actions/item';
+import { setItemClass } from 'actions/baseitemfilter';
+import { setItem } from 'actions/item';
 import { defaultItem } from 'selectors/item';
 
 function* setDefaultItem() {

@@ -3,22 +3,13 @@ import { Item } from 'poe-mods';
 import type { ReduxActionType } from 'redux-actions';
 import { handleActions } from 'redux-actions';
 
-import {
-  addMod,
-  removeMod,
-  setItem,
-  setItemClass,
-  setRarity
-} from 'actions/item';
-import type { ItemClassProps } from 'selectors/schema';
+import { addMod, removeMod, setItem, setRarity } from 'actions/item';
 
 export type State = {
-  item_class: ItemClassProps,
   item: ?Item
 };
 
 export const initial: State = {
-  item_class: { primary: 23, name: 'Boots' },
   item: undefined
 };
 
@@ -28,7 +19,6 @@ export default handleActions(
     [setItem.toString()]: setItemHandle,
     [addMod.toString()]: addModHandle,
     [removeMod.toString()]: removeModHandle,
-    [setItemClass.toString()]: setItemClassHandle,
     [setRarity.toString()]: setRarityHandle
   },
   initial
@@ -87,16 +77,6 @@ function removeModHandle(
   } else {
     return state;
   }
-}
-
-function setItemClassHandle(
-  state: State,
-  { payload: item_class }: ReduxActionType<typeof setItemClass>
-): State {
-  return {
-    ...state,
-    item_class
-  };
 }
 
 function setRarityHandle(

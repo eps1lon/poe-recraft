@@ -2,16 +2,11 @@
 import type { Mod } from 'poe-mods';
 import { createAction } from 'redux-actions';
 
-import type { BaseItemTypeProps, ItemClassProps } from 'selectors/schema';
+import type { BaseItemTypeProps } from 'selectors/schema';
 
 export const setItem = createAction(
   'SET_ITEM',
   (item: BaseItemTypeProps) => item
-);
-
-export const setItemClass = createAction(
-  'SET_ITEM_CLASS',
-  (item_class: ItemClassProps) => item_class
 );
 
 export const setRarity = createAction(

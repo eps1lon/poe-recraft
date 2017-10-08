@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
+import Filter from 'containers/baseitem_picker/Filter';
 import Picker from 'containers/baseitem_picker/Picker';
 import { type BaseItemTypeProps } from 'selectors/schema';
 
@@ -29,7 +30,8 @@ const BaseItemModal = (props: Props) => {
       <Modal isOpen={props.is_open} toggle={toggle} autoFocus={false}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>
-          <Picker />
+          <Filter onChange={toggle} />
+          <Picker onChange={toggle} />
         </ModalBody>
       </Modal>
     </div>
