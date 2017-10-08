@@ -79,11 +79,7 @@ export default class Generator<M: Mod, C: Container<*>> {
       applicable_flags.lower_ilvl = true;
     }
 
-    const correct_groups = container.mods.map(
-      other => other.props.correct_group,
-    );
-
-    if (correct_groups.indexOf(mod.props.correct_group) !== -1) {
+    if (container.hasModGroup(mod)) {
       applicable_flags.already_present = true;
     }
 

@@ -97,6 +97,14 @@ export default class ImmutableContainer<T: Mod, B: Builder<T>>
     return this.indexOfMod(mod) !== -1;
   }
 
+  hasModGroup(other: T): boolean {
+    return (
+      this.mods.find(
+        mod => mod.props.correct_group === other.props.correct_group,
+      ) !== undefined
+    );
+  }
+
   /**
    * tags of the mods in the container
    */

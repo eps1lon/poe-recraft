@@ -124,3 +124,19 @@ it('should work like ingame', () => {
     wrong_domain: false,
   });
 });
+
+it('should know that it can apply the same mod in implicit and explicit', () => {
+  // has implicit dodge
+  const shield = items.fromPrimary(1478).rarity.set('rare');
+  // explicit dodge
+  const dodge = mods.fromPrimary(4877);
+  const generator: Generator<Mod, Item> = new Generator([]);
+
+  expect(generator.isModApplicableTo(dodge, shield)).toEqual({
+    above_lld_level: false,
+    already_present: false,
+    domain_full: false,
+    lower_ilvl: false,
+    wrong_domain: false,
+  });
+});

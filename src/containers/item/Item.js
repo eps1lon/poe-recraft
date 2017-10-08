@@ -188,6 +188,15 @@ export default class Item extends BaseItem<ItemBuilder>
     return this.affixes.hasMod(other) || this.implicits.hasMod(other);
   }
 
+  hasModGroup(other: Mod): boolean {
+    return (
+      // isAffix => this.affixes.hasModGroup(other)
+      (!other.isAffix() || this.affixes.hasModGroup(other)) &&
+      // implicitCandidate => this.implicits.hasModGroup(other)
+      (!other.implicitCandidate() || this.implicits.hasModGroup(other))
+    );
+  }
+
   hasRoomFor(other: Mod): boolean {
     return this.affixes.hasRoomFor(other) || this.implicits.hasRoomFor(other);
   }

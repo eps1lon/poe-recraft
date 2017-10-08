@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.5.1...HEAD)
+### Fixed
+- Generators ignored wether a mod was contained in Implicits or Affixes when
+  checking if the mod group was already present. (Fixes [#1](https://github.com/eps1lon/poe-mods/issues/1))
 
 ## [1.5.1](https://github.com/eps1lon/poe-mods/compare/v1.5.0...v1.5.1)
 ### Changed
