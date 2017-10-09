@@ -1,14 +1,14 @@
 import formatStats from '../formatStats';
-import loadLocaleData, { loadLocaleDatasFor } from '../loadLocaleData';
+import loadLocaleDatas, { loadLocaleDatasFor } from '../loadLocaleDatas';
 
 it('should load every file given as argument', () => {
-  const datas = loadLocaleData('en', ['stat_descriptions']);
+  const datas = loadLocaleDatas('en', ['stat_descriptions']);
 
   expect(datas.stat_descriptions).toBeDefined();
 });
 
 it('should also load every file that is included', () => {
-  const datas = loadLocaleData('en', ['atlas_stat_descriptions']);
+  const datas = loadLocaleDatas('en', ['atlas_stat_descriptions']);
 
   expect(datas.atlas_stat_descriptions).toBeDefined();
   expect(datas.map_stat_descriptions).toBeDefined();
