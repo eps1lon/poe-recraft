@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "t": {
+      "stats": ["attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Grants Minions %1%%% increased Attack Speed",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Grants Minions %1%%% reduced Attack Speed",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "a": {
+      "stats": ["base_spell_block_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Grants Minions %1$+d%% Chance to Block Spells",
+          "formatters": []
+        }
+      ]
+    },
+    "o": {
+      "stats": ["base_movement_velocity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Grants Minions %1%%% increased Movement Speed",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Grants Minions %1%%% reduced Movement Speed",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "e": {
+      "stats": ["recover_X_life_on_block"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Minions recover %1% Life when they Block",
+          "formatters": []
+        }
+      ]
+    },
+    "h": {
+      "stats": ["physical_damage_%_to_add_as_chaos"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Minions gain %1%%% of their Physical Damage as Extra Chaos Damage",
+          "formatters": []
+        }
+      ]
+    },
+    "p": {
+      "stats": [
+        "spirit_offering_life_%_added_as_base_maximum_energy_shield_per_corpse_consumed"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Minions gain %1%%% of their Maximum Life as\\nExtra Maximum Energy Shield for each corpse consumed",
+          "formatters": []
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,331 @@
+{
+  "meta": {
+    "include": "active_skill_gem_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "base_actor_scale_+%": {
+      "no_description": true,
+      "stats": [],
+      "translations": {}
+    },
+    "k": {
+      "stats": ["skill_effect_and_damaging_ailment_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Duração de Afecções de Dano aumentada em %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Duração de Afecções de Dano reduzida em %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "p": {
+      "stats": [
+        "spell_minimum_added_lightning_damage",
+        "spell_maximum_added_lightning_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Adiciona %1% a %2% de Dano de Raio a Magias",
+          "formatters": []
+        }
+      ]
+    },
+    "e": {
+      "stats": [
+        "minimum_secondary_physical_damage_per_15_strength",
+        "maximum_secondary_physical_damage_per_15_strength"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "%1% a %2% de Dano Físico Base a cada 15 de Força",
+          "formatters": []
+        }
+      ]
+    },
+    "i": {
+      "stats": ["support_minion_totem_resistance_elemental_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Lacaios e Habilidades usados por Totens causam %1%%% mais Dano Elemental",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Lacaios e Habilidades usados por Totens causam %1%%% menos Dano Elemental",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "o": {
+      "stats": ["base_poison_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Duração do Veneno aumentada em %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Duração do Veneno reduzida em %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "l": {
+      "stats": ["display_max_blight_stacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Penalidade pode ter até %1% camadas de Dano",
+          "formatters": []
+        }
+      ]
+    },
+    "r": {
+      "stats": ["arctic_armour_chill_when_hit_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Resfria o Inimigo por %1% segundos quando acertar",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChillNonHitNoDuration"
+            }
+          ]
+        }
+      ]
+    },
+    "u": {
+      "stats": [
+        "support_scion_onslaught_on_killing_blow_%_chance",
+        "support_scion_onslaught_on_killing_blow_duration_ms"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "%1%%% de chance de conceder Agressividade por %2% segundos ao\\ncausar um Golpe Fatal",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 2
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
+    "a": {
+      "stats": ["support_maimed_enemies_physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Inimigos Mutilados por esta Habilidade sofrem %1%%% de Dano Físico aumentado",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Inimigos Mutilados por esta Habilidade sofrem %1%%% de Dano Físico reduzido",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "t": {
+      "stats": ["attack_trigger_on_killing_bleeding_enemy_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chance de Ativar esta Habilidade quando você abater um Inimigo Sangrando",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Ativa esta Habilidade quando você abater um Inimigo Sangrando",
+          "formatters": []
+        }
+      ]
+    },
+    "n": {
+      "stats": ["enemy_aggro_radius_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Visibilidade para Inimigos aumentada em %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextVisibility"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Visibilidade para Inimigos reduzida em %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextVisibility"
+            }
+          ]
+        }
+      ]
+    },
+    "h": {
+      "stats": ["support_chance_to_bleed_bleeding_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Ataques Suportados causam %1%%% mais Dano com Sangramento",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Ataques Suportados causam %1%%% menos Dano com Sangramento",
+          "formatters": []
+        }
+      ]
+    },
+    "c": {
+      "stats": ["active_skill_if_used_through_frostbolt_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% mais Dano quando Conjurado com Disparo Congelante",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% menos Dano quando Conjurado com Disparo Congelante",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "g": {
+      "stats": ["support_ignite_prolif_ignite_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% mais Dano com Incêndio",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% menos Dano com Incêndio",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "y": {
+      "stats": ["cyclone_first_hit_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Primeiro Acerto causa %1%%% mais Dano",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Primeiro Acerto causa %1%%% menos Dano",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "b": {
+      "stats": ["abyssal_cry_%_max_life_as_chaos_on_death"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Explosão causa Dano de Caos igual a %1%%% da Vida máxima do Monstro",
+          "formatters": []
+        }
+      ]
+    },
+    "d": {
+      "stats": ["additional_base_critical_strike_chance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d%% à Chance de Crítico",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

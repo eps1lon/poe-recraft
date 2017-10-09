@@ -1,0 +1,312 @@
+{
+  "meta": {
+    "include": "minion_skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "t": {
+      "stats": ["attack_speed_+%_when_on_low_life"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "การโจมตีนี้และมิเนียน จะเพิ่มความเร็วในการโจมตีขึ้นเมื่อพลังชีวิตเหลือน้อย %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "การโจมตีนี้และมิเนียน จะลดความเร็วในการโจมตีลงเมื่อพลังชีวิตเหลือน้อย %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        }
+      ]
+    },
+    "c": {
+      "stats": ["accuracy_rating_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "การโจมตีนี้และมิเนียน มีอัตราความแม่นยำเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "การโจมตีนี้และมิเนียน มีอัตราความแม่นยำลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "r": {
+      "stats": ["support_brutality_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "การโจมตีและสมุนเหล่านี้จัดการ %1%%% มากกว่าความเสียหายทางกายภาพ",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "การโจมตีและสมุนเหล่านี้จัดการ %1%%% น้อยกว่าความเสียหายทางกายภาพ",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "e": {
+      "stats": ["deal_no_elemental_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "การโจมตีและสมุนเหล่านี้จัดการไม่ให้มีความเสียหายจากธาตุ",
+          "formatters": []
+        }
+      ]
+    },
+    "i": {
+      "stats": ["base_reduce_enemy_lightning_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "การโจมตีนี้และมิเนียน จะเจาะทะลุ %1%%% ของความต้านทานทางสายฟ้า",
+          "formatters": []
+        }
+      ]
+    },
+    "a": {
+      "stats": ["support_maimed_enemies_physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "ศัตรูโดนMaimed จากการโจมตีและสมุนเหล่านี้จะเพิ่มความเสียหายทางกายภาพ %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "ศัตรูโดนMaimed จากการโจมตีและสมุนเหล่านี้จะลดความเสียหายทางกายภาพ %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "n": {
+      "stats": ["gain_endurance_charge_on_melee_stun"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "การโจมตีนี้และมิเนียน จะได้รับ Endurance Charge เมื่อทำให้ศัตรูติดสถานะ Stun ด้วยการโจมตีระยะประชิด",
+          "formatters": []
+        }
+      ]
+    },
+    "h": {
+      "stats": ["chance_to_fortify_on_melee_hit_+%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "การโจมตีนี้และมิเนียน มีโอกาส %1%%% ที่จะได้รับ Fortify เมื่อโจมตีระยะประชิด",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "การโจมตีนี้และมิเนียน จะได้รับ Fortify เมื่อโจมตีระยะประชิด",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        }
+      ]
+    },
+    "u": {
+      "stats": ["support_poison_poison_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "การโจมตีนี้ และจาก Minions สร้างดาเมจ %1%%% เพิ่มเติม จาก Poison",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "การโจมตีนี้ และจาก Minions สร้างดาเมจ %1%%% ลดลง จาก Poison",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "l": {
+      "stats": [
+        "bleed_on_hit_with_attacks_%",
+        "global_bleed_on_hit",
+        "cannot_cause_bleeding"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99], 0, 0],
+          "text": "การโจมตีและสมุนเหล่านี้มีโอกาส %1%%% ที่จะติดสถานะเลือดออก",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"], 0, 0],
+          "text": "การโจมตีและสมุนเหล่านี้จะติดสถานะเลือดออก",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        },
+        {
+          "matchers": ["#", "#", 0],
+          "text": "การโจมตีและสมุนเหล่านี้จะติดสถานะเลือดออก",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        },
+        {
+          "matchers": ["#", "#", "#"],
+          "text": "การโจมตีและสมุนเหล่านี้ไม่สามารถติดสถานะเลือดออกได้",
+          "formatters": []
+        }
+      ]
+    },
+    "g": {
+      "stats": ["support_ignite_prolif_ignite_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "การโจมตีนี้ และจาก Minions สร้างดาเมจ %1%%% เพิ่มเติม จาก Ignite",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "การโจมตีนี้ และจาก Minions สร้างดาเมจ %1%%% ลดลง จาก Ignite",
+          "formatters": []
+        }
+      ]
+    },
+    "o": {
+      "stats": ["base_chance_to_poison_on_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "การโจมตีและสมุนเหล่านี้มีโอกาส %1%%% ที่จะติดพิษจากการโจมตี",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "การโจมตีและสมุนเหล่านี้จะติดพิษจากการโจมตีเสมอ",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        }
+      ]
+    },
+    "y": {
+      "stats": ["support_hypothermia_damage_+%_vs_chilled_enemies_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "การโจมตีและสมุนเหล่านี้จัดการเพิ่ม %1%%% ดาเมทด้วยการโจมตีและการเจ็บของศัตรูที่ถูกแช่เย็น ",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "การโจมตีและสมุนเหล่านี้จัดการลด %1%%% ดาเมทด้วยการโจมตีและการเจ็บของศัตรูที่ถูกแช่เย็น",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "d": {
+      "stats": [
+        "support_minimum_added_fire_damage_vs_burning_enemies",
+        "support_maximum_added_fire_damage_vs_burning_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "การโจมตีและสมุนเหล่านี้จัดการเพิ่มความเสียหายจากไฟ %1% ถึง %2% ที่จะเผาไหม้ศัตรู",
+          "formatters": []
+        }
+      ]
+    }
+  }
+}

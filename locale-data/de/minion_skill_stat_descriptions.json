@@ -1,0 +1,373 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "u": {
+      "stats": [
+        "support_scion_onslaught_on_killing_blow_%_chance",
+        "support_scion_onslaught_on_killing_blow_duration_ms"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Kreaturen haben %1%%% Chance, beim Verursachen eines tödlichen Schlags\\nAnsturm zu gewähren für %2% Sekunden",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 2
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
+    "r": {
+      "stats": ["support_brutality_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Kreaturen verursachen %1%%% mehr physischen Schaden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Kreaturen verursachen %1%%% weniger physischen Schaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "a": {
+      "stats": ["support_maimed_enemies_physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Durch Kreaturen verstümmelte Gegner erleiden %1%%% verstärkten physischen Schaden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Durch Kreaturen verstümmelte Gegner erleiden %1%%% verringerten physischen Schaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "t": {
+      "stats": ["attack_speed_+%_when_on_low_life"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Kreaturen haben %1%%% erhöhte Angriffsgeschwindigkeit bei niedrigem Leben",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Kreaturen haben %1%%% verringerte Angriffsgeschwindigkeit bei niedrigem Leben",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        }
+      ]
+    },
+    "c": {
+      "stats": ["support_echo_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Kreaturen verursachen %1%%% mehr Schaden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Kreaturen verursachen %1%%% weniger Schaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "i": {
+      "stats": ["support_minion_totem_resistance_elemental_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Von Totems verwendete Kreaturen und Fertigkeiten verursachen %1%%% mehr Elementarschaden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Von Totems verwendete Kreaturen und Fertigkeiten verursachen %1%%% weniger Elementarschaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "n": {
+      "stats": ["gain_endurance_charge_on_melee_stun"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Kreaturen erhalten eine Widerstands-Ladung, wenn sie einen Gegner mit einem Nahkampftreffer betäuben",
+          "formatters": []
+        }
+      ]
+    },
+    "h": {
+      "stats": ["chance_to_fortify_on_melee_hit_+%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "Kreaturen haben %1%%% Chance auf Verstärken bei Nahkampftreffer",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Kreaturen erhalten Verstärken bei Nahkampftreffer",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        }
+      ]
+    },
+    "o": {
+      "stats": ["base_chance_to_poison_on_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "Kreaturen haben %1%%% Chance, bei Treffer zu vergiften",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Kreaturen vergiften bei Treffer",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        }
+      ]
+    },
+    "d": {
+      "stats": [
+        "support_minimum_added_fire_damage_vs_burning_enemies",
+        "support_maximum_added_fire_damage_vs_burning_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Kreaturen haben %1% bis %2% zusätzlichen Feuerschaden gegen brennende Gegner",
+          "formatters": []
+        }
+      ]
+    },
+    "l": {
+      "stats": [
+        "bleed_on_hit_with_attacks_%",
+        "global_bleed_on_hit",
+        "cannot_cause_bleeding"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99], 0, 0],
+          "text": "Kreaturen haben %1%%% Chance, Blutung zu verursachen",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"], 0, 0],
+          "text": "Kreaturen verursachen Blutung",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        },
+        {
+          "matchers": ["#", "#", 0],
+          "text": "Kreaturen verursachen Blutung",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        },
+        {
+          "matchers": ["#", "#", "#"],
+          "text": "Kreaturen können keine Blutung verursachen",
+          "formatters": []
+        }
+      ]
+    },
+    "g": {
+      "stats": ["support_ignite_prolif_ignite_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Kreaturen verursachen %1%%% mehr Schaden mit Entzünden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Kreaturen verursachen %1%%% weniger Schaden mit Entzünden",
+          "formatters": []
+        }
+      ]
+    },
+    "e": {
+      "stats": ["deal_no_elemental_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Kreaturen verursachen keinen Elementarschaden",
+          "formatters": []
+        }
+      ]
+    },
+    "p": {
+      "stats": ["support_split_projectile_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Kreaturen verursachen %1%%% mehr Projektilschaden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Kreaturen verursachen %1%%% weniger Projektilschaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "k": {
+      "stats": ["skill_effect_and_damaging_ailment_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Kreaturen haben %1%%% verlängerte Dauer von Fertigkeiten und ihrer schädigenden Beeinträchtigungen",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Kreaturen haben %1%%% verkürzte Dauer von Fertigkeiten und ihrer schädigenden Beeinträchtigungen",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "y": {
+      "stats": ["support_hypothermia_damage_+%_vs_chilled_enemies_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Kreaturen verursachen %1%%% mehr Schaden mit Treffern und Beeinträchtigungen gegen unterkühlte Gegner",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Kreaturen verursachen %1%%% weniger Schaden mit Treffern und Beeinträchtigungen gegen unterkühlte Gegner",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

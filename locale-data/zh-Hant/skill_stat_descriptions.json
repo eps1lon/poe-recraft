@@ -1,0 +1,318 @@
+{
+  "meta": {
+    "include": "active_skill_gem_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "base_actor_scale_+%": {
+      "no_description": true,
+      "stats": [],
+      "translations": {}
+    },
+    "k": {
+      "stats": ["skill_effect_and_damaging_ailment_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "增加 %1%%% 傷害型異常狀態持續時間",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "減少 %1%%% 傷害型異常狀態持續時間",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "p": {
+      "stats": [
+        "spell_minimum_added_lightning_damage",
+        "spell_maximum_added_lightning_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "法術附加 %1% 至 %2% 閃電傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "e": {
+      "stats": [
+        "minimum_secondary_physical_damage_per_15_strength",
+        "maximum_secondary_physical_damage_per_15_strength"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "每 15 點力量附加 %1% 至 %2% 物理傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "i": {
+      "stats": ["support_minion_totem_resistance_elemental_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "圖騰所使用的召喚物與技能造成 %1%%% 更多元素傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "圖騰所使用的召喚物與技能造成 %1%%% 較少元素傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "o": {
+      "stats": ["base_poison_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "增加 %1%%% 中毒持續時間",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "減少 %1%%% 中毒持續時間",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "l": {
+      "stats": ["display_max_blight_stacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "負面效果能疊加 %1% 層傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "r": {
+      "stats": ["arctic_armour_chill_when_hit_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被命中時，造成敵人冰緩 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChillNonHitNoDuration"
+            }
+          ]
+        }
+      ]
+    },
+    "u": {
+      "stats": [
+        "support_scion_onslaught_on_killing_blow_%_chance",
+        "support_scion_onslaught_on_killing_blow_duration_ms"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "擊殺怪物時有 %1%%% 機率\\n獲得猛攻 %2% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 2
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
+    "a": {
+      "stats": ["support_maimed_enemies_physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被此技能癱瘓的敵人，增加 %1%%% 承受的物理傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被此技能癱瘓的敵人，減少 %1%%% 承受的物理傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "t": {
+      "stats": ["attack_trigger_on_killing_bleeding_enemy_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "當你擊殺流血的敵人時，有 %1%%% 機率觸發此技能",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "當你擊殺流血的敵人時，觸發此技能",
+          "formatters": []
+        }
+      ]
+    },
+    "n": {
+      "stats": ["enemy_aggro_radius_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "增加 %1%%% 敵人發現你的距離",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextVisibility"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "減少 %1%%% 敵人發現你的距離",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextVisibility"
+            }
+          ]
+        }
+      ]
+    },
+    "h": {
+      "stats": ["support_chance_to_bleed_bleeding_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被輔助的攻擊造成 %1%%% 更多流血傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被輔助的攻擊造成 %1%%% 更少流血傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "c": {
+      "stats": ["active_skill_if_used_through_frostbolt_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "施放寒冰彈時有 %1%%% 更多傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "施放寒冰彈時有 %1%%% 更少傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "g": {
+      "stats": ["support_ignite_prolif_ignite_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "造成 %1%%% 更多點燃傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "造成 %1%%% 更少點燃傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "y": {
+      "stats": ["cyclone_first_hit_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "第一次擊中造成 %1%%% 更多傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "第一次擊中造成 %1%%% 較少傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "b": {
+      "stats": ["abyssal_cry_%_max_life_as_chaos_on_death"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "爆炸造成等同該怪物最大生命 %1%%% 的混沌傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "d": {
+      "stats": ["additional_base_critical_strike_chance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d%% 暴擊機率",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

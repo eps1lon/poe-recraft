@@ -1,0 +1,373 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "u": {
+      "stats": [
+        "support_scion_onslaught_on_killing_blow_%_chance",
+        "support_scion_onslaught_on_killing_blow_duration_ms"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Приспешники имеют %1%%% шанс получить Боевой раж на %2% секунд(-ы)\\nпри нанесении смертельного удара",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 2
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
+    "r": {
+      "stats": ["support_brutality_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Приспешники наносят на %1%%% больше физического урона",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Приспешники наносят на %1%%% меньше физического урона",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "a": {
+      "stats": ["support_maimed_enemies_physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Враги, изувеченные приспешниками, получают увеличенный на %1%%% физический урон",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Враги, изувеченные приспешниками, получают уменьшенный на %1%%% физический урон",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "t": {
+      "stats": ["attack_speed_+%_when_on_low_life"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Приспешники имеют %1%%% повышение скорости атаки при малом количестве здоровья",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Приспешники имеют %1%%% снижение скорости атаки при малом количестве здоровья",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        }
+      ]
+    },
+    "c": {
+      "stats": ["support_echo_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Приспешники наносят на %1%%% больше урона",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Приспешники наносят на %1%%% меньше урона",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "i": {
+      "stats": ["support_minion_totem_resistance_elemental_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Приспешники и умения, используемые тотемами, наносят на %1%%% больше урона от стихий",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Приспешники и умения, используемые тотемами, наносят на %1%%% меньше урона от стихий",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "n": {
+      "stats": ["gain_endurance_charge_on_melee_stun"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Приспешники получают заряд выносливости, если они оглушают врага в ближнем бою",
+          "formatters": []
+        }
+      ]
+    },
+    "h": {
+      "stats": ["chance_to_fortify_on_melee_hit_+%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "Приспешники имеют %1%%% шанс на Укрепление при атаке в ближнем бою",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Приспешники получают Укрепление при атаке в ближнем бою",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        }
+      ]
+    },
+    "o": {
+      "stats": ["base_chance_to_poison_on_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "Приспешники имеют %1%%% шанс отравить при нанесении удара",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Приспешники всегда отравляют при нанесении удара",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        }
+      ]
+    },
+    "d": {
+      "stats": [
+        "support_minimum_added_fire_damage_vs_burning_enemies",
+        "support_maximum_added_fire_damage_vs_burning_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Приспешники наносят от %1% до %2% дополнительного урона от огня атаками по горящим врагам",
+          "formatters": []
+        }
+      ]
+    },
+    "l": {
+      "stats": [
+        "bleed_on_hit_with_attacks_%",
+        "global_bleed_on_hit",
+        "cannot_cause_bleeding"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99], 0, 0],
+          "text": "Атаки приспешников имеют %1%%% шанс наложить кровотечение",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"], 0, 0],
+          "text": "Атаки приспешников накладывают кровотечение",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        },
+        {
+          "matchers": ["#", "#", 0],
+          "text": "Атаки приспешников накладывают кровотечение",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        },
+        {
+          "matchers": ["#", "#", "#"],
+          "text": "Приспешники не могут наложить кровотечение",
+          "formatters": []
+        }
+      ]
+    },
+    "g": {
+      "stats": ["support_ignite_prolif_ignite_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Приспешники наносят на %1%%% больше урона от поджога",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Приспешники наносят на %1%%% меньше урона от поджога",
+          "formatters": []
+        }
+      ]
+    },
+    "e": {
+      "stats": ["deal_no_elemental_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Приспешники не наносят урона от стихий",
+          "formatters": []
+        }
+      ]
+    },
+    "p": {
+      "stats": ["support_split_projectile_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Приспешники наносят на %1%%% больше урона снарядами",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Приспешники наносят на %1%%% меньше урона снарядами",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "k": {
+      "stats": ["skill_effect_and_damaging_ailment_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Приспешники имеют %1%%% увеличение длительности умений и состояний, наносящих урон",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Приспешники имеют %1%%% уменьшение длительности умений и состояний, наносящих урон",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "y": {
+      "stats": ["support_hypothermia_damage_+%_vs_chilled_enemies_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Приспешники наносят на %1%%% больше урона от ударов и состояний по охлаждённым врагам",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Приспешники наносят на %1%%% меньше урона от ударов и состояний по охлаждённым врагам",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

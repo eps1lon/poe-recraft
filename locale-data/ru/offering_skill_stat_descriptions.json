@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "t": {
+      "stats": ["attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Повышает скорость атаки приспешников на %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Снижает скорость атаки приспешников на %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "a": {
+      "stats": ["base_spell_block_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Дарует приспешникам %1$+d%% шанс блока чар",
+          "formatters": []
+        }
+      ]
+    },
+    "o": {
+      "stats": ["base_movement_velocity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Повышает скорость передвижения приспешников на %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Снижает скорость передвижения приспешников на %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "e": {
+      "stats": ["recover_X_life_on_block"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Приспешники восстанавливают %1% здоровья при блоке",
+          "formatters": []
+        }
+      ]
+    },
+    "h": {
+      "stats": ["physical_damage_%_to_add_as_chaos"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Приспешники наносят %1%%% от их физического урона в виде дополнительного урона хаосом",
+          "formatters": []
+        }
+      ]
+    },
+    "p": {
+      "stats": [
+        "spirit_offering_life_%_added_as_base_maximum_energy_shield_per_corpse_consumed"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Приспешники получают %1%%% от их максимума здоровья в виде\\nдополнительного максимума энергетического щита за каждый поглощённый труп",
+          "formatters": []
+        }
+      ]
+    }
+  }
+}

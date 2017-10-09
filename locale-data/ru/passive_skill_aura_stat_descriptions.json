@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "include": "passive_skill_stat_descriptions"
+  },
+  "data": {
+    "damage_+%": {
+      "stats": ["damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Герой и ближайшие союзники наносят увеличенный на %1%%% урон",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Герой и ближайшие союзники наносят уменьшенный на %1%%% урон",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_movement_velocity_+%": {
+      "stats": ["base_movement_velocity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Скорость передвижения героя и ближайших союзников повышена на %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Скорость передвижения героя и ближайших союзников снижена на %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_damage_taken_+%": {
+      "stats": ["elemental_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Ближайшие враги получают увеличенный на %1%%% урон от стихий",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Ближайшие враги получают уменьшенный на %1%%% урон от стихий",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_be_ignited_%": {
+      "stats": ["chance_to_be_ignited_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Ближайшие враги имеют %1$+d%% шанс быть подожжёнными при получении урона от огня",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_frozen_%": {
+      "stats": ["chance_to_be_frozen_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Ближайшие враги имеют %1$+d%% шанс быть замороженными при получении урона от холода",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_shocked_%": {
+      "stats": ["chance_to_be_shocked_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Ближайшие враги имеют %1$+d%% шанс получить шок при получении урона от молнии",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextShock"
+            }
+          ]
+        }
+      ]
+    },
+    "inquisitor_aura_elemental_damage_+%_final": {
+      "stats": ["inquisitor_aura_elemental_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Ближайшие враги наносят на %1%%% больше урона от стихий",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Ближайшие враги наносят на %1%%% меньше урона от стихий",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_chaos_damage_resistance_%": {
+      "stats": ["base_chaos_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ближайшие враги имеют %1$+d%% сопротивления хаосу",
+          "formatters": []
+        }
+      ]
+    }
+  }
+}

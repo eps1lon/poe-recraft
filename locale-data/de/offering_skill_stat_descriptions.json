@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "t": {
+      "stats": ["attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Gewährt Kreaturen %1%%% erhöhte Angriffsgeschwindigkeit",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Gewährt Kreaturen %1%%% verringerte Angriffsgeschwindigkeit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "a": {
+      "stats": ["base_spell_block_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Gewährt Kreaturen %1$+d%% Chance auf Blocken von Zaubern",
+          "formatters": []
+        }
+      ]
+    },
+    "o": {
+      "stats": ["base_movement_velocity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Gewährt Kreaturen %1%%% erhöhte Bewegungsgeschwindigkeit",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Gewährt Kreaturen %1%%% verringerte Bewegungsgeschwindigkeit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "e": {
+      "stats": ["recover_X_life_on_block"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Kreaturen stellen beim Blocken %1% Leben wieder her",
+          "formatters": []
+        }
+      ]
+    },
+    "h": {
+      "stats": ["physical_damage_%_to_add_as_chaos"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Kreaturen verursachen %1%%% des physischen Schadens als extra Chaosschaden",
+          "formatters": []
+        }
+      ]
+    },
+    "p": {
+      "stats": [
+        "spirit_offering_life_%_added_as_base_maximum_energy_shield_per_corpse_consumed"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Kreaturen erhalten %1%%% des maximalen Lebens als\\nzusätzlichen maximalen Energieschild für jede verbrauchte Leiche",
+          "formatters": []
+        }
+      ]
+    }
+  }
+}

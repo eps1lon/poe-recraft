@@ -1,0 +1,321 @@
+{
+  "meta": {
+    "include": "minion_skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "t": {
+      "stats": ["attack_speed_+%_when_on_low_life"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Dieser Angriff und Kreaturen haben %1%%% erhöhte Angriffsgeschwindigkeit bei niedrigem Leben",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Dieser Angriff und Kreaturen haben %1%%% verringerte Angriffsgeschwindigkeit bei niedrigem Leben",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        }
+      ]
+    },
+    "c": {
+      "stats": ["accuracy_rating_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Dieser Angriff und Kreaturen haben %1%%% erhöhte Treffgenauigkeit",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Dieser Angriff und Kreaturen haben %1%%% verringerte Treffgenauigkeit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "r": {
+      "stats": ["support_brutality_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Dieser Angriff und Kreaturen verursachen %1%%% mehr physischen Schaden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Dieser Angriff und Kreaturen verursachen %1%%% weniger physischen Schaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "e": {
+      "stats": ["deal_no_elemental_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Dieser Angriff und Kreaturen verursachen keinen Elementarschaden",
+          "formatters": []
+        }
+      ]
+    },
+    "i": {
+      "stats": ["base_reduce_enemy_lightning_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Dieser Angriff und Kreaturen durchdringen %1%%% Blitzwiderstand",
+          "formatters": []
+        }
+      ]
+    },
+    "a": {
+      "stats": ["support_maimed_enemies_physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Durch diesen Angriff oder Kreaturen verstümmelte Gegner erleiden %1%%% verstärkten physischen Schaden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Durch diesen Angriff oder Kreaturen verstümmelte Gegner erleiden %1%%% verringerten physischen Schaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "n": {
+      "stats": ["gain_endurance_charge_on_melee_stun"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Dieser Angriff und Kreaturen erzeugen eine Widerstands-Ladung, wenn Gegner mit Nahkampfschaden betäubt werden",
+          "formatters": []
+        }
+      ]
+    },
+    "h": {
+      "stats": ["chance_to_fortify_on_melee_hit_+%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "Dieser Angriff und Kreaturen haben %1%%% Chance auf Verstärken bei Nahkampftreffer",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Dieser Angriff und Kreaturen erhalten Verstärken bei Nahkampftreffer",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        }
+      ]
+    },
+    "u": {
+      "stats": ["support_poison_poison_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Dieser Angriff und Kreaturen verursachen %1%%% mehr Schaden mit Gift",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Dieser Angriff und Kreaturen verursachen %1%%% weniger Schaden mit Gift",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "l": {
+      "stats": [
+        "bleed_on_hit_with_attacks_%",
+        "global_bleed_on_hit",
+        "cannot_cause_bleeding"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99], 0, 0],
+          "text":
+            "Dieser Angriff und Kreaturen haben %1%%% Chance, Blutung zu verursachen",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"], 0, 0],
+          "text": "Dieser Angriff und Kreaturen verursachen Blutung",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        },
+        {
+          "matchers": ["#", "#", 0],
+          "text": "Dieser Angriff und Kreaturen verursachen Blutung",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        },
+        {
+          "matchers": ["#", "#", "#"],
+          "text":
+            "Dieser Angriff und Kreaturen können keine Blutung verursachen",
+          "formatters": []
+        }
+      ]
+    },
+    "g": {
+      "stats": ["support_ignite_prolif_ignite_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Dieser Angriff und Kreaturen verursachen %1%%% mehr Schaden mit Entzünden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Dieser Angriff und Kreaturen verursachen %1%%% weniger Schaden mit Entzünden",
+          "formatters": []
+        }
+      ]
+    },
+    "o": {
+      "stats": ["base_chance_to_poison_on_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "Dieser Angriff und Kreaturen haben %1%%% Chance, bei Treffer zu vergiften",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Dieser Angriff und Kreaturen vergiften bei Treffer",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        }
+      ]
+    },
+    "y": {
+      "stats": ["support_hypothermia_damage_+%_vs_chilled_enemies_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Dieser Angriff und Kreaturen verursachen %1%%% mehr Schaden mit Treffern und Beeinträchtigungen gegen unterkühlte Gegner",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Dieser Angriff und Kreaturen verursachen %1%%% weniger Schaden mit Treffern und Beeinträchtigungen gegen unterkühlte Gegner",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "d": {
+      "stats": [
+        "support_minimum_added_fire_damage_vs_burning_enemies",
+        "support_maximum_added_fire_damage_vs_burning_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Dieser Angriff und Kreaturen fügen %1% bis %2% Feuerschaden gegen brennende Gegner hinzu",
+          "formatters": []
+        }
+      ]
+    }
+  }
+}

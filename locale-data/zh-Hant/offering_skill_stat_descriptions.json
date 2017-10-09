@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "t": {
+      "stats": ["attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召喚物增加 %1%%% 攻擊速度",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召喚物減少 %1%%% 攻擊速度",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "a": {
+      "stats": ["base_spell_block_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "召喚物 %1$+d%% 法術格擋率",
+          "formatters": []
+        }
+      ]
+    },
+    "o": {
+      "stats": ["base_movement_velocity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召喚物增加 %1%%% 移動速度",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召喚物減少 %1%%% 移動速度",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "e": {
+      "stats": ["recover_X_life_on_block"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "召喚物格擋時回復它們 %1% 生命",
+          "formatters": []
+        }
+      ]
+    },
+    "h": {
+      "stats": ["physical_damage_%_to_add_as_chaos"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召喚物獲得等同它們 %1%%% 物理傷害的額外混沌傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "p": {
+      "stats": [
+        "spirit_offering_life_%_added_as_base_maximum_energy_shield_per_corpse_consumed"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每消耗一具屍體，召喚物獲得等同它們\\n%1%%% 最大生命的額外最大能量護盾",
+          "formatters": []
+        }
+      ]
+    }
+  }
+}

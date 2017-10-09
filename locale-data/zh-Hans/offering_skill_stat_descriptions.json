@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "t": {
+      "stats": ["attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召唤生物增加 %1%%% 攻击速度",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召唤生物减少 %1%%% 攻击速度",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "a": {
+      "stats": ["base_spell_block_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "召唤生物增加 %1$+d%% 法术格挡率",
+          "formatters": []
+        }
+      ]
+    },
+    "o": {
+      "stats": ["base_movement_velocity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召唤生物增加 %1%%% 移动速度",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召唤生物减少 %1%%% 移动速度",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "e": {
+      "stats": ["recover_X_life_on_block"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "召唤生物格挡时回复它们 %1% 生命",
+          "formatters": []
+        }
+      ]
+    },
+    "h": {
+      "stats": ["physical_damage_%_to_add_as_chaos"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "召唤生物获得等同它们 %1%%% 物理伤害的额外混沌伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "p": {
+      "stats": [
+        "spirit_offering_life_%_added_as_base_maximum_energy_shield_per_corpse_consumed"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每消耗一具灵柩, 召唤生物获得它们最大生命 %1%%% 的额外能量护盾",
+          "formatters": []
+        }
+      ]
+    }
+  }
+}

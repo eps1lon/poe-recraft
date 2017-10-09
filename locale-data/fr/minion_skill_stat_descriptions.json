@@ -1,0 +1,297 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "u": {
+      "stats": ["support_projectile_attack_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Sbires ont %1%%% de Vitesse d'Attaque des Projectiles en plus",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Les Sbires ont %1%%% de Vitesse d'Attaque des Projectiles en moins",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "r": {
+      "stats": ["support_trap_and_mine_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Sbires infligent %1%%% de Dégâts des Pièges et des Mines en plus",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Les Sbires infligent %1%%% lde Dégâts des Pièges et des Mines en moins",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "a": {
+      "stats": ["cannot_inflict_status_ailments"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Les Créatures ne peuvent causer d'Altérations élémentaires",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextElementalStatusAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "t": {
+      "stats": ["attack_speed_+%_when_on_low_life"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Sbires ont %1%%% de Vitesse d'Attaque accrue en Basse Santé",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Les Sbires ont %1%%% de Vitesse d'Attaque réduite en Basse Santé",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        }
+      ]
+    },
+    "c": {
+      "stats": ["support_echo_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Les Sbires infligent %1%%% de Dégâts en plus",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Les Sbires infligent %1%%% de Dégâts en moins",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "i": {
+      "stats": ["support_minion_totem_resistance_elemental_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Créatures et les Aptitudes des Totems ont %1%%% Davantage de Dégâts élémentaires",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Les Créatures et les Aptitudes des Totems ont %1%%% de Perte de Dégâts élémentaires",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "n": {
+      "stats": ["gain_endurance_charge_on_melee_stun"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Sbires génèrent une Charge d'Endurance s'ils Étourdissent un Ennemi avec des Dégâts de Mêlée",
+          "formatters": []
+        }
+      ]
+    },
+    "h": {
+      "stats": ["chance_to_fortify_on_melee_hit_+%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "Les Sbires ont %1%%% de chance de se Fortifier par Coup de Mêlée porté",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Les Sbires ont Fortifiant par Coup de Mêlée porté",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        }
+      ]
+    },
+    "o": {
+      "stats": ["base_poison_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Créatures ont %1%%% d'Augmentation de la Durée du Poison",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Les Créatures ont %1%%% de Réduction de la Durée du Poison",
+          "formatters": []
+        }
+      ]
+    },
+    "d": {
+      "stats": [
+        "global_minimum_added_chaos_damage",
+        "global_maximum_added_chaos_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Les Attaques des Créatures infligent %1% à %2% Dégâts de chaos supplémentaires",
+          "formatters": []
+        }
+      ]
+    },
+    "l": {
+      "stats": ["support_gem_elemental_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Les Créatures ont %1%%% Davantage de Dégâts élémentaires",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Les Créatures ont %1%%% de Perte de Dégâts élémentaires",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "g": {
+      "stats": ["support_ignite_proliferation_radius"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "L'Embrasement causé par les Créatures affecte aussi les autres Ennemis aux alentours",
+          "formatters": []
+        }
+      ]
+    },
+    "e": {
+      "stats": ["melee_splash_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Créatures %1%%% Davantage de Zone d'effet des Dégâts collatéraux",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Les Créatures %1%%% de Perte de Zone d'effet des Dégâts collatéraux",
+          "formatters": []
+        }
+      ]
+    },
+    "p": {
+      "stats": ["support_split_projectile_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Sbires infligent %1%%% de Dégâts des Projectiles en plus",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Les Sbires infligent %1%%% de Dégâts des Projectiles en moins",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "k": {
+      "stats": ["skill_effect_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Les Sbires ont %1%%% de Durée accrue",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Les Sbires ont %1%%% de Durée réduite ",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

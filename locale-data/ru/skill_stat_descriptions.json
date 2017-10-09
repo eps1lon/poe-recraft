@@ -1,0 +1,328 @@
+{
+  "meta": {
+    "include": "active_skill_gem_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "base_actor_scale_+%": {
+      "no_description": true,
+      "stats": [],
+      "translations": {}
+    },
+    "k": {
+      "stats": ["skill_effect_and_damaging_ailment_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% увеличение длительности состояний, наносящих урон",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% уменьшение длительности состояний, наносящих урон",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "p": {
+      "stats": [
+        "spell_minimum_added_lightning_damage",
+        "spell_maximum_added_lightning_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Добавляет от %1% до %2% урона от молнии к чарам",
+          "formatters": []
+        }
+      ]
+    },
+    "e": {
+      "stats": [
+        "minimum_secondary_physical_damage_per_15_strength",
+        "maximum_secondary_physical_damage_per_15_strength"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "От %1% до %2% физического урона за каждые 15 силы",
+          "formatters": []
+        }
+      ]
+    },
+    "i": {
+      "stats": ["support_minion_totem_resistance_elemental_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Приспешники и умения, используемые тотемами, наносят на %1%%% больше урона от стихий",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Приспешники и умения, используемые тотемами, наносят на %1%%% меньше урона от стихий",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "o": {
+      "stats": ["base_poison_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% увеличение длительности отравления",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% уменьшение длительности отравления",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "l": {
+      "stats": ["display_max_blight_stacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Отрицательный эффект может иметь до %1% слоёв урона",
+          "formatters": []
+        }
+      ]
+    },
+    "r": {
+      "stats": ["arctic_armour_chill_when_hit_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Охлаждает врагов на %1% секунд(-ы) при получении удара",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChillNonHitNoDuration"
+            }
+          ]
+        }
+      ]
+    },
+    "u": {
+      "stats": [
+        "support_scion_onslaught_on_killing_blow_%_chance",
+        "support_scion_onslaught_on_killing_blow_duration_ms"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "%1%%% шанс даровать Боевой раж на %2% секунд(-ы) \\nпри нанесении смертельного удара",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 2
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
+    "a": {
+      "stats": ["support_maimed_enemies_physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Враги, изувеченные этим умением, получают увеличенный на %1%%% физический урон",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Враги, изувеченные этим умением, получают уменьшенный на %1%%% физический урон",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "t": {
+      "stats": ["attack_trigger_on_killing_bleeding_enemy_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% шанс вызвать срабатывание этого умения при убийстве истекающего кровью врага",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Вызывает срабатывание этого умения при убийстве истекающего кровью врага",
+          "formatters": []
+        }
+      ]
+    },
+    "n": {
+      "stats": ["enemy_aggro_radius_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% увеличение заметности для врагов",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextVisibility"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% уменьшение заметности для врагов",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextVisibility"
+            }
+          ]
+        }
+      ]
+    },
+    "h": {
+      "stats": ["support_chance_to_bleed_bleeding_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Усиленные атаки наносят на %1%%% больше урона от кровотечения",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Усиленные атаки наносят на %1%%% меньше урона от кровотечения",
+          "formatters": []
+        }
+      ]
+    },
+    "c": {
+      "stats": ["active_skill_if_used_through_frostbolt_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "На %1%%% больше урона при использовании через Морозный шар",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "На %1%%% меньше урона при использовании через Морозный шар",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "g": {
+      "stats": ["support_ignite_prolif_ignite_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "На %1%%% больше урона от поджога",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "На %1%%% меньше урона от поджога",
+          "formatters": []
+        }
+      ]
+    },
+    "y": {
+      "stats": ["cyclone_first_hit_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Первое попадание наносит на %1%%% больше урона",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Первое попадание наносит на %1%%% меньше урона",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "b": {
+      "stats": ["abyssal_cry_%_max_life_as_chaos_on_death"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Взрыв наносит урона хаосом, равный %1%%% от максимума здоровья монстра",
+          "formatters": []
+        }
+      ]
+    },
+    "d": {
+      "stats": ["additional_base_critical_strike_chance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d%% к шансу критического удара",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

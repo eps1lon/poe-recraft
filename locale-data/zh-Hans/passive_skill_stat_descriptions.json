@@ -1,0 +1,642 @@
+{
+  "meta": {
+    "include": "stat_descriptions"
+  },
+  "data": {
+    "damage_taken_+%_from_hits": {
+      "no_description": true,
+      "stats": [],
+      "translations": {}
+    },
+    "base_strength": {
+      "stats": ["base_strength"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d 力量",
+          "formatters": []
+        }
+      ]
+    },
+    "base_dexterity": {
+      "stats": ["base_dexterity"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d 敏捷",
+          "formatters": []
+        }
+      ]
+    },
+    "base_intelligence": {
+      "stats": ["base_intelligence"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d 智慧",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_regeneration_rate_per_minute_%": {
+      "stats": ["mana_regeneration_rate_per_minute_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "额外增加 %1%%% 魔力回复",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mana_regeneration_rate_per_minute_%_per_power_charge": {
+      "stats": ["mana_regeneration_rate_per_minute_%_per_power_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每个暴击球增加 %1%%% 每秒魔力回复",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "max_endurance_charges": {
+      "stats": ["max_endurance_charges"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d 耐力球数量上限",
+          "formatters": []
+        }
+      ]
+    },
+    "max_frenzy_charges": {
+      "stats": ["max_frenzy_charges"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d 狂怒球数量上限",
+          "formatters": []
+        }
+      ]
+    },
+    "max_power_charges": {
+      "stats": ["max_power_charges"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d 暴击球数量上限",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_+%_per_frenzy_charge": {
+      "stats": ["physical_damage_+%_per_frenzy_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每个狂怒球增加 %1%%% 物理伤害 ",
+          "formatters": []
+        }
+      ]
+    },
+    "add_frenzy_charge_on_kill": {
+      "stats": ["add_frenzy_charge_on_kill"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "击败敌人获得狂怒球",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_iron_reflexes": {
+      "stats": ["keystone_iron_reflexes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "将所有闪避值转换为护甲, 敏捷不提供闪避加成",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_avatar_of_fire": {
+      "stats": ["keystone_avatar_of_fire"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "50%% 物理, 冰霜和闪电伤害转换为火焰伤害\\n除火焰伤害外不造成其他伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_eldritch_battery": {
+      "stats": ["keystone_eldritch_battery"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "优先使用能量护盾代替魔力消耗\\n能量护盾从生命护盾变成魔力护盾",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_ancestral_bond": {
+      "stats": ["keystone_ancestral_bond"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你的技能无法造成伤害\\n同时间能额外召唤1个图腾",
+          "formatters": []
+        }
+      ]
+    },
+    "convert_all_physical_damage_to_fire": {
+      "stats": ["convert_all_physical_damage_to_fire"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "将所有物理伤害转换为火焰伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_zombies_allowed": {
+      "stats": ["base_number_of_zombies_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d 魔卫数量上限",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_spectres_allowed": {
+      "stats": ["base_number_of_spectres_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d 灵体数量上限",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_skeletons_allowed": {
+      "stats": ["base_number_of_skeletons_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d 魔侍数量上限",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_raging_spirits_allowed": {
+      "stats": ["base_number_of_raging_spirits_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d 愤怒狂灵数量上限",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_acrobatics": {
+      "stats": ["keystone_acrobatics"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "30%% 机率躲避攻击, 额外减少 50%% 总护甲与总能量护盾, 额外减少 30%% 攻击与法术总格挡率",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_phase_acrobatics": {
+      "stats": ["keystone_phase_acrobatics"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "30%% 几率躲避法术伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_pain_attunement": {
+      "stats": ["keystone_pain_attunement"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "濒血时额外增加 30%% 的法术总伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_strong_bowman": {
+      "stats": ["keystone_strong_bowman"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每 5 点力量增加 1%% 攻击造成的投射物物理伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_point_blank": {
+      "stats": ["keystone_point_blank"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "投射物攻击近距离目标时至多额外增加 50%% 总伤害, 但在攻击远距离目标时额外减少总伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_conduit": {
+      "stats": ["keystone_conduit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "与邻近的队友分享耐力, 狂怒与暴击球",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_projectile_evasion": {
+      "stats": ["keystone_projectile_evasion"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "额外增加 40%% 对投射物攻击的总闪避率\\n额外减少 20%% 对近战攻击的总闪避率",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_blood_magic": {
+      "stats": ["keystone_blood_magic"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "移除魔力, 消耗生命施放所有技能",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_minion_instability": {
+      "stats": ["keystone_minion_instability"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "召唤生物濒死时爆炸, 对附近敌人造成 33%% 最大生命的火焰伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_elemental_equilibrium": {
+      "stats": ["keystone_elemental_equilibrium"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被火焰, 冰霜和闪电伤害击中的敌人暂时增加 25%% 该属性抗性, 并减少 50%% 其他属性抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_chaos_inoculation": {
+      "stats": ["keystone_chaos_inoculation"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "生命值上限变成 1, 免疫混沌伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_vampirism": {
+      "stats": ["keystone_vampirism"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "生命偷取立即回复。不再获得生命回复效果。(无法立即回复灵能护体的护盾)",
+          "formatters": []
+        }
+      ]
+    },
+    "regenerate_energy_shield_instead_of_life": {
+      "stats": ["regenerate_energy_shield_instead_of_life"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "生命回复套用到能量护盾上",
+          "formatters": []
+        }
+      ]
+    },
+    "critical_strike_chance_+%": {
+      "stats": ["critical_strike_chance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "增加 %1%%% 攻击与法术暴击率",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "减少 %1%%% 攻击与法术暴击率",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_critical_strike_multiplier_+": {
+      "stats": ["base_critical_strike_multiplier_+"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1$+d%% 攻击与法术暴击伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "staff_block_%": {
+      "stats": ["staff_block_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "持长杖时增加 %1%%% 攻击格挡率",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "持长杖时减少 %1%%% 攻击格挡率",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "keystone_mana_shield": {
+      "stats": ["keystone_mana_shield"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "30%% 的伤害先从魔力扣取",
+          "formatters": []
+        }
+      ]
+    },
+    "mortal_conviction_mana_reservation_+%_final": {
+      "stats": ["mortal_conviction_mana_reservation_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "额外增加 %1%%% 总魔力保留",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "额外减少 %1%%% 总魔力保留",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "resolute_technique": {
+      "stats": ["resolute_technique"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你的攻击和法术无法被闪避\\n无法造成暴击",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_unwavering_stance": {
+      "stats": ["keystone_unwavering_stance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "无法闪避敌人攻击\\n不会被晕眩",
+          "formatters": []
+        }
+      ]
+    },
+    "passive_can_be_allocated_without_connection": {
+      "stats": ["passive_can_be_allocated_without_connection"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "可以点选天赋树中不相连的天赋点",
+          "formatters": []
+        }
+      ]
+    },
+    "base_strength_and_dexterity": {
+      "stats": ["base_strength_and_dexterity"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d 力量与敏捷",
+          "formatters": []
+        }
+      ]
+    },
+    "base_strength_and_intelligence": {
+      "stats": ["base_strength_and_intelligence"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d 力量与智慧",
+          "formatters": []
+        }
+      ]
+    },
+    "base_dexterity_and_intelligence": {
+      "stats": ["base_dexterity_and_intelligence"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d 敏捷与智慧",
+          "formatters": []
+        }
+      ]
+    },
+    "shield_block_%": {
+      "stats": ["shield_block_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "持盾时增加 %1%%% 攻击格挡率",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "持盾时减少 %1%%% 攻击格挡率",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "has_fortify": {
+      "stats": ["has_fortify"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "获得护体效果",
+          "formatters": []
+        }
+      ]
+    },
+    "global_chance_to_blind_on_hit_%": {
+      "stats": ["global_chance_to_blind_on_hit_%"],
+      "translations": [
+        {
+          "matchers": [["#", 99]],
+          "text": "命中敌人后有 %1%%% 几率致盲",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBlind"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "命中使敌人致盲",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBlind"
+            }
+          ]
+        }
+      ]
+    },
+    "number_of_additional_projectiles": {
+      "stats": ["number_of_additional_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "技能增加一个额外投射物",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "技能增加 %1% 个额外投射物",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_golems_allowed": {
+      "stats": ["base_number_of_golems_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "最多能同时拥有额外 %1% 个魔像",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "最多能同时拥有额外 %1% 个魔像",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_elemental_overload": {
+      "stats": ["keystone_elemental_overload"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "暴击后的 8 秒内, 额外增加 40%% 火焰, 冰霜和闪电总伤害\\n没有暴击伤害加成",
+          "formatters": []
+        }
+      ]
+    },
+    "display_can_take_character_start_point": {
+      "stats": ["display_can_take_character_start_point"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "可以从野蛮人的起点配置天赋",
+          "formatters": []
+        },
+        {
+          "matchers": [2],
+          "text": "可以从游侠的起点配置天赋",
+          "formatters": []
+        },
+        {
+          "matchers": [3],
+          "text": "可以从女巫的起点配置天赋",
+          "formatters": []
+        },
+        {
+          "matchers": [4],
+          "text": "可以从决斗者的起点配置天赋",
+          "formatters": []
+        },
+        {
+          "matchers": [5],
+          "text": "可以从圣堂武僧的起点配置天赋",
+          "formatters": []
+        },
+        {
+          "matchers": [6],
+          "text": "可以从暗影刺客的起点配置天赋",
+          "formatters": []
+        }
+      ]
+    },
+    "consecrate_ground_on_kill_%_for_3_seconds": {
+      "stats": ["consecrate_ground_on_kill_%_for_3_seconds"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "击败时有 %1%%% 几率产生奉献地面持续 8 秒",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "击败时产生奉献地面持续 8 秒",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_ailment_crit": {
+      "stats": ["keystone_ailment_crit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "暴击伤害加成数值的 30%% 套用到异常状态的伤害加成\\n额外减少 30%% 击中总伤害",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

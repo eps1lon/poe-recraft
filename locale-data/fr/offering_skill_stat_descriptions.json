@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "t": {
+      "stats": ["attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Accorde aux Sbires %1%%% de Vitesse d'Attaque accrue",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Accorde aux Sbires %1%%% de Vitesse d'Attaque réduite",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "a": {
+      "stats": ["base_spell_block_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Accorde aux Sbires %1%%% de Chance de Bloquer les Sorts",
+          "formatters": []
+        }
+      ]
+    },
+    "o": {
+      "stats": ["base_movement_velocity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Accorde aux Sbires %1%%% de Vitesse de Déplacement accrue",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Accorde aux Sbires %1%%% de Vitesse de Déplacement réduite",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "e": {
+      "stats": ["recover_X_life_on_block"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Les Sbires récupèrent %1% de Vie quand ils Bloquent",
+          "formatters": []
+        }
+      ]
+    },
+    "h": {
+      "stats": ["physical_damage_%_to_add_as_chaos"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Créatures %1%%% de su Daño Físico como Daño Extra de Caos",
+          "formatters": []
+        }
+      ]
+    },
+    "p": {
+      "stats": [
+        "spirit_offering_life_%_added_as_base_maximum_energy_shield_per_corpse_consumed"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Créatures ont %1%%% de leur Vie maximale ajoutée en tant que\\nBouclier d'énergie maximal pour chaque cadavre consommé",
+          "formatters": []
+        }
+      ]
+    }
+  }
+}

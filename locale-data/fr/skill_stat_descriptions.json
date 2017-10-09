@@ -1,0 +1,317 @@
+{
+  "meta": {
+    "include": "active_skill_gem_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "base_actor_scale_+%": {
+      "no_description": true,
+      "stats": [],
+      "translations": {}
+    },
+    "p": {
+      "stats": [
+        "spell_minimum_added_lightning_damage",
+        "spell_maximum_added_lightning_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Ajoute %1% à %2% Dégâts de foudre supplémentaires aux Sorts",
+          "formatters": []
+        }
+      ]
+    },
+    "e": {
+      "stats": [
+        "minimum_secondary_physical_damage_per_15_strength",
+        "maximum_secondary_physical_damage_per_15_strength"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "%1% à %2% Dégâts physiques de base par 15 de Force",
+          "formatters": []
+        }
+      ]
+    },
+    "i": {
+      "stats": ["support_minion_totem_resistance_elemental_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Créatures et les Aptitudes utilisées par les Totems ont %1%%% Davantage de Dégâts élémentaires",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Les Créatures et les Aptitudes utilisées par les Totems ont %1%%% de Perte de Dégâts élémentaires",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "o": {
+      "stats": ["base_poison_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% d'Augmentation de la Durée du Poison",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de Réduction de la Durée du Poison",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "l": {
+      "stats": ["display_max_blight_stacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "L'Effet néfaste peut avoir jusqu'à %1% couches de Dégâts",
+          "formatters": []
+        }
+      ]
+    },
+    "r": {
+      "stats": ["arctic_armour_chill_when_hit_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Glace les ennemis pour %1% secondes lorsque vous êtes touché",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChillNonHitNoDuration"
+            }
+          ]
+        }
+      ]
+    },
+    "u": {
+      "stats": ["shockwave_slam_explosion_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Les ondes de choc ont %1%%% Davantage de Dégâts",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Les ondes de choc ont %1%%% de Perte de Dégâts",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "a": {
+      "stats": ["cannot_knockback"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Cette Aptitude ne peut pas Repousser les Ennemis",
+          "formatters": []
+        }
+      ]
+    },
+    "t": {
+      "stats": ["static_strike_explosion_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "L'Explosion inflige %1%%% de Dégâts en plus",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "L'Explosion inflige %1%%% de Dégâts en moins",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "n": {
+      "stats": ["enemy_aggro_radius_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% de la Vision des Ennemis accrue",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextVisibility"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de la Vision des Ennemis réduite",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextVisibility"
+            }
+          ]
+        }
+      ]
+    },
+    "k": {
+      "stats": ["skill_effect_and_damaging_ailment_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% d'Augmentation de la Durée des Altérations de dégâts",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de Réduction de la Durée des Altérations de dégâts",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "h": {
+      "stats": ["shock_nova_ring_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "L'anneau a %1%%% d'Augmentation des Dégâts",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "L'anneau a %1%%% de Réduction des Dégâts",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "c": {
+      "stats": ["active_skill_if_used_through_frostbolt_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% Davantage de Dégâts en étant Lancé sur Sphère de givre",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de Perte de Dégâts en étant Lancé sur Sphère de givre",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "g": {
+      "stats": ["support_ignite_proliferation_radius"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "L'Embrasement causé par cette Aptitude se propage aux autres Ennemis proches",
+          "formatters": []
+        }
+      ]
+    },
+    "y": {
+      "stats": ["cyclone_first_hit_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "La première Touche a %1%%% Davantage de Dégâts",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "La première Touche a %1%%% de Perte de Dégâts",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "b": {
+      "stats": ["abyssal_cry_%_max_life_as_chaos_on_death"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "L'Explosion inflige des Dégâts de Chaos égal à %1%%% de la Vie maximale du Monstre",
+          "formatters": []
+        }
+      ]
+    },
+    "d": {
+      "stats": ["additional_base_critical_strike_chance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d%% aux Chances de coup critique",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

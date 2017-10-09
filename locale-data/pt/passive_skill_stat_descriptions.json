@@ -1,0 +1,660 @@
+{
+  "meta": {
+    "include": "stat_descriptions"
+  },
+  "data": {
+    "damage_taken_+%_from_hits": {
+      "no_description": true,
+      "stats": [],
+      "translations": {}
+    },
+    "base_strength": {
+      "stats": ["base_strength"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d de Força",
+          "formatters": []
+        }
+      ]
+    },
+    "base_dexterity": {
+      "stats": ["base_dexterity"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d de Destreza",
+          "formatters": []
+        }
+      ]
+    },
+    "base_intelligence": {
+      "stats": ["base_intelligence"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d de Inteligência",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_regeneration_rate_per_minute_%": {
+      "stats": ["mana_regeneration_rate_per_minute_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Adicional de %1%%% à Regeneração de Mana por segundo",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mana_regeneration_rate_per_minute_%_per_power_charge": {
+      "stats": ["mana_regeneration_rate_per_minute_%_per_power_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% adicional de Mana Regenerada por segundo por Carga de Poder",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "max_endurance_charges": {
+      "stats": ["max_endurance_charges"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d ao Máximo de Cargas de Tolerância",
+          "formatters": []
+        }
+      ]
+    },
+    "max_frenzy_charges": {
+      "stats": ["max_frenzy_charges"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d ao Máximo de Cargas de Frenesi",
+          "formatters": []
+        }
+      ]
+    },
+    "max_power_charges": {
+      "stats": ["max_power_charges"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d ao Máximo de Cargas de Poder",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_+%_per_frenzy_charge": {
+      "stats": ["physical_damage_+%_per_frenzy_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Dano Físico aumentado em %1%%% por Carga de Frenesi",
+          "formatters": []
+        }
+      ]
+    },
+    "add_frenzy_charge_on_kill": {
+      "stats": ["add_frenzy_charge_on_kill"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Ganha uma Carga de Frenesi ao Abater",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_iron_reflexes": {
+      "stats": ["keystone_iron_reflexes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Converte toda Evasão em Armadura. Destreza não concede bônus para Taxa de Evasão",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_avatar_of_fire": {
+      "stats": ["keystone_avatar_of_fire"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "50%% de Dano Físico, Gelo e Raio Convertidos para Dano de Fogo\\nNão causa Dano que não seja de Fogo",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_eldritch_battery": {
+      "stats": ["keystone_eldritch_battery"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Gasta Escudo de Energia antes de Mana para Custos de Habilidade\\nEscudo de Energia protege Mana em vez de Vida",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_ancestral_bond": {
+      "stats": ["keystone_ancestral_bond"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Você próprio não pode causar Dano com suas Habilidades\\nPode ter até 1 Totem adicional convocado por vez",
+          "formatters": []
+        }
+      ]
+    },
+    "convert_all_physical_damage_to_fire": {
+      "stats": ["convert_all_physical_damage_to_fire"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Converte todo Dano Físico em Dano de Fogo",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_zombies_allowed": {
+      "stats": ["base_number_of_zombies_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d ao número Máximo de Zumbis",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_spectres_allowed": {
+      "stats": ["base_number_of_spectres_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d ao número Máximo de Espectros",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_skeletons_allowed": {
+      "stats": ["base_number_of_skeletons_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d ao número Máximo de Esqueletos",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_raging_spirits_allowed": {
+      "stats": ["base_number_of_raging_spirits_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d ao número Máximo de Espíritos Furiosos",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_acrobatics": {
+      "stats": ["keystone_acrobatics"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "30%% de Chance de Esquivar de Ataques. 50%% menos Armadura e Escudo de Energia, 30%% menos Chance de Bloquear Magias e Ataques",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_phase_acrobatics": {
+      "stats": ["keystone_phase_acrobatics"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "30%% de Chance de Esquivar de Dano Mágico",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_pain_attunement": {
+      "stats": ["keystone_pain_attunement"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Mais 30%% de Dano Mágico quando em Vida Baixa",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_strong_bowman": {
+      "stats": ["keystone_strong_bowman"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "O aumento de Dano Físico vindo da Força se aplica a Ataques de Projéteis assim como Ataques Corpo a Corpo",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_point_blank": {
+      "stats": ["keystone_point_blank"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Ataques de Projéteis causam até 50%% mais Dano contra alvos no começo do trajeto, causando menos Dano contra alvos conforme o projétil viaja adiante",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_conduit": {
+      "stats": ["keystone_conduit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Compartilha Cargas de Tolerância, Frenesi e Poder com membros do grupo próximos",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_projectile_evasion": {
+      "stats": ["keystone_projectile_evasion"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Mais 40%% de chance de Evadir Ataques de Projéteis\\nMenos 20%% de chance de Evadir Ataques Corpo a Corpo",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_blood_magic": {
+      "stats": ["keystone_blood_magic"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Remove toda mana. Habilidades consomem Vida ao invés de Mana",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_minion_instability": {
+      "stats": ["keystone_minion_instability"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Lacaios explodem quando reduzidos à Vida Baixa, causando 33%% de suas vidas máximas como Dano de Fogo em inimigos próximos",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_elemental_equilibrium": {
+      "stats": ["keystone_elemental_equilibrium"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Inimigos que você atingir com Dano Elemental temporariamente ganham +25%% de Resistência desses Elementos e -50%% de Resistência a outros Elementos",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_chaos_inoculation": {
+      "stats": ["keystone_chaos_inoculation"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Vida Máxima torna-se 1, Imune a Dano de Caos",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_vampirism": {
+      "stats": ["keystone_vampirism"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Ganha Vida de Drenagem instantaneamente. Regeneração de Vida não tem efeito.",
+          "formatters": []
+        }
+      ]
+    },
+    "regenerate_energy_shield_instead_of_life": {
+      "stats": ["regenerate_energy_shield_instead_of_life"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Regeneração de Vida é aplicada ao Escudo de Energia",
+          "formatters": []
+        }
+      ]
+    },
+    "critical_strike_chance_+%": {
+      "stats": ["critical_strike_chance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Chance de Crítico aumentada em %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Chance de Crítico reduzida em %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_critical_strike_multiplier_+": {
+      "stats": ["base_critical_strike_multiplier_+"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1$+d%% ao Multiplicador de Crítico",
+          "formatters": []
+        }
+      ]
+    },
+    "staff_block_%": {
+      "stats": ["staff_block_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Adicional de %1%%% a Chance de Bloqueio com Cajados",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Remove %1%%% de Chance de Bloqueio com Cajados",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "keystone_mana_shield": {
+      "stats": ["keystone_mana_shield"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "30%% de Dano é removido da Mana antes da Vida",
+          "formatters": []
+        }
+      ]
+    },
+    "mortal_conviction_mana_reservation_+%_final": {
+      "stats": ["mortal_conviction_mana_reservation_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% mais Mana Reservada",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% menos Mana Reservada",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "resolute_technique": {
+      "stats": ["resolute_technique"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Seus acertos não podem ser Evadidos\\nNunca causa Acertos Críticos",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_unwavering_stance": {
+      "stats": ["keystone_unwavering_stance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Não Evade Ataques inimigos\\nNão pode ser Atordoado",
+          "formatters": []
+        }
+      ]
+    },
+    "passive_can_be_allocated_without_connection": {
+      "stats": ["passive_can_be_allocated_without_connection"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Pode ser distribuído sem conexão com a árvore",
+          "formatters": []
+        }
+      ]
+    },
+    "base_strength_and_dexterity": {
+      "stats": ["base_strength_and_dexterity"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d de Força e Destreza",
+          "formatters": []
+        }
+      ]
+    },
+    "base_strength_and_intelligence": {
+      "stats": ["base_strength_and_intelligence"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d de Força e Inteligência",
+          "formatters": []
+        }
+      ]
+    },
+    "base_dexterity_and_intelligence": {
+      "stats": ["base_dexterity_and_intelligence"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d de Destreza e Inteligência",
+          "formatters": []
+        }
+      ]
+    },
+    "shield_block_%": {
+      "stats": ["shield_block_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Adicional de %1%%% a Chance de Bloquear com Escudos",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% menos Chance de Bloquear com Escudos",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "has_fortify": {
+      "stats": ["has_fortify"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Você possui Fortificar",
+          "formatters": []
+        }
+      ]
+    },
+    "global_chance_to_blind_on_hit_%": {
+      "stats": ["global_chance_to_blind_on_hit_%"],
+      "translations": [
+        {
+          "matchers": [["#", 99]],
+          "text": "%1%%% de chance de Cegar Inimigos ao Acertar",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBlind"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Cega Inimigos ao Acertar",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBlind"
+            }
+          ]
+        }
+      ]
+    },
+    "number_of_additional_projectiles": {
+      "stats": ["number_of_additional_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Habilidades atiram um Projétil adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Habilidades atiram %1% Projéteis adicionais",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_golems_allowed": {
+      "stats": ["base_number_of_golems_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Pode Convocar até %1% Golem adicional por vez",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Pode Convocar até %1% Golens adicionais por vez",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_elemental_overload": {
+      "stats": ["keystone_elemental_overload"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "40%% mais Dano Elemental se você acertou um Crítico nos últimos 8 segundos\\nSem Multiplicador de Crítico\\nSem Multiplicador de Dano para Afecções Elementais em Golpes Críticos",
+          "formatters": []
+        }
+      ]
+    },
+    "display_can_take_character_start_point": {
+      "stats": ["display_can_take_character_start_point"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Pode Alocar Passivas do ponto inicial do Marauder",
+          "formatters": []
+        },
+        {
+          "matchers": [2],
+          "text": "Pode Alocar Passivas do ponto inicial da Caçadora",
+          "formatters": []
+        },
+        {
+          "matchers": [3],
+          "text": "Pode Alocar Passivas do ponto inicial da Bruxa",
+          "formatters": []
+        },
+        {
+          "matchers": [4],
+          "text": "Pode Alocar Passivas do ponto inicial do Duelista",
+          "formatters": []
+        },
+        {
+          "matchers": [5],
+          "text": "Pode Alocar Passivas do ponto inicial do Templário",
+          "formatters": []
+        },
+        {
+          "matchers": [6],
+          "text": "Pode Alocar Passivas do ponto inicial do Sombra",
+          "formatters": []
+        }
+      ]
+    },
+    "consecrate_ground_on_kill_%_for_3_seconds": {
+      "stats": ["consecrate_ground_on_kill_%_for_3_seconds"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chance de criar Solo Sagrado ao Matar, duração de 8 segundos",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Cria Solo Sagrado ao Matar, duração de 8 segundos",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_ailment_crit": {
+      "stats": ["keystone_ailment_crit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Modificadores de Multiplicador de Crítico também aplicam-se ao Multiplicador de Dano de Afecções de Golpes Críticos em 30%% do valor\\n30%% menos Dano com Acertos",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

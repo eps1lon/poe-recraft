@@ -1,0 +1,132 @@
+{
+  "meta": {
+    "include": "passive_skill_stat_descriptions"
+  },
+  "data": {
+    "damage_+%": {
+      "stats": ["damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你和附近队友增加 %1%%% 伤害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你和附近队友减少 %1%%% 伤害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_movement_velocity_+%": {
+      "stats": ["base_movement_velocity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你和附近队友增加 %1%%% 移动速度",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你和附近队友减少 %1%%% 移动速度",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_damage_taken_+%": {
+      "stats": ["elemental_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "周围敌人受到的火焰, 冰霜, 闪电伤害增加 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "周围敌人受到的火焰, 冰霜, 闪电伤害减少 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_be_ignited_%": {
+      "stats": ["chance_to_be_ignited_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "周围敌人受到火焰伤害时有 %1$+d%% 几率被点燃",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_frozen_%": {
+      "stats": ["chance_to_be_frozen_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "周围敌人受到冰霜伤害时有 %1$+d%% 几率被冰冻",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_shocked_%": {
+      "stats": ["chance_to_be_shocked_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "周围敌人受到闪电伤害时有 %1$+d%% 几率被感电",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextShock"
+            }
+          ]
+        }
+      ]
+    },
+    "inquisitor_aura_elemental_damage_+%_final": {
+      "stats": ["inquisitor_aura_elemental_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "额外增加 %1%%% 周围敌人造成的火焰, 冰霜, 闪电总伤害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "额外减少 %1%%% 周围敌人造成的火焰, 冰霜, 闪电总伤害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_chaos_damage_resistance_%": {
+      "stats": ["base_chaos_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "周围敌人 %1$+d%% 混沌抗性",
+          "formatters": []
+        }
+      ]
+    }
+  }
+}

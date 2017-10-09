@@ -13,7 +13,7 @@ const readdir = promisify(fs.readdir);
 const txt_dir = path.join(__dirname, '../tmp/raw');
 const json_dir = path.join(__dirname, '../tmp/unprocessed');
 
-const isDescriptionFile = file => file === 'stat_descriptions.txt'; //file => file.endsWith('.txt');
+const isDescriptionFile = file => file.endsWith('.txt');
 
 readdir(txt_dir).then(files => {
   files.filter(isDescriptionFile).forEach(file => {
@@ -48,12 +48,8 @@ readdir(txt_dir).then(files => {
         }
 
         const [results] = parser.results;
-        const { include, has_identifiers, no_desc, desc } = results;
 
-        first = writeInclude(include, first, out);
-        first = writeIdentifiers(has_identifiers, first, out);
-        first = writeNoDesc(no_desc, first, out);
-        first = writeDesc(desc, first, out);
+        first = write(results, first, out);
       }
 
       chunk_start = token.index;
@@ -64,37 +60,6 @@ readdir(txt_dir).then(files => {
     out.end();
   });
 });
-
-function writeIdentifiers(has_identifiers, first, outstream) {
-  if (has_identifiers != null) {
-    return write([['$hasIdentifiers', has_identifiers]], first, outstream);
-  } else {
-    return first;
-  }
-}
-
-function writeInclude(include, first, outstream) {
-  if (include != null) {
-    return write(include, first, outstream, include => ['$include', include]);
-  } else {
-    return first;
-  }
-}
-
-function writeNoDesc(identifiers, first, outstream) {
-  return write(identifiers, first, outstream, identifier => [
-    identifier,
-    { stats: [], languages: [], no_description: true }
-  ]);
-}
-
-// return false if something was written (i.e. set first to false)
-function writeDesc(descriptions, first, outstream) {
-  return write(descriptions, first, outstream, ([ident, description]) => [
-    ident,
-    description
-  ]);
-}
 
 function write(things, first, outstream, map = thing => thing) {
   things.forEach(thing => {
