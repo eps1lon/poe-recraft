@@ -41,7 +41,9 @@ readdir(in_dir).then(files => {
         const meta_key = key.replace(/^\$/, '');
 
         Object.values(codes).forEach(code => {
-          if (Array.isArray(partial.get(code).meta[meta_key])) {
+          if (meta_key === 'includes') {
+            partial.get(code).meta[meta_key].push(path.basename(value, '.txt'));
+          } else if (Array.isArray(partial.get(code).meta[meta_key])) {
             partial.get(code).meta[meta_key].push(value);
           } else {
             partial.get(code).meta[meta_key] = value;
