@@ -1,6 +1,6 @@
 main -> 
-  Blankline:* Include:* HasIdentifiers:? NoDescription:* Description:* 
-  {% ([, includes, has_identifiers, no_desc, desc]) => ({ includes, has_identifiers, no_desc, desc }) %}
+  Blankline:* Include:? HasIdentifiers:? NoDescription:* Description:* 
+  {% ([, include, has_identifiers, no_desc, desc]) => ({ include, has_identifiers, no_desc, desc }) %}
 
 Include -> "include " StringLiteral Newline:+ {% ([, include]) => include %}
 

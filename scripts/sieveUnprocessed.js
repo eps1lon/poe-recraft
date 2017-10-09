@@ -41,10 +41,8 @@ readdir(in_dir).then(files => {
         const meta_key = key.replace(/^\$/, '');
 
         Object.values(codes).forEach(code => {
-          if (meta_key === 'includes') {
-            partial.get(code).meta[meta_key].push(path.basename(value, '.txt'));
-          } else if (Array.isArray(partial.get(code).meta[meta_key])) {
-            partial.get(code).meta[meta_key].push(value);
+          if (meta_key === 'include') {
+            partial.get(code).meta[meta_key] = path.basename(value, '.txt');
           } else {
             partial.get(code).meta[meta_key] = value;
           }
@@ -74,7 +72,7 @@ readdir(in_dir).then(files => {
       }
 
       return partial;
-    }, new Map(Object.values(codes).map(code => [code, { meta: { includes: [] }, data: {} }])));
+    }, new Map(Object.values(codes).map(code => [code, { meta: {}, data: {} }])));
 
     for (const [code, descriptions] of processed) {
       try {
