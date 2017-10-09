@@ -77,6 +77,31 @@ when calling `formatStats`
 ### Arguments
 - options: See [documentation of formatStats](#formatStats-args)
 
+## translateSkill(id: SkillId, stats: Stat[], options: Options = {}): Translation
+Translates certain aspects of a skill.
+
+### Arguments
+- id: the id of the skill. Still unsure where it is saved that way in the Content.ggpk. 
+  Check `skill_filter.json` for possible values.
+- stats: The stats of that skill. Determining what stats are part of a skill
+  is out of the scope of this package.
+- options:
+  ```typescript
+  type Options = {
+    language: string,
+  }
+  ```
+  - options.language: An available language code. Custom translations are currently
+    not available. You have to use the provided translations of this package.
+
+### Returns
+```typescript
+type Translation = {
+  effects: string[]
+}
+```
+- effects: List of stats from the provided effect by this skill.
+
 ## loadLocaleDatas(code: string, files: string[])
 Loads all `StatLocaleData` specified in `files` and required by subsequent includes. 
 Prefer the use of `loadLocaleDatasFor` to reduce requires of not needed files.

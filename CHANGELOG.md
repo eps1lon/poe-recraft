@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v0.2.1...HEAD)
 ### Added
+- `translateSkill`. Check the API docs for more info.
 - `loadLocaleDatas` and `loadLocaleDatasFor` helpers. Check the API docs for more info.
 ### Changed
 - Ranges where min and max value are equal are now displayed as single values. (Closes [#2](https://github.com/eps1lon/poe-i18n/issues/2))
