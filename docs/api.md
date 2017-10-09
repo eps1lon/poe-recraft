@@ -21,8 +21,9 @@ a translation for 0 and another one for 1-5.
 - options: options for formatting
   ```typescript
   type Options = {
-    data: StatsLocaleData,
-    fallback: Fallback | ((id: string, stat: Stat) => string | null)
+    datas: StatsLocaleDatas,
+    fallback: Fallback | ((id: string, stat: Stat) => string | null),
+    start_file: keyof StatsLocaleDatas
   }
   ```
   - options.fallback: fallback strategy if a description for a stat was not found.
@@ -35,10 +36,14 @@ a translation for 0 and another one for 1-5.
       skip // omits the line
     }
   ```
-  - options.data: the translation data. Study the files in `localize-data/` 
-    for more infos.
+  - options.datas: the translation datas. Study the files in `localize-data/` 
+    for more infos. The file specified in `include` is used as a fallback
   
   ```typescript
+  type StatsLocaleDatas = {
+    [key: string]: StatsLocaleData
+  };
+
   type StatsLocaleData = {
     // StatIdentifier
     [key: string]: {
@@ -62,6 +67,8 @@ a translation for 0 and another one for 1-5.
     };
   }
   ```
+  - options.start_file: The description file which has top priority
+    when searching for a translation. Default: `stat_descriptions`
 
 ## formatStats.configure(options: Options)
 Set the default options for option properties that are not provided
@@ -69,3 +76,19 @@ when calling `formatStats`
 
 ### Arguments
 - options: See [documentation of formatStats](#formatStats-args)
+
+## loadLocaleDatas(code: string, files: string[])
+Loads all `StatLocaleData` specified in `files` and required by subsequent includes. 
+Prefer the use of `loadLocaleDatasFor` to reduce requires of not needed files.
+
+### Arguments <a name="loadLocaleDatas-args"></a>
+- code: Locale code. Must be a supported locale. Check directory names in `locale-data`.
+- files: the basenames of the description files
+
+## loadLocaleDatasFor(code: string, formatStats: FormatStats)
+Loads all `StatLocaleData` that are required for use of the given configured 
+`formatStats`
+
+### Arguments
+- code: Locale code. See [loadLocaleDatas#Arguments](#loadLocaleDatas-args).
+- formatStats: a configured `formatStats` function

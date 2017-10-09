@@ -12,12 +12,12 @@ The package provides translations that are currently support by the game
 client. Additional languages can be used but I'm not planning on maintaining languages that I can't parse from the game data.
 
 ```javascript
-import { formatStats } from 'poe-i18n';
-import english from 'poe-18n/locale-data/en/stat_descriptions';
+import { formatStats, loadLocaleDatasFor } from 'poe-i18n';
+
+formatStats.configure({ datas: loadLocaleDatasFor('en', formatStats) });
 
 const merciless_translation = formatStats(
-  [{ id: 'physical_damage_+%', value: 150 }],
-  english
+  [{ id: 'physical_damage_+%', value: 150 }]
 );
 
 console.log(merciless_translation); // ['+150% increased Physical Damage']
