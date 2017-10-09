@@ -59,7 +59,7 @@ const formatStats: FormatStats = Object.assign(
       stats.map((stat: Stat) => [stat.id, stat] as [string, Stat])
     );
 
-    lines.push(...formatWithFinder(untranslated, id => data[id]));
+    lines.push(...formatWithFinder(untranslated, id => data.data[id]));
 
     lines.push(
       ...formatWithFinder(untranslated, id => findDescription(id, data))
@@ -86,7 +86,7 @@ export default formatStats;
  * @param locale_data 
  */
 function findDescription(stat_id: string, locale_data: StatLocaleData) {
-  return Object.values(locale_data).find(({ stats }) =>
+  return Object.values(locale_data.data).find(({ stats }) =>
     stats.includes(stat_id)
   );
 }

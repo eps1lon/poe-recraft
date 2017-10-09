@@ -24,18 +24,23 @@ it('should fallback to deep search', () => {
   ];
 
   const aliased_locale: StatLocaleData = {
-    aliased: {
-      stats: [
-        'attack_minimum_added_physical_damage',
-        'attack_maximum_added_physical_damage'
-      ],
-      translations: [
-        {
-          matchers: ['#', '#'],
-          text: 'Adds %1% to %2% Physical Damage to Attacks',
-          formatters: []
-        }
-      ]
+    meta: {
+      includes: []
+    },
+    data: {
+      aliased: {
+        stats: [
+          'attack_minimum_added_physical_damage',
+          'attack_maximum_added_physical_damage'
+        ],
+        translations: [
+          {
+            matchers: ['#', '#'],
+            text: 'Adds %1% to %2% Physical Damage to Attacks',
+            formatters: []
+          }
+        ]
+      }
     }
   };
 
@@ -52,18 +57,23 @@ it('should throw if something was not translated', () => {
   ];
 
   const aliased_locale: StatLocaleData = {
-    aliased: {
-      stats: [
-        'attack_minimum_added_physical_damage',
-        'attack_maximum_added_physical_damage'
-      ],
-      translations: [
-        {
-          matchers: ['#', '#'],
-          text: 'Adds %1% to %2% Physical Damage to Attacks',
-          formatters: []
-        }
-      ]
+    meta: {
+      includes: []
+    },
+    data: {
+      aliased: {
+        stats: [
+          'attack_minimum_added_physical_damage',
+          'attack_maximum_added_physical_damage'
+        ],
+        translations: [
+          {
+            matchers: ['#', '#'],
+            text: 'Adds %1% to %2% Physical Damage to Attacks',
+            formatters: []
+          }
+        ]
+      }
     }
   };
 

@@ -38,11 +38,13 @@ readdir(in_dir).then(files => {
     const processed = unprocessed.reduce((partial, [key, value]) => {
       // meta data
       if (key.startsWith('$')) {
+        const meta_key = key.replace(/^\$/, '');
+
         Object.values(codes).forEach(code => {
-          if (Array.isArray(partial.get(code)[key])) {
-            partial.get(code)[key].push(value);
+          if (Array.isArray(partial.get(code).meta[meta_key])) {
+            partial.get(code).meta[meta_key].push(value);
           } else {
-            partial.get(code)[key] = value;
+            partial.get(code).meta[meta_key] = value;
           }
         });
       } else {
@@ -57,7 +59,11 @@ readdir(in_dir).then(files => {
           const code = codes[language];
 
           try {
-            partial.get(code)[key] = { no_description, stats, translations };
+            partial.get(code).data[key] = {
+              no_description,
+              stats,
+              translations
+            };
           } catch (err) {
             console.log(code, language);
             throw err;
@@ -66,7 +72,7 @@ readdir(in_dir).then(files => {
       }
 
       return partial;
-    }, new Map(Object.values(codes).map(code => [code, { $includes: [] }])));
+    }, new Map(Object.values(codes).map(code => [code, { meta: { includes: [] }, data: {} }])));
 
     for (const [code, descriptions] of processed) {
       try {

@@ -1,5 +1,10 @@
 export interface StatLocaleData {
-  [key: string]: Description;
+  meta: {
+    includes: string[];
+  };
+  data: {
+    [key: string]: Description;
+  };
 }
 
 export interface Description {
