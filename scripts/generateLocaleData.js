@@ -13,7 +13,7 @@ const readdir = promisify(fs.readdir);
 const txt_dir = path.join(__dirname, '../tmp/raw');
 const json_dir = path.join(__dirname, '../tmp/unprocessed');
 
-const isDescriptionFile = file => file.endsWith('.txt');
+const isDescriptionFile = file => file.endsWith('stat_descriptions.txt');
 
 readdir(txt_dir).then(files => {
   files.filter(isDescriptionFile).forEach(file => {

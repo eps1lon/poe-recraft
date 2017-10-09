@@ -20,6 +20,7 @@
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "format": "prettier --write src/**/*.ts",
     "format:check": "prettier --list-different src/**/*.ts",
+    "generate-locale-data:clean": "rimraf locale-data/**/*.json",
     "generate-locale-data": "npm run parse-locale-data && npm run process-locale-data",
     "parse-locale-data": "node scripts/generateLocaleData",
     "process-locale-data": "node scripts/sieveUnprocessed",
