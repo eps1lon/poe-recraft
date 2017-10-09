@@ -18,7 +18,6 @@ export type Stat = {
 export type OptionalOptions = {
   datas?: StatLocaleDatas;
   fallback?: Fallback | FallbackCallback;
-  descriptionFinder?: (data: Descriptions) => (stat: Stat) => Description;
   start_file?: string;
 };
 // return type
@@ -34,14 +33,12 @@ export enum Fallback {
 export type Options = {
   datas?: StatLocaleDatas;
   fallback: Fallback | FallbackCallback;
-  descriptionFinder: (data: Descriptions) => (stat: Stat) => Description;
   start_file: string;
 };
 
 const initial_options: Options = {
   datas: undefined,
   fallback: Fallback.throw,
-  descriptionFinder: (data: Descriptions) => (stat: Stat) => data[stat.id],
   start_file: 'stat_descriptions'
 };
 
@@ -53,7 +50,7 @@ export interface FormatStats {
 
 const formatStats: FormatStats = Object.assign(
   (stats: Stat[], options: OptionalOptions = {}): TranslatedStats => {
-    const { datas, fallback, descriptionFinder, start_file } = Object.assign(
+    const { datas, fallback, start_file } = Object.assign(
       {},
       formatStats.options,
       options
@@ -77,7 +74,7 @@ const formatStats: FormatStats = Object.assign(
     while (description_file !== undefined) {
       const data: Descriptions = description_file.data;
 
-      lines.push(...formatWithFinder(untranslated, descriptionFinder(data)));
+      lines.push(...formatWithFinder(untranslated, ({id}) => data[id]));
       lines.push(
         ...formatWithFinder(untranslated, ({ id }) => findDescription(id, data))
       );
