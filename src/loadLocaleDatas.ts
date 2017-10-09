@@ -6,7 +6,7 @@ export default function loadLocaleDatas(code: string, files: string[]) {
   const queued = [...files]; // clone
 
   while (queued.length > 0) {
-    const file = queued.shift();
+    const file = queued.shift()!;
 
     if (datas[file] === undefined) {
       const data: StatLocaleData = require(`../locale-data/${code}/${file}.json`);
