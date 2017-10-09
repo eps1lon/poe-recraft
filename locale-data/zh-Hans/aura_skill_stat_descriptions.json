@@ -4,50 +4,82 @@
     "hasIdentifiers": false
   },
   "data": {
-    "h": {
-      "stats": ["physical_damage_%_to_add_as_cold"],
+    "physical_damage_incr": {
+      "stats": ["physical_damage_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与附近队友增加等同 %1%%% 物理伤害的冰霜伤害",
+          "text": "你与附近的队友增加 %1%%% 物理伤害",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你与附近的队友减少 %1%%% 物理伤害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "o": {
-      "stats": ["base_chance_to_dodge_%"],
+    "movement_speed_incr": {
+      "stats": ["base_movement_velocity_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% 几率躲避攻击",
+          "text": "你与附近的队友增加 %1%%% 移动速度",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你与附近的队友减少 %1%%% 移动速度",
           "formatters": []
         }
       ]
     },
-    "t": {
-      "stats": [
-        "attack_minimum_added_chaos_damage",
-        "attack_maximum_added_chaos_damage"
-      ],
+    "attack_speed_incr": {
+      "stats": ["attack_speed_+%"],
       "translations": [
         {
-          "matchers": ["#", "#"],
-          "text": "你和你附近的队友攻击附加 %1% - %2% 基础混沌伤害",
+          "matchers": [[1, "#"]],
+          "text": "你与附近的队友增加 %1%%% 攻击速度",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你与附近的队友减少 %1%%% 攻击速度",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "a": {
-      "stats": ["base_elemental_damage_heals"],
+    "haste_cast_speed_incr": {
+      "stats": ["cast_speed_+%_from_haste_aura"],
       "translations": [
         {
-          "matchers": ["#"],
-          "text": "将承受的元素伤害转为回复你与附近的队友的生命",
+          "matchers": [[1, "#"]],
+          "text": "你与附近的队友增加 %1%%% 施法速度",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你与附近的队友减少 %1%%% 施法速度",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "l": {
+    "elemental_resist": {
       "stats": ["base_resist_all_elements_%"],
       "translations": [
         {
@@ -57,17 +89,22 @@
         }
       ]
     },
-    "i": {
-      "stats": ["base_fire_damage_resistance_%"],
+    "life_regen_per_minute_percent": {
+      "stats": ["life_regeneration_rate_per_minute_%"],
       "translations": [
         {
-          "matchers": [[1, "#"]],
-          "text": "你与附近的队友增加 %1%%% 火焰抗性",
-          "formatters": []
+          "matchers": ["#"],
+          "text": "你与附近的队友每秒回复 %1%%% 生命",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second_2dp",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "c": {
+    "accuracy_rating_incr": {
       "stats": ["accuracy_rating_+%"],
       "translations": [
         {
@@ -87,7 +124,241 @@
         }
       ]
     },
-    "r": {
+    "critical_strike_chance_incr": {
+      "stats": ["critical_strike_chance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你与附近的队友增加 %1%%% 攻击和法术暴击率",
+          "formatters": []
+        }
+      ]
+    },
+    "base_evasion": {
+      "stats": ["base_evasion_rating"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你与附近的队友增加 %1% 闪避值",
+          "formatters": []
+        }
+      ]
+    },
+    "grace_evasion_incr": {
+      "stats": ["grace_aura_evasion_rating_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你与附近的队友额外增加 %1%%% 总闪避值",
+          "formatters": []
+        }
+      ]
+    },
+    "base_armour": {
+      "stats": ["base_physical_damage_reduction_rating"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你与附近的队友增加 %1% 护甲",
+          "formatters": []
+        }
+      ]
+    },
+    "determination_armour_incr": {
+      "stats": ["determination_aura_armour_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你与附近的队友额外增加 %1%%% 总护甲",
+          "formatters": []
+        }
+      ]
+    },
+    "base_energy_shield": {
+      "stats": ["base_maximum_energy_shield"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你与附近的队友增加 %1% 能量护盾",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_resist": {
+      "stats": ["base_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你与附近的队友增加 %1%%% 闪电抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "fire_resist": {
+      "stats": ["base_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你与附近的队友增加 %1%%% 火焰抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_resist": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你与附近的队友增加 %1%%% 冰霜抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "max_fire_resist": {
+      "stats": ["base_maximum_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你与附近的队友增加 %1%%% 火焰抗性上限",
+          "formatters": []
+        }
+      ]
+    },
+    "max_cold_resist": {
+      "stats": ["base_maximum_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你与附近的队友增加 %1%%% 冰霜抗性上限",
+          "formatters": []
+        }
+      ]
+    },
+    "max_lightning_resist": {
+      "stats": ["base_maximum_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你与附近的队友增加 %1%%% 闪电抗性上限",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_added_fire": {
+      "stats": [
+        "attack_minimum_added_fire_damage",
+        "attack_maximum_added_fire_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "你和附近友军的攻击额外造成 %1% - %2% 火焰伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_added_lightning": {
+      "stats": [
+        "attack_minimum_added_lightning_damage",
+        "attack_maximum_added_lightning_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "你和附近友军的攻击额外造成 %1% - %2% 闪电伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_to_add_as_cold": {
+      "stats": ["physical_damage_%_to_add_as_cold"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你与附近队友增加等同 %1%%% 物理伤害的冰霜伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_regen": {
+      "stats": ["base_mana_regeneration_rate_per_minute"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你与附近的队友获得 %1% 魔力回复",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "energy_shield_no_delay": {
+      "stats": ["energy_shield_recharge_not_delayed_by_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你与附近的队友不会因为承受伤害而延迟能量护盾回复的间隔时间",
+          "formatters": []
+        }
+      ]
+    },
+    "no_mana_cost": {
+      "stats": ["no_mana_cost"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你与附近的队友施放技能时不消耗魔力",
+          "formatters": []
+        }
+      ]
+    },
+    "dodge_chance": {
+      "stats": ["base_chance_to_dodge_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% 几率躲避攻击",
+          "formatters": []
+        }
+      ]
+    },
+    "spell_dodge_chance": {
+      "stats": ["base_chance_to_dodge_spells_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% 几率躲避法术",
+          "formatters": []
+        }
+      ]
+    },
+    "base_elemental_damage_heals": {
+      "stats": ["base_elemental_damage_heals"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "将承受的元素伤害转为回复你与附近的队友的生命",
+          "formatters": []
+        }
+      ]
+    },
+    "spell_added_fire_damage": {
+      "stats": [
+        "spell_minimum_added_fire_damage",
+        "spell_maximum_added_fire_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "你和附近友军的法术额外造成 %1% - %2% 火焰伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "wrath_spell_lightning_damage": {
       "stats": ["wrath_aura_spell_lightning_damage_+%_final"],
       "translations": [
         {
@@ -102,35 +373,15 @@
         }
       ]
     },
-    "e": {
-      "stats": ["determination_aura_armour_+%_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "你与附近的队友额外增加 %1%%% 总护甲",
-          "formatters": []
-        }
-      ]
-    },
-    "n": {
-      "stats": ["energy_shield_recharge_not_delayed_by_damage"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "你与附近的队友不会因为承受伤害而延迟能量护盾回复的间隔时间",
-          "formatters": []
-        }
-      ]
-    },
-    "p": {
+    "attack_added_chaos": {
       "stats": [
-        "spell_minimum_added_fire_damage",
-        "spell_maximum_added_fire_damage"
+        "attack_minimum_added_chaos_damage",
+        "attack_maximum_added_chaos_damage"
       ],
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "你和附近友军的法术额外造成 %1% - %2% 火焰伤害",
+          "text": "你和你附近的队友攻击附加 %1% - %2% 基础混沌伤害",
           "formatters": []
         }
       ]

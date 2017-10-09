@@ -4,17 +4,32 @@
     "hasIdentifiers": false
   },
   "data": {
-    "u": {
-      "stats": ["curse_area_of_effect_+%"],
+    "buff_duration": {
+      "stats": ["buff_effect_duration"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 诅咒范围",
+          "text": "诅咒持续 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "action_speed_reduction": {
+      "stats": ["temporal_chains_action_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被诅咒敌人增加 %1%%% 移动速度、攻击速度、及施法速度",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 诅咒范围",
+          "text": "被诅咒敌人减少 %1%%% 移动速度、攻击速度、及施法速度",
           "formatters": [
             {
               "id": "negate",
@@ -24,17 +39,17 @@
         }
       ]
     },
-    "c": {
-      "stats": ["accuracy_rating_+%"],
+    "buff_time_passed_reduction": {
+      "stats": ["buff_time_passed_-%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人增加 %1%%% 命中率",
+          "text": "被诅咒敌人增加 %1%%% 身上增益与减益的持续时间",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被诅咒敌人减少 %1%%% 命中率",
+          "text": "被诅咒敌人减少 %1%%% 身上增益与减益的持续时间",
           "formatters": [
             {
               "id": "negate",
@@ -44,7 +59,7 @@
         }
       ]
     },
-    "l": {
+    "elemental_resist": {
       "stats": ["base_resist_all_elements_%"],
       "translations": [
         {
@@ -64,17 +79,107 @@
         }
       ]
     },
-    "i": {
-      "stats": ["life_granted_when_killed"],
+    "fire_resist": {
+      "stats": ["base_fire_damage_resistance_%"],
       "translations": [
         {
-          "matchers": ["#"],
-          "text": "击败被诅咒的敌人会给予玩家 %1% 生命",
+          "matchers": [[1, "#"]],
+          "text": "被诅咒敌人增加 %1%%% 火焰抗性",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被诅咒敌人减少 %1%%% 火焰抗性",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cold_resist": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被诅咒敌人增加 %1%%% 冰霜抗性",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被诅咒敌人减少 %1%%% 冰霜抗性",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_resist": {
+      "stats": ["base_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被诅咒敌人增加 %1%%% 闪电抗性",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被诅咒敌人减少 %1%%% 闪电抗性",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_be_frozen": {
+      "stats": ["chance_to_be_frozen_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被诅咒敌人遭受冰霜攻击时有 %1$+d%% 几率被冰冻",
           "formatters": []
         }
       ]
     },
-    "o": {
+    "chance_to_be_ignited": {
+      "stats": ["chance_to_be_ignited_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被诅咒敌人遭受火焰攻击时有 %1$+d%% 几率被点燃",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextIgnite"
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_be_shocked": {
+      "stats": ["chance_to_be_shocked_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被诅咒敌人遭受闪电攻击时有 %1$+d%% 几率被感电",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextShock"
+            }
+          ]
+        }
+      ]
+    },
+    "monster_flask_charges_incr": {
       "stats": ["monster_slain_flask_charges_granted_+%"],
       "translations": [
         {
@@ -84,37 +189,165 @@
         }
       ]
     },
-    "h": {
-      "stats": ["physical_damage_taken_+%"],
+    "life_leeched_when_hit": {
+      "stats": ["life_leech_on_any_damage_when_hit_permyriad"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人受到的物理总伤害额外增加 %1%%%",
+          "text": "攻击被诅咒的敌人时额外获得 %1%%% 生命偷取",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "mana_leeched_when_hit": {
+      "stats": ["mana_leech_on_any_damage_when_hit_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "攻击被诅咒的敌人时额外获得 %1%%% 魔力偷取",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextManaLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_grant_endurance_charge_on_death": {
+      "stats": ["chance_to_grant_endurance_charge_on_death_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "杀死被诅咒的敌人有 %1%%% 几率获得耐力球",
           "formatters": []
         }
       ]
     },
-    "a": {
-      "stats": ["mana_granted_when_killed"],
+    "chance_to_grant_frenzy_charge_on_death": {
+      "stats": ["chance_to_grant_frenzy_charge_on_death_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "杀死被诅咒的敌人有 %1%%% 几率获得狂怒球",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_grant_power_charge_on_death": {
+      "stats": ["chance_to_grant_power_charge_on_death_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "杀死被诅咒的敌人有 %1%%% 几率获得暴击球",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_normal": {
+      "stats": ["punishment_physical_damage_%_reflected_for_normal_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "反射被诅咒普通怪物 %1%%% 的物理伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_magic": {
+      "stats": ["punishment_physical_damage_%_reflected_for_magic_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "反射被诅咒魔法怪物 %1%%% 的物理伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_rare": {
+      "stats": ["punishment_physical_damage_%_reflected_for_rare_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "反射被诅咒稀有怪物 %1%%% 的物理伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_unique": {
+      "stats": ["punishment_physical_damage_%_reflected_for_unique_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "反射被诅咒传奇怪物 %1%%% 的物理伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "accuracy_rating_incr": {
+      "stats": ["accuracy_rating_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被诅咒敌人增加 %1%%% 命中率",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被诅咒敌人减少 %1%%% 命中率",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "critical_strike_chance_incr": {
+      "stats": ["critical_strike_chance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被诅咒敌人增加 %1%%% 暴击率",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被诅咒敌人减少 %1%%% 暴击率",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "critical_strike_multiplier_incr": {
+      "stats": ["base_critical_strike_multiplier_+"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "击败被诅咒的敌人会给予玩家 %1% 魔力",
+          "text": "受诅咒的敌人 %1$+d%% 基础暴击伤害",
           "formatters": []
         }
       ]
     },
-    "r": {
-      "stats": ["projectile_damage_taken_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "被诅咒敌人受到的投射物总伤害额外增加 %1%%%",
-          "formatters": []
-        }
-      ]
-    },
-    "n": {
+    "enfeeble_damage_scale": {
       "stats": ["enfeeble_damage_+%_final"],
       "translations": [
         {
@@ -134,17 +367,27 @@
         }
       ]
     },
-    "e": {
-      "stats": ["base_self_shock_duration_-%"],
+    "chance_to_take_critical_strike": {
+      "stats": ["additional_chance_to_take_critical_strike_%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人的感电持续时间减少 %1%%%",
+          "text": "攻击被诅咒敌人有额外 %1%%% 几率造成暴击",
+          "formatters": []
+        }
+      ]
+    },
+    "self_critical_strike_multiplier_reduction": {
+      "stats": ["base_self_critical_strike_multiplier_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被诅咒敌人受到的暴击总伤害额外减少 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被诅咒敌人的感电持续时间增加 %1%%%",
+          "text": "被诅咒敌人受到的暴击总伤害额外增加 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -154,7 +397,32 @@
         }
       ]
     },
-    "v": {
+    "be_pierced": {
+      "stats": ["projectiles_always_pierce_you"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "投射物穿透被诅咒的敌人",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_knocked_back": {
+      "stats": ["chance_to_be_knocked_back_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "击中被诅咒敌人有额外 %1%%% 击退率",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKnockback"
+            }
+          ]
+        }
+      ]
+    },
+    "evasion_rating_poachers_mark": {
       "stats": ["evasion_rating_+%_final_from_poachers_mark"],
       "translations": [
         {
@@ -174,7 +442,27 @@
         }
       ]
     },
-    "t": {
+    "projectile_damage_taken_incr": {
+      "stats": ["projectile_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被诅咒敌人受到的投射物总伤害额外增加 %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_stunned": {
+      "stats": ["chance_to_be_stunned_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被诅咒敌人承受额外 %1%%% 被晕眩的几率",
+          "formatters": []
+        }
+      ]
+    },
+    "stun_recovery_incr": {
       "stats": ["base_stun_recovery_+%"],
       "translations": [
         {
@@ -185,6 +473,156 @@
         {
           "matchers": [["#", -1]],
           "text": "被诅咒敌人减少 %1%%% 晕眩和格挡回复",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "physical_damage_taken_incr": {
+      "stats": ["physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被诅咒敌人受到的物理总伤害额外增加 %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "degen_effect_incr": {
+      "stats": ["degen_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被诅咒敌人受到的持续伤害增加 %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "self_burn_duration": {
+      "stats": ["base_self_ignite_duration_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被诅咒敌人的点燃持续时间减少 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被诅咒敌人的点燃持续时间增加 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "self_freeze_duration": {
+      "stats": ["base_self_freeze_duration_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被诅咒敌人的冻结持续时间减少 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被诅咒敌人的冻结持续时间增加 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "self_shock_duration": {
+      "stats": ["base_self_shock_duration_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被诅咒敌人的感电持续时间减少 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被诅咒敌人的感电持续时间增加 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cannot_cast_curses": {
+      "stats": ["cannot_cast_curses"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "不能直接施放该诅咒",
+          "formatters": []
+        }
+      ]
+    },
+    "life_granted_when_hit": {
+      "stats": ["life_granted_when_hit_by_attacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "击中被诅咒的敌人会给予玩家 %1% 生命",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_granted_when_hit": {
+      "stats": ["mana_granted_when_hit_by_attacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "击中被诅咒的敌人会给予玩家 %1% 魔力",
+          "formatters": []
+        }
+      ]
+    },
+    "life_granted_when_killed": {
+      "stats": ["life_granted_when_killed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "击败被诅咒的敌人会给予玩家 %1% 生命",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_granted_when_killed": {
+      "stats": ["mana_granted_when_killed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "击败被诅咒的敌人会给予玩家 %1% 魔力",
+          "formatters": []
+        }
+      ]
+    },
+    "curse_area": {
+      "stats": ["curse_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "增加 %1%%% 诅咒范围",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "减少 %1%%% 诅咒范围",
           "formatters": [
             {
               "id": "negate",

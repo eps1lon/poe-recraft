@@ -4,40 +4,1272 @@
     "hasIdentifiers": false
   },
   "data": {
-    "u": {
+    "num_additional_traps": {
+      "stats": ["number_of_additional_traps_to_throw"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "มินเนียลโยนจำนวนกับดักเพิ่มขึ้น",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "มินเนียลโยนจำนวนกับดักเพิ่มขึ้น %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "num_additional_mines": {
+      "stats": ["number_of_additional_mines_to_place"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "มินเนียลโยนจำนวนกับดักเพิ่มขึ้น",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "มินเนียลโยนจำนวนกับดักเพิ่มขึ้น %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "num_additional_traps_allowed": {
+      "stats": ["number_of_additional_traps_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "มินเนียลสามารถมีจำนวนการวางกับดักเพิ่มขึ้น",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "มินเนียลสามารถมีจำนวนการวางกับดักเพิ่มขึ้น %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "num_additional_mines_allowed": {
+      "stats": ["number_of_additional_remote_mines_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "มินเนียลสามารถมีจำนวนการวางทุ่นระเบิดเพิ่มขึ้น",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "มินเนียลสามารถมีจำนวนการวางทุ่นระเบิดเพิ่มขึ้น %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "trap_throw_random": {
+      "stats": ["throw_traps_in_circle_radius"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "กับดักจะถูกโยนแบบสุ่ม",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_speed_incr": {
+      "stats": ["base_cast_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะมีความเร็วในการร่ายเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะมีความเร็วในการร่ายลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "multicast_cast_speed_incr": {
+      "stats": ["support_multicast_cast_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนร่ายเร็วขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนร่ายช้าลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "attack_speed_incr": {
+      "stats": ["attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนมีความเร็วในการโจมตีเพิ่มขึ้น %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "accuracy_rating": {
+      "stats": ["accuracy_rating"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนมีความแม่นยำเพิ่มขึ้น %1%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนมีความแม่นยำลดลง %1%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "accuracy_rating_incr": {
+      "stats": ["accuracy_rating_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนมีความแม่นยำเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนมีความแม่นยำลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "critical_strike_chance_incr": {
+      "stats": ["critical_strike_chance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนมีโอกาสโจมตีติดคริติคอลเพิ่มขึ้น %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "critical_strike_multiplier_incr": {
+      "stats": ["base_critical_strike_multiplier_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "มิเนียนจะโจมตีคริติคอลรุนแรงขึ้น %1$+d",
+          "formatters": []
+        }
+      ]
+    },
+    "life_gain_per_target": {
+      "stats": ["life_gain_per_target"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะได้รับพลังชีวิต %1% เมื่อโจมตีศัตรู",
+          "formatters": []
+        }
+      ]
+    },
+    "life_leech_from_any": {
+      "stats": ["life_leech_from_any_damage_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะดูด %1%%% ของความเสียหายไปเป็นพลังชีวิต",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "mana_leech_from_any": {
+      "stats": ["mana_leech_from_any_damage_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะดูด %1%%% ของความเสียหายไปเป็นมานา",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextManaLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "knockback_chance": {
+      "stats": ["base_global_chance_to_knockback_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "มินเนียลเพิ่มโอกาส %1%%% Knock ศัตรูถอยออกไปเมื่อโจมตีโดน",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKnockback"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "มินเนียล Knock ศัตรูถอยออกไปเมื่อโจมตีโดน",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKnockback"
+            }
+          ]
+        }
+      ]
+    },
+    "knockback_distance": {
+      "stats": ["knockback_distance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนเพิ่มระยะของ Knockback ขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนลดระยะของ Knockback ลง %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "stun_threshold_reduction_incr": {
+      "stats": ["base_stun_threshold_reduction_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนลดโอกาส Stun ของศัตรูลง %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextStunThreshold"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนเพิ่มโอกาส Stun ของศัตรูลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextStunThreshold"
+            }
+          ]
+        }
+      ]
+    },
+    "killed_monster_dropped_item_rarity_incr": {
+      "stats": ["killed_monster_dropped_item_rarity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "เพิ่มไอเท็มหายากที่ดร็อปจากศัตรู ที่ถูกสังหารโดยมิเนียนขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "ลดไอเท็มหายากที่ดร็อปจากศัตรู ที่ถูกสังหารโดยมิเนียนลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "killed_monster_dropped_item_quantity_incr": {
+      "stats": ["killed_monster_dropped_item_quantity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "เพิ่มจำนวนไอเท็มดร็อปจากศัตรูที่ถูกสังหารโดยมิเนียนขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดจำนวนไอเท็มดร็อปจากศัตรูที่ถูกสังหารโดยมิเนียนลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "freeze_chance": {
+      "stats": ["base_chance_to_freeze_%", "always_freeze"],
+      "translations": [
+        {
+          "matchers": ["#", [1, "#"]],
+          "text": "มิเนียนจะแช่แข็งศัตรู",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreeze"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"], 0],
+          "text": "มิเนียนจะแช่แข็งศัตรู",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreeze"
+            }
+          ]
+        },
+        {
+          "matchers": [[1, 99], 0],
+          "text": "มิเนียนมีโอกาสแช่แข็งศัตรู %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreeze"
+            }
+          ]
+        }
+      ]
+    },
+    "shock_chance": {
+      "stats": ["base_chance_to_shock_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนมีโอกาสจะทำให้ศัตรูช็อต %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextShock"
+            }
+          ]
+        }
+      ]
+    },
+    "burn_chance": {
+      "stats": ["base_chance_to_ignite_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนมีโอกาสจะทำให้ศัตรูลุกไหม้ %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextIgnite"
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_flee": {
+      "stats": ["global_hit_causes_monster_flee_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนมีโอกาสจะทำให้ศัตรูหนีเมื่อถูกโจมตี %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "area_of_effect_incr": {
+      "stats": ["base_skill_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "เมื่อมิเนียนจะเพิ่มขนาดพื้นที่แสดงผลขึ้นเมื่อใช้สกิลแบบพื้นที่ %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "เมื่อมิเนียนจะลดขนาดพื้นที่แสดงผลลงเมื่อใช้สกิลแบบพื้นที่ %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "concentrated_area_of_effect": {
+      "stats": ["support_concentrated_effect_skill_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "เมื่อมิเนียนจะเพิ่มขนาดพื้นที่แสดงผลมากขึ้นเมื่อใช้สกิลแบบพื้นที่ %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "เมื่อมิเนียนจะลดขนาดพื้นที่แสดงผลน้อยลงเมื่อใช้สกิลแบบพื้นที่ %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "aura_area_of_effect_incr": {
+      "stats": ["base_aura_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions มี Aura Area of Effect เพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions มี Aura Area of Effect ลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "aura_effect_incr": {
+      "stats": ["aura_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนเพิ่มการแสดงผลของออร่าขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนลดการแสดงผลของออร่าลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "projectile_speed_incr": {
+      "stats": ["base_projectile_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะเพิ่มความเร็วของ Projectile ขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะลดความเร็วของ Projectile ลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "additional_projectiles": {
+      "stats": ["number_of_additional_projectiles"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "มิเนียนยิง Projectile เพิ่มขึ้น %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "life_leech_speed": {
+      "stats": ["life_leech_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะเพิ่มอัตราการดูดพลังชีวิตขึ้น %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะลดอัตราการดูดพลังชีวิตลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "mana_leech_speed": {
+      "stats": ["mana_leech_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะเพิ่มอัตราการดูดมานาขึ้น %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextManaLeech"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะลดอัตราการดูดมานาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextManaLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "stun_duration_incr": {
+      "stats": ["base_stun_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะเพิ่มระยะเวลา Stun บนศัตรูขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะลดระยะเวลา Stun บนศัตรูลง %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "burn_duration": {
+      "stats": ["ignite_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะเพิ่มระยะเวลาลุกไหม้บนศัตรูขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะลดระยะเวลาลุกไหม้บนศัตรูลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chill_duration": {
+      "stats": ["chill_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะเพิ่มระยะเวลาหนาวสั่นบนศัตรูขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะลดระยะเวลาหนาวสั่นบนศัตรูลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "freeze_duration": {
+      "stats": ["freeze_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะเพิ่มระยะเวลาแช่แข็งบนศัตรูขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะลดระยะเวลาแช่เข็งบนศัตรูลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "shock_duration": {
+      "stats": ["shock_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะเพิ่มระยะเวลาช็อตบนศัตรูขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะลดระยะเวลาช็อตบนศัตรูลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_status_aura": {
+      "stats": ["elemental_status_effect_aura_radius"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "สถานะเจ็บป่วยที่มิเนียนสร้างจะลามไปติดศัตรูใกล้เคียงด้วย",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextElementalStatusAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "ignite_aura": {
+      "stats": ["support_ignite_proliferation_radius"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "สถานะติดไฟที่มิเนียนสร้างจะลามไปยังศัตรูใกล้เคียงด้วย",
+          "formatters": []
+        }
+      ]
+    },
+    "support_melee_physical_damage_final_incr": {
+      "stats": ["support_melee_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "มิเนียนจะสร้างความเสียหายทางกายภาพระยะประชิดได้มากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะสร้างความเสียหายทางกายภาพระยะประชิดได้น้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "attack_damage_incr": {
+      "stats": ["attack_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มินเนียลได้รับพลังโจมตีเพิ่ม %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มินเนียลได้รับพลังโจมตีลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "unused_identifier_physical_damage": {
+      "stats": ["physical_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะสร้างความเสียหายทางกายภาพเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะสร้างความเสียหายทางกายภาพลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "unused_identifier_physical_damage_final": {
+      "stats": ["active_skill_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะสร้างความเสียหายกายภาพมากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะสร้างความเสียหายกายภาพน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "unused_identifier_elemental_damage_final": {
+      "stats": ["active_skill_elemental_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะสร้างความเสียหายทางธาตุมากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะสร้างความเสียหายทางธาตุน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "multiple_projectile_damage_final": {
+      "stats": ["support_multiple_projectile_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะสร้างความเสียหายแบบ Projectile มากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะสร้างความเสียหายแบบ Projectile น้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lesser_multiple_projectile_damage_final": {
+      "stats": ["support_lesser_multiple_projectile_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะสร้างความเสียหายแบบ Projectile มากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะสร้างความเสียหายแบบ Projectile น้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "area_concentrate_damage_final": {
+      "stats": ["support_area_concentrate_area_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะสร้างความเสียหายแบบพื้นที่มากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะสร้างความเสียหายแบบพื้นที่น้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "added_physical_attack_damage": {
       "stats": [
-        "support_scion_onslaught_on_killing_blow_%_chance",
-        "support_scion_onslaught_on_killing_blow_duration_ms"
+        "attack_minimum_added_physical_damage",
+        "attack_maximum_added_physical_damage"
       ],
       "translations": [
         {
           "matchers": ["#", "#"],
+          "text": "มินเนียลพลังโจมตีกายภาพเพิ่ม %1% ถึง %2%",
+          "formatters": []
+        }
+      ]
+    },
+    "added_cold_damage": {
+      "stats": [
+        "global_minimum_added_cold_damage",
+        "global_maximum_added_cold_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "มิลเนียลสร้างความเสียหายน้ำแข็งเพิ่มเติม %1% ถึง %2%",
+          "formatters": []
+        }
+      ]
+    },
+    "added_lightning_damage": {
+      "stats": [
+        "global_minimum_added_lightning_damage",
+        "global_maximum_added_lightning_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "มิลเนียลสร้างความเสียหายสายฟ้าเพิ่มเติม %1% ถึง %2%",
+          "formatters": []
+        }
+      ]
+    },
+    "added_chaos_damage": {
+      "stats": [
+        "global_minimum_added_chaos_damage",
+        "global_maximum_added_chaos_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "มิลเนียลสร้างความเสียหายเคออสเพิ่มเติม %1% ถึง %2%",
+          "formatters": []
+        }
+      ]
+    },
+    "melee_physical_damage_incr": {
+      "stats": ["melee_physical_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
           "text":
-            "สมุนมีโอกาส %1%%% ที่ได้รับการโจมตีถึง %2%  วินาทีในการจัดการกับ Killing Blow",
+            "มิเนียนจะสร้างความเสียทางหายกายภาพจากการโจมตีระยะประชิดเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "มิเนียนจะสร้างความเสียหายทางกายภาพจากการโจมตีระยะประชิดลดลง %1%%%",
           "formatters": [
             {
-              "id": "milliseconds_to_seconds",
-              "arg": 2
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "physical_damage_to_add_as_fire": {
+      "stats": ["physical_damage_%_to_add_as_fire"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "มิเนียนจะสร้างความเสียหายทางไฟเพิ่ม %1%%% ของความเสียหายทางกายภาพ",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_damage_to_convert_to_fire": {
+      "stats": ["skill_cold_damage_%_to_convert_to_fire"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "จะเปลี่ยน %1%%% ของความเสียหายทางน้ำแข็งของมิเนียนเป็นความเสียหายทางไฟ",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_to_add_as_lightning": {
+      "stats": ["physical_damage_%_to_add_as_lightning"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "มิเนียนจะสร้างความเสียหาย %1%%% ของความเสียหายทางกายภาพเป็นความเสียหายทางสายฟ้าเพิ่มเติม",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_to_convert_to_lightning": {
+      "stats": ["skill_physical_damage_%_to_convert_to_lightning"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "จะเปลี่ยน %1%%% ของความเสียหายทางกายภาพของมิเนียนเป็นความเสียหายทางสายฟ้า",
+          "formatters": []
+        }
+      ]
+    },
+    "damage_incr": {
+      "stats": ["damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะสร้างความเสียหายเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะสร้างความเสียหายลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "fire_damage_incr": {
+      "stats": ["fire_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะสร้างความเสียหายทางไฟเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะสร้างความเสียหายทางไฟลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cold_damage_incr": {
+      "stats": ["cold_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะสร้างความเสียหายทางน้ำแข็งเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะสร้างความเสียหายทางน้ำแข็งลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_damage_incr": {
+      "stats": ["lightning_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะสร้างความเสียหายทางสายฟ้าเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะสร้างความเสียหายทางสายฟ้าลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chaos_damage_incr": {
+      "stats": ["chaos_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะสร้างความเสียหายทางคาออสเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะสร้างความเสียหายทางคาออสลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_attack_elemental_damage_final": {
+      "stats": ["support_attack_skills_elemental_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สกิลโจมตีของมิเนียนจะมีความเสียหายธาตุมากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สกิลโจมตีของมิเนียนจะมีความเสียหายธาตุเบาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "weapon_elemental_damage_incr": {
+      "stats": ["weapon_elemental_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะสร้างความเสียหายทางธาตุจากอาวุธเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะสร้างความเสียหายทางธาตุจากอาวุธลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_damage_incr": {
+      "stats": ["elemental_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนสร้างความเสียหายจากธาตุเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนสร้างความเสียหายจากธาตุลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_more_minion_damage": {
+      "stats": ["support_minion_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะสร้างความเสียหายมากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะสร้างความเสียหายน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "controlled_destruction": {
+      "stats": ["support_controlled_destruction_spell_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนสร้างความเสียหายจากเวทย์เพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนสร้างความเสียหายจากเวทย์ลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_efficacy_spell_damage": {
+      "stats": ["support_efficacy_spell_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สมุนจัดการเพิ่มความเสียหายจากการสะกด %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สมุนจัดการลดความเสียหายจากการสะกด %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "spell_damage_incr": {
+      "stats": ["spell_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนสร้างความเสียหายจากเวทย์เพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนสร้างความเสียหายจากเวทย์ลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_better_ailments_bonus": {
+      "stats": ["support_better_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สถานะเจ็บป่วยที่มิเนียนสร้างจะมีความเสียหายมากขึ้น %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สถานะเจ็บป่วยที่มิเนียนสร้างจะมีความเสียหายลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
             },
             {
               "id": "reminderstring",
-              "arg": "ReminderTextOnslaught"
+              "arg": "ReminderTextDamagingAilments"
             }
           ]
         }
       ]
     },
-    "r": {
-      "stats": ["support_brutality_physical_damage_+%_final"],
+    "support_better_ailments_malus": {
+      "stats": ["support_better_ailments_hit_damage_+%_final"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "สมุนจัดการเพิ่มความเสียหายทางกายภาพ %1%%%",
+          "text": "สมุนจัดการเพิ่ม %1%%% ความเสียหายจากการโจมตี",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "สมุนจัดการลดความเสียหายทางกายภาพ %1%%%",
+          "text": "สมุนจัดการลด %1%%% ความเสียหายจากการโจมตี",
           "formatters": [
             {
               "id": "negate",
@@ -47,19 +1279,17 @@
         }
       ]
     },
-    "a": {
-      "stats": ["support_maimed_enemies_physical_damage_taken_+%"],
+    "support_chance_to_ignite_damage": {
+      "stats": ["support_chance_to_ignite_fire_damage_+%_final"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "ศัตรูที่โดน Maimed จากสมุนได้รับการเพิ่ม %1%%%  ความเสียหายทางกายภาพ",
+          "text": "มิเนียนโจมตีธาตุไฟแรงขึ้น %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "ศัตรูที่โดน Maimed จากสมุนได้รับการลด %1%%%  ความเสียหายทางกายภาพ",
+          "text": "มิเนียนโจมตีธาตุไฟเบาลง %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -69,7 +1299,766 @@
         }
       ]
     },
-    "t": {
+    "ignite_prolif_damage": {
+      "stats": ["support_ignite_prolif_ignite_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions สร้างดาเมจ %1%%% เพิ่มเติม จาก Ignite",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions สร้างดาเมจ %1%%% ลดลง จาก Ignite",
+          "formatters": []
+        }
+      ]
+    },
+    "rapid_decay": {
+      "stats": ["support_rapid_decay_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนสร้าง Damage over Time เพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนสร้าง Damage over Time ลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_efficacy_dot": {
+      "stats": ["support_efficacy_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สมุนจัดการเพิ่ม %1%%% ความเสียหายเวลาเพิ่มเติม",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สมุนจัดการลด %1%%% ความเสียหายเวลาเพิ่มเติม",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_debilitate_hit_damage": {
+      "stats": [
+        "support_debilitate_hit_damage_+%_final_per_poison_stack",
+        "support_debilitate_hit_damage_max_poison_stacks"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"], "#"],
+          "text":
+            "สมุนจัดการเพิ่ม %1%%% ความเสียหายด้วยการโจมตีต่อพิษต่อครั้งใส่ศัตรูได้ถึง %2%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1], "#"],
+          "text":
+            "สมุนจัดการลด %1%%% ความเสียหายด้วยการโจมตีต่อพิษต่อครั้งใส่ศัตรูได้ถึง %2%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_debilitate_poison_damage": {
+      "stats": ["support_debilitate_poison_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สมุนจัดการเพิ่มความเสียหายจากพิษ %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สมุนจัดการลดความเสียหายจากพิษ %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_poison_poison_damage": {
+      "stats": ["support_poison_poison_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions สร้างดาเมจ %1%%% เพิ่มเติม จาก Poison",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions สร้างดาเมจ %1%%% ลดลง จาก Poison",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_over_time_incr": {
+      "stats": ["damage_over_time_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนสร้าง Damage over Time เพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนสร้าง Damage over Time ลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "minion_damage_final": {
+      "stats": ["active_skill_minion_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะสร้างความเสียหายมากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะสร้างความเสียหายน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "number_of_zombies": {
+      "stats": ["number_of_zombies_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "สามารถเรียกซอมบี้ได้ %1% ตัว ในเวลาเดียวกัน",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_spectres": {
+      "stats": ["number_of_spectres_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "สามารถเรียกสเปคเตอร์ได้ %1% ตัว ในเวลาเดียวกัน",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_raging_spirits": {
+      "stats": ["number_of_raging_spirits_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "สามารถเรียก Raging Spirit ได้ %1% ในเวลาเดียวกัน",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_animated_weapons": {
+      "stats": ["number_of_animated_weapons_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "เสก Animated Weapon ได้ %1% ชิ้นต่อครั้ง",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"]],
+          "text": "เสก Animated Weapon ได้ %1% ชิ้นต่อครั้ง",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_golems": {
+      "stats": ["number_of_golems_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "สามารถเรียกโกเล็มมาได้ %1% ตัว ในเวลาเดียวกัน",
+          "formatters": []
+        }
+      ]
+    },
+    "display_minion_life": {
+      "stats": ["display_minion_maximum_life"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะมีพลังชีวิตสูงสุด %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_skeletons_allowed": {
+      "stats": ["number_of_skeletons_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "สามารถเรียกโครงกระดูกได้ %1% ตัว ในเวลาเดียวกัน",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_spiders": {
+      "stats": ["number_of_spider_minions_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "สามารถ Raise Spiders ได้สูงสุดครั้งละ %1% ตัว",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"]],
+          "text": "สามารถ Raise Spiders ได้สูงสุดครั้งละ %1% ตัว",
+          "formatters": []
+        }
+      ]
+    },
+    "melee_skeletons_to_summon": {
+      "stats": ["number_of_melee_skeletons_to_summon"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "เรียกนักรบโครงกระดูก %1% ตัว",
+          "formatters": []
+        }
+      ]
+    },
+    "archer_skeletons_to_summon": {
+      "stats": ["number_of_archer_skeletons_to_summon"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "เรียกนักธนูโครงกระดูก %1% ตัว",
+          "formatters": []
+        }
+      ]
+    },
+    "mage_skeletons_to_summon": {
+      "stats": ["number_of_mage_skeletons_to_summon"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "เรียกนักเวทย์โครงกระดูก %1% ตัว",
+          "formatters": []
+        }
+      ]
+    },
+    "leader_skeletons_to_summon": {
+      "stats": ["number_of_leader_skeletons_to_summon"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "เรียกนายพลโครงกระดูก %1% ตัว",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_converted_allowed": {
+      "stats": ["number_of_converted_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "สามารถควบคุมศัตรูได้ครั้งละ %1% ตัว",
+          "formatters": []
+        }
+      ]
+    },
+    "culling_strike": {
+      "stats": ["kill_enemy_on_hit_if_under_10%_life"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนมี Culling Strike",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextCullingStrike"
+            }
+          ]
+        }
+      ]
+    },
+    "point_blank": {
+      "stats": ["keystone_point_blank"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "มิเนียนมี Point Blank",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_blind": {
+      "stats": ["global_chance_to_blind_on_hit_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "มิเนียนจะมีโอกาสที่จะทำให้ศัตรูติดสถานะตาบอดเมื่อถูกโจมตี %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBlind"
+            }
+          ]
+        }
+      ]
+    },
+    "blind_duration_incr": {
+      "stats": ["blind_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะมีโอกาสเพิ่มระยะเวลาของสถานะตาบอดขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะมีโอกาสลดระยะเวลาของสถานะตาบอดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "fire_penetration": {
+      "stats": ["base_reduce_enemy_fire_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะโจมตีเจาะทะลุความต้านทานทางไฟ %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_penetration": {
+      "stats": ["base_reduce_enemy_cold_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะโจมตีเจาะทะลุความต้านทานทางน้ำแข็ง %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_penetration": {
+      "stats": ["base_reduce_enemy_lightning_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะโจมตีเจาะทะลุความต้านทานทางสายฟ้า %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "chain_num": {
+      "stats": ["virtual_number_of_additional_projectiles_in_chain"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Projectile ของมิเนียนจะโจมตีต่อเนื่อง %1$+d ครั้ง",
+          "formatters": []
+        }
+      ]
+    },
+    "split_num": {
+      "stats": ["projectile_number_to_split"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Projectile ของมิเนียนจะแยกออกเป็น %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "fork": {
+      "stats": ["projectiles_fork"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Projectile Fork ของมิเนียน",
+          "formatters": []
+        }
+      ]
+    },
+    "return": {
+      "stats": ["projectiles_return", "projectiles_return_if_no_hit_object"],
+      "translations": [
+        {
+          "matchers": ["#", 0],
+          "text": "Projectile ของมิเนียนจะย้อนกลับมาเมื่อโดนเป้าหมาย",
+          "formatters": []
+        },
+        {
+          "matchers": [0, "#"],
+          "text": "Projectile ของมิเนียนจะย้อนกลับมาเมื่อหมดระยะ",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#"],
+          "text": "Projectile ของมิเนียนย้อนกลับมา",
+          "formatters": []
+        }
+      ]
+    },
+    "melee_splash": {
+      "stats": ["melee_splash"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "การโจมตีแบบเป้าหมายเดี่ยวระยะประชิดของมิเนียนสร้างความเสียหายให้เป้าหมายที่อยู่รอบๆ",
+          "formatters": []
+        }
+      ]
+    },
+    "melee_mulitple_attacks": {
+      "stats": ["base_melee_attack_repeat_count"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "มิเนียนจะโจมตีระยะประชิดซ้ำ %1% ครั้ง",
+          "formatters": []
+        }
+      ]
+    },
+    "base_multicast": {
+      "stats": ["base_spell_repeat_count"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "มิเนียนจะร่ายเวทย์ซ้ำเพิ่มอีก %1% ครั้ง",
+          "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_crit_chance": {
+      "stats": ["add_power_charge_on_critical_strike_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "มิเนียนจะมีโอกาสได้ Power Charge เมื่อโจมตีติดคริติคอล %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "มิเนียนได้ Power Charge เมื่อโจมตีติดคริติคอล",
+          "formatters": []
+        }
+      ]
+    },
+    "multiple_attacks_speed": {
+      "stats": ["support_multiple_attacks_melee_attack_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนเพิ่มความเร็วในการโจมตีระยะประชิดมากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนลดความเร็วในการโจมตีระยะประชิดน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "multiple_attack_damage": {
+      "stats": ["support_multiple_attack_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนสร้างความเสียหายจากการโจมตีมากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนสร้างความเสียหายจากการโจมตีน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "burn_damage": {
+      "stats": ["burn_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะสร้างความเสียหายจากการลุกไหม้เพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะสร้างความเสียหายจากการลุกไหม้ลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mine_damage": {
+      "stats": ["support_gem_mine_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนสร้างความเสียหายมากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนสร้างความเสียหายน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "totem_damage": {
+      "stats": ["support_totem_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนสร้างความเสียหายมากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนสร้างความเสียหายน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "echo_damage": {
+      "stats": ["support_echo_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนสร้างความเสียหายมากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนสร้างความเสียหายน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "multithrow_damage": {
+      "stats": ["support_multithrow_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนสร้างความเสียหายมากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนสร้างความเสียหายน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cast_on_damage_taken_damage": {
+      "stats": ["cast_on_damage_taken_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนสร้างความเสียหายมากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนสร้างความเสียหายน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chain_damage": {
+      "stats": ["support_chain_hit_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions สร้างความเสียหาย เพิ่มขึ้น %1%%% เมื่อโจมตีโดน",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions สร้างความเสียหาย ลดลง %1%%% เมื่อโจมตีโดน",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "split_damage": {
+      "stats": ["support_split_projectile_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนสร้างความเสียหายแบบ Projectile มากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนสร้างความเสียหายแบบ Projectile น้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "fork_damage": {
+      "stats": ["support_fork_projectile_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนสร้างความเสียหายแบบ Projectile มากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนสร้างความเสียหายแบบ Projectile น้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "endurance_charge_on_stun": {
+      "stats": ["gain_endurance_charge_on_melee_stun"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "มิเนียนได้รับ Endurance Charge เมื่อทำให้ศัตรูติดสถานะ Stun จากการโจมตีระยะประชิด",
+          "formatters": []
+        }
+      ]
+    },
+    "movement_speed_incr": {
+      "stats": ["base_movement_velocity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนเพิ่มความเร็วในการเคลื่อนที่ขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนลดความเร็วในการเคลื่อนที่ลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "skill_duration_incr": {
+      "stats": ["skill_effect_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนมีการเพิ่มระยะเวลาขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนมีการลดระยะเวลาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "attack_speed_incr_on_low_life": {
       "stats": ["attack_speed_+%_when_on_low_life"],
       "translations": [
         {
@@ -99,17 +2088,48 @@
         }
       ]
     },
-    "c": {
-      "stats": ["support_echo_damage_+%_final"],
+    "cast_speed_incr_on_low_life": {
+      "stats": ["cast_speed_+%_when_on_low_life"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "มิเนียนสร้างความเสียหายมากขึ้น %1%%%",
+          "text":
+            "มิเนียนเพิ่มความเร็วในการร่ายขึ้นเมื่อพลังชีวิตเหลือน้อย %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนลดความเร็วในการร่ายลงเมื่อพลังชีวิตเหลือน้อย %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        }
+      ]
+    },
+    "support_projectile_attack_phys_incr": {
+      "stats": ["support_projectile_attack_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "มิเนียนสร้างความเสียหายทางกายภาพแบบ Projectile เพิ่มขึ้น %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "มิเนียนสร้างความเสียหายน้อยลง %1%%%",
+          "text": "มิเนียนสร้างความเสียหายทางกายภาพแบบ Projectile น้อยลง %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -119,19 +2139,17 @@
         }
       ]
     },
-    "i": {
-      "stats": ["support_minion_totem_resistance_elemental_damage_+%_final"],
+    "support_projectile_attack_speed_incr": {
+      "stats": ["support_projectile_attack_speed_+%_final"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "มินเนี่ยนและทักษะที่ใช้โดยโทเท็มจะสร้างความเสียหายจากธาตุเพิ่มขึ้น %1%%%",
+          "text": "มิเนียนเพิ่มความเร็วในการโจมตีแบบ Projectile มากขึ้น %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "มินเนี่ยนและทักษะที่ใช้โดยโทเท็มจะสร้างความเสียหายจากธาตุน้อยลง %1%%%",
+          "text": "มิเนียนลดความเร็วในการโจมตีแบบ Projectile น้อยลง %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -141,18 +2159,103 @@
         }
       ]
     },
-    "n": {
-      "stats": ["gain_endurance_charge_on_melee_stun"],
+    "projectile_damage_incr": {
+      "stats": ["projectile_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนสร้างความเสียหายแบบ Projectile เพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนสร้างความเสียหายแบบ Projectile ลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "blood_magic": {
+      "stats": ["base_use_life_in_place_of_mana"],
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "มิเนียนได้รับ Endurance Charge เมื่อทำให้ศัตรูติดสถานะ Stun จากการโจมตีระยะประชิด",
+          "text": "สกิลและมิเนียนนี้ จะใช้พลังชีวิตแทนมานา",
           "formatters": []
         }
       ]
     },
-    "h": {
+    "mana_cost_reduc": {
+      "stats": ["base_mana_cost_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สกิลของมิเนียนมีการลดมานาที่ใช้ลง %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สกิลของมิเนียนมีการเพิ่มมานาที่ใช้ขึ้น %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bloodlust_damage": {
+      "stats": [
+        "support_bloodlust_melee_physical_damage_+%_final_vs_bleeding_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "มิเนียนสร้างความเสียหายทางกายภาพมากขึ้น %1%%% เมื่อสู้กับศัตรูที่ติดสถานะเลือดออก",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "มิเนียนสร้างความเสียหายทางกายภาพน้อยลง %1%%% เมื่อสู้กับศัตรูที่ติดสถานะเลือดออก",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bloodlust_damage_incr": {
+      "stats": ["melee_damage_vs_bleeding_enemies_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "มิเนียนสร้างความเสียหายทางกายภาพเพิ่มขึ้น %1%%% เมื่อสู้กับศัตรูที่ติดสถานะเลือดออก",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "มิเนียนสร้างความเสียหายทางกายภาพลดลง %1%%% เมื่อสู้กับศัตรูที่ติดสถานะเลือดออก",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_fortify_on_melee_hit": {
       "stats": ["chance_to_fortify_on_melee_hit_+%"],
       "translations": [
         {
@@ -178,7 +2281,318 @@
         }
       ]
     },
-    "o": {
+    "mine_laying_speed_incr": {
+      "stats": ["mine_laying_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มความเร็วในการวางทุ่นระเบิดขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดความเร็วในการวางทุ่นระเบิดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "freeze_chance_vs_chilled": {
+      "stats": ["additional_chance_to_freeze_chilled_enemies_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "มิเนียนมีโอกาส %1$d%% ที่จะแช่แข็งศัตรูที่ติดสถานะหนาวสั่น",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreeze"
+            }
+          ]
+        }
+      ]
+    },
+    "hypothermia_damage": {
+      "stats": ["support_hypothermia_damage_+%_vs_chilled_enemies_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "สมุนจัดการเพิ่ม %1%%% ความเสียหายจากการโจมตีและการเจ็บของศัตรูที่โดนแช่เย็น",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "สมุนจัดการลด %1%%% ความเสียหายจากการโจมตีและการเจ็บของศัตรูที่โดนแช่เย็น",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "trap_throw_speed_incr": {
+      "stats": ["trap_throwing_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มความเร็วในการโยนกับดักขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดความเร็วในการโยนกับดักลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "trap_mine_damage": {
+      "stats": ["support_trap_and_mine_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "มิเนียนจะสร้างความเสียหายของกับดักและทุ่นระเบิดมากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะสร้างความเสียหายของกับดักและทุ่นระเบิดน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cluster_trap_damage_incr": {
+      "stats": ["support_clustertrap_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions สร้างความเสียหาย เพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions สร้างความเสียหาย ลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "minefield_damage": {
+      "stats": ["support_minefield_mine_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มินเนียลทำความเสียหายทุ่นระเบิดเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มินเนียลทำความเสียหายทุ่นระเบิดลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "void_manipulation": {
+      "stats": ["support_void_manipulation_chaos_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนสร้างความเสียหายเคออสเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนสร้างความเสียหายเคออสลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_focus_damage": {
+      "stats": ["support_gem_elemental_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มินเนียลทำความเสียหายธาตุเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มินเนียลทำความเสียหายธาตุลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cannot_inflict_ailments": {
+      "stats": ["cannot_inflict_status_ailments"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "มิเนียนจะไม่สามารถทำศัตรูติดสถานะเจ็บป่วยใดๆ ได้",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextElementalStatusAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "poison_on_hit": {
+      "stats": ["global_poison_on_hit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "มิเนียนทำให้ศัตรูติดสภาพพิษเมื่อโจมตี",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        }
+      ]
+    },
+    "poison_damage": {
+      "stats": ["base_poison_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนเพิ่มความเสียหายจากพิษขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนลดความเสียหายจากพิษลง %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "poison_duration": {
+      "stats": ["base_poison_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนเพิ่มระยะเวลาพิษขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนลดระยะเวลาพิษลง %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "melee_splash_radius": {
+      "stats": ["melee_splash_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions มี Melee Splash Area of Effect มากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions มี Melee Splash Area of Effect น้อยลง %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "minion_added_damage": {
+      "stats": ["active_skill_minion_added_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions สร้างความเสียหายได้ เพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions สร้างความเสียหายได้ ลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ailment_duration_incr": {
+      "stats": ["base_all_ailment_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สมุนมี %1%%% เพิ่มระยะเวลาการเจ็บของศัตรู",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextStatusAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สมุนมี %1%%% ลดระยะเวลาการเจ็บของศัตรู",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextStatusAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "poison_chance": {
       "stats": ["base_chance_to_poison_on_hit_%"],
       "translations": [
         {
@@ -203,21 +2617,17 @@
         }
       ]
     },
-    "d": {
-      "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
-      ],
+    "deal_no_chaos": {
+      "stats": ["base_deal_no_chaos_damage"],
       "translations": [
         {
-          "matchers": ["#", "#"],
-          "text":
-            "สมุนจัดการเพิ่มความเสียหายจากไฟ %1% ถึง %2% ต่อการเผาไหม้ของศัตรู",
+          "matchers": ["#"],
+          "text": "สมุนจัดการลบความเสียหาย Chaos ออกไป",
           "formatters": []
         }
       ]
     },
-    "l": {
+    "bleeding_chance": {
       "stats": [
         "bleed_on_hit_with_attacks_%",
         "global_bleed_on_hit",
@@ -261,22 +2671,18 @@
         }
       ]
     },
-    "g": {
-      "stats": ["support_ignite_prolif_ignite_damage_+%_final"],
+    "decay_on_hit": {
+      "stats": ["deal_chaos_damage_per_second_for_10_seconds_on_hit"],
       "translations": [
         {
-          "matchers": [[1, "#"]],
-          "text": "Minions สร้างดาเมจ %1%%% เพิ่มเติม จาก Ignite",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Minions สร้างดาเมจ %1%%% ลดลง จาก Ignite",
+          "matchers": ["#"],
+          "text":
+            "สมุนก่อให้เกิดการสลายตัวเมื่อโจมตีโดนและจัดการ %1% ความเสีย Chaos ต่อวินาทีเป็นเวลา 10 วินาที",
           "formatters": []
         }
       ]
     },
-    "e": {
+    "deal_no_elemental": {
       "stats": ["deal_no_elemental_damage"],
       "translations": [
         {
@@ -286,27 +2692,22 @@
         }
       ]
     },
-    "p": {
-      "stats": ["support_split_projectile_damage_+%_final"],
+    "maim_chance": {
+      "stats": ["maim_on_hit_%"],
       "translations": [
         {
-          "matchers": [[1, "#"]],
-          "text": "มิเนียนสร้างความเสียหายแบบ Projectile มากขึ้น %1%%%",
+          "matchers": [[1, 99]],
+          "text": "การโจมตีของสมุนมีโอกาส %1%%% ที่จะ Maim",
           "formatters": []
         },
         {
-          "matchers": [["#", -1]],
-          "text": "มิเนียนสร้างความเสียหายแบบ Projectile น้อยลง %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
+          "matchers": [[100, "#"]],
+          "text": "การโจมตีของสมุนจะ Maim เสมอ",
+          "formatters": []
         }
       ]
     },
-    "k": {
+    "skill_and_damaging_ailment_duration_incr": {
       "stats": ["skill_effect_and_damaging_ailment_duration_+%"],
       "translations": [
         {
@@ -335,32 +2736,142 @@
         }
       ]
     },
-    "y": {
-      "stats": ["support_hypothermia_damage_+%_vs_chilled_enemies_final"],
+    "brutality_phys_damage": {
+      "stats": ["support_brutality_physical_damage_+%_final"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "สมุนจัดการเพิ่ม %1%%% ความเสียหายจากการโจมตีและการเจ็บของศัตรูที่โดนแช่เย็น",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextDamagingAilments"
-            }
-          ]
+          "text": "สมุนจัดการเพิ่มความเสียหายทางกายภาพ %1%%%",
+          "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "สมุนจัดการลด %1%%% ความเสียหายจากการโจมตีและการเจ็บของศัตรูที่โดนแช่เย็น",
+          "text": "สมุนจัดการลดความเสียหายทางกายภาพ %1%%%",
           "formatters": [
             {
               "id": "negate",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "maim_phys_damage": {
+      "stats": ["support_maim_chance_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สมุนจัดการเพิ่มความเสียหายทางกายภาพ %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สมุนจัดการลดความเสียหายทางกายภาพ %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "maimed_phys_damage_taken_incr": {
+      "stats": ["support_maimed_enemies_physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "ศัตรูที่โดน Maimed จากสมุนได้รับการเพิ่ม %1%%%  ความเสียหายทางกายภาพ",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "ศัตรูที่โดน Maimed จากสมุนได้รับการลด %1%%%  ความเสียหายทางกายภาพ",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "added_fire_against_burning": {
+      "stats": [
+        "support_minimum_added_fire_damage_vs_burning_enemies",
+        "support_maximum_added_fire_damage_vs_burning_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "สมุนจัดการเพิ่มความเสียหายจากไฟ %1% ถึง %2% ต่อการเผาไหม้ของศัตรู",
+          "formatters": []
+        }
+      ]
+    },
+    "minion_totem_resistance_support_damage": {
+      "stats": ["support_minion_totem_resistance_elemental_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "มินเนี่ยนและทักษะที่ใช้โดยโทเท็มจะสร้างความเสียหายจากธาตุเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "มินเนี่ยนและทักษะที่ใช้โดยโทเท็มจะสร้างความเสียหายจากธาตุน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_less_duration": {
+      "stats": ["support_reduced_duration_skill_effect_duration_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มระยะเวลาของ Minion %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดระยะเวลาของ Minion %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_scion_chance": {
+      "stats": [
+        "support_scion_onslaught_on_killing_blow_%_chance",
+        "support_scion_onslaught_on_killing_blow_duration_ms"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "สมุนมีโอกาส %1%%% ที่ได้รับการโจมตีถึง %2%  วินาทีในการจัดการกับ Killing Blow",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 2
             },
             {
               "id": "reminderstring",
-              "arg": "ReminderTextDamagingAilments"
+              "arg": "ReminderTextOnslaught"
             }
           ]
         }

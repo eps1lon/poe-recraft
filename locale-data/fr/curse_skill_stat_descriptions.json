@@ -4,17 +4,32 @@
     "hasIdentifiers": false
   },
   "data": {
-    "u": {
-      "stats": ["curse_area_of_effect_+%"],
+    "buff_duration": {
+      "stats": ["buff_effect_duration"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% d'Augmentation de Zone d'effet des Malédictions",
+          "text": "La Malédiction dure %1% secondes",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "action_speed_reduction": {
+      "stats": ["temporal_chains_action_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Les Ennemis maudits sont %1%%% plus rapides",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% de Réduction de Zone d'effet des Malédictions",
+          "text": "Les Ennemis maudits sont %1%%% plus lents",
           "formatters": [
             {
               "id": "negate",
@@ -24,7 +39,240 @@
         }
       ]
     },
-    "c": {
+    "buff_time_passed_reduction": {
+      "stats": ["buff_time_passed_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les autres effets sur les Ennemis maudits expirent %1%%% plus lentement",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Les autres effets sur les Ennemis maudits expirent %1%%% plus rapidement",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_resist": {
+      "stats": ["base_resist_all_elements_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Les Ennemis maudits ont %1$+d%% de Résistances élémentaires",
+          "formatters": []
+        }
+      ]
+    },
+    "fire_resist": {
+      "stats": ["base_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Les Ennemis maudits ont %1$+d%% de Résistance au feu",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_resist": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Les Ennemis maudits ont %1$+d%% de Résistance au froid",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_resist": {
+      "stats": ["base_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Les Ennemis maudits ont %1$+d%% de Résistance à la foudre",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_frozen": {
+      "stats": ["chance_to_be_frozen_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Ennemis maudits ont %1$+d%% de chance d'être Gelés par les Dégâts de froid",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_ignited": {
+      "stats": ["chance_to_be_ignited_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Ennemis maudits ont %1$+d%% de chance d'être Embrasés par les Dégâts de feu",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextIgnite"
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_be_shocked": {
+      "stats": ["chance_to_be_shocked_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Ennemis maudits ont %1$+d%% de chance d'être Électrocutés par les Dégâts de foudre",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextShock"
+            }
+          ]
+        }
+      ]
+    },
+    "monster_flask_charges_incr": {
+      "stats": ["monster_slain_flask_charges_granted_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% d'Augmentation de Charges de flacon octroyées par les Ennemis maudits",
+          "formatters": []
+        }
+      ]
+    },
+    "life_leeched_when_hit": {
+      "stats": ["life_leech_on_any_damage_when_hit_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Vous bénéficiez de %1%%% de Drain de vie lorsque vous touchez les Ennemis maudits",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "mana_leeched_when_hit": {
+      "stats": ["mana_leech_on_any_damage_when_hit_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Vous bénéficiez de %1%%% de Drain de mana lorsque vous touchez les Ennemis maudits",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextManaLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_grant_endurance_charge_on_death": {
+      "stats": ["chance_to_grant_endurance_charge_on_death_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% de chance de générer une Charge d'endurance lorsque vous tuez les Ennemis maudits",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_grant_frenzy_charge_on_death": {
+      "stats": ["chance_to_grant_frenzy_charge_on_death_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% de chance de générer une Charge de frénésie lorsque vous tuez les Ennemis maudits",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_grant_power_charge_on_death": {
+      "stats": ["chance_to_grant_power_charge_on_death_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% de chance de générer une Charge de pouvoir lorsque vous tuez les Ennemis maudits",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_normal": {
+      "stats": ["punishment_physical_damage_%_reflected_for_normal_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Renvoie %1%%% des Dégâts physiques infligés par les Ennemis maudits Normaux",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_magic": {
+      "stats": ["punishment_physical_damage_%_reflected_for_magic_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Renvoie %1%%% des Dégâts physiques infligés par les Ennemis maudits Magiques",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_rare": {
+      "stats": ["punishment_physical_damage_%_reflected_for_rare_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Renvoie %1%%% des Dégâts physiques infligés par les Ennemis maudits Rares",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_unique": {
+      "stats": ["punishment_physical_damage_%_reflected_for_unique_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Renvoie %1%%% des Dégâts physiques infligés par les Ennemis maudits Uniques",
+          "formatters": []
+        }
+      ]
+    },
+    "accuracy_rating_incr": {
       "stats": ["accuracy_rating_+%"],
       "translations": [
         {
@@ -46,72 +294,40 @@
         }
       ]
     },
-    "l": {
-      "stats": ["base_resist_all_elements_%"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Les Ennemis maudits ont %1$+d%% de Résistances élémentaires",
-          "formatters": []
-        }
-      ]
-    },
-    "i": {
-      "stats": ["life_granted_when_killed"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Les ennemis Maudits octroient %1% de Vie lorsqu'ils sont tués",
-          "formatters": []
-        }
-      ]
-    },
-    "o": {
-      "stats": ["monster_slain_flask_charges_granted_+%"],
+    "critical_strike_chance_incr": {
+      "stats": ["critical_strike_chance_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% d'Augmentation de Charges de flacon octroyées par les Ennemis maudits",
+            "Les Ennemis maudits ont %1%%% d'Augmentation de Chances de coup critique",
           "formatters": []
-        }
-      ]
-    },
-    "h": {
-      "stats": ["physical_damage_taken_+%"],
-      "translations": [
+        },
         {
-          "matchers": [[1, "#"]],
+          "matchers": [["#", -1]],
           "text":
-            "%1%%% d'Augmentation de Dégâts physiques subis par les Ennemis maudits",
-          "formatters": []
+            "Les Ennemis maudits ont %1%%% de Réduction de Chances de coup critique",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "a": {
-      "stats": ["mana_granted_when_killed"],
+    "critical_strike_multiplier_incr": {
+      "stats": ["base_critical_strike_multiplier_+"],
       "translations": [
         {
           "matchers": ["#"],
           "text":
-            "Les ennemis Maudits octroient %1% de Mana lorsqu'ils sont tués",
+            "Les Ennemis maudits ont %1$+d%% à leur Multiplicateur de critique",
           "formatters": []
         }
       ]
     },
-    "r": {
-      "stats": ["projectile_damage_taken_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis maudits subissent %1%%% d'Augmentation des Dégâts des projectiles",
-          "formatters": []
-        }
-      ]
-    },
-    "n": {
+    "enfeeble_damage_scale": {
       "stats": ["enfeeble_damage_+%_final"],
       "translations": [
         {
@@ -131,7 +347,185 @@
         }
       ]
     },
-    "e": {
+    "chance_to_take_critical_strike": {
+      "stats": ["additional_chance_to_take_critical_strike_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Ennemis maudits ont %1%%% de Chances supplémentaires de recevoir un Coup critique",
+          "formatters": []
+        }
+      ]
+    },
+    "self_critical_strike_multiplier_reduction": {
+      "stats": ["base_self_critical_strike_multiplier_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% de Réduction des Dégâts des Coups critiques subis par les Ennemis maudits",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% d'Augmentation des Dégâts des Coups critiques subis par les Ennemis maudits",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_be_knocked_back": {
+      "stats": ["chance_to_be_knocked_back_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% de Chances supplémentaires de Repousser les Ennemis maudits que vous touchez",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKnockback"
+            }
+          ]
+        }
+      ]
+    },
+    "evasion_rating_poachers_mark": {
+      "stats": ["evasion_rating_+%_final_from_poachers_mark"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Les Ennemis maudits ont %1%%% Davatange d'Évasion",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Les Ennemis maudits ont %1%%% de Perte d'Évasion",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "projectile_damage_taken_incr": {
+      "stats": ["projectile_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Ennemis maudits subissent %1%%% d'Augmentation des Dégâts des projectiles",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_stunned": {
+      "stats": ["chance_to_be_stunned_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Ennemis maudits ont %1%%% de Chances supplémentaires d'être Étourdis",
+          "formatters": []
+        }
+      ]
+    },
+    "stun_recovery_incr": {
+      "stats": ["base_stun_recovery_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% d'Augmentation de Récupération d'étourdissement et de blocage pour les Ennemis maudits",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% de Réduction de Récupération d'étourdissement et de blocage pour les Ennemis maudits",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "physical_damage_taken_incr": {
+      "stats": ["physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% d'Augmentation de Dégâts physiques subis par les Ennemis maudits",
+          "formatters": []
+        }
+      ]
+    },
+    "degen_effect_incr": {
+      "stats": ["degen_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% d'Augmention de Dégâts sur la durée subis par les Ennemis maudits",
+          "formatters": []
+        }
+      ]
+    },
+    "self_burn_duration": {
+      "stats": ["base_self_ignite_duration_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% de Réduction de Durée d'Embrasement sur les Ennemis maudits",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% d'Augmentation de Durée d'Embrasement sur les Ennemis maudits",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "self_freeze_duration": {
+      "stats": ["base_self_freeze_duration_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% de Réduction de Durée de Gel sur les Ennemis maudits",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% d'Augmentation de Durée de Gel sur les Ennemis maudits",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "self_shock_duration": {
       "stats": ["base_self_shock_duration_-%"],
       "translations": [
         {
@@ -153,39 +547,71 @@
         }
       ]
     },
-    "v": {
-      "stats": ["evasion_rating_+%_final_from_poachers_mark"],
+    "cannot_cast_curses": {
+      "stats": ["cannot_cast_curses"],
       "translations": [
         {
-          "matchers": [[1, "#"]],
-          "text": "Les Ennemis maudits ont %1%%% Davatange d'Évasion",
+          "matchers": ["#"],
+          "text": "Vous ne pouvez pas directement lancer cette Malédiction",
           "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Les Ennemis maudits ont %1%%% de Perte d'Évasion",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
-    "t": {
-      "stats": ["base_stun_recovery_+%"],
+    "life_granted_when_hit": {
+      "stats": ["life_granted_when_hit_by_attacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les ennemis Maudits octroient %1% de Vie lorsqu'ils sont touchés par des Attaques",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_granted_when_hit": {
+      "stats": ["mana_granted_when_hit_by_attacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les ennemis Maudits octroient %1% de Mana lorsqu'ils sont touchés par des Attaques",
+          "formatters": []
+        }
+      ]
+    },
+    "life_granted_when_killed": {
+      "stats": ["life_granted_when_killed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les ennemis Maudits octroient %1% de Vie lorsqu'ils sont tués",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_granted_when_killed": {
+      "stats": ["mana_granted_when_killed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les ennemis Maudits octroient %1% de Mana lorsqu'ils sont tués",
+          "formatters": []
+        }
+      ]
+    },
+    "curse_area": {
+      "stats": ["curse_area_of_effect_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% d'Augmentation de Récupération d'étourdissement et de blocage pour les Ennemis maudits",
+          "text": "%1%%% d'Augmentation de Zone d'effet des Malédictions",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% de Réduction de Récupération d'étourdissement et de blocage pour les Ennemis maudits",
+          "text": "%1%%% de Réduction de Zone d'effet des Malédictions",
           "formatters": [
             {
               "id": "negate",

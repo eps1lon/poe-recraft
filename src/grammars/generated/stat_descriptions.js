@@ -59,7 +59,7 @@ var grammar = {
     {"name": "DescriptionHeader$ebnf$4", "symbols": [], "postprocess": function(d) {return null;}},
     {"name": "DescriptionHeader$ebnf$5", "symbols": ["Blankline"]},
     {"name": "DescriptionHeader$ebnf$5", "symbols": ["DescriptionHeader$ebnf$5", "Blankline"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "DescriptionHeader", "symbols": ["DescriptionHeader$ebnf$1", "DescriptionHeader$string$1", "DescriptionHeader$ebnf$2", "DescriptionHeader$ebnf$3", "DescriptionHeader$ebnf$4", "DescriptionHeader$ebnf$5"], "postprocess": ([, , , ident]) => ident ? ident[1] : null},
+    {"name": "DescriptionHeader", "symbols": ["DescriptionHeader$ebnf$1", "DescriptionHeader$string$1", "DescriptionHeader$ebnf$2", "DescriptionHeader$ebnf$3", "DescriptionHeader$ebnf$4", "DescriptionHeader$ebnf$5"], "postprocess": ([, , , ident]) => ident},
     {"name": "DescriptionBody$ebnf$1", "symbols": []},
     {"name": "DescriptionBody$ebnf$1", "symbols": ["DescriptionBody$ebnf$1", "TranslationLanguage"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "DescriptionBody", "symbols": ["Stats", "Translation", "DescriptionBody$ebnf$1"], "postprocess":  

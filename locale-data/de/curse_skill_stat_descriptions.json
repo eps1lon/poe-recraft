@@ -4,17 +4,32 @@
     "hasIdentifiers": false
   },
   "data": {
-    "u": {
-      "stats": ["curse_area_of_effect_+%"],
+    "buff_duration": {
+      "stats": ["buff_effect_duration"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% vergrößerter Wirkungsbereich von Flüchen",
+          "text": "Fluch hält %1% Sekunden an",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "action_speed_reduction": {
+      "stats": ["temporal_chains_action_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Verfluchte Gegner sind %1%%% schneller",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verkleinerter Wirkungsbereich von Flüchen",
+          "text": "Verfluchte Gegner sind %1%%% langsamer",
           "formatters": [
             {
               "id": "negate",
@@ -24,7 +39,238 @@
         }
       ]
     },
-    "c": {
+    "buff_time_passed_reduction": {
+      "stats": ["buff_time_passed_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Andere Effekte klingen bei verfluchten Gegnern %1%%% langsamer ab",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Andere Effekte klingen bei verfluchten Gegnern %1%%% schneller ab",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_resist": {
+      "stats": ["base_resist_all_elements_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Verfluchte Gegner erhalten %1$+d%% zu Elementarwiderständen",
+          "formatters": []
+        }
+      ]
+    },
+    "fire_resist": {
+      "stats": ["base_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Verfluchte Gegner erhalten %1$+d%% zum Feuerwiderstand",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_resist": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Verfluchte Gegner erhalten %1$+d%% zum Kältewiderstand",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_resist": {
+      "stats": ["base_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Verfluchte Gegner erhalten %1$+d%% zum Blitzwiderstand",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_frozen": {
+      "stats": ["chance_to_be_frozen_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Verfluchte Gegner haben %1$+d%% Chance, durch Kälteschaden eingefroren zu werden",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_ignited": {
+      "stats": ["chance_to_be_ignited_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Verfluchte Gegner haben %1$+d%% Chance, durch Feuerschaden entzündet zu werden",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextIgnite"
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_be_shocked": {
+      "stats": ["chance_to_be_shocked_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Verfluchte Gegner haben %1$+d%% Chance, durch Blitzschaden geschockt zu werden",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextShock"
+            }
+          ]
+        }
+      ]
+    },
+    "monster_flask_charges_incr": {
+      "stats": ["monster_slain_flask_charges_granted_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Verfluchte Gegner gewähren %1%%% erhöhte Fläschchenfüllungen",
+          "formatters": []
+        }
+      ]
+    },
+    "life_leeched_when_hit": {
+      "stats": ["life_leech_on_any_damage_when_hit_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Verfluchte Gegner gewähren bei Treffer %1%%% Lebensraub",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "mana_leeched_when_hit": {
+      "stats": ["mana_leech_on_any_damage_when_hit_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Verfluchte Gegner gewähren bei Treffer %1%%% Manaraub",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextManaLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_grant_endurance_charge_on_death": {
+      "stats": ["chance_to_grant_endurance_charge_on_death_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Verfluchte Gegner haben %1%%% Chance, bei Tötung eine Widerstands-Ladung zu gewähren",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_grant_frenzy_charge_on_death": {
+      "stats": ["chance_to_grant_frenzy_charge_on_death_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Verfluchte Gegner haben %1%%% Chance, bei Tötung eine Raserei-Ladung zu gewähren",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_grant_power_charge_on_death": {
+      "stats": ["chance_to_grant_power_charge_on_death_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Verfluchte Gegner haben %1%%% Chance, bei Tötung eine Energie-Ladung zu gewähren",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_normal": {
+      "stats": ["punishment_physical_damage_%_reflected_for_normal_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Reflektiert %1%%% des physischen Schadens von verfluchten normalen Gegnern",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_magic": {
+      "stats": ["punishment_physical_damage_%_reflected_for_magic_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Reflektiert %1%%% des physischen Schadens von verfluchten magischen Gegnern",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_rare": {
+      "stats": ["punishment_physical_damage_%_reflected_for_rare_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Reflektiert %1%%% des physischen Schadens von verfluchten seltenen Gegnern",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_unique": {
+      "stats": ["punishment_physical_damage_%_reflected_for_unique_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Reflektiert %1%%% des physischen Schadens von verfluchten einzigartigen Gegnern",
+          "formatters": []
+        }
+      ]
+    },
+    "accuracy_rating_incr": {
       "stats": ["accuracy_rating_+%"],
       "translations": [
         {
@@ -44,70 +290,40 @@
         }
       ]
     },
-    "l": {
-      "stats": ["base_resist_all_elements_%"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Verfluchte Gegner erhalten %1$+d%% zu Elementarwiderständen",
-          "formatters": []
-        }
-      ]
-    },
-    "i": {
-      "stats": ["life_granted_when_killed"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Verfluchte Gegner gewähren bei Tötung %1% Leben",
-          "formatters": []
-        }
-      ]
-    },
-    "o": {
-      "stats": ["monster_slain_flask_charges_granted_+%"],
+    "critical_strike_chance_incr": {
+      "stats": ["critical_strike_chance_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
           "text":
-            "Verfluchte Gegner gewähren %1%%% erhöhte Fläschchenfüllungen",
+            "Verfluchte Gegner haben %1%%% erhöhte kritische Trefferchance",
           "formatters": []
-        }
-      ]
-    },
-    "h": {
-      "stats": ["physical_damage_taken_+%"],
-      "translations": [
+        },
         {
-          "matchers": [[1, "#"]],
+          "matchers": [["#", -1]],
           "text":
-            "Verfluchte Gegner erleiden %1%%% verstärkten physischen Schaden",
-          "formatters": []
+            "Verfluchte Gegner haben %1%%% verringerte kritische Trefferchance",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "a": {
-      "stats": ["mana_granted_when_killed"],
+    "critical_strike_multiplier_incr": {
+      "stats": ["base_critical_strike_multiplier_+"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Verfluchte Gegner gewähren bei Tötung %1% Mana",
-          "formatters": []
-        }
-      ]
-    },
-    "r": {
-      "stats": ["projectile_damage_taken_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
           "text":
-            "Verfluchte Gegner erleiden %1%%% verstärkten Projektilschaden",
+            "Verfluchte Gegner haben %1$+d%% zu Multiplikator für kritische Treffer",
           "formatters": []
         }
       ]
     },
-    "n": {
+    "enfeeble_damage_scale": {
       "stats": ["enfeeble_damage_+%_final"],
       "translations": [
         {
@@ -127,17 +343,30 @@
         }
       ]
     },
-    "e": {
-      "stats": ["base_self_shock_duration_-%"],
+    "chance_to_take_critical_strike": {
+      "stats": ["additional_chance_to_take_critical_strike_%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Schockdauer bei verfluchten Gegnern ist um %1%%% verringert",
+          "text":
+            "Verfluchte Gegner haben zusätzlich %1%%% Chance, einen kritischen Treffer zu erleiden",
+          "formatters": []
+        }
+      ]
+    },
+    "self_critical_strike_multiplier_reduction": {
+      "stats": ["base_self_critical_strike_multiplier_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Verfluchte Gegner erleiden %1%%% verringerten Zusatzschaden von kritischen Treffern",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Schockdauer bei verfluchten Gegnern ist um %1%%% erhöht",
+          "text":
+            "Verfluchte Gegner erleiden %1%%% verstärkten Zusatzschaden von kritischen Treffern",
           "formatters": [
             {
               "id": "negate",
@@ -147,7 +376,33 @@
         }
       ]
     },
-    "v": {
+    "be_pierced": {
+      "stats": ["projectiles_always_pierce_you"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Projektile durchbohren verfluchte Gegner",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_knocked_back": {
+      "stats": ["chance_to_be_knocked_back_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Treffer auf verfluchte Gegner haben zusätzlich %1%%% Chance auf Zurückstoßen",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKnockback"
+            }
+          ]
+        }
+      ]
+    },
+    "evasion_rating_poachers_mark": {
       "stats": ["evasion_rating_+%_final_from_poachers_mark"],
       "translations": [
         {
@@ -167,7 +422,29 @@
         }
       ]
     },
-    "t": {
+    "projectile_damage_taken_incr": {
+      "stats": ["projectile_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Verfluchte Gegner erleiden %1%%% verstärkten Projektilschaden",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_stunned": {
+      "stats": ["chance_to_be_stunned_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Verfluchte Gegner haben zusätzlich %1%%% Chance betäubt zu werden",
+          "formatters": []
+        }
+      ]
+    },
+    "stun_recovery_incr": {
       "stats": ["base_stun_recovery_+%"],
       "translations": [
         {
@@ -180,6 +457,164 @@
           "matchers": [["#", -1]],
           "text":
             "Verfluchte Gegner haben %1%%% verringerte Betäubungs- und Blockerholung",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "physical_damage_taken_incr": {
+      "stats": ["physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Verfluchte Gegner erleiden %1%%% verstärkten physischen Schaden",
+          "formatters": []
+        }
+      ]
+    },
+    "degen_effect_incr": {
+      "stats": ["degen_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Verfluchte Gegner erleiden %1%%% verstärkten Schaden von Schaden über Zeit-Effekten",
+          "formatters": []
+        }
+      ]
+    },
+    "self_burn_duration": {
+      "stats": ["base_self_ignite_duration_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Entzündungsdauer bei verfluchten Gegnern ist um %1%%% verringert",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Entzündungsdauer bei verfluchten Gegnern ist um %1%%% erhöht",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "self_freeze_duration": {
+      "stats": ["base_self_freeze_duration_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Einfrierungsdauer bei verfluchten Gegnern ist um %1%%% verringert",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Einfrierungsdauer bei verfluchten Gegnern ist um %1%%% erhöht",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "self_shock_duration": {
+      "stats": ["base_self_shock_duration_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Schockdauer bei verfluchten Gegnern ist um %1%%% verringert",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Schockdauer bei verfluchten Gegnern ist um %1%%% erhöht",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cannot_cast_curses": {
+      "stats": ["cannot_cast_curses"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ihr könnt diesen Fluch nicht selbst zaubern",
+          "formatters": []
+        }
+      ]
+    },
+    "life_granted_when_hit": {
+      "stats": ["life_granted_when_hit_by_attacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Bei Angriffen getroffene verfluchte Gegner gewähren %1% Leben",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_granted_when_hit": {
+      "stats": ["mana_granted_when_hit_by_attacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Bei Angriffen getroffene verfluchte Gegner gewähren %1% Mana",
+          "formatters": []
+        }
+      ]
+    },
+    "life_granted_when_killed": {
+      "stats": ["life_granted_when_killed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Verfluchte Gegner gewähren bei Tötung %1% Leben",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_granted_when_killed": {
+      "stats": ["mana_granted_when_killed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Verfluchte Gegner gewähren bei Tötung %1% Mana",
+          "formatters": []
+        }
+      ]
+    },
+    "curse_area": {
+      "stats": ["curse_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% vergrößerter Wirkungsbereich von Flüchen",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verkleinerter Wirkungsbereich von Flüchen",
           "formatters": [
             {
               "id": "negate",

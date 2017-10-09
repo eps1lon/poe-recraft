@@ -4,53 +4,90 @@
     "hasIdentifiers": false
   },
   "data": {
-    "h": {
-      "stats": ["physical_damage_%_to_add_as_cold"],
+    "physical_damage_incr": {
+      "stats": ["physical_damage_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
           "text":
-            "Ihr und Verbündete im Umkreis verursachen %1%%% des physischen Schadens als zusätzlichen Kälteschaden",
+            "Ihr und Verbündete im Umkreis verursachen %1%%% verstärkten physischen Schaden",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Ihr und Verbündete im Umkreis erhalten %1%%% verringerten physischen Schaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "o": {
-      "stats": ["base_chance_to_dodge_%"],
+    "movement_speed_incr": {
+      "stats": ["base_movement_velocity_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% Chance auf Entgehen von Angriffen",
+          "text":
+            "Ihr und Verbündete im Umkreis erhalten %1%%% erhöhte Bewegungsgeschwindigkeit",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Ihr und Verbündete im Umkreis erhalten %1%%% verringerte Bewegungsgeschwindigkeit",
           "formatters": []
         }
       ]
     },
-    "t": {
-      "stats": [
-        "attack_minimum_added_chaos_damage",
-        "attack_maximum_added_chaos_damage"
-      ],
+    "attack_speed_incr": {
+      "stats": ["attack_speed_+%"],
       "translations": [
         {
-          "matchers": ["#", "#"],
+          "matchers": [[1, "#"]],
           "text":
-            "Ihr und Verbündete im Umkreis verursachen %1% bis %2% zusätzlichen Chaosschaden mit Angriffen",
+            "Ihr und Verbündete im Umkreis erhalten %1%%% erhöhte Angriffsgeschwindigkeit",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Ihr und Verbündete im Umkreis erhalten %1%%% verringerte Angriffsgeschwindigkeit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "a": {
-      "stats": ["base_elemental_damage_heals"],
+    "haste_cast_speed_incr": {
+      "stats": ["cast_speed_+%_from_haste_aura"],
       "translations": [
         {
-          "matchers": ["#"],
+          "matchers": [[1, "#"]],
           "text":
-            "Erlittener Elementarschaden heilt stattdessen Euch und Eure Verbündeten im Umkreis",
+            "Ihr und Verbündete im Umkreis erhalten %1%%% erhöhte Zaubergeschwindigkeit",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Ihr und Verbündete im Umkreis erhalten %1%%% verringerte Zaubergeschwindigkeit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "l": {
+    "elemental_resist": {
       "stats": ["base_resist_all_elements_%"],
       "translations": [
         {
@@ -61,18 +98,23 @@
         }
       ]
     },
-    "i": {
-      "stats": ["base_fire_damage_resistance_%"],
+    "life_regen_per_minute_percent": {
+      "stats": ["life_regeneration_rate_per_minute_%"],
       "translations": [
         {
-          "matchers": [[1, "#"]],
+          "matchers": ["#"],
           "text":
-            "Ihr und Verbündete im Umkreis erhalten zusätzlich %1%%% Feuerwiderstand",
-          "formatters": []
+            "Ihr und Verbündete im Umkreis regenerieren %1$+d%% Leben pro Sekunde",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second_2dp",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "c": {
+    "accuracy_rating_incr": {
       "stats": ["accuracy_rating_+%"],
       "translations": [
         {
@@ -94,7 +136,258 @@
         }
       ]
     },
-    "r": {
+    "critical_strike_chance_incr": {
+      "stats": ["critical_strike_chance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Ihr und Verbündete im Umkreis erhalten %1%%% erhöhte kritische Trefferchance",
+          "formatters": []
+        }
+      ]
+    },
+    "base_evasion": {
+      "stats": ["base_evasion_rating"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Ihr und Verbündete im Umkreis erhalten %1% Ausweichwertung",
+          "formatters": []
+        }
+      ]
+    },
+    "grace_evasion_incr": {
+      "stats": ["grace_aura_evasion_rating_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Ihr und Verbündete im Umkreis erhalten %1%%% mehr Ausweichwert",
+          "formatters": []
+        }
+      ]
+    },
+    "base_armour": {
+      "stats": ["base_physical_damage_reduction_rating"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Ihr und Verbündete im Umkreis erhalten %1% Rüstung",
+          "formatters": []
+        }
+      ]
+    },
+    "determination_armour_incr": {
+      "stats": ["determination_aura_armour_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Ihr und Verbündete im Umkreis erhalten %1%%% mehr Rüstung",
+          "formatters": []
+        }
+      ]
+    },
+    "base_energy_shield": {
+      "stats": ["base_maximum_energy_shield"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Ihr und Verbündete im Umkreis erhalten zusätzlich %1% Energieschild",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_resist": {
+      "stats": ["base_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Ihr und Verbündete im Umkreis erhalten zusätzlich %1%%% Blitzwiderstand",
+          "formatters": []
+        }
+      ]
+    },
+    "fire_resist": {
+      "stats": ["base_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Ihr und Verbündete im Umkreis erhalten zusätzlich %1%%% Feuerwiderstand",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_resist": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Ihr und Verbündete im Umkreis erhalten zusätzlich %1%%% Kältewiderstand",
+          "formatters": []
+        }
+      ]
+    },
+    "max_fire_resist": {
+      "stats": ["base_maximum_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Ihr und Verbündete im Umkreis erhalten zusätzlich %1%%% zum maximalen Feuerwiderstand",
+          "formatters": []
+        }
+      ]
+    },
+    "max_cold_resist": {
+      "stats": ["base_maximum_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Ihr und Verbündete im Umkreis erhalten zusätzlich %1%%% zum maximalen Kältewiderstand",
+          "formatters": []
+        }
+      ]
+    },
+    "max_lightning_resist": {
+      "stats": ["base_maximum_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Ihr und Verbündete im Umkreis erhalten zusätzlich %1%%% zum maximalen Blitzwiderstand",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_added_fire": {
+      "stats": [
+        "attack_minimum_added_fire_damage",
+        "attack_maximum_added_fire_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Ihr und Verbündete im Umkreis verursachen zusätzlich %1% bis %2% Feuerschaden mit Angriffen",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_added_lightning": {
+      "stats": [
+        "attack_minimum_added_lightning_damage",
+        "attack_maximum_added_lightning_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Ihr und Verbündete im Umkreis verursachen zusätzlich %1% bis %2% Blitzschaden mit Angriffen",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_to_add_as_cold": {
+      "stats": ["physical_damage_%_to_add_as_cold"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Ihr und Verbündete im Umkreis verursachen %1%%% des physischen Schadens als zusätzlichen Kälteschaden",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_regen": {
+      "stats": ["base_mana_regeneration_rate_per_minute"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Ihr und Verbündete im Umkreis regenerieren %1% Mana pro Sekunde",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "energy_shield_no_delay": {
+      "stats": ["energy_shield_recharge_not_delayed_by_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Eure Energieschild-Wiederaufladung und die Eurer Verbündeten wird durch Schaden nicht verzögert",
+          "formatters": []
+        }
+      ]
+    },
+    "no_mana_cost": {
+      "stats": ["no_mana_cost"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Eure Fertigkeiten und die Eurer Verbündeten im Umkreis kosten kein Mana",
+          "formatters": []
+        }
+      ]
+    },
+    "dodge_chance": {
+      "stats": ["base_chance_to_dodge_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% Chance auf Entgehen von Angriffen",
+          "formatters": []
+        }
+      ]
+    },
+    "spell_dodge_chance": {
+      "stats": ["base_chance_to_dodge_spells_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% Chance auf Entgehen von Zauberschaden",
+          "formatters": []
+        }
+      ]
+    },
+    "base_elemental_damage_heals": {
+      "stats": ["base_elemental_damage_heals"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Erlittener Elementarschaden heilt stattdessen Euch und Eure Verbündeten im Umkreis",
+          "formatters": []
+        }
+      ]
+    },
+    "spell_added_fire_damage": {
+      "stats": [
+        "spell_minimum_added_fire_damage",
+        "spell_maximum_added_fire_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Ihr und Verbündete im Umkreis verursachen %1% bis %2% zusätzlichen Feuerschaden mit Zaubern",
+          "formatters": []
+        }
+      ]
+    },
+    "wrath_spell_lightning_damage": {
       "stats": ["wrath_aura_spell_lightning_damage_+%_final"],
       "translations": [
         {
@@ -111,37 +404,16 @@
         }
       ]
     },
-    "e": {
-      "stats": ["determination_aura_armour_+%_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Ihr und Verbündete im Umkreis erhalten %1%%% mehr Rüstung",
-          "formatters": []
-        }
-      ]
-    },
-    "n": {
-      "stats": ["energy_shield_recharge_not_delayed_by_damage"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Eure Energieschild-Wiederaufladung und die Eurer Verbündeten wird durch Schaden nicht verzögert",
-          "formatters": []
-        }
-      ]
-    },
-    "p": {
+    "attack_added_chaos": {
       "stats": [
-        "spell_minimum_added_fire_damage",
-        "spell_maximum_added_fire_damage"
+        "attack_minimum_added_chaos_damage",
+        "attack_maximum_added_chaos_damage"
       ],
       "translations": [
         {
           "matchers": ["#", "#"],
           "text":
-            "Ihr und Verbündete im Umkreis verursachen %1% bis %2% zusätzlichen Feuerschaden mit Zaubern",
+            "Ihr und Verbündete im Umkreis verursachen %1% bis %2% zusätzlichen Chaosschaden mit Angriffen",
           "formatters": []
         }
       ]

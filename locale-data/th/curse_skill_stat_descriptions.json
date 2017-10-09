@@ -4,17 +4,32 @@
     "hasIdentifiers": false
   },
   "data": {
-    "u": {
-      "stats": ["curse_area_of_effect_+%"],
+    "buff_duration": {
+      "stats": ["buff_effect_duration"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "เพิ่ม AOE ของคำสาป %1%%%",
+          "text": "คำสาปอยู่นาน %1% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "action_speed_reduction": {
+      "stats": ["temporal_chains_action_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ศัตรูที่ถูกคำสาปจะเร็วขึ้น %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "ลด AOE ของคำสาป %1%%%",
+          "text": "ศัตรูที่ถูกคำสาปจะช้าลง %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -24,7 +39,232 @@
         }
       ]
     },
-    "c": {
+    "buff_time_passed_reduction": {
+      "stats": ["buff_time_passed_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "การแสดงผลต่างๆบนศัตรูที่ถูกสาปจะอยู่นานขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "การแสดงผลต่างๆบนศัตรูที่ถูกสาปจะอยู่น้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_resist": {
+      "stats": ["base_resist_all_elements_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "คำสาปของศัตรูมีการป้องกันทุกธาตุ %1$+d%%",
+          "formatters": []
+        }
+      ]
+    },
+    "fire_resist": {
+      "stats": ["base_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "คำสาปของศัตรูมีการป้องกันธาตุไฟ %1$+d%%",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_resist": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "คำสาปของศัตรูมีการป้องกันธาตุน้ำแข็ง %1$+d%%",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_resist": {
+      "stats": ["base_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "คำสาปของศัตรูมีการป้องกันธาตุสายฟ้า %1$+d%%",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_frozen": {
+      "stats": ["chance_to_be_frozen_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "ศัตรูที่ถูกสาปจะมีโอกาสถูกแช่แข็งโดยความเสียหายทางน้ำแข็ง %1$+d%%",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_ignited": {
+      "stats": ["chance_to_be_ignited_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ศัตรูที่ถูกสาปจะมีโอกาสลุกไหม้โดยความเสียหายทางไฟ %1$+d%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextIgnite"
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_be_shocked": {
+      "stats": ["chance_to_be_shocked_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "ศัตรูที่ถูกสาปจะมีโอกาสถูกช็อตโดยความเสียหายทางสายฟ้า %1$+d%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextShock"
+            }
+          ]
+        }
+      ]
+    },
+    "monster_flask_charges_incr": {
+      "stats": ["monster_slain_flask_charges_granted_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ศัตรูถูกคำสาปจะได้รับ %1%%% Flask Charge เพิ่มขึ้น",
+          "formatters": []
+        }
+      ]
+    },
+    "life_leeched_when_hit": {
+      "stats": ["life_leech_on_any_damage_when_hit_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ได้รับพลังชีวิตจากศัตรูที่ถูกสาป %1%%% เมื่อโจมตี",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "mana_leeched_when_hit": {
+      "stats": ["mana_leech_on_any_damage_when_hit_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ได้รับมานาจากศัตรูที่ถูกสาป %1%%% เมื่อโจมตี",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextManaLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_grant_endurance_charge_on_death": {
+      "stats": ["chance_to_grant_endurance_charge_on_death_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "มีโอกาสได้รับ Endurance Charge %1%%% เมื่อสังหารศัตรูที่ถูกสาป",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_grant_frenzy_charge_on_death": {
+      "stats": ["chance_to_grant_frenzy_charge_on_death_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มีโอกาสได้รับ Frenzy Charge %1%%% เมื่อสังหารศัตรูที่ถูกสาป",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_grant_power_charge_on_death": {
+      "stats": ["chance_to_grant_power_charge_on_death_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มีโอกาสได้รับ Power Charge %1%%% เมื่อสังหารศัตรูที่ถูกสาป",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_normal": {
+      "stats": ["punishment_physical_damage_%_reflected_for_normal_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "สะท้อน %1%%% ของความเสียหายทางกายภาพที่มาจากศัตรูทั่วไปที่ถูกสาป",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_magic": {
+      "stats": ["punishment_physical_damage_%_reflected_for_magic_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "สะท้อน %1%%% ของความเสียหายทางกายภาพที่มาจาก Magic Monster ที่ถูกสาป",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_rare": {
+      "stats": ["punishment_physical_damage_%_reflected_for_rare_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "สะท้อน %1%%% ของความเสียหายทางกายภาพที่มาจาก Rare Monster ที่ถูกสาป",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_unique": {
+      "stats": ["punishment_physical_damage_%_reflected_for_unique_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "สะท้อน %1%%% ของความเสียหายทางกายภาพที่มาจาก Unique Monster ที่ถูกสาป",
+          "formatters": []
+        }
+      ]
+    },
+    "accuracy_rating_incr": {
       "stats": ["accuracy_rating_+%"],
       "translations": [
         {
@@ -44,68 +284,37 @@
         }
       ]
     },
-    "l": {
-      "stats": ["base_resist_all_elements_%"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "คำสาปของศัตรูมีการป้องกันทุกธาตุ %1$+d%%",
-          "formatters": []
-        }
-      ]
-    },
-    "i": {
-      "stats": ["life_granted_when_killed"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "ได้รับพลังชีวิต %1% เมื่อสังหารศัตรูที่ถูกสาป",
-          "formatters": []
-        }
-      ]
-    },
-    "o": {
-      "stats": ["monster_slain_flask_charges_granted_+%"],
+    "critical_strike_chance_incr": {
+      "stats": ["critical_strike_chance_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "ศัตรูถูกคำสาปจะได้รับ %1%%% Flask Charge เพิ่มขึ้น",
+          "text": "ศัตรูที่ถูกสาปจะมีโอกาสโจมตีติดคริติคอลเพิ่มขึ้น %1%%%",
           "formatters": []
-        }
-      ]
-    },
-    "h": {
-      "stats": ["physical_damage_taken_+%"],
-      "translations": [
+        },
         {
-          "matchers": [[1, "#"]],
-          "text": "ศัตรูที่ถูกสาปได้รับความเสียหายทางกายภาพเพิ่มขึ้น %1%%%",
-          "formatters": []
+          "matchers": [["#", -1]],
+          "text": "ศัตรูที่ถูกสาปจะมีโอกาสโจมตีติดคริติคอลลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "a": {
-      "stats": ["mana_granted_when_killed"],
+    "critical_strike_multiplier_incr": {
+      "stats": ["base_critical_strike_multiplier_+"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "ได้รับมานา %1% เมื่อสังหารศัตรูที่ถูกสาป",
+          "text": "ศัตรูถูกคำสาปมี %1$+d%% ทำให้โจมตีคริติคอลแรงขึ้น",
           "formatters": []
         }
       ]
     },
-    "r": {
-      "stats": ["projectile_damage_taken_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "ศัตรูที่ถูกสาปจะได้รับความเสียหายจาก Projectile เพิ่มขึ้น %1%%%",
-          "formatters": []
-        }
-      ]
-    },
-    "n": {
+    "enfeeble_damage_scale": {
       "stats": ["enfeeble_damage_+%_final"],
       "translations": [
         {
@@ -125,17 +334,29 @@
         }
       ]
     },
-    "e": {
-      "stats": ["base_self_shock_duration_-%"],
+    "chance_to_take_critical_strike": {
+      "stats": ["additional_chance_to_take_critical_strike_%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "ระยะเวลาของการถูกช็อตบนศัตรูที่ถูกสาปลดลง %1%%%",
+          "text": "ศัตรูที่ถูกสาปจะมีโอกาสได้รับการโจมตีติดคริติคอลเพิ่ม %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "self_critical_strike_multiplier_reduction": {
+      "stats": ["base_self_critical_strike_multiplier_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "สาปศัตรูให้ %1%%% ลดความเสียหายมากกว่าปกติลงจากการโจมตีแบบคริติคอล",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "ระยะเวลาของการถูกช็อตบนศัตรูที่ถูกสาปเพิ่มขึ้น %1%%%",
+          "text":
+            "สาปศัตรูให้ %1%%% เพิ่มความเสียหายมากกว่าปกติขึ้นจากการโจมตีแบบคริติคอล",
           "formatters": [
             {
               "id": "negate",
@@ -145,7 +366,33 @@
         }
       ]
     },
-    "v": {
+    "be_pierced": {
+      "stats": ["projectiles_always_pierce_you"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Projectiles ทะลุศัตรูที่ติด Curse",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_knocked_back": {
+      "stats": ["chance_to_be_knocked_back_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "การโจมตีศัตรูที่ถูกสาปมีโอกาสเพิ่มขึ้น %1%%% ที่จะติด Knockback",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKnockback"
+            }
+          ]
+        }
+      ]
+    },
+    "evasion_rating_poachers_mark": {
       "stats": ["evasion_rating_+%_final_from_poachers_mark"],
       "translations": [
         {
@@ -165,7 +412,28 @@
         }
       ]
     },
-    "t": {
+    "projectile_damage_taken_incr": {
+      "stats": ["projectile_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "ศัตรูที่ถูกสาปจะได้รับความเสียหายจาก Projectile เพิ่มขึ้น %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_stunned": {
+      "stats": ["chance_to_be_stunned_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ศัตรูที่ถูกสาปมีโอกาสที่จะถูก Stun มากขึ้น %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "stun_recovery_incr": {
       "stats": ["base_stun_recovery_+%"],
       "translations": [
         {
@@ -177,6 +445,156 @@
         {
           "matchers": [["#", -1]],
           "text": "ศัตรูที่ถูกสาปจะทำให้ลด Stun และ ค่าฟื้นฟูการป้องกัน %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "physical_damage_taken_incr": {
+      "stats": ["physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ศัตรูที่ถูกสาปได้รับความเสียหายทางกายภาพเพิ่มขึ้น %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "degen_effect_incr": {
+      "stats": ["degen_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ศัตรูที่ถูกสาปจะได้รับ Damage over Time มากขึ้น %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "self_burn_duration": {
+      "stats": ["base_self_ignite_duration_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ระยะเวลาของการถูกลุกไหม้บนศัตรูที่ถูกสาปลดลง %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ระยะเวลาของการถูกลุกไหม้บนศัตรูที่ถูกสาปเพิ่มขึ้น %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "self_freeze_duration": {
+      "stats": ["base_self_freeze_duration_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ระยะเวลาของการถูกแช่แข็งบนศัตรูที่ถูกสาปลดลง %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ระยะเวลาของการถูกแช่แข็งบนศัตรูที่ถูกสาปเพิ่มขึ้น %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "self_shock_duration": {
+      "stats": ["base_self_shock_duration_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ระยะเวลาของการถูกช็อตบนศัตรูที่ถูกสาปลดลง %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ระยะเวลาของการถูกช็อตบนศัตรูที่ถูกสาปเพิ่มขึ้น %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cannot_cast_curses": {
+      "stats": ["cannot_cast_curses"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "คุณไม่สามารถร่ายคำสาปนี้ได้โดยตรง",
+          "formatters": []
+        }
+      ]
+    },
+    "life_granted_when_hit": {
+      "stats": ["life_granted_when_hit_by_attacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ได้รับพลังชีวิต %1% เมื่อโจมตีใส่ศัตรูที่ถูกสาป",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_granted_when_hit": {
+      "stats": ["mana_granted_when_hit_by_attacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ได้รับมานา %1% เมื่อโจมตีใส่ศัตรูที่ถูกสาป",
+          "formatters": []
+        }
+      ]
+    },
+    "life_granted_when_killed": {
+      "stats": ["life_granted_when_killed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ได้รับพลังชีวิต %1% เมื่อสังหารศัตรูที่ถูกสาป",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_granted_when_killed": {
+      "stats": ["mana_granted_when_killed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ได้รับมานา %1% เมื่อสังหารศัตรูที่ถูกสาป",
+          "formatters": []
+        }
+      ]
+    },
+    "curse_area": {
+      "stats": ["curse_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่ม AOE ของคำสาป %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลด AOE ของคำสาป %1%%%",
           "formatters": [
             {
               "id": "negate",

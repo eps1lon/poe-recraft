@@ -4,52 +4,90 @@
     "hasIdentifiers": false
   },
   "data": {
-    "h": {
-      "stats": ["physical_damage_%_to_add_as_cold"],
+    "physical_damage_incr": {
+      "stats": ["physical_damage_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
           "text":
-            "Você e aliados próximos recebem %1%%% de Dano Físico como Dano Extra de Gelo",
+            "Você e aliados próximos recebem %1%%% de aumento de Dano Físico",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Você e aliados próximos recebem %1%%% de redução de Dano Físico",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "o": {
-      "stats": ["base_chance_to_dodge_%"],
+    "movement_speed_incr": {
+      "stats": ["base_movement_velocity_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% de Chance de Esquivar de Ataques",
-          "formatters": []
-        }
-      ]
-    },
-    "t": {
-      "stats": [
-        "attack_minimum_added_chaos_damage",
-        "attack_maximum_added_chaos_damage"
-      ],
-      "translations": [
-        {
-          "matchers": ["#", "#"],
           "text":
-            "Você e aliados próximos causam %1% a %2% de Dano de Caos adicional com Ataques",
+            "Você e aliados próximos recebem %1%%% de aumento de Velocidade de Movimento",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Você e aliados próximos recebem %1%%% de redução de Velocidade de Movimento",
           "formatters": []
         }
       ]
     },
-    "a": {
-      "stats": ["base_elemental_damage_heals"],
+    "attack_speed_incr": {
+      "stats": ["attack_speed_+%"],
       "translations": [
         {
-          "matchers": ["#"],
-          "text": "Dano Elemental recebido cura você e Aliados Próximos",
+          "matchers": [[1, "#"]],
+          "text":
+            "Você e aliados próximos recebem %1%%% de aumento de Velocidade de Ataque",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Você e aliados próximos recebem %1%%% de redução de Velocidade de attaque",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "l": {
+    "haste_cast_speed_incr": {
+      "stats": ["cast_speed_+%_from_haste_aura"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Você e aliados próximos recebem %1%%% de aumento de Velocidade de Conjuração",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Você e aliados próximos recebem %1%%% de redução de Velocidade de Conjuração",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_resist": {
       "stats": ["base_resist_all_elements_%"],
       "translations": [
         {
@@ -60,18 +98,22 @@
         }
       ]
     },
-    "i": {
-      "stats": ["base_fire_damage_resistance_%"],
+    "life_regen_per_minute_percent": {
+      "stats": ["life_regeneration_rate_per_minute_%"],
       "translations": [
         {
-          "matchers": [[1, "#"]],
-          "text":
-            "Você e aliados próximos ganham %1%%% de Resistência a Fogo adicional",
-          "formatters": []
+          "matchers": ["#"],
+          "text": "Você e aliados próximos regeneram %1%%% de Vida por segundo",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second_2dp",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "c": {
+    "accuracy_rating_incr": {
       "stats": ["accuracy_rating_+%"],
       "translations": [
         {
@@ -91,7 +133,254 @@
         }
       ]
     },
-    "r": {
+    "critical_strike_chance_incr": {
+      "stats": ["critical_strike_chance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Você e aliados próximos ganham %1%%% de aumento de Chance de Crítico",
+          "formatters": []
+        }
+      ]
+    },
+    "base_evasion": {
+      "stats": ["base_evasion_rating"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Você e aliados próximos ganham %1% de Evasão adicional",
+          "formatters": []
+        }
+      ]
+    },
+    "grace_evasion_incr": {
+      "stats": ["grace_aura_evasion_rating_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Você e aliados próximos ganham %1%%% mais Evasão",
+          "formatters": []
+        }
+      ]
+    },
+    "base_armour": {
+      "stats": ["base_physical_damage_reduction_rating"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Você e aliados próximos ganham %1% de Armadura adicional",
+          "formatters": []
+        }
+      ]
+    },
+    "determination_armour_incr": {
+      "stats": ["determination_aura_armour_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Você e aliados próximos ganham %1%%% mais Armadura",
+          "formatters": []
+        }
+      ]
+    },
+    "base_energy_shield": {
+      "stats": ["base_maximum_energy_shield"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Você e aliados próximos ganham %1% de Escudo de Energia adicional",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_resist": {
+      "stats": ["base_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Você e aliados próximos ganham %1%%% de Resistência a Raio adicional",
+          "formatters": []
+        }
+      ]
+    },
+    "fire_resist": {
+      "stats": ["base_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Você e aliados próximos ganham %1%%% de Resistência a Fogo adicional",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_resist": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Você e aliados próximos ganham %1%%% de Resistência a Gelo adicional",
+          "formatters": []
+        }
+      ]
+    },
+    "max_fire_resist": {
+      "stats": ["base_maximum_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Você e aliados próximos ganham %1%%% de Resistência máxima a Fogo adicional",
+          "formatters": []
+        }
+      ]
+    },
+    "max_cold_resist": {
+      "stats": ["base_maximum_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Você e aliados próximos ganham %1%%% de Resistência máxima a Frio adicional",
+          "formatters": []
+        }
+      ]
+    },
+    "max_lightning_resist": {
+      "stats": ["base_maximum_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Você e aliados próximos ganham %1%%% de Resistência máxima a Raio adicional",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_added_fire": {
+      "stats": [
+        "attack_minimum_added_fire_damage",
+        "attack_maximum_added_fire_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Você e aliados próximos causam %1% a %2% de Dano De Fogo adicional com Ataques",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_added_lightning": {
+      "stats": [
+        "attack_minimum_added_lightning_damage",
+        "attack_maximum_added_lightning_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Você e aliados próximos causam %1% a %2% de Dano De Raio adicional com Ataques",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_to_add_as_cold": {
+      "stats": ["physical_damage_%_to_add_as_cold"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Você e aliados próximos recebem %1%%% de Dano Físico como Dano Extra de Gelo",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_regen": {
+      "stats": ["base_mana_regeneration_rate_per_minute"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Você e aliados próximos regeneram %1% de Mana por segundo",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "energy_shield_no_delay": {
+      "stats": ["energy_shield_recharge_not_delayed_by_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "A Recarga do seu Escudo de Energia e dos seus aliados próximos não é impedida por Dano",
+          "formatters": []
+        }
+      ]
+    },
+    "no_mana_cost": {
+      "stats": ["no_mana_cost"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Suas Habilidades e de seus aliados próximos não Custam Mana",
+          "formatters": []
+        }
+      ]
+    },
+    "dodge_chance": {
+      "stats": ["base_chance_to_dodge_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% de Chance de Esquivar de Ataques",
+          "formatters": []
+        }
+      ]
+    },
+    "spell_dodge_chance": {
+      "stats": ["base_chance_to_dodge_spells_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% de Chance de Esquivar de Dano Mágico",
+          "formatters": []
+        }
+      ]
+    },
+    "base_elemental_damage_heals": {
+      "stats": ["base_elemental_damage_heals"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Dano Elemental recebido cura você e Aliados Próximos",
+          "formatters": []
+        }
+      ]
+    },
+    "spell_added_fire_damage": {
+      "stats": [
+        "spell_minimum_added_fire_damage",
+        "spell_maximum_added_fire_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Você e aliados próximos causam %1% a %2% de Dano De Fogo adicional com Magias",
+          "formatters": []
+        }
+      ]
+    },
+    "wrath_spell_lightning_damage": {
       "stats": ["wrath_aura_spell_lightning_damage_+%_final"],
       "translations": [
         {
@@ -108,37 +397,16 @@
         }
       ]
     },
-    "e": {
-      "stats": ["determination_aura_armour_+%_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Você e aliados próximos ganham %1%%% mais Armadura",
-          "formatters": []
-        }
-      ]
-    },
-    "n": {
-      "stats": ["energy_shield_recharge_not_delayed_by_damage"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "A Recarga do seu Escudo de Energia e dos seus aliados próximos não é impedida por Dano",
-          "formatters": []
-        }
-      ]
-    },
-    "p": {
+    "attack_added_chaos": {
       "stats": [
-        "spell_minimum_added_fire_damage",
-        "spell_maximum_added_fire_damage"
+        "attack_minimum_added_chaos_damage",
+        "attack_maximum_added_chaos_damage"
       ],
       "translations": [
         {
           "matchers": ["#", "#"],
           "text":
-            "Você e aliados próximos causam %1% a %2% de Dano De Fogo adicional com Magias",
+            "Você e aliados próximos causam %1% a %2% de Dano de Caos adicional com Ataques",
           "formatters": []
         }
       ]

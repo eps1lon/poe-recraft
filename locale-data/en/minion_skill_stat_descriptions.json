@@ -4,31 +4,860 @@
     "hasIdentifiers": false
   },
   "data": {
-    "u": {
-      "stats": [
-        "support_scion_onslaught_on_killing_blow_%_chance",
-        "support_scion_onslaught_on_killing_blow_duration_ms"
-      ],
+    "num_additional_traps": {
+      "stats": ["number_of_additional_traps_to_throw"],
       "translations": [
         {
-          "matchers": ["#", "#"],
-          "text":
-            "Minions have %1%%% chance to gain Onslaught for %2% seconds on\\ndealing a Killing Blow",
+          "matchers": [1],
+          "text": "Minions Throw an additional Trap",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Minions Throw %1% additional Traps",
+          "formatters": []
+        }
+      ]
+    },
+    "num_additional_mines": {
+      "stats": ["number_of_additional_mines_to_place"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Minions Place an additional Mine",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Minions Place %1% additional Mines",
+          "formatters": []
+        }
+      ]
+    },
+    "num_additional_traps_allowed": {
+      "stats": ["number_of_additional_traps_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Minions can have an additional Trap placed at a time",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Minions can have %1% additional Traps placed at a time",
+          "formatters": []
+        }
+      ]
+    },
+    "num_additional_mines_allowed": {
+      "stats": ["number_of_additional_remote_mines_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Minions can have an additional Mine placed at a time",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Minions can have %1% additional Mines placed at a time",
+          "formatters": []
+        }
+      ]
+    },
+    "trap_throw_random": {
+      "stats": ["throw_traps_in_circle_radius"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Traps are thrown randomly",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_speed_incr": {
+      "stats": ["base_cast_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Cast Speed",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Cast Speed",
           "formatters": [
             {
-              "id": "milliseconds_to_seconds",
-              "arg": 2
-            },
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextOnslaught"
+              "id": "negate",
+              "arg": 1
             }
           ]
         }
       ]
     },
-    "r": {
-      "stats": ["support_brutality_physical_damage_+%_final"],
+    "multicast_cast_speed_incr": {
+      "stats": ["support_multicast_cast_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% more Cast Speed",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% less Cast Speed",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "attack_speed_incr": {
+      "stats": ["attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Attack Speed",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Attack Speed",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "accuracy_rating": {
+      "stats": ["accuracy_rating"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1% additional Accuracy Rating",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions lose %1% Accuracy Rating",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "accuracy_rating_incr": {
+      "stats": ["accuracy_rating_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Accuracy Rating",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Accuracy Rating",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "critical_strike_chance_incr": {
+      "stats": ["critical_strike_chance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Critical Strike Chance",
+          "formatters": []
+        }
+      ]
+    },
+    "critical_strike_multiplier_incr": {
+      "stats": ["base_critical_strike_multiplier_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Minions have %1$+d%% Critical Strike Multiplier",
+          "formatters": []
+        }
+      ]
+    },
+    "life_gain_per_target": {
+      "stats": ["life_gain_per_target"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions gain %1% Life for each enemy they Hit",
+          "formatters": []
+        }
+      ]
+    },
+    "life_leech_from_any": {
+      "stats": ["life_leech_from_any_damage_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions Leech %1%%% of Damage as Life",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "mana_leech_from_any": {
+      "stats": ["mana_leech_from_any_damage_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions Leech %1%%% of Damage as Mana",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextManaLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "knockback_chance": {
+      "stats": ["base_global_chance_to_knockback_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "Minions have an additional %1%%% chance to Knock Enemies Back on Hit",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKnockback"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Minions knock Enemies Back on Hit",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKnockback"
+            }
+          ]
+        }
+      ]
+    },
+    "knockback_distance": {
+      "stats": ["knockback_distance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Knockback Distance",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Knockback Distance",
+          "formatters": []
+        }
+      ]
+    },
+    "stun_threshold_reduction_incr": {
+      "stats": ["base_stun_threshold_reduction_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% reduced Enemy Stun Threshold",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextStunThreshold"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% increased Enemy Stun Threshold",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextStunThreshold"
+            }
+          ]
+        }
+      ]
+    },
+    "killed_monster_dropped_item_rarity_incr": {
+      "stats": ["killed_monster_dropped_item_rarity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% increased Rarity of Items Dropped by enemies Slain by Minions",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% reduced Rarity of Items Dropped by enemies Slain by Minions",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "killed_monster_dropped_item_quantity_incr": {
+      "stats": ["killed_monster_dropped_item_quantity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% increased Quantity of Items Dropped by enemies Slain by Minions",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% reduced Quantity of Items Dropped by enemies Slain by Minions",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "freeze_chance": {
+      "stats": ["base_chance_to_freeze_%", "always_freeze"],
+      "translations": [
+        {
+          "matchers": ["#", [1, "#"]],
+          "text": "Minions always Freeze Enemies",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreeze"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"], 0],
+          "text": "Minions always Freeze Enemies",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreeze"
+            }
+          ]
+        },
+        {
+          "matchers": [[1, 99], 0],
+          "text": "Minions have %1%%% chance to Freeze enemies",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreeze"
+            }
+          ]
+        }
+      ]
+    },
+    "shock_chance": {
+      "stats": ["base_chance_to_shock_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% chance to Shock enemies",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextShock"
+            }
+          ]
+        }
+      ]
+    },
+    "burn_chance": {
+      "stats": ["base_chance_to_ignite_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% chance to Ignite enemies",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextIgnite"
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_flee": {
+      "stats": ["global_hit_causes_monster_flee_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Minions have %1%%% chance to cause Monsters to Flee when Hit",
+          "formatters": []
+        }
+      ]
+    },
+    "area_of_effect_incr": {
+      "stats": ["base_skill_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Minions have %1%%% increased Area of Effect when using Area Skills",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Minions have %1%%% reduced Area of Effect when using Area Skills",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "concentrated_area_of_effect": {
+      "stats": ["support_concentrated_effect_skill_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Minions have %1%%% more Area of Effect when using Area Skills",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Minions have %1%%% less Area of Effect when using Area Skills",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "aura_area_of_effect_incr": {
+      "stats": ["base_aura_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Aura Area of Effect",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Aura Area of Effect",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "aura_effect_incr": {
+      "stats": ["aura_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased effect of their Auras",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced effect of their Auras",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "projectile_speed_incr": {
+      "stats": ["base_projectile_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Projectile Speed",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Projectile Speed",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "additional_projectiles": {
+      "stats": ["number_of_additional_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Minions fire %1% additional Projectile",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Minions fire %1% additional Projectiles",
+          "formatters": []
+        }
+      ]
+    },
+    "life_leech_speed": {
+      "stats": ["life_leech_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Life Leech rate",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Life Leech rate",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "mana_leech_speed": {
+      "stats": ["mana_leech_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Mana Leech rate",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextManaLeech"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Mana Leech rate",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextManaLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "stun_duration_incr": {
+      "stats": ["base_stun_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Stun Duration on enemies",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Stun Duration on enemies",
+          "formatters": []
+        }
+      ]
+    },
+    "chill_effect": {
+      "stats": ["chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Chill Effect on enemies",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Chill Effect on enemies",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "burn_duration": {
+      "stats": ["ignite_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Ignite Duration on enemies",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Ignite Duration on enemies",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chill_duration": {
+      "stats": ["chill_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Chill Duration on enemies",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Chill Duration on enemies",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "freeze_duration": {
+      "stats": ["freeze_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Freeze Duration on enemies",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Freeze Duration on enemies",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "shock_duration": {
+      "stats": ["shock_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Shock Duration on enemies",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Shock Duration on enemies",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_status_aura": {
+      "stats": ["elemental_status_effect_aura_radius"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Elemental Ailments caused by Minions also spread to nearby enemies",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextElementalStatusAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "ignite_aura": {
+      "stats": ["support_ignite_proliferation_radius"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ignites caused by Minions spread to other nearby Enemies",
+          "formatters": []
+        }
+      ]
+    },
+    "support_melee_physical_damage_final_incr": {
+      "stats": ["support_melee_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Melee Physical Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Melee Physical Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_melee_physical_damage_ailment_damage_final_incr": {
+      "stats": [
+        "support_melee_physical_damage_poison_and_bleeding_damage_+%_final_from_melee_hits"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Minions deal %1%%% more Damage with Bleeding and Poison caused by Melee Hits",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Minions deal %1%%% less Damage with Bleeding and Poison caused by Melee Hits",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_damage_full_life_incr": {
+      "stats": ["support_damage_while_on_full_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Minions deal %1%%% more Damage with Attack Skills while on Full Life",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Minions deal %1%%% less Damage with Attack Skills while on Full Life",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "attack_damage_incr": {
+      "stats": ["attack_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% increased Attack Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% reduced Attack Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "unused_identifier_physical_damage": {
+      "stats": ["physical_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% increased Physical Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% reduced Physical Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "unused_identifier_physical_damage_final": {
+      "stats": ["active_skill_physical_damage_+%_final"],
       "translations": [
         {
           "matchers": [[1, "#"]],
@@ -47,19 +876,17 @@
         }
       ]
     },
-    "a": {
-      "stats": ["support_maimed_enemies_physical_damage_taken_+%"],
+    "unused_identifier_elemental_damage_final": {
+      "stats": ["active_skill_elemental_damage_+%_final"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Enemies Maimed by Minions take %1%%% increased Physical Damage",
+          "text": "Minions deal %1%%% more Elemental Damage",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Enemies Maimed by Minions take %1%%% reduced Physical Damage",
+          "text": "Minions deal %1%%% less Elemental Damage",
           "formatters": [
             {
               "id": "negate",
@@ -69,7 +896,1331 @@
         }
       ]
     },
-    "t": {
+    "multiple_projectile_damage_final": {
+      "stats": ["support_multiple_projectile_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Projectile Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Projectile Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lesser_multiple_projectile_damage_final": {
+      "stats": ["support_lesser_multiple_projectile_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Projectile Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Projectile Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "area_concentrate_damage_final": {
+      "stats": ["support_area_concentrate_area_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Area Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Area Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "added_physical_attack_damage": {
+      "stats": [
+        "attack_minimum_added_physical_damage",
+        "attack_maximum_added_physical_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Minions' Attacks deal %1% to %2% additional Physical Damage",
+          "formatters": []
+        }
+      ]
+    },
+    "added_cold_damage": {
+      "stats": [
+        "global_minimum_added_cold_damage",
+        "global_maximum_added_cold_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Minions deal %1% to %2% additional Cold Damage",
+          "formatters": []
+        }
+      ]
+    },
+    "added_lightning_damage": {
+      "stats": [
+        "global_minimum_added_lightning_damage",
+        "global_maximum_added_lightning_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Minions deal %1% to %2% additional Lightning Damage",
+          "formatters": []
+        }
+      ]
+    },
+    "added_chaos_damage": {
+      "stats": [
+        "global_minimum_added_chaos_damage",
+        "global_maximum_added_chaos_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Minions deal %1% to %2% additional Chaos Damage",
+          "formatters": []
+        }
+      ]
+    },
+    "melee_physical_damage_incr": {
+      "stats": ["melee_physical_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Minions deal %1%%% increased Physical Damage with Melee Attacks",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Minions deal %1%%% reduced Physical Damage with Melee Attacks",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "physical_damage_to_add_as_fire": {
+      "stats": ["physical_damage_%_to_add_as_fire"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Minions deal %1%%% of their Physical Damage as Extra Fire Damage",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_damage_to_convert_to_fire": {
+      "stats": ["skill_cold_damage_%_to_convert_to_fire"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% of Minion Cold Damage converted to Fire Damage",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_to_add_as_lightning": {
+      "stats": ["physical_damage_%_to_add_as_lightning"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Minions deal %1%%% of Physical Damage as Extra Lightning Damage",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_to_convert_to_lightning": {
+      "stats": ["skill_physical_damage_%_to_convert_to_lightning"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% of Minion Physical Damage converted to Lightning Damage",
+          "formatters": []
+        }
+      ]
+    },
+    "damage_incr": {
+      "stats": ["damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% increased Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% reduced Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "fire_damage_incr": {
+      "stats": ["fire_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% increased Fire Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% reduced Fire Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cold_damage_incr": {
+      "stats": ["cold_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% increased Cold Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% reduced Cold Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_damage_incr": {
+      "stats": ["lightning_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% increased Lightning Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% reduced Lightning Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chaos_damage_incr": {
+      "stats": ["chaos_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% increased Chaos Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% reduced Chaos Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_attack_elemental_damage_final": {
+      "stats": ["support_attack_skills_elemental_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Elemental Damage with Attack Skills",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Elemental Damage with Attack Skills",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "weapon_elemental_damage_incr": {
+      "stats": ["weapon_elemental_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% increased Elemental Damage with Weapons",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% reduced Elemental Damage with Weapons",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_damage_incr": {
+      "stats": ["elemental_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% increased Elemental Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% reduced Elemental Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_more_minion_damage": {
+      "stats": ["support_minion_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "controlled_destruction": {
+      "stats": ["support_controlled_destruction_spell_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Spell Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Spell Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_efficacy_spell_damage": {
+      "stats": ["support_efficacy_spell_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Spell Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Spell Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "spell_damage_incr": {
+      "stats": ["spell_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% increased Spell Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% reduced Spell Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_better_ailments_bonus": {
+      "stats": ["support_better_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Damage with Ailments",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Damage with Ailments",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "support_better_ailments_malus": {
+      "stats": ["support_better_ailments_hit_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Damage with Hits",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Damage with Hits",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_chance_to_ignite_damage": {
+      "stats": ["support_chance_to_ignite_fire_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Fire Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Fire Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ignite_prolif_damage": {
+      "stats": ["support_ignite_prolif_ignite_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Damage with Ignite",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Damage with Ignite",
+          "formatters": []
+        }
+      ]
+    },
+    "rapid_decay": {
+      "stats": ["support_rapid_decay_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Damage over Time",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Damage over Time",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_efficacy_dot": {
+      "stats": ["support_efficacy_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Damage over Time",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Damage over Time",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_debilitate_hit_damage": {
+      "stats": [
+        "support_debilitate_hit_damage_+%_final_per_poison_stack",
+        "support_debilitate_hit_damage_max_poison_stacks"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"], "#"],
+          "text":
+            "Minions deal %1%%% more Damage with Hits for each Poison on the Enemy, up to %2%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1], "#"],
+          "text":
+            "Minions deal %1%%% less Damage with Hits for each Poison on the Enemy, up to %2%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_debilitate_poison_damage": {
+      "stats": ["support_debilitate_poison_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Damage with Poison",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Damage with Poison",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_poison_poison_damage": {
+      "stats": ["support_poison_poison_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Damage with Poison",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Damage with Poison",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_over_time_incr": {
+      "stats": ["damage_over_time_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% increased Damage over Time",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% reduced Damage over Time",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "minion_damage_final": {
+      "stats": ["active_skill_minion_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "number_of_zombies": {
+      "stats": ["number_of_zombies_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Can raise up to %1% Zombie at a time",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Can raise up to %1% Zombies at a time",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_spectres": {
+      "stats": ["number_of_spectres_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Can raise up to %1% Spectre at a time",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Can raise up to %1% Spectres at a time",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_raging_spirits": {
+      "stats": ["number_of_raging_spirits_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Can summon up to %1% Raging Spirit at a time",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Can summon up to %1% Raging Spirits at a time",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_animated_weapons": {
+      "stats": ["number_of_animated_weapons_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Can summon up to %1% Animated Weapon at a time",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"]],
+          "text": "Can summon up to %1% Animated Weapons at a time",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_beasts": {
+      "stats": ["base_number_of_beast_minions_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Can Summon up to %1% Bestial Minion at a time",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Can Summon up to %1% Bestial Minion at a time",
+          "formatters": []
+        }
+      ]
+    },
+    "display_one_harbinger_allowed": {
+      "stats": ["display_one_harbinger_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Can Summon up to 1 Harbinger at a time",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_golems": {
+      "stats": ["number_of_golems_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Can Summon up to %1% Golem at a time",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Can Summon up to %1% Golems at a time",
+          "formatters": []
+        }
+      ]
+    },
+    "display_minion_life": {
+      "stats": ["display_minion_maximum_life"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1% maximum Life",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_skeletons_allowed": {
+      "stats": ["number_of_skeletons_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Can summon up to %1% Skeleton at a time",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"]],
+          "text": "Can summon up to %1% Skeletons at a time",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_spiders": {
+      "stats": ["number_of_spider_minions_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Can raise up to %1% Spiders at a time",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"]],
+          "text": "Can raise up to %1% Spiders at a time",
+          "formatters": []
+        }
+      ]
+    },
+    "melee_skeletons_to_summon": {
+      "stats": ["number_of_melee_skeletons_to_summon"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Summons %1% Skeleton Warrior",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Summons %1% Skeleton Warriors",
+          "formatters": []
+        }
+      ]
+    },
+    "archer_skeletons_to_summon": {
+      "stats": ["number_of_archer_skeletons_to_summon"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Summons %1% Skeleton Archer",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Summons %1% Skeleton Archers",
+          "formatters": []
+        }
+      ]
+    },
+    "mage_skeletons_to_summon": {
+      "stats": ["number_of_mage_skeletons_to_summon"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Summons %1% Skeleton Mage",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Summons %1% Skeleton Mages",
+          "formatters": []
+        }
+      ]
+    },
+    "leader_skeletons_to_summon": {
+      "stats": ["number_of_leader_skeletons_to_summon"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Summons %1% Skeleton General",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Summons %1% Skeleton Generals",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_converted_allowed": {
+      "stats": ["number_of_converted_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Can have %1% Dominated Enemy at a time",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Can have up to %1% Dominated Enemies at a time",
+          "formatters": []
+        }
+      ]
+    },
+    "culling_strike": {
+      "stats": ["kill_enemy_on_hit_if_under_10%_life"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have Culling Strike",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextCullingStrike"
+            }
+          ]
+        }
+      ]
+    },
+    "point_blank": {
+      "stats": ["keystone_point_blank"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Minions have Point Blank",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_blind": {
+      "stats": ["global_chance_to_blind_on_hit_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Minions have %1%%% chance to Blind enemies on hit",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBlind"
+            }
+          ]
+        }
+      ]
+    },
+    "blind_duration_incr": {
+      "stats": ["blind_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Blinding duration",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Blinding duration",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "fire_penetration": {
+      "stats": ["base_reduce_enemy_fire_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions Penetrate %1%%% Fire Resistance",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_penetration": {
+      "stats": ["base_reduce_enemy_cold_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions Penetrate %1%%% Cold Resistance",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_penetration": {
+      "stats": ["base_reduce_enemy_lightning_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions Penetrate %1%%% Lightning Resistance",
+          "formatters": []
+        }
+      ]
+    },
+    "chain_num": {
+      "stats": ["virtual_number_of_additional_projectiles_in_chain"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Minion's Projectiles Chain %1$+d Times",
+          "formatters": []
+        }
+      ]
+    },
+    "split_num": {
+      "stats": ["projectile_number_to_split"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Minion's Projectiles Split into %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "fork": {
+      "stats": ["projectiles_fork"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Minion's Projectiles Fork",
+          "formatters": []
+        }
+      ]
+    },
+    "return": {
+      "stats": ["projectiles_return", "projectiles_return_if_no_hit_object"],
+      "translations": [
+        {
+          "matchers": ["#", 0],
+          "text": "Minion's Projectiles Return to Them after hitting targets",
+          "formatters": []
+        },
+        {
+          "matchers": [0, "#"],
+          "text": "Minion's Projectiles Return to Them at end of flight",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#"],
+          "text": "Minion's Projectiles Return to Them",
+          "formatters": []
+        }
+      ]
+    },
+    "melee_splash": {
+      "stats": ["melee_splash"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Minion's single-target Melee attacks deal Splash Damage to Surrounding Targets",
+          "formatters": []
+        }
+      ]
+    },
+    "melee_mulitple_attacks": {
+      "stats": ["base_melee_attack_repeat_count"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Minion's Melee Attacks repeat %1% additional times",
+          "formatters": []
+        }
+      ]
+    },
+    "base_multicast": {
+      "stats": ["base_spell_repeat_count"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Minion's Spells Repeat an additional time",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Minion's Spells Repeat an additional %1% times",
+          "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_crit_chance": {
+      "stats": ["add_power_charge_on_critical_strike_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "Minions have %1%%% chance to gain a Power Charge on Critical Strike",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Minions gain a Power Charge on Critical Strike",
+          "formatters": []
+        }
+      ]
+    },
+    "multiple_attacks_speed": {
+      "stats": ["support_multiple_attacks_melee_attack_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% more Melee Attack Speed",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% less Melee Attack Speed",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "multiple_attack_damage": {
+      "stats": ["support_multiple_attack_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Attack Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Attack Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "burn_damage": {
+      "stats": ["burn_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Burning Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Burning Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mine_damage": {
+      "stats": ["support_gem_mine_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "totem_damage": {
+      "stats": ["support_totem_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "echo_damage": {
+      "stats": ["support_echo_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "multithrow_damage": {
+      "stats": ["support_multithrow_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cast_on_damage_taken_damage": {
+      "stats": ["cast_on_damage_taken_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chain_damage": {
+      "stats": ["support_chain_hit_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Damage with Hits",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Damage with Hits",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "split_damage": {
+      "stats": ["support_split_projectile_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Projectile Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Projectile Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "fork_damage": {
+      "stats": ["support_fork_projectile_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Projectile Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Projectile Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "endurance_charge_on_stun": {
+      "stats": ["gain_endurance_charge_on_melee_stun"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Minions gain an Endurance Charge if they Stun an Enemy with Melee Damage",
+          "formatters": []
+        }
+      ]
+    },
+    "movement_speed_incr": {
+      "stats": ["base_movement_velocity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Movement Speed",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Movement Speed",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "skill_duration_incr": {
+      "stats": ["skill_effect_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Duration",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Duration",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "attack_speed_incr_on_low_life": {
       "stats": ["attack_speed_+%_when_on_low_life"],
       "translations": [
         {
@@ -98,17 +2249,50 @@
         }
       ]
     },
-    "c": {
-      "stats": ["support_echo_damage_+%_final"],
+    "cast_speed_incr_on_low_life": {
+      "stats": ["cast_speed_+%_when_on_low_life"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Minions deal %1%%% more Damage",
+          "text": "Minions have %1%%% increased Cast Speed when on Low Life",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Cast Speed when on Low Life",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        }
+      ]
+    },
+    "support_projectile_attack_phys_ailment_damage_incr": {
+      "stats": [
+        "support_phys_proj_attack_damage_bleeing_and_poison_damage_+%_final_from_projectile_hits"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Minions's Attacks deal %1%%% more Damage with Bleeding and Poison caused by Projectile Hits",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Minions deal %1%%% less Damage",
+          "text":
+            "Minions's Attacks deal %1%%% more Damage with Bleeding and Poison caused by Projectile Hits",
           "formatters": [
             {
               "id": "negate",
@@ -118,19 +2302,17 @@
         }
       ]
     },
-    "i": {
-      "stats": ["support_minion_totem_resistance_elemental_damage_+%_final"],
+    "support_projectile_attack_phys_incr": {
+      "stats": ["support_projectile_attack_physical_damage_+%_final"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Minions and Skills used by Totems deal %1%%% more Elemental Damage",
+          "text": "Minions deal %1%%% more Physical Projectile Attack Damage",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Minions and Skills used by Totems deal %1%%% less Elemental Damage",
+          "text": "Minions deal %1%%% less Physical Projectile Attack Damage",
           "formatters": [
             {
               "id": "negate",
@@ -140,18 +2322,123 @@
         }
       ]
     },
-    "n": {
-      "stats": ["gain_endurance_charge_on_melee_stun"],
+    "support_projectile_attack_speed_incr": {
+      "stats": ["support_projectile_attack_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% more Projectile Attack Speed",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% less Projectile Attack Speed",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "projectile_damage_incr": {
+      "stats": ["projectile_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% increased Projectile Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% reduced Projectile Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "blood_magic": {
+      "stats": ["base_use_life_in_place_of_mana"],
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Minions gain an Endurance Charge if they Stun an Enemy with Melee Damage",
+          "text": "This Skill and Minions spend Life instead of Mana",
           "formatters": []
         }
       ]
     },
-    "h": {
+    "mana_cost_reduc": {
+      "stats": ["base_mana_cost_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions' Skills have %1%%% reduced Mana Cost",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions' Skills have %1%%% increased Mana Cost",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bloodlust_damage": {
+      "stats": [
+        "support_bloodlust_melee_physical_damage_+%_final_vs_bleeding_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Minions deal %1%%% more Melee Physical Damage against Bleeding Enemies",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Minions deal %1%%% less Melee Physical Damage against Bleeding Enemies",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bloodlust_damage_incr": {
+      "stats": ["melee_damage_vs_bleeding_enemies_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Minions deal %1%%% increased Melee Damage against Bleeding Enemies",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Minions deal %1%%% reduced Melee Damage against Bleeding Enemies",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_fortify_on_melee_hit": {
       "stats": ["chance_to_fortify_on_melee_hit_+%"],
       "translations": [
         {
@@ -176,7 +2463,319 @@
         }
       ]
     },
-    "o": {
+    "mine_laying_speed_incr": {
+      "stats": ["mine_laying_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% increased Mine Laying Speed",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% reduced Mine Laying Speed",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "freeze_chance_vs_chilled": {
+      "stats": ["additional_chance_to_freeze_chilled_enemies_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Minions have %1$d%% chance to Freeze Enemies which are Chilled",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreeze"
+            }
+          ]
+        }
+      ]
+    },
+    "hypothermia_damage": {
+      "stats": ["support_hypothermia_damage_+%_vs_chilled_enemies_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Minions deal %1%%% more Damage with Hits and Ailments against Chilled Enemies",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Minions deal %1%%% less Damage with Hits and Ailments against Chilled Enemies",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "trap_throw_speed_incr": {
+      "stats": ["trap_throwing_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% increased Trap Throwing Speed",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% reduced Trap Throwing Speed",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "trap_mine_damage": {
+      "stats": ["support_trap_and_mine_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Trap and Mine Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Trap and Mine Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cluster_trap_damage_incr": {
+      "stats": ["support_clustertrap_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "minefield_damage": {
+      "stats": ["support_minefield_mine_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Mine Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Mine Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "void_manipulation": {
+      "stats": ["support_void_manipulation_chaos_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Chaos Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Chaos Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_focus_damage": {
+      "stats": ["support_gem_elemental_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Elemental Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Elemental Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cannot_inflict_ailments": {
+      "stats": ["cannot_inflict_status_ailments"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Minions cannot inflict Elemental Ailments",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextElementalStatusAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "poison_on_hit": {
+      "stats": ["global_poison_on_hit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Minions Poison Enemies on Hit",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        }
+      ]
+    },
+    "poison_damage": {
+      "stats": ["base_poison_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Damage with Poison",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Damage with Poison",
+          "formatters": []
+        }
+      ]
+    },
+    "poison_duration": {
+      "stats": ["base_poison_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% increased Poison Duration",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Poison Duration",
+          "formatters": []
+        }
+      ]
+    },
+    "melee_splash_radius": {
+      "stats": ["melee_splash_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% more Melee Splash Area of Effect",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% less Melee Splash Area of Effect",
+          "formatters": []
+        }
+      ]
+    },
+    "minion_added_damage": {
+      "stats": ["active_skill_minion_added_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions gain %1%%% more Added Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions gain %1%%% less Added Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ailment_duration_incr": {
+      "stats": ["base_all_ailment_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Minions have %1%%% increased Duration of Ailments on Enemies",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextStatusAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% reduced Duration of Ailments on Enemies",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextStatusAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "poison_chance": {
       "stats": ["base_chance_to_poison_on_hit_%"],
       "translations": [
         {
@@ -201,21 +2800,17 @@
         }
       ]
     },
-    "d": {
-      "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
-      ],
+    "deal_no_chaos": {
+      "stats": ["base_deal_no_chaos_damage"],
       "translations": [
         {
-          "matchers": ["#", "#"],
-          "text":
-            "Minions deal %1% to %2% added Fire Damage against Burning Enemies",
+          "matchers": ["#"],
+          "text": "Minions deal no Chaos Damage",
           "formatters": []
         }
       ]
     },
-    "l": {
+    "bleeding_chance": {
       "stats": [
         "bleed_on_hit_with_attacks_%",
         "global_bleed_on_hit",
@@ -259,22 +2854,18 @@
         }
       ]
     },
-    "g": {
-      "stats": ["support_ignite_prolif_ignite_damage_+%_final"],
+    "decay_on_hit": {
+      "stats": ["deal_chaos_damage_per_second_for_10_seconds_on_hit"],
       "translations": [
         {
-          "matchers": [[1, "#"]],
-          "text": "Minions deal %1%%% more Damage with Ignite",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Minions deal %1%%% less Damage with Ignite",
+          "matchers": ["#"],
+          "text":
+            "Minions inflict Decay on Hit, dealing %1% Chaos Damage per second for 8 seconds",
           "formatters": []
         }
       ]
     },
-    "e": {
+    "deal_no_elemental": {
       "stats": ["deal_no_elemental_damage"],
       "translations": [
         {
@@ -284,27 +2875,66 @@
         }
       ]
     },
-    "p": {
-      "stats": ["support_split_projectile_damage_+%_final"],
+    "maim_chance": {
+      "stats": ["maim_on_hit_%"],
       "translations": [
         {
-          "matchers": [[1, "#"]],
-          "text": "Minions deal %1%%% more Projectile Damage",
+          "matchers": [[1, 99]],
+          "text": "Minions Attacks have %1%%% chance to Maim on Hit",
           "formatters": []
         },
         {
+          "matchers": [[100, "#"]],
+          "text": "Minions Attacks always Maim on Hit",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ice_bite_damage": {
+      "stats": [
+        "minimum_added_cold_damage_per_frenzy_charge",
+        "maximum_added_cold_damage_per_frenzy_charge"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Minions have %1% to %2% added Cold Damage per Frenzy Charge",
+          "formatters": []
+        }
+      ]
+    },
+    "ailment_non_damaging_incr_effect": {
+      "stats": ["non_damaging_ailment_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Minions have %1%%% increased Effect of non-Damaging Ailments on Enemies",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextNonDamagingAilments"
+            }
+          ]
+        },
+        {
           "matchers": [["#", -1]],
-          "text": "Minions deal %1%%% less Projectile Damage",
+          "text":
+            "Minions have %1%%% reduced Effect of non-Damaging Ailments on Enemies",
           "formatters": [
             {
               "id": "negate",
               "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextNonDamagingAilments"
             }
           ]
         }
       ]
     },
-    "k": {
+    "skill_and_damaging_ailment_duration_incr": {
       "stats": ["skill_effect_and_damaging_ailment_duration_+%"],
       "translations": [
         {
@@ -335,32 +2965,142 @@
         }
       ]
     },
-    "y": {
-      "stats": ["support_hypothermia_damage_+%_vs_chilled_enemies_final"],
+    "brutality_phys_damage": {
+      "stats": ["support_brutality_physical_damage_+%_final"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Minions deal %1%%% more Damage with Hits and Ailments against Chilled Enemies",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextDamagingAilments"
-            }
-          ]
+          "text": "Minions deal %1%%% more Physical Damage",
+          "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Minions deal %1%%% less Damage with Hits and Ailments against Chilled Enemies",
+          "text": "Minions deal %1%%% less Physical Damage",
           "formatters": [
             {
               "id": "negate",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "maim_phys_damage": {
+      "stats": ["support_maim_chance_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Physical Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Physical Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "maimed_phys_damage_taken_incr": {
+      "stats": ["support_maimed_enemies_physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Enemies Maimed by Minions take %1%%% increased Physical Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Enemies Maimed by Minions take %1%%% reduced Physical Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "added_fire_against_burning": {
+      "stats": [
+        "support_minimum_added_fire_damage_vs_burning_enemies",
+        "support_maximum_added_fire_damage_vs_burning_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Minions deal %1% to %2% added Fire Damage against Burning Enemies",
+          "formatters": []
+        }
+      ]
+    },
+    "minion_totem_resistance_support_damage": {
+      "stats": ["support_minion_totem_resistance_elemental_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Minions and Skills used by Totems deal %1%%% more Elemental Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Minions and Skills used by Totems deal %1%%% less Elemental Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_less_duration": {
+      "stats": ["support_reduced_duration_skill_effect_duration_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions have %1%%% more Duration ",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions have %1%%% less Duration ",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_scion_chance": {
+      "stats": [
+        "support_scion_onslaught_on_killing_blow_%_chance",
+        "support_scion_onslaught_on_killing_blow_duration_ms"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Minions have %1%%% chance to gain Onslaught for %2% seconds on\\ndealing a Killing Blow",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 2
             },
             {
               "id": "reminderstring",
-              "arg": "ReminderTextDamagingAilments"
+              "arg": "ReminderTextOnslaught"
             }
           ]
         }

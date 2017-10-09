@@ -4,17 +4,32 @@
     "hasIdentifiers": false
   },
   "data": {
-    "u": {
-      "stats": ["curse_area_of_effect_+%"],
+    "buff_duration": {
+      "stats": ["buff_effect_duration"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 詛咒範圍",
+          "text": "詛咒持續 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "action_speed_reduction": {
+      "stats": ["temporal_chains_action_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被詛咒敵人增加 %1%%% 移動速度、攻擊速度、及施法速度",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "減少 %1%%% 詛咒範圍",
+          "text": "被詛咒敵人減少 %1%%% 移動速度、攻擊速度、及施法速度",
           "formatters": [
             {
               "id": "negate",
@@ -24,7 +39,225 @@
         }
       ]
     },
-    "c": {
+    "buff_time_passed_reduction": {
+      "stats": ["buff_time_passed_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被詛咒敵人增加 %1%%% 身上增益與減益的持續時間",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被詛咒敵人減少 %1%%% 身上增益與減益的持續時間",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_resist": {
+      "stats": ["base_resist_all_elements_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被詛咒的敵人有 %1$+d%% 的元素抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "fire_resist": {
+      "stats": ["base_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被詛咒的敵人有 %1$+d%% 的火焰抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_resist": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被詛咒的敵人有 %1$+d%% 的冰冷抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_resist": {
+      "stats": ["base_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被詛咒的敵人有 %1$+d%% 的閃電抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_frozen": {
+      "stats": ["chance_to_be_frozen_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被詛咒敵人遭受冰冷攻擊有 %1$+d%% 機率被冰凍",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_ignited": {
+      "stats": ["chance_to_be_ignited_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被詛咒敵人遭受火焰攻擊有 %1$+d%% 機率被點燃",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextIgnite"
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_be_shocked": {
+      "stats": ["chance_to_be_shocked_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被詛咒敵人遭受閃電攻擊有 %1$+d%% 機率被感電",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextShock"
+            }
+          ]
+        }
+      ]
+    },
+    "monster_flask_charges_incr": {
+      "stats": ["monster_slain_flask_charges_granted_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "殺死被詛咒敵人給予增加 %1%%% 的藥劑充能",
+          "formatters": []
+        }
+      ]
+    },
+    "life_leeched_when_hit": {
+      "stats": ["life_leech_on_any_damage_when_hit_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "擊中被詛咒的敵人時額外獲得 %1%%% 生命偷取",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "mana_leeched_when_hit": {
+      "stats": ["mana_leech_on_any_damage_when_hit_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "擊中被詛咒的敵人時額外獲得 %1%%% 魔力偷取",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextManaLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_grant_endurance_charge_on_death": {
+      "stats": ["chance_to_grant_endurance_charge_on_death_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "殺死被詛咒的敵人有 %1%%% 機率獲得耐力球",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_grant_frenzy_charge_on_death": {
+      "stats": ["chance_to_grant_frenzy_charge_on_death_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "受詛咒的敵人被擊殺時有 %1%%% 機率給予一個狂怒球",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_grant_power_charge_on_death": {
+      "stats": ["chance_to_grant_power_charge_on_death_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "受詛咒的敵人被擊殺時有 %1%%% 機率給予一個暴擊球",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_normal": {
+      "stats": ["punishment_physical_damage_%_reflected_for_normal_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "反射被詛咒普通怪物的 %1%%% 物理傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_magic": {
+      "stats": ["punishment_physical_damage_%_reflected_for_magic_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "反射被詛咒魔法怪物的 %1%%% 物理傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_rare": {
+      "stats": ["punishment_physical_damage_%_reflected_for_rare_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "反射被詛咒稀有怪物的 %1%%% 物理傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_unique": {
+      "stats": ["punishment_physical_damage_%_reflected_for_unique_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "反射被詛咒傳奇怪物的 %1%%% 物理傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "accuracy_rating_incr": {
       "stats": ["accuracy_rating_+%"],
       "translations": [
         {
@@ -44,67 +277,37 @@
         }
       ]
     },
-    "l": {
-      "stats": ["base_resist_all_elements_%"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "被詛咒的敵人有 %1$+d%% 的元素抗性",
-          "formatters": []
-        }
-      ]
-    },
-    "i": {
-      "stats": ["life_granted_when_killed"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "受詛咒的敵人被擊殺時會給予 %1% 生命",
-          "formatters": []
-        }
-      ]
-    },
-    "o": {
-      "stats": ["monster_slain_flask_charges_granted_+%"],
+    "critical_strike_chance_incr": {
+      "stats": ["critical_strike_chance_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "殺死被詛咒敵人給予增加 %1%%% 的藥劑充能",
+          "text": "被詛咒敵人增加 %1%%% 暴擊率",
           "formatters": []
-        }
-      ]
-    },
-    "h": {
-      "stats": ["physical_damage_taken_+%"],
-      "translations": [
+        },
         {
-          "matchers": [[1, "#"]],
-          "text": "被詛咒敵人承受增加 %1%%% 物理傷害",
-          "formatters": []
+          "matchers": [["#", -1]],
+          "text": "被詛咒敵人減少 %1%%% 暴擊率",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "a": {
-      "stats": ["mana_granted_when_killed"],
+    "critical_strike_multiplier_incr": {
+      "stats": ["base_critical_strike_multiplier_+"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "受詛咒的敵人被擊殺時會給予 %1% 魔力",
+          "text": "受詛咒的敵人 %1$+d%% 基礎暴擊加成",
           "formatters": []
         }
       ]
     },
-    "r": {
-      "stats": ["projectile_damage_taken_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "被詛咒敵人承受投射物 %1%%% 增加傷害",
-          "formatters": []
-        }
-      ]
-    },
-    "n": {
+    "enfeeble_damage_scale": {
       "stats": ["enfeeble_damage_+%_final"],
       "translations": [
         {
@@ -124,17 +327,27 @@
         }
       ]
     },
-    "e": {
-      "stats": ["base_self_shock_duration_-%"],
+    "chance_to_take_critical_strike": {
+      "stats": ["additional_chance_to_take_critical_strike_%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被詛咒敵人減少 %1%%% 感電持續時間",
+          "text": "攻擊被詛咒敵人有額外 %1%%% 機率造成暴擊",
+          "formatters": []
+        }
+      ]
+    },
+    "self_critical_strike_multiplier_reduction": {
+      "stats": ["base_self_critical_strike_multiplier_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "受詛咒的敵人減少 %1%%% 承受的暴擊傷害",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被詛咒敵人增加 %1%%% 感電持續時間",
+          "text": "受詛咒的敵人增加 %1%%% 承受的暴擊傷害",
           "formatters": [
             {
               "id": "negate",
@@ -144,7 +357,32 @@
         }
       ]
     },
-    "v": {
+    "be_pierced": {
+      "stats": ["projectiles_always_pierce_you"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "投射物穿透詛咒敵人",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_knocked_back": {
+      "stats": ["chance_to_be_knocked_back_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "擊中被詛咒敵人有額外 %1%%% 機率擊退",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKnockback"
+            }
+          ]
+        }
+      ]
+    },
+    "evasion_rating_poachers_mark": {
       "stats": ["evasion_rating_+%_final_from_poachers_mark"],
       "translations": [
         {
@@ -164,7 +402,27 @@
         }
       ]
     },
-    "t": {
+    "projectile_damage_taken_incr": {
+      "stats": ["projectile_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被詛咒敵人承受投射物 %1%%% 增加傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_stunned": {
+      "stats": ["chance_to_be_stunned_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被詛咒敵人承受額外 %1%%% 被暈眩的機率",
+          "formatters": []
+        }
+      ]
+    },
+    "stun_recovery_incr": {
       "stats": ["base_stun_recovery_+%"],
       "translations": [
         {
@@ -175,6 +433,156 @@
         {
           "matchers": [["#", -1]],
           "text": "受到詛咒的敵人減少 %1%%% 暈眩和格擋回復",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "physical_damage_taken_incr": {
+      "stats": ["physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被詛咒敵人承受增加 %1%%% 物理傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "degen_effect_incr": {
+      "stats": ["degen_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被詛咒敵人承受增加 %1%%% 持續傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "self_burn_duration": {
+      "stats": ["base_self_ignite_duration_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被詛咒敵人減少 %1%%% 點燃持續時間",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被詛咒敵人增加 %1%%% 點燃持續時間",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "self_freeze_duration": {
+      "stats": ["base_self_freeze_duration_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被詛咒敵人減少 %1%%% 冰凍持續時間",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被詛咒敵人增加 %1%%% 冰凍持續時間",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "self_shock_duration": {
+      "stats": ["base_self_shock_duration_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被詛咒敵人減少 %1%%% 感電持續時間",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被詛咒敵人增加 %1%%% 感電持續時間",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cannot_cast_curses": {
+      "stats": ["cannot_cast_curses"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "不能直接施放此詛咒",
+          "formatters": []
+        }
+      ]
+    },
+    "life_granted_when_hit": {
+      "stats": ["life_granted_when_hit_by_attacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "受詛咒的敵人被攻擊擊中時會給予 %1% 生命",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_granted_when_hit": {
+      "stats": ["mana_granted_when_hit_by_attacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "受詛咒的敵人被攻擊擊中時會給予 %1% 魔力",
+          "formatters": []
+        }
+      ]
+    },
+    "life_granted_when_killed": {
+      "stats": ["life_granted_when_killed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "受詛咒的敵人被擊殺時會給予 %1% 生命",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_granted_when_killed": {
+      "stats": ["mana_granted_when_killed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "受詛咒的敵人被擊殺時會給予 %1% 魔力",
+          "formatters": []
+        }
+      ]
+    },
+    "curse_area": {
+      "stats": ["curse_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "增加 %1%%% 詛咒範圍",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "減少 %1%%% 詛咒範圍",
           "formatters": [
             {
               "id": "negate",

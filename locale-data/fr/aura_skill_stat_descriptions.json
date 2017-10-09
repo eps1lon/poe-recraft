@@ -4,53 +4,95 @@
     "hasIdentifiers": false
   },
   "data": {
-    "h": {
-      "stats": ["physical_damage_%_to_add_as_cold"],
+    "physical_damage_incr": {
+      "stats": ["physical_damage_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
           "text":
-            "Vous et vos alliés à proximité avez %1%%% d'augmentation de Dégâts physiques en tant que Dégâts de froid",
+            "Vous et vos alliés à proximité gagnez %1%%% d'augmentation de Dégâts physiques",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Vous et vos alliés à proximité gagnez %1%%% de réduction de Dégâts physiques",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "o": {
-      "stats": ["base_chance_to_dodge_%"],
+    "movement_speed_incr": {
+      "stats": ["base_movement_velocity_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% de Chances d'Esquiver les attaques",
+          "text":
+            "Vous et vos alliés à proximité gagnez %1%%% d'augmentation de Vitesse de déplacement",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Vous et vos alliés à proximité gagnez %1%%% de réduction de Vitesse de déplacement",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "t": {
-      "stats": [
-        "attack_minimum_added_chaos_damage",
-        "attack_maximum_added_chaos_damage"
-      ],
+    "attack_speed_incr": {
+      "stats": ["attack_speed_+%"],
       "translations": [
         {
-          "matchers": ["#", "#"],
+          "matchers": [[1, "#"]],
           "text":
-            "Vous et vos alliés à proximité infligez de %1% à %2% de Dégâts de chaos supplémentaires avec vos Attaques",
+            "Vous et vos alliés à proximité gagnez %1%%% d'augmentation de Vitesse d'attaque",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Vous et vos alliés à proximité gagnez %1%%% de réduction de Vitesse d'attaque",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "a": {
-      "stats": ["base_elemental_damage_heals"],
+    "haste_cast_speed_incr": {
+      "stats": ["cast_speed_+%_from_haste_aura"],
       "translations": [
         {
-          "matchers": ["#"],
+          "matchers": [[1, "#"]],
           "text":
-            "Les Dégâts élémentaires que vous et vos alliés à proximité subissez vous soignent au lieu de vous blesser",
+            "Vous et vos alliés à proximité gagnez %1%%% d'augmentation de Vitesse d'incantation",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Vous et vos alliés à proximité gagnez %1%%% de réduction de Vitesse d'incantation",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "l": {
+    "elemental_resist": {
       "stats": ["base_resist_all_elements_%"],
       "translations": [
         {
@@ -61,18 +103,23 @@
         }
       ]
     },
-    "i": {
-      "stats": ["base_fire_damage_resistance_%"],
+    "life_regen_per_minute_percent": {
+      "stats": ["life_regeneration_rate_per_minute_%"],
       "translations": [
         {
-          "matchers": [[1, "#"]],
+          "matchers": ["#"],
           "text":
-            "Vous et vos alliés à proximité gagnez %1%%% de Résistance au feu supplémentaires",
-          "formatters": []
+            "Vous et vos alliés à proximité régénérez %1%%% de Vie par seconde",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second_2dp",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "c": {
+    "accuracy_rating_incr": {
       "stats": ["accuracy_rating_+%"],
       "translations": [
         {
@@ -94,7 +141,261 @@
         }
       ]
     },
-    "r": {
+    "critical_strike_chance_incr": {
+      "stats": ["critical_strike_chance_+%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Vous et vos alliés à proximité gagnez %1%%% d'augmentation de Chances de coup critique",
+          "formatters": []
+        }
+      ]
+    },
+    "base_evasion": {
+      "stats": ["base_evasion_rating"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Vous et vos alliés à proximité gagnez %1% de Score d'évasion supplémentaires",
+          "formatters": []
+        }
+      ]
+    },
+    "grace_evasion_incr": {
+      "stats": ["grace_aura_evasion_rating_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Vous et vos alliés à proximité gagnez %1%%% davantage de Score d'évasion",
+          "formatters": []
+        }
+      ]
+    },
+    "base_armour": {
+      "stats": ["base_physical_damage_reduction_rating"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Vous et vos alliés à proximité gagnez %1% d'Armure supplémentaires",
+          "formatters": []
+        }
+      ]
+    },
+    "determination_armour_incr": {
+      "stats": ["determination_aura_armour_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Vous et vos alliés à proximité gagnez %1%%% davantage d'Armure",
+          "formatters": []
+        }
+      ]
+    },
+    "base_energy_shield": {
+      "stats": ["base_maximum_energy_shield"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Vous et vos alliés à proximité gagnez %1% de Bouclier d'énergie supplémentaires",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_resist": {
+      "stats": ["base_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Vous et vos alliés à proximité gagnez %1%%% de Résistance à la foudre supplémentaires",
+          "formatters": []
+        }
+      ]
+    },
+    "fire_resist": {
+      "stats": ["base_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Vous et vos alliés à proximité gagnez %1%%% de Résistance au feu supplémentaires",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_resist": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Vous et vos alliés à proximité gagnez %1%%% de Résistance au froid supplémentaires",
+          "formatters": []
+        }
+      ]
+    },
+    "max_fire_resist": {
+      "stats": ["base_maximum_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Vous et vos alliés à proximité gagnez %1%%% de Résistance au feu maximale supplémentaires",
+          "formatters": []
+        }
+      ]
+    },
+    "max_cold_resist": {
+      "stats": ["base_maximum_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Vous et vos alliés à proximité gagnez %1%%% de Résistance au froid maximale supplémentaires",
+          "formatters": []
+        }
+      ]
+    },
+    "max_lightning_resist": {
+      "stats": ["base_maximum_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Vous et vos alliés à proximité gagnez %1%%% de Résistance à la foudre maximale supplémentaires",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_added_fire": {
+      "stats": [
+        "attack_minimum_added_fire_damage",
+        "attack_maximum_added_fire_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Vous et vos alliés à proximité infligez de %1% à %2% Dégâts de feu supplémentaires",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_added_lightning": {
+      "stats": [
+        "attack_minimum_added_lightning_damage",
+        "attack_maximum_added_lightning_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Vous et vos alliés à proximité infligez de %1% à %2% Dégâts de foudre supplémentaires",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_to_add_as_cold": {
+      "stats": ["physical_damage_%_to_add_as_cold"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Vous et vos alliés à proximité avez %1%%% d'augmentation de Dégâts physiques en tant que Dégâts de froid",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_regen": {
+      "stats": ["base_mana_regeneration_rate_per_minute"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Vous et vos alliés à proximité régénérez %1% de Mana per seconde",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "energy_shield_no_delay": {
+      "stats": ["energy_shield_recharge_not_delayed_by_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Recharges de votre Bouclier d'énergie et de ceux de vos alliés ne sont pas retardées par les Dégâts",
+          "formatters": []
+        }
+      ]
+    },
+    "no_mana_cost": {
+      "stats": ["no_mana_cost"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Vos Compétences et celles de vos alliés ne coûtent pas de Mana",
+          "formatters": []
+        }
+      ]
+    },
+    "dodge_chance": {
+      "stats": ["base_chance_to_dodge_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% de Chances d'Esquiver les attaques",
+          "formatters": []
+        }
+      ]
+    },
+    "spell_dodge_chance": {
+      "stats": ["base_chance_to_dodge_spells_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% de Chances d'Esquiver les Dégâts des sorts",
+          "formatters": []
+        }
+      ]
+    },
+    "base_elemental_damage_heals": {
+      "stats": ["base_elemental_damage_heals"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Dégâts élémentaires que vous et vos alliés à proximité subissez vous soignent au lieu de vous blesser",
+          "formatters": []
+        }
+      ]
+    },
+    "spell_added_fire_damage": {
+      "stats": [
+        "spell_minimum_added_fire_damage",
+        "spell_maximum_added_fire_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Vous et vos alliés à proximité infligez de %1% à %2% Dégâts de feu supplémentaires avec vos Sorts",
+          "formatters": []
+        }
+      ]
+    },
+    "wrath_spell_lightning_damage": {
       "stats": ["wrath_aura_spell_lightning_damage_+%_final"],
       "translations": [
         {
@@ -111,38 +412,16 @@
         }
       ]
     },
-    "e": {
-      "stats": ["determination_aura_armour_+%_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Vous et vos alliés à proximité gagnez %1%%% davantage d'Armure",
-          "formatters": []
-        }
-      ]
-    },
-    "n": {
-      "stats": ["energy_shield_recharge_not_delayed_by_damage"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Les Recharges de votre Bouclier d'énergie et de ceux de vos alliés ne sont pas retardées par les Dégâts",
-          "formatters": []
-        }
-      ]
-    },
-    "p": {
+    "attack_added_chaos": {
       "stats": [
-        "spell_minimum_added_fire_damage",
-        "spell_maximum_added_fire_damage"
+        "attack_minimum_added_chaos_damage",
+        "attack_maximum_added_chaos_damage"
       ],
       "translations": [
         {
           "matchers": ["#", "#"],
           "text":
-            "Vous et vos alliés à proximité infligez de %1% à %2% Dégâts de feu supplémentaires avec vos Sorts",
+            "Vous et vos alliés à proximité infligez de %1% à %2% de Dégâts de chaos supplémentaires avec vos Attaques",
           "formatters": []
         }
       ]

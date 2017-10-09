@@ -4,7 +4,7 @@
     "hasIdentifiers": false
   },
   "data": {
-    "t": {
+    "attack_speed_incr": {
       "stats": ["attack_speed_+%"],
       "translations": [
         {
@@ -24,17 +24,27 @@
         }
       ]
     },
-    "a": {
-      "stats": ["base_spell_block_%"],
+    "haste_cast_speed_incr": {
+      "stats": ["cast_speed_+%_from_haste_aura"],
       "translations": [
         {
-          "matchers": ["#"],
-          "text": "Gewährt Kreaturen %1$+d%% Chance auf Blocken von Zaubern",
+          "matchers": [[1, "#"]],
+          "text": "Gewährt Kreaturen %1%%% erhöhte Zaubergeschwindigkeit",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Gewährt Kreaturen %1%%% verringerte Zaubergeschwindigkeit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
-    "o": {
+    "movement_speed_incr": {
       "stats": ["base_movement_velocity_+%"],
       "translations": [
         {
@@ -55,7 +65,27 @@
         }
       ]
     },
-    "e": {
+    "base_block": {
+      "stats": ["monster_base_block_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Gewährt Kreaturen %1$+d%% Chance auf Blocken von Angriffen",
+          "formatters": []
+        }
+      ]
+    },
+    "base_spell_block": {
+      "stats": ["base_spell_block_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Gewährt Kreaturen %1$+d%% Chance auf Blocken von Zaubern",
+          "formatters": []
+        }
+      ]
+    },
+    "recover_life_on_block": {
       "stats": ["recover_X_life_on_block"],
       "translations": [
         {
@@ -65,7 +95,7 @@
         }
       ]
     },
-    "h": {
+    "physical_damage_to_add_as_chaos": {
       "stats": ["physical_damage_%_to_add_as_chaos"],
       "translations": [
         {
@@ -76,7 +106,7 @@
         }
       ]
     },
-    "p": {
+    "spirit_offering_life_as_es_per_corpse": {
       "stats": [
         "spirit_offering_life_%_added_as_base_maximum_energy_shield_per_corpse_consumed"
       ],

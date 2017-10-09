@@ -31,7 +31,7 @@ Description ->
 
 DescriptionHeader -> 
   Whitespaces:? "description" Whitespaces:? StatIdentifier:? Whitespaces:? Blankline:+
-  {% ([, , , ident]) => ident ? ident[1] : null %}
+  {% ([, , , ident]) => ident %}
 
 DescriptionBody ->
   Stats Translation TranslationLanguage:*

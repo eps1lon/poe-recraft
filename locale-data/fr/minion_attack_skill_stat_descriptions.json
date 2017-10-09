@@ -4,7 +4,754 @@
     "hasIdentifiers": false
   },
   "data": {
-    "t": {
+    "attack_speed_incr": {
+      "stats": ["attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Vitesse d'Attaque accrue",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Vitesse d'Attaque réduite",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "accuracy_rating": {
+      "stats": ["accuracy_rating"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1% de Taux de Précision supplémentaire",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Cette Attaque et les Sbires ont -%1% de Taux de Précision",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "accuracy_rating_incr": {
+      "stats": ["accuracy_rating_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% du Taux de Précision accru",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% du Taux de Précision réduit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "critical_strike_chance_incr": {
+      "stats": ["critical_strike_chance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Chance de Coup Critique accrue",
+          "formatters": []
+        }
+      ]
+    },
+    "critical_strike_multiplier_incr": {
+      "stats": ["base_critical_strike_multiplier_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Cette Attaque et les Créatures gagnent %1$+d%% au Multiplicateur de coup critique",
+          "formatters": []
+        }
+      ]
+    },
+    "reduce_block": {
+      "stats": ["global_reduce_enemy_block_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Le Chance de Bloquer ennemie est réduite de %1%%% contre Cette Compétences et les Sbires",
+          "formatters": []
+        }
+      ]
+    },
+    "life_gain_per_target": {
+      "stats": ["life_gain_per_target"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires gagnent %1% de Vie pour chaque ennemi Touché",
+          "formatters": []
+        }
+      ]
+    },
+    "life_leech_from_any": {
+      "stats": ["life_leech_from_any_damage_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Cette Attaque et les Sbires volent %1%%% des Dégâts en Vie",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "mana_leech_from_any": {
+      "stats": ["mana_leech_from_any_damage_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Cette Attaque et les Sbires volent %1%%% des Dégâts en Mana",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextManaLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "knockback_chance": {
+      "stats": ["base_global_chance_to_knockback_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "Cette Attaque et les Créatures ont %1%%% d'Augmentation des chances de Repousser les Ennemis au Toucher",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKnockback"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Cette Attaque et les Créatures Repoussent les Ennemis au Toucher",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKnockback"
+            }
+          ]
+        }
+      ]
+    },
+    "knockback_distance": {
+      "stats": ["knockback_distance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Distance de Repoussement accrue",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Distance de Repoussement réduite",
+          "formatters": []
+        }
+      ]
+    },
+    "stun_threshold_reduction_incr": {
+      "stats": ["base_stun_threshold_reduction_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% du Seuil d'Étourdissement Ennemi réduit",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextStunThreshold"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% du Seuil d'Étourdissement Ennemi accru",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextStunThreshold"
+            }
+          ]
+        }
+      ]
+    },
+    "killed_monster_dropped_item_rarity_incr": {
+      "stats": ["killed_monster_dropped_item_rarity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% de Rareté accrue des Objets lâchés par les Ennemis tués par les Sbires ou cette Attaque",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% de Rareté réduite des Objets lâchés par les Ennemis tués par les Sbires ou cette Attaque",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "killed_monster_dropped_item_quantity_incr": {
+      "stats": ["killed_monster_dropped_item_quantity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% de Quantité accrue des Objets lâchés par les Ennemis tués par les Sbires ou cette Attaque",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% de Quantité réduite des Objets lâchés par les Ennemis tués par les Sbires ou cette Attaque",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "freeze_chance": {
+      "stats": ["base_chance_to_freeze_%", "always_freeze"],
+      "translations": [
+        {
+          "matchers": ["#", [1, "#"]],
+          "text": "Cette Attaque et les Sbires Gèlent toujours les Ennemis",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreeze"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"], 0],
+          "text": "Cette Attaque et les Sbires Gèlent toujours les Ennemis",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreeze"
+            }
+          ]
+        },
+        {
+          "matchers": [[1, 99], 0],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de chance de Geler les Ennemis",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreeze"
+            }
+          ]
+        }
+      ]
+    },
+    "shock_chance": {
+      "stats": ["base_chance_to_shock_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de chance d'Électriser les ennemis",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextShock"
+            }
+          ]
+        }
+      ]
+    },
+    "burn_chance": {
+      "stats": ["base_chance_to_ignite_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de chance d'Enflammer les ennemis",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextIgnite"
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_flee": {
+      "stats": ["global_hit_causes_monster_flee_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Faire Fuir les ennemis",
+          "formatters": []
+        }
+      ]
+    },
+    "life_leech_speed": {
+      "stats": ["life_leech_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% du taux du Vol de Vie accru",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% du taux du Vol de Vie réduit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "mana_leech_speed": {
+      "stats": ["mana_leech_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% du taux du Vol de Mana accru",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextManaLeech"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% du taux du Vol de Mana réduit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextManaLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "stun_duration_incr": {
+      "stats": ["base_stun_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Durée d'Étourdissement accrue sur les ennemis",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Durée d'Étourdissement réduite sur les ennemis",
+          "formatters": []
+        }
+      ]
+    },
+    "burn_duration": {
+      "stats": ["ignite_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Durée d'Ignition accrue sur les ennemis",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Durée d'Ignition réduite sur les ennemis",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chill_duration": {
+      "stats": ["chill_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Durée de Glacement accrue sur les ennemis",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Durée de Glacement réduite sur les ennemis",
+          "formatters": []
+        }
+      ]
+    },
+    "freeze_duration": {
+      "stats": ["freeze_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Durée de Gel accrue sur les ennemis",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Durée de Gel réduite sur les ennemis",
+          "formatters": []
+        }
+      ]
+    },
+    "shock_duration": {
+      "stats": ["shock_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Durée d'Électrisation accrue sur les ennemis",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Durée d'Électrisation réduite sur les ennemis",
+          "formatters": []
+        }
+      ]
+    },
+    "elemental_status_aura": {
+      "stats": ["elemental_status_effect_aura_radius"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Altérations élémentaires de statut causées par cette Attaque ou les Créatures affectent aussi les Ennemis aux alentours",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextElementalStatusAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "ignite_aura": {
+      "stats": ["support_ignite_proliferation_radius"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "L'Embrasement causé par cette Attaque ou les Créatures affecte aussi les Ennemis aux alentours",
+          "formatters": []
+        }
+      ]
+    },
+    "culling_strike": {
+      "stats": ["kill_enemy_on_hit_if_under_10%_life"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Cette Attaque et les Sbires ont Coup de Grâce",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextCullingStrike"
+            }
+          ]
+        }
+      ]
+    },
+    "point_blank": {
+      "stats": ["keystone_point_blank"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Cette Attaque et les Sbires ont à Bout Portant",
+          "formatters": []
+        }
+      ]
+    },
+    "fire_penetration": {
+      "stats": ["base_reduce_enemy_fire_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires Pénètrent %1%%% des Résistances au Feu",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_penetration": {
+      "stats": ["base_reduce_enemy_cold_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires Pénètrent %1%%% des Résistances à la Glace",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_penetration": {
+      "stats": ["base_reduce_enemy_lightning_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires Pénètrent %1%%% des Résistances à la Foudre",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_blind": {
+      "stats": ["global_chance_to_blind_on_hit_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de chance d'Aveugler les ennemis par Coup porté",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBlind"
+            }
+          ]
+        }
+      ]
+    },
+    "blind_duration_incr": {
+      "stats": ["blind_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Durée d'Aveuglement accrue",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Durée d'Aveuglement réduite",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "melee_splash": {
+      "stats": ["melee_splash"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Attaques de Mêlée à cible unique de Cette Attaque et des Sbires infligent des Dégâts collatéraux aux Cibles à proximité",
+          "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_crit_chance": {
+      "stats": ["add_power_charge_on_critical_strike_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de chance de générer une Charge de Puissance en Coup Critique",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Cette Attaque et les Sbires génèrent une Charge de Puissance en Coup Critique",
+          "formatters": []
+        }
+      ]
+    },
+    "multiple_attacks_speed": {
+      "stats": ["support_multiple_attacks_melee_attack_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Vitesse d'Attaque de Mêlée en plus",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de Vitesse d'Attaque de Mêlée en moins",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "area_of_effect_incr": {
+      "stats": ["base_skill_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de rayon de Zone d'Effet accru",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de rayon de Zone d'Effet réduit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "concentrated_area_of_effect": {
+      "stats": ["support_concentrated_effect_skill_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de rayon de Zone d'Effet en plus",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% de rayon de Zone d'Effet en moins",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "burn_damage": {
+      "stats": ["burn_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% des Dégâts de Brûlure accrus",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Sbires ont %1%%% des Dégâts de Brûlure réduits",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "endurance_charge_on_stun": {
+      "stats": ["gain_endurance_charge_on_melee_stun"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Cette Attaque et les Sbires génèrent une Charge d'Endurance en Étourdissant les Ennemis avec des Dégâts de Mêlée",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_speed_incr_on_low_life": {
       "stats": ["attack_speed_+%_when_on_low_life"],
       "translations": [
         {
@@ -35,19 +782,38 @@
         }
       ]
     },
-    "c": {
-      "stats": ["accuracy_rating_+%"],
+    "totem_attack_speed": {
+      "stats": ["support_attack_totem_attack_speed_+%_final"],
       "translations": [
         {
           "matchers": [[1, "#"]],
           "text":
-            "Cette Attaque et les Sbires ont %1%%% du Taux de Précision accru",
+            "Cette Attaque et les Sbires ont %1%%% de Vitesse d'Attaque en plus",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Cette Attaque et les Sbires ont %1%%% du Taux de Précision réduit",
+            "Cette Attaque et les Sbires ont %1%%% de Vitesse d'Attaque en moins",
+          "formatters": []
+        }
+      ]
+    },
+    "bloodlust_damage": {
+      "stats": [
+        "support_bloodlust_melee_physical_damage_+%_final_vs_bleeding_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires infligent %1%%% de Dégâts Physiques de Mêlée en plus contre les Ennemis sous Saignement",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Sbires infligent %1%%% de Dégâts Physiques de Mêlée en moins contre les Ennemis sous Saignement",
           "formatters": [
             {
               "id": "negate",
@@ -57,19 +823,19 @@
         }
       ]
     },
-    "r": {
-      "stats": ["support_trap_and_mine_damage_+%_final"],
+    "bloodlust_damage_incr": {
+      "stats": ["melee_damage_vs_bleeding_enemies_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
           "text":
-            "Cette Attaque et les Sbires infligent %1%%% de Dégâts des Pièges et des Mines en plus",
+            "Cette Attaque et les Sbires infligent %1%%% des Dégâts Physiques de Mêlée accrus contre les Ennemis sous Saignement",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Cette Attaque et les Sbires infligent %1%%% de Dégâts des Pièges et des Mines en moins",
+            "Cette Attaque et les Sbires infligent %1%%% des Dégâts Physiques de Mêlée réduits contre les Ennemis sous Saignement",
           "formatters": [
             {
               "id": "negate",
@@ -79,68 +845,7 @@
         }
       ]
     },
-    "e": {
-      "stats": ["melee_splash_area_of_effect_+%_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Cette Attaque et les Créatures ont %1%%% Davantage de Zone d'effet des Dégâts collatéraux",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "Cette Attaque et les Créatures ont %1%%% de Perte de Zone d'effet des Dégâts collatéraux",
-          "formatters": []
-        }
-      ]
-    },
-    "i": {
-      "stats": ["base_reduce_enemy_lightning_resistance_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Cette Attaque et les Sbires Pénètrent %1%%% des Résistances à la Foudre",
-          "formatters": []
-        }
-      ]
-    },
-    "a": {
-      "stats": ["damage_over_time_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Cette Attaque et les Créatures ont %1%%% d'Augmentation des Dégâts sur la durée",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "Cette Attaque et les Créatures ont %1%%% de Réduction des Dégâts sur la durée",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "n": {
-      "stats": ["gain_endurance_charge_on_melee_stun"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Cette Attaque et les Sbires génèrent une Charge d'Endurance en Étourdissant les Ennemis avec des Dégâts de Mêlée",
-          "formatters": []
-        }
-      ]
-    },
-    "h": {
+    "chance_to_fortify_on_melee_hit": {
       "stats": ["chance_to_fortify_on_melee_hit_+%"],
       "translations": [
         {
@@ -167,7 +872,76 @@
         }
       ]
     },
-    "u": {
+    "freeze_chance_vs_chilled": {
+      "stats": ["additional_chance_to_freeze_chilled_enemies_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Cette Attaque et les Sbires ont %1$d%% de chance de Geler les Ennemis étant Glacés",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreeze"
+            }
+          ]
+        }
+      ]
+    },
+    "trap_mine_damage": {
+      "stats": ["support_trap_and_mine_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Sbires infligent %1%%% de Dégâts des Pièges et des Mines en plus",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Sbires infligent %1%%% de Dégâts des Pièges et des Mines en moins",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_better_ailments_bonus": {
+      "stats": ["support_better_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Créatures ont %1%%% Davantage de Dégâts avec les Altérations de statut",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Créatures ont %1%%% de Perte de Dégâts avec les Altérations de statut",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "support_chance_to_ignite_damage": {
       "stats": ["support_chance_to_ignite_fire_damage_+%_final"],
       "translations": [
         {
@@ -189,7 +963,29 @@
         }
       ]
     },
-    "l": {
+    "rapid_decay": {
+      "stats": ["support_rapid_decay_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Créatures ont %1%%% Davantage de Dégâts sur la durée",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Créatures ont %1%%% de Perte de Dégâts sur la durée",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_focus_damage": {
       "stats": ["support_gem_elemental_damage_+%_final"],
       "translations": [
         {
@@ -211,18 +1007,88 @@
         }
       ]
     },
-    "g": {
-      "stats": ["support_ignite_proliferation_radius"],
+    "cannot_inflict_ailments": {
+      "stats": ["cannot_inflict_status_ailments"],
       "translations": [
         {
           "matchers": ["#"],
           "text":
-            "L'Embrasement causé par cette Attaque ou les Créatures affecte aussi les Ennemis aux alentours",
-          "formatters": []
+            "Cette Attaque et les Créatures ne peuvent infliger d'Altérations élémentaires de statut",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextElementalStatusAilments"
+            }
+          ]
         }
       ]
     },
-    "o": {
+    "damage_over_time_incr": {
+      "stats": ["damage_over_time_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Créatures ont %1%%% d'Augmentation des Dégâts sur la durée",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Créatures ont %1%%% de Réduction des Dégâts sur la durée",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "poison_on_hit": {
+      "stats": ["global_poison_on_hit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Cette Attaque et les Créatures Empoisonnent les Ennemis au Toucher",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        }
+      ]
+    },
+    "poison_damage": {
+      "stats": ["base_poison_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Créatures ont %1%%% d'Augmentation des Dégâts du Poison",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Créatures ont %1%%% de Réduction des Dégâts du Poison",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        }
+      ]
+    },
+    "poison_duration": {
       "stats": ["base_poison_duration_+%"],
       "translations": [
         {
@@ -235,6 +1101,23 @@
           "matchers": [["#", -1]],
           "text":
             "Cette Attaque et les Créatures ont %1%%% de Réduction de la Durée du Poison",
+          "formatters": []
+        }
+      ]
+    },
+    "melee_splash_radius": {
+      "stats": ["melee_splash_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cette Attaque et les Créatures ont %1%%% Davantage de Zone d'effet des Dégâts collatéraux",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cette Attaque et les Créatures ont %1%%% de Perte de Zone d'effet des Dégâts collatéraux",
           "formatters": []
         }
       ]

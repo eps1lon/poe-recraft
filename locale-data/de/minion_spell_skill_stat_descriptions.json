@@ -4,7 +4,29 @@
     "hasIdentifiers": false
   },
   "data": {
-    "a": {
+    "cast_speed_incr": {
+      "stats": ["base_cast_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Dieser Zauber und Kreaturen haben %1%%% erhöhte Zaubergeschwindigkeit",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Dieser Zauber und Kreaturen haben %1%%% verringerte Zaubergeschwindigkeit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cast_speed_incr_on_low_life": {
       "stats": ["cast_speed_+%_when_on_low_life"],
       "translations": [
         {
@@ -35,7 +57,7 @@
         }
       ]
     },
-    "u": {
+    "multicast_cast_speed_incr": {
       "stats": ["support_multicast_cast_speed_+%_final"],
       "translations": [
         {
