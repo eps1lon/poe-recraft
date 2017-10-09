@@ -1,10 +1,12 @@
+export interface Descriptions {
+  [key: string]: Description;
+}
+
 export interface StatLocaleData {
   meta: {
     include?: string;
   };
-  data: {
-    [key: string]: Description;
-  };
+  data: Descriptions;
 }
 
 export interface StatLocaleDatas {

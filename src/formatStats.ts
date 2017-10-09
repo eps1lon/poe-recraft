@@ -2,7 +2,9 @@ import { Match, matches } from './translate/match';
 import printf from './translate/printf';
 import {
   Description,
+  Descriptions,
   StatLocaleData,
+  StatLocaleDatas,
   Translation
 } from './types/StatDescription';
 
@@ -13,8 +15,9 @@ export type Stat = {
 };
 
 export type OptionalOptions = {
-  data?: StatLocaleData;
+  datas?: StatLocaleDatas;
   fallback?: Fallback | FallbackCallback;
+  start_file?: string;
 };
 // return type
 export type TranslatedStats = string[];
@@ -27,13 +30,15 @@ export enum Fallback {
   skip
 }
 export type Options = {
-  data?: StatLocaleData;
+  datas?: StatLocaleDatas;
   fallback: Fallback | FallbackCallback;
+  start_file: string;
 };
 
 const initial_options: Options = {
-  data: undefined,
-  fallback: Fallback.throw
+  datas: undefined,
+  fallback: Fallback.throw,
+  start_file: 'stat_descriptions'
 };
 
 export interface FormatStats {
@@ -44,11 +49,15 @@ export interface FormatStats {
 
 const formatStats: FormatStats = Object.assign(
   (stats: Stat[], options: OptionalOptions = {}): TranslatedStats => {
-    const { data, fallback } = Object.assign({}, formatStats.options, options);
+    const { datas, fallback, start_file } = Object.assign(
+      {},
+      formatStats.options,
+      options
+    );
 
-    if (data === undefined) {
+    if (datas === undefined) {
       throw new Error(
-        'locale data not provided. Set it either via passed option or #configure'
+        'locale datas not provided. Set it either via passed option or #configure'
       );
     }
 
@@ -59,11 +68,20 @@ const formatStats: FormatStats = Object.assign(
       stats.map((stat: Stat) => [stat.id, stat] as [string, Stat])
     );
 
-    lines.push(...formatWithFinder(untranslated, id => data.data[id]));
+    let description_file: StatLocaleData | undefined = datas[start_file];
 
-    lines.push(
-      ...formatWithFinder(untranslated, id => findDescription(id, data))
-    );
+    while (description_file !== undefined) {
+      const data: Descriptions = description_file.data;
+
+      lines.push(...formatWithFinder(untranslated, id => data[id]));
+      lines.push(
+        ...formatWithFinder(untranslated, id => findDescription(id, data))
+      );
+
+      description_file = description_file.meta.include
+        ? datas[description_file.meta.include]
+        : undefined;
+    }
 
     lines.push(...formatWithFallback(untranslated, fallback));
 
@@ -85,8 +103,8 @@ export default formatStats;
  * @param stat_id 
  * @param locale_data 
  */
-function findDescription(stat_id: string, locale_data: StatLocaleData) {
-  return Object.values(locale_data.data).find(({ stats }) =>
+function findDescription(stat_id: string, locale_data: Descriptions) {
+  return Object.values(locale_data).find(({ stats }) =>
     stats.includes(stat_id)
   );
 }
