@@ -12,11 +12,13 @@ import {
 export type Stat = {
   id: string;
   value: number | [number, number];
+  alias?: string;
 };
 
 export type OptionalOptions = {
   datas?: StatLocaleDatas;
   fallback?: Fallback | FallbackCallback;
+  descriptionFinder?: (data: Descriptions) => (stat: Stat) => Description;
   start_file?: string;
 };
 // return type
@@ -32,12 +34,14 @@ export enum Fallback {
 export type Options = {
   datas?: StatLocaleDatas;
   fallback: Fallback | FallbackCallback;
+  descriptionFinder: (data: Descriptions) => (stat: Stat) => Description;
   start_file: string;
 };
 
 const initial_options: Options = {
   datas: undefined,
   fallback: Fallback.throw,
+  descriptionFinder: (data: Descriptions) => (stat: Stat) => data[stat.id],
   start_file: 'stat_descriptions'
 };
 
@@ -49,7 +53,7 @@ export interface FormatStats {
 
 const formatStats: FormatStats = Object.assign(
   (stats: Stat[], options: OptionalOptions = {}): TranslatedStats => {
-    const { datas, fallback, start_file } = Object.assign(
+    const { datas, fallback, descriptionFinder, start_file } = Object.assign(
       {},
       formatStats.options,
       options
@@ -73,9 +77,9 @@ const formatStats: FormatStats = Object.assign(
     while (description_file !== undefined) {
       const data: Descriptions = description_file.data;
 
-      lines.push(...formatWithFinder(untranslated, id => data[id]));
+      lines.push(...formatWithFinder(untranslated, descriptionFinder(data)));
       lines.push(
-        ...formatWithFinder(untranslated, id => findDescription(id, data))
+        ...formatWithFinder(untranslated, ({ id }) => findDescription(id, data))
       );
 
       description_file = description_file.meta.include
@@ -114,12 +118,12 @@ const NO_DESCRIPTION = 'NO_DESCRIPTION';
 // stats will get mutated
 function formatWithFinder(
   stats: Map<string, Stat>,
-  find: (stat_id: string) => Description | undefined
+  find: (stat: Stat) => Description | undefined
 ): string[] {
   const lines: string[] = [];
 
   for (const [stat_id, stat] of stats) {
-    const description = find(stat_id);
+    const description = find(stat);
 
     if (description !== undefined) {
       const translation = translate(description, stats);
