@@ -14,8 +14,17 @@ declare module "translate/match" {
     export function matches(values: Value[], matchers: Value[]): Match[];
 }
 declare module "types/StatDescription" {
-    export interface StatLocaleData {
+    export interface Descriptions {
         [key: string]: Description;
+    }
+    export interface StatLocaleData {
+        meta: {
+            include?: string;
+        };
+        data: Descriptions;
+    }
+    export interface StatLocaleDatas {
+        [key: string]: StatLocaleData;
     }
     export interface Description {
         stats: string[];
@@ -75,14 +84,16 @@ declare module "translate/printf" {
     export default function printf(text: string, params: Params, formatters?: Formatter[]): string;
 }
 declare module "formatStats" {
-    import { StatLocaleData } from "types/StatDescription";
+    import { StatLocaleDatas } from "types/StatDescription";
     export type Stat = {
         id: string;
         value: number | [number, number];
+        alias?: string;
     };
     export type OptionalOptions = {
-        data?: StatLocaleData;
+        datas?: StatLocaleDatas;
         fallback?: Fallback | FallbackCallback;
+        start_file?: string;
     };
     export type TranslatedStats = string[];
     export type FallbackCallback = (id: string, stat: Stat) => string | null;
@@ -92,8 +103,9 @@ declare module "formatStats" {
         skip = 2,
     }
     export type Options = {
-        data?: StatLocaleData;
+        datas?: StatLocaleDatas;
         fallback: Fallback | FallbackCallback;
+        start_file: string;
     };
     export interface FormatStats {
         (stats: Stat[], options?: OptionalOptions): TranslatedStats;
@@ -103,12 +115,29 @@ declare module "formatStats" {
     const formatStats: FormatStats;
     export default formatStats;
 }
+declare module "loadLocaleDatas" {
+    import { FormatStats } from "formatStats";
+    import { StatLocaleDatas } from "types/StatDescription";
+    export default function loadLocaleDatas(code: string, files: string[]): StatLocaleDatas;
+    export function loadLocaleDatasFor(code: string, formatStats: FormatStats): StatLocaleDatas;
+}
+declare module "formatGemStats" {
+    import { Stat } from "formatStats";
+    export type GemId = string;
+    export type OptionalOptions = {
+        code?: string;
+    };
+    export type Translation = string[];
+    export default function formatGemStats(gem_id: GemId, stats: Stat[], options?: OptionalOptions): Translation;
+}
 declare module "localize/formatValueRange" {
     export type Options = {};
     export default function formatValueRange(values: [number, number], options: Options): string;
 }
 declare module "index" {
     export { default as formatStats, Fallback } from "formatStats";
+    export { default as formatGemStats } from "formatGemStats";
+    export { default as loadLocaleDatas, loadLocaleDatasFor } from "loadLocaleDatas";
     export { default as formatValueRange } from "localize/formatValueRange";
     export { formatValue } from "localize/formatValues";
 }

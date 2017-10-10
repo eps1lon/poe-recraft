@@ -93,7 +93,12 @@ System.register("localize/formatters", ["types/StatValue"], function (exports_4,
         const formatter = formatters[formatter_id];
         return (value) => {
             if (StatValue_1.isRange(value)) {
-                return `(${formatter(value[0])} - ${formatter(value[1])})`;
+                if (value[0] === value[1]) {
+                    return String(formatter(value[0]));
+                }
+                else {
+                    return `(${formatter(value[0])} - ${formatter(value[1])})`;
+                }
             }
             else {
                 return String(formatter(value));
@@ -221,7 +226,7 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
     function formatWithFinder(stats, find) {
         const lines = [];
         for (const [stat_id, stat] of stats) {
-            const description = find(stat_id);
+            const description = find(stat);
             if (description !== undefined) {
                 const translation = translate(description, stats);
                 if (translation === undefined) {
@@ -320,20 +325,28 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
             })(Fallback || (Fallback = {}));
             exports_7("Fallback", Fallback);
             initial_options = {
-                data: undefined,
-                fallback: Fallback.throw
+                datas: undefined,
+                fallback: Fallback.throw,
+                start_file: 'stat_descriptions'
             };
             formatStats = Object.assign((stats, options = {}) => {
-                const { data, fallback } = Object.assign({}, formatStats.options, options);
-                if (data === undefined) {
-                    throw new Error('locale data not provided. Set it either via passed option or #configure');
+                const { datas, fallback, start_file } = Object.assign({}, formatStats.options, options);
+                if (datas === undefined) {
+                    throw new Error('locale datas not provided. Set it either via passed option or #configure');
                 }
                 // translated lines
                 const lines = [];
                 // array of stat_ids for which hash lookup failed
                 const untranslated = new Map(stats.map((stat) => [stat.id, stat]));
-                lines.push(...formatWithFinder(untranslated, id => data[id]));
-                lines.push(...formatWithFinder(untranslated, id => findDescription(id, data)));
+                let description_file = datas[start_file];
+                while (description_file !== undefined) {
+                    const data = description_file.data;
+                    lines.push(...formatWithFinder(untranslated, ({ id }) => data[id]));
+                    lines.push(...formatWithFinder(untranslated, ({ id }) => findDescription(id, data)));
+                    description_file = description_file.meta.include
+                        ? datas[description_file.meta.include]
+                        : undefined;
+                }
                 lines.push(...formatWithFallback(untranslated, fallback));
                 return lines;
             }, {
@@ -347,13 +360,87 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
         }
     };
 });
-System.register("localize/formatValueRange", ["localize/formatValues"], function (exports_8, context_8) {
+System.register("loadLocaleDatas", [], function (exports_8, context_8) {
     "use strict";
     var __moduleName = context_8 && context_8.id;
+    function loadLocaleDatas(code, files) {
+        const datas = {};
+        const queued = [...files]; // clone
+        while (queued.length > 0) {
+            const file = queued.shift();
+            if (datas[file] === undefined) {
+                const data = require(`../locale-data/${code}/${file}.json`);
+                datas[file] = data;
+                if (data.meta.include !== undefined) {
+                    queued.push(data.meta.include);
+                }
+            }
+        }
+        return datas;
+    }
+    exports_8("default", loadLocaleDatas);
+    function loadLocaleDatasFor(code, formatStats) {
+        return loadLocaleDatas(code, [formatStats.options.start_file]);
+    }
+    exports_8("loadLocaleDatasFor", loadLocaleDatasFor);
+    return {
+        setters: [],
+        execute: function () {
+        }
+    };
+});
+System.register("formatGemStats", ["formatStats", "loadLocaleDatas"], function (exports_9, context_9) {
+    "use strict";
+    var __moduleName = context_9 && context_9.id;
+    function formatGemStats(gem_id, stats, options = {}) {
+        const filter = findSkill(gem_id);
+        const { code } = Object.assign({ code: 'en', options });
+        return formatStats_1.default(stats, {
+            datas: loadLocaleDatas_1.default(code, [filter.start_file]),
+            fallback: formatStats_1.Fallback.skip,
+            start_file: filter.start_file
+        });
+    }
+    exports_9("default", formatGemStats);
+    function findSkill(id) {
+        const skill = meta.skills[id];
+        if (skill === undefined) {
+            // Fallback to gem_stat
+            // most likely for supports
+            return {
+                filter: [],
+                start_file: 'gem_stat_descriptions'
+            };
+        }
+        else if (typeof skill === 'string') {
+            return findSkill(skill);
+        }
+        else {
+            return skill;
+        }
+    }
+    var formatStats_1, loadLocaleDatas_1, meta;
+    return {
+        setters: [
+            function (formatStats_1_1) {
+                formatStats_1 = formatStats_1_1;
+            },
+            function (loadLocaleDatas_1_1) {
+                loadLocaleDatas_1 = loadLocaleDatas_1_1;
+            }
+        ],
+        execute: function () {
+            meta = require('./translate/skill_meta.json');
+        }
+    };
+});
+System.register("localize/formatValueRange", ["localize/formatValues"], function (exports_10, context_10) {
+    "use strict";
+    var __moduleName = context_10 && context_10.id;
     function formatValueRange(values, options) {
         return `${formatValues_2.formatValue(values[0], options)} - ${formatValues_2.formatValue(values[1], options)}`;
     }
-    exports_8("default", formatValueRange);
+    exports_10("default", formatValueRange);
     var formatValues_2;
     return {
         setters: [
@@ -365,24 +452,35 @@ System.register("localize/formatValueRange", ["localize/formatValues"], function
         }
     };
 });
-System.register("index", ["formatStats", "localize/formatValueRange", "localize/formatValues"], function (exports_9, context_9) {
+System.register("index", ["formatStats", "formatGemStats", "loadLocaleDatas", "localize/formatValueRange", "localize/formatValues"], function (exports_11, context_11) {
     "use strict";
-    var __moduleName = context_9 && context_9.id;
+    var __moduleName = context_11 && context_11.id;
     return {
         setters: [
-            function (formatStats_1_1) {
-                exports_9({
-                    "formatStats": formatStats_1_1["default"],
-                    "Fallback": formatStats_1_1["Fallback"]
+            function (formatStats_2_1) {
+                exports_11({
+                    "formatStats": formatStats_2_1["default"],
+                    "Fallback": formatStats_2_1["Fallback"]
+                });
+            },
+            function (formatGemStats_1_1) {
+                exports_11({
+                    "formatGemStats": formatGemStats_1_1["default"]
+                });
+            },
+            function (loadLocaleDatas_2_1) {
+                exports_11({
+                    "loadLocaleDatas": loadLocaleDatas_2_1["default"],
+                    "loadLocaleDatasFor": loadLocaleDatas_2_1["loadLocaleDatasFor"]
                 });
             },
             function (formatValueRange_1_1) {
-                exports_9({
+                exports_11({
                     "formatValueRange": formatValueRange_1_1["default"]
                 });
             },
             function (formatValues_3_1) {
-                exports_9({
+                exports_11({
                     "formatValue": formatValues_3_1["formatValue"]
                 });
             }
