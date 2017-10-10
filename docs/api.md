@@ -77,12 +77,12 @@ when calling `formatStats`
 ### Arguments
 - options: See [documentation of formatStats](#formatStats-args)
 
-## translateSkill(id: SkillId, stats: Stat[], options: Options = {}): Translation
-Translates certain aspects of a skill.
+## formatGemStats(id: GemId, stats: Stat[], options: Options = {}): Translation
+Translates stats of a given gem.
 
 ### Arguments
-- id: the id of the skill. Still unsure where it is saved that way in the Content.ggpk. 
-  Check `skill_filter.json` for possible values.
+- id: the id of the gen. Still unsure where it is saved that way in the Content.ggpk. 
+  Check `skill_filter.json` for possible values. Id doesn't matter for support gems.
 - stats: The stats of that skill. Determining what stats are part of a skill
   is out of the scope of this package.
 - options:

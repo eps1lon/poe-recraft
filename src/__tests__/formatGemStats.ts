@@ -1,13 +1,7 @@
-import translate from '../skill';
-
-it('should throw on unrecognized ids', () => {
-  expect(() => translate('asdasdasd', [])).toThrowError(
-    "unrecognized skill 'asdasdasd'"
-  );
-});
+import formatGemStats from '../formatGemStats';
 
 it('should only translate the lines that have translations', () => {
-  const { effects: empty_effects } = translate(
+  const empty_effects = formatGemStats(
     'new_arctic_armour',
     [{ id: 'filtered_stat', value: 1 }],
     { code: 'en' }
@@ -15,7 +9,7 @@ it('should only translate the lines that have translations', () => {
 
   expect(empty_effects).toEqual([]);
 
-  const { effects: aa_effects } = translate(
+  const aa_effects = formatGemStats(
     'new_arctic_armour',
     [
       {
@@ -45,7 +39,7 @@ it('should only translate the lines that have translations', () => {
     'Base duration is 2.50 seconds'
   ]);
 
-  const { effects: ab_effects } = translate(
+  const ab_effects = formatGemStats(
     'arctic_breath',
     [
       {
@@ -75,7 +69,7 @@ it('should only translate the lines that have translations', () => {
 });
 
 it('should use the specified files first', () => {
-  const { effects: vitality_effects } = translate(
+  const vitality_effects = formatGemStats(
     'vitality',
     [
       {
@@ -97,5 +91,15 @@ it('should use the specified files first', () => {
   expect(vitality_effects.sort()).toEqual([
     '+1 to radius',
     'You and nearby allies regenerate 0.70% Life per second'
+  ]);
+});
+
+it('should assume a support gem if gem_id is not recognized', () => {
+  const minion_speed = formatGemStats('minion_speed', [
+    { id: 'minion_movement_speed_+%', value: 25 }
+  ]);
+
+  expect(minion_speed.sort()).toEqual([
+    'Supported Skills have 25% increased Minion Movement Speed'
   ]);
 });
