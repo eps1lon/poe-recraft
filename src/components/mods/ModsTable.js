@@ -1,4 +1,5 @@
 // @flow
+import classnames from 'classnames';
 import type { Mod } from 'poe-mods';
 import type { Flags } from 'poe-mods';
 import React from 'react';
@@ -62,12 +63,17 @@ const ModsTable = (props: Props) => {
   const Mods = grouped && !group_expanded ? GroupedMods : UngroupedMods;
 
   return (
-    <div className={className}>
-      <h4 id={`${className}-caption`} onClick={onCaptionClick}>
+    <div className={classnames('mods-table', className)}>
+      <h4
+        id={`${className}-caption`}
+        aria-expanded={group_expanded}
+        aria-haspopup={true}
+        onClick={onCaptionClick}
+      >
         {human} /<span className="count">{details.length}</span>
         {grouped && (
           <Button onClick={handleGroupToggle}>
-            {group_expanded ? '-' : '+'}
+            {group_expanded ? 'Grouped' : 'Ungrouped'}
           </Button>
         )}
       </h4>
