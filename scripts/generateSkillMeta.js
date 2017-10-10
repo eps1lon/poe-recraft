@@ -16,7 +16,7 @@ const txt_file = path.join(
   '../tmp/raw',
   'skillpopup_stat_filters.txt'
 );
-const json_file = path.join(__dirname, '../src/translate', 'gem_filter.json');
+const json_file = path.join(__dirname, '../src/translate', 'skill_meta.json');
 
 const raw = fs.readFileSync(txt_file, { encoding: 'utf8' });
 
@@ -27,17 +27,17 @@ readFile(txt_file, { encoding: 'utf8' })
     const [results] = parser.results;
 
     // process
-    const filter = results.reduce(
+    const meta = results.reduce(
       (partial, expression) => {
         if (expression.type === 'group') {
           partial.groups[expression.id] = expression.stats;
-        } else if (expression.type === 'filter') {
-          partial.filters[expression.id] = {
+        } else if (expression.type === 'skill') {
+          partial.skills[expression.id] = {
             filter: expression.stats,
             start_file: path.basename(expression.start_file, '.txt')
           };
         } else if (expression.type === 'copy') {
-          partial.filters[expression.target] = expression.source;
+          partial.skills[expression.target] = expression.source;
         } else {
           console.warn(expression);
           throw new Error('unrecognized expression');
@@ -45,9 +45,9 @@ readFile(txt_file, { encoding: 'utf8' })
 
         return partial;
       },
-      { groups: {}, filters: {} }
+      { groups: {}, skills: {} }
     );
 
-    return writeFile(json_file, JSON.stringify(filter));
+    return writeFile(json_file, JSON.stringify(meta));
   })
   .then(() => console.log(`generate ${json_file}`));

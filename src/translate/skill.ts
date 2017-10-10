@@ -1,7 +1,7 @@
 import formatStats, { Fallback, Stat } from '../formatStats';
 import loadLocaleDatas from '../loadLocaleDatas';
 import { StatLocaleDatas } from '../types/StatDescription';
-const skill_filter: SkillFilter = require('./skill_filter.json');
+const meta: SkillMeta = require('./skill_meta.json');
 
 // args
 export type SkillId = string;
@@ -19,7 +19,7 @@ export default function translate(
   stats: Stat[],
   options: OptionalOptions = {}
 ): Translation {
-  const filter = findFilter(skill_id);
+  const filter = findSkill(skill_id);
 
   const { language } = options;
 
@@ -32,30 +32,30 @@ export default function translate(
   };
 }
 
-type Filter = {
+type Skill = {
   filter: string[];
   start_file: string;
 };
 
-type SkillFilter = {
-  filters: {
-    [key: string]: string | Filter;
+type SkillMeta = {
+  skills: {
+    [key: string]: string | Skill;
   };
   groups: {
     [key: string]: string[];
   };
 };
 
-function findFilter(id: SkillId): Filter {
-  const filter = skill_filter.filters[id];
+function findSkill(id: SkillId): Skill {
+  const skill = meta.skills[id];
 
-  if (filter === undefined) {
+  if (skill === undefined) {
     throw new Error(`unrecognized skill '${id}'`);
   }
 
-  if (typeof filter === 'string') {
-    return findFilter(filter);
+  if (typeof skill === 'string') {
+    return findSkill(skill);
   } else {
-    return filter;
+    return skill;
   }
 }

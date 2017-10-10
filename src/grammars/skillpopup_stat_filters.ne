@@ -7,7 +7,7 @@ Expressions ->
 		{% ([expression, , expressions]) => [expression, ...expressions] %}
 Expression -> 
 	Group {% ([group]) => ({ type: 'group', ...group })%}
-	| Filter {% ([filter]) => ({ type: 'filter',  ...filter })%}
+	| Skill {% ([skill]) => ({ type: 'skill',  ...skill })%}
 	| Copy {% ([copy]) => ({ type: 'copy', ...copy })%}
 
 Group -> 
@@ -21,13 +21,13 @@ GroupMembers ->
 		{% ([expression, , expressions]) => [expression, ...expressions] %}
 GroupMember -> Whitespaces Identifier Whitespaces:? {% ([, id]) => id %}
 
-Filter ->
-	FilterHead Newline FilterBody 
+Skill ->
+	SkillHead Newline SkillBody 
 	{% ([head, , body]) => ({ ...head, stats: body }) %}
-FilterHead ->
+SkillHead ->
 	Identifier Whitespaces StringLiteral 
 	{% ([id, , start_file]) => ({ id, start_file }) %}
-FilterBody -> "{" Whitespaces:? Newline:? FilterIdentifiers:? Newline:? "}" {% ([, , , ids]) => ids %}
+SkillBody -> "{" Whitespaces:? Newline:? FilterIdentifiers:? Newline:? "}" {% ([, , , ids]) => ids %}
 FilterIdentifiers -> 
 	FilterIdentifier {% ([id]) => [id] %}
 	| FilterIdentifier Newline FilterIdentifiers 
