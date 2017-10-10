@@ -6,7 +6,7 @@ const meta: SkillMeta = require('./skill_meta.json');
 // args
 export type SkillId = string;
 export type OptionalOptions = {
-  language?: string;
+  code?: string;
 };
 
 // return
@@ -21,11 +21,11 @@ export default function translate(
 ): Translation {
   const filter = findSkill(skill_id);
 
-  const { language } = options;
+  const { code } = Object.assign({ code: 'en', options });
 
   return {
     effects: formatStats(stats, {
-      datas: loadLocaleDatas(language, [filter.start_file]),
+      datas: loadLocaleDatas(code, [filter.start_file]),
       fallback: Fallback.skip,
       start_file: filter.start_file
     })

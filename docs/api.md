@@ -88,10 +88,10 @@ Translates certain aspects of a skill.
 - options:
   ```typescript
   type Options = {
-    language: string,
+    code: string,
   }
   ```
-  - options.language: An available language code. Custom translations are currently
+  - options.code: An available locale code. Custom translations are currently
     not available. You have to use the provided translations of this package.
 
 ### Returns

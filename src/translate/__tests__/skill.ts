@@ -10,7 +10,7 @@ it('should only translate the lines that have translations', () => {
   const { effects: empty_effects } = translate(
     'new_arctic_armour',
     [{ id: 'filtered_stat', value: 1 }],
-    { language: 'en' }
+    { code: 'en' }
   );
 
   expect(empty_effects).toEqual([]);
@@ -35,7 +35,7 @@ it('should only translate the lines that have translations', () => {
         value: 2500
       }
     ],
-    { language: 'en' }
+    { code: 'en' }
   );
 
   expect(aa_effects).toEqual([
@@ -65,7 +65,7 @@ it('should only translate the lines that have translations', () => {
         value: 78
       }
     ],
-    { language: 'en' }
+    { code: 'en' }
   );
 
   expect(ab_effects.sort()).toEqual([
@@ -91,7 +91,7 @@ it('should use the specified files first', () => {
         value: 1
       }
     ],
-    { language: 'en' }
+    { code: 'en' }
   );
 
   expect(vitality_effects.sort()).toEqual([
