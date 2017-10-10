@@ -32,7 +32,8 @@ export default reducer;
 function setItemClassHandle(state: State, action: SetItemClassAction) {
   return {
     ...state,
-    item_class: action.payload
+    item_class: action.payload,
+    tags: []
   };
 }
 
