@@ -1,5 +1,5 @@
 export { default as formatStats, Fallback } from './formatStats';
-export { default as translateSkill } from './translate/skill';
+export { default as formatGemStats } from './formatGemStats';
 export {
   default as loadLocaleDatas,
   loadLocaleDatasFor
