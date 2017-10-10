@@ -91,6 +91,7 @@ const UngroupedMods = (props: Props) => {
         defaultSorted,
         showPagination: false,
         minRows: 1,
+        pageSize: Number.MAX_VALUE,
         getTrProps: (state, rowInfo) => {
           // rowInfo.original.mod || undefined
           const mod: ?Mod =
