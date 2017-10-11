@@ -10,6 +10,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
   only supports en, pt, ru and thai since those are the only ones supported by
   the steam client. If someone has access to the chinese client please open an
   issue.
+### Fixed
+- `Cannot find module skill_meta.json`. Typescript does not include build related
+  tasks. May revert to json format when using webpack or rollup.
 
 ## [0.3.0](https://github.com/eps1lon/poe-mods/compare/v0.2.1...v0.3.0) (2017-10-16)
 ### Added

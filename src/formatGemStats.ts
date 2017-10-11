@@ -1,7 +1,7 @@
 import formatStats, { Fallback, Stat } from './formatStats';
 import loadLocaleDatas from './loadLocaleDatas';
+import meta, { Skill } from './translate/skill_meta';
 import { StatLocaleDatas } from './types/StatDescription';
-const meta: SkillMeta = require('./translate/skill_meta.json');
 
 // args
 export type GemId = string;
@@ -27,20 +27,6 @@ export default function formatGemStats(
     start_file: filter.start_file
   });
 }
-
-type Skill = {
-  filter: string[];
-  start_file: string;
-};
-
-type SkillMeta = {
-  skills: {
-    [key: string]: string | Skill;
-  };
-  groups: {
-    [key: string]: string[];
-  };
-};
 
 function findSkill(id: GemId): Skill {
   const skill = meta.skills[id];
