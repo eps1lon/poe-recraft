@@ -2,28 +2,22 @@
 import { formatStats } from 'poe-i18n';
 import { type Stat } from 'poe-mods';
 import React from 'react';
-import { injectIntl } from 'react-intl';
+import injectDescriptions from 'containers/injectDescriptions';
 
 type Props = {
   className: string,
-  intl: {
-    messages: {
-      poe: {
-        descriptions: {}
-      }
-    }
-  },
+  descriptions: {},
   stats: Stat[]
 };
 
-const Stats = ({ className, stats, intl }: Props) => {
+const Stats = ({ className, stats, descriptions }: Props) => {
   const stats_i18n = stats.map(stat => ({
     id: stat.props.id,
     value: stat.values.asTuple()
   }));
 
   const options = {
-    datas: intl.messages.poe.descriptions,
+    datas: descriptions,
     fallback: id => (id === 'dummy_stat_display_nothing' ? null : id)
   };
 
@@ -47,4 +41,4 @@ const Stats = ({ className, stats, intl }: Props) => {
   }
 };
 
-export default injectIntl(Stats);
+export default injectDescriptions(Stats);

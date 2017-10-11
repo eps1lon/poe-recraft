@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Button } from 'reactstrap';
 
 import type { BaseItemTypeProps } from 'selectors/schema';
@@ -20,7 +21,9 @@ const GeneratorPicker = (props: Props) => {
       {props.baseitems.map(baseitem => {
         return (
           <Button onClick={() => props.onChange(baseitem)}>
-            {baseitem.name}
+            <FormattedMessage
+              id={`poe.baseitemtypes.${baseitem.primary}.name`}
+            />>
           </Button>
         );
       })}
