@@ -121,6 +121,22 @@ declare module "loadLocaleDatas" {
     export default function loadLocaleDatas(code: string, files: string[]): StatLocaleDatas;
     export function loadLocaleDatasFor(code: string, formatStats: FormatStats): StatLocaleDatas;
 }
+declare module "translate/skill_meta" {
+    export type Skill = {
+        filter: string[];
+        start_file: string;
+    };
+    export type SkillMeta = {
+        skills: {
+            [key: string]: string | Skill;
+        };
+        groups: {
+            [key: string]: string[];
+        };
+    };
+    const _default: SkillMeta;
+    export default _default;
+}
 declare module "formatGemStats" {
     import { Stat } from "formatStats";
     export type GemId = string;

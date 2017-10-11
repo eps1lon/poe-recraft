@@ -4,7 +4,9 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v0.3.0...HEAD)
+## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v0.3.1...HEAD)
+
+## [0.3.1](https://github.com/eps1lon/poe-mods/compare/v0.3.0...v0.3.1) (2017-10-11)
 ### Added
 - Locale data for `BaseItemTypes` and `Mods`. They only include names. Currently
   only supports en, pt, ru and thai since those are the only ones supported by
@@ -14,7 +16,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - `Cannot find module skill_meta.json`. Typescript does not include build related
   tasks. May revert to json format when using webpack or rollup.
 
-## [0.3.0](https://github.com/eps1lon/poe-mods/compare/v0.2.1...v0.3.0) (2017-10-16)
+## [0.3.0](https://github.com/eps1lon/poe-mods/compare/v0.2.1...v0.3.0) (2017-10-10)
 ### Added
 - `formatGemStats`. Check the API docs for more info.
 - `loadLocaleDatas` and `loadLocaleDatasFor` helpers. Check the API docs for more info.
