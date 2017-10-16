@@ -1,6 +1,9 @@
 #!/bin/bash
 declare -A codes
+codes[de]=German
 codes[en]=English
+codes[es]=Spanish
+codes[fr]=French
 codes[pt]=Portuguese
 codes[ru]=Russian
 codes[th]=Thai
