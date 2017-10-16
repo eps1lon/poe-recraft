@@ -20,7 +20,10 @@ const GeneratorPicker = (props: Props) => {
     <div key="items">
       {props.baseitems.map(baseitem => {
         return (
-          <Button onClick={() => props.onChange(baseitem)}>
+          <Button
+            key={baseitem.primary}
+            onClick={() => props.onChange(baseitem)}
+          >
             <FormattedMessage
               id={`poe.baseitemtypes.${baseitem.primary}.name`}
             />

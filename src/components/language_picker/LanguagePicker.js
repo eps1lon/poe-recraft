@@ -32,6 +32,7 @@ const LanguagePicker = (props: Props) => {
         {locales.map(locale => {
           return (
             <DropdownItem
+              key={locale}
               active={active_locale === locale}
               onClick={() => onChange(locale)}
             >
