@@ -7,6 +7,12 @@ export const changeLocale = createAction(
 );
 export type ChangeLocaleAction = ReduxActionType<typeof changeLocale>;
 
+export const setLocale = createAction(
+  'I18N/SET_LOCALE',
+  (locale: string) => locale
+);
+export type SetLocaleAction = ReduxActionType<typeof setLocale>;
+
 export const setDescriptions = createAction(
   'I18N/SET_DESCRIPTIONS',
   (descriptions: any) => descriptions

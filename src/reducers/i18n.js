@@ -3,10 +3,10 @@ import flatten from 'flat';
 import { handleActions } from 'redux-actions';
 
 import {
-  changeLocale,
-  type ChangeLocaleAction,
   setDescriptions,
   type SetDescriptionsAction,
+  setLocale,
+  type SetLocaleAction,
   setMessages,
   type SetMessagesAction
 } from 'actions/i18n';
@@ -27,14 +27,14 @@ const initial: State = {
 
 const reducer = handleActions(
   {
-    [changeLocale.toString()]: changeLocaleHandle,
     [setDescriptions.toString()]: setDescriptionsHandle,
+    [setLocale.toString()]: setLocaleHandle,
     [setMessages.toString()]: setMessagesHandle
   },
   initial
 );
 
-function changeLocaleHandle(state: State, action: ChangeLocaleAction): State {
+function setLocaleHandle(state: State, action: SetLocaleAction): State {
   return {
     ...state,
     locale: action.payload

@@ -2,7 +2,12 @@
 import { addLocaleData } from 'react-intl';
 import { all, call, fork, put, take } from 'redux-saga/effects';
 
-import { changeLocale, setDescriptions, setMessages } from 'actions/i18n';
+import {
+  changeLocale,
+  setDescriptions,
+  setLocale,
+  setMessages
+} from 'actions/i18n';
 
 const requireLocaleData = locale => {
   return new Promise((resolve, reject) => {
@@ -27,6 +32,7 @@ function* loadLocaleData(): Generator<*, *, *> {
     );
 
     yield call(addLocaleData, locale_data);
+    yield put(setLocale(locale));
     yield put(setMessages({ poe: { baseitemtypes } }));
     yield put(setDescriptions({ stat_descriptions }));
   }
