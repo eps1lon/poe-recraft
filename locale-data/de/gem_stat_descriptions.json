@@ -26,6 +26,30 @@
         }
       ]
     },
+    "support_melee_physical_damage_poison_and_bleeding_damage_+%_final_from_melee_hits": {
+      "stats": [
+        "support_melee_physical_damage_poison_and_bleeding_damage_+%_final_from_melee_hits"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Unterstützte Fertigkeiten verursachen %1%%% mehr Schaden mit durch Nahkampftreffer verursachtes Bluten und Vergiften",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Unterstützte Fertigkeiten verursachen %1%%% weniger Schaden mit durch Nahkampftreffer verursachtes Bluten und Vergiften",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_echo_damage_+%_final": {
       "stats": ["support_echo_damage_+%_final"],
       "translations": [
@@ -57,6 +81,28 @@
         {
           "matchers": [["#", -1]],
           "text": "Unterstützte Fertigkeiten verursachen %1%%% weniger Schaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_damage_while_on_full_life_+%_final": {
+      "stats": ["support_damage_while_on_full_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Unterstützte Angriffsfertigkeiten verursachen %1%%% mehr Schaden bei vollem Leben",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Unterstützte Angriffsfertigkeiten verursachen %1%%% weniger Schaden bei vollem Leben",
           "formatters": [
             {
               "id": "negate",
@@ -1335,6 +1381,28 @@
         }
       ]
     },
+    "support_melee_splash_damage_+%_final_for_splash": {
+      "stats": ["support_melee_splash_damage_+%_final_for_splash"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Unterstützte Fertigkeiten verursachen %1%%% mehr Schaden bei umliegenden Zielen",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Unterstützte Fertigkeiten verursachen %1%%% weniger Schaden bei umliegenden Zielen",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "base_melee_attack_repeat_count": {
       "stats": ["base_melee_attack_repeat_count"],
       "translations": [
@@ -1724,12 +1792,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Effekt von unterstützten Flüchen",
+          "text": "%1%%% verstärkte Wirkung von unterstützten Flüchen",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerter Effekt von unterstützten Flüchen",
+          "text": "%1%%% verringerte Wirkung von unterstützten Flüchen",
           "formatters": [
             {
               "id": "negate",
@@ -1786,7 +1854,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Verursacht bei Treffer Blutung für %1% Sekunden",
+          "text": "Verursacht bei Treffer Bluten für %1% Sekunden",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -2129,6 +2197,19 @@
           "matchers": ["#"],
           "text":
             "Unbarmherzige Schläge von unterstützten Fertigkeiten verursachen %1%%% mehr Nahkampfschaden",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_blow_bleeding_damage_from_melee_hits_+%_final": {
+      "stats": [
+        "support_ruthless_blow_bleeding_damage_from_melee_hits_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Unbarmherzige Schläge mit unterstützten Fertigkeiten verursachen %1%%% mehr Schaden mit durch Nahkampftreffer verursachtes Bluten",
           "formatters": []
         }
       ]
@@ -2648,7 +2729,7 @@
         {
           "matchers": [[1, 99], 0, 0],
           "text":
-            "Unterstützte Angriffe haben %1%%% Chance, Blutung zu verursachen",
+            "Unterstützte Angriffe haben %1%%% Chance, Bluten zu verursachen",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2658,7 +2739,7 @@
         },
         {
           "matchers": [[100, "#"], 0, 0],
-          "text": "Unterstützte Angriffe verursachen Blutung",
+          "text": "Unterstützte Angriffe verursachen Bluten",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2668,7 +2749,7 @@
         },
         {
           "matchers": ["#", "#", 0],
-          "text": "Unterstützte Angriffe verursachen Blutung",
+          "text": "Unterstützte Angriffe verursachen Bluten",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2678,7 +2759,7 @@
         },
         {
           "matchers": ["#", "#", "#"],
-          "text": "Unterstützte Angriffe können keine Blutung verursachen",
+          "text": "Unterstützte Angriffe können kein Bluten verursachen",
           "formatters": []
         }
       ]
@@ -2689,13 +2770,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1% verstärkten Schaden mit Blutung",
+            "Unterstützte Fertigkeiten verursachen %1% verstärkten Schaden mit Bluten",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1% verringerten Schaden mit Blutung",
+            "Unterstützte Fertigkeiten verursachen %1% verringerten Schaden mit Bluten",
           "formatters": []
         }
       ]
@@ -2706,7 +2787,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%% erhöhten Brandschaden",
+            "Unterstützte Fertigkeiten verursachen %1%%% verstärkten Brandschaden",
           "formatters": []
         },
         {
@@ -2810,13 +2891,35 @@
         }
       ]
     },
+    "chill_effect_+%": {
+      "stats": ["chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Unterstützte Fertigkeiten haben %1%%% verstärkte Unterkühlungswirkung bei Gegnern",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Unterstützte Fertigkeiten haben %1%%% verringerte Unterkühlungswirkung bei Gegnern",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "cold_damage_%_to_add_as_fire": {
       "stats": ["cold_damage_%_to_add_as_fire"],
       "translations": [
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%% des Kälteschadens als zusätzlichen Feuerschaden",
+            "Unterstützte Fertigkeiten verursachen %1%%% des Kälteschadens als extra Feuerschaden",
           "formatters": []
         }
       ]
@@ -2981,7 +3084,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten haben %1%%% verlängerte Verstärken-Dauer",
+            "Unterstützte Fertigkeiten haben %1%%% verlängerte Dauer von Verstärken",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2992,7 +3095,7 @@
         {
           "matchers": [["#", -1]],
           "text":
-            "Unterstützte Fertigkeiten haben %1%%% verkürzte Verstärken-Dauer",
+            "Unterstützte Fertigkeiten haben %1%%% verkürzte Dauer von Verstärken",
           "formatters": [
             {
               "id": "negate",
@@ -3173,13 +3276,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% verstärkter Schaden mit Treffern und Gift pro Stapel Gift auf dem Gegner",
+            "%1%%% verstärkter Schaden mit Treffern und Gift pro Giftstapel auf dem Gegner",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "%1%%% verringerter Schaden mit Treffern und Gift pro Stapel Gift auf dem Gegner",
+            "%1%%% verringerter Schaden mit Treffern und Gift pro Giftstapel auf dem Gegner",
           "formatters": [
             {
               "id": "negate",
@@ -3195,13 +3298,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten haben %1%%% verlängerte Entzündungsdauer bei Gegnern",
+            "Unterstützte Fertigkeiten haben %1%%% verlängerte Brenndauer bei Gegnern",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Unterstützte Fertigkeiten haben %1%%% verkürzte Entzündungsdauer bei Gegnern",
+            "Unterstützte Fertigkeiten haben %1%%% verkürzte Brenndauer bei Gegnern",
           "formatters": [
             {
               "id": "negate",
@@ -3234,7 +3337,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten gewähren %1%%% des Schadens als Lebensraub",
+            "%1%%% des Schadens von unterstützten Fertigkeiten wird als Leben geraubt",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -3323,7 +3426,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten gewähren %1%%% des Schadens als Manaraub",
+            "%1%%% des Schadens von unterstützten Fertigkeiten wird als Mana geraubt",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -3735,7 +3838,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%% des physischen Schadens als zusätzlichen Feuerschaden",
+            "Unterstützte Fertigkeiten verursachen %1%%% des physischen Schadens als extra Feuerschaden",
           "formatters": []
         }
       ]
@@ -3746,7 +3849,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%% des physischen Schadens als zusätzlichen Blitzschaden",
+            "Unterstützte Fertigkeiten verursachen %1%%% des physischen Schadens als extra Blitzschaden",
           "formatters": []
         }
       ]
@@ -3779,13 +3882,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten haben %1%%% verlängerte Abklingzeit-Erholungsdauer beim Werfen von Fallen",
+            "Unterstützte Fertigkeiten haben %1%%% beschleunigte Abklingzeit für das Werfen von Fallen",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Unterstützte Fertigkeiten haben %1%%% verkürzte Abklingzeit-Erholungsdauer beim Werfen von Fallen",
+            "Unterstützte Fertigkeiten haben %1%%% verlangsamte Abklingzeit für das Werfen von Fallen",
           "formatters": [
             {
               "id": "negate",
@@ -3969,6 +4072,23 @@
         }
       ]
     },
+    "support_chance_to_bleed_bleeding_damage_+%_final": {
+      "stats": ["support_chance_to_bleed_bleeding_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Unterstützte Angriffe verursachen %1%%% mehr Schaden mit Bluten",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Unterstützte Angriffe verursachen %1%%% weniger Schaden mit Bluten",
+          "formatters": []
+        }
+      ]
+    },
     "support_clustertrap_damage_+%_final": {
       "stats": ["support_clustertrap_damage_+%_final"],
       "translations": [
@@ -4113,6 +4233,30 @@
           "matchers": [["#", -1]],
           "text":
             "Unterstützte Fertigkeiten haben %1%%% weniger Elementarschaden von Totems und Kreaturen",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_phys_proj_attack_damage_bleeing_and_poison_damage_+%_final_from_projectile_hits": {
+      "stats": [
+        "support_phys_proj_attack_damage_bleeing_and_poison_damage_+%_final_from_projectile_hits"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Unterstützte Angriffsfertigkeiten verursachen %1%%% mehr Schaden mit durch Projektiltreffer verursachtes Bluten und Vergiften",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Unterstützte Angriffsfertigkeiten verursachen %1%%% weniger Schaden mit durch Projektiltreffer verursachtes Bluten und Vergiften",
           "formatters": [
             {
               "id": "negate",

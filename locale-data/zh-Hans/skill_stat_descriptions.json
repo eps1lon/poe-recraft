@@ -9,6 +9,16 @@
       "stats": [],
       "translations": {}
     },
+    "skeletal_chains_aoe_health_percent": {
+      "stats": ["skeletal_chains_aoe_%_health_dealt_as_chaos_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "牺牲 %1%%% 魔卫的生命并造成等量混沌伤害",
+          "formatters": []
+        }
+      ]
+    },
     "spell_physical_damage_range": {
       "stats": [
         "spell_minimum_physical_damage",
@@ -1307,6 +1317,26 @@
         {
           "matchers": [["#", -1]],
           "text": "减少 %1%%% 敌人冰缓持续时间",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chill_effect": {
+      "stats": ["chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "冰缓效果增加 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "冰缓效果减少 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2769,6 +2799,36 @@
         }
       ]
     },
+    "skeletal_chains_target_self": {
+      "stats": ["skeletal_chains_no_minions_targets_self"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "若附近没有魔侍时消耗你的生命",
+          "formatters": []
+        }
+      ]
+    },
+    "skeletal_chains_damage": {
+      "stats": ["skeletal_chains_no_minions_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "若消耗你的生命则击中和后续异常状态额外增加 %1%%% 总伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "skeletal_chains_radius": {
+      "stats": ["skeletal_chains_no_minions_radius_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "若消耗生命则增加 %1$+d 范围",
+          "formatters": []
+        }
+      ]
+    },
     "chain_num": {
       "stats": ["virtual_number_of_additional_projectiles_in_chain"],
       "translations": [
@@ -3291,6 +3351,36 @@
         {
           "matchers": ["#"],
           "text": "使用该物品的要求提升到 %1% 级",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_attack": {
+      "stats": ["cast_on_attack_use_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "攻击时有 %1%%% 几率触发该法术",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "攻击时触发该法术",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_skill_use": {
+      "stats": ["cast_on_skill_use_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "使用技能时有 %1%%% 几率触发该法术",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "使用技能时触发该法术",
           "formatters": []
         }
       ]
@@ -3928,26 +4018,6 @@
           "matchers": ["#", "#"],
           "text": "攻击附加 %1% - %2% 基础闪电伤害",
           "formatters": []
-        }
-      ]
-    },
-    "static_strike_damage": {
-      "stats": ["static_strike_explosion_damage_+%_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "爆炸额外增加 %1%%% 总伤害",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "爆炸额外减少 %1%%% 总伤害",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -5125,6 +5195,18 @@
         }
       ]
     },
+    "support_ruthless_bleeding_damage": {
+      "stats": [
+        "support_ruthless_blow_bleeding_damage_from_melee_hits_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "无情一击近战击中时造成的流血额外增加 %1%%% 总伤害",
+          "formatters": []
+        }
+      ]
+    },
     "support_ruthless_stun": {
       "stats": ["support_ruthless_big_hit_stun_base_duration_override_ms"],
       "translations": [
@@ -5253,7 +5335,7 @@
       "translations": [
         {
           "matchers": [[1, 99], 0, 0],
-          "text": "攻击有 %1%%% 几率使敌人流血",
+          "text": "攻击命中有 %1%%% 几率使敌人流血",
           "formatters": [
             {
               "id": "reminderstring",
@@ -5362,6 +5444,26 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "charged_dash_damage": {
+      "stats": ["charged_dash_damage_+%_maximum"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "最大冲刺距离时, 额外增加 %1%%% 总伤害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "最大冲刺距离时, 额外减少 %1%%% 总伤害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
             }
           ]
         }
@@ -5564,6 +5666,46 @@
         }
       ]
     },
+    "shock_effect": {
+      "stats": ["shock_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "增加 %1%%% 感电效果",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "减少 %1%%% 感电效果",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "shocked_ground_stat_override": {
+      "stats": ["shocked_ground_base_magnitude_override"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "感电地面增加 %1%%% 受到的伤害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "感电地面减少 %1%%% 受到的伤害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "skill_and_damaging_ailment_duration_incr": {
       "stats": ["skill_effect_and_damaging_ailment_duration_+%"],
       "translations": [
@@ -5619,6 +5761,21 @@
               "arg": "ReminderTextDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "chance_to_bleed_damage_incr": {
+      "stats": ["support_chance_to_bleed_bleeding_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助的攻击技能造成的流血额外增加 %1%%% 总伤害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被辅助的攻击技能造成的流血额外减少 %1%%% 总伤害",
+          "formatters": []
         }
       ]
     },

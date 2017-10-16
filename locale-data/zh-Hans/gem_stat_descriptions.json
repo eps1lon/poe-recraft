@@ -24,6 +24,28 @@
         }
       ]
     },
+    "support_melee_physical_damage_poison_and_bleeding_damage_+%_final_from_melee_hits": {
+      "stats": [
+        "support_melee_physical_damage_poison_and_bleeding_damage_+%_final_from_melee_hits"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助的技能额外增加 %1%%% 近战击中造成的流血和中毒总伤害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被辅助的技能额外减少 %1%%% 近战击中造成的流血和中毒总伤害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_echo_damage_+%_final": {
       "stats": ["support_echo_damage_+%_final"],
       "translations": [
@@ -55,6 +77,26 @@
         {
           "matchers": [["#", -1]],
           "text": "被辅助的技能额外减少 %1%%% 的总伤害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_damage_while_on_full_life_+%_final": {
+      "stats": ["support_damage_while_on_full_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "满血时, 被辅助的攻击技能额外增加 %1%%% 总伤害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "满血时, 被辅助的攻击技能额外减少 %1%%% 总伤害",
           "formatters": [
             {
               "id": "negate",
@@ -811,12 +853,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助的技能击中总伤害额外增加 %1%%%",
+          "text": "被辅助的技能额外增加 %1%%% 击中总伤害",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助的技能击中总伤害额外减少 %1%%%",
+          "text": "被辅助的技能额外减少 %1%%% 击中总伤害",
           "formatters": [
             {
               "id": "negate",
@@ -1233,6 +1275,26 @@
         }
       ]
     },
+    "support_melee_splash_damage_+%_final_for_splash": {
+      "stats": ["support_melee_splash_damage_+%_final_for_splash"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助的技能对周围的目标额外增加 %1%%% 总伤害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被辅助的技能对周围的目标额外减少 %1%%% 总伤害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "base_melee_attack_repeat_count": {
       "stats": ["base_melee_attack_repeat_count"],
       "translations": [
@@ -1453,12 +1515,12 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "被辅助的攻击技能在暴击时有 %1%%% 几率触发连接的法术技能",
+          "text": "暴击时, 被辅助的攻击技能有 %1%%% 几率触发连接的法术技能",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "被辅助的攻击技能在暴击时触发连接的法术技能",
+          "text": "暴击时, 被辅助的攻击技能会触发连接的法术技能",
           "formatters": []
         }
       ]
@@ -1468,12 +1530,12 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "被辅助的近战攻击技能在击败时有 %1%%% 几率触发连接的法术技能",
+          "text": "击败时, 被辅助的近战攻击技能有 %1%%% 几率触发连接的法术技能",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "被辅助的近战攻击技能在击败时触发连接的法术技能",
+          "text": "击败时, 被辅助的近战攻击技能会触发连接的法术技能",
           "formatters": []
         }
       ]
@@ -1976,6 +2038,18 @@
         {
           "matchers": ["#"],
           "text": "被辅助的技能额外增加无情一击 %1%%% 的近战总伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_blow_bleeding_damage_from_melee_hits_+%_final": {
+      "stats": [
+        "support_ruthless_blow_bleeding_damage_from_melee_hits_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被辅助技能的无情一击近战击中时额外增加 %1%%% 流血总伤害",
           "formatters": []
         }
       ]
@@ -2601,6 +2675,26 @@
         {
           "matchers": [["#", -1]],
           "text": "被辅助的技能减少 %1%%% 对敌人的冰缓持续时间",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chill_effect_+%": {
+      "stats": ["chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助的技能对敌人增加 %1%%% 冰缓效果",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被辅助的技能对敌人减少 %1%%% 冰缓效果",
           "formatters": [
             {
               "id": "negate",
@@ -3675,6 +3769,21 @@
         }
       ]
     },
+    "support_chance_to_bleed_bleeding_damage_+%_final": {
+      "stats": ["support_chance_to_bleed_bleeding_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助的攻击技能造成的流血额外增加 %1%%% 总伤害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被辅助的攻击技能造成的流血额外减少 %1%%% 总伤害",
+          "formatters": []
+        }
+      ]
+    },
     "support_clustertrap_damage_+%_final": {
       "stats": ["support_clustertrap_damage_+%_final"],
       "translations": [
@@ -3808,6 +3917,28 @@
         {
           "matchers": [["#", -1]],
           "text": "被辅助的技能额外减少 %1%%% 召唤生物和图腾总伤害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_phys_proj_attack_damage_bleeing_and_poison_damage_+%_final_from_projectile_hits": {
+      "stats": [
+        "support_phys_proj_attack_damage_bleeing_and_poison_damage_+%_final_from_projectile_hits"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助攻击技能的投射物击中造成的流血和中毒总伤害额外增加 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被辅助攻击技能的投射物击中造成的流血和中毒总伤害额外减少 %1%%%",
           "formatters": [
             {
               "id": "negate",

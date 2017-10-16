@@ -3450,6 +3450,21 @@
         }
       ]
     },
+    "cast_on_attack": {
+      "stats": ["cast_on_attack_use_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "%1%%% de chance de Ativar esta Magia quando você Atacar",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Ativa esta Magia quando você Atacar",
+          "formatters": []
+        }
+      ]
+    },
     "cast_on_skill_use": {
       "stats": ["cast_on_skill_use_%"],
       "translations": [
@@ -4118,12 +4133,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Explosão causa %1%%% mais Dano",
+          "text": "Explosão causa %1%%% mais Dano com Acertos e Afecções",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Explosão causa %1%%% menos Dano",
+          "text": "Explosão causa %1%%% menos Dano com Acertos e Afecções",
           "formatters": [
             {
               "id": "negate",
@@ -5803,6 +5818,16 @@
               "arg": "ReminderTextNonDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "raised_spectre_level": {
+      "stats": ["raised_spectre_max_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Evoca Espectros de até Nível %1%",
+          "formatters": []
         }
       ]
     },

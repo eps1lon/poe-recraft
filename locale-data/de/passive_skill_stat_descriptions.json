@@ -136,7 +136,7 @@
         {
           "matchers": ["#"],
           "text":
-            "50%% des Kälte-, Blitz- und physischen Schadens wird in Feuerschaden umgewandelt\\nVerursacht keinen Schaden (ausgenommen Feuerschaden)",
+            "50%% des Kälte-, Blitz- und physischen Schadens wird in Feuerschaden umgewandelt\\nVerursacht keinen Schaden (Feuerschaden ausgenommen)",
           "formatters": []
         }
       ]
@@ -589,7 +589,7 @@
         {
           "matchers": ["#"],
           "text":
-            "40%% mehr Elementarschaden, wenn innerhalb der letzten 8 Sekunden ein kritischer Treffer erzielt wurde\\nKein Multiplikator für kritische Treffer\\nKein Multiplikator für Beeinträchtigungen durch kritischen Treffer",
+            "40%% mehr Elementarschaden, wenn Ihr innerhalb der letzten 8 Sekunden einen kritischen Treffer erzielt habt\\nKein Multiplikator für kritische Treffer\\nKein Multiplikator für Beeinträchtigungen durch kritische Treffer",
           "formatters": []
         }
       ]
@@ -642,6 +642,46 @@
           "matchers": [[100, "#"]],
           "text": "Erzeugt geweihten Boden bei Tötung, der 8 Sekunden hält",
           "formatters": []
+        }
+      ]
+    },
+    "chill_effect_+%": {
+      "stats": ["chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% verstärkte Unterkühlungswirkung",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verringerte Unterkühlungswirkung",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "shock_effect_+%": {
+      "stats": ["shock_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% verstärkte Schockwirkung",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verringerte Schockwirkung",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },

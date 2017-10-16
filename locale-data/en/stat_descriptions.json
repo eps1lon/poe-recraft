@@ -325,6 +325,16 @@
         }
       ]
     },
+    "local_can_socket_gems_ignoring_colour": {
+      "stats": ["local_can_socket_gems_ignoring_colour"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Gems can be Socketed in this Item ignoring Socket Colour",
+          "formatters": []
+        }
+      ]
+    },
     "local_socketed_strength_gem_level_+": {
       "stats": ["local_socketed_strength_gem_level_+"],
       "translations": [
@@ -361,6 +371,37 @@
         {
           "matchers": ["#"],
           "text": "%1$+d to Level of Socketed Gems",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_gems_in_red_sockets_get_level_+": {
+      "stats": ["local_socketed_gems_in_red_sockets_get_level_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Gems Socketed in Red Sockets have %1$+d to Level",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_gems_in_green_sockets_get_quality_%": {
+      "stats": ["local_socketed_gems_in_green_sockets_get_quality_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Gems Socketed in Green Sockets have %1$+d%% to Quality",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_gems_in_blue_sockets_experience_gained_+%": {
+      "stats": ["local_socketed_gems_in_blue_sockets_experience_gained_+%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Gems Socketed in Blue Sockets gain %1%%% increased Experience",
           "formatters": []
         }
       ]
@@ -2405,12 +2446,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% increased Recovery Speed",
+          "text": "%1%%% increased Recovery rate",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% reduced Recovery Speed",
+          "text": "%1%%% reduced Recovery rate",
           "formatters": [
             {
               "id": "negate",
@@ -12299,6 +12340,16 @@
         }
       ]
     },
+    "local_no_attribute_requirements": {
+      "stats": ["local_no_attribute_requirements"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Has no Attribute Requirements",
+          "formatters": []
+        }
+      ]
+    },
     "local_strength_requirement_+": {
       "stats": ["local_strength_requirement_+"],
       "translations": [
@@ -13921,6 +13972,11 @@
           "matchers": [[1, 99], 0],
           "text": "%1%%% chance to Freeze",
           "formatters": [
+            ["canonical_line"],
+            {
+              "id": "canonical_stat",
+              "arg": 0
+            },
             {
               "id": "reminderstring",
               "arg": "ReminderTextFreeze"
@@ -14411,7 +14467,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% increased Flask Recovery Speed",
+          "text": "%1%%% increased Flask Recovery rate",
           "formatters": []
         }
       ]
@@ -21476,12 +21532,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% increased effect of Flasks",
+          "text": "%1%%% increased effect of Flasks on You",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% reduced effect of Flasks",
+          "text": "%1%%% reduced effect of Flasks on You",
           "formatters": [
             {
               "id": "negate",
@@ -21695,14 +21751,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Your Flasks grant %1%%% increased Rarity of Items found while using a Flask",
+          "text": "%1%%% increased Rarity of Items found while using a Flask",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Your Flasks grant %1%%% reduced Rarity of Items found while using a Flask",
+          "text": "%1%%% reduced Rarity of Items found while using a Flask",
           "formatters": [
             {
               "id": "negate",
@@ -22819,6 +22873,7 @@
           "matchers": [["#", -1]],
           "text": "%1%%% less Critical Strike Chance",
           "formatters": [
+            ["canonical_line"],
             {
               "id": "negate",
               "arg": 1
@@ -23686,7 +23741,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Your Flasks grant %1%%% of Life Recovery to Minions",
+          "text": "%1%%% of Flask Life Recovery granted to Minions",
           "formatters": []
         }
       ]
@@ -24031,8 +24086,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Your Flasks grant %1%%% chance to Freeze while using a Flask",
+          "text": "%1%%% chance to Freeze while using a Flask",
           "formatters": [
             {
               "id": "reminderstring",
@@ -24047,7 +24101,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Your Flasks grant %1%%% chance to Shock while using a Flask",
+          "text": "%1%%% chance to Shock while using a Flask",
           "formatters": [
             {
               "id": "reminderstring",
@@ -54467,7 +54521,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Life and Mana Recovery from Flasks are instant",
+          "text": "Player's Life and Mana Recovery from Flasks are instant",
           "formatters": []
         }
       ]
@@ -56346,19 +56400,19 @@
         }
       ]
     },
-    "physical_damage_reduction_rating_+%_if_only_one_enemy_nearby": {
-      "stats": ["physical_damage_reduction_rating_+%_if_only_one_enemy_nearby"],
+    "physical_damage_reduction_%_if_only_one_enemy_nearby": {
+      "stats": ["physical_damage_reduction_%_if_only_one_enemy_nearby"],
       "translations": [
         {
           "matchers": ["#"],
           "text":
-            "%1%%% Physical Damage Reduction if there\\nis only one nearby Enemy",
+            "%1%%% additional Physical Damage Reduction if there\\nis only one nearby Enemy",
           "formatters": []
         }
       ]
     },
-    "physical_damage_reduction_rating_+%_per_nearby_enemy": {
-      "stats": ["physical_damage_reduction_rating_+%_per_nearby_enemy"],
+    "physical_damage_reduction_%_per_nearby_enemy": {
+      "stats": ["physical_damage_reduction_%_per_nearby_enemy"],
       "translations": [
         {
           "matchers": ["#"],
@@ -57244,6 +57298,30 @@
             {
               "id": "divide_by_twenty_then_double_0dp",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "thaumaturgy_rotation_active": {
+      "stats": ["thaumaturgy_rotation_active"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Grants Malachai's Endurance, Frenzy and Power for 6 seconds each, in sequence",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMalachaisEndurance"
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMalachaisFrenzy"
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMalachaisPower"
             }
           ]
         }

@@ -399,6 +399,28 @@
           "formatters": []
         }
       ]
+    },
+    "energy_shield_recharge_rate": {
+      "stats": ["energy_shield_recharge_rate_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "You and nearby Allies gain %1%%% increased Energy Shield Recharge rate",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "You and nearby Allies gain %1%%% reduced Energy Shield Recharge rate",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
     }
   }
 }

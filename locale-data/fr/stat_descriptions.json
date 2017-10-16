@@ -328,6 +328,17 @@
         }
       ]
     },
+    "local_can_socket_gems_ignoring_colour": {
+      "stats": ["local_can_socket_gems_ignoring_colour"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Gemmes peuvent être enchâssées dans cet Objet en ignorant la couleur des Châsses",
+          "formatters": []
+        }
+      ]
+    },
     "local_socketed_strength_gem_level_+": {
       "stats": ["local_socketed_strength_gem_level_+"],
       "translations": [
@@ -364,6 +375,39 @@
         {
           "matchers": ["#"],
           "text": "%1$+d au Niveau des Gemmes enchâssées",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_gems_in_red_sockets_get_level_+": {
+      "stats": ["local_socketed_gems_in_red_sockets_get_level_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Gemmes enchâssées dans des Châsses rouges ont %1$+d Niveau(x)",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_gems_in_green_sockets_get_quality_%": {
+      "stats": ["local_socketed_gems_in_green_sockets_get_quality_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Gemmes enchâssées dans des Châsses vertes ont %1$+d à la Qualité",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_gems_in_blue_sockets_experience_gained_+%": {
+      "stats": ["local_socketed_gems_in_blue_sockets_experience_gained_+%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Gemmes enchâssées dans des Châsses vertes ont %1$+d d'Augmentation du gain d'Expérience",
           "formatters": []
         }
       ]
@@ -12110,6 +12154,16 @@
         }
       ]
     },
+    "local_no_attribute_requirements": {
+      "stats": ["local_no_attribute_requirements"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "N'a pas d'Attributs requis",
+          "formatters": []
+        }
+      ]
+    },
     "local_strength_requirement_+": {
       "stats": ["local_strength_requirement_+"],
       "translations": [
@@ -13770,6 +13824,11 @@
           "matchers": [[1, 99], 0],
           "text": "%1%%% de chance de Gel",
           "formatters": [
+            ["canonical_line"],
+            {
+              "id": "canonical_stat",
+              "arg": 0
+            },
             {
               "id": "reminderstring",
               "arg": "ReminderTextFreeze"
@@ -21522,28 +21581,6 @@
         }
       ]
     },
-    "item_rarity_+%_while_using_flask": {
-      "stats": ["item_rarity_+%_while_using_flask"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Vos Flacons octroient %1%%% d'Augmentation de la Rareté des objets cédés pendant l'usage d'un Flacon",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "Vos Flacons octroient %1%%% de Réduction de la Rareté des objets cédés pendant l'usage d'un Flacon",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "elemental_damage_with_attack_skills_+%_while_using_flask": {
       "stats": ["elemental_damage_with_attack_skills_+%_while_using_flask"],
       "translations": [
@@ -22672,6 +22709,7 @@
           "matchers": [["#", -1]],
           "text": "%1%%% de Chance de Coup Critique en moins",
           "formatters": [
+            ["canonical_line"],
             {
               "id": "negate",
               "arg": 1
@@ -23539,17 +23577,6 @@
         }
       ]
     },
-    "flask_minion_heal_%": {
-      "stats": ["flask_minion_heal_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Vos flasques accordent %1%%% de Récupération de Vie aux Sbires",
-          "formatters": []
-        }
-      ]
-    },
     "minion_block_%": {
       "stats": ["minion_block_%"],
       "translations": [
@@ -23871,22 +23898,6 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextPhasing"
-            }
-          ]
-        }
-      ]
-    },
-    "chance_to_shock_%_while_using_flask": {
-      "stats": ["chance_to_shock_%_while_using_flask"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Vos Flacons octroient %1%%% de chances d'Électrocuter pendant l'usage d'un Flacon",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextShock"
             }
           ]
         }
@@ -41106,6 +41117,30 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextChillNonHitNoDuration"
+            }
+          ]
+        }
+      ]
+    },
+    "thaumaturgy_rotation_active": {
+      "stats": ["thaumaturgy_rotation_active"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Octroie Thaumaturgie d'Endurance, de Frénésie et de Pouvoir pour 5 secondes chacune, en séquence",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMalachaisEndurance"
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMalachaisFrenzy"
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMalachaisPower"
             }
           ]
         }

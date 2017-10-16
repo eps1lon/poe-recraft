@@ -13770,6 +13770,11 @@
           "matchers": [[1, 99], 0],
           "text": "%1%%% 機率使用冰冷傷害擊中敵人造成冰凍效果",
           "formatters": [
+            ["canonical_line"],
+            {
+              "id": "canonical_stat",
+              "arg": 0
+            },
             {
               "id": "reminderstring",
               "arg": "ReminderTextFreeze"
@@ -21410,26 +21415,6 @@
         }
       ]
     },
-    "item_rarity_+%_while_using_flask": {
-      "stats": ["item_rarity_+%_while_using_flask"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "使用藥劑期間使你增加 %1%%% 物品稀有度",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "使用藥劑期間使你減少 %1%%% 物品稀有度",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "elemental_damage_with_attack_skills_+%_while_using_flask": {
       "stats": ["elemental_damage_with_attack_skills_+%_while_using_flask"],
       "translations": [
@@ -22504,6 +22489,7 @@
           "matchers": [["#", -1]],
           "text": "較少 %1%%% 暴擊率",
           "formatters": [
+            ["canonical_line"],
             {
               "id": "negate",
               "arg": 1
@@ -23359,16 +23345,6 @@
         }
       ]
     },
-    "flask_minion_heal_%": {
-      "stats": ["flask_minion_heal_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "你的藥劑給予 %1%%% 召喚物生命回復",
-          "formatters": []
-        }
-      ]
-    },
     "minion_block_%": {
       "stats": ["minion_block_%"],
       "translations": [
@@ -23697,36 +23673,6 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextIgnite"
-            }
-          ]
-        }
-      ]
-    },
-    "chance_to_freeze_%_while_using_flask": {
-      "stats": ["chance_to_freeze_%_while_using_flask"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "使用藥劑期間獲得 %1%%% 機率冰凍",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextFreeze"
-            }
-          ]
-        }
-      ]
-    },
-    "chance_to_shock_%_while_using_flask": {
-      "stats": ["chance_to_shock_%_while_using_flask"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "使用藥劑期間獲得 %1%%% 機率感電",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextShock"
             }
           ]
         }
@@ -40447,7 +40393,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "冰霜之錘的 %1%%% 物理傷害轉換為冰冷傷害",
+          "text": "冰霜之刺的 %1%%% 物理傷害轉換為冰冷傷害",
           "formatters": []
         }
       ]
@@ -53258,16 +53204,6 @@
         }
       ]
     },
-    "map_player_flask_recovery_is_instant": {
-      "stats": ["map_player_flask_recovery_is_instant"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "來自藥劑的生命和魔力立即回復",
-          "formatters": []
-        }
-      ]
-    },
     "map_player_has_level_X_conductivity": {
       "stats": ["map_player_has_level_X_conductivity"],
       "translations": [
@@ -55099,18 +55035,8 @@
         }
       ]
     },
-    "physical_damage_reduction_rating_+%_if_only_one_enemy_nearby": {
-      "stats": ["physical_damage_reduction_rating_+%_if_only_one_enemy_nearby"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "若附近只有 1 個敵人，減少 %1%%% 承受的物理傷害",
-          "formatters": []
-        }
-      ]
-    },
-    "physical_damage_reduction_rating_+%_per_nearby_enemy": {
-      "stats": ["physical_damage_reduction_rating_+%_per_nearby_enemy"],
+    "physical_damage_reduction_%_per_nearby_enemy": {
+      "stats": ["physical_damage_reduction_%_per_nearby_enemy"],
       "translations": [
         {
           "matchers": ["#"],

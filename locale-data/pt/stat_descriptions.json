@@ -326,6 +326,17 @@
         }
       ]
     },
+    "local_can_socket_gems_ignoring_colour": {
+      "stats": ["local_can_socket_gems_ignoring_colour"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Gemas podem ser Encaixadas neste Item ignorando a Cor do Encaixe",
+          "formatters": []
+        }
+      ]
+    },
     "local_socketed_strength_gem_level_+": {
       "stats": ["local_socketed_strength_gem_level_+"],
       "translations": [
@@ -362,6 +373,37 @@
         {
           "matchers": ["#"],
           "text": "%1$+d ao Nível das Gemas Encaixadas",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_gems_in_red_sockets_get_level_+": {
+      "stats": ["local_socketed_gems_in_red_sockets_get_level_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Gemas Encaixadas nos Encaixes Vermelhos têm %1$+d de Nível",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_gems_in_green_sockets_get_quality_%": {
+      "stats": ["local_socketed_gems_in_green_sockets_get_quality_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Gemas Encaixadas nos Encaixes Verdes têm %1$+d de Qualidade",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_gems_in_blue_sockets_experience_gained_+%": {
+      "stats": ["local_socketed_gems_in_blue_sockets_experience_gained_+%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Gemas Encaixadas nos Encaixes Azuis ganham %1%%% de Experiência aumentada",
           "formatters": []
         }
       ]
@@ -10041,7 +10083,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1$+d de Escudo de Energia recebidos para cada Inimigo acertado por seus Ataques",
+            "%1$+d de Escudo de Energia recebido por Inimigo acertado por seus Ataques",
           "formatters": []
         }
       ]
@@ -12458,6 +12500,16 @@
         }
       ]
     },
+    "local_no_attribute_requirements": {
+      "stats": ["local_no_attribute_requirements"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Não possui Requisitos de Atributos",
+          "formatters": []
+        }
+      ]
+    },
     "local_strength_requirement_+": {
       "stats": ["local_strength_requirement_+"],
       "translations": [
@@ -14112,6 +14164,11 @@
           "matchers": [[1, 99], 0],
           "text": "%1%%% de chance de Congelar",
           "formatters": [
+            ["canonical_line"],
+            {
+              "id": "canonical_stat",
+              "arg": 0
+            },
             {
               "id": "reminderstring",
               "arg": "ReminderTextFreeze"
@@ -22105,28 +22162,6 @@
         }
       ]
     },
-    "item_rarity_+%_while_using_flask": {
-      "stats": ["item_rarity_+%_while_using_flask"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Seus Frascos garantem %1%%% da Raridade dos Itens encontrados enquanto utilizando um Frasco aumentada",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "Seus Frascos garantem %1%%% da Raridade dos Itens encontrados enquanto utilizando um Frasco reduzido",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "elemental_damage_with_attack_skills_+%_while_using_flask": {
       "stats": ["elemental_damage_with_attack_skills_+%_while_using_flask"],
       "translations": [
@@ -23251,6 +23286,7 @@
           "matchers": [["#", -1]],
           "text": "%1%%% menos Chance de Crítico",
           "formatters": [
+            ["canonical_line"],
             {
               "id": "negate",
               "arg": 1
@@ -24130,17 +24166,6 @@
         }
       ]
     },
-    "flask_minion_heal_%": {
-      "stats": ["flask_minion_heal_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Seus Frascos concedem %1%%% de Recuperação de Vida para Lacaios",
-          "formatters": []
-        }
-      ]
-    },
     "minion_block_%": {
       "stats": ["minion_block_%"],
       "translations": [
@@ -24479,38 +24504,6 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextIgnite"
-            }
-          ]
-        }
-      ]
-    },
-    "chance_to_freeze_%_while_using_flask": {
-      "stats": ["chance_to_freeze_%_while_using_flask"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Seus Frascos concedem %1%%% de chance de Congelar enquanto utilizar um Frasco",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextFreeze"
-            }
-          ]
-        }
-      ]
-    },
-    "chance_to_shock_%_while_using_flask": {
-      "stats": ["chance_to_shock_%_while_using_flask"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Seus Frascos concedem %1%%% de chance de Eletrizar enquanto utilizar um Frasco",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextShock"
             }
           ]
         }
@@ -34494,13 +34487,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Efeito de Auras não Maldições Conjuradas por você aumentado em %1%%%",
+            "Efeito de Auras Não-Maldições Conjuradas por você aumentado em %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Efeito de Auras não Maldições Conjuradas por você reduzido em %1%%%",
+            "Efeito de Auras Não-Maldições Conjuradas por você reduzido em %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -55345,16 +55338,6 @@
         }
       ]
     },
-    "map_player_flask_recovery_is_instant": {
-      "stats": ["map_player_flask_recovery_is_instant"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Recuperação de Vida e Mana de Frascos é instantânea",
-          "formatters": []
-        }
-      ]
-    },
     "map_player_has_level_X_conductivity": {
       "stats": ["map_player_has_level_X_conductivity"],
       "translations": [
@@ -57223,13 +57206,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Dano Degenerativo Físico sofrido quando em movimento aumentado em %1%%%",
+            "Dano Degenerativo Físico sofrido aumentado em %1%%% quando se movimentando",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Dano Degenerativo Físico sofrido quando em movimento reduzido em %1%%%",
+            "Dano Degenerativo Físico sofrido reduzido em %1%%% quando se movimentando",
           "formatters": [
             {
               "id": "negate",
@@ -57255,19 +57238,8 @@
         }
       ]
     },
-    "physical_damage_reduction_rating_+%_if_only_one_enemy_nearby": {
-      "stats": ["physical_damage_reduction_rating_+%_if_only_one_enemy_nearby"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de Redução de Dano Físico se houver apenas um Inimigo próximo",
-          "formatters": []
-        }
-      ]
-    },
-    "physical_damage_reduction_rating_+%_per_nearby_enemy": {
-      "stats": ["physical_damage_reduction_rating_+%_per_nearby_enemy"],
+    "physical_damage_reduction_%_per_nearby_enemy": {
+      "stats": ["physical_damage_reduction_%_per_nearby_enemy"],
       "translations": [
         {
           "matchers": ["#"],
@@ -57367,6 +57339,28 @@
         {
           "matchers": [["#", -1]],
           "text": "Duração do Veneno reduzida em %1%%% por Carga de Poder",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "poison_duration_+%_with_over_150_intelligence": {
+      "stats": ["poison_duration_+%_with_over_150_intelligence"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Duração de Veneno aumentada em %1%%% se você tiver ao menos 150 de Inteligência",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Duração de Veneno reduzida em %1%%% se você tiver ao menos 150 de Inteligência",
           "formatters": [
             {
               "id": "negate",
@@ -58138,6 +58132,30 @@
             {
               "id": "divide_by_twenty_then_double_0dp",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "thaumaturgy_rotation_active": {
+      "stats": ["thaumaturgy_rotation_active"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Concede Tolerância, Frenesi e Poder de Malachai por 6 segundos cada, em sequência",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMalachaisEndurance"
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMalachaisFrenzy"
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMalachaisPower"
             }
           ]
         }

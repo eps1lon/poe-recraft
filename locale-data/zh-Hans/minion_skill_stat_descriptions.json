@@ -609,6 +609,26 @@
         }
       ]
     },
+    "chill_effect": {
+      "stats": ["chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召唤生物对敌人的冰缓效果增加 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召唤生物对敌人的冰缓效果减少 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "burn_duration": {
       "stats": ["ignite_duration_+%"],
       "translations": [
@@ -725,6 +745,48 @@
         {
           "matchers": [["#", -1]],
           "text": "召唤生物造成的近战物理总伤害额外减少 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_melee_physical_damage_ailment_damage_final_incr": {
+      "stats": [
+        "support_melee_physical_damage_poison_and_bleeding_damage_+%_final_from_melee_hits"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召唤生物的近战击中造成的流血和中毒额外增加 %1%%% 总伤害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召唤生物的近战击中造成的流血和中毒额外减少 %1%%% 总伤害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_damage_full_life_incr": {
+      "stats": ["support_damage_while_on_full_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "满血时, 召唤生物的攻击技能额外增加 %1%%% 总伤害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "满血时, 召唤生物的攻击技能额外减少 %1%%% 总伤害",
           "formatters": [
             {
               "id": "negate",
@@ -1498,6 +1560,31 @@
         }
       ]
     },
+    "number_of_beasts": {
+      "stats": ["base_number_of_beast_minions_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "同时召唤至多 %1% 个兽化召唤生物",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "同时召唤至多 %1% 个兽化召唤生物",
+          "formatters": []
+        }
+      ]
+    },
+    "display_one_harbinger_allowed": {
+      "stats": ["display_one_harbinger_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "同时能召唤至多 1 个先驱者",
+          "formatters": []
+        }
+      ]
+    },
     "number_of_golems": {
       "stats": ["number_of_golems_allowed"],
       "translations": [
@@ -2101,6 +2188,28 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextLowLife"
+            }
+          ]
+        }
+      ]
+    },
+    "support_projectile_attack_phys_ailment_damage_incr": {
+      "stats": [
+        "support_phys_proj_attack_damage_bleeing_and_poison_damage_+%_final_from_projectile_hits"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召唤生物的投射物击中造成的流血和中毒总伤害额外增加 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召唤生物的投射物击中造成的流血和中毒总伤害额外减少 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
             }
           ]
         }

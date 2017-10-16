@@ -436,13 +436,35 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Dieser Angriff und Kreaturen gewähren %1%%% verlängerte Entzündungsdauer bei Gegnern",
+            "Dieser Angriff und Kreaturen gewähren %1%%% verlängerte Brenndauer bei Gegnern",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Dieser Angriff und Kreaturen gewähren %1%%% verkürzte Entzündungsdauer bei Gegnern",
+            "Dieser Angriff und Kreaturen gewähren %1%%% verkürzte Brenndauer bei Gegnern",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chill_effect": {
+      "stats": ["chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Dieser Angriff und Kreaturen gewähren %1%%% verstärkte Unterkühlungswirkung bei Gegnern",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Dieser Angriff und Kreaturen gewähren %1%%% verringerte Unterkühlungswirkung bei Gegnern",
           "formatters": [
             {
               "id": "negate",
@@ -1346,7 +1368,7 @@
         {
           "matchers": [[1, 99], 0, 0],
           "text":
-            "Dieser Angriff und Kreaturen haben %1%%% Chance, Blutung zu verursachen",
+            "Dieser Angriff und Kreaturen haben %1%%% Chance, Bluten zu verursachen",
           "formatters": [
             {
               "id": "reminderstring",
@@ -1356,7 +1378,7 @@
         },
         {
           "matchers": [[100, "#"], 0, 0],
-          "text": "Dieser Angriff und Kreaturen verursachen Blutung",
+          "text": "Dieser Angriff und Kreaturen verursachen Bluten",
           "formatters": [
             {
               "id": "reminderstring",
@@ -1366,7 +1388,7 @@
         },
         {
           "matchers": ["#", "#", 0],
-          "text": "Dieser Angriff und Kreaturen verursachen Blutung",
+          "text": "Dieser Angriff und Kreaturen verursachen Bluten",
           "formatters": [
             {
               "id": "reminderstring",
@@ -1376,8 +1398,7 @@
         },
         {
           "matchers": ["#", "#", "#"],
-          "text":
-            "Dieser Angriff und Kreaturen können keine Blutung verursachen",
+          "text": "Dieser Angriff und Kreaturen können kein Bluten verursachen",
           "formatters": []
         }
       ]

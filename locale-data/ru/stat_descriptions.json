@@ -326,6 +326,16 @@
         }
       ]
     },
+    "local_can_socket_gems_ignoring_colour": {
+      "stats": ["local_can_socket_gems_ignoring_colour"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "В гнёзда на этом предмете можно помещать камни любого цвета",
+          "formatters": []
+        }
+      ]
+    },
     "local_socketed_strength_gem_level_+": {
       "stats": ["local_socketed_strength_gem_level_+"],
       "translations": [
@@ -362,6 +372,38 @@
         {
           "matchers": ["#"],
           "text": "%1$+d к уровню размещённых камней",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_gems_in_red_sockets_get_level_+": {
+      "stats": ["local_socketed_gems_in_red_sockets_get_level_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d к уровню камней, размещённых в гнёздах красного цвета",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_gems_in_green_sockets_get_quality_%": {
+      "stats": ["local_socketed_gems_in_green_sockets_get_quality_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1$+d%% к качеству камней, размещённых в гнёздах зелёного цвета",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_gems_in_blue_sockets_experience_gained_+%": {
+      "stats": ["local_socketed_gems_in_blue_sockets_experience_gained_+%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% увеличение опыта камней, размещённых в гнёздах синего цвета",
           "formatters": []
         }
       ]
@@ -12386,6 +12428,16 @@
         }
       ]
     },
+    "local_no_attribute_requirements": {
+      "stats": ["local_no_attribute_requirements"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Отсутствуют требования к характеристикам",
+          "formatters": []
+        }
+      ]
+    },
     "local_strength_requirement_+": {
       "stats": ["local_strength_requirement_+"],
       "translations": [
@@ -14035,6 +14087,11 @@
           "matchers": [[1, 99], 0],
           "text": "%1%%% шанс заморозить",
           "formatters": [
+            ["canonical_line"],
+            {
+              "id": "canonical_stat",
+              "arg": 0
+            },
             {
               "id": "reminderstring",
               "arg": "ReminderTextFreeze"
@@ -21851,28 +21908,6 @@
         }
       ]
     },
-    "item_rarity_+%_while_using_flask": {
-      "stats": ["item_rarity_+%_while_using_flask"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Ваши флаконы даруют %1%%% повышение редкости находимых предметов во время использования флакона",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "Ваши флаконы даруют %1%%% снижение редкости находимых предметов во время использования флакона",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "elemental_damage_with_attack_skills_+%_while_using_flask": {
       "stats": ["elemental_damage_with_attack_skills_+%_while_using_flask"],
       "translations": [
@@ -22985,6 +23020,7 @@
           "matchers": [["#", -1]],
           "text": "На %1%%% меньше шанса критического урона",
           "formatters": [
+            ["canonical_line"],
             {
               "id": "negate",
               "arg": 1
@@ -23864,17 +23900,6 @@
         }
       ]
     },
-    "flask_minion_heal_%": {
-      "stats": ["flask_minion_heal_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Ваши флаконы даруют %1%%% восстановления здоровья вашим приспешникам",
-          "formatters": []
-        }
-      ]
-    },
     "minion_block_%": {
       "stats": ["minion_block_%"],
       "translations": [
@@ -24213,38 +24238,6 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextIgnite"
-            }
-          ]
-        }
-      ]
-    },
-    "chance_to_freeze_%_while_using_flask": {
-      "stats": ["chance_to_freeze_%_while_using_flask"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Ваши флаконы даруют %1%%% шанс заморозить во время использования флакона",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextFreeze"
-            }
-          ]
-        }
-      ]
-    },
-    "chance_to_shock_%_while_using_flask": {
-      "stats": ["chance_to_shock_%_while_using_flask"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Ваши флаконы даруют %1%%% шанс наложить шок во время использования флакона",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextShock"
             }
           ]
         }
@@ -25054,12 +25047,13 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% повышение скорости перезарядки энергетического щита",
+          "text":
+            "%1%%% повышение скорости восстановления энергетического щита",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% снижение скорости перезарядки энергетического щита",
+          "text": "%1%%% снижение скорости восстановления энергетического щита",
           "formatters": [
             {
               "id": "negate",
@@ -27607,12 +27601,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% увеличение длительности отравления",
+          "text": "%1%%% увеличение длительности яда",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% уменьшение длительности отравления",
+          "text": "%1%%% уменьшение длительности яда",
           "formatters": []
         }
       ]
@@ -48151,12 +48145,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% повышение скорости перезарядки",
+          "text": "%1%%% повышение скорости перезарядки умений",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% снижение скорости перезарядки",
+          "text": "%1%%% снижение скорости перезарядки умений",
           "formatters": [
             {
               "id": "negate",
@@ -49197,7 +49191,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Ваши удары накладывают Разложение, наносящее 600 урона хаосом в секунду в течение 8 секунд",
+            "Ваши удары накладывают Разложение, наносящее 500 урона хаосом в секунду в течение 8 секунд",
           "formatters": []
         }
       ]
@@ -54953,16 +54947,6 @@
         }
       ]
     },
-    "map_player_flask_recovery_is_instant": {
-      "stats": ["map_player_flask_recovery_is_instant"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Флаконы мгновенно восстанавливает здоровье и ману",
-          "formatters": []
-        }
-      ]
-    },
     "map_player_has_level_X_conductivity": {
       "stats": ["map_player_has_level_X_conductivity"],
       "translations": [
@@ -56871,19 +56855,8 @@
         }
       ]
     },
-    "physical_damage_reduction_rating_+%_if_only_one_enemy_nearby": {
-      "stats": ["physical_damage_reduction_rating_+%_if_only_one_enemy_nearby"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% снижение получаемого физического урона, если поблизости всего один враг",
-          "formatters": []
-        }
-      ]
-    },
-    "physical_damage_reduction_rating_+%_per_nearby_enemy": {
-      "stats": ["physical_damage_reduction_rating_+%_per_nearby_enemy"],
+    "physical_damage_reduction_%_per_nearby_enemy": {
+      "stats": ["physical_damage_reduction_%_per_nearby_enemy"],
       "translations": [
         {
           "matchers": ["#"],
@@ -56983,6 +56956,28 @@
         {
           "matchers": [["#", -1]],
           "text": "%1%%% уменьшение длительности яда за заряд энергии",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "poison_duration_+%_with_over_150_intelligence": {
+      "stats": ["poison_duration_+%_with_over_150_intelligence"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% увеличение длительности яда, если у вас минимум 150 интеллекта",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% уменьшение длительности яда, если у вас минимум 150 интеллекта",
           "formatters": [
             {
               "id": "negate",
@@ -57755,6 +57750,30 @@
         }
       ]
     },
+    "thaumaturgy_rotation_active": {
+      "stats": ["thaumaturgy_rotation_active"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Последовательно дарует Выносливость, Ярость и Энергию Малахая на 6 секунд",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMalachaisEndurance"
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMalachaisFrenzy"
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMalachaisPower"
+            }
+          ]
+        }
+      ]
+    },
     "trap_and_mine_damage_+%_if_armed_for_4_seconds": {
       "stats": ["trap_and_mine_damage_+%_if_armed_for_4_seconds"],
       "translations": [
@@ -57828,7 +57847,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "В области боевые кличи отбрасывают врагов",
+          "text": "Боевые кличи отбрасывают врагов в области действия",
           "formatters": []
         }
       ]

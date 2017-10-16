@@ -606,6 +606,26 @@
         }
       ]
     },
+    "chill_effect": {
+      "stats": ["chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะเพิ่มเอฟเฟคแช่เย็นใส่ศัตรู  %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะลดเอฟเฟคแช่เย็นให้ศัตรู  %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "burn_duration": {
       "stats": ["ignite_duration_+%"],
       "translations": [
@@ -723,6 +743,50 @@
         {
           "matchers": [["#", -1]],
           "text": "มิเนียนจะสร้างความเสียหายทางกายภาพระยะประชิดได้น้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_melee_physical_damage_ailment_damage_final_incr": {
+      "stats": [
+        "support_melee_physical_damage_poison_and_bleeding_damage_+%_final_from_melee_hits"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "มิเนียนจะสร้างความเสียหายจากสเตตัสเลือดไหลและติดพิษ จากการโจมตีระยะประชิดมากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "มิเนียนจะสร้างความเสียหายจากสเตตัสเลือดไหลและติดพิษ จากการโจมตีระยะประชิดเบาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_damage_full_life_incr": {
+      "stats": ["support_damage_while_on_full_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนโจมตีแรงขึ้น %1%%% ถ้าพลังชีวิตเต็ม",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนโจมตีเบาลง %1%%% ถ้าพลังชีวิตเต็ม",
           "formatters": [
             {
               "id": "negate",
@@ -1504,6 +1568,31 @@
         }
       ]
     },
+    "number_of_beasts": {
+      "stats": ["base_number_of_beast_minions_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "เสกมิเนียนสัตว์ได้ %1% ตัวในทีหนึ่ง",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "เสกมิเนียนสัตว์ได้ %1% ตัวในทีหนึ่ง",
+          "formatters": []
+        }
+      ]
+    },
+    "display_one_harbinger_allowed": {
+      "stats": ["display_one_harbinger_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "เสก Harbinger ได้ตัวหนึ่งต่อคร้้ง",
+          "formatters": []
+        }
+      ]
+    },
     "number_of_golems": {
       "stats": ["number_of_golems_allowed"],
       "translations": [
@@ -2118,6 +2207,30 @@
         }
       ]
     },
+    "support_projectile_attack_phys_ailment_damage_incr": {
+      "stats": [
+        "support_phys_proj_attack_damage_bleeing_and_poison_damage_+%_final_from_projectile_hits"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "มิเนียนสร้างความเสียหายจากสเตตัสเลือดไหลและติดพิษ ที่เกิดจากอาวุธระยะไกลแรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "มิเนียนจะสร้างความเสียหายจากสเตตัสเลือดไหลและติดพิษ ที่เกิดจากอาวุธระยะไกลเบาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_projectile_attack_phys_incr": {
       "stats": ["support_projectile_attack_physical_damage_+%_final"],
       "translations": [
@@ -2704,6 +2817,49 @@
           "matchers": [[100, "#"]],
           "text": "การโจมตีของสมุนจะ Maim เสมอ",
           "formatters": []
+        }
+      ]
+    },
+    "support_ice_bite_damage": {
+      "stats": [
+        "minimum_added_cold_damage_per_frenzy_charge",
+        "maximum_added_cold_damage_per_frenzy_charge"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "มิเนียนจะโจมตีธาตุน้ำแข็งแรงขึ้น %1% ถึง %2% ต่อ Frenzy Charge หนึ่งครั้ง",
+          "formatters": []
+        }
+      ]
+    },
+    "ailment_non_damaging_incr_effect": {
+      "stats": ["non_damaging_ailment_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะเพิ่มเอฟเฟคสเตตัสเจ็บป่วยมากขึ้น %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextNonDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะลดเอฟเฟคสเตตัสเจ็บป่วยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextNonDamagingAilments"
+            }
+          ]
         }
       ]
     },

@@ -421,6 +421,27 @@
         }
       ]
     },
+    "chill_effect": {
+      "stats": ["chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "การโจมตีครั้งนี้กับมิเนียนจะเพิ่มเอฟเฟคแช่เย็นใส่ศัตรู  %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "การโจมตีครั้งนี้กับมิเนียนจะลดเอฟเฟคแช่เย็นให้ศัตรู  %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "chill_duration": {
       "stats": ["chill_duration_+%"],
       "translations": [

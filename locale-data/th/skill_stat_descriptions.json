@@ -9,6 +9,17 @@
       "stats": [],
       "translations": {}
     },
+    "skeletal_chains_aoe_health_percent": {
+      "stats": ["skeletal_chains_aoe_%_health_dealt_as_chaos_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "สละชีวิตของโครงกระดูก %1%%% เพื่อใช้เป็นค่าโจมตีธาตุเคออสตามปริมาณ",
+          "formatters": []
+        }
+      ]
+    },
     "spell_physical_damage_range": {
       "stats": [
         "spell_minimum_physical_damage",
@@ -1311,6 +1322,26 @@
         {
           "matchers": [["#", -1]],
           "text": "ลดระยะเวลาการหนาวสั่นของศัตรูลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chill_effect": {
+      "stats": ["chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มเอฟเฟคแช่เย็น %1%%% ",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดเอฟเฟคแช่เย็น %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2790,6 +2821,37 @@
         }
       ]
     },
+    "skeletal_chains_target_self": {
+      "stats": ["skeletal_chains_no_minions_targets_self"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ใช้พลังชีวิตของผู้เล่นหากไม่มีโครงกระดูกอยู่ใกล้ๆ",
+          "formatters": []
+        }
+      ]
+    },
+    "skeletal_chains_damage": {
+      "stats": ["skeletal_chains_no_minions_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "โจมตีแรงขึ้น สเตตัสเจ็บป่วยก็จะแรงขึ้นอีก %1%%%  หากใช้พลังชีวิตของผู้เล่นเอง",
+          "formatters": []
+        }
+      ]
+    },
+    "skeletal_chains_radius": {
+      "stats": ["skeletal_chains_no_minions_radius_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "รัศมี %1$+d ถ้าใช้พลังชีวิตตัวเอง",
+          "formatters": []
+        }
+      ]
+    },
     "chain_num": {
       "stats": ["virtual_number_of_additional_projectiles_in_chain"],
       "translations": [
@@ -3326,6 +3388,36 @@
         {
           "matchers": ["#"],
           "text": "สามารถใช้ไอเท็มได้เมื่อถึงเลเวล %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_attack": {
+      "stats": ["cast_on_attack_use_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "มีโอกาสใช้คาถานี้หากโจมตี %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "ใช้คาถานี้หากโจมตี",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_skill_use": {
+      "stats": ["cast_on_skill_use_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "มีโอกาสใช้คาถานี้ %1%%% หากร่ายคาถา",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "ใช้คาถานี้หากร่ายคาถา",
           "formatters": []
         }
       ]
@@ -3969,26 +4061,6 @@
           "matchers": ["#", "#"],
           "text": "เพิ่มความเสียหายสายฟ้าเมื่อโจมตี %1% ถึง %2%",
           "formatters": []
-        }
-      ]
-    },
-    "static_strike_damage": {
-      "stats": ["static_strike_explosion_damage_+%_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "ระเบิดสร้างความเสียหายมากขึ้น %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "ระเบิดสร้างความเสียหายน้อยลง %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -5026,6 +5098,16 @@
         }
       ]
     },
+    "support_arcane_surge_chance": {
+      "stats": ["support_arcane_surge_gain_buff_on_mana_use_threshold"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ได้ Arcane Surge หากใช้มานา %1% ไปกับคาถานี้",
+          "formatters": []
+        }
+      ]
+    },
     "support_arcane_surge_damage": {
       "stats": [
         "support_arcane_surge_spell_damage_+%_final",
@@ -5137,6 +5219,19 @@
         {
           "matchers": ["#"],
           "text": "Ruthless Blows จัดการ %1%%%  มากกว่าความเสียหายระยะประชิด",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_bleeding_damage": {
+      "stats": [
+        "support_ruthless_blow_bleeding_damage_from_melee_hits_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Ruthless Blows จะให้เสเตตัสเลือดออกจากการโจมตีระยะประชิดที่แรงขึ้น %1%%%  ",
           "formatters": []
         }
       ]
@@ -5384,6 +5479,26 @@
         }
       ]
     },
+    "charged_dash_damage": {
+      "stats": ["charged_dash_damage_+%_maximum"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ตีแรงขึ้น %1%%% ที่สุดระยะการแดช",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ตีเบาลง %1%%% ที่สุดระยะการแดช",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "deal_no_elemental": {
       "stats": ["deal_no_elemental_damage"],
       "translations": [
@@ -5585,6 +5700,46 @@
         }
       ]
     },
+    "shock_effect": {
+      "stats": ["shock_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มเอฟเฟคไฟช็อต %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดเอฟเฟคไฟช็อต %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "shocked_ground_stat_override": {
+      "stats": ["shocked_ground_base_magnitude_override"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "พื้นที่ถูกไฟช็อตจะเพิ่มความเสียหายขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "พื้นที่ถูกไฟช็อตจะลดความเสียหายลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "skill_and_damaging_ailment_duration_incr": {
       "stats": ["skill_effect_and_damaging_ailment_duration_+%"],
       "translations": [
@@ -5640,6 +5795,21 @@
               "arg": "ReminderTextDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "chance_to_bleed_damage_incr": {
+      "stats": ["support_chance_to_bleed_bleeding_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "การโจมตีที่ได้รับซัพจะให้สเตตัสเลือดออกแรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "การโจมตีที่ได้รับซัพจะให้สเตตัสเลือดออกเบาลง %1%%%",
+          "formatters": []
         }
       ]
     },

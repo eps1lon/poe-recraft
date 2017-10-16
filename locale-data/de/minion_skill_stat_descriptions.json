@@ -508,7 +508,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Kreaturen haben %1%%% erhöhte Wirkung ihrer Auren",
+          "text": "Kreaturen haben %1%%% verstärkte Wirkung ihrer Auren",
           "formatters": []
         },
         {
@@ -629,6 +629,28 @@
           "text":
             "Kreaturen haben %1%%% verringerte Betäubungsdauer bei Gegnern",
           "formatters": []
+        }
+      ]
+    },
+    "chill_effect": {
+      "stats": ["chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Kreaturen haben %1%%% verstärkten Unterkühlungseffekt bei Gegnern",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Kreaturen haben %1%%% verringerten Unterkühlungseffekt bei Gegnern",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -755,6 +777,52 @@
           "matchers": [["#", -1]],
           "text":
             "Kreaturen verursachen %1%%% weniger physischen Nahkampfschaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_melee_physical_damage_ailment_damage_final_incr": {
+      "stats": [
+        "support_melee_physical_damage_poison_and_bleeding_damage_+%_final_from_melee_hits"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Kreaturen verursachen %1%%% mehr Schaden mit durch Nahkampftreffer verursachtes Bluten und Vergiften",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Kreaturen verursachen %1%%% mehr Schaden mit durch Nahkampftreffer verursachtes Bluten und Vergiften",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_damage_full_life_incr": {
+      "stats": ["support_damage_while_on_full_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Kreaturen verursachen %1%%% mehr Schaden mit Angriffsfertigkeiten bei vollem Leben",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Kreaturen verursachen %1%%% weniger Schaden mit Angriffsfertigkeiten bei vollem Leben",
           "formatters": [
             {
               "id": "negate",
@@ -1558,6 +1626,31 @@
         }
       ]
     },
+    "number_of_beasts": {
+      "stats": ["base_number_of_beast_minions_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Erlaubt gleichzeitige Kontrolle von %1% Biestkreatur",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Erlaubt gleichzeitige Kontrolle von %1% Biestkreaturen",
+          "formatters": []
+        }
+      ]
+    },
+    "display_one_harbinger_allowed": {
+      "stats": ["display_one_harbinger_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Erlaubt gleichzeitige Kontrolle von 1 Vorboten",
+          "formatters": []
+        }
+      ]
+    },
     "number_of_golems": {
       "stats": ["number_of_golems_allowed"],
       "translations": [
@@ -2217,6 +2310,30 @@
         }
       ]
     },
+    "support_projectile_attack_phys_ailment_damage_incr": {
+      "stats": [
+        "support_phys_proj_attack_damage_bleeing_and_poison_damage_+%_final_from_projectile_hits"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Angriffe von Kreaturen verursachen %1%%% mehr Schaden mit durch Projektiltreffer verursachtes Bluten und Vergiften",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Angriffe von Kreaturen verursachen %1%%% mehr Schaden mit durch Projektiltreffer verursachtes Bluten und Vergiften",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_projectile_attack_phys_incr": {
       "stats": ["support_projectile_attack_physical_damage_+%_final"],
       "translations": [
@@ -2745,7 +2862,7 @@
       "translations": [
         {
           "matchers": [[1, 99], 0, 0],
-          "text": "Kreaturen haben %1%%% Chance, Blutung zu verursachen",
+          "text": "Kreaturen haben %1%%% Chance, Bluten zu verursachen",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2755,7 +2872,7 @@
         },
         {
           "matchers": [[100, "#"], 0, 0],
-          "text": "Kreaturen verursachen Blutung",
+          "text": "Kreaturen verursachen Bluten",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2765,7 +2882,7 @@
         },
         {
           "matchers": ["#", "#", 0],
-          "text": "Kreaturen verursachen Blutung",
+          "text": "Kreaturen verursachen Bluten",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2775,7 +2892,7 @@
         },
         {
           "matchers": ["#", "#", "#"],
-          "text": "Kreaturen können keine Blutung verursachen",
+          "text": "Kreaturen können kein Bluten verursachen",
           "formatters": []
         }
       ]

@@ -9,6 +9,17 @@
       "stats": [],
       "translations": {}
     },
+    "skeletal_chains_aoe_health_percent": {
+      "stats": ["skeletal_chains_aoe_%_health_dealt_as_chaos_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Opfert %1%%% des Skelettlebens, um diesen Chaosschaden zu verursachen",
+          "formatters": []
+        }
+      ]
+    },
     "spell_physical_damage_range": {
       "stats": [
         "spell_minimum_physical_damage",
@@ -1055,7 +1066,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Blutung hält %% Sekunden an",
+          "text": "Blutung hält %1% Sekunden an",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -1336,6 +1347,26 @@
         }
       ]
     },
+    "chill_effect": {
+      "stats": ["chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% verstärkte Unterkühlungswirkung",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verringerte Unterkühlungswirkung",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "shock_duration": {
       "stats": ["shock_duration_+%"],
       "translations": [
@@ -1361,12 +1392,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verlängerte Entzündungsdauer bei Gegnern",
+          "text": "%1%%% verlängerte Brenndauer bei Gegnern",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verkürzte Entzündungsdauer bei Gegnern",
+          "text": "%1%%% verkürzte Brenndauer bei Gegnern",
           "formatters": [
             {
               "id": "negate",
@@ -1426,12 +1457,14 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Gegenstandsseltenheit getöteter Gegner",
+          "text":
+            "%1%%% erhöhte Seltenheit von Gegenständen bei getöteten Gegnern",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerte Gegenstandsseltenheit getöteter Gegner",
+          "text":
+            "%1%%% verringerte Seltenheit von Gegenständen bei getöteten Gegnern",
           "formatters": [
             {
               "id": "negate",
@@ -2834,6 +2867,37 @@
         }
       ]
     },
+    "skeletal_chains_target_self": {
+      "stats": ["skeletal_chains_no_minions_targets_self"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Benutzt Euer Leben, wenn kein Skelett in Reichweite ist",
+          "formatters": []
+        }
+      ]
+    },
+    "skeletal_chains_damage": {
+      "stats": ["skeletal_chains_no_minions_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% mehr Schaden mit Treffern und Beeinträchtigungen bei Nutzung Eures Lebens",
+          "formatters": []
+        }
+      ]
+    },
+    "skeletal_chains_radius": {
+      "stats": ["skeletal_chains_no_minions_radius_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d Radius bei Nutzung Eures Lebens",
+          "formatters": []
+        }
+      ]
+    },
     "chain_num": {
       "stats": ["virtual_number_of_additional_projectiles_in_chain"],
       "translations": [
@@ -3367,6 +3431,37 @@
         }
       ]
     },
+    "cast_on_attack": {
+      "stats": ["cast_on_attack_use_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "%1%%% Chance, diesen Zauber auszulösen, wenn Ihr angreift",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Löst diesen Zauber aus, wenn Ihr angreift",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_skill_use": {
+      "stats": ["cast_on_skill_use_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% Chance, diesen Zauber bei Verwendung einer Fertigkeit auszulösen",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Löst diesen Zauber bei Verwendung einer Fertigkeit aus",
+          "formatters": []
+        }
+      ]
+    },
     "cast_on_kill": {
       "stats": ["chance_to_cast_on_kill_%"],
       "translations": [
@@ -3728,7 +3823,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Erzeugt kleinere Novas bis zu %1% Mal bei gegnerischem Treffer",
+            "Erzeugt kleinere Novae bis zu %1% Mal bei gegnerischem Treffer",
           "formatters": []
         }
       ]
@@ -3888,7 +3983,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Verursacht %1%%% Eures physischen Schadens als zusätzlichen Feuerschaden",
+            "Verursacht %1%%% Eures physischen Schadens als extra Feuerschaden",
           "formatters": []
         }
       ]
@@ -3899,7 +3994,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Verursacht %1%%% Eures physischen Schadens als zusätzlichen Chaosschaden",
+            "Verursacht %1%%% Eures physischen Schadens als extra Chaosschaden",
           "formatters": []
         }
       ]
@@ -4023,26 +4118,6 @@
           "matchers": ["#", "#"],
           "text": "Fügt Angriffen %1% bis %2% Blitzschaden hinzu",
           "formatters": []
-        }
-      ]
-    },
-    "static_strike_damage": {
-      "stats": ["static_strike_explosion_damage_+%_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Explosion verursacht %1%%% mehr Schaden",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Explosion verursacht %1%%% wenigerSchaden",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -4171,12 +4246,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verlängerte Verstärken-Dauer",
+          "text": "%1%%% verlängerte Dauer von Verstärken",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verkürzte Verstärken-Dauer",
+          "text": "%1%%% verkürzte Dauer von Verstärken",
           "formatters": [
             {
               "id": "negate",
@@ -5229,6 +5304,19 @@
         }
       ]
     },
+    "support_ruthless_bleeding_damage": {
+      "stats": [
+        "support_ruthless_blow_bleeding_damage_from_melee_hits_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Unbarmherzige Schläge verursachen %1%%% mehr Schaden mit durch Nahkampftreffer verursachtes Bluten",
+          "formatters": []
+        }
+      ]
+    },
     "support_ruthless_stun": {
       "stats": ["support_ruthless_big_hit_stun_base_duration_override_ms"],
       "translations": [
@@ -5360,7 +5448,7 @@
       "translations": [
         {
           "matchers": [[1, 99], 0, 0],
-          "text": "%1%%% Chance, Blutung zu verursachen",
+          "text": "%1%%% Chance, Bluten zu verursachen",
           "formatters": [
             {
               "id": "reminderstring",
@@ -5370,7 +5458,7 @@
         },
         {
           "matchers": [[100, "#"], 0, 0],
-          "text": "Verursacht Blutung",
+          "text": "Verursacht Bluten",
           "formatters": [
             {
               "id": "reminderstring",
@@ -5380,7 +5468,7 @@
         },
         {
           "matchers": ["#", "#", 0],
-          "text": "Verursacht Blutung",
+          "text": "Verursacht Bluten",
           "formatters": [
             {
               "id": "reminderstring",
@@ -5390,7 +5478,7 @@
         },
         {
           "matchers": ["#", "#", "#"],
-          "text": "Kann keine Blutung verursachen",
+          "text": "Kann kein Bluten verursachen",
           "formatters": []
         }
       ]
@@ -5400,12 +5488,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Schaden mit Blutung",
+          "text": "%1%%% verstärkter Schaden mit Bluten",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerter Schaden mit Blutung",
+          "text": "%1%%% verringerter Schaden mit Bluten",
           "formatters": []
         }
       ]
@@ -5473,6 +5561,27 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "charged_dash_damage": {
+      "stats": ["charged_dash_damage_+%_maximum"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% mehr Schaden mit Treffern bei maximaler Sprintdistanz",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% weniger Schaden mit Treffern bei maximaler Sprintdistanz",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
             }
           ]
         }
@@ -5680,6 +5789,58 @@
         }
       ]
     },
+    "raised_spectre_level": {
+      "stats": ["raised_spectre_max_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Erweckt Schemen bis zu Stufe %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "shock_effect": {
+      "stats": ["shock_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% verstärkte Schockwirkung",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verringerte Schockwirkung",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "shocked_ground_stat_override": {
+      "stats": ["shocked_ground_base_magnitude_override"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Schockender Boden verursacht %1%%% verstärkten erlittenen Schaden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Schockender Boden verursacht %1%%% verringerten erlittenen Schaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "skill_and_damaging_ailment_duration_incr": {
       "stats": ["skill_effect_and_damaging_ailment_duration_+%"],
       "translations": [
@@ -5738,6 +5899,23 @@
         }
       ]
     },
+    "chance_to_bleed_damage_incr": {
+      "stats": ["support_chance_to_bleed_bleeding_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Unterstützte Angriffe verursachen %1%%% mehr Schaden mit Bluten",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Unterstützte Angriffe verursachen %1%%% weniger Schaden mit Bluten",
+          "formatters": []
+        }
+      ]
+    },
     "support_debilitate_hit_damage": {
       "stats": [
         "support_debilitate_hit_damage_+%_final_per_poison_stack",
@@ -5747,13 +5925,13 @@
         {
           "matchers": [[1, "#"], "#"],
           "text":
-            "%1%%% mehr Schaden mit Treffern für jeden Stapel Gift auf dem Gegner, bis zu %2% Mal",
+            "%1%%% mehr Schaden mit Treffern für jeden Giftstapel auf dem Gegner, bis zu %2% Mal",
           "formatters": []
         },
         {
           "matchers": [["#", -1], "#"],
           "text":
-            "%1%%% weniger Schaden mit Treffern für jeden Stapel Gift auf dem Gegner, bis zu %2% Mal",
+            "%1%%% weniger Schaden mit Treffern für jeden Giftstapel auf dem Gegner, bis zu %2% Mal",
           "formatters": [
             {
               "id": "negate",

@@ -25,6 +25,30 @@
         }
       ]
     },
+    "support_melee_physical_damage_poison_and_bleeding_damage_+%_final_from_melee_hits": {
+      "stats": [
+        "support_melee_physical_damage_poison_and_bleeding_damage_+%_final_from_melee_hits"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "สกิลที่ได้รับซัพจะสร้างความเสียหายจากอาการเลือดออกและพิษที่เกิดจากการโจมตีระยะประชิดเพิ่มอีก %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "สกิลที่ได้รับซัพจะสร้างความเสียหายจากอาการเลือดออกและพิษที่เกิดจากการโจมตีระยะประชิดลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_echo_damage_+%_final": {
       "stats": ["support_echo_damage_+%_final"],
       "translations": [
@@ -56,6 +80,26 @@
         {
           "matchers": [["#", -1]],
           "text": "สกิลที่สนับสนุนจะสร้างความเสียหายลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_damage_while_on_full_life_+%_final": {
+      "stats": ["support_damage_while_on_full_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สกิลที่ได้รับซัพจะโจมตีแรงขึ้น %1%%% หากพลังชีวิตเต็ม",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สกิลที่ได้รับซัพจะโจมตีเบาลง %1%%% หากพลังชีวิตเต็ม",
           "formatters": [
             {
               "id": "negate",
@@ -1263,6 +1307,26 @@
         }
       ]
     },
+    "support_melee_splash_damage_+%_final_for_splash": {
+      "stats": ["support_melee_splash_damage_+%_final_for_splash"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สกิลที่ได้รับซัพจะโจมตีเป้าหมายรอบๆ แรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สกิลที่ได้รับซัพจะโจมตีเป้าหมายรอบๆ เบาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "base_melee_attack_repeat_count": {
       "stats": ["base_melee_attack_repeat_count"],
       "translations": [
@@ -1886,6 +1950,16 @@
         }
       ]
     },
+    "support_arcane_surge_gain_buff_on_mana_use_threshold": {
+      "stats": ["support_arcane_surge_gain_buff_on_mana_use_threshold"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ได้ Arcane Surge เมื่อใช้มานา %1% ไปกับสกิลที่ได้รับซัพ",
+          "formatters": []
+        }
+      ]
+    },
     "support_arcane_surge_spell_damage_+%_final": {
       "stats": [
         "support_arcane_surge_spell_damage_+%_final",
@@ -2023,6 +2097,19 @@
           "matchers": ["#"],
           "text":
             "Ruthless Blows จัดการกับสกิลสนับสนุน %1%%% มากกว่าดาเมทประชิด ",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_blow_bleeding_damage_from_melee_hits_+%_final": {
+      "stats": [
+        "support_ruthless_blow_bleeding_damage_from_melee_hits_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Ruthless Blows ด้วยสกิลที่ได้รับซัพจะทำให้สเตตัสเลือดไหลที่เกิดจากการโจมตีระยะประชิดรุนแรงขึ้น %1%%% ",
           "formatters": []
         }
       ]
@@ -2661,6 +2748,26 @@
         {
           "matchers": [["#", -1]],
           "text": "สกิลที่ได้รับซัพจะลดเวลาติด Chill %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chill_effect_+%": {
+      "stats": ["chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สกิลที่ได้รับซัพจะมีเอฟเฟคแช่เย็นใส่ศัตรูแรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สกิลที่ได้รับซัพจะมีเอฟเฟคแช่เย็นใส่ศัตรูเบาลง %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3759,6 +3866,21 @@
         }
       ]
     },
+    "support_chance_to_bleed_bleeding_damage_+%_final": {
+      "stats": ["support_chance_to_bleed_bleeding_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "การโจมตีที่ได้รับซัพจะทำให้สเตตัสเลือดไหลรุนแรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "การโจมตีที่ได้รับซัพจะทำให้สเตตัสเลือดไหลเบาลง %1%%%",
+          "formatters": []
+        }
+      ]
+    },
     "support_clustertrap_damage_+%_final": {
       "stats": ["support_clustertrap_damage_+%_final"],
       "translations": [
@@ -3899,6 +4021,30 @@
           "matchers": [["#", -1]],
           "text":
             "ทักษะที่ได้รับการสนับสนุนมีความเสียหายจากมินเนี่ยนและความเสียหายจากธาตุของโทเท็มลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_phys_proj_attack_damage_bleeing_and_poison_damage_+%_final_from_projectile_hits": {
+      "stats": [
+        "support_phys_proj_attack_damage_bleeing_and_poison_damage_+%_final_from_projectile_hits"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "สกิลที่ได้รับซัพจะสร้างความเสียหายจากสเตตัสเลือดไหลและติดพิษ ที่เกิดจากอาวุธระยะไกลแรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "สกิลที่ได้รับซัพจะสร้างความเสียหายจากสเตตัสเลือดไหลและติดพิษ ที่เกิดจากอาวุธระยะไกลเบาลง %1%%%",
           "formatters": [
             {
               "id": "negate",

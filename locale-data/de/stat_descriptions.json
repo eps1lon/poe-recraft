@@ -326,6 +326,17 @@
         }
       ]
     },
+    "local_can_socket_gems_ignoring_colour": {
+      "stats": ["local_can_socket_gems_ignoring_colour"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Gemmen können in diesen Gegenstand in eine Fassung beliebiger Farbe eingesetzt werden",
+          "formatters": []
+        }
+      ]
+    },
     "local_socketed_strength_gem_level_+": {
       "stats": ["local_socketed_strength_gem_level_+"],
       "translations": [
@@ -362,6 +373,39 @@
         {
           "matchers": ["#"],
           "text": "%1$+d zur Stufe eingefasster Gemmen",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_gems_in_red_sockets_get_level_+": {
+      "stats": ["local_socketed_gems_in_red_sockets_get_level_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Eingesetzte Gemmen in roten Fassungen erhalten %1$+d zur Stufe",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_gems_in_green_sockets_get_quality_%": {
+      "stats": ["local_socketed_gems_in_green_sockets_get_quality_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Eingesetzte Gemmen in grünen Fassungen erhalten %1$+d%% zur Qualität",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_gems_in_blue_sockets_experience_gained_+%": {
+      "stats": ["local_socketed_gems_in_blue_sockets_experience_gained_+%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Eingesetzte Gemmen in blauen Fassungen erhalten %1%%% erhöhte Erfahrung",
           "formatters": []
         }
       ]
@@ -617,7 +661,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Eingefasste Golem-Fertigkeiten erhalten %1%%% des maximalen Lebens als zusätzlichen maximalen Energieschild",
+            "Eingefasste Golem-Fertigkeiten erhalten %1%%% des maximalen Lebens als extra maximalen Energieschild",
           "formatters": []
         }
       ]
@@ -637,7 +681,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d zur Qualität eingefasster Unterstützungsgemmen",
+          "text": "%1$+d%% zur Qualität eingefasster Unterstützungsgemmen",
           "formatters": []
         }
       ]
@@ -1231,6 +1275,28 @@
         }
       ]
     },
+    "local_display_socketed_gems_supported_by_X_vile_toxins": {
+      "stats": ["local_display_socketed_gems_supported_by_X_vile_toxins"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Eingefasste Gemmen werden unterstützt durch 'Niederträchtiges Gift' Stufe %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_socketed_gems_supported_by_X_lesser_poison": {
+      "stats": ["local_display_socketed_gems_supported_by_X_lesser_poison"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Eingefasste Gemmen werden unterstützt durch 'Schwaches Gift' Stufe %1%",
+          "formatters": []
+        }
+      ]
+    },
     "display_socketed_minion_gems_supported_by_level_X_life_leech": {
       "stats": ["display_socketed_minion_gems_supported_by_level_X_life_leech"],
       "translations": [
@@ -1549,7 +1615,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Eingefasste Gemmen erhalten %1%%% des physischen Schadens als zusätzlichen Blitzschaden",
+            "Eingefasste Gemmen erhalten %1%%% des physischen Schadens als extra Blitzschaden",
           "formatters": []
         }
       ]
@@ -1826,17 +1892,18 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Gewährt die Fertigkeit 'Rhoa-Biest beschwören' Stufe 1",
+          "text": "Gewährt die Fertigkeit 'Rhoa-Biest beschwören' Stufe 20",
           "formatters": []
         },
         {
           "matchers": [2],
-          "text": "Gewährt die Fertigkeit 'Ursa-Biest beschwören' Stufe 1",
+          "text": "Gewährt die Fertigkeit 'Ursa-Biest beschwören' Stufe 20",
           "formatters": []
         },
         {
           "matchers": [3],
-          "text": "Gewährt die Fertigkeit 'Schlangen-Biest beschwören' Stufe 1",
+          "text":
+            "Gewährt die Fertigkeit 'Schlangen-Biest beschwören' Stufe 20",
           "formatters": []
         }
       ]
@@ -1877,6 +1944,41 @@
         {
           "matchers": ["#"],
           "text": "Gewährt die Fertigkeit Entflammbarkeit Stufe %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_summon_harbinger_x_on_equip": {
+      "stats": ["local_display_summon_harbinger_x_on_equip"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Gewährt die Fertigkeit 'Vorbote des Arkanen beschwören'",
+          "formatters": []
+        },
+        {
+          "matchers": [2],
+          "text": "Gewährt die Fertigkeit 'Vorbote der Zeit beschwören'",
+          "formatters": []
+        },
+        {
+          "matchers": [3],
+          "text": "Gewährt die Fertigkeit 'Vorbote des Fokus beschwören'",
+          "formatters": []
+        },
+        {
+          "matchers": [4],
+          "text": "Gewährt die Fertigkeit 'Vorbote der Richtungen beschwören'",
+          "formatters": []
+        },
+        {
+          "matchers": [5],
+          "text": "Gewährt die Fertigkeit 'Vorbote der Stürme beschwören'",
+          "formatters": []
+        },
+        {
+          "matchers": [6],
+          "text": "Gewährt die Fertigkeit 'Vorbote der Brutalität beschwören'",
           "formatters": []
         }
       ]
@@ -2051,6 +2153,16 @@
         }
       ]
     },
+    "local_display_grants_skill_blight_level": {
+      "stats": ["local_display_grants_skill_blight_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Gewährt die Fertigkeit Pesthauch Stufe %1%",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_grants_skill_projectile_weakness_level": {
       "stats": ["local_display_grants_skill_projectile_weakness_level"],
       "translations": [
@@ -2087,6 +2199,16 @@
         {
           "matchers": ["#"],
           "text": "Gewährt die Fertigkeit Verwundbarkeit Stufe %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_grants_skill_death_aura_level": {
+      "stats": ["local_display_grants_skill_death_aura_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Gewährt die Fertigkeit Todesaura Stufe %1%",
           "formatters": []
         }
       ]
@@ -2167,6 +2289,27 @@
           "matchers": ["#"],
           "text":
             "Löst 'Düsterzunges Kuss' Stufe %1% aus, wenn Ihr einen Fluch zaubert",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_level_X_void_gaze_on_skill_use": {
+      "stats": ["local_display_trigger_level_X_void_gaze_on_skill_use"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Löst 'Leerenblick' Stufe %1% aus, wenn Ihr eine Fertigkeit benutzt",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_level_x_storm_cascade_on_attack": {
+      "stats": ["local_display_trigger_level_x_storm_cascade_on_attack"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Löst 'Sturmwelle' Stufe %1% aus, wenn Ihr angreift",
           "formatters": []
         }
       ]
@@ -2812,7 +2955,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Erhaltet %1%%% des physischen Schadens während Fläschchenwirkung als zusätzlichen Kälteschaden",
+            "Erhaltet %1%%% des physischen Schadens während Fläschchenwirkung als extra Kälteschaden",
           "formatters": []
         }
       ]
@@ -2958,7 +3101,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Immun gegen Blutung während Fläschchenwirkung\\nEntfernt Blutung bei Nutzung",
+            "Immun gegen Bluten während Fläschchenwirkung\\nEntfernt Bluten bei Nutzung",
           "formatters": []
         }
       ]
@@ -7041,7 +7184,7 @@
         {
           "matchers": [4000],
           "text":
-            "100%% erhöhte globale kritische Trefferchance, bei kürzlicher Totembeschwörung",
+            "100%% erhöhte globale kritische Trefferchance, wenn Ihr kürzlich ein Totem beschworen habt",
           "formatters": [
             {
               "id": "reminderstring",
@@ -7052,7 +7195,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "100%% erhöhte globale kritische Trefferchance, bei Beschwörung eines Totems in den letzten %1% Sekunden",
+            "100%% erhöhte globale kritische Trefferchance, wenn Ihr in den letzten %1% Sekunden ein Totem beschworen habt",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -8494,7 +8637,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Totems sind Immun gegen Feuerschaden",
+          "text": "Totems sind immun gegen Feuerschaden",
           "formatters": []
         }
       ]
@@ -8550,7 +8693,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d zu maximalem Feuerwiderstand",
+          "text": "%1$+d%% zu maximalem Feuerwiderstand",
           "formatters": []
         }
       ]
@@ -8560,7 +8703,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d zu Feuerwiderstand",
+          "text": "%1$+d%% zu Feuerwiderstand",
           "formatters": []
         }
       ]
@@ -8571,7 +8714,7 @@
         {
           "matchers": ["#"],
           "text":
-            "%1$+d zu Feuerwiderstand, wenn eine rote Gemme eingefasst ist",
+            "%1$+d%% zu Feuerwiderstand, wenn eine rote Gemme eingefasst ist",
           "formatters": []
         }
       ]
@@ -8581,7 +8724,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1$+d zu Feuerwiderstand bei niedrigem Leben",
+          "text": "%1$+d%% zu Feuerwiderstand bei niedrigem Leben",
           "formatters": [
             {
               "id": "reminderstring",
@@ -8591,7 +8734,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1$+d zu Feuerwiderstand bei niedrigem Leben",
+          "text": "%1$+d%% zu Feuerwiderstand bei niedrigem Leben",
           "formatters": [
             {
               "id": "negate",
@@ -8610,7 +8753,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d zu maximalem Kältewiderstand",
+          "text": "%1$+d%% zu maximalem Kältewiderstand",
           "formatters": []
         }
       ]
@@ -8620,7 +8763,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d zu Kältewiderstand",
+          "text": "%1$+d%% zu Kältewiderstand",
           "formatters": []
         }
       ]
@@ -8631,7 +8774,7 @@
         {
           "matchers": ["#"],
           "text":
-            "%1$+d zu Kältewiderstand, wenn eine grüne Gemme eingefasst ist",
+            "%1$+d%% zu Kältewiderstand, wenn eine grüne Gemme eingefasst ist",
           "formatters": []
         }
       ]
@@ -8641,7 +8784,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d zu maximalem Blitzwiderstand",
+          "text": "%1$+d%% zu maximalem Blitzwiderstand",
           "formatters": []
         }
       ]
@@ -8651,7 +8794,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d zu Blitzwiderstand",
+          "text": "%1$+d%% zu Blitzwiderstand",
           "formatters": []
         }
       ]
@@ -8662,7 +8805,7 @@
         {
           "matchers": ["#"],
           "text":
-            "%1$+d zu Blitzwiderstand, wenn eine blaue Gemme eingefasst ist",
+            "%1$+d%% zu Blitzwiderstand, wenn eine blaue Gemme eingefasst ist",
           "formatters": []
         }
       ]
@@ -8682,7 +8825,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d zu Chaoswiderstand",
+          "text": "%1$+d%% zu Chaoswiderstand",
           "formatters": []
         }
       ]
@@ -8692,7 +8835,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d zu allen maximalen Widerständen",
+          "text": "%1$+d%% zu allen maximalen Widerständen",
           "formatters": []
         }
       ]
@@ -8702,7 +8845,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d zu allen maximalen Elementarwiderständen",
+          "text": "%1$+d%% zu allen maximalen Elementarwiderständen",
           "formatters": []
         }
       ]
@@ -8712,12 +8855,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Fluchwirkung auf Euch",
+          "text": "%1%%% verstärkte Wirkung von Flüchen auf Euch",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerte Fluchwirkung auf Euch",
+          "text": "%1%%% verringerte Wirkung von Flüchen auf Euch",
           "formatters": [
             {
               "id": "negate",
@@ -8752,12 +8895,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Unterkühlen-Wirkung auf Euch",
+          "text": "%1%%% verstärkte Unterkühlungswirkung auf Euch",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerte Unterkühlen-Wirkung auf Euch",
+          "text": "%1%%% verringerte Unterkühlungswirkung auf Euch",
           "formatters": [
             {
               "id": "negate",
@@ -10075,7 +10218,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Stellt beim Blocken %1% Leben wieder her",
+          "text": "Stellt %1% Leben wieder her, wenn Ihr blockt",
           "formatters": []
         }
       ]
@@ -10938,13 +11081,13 @@
         {
           "matchers": [1],
           "text":
-            "Bei maximaler Anzahl Raserei-Ladungen verketten Fertigkeiten ein zusätzliches Mal",
+            "Während des Maximums an Raserei-Ladungen verketten sich Fertigkeiten ein zusätzliches Mal",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
           "text":
-            "Bei maximaler Anzahl Raserei-Ladungen verketten Fertigkeiten %1% zusätzliche Male",
+            "Während des Maximums an Raserei-Ladungen verketten sich Fertigkeiten %1% zusätzliche Male",
           "formatters": []
         }
       ]
@@ -11357,12 +11500,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verlängerte Entzündungsdauer bei Gegnern",
+          "text": "%1%%% verlängerte Brenndauer bei Gegnern",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verkürzte Entzündungsdauer bei Gegnern",
+          "text": "%1%%% verkürzte Brenndauer bei Gegnern",
           "formatters": [
             {
               "id": "negate",
@@ -11621,12 +11764,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verlängerte Entzündungsdauer bei Euch",
+          "text": "%1%%% verlängerte Brenndauer bei Euch",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verkürzte Entzündungsdauer bei Euch",
+          "text": "%1%%% verkürzte Brenndauer bei Euch",
           "formatters": [
             {
               "id": "negate",
@@ -12404,6 +12547,16 @@
         }
       ]
     },
+    "local_no_attribute_requirements": {
+      "stats": ["local_no_attribute_requirements"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Hat keine Attributanforderungen",
+          "formatters": []
+        }
+      ]
+    },
     "local_strength_requirement_+": {
       "stats": ["local_strength_requirement_+"],
       "translations": [
@@ -12444,12 +12597,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Menge an Fassungen",
+          "text": "%1%%% erhöhte Anzahl an Fassungen",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerte Menge an Fassungen",
+          "text": "%1%%% verringerte Anzahl an Fassungen",
           "formatters": [
             {
               "id": "negate",
@@ -12677,7 +12830,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Erhaltet %1%%% des physischen Schadens als zusätzlichen Feuerschaden",
+            "Erhaltet %1%%% des physischen Schadens als extra Feuerschaden",
           "formatters": []
         }
       ]
@@ -12688,7 +12841,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Erhaltet %1%%% des physischen Schadens als zusätzlichen Kälteschaden",
+            "Erhaltet %1%%% des physischen Schadens als extra Kälteschaden",
           "formatters": []
         }
       ]
@@ -12699,7 +12852,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Erhaltet %1%%% des physischen Schadens als zusätzlichen Blitzschaden",
+            "Erhaltet %1%%% des physischen Schadens als extra Blitzschaden",
           "formatters": []
         }
       ]
@@ -12710,7 +12863,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Erhaltet %1%%% des physischen Schadens als zusätzlichen Chaosschaden",
+            "Erhaltet %1%%% des physischen Schadens als extra Chaosschaden",
           "formatters": []
         }
       ]
@@ -12720,8 +12873,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Erhaltet %1%%% des Blitzschadens als zusätzlichen Feuerschaden",
+          "text": "Erhaltet %1%%% des Blitzschadens als extra Feuerschaden",
           "formatters": []
         }
       ]
@@ -12731,8 +12883,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Erhaltet %1%%% des Blitzschadens als zusätzlichenKälteschaden",
+          "text": "Erhaltet %1%%% des Blitzschadens als extra Kälteschaden",
           "formatters": []
         }
       ]
@@ -12742,8 +12893,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Erhaltet %1%%% des Blitzschadens als zusätzlichen Chaosschaden",
+          "text": "Erhaltet %1%%% des Blitzschadens als extra Chaosschaden",
           "formatters": []
         }
       ]
@@ -12753,8 +12903,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Erhaltet %1%%% des Kälteschadens als zusätzlichen Feuerschaden",
+          "text": "Erhaltet %1%%% des Kälteschadens als extra Feuerschaden",
           "formatters": []
         }
       ]
@@ -12764,8 +12913,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Erhaltet %1%%% des Kälteschadens als zusätzlichen Chaosschaden",
+          "text": "Erhaltet %1%%% des Kälteschadens als extra Chaosschaden",
           "formatters": []
         }
       ]
@@ -12775,8 +12923,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Erhaltet %1%%% des Feuerschadens als zusätzlichen Chaosschaden",
+          "text": "Erhaltet %1%%% des Feuerschadens als extra Chaosschaden",
           "formatters": []
         }
       ]
@@ -12786,8 +12933,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Erhaltet %1%%% des Elementarschadens als zusätzlichenChaosschaden",
+          "text": "Erhaltet %1%%% des Elementarschadens als extra Chaosschaden",
           "formatters": []
         }
       ]
@@ -13591,12 +13737,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Rüstung vom getragenen Schild",
+          "text": "%1%%% erhöhte Rüstung vom ausgerüsteten Schild",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerte Rüstung vom getragenen Schild",
+          "text": "%1%%% verringerte Rüstung vom ausgerüsteten Schild",
           "formatters": [
             {
               "id": "negate",
@@ -14059,6 +14205,11 @@
           "matchers": [[1, 99], 0],
           "text": "%1%%% Chance auf Einfrieren",
           "formatters": [
+            ["canonical_line"],
+            {
+              "id": "canonical_stat",
+              "arg": 0
+            },
             {
               "id": "reminderstring",
               "arg": "ReminderTextFreeze"
@@ -14799,7 +14950,7 @@
         {
           "matchers": [[1, 99]],
           "text":
-            "%1%%% Chance, beim Blocken eine Widerstands-Ladung zu erhalten",
+            "%1%%% Chance eine Widerstands-Ladung zu erhalten, wenn Ihr blockt",
           "formatters": []
         },
         {
@@ -14865,7 +15016,8 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "%1%%% Chance, beim Blocken eine Energie-Ladung zu erhalten",
+          "text":
+            "%1%%% Chance eine Energie-Ladung zu erhalten, wenn Ihr blockt",
           "formatters": []
         },
         {
@@ -15039,7 +15191,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Aurenwirkung auf Euch",
+          "text": "%1%%% verstärkte Wirkung von Auren auf Euch",
           "formatters": []
         }
       ]
@@ -15049,7 +15201,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Aurenwirkung auf Euren Kreaturen",
+          "text": "%1%%% verstärkte Wirkung von Auren auf Euren Kreaturen",
           "formatters": []
         }
       ]
@@ -15096,7 +15248,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Wirkung von unterkühltem Boden bei Euch",
+          "text": "%1%%% verstärkte Wirkung von unterkühltem Boden auf Euch",
           "formatters": [
             {
               "id": "reminderstring",
@@ -15106,7 +15258,7 @@
         },
         {
           "matchers": [[-99, -1]],
-          "text": "%1%%% verringerte Wirkung von unterkühltem Boden bei Euch",
+          "text": "%1%%% verringerte Wirkung von unterkühltem Boden auf Euch",
           "formatters": [
             {
               "id": "negate",
@@ -15135,12 +15287,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Wirkung von brennendem Boden bei Euch",
+          "text": "%1%%% verstärkte Wirkung von brennendem Boden auf Euch",
           "formatters": []
         },
         {
           "matchers": [[-99, -1]],
-          "text": "%1%%% verringerte Wirkung von brennendem Boden bei Euch",
+          "text": "%1%%% verringerte Wirkung von brennendem Boden auf Euch",
           "formatters": [
             {
               "id": "negate",
@@ -15160,12 +15312,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Wirkung von schockendem Boden bei Euch",
+          "text": "%1%%% verstärkte Wirkung von schockendem Boden auf Euch",
           "formatters": []
         },
         {
           "matchers": [[-99, -1]],
-          "text": "%1%%% verringerte Wirkung von schockendem Boden bei Euch",
+          "text": "%1%%% verringerte Wirkung von schockendem Boden auf Euch",
           "formatters": [
             {
               "id": "negate",
@@ -15185,12 +15337,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Wirkung von entweihtem Boden bei Euch",
+          "text": "%1%%% verstärkte Wirkung von entweihtem Boden auf Euch",
           "formatters": []
         },
         {
           "matchers": [[-99, -1]],
-          "text": "%1%%% verringerte Wirkung von entweihtem Boden bei Euch",
+          "text": "%1%%% verringerte Wirkung von entweihtem Boden auf Euch",
           "formatters": [
             {
               "id": "negate",
@@ -15491,7 +15643,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Erhaltet %1%%% des maximalen Manas als zusätzlichen maximalen Energieschild",
+            "Erhaltet %1%%% des maximalen Manas als extra maximalen Energieschild",
           "formatters": []
         }
       ]
@@ -16621,7 +16773,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Dauer auf Verstärken",
+          "text": "%1%%% verstärkte Dauer von Verstärken",
           "formatters": [
             {
               "id": "reminderstring",
@@ -16631,7 +16783,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verkürzte Dauer auf Verstärken",
+          "text": "%1%%% verkürzte Dauer von Verstärken",
           "formatters": [
             {
               "id": "negate",
@@ -17082,6 +17234,16 @@
         {
           "matchers": [1],
           "text": "Schreine sind von der Dunkelheit verderbt",
+          "formatters": []
+        }
+      ]
+    },
+    "map_spawn_harbingers": {
+      "stats": ["map_spawn_harbingers"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Geheimnisvolle Vorboten durchstreifen Wraeclast und Oriath",
           "formatters": []
         }
       ]
@@ -17539,7 +17701,7 @@
         },
         {
           "matchers": [[100, "#"]],
-          "text": "Kein Lebensraub bei Monstern",
+          "text": "Kein Lebensraub bei Monstern möglich",
           "formatters": []
         }
       ]
@@ -17554,7 +17716,7 @@
         },
         {
           "matchers": [[100, "#"]],
-          "text": "Kein Manaraub bei Monstern",
+          "text": "Kein Manaraub bei Monstern möglich",
           "formatters": []
         }
       ]
@@ -18568,7 +18730,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Verursacht Blutung bei Treffer",
+          "text": "Verursacht Bluten bei Treffer",
           "formatters": [
             {
               "id": "reminderstring",
@@ -18583,7 +18745,22 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "25%% Chance, bei Treffer Blutung zu verursachen",
+          "text": "25%% Chance, bei Treffer Bluten zu verursachen",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        }
+      ]
+    },
+    "local_chance_to_bleed_on_hit_50%": {
+      "stats": ["local_chance_to_bleed_on_hit_50%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "50%% Chance, bei Treffer Bluten zu verursachen",
           "formatters": [
             {
               "id": "reminderstring",
@@ -18598,7 +18775,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1%%% Chance, bei Treffer Blutung zu verursachen",
+          "text": "%1%%% Chance, bei Treffer Bluten zu verursachen",
           "formatters": [
             {
               "id": "reminderstring",
@@ -18613,7 +18790,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Verursacht Blutung, wenn Ihr Gegner betäubt",
+          "text": "Verursacht Bluten, wenn Ihr Gegner betäubt",
           "formatters": [
             {
               "id": "reminderstring",
@@ -18629,7 +18806,7 @@
         {
           "matchers": [[1, 99]],
           "text":
-            "Kritische Nahkampfangriffe haben %1%%% Chance, Blutung zu verursachen",
+            "Kritische Nahkampfangriffe haben %1%%% Chance, Bluten zu verursachen",
           "formatters": [
             {
               "id": "reminderstring",
@@ -18639,7 +18816,7 @@
         },
         {
           "matchers": [[100, "#"]],
-          "text": "Kritische Nahkampfangriffe verursachen Blutung",
+          "text": "Kritische Nahkampfangriffe verursachen Bluten",
           "formatters": [
             {
               "id": "reminderstring",
@@ -18654,7 +18831,7 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "Nahkampfangriffe haben %1%%% Chance, Blutung zu verursachen",
+          "text": "Nahkampfangriffe haben %1%%% Chance, Bluten zu verursachen",
           "formatters": [
             {
               "id": "reminderstring",
@@ -18664,7 +18841,7 @@
         },
         {
           "matchers": [[100, "#"]],
-          "text": "Nahkampfangriffe verursachen Blutung",
+          "text": "Nahkampfangriffe verursachen Bluten",
           "formatters": [
             {
               "id": "reminderstring",
@@ -18679,7 +18856,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Bogenangriffe haben %1%%% Chance, Blutung zu verursachen",
+          "text": "Bogenangriffe haben %1%%% Chance, Bluten zu verursachen",
           "formatters": [
             {
               "id": "reminderstring",
@@ -18689,7 +18866,7 @@
         },
         {
           "matchers": [100],
-          "text": "Bogenangriffe verursachen Blutung",
+          "text": "Bogenangriffe verursachen Bluten",
           "formatters": [
             {
               "id": "reminderstring",
@@ -18708,7 +18885,7 @@
       "translations": [
         {
           "matchers": [[1, 99], 0, 0],
-          "text": "Angriffe haben %1%%% Chance, Blutung zu verursachen",
+          "text": "Angriffe haben %1%%% Chance, Bluten zu verursachen",
           "formatters": [
             {
               "id": "reminderstring",
@@ -18718,7 +18895,7 @@
         },
         {
           "matchers": [[100, "#"], 0, 0],
-          "text": "Angriffe verursachen Blutung",
+          "text": "Angriffe verursachen Bluten",
           "formatters": [
             {
               "id": "reminderstring",
@@ -18728,7 +18905,7 @@
         },
         {
           "matchers": ["#", "#", 0],
-          "text": "Angriffe verursachen Blutung",
+          "text": "Angriffe verursachen Bluten",
           "formatters": [
             {
               "id": "reminderstring",
@@ -18738,7 +18915,7 @@
         },
         {
           "matchers": ["#", "#", "#"],
-          "text": "Angriffe können keine Blutung verursachen",
+          "text": "Angriffe können kein Bluten verursachen",
           "formatters": []
         }
       ]
@@ -18861,7 +19038,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Ihr habt Schemenform während maximaler Anzahl 'Raserei-Ladungen'",
+            "Ihr habt Schemenform während des Maximums an Raserei-Ladungen",
           "formatters": [
             {
               "id": "reminderstring",
@@ -19533,6 +19710,16 @@
         {
           "matchers": ["#"],
           "text": "Entzündete Gegner brennen %1%%% schneller",
+          "formatters": []
+        }
+      ]
+    },
+    "ignite_slower_burn_%": {
+      "stats": ["ignite_slower_burn_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Entzündete Gegner brennen %1%%% langsamer",
           "formatters": []
         }
       ]
@@ -20304,7 +20491,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Regeneriert %1%%% des Lebens pro Sekunde und pro Raserei-Stapel",
+            "Regeneriert %1%%% des Lebens pro Sekunde und pro Raserei-Ladung",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -20558,7 +20745,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Rechter Ringfinger: %1$+d zu maximalen Mana",
+          "text": "Rechter Ringfinger: %1$+d zu maximalem Mana",
           "formatters": []
         }
       ]
@@ -20616,7 +20803,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Linker Ringfinger: %1$+d zu maximalen Mana",
+          "text": "Linker Ringfinger: %1$+d zu maximalem Mana",
           "formatters": []
         }
       ]
@@ -20626,7 +20813,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Linker Ringfinger: %1$+d zu Energieschild",
+          "text": "Linker Ringfinger: %1$+d zu maximalem Energieschild",
           "formatters": []
         }
       ]
@@ -21182,7 +21369,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Gegner im Umkreis haben %1%%% verstärkte Fluchwirkung auf sich selbst",
+            "Gegner im Umkreis haben %1%%% verstärkte Wirkung von Flüchen auf sich selbst",
           "formatters": []
         }
       ]
@@ -21457,7 +21644,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "+%1% zu maximalen Leben pro roter Fassung",
+          "text": "+%1% zu maximalem Leben pro roter Fassung",
           "formatters": []
         }
       ]
@@ -21500,7 +21687,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "+%1% zu maximalen Mana pro grüner Fassung",
+          "text": "+%1% zu maximalem Mana pro grüner Fassung",
           "formatters": []
         }
       ]
@@ -21522,7 +21709,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "+%1%%% zu globalen Multiplikator auf kritischen Treffer pro grüner Fassung",
+            "+%1%%% zu globalem Multiplikator auf kritischen Treffer pro grüner Fassung",
           "formatters": []
         }
       ]
@@ -21532,7 +21719,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "+%1% zu maximalen Energieschild pro blauer Fassung",
+          "text": "+%1% zu maximalem Energieschild pro blauer Fassung",
           "formatters": []
         }
       ]
@@ -21676,7 +21863,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Verliert %1%%% Eures Energieschilds beim Blocken",
+          "text": "Verliert %1%%% Eures Energieschilds, wenn Ihr blockt",
           "formatters": []
         }
       ]
@@ -21686,7 +21873,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Raubt Leben entsprechend %1%%% Eurer Rüstung beim Blocken",
+          "text":
+            "Raubt Leben entsprechend %1%%% Eurer Rüstung, wenn Ihr blockt",
           "formatters": [
             {
               "id": "reminderstring",
@@ -21931,28 +22119,6 @@
         }
       ]
     },
-    "item_rarity_+%_while_using_flask": {
-      "stats": ["item_rarity_+%_while_using_flask"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Eure Fläschchen gewähren %1%%% erhöhte Seltenheit gefundener Gegenstände während Fläschchenwirkung",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "Eure Fläschchen gewähren %1%%% verringerte Seltenheit gefundener Gegenstände während Fläschchenwirkung",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "elemental_damage_with_attack_skills_+%_while_using_flask": {
       "stats": ["elemental_damage_with_attack_skills_+%_while_using_flask"],
       "translations": [
@@ -22022,7 +22188,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d zu maximalen Leben pro 10 Stufen",
+          "text": "%1$+d zu maximalem Leben pro 10 Stufen",
           "formatters": []
         }
       ]
@@ -22498,7 +22664,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Verursacht keinen Schaden (Feuer ausgenommen)",
+          "text": "Verursacht keinen Schaden (Feuerschaden ausgenommen)",
           "formatters": []
         }
       ]
@@ -22755,6 +22921,17 @@
         }
       ]
     },
+    "damage_vs_enemies_on_low_life_+%": {
+      "stats": ["damage_vs_enemies_on_low_life_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% verstärkter Schaden mit Treffern gegen Gegner mit niedrigem Leben",
+          "formatters": []
+        }
+      ]
+    },
     "damage_+%_vs_enemies_on_low_life_per_frenzy_charge": {
       "stats": ["damage_+%_vs_enemies_on_low_life_per_frenzy_charge"],
       "translations": [
@@ -22964,12 +23141,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Aurenwirkung die Ihr zaubert",
+          "text": "%1%%% verstärkte Wirkung von Auren die Ihr zaubert",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerte Aurenwirkung die Ihr zaubert",
+          "text": "%1%%% verringerte Wirkung von Auren die Ihr zaubert",
           "formatters": [
             {
               "id": "negate",
@@ -23070,6 +23247,7 @@
           "matchers": [["#", -1]],
           "text": "%1%%% weniger kritische Trefferchance",
           "formatters": [
+            ["canonical_line"],
             {
               "id": "negate",
               "arg": 1
@@ -23161,7 +23339,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Regeneriert Leben entsprechend %1%%% Eurer Rüstung im Verlauf 1 Sekunde bei Block",
+            "Regeneriert Leben entsprechend %1%%% Eurer Rüstung im Verlauf 1 Sekunde, wenn Ihr blockt",
           "formatters": []
         }
       ]
@@ -23638,7 +23816,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Euer Kälteschaden kann entzünden, aber weder unterkühlen noch einfrieren",
+            "Euer Kälteschaden kann entzünden, aber nicht unterkühlen oder einfrieren",
           "formatters": [
             {
               "id": "reminderstring",
@@ -23953,17 +24131,6 @@
         }
       ]
     },
-    "flask_minion_heal_%": {
-      "stats": ["flask_minion_heal_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Eure Fläschchen gewähren %1%%% der Lebenswiederherstellung den Kreaturen",
-          "formatters": []
-        }
-      ]
-    },
     "minion_block_%": {
       "stats": ["minion_block_%"],
       "translations": [
@@ -24211,7 +24378,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Erhaltet %1%%% des physischen Schadens als zusätzlichen Chaosschaden während Fläschchenwirkung",
+            "Erhaltet %1%%% des physischen Schadens als extra Chaosschaden während Fläschchenwirkung",
           "formatters": []
         }
       ]
@@ -24248,7 +24415,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Gagnez %1%%% des Dégâts Élémentaire comme Dégâts de Chaos pendant l'effet",
+            "Erhaltet %1%%% des Elementarschadens als extra Chaosschaden während Fläschchenwirkung",
           "formatters": []
         }
       ]
@@ -24293,33 +24460,16 @@
         }
       ]
     },
-    "chance_to_freeze_%_while_using_flask": {
-      "stats": ["chance_to_freeze_%_while_using_flask"],
+    "chance_to_ignite_%_while_using_flask": {
+      "stats": ["chance_to_ignite_%_while_using_flask"],
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Euer Fläschchen gewähren %1%%% Chance auf Einfrierung während Fläschchenwirkung",
+          "text": "%1%%% Chance auf Entzünden während Fläschchenwirkung",
           "formatters": [
             {
               "id": "reminderstring",
-              "arg": "ReminderTextFreeze"
-            }
-          ]
-        }
-      ]
-    },
-    "chance_to_shock_%_while_using_flask": {
-      "stats": ["chance_to_shock_%_while_using_flask"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Euer Fläschchen gewähren %1%%% Chance auf Schocken während Fläschchenwirkung",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextShock"
+              "arg": "ReminderTextIgnite"
             }
           ]
         }
@@ -24457,7 +24607,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Erhaltet %1%%% des physischen Bogenschadens als zusätzlichen Schaden eines Elements",
+            "Erhaltet %1%%% des physischen Bogenschadens als extra Schaden eines Elements",
           "formatters": []
         }
       ]
@@ -24468,7 +24618,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Erhaltet %1%%% des physischen Bogenschadens als zusätzlichen Schaden eines zufälligen Elements",
+            "Erhaltet %1%%% des physischen Bogenschadens als extra Schaden eines zufälligen Elements",
           "formatters": []
         }
       ]
@@ -24987,13 +25137,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Gegner denen Ihr Blutung zufügt haben %1%%% erhöhte Bewegungsgeschwindigkeit",
+            "Gegner, bei denen Ihr Bluten verursacht, haben %1%%% erhöhte Bewegungsgeschwindigkeit",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Gegner denen Ihr Blutung zufügt haben %1%%% verringerte Bewegungsgeschwindigkeit",
+            "Gegner, bei denen Ihr Bluten verursacht, haben %1%%% verringerte Bewegungsgeschwindigkeit",
           "formatters": [
             {
               "id": "negate",
@@ -26328,7 +26478,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Stellt beim Blocken %1%%% Eures maximalen Lebens wieder her",
+          "text":
+            "Stellt %1%%% Eures maximalen Lebens wieder her, wenn Ihr blockt",
           "formatters": []
         }
       ]
@@ -27301,7 +27452,7 @@
         {
           "matchers": ["#"],
           "text":
-            "%1% verkürzte Einfrierungs- und Unterkühlungsdauer pro %1% zugewiesener Intelligenz im Radius",
+            "1%% verkürzte Einfrierungs- und Unterkühlungsdauer pro %1% zugewiesener Intelligenz im Radius",
           "formatters": []
         }
       ]
@@ -27492,7 +27643,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Verstärken-Dauer wird verlängert um 1%% pro %1$d zugewiesener Intelligenz im Radius",
+            "Dauer von Verstärken wird verlängert um 1%% pro %1$d zugewiesener Intelligenz im Radius",
           "formatters": []
         }
       ]
@@ -27734,12 +27885,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Schaden mit Blutung",
+          "text": "%1%%% verstärkter Schaden mit Bluten",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerter Schaden mit Blutung",
+          "text": "%1%%% verringerter Schaden mit Bluten",
           "formatters": []
         }
       ]
@@ -27945,13 +28096,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Gewährt %1%%% erhöhte Fläschchenfüllungen während Fläschchennutzung",
+            "Gewährt %1%%% erhöhte Fläschchenfüllungen während Fläschchenwirkung",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Gewährt %1%%% verringerte Fläschchenfüllungen während Fläschchennutzung",
+            "Gewährt %1%%% verringerte Fläschchenfüllungen während Fläschchenwirkung",
           "formatters": [
             {
               "id": "negate",
@@ -27967,13 +28118,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% erhöhte Manaregenerations-Rate während Fläschchennutzung",
+            "%1%%% erhöhte Manaregenerations-Rate während Fläschchenwirkung",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "%1%%% verringerte Manaregenerations-Rate während Fläschchennutzung",
+            "%1%%% verringerte Manaregenerations-Rate während Fläschchenwirkung",
           "formatters": [
             {
               "id": "negate",
@@ -28000,13 +28151,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% erhöhte Bewegungsgeschwindigkeit während Fläschchennutzung",
+            "%1%%% erhöhte Bewegungsgeschwindigkeit während Fläschchenwirkung",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "%1%%% verringerte Bewegungsgeschwindigkeit während Fläschchennutzung",
+            "%1%%% verringerte Bewegungsgeschwindigkeit während Fläschchenwirkung",
           "formatters": [
             {
               "id": "negate",
@@ -28065,7 +28216,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Ihr erleidet keinen zusätzlichen Schaden bei Bewegung während Ihr blutet",
+            "Ihr erleidet keinen zusätzlichen Schaden bei Bewegung, während Ihr blutet",
           "formatters": [
             {
               "id": "reminderstring",
@@ -28093,7 +28244,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Ihr könnt nicht weiter bis zur Basisgeschwindigkeit verlangsamt werden",
+            "Ihr könnt nicht unter Eure Basisgeschwindigkeit verlangsamt werden",
           "formatters": []
         }
       ]
@@ -28104,7 +28255,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Bewegungsgeschwindigkeit kann nicht weiter bis zum Basiswert modifiziert werden",
+            "Bewegungsgeschwindigkeit kann nicht unter den Basiswert modifiziert werden",
           "formatters": []
         }
       ]
@@ -28275,7 +28426,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Gewährt %1%%% des physischen Schadens als zusätzlichen Feuerschaden bei kürzlicher Tötung",
+            "Gewährt %1%%% des physischen Schadens als extra Feuerschaden bei kürzlicher Tötung",
           "formatters": [
             {
               "id": "reminderstring",
@@ -28408,7 +28559,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Rüstung und Ausweichwert bei niedrigem Leben",
+          "text":
+            "%1%%% verstärkte Rüstung und Ausweichwert bei niedrigem Leben",
           "formatters": [
             {
               "id": "reminderstring",
@@ -29122,6 +29274,30 @@
         }
       ]
     },
+    "local_unique_jewel_with_50_int_in_radius_summon_X_melee_skeletons_as_mage_skeletons": {
+      "stats": [
+        "local_unique_jewel_with_50_int_in_radius_summon_X_melee_skeletons_as_mage_skeletons"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Bei mindestens 40 Intelligenz im Radius: 'Skelett beschwören' erlaubt Kontrolle von bis zu %1% Skelettmagiern",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_melee_skeletons_to_summon_as_mage_skeletons": {
+      "stats": ["number_of_melee_skeletons_to_summon_as_mage_skeletons"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "'Skelett beschwören' kann bis zu %1% Skelettmagier beschwören",
+          "formatters": []
+        }
+      ]
+    },
     "local_unique_jewel_vigilant_strike_fortifies_nearby_allies_for_x_seconds_with_50_str_in_radius": {
       "stats": [
         "local_unique_jewel_vigilant_strike_fortifies_nearby_allies_for_x_seconds_with_50_str_in_radius"
@@ -29693,7 +29869,7 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "%1%%% Chance, blutende Gegner mit Treffer zu vergiften",
+          "text": "%1%%% Chance, blutende Gegner bei Treffer zu vergiften",
           "formatters": [
             {
               "id": "reminderstring",
@@ -29943,7 +30119,7 @@
         {
           "matchers": [[1, 99]],
           "text":
-            "%1%%% Chance, Elementare Beeinträchtigungen während Fläschchennutzung zu vermeiden",
+            "%1%%% Chance, Elementare Beeinträchtigungen während Fläschchenwirkung zu vermeiden",
           "formatters": [
             {
               "id": "reminderstring",
@@ -29954,7 +30130,7 @@
         {
           "matchers": [[100, "#"]],
           "text":
-            "Kann keine elementaren Beeinträchtigungen während Fläschchennutzung erhalten",
+            "Kann keine elementaren Beeinträchtigungen während Fläschchenwirkung erhalten",
           "formatters": [
             {
               "id": "reminderstring",
@@ -29970,13 +30146,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% erhöhte Angriffsgeschwindigkeit während Fläschchennutzung",
+            "%1%%% erhöhte Angriffsgeschwindigkeit während Fläschchenwirkung",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "%1%%% verringerte Angriffsgeschwindigkeit während Fläschchennutzung",
+            "%1%%% verringerte Angriffsgeschwindigkeit während Fläschchenwirkung",
           "formatters": [
             {
               "id": "negate",
@@ -29991,7 +30167,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d%% zu Chaoswiderstand während Fläschchennutzung",
+          "text": "%1$+d%% zu Chaoswiderstand während Fläschchenwirkung",
           "formatters": []
         }
       ]
@@ -30002,7 +30178,7 @@
         {
           "matchers": [[1, 99]],
           "text":
-            "%1%%% Chance, bei Treffer zu vergiften während Fläschchennutzung",
+            "%1%%% Chance, bei Treffer zu vergiften während Fläschchenwirkung",
           "formatters": [
             {
               "id": "reminderstring",
@@ -30012,7 +30188,7 @@
         },
         {
           "matchers": [[100, "#"]],
-          "text": "Bei Treffer immer vergiften während Fläschchennutzung",
+          "text": "Bei Treffer immer vergiften während Fläschchenwirkung",
           "formatters": [
             {
               "id": "reminderstring",
@@ -30243,7 +30419,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Gewährt %1%%% des physischen Schadens als zusätzlichen Schaden jedes Elements, wenn Ihr kürzlich von Zauberschaden getroffen wurdet",
+            "Gewährt %1%%% des physischen Schadens als extra Schaden jedes Elements, wenn Ihr kürzlich von Zauberschaden getroffen wurdet",
           "formatters": [
             {
               "id": "reminderstring",
@@ -31493,7 +31669,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Entfernt Blutung bei Fläschchennutzung",
+          "text": "Entfernt Bluten bei Fläschchennutzung",
           "formatters": []
         }
       ]
@@ -31986,7 +32162,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Durchbohrende Angriffe verursachen Blutung",
+          "text": "Durchbohrende Angriffe verursachen Bluten",
           "formatters": [
             {
               "id": "reminderstring",
@@ -32068,7 +32244,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Erhaltet Seelenfresser während Fläschchennutzung",
+          "text": "Erhaltet Seelenfresser während Fläschchenwirkung",
           "formatters": [
             {
               "id": "reminderstring",
@@ -32755,13 +32931,26 @@
         {
           "matchers": ["#"],
           "text":
-            "%1$+d%% kritische Trefferchance während maximaler Anzahl an Energie-Ladungen",
+            "%1$+d%% kritische Trefferchance während des Maximums an Energie-Ladungen",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "physical_damage_%_to_gain_as_chaos_while_at_maximum_power_charges": {
+      "stats": [
+        "physical_damage_%_to_gain_as_chaos_while_at_maximum_power_charges"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Gewährt %1%%% des physischen Schadens als extra Chaosschaden während des Maximums an Energie-Ladungen",
+          "formatters": []
         }
       ]
     },
@@ -32888,7 +33077,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Schaden gegen blutende Gegner",
+          "text":
+            "%1%%% verstärkter Schaden mit Treffern und Beeinträchtigungen gegen blutende Gegner",
           "formatters": [
             {
               "id": "reminderstring",
@@ -32898,7 +33088,8 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerter Schaden gegen blutende Gegner",
+          "text":
+            "%1%%% verringerter Schaden mit Treffern und Beeinträchtigungen gegen blutende Gegner",
           "formatters": [
             {
               "id": "negate",
@@ -34294,13 +34485,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% verstärkte Wirkung Eurer Auren (ausgenommen Fluch-Auren)",
+            "%1%%% verstärkte Wirkung Eurer Auren (Fluch-Auren ausgenommen)",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "%1%%% verringerte Wirkung Eurer Auren (ausgenommen Fluch-Auren)",
+            "%1%%% verringerte Wirkung Eurer Auren (Fluch-Auren ausgenommen)",
           "formatters": [
             {
               "id": "negate",
@@ -34471,13 +34662,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% schnellerer Beginn der Energieschild-Aufladung während Fläschchennutzung",
+            "%1%%% schnellerer Beginn der Energieschild-Aufladung während Fläschchenwirkung",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "%1%%% langsamerer Beginn der Energieschild-Aufladung während Fläschchennutzung",
+            "%1%%% langsamerer Beginn der Energieschild-Aufladung während Fläschchenwirkung",
           "formatters": [
             {
               "id": "negate",
@@ -34513,13 +34704,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% erhöhte Energieschild-Aufladungsrate während Fläschchennutzung",
+            "%1%%% erhöhte Energieschild-Aufladungsrate während Fläschchenwirkung",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "%1%%% verringerte Energieschild-Aufladungsrate während Fläschchennutzung",
+            "%1%%% verringerte Energieschild-Aufladungsrate während Fläschchenwirkung",
           "formatters": [
             {
               "id": "negate",
@@ -34903,7 +35094,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Verliert sämtliche Energie-Ladungen beim Erreichen derer maximalen Anzahl",
+            "Verliert sämtliche Energie-Ladungen beim Erreichen der maximalen Anzahl Energie-Ladungen",
           "formatters": []
         }
       ]
@@ -37411,6 +37602,26 @@
         }
       ]
     },
+    "charged_dash_damage_+%": {
+      "stats": ["charged_dash_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% verstärkter Schaden von 'Geladener Sprint'",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verringerter Schaden von 'Geladener Sprint'",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "earthquake_damage_+%": {
       "stats": ["earthquake_damage_+%"],
       "translations": [
@@ -37422,6 +37633,46 @@
         {
           "matchers": [["#", -1]],
           "text": "%1%%% verringerter Schaden von 'Erdbeben'",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "skeletal_chains_damage_+%": {
+      "stats": ["skeletal_chains_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% verstärkter Schaden von 'Finsterer Pakt'",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verringerter Schaden von 'Finsterer Pakt'",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "storm_burst_damage_+%": {
+      "stats": ["storm_burst_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% verstärkter Schaden von 'Sturmexplosion'",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verringerter Schaden von 'Sturmexplosion'",
           "formatters": [
             {
               "id": "negate",
@@ -37709,7 +37960,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Bei Tötung eines Gegners erhaltet Ihr für jeden Fluch auf dem Gegner\\n%1%%% des Schadens (Chaos ausgenommen) als zusätzlichen Chaosschaden für 4 Sekunden",
+            "Bei Tötung eines Gegners erhaltet Ihr für jeden Fluch auf dem Gegner\\n%1%%% des Schadens (Chaosschaden ausgenommen) als zusätzlichen Chaosschaden für 4 Sekunden",
           "formatters": []
         }
       ]
@@ -37930,7 +38181,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Gewährt Euch und Euren Verbündeten Rüstung entsprechend %1%%% Eures reservierten Lebens",
+            "Gewährt Euch und Euren Verbündeten im Umkreis Rüstung entsprechend %1%%% Eures reservierten Lebens",
           "formatters": []
         }
       ]
@@ -37943,7 +38194,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Gewährt Euch und Euren Verbündeten maximalen Energieschild entsprechend %1%%% Eures reservierten Manas",
+            "Gewährt Euch und Euren Verbündeten im Umkreis maximalen Energieschild entsprechend %1%%% Eures reservierten Manas",
           "formatters": []
         }
       ]
@@ -38302,7 +38553,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Ihr und Verbündete im Umkreis können nicht betäubt werden bei kürzlichem Blocken",
+            "Ihr und Verbündete im Umkreis können nicht betäubt werden, wenn Ihr kürzlich geblockt habt",
           "formatters": [
             {
               "id": "reminderstring",
@@ -39643,13 +39894,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Abklingzeit-Erholungsdauer von 'Brandfalle'",
+          "text": "%1%%% beschleunigte Abklingzeit von 'Brandfalle'",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% verringerte Abklingzeit-Erholungsdauer von 'Brandfalle'",
+          "text": "%1%%% verlangsamte Abklingzeit von 'Brandfalle'",
           "formatters": [
             {
               "id": "negate",
@@ -39664,14 +39914,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% erhöhte Abklingzeit-Erholungsdauer von 'Flimmerschlag'",
+          "text": "%1%%% beschleunigte Abklingzeit von 'Flimmerschlag'",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% verringerte Abklingzeit-Erholungsdauer von 'Flimmerschlag'",
+          "text": "%1%%% verlangsamte Abklingzeit von 'Flimmerschlag'",
           "formatters": [
             {
               "id": "negate",
@@ -39686,12 +39934,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Abklingzeit-Erholungsdauer von 'Blitzeis'",
+          "text": "%1%%% beschleunigte Abklingzeit von 'Blitzeis'",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerte Abklingzeit-Erholungsdauer von 'Blitzeis'",
+          "text": "%1%%% verlangsamte Abklingzeit von 'Blitzeis'",
           "formatters": [
             {
               "id": "negate",
@@ -39706,12 +39954,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Abklingzeit-Erholungsdauer von 'Sammeln'",
+          "text": "%1%%% beschleunigte Abklingzeit von 'Sammeln'",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerte Abklingzeit-Erholungsdauer von 'Sammeln'",
+          "text": "%1%%% verlangsamte Abklingzeit von 'Sammeln'",
           "formatters": [
             {
               "id": "negate",
@@ -39726,13 +39974,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Abklingzeit-Erholungsdauer von 'Bärenfalle'",
+          "text": "%1%%% beschleunigte Abklingzeit von 'Bärenfalle'",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% verringerte Abklingzeit-Erholungsdauer von 'Bärenfalle'",
+          "text": "%1%%% verlangsamte Abklingzeit von 'Bärenfalle'",
           "formatters": [
             {
               "id": "negate",
@@ -39747,13 +39994,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Abklingzeit-Erholungsdauer von 'Frostmauer'",
+          "text": "%1%%% beschleunigte Abklingzeit von 'Frostmauer'",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% verringerte Abklingzeit-Erholungsdauer von 'Frostmauer'",
+          "text": "%1%%% verlangsamte Abklingzeit von 'Frostmauer'",
           "formatters": [
             {
               "id": "negate",
@@ -39768,13 +40014,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Abklingzeit-Erholungsdauer von 'Abrechnung'",
+          "text": "%1%%% beschleunigte Abklingzeit von 'Abrechnung'",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% verringerte Abklingzeit-Erholungsdauer von 'Abrechnung'",
+          "text": "%1%%% verlangsamte Abklingzeit von 'Abrechnung'",
           "formatters": [
             {
               "id": "negate",
@@ -39789,13 +40034,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Abklingzeit-Erholungsdauer von 'Flammenspurt'",
+          "text": "%1%%% beschleunigte Abklingzeit von 'Flammenspurt'",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% verringerte Abklingzeit-Erholungsdauer von 'Flammenspurt'",
+          "text": "%1%%% verlangsamte Abklingzeit von 'Flammenspurt'",
           "formatters": [
             {
               "id": "negate",
@@ -39810,13 +40054,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Abklingzeit-Erholungsdauer von 'Entweihen'",
+          "text": "%1%%% beschleunigte Abklingzeit von 'Entweihen'",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% verringerte Abklingzeit-Erholungsdauer von 'Entweihen'",
+          "text": "%1%%% verlangsamte Abklingzeit von 'Entweihen'",
           "formatters": [
             {
               "id": "negate",
@@ -39831,14 +40074,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% erhöhte Abklingzeit-Erholungsdauer von 'Teleportpfeil'",
+          "text": "%1%%% beschleunigte Abklingzeit von 'Teleportpfeil'",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% verringerte Abklingzeit-Erholungsdauer von 'Teleportpfeil'",
+          "text": "%1%%% verlangsamte Abklingzeit von 'Teleportpfeil'",
           "formatters": [
             {
               "id": "negate",
@@ -39853,13 +40094,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Abklingzeit-Erholungsdauer von 'Klonpfeil'",
+          "text": "%1%%% beschleunigte Abklingzeit von 'Klonpfeil'",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% verringerte Abklingzeit-Erholungsdauer von 'Klonpfeil'",
+          "text": "%1%%% verlangsamte Abklingzeit von 'Klonpfeil'",
           "formatters": [
             {
               "id": "negate",
@@ -39874,13 +40114,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Abklingzeit-Erholungsdauer von 'Gegenschlag'",
+          "text": "%1%%% beschleunigte Abklingzeit von 'Gegenschlag'",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% verringerte Abklingzeit-Erholungsdauer von 'Gegenschlag'",
+          "text": "%1%%% verlangsamte Abklingzeit von 'Gegenschlag'",
           "formatters": [
             {
               "id": "negate",
@@ -39895,13 +40134,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Abklingzeit-Erholungsdauer von 'Vergeltung'",
+          "text": "%1%%% beschleunigte Abklingzeit von 'Vergeltung'",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% verringerte Abklingzeit-Erholungsdauer von 'Vergeltung'",
+          "text": "%1%%% verlangsamte Abklingzeit von 'Vergeltung'",
           "formatters": [
             {
               "id": "negate",
@@ -39916,14 +40154,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% erhöhte Abklingzeit-Erholungsdauer von 'Widerstandsschrei'",
+          "text": "%1%%% beschleunigte Abklingzeit von 'Widerstandsschrei'",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% verringerte Abklingzeit-Erholungsdauer von 'Widerstandsschrei'",
+          "text": "%1%%% verlangsamte Abklingzeit von 'Widerstandsschrei'",
           "formatters": [
             {
               "id": "negate",
@@ -39938,13 +40174,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Abklingzeit-Erholungsdauer von 'Frostbombe'",
+          "text": "%1%%% beschleunigte Abklingzeit von 'Frostbombe'",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% verringerte Abklingzeit-Erholungsdauer von 'Frostbombe'",
+          "text": "%1%%% verlangsamte Abklingzeit von 'Frostbombe'",
           "formatters": [
             {
               "id": "negate",
@@ -39959,14 +40194,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% erhöhte Abklingzeit-Erholungsdauer von 'Falle der Bekehrung'",
+          "text": "%1%%% beschleunigte Abklingzeit von 'Falle der Bekehrung'",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% verringerte Abklingzeit-Erholungsdauer von 'Falle der Bekehrung'",
+          "text": "%1%%% verlangsamte Abklingzeit von 'Falle der Bekehrung'",
           "formatters": [
             {
               "id": "negate",
@@ -39981,12 +40214,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Abklingzeit-Erholungsdauer von 'Eisfalle'",
+          "text": "%1%%% beschleunigte Abklingzeit von 'Eisfalle'",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerte Abklingzeit-Erholungsdauer von 'Eisfalle'",
+          "text": "%1%%% verlangsamte Abklingzeit von 'Eisfalle'",
           "formatters": [
             {
               "id": "negate",
@@ -40305,12 +40538,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verlängerte Dauer von 'Taktischer Schlag'",
+          "text": "%1%%% verlängerte Verstärken-Dauer von 'Taktischer Schlag'",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verkürzte Dauer von 'Taktischer Schlag'",
+          "text": "%1%%% verkürzte Verstärken-Dauer von 'Taktischer Schlag'",
           "formatters": [
             {
               "id": "negate",
@@ -41204,6 +41437,36 @@
         }
       ]
     },
+    "lightning_strike_additional_pierce": {
+      "stats": ["lightning_strike_additional_pierce"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "'Blitzschlag' durchbohrt ein zusätzliches Ziel",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "'Blitzschlag' durchbohrt %1% zusätzliche Ziele",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_trap_additional_pierce": {
+      "stats": ["lightning_trap_additional_pierce"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "'Blitzfalle' durchbohrt ein zusätzliches Ziel",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "'Blitzfalle' durchbohrt %1% zusätzliche Ziele",
+          "formatters": []
+        }
+      ]
+    },
     "burning_arrow_ignite_chance_%": {
       "stats": ["burning_arrow_ignite_chance_%"],
       "translations": [
@@ -41235,7 +41498,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Verursacht %1%%% des physischen Schadens von Brennender Pfeil als zusätzlichen Feuerschaden",
+            "Verursacht %1%%% des physischen Schadens von Brennender Pfeil als extra Feuerschaden",
           "formatters": []
         }
       ]
@@ -41246,7 +41509,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Verursacht %1%%% des physischen Schadens von Höllenschlag als zusätzlichen Feuerschaden",
+            "Verursacht %1%%% des physischen Schadens von Höllenschlag als extra Feuerschaden",
           "formatters": []
         }
       ]
@@ -41666,7 +41929,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Verursacht %1%%% des physischen Schadens von 'Frostwelle' als zusätzlichen Kälteschaden",
+            "Verursacht %1%%% des physischen Schadens von 'Frostwelle' als extra Kälteschaden",
           "formatters": []
         }
       ]
@@ -41677,7 +41940,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Verursacht %1%%% des physischen Schadens von 'Eisschlag' als zusätzlichen Kälteschaden",
+            "Verursacht %1%%% des physischen Schadens von 'Eisschlag' als extra Kälteschaden",
           "formatters": []
         }
       ]
@@ -42787,7 +43050,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Ihr könnt bei maximaler Anzahl an Widerstands-Ladungen nicht betäubt werden",
+            "Ihr könnt während des Maximums an Widerstands-Ladungen nicht betäubt werden",
           "formatters": []
         }
       ]
@@ -43274,12 +43537,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Schaden während Fläschchennutzung",
+          "text": "%1%%% verstärkter Schaden während Fläschchenwirkung",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerter Schaden während Fläschchennutzung",
+          "text": "%1%%% verringerter Schaden während Fläschchenwirkung",
           "formatters": [
             {
               "id": "negate",
@@ -43295,7 +43558,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% Chance, während Fläschchennutzung Einfrieren, Schock, Entzünden und Blutung zu vermeiden",
+            "%1%%% Chance, während Fläschchenwirkung Einfrieren, Schock, Entzünden und Bluten zu vermeiden",
           "formatters": []
         }
       ]
@@ -43306,13 +43569,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% verstärkter erlittener Elementarschaden während Fläschchennutzung",
+            "%1%%% verstärkter erlittener Elementarschaden während Fläschchenwirkung",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "%1%%% verringerter erlittener Elementarschaden während Fläschchennutzung",
+            "%1%%% verringerter erlittener Elementarschaden während Fläschchenwirkung",
           "formatters": [
             {
               "id": "negate",
@@ -44031,7 +44294,7 @@
         {
           "matchers": [[1, 99]],
           "text":
-            "%1%%% Chance, bei Zerschmettern eines Gegners geweihten Boden zu erzeugen",
+            "%1%%% Chance, beim Zerschmettern eines Gegners geweihten Boden zu erzeugen",
           "formatters": [
             {
               "id": "reminderstring",
@@ -44041,7 +44304,7 @@
         },
         {
           "matchers": [[100, "#"]],
-          "text": "Erzeugt bei Zerschmettern eines Gegners geweihten Boden",
+          "text": "Erzeugt beim Zerschmettern eines Gegners geweihten Boden",
           "formatters": [
             {
               "id": "reminderstring",
@@ -44814,7 +45077,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Ihr könnt bei maximaler Anzahl an Widerstands-Ladungen nicht geschockt werden",
+            "Ihr könnt während des Maximums an Widerstands-Ladungen nicht geschockt werden",
           "formatters": []
         }
       ]
@@ -44827,6 +45090,26 @@
           "text":
             "%1%%% erhöhte Bewegungsgeschwindigkeit bei kürzlich genutztem Kriegsschrei",
           "formatters": []
+        }
+      ]
+    },
+    "life_leech_from_attack_damage_permyriad_vs_poisoned_enemies": {
+      "stats": ["life_leech_from_attack_damage_permyriad_vs_poisoned_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% des Angriffsschadens gegen vergiftete Gegner als Leben geraubt",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
         }
       ]
     },
@@ -44919,7 +45202,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Seelenopferung gewährt %1$+d%% des physischen Schadens als zusätzlichen Chaosschaden",
+            "Seelenopferung gewährt %1$+d%% des physischen Schadens als extra Chaosschaden",
           "formatters": []
         }
       ]
@@ -45031,7 +45314,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Kreaturen erhalten %1%%% des physischen Schadens als zusätzlichen Kälteschaden",
+            "Kreaturen erhalten %1%%% des physischen Schadens als extra Kälteschaden",
           "formatters": []
         }
       ]
@@ -45433,7 +45716,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Ihr seid immun gegen Blutung",
+          "text": "Ihr seid immun gegen Bluten",
           "formatters": []
         }
       ]
@@ -45443,7 +45726,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Kann nicht von Blutung betroffen werden",
+          "text": "Kann nicht von Bluten betroffen werden",
           "formatters": []
         }
       ]
@@ -45453,12 +45736,12 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "%1%%% Chance, Blutung zu vermeiden",
+          "text": "%1%%% Chance, Bluten zu vermeiden",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "Kann nicht von Blutung betroffen werden",
+          "text": "Kann nicht von Bluten betroffen werden",
           "formatters": []
         }
       ]
@@ -45468,7 +45751,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Ihr seid während Raub immun gegen Blutung",
+          "text": "Ihr seid während Raub immun gegen Bluten",
           "formatters": []
         }
       ]
@@ -45863,13 +46146,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% mehr physischer Schaden bei maximaler Anzahl Raserei-Ladungen",
+            "%1%%% mehr physischer Schaden während des Maximums an Raserei-Ladungen",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "%1%%% weniger physischer Schaden bei maximaler Anzahl Raserei-Ladungen",
+            "%1%%% weniger physischer Schadenwährend des Maximums an Raserei-Ladungen",
           "formatters": [
             {
               "id": "negate",
@@ -45885,13 +46168,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% verstärkter erlittener physischer Schaden während maximaler Anzahl Widerstands-Ladungen",
+            "%1%%% verstärkter erlittener physischer Schaden während des Maximums an Widerstands-Ladungen",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "%1%%% verringerter erlittener physischer Schaden während maximaler Anzahl Widerstands-Ladungen",
+            "%1%%% verringerter erlittener physischer Schaden während des Maximums an Widerstands-Ladungen",
           "formatters": [
             {
               "id": "negate",
@@ -45986,7 +46269,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Erhaltet %1%%% des physischen Schadens als zusätzlichen Chaosschaden\\ngegen blutende Gegner",
+            "Erhaltet %1%%% des physischen Schadens als extra Chaosschaden\\ngegen blutende Gegner",
           "formatters": []
         }
       ]
@@ -46142,13 +46425,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Durch Euch verursachte Blutungen an verstümmelten Gegnern verursachen %1%%% mehr Schaden",
+            "Durch Euch verursachtes Bluten an verstümmelten Gegnern verursacht %1%%% mehr Schaden",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Durch Euch verursachte Blutungen an verstümmelten Gegnern verursachen %1%%% weniger Schaden",
+            "Durch Euch verursachtes Bluten an verstümmelten Gegnern verursacht %1%%% weniger Schaden",
           "formatters": [
             {
               "id": "negate",
@@ -46539,7 +46822,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Erhaltet %1%%% des physischen Schadens als zusätzlichen Feuerschaden bei kürzlicher Tötung durch Euer Totem",
+            "Erhaltet %1%%% des physischen Schadens als extra Feuerschaden bei kürzlicher Tötung durch Euer Totem",
           "formatters": [
             {
               "id": "reminderstring",
@@ -46649,7 +46932,7 @@
       "translations": [
         {
           "matchers": [1000],
-          "text": "Nahe Gegner werden bei Block unterkühlt",
+          "text": "Unterkühlt Gegner im Umkreis, wenn Ihr blockt",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -46663,7 +46946,7 @@
         },
         {
           "matchers": [[1, "#"]],
-          "text": "Nahe Gegner werden bei Block unterkühlt",
+          "text": "Unterkühlt Gegner im Umkreis, wenn Ihr blockt",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -46720,7 +47003,8 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "Fügt %1% bis %2% Feuerschaden hinzu bei kürzlichem Blocken",
+          "text":
+            "Fügt %1% bis %2% Feuerschaden hinzu, wenn Ihr kürzlich geblockt habt",
           "formatters": [
             {
               "id": "reminderstring",
@@ -46775,7 +47059,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Verursacht Blutung bei kritischem Nahkampftreffer",
+          "text": "Verursacht Bluten bei kritischem Nahkampftreffer",
           "formatters": [
             {
               "id": "reminderstring",
@@ -46840,7 +47124,7 @@
         {
           "matchers": [["#", -1]],
           "text":
-            "Gegner die Ihr schockt haben %1%%% verringerte Bewegungsgeschwindigkeit",
+            "Gegner, die Ihr schockt, haben %1%%% verringerte Bewegungsgeschwindigkeit",
           "formatters": [
             {
               "id": "negate",
@@ -46941,7 +47225,23 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Pfeile, die durchbohren, verursachen Blutung",
+          "text": "Durchbohrende Pfeile verursachen Bluten",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        }
+      ]
+    },
+    "arrows_that_pierce_chance_to_bleed_25%": {
+      "stats": ["arrows_that_pierce_chance_to_bleed_25%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Durchbohrende Pfeile haben 50%% Chance, Bluten zu verursachen",
           "formatters": [
             {
               "id": "reminderstring",
@@ -47099,6 +47399,121 @@
         }
       ]
     },
+    "projectile_attack_skill_critical_strike_chance_+%": {
+      "stats": ["projectile_attack_skill_critical_strike_chance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Projektilangriffsfertigkeiten haben %1%%% erhöhte kritische Trefferchance",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Projektilangriffsfertigkeiten haben %1%%% verringerte kritische Trefferchance",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "projectile_attacks_chance_to_bleed_on_hit_%_if_you_have_beast_minion": {
+      "stats": [
+        "projectile_attacks_chance_to_bleed_on_hit_%_if_you_have_beast_minion"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Projektilangriffe haben %1%%% Chance, Bluten zu verursachen, während Ihr über eine Biestkreatur verfügt",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        }
+      ]
+    },
+    "projectile_attacks_chance_to_maim_on_hit_%_if_you_have_beast_minion": {
+      "stats": [
+        "projectile_attacks_chance_to_maim_on_hit_%_if_you_have_beast_minion"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Projektilangriffe haben %1%%% Chance, Gegner bei Treffer zu verstümmeln, während Ihr über eine Biestkreatur verfügt",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
+        }
+      ]
+    },
+    "projectile_attacks_chance_to_poison_on_hit_%_if_you_have_beast_minion": {
+      "stats": [
+        "projectile_attacks_chance_to_poison_on_hit_%_if_you_have_beast_minion"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Projektilangriffe haben %1%%% Chance, Gegner zu vergiften, während Ihr über eine Biestkreatur verfügt",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        }
+      ]
+    },
+    "attack_minimum_added_physical_damage_if_you_have_beast_minion": {
+      "stats": [
+        "attack_minimum_added_physical_damage_if_you_have_beast_minion",
+        "attack_maximum_added_physical_damage_if_you_have_beast_minion"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Fügt Angriffen %1% bis %2% physischen Schaden hinzu, während Ihr über eine Biestkreatur verfügt",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_minimum_added_chaos_damage_if_you_have_beast_minion": {
+      "stats": [
+        "attack_minimum_added_chaos_damage_if_you_have_beast_minion",
+        "attack_maximum_added_chaos_damage_if_you_have_beast_minion"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Fügt Angriffen %1% bis %2% Chaosschaden hinzu, während Ihr über eine Biestkreatur verfügt",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_and_movement_speed_+%_if_you_have_beast_minion": {
+      "stats": ["attack_and_movement_speed_+%_if_you_have_beast_minion"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% erhöhte Angriffs- und Bewegungsgeschwindigkeit, während Ihr über eine Biestkreatur verfügt",
+          "formatters": []
+        }
+      ]
+    },
     "X_accuracy_per_2_intelligence": {
       "stats": ["X_accuracy_per_2_intelligence"],
       "translations": [
@@ -47114,7 +47529,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d Rüstung, bei kürzlichem Blocken",
+          "text": "%1$+d Rüstung, wenn Ihr kürzlich geblockt habt",
           "formatters": [
             {
               "id": "reminderstring",
@@ -47399,6 +47814,347 @@
         }
       ]
     },
+    "attack_ailment_damage_+%_while_dual_wielding": {
+      "stats": ["attack_ailment_damage_+%_while_dual_wielding"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verstärkten Schaden mit Beeinträchtigungen beim Tragen zweier Waffen",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verringerten Schaden mit Beeinträchtigungen beim Tragen zweier Waffen",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "attack_ailment_damage_+%_while_holding_shield": {
+      "stats": ["attack_ailment_damage_+%_while_holding_shield"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verstärkten Schaden mit Beeinträchtigungen beim Tragen eines Schildes",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verringerten Schaden mit Beeinträchtigungen beim Tragen eines Schildes",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "attack_ailment_damage_+%_while_wielding_axe": {
+      "stats": ["attack_ailment_damage_+%_while_wielding_axe"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verstärkten Schaden mit Beeinträchtigungen beim Tragen einer Axt",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verringerten Schaden mit Beeinträchtigungen beim Tragen einer Axt",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "attack_ailment_damage_+%_while_wielding_bow": {
+      "stats": ["attack_ailment_damage_+%_while_wielding_bow"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verstärkten Schaden mit Beeinträchtigungen beim Tragen eines Bogens",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verringerten Schaden mit Beeinträchtigungen beim Tragen eines Bogens",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "attack_ailment_damage_+%_while_wielding_claw": {
+      "stats": ["attack_ailment_damage_+%_while_wielding_claw"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verstärkten Schaden mit Beeinträchtigungen beim Tragen einer Klaue",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verringerten Schaden mit Beeinträchtigungen beim Tragen einer Klaue",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "attack_ailment_damage_+%_while_wielding_dagger": {
+      "stats": ["attack_ailment_damage_+%_while_wielding_dagger"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verstärkten Schaden mit Beeinträchtigungen beim Tragen eines Dolches",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verringerten Schaden mit Beeinträchtigungen beim Tragen eines Dolches",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "attack_ailment_damage_+%_while_wielding_mace": {
+      "stats": ["attack_ailment_damage_+%_while_wielding_mace"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verstärkten Schaden mit Beeinträchtigungen beim Tragen eines Streitkolbens",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verringerten Schaden mit Beeinträchtigungen beim Tragen eines Streitkolbens",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "attack_ailment_damage_+%_while_wielding_melee_weapon": {
+      "stats": ["attack_ailment_damage_+%_while_wielding_melee_weapon"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verstärkten Schaden mit Beeinträchtigungen beim Tragen einer Nahkampfwaffe",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verringerten Schaden mit Beeinträchtigungen beim Tragen einer Nahkampfwaffe",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "attack_ailment_damage_+%_while_wielding_one_handed_weapon": {
+      "stats": ["attack_ailment_damage_+%_while_wielding_one_handed_weapon"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verstärkten Schaden mit Beeinträchtigungen beim Tragen einer Einhandwaffe",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verringerten Schaden mit Beeinträchtigungen beim Tragen einer Einhandwaffe",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "attack_ailment_damage_+%_while_wielding_sword": {
+      "stats": ["attack_ailment_damage_+%_while_wielding_sword"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verstärkten Schaden mit Beeinträchtigungen beim Tragen eines Schwerts",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verringerten Schaden mit Beeinträchtigungen beim Tragen eines Schwerts",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "attack_ailment_damage_+%_while_wielding_two_handed_weapon": {
+      "stats": ["attack_ailment_damage_+%_while_wielding_two_handed_weapon"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verstärkten Schaden mit Beeinträchtigungen beim Tragen einer Zweihandwaffe",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Angriffsfertigkeiten verursachen %1%%% verringerten Schaden mit Beeinträchtigungen beim Tragen einer Zweihandwaffe",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
     "attack_area_of_effect_+%": {
       "stats": ["attack_area_of_effect_+%"],
       "translations": [
@@ -47565,7 +48321,23 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Angriffe verursachen Blutung beim Treffen verfluchter Ziele",
+          "text": "Angriffe verursachen Bluten beim Treffen verfluchter Ziele",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        }
+      ]
+    },
+    "attacks_chance_to_bleed_25%_vs_cursed_enemies": {
+      "stats": ["attacks_chance_to_bleed_25%_vs_cursed_enemies"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Angriffe haben 25%% Chance, beim Treffen verfluchter Gegner Bluten zu verursachen",
           "formatters": [
             {
               "id": "reminderstring",
@@ -47635,6 +48407,21 @@
         }
       ]
     },
+    "avoid_maim_%_chance": {
+      "stats": ["avoid_maim_%_chance"],
+      "translations": [
+        {
+          "matchers": [["#", 99]],
+          "text": "%1%%% Chance, Verstümmeln zu vermeiden",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Ihr könnt nicht verstümmelt werden",
+          "formatters": []
+        }
+      ]
+    },
     "avoid_projectiles_while_phasing_%_chance": {
       "stats": ["avoid_projectiles_while_phasing_%_chance"],
       "translations": [
@@ -47656,6 +48443,17 @@
         {
           "matchers": [[100, "#"]],
           "text": "Kann nicht geschockt werden, solange unterkühlt",
+          "formatters": []
+        }
+      ]
+    },
+    "avoid_stun_35%_per_active_herald": {
+      "stats": ["avoid_stun_35%_per_active_herald"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "35%% Chance, Betäuben zu vermeiden, für jede Vorboten-Fertigkeit, die auf Euch wirkt",
           "formatters": []
         }
       ]
@@ -47715,6 +48513,26 @@
         }
       ]
     },
+    "base_cooldown_speed_+%": {
+      "stats": ["base_cooldown_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% beschleunigte Abklingzeit",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verlangsamte Abklingzeit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "base_deal_no_chaos_damage": {
       "stats": ["base_deal_no_chaos_damage"],
       "translations": [
@@ -47761,7 +48579,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Ihr könnt bei einem Gegner bis zu %1% Blutungen verursachen\\nEure verursachte Blutung fügt Gegnern bei Bewegung keinen zusätzlichen Schaden zu",
+            "Ihr könnt bei einem Gegner bis zu %1% Mal Bluten verursachen\\nEuer verursachtes Bluten fügt Gegnern bei Bewegung keinen zusätzlichen Schaden zu",
           "formatters": []
         }
       ]
@@ -47915,13 +48733,42 @@
         }
       ]
     },
+    "cannot_be_stunned_if_have_been_stunned_or_blocked_stunning_hit_in_past_2_seconds": {
+      "stats": [
+        "cannot_be_stunned_if_have_been_stunned_or_blocked_stunning_hit_in_past_2_seconds"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Ihr könnt nicht betäubt werden, wenn Ihr kürzlich betäubt wurdet oder in den letzten 2 Sekunden einen betäubenden Treffer geblockt habt",
+          "formatters": []
+        }
+      ]
+    },
     "cannot_be_stunned_if_you_have_been_stunned_recently": {
       "stats": ["cannot_be_stunned_if_you_have_been_stunned_recently"],
       "translations": [
         {
           "matchers": ["#"],
           "text":
-            "Ihr könnt nicht betäubt werden, wenn Ihr kürzlich betäubt wart",
+            "Ihr könnt nicht betäubt werden, wenn Ihr kürzlich betäubt wurdet",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
+            }
+          ]
+        }
+      ]
+    },
+    "cannot_be_stunned_if_you_have_blocked_a_stun_recently": {
+      "stats": ["cannot_be_stunned_if_you_have_blocked_a_stun_recently"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Ihr könnt nicht betäubt werden, wenn Ihr kürzlich betäubt wurdet",
           "formatters": [
             {
               "id": "reminderstring",
@@ -48006,6 +48853,26 @@
           "text":
             "%1%%% Chance, bei Betäubung eines Gegners eine Raserei-Ladung zu erhalten",
           "formatters": []
+        }
+      ]
+    },
+    "chance_to_hit_while_blinded_+%_final": {
+      "stats": ["chance_to_hit_while_blinded_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% mehr Chance zu treffen, während Ihr geblendet seid",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% weniger Chance zu treffen, während Ihr geblendet seid",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -48108,6 +48975,24 @@
         }
       ]
     },
+    "charged_dash_chance_to_dodge_%_if_finished_channelling_recently": {
+      "stats": [
+        "charged_dash_chance_to_dodge_%_if_finished_channelling_recently"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% Chance, Angriffen zu entgehen, wenn Ihr kürzlich das Kanalisieren von 'Geladener Sprint' beendet habt",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
+            }
+          ]
+        }
+      ]
+    },
     "chest_drop_additional_corrupted_item_divination_cards": {
       "stats": ["chest_drop_additional_corrupted_item_divination_cards"],
       "translations": [
@@ -48170,6 +49055,48 @@
           "text":
             "Enthält einen zusätzlichen einzigartigen Gegenstand der Piraten",
           "formatters": []
+        }
+      ]
+    },
+    "chill_and_freeze_duration_+%": {
+      "stats": ["chill_and_freeze_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% verlängerte Unterkühlungs- und Einfrierungsdauer bei Gegnern",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% verkürzte Unterkühlungs- und Einfrierungsdauer bei Gegnern",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chill_effect_+%": {
+      "stats": ["chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% verstärkte Unterkühlungswirkung",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verringerte Unterkühlungswirkung",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -48393,6 +49320,16 @@
         }
       ]
     },
+    "critical_strike_chance_increased_by_lightning_resistance": {
+      "stats": ["critical_strike_chance_increased_by_lightning_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Kritische Trefferchance wird erhöht durch Blitzwiderstand",
+          "formatters": []
+        }
+      ]
+    },
     "critical_strike_chance_increased_by_uncapped_lightning_resistance": {
       "stats": [
         "critical_strike_chance_increased_by_uncapped_lightning_resistance"
@@ -48401,7 +49338,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Kritische Trefferchance wird verstärkt durch ungedeckelten Blitzwiderstand",
+            "Kritische Trefferchance wird erhöht durch ungedeckelten Blitzwiderstand",
           "formatters": [
             {
               "id": "reminderstring",
@@ -48661,6 +49598,26 @@
           "matchers": ["#"],
           "text": "Verursacht keinen Elementarschaden",
           "formatters": []
+        }
+      ]
+    },
+    "debuff_time_passed_+%": {
+      "stats": ["debuff_time_passed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Schwächungen auf Euch klingen %1%%% schneller ab",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Schwächungen auf Euch klingen %1%%% langsamer ab",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -49393,6 +50350,17 @@
         }
       ]
     },
+    "gain_frenzy_charge_on_kill_vs_enemies_with_5+_poisons_%": {
+      "stats": ["gain_frenzy_charge_on_kill_vs_enemies_with_5+_poisons_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% Chance auf eine Raserei-Ladung bei Tötung eines Gegners, der durch 5 oder mehr Giftstapel betroffen ist",
+          "formatters": []
+        }
+      ]
+    },
     "gain_maximum_power_charges_on_power_charge_gained_%_chance": {
       "stats": ["gain_maximum_power_charges_on_power_charge_gained_%_chance"],
       "translations": [
@@ -49502,6 +50470,19 @@
         }
       ]
     },
+    "gain_power_charge_on_kill_vs_enemies_with_less_than_5_poisons_%": {
+      "stats": [
+        "gain_power_charge_on_kill_vs_enemies_with_less_than_5_poisons_%"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% Chance auf eine Energie-Ladung bei Tötung eines Gegners, der durch weniger als 5 Giftstapel betroffen ist",
+          "formatters": []
+        }
+      ]
+    },
     "gain_vaal_soul_on_hit_cooldown_ms": {
       "stats": ["gain_vaal_soul_on_hit_cooldown_ms"],
       "translations": [
@@ -49515,6 +50496,21 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "glacial_cascade_number_of_additional_bursts": {
+      "stats": ["glacial_cascade_number_of_additional_bursts"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "'Frostwelle' hat eine zusätzliche Salve",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "'Frostwelle' hat %1% zusätzliche Salven",
+          "formatters": []
         }
       ]
     },
@@ -49707,6 +50703,17 @@
         }
       ]
     },
+    "herald_mana_reservation_override_45%": {
+      "stats": ["herald_mana_reservation_override_45%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Mana-Reservierung von Herold-Fertigkeiten beträgt immer 45%%",
+          "formatters": []
+        }
+      ]
+    },
     "herald_of_ash_burning_damage_+%_final": {
       "stats": ["herald_of_ash_burning_damage_+%_final"],
       "translations": [
@@ -49753,12 +50760,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Behindern-Wirkung auf Euch",
+          "text": "%1%%% verstärkte Wirkung von Behindern auf Euch",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerte Behindern-Wirkung auf Euch",
+          "text": "%1%%% verringerte Wirkung von Behindern auf Euch",
           "formatters": [
             {
               "id": "negate",
@@ -49808,12 +50815,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verkürzte Entzündungsdauer",
+          "text": "%1%%% verkürzte Brenndauer",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verlängerte Entzündungsdauer",
+          "text": "%1%%% verlängerte Brenndauer",
           "formatters": [
             {
               "id": "negate",
@@ -49902,12 +50909,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% mehr Schaden mit Blutung",
+          "text": "%1%%% mehr Schaden mit Bluten",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% weniger Schaden mit Blutung",
+          "text": "%1%%% weniger Schaden mit Bluten",
           "formatters": [
             {
               "id": "negate",
@@ -50194,6 +51201,26 @@
         }
       ]
     },
+    "life_leech_from_attack_damage_permyriad_vs_maimed_enemies": {
+      "stats": ["life_leech_from_attack_damage_permyriad_vs_maimed_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% des Angriffsschadens gegen behinderte Gegner wird als Leben geraubt",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        }
+      ]
+    },
     "life_leech_from_attack_damage_permyriad_vs_taunted_enemies": {
       "stats": ["life_leech_from_attack_damage_permyriad_vs_taunted_enemies"],
       "translations": [
@@ -50409,6 +51436,31 @@
         }
       ]
     },
+    "local_bleed_on_critical_strike_chance_%": {
+      "stats": ["local_bleed_on_critical_strike_chance_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "%1%%% Chance, bei kritischem Treffer Bluten zu verursachen",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Verursacht Bluten bei kritischem Treffer",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        }
+      ]
+    },
     "local_can_only_socket_corrupted_gems": {
       "stats": ["local_can_only_socket_corrupted_gems"],
       "translations": [
@@ -50417,6 +51469,21 @@
           "text":
             "In diesen Gegenstand können nur verderbte Gemmen eingefasst werden",
           "formatters": []
+        }
+      ]
+    },
+    "local_chance_to_bleed_on_crit_50%": {
+      "stats": ["local_chance_to_bleed_on_crit_50%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "50%% Chance, bei kritischem Treffer Bluten zu verursachen",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
         }
       ]
     },
@@ -50528,6 +51595,56 @@
           "matchers": ["#"],
           "text": "In einem Riss sind die Eigenschaften verdoppelt",
           "formatters": []
+        }
+      ]
+    },
+    "local_maim_on_hit_%": {
+      "stats": ["local_maim_on_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "%1%%% Chance, bei Treffer zu verstümmeln",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Verstümmelt bei Treffer",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
+        }
+      ]
+    },
+    "local_poison_on_critical_strike_chance_%": {
+      "stats": ["local_poison_on_critical_strike_chance_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "%1%%% Chance, bei kritischem Treffer zu vergiften",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Vergiftet bei kritischem Treffer",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
         }
       ]
     },
@@ -50904,6 +52021,25 @@
         }
       ]
     },
+    "local_unique_jewel_glacial_cascade_number_of_additional_bursts_with_40_int_in_radius": {
+      "stats": [
+        "local_unique_jewel_glacial_cascade_number_of_additional_bursts_with_40_int_in_radius"
+      ],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "Bei mindestens 40 Intelligenz im Radius hat 'Frostwelle' eine zusätzliche Salve",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "Bei mindestens 40 Intelligenz im Radius hat 'Frostwelle' %1% zusätzliche Salven",
+          "formatters": []
+        }
+      ]
+    },
     "local_unique_jewel_ice_shot_additional_pierce_per_10_old_with_40_dex_in_radius": {
       "stats": [
         "local_unique_jewel_ice_shot_additional_pierce_per_10_old_with_40_dex_in_radius"
@@ -50937,6 +52073,23 @@
           "matchers": ["#"],
           "text":
             "Bei mindestens 40 Geschick im Radius verfügt 'Eisgeschoss' über %1%%% vergrößerten Wirkungsbereich",
+          "formatters": []
+        }
+      ]
+    },
+    "local_unique_jewel_ice_shot_pierce_+_with_40_dex_in_radius": {
+      "stats": ["local_unique_jewel_ice_shot_pierce_+_with_40_dex_in_radius"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "Bei mindestens 40 Geschick im Radius durchbohrt 'Eisgeschoss' ein zusätzliches Ziel",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "Bei mindestens 40 Geschick im Radius durchbohrt 'Eisgeschoss' %1% zusätzliche Ziele",
           "formatters": []
         }
       ]
@@ -53662,7 +54815,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Monster haben %1%%% Chance, Gift, Blenden und Blutung zu vermeiden",
+            "Monster haben %1%%% Chance, Vergiften, Blenden und Bluten zu vermeiden",
           "formatters": []
         }
       ]
@@ -53703,7 +54856,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Monster können nicht weiter bis zur Basisgeschwindigkeit verlangsamt werden",
+            "Monster können nicht unter ihre Basisgeschwindigkeit verlangsamt werden",
           "formatters": []
         }
       ]
@@ -53923,6 +55076,21 @@
           "matchers": ["#"],
           "text":
             "Zufällig fallen gelassene Gegenstände sind magisch statt normal",
+          "formatters": []
+        }
+      ]
+    },
+    "map_num_extra_harbingers": {
+      "stats": ["map_num_extra_harbingers"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Gebiet enthält einen zusätzlichen Vorboten",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Gebiet enthält %1% zusätzliche Vorboten",
           "formatters": []
         }
       ]
@@ -54183,17 +55351,6 @@
               "arg": 1
             }
           ]
-        }
-      ]
-    },
-    "map_player_flask_recovery_is_instant": {
-      "stats": ["map_player_flask_recovery_is_instant"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Lebens- und Manawiederherstellung durch Fläschchen ist unmittelbar",
-          "formatters": []
         }
       ]
     },
@@ -54725,7 +55882,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Spieler verfügen über Ansturm während Fläschchennutzung",
+          "text": "Spieler verfügen über Ansturm während Fläschchenwirkung",
           "formatters": []
         }
       ]
@@ -55487,7 +56644,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Gewährt %1%%% des maximalen Lebens als zusätzlicher maximaler Energieschild",
+            "Gewährt %1%%% des maximalen Lebens als extra maximalen Energieschild",
           "formatters": []
         }
       ]
@@ -55509,6 +56666,20 @@
           "matchers": ["#"],
           "text":
             "%1%%% verstärkter physischer Nahkampfschaden pro 10 Geschick",
+          "formatters": []
+        }
+      ]
+    },
+    "minimum_added_chaos_damage_vs_enemies_with_5+_poisons": {
+      "stats": [
+        "minimum_added_chaos_damage_vs_enemies_with_5+_poisons",
+        "maximum_added_chaos_damage_vs_enemies_with_5+_poisons"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Fügt Angriffen mit dieser Waffe %1% bis %2% Chaosschaden hinzu gegen\\nGegner, die von 5 oder mehr Giftstapeln betroffen sind",
           "formatters": []
         }
       ]
@@ -55800,13 +56971,13 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Bewegungsgeschwindigkeit während Ihr blutet",
+          "text": "%1%%% erhöhte Bewegungsgeschwindigkeit, während Ihr blutet",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "%1%%% verringerte Bewegungsgeschwindigkeit während Ihr blutet",
+            "%1%%% verringerte Bewegungsgeschwindigkeit, während Ihr blutet",
           "formatters": []
         }
       ]
@@ -55861,7 +57032,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Von Euch verursachte Blutung fügt Gegner bei Bewegung keinen zusätzlichen Schaden zu",
+            "Von Euch verursachtes Bluten fügt Gegner bei Bewegung keinen zusätzlichen Schaden zu",
           "formatters": []
         }
       ]
@@ -56097,19 +57268,8 @@
         }
       ]
     },
-    "physical_damage_reduction_rating_+%_if_only_one_enemy_nearby": {
-      "stats": ["physical_damage_reduction_rating_+%_if_only_one_enemy_nearby"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% physische Schadensminderung, wenn sich\\nnur ein Gegner im Umkreis befindet",
-          "formatters": []
-        }
-      ]
-    },
-    "physical_damage_reduction_rating_+%_per_nearby_enemy": {
-      "stats": ["physical_damage_reduction_rating_+%_per_nearby_enemy"],
+    "physical_damage_reduction_%_per_nearby_enemy": {
+      "stats": ["physical_damage_reduction_%_per_nearby_enemy"],
       "translations": [
         {
           "matchers": ["#"],
@@ -56149,6 +57309,90 @@
           "matchers": [["#", -1]],
           "text":
             "Projektile haben %1%%% verringerte kritische Trefferchance gegen Ziele, die sie durchbohren",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "poison_damage_+%_per_frenzy_charge": {
+      "stats": ["poison_damage_+%_per_frenzy_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% verstärkter Schaden mit Gift pro Raserei-Ladung",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verringerter Schaden mit Gift pro Raserei-Ladung",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "poison_damage_+%_with_over_300_dexterity": {
+      "stats": ["poison_damage_+%_with_over_300_dexterity"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Bei mindestens 300 Geschick: %1%%% verstärkter Schaden mit Gift",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Bei mindestens 300 Geschick: %1%%% verringerter Schaden mit Gift",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "poison_duration_+%_per_power_charge": {
+      "stats": ["poison_duration_+%_per_power_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% verlängerte Giftdauer pro Energie-Ladung",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verkürzte Giftdauer pro Energie-Ladung",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "poison_duration_+%_with_over_150_intelligence": {
+      "stats": ["poison_duration_+%_with_over_150_intelligence"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% verlängerte Giftdauer, wenn Ihr mindestens über 150 Intelligenz verfügt",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% verkürzte Giftdauer, wenn Ihr mindestens über 150 Intelligenz verfügt",
           "formatters": [
             {
               "id": "negate",
@@ -56428,6 +57672,26 @@
         }
       ]
     },
+    "shock_effect_+%": {
+      "stats": ["shock_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% verstärkte Schockwirkung",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verringerte Schockwirkung",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "shocked_effect_on_self_+%": {
       "stats": ["shocked_effect_on_self_+%"],
       "translations": [
@@ -56461,6 +57725,28 @@
           "text":
             "Geschockte Gegner, die Ihr tötet, explodieren und verursachen %1%%% ihres\\nmaximalen Lebens als Blitzschaden",
           "formatters": []
+        }
+      ]
+    },
+    "shocked_ground_base_magnitude_override": {
+      "stats": ["shocked_ground_base_magnitude_override"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Schockender Boden verursacht %1%%% verstärkten erlittenen Schaden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Schockender Boden verursacht %1%%% verringerten erlittenen Schaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -56776,6 +58062,79 @@
         }
       ]
     },
+    "summon_skeletons_additional_warrior_skeleton_one_twentieth_chance": {
+      "stats": [
+        "summon_skeletons_additional_warrior_skeleton_one_twentieth_chance"
+      ],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "20%% Chance, mit 'Skelett beschwören' einen zusätzlichen Skelettkrieger zu beschwören",
+          "formatters": []
+        },
+        {
+          "matchers": [2],
+          "text":
+            "40%% Chance, mit 'Skelett beschwören' einen zusätzlichen Skelettkrieger zu beschwören",
+          "formatters": []
+        },
+        {
+          "matchers": [3],
+          "text":
+            "60%% Chance, mit 'Skelett beschwören' einen zusätzlichen Skelettkrieger zu beschwörenа",
+          "formatters": []
+        },
+        {
+          "matchers": [4],
+          "text":
+            "80%% Chance, mit 'Skelett beschwören' einen zusätzlichen Skelettkrieger zu beschwören",
+          "formatters": []
+        },
+        {
+          "matchers": [[5, "#"]],
+          "text":
+            "Beschwört einen zusätzlichen Skelettkrieger mit 'Skelett beschwören'",
+          "formatters": []
+        }
+      ]
+    },
+    "summon_skeletons_additional_warrior_skeleton_%_chance": {
+      "stats": ["summon_skeletons_additional_warrior_skeleton_%_chance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% Chance, mit 'Skelett beschwören' ein zusätzliches Skelett zu beschwören",
+          "formatters": []
+        }
+      ]
+    },
+    "summon_skeletons_cooldown_modifier_ms": {
+      "stats": ["summon_skeletons_cooldown_modifier_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "%1$+d Sekunde zur Abklingzeit von 'Skelett beschwören'",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "%1$+d Sekunden zur Abklingzeit von 'Skelett beschwören'",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "take_half_area_damage_from_hit_%_chance": {
       "stats": ["take_half_area_damage_from_hit_%_chance"],
       "translations": [
@@ -56809,6 +58168,30 @@
             {
               "id": "divide_by_twenty_then_double_0dp",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "thaumaturgy_rotation_active": {
+      "stats": ["thaumaturgy_rotation_active"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Gewährt aufeinanderfolgend widerstehende, rasende und energetische Thaumaturgie für je 5 Sekunden",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMalachaisEndurance"
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMalachaisFrenzy"
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMalachaisPower"
             }
           ]
         }
@@ -56936,6 +58319,16 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "you_cannot_be_hindered": {
+      "stats": ["you_cannot_be_hindered"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ihr könnt nicht behindert werden",
+          "formatters": []
         }
       ]
     },
