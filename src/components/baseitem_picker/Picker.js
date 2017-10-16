@@ -23,7 +23,7 @@ const GeneratorPicker = (props: Props) => {
           <Button onClick={() => props.onChange(baseitem)}>
             <FormattedMessage
               id={`poe.baseitemtypes.${baseitem.primary}.name`}
-            />>
+            />
           </Button>
         );
       })}
