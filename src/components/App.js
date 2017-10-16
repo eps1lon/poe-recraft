@@ -6,6 +6,7 @@ import ApplyGenerator from 'containers/ApplyGenerator';
 import AvailableMods from 'containers/AvailableMods';
 import BaseItemModal from 'containers/baseitem_picker/Modal';
 import GeneratorModal from 'containers/GeneratorModal';
+import LanguagePicker from 'containers/LanguagePicker';
 import ItemSection from 'containers/ItemSection';
 import ItemclassPicker from 'containers/itemclass_picker/Picker';
 
@@ -46,6 +47,7 @@ class App extends PureComponent<Props> {
           <NavItem>
             <ApplyGenerator />
           </NavItem>
+          <LanguagePicker locales={['en', 'de']} />
         </Nav>
       </header>,
       <div key="content" id="content">
