@@ -17,6 +17,18 @@ export type Props = {
   init: () => void
 };
 
+const supported_locales = [
+  'en',
+  'ru',
+  'th',
+  'pt',
+  //'cn', // simplified chinese
+  //'tw', // traditional chinese
+  'de',
+  'es',
+  'fr'
+];
+
 class App extends PureComponent<Props> {
   static defaultProps = {
     version: 'undefined'
@@ -47,7 +59,7 @@ class App extends PureComponent<Props> {
           <NavItem>
             <ApplyGenerator />
           </NavItem>
-          <LanguagePicker locales={['en', 'de']} />
+          <LanguagePicker locales={supported_locales} />
         </Nav>
       </header>,
       <div key="content" id="content">

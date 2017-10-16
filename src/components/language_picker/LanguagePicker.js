@@ -7,6 +7,9 @@ import {
   DropdownToggle
 } from 'reactstrap';
 
+import './style.css';
+import LocaleIcon from './LocaleIcon';
+
 export type Props = {
   active_locale: string,
   locales: string[],
@@ -21,7 +24,7 @@ const LanguagePicker = (props: Props) => {
   const { active_locale, locales, onChange } = props;
 
   return (
-    <UncontrolledNavDropdown>
+    <UncontrolledNavDropdown className="languages">
       <DropdownToggle nav caret>
         lang
       </DropdownToggle>
@@ -32,7 +35,7 @@ const LanguagePicker = (props: Props) => {
               active={active_locale === locale}
               onClick={() => onChange(locale)}
             >
-              {locale}
+              <LocaleIcon code={locale} />
             </DropdownItem>
           );
         })}
