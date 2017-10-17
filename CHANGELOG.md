@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v0.5.0...HEAD)
+### Fixed
+- wrong locale codes for simplified and traditional chinese `tw` and `cn` never
+  were correct locale codes but country codes. The correct locales are `zh-tw` 
+  and `zh-cn`.
 
 ## [0.5.0](https://github.com/eps1lon/poe-mods/compare/v0.4.0...v0.5.0) (2017-10-17)
 ### Added

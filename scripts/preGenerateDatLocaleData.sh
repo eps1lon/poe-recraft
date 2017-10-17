@@ -12,10 +12,10 @@ case "$1" in
   codes[th]=Thai
   ;;
 "tencent")
-  codes[cn]="Simplified Chinese"
+  codes["zh-cn"]="Simplified Chinese"
   ;;
 "garena")
-  codes[tw]="Traditional Chinese"
+  codes["zh-tw"]="Traditional Chinese"
   ;;
 *)
   echo "set distributor as first arg" 1>&2

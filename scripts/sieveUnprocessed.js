@@ -14,12 +14,12 @@ const codes = {
   German: 'de',
   Portuguese: 'pt',
   Russian: 'ru',
-  'Simplified Chinese': 'cn',
+  'Simplified Chinese': 'zh-cn',
   Spanish: 'es',
   Spasnish: 'es',
   Spansih: 'es',
   Thai: 'th',
-  'Traditional Chinese': 'tw'
+  'Traditional Chinese': 'zh-tw'
 };
 
 const isUnprocessed = file => file.endsWith('.json'); // === 'stat_descriptions_dev.json';
