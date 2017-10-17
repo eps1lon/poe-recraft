@@ -14,6 +14,9 @@ case "$1" in
 "tencent")
   codes[cn]="Simplified Chinese"
   ;;
+"garena")
+  codes[tw]="Traditional Chinese"
+  ;;
 *)
   echo "set distributor as first arg" 1>&2
   exit 64

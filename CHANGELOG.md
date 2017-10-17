@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v0.4.0...HEAD)
 ### Added
-- BaseItemTypes and Mods for Simplified Chinese 
+- BaseItemTypes and Mods for Simplified Chinese and Traditional Chinese
 ### Changed
 - renamed `zh-Hans` to `cn` and `zh-Hant` to `tw` for easier integration with
   other i18n packages.
