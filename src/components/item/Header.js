@@ -2,6 +2,7 @@
 import classnames from 'classnames';
 import { type Item } from 'poe-mods';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 type Props = {
   item: Item
@@ -11,7 +12,9 @@ const Header = ({ item }: Props) => {
   const lines = item.name.lines();
 
   const nameline = lines.length === 2 ? lines[0] : null;
-  const typeline = lines[lines.length - 1];
+  const typeline = (
+    <FormattedMessage id={`poe.baseitemtypes.${item.baseitem.primary}.name`} />
+  );
 
   const classname = classnames('header', { 'double-line': lines.length === 2 });
 

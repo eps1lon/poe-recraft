@@ -2,6 +2,7 @@
 import classNames from 'classnames';
 import { Mod } from 'poe-mods';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import ReactTable from 'react-table';
 
 import { disabled } from 'util/mods';
@@ -54,7 +55,9 @@ const UngroupedMods = (props: Props) => {
       minWidth: 200
     },
     {
-      accessor: 'mod.props.name',
+      accessor: (details: GeneratorDetails) => (
+        <FormattedMessage id={`poe.mods.${details.mod.props.primary}.name`} />
+      ),
       className: 'name',
       Header: 'Name',
       id: 'name',

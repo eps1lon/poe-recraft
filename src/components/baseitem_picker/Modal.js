@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import Filter from 'containers/baseitem_picker/Filter';
@@ -17,6 +18,7 @@ const default_props = {
 };
 
 const BaseItemModal = (props: Props) => {
+  const { active } = props;
   const toggle = props.onToggle;
 
   // set autofocus to false because
@@ -24,7 +26,12 @@ const BaseItemModal = (props: Props) => {
   return (
     <div className="baseitems">
       <Button onClick={toggle}>
-        Baseitem: {props.active != null ? props.active.name : 'undefined'}
+        Baseitem:{' '}
+        {active != null ? (
+          <FormattedMessage id={`poe.baseitemtypes.${active.primary}.name`} />
+        ) : (
+          'undefined'
+        )}
       </Button>
 
       <Modal isOpen={props.is_open} toggle={toggle} autoFocus={false}>
