@@ -22,8 +22,8 @@ const supported_locales = [
   'ru',
   'th',
   'pt',
-  //'cn', // simplified chinese
-  //'tw', // traditional chinese
+  'zh-cn', // simplified chinese
+  'zh-tw', // traditional chinese
   'de',
   'es',
   'fr'

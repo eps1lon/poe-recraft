@@ -16,7 +16,7 @@ export default {
   fr: { name: 'français', icon: fr },
   pt: { name: 'português', icon: pt },
   ru: { name: 'ру́сский язы́к', icon: ru },
-  th: { name: 'ภาษาไทย', icon: th }
-  //tw: { name: '汉语', icon: tw }, // traditional
-  //cn: { name: '漢語', icon: cn } // simplified
+  th: { name: 'ภาษาไทย', icon: th },
+  'zh-tw': { name: '汉语', icon: tw }, // traditional
+  'zh-cn': { name: '漢語', icon: cn } // simplified
 };

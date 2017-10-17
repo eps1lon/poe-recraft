@@ -14,7 +14,8 @@ const requireLocaleData = locale => {
     // webpack can only evaluate certain expressions!
     // $FlowFixMe
     require([
-      'react-intl/locale-data/' + locale,
+      // only language code
+      'react-intl/locale-data/' + locale.split('-')[0],
       'poe-i18n/locale-data/' + locale + '/stat_descriptions.json',
       'poe-i18n/locale-data/' + locale + '/BaseItemTypes.json'
     ], (locale_data, stat_descriptions, baseitemtypes) => {
