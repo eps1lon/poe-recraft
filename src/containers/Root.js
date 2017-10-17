@@ -1,5 +1,4 @@
 import React from 'react';
-import { IntlProvider } from 'react-intl';
 import { connect, Provider } from 'react-redux';
 
 import { changeLocale } from 'actions/i18n';
@@ -9,9 +8,7 @@ import App from 'components/App';
 const Root = ({ locale, messages, store, init, version }) => {
   return (
     <Provider store={store}>
-      <IntlProvider locale={locale} messages={messages}>
-        <App {...{ init, version }} />
-      </IntlProvider>
+      <App {...{ init, locale, messages, version }} />
     </Provider>
   );
 };

@@ -1,72 +1,28 @@
-// @flow
 import React, { PureComponent } from 'react';
-import { Nav, NavItem } from 'reactstrap';
+import { IntlProvider } from 'react-intl';
 
-import ApplyGenerator from 'containers/ApplyGenerator';
-import AvailableMods from 'containers/AvailableMods';
-import BaseItemModal from 'containers/baseitem_picker/Modal';
-import GeneratorModal from 'containers/GeneratorModal';
-import LanguagePicker from 'containers/LanguagePicker';
-import ItemSection from 'containers/ItemSection';
-import ItemclassPicker from 'containers/itemclass_picker/Picker';
-
-import './index.css';
+import AppUI from './AppUI';
 
 export type Props = {
+  locale: string,
+  messages: { [string]: any },
   version: string,
   init: () => void
 };
 
-const supported_locales = [
-  'en',
-  'ru',
-  'th',
-  'pt',
-  'zh-cn', // simplified chinese
-  'zh-tw', // traditional chinese
-  'de',
-  'es',
-  'fr'
-];
-
-class App extends PureComponent<Props> {
-  static defaultProps = {
-    version: 'undefined'
-  };
-  props: Props;
-
+class App extends PureComponent {
   componentDidMount() {
     this.props.init();
   }
 
   render() {
-    const { version } = this.props;
+    const { locale, messages, version } = this.props;
 
-    return [
-      <header key="header">
-        <a href="">Path of Exile Mod Repository</a>
-        <span id="client">
-          (Patch: <em id="game_version">{version}</em>)
-        </span>
-        <Nav tabs>
-          <ItemclassPicker />
-          <NavItem>
-            <BaseItemModal />
-          </NavItem>
-          <NavItem>
-            <GeneratorModal />
-          </NavItem>
-          <NavItem>
-            <ApplyGenerator />
-          </NavItem>
-          <LanguagePicker locales={supported_locales} />
-        </Nav>
-      </header>,
-      <div key="content" id="content">
-        <ItemSection />
-        <AvailableMods />
-      </div>
-    ];
+    return (
+      <IntlProvider key={locale} locale={locale} messages={messages}>
+        <AppUI {...{ version }} />
+      </IntlProvider>
+    );
   }
 }
 

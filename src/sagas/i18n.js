@@ -33,9 +33,10 @@ function* loadLocaleData(): Generator<*, *, *> {
     );
 
     yield call(addLocaleData, locale_data);
-    yield put(setLocale(locale));
     yield put(setMessages({ poe: { baseitemtypes } }));
     yield put(setDescriptions({ stat_descriptions }));
+    // set last to trigger re-render
+    yield put(setLocale(locale));
   }
 }
 
