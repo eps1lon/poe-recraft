@@ -13,6 +13,8 @@ import Stats from '../poe/Stats';
 export type Props = {
   className?: string,
   details: GeneratorDetails[],
+  // for mod name
+  inflection?: string,
   options: {
     exclude?: string[]
   },
@@ -23,7 +25,7 @@ const defaultSorted = [{ id: 'ilvl', desc: true }];
 
 // TODO spawnchance, flags, mod#t
 const UngroupedMods = (props: Props) => {
-  const { className = '', details, options, onAddMod } = props;
+  const { className = '', details, inflection, options, onAddMod } = props;
   const { exclude = [] } = options;
 
   const columns = [
@@ -56,7 +58,10 @@ const UngroupedMods = (props: Props) => {
     },
     {
       accessor: (details: GeneratorDetails) => (
-        <FormattedMessage id={`poe.mods.${details.mod.props.primary}.name`} />
+        <FormattedMessage
+          id={`poe.mods.${details.mod.props.primary}.name`}
+          values={{ inflection }}
+        />
       ),
       className: 'name',
       Header: 'Name',

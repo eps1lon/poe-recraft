@@ -5,7 +5,7 @@ import React from 'react';
 
 import './assets/item.css';
 
-import Header from './Header';
+import Header from 'containers/item/Header';
 import Content from './Content';
 
 export type Props = {

@@ -1,4 +1,5 @@
 // @flow
+import { inflectionIdentifier } from 'poe-i18n';
 import type { Item, Flags, Generator, Mod } from 'poe-mods';
 import { createSelector } from 'reselect';
 
@@ -57,3 +58,17 @@ export const activeGenerator = (state: State) =>
   state.craft.mod_generator
     ? state.craft.mod_generator.constructor.name
     : undefined;
+
+export const baseitemInflection = (state: State) => {
+  const { item } = state.craft;
+  const { messages } = state.i18n;
+
+  if (item != null) {
+    return inflectionIdentifier({
+      inflection:
+        messages[`poe.baseitemtypes.${item.baseitem.primary}.inflection`]
+    });
+  } else {
+    return inflectionIdentifier({});
+  }
+};
