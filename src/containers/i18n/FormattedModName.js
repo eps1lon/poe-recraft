@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 import { type State } from 'reducers/rootReducer';
-import Header from 'components/item/Header';
+import FormattedModName from 'components/i18n/FormattedModName';
 import { baseitemInflection } from 'selectors/craft';
 
 const mapStateToProsp = (state: State) => {
@@ -11,4 +11,4 @@ const mapStateToProsp = (state: State) => {
   };
 };
 
-export default connect(mapStateToProsp)(Header);
+export default connect(mapStateToProsp)(FormattedModName);

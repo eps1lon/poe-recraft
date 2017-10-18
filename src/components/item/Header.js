@@ -5,6 +5,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { intersperse } from 'components/util';
+import FormattedModName from 'containers/i18n/FormattedModName';
 
 type Props = {
   inflection?: string,
@@ -23,21 +24,9 @@ const MagicTypeLine = ({
 
   return intersperse(
     [
-      prefix && (
-        <FormattedMessage
-          key="prefix"
-          id={`poe.mods.${prefix.props.primary}.name`}
-          values={{ inflection }}
-        />
-      ),
+      prefix && <FormattedModName key="prefix" mod={prefix} />,
       <TypeLine key="item_name" item={item} />,
-      suffix && (
-        <FormattedMessage
-          key="suffix"
-          id={`poe.mods.${suffix.props.primary}.name`}
-          values={{ inflection }}
-        />
-      )
+      suffix && <FormattedModName key="suffix" mod={suffix} />
     ].filter(Boolean),
     () => ' '
   );
