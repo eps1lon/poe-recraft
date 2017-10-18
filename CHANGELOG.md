@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Gender and pluralization inflection rules for certain languages for Mods by using 
   [ICU message syntax](http://userguide.icu-project.org/formatparse/messages).
+- `inflectionIdentifier` helper for the added inflection rules
 ### Fixed
 - wrong locale codes for simplified and traditional chinese `tw` and `cn` never
   were correct locale codes but country codes. The correct locales are `zh-tw` 

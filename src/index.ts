@@ -6,3 +6,4 @@ export {
 } from './loadLocaleDatas';
 export { default as formatValueRange } from './localize/formatValueRange';
 export { formatValue } from './localize/formatValues';
+export { default as inflectionIdentifier } from './util/inflectionIdentifier';

@@ -128,3 +128,13 @@ Loads all `StatLocaleData` that are required for use of the given configured
 ### Arguments
 - code: Locale code. See [loadLocaleDatas#Arguments](#loadLocaleDatas-args).
 - formatStats: a configured `formatStats` function
+
+## inflectionIdentifier(context: { inflection?: string })
+Generates a valid inflection identifier that can be passed to your (to ICU syntax
+conforming) message formatter. The identifier must be passed as the `inflection`
+property.
+### Arguments
+- context: { inflection?: string } the inflection context object
+### Return
+Defaults to `NS` if nothing is given. If only one char is given plural defaults
+to `S`
