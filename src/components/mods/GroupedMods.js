@@ -86,6 +86,7 @@ const GroupedMods = (props: Props) => {
         SubComponent,
         showPagination: false,
         minRows: 1,
+        pageSize: Number.MAX_VALUE,
         getTrProps: (state, rowInfo, column, instance) => {
           if (rowInfo != null) {
             const { viewIndex } = rowInfo;
