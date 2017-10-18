@@ -21,8 +21,3 @@ grammatical gender and plural form (e.g. `MS` for `masculine singular`). The
 proper inflection rule is determined from the context (e.g. BaseItemTypes have 
 a inflection field which gets passed to it's prefix and suffix mods in case it's magic
 rarity).
-
-An inflection identifier consists of a gender identifier (`M` for masculine, 
-`F` for feminine and `N` for neuter) and an optional plural identifier (`S` for singular, 
-`P` for plural). It is unclear which is the default gender identifier in case
-no inflection identifier is given.
