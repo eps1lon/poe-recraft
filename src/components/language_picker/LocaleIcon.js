@@ -19,12 +19,10 @@ const LanguagePicker = ({ code }: Props) => {
   }
 
   return (
-    <img
-      src={locale.icon}
-      alt={locale.name}
-      title={locale.name}
-      className="locale-icon"
-    />
+    // add span to support :before and :after
+    <span className="locale-icon" title={locale.name}>
+      <img src={locale.icon} alt={locale.name} />
+    </span>
   );
 };
 

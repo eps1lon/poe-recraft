@@ -8,7 +8,7 @@ import type { State } from 'reducers/rootReducer';
 
 const mapStateToProps = (state: State) => {
   return {
-    item: state.craft.item
+    active_locale: state.i18n.locale
   };
 };
 

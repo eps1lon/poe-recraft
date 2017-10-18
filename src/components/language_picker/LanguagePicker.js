@@ -26,7 +26,7 @@ const LanguagePicker = (props: Props) => {
   return (
     <UncontrolledNavDropdown className="languages">
       <DropdownToggle nav caret>
-        lang
+        <LocaleIcon code={active_locale} />
       </DropdownToggle>
       <DropdownMenu>
         {locales.map(locale => {
