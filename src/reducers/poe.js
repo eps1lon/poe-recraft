@@ -16,7 +16,7 @@ export type State = {
 };
 
 const initial: State = {
-  api_root: 'http://localhost:3000/',
+  api_root: '',
   items: [],
   benchoptions: [],
   mods: [],
