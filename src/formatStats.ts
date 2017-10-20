@@ -74,7 +74,7 @@ const formatStats: FormatStats = Object.assign(
     while (description_file !== undefined) {
       const data: Descriptions = description_file.data;
 
-      lines.push(...formatWithFinder(untranslated, ({id}) => data[id]));
+      lines.push(...formatWithFinder(untranslated, ({ id }) => data[id]));
       lines.push(
         ...formatWithFinder(untranslated, ({ id }) => findDescription(id, data))
       );
@@ -118,8 +118,13 @@ function formatWithFinder(
   find: (stat: Stat) => Description | undefined
 ): string[] {
   const lines: string[] = [];
+  const translated: Set<string> = new Set();
 
-  for (const [stat_id, stat] of stats) {
+  for (const [stat_id, stat] of Array.from(stats.entries())) {
+    if (translated.has(stat_id)) {
+      continue;
+    }
+
     const description = find(stat);
 
     if (description !== undefined) {
@@ -129,7 +134,10 @@ function formatWithFinder(
         throw new Error(`matching translation not found for '${stat.id}'`);
       } else {
         // mark as translated
-        description.stats.forEach(translated_id => stats.delete(translated_id));
+        description.stats.forEach(translated_id => {
+          stats.delete(translated_id);
+          translated.add(translated_id);
+        });
 
         if (translation === NO_DESCRIPTION) {
           lines.push(`${stat_id} (hidden)`);
