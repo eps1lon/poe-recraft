@@ -7,7 +7,7 @@ System.register("translate/match", [], function (exports_1, context_1) {
     }
     exports_1("matchesSingle", matchesSingle);
     function matches(values, matchers) {
-        return matchers.map((matcher, i) => match(values[i], matcher));
+        return matchers.map(function (matcher, i) { return match(values[i], matcher); });
     }
     exports_1("matches", matches);
     // interval matching
@@ -15,8 +15,8 @@ System.register("translate/match", [], function (exports_1, context_1) {
         if (value === undefined) {
             return Match.none;
         }
-        const A = rangeCast(value);
-        const B = rangeCast(matcher);
+        var A = rangeCast(value);
+        var B = rangeCast(matcher);
         if (A[0] === B[0] && A[1] === B[1]) {
             return Match.exact;
         }
@@ -37,7 +37,7 @@ System.register("translate/match", [], function (exports_1, context_1) {
         }
     }
     function rangeCast(value) {
-        const [lower, upper] = isBoundedRange(value) ? value : [value, value];
+        var _a = isBoundedRange(value) ? value : [value, value], lower = _a[0], upper = _a[1];
         return [
             lower === '#' ? Number.NEGATIVE_INFINITY : lower,
             upper === '#' ? Number.POSITIVE_INFINITY : upper
@@ -79,7 +79,9 @@ System.register("types/StatValue", [], function (exports_3, context_3) {
     return {
         setters: [],
         execute: function () {
-            exports_3("isRange", isRange = (value) => Array.isArray(value) && value.length === 2);
+            exports_3("isRange", isRange = function (value) {
+                return Array.isArray(value) && value.length === 2;
+            });
         }
     };
 });
@@ -88,16 +90,16 @@ System.register("localize/formatters", ["types/StatValue"], function (exports_4,
     var __moduleName = context_4 && context_4.id;
     function factory(formatter_id) {
         if (!formatters.hasOwnProperty(formatter_id)) {
-            throw new Error(`'${formatter_id}' not found`);
+            throw new Error("'" + formatter_id + "' not found");
         }
-        const formatter = formatters[formatter_id];
-        return (value) => {
+        var formatter = formatters[formatter_id];
+        return function (value) {
             if (StatValue_1.isRange(value)) {
                 if (value[0] === value[1]) {
                     return String(formatter(value[0]));
                 }
                 else {
-                    return `(${formatter(value[0])} - ${formatter(value[1])})`;
+                    return "(" + formatter(value[0]) + " - " + formatter(value[1]) + ")";
                 }
             }
             else {
@@ -121,22 +123,22 @@ System.register("localize/formatters", ["types/StatValue"], function (exports_4,
             // but there are currenty ~300 amulets with 2 and ~160 with 1 listed on poe.trade
             // reason beeing that the next tier rolls 121-180.
             formatters = {
-                deciseconds_to_seconds: n => n * 10,
-                divide_by_one_hundred: n => n / 100,
-                per_minute_to_per_second: n => Math.round(n / 60),
-                milliseconds_to_seconds: n => n / 1000,
-                negate: n => -n,
-                divide_by_one_hundred_and_negate: n => -n / 100,
-                old_leech_percent: n => n / 5,
-                old_leech_permyriad: n => n / 50,
-                per_minute_to_per_second_0dp: n => (n / 60).toFixed(0),
-                per_minute_to_per_second_2dp: n => (n / 60).toFixed(2),
-                per_minute_to_per_second_2dp_if_required: n => (n / 60).toPrecision(2),
-                milliseconds_to_seconds_0dp: n => (n / 1000).toFixed(0),
-                milliseconds_to_seconds_2dp: n => (n / 1000).toFixed(2),
-                multiplicative_damage_modifier: n => n,
-                '60%_of_value': n => n * 0.6,
-                id: n => n
+                deciseconds_to_seconds: function (n) { return n * 10; },
+                divide_by_one_hundred: function (n) { return n / 100; },
+                per_minute_to_per_second: function (n) { return Math.round(n / 60); },
+                milliseconds_to_seconds: function (n) { return n / 1000; },
+                negate: function (n) { return -n; },
+                divide_by_one_hundred_and_negate: function (n) { return -n / 100; },
+                old_leech_percent: function (n) { return n / 5; },
+                old_leech_permyriad: function (n) { return n / 50; },
+                per_minute_to_per_second_0dp: function (n) { return (n / 60).toFixed(0); },
+                per_minute_to_per_second_2dp: function (n) { return (n / 60).toFixed(2); },
+                per_minute_to_per_second_2dp_if_required: function (n) { return (n / 60).toPrecision(2); },
+                milliseconds_to_seconds_0dp: function (n) { return (n / 1000).toFixed(0); },
+                milliseconds_to_seconds_2dp: function (n) { return (n / 1000).toFixed(2); },
+                multiplicative_damage_modifier: function (n) { return n; },
+                '60%_of_value': function (n) { return n * 0.6; },
+                id: function (n) { return n; }
             };
         }
     };
@@ -145,31 +147,33 @@ System.register("localize/formatValues", ["localize/formatters"], function (expo
     "use strict";
     var __moduleName = context_5 && context_5.id;
     function formatValues(values, options) {
-        const { formatters } = options;
+        var formatters = options.formatters;
         if (formatters === undefined) {
             throw new Error('formatters not set');
         }
-        const formatted = [...values];
-        formatters.forEach((formatter, i) => {
+        var formatted = values.slice();
+        formatters.forEach(function (formatter, i) {
             if (typeof formatter.arg === 'number') {
-                const target_param = values[+formatter.arg - 1];
+                var target_param = values[+formatter.arg - 1];
                 if (target_param !== undefined) {
                     formatted[+formatter.arg - 1] = formatValue(target_param, {
-                        formatter
+                        formatter: formatter
                     });
                 }
                 else {
-                    throw new Error(`no param given for formatter '${formatter.id}'`);
+                    throw new Error("no param given for formatter '" + formatter.id + "'");
                 }
             }
         });
-        return formatted.map(value => typeof value === 'string'
-            ? value
-            : formatValue(value, { formatter: { id: 'id', arg: 1 } }));
+        return formatted.map(function (value) {
+            return typeof value === 'string'
+                ? value
+                : formatValue(value, { formatter: { id: 'id', arg: 1 } });
+        });
     }
     exports_5("formatValues", formatValues);
     function formatValue(value, options) {
-        const { formatter } = options;
+        var formatter = options.formatter;
         if (formatter === undefined) {
             throw new Error('no formatter given');
         }
@@ -190,12 +194,15 @@ System.register("localize/formatValues", ["localize/formatters"], function (expo
 System.register("translate/printf", ["localize/formatValues"], function (exports_6, context_6) {
     "use strict";
     var __moduleName = context_6 && context_6.id;
-    function printf(text, params, formatters = []) {
-        const prepared = formatValues_1.formatValues(params, { formatters });
+    function printf(text, params, formatters) {
+        if (formatters === void 0) { formatters = []; }
+        var prepared = formatValues_1.formatValues(params, { formatters: formatters });
         return prepared
-            .reduce((formatted, param, i) => formatted
-            .replace(`%${i + 1}%`, String(param))
-            .replace(`%${i + 1}$+d`, `+${String(param)}`), text)
+            .reduce(function (formatted, param, i) {
+            return formatted
+                .replace("%" + (i + 1) + "%", String(param))
+                .replace("%" + (i + 1) + "$+d", "+" + String(param));
+        }, text)
             .replace('%%', '%');
     }
     exports_6("default", printf);
@@ -220,23 +227,34 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
      * @param locale_data
      */
     function findDescription(stat_id, locale_data) {
-        return Object.values(locale_data).find(({ stats }) => stats.includes(stat_id));
+        return Object.values(locale_data).find(function (_a) {
+            var stats = _a.stats;
+            return stats.includes(stat_id);
+        });
     }
     // stats will get mutated
     function formatWithFinder(stats, find) {
-        const lines = [];
-        for (const [stat_id, stat] of stats) {
-            const description = find(stat);
+        var lines = [];
+        var translated = new Set();
+        for (var _i = 0, _a = Array.from(stats.entries()); _i < _a.length; _i++) {
+            var _b = _a[_i], stat_id = _b[0], stat = _b[1];
+            if (translated.has(stat_id)) {
+                continue;
+            }
+            var description = find(stat);
             if (description !== undefined) {
-                const translation = translate(description, stats);
+                var translation = translate(description, stats);
                 if (translation === undefined) {
-                    throw new Error(`matching translation not found for '${stat.id}'`);
+                    throw new Error("matching translation not found for '" + stat.id + "'");
                 }
                 else {
                     // mark as translated
-                    description.stats.forEach(translated_id => stats.delete(translated_id));
+                    description.stats.forEach(function (translated_id) {
+                        stats.delete(translated_id);
+                        translated.add(translated_id);
+                    });
                     if (translation === NO_DESCRIPTION) {
-                        lines.push(`${stat_id} (hidden)`);
+                        lines.push(stat_id + " (hidden)");
                     }
                     else {
                         lines.push(translation);
@@ -247,14 +265,14 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
         return lines;
     }
     function translate(description, provided) {
-        const { stats, no_description, translations } = description;
+        var stats = description.stats, no_description = description.no_description, translations = description.translations;
         if (no_description === true) {
             return NO_DESCRIPTION;
         }
         // intersect the required stat_ids from the desc with the provided
-        const required_stats = stats
-            .map(stat_id => {
-            const stat = provided.get(stat_id);
+        var required_stats = stats
+            .map(function (stat_id) {
+            var stat = provided.get(stat_id);
             // default the value to 0
             if (stat === undefined) {
                 return {
@@ -266,19 +284,25 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
                 return stat;
             }
         })
-            .filter((stat) => stat !== null);
-        const translation = matchingTranslation(translations, required_stats);
+            .filter(function (stat) { return stat !== null; });
+        var translation = matchingTranslation(translations, required_stats);
         if (translation === undefined) {
             return undefined;
         }
         else {
-            return printf_1.default(translation.text, required_stats.map(({ value }) => value), translation.formatters);
+            return printf_1.default(translation.text, required_stats.map(function (_a) {
+                var value = _a.value;
+                return value;
+            }), translation.formatters);
         }
     }
     function matchingTranslation(translations, stats) {
-        const args = stats.map(({ value }) => value);
-        return translations.find(translation => {
-            return match_1.matches(args, translation.matchers).every(match => match === match_1.Match.subset || match === match_1.Match.exact);
+        var args = stats.map(function (_a) {
+            var value = _a.value;
+            return value;
+        });
+        return translations.find(function (translation) {
+            return match_1.matches(args, translation.matchers).every(function (match) { return match === match_1.Match.subset || match === match_1.Match.exact; });
         });
     }
     function formatWithFallback(stats, fallback) {
@@ -298,13 +322,16 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
         }
         else if (typeof fallback === 'function') {
             return Array.from(stats.entries())
-                .map(([id, stat]) => fallback(id, stat))
-                .filter((line) => typeof line === 'string');
+                .map(function (_a) {
+                var id = _a[0], stat = _a[1];
+                return fallback(id, stat);
+            })
+                .filter(function (line) { return typeof line === 'string'; });
         }
         else {
             // should ts recognize that this is unreachable code? enums can prob
             // be extended at runtime an therfore somebody could mess with them
-            throw new Error(`unrecognized fallback type '${fallback}'`);
+            throw new Error("unrecognized fallback type '" + fallback + "'");
         }
     }
     var match_1, printf_1, Fallback, initial_options, formatStats, NO_DESCRIPTION;
@@ -329,29 +356,39 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
                 fallback: Fallback.throw,
                 start_file: 'stat_descriptions'
             };
-            formatStats = Object.assign((stats, options = {}) => {
-                const { datas, fallback, start_file } = Object.assign({}, formatStats.options, options);
+            formatStats = Object.assign(function (stats, options) {
+                if (options === void 0) { options = {}; }
+                var _a = Object.assign({}, formatStats.options, options), datas = _a.datas, fallback = _a.fallback, start_file = _a.start_file;
                 if (datas === undefined) {
                     throw new Error('locale datas not provided. Set it either via passed option or #configure');
                 }
                 // translated lines
-                const lines = [];
+                var lines = [];
                 // array of stat_ids for which hash lookup failed
-                const untranslated = new Map(stats.map((stat) => [stat.id, stat]));
-                let description_file = datas[start_file];
-                while (description_file !== undefined) {
-                    const data = description_file.data;
-                    lines.push(...formatWithFinder(untranslated, ({ id }) => data[id]));
-                    lines.push(...formatWithFinder(untranslated, ({ id }) => findDescription(id, data)));
+                var untranslated = new Map(stats.map(function (stat) { return [stat.id, stat]; }));
+                var description_file = datas[start_file];
+                var _loop_1 = function () {
+                    var data = description_file.data;
+                    lines.push.apply(lines, formatWithFinder(untranslated, function (_a) {
+                        var id = _a.id;
+                        return data[id];
+                    }));
+                    lines.push.apply(lines, formatWithFinder(untranslated, function (_a) {
+                        var id = _a.id;
+                        return findDescription(id, data);
+                    }));
                     description_file = description_file.meta.include
                         ? datas[description_file.meta.include]
                         : undefined;
+                };
+                while (description_file !== undefined) {
+                    _loop_1();
                 }
-                lines.push(...formatWithFallback(untranslated, fallback));
+                lines.push.apply(lines, formatWithFallback(untranslated, fallback));
                 return lines;
             }, {
                 options: initial_options,
-                configure: (options) => {
+                configure: function (options) {
                     formatStats.options = Object.assign({}, formatStats.options, options);
                 }
             });
@@ -364,12 +401,12 @@ System.register("loadLocaleDatas", [], function (exports_8, context_8) {
     "use strict";
     var __moduleName = context_8 && context_8.id;
     function loadLocaleDatas(code, files) {
-        const datas = {};
-        const queued = [...files]; // clone
+        var datas = {};
+        var queued = files.slice(); // clone
         while (queued.length > 0) {
-            const file = queued.shift();
+            var file = queued.shift();
             if (datas[file] === undefined) {
-                const data = require(`../locale-data/${code}/${file}.json`);
+                var data = require("../locale-data/" + code + "/" + file + ".json");
                 datas[file] = data;
                 if (data.meta.include !== undefined) {
                     queued.push(data.meta.include);
@@ -4530,9 +4567,10 @@ System.register("translate/skill_meta", [], function (exports_9, context_9) {
 System.register("formatGemStats", ["formatStats", "loadLocaleDatas", "translate/skill_meta"], function (exports_10, context_10) {
     "use strict";
     var __moduleName = context_10 && context_10.id;
-    function formatGemStats(gem_id, stats, options = {}) {
-        const filter = findSkill(gem_id);
-        const { code } = Object.assign({ code: 'en', options });
+    function formatGemStats(gem_id, stats, options) {
+        if (options === void 0) { options = {}; }
+        var filter = findSkill(gem_id);
+        var code = Object.assign({ code: 'en', options: options }).code;
         return formatStats_1.default(stats, {
             datas: loadLocaleDatas_1.default(code, [filter.start_file]),
             fallback: formatStats_1.Fallback.skip,
@@ -4541,7 +4579,7 @@ System.register("formatGemStats", ["formatStats", "loadLocaleDatas", "translate/
     }
     exports_10("default", formatGemStats);
     function findSkill(id) {
-        const skill = skill_meta_1.default.skills[id];
+        var skill = skill_meta_1.default.skills[id];
         if (skill === undefined) {
             // Fallback to gem_stat
             // most likely for supports
@@ -4578,7 +4616,7 @@ System.register("localize/formatValueRange", ["localize/formatValues"], function
     "use strict";
     var __moduleName = context_11 && context_11.id;
     function formatValueRange(values, options) {
-        return `${formatValues_2.formatValue(values[0], options)} - ${formatValues_2.formatValue(values[1], options)}`;
+        return formatValues_2.formatValue(values[0], options) + " - " + formatValues_2.formatValue(values[1], options);
     }
     exports_11("default", formatValueRange);
     var formatValues_2;
@@ -4592,36 +4630,64 @@ System.register("localize/formatValueRange", ["localize/formatValues"], function
         }
     };
 });
-System.register("index", ["formatStats", "formatGemStats", "loadLocaleDatas", "localize/formatValueRange", "localize/formatValues"], function (exports_12, context_12) {
+System.register("util/inflectionIdentifier", [], function (exports_12, context_12) {
     "use strict";
     var __moduleName = context_12 && context_12.id;
+    function inflectionIdentifier(context) {
+        var inflection = context.inflection;
+        var gender;
+        var plural;
+        if (inflection != null) {
+            _a = inflection.split(''), gender = _a[0], plural = _a[1];
+        }
+        return [gender || default_gender, plural || default_plural].join('');
+        var _a;
+    }
+    exports_12("default", inflectionIdentifier);
+    var default_gender, default_plural;
+    return {
+        setters: [],
+        execute: function () {
+            default_gender = 'N';
+            default_plural = 'S';
+        }
+    };
+});
+System.register("index", ["formatStats", "formatGemStats", "loadLocaleDatas", "localize/formatValueRange", "localize/formatValues", "util/inflectionIdentifier"], function (exports_13, context_13) {
+    "use strict";
+    var __moduleName = context_13 && context_13.id;
     return {
         setters: [
             function (formatStats_2_1) {
-                exports_12({
+                exports_13({
                     "formatStats": formatStats_2_1["default"],
                     "Fallback": formatStats_2_1["Fallback"]
                 });
             },
             function (formatGemStats_1_1) {
-                exports_12({
+                exports_13({
                     "formatGemStats": formatGemStats_1_1["default"]
                 });
             },
             function (loadLocaleDatas_2_1) {
-                exports_12({
+                exports_13({
                     "loadLocaleDatas": loadLocaleDatas_2_1["default"],
                     "loadLocaleDatasFor": loadLocaleDatas_2_1["loadLocaleDatasFor"]
                 });
             },
             function (formatValueRange_1_1) {
-                exports_12({
+                exports_13({
                     "formatValueRange": formatValueRange_1_1["default"]
                 });
             },
             function (formatValues_3_1) {
-                exports_12({
+                exports_13({
                     "formatValue": formatValues_3_1["formatValue"]
+                });
+            },
+            function (inflectionIdentifier_1_1) {
+                exports_13({
+                    "inflectionIdentifier": inflectionIdentifier_1_1["default"]
                 });
             }
         ],

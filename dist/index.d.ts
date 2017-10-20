@@ -150,10 +150,16 @@ declare module "localize/formatValueRange" {
     export type Options = {};
     export default function formatValueRange(values: [number, number], options: Options): string;
 }
+declare module "util/inflectionIdentifier" {
+    export default function inflectionIdentifier(context: {
+        inflection?: string;
+    }): string;
+}
 declare module "index" {
     export { default as formatStats, Fallback } from "formatStats";
     export { default as formatGemStats } from "formatGemStats";
     export { default as loadLocaleDatas, loadLocaleDatasFor } from "loadLocaleDatas";
     export { default as formatValueRange } from "localize/formatValueRange";
     export { formatValue } from "localize/formatValues";
+    export { default as inflectionIdentifier } from "util/inflectionIdentifier";
 }
