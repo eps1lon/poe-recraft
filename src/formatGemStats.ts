@@ -1,13 +1,17 @@
-import formatStats, { Fallback, Stat } from './formatStats';
-import loadLocaleDatas from './loadLocaleDatas';
+import formatStats, {
+  Fallback,
+  FallbackCallback,
+  FormatStats,
+  OptionalOptions,
+  Stat,
+  TranslatedStats
+} from './formatStats';
+import baseRequiredLocaleDatas from './requiredLocaleDatas';
 import meta, { Skill } from './translate/skill_meta';
 import { StatLocaleDatas } from './types/StatDescription';
 
 // args
 export type GemId = string;
-export type OptionalOptions = {
-  code?: string;
-};
 
 // return
 export type Translation = string[];
@@ -15,17 +19,21 @@ export type Translation = string[];
 export default function formatGemStats(
   gem_id: GemId,
   stats: Stat[],
-  options: OptionalOptions = {}
-): Translation {
+  options?: OptionalOptions
+) {
   const filter = findSkill(gem_id);
 
-  const { code } = Object.assign({ code: 'en', options });
-
   return formatStats(stats, {
-    datas: loadLocaleDatas(code, [filter.start_file]),
+    ...options,
     fallback: Fallback.skip,
     start_file: filter.start_file
   });
+}
+
+export function requiredLocaleDatas(gem_id: GemId) {
+  const filter = findSkill(gem_id);
+
+  return baseRequiredLocaleDatas([filter.start_file]);
 }
 
 function findSkill(id: GemId): Skill {

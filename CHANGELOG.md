@@ -9,6 +9,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [0.6.1](https://github.com/eps1lon/poe-mods/compare/v0.6.0...v0.6.1) (2017-10-20)
 ### Changed
 - build target is now ES5 to support UglifyJS
+### Removed
+- replaced `loadLocaleDatas` with `requiredLocaleDatas`. The new method only
+  lists and not automatically requires the locale data to prevent webpack
+  from automatically bundling all locale datas.
 
 ## [0.6.0](https://github.com/eps1lon/poe-mods/compare/v0.5.0...v0.6.0) (2017-10-18)
 ### Added

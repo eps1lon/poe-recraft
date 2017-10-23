@@ -1,10 +1,22 @@
-import formatGemStats from '../formatGemStats';
+const path = require('path');
+import formatGemStats, { requiredLocaleDatas } from '../formatGemStats';
+
+const loadLocaleData = (gem_id: string, code: string) =>
+  requiredLocaleDatas(gem_id).reduce((datas, file) => {
+    datas[file] = require(path.join(
+      __dirname,
+      '../../locale-data',
+      code,
+      `${file}.json`
+    ));
+    return datas;
+  }, {});
 
 it('should only translate the lines that have translations', () => {
   const empty_effects = formatGemStats(
     'new_arctic_armour',
     [{ id: 'filtered_stat', value: 1 }],
-    { code: 'en' }
+    { datas: loadLocaleData('new_arctic_armour', 'en') }
   );
 
   expect(empty_effects).toEqual([]);
@@ -29,7 +41,7 @@ it('should only translate the lines that have translations', () => {
         value: 2500
       }
     ],
-    { code: 'en' }
+    { datas: loadLocaleData('new_arctic_armour', 'en') }
   );
 
   expect(aa_effects).toEqual([
@@ -59,7 +71,7 @@ it('should only translate the lines that have translations', () => {
         value: 78
       }
     ],
-    { code: 'en' }
+    { datas: loadLocaleData('arctic_breath', 'en') }
   );
 
   expect(ab_effects.sort()).toEqual([
@@ -85,7 +97,7 @@ it('should use the specified files first', () => {
         value: 1
       }
     ],
-    { code: 'en' }
+    { datas: loadLocaleData('vitality', 'en') }
   );
 
   expect(vitality_effects.sort()).toEqual([
@@ -95,9 +107,11 @@ it('should use the specified files first', () => {
 });
 
 it('should assume a support gem if gem_id is not recognized', () => {
-  const minion_speed = formatGemStats('minion_speed', [
-    { id: 'minion_movement_speed_+%', value: 25 }
-  ]);
+  const minion_speed = formatGemStats(
+    'minion_speed',
+    [{ id: 'minion_movement_speed_+%', value: 25 }],
+    { datas: loadLocaleData('minion_speed', 'en') }
+  );
 
   expect(minion_speed.sort()).toEqual([
     'Supported Skills have 25% increased Minion Movement Speed'

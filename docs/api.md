@@ -113,20 +113,17 @@ type Translation = {
 ```
 - effects: List of stats from the provided effect by this skill.
 
-## loadLocaleDatas(code: string, files: string[])
-Loads all `StatLocaleData` specified in `files` and required by subsequent includes. 
-Prefer the use of `loadLocaleDatasFor` to reduce requires of not needed files.
+## requiredLocaleDatas(files: string[])
+Lists all required `StatLocaleData` specified in `files` and required by subsequent includes.
 
-### Arguments <a name="loadLocaleDatas-args"></a>
-- code: Locale code. Must be a supported locale. Check directory names in `locale-data`.
+### Arguments <a name="requiredLocaleDatas-args"></a>
 - files: the basenames of the description files
 
-## loadLocaleDatasFor(code: string, formatStats: FormatStats)
-Loads all `StatLocaleData` that are required for use of the given configured 
+## requiredLocaleDatasFor(code: string, formatStats: FormatStats)
+Lists all required `StatLocaleData` that are required for use of the given configured 
 `formatStats`
 
 ### Arguments
-- code: Locale code. See [loadLocaleDatas#Arguments](#loadLocaleDatas-args).
 - formatStats: a configured `formatStats` function
 
 ## inflectionIdentifier(context: { inflection?: string })
