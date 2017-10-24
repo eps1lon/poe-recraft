@@ -10,9 +10,41 @@ const export_dir = path.join(__dirname, '../tmp/exports');
 const locale_files = fs.readdirSync(export_dir);
 
 const fields = {
+  AchievementItems: ['Name'],
+  Achievements: ['Description', 'Objective'],
+  ActiveSkills: ['DisplayedName', 'Description'],
+  Ascendancy: ['Name'],
   BaseItemTypes: ['Name', 'Inflection'],
-  Mods: ['Name']
+  BuffDefinitions: ['Name', 'Description'],
+  Characters: ['Name', 'Description', 'TraitDescription'],
+  CharacterStartStates: ['Description'],
+  Chests: ['Name'],
+  CraftingBenchOptions: ['Name'],
+  Commands: ['Description'],
+  CurrencyItems: ['Description', 'Directions'],
+  DailyMissions: ['Description'],
+  ItemClasses: ['Name'],
+  ItemThemes: ['Name'],
+  LabyrinthSecrets: ['Name'],
+  Labyrinths: ['Name'],
+  MapPins: ['Name', 'FlavourText'],
+  Mods: ['Name'],
+  MonsterVarieties: ['Name'],
+  NPCs: ['Name', 'ShortName'],
+  PantheonPanelLayout: ['GodName1', 'GodName2', 'GodName3', 'GodName4'],
+  PassiveSkills: ['Name', 'FlavourText'],
+  Prophecies: ['Name', 'PredictionText', 'FlavourText'],
+  Quest: ['Name'],
+  Realms: ['Name'],
+  ShopItem: ['Name', 'Description', 'Description2'],
+  ShopToken: ['Description'],
+  Shrines: ['Name', 'Description'],
+  SkillGems: ['Description'],
+  WarbandsPackMonsters: ['Tier1Name', 'Tier2Name', 'Tier3Name', 'Tier4Name'],
+  WorldAreas: ['Name']
 };
+
+// console.log(Object.keys(fields).join(' '));
 
 const isExport = file => file.endsWith('.json');
 const underscore = s => s.toLowerCase();

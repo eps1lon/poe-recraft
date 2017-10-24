@@ -23,7 +23,7 @@ case "$1" in
   ;;
 esac
 
-dats='BaseItemTypes Mods'
+dats='AchievementItems Achievements ActiveSkills Ascendancy BaseItemTypes BuffDefinitions Characters CharacterStartStates Chests CraftingBenchOptions Commands CurrencyItems DailyMissions ItemClasses ItemThemes LabyrinthSecrets Labyrinths MapPins Mods MonsterVarieties NPCs PantheonPanelLayout PassiveSkills Prophecies Quest Realms ShopItem ShopToken Shrines SkillGems WarbandsPackMonsters WorldAreas'
 
 for code in "${!codes[@]}"
 do
