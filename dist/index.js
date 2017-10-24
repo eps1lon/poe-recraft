@@ -1,3 +1,11 @@
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 System.register("translate/match", [], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
@@ -217,7 +225,7 @@ System.register("translate/printf", ["localize/formatValues"], function (exports
         }
     };
 });
-System.register("formatStats", ["translate/match", "translate/printf"], function (exports_7, context_7) {
+System.register("format/stats", ["translate/match", "translate/printf"], function (exports_7, context_7) {
     "use strict";
     var __moduleName = context_7 && context_7.id;
     /**
@@ -352,16 +360,13 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
             })(Fallback || (Fallback = {}));
             exports_7("Fallback", Fallback);
             initial_options = {
-                datas: undefined,
+                datas: {},
                 fallback: Fallback.throw,
                 start_file: 'stat_descriptions'
             };
-            formatStats = Object.assign(function (stats, options) {
+            formatStats = function (stats, options) {
                 if (options === void 0) { options = {}; }
-                var _a = Object.assign({}, formatStats.options, options), datas = _a.datas, fallback = _a.fallback, start_file = _a.start_file;
-                if (datas === undefined) {
-                    throw new Error('locale datas not provided. Set it either via passed option or #configure');
-                }
+                var _a = Object.assign({}, initial_options, options), datas = _a.datas, fallback = _a.fallback, start_file = _a.start_file;
                 // translated lines
                 var lines = [];
                 // array of stat_ids for which hash lookup failed
@@ -386,43 +391,34 @@ System.register("formatStats", ["translate/match", "translate/printf"], function
                 }
                 lines.push.apply(lines, formatWithFallback(untranslated, fallback));
                 return lines;
-            }, {
-                options: initial_options,
-                configure: function (options) {
-                    formatStats.options = Object.assign({}, formatStats.options, options);
-                }
-            });
+            };
             exports_7("default", formatStats);
             NO_DESCRIPTION = 'NO_DESCRIPTION';
         }
     };
 });
-System.register("loadLocaleDatas", [], function (exports_8, context_8) {
+System.register("requiredLocaleDatas", [], function (exports_8, context_8) {
     "use strict";
     var __moduleName = context_8 && context_8.id;
-    function loadLocaleDatas(code, files) {
-        var datas = {};
+    function requiredLocaleDatas(files) {
+        var datas = files.slice();
         var queued = files.slice(); // clone
         while (queued.length > 0) {
             var file = queued.shift();
-            if (datas[file] === undefined) {
-                var data = require("../locale-data/" + code + "/" + file + ".json");
-                datas[file] = data;
-                if (data.meta.include !== undefined) {
-                    queued.push(data.meta.include);
-                }
+            var include = dependencies[file];
+            if (include) {
+                queued.push(include);
+                datas.push(include);
             }
         }
         return datas;
     }
-    exports_8("default", loadLocaleDatas);
-    function loadLocaleDatasFor(code, formatStats) {
-        return loadLocaleDatas(code, [formatStats.options.start_file]);
-    }
-    exports_8("loadLocaleDatasFor", loadLocaleDatasFor);
+    exports_8("default", requiredLocaleDatas);
+    var dependencies;
     return {
         setters: [],
         execute: function () {
+            dependencies = require('./translate/descriptions_dependency.json');
         }
     };
 });
@@ -4564,20 +4560,20 @@ System.register("translate/skill_meta", [], function (exports_9, context_9) {
         }
     };
 });
-System.register("formatGemStats", ["formatStats", "loadLocaleDatas", "translate/skill_meta"], function (exports_10, context_10) {
+System.register("format/gemStats", ["requiredLocaleDatas", "translate/skill_meta", "format/stats"], function (exports_10, context_10) {
     "use strict";
     var __moduleName = context_10 && context_10.id;
     function formatGemStats(gem_id, stats, options) {
         if (options === void 0) { options = {}; }
         var filter = findSkill(gem_id);
-        var code = Object.assign({ code: 'en', options: options }).code;
-        return formatStats_1.default(stats, {
-            datas: loadLocaleDatas_1.default(code, [filter.start_file]),
-            fallback: formatStats_1.Fallback.skip,
-            start_file: filter.start_file
-        });
+        return stats_1.default(stats, __assign({}, options, { fallback: stats_1.Fallback.skip, start_file: filter.start_file }));
     }
     exports_10("default", formatGemStats);
+    function requiredLocaleDatas(gem_id) {
+        var filter = findSkill(gem_id);
+        return requiredLocaleDatas_1.default([filter.start_file]);
+    }
+    exports_10("requiredLocaleDatas", requiredLocaleDatas);
     function findSkill(id) {
         var skill = skill_meta_1.default.skills[id];
         if (skill === undefined) {
@@ -4595,30 +4591,74 @@ System.register("formatGemStats", ["formatStats", "loadLocaleDatas", "translate/
             return skill;
         }
     }
-    var formatStats_1, loadLocaleDatas_1, skill_meta_1;
+    var requiredLocaleDatas_1, skill_meta_1, stats_1;
     return {
         setters: [
-            function (formatStats_1_1) {
-                formatStats_1 = formatStats_1_1;
-            },
-            function (loadLocaleDatas_1_1) {
-                loadLocaleDatas_1 = loadLocaleDatas_1_1;
+            function (requiredLocaleDatas_1_1) {
+                requiredLocaleDatas_1 = requiredLocaleDatas_1_1;
             },
             function (skill_meta_1_1) {
                 skill_meta_1 = skill_meta_1_1;
+            },
+            function (stats_1_1) {
+                stats_1 = stats_1_1;
             }
         ],
         execute: function () {
         }
     };
 });
-System.register("localize/formatValueRange", ["localize/formatValues"], function (exports_11, context_11) {
+System.register("Format", ["format/gemStats", "format/stats"], function (exports_11, context_11) {
     "use strict";
     var __moduleName = context_11 && context_11.id;
+    var gemStats_1, stats_2, Fallback, Format;
+    return {
+        setters: [
+            function (gemStats_1_1) {
+                gemStats_1 = gemStats_1_1;
+            },
+            function (stats_2_1) {
+                stats_2 = stats_2_1;
+            }
+        ],
+        execute: function () {
+            (function (Fallback) {
+                Fallback[Fallback["throw"] = 0] = "throw";
+                Fallback[Fallback["id"] = 1] = "id";
+                Fallback[Fallback["skip"] = 2] = "skip";
+            })(Fallback || (Fallback = {}));
+            exports_11("Fallback", Fallback);
+            Format = /** @class */ (function () {
+                function Format() {
+                    this.options = {
+                        datas: {},
+                        fallback: Fallback.throw,
+                        start_file: 'stat_descriptions'
+                    };
+                }
+                Format.prototype.configure = function (options) {
+                    this.options = __assign({}, this.options, options);
+                };
+                Format.prototype.stats = function (stats) {
+                    return stats_2.default(stats, this.options);
+                };
+                Format.prototype.gemStats = function (gem_id, stats) {
+                    return gemStats_1.default(gem_id, stats, this.options);
+                };
+                return Format;
+            }());
+            exports_11("Format", Format);
+            exports_11("default", new Format());
+        }
+    };
+});
+System.register("localize/formatValueRange", ["localize/formatValues"], function (exports_12, context_12) {
+    "use strict";
+    var __moduleName = context_12 && context_12.id;
     function formatValueRange(values, options) {
         return formatValues_2.formatValue(values[0], options) + " - " + formatValues_2.formatValue(values[1], options);
     }
-    exports_11("default", formatValueRange);
+    exports_12("default", formatValueRange);
     var formatValues_2;
     return {
         setters: [
@@ -4630,9 +4670,9 @@ System.register("localize/formatValueRange", ["localize/formatValues"], function
         }
     };
 });
-System.register("util/inflectionIdentifier", [], function (exports_12, context_12) {
+System.register("util/inflectionIdentifier", [], function (exports_13, context_13) {
     "use strict";
-    var __moduleName = context_12 && context_12.id;
+    var __moduleName = context_13 && context_13.id;
     function inflectionIdentifier(context) {
         var inflection = context.inflection;
         var gender;
@@ -4643,7 +4683,7 @@ System.register("util/inflectionIdentifier", [], function (exports_12, context_1
         return [gender || default_gender, plural || default_plural].join('');
         var _a;
     }
-    exports_12("default", inflectionIdentifier);
+    exports_13("default", inflectionIdentifier);
     var default_gender, default_plural;
     return {
         setters: [],
@@ -4653,40 +4693,45 @@ System.register("util/inflectionIdentifier", [], function (exports_12, context_1
         }
     };
 });
-System.register("index", ["formatStats", "formatGemStats", "loadLocaleDatas", "localize/formatValueRange", "localize/formatValues", "util/inflectionIdentifier"], function (exports_13, context_13) {
+System.register("index", ["format/stats", "format/gemStats", "Format", "requiredLocaleDatas", "localize/formatValueRange", "localize/formatValues", "util/inflectionIdentifier"], function (exports_14, context_14) {
     "use strict";
-    var __moduleName = context_13 && context_13.id;
+    var __moduleName = context_14 && context_14.id;
     return {
         setters: [
-            function (formatStats_2_1) {
-                exports_13({
-                    "formatStats": formatStats_2_1["default"],
-                    "Fallback": formatStats_2_1["Fallback"]
+            function (stats_3_1) {
+                exports_14({
+                    "formatStats": stats_3_1["default"],
+                    "Fallback": stats_3_1["Fallback"]
                 });
             },
-            function (formatGemStats_1_1) {
-                exports_13({
-                    "formatGemStats": formatGemStats_1_1["default"]
+            function (gemStats_2_1) {
+                exports_14({
+                    "formatGemStats": gemStats_2_1["default"]
                 });
             },
-            function (loadLocaleDatas_2_1) {
-                exports_13({
-                    "loadLocaleDatas": loadLocaleDatas_2_1["default"],
-                    "loadLocaleDatasFor": loadLocaleDatas_2_1["loadLocaleDatasFor"]
+            function (Format_1_1) {
+                exports_14({
+                    "format": Format_1_1["default"],
+                    "Format": Format_1_1["Format"]
+                });
+            },
+            function (requiredLocaleDatas_2_1) {
+                exports_14({
+                    "requiredLocaleDatas": requiredLocaleDatas_2_1["default"]
                 });
             },
             function (formatValueRange_1_1) {
-                exports_13({
+                exports_14({
                     "formatValueRange": formatValueRange_1_1["default"]
                 });
             },
             function (formatValues_3_1) {
-                exports_13({
+                exports_14({
                     "formatValue": formatValues_3_1["formatValue"]
                 });
             },
             function (inflectionIdentifier_1_1) {
-                exports_13({
+                exports_14({
                     "inflectionIdentifier": inflectionIdentifier_1_1["default"]
                 });
             }

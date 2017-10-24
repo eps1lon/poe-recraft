@@ -83,17 +83,17 @@ declare module "translate/printf" {
     export type Params = Array<number | [number, number]>;
     export default function printf(text: string, params: Params, formatters?: Formatter[]): string;
 }
-declare module "formatStats" {
+declare module "format/stats" {
     import { StatLocaleDatas } from "types/StatDescription";
     export type Stat = {
         id: string;
         value: number | [number, number];
         alias?: string;
     };
-    export type OptionalOptions = {
-        datas?: StatLocaleDatas;
-        fallback?: Fallback | FallbackCallback;
-        start_file?: string;
+    export type Options = {
+        datas: StatLocaleDatas;
+        fallback: Fallback | FallbackCallback;
+        start_file: string;
     };
     export type TranslatedStats = string[];
     export type FallbackCallback = (id: string, stat: Stat) => string | null;
@@ -102,24 +102,11 @@ declare module "formatStats" {
         id = 1,
         skip = 2,
     }
-    export type Options = {
-        datas?: StatLocaleDatas;
-        fallback: Fallback | FallbackCallback;
-        start_file: string;
-    };
-    export interface FormatStats {
-        (stats: Stat[], options?: OptionalOptions): TranslatedStats;
-        options: Options;
-        configure(options: OptionalOptions): void;
-    }
-    const formatStats: FormatStats;
+    const formatStats: (stats: Stat[], options?: Partial<Options>) => string[];
     export default formatStats;
 }
-declare module "loadLocaleDatas" {
-    import { FormatStats } from "formatStats";
-    import { StatLocaleDatas } from "types/StatDescription";
-    export default function loadLocaleDatas(code: string, files: string[]): StatLocaleDatas;
-    export function loadLocaleDatasFor(code: string, formatStats: FormatStats): StatLocaleDatas;
+declare module "requiredLocaleDatas" {
+    export default function requiredLocaleDatas(files: string[]): string[];
 }
 declare module "translate/skill_meta" {
     export type Skill = {
@@ -137,14 +124,35 @@ declare module "translate/skill_meta" {
     const _default: SkillMeta;
     export default _default;
 }
-declare module "formatGemStats" {
-    import { Stat } from "formatStats";
+declare module "format/gemStats" {
+    import { Options, Stat } from "format/stats";
     export type GemId = string;
-    export type OptionalOptions = {
-        code?: string;
-    };
     export type Translation = string[];
-    export default function formatGemStats(gem_id: GemId, stats: Stat[], options?: OptionalOptions): Translation;
+    export default function formatGemStats(gem_id: GemId, stats: Stat[], options?: Partial<Options>): string[];
+    export function requiredLocaleDatas(gem_id: GemId): string[];
+}
+declare module "Format" {
+    import { GemId } from "format/gemStats";
+    import { Stat } from "format/stats";
+    import { StatLocaleDatas } from "types/StatDescription";
+    export enum Fallback {
+        throw = 0,
+        id = 1,
+        skip = 2,
+    }
+    export type Options = {
+        datas: StatLocaleDatas;
+        fallback: Fallback;
+        start_file: string;
+    };
+    export class Format {
+        private options;
+        configure(options: Partial<Options>): void;
+        stats(stats: Stat[]): string[];
+        gemStats(gem_id: GemId, stats: Stat[]): string[];
+    }
+    const _default: Format;
+    export default _default;
 }
 declare module "localize/formatValueRange" {
     export type Options = {};
@@ -156,9 +164,10 @@ declare module "util/inflectionIdentifier" {
     }): string;
 }
 declare module "index" {
-    export { default as formatStats, Fallback } from "formatStats";
-    export { default as formatGemStats } from "formatGemStats";
-    export { default as loadLocaleDatas, loadLocaleDatasFor } from "loadLocaleDatas";
+    export { default as formatStats, Fallback } from "format/stats";
+    export { default as formatGemStats } from "format/gemStats";
+    export { default as format, Format } from "Format";
+    export { default as requiredLocaleDatas } from "requiredLocaleDatas";
     export { default as formatValueRange } from "localize/formatValueRange";
     export { formatValue } from "localize/formatValues";
     export { default as inflectionIdentifier } from "util/inflectionIdentifier";
