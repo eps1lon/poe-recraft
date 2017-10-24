@@ -1,7 +1,7 @@
 import formatStats, {
   Fallback,
   FallbackCallback,
-  OptionalOptions,
+  Options,
   Stat,
   TranslatedStats
 } from './formatStats';
@@ -18,7 +18,7 @@ export type Translation = string[];
 export default function formatGemStats(
   gem_id: GemId,
   stats: Stat[],
-  options?: OptionalOptions
+  options: Partial<Options> = {}
 ) {
   const filter = findSkill(gem_id);
 

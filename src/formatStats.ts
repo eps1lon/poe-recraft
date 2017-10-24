@@ -15,10 +15,10 @@ export type Stat = {
   alias?: string;
 };
 
-export type OptionalOptions = {
+export type Options = {
   datas?: StatLocaleDatas;
-  fallback?: Fallback | FallbackCallback;
-  start_file?: string;
+  fallback: Fallback | FallbackCallback;
+  start_file: string;
 };
 // return type
 export type TranslatedStats = string[];
@@ -30,11 +30,6 @@ export enum Fallback {
   id,
   skip
 }
-export type Options = {
-  datas?: StatLocaleDatas;
-  fallback: Fallback | FallbackCallback;
-  start_file: string;
-};
 
 const initial_options: Options = {
   datas: undefined,
@@ -44,7 +39,7 @@ const initial_options: Options = {
 
 const formatStats = (
   stats: Stat[],
-  options: OptionalOptions = {}
+  options: Partial<Options> = {}
 ): TranslatedStats => {
   const { datas, fallback, start_file } = Object.assign(
     {},
