@@ -9,10 +9,15 @@ const inflection_grammar = Grammar.fromCompiled(
 const export_dir = path.join(__dirname, '../tmp/exports');
 const locale_files = fs.readdirSync(export_dir);
 
+const fields = {
+  BaseItemTypes: ['Name', 'Inflection'],
+  Mods: ['Name']
+};
+
 const isExport = file => file.endsWith('.json');
 const underscore = s => s.toLowerCase();
 
-const fields = {
+const fieldValueMapper = {
   // [FieldName]: fieldValue => output
   Name: name => parseInflection(name, inflection_grammar),
   // skip emtpy strings
@@ -31,9 +36,9 @@ locale_files.filter(isExport).forEach(locale_file => {
     const dat_name = path.basename(exported.filename, '.dat');
     const { header, data } = exported;
 
-    const output_header = Object.keys(
-      fields
-    ).reduce((partial_header, col_name) => {
+    const output_header = fields[
+      dat_name
+    ].reduce((partial_header, col_name) => {
       partial_header[underscore(col_name)] = header.find(
         col => col.name === col_name
       );
@@ -46,7 +51,8 @@ locale_files.filter(isExport).forEach(locale_file => {
         output_header
       ).reduce((with_row, [name, info]) => {
         if (info !== undefined) {
-          with_row[name] = fields[info.name](row[info.rowid]);
+          const mapper = fieldValueMapper[info.name] || (value => value);
+          with_row[name] = mapper(row[info.rowid]);
         }
 
         return with_row;
