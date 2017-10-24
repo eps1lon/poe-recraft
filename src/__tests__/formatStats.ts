@@ -159,20 +159,6 @@ it('should translate if not enough stats are provided by defaulting to 0', () =>
   ).toEqual(['12% chance to Freeze']);
 });
 
-it('can be configured to use global local data', () => {
-  expect(() =>
-    formatStats([{ id: 'base_chance_to_freeze_%', value: 12 }]).sort()
-  ).toThrowError(
-    'locale datas not provided. Set it either via passed option or #configure'
-  );
-
-  formatStats.configure({ datas });
-
-  expect(
-    formatStats([{ id: 'base_chance_to_freeze_%', value: 12 }]).sort()
-  ).toEqual(['12% chance to Freeze']);
-});
-
 it('should support id fallback', () => {
   expect(
     formatStats([{ id: 'from_armour_movement_speed_+%', value: -3 }], {

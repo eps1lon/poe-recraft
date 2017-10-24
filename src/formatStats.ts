@@ -42,59 +42,48 @@ const initial_options: Options = {
   start_file: 'stat_descriptions'
 };
 
-export interface FormatStats {
-  (stats: Stat[], options?: OptionalOptions): TranslatedStats;
-  options: Options;
-  configure(options: OptionalOptions): void;
-}
+const formatStats = (
+  stats: Stat[],
+  options: OptionalOptions = {}
+): TranslatedStats => {
+  const { datas, fallback, start_file } = Object.assign(
+    {},
+    initial_options,
+    options
+  );
 
-const formatStats: FormatStats = Object.assign(
-  (stats: Stat[], options: OptionalOptions = {}): TranslatedStats => {
-    const { datas, fallback, start_file } = Object.assign(
-      {},
-      formatStats.options,
-      options
+  if (datas === undefined) {
+    throw new Error(
+      'locale datas not provided. Set it either via passed option or #configure'
     );
-
-    if (datas === undefined) {
-      throw new Error(
-        'locale datas not provided. Set it either via passed option or #configure'
-      );
-    }
-
-    // translated lines
-    const lines: string[] = [];
-    // array of stat_ids for which hash lookup failed
-    const untranslated: Map<string, Stat> = new Map(
-      stats.map((stat: Stat) => [stat.id, stat] as [string, Stat])
-    );
-
-    let description_file: StatLocaleData | undefined = datas[start_file];
-
-    while (description_file !== undefined) {
-      const data: Descriptions = description_file.data;
-
-      lines.push(...formatWithFinder(untranslated, ({ id }) => data[id]));
-      lines.push(
-        ...formatWithFinder(untranslated, ({ id }) => findDescription(id, data))
-      );
-
-      description_file = description_file.meta.include
-        ? datas[description_file.meta.include]
-        : undefined;
-    }
-
-    lines.push(...formatWithFallback(untranslated, fallback));
-
-    return lines;
-  },
-  {
-    options: initial_options,
-    configure: (options: OptionalOptions) => {
-      formatStats.options = Object.assign({}, formatStats.options, options);
-    }
   }
-);
+
+  // translated lines
+  const lines: string[] = [];
+  // array of stat_ids for which hash lookup failed
+  const untranslated: Map<string, Stat> = new Map(
+    stats.map((stat: Stat) => [stat.id, stat] as [string, Stat])
+  );
+
+  let description_file: StatLocaleData | undefined = datas[start_file];
+
+  while (description_file !== undefined) {
+    const data: Descriptions = description_file.data;
+
+    lines.push(...formatWithFinder(untranslated, ({ id }) => data[id]));
+    lines.push(
+      ...formatWithFinder(untranslated, ({ id }) => findDescription(id, data))
+    );
+
+    description_file = description_file.meta.include
+      ? datas[description_file.meta.include]
+      : undefined;
+  }
+
+  lines.push(...formatWithFallback(untranslated, fallback));
+
+  return lines;
+};
 
 export default formatStats;
 

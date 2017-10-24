@@ -1,7 +1,6 @@
 import formatStats, {
   Fallback,
   FallbackCallback,
-  FormatStats,
   OptionalOptions,
   Stat,
   TranslatedStats

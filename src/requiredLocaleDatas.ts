@@ -1,5 +1,4 @@
 const dependencies = require('./translate/descriptions_dependency.json');
-import { FormatStats } from './formatStats';
 import { StatLocaleData, StatLocaleDatas } from './types/StatDescription';
 
 export default function requiredLocaleDatas(files: string[]): string[] {
@@ -17,8 +16,4 @@ export default function requiredLocaleDatas(files: string[]): string[] {
   }
 
   return datas;
-}
-
-export function requiredLocaleDatasFor(formatStats: FormatStats) {
-  return requiredLocaleDatas([formatStats.options.start_file]);
 }
