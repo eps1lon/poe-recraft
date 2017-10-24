@@ -1,7 +1,7 @@
-import { StatLocaleData } from '../types/StatDescription';
+import { StatLocaleData } from '../../types/StatDescription';
 
-import datas from '../__fixtures__/english';
-import formatStats, { Fallback, Stat } from '../formatStats';
+import datas from '../../__fixtures__/english';
+import formatStats, { Fallback, Stat } from '../stats';
 
 it('should translate single stat line', () => {
   expect(() =>

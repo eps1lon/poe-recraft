@@ -1,0 +1,14 @@
+import datas from '../__fixtures__/english';
+import format from '../Format';
+
+it('can be configured to use global local data', () => {
+  expect(() =>
+    format.stats([{ id: 'base_chance_to_freeze_%', value: 12 }]).sort()
+  ).toThrowError('no descriptions found for base_chance_to_freeze_%');
+
+  format.configure({ datas });
+
+  expect(
+    format.stats([{ id: 'base_chance_to_freeze_%', value: 12 }]).sort()
+  ).toEqual(['12% chance to Freeze']);
+});

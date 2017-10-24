@@ -1,11 +1,11 @@
 const path = require('path');
-import formatGemStats, { requiredLocaleDatas } from '../formatGemStats';
+import formatGemStats, { requiredLocaleDatas } from '../gemStats';
 
 const loadLocaleData = (gem_id: string, code: string) =>
   requiredLocaleDatas(gem_id).reduce((datas, file) => {
     datas[file] = require(path.join(
       __dirname,
-      '../../locale-data',
+      '../../../locale-data',
       code,
       `${file}.json`
     ));

@@ -1,12 +1,12 @@
-import { Match, matches } from './translate/match';
-import printf from './translate/printf';
+import { Match, matches } from '../translate/match';
+import printf from '../translate/printf';
 import {
   Description,
   Descriptions,
   StatLocaleData,
   StatLocaleDatas,
   Translation
-} from './types/StatDescription';
+} from '../types/StatDescription';
 
 // arg types
 export type Stat = {
@@ -16,7 +16,7 @@ export type Stat = {
 };
 
 export type Options = {
-  datas?: StatLocaleDatas;
+  datas: StatLocaleDatas;
   fallback: Fallback | FallbackCallback;
   start_file: string;
 };
@@ -32,7 +32,7 @@ export enum Fallback {
 }
 
 const initial_options: Options = {
-  datas: undefined,
+  datas: {},
   fallback: Fallback.throw,
   start_file: 'stat_descriptions'
 };
@@ -46,12 +46,6 @@ const formatStats = (
     initial_options,
     options
   );
-
-  if (datas === undefined) {
-    throw new Error(
-      'locale datas not provided. Set it either via passed option or #configure'
-    );
-  }
 
   // translated lines
   const lines: string[] = [];
