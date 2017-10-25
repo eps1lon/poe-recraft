@@ -8,7 +8,7 @@ const groups = [
       { primary: 7, name: 'Daggers' },
       { primary: 32, name: 'Sceptres' },
       { primary: 13, name: 'Bows' },
-      { primary: 19, name: 'Quivers' },
+      { primary: 20, name: 'Quivers' },
       { primary: 8, name: 'Wands' },
       { primary: 14, name: 'Staves' },
       { primary: 11, name: 'One Hand Axes' },
@@ -40,11 +40,6 @@ const groups = [
       { primary: 21, name: 'Belts' },
       { primary: 41, name: 'Jewels' }
     ]
-  },
-  {
-    name: 'misc',
-    human: 'Misc',
-    classes: [{ primary: 25, name: 'Maps' }]
   }
 ];
 
