@@ -19,7 +19,8 @@
     "husky": "^0.14.3",
     "prettier": "^1.6.1",
     "react-test-renderer": "^16.0.0",
-    "redux-mock-store": "^1.2.3"
+    "redux-mock-store": "^1.2.3",
+    "rimraf": "^2.6.2"
   },
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
@@ -28,7 +29,7 @@
     "lodash": "^4.17.4",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.1",
-    "poe-i18n": "^0.6.0",
+    "poe-i18n": "^0.7.1",
     "poe-mods": "^1.5.2",
     "react": "^16.0.0",
     "react-addons-css-transition-group": "^15.6.2",
@@ -50,6 +51,7 @@
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./node_modules src/ -o src/",
     "build": "npm run build-css && react-scripts build",
+    "build:clean": "rimraf build",
     "eject": "react-scripts eject",
     "flow": "flow",
     "format": "prettier --write src/**/*.js",
