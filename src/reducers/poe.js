@@ -16,7 +16,7 @@ export type State = {
 };
 
 const initial: State = {
-  api_root: '',
+  api_root: '.',
   items: [],
   benchoptions: [],
   mods: [],
