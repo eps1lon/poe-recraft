@@ -105,6 +105,12 @@ declare module "format/stats" {
     const formatStats: (stats: Stat[], options?: Partial<Options>) => string[];
     export default formatStats;
 }
+declare module "translate/descriptions_dependency" {
+    const _default: Readonly<{
+        [key: string]: string;
+    }>;
+    export default _default;
+}
 declare module "requiredLocaleDatas" {
     export default function requiredLocaleDatas(files: string[]): string[];
 }

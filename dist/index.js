@@ -397,15 +397,43 @@ System.register("format/stats", ["translate/match", "translate/printf"], functio
         }
     };
 });
-System.register("requiredLocaleDatas", [], function (exports_8, context_8) {
+System.register("translate/descriptions_dependency", [], function (exports_8, context_8) {
     "use strict";
     var __moduleName = context_8 && context_8.id;
+    return {
+        setters: [],
+        execute: function () {
+            exports_8("default", Object.freeze({
+                active_skill_gem_stat_descriptions: 'gem_stat_descriptions',
+                atlas_stat_descriptions: 'map_stat_descriptions',
+                aura_skill_stat_descriptions: 'skill_stat_descriptions',
+                beam_skill_stat_descriptions: 'skill_stat_descriptions',
+                curse_skill_stat_descriptions: 'skill_stat_descriptions',
+                debuff_skill_stat_descriptions: 'skill_stat_descriptions',
+                gem_stat_descriptions: 'stat_descriptions',
+                leaguestone_stat_descriptions: 'stat_descriptions',
+                map_stat_descriptions: 'stat_descriptions',
+                minion_attack_skill_stat_descriptions: 'minion_skill_stat_descriptions',
+                minion_skill_stat_descriptions: 'skill_stat_descriptions',
+                minion_spell_skill_stat_descriptions: 'minion_skill_stat_descriptions',
+                offering_skill_stat_descriptions: 'skill_stat_descriptions',
+                passive_skill_aura_stat_descriptions: 'passive_skill_stat_descriptions',
+                passive_skill_stat_descriptions: 'stat_descriptions',
+                skill_stat_descriptions: 'active_skill_gem_stat_descriptions',
+                variable_duration_skill_stat_descriptions: 'skill_stat_descriptions'
+            }));
+        }
+    };
+});
+System.register("requiredLocaleDatas", ["translate/descriptions_dependency"], function (exports_9, context_9) {
+    "use strict";
+    var __moduleName = context_9 && context_9.id;
     function requiredLocaleDatas(files) {
         var datas = files.slice();
         var queued = files.slice(); // clone
         while (queued.length > 0) {
             var file = queued.shift();
-            var include = dependencies[file];
+            var include = descriptions_dependency_1.default[file];
             if (include) {
                 queued.push(include);
                 datas.push(include);
@@ -413,22 +441,25 @@ System.register("requiredLocaleDatas", [], function (exports_8, context_8) {
         }
         return datas;
     }
-    exports_8("default", requiredLocaleDatas);
-    var dependencies;
+    exports_9("default", requiredLocaleDatas);
+    var descriptions_dependency_1;
     return {
-        setters: [],
+        setters: [
+            function (descriptions_dependency_1_1) {
+                descriptions_dependency_1 = descriptions_dependency_1_1;
+            }
+        ],
         execute: function () {
-            dependencies = require('./translate/descriptions_dependency.json');
         }
     };
 });
-System.register("translate/skill_meta", [], function (exports_9, context_9) {
+System.register("translate/skill_meta", [], function (exports_10, context_10) {
     "use strict";
-    var __moduleName = context_9 && context_9.id;
+    var __moduleName = context_10 && context_10.id;
     return {
         setters: [],
         execute: function () {
-            exports_9("default", {
+            exports_10("default", {
                 groups: {
                     weapon_damage: [
                         'weapon_physical_damage_range',
@@ -4560,20 +4591,20 @@ System.register("translate/skill_meta", [], function (exports_9, context_9) {
         }
     };
 });
-System.register("format/gemStats", ["requiredLocaleDatas", "translate/skill_meta", "format/stats"], function (exports_10, context_10) {
+System.register("format/gemStats", ["requiredLocaleDatas", "translate/skill_meta", "format/stats"], function (exports_11, context_11) {
     "use strict";
-    var __moduleName = context_10 && context_10.id;
+    var __moduleName = context_11 && context_11.id;
     function formatGemStats(gem_id, stats, options) {
         if (options === void 0) { options = {}; }
         var filter = findSkill(gem_id);
         return stats_1.default(stats, __assign({}, options, { fallback: stats_1.Fallback.skip, start_file: filter.start_file }));
     }
-    exports_10("default", formatGemStats);
+    exports_11("default", formatGemStats);
     function requiredLocaleDatas(gem_id) {
         var filter = findSkill(gem_id);
         return requiredLocaleDatas_1.default([filter.start_file]);
     }
-    exports_10("requiredLocaleDatas", requiredLocaleDatas);
+    exports_11("requiredLocaleDatas", requiredLocaleDatas);
     function findSkill(id) {
         var skill = skill_meta_1.default.skills[id];
         if (skill === undefined) {
@@ -4608,9 +4639,9 @@ System.register("format/gemStats", ["requiredLocaleDatas", "translate/skill_meta
         }
     };
 });
-System.register("Format", ["format/gemStats", "format/stats"], function (exports_11, context_11) {
+System.register("Format", ["format/gemStats", "format/stats"], function (exports_12, context_12) {
     "use strict";
-    var __moduleName = context_11 && context_11.id;
+    var __moduleName = context_12 && context_12.id;
     var gemStats_1, stats_2, Fallback, Format;
     return {
         setters: [
@@ -4627,7 +4658,7 @@ System.register("Format", ["format/gemStats", "format/stats"], function (exports
                 Fallback[Fallback["id"] = 1] = "id";
                 Fallback[Fallback["skip"] = 2] = "skip";
             })(Fallback || (Fallback = {}));
-            exports_11("Fallback", Fallback);
+            exports_12("Fallback", Fallback);
             Format = /** @class */ (function () {
                 function Format() {
                     this.options = {
@@ -4647,18 +4678,18 @@ System.register("Format", ["format/gemStats", "format/stats"], function (exports
                 };
                 return Format;
             }());
-            exports_11("Format", Format);
-            exports_11("default", new Format());
+            exports_12("Format", Format);
+            exports_12("default", new Format());
         }
     };
 });
-System.register("localize/formatValueRange", ["localize/formatValues"], function (exports_12, context_12) {
+System.register("localize/formatValueRange", ["localize/formatValues"], function (exports_13, context_13) {
     "use strict";
-    var __moduleName = context_12 && context_12.id;
+    var __moduleName = context_13 && context_13.id;
     function formatValueRange(values, options) {
         return formatValues_2.formatValue(values[0], options) + " - " + formatValues_2.formatValue(values[1], options);
     }
-    exports_12("default", formatValueRange);
+    exports_13("default", formatValueRange);
     var formatValues_2;
     return {
         setters: [
@@ -4670,9 +4701,9 @@ System.register("localize/formatValueRange", ["localize/formatValues"], function
         }
     };
 });
-System.register("util/inflectionIdentifier", [], function (exports_13, context_13) {
+System.register("util/inflectionIdentifier", [], function (exports_14, context_14) {
     "use strict";
-    var __moduleName = context_13 && context_13.id;
+    var __moduleName = context_14 && context_14.id;
     function inflectionIdentifier(context) {
         var inflection = context.inflection;
         var gender;
@@ -4683,7 +4714,7 @@ System.register("util/inflectionIdentifier", [], function (exports_13, context_1
         return [gender || default_gender, plural || default_plural].join('');
         var _a;
     }
-    exports_13("default", inflectionIdentifier);
+    exports_14("default", inflectionIdentifier);
     var default_gender, default_plural;
     return {
         setters: [],
@@ -4693,45 +4724,45 @@ System.register("util/inflectionIdentifier", [], function (exports_13, context_1
         }
     };
 });
-System.register("index", ["format/stats", "format/gemStats", "Format", "requiredLocaleDatas", "localize/formatValueRange", "localize/formatValues", "util/inflectionIdentifier"], function (exports_14, context_14) {
+System.register("index", ["format/stats", "format/gemStats", "Format", "requiredLocaleDatas", "localize/formatValueRange", "localize/formatValues", "util/inflectionIdentifier"], function (exports_15, context_15) {
     "use strict";
-    var __moduleName = context_14 && context_14.id;
+    var __moduleName = context_15 && context_15.id;
     return {
         setters: [
             function (stats_3_1) {
-                exports_14({
+                exports_15({
                     "formatStats": stats_3_1["default"],
                     "Fallback": stats_3_1["Fallback"]
                 });
             },
             function (gemStats_2_1) {
-                exports_14({
+                exports_15({
                     "formatGemStats": gemStats_2_1["default"]
                 });
             },
             function (Format_1_1) {
-                exports_14({
+                exports_15({
                     "format": Format_1_1["default"],
                     "Format": Format_1_1["Format"]
                 });
             },
             function (requiredLocaleDatas_2_1) {
-                exports_14({
+                exports_15({
                     "requiredLocaleDatas": requiredLocaleDatas_2_1["default"]
                 });
             },
             function (formatValueRange_1_1) {
-                exports_14({
+                exports_15({
                     "formatValueRange": formatValueRange_1_1["default"]
                 });
             },
             function (formatValues_3_1) {
-                exports_14({
+                exports_15({
                     "formatValue": formatValues_3_1["formatValue"]
                 });
             },
             function (inflectionIdentifier_1_1) {
-                exports_14({
+                exports_15({
                     "inflectionIdentifier": inflectionIdentifier_1_1["default"]
                 });
             }
