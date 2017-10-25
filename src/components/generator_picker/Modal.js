@@ -32,7 +32,7 @@ const GeneratorModal = (props: Props) => {
       <Button onClick={toggle}>Generator: {props.active}</Button>
 
       <Modal isOpen={props.is_open} toggle={toggle} autoFocus={false}>
-        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+        <ModalHeader toggle={toggle}>Pick a generator</ModalHeader>
         <ModalBody>
           <GeneratorPicker active={props.active} onChange={onChange} />
         </ModalBody>
