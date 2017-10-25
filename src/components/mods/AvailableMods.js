@@ -16,7 +16,6 @@ export type Props = {
 const AvailableMods = ({ prefixes, suffixes, implicits }: Props) => {
   return (
     <section id="available_mods">
-      <h3>available Mods</h3>
       <ModsTable
         className="implicits"
         details={implicits}
