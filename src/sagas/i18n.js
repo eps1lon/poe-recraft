@@ -10,25 +10,8 @@ import {
 } from 'actions/i18n';
 
 const requireLocaleData = locale => {
-  const language_code = locale.split('-')[0];
-
-  return Promise.all([
-    // bundling wrong react-intl into the chunk
-    // which results in two requests, still better than 4
-    // $FlowFixMe
-    import(/* webpackChunkName: "i18n" */ `react-intl/locale-data/${language_code}`),
-    // $FlowFixMe
-    import(/* webpackChunkName: "i18n" */ `poe-i18n/locale-data/${locale}/stat_descriptions.json`),
-    // $FlowFixMe
-    import(/* webpackChunkName: "i18n" */ `poe-i18n/locale-data/${locale}/BaseItemTypes.json`),
-    // $FlowFixMe
-    import(/* webpackChunkName: "i18n" */ `poe-i18n/locale-data/${locale}/Mods.json`)
-  ]).then(([locale_data, stat_descriptions, baseitemtypes, mods]) => ({
-    baseitemtypes,
-    mods,
-    locale_data,
-    stat_descriptions
-  }));
+  // $FlowFixMe
+  return import(/* webpackChunkName: "i18n/[request]" */ `../i18n/${locale}`);
 };
 
 function* loadLocaleData(): Generator<*, *, *> {
