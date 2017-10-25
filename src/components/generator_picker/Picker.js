@@ -2,6 +2,8 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 
+import Orb from './Orb';
+
 export type Props = {
   active: string,
   onChange: string => void
@@ -14,17 +16,19 @@ const default_props = {
 const GeneratorPicker = (props: Props) => {
   return [
     <div key="default">
-      <Button onClick={() => props.onChange('showcase')}>Showcase</Button>
+      <Button onClick={() => props.onChange('showcase')}>All</Button>
     </div>,
     <div key="orbs">
-      <Button onClick={() => props.onChange('transmute')}>Transmute</Button>
-      <Button onClick={() => props.onChange('augment')}>Augment</Button>
-      <Button onClick={() => props.onChange('alteration')}>Alteration</Button>
-      <Button onClick={() => props.onChange('regal')}>Regal</Button>
-      <Button onClick={() => props.onChange('exalted')}>Exalted</Button>
-      <Button onClick={() => props.onChange('alchemy')}>Alchemy</Button>
-      <Button onClick={() => props.onChange('chaos')}>Chaos</Button>
-      <Button onClick={() => props.onChange('scouring')}>Scouring</Button>
+      {[
+        'transmutation',
+        'augmentation',
+        'alteration',
+        'regal',
+        'exalted',
+        'alchemy',
+        'chaos',
+        'scouring'
+      ].map(orb_id => <Orb id={orb_id} onClick={props.onChange} />)}
     </div>
   ];
 };
