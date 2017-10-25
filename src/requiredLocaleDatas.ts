@@ -1,4 +1,4 @@
-const dependencies = require('./translate/descriptions_dependency.json');
+import dependencies from './translate/descriptions_dependency';
 import { StatLocaleData, StatLocaleDatas } from './types/StatDescription';
 
 export default function requiredLocaleDatas(files: string[]): string[] {

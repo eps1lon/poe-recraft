@@ -6,7 +6,7 @@ const isDescription = file => file.endsWith('stat_descriptions.json');
 const locale_dir = path.join(__dirname, '../locale-data/en');
 const out_file = path.join(
   __dirname,
-  '../src/translate/descriptions_dependency.json'
+  '../src/translate/descriptions_dependency.ts'
 );
 
 const dependencies = fs.readdirSync(locale_dir).reduce((dependencies, file) => {
