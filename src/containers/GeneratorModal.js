@@ -4,7 +4,7 @@ import type { Dispatch } from 'redux';
 
 import { useGenerator } from 'actions/craft';
 import { toggleGeneratorModal } from 'actions/gui';
-import GeneratorModal from 'components/GeneratorModal';
+import GeneratorModal from 'components/generator_picker/Modal';
 import type { State } from 'reducers/rootReducer';
 import { activeGenerator } from 'selectors/craft';
 

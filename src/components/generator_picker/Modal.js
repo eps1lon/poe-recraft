@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
-import GeneratorPicker from './GeneratorPicker';
+import GeneratorPicker from './Picker';
 
 type GeneratorId = string;
 
