@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { DropdownItem } from 'reactstrap';
 
 export type Props = {
@@ -14,11 +15,13 @@ const ItemClassGroup = (props: Props) => {
 
   return (
     <DropdownItem active={active === primary} onClick={onClick}>
-      {name}
+      <FormattedMessage
+        id={`poe.item_classes.${primary}.name`}
+        defaultMessage={name}
+      />
     </DropdownItem>
   );
 };
-
 ItemClassGroup.defaultProps = {
   onClick: () => {}
 };

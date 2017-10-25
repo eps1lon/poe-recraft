@@ -31,6 +31,7 @@ const locales = [
 const locale_exports = locale => ({
   locale_data: `react-intl/locale-data/${locale.split('-')[0]}`,
   baseitemtypes: `poe-i18n/locale-data/${locale}/BaseItemTypes.json`,
+  item_classes: `poe-i18n/locale-data/${locale}/ItemClasses.json`,
   mods: `poe-i18n/locale-data/${locale}/Mods.json`,
   stat_descriptions: `poe-i18n/locale-data/${locale}/stat_descriptions.json`
 });

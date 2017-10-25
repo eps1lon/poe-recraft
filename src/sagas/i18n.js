@@ -17,13 +17,16 @@ const requireLocaleData = locale => {
 function* loadLocaleData(): Generator<*, *, *> {
   while (true) {
     const { payload: locale } = yield take(changeLocale.toString());
-    const { baseitemtypes, locale_data, mods, stat_descriptions } = yield call(
-      requireLocaleData,
-      locale
-    );
+    const {
+      baseitemtypes,
+      item_classes,
+      locale_data,
+      mods,
+      stat_descriptions
+    } = yield call(requireLocaleData, locale);
 
     yield call(addLocaleData, locale_data);
-    yield put(setMessages({ poe: { baseitemtypes, mods } }));
+    yield put(setMessages({ poe: { baseitemtypes, item_classes, mods } }));
     yield put(setDescriptions({ stat_descriptions }));
     // set last to trigger re-render
     yield put(setLocale(locale));
