@@ -22,9 +22,21 @@ const Armour = ({ properties }: Props) => {
   return [
     <DisplayProperty
       key="armour"
-      human="Armour"
+      human="armour"
       type={armour.type}
       values={armour.values}
+    />,
+    <DisplayProperty
+      key="evasion"
+      human="evasion rating"
+      type={evasion.type}
+      values={evasion.values}
+    />,
+    <DisplayProperty
+      key="energy_shield"
+      human="energy shield"
+      type={energy_shield.type}
+      values={energy_shield.values}
     />
   ];
 };
