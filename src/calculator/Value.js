@@ -11,6 +11,14 @@ type Modifier = {
   type: 'flat' | 'inc' | 'more',
 };
 
+// truncate after precision digits
+const poe_round = (n: number, precision: number) => {
+  // (Math.floor(n * 10 ** precision) / 10 ** precision
+  // 1.005 => 1.00499999999999999999
+  // round to prec + 1 and then truncate by removing the created digit
+  return Number(n.toFixed(precision + 1).slice(0, -1));
+};
+
 export default class Value {
   classification: Classification;
   modifiers: Modifier[];
@@ -62,7 +70,7 @@ export default class Value {
    * 
    * in PoE all increase modifers get summed up to one big more modifier
    */
-  compute(): ValueRange {
+  compute(precision: number = 0): ValueRange {
     const flat = this.modifiers
       .filter(({ type }) => type === 'flat')
       .reduce(
@@ -87,6 +95,7 @@ export default class Value {
     return this.base
       .add(flat)
       .mult(increases.percentToFactor())
-      .mult(more);
+      .mult(more)
+      .map(n => poe_round(n, precision));
   }
 }

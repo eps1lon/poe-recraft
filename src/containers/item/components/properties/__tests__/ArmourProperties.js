@@ -43,7 +43,7 @@ it('should consider stats for armour', () => {
   });
 
   expect(build(garb.addMod(flat_armour).addMod(percent_armour))).toEqual({
-    armour: { type: 'augmented', values: [468 * 1.27, 651 * 1.32] },
+    armour: { type: 'augmented', values: [594, 859] },
     evasion: { type: 'simple', values: [329, 329] },
     energy_shield: { type: 'simple', values: [64, 64] },
   });
@@ -63,8 +63,7 @@ it('should consider stats for evasion', () => {
 
   const props = build(garb.addMod(flat_evasion).addMod(percent_evasion));
   expect(props.evasion.type).toBe('augmented');
-  expect(props.evasion.values[0]).toBeCloseTo(468 * 1.68, 5);
-  expect(props.evasion.values[1]).toBeCloseTo(651 * 1.79, 5);
+  expect(props.evasion.values).toEqual([786, 1165]);
 });
 
 it('should consider stats for es', () => {
@@ -81,6 +80,5 @@ it('should consider stats for es', () => {
 
   const props = build(garb.addMod(flat_es).addMod(percent_es));
   expect(props.energy_shield.type).toBe('augmented');
-  expect(props.energy_shield.values[0]).toBeCloseTo(95 * 1.27, 5);
-  expect(props.energy_shield.values[1]).toBeCloseTo(102 * 1.32, 5);
+  expect(props.energy_shield.values).toEqual([120, 134]);
 });

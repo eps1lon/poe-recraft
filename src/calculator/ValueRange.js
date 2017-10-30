@@ -24,6 +24,16 @@ export default class ValueRange {
     }
   }
 
+  map(mapFn: number => number) {
+    const [min, max] = [mapFn(this.min), mapFn(this.max)];
+
+    if (min !== this.min || max !== this.max) {
+      return new ValueRange(min, max);
+    } else {
+      return this;
+    }
+  }
+
   isAddIdentity(): boolean {
     return this.min === 0 && this.max === 0;
   }
