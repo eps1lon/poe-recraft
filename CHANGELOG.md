@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.5.2...HEAD)
+## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.5.3...HEAD)
+
+## [1.5.3](https://github.com/eps1lon/poe-mods/compare/v1.5.2...v1.5.3) (2017-10-30)
+### Changed
+- Armour properties now correctly round their values with zero precision (floored just like ingame).
 
 ## [1.5.2](https://github.com/eps1lon/poe-mods/compare/v1.5.1...v1.5.2)
 ### Fixed
