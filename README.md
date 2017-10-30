@@ -1,5 +1,7 @@
 # Path of Exile Mods [![Build Status](https://travis-ci.org/eps1lon/poe-mods.svg?branch=master)](https://travis-ci.org/eps1lon/poe-mods) [![Coverage Status](https://coveralls.io/repos/github/eps1lon/poe-mods/badge.svg?branch=master)](https://coveralls.io/github/eps1lon/poe-mods?branch=master)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/eps1lon/poe-mods.svg)](https://greenkeeper.io/)
+
 Emulates interaction of Mods with Items, Atlas etc. in Path of Exile.
 
 # Install
