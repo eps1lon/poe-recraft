@@ -98,7 +98,7 @@ function toggleGeneratorModalHandle(
 
 function toggleBaseItemModalHandle(
   state: State,
-  action: ToggleGeneratorModalAction
+  action: ToggleBaseItemModal
 ): State {
   return {
     ...state,
