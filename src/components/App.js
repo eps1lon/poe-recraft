@@ -17,9 +17,13 @@ class App extends PureComponent {
 
   render() {
     const { locale, messages, version } = this.props;
+    // some key that tells react to rerender
+    // injectIntl intl didnt provide the api that was documented so
+    // we stick with this crowbar
+    const key = `${locale}-#${Object.keys(messages).length}`;
 
     return (
-      <IntlProvider key={locale} locale={locale} messages={messages}>
+      <IntlProvider key={key} locale={locale} messages={messages}>
         <AppUI {...{ version }} />
       </IntlProvider>
     );
