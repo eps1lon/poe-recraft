@@ -28,7 +28,9 @@ const GeneratorPicker = (props: Props) => {
         'alchemy',
         'chaos',
         'scouring'
-      ].map(orb_id => <Orb id={orb_id} onClick={props.onChange} />)}
+      ].map(orb_id => (
+        <Orb key={orb_id} id={orb_id} onClick={props.onChange} />
+      ))}
     </div>
   ];
 };
