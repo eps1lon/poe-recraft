@@ -56,7 +56,7 @@ export default class Annulment extends ItemOrb {
     return applicable_flags;
   }
 
-  modsFor(item: Item, whitelist: string[] = []) {
+  modsFor() {
     return [];
   }
 }

@@ -39,7 +39,7 @@ export default class Implicits extends ImmutableContainer<Mod, Builder> {
    * @override
    *  checks if the domains are equiv
    */
-  inDomainOf(mod_domain: number): boolean {
+  inDomainOf(): boolean {
     return true;
   }
 

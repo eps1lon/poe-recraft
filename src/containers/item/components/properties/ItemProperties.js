@@ -24,7 +24,7 @@ export default class ItemProperties
   implements Properties, Component<Item, Builder> {
   parent: Item;
 
-  constructor(item: Item, builder: Builder) {
+  constructor(item: Item) {
     this.parent = item;
   }
 

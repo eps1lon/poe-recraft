@@ -1,3 +1,5 @@
+/* eslint-disable no-console, no-shadow */
+/* global fetch */
 import { createItems, createMods, Transmute } from '../../index';
 
 const fetchMock = require('fetch-mock');
