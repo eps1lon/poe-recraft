@@ -24,7 +24,8 @@ export default class ItemProperties
   implements Properties, Component<Item, Builder> {
   parent: Item;
 
-  constructor(item: Item) {
+  // eslint-disable-next-line no-unused-vars
+  constructor(item: Item, builder: Builder) {
     this.parent = item;
   }
 

@@ -56,7 +56,8 @@ export default class Annulment extends ItemOrb {
     return applicable_flags;
   }
 
-  modsFor() {
+  // eslint-disable-next-line no-unused-vars
+  modsFor(item: Item) {
     return [];
   }
 }
