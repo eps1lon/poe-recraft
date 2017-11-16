@@ -4,13 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v0.7.1..HEAD)
+## [Unreleased](https://github.com/eps1lon/poe-i18n/compare/v0.7.1..HEAD)
 
-## [0.7.1](https://github.com/eps1lon/poe-mods/compare/v0.7.0..v0.7.1) (2017-10-25)
+## [0.7.1](https://github.com/eps1lon/poe-i18n/compare/v0.7.0..v0.7.1) (2017-10-25)
 ### Fixed
 - Fixed bundling error caused by require instead of import
 
-## [0.7.0](https://github.com/eps1lon/poe-mods/compare/v0.6.1..v0.7.0) (2017-10-24)
+## [0.7.0](https://github.com/eps1lon/poe-i18n/compare/v0.6.1..v0.7.0) (2017-10-24)
 ### Added
 - Plenty more locale data for *.dat files
 ### Changed
@@ -24,11 +24,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
   lists and not automatically requires the locale data to prevent webpack
   from automatically bundling all locale datas.
 
-## [0.6.1](https://github.com/eps1lon/poe-mods/compare/v0.6.0...v0.6.1) (2017-10-20)
+## [0.6.1](https://github.com/eps1lon/poe-i18n/compare/v0.6.0...v0.6.1) (2017-10-20)
 ### Changed
 - build target is now ES5 to support UglifyJS
 
-## [0.6.0](https://github.com/eps1lon/poe-mods/compare/v0.5.0...v0.6.0) (2017-10-18)
+## [0.6.0](https://github.com/eps1lon/poe-i18n/compare/v0.5.0...v0.6.0) (2017-10-18)
 ### Added
 - Gender and pluralization inflection rules for certain languages for Mods by using 
   [ICU message syntax](http://userguide.icu-project.org/formatparse/messages).
@@ -38,18 +38,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
   were correct locale codes but country codes. The correct locales are `zh-tw` 
   and `zh-cn`.
 
-## [0.5.0](https://github.com/eps1lon/poe-mods/compare/v0.4.0...v0.5.0) (2017-10-17)
+## [0.5.0](https://github.com/eps1lon/poe-i18n/compare/v0.4.0...v0.5.0) (2017-10-17)
 ### Added
 - BaseItemTypes and Mods for Simplified Chinese and Traditional Chinese
 ### Changed
 - renamed `zh-Hans` to `cn` and `zh-Hant` to `tw` for easier integration with
   other i18n packages.
 
-## [0.4.0](https://github.com/eps1lon/poe-mods/compare/v0.3.1...v0.4.0) (2017-10-16)
+## [0.4.0](https://github.com/eps1lon/poe-i18n/compare/v0.3.1...v0.4.0) (2017-10-16)
 ### Added
 - locale data from Path of Exile version 3.0.2
 
-## [0.3.1](https://github.com/eps1lon/poe-mods/compare/v0.3.0...v0.3.1) (2017-10-11)
+## [0.3.1](https://github.com/eps1lon/poe-i18n/compare/v0.3.0...v0.3.1) (2017-10-11)
 ### Added
 - Locale data for `BaseItemTypes` and `Mods`. They only include names. Currently
   only supports en, pt, ru and thai since those are the only ones supported by
@@ -59,19 +59,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - `Cannot find module skill_meta.json`. Typescript does not include build related
   tasks. May revert to json format when using webpack or rollup.
 
-## [0.3.0](https://github.com/eps1lon/poe-mods/compare/v0.2.1...v0.3.0) (2017-10-10)
+## [0.3.0](https://github.com/eps1lon/poe-i18n/compare/v0.2.1...v0.3.0) (2017-10-10)
 ### Added
 - `formatGemStats`. Check the API docs for more info.
 - `loadLocaleDatas` and `loadLocaleDatasFor` helpers. Check the API docs for more info.
 ### Changed
 - Ranges where min and max value are equal are now displayed as single values. (Closes [#2](https://github.com/eps1lon/poe-i18n/issues/2))
 
-## [0.2.1](https://github.com/eps1lon/poe-mods/compare/v0.2.0...v0.2.1) (2017-20-04)
+## [0.2.1](https://github.com/eps1lon/poe-i18n/compare/v0.2.0...v0.2.1) (2017-20-04)
 ### Added
 - `formatStats` now supports a range as a stat value. Check out the API documentation
   for further information.
 
-## [0.2.0](https://github.com/eps1lon/poe-mods/compare/v0.1.3...v0.2.0) (2017-20-03)
+## [0.2.0](https://github.com/eps1lon/poe-i18n/compare/v0.1.3...v0.2.0) (2017-20-03)
 ### Added
 - `formatStats` now has a `fallback` option. Possible options can be found in
   the documentation.
@@ -86,27 +86,27 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
   `configure` just takes the same option argument and `formatStats` will use
   those as default for future calls.
 
-## [0.1.3](https://github.com/eps1lon/poe-mods/compare/v0.1.2...v0.1.3) (2017-20-03)
+## [0.1.3](https://github.com/eps1lon/poe-i18n/compare/v0.1.2...v0.1.3) (2017-20-03)
 ### Fixed
 - Error when attempting to translate stats with reminder strings. Translation for
   those is currently not supported.
 - An error when translating aliased stats. They were considered as required 
   params.
 
-## [0.1.2](https://github.com/eps1lon/poe-mods/compare/v0.1.1...v0.1.2) (2017-20-03)
+## [0.1.2](https://github.com/eps1lon/poe-i18n/compare/v0.1.1...v0.1.2) (2017-20-03)
 ### Added
 - Some missing translations in `locale-data`. They were missing because of some
   rogue whitespace in the descriptions.txt
 ### Changed
 - Hidden stats are now returned as `{stat_id} (hidden)` instead of throwing
 
-## [0.1.1](https://github.com/eps1lon/poe-mods/compare/v0.1.0...v0.1.1) (2017-10-02)
+## [0.1.1](https://github.com/eps1lon/poe-i18n/compare/v0.1.0...v0.1.1) (2017-10-02)
 ### Added
 - `locale-data` to package parsed from the game client
 ### Improved
 - Docs with API documentation, detailed readme and usage examples
 
-## [0.1.0](https://github.com/eps1lon/poe-mods/compare/v0.0.1-apha...v0.1.0) (2017-10-02)
+## [0.1.0](https://github.com/eps1lon/poe-i18n/compare/v0.0.1-apha...v0.1.0) (2017-10-02)
 ### Improved
 - Test coverage for `formatStats`. Seems stable but needs more test cases in 
   production
