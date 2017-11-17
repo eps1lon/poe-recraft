@@ -9,16 +9,20 @@ import {
   setGenerator,
   type SetGeneratorAction,
   applyGenerator,
-  type ApplyGeneratorAction
+  type ApplyGeneratorAction,
+  useGenerator,
+  type UseGeneratorAction
 } from 'actions/craft';
 import item, { initial as initial_item_state } from './item';
 
 export type State = {
-  mod_generator: ?Generator<*, *>
+  mod_generator: ?Generator<*, *>,
+  mod_generator_id: ?string
 } & ItemState;
 
 const initial: State = {
   mod_generator: undefined,
+  mod_generator_id: '',
   // we need to spread the initial here because only the
   // 1st reducer in reduce-reducer gets undefined
   // every subsequent reducer has the 1st initial state
@@ -28,7 +32,8 @@ const initial: State = {
 const reducer = handleActions(
   {
     [setGenerator.toString()]: setGeneratorHandle,
-    [applyGenerator.toString()]: applyGeneratorHandle
+    [applyGenerator.toString()]: applyGeneratorHandle,
+    [useGenerator.toString()]: useGeneratorHandle
   },
   initial
 );
@@ -52,6 +57,13 @@ function applyGeneratorHandle(
   } else {
     return state;
   }
+}
+
+function useGeneratorHandle(state: State, action: UseGeneratorAction): State {
+  return {
+    ...state,
+    mod_generator_id: action.payload
+  };
 }
 
 export default reduceReducers(reducer, item);

@@ -4,6 +4,7 @@ import type { Item, Flags, Generator, Mod } from 'poe-mods';
 import { createSelector } from 'reselect';
 
 import type { State } from 'reducers/rootReducer';
+import orbs from '../components/generator_picker/orbs';
 
 export type GeneratorDetails = {
   mod: Mod,
@@ -54,10 +55,16 @@ export const cachedAvailableMods = (whitelist: string[]) =>
     whitelistedAvailableMods(whitelist)
   );
 
-export const activeGenerator = (state: State) =>
-  state.craft.mod_generator
-    ? state.craft.mod_generator.constructor.name
-    : undefined;
+export const activeGenerator = (state: State) => {
+  const { mod_generator_id } = state.craft;
+  const orb = orbs[mod_generator_id];
+
+  if (orb !== undefined) {
+    return state.i18n.messages[`poe.baseitemtypes.${orb.primary}.name`];
+  } else {
+    return String(mod_generator_id);
+  }
+};
 
 export const baseitemInflection = (state: State) => {
   const { item } = state.craft;
