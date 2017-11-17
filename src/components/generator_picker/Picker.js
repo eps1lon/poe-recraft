@@ -20,7 +20,7 @@ const GeneratorPicker = (props: Props) => {
     </div>,
     <div key="orbs">
       {[
-        'transmutation',
+        'transmute',
         'augmentation',
         'alteration',
         'regal',

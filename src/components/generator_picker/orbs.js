@@ -31,7 +31,7 @@ export default {
   jeweller: { icon: jeweller, primary: 19 },
   regal: { icon: regal, primary: 12 },
   scouring: { icon: scouring, primary: 10 },
-  transmutation: { icon: transmute, primary: 8 },
+  transmute: { icon: transmute, primary: 8 },
   vaal: { icon: vaal, primary: 30 },
   whetstone: { icon: whetstone, primary: 0 }
 };
