@@ -1,11 +1,10 @@
 // @flow
-import { type Buildable } from '../interfaces/Buildable';
 import { type Taggable } from '../interfaces/Taggable';
 import type { ModProps, SpawnWeightProps } from '../schema';
 
 import Stat from '../calculator/Stat';
 
-export default class Mod implements Buildable<ModProps> {
+export default class Mod {
   static DOMAIN = {
     ITEM: 1,
     FLASK: 2,
@@ -88,8 +87,8 @@ export default class Mod implements Buildable<ModProps> {
   }
 
   /**
-   * string identifier of the generation type
-   */
+ * string identifier of the generation type
+ */
   modType(): ?string {
     const entry = Object.entries(Mod.TYPE).find(([, type]) => {
       return this.props.generation_type === type;

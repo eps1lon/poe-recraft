@@ -1,4 +1,6 @@
 // @flow
-export interface Buildable<P> {
-  static build(props: P): *,
-}
+export type Buildable<P, T> = {
+  // statics
+  build(P): T,
+  name: string,
+};
