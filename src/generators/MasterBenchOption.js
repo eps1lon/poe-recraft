@@ -1,6 +1,5 @@
 // @flow
 import type Item from '../containers/item/Item';
-import { type Buildable } from '../interfaces';
 import type { CraftingBenchOptionsProps } from '../schema';
 
 import { type Flags, anySet } from '../util/Flags';
@@ -21,8 +20,7 @@ export type ApplicableFlags = Flags<ApplicableFlag>;
 
 /**
  */
-export default class MasterBenchOption extends Generator<Mod, Item>
-  implements Buildable<CraftingBenchOptionsProps> {
+export default class MasterBenchOption extends Generator<Mod, Item> {
   static build(option: CraftingBenchOptionsProps) {
     return new MasterBenchOption(option);
   }
@@ -45,17 +43,17 @@ export default class MasterBenchOption extends Generator<Mod, Item>
   }
 
   /**
-   * applies a chosen craftingbenchoption
-   * 
-   * cant overload extended method. so we have to set the chosen option before
-   */
+ * applies a chosen craftingbenchoption
+ * 
+ * cant overload extended method. so we have to set the chosen option before
+ */
   applyTo(item: Item): Item {
     if (this.isApplicableTo(item)) {
       const { mod } = this;
 
       /**
-       * TODO customactions for no mod
-       */
+     * TODO customactions for no mod
+     */
       if (mod != null) {
         // white gets upgraded to blue
         const crafted_item = item.rarity.isNormal()
@@ -75,8 +73,8 @@ export default class MasterBenchOption extends Generator<Mod, Item>
   }
 
   /**
-   * every item is welcome
-   */
+ * every item is welcome
+ */
   applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = {
       wrong_itemclass: false,
@@ -92,8 +90,8 @@ export default class MasterBenchOption extends Generator<Mod, Item>
   }
 
   /**
-   * greps mod::applicableTo 
-   */
+ * greps mod::applicableTo 
+ */
   modsFor(item: Item, whitelist: string[] = []) {
     // TODO look into why we simulate another rarity why is a MasterMod not
     // applicable to white items?
@@ -122,10 +120,10 @@ export default class MasterBenchOption extends Generator<Mod, Item>
   }
 
   /**
-   * checks if the given mod is applicable to the item
-   * 
-   * remember that this doesn't check if the passed mod is the mod of this option
-   */
+ * checks if the given mod is applicable to the item
+ * 
+ * remember that this doesn't check if the passed mod is the mod of this option
+ */
   isModApplicableTo(mod: Mod, item: Item): ModApplicableFlags {
     const applicable_flags = {
       ...super.isModApplicableTo(mod, item),

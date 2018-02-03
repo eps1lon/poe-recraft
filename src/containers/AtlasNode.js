@@ -1,6 +1,5 @@
 // @flow
 import Mod from '../mods/Mod';
-import type { Buildable } from '../interfaces/Buildable';
 import { type AtlasNodeProps } from '../schema';
 
 import ImmutableContainer from './ImmutableContainer';
@@ -14,8 +13,7 @@ export type Builder = {
 
 type HumanId = string;
 
-export default class AtlasNode extends ImmutableContainer<Mod, Builder>
-  implements Buildable<AtlasNodeProps> {
+export default class AtlasNode extends ImmutableContainer<Mod, Builder> {
   static humanId(props: AtlasNodeProps): HumanId {
     return props.world_area.id.replace(/MapAtlas/, '');
   }

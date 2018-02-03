@@ -1,5 +1,5 @@
 // @flow
-import { Buildable } from '../interfaces';
+import { type Buildable } from '../interfaces';
 
 export type PropsWithPrimary = {
   primary: number,
@@ -12,12 +12,12 @@ export class NotFound extends Error {
 }
 
 // take care. flow accepts any as a constructor
-export default class PropsTable<P: PropsWithPrimary, T: Buildable<P>> {
-  instance_constructor: Class<T>;
+export default class PropsTable<P: PropsWithPrimary, T> {
+  builder: Buildable<P, T>;
   table: P[];
 
-  constructor(all: P[], constructor: Class<T>) {
-    this.instance_constructor = constructor;
+  constructor(all: P[], constructor: Buildable<P, T>) {
+    this.builder = constructor;
     this.table = all;
   }
 
@@ -37,20 +37,17 @@ export default class PropsTable<P: PropsWithPrimary, T: Buildable<P>> {
     const props = this.find(finder);
 
     if (props == null) {
-      throw new NotFound(this.instance_constructor.name, `with custom finder`);
+      throw new NotFound(this.builder.name, `with custom finder`);
     }
 
-    return this.instance_constructor.build(props);
+    return this.builder.build(props);
   }
 
   fromPrimary(primary: number): T {
     try {
       return this.from(other => other.primary === primary);
     } catch (err) {
-      throw new NotFound(
-        this.instance_constructor.name,
-        `with primary '${primary}'`,
-      );
+      throw new NotFound(this.builder.name, `with primary '${primary}'`);
     }
   }
 }
