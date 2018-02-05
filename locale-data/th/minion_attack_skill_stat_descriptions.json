@@ -577,6 +577,16 @@
         }
       ]
     },
+    "elemental_penetration": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "การโจมตีนี้และมิเนียนจะเจาะค่าป้องกันธาตุได้ %1%%%",
+          "formatters": []
+        }
+      ]
+    },
     "lightning_penetration": {
       "stats": ["base_reduce_enemy_lightning_resistance_%"],
       "translations": [
@@ -1258,6 +1268,57 @@
           "text":
             "การโจมตีครั้งนี้และ Minion จะมี Area of Effect ของการโจมตีระยะประชิดลดลง %1%%% ",
           "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_count": {
+      "stats": ["support_ruthless_big_hit_max_count"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "มิเนียนหรือการโจมตีนี้จะติด Ruthless Blow ทุกๆ สามครั้ง (ถ้าโจมตีระยะประชิด)",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_damage": {
+      "stats": ["support_ruthless_big_hit_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "ค่าโจมตีระยะประชิดจาก Ruthless Blow ของการโจมตีนี้หรือของมิเนียนจะแรงขึ้นอีก %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_bleeding_damage": {
+      "stats": [
+        "support_ruthless_blow_bleeding_damage_from_melee_hits_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "สเตตัสเลือดออกที่เกิดจาก Ruthless Blow ของการโจมตีนี้หรือของมิเนียนจะแรงขึ้นอีก %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_stun": {
+      "stats": ["support_ruthless_big_hit_stun_base_duration_override_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Ruthless Blows ของการโจมตีนี้หรือของมิเนียนจะมีโอกาสติดมึนนาน %1% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
         }
       ]
     },

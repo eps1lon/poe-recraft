@@ -414,6 +414,28 @@
           "formatters": []
         }
       ]
+    },
+    "energy_shield_recharge_rate": {
+      "stats": ["energy_shield_recharge_rate_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% повышение скорости перезарядки энергетического щита у вас и ближайших союзников",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% снижение скорости перезарядки энергетического щита у вас и ближайших союзников",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
     }
   }
 }

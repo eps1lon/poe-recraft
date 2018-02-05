@@ -169,6 +169,22 @@
         }
       ]
     },
+    "offering_duration_per_corpse": {
+      "stats": ["offering_skill_effect_duration_per_corpse"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Дополнительно %1% секунд(-ы) базовой длительности за каждый дополнительный поглощенный труп",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "cold_damage_per_frenzy_charge_range": {
       "stats": [
         "spell_minimum_base_cold_damage_per_frenzy_charge",
@@ -310,26 +326,6 @@
           "matchers": [[1, "#"]],
           "text": "Бросает ловушки в случайное место вокруг вас",
           "formatters": []
-        }
-      ]
-    },
-    "cooldown_incr": {
-      "stats": ["virtual_cooldown_speed_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% повышение скорости перезарядки",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1%%% снижение скорости перезарядки",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -1122,6 +1118,21 @@
         }
       ]
     },
+    "spectre_duration": {
+      "stats": ["spectre_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Призраки существуют %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "enduring_cry_charges": {
       "stats": [
         "endurance_charges_granted_per_one_hundred_nearby_enemies_during_endurance_warcry"
@@ -1210,22 +1221,39 @@
     "pierce_num": {
       "stats": [
         "projectile_number_of_targets_to_pierce",
-        "virtual_always_pierce"
+        "virtual_always_pierce",
+        "arrow_number_of_targets_to_pierce",
+        "arrows_always_pierce"
       ],
       "translations": [
         {
-          "matchers": [1, 0],
+          "matchers": [1, 0, 0, 0],
           "text": "Снаряды пронзают 1 цель",
           "formatters": []
         },
         {
-          "matchers": [[2, "#"], 0],
+          "matchers": [[2, "#"], 0, 0, 0],
           "text": "Снаряды пронзают %1% цели(-ей)",
           "formatters": []
         },
         {
-          "matchers": ["#", "#"],
+          "matchers": ["#", "#", 0, 0],
           "text": "Снаряды пронзают все цели",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", 1, 0],
+          "text": "Стрелы пронзают 1 цель",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", [2, "#"], 0],
+          "text": "Стрелы пронзают %1% цели(-ей)",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", "#", "#"],
+          "text": "Стрелы пронзают все цели",
           "formatters": []
         }
       ]
@@ -1444,13 +1472,18 @@
           "formatters": []
         },
         {
-          "matchers": [-300],
-          "text": "Удерживает врага на месте",
-          "formatters": []
-        },
-        {
           "matchers": [["#", -1]],
           "text": "%1%%% снижение скорости передвижения",
+          "formatters": []
+        }
+      ]
+    },
+    "no_movement_speed": {
+      "stats": ["no_movement_speed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Удерживает врага на месте",
           "formatters": []
         }
       ]
@@ -1729,6 +1762,16 @@
         }
       ]
     },
+    "lightning_tendrils_pulse_interval": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_interval"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Выпускает более сильный пульс каждый %1% пульс",
+          "formatters": []
+        }
+      ]
+    },
     "movement_velocity_cap": {
       "stats": ["movement_velocity_cap"],
       "translations": [
@@ -1770,6 +1813,28 @@
         {
           "matchers": [["#", -1]],
           "text": "На %1%%% меньше энергетического щита приспешников",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "minion_life_incr_final": {
+      "stats": ["support_minion_maximum_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Усиленные умения имеют на %1%%% больше максимума здоровья приспешников",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Усиленные умения имеют на %1%%% меньше максимума здоровья приспешников",
           "formatters": [
             {
               "id": "negate",
@@ -2853,6 +2918,16 @@
         }
       ]
     },
+    "elemental_penetration": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Пробивает %1%%% сопротивления стихиям",
+          "formatters": []
+        }
+      ]
+    },
     "skeletal_chains_target_self": {
       "stats": ["skeletal_chains_no_minions_targets_self"],
       "translations": [
@@ -3245,7 +3320,7 @@
       ]
     },
     "minion_elemental_resist": {
-      "stats": ["minion_elemental_resistance_%"],
+      "stats": ["virtual_minion_elemental_resistance_%"],
       "translations": [
         {
           "matchers": ["#"],
@@ -3285,7 +3360,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Получение заряда выносливости, если это умение оглушит врага в ближнем бою",
+            "Дарует заряд выносливости, когда это умение оглушает врага уроном в ближнем бою",
           "formatters": []
         }
       ]
@@ -3480,6 +3555,40 @@
         }
       ]
     },
+    "cast_on_skill_use_from_chest": {
+      "stats": ["trigger_on_skill_use_from_chest_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% шанс вызвать срабатывание этих чар при использовании умения, размещённого в вашем нательном доспехе",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Вызывает срабатывание этих чар при использовании умения, размещённого в вашем нательном доспехе",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_skill_use_spirit_charge": {
+      "stats": ["trigger_on_skill_use_%_if_you_have_a_spirit_charge"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% шанс вызвать срабатывание этих чар при использовании умения, пока у вас есть заряд душ",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Вызывает срабатывание этих чар при использовании умения, пока у вас есть заряд душ",
+          "formatters": []
+        }
+      ]
+    },
     "cast_when_damaged": {
       "stats": ["cast_on_any_damage_taken_%"],
       "translations": [
@@ -3599,6 +3708,23 @@
           "matchers": ["#", [1, "#"]],
           "text":
             "%1%%% шанс вызвать срабатывание этих чар, когда вы получаете %2% урона в сумме",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_when_trap_triggered": {
+      "stats": ["chance_to_cast_when_your_trap_is_triggered_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% шанс вызвать срабатывание этих чар при срабатывании одной из ваших ловушек",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Вызывает срабатывание этих чар при срабатывании одной из ваших ловушек",
           "formatters": []
         }
       ]
@@ -3800,11 +3926,31 @@
       ]
     },
     "desecrate_num_corpses": {
+      "stats": ["desecrate_number_of_corpses_to_create"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Создаёт трупов: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "desecrate_corpse_level": {
       "stats": ["desecrate_corpse_level"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "Создаёт трупов до %1% уровня",
+          "formatters": []
+        }
+      ]
+    },
+    "unearth_corpse_level": {
+      "stats": ["unearth_corpse_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Создает трупы %1% уровня",
           "formatters": []
         }
       ]
@@ -4111,6 +4257,26 @@
         }
       ]
     },
+    "static_strike_damage": {
+      "stats": ["static_strike_explosion_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Взрыв наносит на %1%%% больше урона от ударов и состояний",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Взрыв наносит на %1%%% меньше урона от ударов и состояний",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "arrow_speed": {
       "stats": ["base_arrow_speed_+%"],
       "translations": [
@@ -4367,7 +4533,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Големы даруют %1%%% дополнительного снижения получаемого физического урона",
+            "Големы даруют %1%%% дополнительного уменьшения получаемого физического урона",
           "formatters": []
         }
       ]
@@ -5231,8 +5397,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Возбуждение при убийстве поражённого шоком врага этими чарами",
+          "text": "Эффект Возбуждения при убийстве поражённого шоком врага",
           "formatters": []
         }
       ]
@@ -5366,20 +5531,43 @@
         }
       ]
     },
+    "aegis_value": {
+      "stats": [
+        "aegis_unique_shield_max_value",
+        "active_skill_display_aegis_variation"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"], 0],
+          "text":
+            "Урон от огня от ударов берется сначала из Эгиды вместо вашего здоровья или энергетического щита\\nЭгида может получить %1% урона от огня",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"], 1],
+          "text":
+            "Урон от холода от ударов берется сначала из Эгиды вместо вашего здоровья или энергетического щита\\nЭгида может получить %1% урона от холода",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"], 2],
+          "text":
+            "Урон от стихий от ударов берется сначала из Эгиды вместо вашего здоровья или энергетического щита\\nЭгида может получить %1% урона от стихий",
+          "formatters": []
+        }
+      ]
+    },
     "arctic_armour_chill_when_hit_duration": {
       "stats": ["arctic_armour_chill_when_hit_duration"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Охлаждает врагов на %1% секунд(-ы) при получении удара",
+          "text":
+            "При получении удара охлаждает врага на %1% секунд(-ы), замедляя его на 30%%",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
               "arg": 1
-            },
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextChillNonHitNoDuration"
             }
           ]
         }
@@ -5581,12 +5769,32 @@
         }
       ]
     },
+    "cremation_max_geysers": {
+      "stats": ["corpse_erruption_maximum_number_of_geyers"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Максимум гейзеров одновременно: %1%",
+          "formatters": []
+        }
+      ]
+    },
     "deal_no_elemental": {
       "stats": ["deal_no_elemental_damage"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "Не наносит урон от стихий",
+          "formatters": []
+        }
+      ]
+    },
+    "desecrate_maximum_corpse_count": {
+      "stats": ["desecrate_maximum_number_of_corpses"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Максимальное количество трупов: %1%",
           "formatters": []
         }
       ]
@@ -5630,6 +5838,26 @@
           "text":
             "Монстры из Разлома не дают опыт и из них не выпадают предметы",
           "formatters": []
+        }
+      ]
+    },
+    "endurance_charge_slam_extra_damage": {
+      "stats": ["endurance_charge_slam_damage_+%_final_with_endurance_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "На %1%%% больше урона, если был потрачен заряд выносливости",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "На %1%%% меньше урона, если был потрачен заряд выносливости",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -5691,6 +5919,54 @@
         }
       ]
     },
+    "herald_of_ash_burning_percent": {
+      "stats": ["herald_of_ash_burning_%_overkill_damage_per_minute"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Базовый урон от горения составляет %1%%% от избыточного урона",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ightning_tendrils_pulse_damage": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Более сильные пульсы наносят на %1%%% больше урона от ударов и состояний",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Более сильные пульсы наносят на %1%%% меньше урона от ударов и состояний",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_tendrils_pulse_radius": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_radius_+"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Более сильный пульс имеет %1$+d к радиусу",
+          "formatters": []
+        }
+      ]
+    },
     "maim_chance": {
       "stats": ["maim_on_hit_%"],
       "translations": [
@@ -5702,6 +5978,16 @@
         {
           "matchers": [[100, "#"]],
           "text": "Накладывает увечья при нанесении удара",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_spirit_strikes": {
+      "stats": ["melee_attack_number_of_spirit_strikes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Также выбирает целью %1% врага(-ов) поблизости",
           "formatters": []
         }
       ]
@@ -5785,6 +6071,21 @@
         }
       ]
     },
+    "number_of_effigies": {
+      "stats": ["base_number_of_effigies_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Одновременно можно призвать %1% Образ",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Одновременно можно призвать %1% Образа(-ов)",
+          "formatters": []
+        }
+      ]
+    },
     "raised_spectre_level": {
       "stats": ["raised_spectre_max_level"],
       "translations": [
@@ -5835,6 +6136,16 @@
         }
       ]
     },
+    "can_have_mirage_archer": {
+      "stats": ["skill_can_own_mirage_archers"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Одновременно можно призвать 1 призрачного лучника",
+          "formatters": []
+        }
+      ]
+    },
     "skill_and_damaging_ailment_duration_incr": {
       "stats": ["skill_effect_and_damaging_ailment_duration_+%"],
       "translations": [
@@ -5861,6 +6172,17 @@
               "arg": "ReminderTextDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "summon_mirage_archer": {
+      "stats": ["summon_mirage_archer_on_hit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "При попадании во врага стрелой, выпущенной этим умением, призывает призрачного лучника, который будет использовать это умение",
+          "formatters": []
         }
       ]
     },
@@ -6014,6 +6336,58 @@
         }
       ]
     },
+    "mirage_archer_attack_speed": {
+      "stats": ["support_mirage_archer_attack_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Призрачный лучник использует усиленное умение, при этом скорость его атаки на %1%%% больше",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Призрачный лучник использует усиленное умение, при этом скорость его атаки на %1%%% меньше",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mirage_archer_duration": {
+      "stats": ["support_mirage_archer_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Призрачный лучник существуют %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_parallel_projectiles": {
+      "stats": ["support_parallel_projectile_number_of_points_per_side"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Также выпускает снаряды из %1% точки по обе стороны от вас",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Также выпускает снаряды из %1% точек по обе стороны от вас",
+          "formatters": []
+        }
+      ]
+    },
     "support_scion_chance": {
       "stats": [
         "support_scion_onslaught_on_killing_blow_%_chance",
@@ -6032,6 +6406,89 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
+    "support_cascade_area_of_effect": {
+      "stats": ["support_spell_cascade_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Область действия на %1%%% больше",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Область действия на %1%%% меньше",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade": {
+      "stats": ["support_spell_cascade_number_of_cascades_per_side"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Также поражает области впереди и за основной целью",
+          "formatters": []
+        }
+      ]
+    },
+    "storm_barrier_power_charge": {
+      "stats": [
+        "support_storm_barrier_gain_power_charge_when_hit_%",
+        "support_storm_barrier_lightning_damage_taken_when_hit_+%_final",
+        "support_storm_barrier_physical_damage_taken_when_hit_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#", "#"],
+          "text":
+            "При поддержании этого умения вы имеете %1%%% шанс получить заряд энергии при получении удара\\nПри поддержании этого умения вы получаете на %2%%% меньше урона от молнии от ударов\\nПри поддержании этого умения вы получаете на %3%%% меньше физического урона от ударов",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 2
+            },
+            {
+              "id": "negate",
+              "arg": 3
+            }
+          ]
+        }
+      ]
+    },
+    "ailment_damage_incr": {
+      "stats": ["support_unbound_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "На %1%%% больше урона от состояний",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "На %1%%% меньше урона от состояний",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
             }
           ]
         }

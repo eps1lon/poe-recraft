@@ -336,19 +336,15 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Unterstützte Fertigkeiten verursachen %1%%% mehr Schaden",
+          "text":
+            "Unterstützte ausgelöste Zauber verursachen %1%%% mehr Schaden",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%%  weniger Schaden",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
+            "Unterstützte ausgelöste Zauber verursachen %1%%% weniger Schaden",
+          "formatters": []
         }
       ]
     },
@@ -466,8 +462,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Unterstützte Fertigkeiten haben %1%%% verstärkte Aurenwirkung",
+          "text": "Unterstützte Fertigkeiten haben %1%%% erhöhte Aurenwirkung",
           "formatters": []
         },
         {
@@ -554,7 +549,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Unterstützte Fertigkeiten verursachen bis zu 50%% mehr Schaden am Anfang ihrer Bewegung; der Schaden wird geringer, je weiter sich das Projektil entfernt",
+            "Treffer mit Projektilangriffen durch unterstützte Fertigkeiten verursachen bis zu 50%% mehr Schaden am Anfang ihrer Bewegung; der Schaden wird geringer, je weiter sich das Projektil entfernt",
           "formatters": []
         }
       ]
@@ -853,6 +848,17 @@
         }
       ]
     },
+    "reduce_enemy_elemental_resistance_%": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Unterstützte Fertigkeiten durchdringen %1%%% Elementarwiderstände",
+          "formatters": []
+        }
+      ]
+    },
     "base_reduce_enemy_lightning_resistance_%": {
       "stats": ["base_reduce_enemy_lightning_resistance_%"],
       "translations": [
@@ -929,6 +935,26 @@
           "matchers": [["#", -1]],
           "text":
             "Unterstützte Fertigkeiten verursachen %1%%% weniger Schaden bei Treffer",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spirit_strike_damage_+%_final": {
+      "stats": ["support_spirit_strike_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Unterstützte Fertigkeiten verursachen %1%%% mehr Schaden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Unterstützte Fertigkeiten verursachen %1%%% weniger Schaden",
           "formatters": [
             {
               "id": "negate",
@@ -1682,7 +1708,7 @@
         {
           "matchers": ["#", "#"],
           "text":
-            "Ihr könnt unterstützte auslösbare  Zauber nicht selbst zaubern",
+            "Ihr könnt unterstützte auslösbare Zauber nicht selbst zaubern",
           "formatters": []
         }
       ]
@@ -1792,7 +1818,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Wirkung von unterstützten Flüchen",
+          "text": "%1%%% erhöhte Wirkung von unterstützten Flüchen",
           "formatters": []
         },
         {
@@ -2317,7 +2343,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%% verstärkten Flächenschaden",
+            "Unterstützte Fertigkeiten verursachen %1%%% erhöhten Flächenschaden",
           "formatters": []
         },
         {
@@ -2561,13 +2587,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% erhöhte Menge fallengelassener Gegenstände von Gegnern, die durch unterstützte Fertigkeiten getötet wurden",
+            "%1%%% erhöhte Menge fallen gelassener Gegenstände von Gegnern, die durch unterstützte Fertigkeiten getötet wurden",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "%1%%% verringerte Menge fallengelassener Gegenstände von Gegnern, die durch unterstützte Fertigkeiten getötet wurden",
+            "%1%%% verringerte Menge fallen gelassener Gegenstände von Gegnern, die durch unterstützte Fertigkeiten getötet wurden",
           "formatters": [
             {
               "id": "negate",
@@ -2605,7 +2631,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% des physischen Schadens unterstützter Fertigkeiten wird in Blitzschaden umgewandelt",
+            "%1%%% des physischen Schadens unterstützter Fertigkeiten werden in Blitzschaden umgewandelt",
           "formatters": []
         }
       ]
@@ -2616,7 +2642,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1% verstärkten Schaden mit Gift",
+            "Unterstützte Fertigkeiten verursachen %1% erhöhten Schaden mit Gift",
           "formatters": []
         },
         {
@@ -2770,7 +2796,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1% verstärkten Schaden mit Bluten",
+            "Unterstützte Fertigkeiten verursachen %1% erhöhten Schaden mit Bluten",
           "formatters": []
         },
         {
@@ -2787,7 +2813,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%% verstärkten Brandschaden",
+            "Unterstützte Fertigkeiten verursachen %1%%% erhöhten Brandschaden",
           "formatters": []
         },
         {
@@ -2847,13 +2873,30 @@
         }
       ]
     },
+    "chance_to_summon_support_ghost_on_killing_blow_%": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% Chance, ein Phantasma zu beschwören, wenn unterstützte Fertigkeiten oder Kreaturen durch unterstützte Fertigkeiten (Phantasmen ausgenommen) einen tödlichen Schlag verursachen",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Beschwört ein Phantasma, wenn unterstützte Fertigkeiten oder Kreaturen durch unterstützte Fertigkeiten (Phantasmen ausgenommen) einen tödlichen Schlag verursachen",
+          "formatters": []
+        }
+      ]
+    },
     "chaos_damage_+%": {
       "stats": ["chaos_damage_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%% verstärkten Chaosschaden",
+            "Unterstützte Fertigkeiten verursachen %1%%% erhöhten Chaosschaden",
           "formatters": []
         },
         {
@@ -2897,7 +2940,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten haben %1%%% verstärkte Unterkühlungswirkung bei Gegnern",
+            "Unterstützte Fertigkeiten haben %1%%% erhöhte Unterkühlungswirkung bei Gegnern",
           "formatters": []
         },
         {
@@ -2930,7 +2973,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%% verstärkten Kälteschaden",
+            "Unterstützte Fertigkeiten verursachen %1%%% erhöhten Kälteschaden",
           "formatters": []
         },
         {
@@ -2952,7 +2995,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%% verstärkten Schaden über Zeit",
+            "Unterstützte Fertigkeiten verursachen %1%%% erhöhten Schaden über Zeit",
           "formatters": []
         },
         {
@@ -2974,7 +3017,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%% verstärkten Schaden",
+            "Unterstützte Fertigkeiten verursachen %1%%% erhöhten Schaden",
           "formatters": []
         },
         {
@@ -3040,7 +3083,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%% verstärkten Elementarschaden",
+            "Unterstützte Fertigkeiten verursachen %1%%% erhöhten Elementarschaden",
           "formatters": []
         },
         {
@@ -3062,7 +3105,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%% verstärkten Feuerschaden",
+            "Unterstützte Fertigkeiten verursachen %1%%% erhöhten Feuerschaden",
           "formatters": []
         },
         {
@@ -3137,7 +3180,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Betäuben eines Gegners durch Nahkampfschaden von unterstützter Fertigkeiten gewährt eine Widerstands-Ladung",
+            "Erhaltet eine Widerstands-Ladung, wenn Ihr einen Gegner mit Nahkampfschaden durch unterstützte Fertigkeiten betäubt",
           "formatters": []
         }
       ]
@@ -3255,7 +3298,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Schaden mit Treffern und Gift",
+          "text": "%1%%% erhöhter Schaden mit Treffern und Gift",
           "formatters": []
         },
         {
@@ -3276,7 +3319,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% verstärkter Schaden mit Treffern und Gift pro Giftstapel auf dem Gegner",
+            "%1%%% erhöhter Schaden mit Treffern und Gift pro Giftstapel auf dem Gegner",
           "formatters": []
         },
         {
@@ -3337,7 +3380,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% des Schadens von unterstützten Fertigkeiten wird als Leben geraubt",
+            "%1%%% des Schadens von unterstützten Fertigkeiten werden als Leben geraubt",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -3388,7 +3431,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%% verstärkten Blitzschaden",
+            "Unterstützte Fertigkeiten verursachen %1%%% erhöhten Blitzschaden",
           "formatters": []
         },
         {
@@ -3426,7 +3469,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% des Schadens von unterstützten Fertigkeiten wird als Mana geraubt",
+            "%1%%% des Schadens von unterstützten Fertigkeiten werden als Mana geraubt",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -3471,6 +3514,17 @@
         }
       ]
     },
+    "melee_attack_number_of_spirit_strikes": {
+      "stats": ["melee_attack_number_of_spirit_strikes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Unterstützte Angriffsfertigkeiten zielen auch auf %1% Gegner im Umkreis",
+          "formatters": []
+        }
+      ]
+    },
     "melee_damage_vs_bleeding_enemies_+%": {
       "stats": ["melee_damage_vs_bleeding_enemies_+%"],
       "translations": [
@@ -3499,7 +3553,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%% verstärkten physischen Nahkampfschaden",
+            "Unterstützte Fertigkeiten verursachen %1%%% erhöhten physischen Nahkampfschaden",
           "formatters": []
         },
         {
@@ -3640,7 +3694,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%% verstärkten Kreaturenschaden",
+            "Unterstützte Fertigkeiten verursachen %1%%% erhöhten Kreaturenschaden",
           "formatters": []
         },
         {
@@ -3728,7 +3782,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten haben %1%%% verstärkte Wirkung von nicht schädlichen Beeinträchtigungen bei Gegnern",
+            "Unterstützte Fertigkeiten haben %1%%% erhöhte Wirkung von nicht schädlichen Beeinträchtigungen bei Gegnern",
           "formatters": [
             {
               "id": "reminderstring",
@@ -3757,7 +3811,12 @@
       "stats": ["number_of_additional_mines_to_place"],
       "translations": [
         {
-          "matchers": ["#"],
+          "matchers": [1],
+          "text": "Unterstützte Fertigkeiten platzieren eine zusätzliche Mine",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
           "text": "Unterstützte Fertigkeiten platzieren %1% zusätzliche Minen",
           "formatters": []
         }
@@ -3904,7 +3963,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%% verstärkten Projektilschaden",
+            "Unterstützte Fertigkeiten verursachen %1%%% erhöhten Projektilschaden",
           "formatters": []
         },
         {
@@ -3959,7 +4018,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% des Kälteschadens unterstützter Fähigkeiten wird in Feuerschaden umgewandelt",
+            "%1%%% des Kälteschadens unterstützter Fähigkeiten werden in Feuerschaden umgewandelt",
           "formatters": []
         }
       ]
@@ -4023,7 +4082,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% des physischen Schadens unterstützter Fähigkeiten wird in Blitzschaden umgewandelt",
+            "%1%%% des physischen Schadens unterstützter Fähigkeiten werden in Blitzschaden umgewandelt",
           "formatters": []
         }
       ]
@@ -4047,6 +4106,17 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "summon_mirage_archer_on_hit": {
+      "stats": ["summon_mirage_archer_on_hit"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Wenn Ihr einen Gegner mit einem Pfeil einer unterstützten Fertigkeit trefft, beschwört Ihr einen Phantombogenschützen, der diese Fertigkeit benutzt",
+          "formatters": []
         }
       ]
     },
@@ -4146,7 +4216,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Gegner, die durch unterstützte Fertigkeiten verstümmelt wurden, erleiden %1%%% verstärkten physischen Schaden",
+            "Gegner, die durch unterstützte Fertigkeiten verstümmelt wurden, erleiden %1%%% erhöhten physischen Schaden",
           "formatters": []
         },
         {
@@ -4220,6 +4290,28 @@
         }
       ]
     },
+    "support_minion_maximum_life_+%_final": {
+      "stats": ["support_minion_maximum_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Unterstützte Fertigkeiten haben %1%%% mehr maximales Kreaturenleben",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Unterstützte Fertigkeiten haben %1%%% weniger maximales Kreaturenleben",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_minion_totem_resistance_elemental_damage_+%_final": {
       "stats": ["support_minion_totem_resistance_elemental_damage_+%_final"],
       "translations": [
@@ -4233,6 +4325,87 @@
           "matchers": [["#", -1]],
           "text":
             "Unterstützte Fertigkeiten haben %1%%% weniger Elementarschaden von Totems und Kreaturen",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_mirage_archer_attack_speed_+%_final": {
+      "stats": ["support_mirage_archer_attack_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Phantombogenschütze nutzt unterstützte Fertigkeit mit %1%%% mehr Angriffsgeschwindigkeit",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Phantombogenschütze nutzt unterstützte Fertigkeit mit %1%%% weniger Angriffsgeschwindigkeit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_mirage_archer_damage_+%_final": {
+      "stats": ["support_mirage_archer_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Mirage Archer ใช้สกิลที่ได้ซัพยิงได้แรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Mirage Archer ใช้สกิลที่ได้ซัพยิงได้เบาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_parallel_projectile_number_of_points_per_side": {
+      "stats": ["support_parallel_projectile_number_of_points_per_side"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "Unterstützte Fertigkeiten feuern auch Projektile von bis zu %1% Punkt von jeder Eurer Seiten aus",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "Unterstützte Fertigkeiten feuern auch Projektile von bis zu %1% Punkten von jeder Eurer Seiten aus",
+          "formatters": []
+        }
+      ]
+    },
+    "support_parallel_projectiles_damage_+%_final": {
+      "stats": ["support_parallel_projectiles_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Unterstützte Fertigkeiten verursachen %1%%% mehr Projektilschaden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Unterstützte Fertigkeiten verursachen %1%%% weniger Projektilschaden",
           "formatters": [
             {
               "id": "negate",
@@ -4394,6 +4567,82 @@
             {
               "id": "negate",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade_area_of_effect_+%_final": {
+      "stats": ["support_spell_cascade_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Unterstützte Fertigkeiten haben %1%%% mehr Wirkungsbereich",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Unterstützte Fertigkeiten haben %1%%% weniger Wirkungsbereich",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade_damage_+%_final": {
+      "stats": ["support_spell_cascade_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Unterstützte Fertigkeiten verursachen %1%%% mehr Schaden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Unterstützte Fertigkeiten verursachen %1%%% weniger Schaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade_number_of_cascades_per_side": {
+      "stats": ["support_spell_cascade_number_of_cascades_per_side"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Zaubert unterstützte Fertigkeiten zusätzliche Male, vor und hinter dem Ziel, wodurch eine größere überlappende Fläche betroffen ist",
+          "formatters": []
+        }
+      ]
+    },
+    "support_storm_barrier_gain_power_charge_when_hit_%": {
+      "stats": [
+        "support_storm_barrier_gain_power_charge_when_hit_%",
+        "support_storm_barrier_lightning_damage_taken_when_hit_+%_final",
+        "support_storm_barrier_physical_damage_taken_when_hit_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#", "#"],
+          "text":
+            "Unterstützte Fertigkeiten gewähren %1%%% Chance, bei erlittenem Treffer während des Kanalisierens eine Energie-Ladung zu erhalten\\nUnterstützte Fertigkeiten gewähren %2%%% weniger erlittenen Blitzschaden während des Kanalisierens\\nUnterstützte Fertigkeiten gewähren %3%%% weniger erlittenen physischen Schaden während des Kanalisierens",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 2
+            },
+            {
+              "id": "negate",
+              "arg": 3
             }
           ]
         }

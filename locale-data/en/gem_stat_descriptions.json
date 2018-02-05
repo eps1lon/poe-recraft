@@ -317,12 +317,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Supported Skills deal %1%%% more Damage",
+          "text": "Supported Triggered Spells deal %1%%% more Damage",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Supported Skills deal %1%%% less Damage",
+          "text": "Supported Triggered Spells deal %1%%% less Damage",
           "formatters": [
             {
               "id": "negate",
@@ -523,7 +523,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Supported Skills deal up to 50%% more Damage to targets at the start of their movement, dealing less Damage to targets as the projectile travels farther",
+            "Supported Skills' Projectile Attack Hits deal up to 50%% more Damage to targets at the start of their movement, dealing less Damage to targets as the projectile travels farther",
           "formatters": []
         }
       ]
@@ -820,6 +820,16 @@
         }
       ]
     },
+    "reduce_enemy_elemental_resistance_%": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Supported Skills Penetrate %1%%% Elemental Resistances",
+          "formatters": []
+        }
+      ]
+    },
     "base_reduce_enemy_lightning_resistance_%": {
       "stats": ["base_reduce_enemy_lightning_resistance_%"],
       "translations": [
@@ -891,6 +901,26 @@
         {
           "matchers": [["#", -1]],
           "text": "Supported Skills deal %1%%% less Damage with Hits",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spirit_strike_damage_+%_final": {
+      "stats": ["support_spirit_strike_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Supported Skills deal %1%%% more Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Supported Skills deal %1%%% less Damage",
           "formatters": [
             {
               "id": "negate",
@@ -2728,6 +2758,23 @@
         }
       ]
     },
+    "chance_to_summon_support_ghost_on_killing_blow_%": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% chance to Summon a Phantasm when Supported Skills, or Non-Phantasm Minions from Supported Skills, deal a Killing Blow",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Summon a Phantasm when Supported Skills, or Non-Phantasm Minions from Supported Skills, deal a Killing Blow",
+          "formatters": []
+        }
+      ]
+    },
     "chaos_damage_+%": {
       "stats": ["chaos_damage_+%"],
       "translations": [
@@ -3003,7 +3050,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Gain an Endurance Charge if you Stun an Enemy with Melee Damage from Supported Skills",
+            "Gain an Endurance Charge when you Stun an Enemy with Melee Damage from Supported Skills",
           "formatters": []
         }
       ]
@@ -3321,6 +3368,16 @@
         }
       ]
     },
+    "melee_attack_number_of_spirit_strikes": {
+      "stats": ["melee_attack_number_of_spirit_strikes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Supported Attack Skills also target %1% nearby Enemies",
+          "formatters": []
+        }
+      ]
+    },
     "melee_damage_vs_bleeding_enemies_+%": {
       "stats": ["melee_damage_vs_bleeding_enemies_+%"],
       "translations": [
@@ -3591,7 +3648,12 @@
       "stats": ["number_of_additional_mines_to_place"],
       "translations": [
         {
-          "matchers": ["#"],
+          "matchers": [1],
+          "text": "Supported Skills place an additional Mine",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
           "text": "Supported Skills place %1% additional Mines",
           "formatters": []
         }
@@ -3875,6 +3937,17 @@
         }
       ]
     },
+    "summon_mirage_archer_on_hit": {
+      "stats": ["summon_mirage_archer_on_hit"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "When you Hit an Enemy with an Arrow from a Supported Skill, Summon a Mirage Archer which uses that Skill",
+          "formatters": []
+        }
+      ]
+    },
     "support_burning_damage_+%_final": {
       "stats": ["support_burning_damage_+%_final"],
       "translations": [
@@ -4037,6 +4110,26 @@
         }
       ]
     },
+    "support_minion_maximum_life_+%_final": {
+      "stats": ["support_minion_maximum_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Supported Skills have %1%%% more Minion maximum Life",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Supported Skills have %1%%% less Minion maximum Life",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_minion_totem_resistance_elemental_damage_+%_final": {
       "stats": ["support_minion_totem_resistance_elemental_damage_+%_final"],
       "translations": [
@@ -4050,6 +4143,85 @@
           "matchers": [["#", -1]],
           "text":
             "Supported Skills have %1%%% less Minion and Totem Elemental Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_mirage_archer_attack_speed_+%_final": {
+      "stats": ["support_mirage_archer_attack_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Mirage Archer uses Supported Skill with %1%%% more Attack Speed",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Mirage Archer uses Supported Skill with %1%%% less Attack Speed",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_mirage_archer_damage_+%_final": {
+      "stats": ["support_mirage_archer_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Mirage Archer deals %1%%% more Damage with Supported Skills",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Mirage Archer deals %1%%% less Damage with Supported Skills",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_parallel_projectile_number_of_points_per_side": {
+      "stats": ["support_parallel_projectile_number_of_points_per_side"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "Supported Skills also fire Projectiles from up to %1% point on each side of you",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "Supported Skills also fire Projectiles from up to %1% points on each side of you",
+          "formatters": []
+        }
+      ]
+    },
+    "support_parallel_projectiles_damage_+%_final": {
+      "stats": ["support_parallel_projectiles_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Supported Skills deal %1%%% more Projectile Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Supported Skills deal %1%%% less Projectile Damage",
           "formatters": [
             {
               "id": "negate",
@@ -4203,6 +4375,81 @@
             {
               "id": "negate",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade_area_of_effect_+%_final": {
+      "stats": ["support_spell_cascade_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Supported Skills have %1%%% more Area of Effect",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Supported Skills have %1%%% less Area of Effect",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade_damage_+%_final": {
+      "stats": ["support_spell_cascade_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Supported Skills deal %1%%% more Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Supported Skills deal %1%%% less Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade_number_of_cascades_per_side": {
+      "stats": ["support_spell_cascade_number_of_cascades_per_side"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Supported Area of Effect skills also affect areas in front and behind the targeted area",
+          "formatters": []
+        }
+      ]
+    },
+    "support_storm_barrier_gain_power_charge_when_hit_%": {
+      "stats": [
+        "support_storm_barrier_gain_power_charge_when_hit_%",
+        "support_storm_barrier_lightning_damage_taken_when_hit_+%_final",
+        "support_storm_barrier_physical_damage_taken_when_hit_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#", "#"],
+          "text":
+            "%1%%% chance to Gain a Power Charge when hit while Channelling Supported Skills\\n%2%%% less Lightning Damage taken from Hits while Channelling Supported Skills\\n%3%%% less Physical Damage taken from Hits while Channelling Supported Skills",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 2
+            },
+            {
+              "id": "negate",
+              "arg": 3
             }
           ]
         }

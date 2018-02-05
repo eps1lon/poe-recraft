@@ -323,12 +323,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Habilidades Suportadas causam %1%%% mais Dano",
+          "text": "Magias Ativadas Suportadas causam %1%%% mais Dano",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Habilidades Suportadas causam %1%%% menos Dano",
+          "text": "Magias Ativadas Suportadas causam %1%%% menos Dano",
           "formatters": [
             {
               "id": "negate",
@@ -535,7 +535,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Habilidades Suportadas causam até 50%% mais Dano em alvos no começo de seu movimento, causando menos Dano em alvos conforme o projétil viaja adiante",
+            "Acertos de Projéteis de Ataques de Habilidades Suportadas causam até 50%% mais Dano em alvos no começo do movimento, causando menos Dano em alvos conforme o projétil viaja adiante",
           "formatters": []
         }
       ]
@@ -910,6 +910,26 @@
         {
           "matchers": [["#", -1]],
           "text": "Habilidades Suportadas causam %1%%% menos Dano com Acertos",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spirit_strike_damage_+%_final": {
+      "stats": ["support_spirit_strike_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Habilidades Suportadas causam %1%%% mais Dano",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Habilidades Suportadas causam %1%%% menos Dano",
           "formatters": [
             {
               "id": "negate",
@@ -2794,6 +2814,23 @@
         }
       ]
     },
+    "chance_to_summon_support_ghost_on_killing_blow_%": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chance de Convocar um Fantasma quando Habilidades Suportadas, ou Lacaios Não Fantasmas de Habilidades Suportadas, causam um Golpe Fatal",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Convoca um Fantasma quando Habilidades Suportadas, ou Lacaios Não Fantasmas de Habilidades Suportadas, causam um Golpe Fatal",
+          "formatters": []
+        }
+      ]
+    },
     "chaos_damage_+%": {
       "stats": ["chaos_damage_+%"],
       "translations": [
@@ -3081,7 +3118,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Ganha uma Carga de Tolerância se você Atordoar um Inimigo com Dano Corpo a Corpo de Habilidades Suportadas",
+            "Ganha uma Carga de Tolerância quando você Atordoa um Inimigo com Dano Corpo a Corpo de Habilidades Suportadas",
           "formatters": []
         }
       ]
@@ -3413,6 +3450,17 @@
         }
       ]
     },
+    "melee_attack_number_of_spirit_strikes": {
+      "stats": ["melee_attack_number_of_spirit_strikes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Habilidades de Ataque Suportadas também alvejam %1% Inimigos próximos",
+          "formatters": []
+        }
+      ]
+    },
     "melee_damage_vs_bleeding_enemies_+%": {
       "stats": ["melee_damage_vs_bleeding_enemies_+%"],
       "translations": [
@@ -3699,7 +3747,12 @@
       "stats": ["number_of_additional_mines_to_place"],
       "translations": [
         {
-          "matchers": ["#"],
+          "matchers": [1],
+          "text": "Habilidades Suportadas plantam uma Mina adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
           "text": "Habilidades Suportadas plantam %1% Minas adicionais",
           "formatters": []
         }
@@ -3990,6 +4043,17 @@
         }
       ]
     },
+    "summon_mirage_archer_on_hit": {
+      "stats": ["summon_mirage_archer_on_hit"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Quando você acerta um Inimigo com uma Flecha de uma Habilidade Suportada, Convoca um Arqueiro Ilusório que usa aquela Habilidade",
+          "formatters": []
+        }
+      ]
+    },
     "support_burning_damage_+%_final": {
       "stats": ["support_burning_damage_+%_final"],
       "translations": [
@@ -4152,6 +4216,27 @@
         }
       ]
     },
+    "support_minion_maximum_life_+%_final": {
+      "stats": ["support_minion_maximum_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Habilidades Suportadas têm %1%%% mais Vida de Lacaio máxima",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Habilidades Suportadas têm %1%%% menos Vida de Lacaio máxima",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_minion_totem_resistance_elemental_damage_+%_final": {
       "stats": ["support_minion_totem_resistance_elemental_damage_+%_final"],
       "translations": [
@@ -4165,6 +4250,65 @@
           "matchers": [["#", -1]],
           "text":
             "Habilidades Suportadas têm %1%%% menos Dano Elemental de Lacaio e Totem",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_mirage_archer_damage_+%_final": {
+      "stats": ["support_mirage_archer_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Arqueiro Ilusório causa %1%%% mais Dano com Habilidades Suportadas",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Arqueiro Ilusório causa %1%%% menos Dano com Habilidades Suportadas",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_parallel_projectile_number_of_points_per_side": {
+      "stats": ["support_parallel_projectile_number_of_points_per_side"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "Habilidades Suportadas também disparam Projéteis de até %1% ponto de cada lado seu",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "Habilidades Suportadas também disparam Projéteis de até %1% pontos de cada lado seu",
+          "formatters": []
+        }
+      ]
+    },
+    "support_parallel_projectiles_damage_+%_final": {
+      "stats": ["support_parallel_projectiles_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Habilidades Suportadas causam %1%%% mais Dano de Projétil",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Habilidades Suportadas causam %1%%% menos Dano de Projétil",
           "formatters": [
             {
               "id": "negate",
@@ -4322,6 +4466,81 @@
             {
               "id": "negate",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade_area_of_effect_+%_final": {
+      "stats": ["support_spell_cascade_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Habilidades Suportadas têm %1%%% mais Área de Efeito",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Habilidades Suportadas têm %1%%% menos Área de Efeito",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade_damage_+%_final": {
+      "stats": ["support_spell_cascade_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Habilidades Suportadas causam %1%%% mais Dano",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Habilidades Suportadas causam %1%%% menos Dano",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade_number_of_cascades_per_side": {
+      "stats": ["support_spell_cascade_number_of_cascades_per_side"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Habilidades Suportadas são conjuradas adicionalmente na frente e atrás do alvo, afetando uma área sobreposta maior",
+          "formatters": []
+        }
+      ]
+    },
+    "support_storm_barrier_gain_power_charge_when_hit_%": {
+      "stats": [
+        "support_storm_barrier_gain_power_charge_when_hit_%",
+        "support_storm_barrier_lightning_damage_taken_when_hit_+%_final",
+        "support_storm_barrier_physical_damage_taken_when_hit_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#", "#"],
+          "text":
+            "Habilidades Suportadas concedem %1%%% de chance de Ganhar uma Carga de Poder quando acertado enquanto Canalizando\\nHabilidades Suportadas concedem %2%%% menos Dano de Raio Sofrido enquanto Canalizando\\nHabilidades Suportadas concedem %3%%% menos Dano Físico Sofrido enquanto Canalizando",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 2
+            },
+            {
+              "id": "negate",
+              "arg": 3
             }
           ]
         }

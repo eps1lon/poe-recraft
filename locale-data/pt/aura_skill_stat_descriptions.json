@@ -410,6 +410,28 @@
           "formatters": []
         }
       ]
+    },
+    "energy_shield_recharge_rate": {
+      "stats": ["energy_shield_recharge_rate_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Você e Aliados próximos ganham %1%%% de Velocidade de Recarga de Escudo de Energia aumentada",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Você e Aliados próximos ganham %1%%% de Velocidade de Recarga de Escudo de Energia reduzida",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
     }
   }
 }

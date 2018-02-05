@@ -24,12 +24,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人增加 %1%%% 移动速度、攻击速度、及施法速度",
+          "text": "被诅咒敌人的移动速度、攻击速度及施法速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被诅咒敌人减少 %1%%% 移动速度、攻击速度、及施法速度",
+          "text": "被诅咒敌人的移动速度、攻击速度及施法速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -44,12 +44,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人增加 %1%%% 身上增益与减益的持续时间",
+          "text": "被诅咒敌人身上的增益与减益持续时间延长 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被诅咒敌人减少 %1%%% 身上增益与减益的持续时间",
+          "text": "被诅咒敌人身上的增益与减益持续时间缩短 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -63,19 +63,9 @@
       "stats": ["base_resist_all_elements_%"],
       "translations": [
         {
-          "matchers": [[1, "#"]],
-          "text": "被诅咒敌人增加 %1%%% 火焰, 冰霜, 闪电抗性",
+          "matchers": ["#"],
+          "text": "被诅咒敌人的火焰、冰霜、闪电抗性提高 %1$+d%%",
           "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "被诅咒敌人减少 %1%%% 火焰, 冰霜, 闪电抗性",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -83,19 +73,9 @@
       "stats": ["base_fire_damage_resistance_%"],
       "translations": [
         {
-          "matchers": [[1, "#"]],
-          "text": "被诅咒敌人增加 %1%%% 火焰抗性",
+          "matchers": ["#"],
+          "text": "被诅咒敌人的火焰抗性提高 %1$+d%%",
           "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "被诅咒敌人减少 %1%%% 火焰抗性",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -103,19 +83,9 @@
       "stats": ["base_cold_damage_resistance_%"],
       "translations": [
         {
-          "matchers": [[1, "#"]],
-          "text": "被诅咒敌人增加 %1%%% 冰霜抗性",
+          "matchers": ["#"],
+          "text": "被诅咒敌人的冰霜抗性提高 %1$+d%%",
           "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "被诅咒敌人减少 %1%%% 冰霜抗性",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -123,19 +93,19 @@
       "stats": ["base_lightning_damage_resistance_%"],
       "translations": [
         {
-          "matchers": [[1, "#"]],
-          "text": "被诅咒敌人增加 %1%%% 闪电抗性",
+          "matchers": ["#"],
+          "text": "被诅咒敌人的闪电抗性提高 %1$+d%%",
           "formatters": []
-        },
+        }
+      ]
+    },
+    "chaos_resist": {
+      "stats": ["base_chaos_damage_resistance_%"],
+      "translations": [
         {
-          "matchers": [["#", -1]],
-          "text": "被诅咒敌人减少 %1%%% 闪电抗性",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
+          "matchers": ["#"],
+          "text": "被诅咒的敌人获得 %1$+d%% 混沌抗性",
+          "formatters": []
         }
       ]
     },
@@ -144,7 +114,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人遭受冰霜攻击时有 %1$+d%% 几率被冰冻",
+          "text": "被诅咒敌人受到冰霜伤害时有 %1$+d%% 几率被冰冻",
           "formatters": []
         }
       ]
@@ -154,7 +124,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人遭受火焰攻击时有 %1$+d%% 几率被点燃",
+          "text": "被诅咒敌人受到火焰伤害时有 %1$+d%% 几率被点燃",
           "formatters": [
             {
               "id": "reminderstring",
@@ -169,7 +139,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人遭受闪电攻击时有 %1$+d%% 几率被感电",
+          "text": "被诅咒敌人受到闪电攻击时有 %1$+d%% 几率被感电",
           "formatters": [
             {
               "id": "reminderstring",
@@ -184,7 +154,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "杀死被诅咒敌人给予额外 %1%%% 的药剂充能",
+          "text": "击败被诅咒敌人后药剂使用次数额外增加 %1%%%",
           "formatters": []
         }
       ]
@@ -194,7 +164,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "攻击被诅咒的敌人时额外获得 %1%%% 生命偷取",
+          "text": "击中被诅咒敌人时获得额外 %1%%% 生命偷取",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -213,7 +183,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "攻击被诅咒的敌人时额外获得 %1%%% 魔力偷取",
+          "text": "击中被诅咒敌人时获得额外 %1%%% 魔力偷取",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -232,7 +202,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "杀死被诅咒的敌人有 %1%%% 几率获得耐力球",
+          "text": "击败被诅咒敌人有 %1%%% 几率获得耐力球",
           "formatters": []
         }
       ]
@@ -242,7 +212,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "杀死被诅咒的敌人有 %1%%% 几率获得狂怒球",
+          "text": "击败被诅咒敌人有 %1%%% 几率获得狂怒球",
           "formatters": []
         }
       ]
@@ -252,7 +222,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "杀死被诅咒的敌人有 %1%%% 几率获得暴击球",
+          "text": "击败被诅咒敌人有 %1%%% 几率获得暴击球",
           "formatters": []
         }
       ]
@@ -302,12 +272,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人增加 %1%%% 命中率",
+          "text": "被诅咒敌人命中值提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被诅咒敌人减少 %1%%% 命中率",
+          "text": "被诅咒敌人命中值降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -322,12 +292,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人增加 %1%%% 暴击率",
+          "text": "被诅咒敌人攻击和法术基础暴击率提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被诅咒敌人减少 %1%%% 暴击率",
+          "text": "被诅咒敌人攻击和法术基础暴击率降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -342,7 +312,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "受诅咒的敌人 %1$+d%% 基础暴击伤害",
+          "text": "被诅咒敌人额外获得 %1$+d%% 暴击伤害加成",
           "formatters": []
         }
       ]
@@ -352,12 +322,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人造成的总伤害额外增加 %1%%%",
+          "text": "被诅咒敌人造成的总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被诅咒敌人造成的总伤害额外减少 %1%%%",
+          "text": "被诅咒敌人造成的总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -382,12 +352,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人受到的暴击总伤害额外减少 %1%%%",
+          "text": "被诅咒敌人受到的暴击总伤害降低 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被诅咒敌人受到的暴击总伤害额外增加 %1%%%",
+          "text": "被诅咒敌人受到的暴击总伤害提高 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -402,7 +372,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "投射物穿透被诅咒的敌人",
+          "text": "投射物会穿透被诅咒的敌人",
           "formatters": []
         }
       ]
@@ -412,7 +382,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "击中被诅咒敌人有额外 %1%%% 击退率",
+          "text": "击中被诅咒敌人时有额外 %1%%% 的几率将其击退",
           "formatters": [
             {
               "id": "reminderstring",
@@ -427,12 +397,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "受诅咒敌人的总闪避值额外增加 %1%%%",
+          "text": "被诅咒敌人的总闪避值额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "受诅咒敌人的总闪避值额外减少 %1%%%",
+          "text": "被诅咒敌人的总闪避值额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -447,7 +417,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人受到的投射物总伤害额外增加 %1%%%",
+          "text": "被诅咒敌人受到的投射物伤害提高 %1%%%",
           "formatters": []
         }
       ]
@@ -457,7 +427,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人承受额外 %1%%% 被晕眩的几率",
+          "text": "被诅咒敌人的被晕眩几率额外提高 %1%%%",
           "formatters": []
         }
       ]
@@ -467,12 +437,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人增加 %1%%% 晕眩和格挡回复",
+          "text": "被诅咒敌人的晕眩和格挡回复提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被诅咒敌人减少 %1%%% 晕眩和格挡回复",
+          "text": "被诅咒敌人的晕眩和格挡回复降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -487,7 +457,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人受到的物理总伤害额外增加 %1%%%",
+          "text": "被诅咒敌人受到的物理总伤害额外提高 %1%%%",
           "formatters": []
         }
       ]
@@ -497,7 +467,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人受到的持续伤害增加 %1%%%",
+          "text": "被诅咒敌人受到的持续伤害提高 %1%%%",
           "formatters": []
         }
       ]
@@ -507,12 +477,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人的点燃持续时间减少 %1%%%",
+          "text": "被诅咒敌人的点燃持续时间延长 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被诅咒敌人的点燃持续时间增加 %1%%%",
+          "text": "被诅咒敌人的点燃持续时间缩短 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -527,12 +497,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人的冻结持续时间减少 %1%%%",
+          "text": "被诅咒敌人的冰冻持续时间延长 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被诅咒敌人的冻结持续时间增加 %1%%%",
+          "text": "被诅咒敌人的冰冻持续时间缩短 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -547,12 +517,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人的感电持续时间减少 %1%%%",
+          "text": "被诅咒敌人的感电持续时间延长 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被诅咒敌人的感电持续时间增加 %1%%%",
+          "text": "被诅咒敌人的感电持续时间缩短 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -577,7 +547,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "击中被诅咒的敌人会给予玩家 %1% 生命",
+          "text": "击中被诅咒敌人时会给予玩家 %1% 生命",
           "formatters": []
         }
       ]
@@ -587,7 +557,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "击中被诅咒的敌人会给予玩家 %1% 魔力",
+          "text": "击中被诅咒敌人时会给予玩家 %1% 魔力",
           "formatters": []
         }
       ]
@@ -597,7 +567,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "击败被诅咒的敌人会给予玩家 %1% 生命",
+          "text": "击中被诅咒敌人时会给予玩家 %1% 生命",
           "formatters": []
         }
       ]
@@ -607,7 +577,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "击败被诅咒的敌人会给予玩家 %1% 魔力",
+          "text": "击中被诅咒敌人时会给予玩家 %1% 魔力",
           "formatters": []
         }
       ]
@@ -617,18 +587,71 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 诅咒范围",
+          "text": "诅咒范围扩大%1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 诅咒范围",
+          "text": "诅咒范围缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "curse_aura": {
+      "stats": ["curse_apply_as_aura"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被辅助的诅咒技能将以光环形式施放",
+          "formatters": []
+        }
+      ]
+    },
+    "maim_when_hit_chance": {
+      "stats": ["chance_to_be_maimed_when_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "攻击击中被诅咒的敌人时，有 %1%%% 几率使其残废 4 秒",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
+        }
+      ]
+    },
+    "chaos_weakness_damage": {
+      "stats": [
+        "minimum_added_chaos_damage_taken",
+        "maximum_added_chaos_damage_taken"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "击中被诅咒敌人时，附加 %1% - %2% 基础混沌伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_dot_taken_incr": {
+      "stats": ["base_physical_damage_over_time_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被诅咒的敌人受到的物理持续伤害提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被诅咒的敌人受到的物理持续伤害 %1%%%",
+          "formatters": []
         }
       ]
     }
