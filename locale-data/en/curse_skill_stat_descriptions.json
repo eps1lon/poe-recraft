@@ -99,6 +99,16 @@
         }
       ]
     },
+    "chaos_resist": {
+      "stats": ["base_chaos_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Cursed enemies have %1$+d%% to Chaos Resistance",
+          "formatters": []
+        }
+      ]
+    },
     "chance_to_be_frozen": {
       "stats": ["chance_to_be_frozen_%"],
       "translations": [
@@ -421,7 +431,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Cursed enemies take %1%%% increased Damage from Projectiles",
+          "text":
+            "Cursed enemies take %1%%% increased Damage from Projectile Hits",
           "formatters": []
         }
       ]
@@ -605,6 +616,62 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "curse_aura": {
+      "stats": ["curse_apply_as_aura"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Supported Curse Spells are Cast as Auras",
+          "formatters": []
+        }
+      ]
+    },
+    "maim_when_hit_chance": {
+      "stats": ["chance_to_be_maimed_when_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cursed Enemies have %1%%% chance to be Maimed for 4 seconds when Hit by Attacks",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
+        }
+      ]
+    },
+    "chaos_weakness_damage": {
+      "stats": [
+        "minimum_added_chaos_damage_taken",
+        "maximum_added_chaos_damage_taken"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Adds %1% to %2% Chaos Damage to Hits against Cursed Enemies",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_dot_taken_incr": {
+      "stats": ["base_physical_damage_over_time_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Cursed enemies take %1%%% increased Physical Damage from Damage over time",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Cursed enemies take %1%%% increased Physical Damage from Damage over time",
+          "formatters": []
         }
       ]
     }

@@ -360,7 +360,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "此攻擊與召喚物增加 %1%%% 每秒魔力偷取",
+          "text": "攻擊與召喚物增加 %1%%% 魔力偷取速度",
           "formatters": [
             {
               "id": "reminderstring",
@@ -370,7 +370,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "此攻擊與召喚物減少 %1%%% 每秒魔力偷取",
+          "text": "攻擊與召喚物減少 %1%%% 魔力偷取速度",
           "formatters": [
             {
               "id": "negate",
@@ -565,6 +565,16 @@
         {
           "matchers": [[1, "#"]],
           "text": "攻擊與召喚物穿透 %1%%% 冰冷抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "elemental_penetration": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "此攻擊和召喚物穿透 %1%%% 元素抗性",
           "formatters": []
         }
       ]
@@ -879,6 +889,26 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "spirit_strike_damage": {
+      "stats": ["support_spirit_strike_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "此技能和召喚物造成 %1%%% 更多傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "此技能和召喚物造成 %1%%% 更少傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
             }
           ]
         }
@@ -1216,6 +1246,53 @@
         }
       ]
     },
+    "support_ruthless_count": {
+      "stats": ["support_ruthless_big_hit_max_count"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每使用 3 次此攻擊或召喚物攻擊，近戰擊中時會造成殘暴之擊",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_damage": {
+      "stats": ["support_ruthless_big_hit_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "此攻擊或召喚物的殘暴之擊造成 %1%%% 更多近戰傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_bleeding_damage": {
+      "stats": [
+        "support_ruthless_blow_bleeding_damage_from_melee_hits_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "此攻擊或召喚物的殘暴之擊造成 %1%%% 更多近戰擊中造成的流血傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_stun": {
+      "stats": ["support_ruthless_big_hit_stun_base_duration_override_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "此攻擊或召喚物的殘暴之擊有基礎的 %1% 秒暈眩時間",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "poison_chance": {
       "stats": ["base_chance_to_poison_on_hit_%"],
       "translations": [
@@ -1326,6 +1403,16 @@
         {
           "matchers": [[100, "#"]],
           "text": "攻擊和召喚物攻擊擊中造成癱瘓",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_spirit_strikes": {
+      "stats": ["melee_attack_number_of_spirit_strikes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "此技能同時瞄準附近 %1% 個敵人",
           "formatters": []
         }
       ]

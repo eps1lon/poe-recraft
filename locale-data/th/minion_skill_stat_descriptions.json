@@ -424,14 +424,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "เมื่อมิเนียนจะเพิ่มขนาดพื้นที่แสดงผลขึ้นเมื่อใช้สกิลแบบพื้นที่ %1%%%",
+          "text": "มิเนียนมี AOE กว้างขึ้น %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "เมื่อมิเนียนจะลดขนาดพื้นที่แสดงผลลงเมื่อใช้สกิลแบบพื้นที่ %1%%%",
+          "text": "มิเนียนมี AOE แคบลง %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -446,14 +444,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "เมื่อมิเนียนจะเพิ่มขนาดพื้นที่แสดงผลมากขึ้นเมื่อใช้สกิลแบบพื้นที่ %1%%%",
+          "text": "มิเนียนมี AOE กว้างขึ้น %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "เมื่อมิเนียนจะลดขนาดพื้นที่แสดงผลน้อยลงเมื่อใช้สกิลแบบพื้นที่ %1%%%",
+          "text": "มิเนียนมี AOE แคบลง %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1769,6 +1765,16 @@
         }
       ]
     },
+    "elemental_penetration": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนเจาะค่าป้องกันธาตุได้ %1%%%",
+          "formatters": []
+        }
+      ]
+    },
     "lightning_penetration": {
       "stats": ["base_reduce_enemy_lightning_resistance_%"],
       "translations": [
@@ -2102,7 +2108,7 @@
         {
           "matchers": ["#"],
           "text":
-            "มิเนียนได้รับ Endurance Charge เมื่อทำให้ศัตรูติดสถานะ Stun จากการโจมตีระยะประชิด",
+            "มิเนียนจะได้ Endurance Charge หากโจมตีระยะประชิดใส่ศัตรูจนติดมึนได้",
           "formatters": []
         }
       ]
@@ -2299,26 +2305,6 @@
           "matchers": ["#"],
           "text": "สกิลและมิเนียนนี้ จะใช้พลังชีวิตแทนมานา",
           "formatters": []
-        }
-      ]
-    },
-    "mana_cost_reduc": {
-      "stats": ["base_mana_cost_-%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "สกิลของมิเนียนมีการลดมานาที่ใช้ลง %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "สกิลของมิเนียนมีการเพิ่มมานาที่ใช้ขึ้น %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -2656,6 +2642,55 @@
         }
       ]
     },
+    "support_ruthless_count": {
+      "stats": ["support_ruthless_big_hit_max_count"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "มิเนียนหรือการโจมตีนี้จะติด Ruthless Blow ทุกๆ สามครั้ง (ถ้าโจมตีระยะประชิด)",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_damage": {
+      "stats": ["support_ruthless_big_hit_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ruthless Blow ของมิเนียนจะตีระยะประชิดแรงขึ้นอีก %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_bleeding_damage": {
+      "stats": [
+        "support_ruthless_blow_bleeding_damage_from_melee_hits_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "สเตตัสเลือดออกที่เกิดจาก Ruthless Blow ของมิเนียนจะแรงขึ้นอีก %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_stun": {
+      "stats": ["support_ruthless_big_hit_stun_base_duration_override_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ruthless Blow ของมิเนียนจะมีโอกาสติดมึนนาน %1% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "minion_added_damage": {
       "stats": ["active_skill_minion_added_damage_+%_final"],
       "translations": [
@@ -2834,6 +2869,33 @@
         }
       ]
     },
+    "minion_grants_rampage_on_hit": {
+      "stats": [
+        "minion_grants_rampage_kill_to_parent_on_hitting_unique_enemy_%"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "มีโอกาสได้ Rampage Kill %1%%% หากมิเนียนตีศัตรูระดับ Unique",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "ได้ Rampage Kill หากมิเนียนตีศัตรูระดับ Unique",
+          "formatters": []
+        }
+      ]
+    },
+    "minions_cannot_taunt": {
+      "stats": ["minions_cannot_taunt_enemies"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Minions จะยั่วศัตรูไม่ได้",
+          "formatters": []
+        }
+      ]
+    },
     "ailment_non_damaging_incr_effect": {
       "stats": ["non_damaging_ailment_effect_+%"],
       "translations": [
@@ -2860,6 +2922,21 @@
               "arg": "ReminderTextNonDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "base_pierce_num": {
+      "stats": ["projectile_base_number_of_targets_to_pierce"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "อาวุธระยะไกลของมิเนียนเจาะเกราะเป้าหมายได้อีกเป้า",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "อาวุธระยะไกลของมิเนียนเจาะเกราะเป้าหมายได้อีก %1% เป้า",
+          "formatters": []
         }
       ]
     },
@@ -2981,6 +3058,26 @@
           "matchers": [["#", -1]],
           "text":
             "มินเนี่ยนและทักษะที่ใช้โดยโทเท็มจะสร้างความเสียหายจากธาตุน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "parallel_projectiles_damage_final": {
+      "stats": ["support_parallel_projectiles_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนจะสร้างความเสียหายแบบ Projectile มากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนจะสร้างความเสียหายแบบ Projectile น้อยลง %1%%%",
           "formatters": [
             {
               "id": "negate",

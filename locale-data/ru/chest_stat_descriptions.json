@@ -1,4 +1,725 @@
 {
-  "meta": {},
-  "data": {}
+  "meta": {
+    "include": "stat_descriptions"
+  },
+  "data": {
+    "chest_hidden_item_quantity_+%": {
+      "no_description": true,
+      "stats": [],
+      "translations": {}
+    },
+    "chest_hidden_item_rarity_+%": {
+      "no_description": true,
+      "stats": [],
+      "translations": {}
+    },
+    "chest_item_quantity_+%": {
+      "stats": ["chest_item_quantity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% увеличение количества предметов внутри",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% уменьшение количества предметов внутри",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_item_rarity_+%": {
+      "stats": ["chest_item_rarity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% повышение редкости предметов внутри",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% снижение редкости предметов внутри",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drop_additional_unqiue_items": {
+      "stats": ["chest_drop_additional_unqiue_items"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Содержит дополнительный уникальный предмет",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Содержит дополнительных уникальных предметов: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_display_summons_skeletons": {
+      "stats": ["chest_display_summons_skeletons"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Призывает скелетов",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_display_ice_nova": {
+      "stats": ["chest_display_ice_nova"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Использует кольцо льда",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_display_freeze": {
+      "stats": ["chest_display_freeze"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Замораживает при активации",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_packs_to_summon": {
+      "stats": [
+        "number_of_packs_to_summon",
+        "number_of_monsters_to_summon",
+        "summoned_monster_rarity"
+      ],
+      "translations": [
+        {
+          "matchers": [0, 1, 1],
+          "text": "Ларец охраняет магический монстр",
+          "formatters": []
+        },
+        {
+          "matchers": [0, [2, "#"], 1],
+          "text": "Магических монстров охраняет ларец: %2%",
+          "formatters": []
+        },
+        {
+          "matchers": [0, 1, 2],
+          "text": "Ларец охраняет редкий монстр",
+          "formatters": []
+        },
+        {
+          "matchers": [0, [2, "#"], 2],
+          "text": "Редких монстров охраняет ларец %2%",
+          "formatters": []
+        },
+        {
+          "matchers": [0, 1, "#"],
+          "text": "Ларец охраняет монстр",
+          "formatters": []
+        },
+        {
+          "matchers": [0, [2, "#"], "#"],
+          "text": "Монстров охраняет ларец: %2%",
+          "formatters": []
+        },
+        {
+          "matchers": [1, "#", 1],
+          "text": "Ларец охраняет группа магических монстров",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"], "#", 1],
+          "text": "Групп магических монстров охраняет ларец: %1%",
+          "formatters": []
+        },
+        {
+          "matchers": [1, "#", 2],
+          "text": "Ларец охраняет группа редких монстров",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"], "#", 2],
+          "text": "Групп редких монстров охраняет ларец: %1%",
+          "formatters": []
+        },
+        {
+          "matchers": [1, "#", "#"],
+          "text": "Ларец охраняет группа монстров",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"], "#", "#"],
+          "text": "Групп монстров охраняет ларец: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_gems_drop_with_experience": {
+      "stats": ["chest_gems_drop_with_experience"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Содержит камни с опытом",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drops_additional_utility_flasks": {
+      "stats": ["chest_drops_additional_utility_flasks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Содержит дополнительные особые флаконы",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drop_additional_rare_maraketh_weapons": {
+      "stats": ["chest_drop_additional_rare_maraketh_weapons"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Содержит дополнительное оружие маракетов",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Содержит дополнительного оружия маракетов: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_items_drop_identified": {
+      "stats": ["chest_items_drop_identified"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Содержит опознанные предметы",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drop_additional_normal_items_up_to": {
+      "stats": ["chest_drop_additional_normal_items_up_to"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Содержит дополнительных предметов: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drop_additional_magic_items_up_to": {
+      "stats": ["chest_drop_additional_magic_items_up_to"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Содержит дополнительный волшебный предмет",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Содержит дополнительных волшебных предметов: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drop_additional_rare_items_up_to": {
+      "stats": ["chest_drop_additional_rare_items_up_to"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Содержит %1% дополнительный редкий предмет",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Содержит дополнительных редких предметов: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_dropped_items_have_quality_%": {
+      "stats": ["chest_dropped_items_have_quality_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Качество предметов внутри: %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "dropped_items_have_additional_sockets": {
+      "stats": ["dropped_items_have_additional_sockets"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Предметы внутри имеют 1 дополнительное гнездо",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Предметы внутри имеют дополнительных гнезд: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "dropped_items_are_fully_linked": {
+      "stats": ["dropped_items_are_fully_linked"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Все гнёзда предметов внутри соединены",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_dropped_item_level_+": {
+      "stats": ["chest_dropped_item_level_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "+%1% к уровню сундука",
+          "formatters": []
+        }
+      ]
+    },
+    "dropped_items_are_duplicated": {
+      "stats": ["dropped_items_are_duplicated"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Содержит отражённые предметы",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_spawn_rogue_exiles": {
+      "stats": ["chest_spawn_rogue_exiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Ларец охраняет бродячий изгнанник",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Бродячих изгнанников, охраняющих ларец: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_display_revive_nearby_monsters": {
+      "stats": ["chest_display_revive_nearby_monsters"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Воскрешает ближайших мёртвых монстров с эффектом Боевой раж",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_display_spawns_monsters_continuously": {
+      "stats": ["chest_display_spawns_monsters_continuously"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ларец охраняют несколько волн монстров",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_display_spawns_torment_spirits_continuously": {
+      "stats": ["chest_display_spawns_torment_spirits_continuously"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ларец охраняют несколько волн страдающих духов",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_display_explodes_corpses": {
+      "stats": ["chest_display_explodes_corpses"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Взрывает трупы рядом с ларцом",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_camoflaged": {
+      "stats": ["chest_camoflaged"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ларец охраняют замаскированные монстры",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_display_summons_fire_warband": {
+      "stats": ["chest_display_summons_fire_warband"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ларец охраняет отряд Красных сабель",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_display_summons_cold_warband": {
+      "stats": ["chest_display_summons_cold_warband"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ларец охраняет отряд Немого ветра",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_display_summons_lightning_warband": {
+      "stats": ["chest_display_summons_lightning_warband"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ларец охраняет отряд Морской гнили",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_display_summons_chaos_warband": {
+      "stats": ["chest_display_summons_chaos_warband"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ларец охраняет отряд ренегатов",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_display_cast_random_curse": {
+      "stats": ["chest_display_cast_random_curse"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Проклинает при активации",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_display_ignite": {
+      "stats": ["chest_display_ignite"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Поджигает при активации",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextIgnite"
+            }
+          ]
+        }
+      ]
+    },
+    "chest_display_fire_storm": {
+      "stats": ["chest_display_fire_storm"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Использует огненный шторм",
+          "formatters": []
+        },
+        {
+          "matchers": [2],
+          "text": "Использует шторм молний",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_display_caustic_clouds": {
+      "stats": ["chest_display_caustic_clouds"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Выпускает едкое облако",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_display_explosion": {
+      "stats": ["chest_display_explosion"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Взрывается",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drops_only_hybrid_flasks": {
+      "stats": ["chest_drops_only_hybrid_flasks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Содержит только флаконы равновесия",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drops_only_support_gems": {
+      "stats": ["chest_drops_only_support_gems"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Содержит только камни поддержки",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drops_extra_vaal_gems": {
+      "stats": ["chest_drops_extra_vaal_gems"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Содержит камней ваал: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drop_additional_number_of_uniques_of_drop_pool_types": {
+      "stats": ["chest_drop_additional_number_of_uniques_of_drop_pool_types"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Содержит дополнительный уникальный предмет",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Содержит дополнительных уникальных предметов: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drop_additional_unique_maps": {
+      "stats": ["chest_drop_additional_unique_maps"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Содержит дополнительную уникальную карту",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Содержит дополнительных уникальных карт: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drop_additional_fire_warband_uniques": {
+      "stats": ["chest_drop_additional_fire_warband_uniques"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Содержит дополнительный уникальный предмет Красных сабель",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text":
+            "Содержит дополнительных уникальных предметов Красных сабель: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drop_additional_cold_warband_uniques": {
+      "stats": ["chest_drop_additional_cold_warband_uniques"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Содержит дополнительный уникальный предмет Немого ветра",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text":
+            "Содержит дополнительных уникальных предметов Немого ветра: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drop_additional_lightning_warband_uniques": {
+      "stats": ["chest_drop_additional_lightning_warband_uniques"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Содержит дополнительный уникальный предмет Морской гнили",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text":
+            "Содержит дополнительных уникальных предметов Морской гнили: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drop_additional_chaos_warband_uniques": {
+      "stats": ["chest_drop_additional_chaos_warband_uniques"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Содержит дополнительный уникальный предмет ренегатов",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Содержит дополнительных уникальных предметов ренегатов: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drop_additional_deshret_uniques": {
+      "stats": ["chest_drop_additional_deshret_uniques"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Содержит дополнительный уникальный предмет Дешрет",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Содержит дополнительных уникальных предметов Дешрет: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_number_of_additional_kaom_uniques_to_drop": {
+      "stats": ["chest_number_of_additional_kaom_uniques_to_drop"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Содержит дополнительный предмет Каома",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Содержит дополнительных предметов Каома: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_display_kaom_totems": {
+      "stats": ["chest_display_kaom_totems"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Защищён силой предков",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drops_extra_vaal_fragments": {
+      "stats": ["chest_drops_extra_vaal_fragments"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Содержит дополнительный фрагмент ваал",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Содержит дополнительных фрагментов ваал: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drops_extra_rare_items_of_same_base_type": {
+      "stats": ["chest_drops_extra_rare_items_of_same_base_type"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Содержит дополнительных редких предметов: %1%",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Содержит дополнительных редких предметов одного типа: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drop_additional_prophecy_coins": {
+      "stats": ["chest_drop_additional_prophecy_coins"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Содержит %1% дополнительную серебряную монету",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Содержит дополнительных серебряных монет: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "weapons_drop_animated": {
+      "stats": ["weapons_drop_animated"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Содержит оживлённые оружия",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_drop_X_divination_cards": {
+      "stats": [
+        "chest_drop_X_divination_cards",
+        "chest_drop_divination_cards_with_full_stack_number_X"
+      ],
+      "translations": [
+        {
+          "matchers": [1, "#"],
+          "text":
+            "Содержит %1% гадальную карту из колод размером в %2% карт(-ы)",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"], "#"],
+          "text":
+            "Содержит %1% гадальных карт(-ы) из колод размером в %2% карт(-ы)",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_no_regular_drops": {
+      "stats": ["chest_no_regular_drops"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Не содержит других предметов",
+          "formatters": []
+        }
+      ]
+    },
+    "chest_display_guarded_by_dario": {
+      "stats": ["chest_display_guarded_by_dario"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Охраняется Дарием, Ожившей пустотой\\nОхраняется волнами Механизмов пустоты",
+          "formatters": []
+        }
+      ]
+    }
+  }
 }

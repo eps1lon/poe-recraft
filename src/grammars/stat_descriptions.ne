@@ -47,7 +47,7 @@ Stats ->
   {% ([, , , identifiers]) => identifiers %}
 
 TranslationLanguage ->
-  Language Newline Blankline:* Translation 
+  Language Newline:? Blankline:* Translation 
   {% ([language, , , translations]) => [language, translations] %}
 
 Translation -> 

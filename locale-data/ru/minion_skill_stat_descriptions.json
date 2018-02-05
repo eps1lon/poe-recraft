@@ -437,14 +437,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Приспешники имеют %1%%% увеличение области действия для умений, действующих по области",
+          "text": "%1%%% увеличение области действия приспешников",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Приспешники имеют %1%%% уменьшение области действия для умений, действующих по области",
+          "text": "%1%%% уменьшение области действия приспешников",
           "formatters": [
             {
               "id": "negate",
@@ -459,14 +457,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Приспешники имеют на %1%%% больше области действия для умений, действующих по области",
+          "text": "Область действия приспешников на %1%%% больше",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Приспешники имеют на %1%%% меньше области действия для умений, действующих по области",
+          "text": "Область действия приспешников на %1%%% меньше",
           "formatters": [
             {
               "id": "negate",
@@ -1812,6 +1808,16 @@
         }
       ]
     },
+    "elemental_penetration": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Приспешники пробивают %1%%% сопротивления стихиям",
+          "formatters": []
+        }
+      ]
+    },
     "lightning_penetration": {
       "stats": ["base_reduce_enemy_lightning_resistance_%"],
       "translations": [
@@ -2152,7 +2158,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Приспешники получают заряд выносливости, если они оглушают врага в ближнем бою",
+            "Приспешники получают заряд выносливости при оглушении врага уроном в ближнем бою",
           "formatters": []
         }
       ]
@@ -2350,28 +2356,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Это умение и приспешники тратят здоровье вместо маны",
+          "text": "Это умение и приспешники расходуют здоровье вместо маны",
           "formatters": []
-        }
-      ]
-    },
-    "mana_cost_reduc": {
-      "stats": ["base_mana_cost_-%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Приспешники имеют %1%%% снижение затрат маны на умения",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Приспешники имеют %1%%% повышение затрат маны на умения",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -2710,6 +2696,57 @@
         }
       ]
     },
+    "support_ruthless_count": {
+      "stats": ["support_ruthless_big_hit_max_count"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Каждый третий удар атаками ближнего боя приспешников становится Беспощадным",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_damage": {
+      "stats": ["support_ruthless_big_hit_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Беспощадные удары приспешников наносят на %1%%% больше урона в ближнем бою",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_bleeding_damage": {
+      "stats": [
+        "support_ruthless_blow_bleeding_damage_from_melee_hits_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Беспощадные удары приспешников наносят на %1%%% больше урона от кровотечения, наложенного от ударов в ближнем бою",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_stun": {
+      "stats": ["support_ruthless_big_hit_stun_base_duration_override_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Беспощадные удары приспешников имеют базовую длительность оглушения в %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "minion_added_damage": {
       "stats": ["active_skill_minion_added_damage_+%_final"],
       "translations": [
@@ -2892,6 +2929,35 @@
         }
       ]
     },
+    "minion_grants_rampage_on_hit": {
+      "stats": [
+        "minion_grants_rampage_kill_to_parent_on_hitting_unique_enemy_%"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% шанс получить заряд Буйства, когда приспешник наносит удар по уникальному врагу",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Получает заряд Буйства, когда приспешник наносит удар по уникальному врагу",
+          "formatters": []
+        }
+      ]
+    },
+    "minions_cannot_taunt": {
+      "stats": ["minions_cannot_taunt_enemies"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Приспешники не могут спровоцировать врагов",
+          "formatters": []
+        }
+      ]
+    },
     "ailment_non_damaging_incr_effect": {
       "stats": ["non_damaging_ailment_effect_+%"],
       "translations": [
@@ -2920,6 +2986,21 @@
               "arg": "ReminderTextNonDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "base_pierce_num": {
+      "stats": ["projectile_base_number_of_targets_to_pierce"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Снаряды приспешников дополнительную цель",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Снаряды приспешников %1% дополнительных цели(-ей)",
+          "formatters": []
         }
       ]
     },
@@ -3052,6 +3133,43 @@
         }
       ]
     },
+    "support_parallel_projectiles": {
+      "stats": ["support_parallel_projectile_number_of_points_per_side"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "Приспешники также выпускают снаряды из %1% точки по обе стороны от них",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "Приспешники выпускают снаряды из %1% точек по обе стороны от них",
+          "formatters": []
+        }
+      ]
+    },
+    "parallel_projectiles_damage_final": {
+      "stats": ["support_parallel_projectiles_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Приспешники наносят на %1%%% больше урона снарядами",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Приспешники наносят на %1%%% меньше урона снарядами",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_less_duration": {
       "stats": ["support_reduced_duration_skill_effect_duration_+%_final"],
       "translations": [
@@ -3090,6 +3208,30 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
+    "storm_barrier_power_charge": {
+      "stats": [
+        "support_storm_barrier_gain_power_charge_when_hit_%",
+        "support_storm_barrier_lightning_damage_taken_when_hit_+%_final",
+        "support_storm_barrier_physical_damage_taken_when_hit_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#", "#"],
+          "text":
+            "Приспешники имеют %1%%% шанс получить заряд энергии при получении удара во время поддержания\\nПриспешники получают на %2%%% меньше урона от молнии от ударов во время поддержания\\nПриспешники получают на %3%%% меньше физического урона от ударов во время поддержания",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 2
+            },
+            {
+              "id": "negate",
+              "arg": 3
             }
           ]
         }

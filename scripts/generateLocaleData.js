@@ -3,6 +3,7 @@ const { promisify } = require('util');
 const fs = require('fs');
 const path = require('path');
 const { Grammar, Parser } = require('nearley');
+const stripBom = require('strip-bom');
 
 const grammar = Grammar.fromCompiled(
   require('../src/grammars/generated/stat_descriptions.js')
@@ -18,9 +19,9 @@ const isDescriptionFile = file => file.endsWith('stat_descriptions.txt');
 readdir(txt_dir)
   .then(files => {
     files.filter(isDescriptionFile).forEach(file => {
-      const text = fs.readFileSync(path.join(txt_dir, file), {
-        encoding: 'utf8'
-      });
+      const text = stripBom(fs.readFileSync(path.join(txt_dir, file), {
+        encoding: 'utf16le'
+      }));
 
       const out = fs.createWriteStream(
         path.join(json_dir, path.basename(file, '.txt') + '.json')

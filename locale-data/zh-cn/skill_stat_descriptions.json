@@ -14,7 +14,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "牺牲 %1%%% 魔卫的生命并造成等量混沌伤害",
+          "text": "牺牲 %1%%% 魔侍的生命，并造成等量混沌伤害",
           "formatters": []
         }
       ]
@@ -166,6 +166,21 @@
         }
       ]
     },
+    "offering_duration_per_corpse": {
+      "stats": ["offering_skill_effect_duration_per_corpse"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每消耗 1 具灵柩，基础持续时间延长 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "cold_damage_per_frenzy_charge_range": {
       "stats": [
         "spell_minimum_base_cold_damage_per_frenzy_charge",
@@ -236,7 +251,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "爆炸造成的火焰伤害等同于 %1%%% 灵柩的最大生命",
+          "text": "爆炸造成的火焰伤害等同于灵柩最大生命的 %1%%%",
           "formatters": []
         }
       ]
@@ -246,7 +261,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "法术伤害词缀效果同样套用到持续伤害",
+          "text": "法术伤害的词缀效果同样套用于持续伤害",
           "formatters": []
         }
       ]
@@ -256,7 +271,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "法术伤害词缀效果同样套用到持续伤害",
+          "text": "投射物伤害的词缀效果同样套用于持续伤害",
           "formatters": []
         }
       ]
@@ -266,12 +281,12 @@
       "translations": [
         {
           "matchers": [[1, "#"], 1],
-          "text": "地雷引爆时放置一个使用此技能的遥控地雷",
+          "text": "放置 1 个遥控地雷，引爆时激活此技能",
           "formatters": []
         },
         {
           "matchers": [[1, "#"], [2, "#"]],
-          "text": "地雷引爆时放置 %2% 个使用此技能的遥控地雷",
+          "text": "放置 %2% 个遥控地雷，引爆时激活此技能",
           "formatters": []
         }
       ]
@@ -301,32 +316,12 @@
         }
       ]
     },
-    "cooldown_incr": {
-      "stats": ["virtual_cooldown_speed_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 冷却回复速度",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "减少 %1%%% 冷却回复速度",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "totem": {
       "stats": ["is_totem"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "制造 1 个图腾, 图腾会使用此技能",
+          "text": "召唤 1 个图腾，图腾会使用此技能",
           "formatters": []
         }
       ]
@@ -336,12 +331,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 陷阱触发范围",
+          "text": "陷阱触发范围扩大 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 陷阱触发范围",
+          "text": "陷阱触发范围缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -356,12 +351,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 地雷引爆范围",
+          "text": "地雷引爆的效果范围扩大 %1%%% ",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 地雷引爆范围",
+          "text": "地雷引爆的效果范围缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -385,7 +380,12 @@
       "stats": ["spell_repeat_count"],
       "translations": [
         {
-          "matchers": ["#"],
+          "matchers": [1],
+          "text": "重复施放法术 1 次",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
           "text": "重复施放法术 %1% 次",
           "formatters": []
         }
@@ -482,12 +482,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 攻击速度",
+          "text": "攻击速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 攻击速度",
+          "text": "攻击速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -502,7 +502,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "濒血时增加 %1%%% 攻击速度",
+          "text": "低血时攻击速度提高 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -512,7 +512,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "濒血时减少 %1%%% 攻击速度",
+          "text": "低血时攻击速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -531,12 +531,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "当图腾存在时, 玩家额外增加 %1%%% 总攻击速度",
+          "text": "当图腾存在时，玩家总攻击速度额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "当图腾存在时, 玩家额外减少 %1%%% 总攻击速度",
+          "text": "当图腾存在时，玩家总攻击速度额外降低 %1%%%",
           "formatters": []
         }
       ]
@@ -546,12 +546,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "当图腾存在时额外增加 %1%%% 近战总伤害",
+          "text": "当图腾存在时，玩家近战总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "当图腾存在时额外减少 %1%%% 近战总伤害",
+          "text": "当图腾存在时，玩家近战总伤害额外降低 %1%%%",
           "formatters": []
         }
       ]
@@ -563,7 +563,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "当图腾存在时获得等同 %1%%% 物理伤害的额外火焰伤害",
+          "text": "当图腾存在时，获得额外火焰伤害， 其数值等同于自身物理伤害的 %1%%%",
           "formatters": []
         }
       ]
@@ -573,12 +573,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "当图腾存在时增加 %1%%% 攻击速度",
+          "text": "当图腾存在时，攻击速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "当图腾存在时减少 %1%%% 攻击速度",
+          "text": "当图腾存在时，攻击速度降低 %1%%%",
           "formatters": []
         }
       ]
@@ -588,12 +588,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "当图腾存在时增加 %1%%% 近战伤害",
+          "text": "当图腾存在时，对流血敌人的近战伤害提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "当图腾存在时减少 %1%%% 近战伤害",
+          "text": "当图腾存在时，对流血敌人的近战伤害降低 %1%%%",
           "formatters": []
         }
       ]
@@ -603,7 +603,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "濒血时增加 %1%%% 施法速度",
+          "text": "低血时施法速度提高 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -613,7 +613,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "濒血时减少 %1%%% 施法速度",
+          "text": "低血时施法速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -632,12 +632,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 施法速度",
+          "text": "施法速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 施法速度",
+          "text": "施法速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -652,12 +652,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "额外增加 %1%%% 总施法速度",
+          "text": "总施法速度额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "额外减少 %1%%% 总施法速度",
+          "text": "总施法速度额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -672,7 +672,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% 伤害偷取生命",
+          "text": "伤害的 %1%%% 转化为生命偷取",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -691,7 +691,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "攻击造成的 %1%%% 物理伤害偷取生命",
+          "text": "攻击造成物理伤害的 %1%%% 转化为生命",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -710,7 +710,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 生命偷取速度",
+          "text": "生命偷取速度提高 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -720,7 +720,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 生命偷取速度",
+          "text": "生命偷取速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -739,7 +739,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% 伤害偷取魔力",
+          "text": "伤害的 %1%%% 转化为魔力偷取",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -758,7 +758,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 魔力偷取速度",
+          "text": "魔力偷取速度提高 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -768,7 +768,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "增加 %1%%% 魔力偷取速度",
+          "text": "魔力偷取速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -787,7 +787,7 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "击中时有 %1%%% 几率击退敌人",
+          "text": "击中时有额外 %1%%% 几率击退敌人",
           "formatters": [
             {
               "id": "reminderstring",
@@ -797,7 +797,7 @@
         },
         {
           "matchers": [[100, "#"]],
-          "text": "击中时击退敌人",
+          "text": "击中时会击退敌人",
           "formatters": [
             {
               "id": "reminderstring",
@@ -812,12 +812,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 击退距离",
+          "text": "击退距离延长 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "減少 %1%%% 击退距离",
+          "text": "击退距离缩短 %1%%%",
           "formatters": []
         }
       ]
@@ -827,7 +827,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "减少 %1%%% 敌人晕眩门槛",
+          "text": "敌人晕眩门槛降低 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -837,7 +837,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "增加 %1%%% 敌人晕眩门槛",
+          "text": "敌人晕眩门槛提高 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -856,12 +856,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 范围",
+          "text": "效果范围扩大 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 范围",
+          "text": "效果范围缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -876,12 +876,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "死亡时增加 %1%%% 范围",
+          "text": "死亡时产生的效果范围扩大 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "死亡时减少 %1%%% 范围",
+          "text": "死亡时产生的效果范围缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -896,12 +896,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "额外增加 %1%%% 总范围",
+          "text": "总效果范围额外扩大 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "额外减少 %1%%% 总范围",
+          "text": "总效果范围额外缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -916,12 +916,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 光环范围",
+          "text": "光环效果范围扩大 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 光环范围",
+          "text": "光环效果范围缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -936,12 +936,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 光环效果",
+          "text": "光环强度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少加 %1%%% 光环效果",
+          "text": "光环强度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -956,12 +956,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "每个狂怒球增加 %1%%% 攻击速度",
+          "text": "每个狂怒球可使攻击速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "每个狂怒球减少 %1%%% 攻击速度",
+          "text": "每个狂怒球可使攻击速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1006,7 +1006,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "附带的增益效果持续 %1% 秒",
+          "text": "附加增益效果持续 %1% 秒",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -1070,7 +1070,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "中毒效果持续 %1% 秒",
+          "text": "中毒持续 %1% 秒",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -1099,6 +1099,21 @@
         }
       ]
     },
+    "spectre_duration": {
+      "stats": ["spectre_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "灵体存在 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "enduring_cry_charges": {
       "stats": [
         "endurance_charges_granted_per_one_hundred_nearby_enemies_during_endurance_warcry"
@@ -1106,7 +1121,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "每 100 个附近敌人获得 %1% 个耐力球",
+          "text": "周围每 100 个敌人会给予玩家 %1% 个耐力球",
           "formatters": []
         }
       ]
@@ -1118,7 +1133,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "到达最大冲锋距离时, 增加 %1%%% 晕眩门槛降低",
+          "text": "到达最大冲锋距离时，晕眩门槛减免效果提高 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -1128,7 +1143,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "到达最大冲锋距离时, 减少 %1%%% 晕眩门槛降低",
+          "text": "到达最大冲锋距离时，晕眩门槛减免效果降低 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -1143,12 +1158,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "最大冲锋距离时增加 %1%%% 敌人晕眩时间",
+          "text": "到达最大冲锋距离时，敌人晕眩时间延长 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "最大冲锋距离时减少 %1%%% 敌人晕眩时间",
+          "text": "到达最大冲锋距离时，敌人晕眩时间缩短 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1163,12 +1178,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "最大冲锋距离时额外增加 %1%%% 击中总伤害",
+          "text": "到达最大冲锋距离时，击中总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "最大冲锋距离时额外减少 %1%%% 击中总伤害",
+          "text": "到达最大冲锋距离时，击中总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1181,22 +1196,39 @@
     "pierce_num": {
       "stats": [
         "projectile_number_of_targets_to_pierce",
-        "virtual_always_pierce"
+        "virtual_always_pierce",
+        "arrow_number_of_targets_to_pierce",
+        "arrows_always_pierce"
       ],
       "translations": [
         {
-          "matchers": [1, 0],
-          "text": "穿刺 1 个目标",
+          "matchers": [1, 0, 0, 0],
+          "text": "投射物穿透 1 个目标",
           "formatters": []
         },
         {
-          "matchers": [[2, "#"], 0],
-          "text": "穿刺 %1% 个目标",
+          "matchers": [[2, "#"], 0, 0, 0],
+          "text": "投射物穿透 %1% 个目标",
           "formatters": []
         },
         {
-          "matchers": ["#", "#"],
-          "text": "穿刺所有目标",
+          "matchers": ["#", "#", 0, 0],
+          "text": "投射物穿透所有目标",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", 1, 0],
+          "text": "箭矢穿透 1 个目标",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", [2, "#"], 0],
+          "text": "箭矢穿透 %1% 个目标",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", "#", "#"],
+          "text": "箭矢穿透所有目标",
           "formatters": []
         }
       ]
@@ -1206,12 +1238,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 投射物速度",
+          "text": "投射物速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 投射物速度",
+          "text": "投射物速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1246,7 +1278,7 @@
         },
         {
           "matchers": [[1, 99], 0],
-          "text": "%1%%% 几率冰冻敌人",
+          "text": "%1%%% 的几率冰冻敌人",
           "formatters": [
             {
               "id": "reminderstring",
@@ -1261,7 +1293,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% 几率感电敌人",
+          "text": "%1%%% 几率使敌人感电",
           "formatters": [
             {
               "id": "reminderstring",
@@ -1291,12 +1323,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 敌人冰冻持续时间",
+          "text": "冰冻敌人持续时间延长 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 敌人冰冻持续时间",
+          "text": "冰冻敌人持续时间缩短 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1311,12 +1343,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 敌人冰缓持续时间",
+          "text": "敌人被冰缓的持续时间延长 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 敌人冰缓持续时间",
+          "text": "敌人被冰缓的时间缩短 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1331,12 +1363,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "冰缓效果增加 %1%%%",
+          "text": "冰缓效果提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "冰缓效果减少 %1%%%",
+          "text": "冰缓效果降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1351,12 +1383,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 敌人感电持续时间",
+          "text": "对敌人的感电效果持续时间延长 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 敌人感电持续时间",
+          "text": "对敌人的感电效果持续时间缩短 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1371,12 +1403,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 敌人点燃持续时间",
+          "text": "敌人被点燃的持续时间延长 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 敌人点燃持续时间",
+          "text": "敌人被点燃的持续时间缩短 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1391,12 +1423,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 燃烧伤害",
+          "text": "燃烧伤害提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 燃烧伤害",
+          "text": "燃烧伤害降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1411,17 +1443,27 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 移动速度",
-          "formatters": []
-        },
-        {
-          "matchers": [-300],
-          "text": "将敌人定在原地",
+          "text": "移动速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 移动速度",
+          "text": "移动速度降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "no_movement_speed": {
+      "stats": ["no_movement_speed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "将敌人锁定在原地",
           "formatters": []
         }
       ]
@@ -1431,12 +1473,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 敌人掉落物品的稀有度",
+          "text": "击败敌人后掉落物品的稀有度提高 %1%%% ",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 敌人掉落物品的稀有度",
+          "text": "击败敌人后掉落物品的稀有度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1451,12 +1493,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 敌人掉落物品的数量",
+          "text": "击败敌人后物品掉落数量提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 敌人掉落物品的数量",
+          "text": "击败敌人后物品掉落数量降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1471,12 +1513,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1% 命中",
+          "text": "额外获得 %1% 命中值",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1% 命中",
+          "text": "额外减去 %1% 命中值",
           "formatters": [
             {
               "id": "negate",
@@ -1491,12 +1533,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1% 命中",
+          "text": "命中值提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1% 命中",
+          "text": "命中值降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1558,7 +1600,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "击败敌人获得狂怒球",
+          "text": "击败敌人后获得狂怒球",
           "formatters": []
         }
       ]
@@ -1568,12 +1610,12 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "击败敌人有 %1%%% 几率获得狂怒球",
+          "text": "击败敌人后有 %1%%% 几率获得 1 个狂怒球",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "击败敌人获得狂怒球",
+          "text": "击败敌人后获得 1 个狂怒球",
           "formatters": []
         }
       ]
@@ -1583,13 +1625,18 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 攻击和法术暴击率",
+          "text": "攻击和法术基础暴击率提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 攻击和法术暴击率",
-          "formatters": []
+          "text": "攻击和法术基础暴击率降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -1598,12 +1645,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "额外增加 %1%%% 攻击和法术总暴击率",
+          "text": "攻击和法术总暴击率额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "额外减少 %1%%% 攻击和法术总暴击率",
+          "text": "攻击和法术总暴击率额外降低 %1%%%",
           "formatters": []
         }
       ]
@@ -1613,7 +1660,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d%% 暴击伤害",
+          "text": "%1$+d%% 暴击伤害加成",
           "formatters": []
         }
       ]
@@ -1623,7 +1670,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "击中回复 %1% 生命",
+          "text": "击中每个敌人回复 %1$+d 生命",
           "formatters": []
         }
       ]
@@ -1633,12 +1680,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 召唤物伤害",
+          "text": "召唤生物伤害提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 召唤物伤害",
+          "text": "召唤生物伤害降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1653,12 +1700,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 召唤生物移动速度",
+          "text": "召唤生物移动速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 召唤生物移动速度",
+          "text": "召唤生物移动速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1688,6 +1735,16 @@
         }
       ]
     },
+    "lightning_tendrils_pulse_interval": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_interval"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每 %1% 次脉冲会施放 1 次【强力脉冲】",
+          "formatters": []
+        }
+      ]
+    },
     "movement_velocity_cap": {
       "stats": ["movement_velocity_cap"],
       "translations": [
@@ -1703,12 +1760,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "召唤生物的总生命额外增加 %1%%%",
+          "text": "召唤生物的总生命额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "召唤生物的总生命额外减少 %1%%%",
+          "text": "召唤生物的总生命额外提高 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1723,12 +1780,32 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "召唤生物的总能量护盾额外增加 %1%%%",
+          "text": "召唤生物的总能量护盾额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "召唤生物的总能量护盾额外减少 %1%%%",
+          "text": "召唤生物的总能量护盾额外提高 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "minion_life_incr_final": {
+      "stats": ["support_minion_maximum_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助技能的召唤生物最大生命总值额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被辅助技能的召唤生物最大生命总值额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1743,7 +1820,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 召唤生物最大生命",
+          "text": "召唤生物最大生命提高 %1%%%",
           "formatters": []
         }
       ]
@@ -1768,13 +1845,18 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 敌人晕眩时间",
+          "text": "敌人被晕眩时间延长 %1%%% ",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 敌人晕眩时间",
-          "formatters": []
+          "text": "敌人被晕眩时间缩短 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -1793,7 +1875,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "偷袭成功增加 %1%%% 伤害",
+          "text": "偷袭成功时伤害提高 %1%%%",
           "formatters": []
         }
       ]
@@ -1803,7 +1885,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "冰墙出现延迟 %1% 秒",
+          "text": "冰墙的出现会延迟 %1% 秒",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -1828,7 +1910,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "每个毒蛇打击造成每秒 %1% 混沌伤害",
+          "text": "每次【毒蛇打击】会造成每秒 %1% 混沌伤害",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -2023,7 +2105,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1% 秒怪物反应时间",
+          "text": "怪物反应时间延长 %1% 秒",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -2038,12 +2120,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "额外增加 %1%%% 近战物理总伤害",
+          "text": "近战物理总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "额外减少 %1%%% 近战物理总伤害",
+          "text": "近战物理总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2058,12 +2140,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 近战物理伤害",
+          "text": "近战物理伤害提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 近战物理伤害",
+          "text": "近战物理伤害降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2091,7 +2173,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "每个导火箭增加 %1$+d 爆炸范围",
+          "text": "每根引线会使爆炸范围扩大 %1$+d",
           "formatters": []
         }
       ]
@@ -2116,12 +2198,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "晕眩回复和格挡回复减少 %1%%%",
+          "text": "晕眩和格挡回复提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "晕眩回复和格挡回复增加 %1%%%",
+          "text": "晕眩和格挡回复降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2136,12 +2218,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "比平常快 %1%%% 开始回复能量护盾",
+          "text": "能量护盾启动回复比平常快 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "比平常慢 %1%%% 开始回复能量护盾",
+          "text": "能量护盾启动回复比平常慢 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2156,12 +2238,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 能量护盾回复速度",
+          "text": "能量护盾的回复速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 能量护盾回复速度",
+          "text": "能量护盾的回复速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2176,7 +2258,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "受到的物理总伤害额外增加 %1%%%",
+          "text": "受到的物理总伤害额外提高 %1%%%",
           "formatters": []
         }
       ]
@@ -2186,7 +2268,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 持续伤害",
+          "text": "持续伤害效果提高 %1%%%",
           "formatters": []
         }
       ]
@@ -2196,7 +2278,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "每个耐力球增加 %1% 秒持续时间",
+          "text": "每个耐力球可使基础持续时间延长 %1% 秒",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -2211,7 +2293,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "每个耐力球增加 %1%%% 增益效果持续时间",
+          "text": "每个耐力球可使增益效果持续时间延长 %1%%%",
           "formatters": []
         }
       ]
@@ -2221,7 +2303,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "每个狂怒球增加 %1%%% 技能效果持续时间",
+          "text": "每个狂怒球可使技能效果持续时间 %1%%%",
           "formatters": []
         }
       ]
@@ -2231,12 +2313,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "盾格挡几率额外增加 %1%%% ",
+          "text": "盾格挡几率提高 %1%%% ",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "盾格挡几率额外减少 %1%%% ",
+          "text": "盾格挡几率降低 %1%%%",
           "formatters": []
         }
       ]
@@ -2256,12 +2338,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 护甲",
+          "text": "护甲提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 护甲",
+          "text": "护甲降低 %1%%%",
           "formatters": []
         }
       ]
@@ -2271,7 +2353,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d%% 火焰, 冰霜, 闪电抗性",
+          "text": "获得 %1$+d%% 火焰、冰霜、闪电抗性",
           "formatters": []
         }
       ]
@@ -2283,7 +2365,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "敌人被燃烧, 每秒受到你最大生命 %1%%% 的火焰伤害",
+          "text": "点燃敌人，使其每秒受到你最大生命 %1%%% 的火焰伤害",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -2300,7 +2382,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "敌人被点燃, 每秒受到你最大能量护盾 %1%%% 的火焰伤害",
+          "text": "点燃敌人，使其每秒受到你最大能量护盾 %1%%% 的火焰伤害",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -2317,7 +2399,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你被点燃, 每秒承受你最大生命 %1%%% 的火焰伤害",
+          "text": "你被点燃，每秒承受你最大生命 %1%%% 的火焰伤害",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -2334,7 +2416,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你开始燃烧, 每秒承受你最大能量护盾 %1%%% 的火焰伤害",
+          "text": "你被点燃，每秒承受你最大能量护盾 %1%%% 的火焰伤害",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -2349,12 +2431,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "额外增加 %1%%% 法术总伤害",
+          "text": "法术总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "额外减少 %1%%% 法术总伤害",
+          "text": "法术总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2369,12 +2451,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 法术伤害",
+          "text": "法术伤害提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 法术伤害",
+          "text": "法术伤害降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2389,7 +2471,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "增加 %1% 护甲",
+          "text": "护甲提高 %1%",
           "formatters": []
         }
       ]
@@ -2398,8 +2480,13 @@
       "stats": ["lightning_arrow_maximum_number_of_extra_targets"],
       "translations": [
         {
+          "matchers": [1],
+          "text": "最多可以击中目标周围的 %1% 个额外敌人",
+          "formatters": []
+        },
+        {
           "matchers": ["#"],
-          "text": "额外击中 %1% 个目标附近敌人",
+          "text": "最多可以击中目标周围的 %1% 个额外敌人",
           "formatters": []
         }
       ]
@@ -2409,7 +2496,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "技能造成的元素异常状态会扩散到周围的敌人",
+          "text": "此技能造成的元素异常状态，也会影响到其他附近的敌人",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2424,7 +2511,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "技能造成的点燃效果会扩散到周围的敌人",
+          "text": "此技能造成的点燃效果会扩散至附近的敌人",
           "formatters": []
         }
       ]
@@ -2449,7 +2536,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "被辅助的技能将消耗生命来使用",
+          "text": "施放此技能消耗生命，而非魔力",
           "formatters": []
         }
       ]
@@ -2489,7 +2576,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1%%% 几率击中使敌人逃跑",
+          "text": "击中时有 %1%%% 几率使敌人逃跑",
           "formatters": []
         }
       ]
@@ -2499,7 +2586,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "图腾影响范围 : %1%",
+          "text": "图腾影响范围：%1%",
           "formatters": []
         }
       ]
@@ -2508,8 +2595,13 @@
       "stats": ["skill_display_number_of_totems_allowed"],
       "translations": [
         {
+          "matchers": [1],
+          "text": "最多可同时拥有 %1% 个图腾",
+          "formatters": []
+        },
+        {
           "matchers": ["#"],
-          "text": "同时最多存在 %1% 个图腾",
+          "text": "最多可同时拥有 %1% 个图腾",
           "formatters": []
         }
       ]
@@ -2518,8 +2610,13 @@
       "stats": ["skill_display_number_of_traps_allowed"],
       "translations": [
         {
+          "matchers": [1],
+          "text": "最多可同时拥有 %1% 个陷阱",
+          "formatters": []
+        },
+        {
           "matchers": ["#"],
-          "text": "同时最多存在 %1% 个陷阱",
+          "text": "最多可同时拥有 %1% 个陷阱",
           "formatters": []
         }
       ]
@@ -2528,8 +2625,13 @@
       "stats": ["skill_display_number_of_remote_mines_allowed"],
       "translations": [
         {
+          "matchers": [1],
+          "text": "最多可同时拥有 %1% 个遥控地雷",
+          "formatters": []
+        },
+        {
           "matchers": ["#"],
-          "text": "同时最多存在 %1% 个遥控地雷",
+          "text": "最多可同时拥有 %1% 个遥控地雷",
           "formatters": []
         }
       ]
@@ -2579,12 +2681,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 陷阱投掷速度",
+          "text": "陷阱投掷速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 陷阱投掷速度",
+          "text": "陷阱投掷速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2599,12 +2701,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 地雷放置速度",
+          "text": "地雷放置速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 地雷放置速度",
+          "text": "地雷放置速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2634,12 +2736,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 图腾生命",
+          "text": "图腾的生命提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 图腾生命",
+          "text": "图腾的生命降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2654,7 +2756,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "额外增加 %1%%% 的总伤害来计算敌人被冰冻的时间",
+          "text": "额外获得 %1%%% 总伤害下的冰冻效果",
           "formatters": []
         }
       ]
@@ -2694,12 +2796,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 生命回复速度",
+          "text": "生命回复速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 生命回复速度",
+          "text": "生命回复速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2724,12 +2826,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加第二型态 %1%%% 暴击率",
+          "text": "第二型态的暴击率提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少第二型态 %1%%% 暴击率",
+          "text": "第二型态的暴击率降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2744,7 +2846,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1%%% 几率致盲敌人",
+          "text": "击中时有 %1%%% 几率致盲敌人",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2759,12 +2861,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 致盲持续时间",
+          "text": "致盲持续时间延长 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 致盲持续时间",
+          "text": "致盲持续时间缩短 %1%%%",
           "formatters": []
         }
       ]
@@ -2799,12 +2901,22 @@
         }
       ]
     },
+    "elemental_penetration": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "穿透 %1%%% 火焰、冰霜、闪电抗性",
+          "formatters": []
+        }
+      ]
+    },
     "skeletal_chains_target_self": {
       "stats": ["skeletal_chains_no_minions_targets_self"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "若附近没有魔侍时消耗你的生命",
+          "text": "若附近没有魔侍，则消耗你的生命",
           "formatters": []
         }
       ]
@@ -2814,7 +2926,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "若消耗你的生命则击中和后续异常状态额外增加 %1%%% 总伤害",
+          "text": "若消耗你的生命，则后续的击中和异常状态总伤害额外提高 %1%%%",
           "formatters": []
         }
       ]
@@ -2824,7 +2936,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "若消耗生命则增加 %1$+d 范围",
+          "text": "若消耗你的生命，则范围扩大 %1$+d",
           "formatters": []
         }
       ]
@@ -2834,12 +2946,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "连锁 %1% 次",
+          "text": "连锁弹射 %1% 次",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
-          "text": "连锁 %1% 次",
+          "text": "连锁弹射 %1% 次",
           "formatters": []
         }
       ]
@@ -2849,7 +2961,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "投射物击中分裂成 %1% 个",
+          "text": "投射物分裂为 %1% 个",
           "formatters": []
         }
       ]
@@ -2859,7 +2971,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "投射物分裂",
+          "text": "投射物会分裂",
           "formatters": []
         }
       ]
@@ -2869,17 +2981,17 @@
       "translations": [
         {
           "matchers": ["#", 0],
-          "text": "投射物在击中目标后返还",
+          "text": "投射物在击中目标后返回己方",
           "formatters": []
         },
         {
           "matchers": [0, "#"],
-          "text": "投射物在战斗结束时返还",
+          "text": "投射物在战斗结束时返回己方",
           "formatters": []
         },
         {
           "matchers": ["#", "#"],
-          "text": "投射物会返还",
+          "text": "投射物会返回己方",
           "formatters": []
         }
       ]
@@ -2919,7 +3031,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "每层额外增加 %1%%% 击中总伤害和异常状态总伤害",
+          "text": "每一阶会使击中总伤害和异常状态总伤害额外提高 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2929,7 +3041,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "每层额外减少 %1%%% 击中总伤害和异常状态总伤害",
+          "text": "每一阶会使击中总伤害和异常状态总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2948,12 +3060,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "烧毁技能每层增加 %1%%% 伤害",
+          "text": "【烧毁】的每一阶伤害提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "烧毁技能每层减少 %1%%% 伤害",
+          "text": "【烧毁】的每一阶伤害降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2968,12 +3080,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "每层刀刃增加 %1%%% 刀刃速率",
+          "text": "每层刀刃会使刀刃速率提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "每层刀刃减少 %1%%% 刀刃速率",
+          "text": "每层刀刃会使刀刃速率降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2988,12 +3100,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "每层刀刃额外增加 %1%%% 法术总伤害",
+          "text": "每层刀刃会使法术总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "每层刀刃额外减少 %1%%% 法术总伤害",
+          "text": "每层刀刃会使法术总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3008,7 +3120,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "每层刀刃额外增加 %1%%% 后续异常状态总伤害",
+          "text": "每层刀刃会使后续异常状态总伤害额外提高 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -3018,7 +3130,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "每层刀刃额外减少 %1%%% 后续异常状态总伤害",
+          "text": "每层刀刃会使后续异常状态总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3037,12 +3149,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "额外增加 %1%%% 总移动速度",
+          "text": "总移动速度额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "额外减少 %1%%% 总移动速度",
+          "text": "总移动速度额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3107,7 +3219,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "单体近战攻击对周围目标造成溅射伤害",
+          "text": "单体近战攻击会对周围目标造成溅射伤害",
           "formatters": []
         }
       ]
@@ -3117,7 +3229,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "攻击额外重复 %1% 次",
+          "text": "攻击技能可额外重复 %1% 次",
           "formatters": []
         }
       ]
@@ -3127,12 +3239,12 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "暴击时 %1%%% 几率获得暴击球",
+          "text": "暴击时有 %1%%% 几率获得暴击球",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "暴击时获得暴击球",
+          "text": "暴击时会获得暴击球",
           "formatters": []
         }
       ]
@@ -3142,12 +3254,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "额外增加 %1%%% 总近战攻击速度",
+          "text": "近战总攻击速度额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "额外减少 %1%%% 总近战攻击速度",
+          "text": "近战总攻击速度额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3188,11 +3300,11 @@
       ]
     },
     "minion_elemental_resist": {
-      "stats": ["minion_elemental_resistance_%"],
+      "stats": ["virtual_minion_elemental_resistance_%"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "召唤生物有 %1$+d%% 火焰, 冰霜, 闪电抗性",
+          "text": "召唤生物有 %1$+d%% 火焰、冰霜、闪电抗性",
           "formatters": []
         }
       ]
@@ -3202,12 +3314,12 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "击中敌人时有 %1%%% 几率施放被连接的诅咒",
+          "text": "击中时有 %1%%% 几率触发连接的诅咒",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "击中敌人时施放被连接的诅咒",
+          "text": "击中时会触发连接的诅咒",
           "formatters": []
         }
       ]
@@ -3217,7 +3329,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "每层额外增加 %1%%% 总范围",
+          "text": "每层会使总范围额外扩大 %1%%%",
           "formatters": []
         }
       ]
@@ -3227,7 +3339,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "近战伤害击晕敌人时获得耐力球",
+          "text": "若此技能使用物理伤害晕眩敌人，则获得 1 个耐力球",
           "formatters": []
         }
       ]
@@ -3237,7 +3349,7 @@
       "translations": [
         {
           "matchers": [["#", -1]],
-          "text": "冰冻时减少敌人 %1%%% 冰霜抗性",
+          "text": "被冰冻时，敌人的冰霜抗性降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3252,12 +3364,12 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "暴击时有 %1%%% 几率触发连接的法术技能",
+          "text": "暴击时，有 %1%%% 几率触发连接的法术",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "暴击时触发连接的法术技能",
+          "text": "暴击时，触发连接的法术",
           "formatters": []
         }
       ]
@@ -3267,12 +3379,12 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "近战击败时有 %1%%% 几率触发连接的法术宝石",
+          "text": "近战击败敌人时，有 %1%%% 几率触发连接的法术宝石",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "近战击败时触发连接的法术宝石",
+          "text": "近战击败敌人时，会触发连接的法术宝石",
           "formatters": []
         }
       ]
@@ -3350,7 +3462,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "使用该物品的要求提升到 %1% 级",
+          "text": "使用物品要求提升到 %1% 级",
           "formatters": []
         }
       ]
@@ -3390,12 +3502,12 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "击败时有 %1%%% 几率触发该法术",
+          "text": "击败敌人时有 %1%%% 几率触发该法术",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "击败时触发该法术",
+          "text": "击败敌人时触发该法术",
           "formatters": []
         }
       ]
@@ -3405,12 +3517,42 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "击败时有 %1%%% 几率触发该法术",
+          "text": "击败敌人时有 %1%%% 几率触发该法术",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "击败时触发该法术",
+          "text": "击败敌人时触发该法术",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_skill_use_from_chest": {
+      "stats": ["trigger_on_skill_use_from_chest_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "当你使用身体护甲插槽中的技能时，有 %1%%% 几率触发此法术",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "你使用身体护甲插槽中的技能时，触发此法术",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_skill_use_spirit_charge": {
+      "stats": ["trigger_on_skill_use_%_if_you_have_a_spirit_charge"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "当你在【精神冲击】下使用技能时，有 %1%%% 几率触发此法术",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "当你在【精神冲击】下使用技能时，触发此法术",
           "formatters": []
         }
       ]
@@ -3530,17 +3672,32 @@
         }
       ]
     },
+    "cast_when_trap_triggered": {
+      "stats": ["chance_to_cast_when_your_trap_is_triggered_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "当你的一个陷阱被触发时有 %1%%% 几率施放该法术",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "当你的一个陷阱被触发时施放该法术",
+          "formatters": []
+        }
+      ]
+    },
     "attack_speed_more": {
       "stats": ["active_skill_attack_speed_+%_final"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "额外增加 %1%%% 总攻击速度",
+          "text": "总攻击速度额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "额外减少 %1%%% 总攻击速度",
+          "text": "总攻击速度额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3555,12 +3712,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "每个阶段额外增加 %1%%% 法术总伤害",
+          "text": "每层会使法术总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "每个阶段额外减少 %1%%% 法术总伤害",
+          "text": "每层会使法术总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3575,7 +3732,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "每个阶段额外增加 %1%%% 后续异常状态总伤害",
+          "text": "每层会使后续异常状态总伤害额外提高 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -3585,7 +3742,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "每个阶段额外减少 %1%%% 后续异常状态总伤害",
+          "text": "每层会使后续异常状态总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3604,7 +3761,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "持续吟唱时每 %1% 秒触发 1 次连接的法术",
+          "text": "吟唱过程中，每 %1% 秒触发 1 次被连接的法术",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -3619,12 +3776,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 诅咒效果",
+          "text": "诅咒效果提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 诅咒效果",
+          "text": "诅咒效果降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3639,12 +3796,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 对玩家的诅咒效果",
+          "text": "对玩家的感电效果提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 对玩家的诅咒效果",
+          "text": "对玩家的感电效果降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3659,12 +3816,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "额外增加 %1%%% 投射物总攻击速度",
+          "text": "投射物总攻击速度额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "额外减少 %1%%% 投射物总攻击速度",
+          "text": "投射物总攻击速度额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3679,12 +3836,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "法术额外增加 %1%%% 施法总速度",
+          "text": "总施法速度额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "法术额外减少 %1%%% 施法总速度",
+          "text": "总施法速度额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3699,12 +3856,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "额外增加 %1%%% 总攻击速度",
+          "text": "总攻击速度额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "额外减少 %1%%% 总攻击速度",
+          "text": "总攻击速度额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3715,11 +3872,31 @@
       ]
     },
     "desecrate_num_corpses": {
+      "stats": ["desecrate_number_of_corpses_to_create"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "制造 %1% 个灵柩",
+          "formatters": []
+        }
+      ]
+    },
+    "desecrate_corpse_level": {
       "stats": ["desecrate_corpse_level"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "制造的灵柩等级为 %1% 级",
+          "text": "制造的灵柩等级上限为 %1% 级",
+          "formatters": []
+        }
+      ]
+    },
+    "unearth_corpse_level": {
+      "stats": ["unearth_corpse_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "制造 %1% 级的灵柩",
           "formatters": []
         }
       ]
@@ -3729,7 +3906,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "引发较小的新星攻击敌人 %1% 次",
+          "text": "引发较小的新星，最多攻击敌人 %1% 次",
           "formatters": []
         }
       ]
@@ -3739,12 +3916,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "每次重复施放增加 %1%%% 范围",
+          "text": "每次重复施放时，效果范围扩大 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "每次重复施放减少 %1%%% 范围",
+          "text": "每次重复施放时，效果范围降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3759,12 +3936,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "光束额外增加 %1%%% 总伤害",
+          "text": "光束造成的总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "光束额外减少 %1%%% 总伤害",
+          "text": "光束造成的总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3789,7 +3966,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "对敌人使用该技能时,敌人减少 %1%%% 攻击和法术格挡率",
+          "text": "敌人对此技能的攻击和法术格挡率降低 %1%%%",
           "formatters": []
         }
       ]
@@ -3799,7 +3976,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "降低敌人对辅助的法术 %1%%% 躲避几率",
+          "text": "敌人对此技能的躲避几率降低 %1%%%",
           "formatters": []
         }
       ]
@@ -3809,12 +3986,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "对燃烧中的敌人额外增加 %1%%% 总伤害",
+          "text": "对燃烧的敌人的击中总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "对燃烧中的敌人额外减少 %1%%% 总伤害",
+          "text": "对燃烧的敌人的击中总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3829,7 +4006,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "对燃烧中的敌人增加 %1%%% 击中伤害和异常状态伤害",
+          "text": "对燃烧的敌人的击中伤害和异常状态伤害提高 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -3839,7 +4016,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "对燃烧中的敌人减少 %1%%% 击中伤害和异常状态伤害",
+          "text": "对燃烧的敌人的击中伤害和异常状态伤害降低 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -3884,7 +4061,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "获得等同 %1%%% 物理伤害的额外火焰伤害",
+          "text": "获得额外火焰伤害， 其数值等同于自身物理伤害的 %1%%%",
           "formatters": []
         }
       ]
@@ -3894,7 +4071,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "获得等同你 %1%%% 物理伤害的额外混沌伤害",
+          "text": "获得额外混沌伤害，其数值等同于自身物理伤害的 %1%%%",
           "formatters": []
         }
       ]
@@ -3904,7 +4081,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 火焰伤害",
+          "text": "火焰伤害提高 %1%%%",
           "formatters": []
         }
       ]
@@ -3914,7 +4091,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 冰冷伤害",
+          "text": "冰霜伤害提高 %1%%%",
           "formatters": []
         }
       ]
@@ -3950,12 +4127,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "额外增加 %1%%% 总燃烧伤害",
+          "text": "燃烧总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "额外减少 %1%%% 总燃烧伤害",
+          "text": "燃烧总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3970,7 +4147,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 火焰伤害",
+          "text": "火焰伤害提高 %1%%%",
           "formatters": []
         }
       ]
@@ -3980,7 +4157,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 冰冷伤害",
+          "text": "冰霜伤害提高 %1%%%",
           "formatters": []
         }
       ]
@@ -3990,7 +4167,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 闪电伤害",
+          "text": "闪电伤害提高 %1%%%",
           "formatters": []
         }
       ]
@@ -4021,17 +4198,37 @@
         }
       ]
     },
+    "static_strike_damage": {
+      "stats": ["static_strike_explosion_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "爆炸会使击中总伤害和异常状态总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "爆炸会使击中总伤害和异常状态总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "arrow_speed": {
       "stats": ["base_arrow_speed_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 箭矢速度",
+          "text": "箭矢速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 箭矢速度",
+          "text": "箭矢速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4058,7 +4255,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "每个附近的敌人使你增加 %1%%% 移动速度",
+          "text": "周围每有 1 个敌人，你的移动速度提高 %1%%%",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -4073,7 +4270,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "每个附近的敌人使你减少 %1%%% 移动速度",
+          "text": "周围每有 1 个敌人，你的移动速度降低 %1%%%",
           "formatters": [
             {
               "id": "divide_by_one_hundred_and_negate",
@@ -4088,12 +4285,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "闪电新星额外增加 %1%%% 总伤害",
+          "text": "闪电新星的总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "闪电新星额外减少 %1%%% 总伤害",
+          "text": "闪电新星的总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4108,7 +4305,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "爆炸造成该怪物最大生命 %1%%% 的混沌伤害",
+          "text": "爆炸造成混沌伤害，数值等同于该怪物最大生命的 %1%%%",
           "formatters": []
         }
       ]
@@ -4118,7 +4315,7 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "近战命中时有 %1%%% 几率获得护体效果",
+          "text": "近战击中时有 %1%%% 几率获得护体效果",
           "formatters": [
             {
               "id": "reminderstring",
@@ -4128,7 +4325,7 @@
         },
         {
           "matchers": [[100, "#"]],
-          "text": "近战命中时获得护体效果",
+          "text": "近战击中时获得护体效果",
           "formatters": [
             {
               "id": "reminderstring",
@@ -4143,12 +4340,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 护体持续时间",
+          "text": "护体效果持续时间延长 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 护体持续时间",
+          "text": "护体效果持续时间延长缩短 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4163,7 +4360,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1%%% 物理伤害转化为冰冷伤害",
+          "text": "%1%%% 的物理伤害转换为冰霜伤害",
           "formatters": []
         }
       ]
@@ -4173,12 +4370,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "第二阶段额外增加 %1%%% 总伤害",
+          "text": "第二层会使总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "第二阶段额外减少 %1%%% 总伤害",
+          "text": "第二层会使总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4193,12 +4390,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "第三阶段额外增加 %1%%% 总伤害",
+          "text": "第三层会使总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "第三阶段额外减少 %1%%% 总伤害",
+          "text": "第三层会使总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4213,12 +4410,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "魔像使玩家增加 %1%%% 伤害",
+          "text": "魔像会使玩家的伤害提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "魔像使玩家减少 %1%%% 伤害",
+          "text": "魔像会使玩家的伤害降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4233,12 +4430,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "魔像使玩家增加 %1%%% 攻击和法术暴击率",
+          "text": "魔像会使玩家的攻击和法术基础暴击率提高 %1%%% ",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "魔像使玩家减少 %1%%% 攻击和法术暴击率",
+          "text": "魔像会使玩家的攻击和法术基础暴击率降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4253,12 +4450,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "魔像使玩家增加 %1%%% 命中",
+          "text": "魔像会使玩家的命中值提高 %1%%% ",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "魔像使玩家减少 %1%%% 命中",
+          "text": "魔像会使玩家的命中值降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4273,7 +4470,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "魔像使玩家获得额外 %1%%% 物理伤害减免",
+          "text": "魔像会使玩家获得额外 %1%%% 物理伤害减免",
           "formatters": []
         }
       ]
@@ -4283,7 +4480,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "魔像赋予玩家 %1% 每秒生命回复",
+          "text": "魔像会使玩家获得 %1% 每秒生命回复",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -4298,12 +4495,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "魔像使玩家增加 %1%%% 攻击与施法速度",
+          "text": "魔像会使玩家的攻击与施法速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "魔像使玩家减少 %1%%% 攻击与施法速度",
+          "text": "魔像会使玩家的攻击与施法速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4337,12 +4534,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "周围每 100 个敌人增加 %1%%% 伤害",
+          "text": "周围每有 100 个敌人，伤害便提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "周围每 100 个敌人减少 %1%%% 伤害",
+          "text": "周围每有 100 个敌人，伤害便降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4357,7 +4554,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1% 每秒魔力恢复",
+          "text": "%1% 每秒魔力回复",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -4372,12 +4569,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 伤害",
+          "text": "伤害提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 伤害",
+          "text": "伤害降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4392,7 +4589,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "每次重复额外增加 %1%%% 击中总伤害和异常状态总伤害",
+          "text": "每次重复会使击中总伤害和异常状态总伤害额外提高 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -4402,7 +4599,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "每次重复额外减少 %1%%% 击中总伤害和异常状态总伤害",
+          "text": "每次重复会使击中总伤害和异常状态总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4423,12 +4620,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "对流血的敌人额外增加 %1%%% 近战物理总伤害",
+          "text": "对流血敌人造成的近战物理总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "对流血的敌人额外减少 %1%%% 近战物理总伤害",
+          "text": "对流血敌人造成的近战物理总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4443,12 +4640,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "对流血的敌人增加 %1%%% 近战伤害",
+          "text": "对流血敌人的近战伤害提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "对流血的敌人减少 %1%%% 近战伤害",
+          "text": "对流血敌人的近战伤害降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4463,7 +4660,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "增加 %1%%% 图腾放置速度",
+          "text": "图腾放置速度提高 %1%%%",
           "formatters": []
         }
       ]
@@ -4473,12 +4670,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "受诅咒的敌人近战击中你时使你额外增加 %1%%% 近战物理总伤害",
+          "text": "被诅咒的敌人近战击中你时，你的近战物理总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "受诅咒的敌人近战击中你时使你额外减少 %1%%% 近战物理总伤害",
+          "text": "被诅咒的敌人近战击中你时，你的近战物理总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4493,12 +4690,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "受诅咒的敌人近战击中你时使你额外增加 %1%%% 总攻击速度",
+          "text": "被诅咒的敌人近战击中你时，你的攻击速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "受诅咒的敌人近战击中你时使你额外减少 %1%%% 总攻击速度",
+          "text": "被诅咒的敌人近战击中你时，你的攻击速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4528,12 +4725,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被击中时, 受到的物理总伤害的额外增加 %1%%%",
+          "text": "被击中时，受到的物理总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被击中时, 受到的物理总伤害的额外减少 %1%%%",
+          "text": "被击中时，受到的物理总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4548,12 +4745,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被击中时, 受到的火焰总伤害额外增加 %1%%%",
+          "text": "被击中时，受到的火焰总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被击中时, 受到的火焰总伤害额外减少 %1%%% ",
+          "text": "被击中时，受到的火焰总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4568,7 +4765,7 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "%1%%% 几率造成冰冻, 感电与点燃",
+          "text": "%1%%% 几率造成冰冻、感电与点燃效果",
           "formatters": [
             {
               "id": "reminderstring",
@@ -4586,7 +4783,7 @@
         },
         {
           "matchers": [[100, "#"]],
-          "text": "必定冰冻, 感电与点燃",
+          "text": "必定冰冻、感电与点燃",
           "formatters": [
             {
               "id": "reminderstring",
@@ -4609,7 +4806,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$d%% 几率冰冻被冰缓的敌人",
+          "text": "有 %1$d%% 几率冰冻被冰缓的敌人",
           "formatters": [
             {
               "id": "reminderstring",
@@ -4624,7 +4821,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1%%% 的物理伤害随机转化为火焰, 冰冷, 或闪电伤害",
+          "text": "%1%%% 的物理伤害转换为火焰、冰霜或闪电伤害",
           "formatters": []
         }
       ]
@@ -4634,7 +4831,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "近战武器攻击距离 %1$+d",
+          "text": "%1$+d 近战武器范围",
           "formatters": []
         }
       ]
@@ -4654,7 +4851,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "对冰缓敌人额外增加 %1%%% 击中总伤害和异常状态总伤害",
+          "text": "敌人被冰缓时，总伤害（击中和异常状态）额外提高 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -4664,7 +4861,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "对冰缓敌人额外减少 %1%%% 击中总伤害和异常状态总伤害",
+          "text": "敌人被冰缓时，总伤害（击中和异常状态）额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4698,7 +4895,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 敌人视野范围",
+          "text": "敌人视野范围扩大 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -4708,7 +4905,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 敌人视野范围",
+          "text": "敌人视野范围缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4727,12 +4924,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "冲击波额外增加 %1%%% 总伤害",
+          "text": "【冲击波】的总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "冲击波额外减少 %1%%% 总伤害",
+          "text": "【冲击波】的总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4747,7 +4944,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "恢复减益效果伤害量的 %1%%% 为自己的生命",
+          "text": "减益效果伤害的 %1%%% 转化为生命回复",
           "formatters": [
             {
               "id": "divide_by_one_hundred_2dp",
@@ -4762,7 +4959,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "同时可拥有至多 %1% 把飞刃",
+          "text": "最多可同时拥有 %1% 把飞刃",
           "formatters": []
         }
       ]
@@ -4772,12 +4969,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 受到的混沌伤害",
+          "text": "受到的混沌伤害提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 受到的混沌伤害",
+          "text": "受到的混沌伤害降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4792,7 +4989,7 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "%1%%% 几率击中使其中毒",
+          "text": "击中时有 %1%%% 几率使敌人中毒",
           "formatters": [
             {
               "id": "reminderstring",
@@ -4802,7 +4999,7 @@
         },
         {
           "matchers": [[100, "#"]],
-          "text": "击中使其中毒",
+          "text": "击中时必定使敌人中毒",
           "formatters": [
             {
               "id": "reminderstring",
@@ -4817,12 +5014,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 持续伤害",
+          "text": "持续伤害效果提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 持续伤害",
+          "text": "持续伤害效果降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4837,12 +5034,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "每一波飞刃额外增加 %1%%% 总伤害",
+          "text": "每一波飞刃的总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "每一波飞刃额外减少 %1%%% 总伤害",
+          "text": "每一波飞刃的总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4857,7 +5054,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "击中使其中毒",
+          "text": "击中时使其中毒",
           "formatters": [
             {
               "id": "reminderstring",
@@ -4872,12 +5069,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 中毒伤害",
+          "text": "中毒伤害提高 %1%%% ",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 中毒伤害",
+          "text": "中毒伤害降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4892,12 +5089,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 中毒持续时间",
+          "text": "中毒持续时间延长 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 中毒持续时间",
+          "text": "中毒持续时间缩短 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4912,12 +5109,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "额外增加 %1%%% 近战溅射总范围",
+          "text": "近战技能溅射总范围额外扩大 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "额外减少 %1%%% 近战溅射总范围",
+          "text": "近战技能溅射总范围额外缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4932,12 +5129,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "第一击造成的总伤害额外增加 %1%%%",
+          "text": "第一击造成的总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "第一击造成的总伤害额外减少 %1%%%",
+          "text": "第一击造成的总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4952,12 +5149,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "冲击波额外增加 %1%%% 总伤害",
+          "text": "【大地震击】的冲击波总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "冲击波额外减少 %1%%% 总伤害",
+          "text": "【大地震击】的冲击波总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4982,7 +5179,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d%% 法术和攻击暴击率",
+          "text": "附加 %1$+d%% 攻击和法术基础暴击率",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -4997,12 +5194,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "闪电新星增加 %1%%% 伤害",
+          "text": "【闪电新星】的伤害提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "闪电新星减少 %1%%% 伤害",
+          "text": "【闪电新星】的伤害降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -5017,12 +5214,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 增益效果",
+          "text": "增益效果提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 增益效果",
+          "text": "增益效果降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -5037,12 +5234,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "额外增加 %1%%% 投射物总伤害",
+          "text": "投射物的总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "额外减少 %1%%% 投射物总伤害",
+          "text": "投射物的总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -5057,12 +5254,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "投射物造成的持续总伤害额外增加 %1%%%",
+          "text": "投射物造成的持续总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "投射物造成的持续总伤害额外减少 %1%%%",
+          "text": "投射物造成的持续总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -5077,7 +5274,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "使用该技能消耗 %1% 魔力时获得秘术增强",
+          "text": "此法术消耗 %1% 魔力时获得【秘术增强】效果",
           "formatters": []
         }
       ]
@@ -5092,7 +5289,7 @@
         {
           "matchers": ["#", "#", "#"],
           "text":
-            "秘术增强额外增加 %1%%% 法术总伤害\\n秘术增强增加 %2%%% 施法速度\\n秘术增强给予每秒回复 %3%%% 最大魔力",
+            "【秘术增强】会使法术总伤害额外提高 %1%%%\\n【秘术增强】会使施法速度额外提高 %2%%%\\n【秘术增强】会使你获得 %3%%% 每秒最大魔力回复",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -5107,7 +5304,7 @@
       "translations": [
         {
           "matchers": [1000],
-          "text": "秘术增强持续 %1% 秒",
+          "text": "【秘术增强】持续 1 秒",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -5117,7 +5314,7 @@
         },
         {
           "matchers": ["#"],
-          "text": "秘术增强持续 %1% 秒",
+          "text": "【秘术增强】持续 %1% 秒",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -5132,7 +5329,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "该技能击败感电怪物时获得闪电支配",
+          "text": "使用此技能击败带有感电状态的怪物时获得【闪电支配】",
           "formatters": []
         }
       ]
@@ -5145,7 +5342,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "闪电支配附加  %1% - %2% 基础闪电伤害",
+          "text": "【闪电支配】附加  %1% - %2% 基础闪电伤害",
           "formatters": []
         }
       ]
@@ -5155,7 +5352,7 @@
       "translations": [
         {
           "matchers": [1000],
-          "text": "闪电支配持续 %1% 秒",
+          "text": "【闪电支配】持续 %1% 秒",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -5165,7 +5362,7 @@
         },
         {
           "matchers": ["#"],
-          "text": "闪电支配持续 %1% 秒",
+          "text": "【闪电支配】持续 %1% 秒",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -5180,7 +5377,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "每3次攻击造成一次近战的无情一击",
+          "text": "每打出 3 次近战攻击，就会触发 1 次【无情一击】",
           "formatters": []
         }
       ]
@@ -5190,7 +5387,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "无情一击额外增加 %1%%% 近战总伤害",
+          "text": "【无情一击】会使近战总伤害额外提高 %1%%%",
           "formatters": []
         }
       ]
@@ -5202,7 +5399,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "无情一击近战击中时造成的流血额外增加 %1%%% 总伤害",
+          "text": "近战攻击击中时，所触发的【无情一击】会使流血总伤害额外提高 %1%%%",
           "formatters": []
         }
       ]
@@ -5212,7 +5409,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "无情一击有 %1% 秒基础晕眩",
+          "text": "【无情一击】有 %1% 秒基础晕眩时间",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -5227,12 +5424,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "额外增加 %1%%% 范围总伤害",
+          "text": "范围攻击总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "额外减少 %1%%% 范围总伤害",
+          "text": "范围攻击总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -5247,12 +5444,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "通过寒冰弹触发时额外增加 %1%%% 总伤害",
+          "text": "在寒冰弹上施放时总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "通过寒冰弹触发时额外减少 %1%%% 总伤害",
+          "text": "在寒冰弹上施放时总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -5262,20 +5459,40 @@
         }
       ]
     },
+    "aegis_value": {
+      "stats": [
+        "aegis_unique_shield_max_value",
+        "active_skill_display_aegis_variation"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"], 0],
+          "text": "你被击中后受到的火焰伤害会先由【神盾】承担，再由生命或能量护盾承担\\n【神盾】可以承受 %1% 火焰伤害",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"], 1],
+          "text": "你被击中后受到的冰霜伤害会先由【神盾】承担，再由生命或能量护盾承担\\n【神盾】可以承受 %1% 冰霜伤害",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"], 2],
+          "text":
+            "你被击中后受到的火焰、冰霜、闪电伤害会先由【神盾】承担，再由生命或能量护盾承担\\n【神盾】可以承受 %1% 火焰、冰霜、闪电伤害",
+          "formatters": []
+        }
+      ]
+    },
     "arctic_armour_chill_when_hit_duration": {
       "stats": ["arctic_armour_chill_when_hit_duration"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "被击中时, 使敌人冰缓 %1% 秒",
+          "text": "击中时冰冻敌人 %1% 秒，使其减速 30%%",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
               "arg": 1
-            },
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextChillNonHitNoDuration"
             }
           ]
         }
@@ -5311,7 +5528,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "每 %1% 秒伤害敌人一次",
+          "text": "每 %1% 秒对敌人造成一次伤害",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -5335,7 +5552,7 @@
       "translations": [
         {
           "matchers": [[1, 99], 0, 0],
-          "text": "攻击命中有 %1%%% 几率使敌人流血",
+          "text": "攻击击中有 %1%%% 几率使敌人流血",
           "formatters": [
             {
               "id": "reminderstring",
@@ -5345,7 +5562,7 @@
         },
         {
           "matchers": [[100, "#"], 0, 0],
-          "text": "攻击命中使敌人流血",
+          "text": "攻击击中使敌人流血",
           "formatters": [
             {
               "id": "reminderstring",
@@ -5355,7 +5572,7 @@
         },
         {
           "matchers": ["#", "#", 0],
-          "text": "攻击命中使敌人流血",
+          "text": "攻击击中使敌人流血",
           "formatters": [
             {
               "id": "reminderstring",
@@ -5375,12 +5592,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 流血伤害",
+          "text": "流血伤害提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 流血伤害",
+          "text": "流血伤害降低 %1%%%",
           "formatters": []
         }
       ]
@@ -5389,8 +5606,8 @@
       "stats": ["cannot_knockback"],
       "translations": [
         {
-          "matchers": [[1, "#"]],
-          "text": "该技能无法击退敌人",
+          "matchers": ["#"],
+          "text": "此技能无法击退敌人",
           "formatters": []
         }
       ]
@@ -5415,7 +5632,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "装备时触发该技能",
+          "text": "装备时触发此技能",
           "formatters": []
         }
       ]
@@ -5425,7 +5642,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "每层蓄力额外增加 %1%%% 击中总伤害和异常状态总伤害",
+          "text": "每一阶会使击中总伤害和异常状态总伤害额外提高 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -5435,7 +5652,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "每层蓄力额外减少 %1%%% 击中总伤害和异常状态总伤害",
+          "text": "每一阶会使击中总伤害和异常状态总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -5454,12 +5671,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "最大冲刺距离时, 额外增加 %1%%% 总伤害",
+          "text": "在最大冲刺距离时，总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "最大冲刺距离时, 额外减少 %1%%% 总伤害",
+          "text": "在最大冲刺距离时，总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -5469,12 +5686,32 @@
         }
       ]
     },
+    "cremation_max_geysers": {
+      "stats": ["corpse_erruption_maximum_number_of_geyers"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "最多制造 %1% 个火泉",
+          "formatters": []
+        }
+      ]
+    },
     "deal_no_elemental": {
       "stats": ["deal_no_elemental_damage"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "无法造成火焰, 冰霜, 闪电伤害",
+          "text": "无法造成火焰、冰霜、闪电伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "desecrate_maximum_corpse_count": {
+      "stats": ["desecrate_maximum_number_of_corpses"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "最多允许 %1% 个灵柩",
           "formatters": []
         }
       ]
@@ -5484,7 +5721,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "减益效果至多叠加 %1% 层伤害",
+          "text": "减益效果最多叠加 %1% 层伤害",
           "formatters": []
         }
       ]
@@ -5494,7 +5731,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "至多可以叠加 %1% 层燃烧减益",
+          "text": "最多可以叠加 %1% 层燃烧减益",
           "formatters": []
         }
       ]
@@ -5514,8 +5751,28 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "来自裂隙的怪物不掉落物品, 不增加经验",
+          "text": "来自裂隙的怪物不掉落物品，不增加经验",
           "formatters": []
+        }
+      ]
+    },
+    "endurance_charge_slam_extra_damage": {
+      "stats": ["endurance_charge_slam_damage_+%_final_with_endurance_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "若消耗 1 个耐力球，总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "若消耗 1 个耐力球，总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -5524,7 +5781,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "使目标增加一层受到的减益效果, 增加 %1%%% 伤害",
+          "text": "为目标额外附加一层减益效果，其伤害提高 %1%%%",
           "formatters": [
             {
               "id": "multiplicative_damage_modifier",
@@ -5539,7 +5796,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "来自灼热光线的火焰抗性削弱总量不超过 %1$+d%%",
+          "text": "【灼热光线】对火焰抗性的减少不会超过 %1$+d%%",
           "formatters": []
         }
       ]
@@ -5559,12 +5816,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 光束长度",
+          "text": "光束长度延长 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 光束长度",
+          "text": "光束长度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -5574,17 +5831,72 @@
         }
       ]
     },
+    "herald_of_ash_burning_percent": {
+      "stats": ["herald_of_ash_burning_%_overkill_damage_per_minute"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "基础燃烧伤害为溢出伤害的 %1%%%",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ightning_tendrils_pulse_damage": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【强力脉冲】会使击中总伤害和异常状态总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【强力脉冲】会使击中总伤害和异常状态总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_tendrils_pulse_radius": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_radius_+"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【强力脉冲】的范围提高 %1$+d",
+          "formatters": []
+        }
+      ]
+    },
     "maim_chance": {
       "stats": ["maim_on_hit_%"],
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "%1%%% 几率击中瘫痪",
+          "text": "%1%%% 几率击中时造成瘫痪",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "击中瘫痪",
+          "text": "击中时瘫痪",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_spirit_strikes": {
+      "stats": ["melee_attack_number_of_spirit_strikes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "可以额外攻击 %1% 个周围敌人",
           "formatters": []
         }
       ]
@@ -5642,7 +5954,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "对敌人增加 %1%%% 非伤害类异常状态效果",
+          "text": "对敌人施加的非伤害性异常状态效果提高 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -5652,7 +5964,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "对敌人减少 %1%%% 非伤害类异常状态效果",
+          "text": "对敌人施加的非伤害性异常状态效果降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -5666,17 +5978,42 @@
         }
       ]
     },
+    "number_of_effigies": {
+      "stats": ["base_number_of_effigies_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "最多可同时拥有 %1% 个塑像",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "最多可同时拥有 %1% 个塑像",
+          "formatters": []
+        }
+      ]
+    },
+    "raised_spectre_level": {
+      "stats": ["raised_spectre_max_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "召唤的灵体最高等级为 %1% 级",
+          "formatters": []
+        }
+      ]
+    },
     "shock_effect": {
       "stats": ["shock_effect_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 感电效果",
+          "text": "感电效果提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 感电效果",
+          "text": "感电效果降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -5691,12 +6028,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "感电地面增加 %1%%% 受到的伤害",
+          "text": "感电地面会使受到的伤害提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "感电地面减少 %1%%% 受到的伤害",
+          "text": "感电地面会使受到的伤害降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -5706,12 +6043,22 @@
         }
       ]
     },
+    "can_have_mirage_archer": {
+      "stats": ["skill_can_own_mirage_archers"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "最多可同时拥有 1 个幻影弓手",
+          "formatters": []
+        }
+      ]
+    },
     "skill_and_damaging_ailment_duration_incr": {
       "stats": ["skill_effect_and_damaging_ailment_duration_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 伤害类异常状态持续时间",
+          "text": "伤害类异常状态持续时间延长 %1%%% ",
           "formatters": [
             {
               "id": "reminderstring",
@@ -5721,7 +6068,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "减少 %1%%% 伤害类异常状态持续时间",
+          "text": "伤害类异常状态持续时间缩短 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -5735,12 +6082,22 @@
         }
       ]
     },
+    "summon_mirage_archer": {
+      "stats": ["summon_mirage_archer_on_hit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "当你用此技能发射的箭矢击中敌人时，召唤 1 个会使用此技能的【幻影弓手】",
+          "formatters": []
+        }
+      ]
+    },
     "support_better_ailments_bonus": {
       "stats": ["support_better_ailments_ailment_damage_+%_final"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "额外增加 %1%%% 后续异常状态总伤害",
+          "text": "后续异常状态总伤害额外提高 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -5750,7 +6107,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "额外减少 %1%%% 后续异常状态总伤害",
+          "text": "后续异常状态总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -5769,12 +6126,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助的攻击技能造成的流血额外增加 %1%%% 总伤害",
+          "text": "被辅助的攻击技能造成的流血总伤害额外提高 %1%%% ",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助的攻击技能造成的流血额外减少 %1%%% 总伤害",
+          "text": "被辅助的攻击技能造成的流血总伤害额外降低 %1%%%",
           "formatters": []
         }
       ]
@@ -5787,12 +6144,12 @@
       "translations": [
         {
           "matchers": [[1, "#"], "#"],
-          "text": "敌人的每层中毒额外增加 %1%%% 首次技能总伤害, 至多 %2%",
+          "text": "敌人每有一层中毒状态，召唤生物击中时的总伤害便额外提高 %1%%%，最多 %2%",
           "formatters": []
         },
         {
           "matchers": [["#", -1], "#"],
-          "text": "敌人的每层中毒额外减少 %1%%% 首次技能总伤害, 至多 %2%",
+          "text": "敌人每有一层中毒状态，召唤生物击中时的总伤害便额外降低 %1%%%，最多 %2%",
           "formatters": [
             {
               "id": "negate",
@@ -5807,12 +6164,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "额外增加 %1%%% 总燃烧伤害",
+          "text": "点燃总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "额外减少 %1%%% 总燃烧伤害",
+          "text": "点燃总伤害额外降低 %1%%%",
           "formatters": []
         }
       ]
@@ -5822,12 +6179,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "额外增加 %1%%% 总物理伤害",
+          "text": "物理总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "额外减少 %1%%% 总物理伤害",
+          "text": "物理总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -5842,12 +6199,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被该技能瘫痪的敌人受到的物理伤害增加 %1%%%",
+          "text": "被该技能瘫痪的敌人受到的物理伤害提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被该技能瘫痪的敌人受到的物理伤害减少 %1%%%",
+          "text": "被该技能瘫痪的敌人受到的物理伤害降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -5862,18 +6219,68 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "图腾使用的召唤生物和技能额外增加 %1%%% 总伤害",
+          "text": "该图腾使用的召唤生物和技能总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "图腾使用的召唤生物和技能额外减少 %1%%% 总伤害",
+          "text": "该图腾使用的召唤生物和技能总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "mirage_archer_attack_speed": {
+      "stats": ["support_mirage_archer_attack_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【幻影弓手】使用此技能时，总攻击速度额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【幻影弓手】使用此技能时，总攻击速度额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mirage_archer_duration": {
+      "stats": ["support_mirage_archer_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【幻影弓手】持续 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_parallel_projectiles": {
+      "stats": ["support_parallel_projectile_number_of_points_per_side"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "在玩家左右两侧平行发射共 %1% 个投射物",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "在玩家左右两侧平行发射共 %1% 个投射物",
+          "formatters": []
         }
       ]
     },
@@ -5885,7 +6292,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "击败后有 %1%%% 几率获得持续 %2% 秒的猛攻状态",
+          "text": "击败敌人时有 %1%%% 几率获得【猛攻】，持续 %2% 秒",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -5894,6 +6301,89 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
+    "support_cascade_area_of_effect": {
+      "stats": ["support_spell_cascade_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "总效果范围额外扩大 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "总效果范围额外缩小 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade": {
+      "stats": ["support_spell_cascade_number_of_cascades_per_side"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助技能可在目标前后方位额外施放多次，影响范围更大，并可重叠",
+          "formatters": []
+        }
+      ]
+    },
+    "storm_barrier_power_charge": {
+      "stats": [
+        "support_storm_barrier_gain_power_charge_when_hit_%",
+        "support_storm_barrier_lightning_damage_taken_when_hit_+%_final",
+        "support_storm_barrier_physical_damage_taken_when_hit_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#", "#"],
+          "text":
+            "吟唱时击中目标，有 %1%%% 几率获得暴击球\\n吟唱时所承受的闪电伤害降低 %2%%%\\n吟唱时所承受的物理伤害降低 %3%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 2
+            },
+            {
+              "id": "negate",
+              "arg": 3
+            }
+          ]
+        }
+      ]
+    },
+    "ailment_damage_incr": {
+      "stats": ["support_unbound_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "后续异常状态总伤害额外提高 %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "后续异常状态总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
             }
           ]
         }

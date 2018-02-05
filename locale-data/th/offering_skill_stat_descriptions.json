@@ -4,6 +4,35 @@
     "hasIdentifiers": false
   },
   "data": {
+    "blood_offering_life_loss": {
+      "stats": [
+        "blood_offering_%_of_life_to_lose",
+        "blood_offering_%_of_lost_life_to_regenerate_as_life_per_second"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "สละ %1%%% ของพลังชีวิต\\nทำให้มิเนียนฟื้นฟูพลังชีวิตที่อัตรา %2%%% ของจำนวนเลือดที่สละไปต่อวินาที",
+          "formatters": []
+        }
+      ]
+    },
+    "blood_offering_life_regen_multi": {
+      "stats": ["blood_offering_life_regenerated_+%_final_per_corpse"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนฟื้นฟูชีวิตได้มากขึ้น %1%%% ต่อทุกศพที่กินเพิ่ม",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนฟื้นฟูชีวิตได้น้อยลง %1%%% ต่อทุกศพที่กินเพิ่ม",
+          "formatters": []
+        }
+      ]
+    },
     "attack_speed_incr": {
       "stats": ["attack_speed_+%"],
       "translations": [
@@ -15,6 +44,26 @@
         {
           "matchers": [["#", -1]],
           "text": "ความเร็วในการโจมตีของมิเนียนลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_incr": {
+      "stats": ["damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มิเนียนโจมตีแรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มิเนียนโจมตีเบาลง %1%%%",
           "formatters": [
             {
               "id": "negate",

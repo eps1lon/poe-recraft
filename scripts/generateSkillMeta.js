@@ -3,6 +3,7 @@ const { promisify } = require('util');
 const fs = require('fs');
 const path = require('path');
 const { Grammar, Parser } = require('nearley');
+const stripBom = require('strip-bom');
 
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
@@ -18,10 +19,8 @@ const txt_file = path.join(
 );
 const json_file = path.join(__dirname, '../src/translate', 'skill_meta.json');
 
-const raw = fs.readFileSync(txt_file, { encoding: 'utf8' });
-
-readFile(txt_file, { encoding: 'utf8' })
-  .then(raw => {
+readFile(txt_file, { encoding: 'utf16le' })
+  .then(raw => stripBom(raw)).then(raw => {
     const parser = new Parser(grammar);
     parser.feed(raw);
     const [results] = parser.results;

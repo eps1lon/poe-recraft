@@ -4,6 +4,34 @@
     "hasIdentifiers": false
   },
   "data": {
+    "blood_offering_life_loss": {
+      "stats": [
+        "blood_offering_%_of_life_to_lose",
+        "blood_offering_%_of_lost_life_to_regenerate_as_life_per_second"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "獻祭 %1%%% 你的生命\\n召喚物每秒回復 %2%%% 獻祭的生命",
+          "formatters": []
+        }
+      ]
+    },
+    "blood_offering_life_regen_multi": {
+      "stats": ["blood_offering_life_regenerated_+%_final_per_corpse"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每消耗 1 個屍體召喚物獲得 %1%%% 更多生命回復",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "每消耗 1 個屍體召喚物獲得 %1%%% 更少生命回復",
+          "formatters": []
+        }
+      ]
+    },
     "attack_speed_incr": {
       "stats": ["attack_speed_+%"],
       "translations": [
@@ -15,6 +43,26 @@
         {
           "matchers": [["#", -1]],
           "text": "召喚物減少 %1%%% 攻擊速度",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_incr": {
+      "stats": ["damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "獲得召喚物增加 %1%%% 傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "獲得召喚物減少 %1%%% 傷害",
           "formatters": [
             {
               "id": "negate",

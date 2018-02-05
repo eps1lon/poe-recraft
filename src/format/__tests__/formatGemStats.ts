@@ -45,7 +45,7 @@ it('should only translate the lines that have translations', () => {
   );
 
   expect(aa_effects).toEqual([
-    'Chill Enemy for 0.5 seconds when Hit',
+    'Chill Enemy for 0.5 seconds when Hit, slowing them by 30%',
     '8% less Physical Damage taken when Hit',
     '8% less Fire Damage taken when Hit',
     'Base duration is 2.50 seconds'
@@ -80,7 +80,8 @@ it('should only translate the lines that have translations', () => {
   ]);
 });
 
-it('should use the specified files first', () => {
+// FIXME: doesnt have to have any granted effects anymore
+it.skip('should use the specified files first', () => {
   const vitality_effects = formatGemStats(
     'vitality',
     [

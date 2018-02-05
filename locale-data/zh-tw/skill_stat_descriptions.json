@@ -14,7 +14,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "犧牲 %1%%% 骷髏的生命造成相等的混沌傷害",
+          "text": "犧牲目標的 %1%%% 生命，造成範圍混沌傷害",
           "formatters": []
         }
       ]
@@ -166,6 +166,21 @@
         }
       ]
     },
+    "offering_duration_per_corpse": {
+      "stats": ["offering_skill_effect_duration_per_corpse"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每具額外吞噬的屍體增加 %1% 秒基礎持續時間",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "cold_damage_per_frenzy_charge_range": {
       "stats": [
         "spell_minimum_base_cold_damage_per_frenzy_charge",
@@ -298,26 +313,6 @@
           "matchers": [[1, "#"]],
           "text": "陷阱投擲到你周圍的隨機處",
           "formatters": []
-        }
-      ]
-    },
-    "cooldown_incr": {
-      "stats": ["virtual_cooldown_speed_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 冷卻回復速度",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "減少 %1%%% 冷卻回復速度",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -1099,6 +1094,21 @@
         }
       ]
     },
+    "spectre_duration": {
+      "stats": ["spectre_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "幽魂持續 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "enduring_cry_charges": {
       "stats": [
         "endurance_charges_granted_per_one_hundred_nearby_enemies_during_endurance_warcry"
@@ -1181,22 +1191,39 @@
     "pierce_num": {
       "stats": [
         "projectile_number_of_targets_to_pierce",
-        "virtual_always_pierce"
+        "virtual_always_pierce",
+        "arrow_number_of_targets_to_pierce",
+        "arrows_always_pierce"
       ],
       "translations": [
         {
-          "matchers": [1, 0],
+          "matchers": [1, 0, 0, 0],
           "text": "投射物穿透 1 個目標",
           "formatters": []
         },
         {
-          "matchers": [[2, "#"], 0],
+          "matchers": [[2, "#"], 0, 0, 0],
           "text": "投射物穿透 %1% 個目標",
           "formatters": []
         },
         {
-          "matchers": ["#", "#"],
+          "matchers": ["#", "#", 0, 0],
           "text": "投射物穿透所有目標",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", 1, 0],
+          "text": "箭矢穿透 1 個目標",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", [2, "#"], 0],
+          "text": "箭矢穿透 %1% 個目標",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", "#", "#"],
+          "text": "箭矢穿透所有目標",
           "formatters": []
         }
       ]
@@ -1415,13 +1442,18 @@
           "formatters": []
         },
         {
-          "matchers": [-300],
-          "text": "敵人無法移動",
-          "formatters": []
-        },
-        {
           "matchers": [["#", -1]],
           "text": "減少 %1%%% 移動速度",
+          "formatters": []
+        }
+      ]
+    },
+    "no_movement_speed": {
+      "stats": ["no_movement_speed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "敵人無法移動",
           "formatters": []
         }
       ]
@@ -1693,6 +1725,16 @@
         }
       ]
     },
+    "lightning_tendrils_pulse_interval": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_interval"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每 %1% 次脈衝釋放 1 個較強的脈衝",
+          "formatters": []
+        }
+      ]
+    },
     "movement_velocity_cap": {
       "stats": ["movement_velocity_cap"],
       "translations": [
@@ -1734,6 +1776,26 @@
         {
           "matchers": [["#", -1]],
           "text": "召喚物有 %1%%% 較少能量護盾",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "minion_life_incr_final": {
+      "stats": ["support_minion_maximum_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被輔助的技能有 %1%%% 更多召喚物最大生命",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被輔助的技能有 %1%%% 更少召喚物最大生命",
           "formatters": [
             {
               "id": "negate",
@@ -2799,6 +2861,16 @@
         }
       ]
     },
+    "elemental_penetration": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "穿透 %1%%% 元素抗性",
+          "formatters": []
+        }
+      ]
+    },
     "skeletal_chains_target_self": {
       "stats": ["skeletal_chains_no_minions_targets_self"],
       "translations": [
@@ -3188,7 +3260,7 @@
       ]
     },
     "minion_elemental_resist": {
-      "stats": ["minion_elemental_resistance_%"],
+      "stats": ["virtual_minion_elemental_resistance_%"],
       "translations": [
         {
           "matchers": ["#"],
@@ -3227,7 +3299,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "近戰傷害擊暈敵人時獲得耐力球",
+          "text": "當此技能使用近戰傷害暈眩敵人時，獲得一個耐力球",
           "formatters": []
         }
       ]
@@ -3415,6 +3487,36 @@
         }
       ]
     },
+    "cast_on_skill_use_from_chest": {
+      "stats": ["trigger_on_skill_use_from_chest_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "當你使用鑲嵌於身體護甲的技能時，有 %1%%% 機率觸發此法術",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "當你使用鑲嵌於身體護甲的技能時，觸發此法術",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_skill_use_spirit_charge": {
+      "stats": ["trigger_on_skill_use_%_if_you_have_a_spirit_charge"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "當你有靈體能量球時，有 %1%%% 機率觸發此法術",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "當你有靈體能量球時，觸發此法術",
+          "formatters": []
+        }
+      ]
+    },
     "cast_when_damaged": {
       "stats": ["cast_on_any_damage_taken_%"],
       "translations": [
@@ -3526,6 +3628,21 @@
         {
           "matchers": ["#", [1, "#"]],
           "text": "當你承受總傷害達 %2% 時，有 %1%%% 機率觸發此法術",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_when_trap_triggered": {
+      "stats": ["chance_to_cast_when_your_trap_is_triggered_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "當你其中一個陷阱被觸發時，有 %1%%% 機率觸發此法術",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "當你其中一個陷阱被觸發時，觸發此法術",
           "formatters": []
         }
       ]
@@ -3715,11 +3832,31 @@
       ]
     },
     "desecrate_num_corpses": {
+      "stats": ["desecrate_number_of_corpses_to_create"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "創造 %1% 個屍體",
+          "formatters": []
+        }
+      ]
+    },
+    "desecrate_corpse_level": {
       "stats": ["desecrate_corpse_level"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "創造的屍體等級上限為 %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "unearth_corpse_level": {
+      "stats": ["unearth_corpse_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "創造等級 %1% 的屍體",
           "formatters": []
         }
       ]
@@ -4018,6 +4155,26 @@
           "matchers": ["#", "#"],
           "text": "攻擊附加 %1% 至 %2% 閃電傷害",
           "formatters": []
+        }
+      ]
+    },
+    "static_strike_damage": {
+      "stats": ["static_strike_explosion_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "爆炸對擊中和異常狀態造成 %1%%% 更多傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "爆炸對擊中和異常狀態造成 %1%%% 更少傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -5132,7 +5289,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "當使用此法術擊殺感電的敵人時，獲得亢奮",
+          "text": "擊殺感電敵人時獲得亢奮效果",
           "formatters": []
         }
       ]
@@ -5262,20 +5419,39 @@
         }
       ]
     },
+    "aegis_value": {
+      "stats": [
+        "aegis_unique_shield_max_value",
+        "active_skill_display_aegis_variation"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"], 0],
+          "text": "承受的火焰傷害先從聖盾扣除，而不是生命或能量護盾\\n聖盾可以承受 %1% 火焰傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"], 1],
+          "text": "承受的冰冷傷害先從聖盾扣除，而不是生命或能量護盾\\n聖盾可以承受 %1% 冰冷傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"], 2],
+          "text": "承受的元素傷害先從聖盾扣除，而不是生命或能量護盾\\n聖盾可以承受 %1% 元素傷害",
+          "formatters": []
+        }
+      ]
+    },
     "arctic_armour_chill_when_hit_duration": {
       "stats": ["arctic_armour_chill_when_hit_duration"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "被命中時，造成敵人冰緩 %1% 秒",
+          "text": "擊中時冰緩敵人 %1% 秒，緩速 30%%",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
               "arg": 1
-            },
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextChillNonHitNoDuration"
             }
           ]
         }
@@ -5469,12 +5645,32 @@
         }
       ]
     },
+    "cremation_max_geysers": {
+      "stats": ["corpse_erruption_maximum_number_of_geyers"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "同時最多 %1% 個熔炎泉",
+          "formatters": []
+        }
+      ]
+    },
     "deal_no_elemental": {
       "stats": ["deal_no_elemental_damage"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "無法造成元素傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "desecrate_maximum_corpse_count": {
+      "stats": ["desecrate_maximum_number_of_corpses"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "至多允許 %1% 個屍體",
           "formatters": []
         }
       ]
@@ -5516,6 +5712,26 @@
           "matchers": ["#"],
           "text": "裂痕中的怪物不會給予經驗值或者掉落物品",
           "formatters": []
+        }
+      ]
+    },
+    "endurance_charge_slam_extra_damage": {
+      "stats": ["endurance_charge_slam_damage_+%_final_with_endurance_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "消耗 1 個耐力球造成 %1%%% 更多傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "消耗 1 個耐力球造成 %1%%% 更少傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -5574,6 +5790,51 @@
         }
       ]
     },
+    "herald_of_ash_burning_percent": {
+      "stats": ["herald_of_ash_burning_%_overkill_damage_per_minute"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "燃燒傷害為 %1%%% 溢出傷害",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ightning_tendrils_pulse_damage": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "較強的脈衝造成 %1%%% 更多擊中和異常狀態傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "較強的脈衝造成 %1%%% 更少擊中和異常狀態傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_tendrils_pulse_radius": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_radius_+"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "較強的脈衝 %1$+d 範圍",
+          "formatters": []
+        }
+      ]
+    },
     "maim_chance": {
       "stats": ["maim_on_hit_%"],
       "translations": [
@@ -5585,6 +5846,16 @@
         {
           "matchers": [[100, "#"]],
           "text": "擊中時造成癱瘓",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_spirit_strikes": {
+      "stats": ["melee_attack_number_of_spirit_strikes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "同時瞄準附近 %1% 個敵人",
           "formatters": []
         }
       ]
@@ -5666,6 +5937,31 @@
         }
       ]
     },
+    "number_of_effigies": {
+      "stats": ["base_number_of_effigies_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "同時至多可以召喚 %1% 個肖像",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "同時至多可以召喚 %1% 個肖像",
+          "formatters": []
+        }
+      ]
+    },
+    "raised_spectre_level": {
+      "stats": ["raised_spectre_max_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "喚醒幽魂至高到等級 %1%",
+          "formatters": []
+        }
+      ]
+    },
     "shock_effect": {
       "stats": ["shock_effect_+%"],
       "translations": [
@@ -5706,6 +6002,16 @@
         }
       ]
     },
+    "can_have_mirage_archer": {
+      "stats": ["skill_can_own_mirage_archers"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "同時至多可以召喚 1 個幻影射手",
+          "formatters": []
+        }
+      ]
+    },
     "skill_and_damaging_ailment_duration_incr": {
       "stats": ["skill_effect_and_damaging_ailment_duration_+%"],
       "translations": [
@@ -5732,6 +6038,16 @@
               "arg": "ReminderTextDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "summon_mirage_archer": {
+      "stats": ["summon_mirage_archer_on_hit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "當你的技能發射箭矢擊中敵人時，召喚 1 個也使用此技能的幻影射手",
+          "formatters": []
         }
       ]
     },
@@ -5877,6 +6193,56 @@
         }
       ]
     },
+    "mirage_archer_attack_speed": {
+      "stats": ["support_mirage_archer_attack_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "幻影射手使用此技能有 %1%%% 更多攻擊速度",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "幻影射手使用此技能有 %1%%% 更少攻擊速度",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mirage_archer_duration": {
+      "stats": ["support_mirage_archer_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "幻影射手持續 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_parallel_projectiles": {
+      "stats": ["support_parallel_projectile_number_of_points_per_side"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "同時從你兩側至多 %1% 個點發射投射物",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "同時從你兩側至多 %1% 個點發射投射物",
+          "formatters": []
+        }
+      ]
+    },
     "support_scion_chance": {
       "stats": [
         "support_scion_onslaught_on_killing_blow_%_chance",
@@ -5894,6 +6260,89 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
+    "support_cascade_area_of_effect": {
+      "stats": ["support_spell_cascade_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% 更多範圍效果",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% 更少範圍效果",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade": {
+      "stats": ["support_spell_cascade_number_of_cascades_per_side"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "同時影響目標的前後區域",
+          "formatters": []
+        }
+      ]
+    },
+    "storm_barrier_power_charge": {
+      "stats": [
+        "support_storm_barrier_gain_power_charge_when_hit_%",
+        "support_storm_barrier_lightning_damage_taken_when_hit_+%_final",
+        "support_storm_barrier_physical_damage_taken_when_hit_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#", "#"],
+          "text":
+            "引導施放此技能擊中時，有 %1%%% 機率獲得 1 顆暴擊球\\n引導施放此技能時，減少承受 %2%%% 閃電傷害\\n引導施放此技能時，減少承受 %2%%% 物理傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 2
+            },
+            {
+              "id": "negate",
+              "arg": 3
+            }
+          ]
+        }
+      ]
+    },
+    "ailment_damage_incr": {
+      "stats": ["support_unbound_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% 更多異常狀態傷害",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% 更少異常狀態傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
             }
           ]
         }

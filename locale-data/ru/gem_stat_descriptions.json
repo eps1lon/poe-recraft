@@ -323,12 +323,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Усиленные умения наносят на %1%%% больше урона",
+          "text": "Усиленные срабатывающие чары наносят на %1%%% больше урона",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Усиленные умения наносят на %1%%% меньше урона",
+          "text": "Усиленные срабатывающие чары наносят на %1%%% меньше урона",
           "formatters": [
             {
               "id": "negate",
@@ -484,7 +484,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Усиленные умения используют здоровье вместо маны",
+          "text": "Усиленные умения расходуют здоровье вместо маны",
           "formatters": []
         }
       ]
@@ -533,7 +533,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Усиленные умения наносят до 50%% больше урона целям в начале своего движения, нанося меньше урона удалённым целям",
+            "Удары от атак снарядами усиленных умений наносят до 50%% больше урона целям в начале своего движения, нанося меньше урона удалённым целям",
           "formatters": []
         }
       ]
@@ -818,6 +818,16 @@
         }
       ]
     },
+    "reduce_enemy_elemental_resistance_%": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Усиленные умения пробивают %1%%% сопротивления стихиям",
+          "formatters": []
+        }
+      ]
+    },
     "base_reduce_enemy_lightning_resistance_%": {
       "stats": ["base_reduce_enemy_lightning_resistance_%"],
       "translations": [
@@ -889,6 +899,26 @@
         {
           "matchers": [["#", -1]],
           "text": "Усиленные умения наносят на %1%%% меньше урона от ударов",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spirit_strike_damage_+%_final": {
+      "stats": ["support_spirit_strike_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Усиленные умения наносят на %1%%% больше урона",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Усиленные умения наносят на %1%%% меньше урона",
           "formatters": [
             {
               "id": "negate",
@@ -2469,13 +2499,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% увеличение количества предметов, выпадаемых с врагов, убитых усиленными умениями",
+            "%1%%% увеличение количества предметов, выпадающих с врагов, убитых усиленными умениями",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "%1%%% уменьшение количества предметов, выпадаемых с врагов, убитых усиленными умениями",
+            "%1%%% уменьшение количества предметов, выпадающих с врагов, убитых усиленными умениями",
           "formatters": [
             {
               "id": "negate",
@@ -2491,13 +2521,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% повышение редкости выпадаемых предметов с врагов, убитых усиленными умениями",
+            "%1%%% повышение редкости выпадающих предметов с врагов, убитых усиленными умениями",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "%1%%% снижение редкости выпадаемых предметов с врагов, убитых усиленными умениями",
+            "%1%%% снижение редкости выпадающих предметов с врагов, убитых усиленными умениями",
           "formatters": [
             {
               "id": "negate",
@@ -2744,6 +2774,23 @@
           "matchers": [[100, "#"]],
           "text":
             "Усиленные умения получают заряд ярости при убийстве замороженного врага",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_summon_support_ghost_on_killing_blow_%": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% шанс призвать фантома, когда усиленные умения или приспешники не-фантомы усиленных умений наносят смертельный удар",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Призывает фантома, когда усиленные умения или приспешники не-фантомы усиленных умений наносят смертельный удар",
           "formatters": []
         }
       ]
@@ -3031,7 +3078,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Получает заряд выносливости, если вы оглушили врага уроном в ближнем бою от усиленных умений",
+            "Дарует заряд выносливости при оглушении врага уроном от усиленного умения в ближнем бою",
           "formatters": []
         }
       ]
@@ -3362,6 +3409,17 @@
         }
       ]
     },
+    "melee_attack_number_of_spirit_strikes": {
+      "stats": ["melee_attack_number_of_spirit_strikes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Усиленные умения атак также выбирают целью %1% ближайших врагов",
+          "formatters": []
+        }
+      ]
+    },
     "melee_damage_vs_bleeding_enemies_+%": {
       "stats": ["melee_damage_vs_bleeding_enemies_+%"],
       "translations": [
@@ -3648,7 +3706,12 @@
       "stats": ["number_of_additional_mines_to_place"],
       "translations": [
         {
-          "matchers": ["#"],
+          "matchers": [1],
+          "text": "Усиленные умения устанавливают дополнительную мину",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
           "text": "Усиленные умения устанавливают дополнительных мин: %1%",
           "formatters": []
         }
@@ -3925,6 +3988,17 @@
         }
       ]
     },
+    "summon_mirage_archer_on_hit": {
+      "stats": ["summon_mirage_archer_on_hit"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "При нанесении удара по врагу стрелой от усиленного умения, призывает призрачного лучника, который использует это умение",
+          "formatters": []
+        }
+      ]
+    },
     "support_burning_damage_+%_final": {
       "stats": ["support_burning_damage_+%_final"],
       "translations": [
@@ -4089,6 +4163,28 @@
         }
       ]
     },
+    "support_minion_maximum_life_+%_final": {
+      "stats": ["support_minion_maximum_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Усиленные умения имеют на %1%%% больше максимума здоровья приспешников",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Усиленные умения имеют на %1%%% меньше максимума здоровья приспешников",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_minion_totem_resistance_elemental_damage_+%_final": {
       "stats": ["support_minion_totem_resistance_elemental_damage_+%_final"],
       "translations": [
@@ -4102,6 +4198,87 @@
           "matchers": [["#", -1]],
           "text":
             "Усиленные умения имеют на %1%%% меньше урона от стихий приспешников и тотемов",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_mirage_archer_attack_speed_+%_final": {
+      "stats": ["support_mirage_archer_attack_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Призрачный лучник использует усиленное умение, при этом скорость его атаки на %1%%% больше",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Призрачный лучник использует усиленное умение, при этом скорость его атаки на %1%%% меньше",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_mirage_archer_damage_+%_final": {
+      "stats": ["support_mirage_archer_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Призрачный лучник наносит на %1%%% больше урона от усиленных умений",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Призрачный лучник наносит на %1%%% меньше урона от усиленных умений",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_parallel_projectile_number_of_points_per_side": {
+      "stats": ["support_parallel_projectile_number_of_points_per_side"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "Усиленные умения также выпускают снаряды из %1% точки по обе стороны от вас",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "Усиленные умения также выпускают снаряды из %1% точек по обе стороны от вас",
+          "formatters": []
+        }
+      ]
+    },
+    "support_parallel_projectiles_damage_+%_final": {
+      "stats": ["support_parallel_projectiles_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Усиленные умения наносят на %1%%% больше урона снарядами",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Усиленные умения наносят на %1%%% меньше урона снарядами",
           "formatters": [
             {
               "id": "negate",
@@ -4249,7 +4426,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Усиленные умения наносят на %1%%% больше урона снарядамиe",
+          "text": "Усиленные умения наносят на %1%%% больше урона снарядами",
           "formatters": []
         },
         {
@@ -4259,6 +4436,81 @@
             {
               "id": "negate",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade_area_of_effect_+%_final": {
+      "stats": ["support_spell_cascade_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Область действия усиленных умений на %1%%% больше",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Область действия усиленных умений на %1%%% меньше",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade_damage_+%_final": {
+      "stats": ["support_spell_cascade_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Усиленные умения наносят на %1%%% больше урона",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Усиленные умения наносят на %1%%% меньше урона",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade_number_of_cascades_per_side": {
+      "stats": ["support_spell_cascade_number_of_cascades_per_side"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Усиленные умения, действующие на область, поражают области впереди и за основной целью",
+          "formatters": []
+        }
+      ]
+    },
+    "support_storm_barrier_gain_power_charge_when_hit_%": {
+      "stats": [
+        "support_storm_barrier_gain_power_charge_when_hit_%",
+        "support_storm_barrier_lightning_damage_taken_when_hit_+%_final",
+        "support_storm_barrier_physical_damage_taken_when_hit_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#", "#"],
+          "text":
+            "%1%%% шанс получить заряд энергии при получении удара во время поддержания усиленных умений\\nНа %2%%% меньше получаемого от ударов урона от молнии во время поддержания усиленных умений\\nНа %3%%% меньше получаемого от ударов физического урона во время поддержания усиленных умений",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 2
+            },
+            {
+              "id": "negate",
+              "arg": 3
             }
           ]
         }

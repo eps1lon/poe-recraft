@@ -15,7 +15,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Opfert %1%%% des Skelettlebens, um diesen Chaosschaden zu verursachen",
+            "Opfert %1%%% des Skelettlebens und verursacht dies als Chaosschaden",
           "formatters": []
         }
       ]
@@ -169,6 +169,22 @@
         }
       ]
     },
+    "offering_duration_per_corpse": {
+      "stats": ["offering_skill_effect_duration_per_corpse"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Zusätzliche %1% Sekunden Basisdauer pro zusätzlich verbrauchter Leiche",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "cold_damage_per_frenzy_charge_range": {
       "stats": [
         "spell_minimum_base_cold_damage_per_frenzy_charge",
@@ -253,7 +269,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Modifikatoren für Zauberschaden werden auch auf 'Schaden über Zeit' dieser Fertigkeit angewendet",
+            "Modifikatoren für Zauberschaden gelten für den 'Schaden über Zeit'-Effekt dieser Fertigkeit",
           "formatters": []
         }
       ]
@@ -264,7 +280,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Modifikatoren für Projektilschaden werden auch auf 'Schaden über Zeit'-Effekte dieser Fertigkeit angewendet",
+            "Modifikatoren für Projektilschaden gelten für den Schaden über Zeit-Effekt dieser Fertigkeit",
           "formatters": []
         }
       ]
@@ -308,26 +324,6 @@
           "matchers": [[1, "#"]],
           "text": "Fallen werden zufällig um Euch herum geworfen",
           "formatters": []
-        }
-      ]
-    },
-    "cooldown_incr": {
-      "stats": ["virtual_cooldown_speed_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% beschleunigte Abklingzeit",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1%%% verlangsamte Abklingzeit",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -606,7 +602,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Nahkampfschaden bei aktivem Totem",
+          "text": "%1%%% erhöhter Nahkampfschaden bei aktivem Totem",
           "formatters": []
         },
         {
@@ -690,7 +686,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% des Schadens als Leben geraubt",
+          "text": "%1%%% des Schadens werden als Leben geraubt",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -710,7 +706,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% des physischen Schadens von Angriffen als Leben geraubt",
+            "%1%%% des physischen Schadens von Angriffen werden als Leben geraubt",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -758,7 +754,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% des Schadens als Mana geraubt",
+          "text": "%1%%% des Schadens werden als Mana geraubt",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -955,7 +951,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Aurenwirkung",
+          "text": "%1%%% erhöhte Aurenwirkung",
           "formatters": []
         },
         {
@@ -1114,6 +1110,21 @@
         }
       ]
     },
+    "spectre_duration": {
+      "stats": ["spectre_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Schemen halten %1% Sekunden",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "enduring_cry_charges": {
       "stats": [
         "endurance_charges_granted_per_one_hundred_nearby_enemies_during_endurance_warcry"
@@ -1202,22 +1213,39 @@
     "pierce_num": {
       "stats": [
         "projectile_number_of_targets_to_pierce",
-        "virtual_always_pierce"
+        "virtual_always_pierce",
+        "arrow_number_of_targets_to_pierce",
+        "arrows_always_pierce"
       ],
       "translations": [
         {
-          "matchers": [1, 0],
+          "matchers": [1, 0, 0, 0],
           "text": "Projektile durchbohren 1 Ziel",
           "formatters": []
         },
         {
-          "matchers": [[2, "#"], 0],
+          "matchers": [[2, "#"], 0, 0, 0],
           "text": "Projektile durchbohren %1% Ziele",
           "formatters": []
         },
         {
-          "matchers": ["#", "#"],
-          "text": "Projektile durchbohren alle Ziele",
+          "matchers": ["#", "#", 0, 0],
+          "text": "Projectile durchbohren alle Ziele",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", 1, 0],
+          "text": "Pfeile durchbohren 1 Ziel",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", [2, "#"], 0],
+          "text": "Pfeile durchbohren %1% Ziele",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", "#", "#"],
+          "text": "Pfeile durchbohren alle Ziele",
           "formatters": []
         }
       ]
@@ -1352,7 +1380,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Unterkühlungswirkung",
+          "text": "%1%%% erhöhte Unterkühlungswirkung",
           "formatters": []
         },
         {
@@ -1412,7 +1440,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Brandschaden bei Gegnern",
+          "text": "%1%%% erhöhter Brandschaden bei Gegnern",
           "formatters": []
         },
         {
@@ -1436,11 +1464,6 @@
           "formatters": []
         },
         {
-          "matchers": [-300],
-          "text": "Hält Gegner am Ort fest",
-          "formatters": []
-        },
-        {
           "matchers": [["#", -1]],
           "text": "%1%%% verringerte Bewegungsgeschwindigkeit",
           "formatters": [
@@ -1452,19 +1475,29 @@
         }
       ]
     },
+    "no_movement_speed": {
+      "stats": ["no_movement_speed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Hält Gegner am Ort fest",
+          "formatters": []
+        }
+      ]
+    },
     "killed_monster_dropped_item_rarity_incr": {
       "stats": ["killed_monster_dropped_item_rarity_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% erhöhte Seltenheit von Gegenständen bei getöteten Gegnern",
+            "%1%%% erhöhte Seltenheit fallen gelassener Gegenstände von getöteten Gegnern",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "%1%%% verringerte Seltenheit von Gegenständen bei getöteten Gegnern",
+            "%1%%% verringerte Seltenheit fallen gelassener Gegenstände von getöteten Gegnern",
           "formatters": [
             {
               "id": "negate",
@@ -1479,12 +1512,14 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Gegenstandsmenge getöteter Gegner",
+          "text":
+            "%1%%% erhöhte Menge fallen gelassener Gegenstände von getöteten Gegnern",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerte Gegenstandsmenge getöteter Gegner",
+          "text":
+            "%1%%% verringerte Menge fallen gelassener Gegenstände von getöteten Gegnern",
           "formatters": [
             {
               "id": "negate",
@@ -1649,7 +1684,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d%% zum Multiplikator auf kritischen Treffer",
+          "text": "%1$+d%% zu Multiplikator auf kritischen Treffer",
           "formatters": []
         }
       ]
@@ -1669,7 +1704,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Kreaturenschaden",
+          "text": "%1%%% erhöhter Kreaturenschaden",
           "formatters": []
         },
         {
@@ -1724,6 +1759,16 @@
         }
       ]
     },
+    "lightning_tendrils_pulse_interval": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_interval"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Löst alle %1% Impulse einen stärkeren Impuls aus",
+          "formatters": []
+        }
+      ]
+    },
     "movement_velocity_cap": {
       "stats": ["movement_velocity_cap"],
       "translations": [
@@ -1765,6 +1810,28 @@
         {
           "matchers": [["#", -1]],
           "text": "Kreaturen haben %1%%% weniger Energieschild",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "minion_life_incr_final": {
+      "stats": ["support_minion_maximum_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Unterstützte Fertigkeiten haben %1%%% mehr maximales Kreaturenleben",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Unterstützte Fertigkeiten haben %1%%% weniger maximales Kreaturenleben",
           "formatters": [
             {
               "id": "negate",
@@ -1829,7 +1896,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Schaden bei erfolgreichem Dolchstoß",
+          "text": "%1%%% erhöhter Schaden bei erfolgreichem Dolchstoß",
           "formatters": []
         }
       ]
@@ -2095,7 +2162,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter physischer Nahkampfschaden",
+          "text": "%1%%% erhöhter physischer Nahkampfschaden",
           "formatters": []
         },
         {
@@ -2154,12 +2221,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verringerte Betäubungs- und Blockerholung",
+          "text": "%1%%% verlangsamte Betäubungs- und Blockerholung",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% erhöhte Betäubungs- und Blockerholung",
+          "text": "%1%%% beschleunigte Betäubungs- und Blockerholung",
           "formatters": [
             {
               "id": "negate",
@@ -2224,7 +2291,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Schaden bei Schaden über Zeit-Effekten",
+          "text": "%1%%% erhöhter Schaden von 'Schaden über Zeit'-Effekten",
           "formatters": []
         }
       ]
@@ -2269,7 +2336,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Zusätzlich %1%%% Schild-Blockchance",
+          "text": "%1%%% zusätzliche Schild-Blockchance",
           "formatters": []
         },
         {
@@ -2295,7 +2362,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Rüstung",
+          "text": "%1%%% erhöhte Rüstung",
           "formatters": []
         },
         {
@@ -2412,7 +2479,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Zauberschaden",
+          "text": "%1%%% erhöhter Zauberschaden",
           "formatters": []
         },
         {
@@ -2721,7 +2788,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Friert Gegner ein, als ob Ihr %1%%% verstärkten Schaden verursachen würdet",
+            "Friert Gegner ein, als ob Ihr %1%%% mehr Schaden verursachen würdet",
           "formatters": []
         }
       ]
@@ -2731,7 +2798,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1% Leben regeneriert pro Sekunde",
+          "text": "Regeneriert %1% Leben pro Sekunde",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -2863,6 +2930,16 @@
         {
           "matchers": [[1, "#"]],
           "text": "Durchdringt %1%%% Blitzwiderstand",
+          "formatters": []
+        }
+      ]
+    },
+    "elemental_penetration": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Durchdringt %1%%% Elementarwiderstände",
           "formatters": []
         }
       ]
@@ -3019,12 +3096,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Schaden von 'Einäschern' für jede Phase",
+          "text": "%1%%% erhöhter Schaden von 'Verbrennen' für jede Phase",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerter Schaden von 'Einäschern' für jede Phase",
+          "text": "%1%%% verringerter Schaden von 'Verbrennen' für jede Phase",
           "formatters": [
             {
               "id": "negate",
@@ -3151,7 +3228,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Erleidet %1$+d physischen Schaden bei erhaltenem Treffer",
+          "text": "Erleidet %1$+d physischen Schaden bei erlittenem Treffer",
           "formatters": []
         }
       ]
@@ -3161,7 +3238,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Erleidet %1$+d Feuerschaden bei erhaltenem Treffer",
+          "text": "Erleidet %1$+d Feuerschaden bei erlittenem Treffer",
           "formatters": []
         }
       ]
@@ -3229,7 +3306,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Von dieser Fertigkeit beschworene Totems und Kreaturen erhalten %1$+d%% zum Feuerwiderstand",
+            "Von dieser Fertigkeit beschworene Totems und Kreaturen erhalten %1$+d%% zu Feuerwiderstand",
           "formatters": []
         }
       ]
@@ -3240,7 +3317,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Von dieser Fertigkeit beschworene Totems und Kreaturen erhalten %1$+d%% zum Kältewiderstand",
+            "Von dieser Fertigkeit beschworene Totems und Kreaturen erhalten %1$+d%% zu Kältewiderstand",
           "formatters": []
         }
       ]
@@ -3251,13 +3328,13 @@
         {
           "matchers": ["#"],
           "text":
-            "Von dieser Fertigkeit beschworene Totems und Kreaturen erhalten %1$+d%% zum Blitzwiderstand",
+            "Von dieser Fertigkeit beschworene Totems und Kreaturen erhalten %1$+d%% zu Blitzwiderstand",
           "formatters": []
         }
       ]
     },
     "minion_elemental_resist": {
-      "stats": ["minion_elemental_resistance_%"],
+      "stats": ["virtual_minion_elemental_resistance_%"],
       "translations": [
         {
           "matchers": ["#"],
@@ -3492,6 +3569,40 @@
         }
       ]
     },
+    "cast_on_skill_use_from_chest": {
+      "stats": ["trigger_on_skill_use_from_chest_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% Chance, diesen Zauber auszulösen, wenn Ihr eine in der Körperrüstung eingefasste Fertigkeit benutzt",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Löst diesen Zauber aus, wenn Ihr eine in der Körperrüstung eingefasste Fertigkeit benutzt",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_skill_use_spirit_charge": {
+      "stats": ["trigger_on_skill_use_%_if_you_have_a_spirit_charge"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% Chance, diesen Zauber auszulösen, wenn Ihr eine Fertigkeit benutzt, während Ihr eine Seelen-Ladung habt",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Löst diesen Zauber aus, wenn Ihr eine Fertigkeit benutzt, während Ihr eine Seelen-Ladung habt",
+          "formatters": []
+        }
+      ]
+    },
     "cast_when_damaged": {
       "stats": ["cast_on_any_damage_taken_%"],
       "translations": [
@@ -3613,6 +3724,23 @@
         }
       ]
     },
+    "cast_when_trap_triggered": {
+      "stats": ["chance_to_cast_when_your_trap_is_triggered_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% Chance, diesen Zauber auszulösen, wenn eine Eurer Fallen ausgelöst wird",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Löst diesen Zauber aus, wenn eine Eurer Fallen ausgelöst wird",
+          "formatters": []
+        }
+      ]
+    },
     "attack_speed_more": {
       "stats": ["active_skill_attack_speed_+%_final"],
       "translations": [
@@ -3712,7 +3840,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Wirkung von Flüchen",
+          "text": "%1%%% erhöhte Wirkung von Flüchen",
           "formatters": []
         },
         {
@@ -3732,7 +3860,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Wirkung von Flüchen gegen Spieler",
+          "text": "%1%%% erhöhte Wirkung von Flüchen gegen Spieler",
           "formatters": []
         },
         {
@@ -3808,11 +3936,31 @@
       ]
     },
     "desecrate_num_corpses": {
+      "stats": ["desecrate_number_of_corpses_to_create"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Erzeugt %1% Leichen",
+          "formatters": []
+        }
+      ]
+    },
+    "desecrate_corpse_level": {
       "stats": ["desecrate_corpse_level"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "Erzeugt Leichen bis Stufe %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "unearth_corpse_level": {
+      "stats": ["unearth_corpse_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Erschafft Leichen mit Stufe %1%",
           "formatters": []
         }
       ]
@@ -3884,7 +4032,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Diese Fertigkeit verringert gegnerische Blockchance um %1%%%",
+            "Diese Fertigkeit verringert die gegnerische Blockchance um %1%%%",
           "formatters": []
         }
       ]
@@ -3895,7 +4043,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Diese Fertigkeit verringert gegnerische Chance auf Entgehen um %1%%%",
+            "Diese Fertigkeit verringert die gegnerische Chance auf Entgehen um %1%%%",
           "formatters": []
         }
       ]
@@ -3926,7 +4074,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% verstärkter Schaden mit Treffern und Beeinträchtigungen gegen brennende Gegner",
+            "%1%%% erhöhter Schaden mit Treffern und Beeinträchtigungen gegen brennende Gegner",
           "formatters": [
             {
               "id": "reminderstring",
@@ -4004,7 +4152,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Feuerschaden",
+          "text": "%1%%% erhöhter Feuerschaden",
           "formatters": []
         }
       ]
@@ -4014,7 +4162,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Kälteschaden",
+          "text": "%1%%% erhöhter Kälteschaden",
           "formatters": []
         }
       ]
@@ -4070,7 +4218,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Feuerschaden",
+          "text": "%1%%% erhöhter Feuerschaden",
           "formatters": []
         }
       ]
@@ -4080,7 +4228,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Kälteschaden",
+          "text": "%1%%% erhöhter Kälteschaden",
           "formatters": []
         }
       ]
@@ -4090,7 +4238,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Blitzschaden",
+          "text": "%1%%% erhöhter Blitzschaden",
           "formatters": []
         }
       ]
@@ -4118,6 +4266,28 @@
           "matchers": ["#", "#"],
           "text": "Fügt Angriffen %1% bis %2% Blitzschaden hinzu",
           "formatters": []
+        }
+      ]
+    },
+    "static_strike_damage": {
+      "stats": ["static_strike_explosion_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Explosion verursacht %1%%% mehr Schaden mit Treffern und Beeinträchtigungen",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Explosion verursacht %1%%% weniger Schaden mit Treffern und Beeinträchtigungen",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -4267,7 +4437,7 @@
         {
           "matchers": ["#"],
           "text":
-            "%1%%% des physischen Schadens wird in Kälteschaden umgewandelt",
+            "%1%%% des physischen Schadens werden in Kälteschaden umgewandelt",
           "formatters": []
         }
       ]
@@ -4317,7 +4487,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Golems gewähren %1%%% verstärkten Schaden",
+          "text": "Golems gewähren %1%%% erhöhten Schaden",
           "formatters": []
         },
         {
@@ -4444,7 +4614,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Schaden pro 100 Gegner im Umkreis",
+          "text": "%1%%% erhöhter Schaden pro 100 Gegner im Umkreis",
           "formatters": []
         },
         {
@@ -4464,7 +4634,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1% Mana regeneriert pro Sekunde",
+          "text": "Regeneriert %1% Mana pro Sekunde",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -4479,7 +4649,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Schaden",
+          "text": "%1%%% erhöhter Schaden",
           "formatters": []
         },
         {
@@ -4545,7 +4715,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% verstärkter physischer Nahkampfschaden gegen blutende Gegner",
+            "%1%%% erhöhter physischer Nahkampfschaden gegen blutende Gegner",
           "formatters": []
         },
         {
@@ -4632,13 +4802,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Erleidet %1%%% mehr physischen Schaden bei erhaltenem Treffer",
+            "Erleidet %1%%% mehr physischen Schaden bei erlittenem Treffer",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Erleidet %1%%% weniger physischen Schaden bei erhaltenem Treffer",
+            "Erleidet %1%%% weniger physischen Schaden bei erlittenem Treffer",
           "formatters": [
             {
               "id": "negate",
@@ -4653,12 +4823,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Erleidet %1%%% mehr Feuerschaden bei erhaltenem Treffer",
+          "text": "Erleidet %1%%% mehr Feuerschaden bei erlittenem Treffer",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Erleidet %1%%% weniger Feuerschaden bei erhaltenem Treffer",
+          "text": "Erleidet %1%%% weniger Feuerschaden bei erlittenem Treffer",
           "formatters": [
             {
               "id": "negate",
@@ -4880,7 +5050,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter erlittener Chaosschaden",
+          "text": "%1%%% erhöhter erlittener Chaosschaden",
           "formatters": []
         },
         {
@@ -4925,7 +5095,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Schaden über Zeit",
+          "text": "%1%%% erhöhter Schaden über Zeit",
           "formatters": []
         },
         {
@@ -4980,7 +5150,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Schaden mit Gift",
+          "text": "%1%%% erhöhter Schaden mit Gift",
           "formatters": []
         },
         {
@@ -5100,7 +5270,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Ring verursacht %1%%% verstärkten Schaden",
+          "text": "Ring verursacht %1%%% erhöhten Schaden",
           "formatters": []
         },
         {
@@ -5120,7 +5290,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Stärkungswirkung",
+          "text": "%1%%% erhöhte Stärkungswirkung",
           "formatters": []
         },
         {
@@ -5238,8 +5408,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Gewährt 'Aufladen' bei Tötung eines geschockten Gegners mit diesem Zauber",
+          "text": "Gewährt 'Aufladen' bei Tötung eines geschockten Gegners",
           "formatters": []
         }
       ]
@@ -5252,7 +5421,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "Aufladen' gewährt %1% bis %2% Blitzschaden",
+          "text": "'Aufladen' gewährt %1% bis %2% Blitzschaden",
           "formatters": []
         }
       ]
@@ -5373,20 +5542,43 @@
         }
       ]
     },
+    "aegis_value": {
+      "stats": [
+        "aegis_unique_shield_max_value",
+        "active_skill_display_aegis_variation"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"], 0],
+          "text":
+            "Feuerschaden von Treffern wird zuerst von der Obhut abgezogen\\nObhut absorbiert %1% Feuerschaden",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"], 1],
+          "text":
+            "Kälteschaden von Treffern wird zuerst von der Obhut abgezogen\\nObhut absorbiert %1% Kälteschaden",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"], 2],
+          "text":
+            "Elementarschaden von Treffern wird zuerst von der Obhut abgezogen\\nObhut absorbiert %1% Elementarschaden",
+          "formatters": []
+        }
+      ]
+    },
     "arctic_armour_chill_when_hit_duration": {
       "stats": ["arctic_armour_chill_when_hit_duration"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Unterkühlt Gegner für %1% Sekunden bei erhaltenem Treffer",
+          "text":
+            "Unterkühlt Gegner bei Treffer für %1% Sekunden und verlangsamt sie um 30%%",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
               "arg": 1
-            },
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextChillNonHitNoDuration"
             }
           ]
         }
@@ -5488,7 +5680,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkter Schaden mit Bluten",
+          "text": "%1%%% erhöhter Schaden mit Bluten",
           "formatters": []
         },
         {
@@ -5587,12 +5779,32 @@
         }
       ]
     },
+    "cremation_max_geysers": {
+      "stats": ["corpse_erruption_maximum_number_of_geyers"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Erlaubt maximal %1% Geysire gleichzeitig",
+          "formatters": []
+        }
+      ]
+    },
     "deal_no_elemental": {
       "stats": ["deal_no_elemental_damage"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "Verursacht keinen Elementarschaden",
+          "formatters": []
+        }
+      ]
+    },
+    "desecrate_maximum_corpse_count": {
+      "stats": ["desecrate_maximum_number_of_corpses"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Maximal %1% Leichname erlaubt",
           "formatters": []
         }
       ]
@@ -5635,6 +5847,28 @@
           "text":
             "Monster aus dem Riss gewähren keine Erfahrung und lassen keine Gegenstände fallen",
           "formatters": []
+        }
+      ]
+    },
+    "endurance_charge_slam_extra_damage": {
+      "stats": ["endurance_charge_slam_damage_+%_final_with_endurance_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% mehr Schaden, wenn eine Widerstands-Ladung verbraucht wurde",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% weniger Schaden, wenn eine Widerstands-Ladung verbraucht wurde",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -5695,6 +5929,53 @@
         }
       ]
     },
+    "herald_of_ash_burning_percent": {
+      "stats": ["herald_of_ash_burning_%_overkill_damage_per_minute"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Basis-Brandschaden beträgt %1%%% des überzähligen Schadens",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ightning_tendrils_pulse_damage": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Stärkere Impulse verursachen %1%%% mehr Schaden mit Treffern und Beeinträchtigungen",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Stärkere Impulse verursachen %1%%% weniger Schaden mit Treffern und Beeinträchtigungen",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_tendrils_pulse_radius": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_radius_+"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Stärkerer Impuls hat %1$+d zu Radius",
+          "formatters": []
+        }
+      ]
+    },
     "maim_chance": {
       "stats": ["maim_on_hit_%"],
       "translations": [
@@ -5706,6 +5987,16 @@
         {
           "matchers": [[100, "#"]],
           "text": "Verstümmeln bei Treffer",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_spirit_strikes": {
+      "stats": ["melee_attack_number_of_spirit_strikes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Zielt auch auf %1% Gegner im Umkreis",
           "formatters": []
         }
       ]
@@ -5764,7 +6055,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% verstärkte Wirkung von nicht schädlichen Beeinträchtigungen bei Gegnern",
+            "%1%%% erhöhte Wirkung von nicht schädlichen Beeinträchtigungen bei Gegnern",
           "formatters": [
             {
               "id": "reminderstring",
@@ -5789,6 +6080,21 @@
         }
       ]
     },
+    "number_of_effigies": {
+      "stats": ["base_number_of_effigies_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Erlaubt gleichzeitige Kontrolle von %1% Bildnis",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Erlaubt gleichzeitige Kontrolle von %1% Bildnissen",
+          "formatters": []
+        }
+      ]
+    },
     "raised_spectre_level": {
       "stats": ["raised_spectre_max_level"],
       "translations": [
@@ -5804,7 +6110,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verstärkte Schockwirkung",
+          "text": "%1%%% erhöhte Schockwirkung",
           "formatters": []
         },
         {
@@ -5825,7 +6131,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Schockender Boden verursacht %1%%% verstärkten erlittenen Schaden",
+            "Schockender Boden verursacht %1%%% erhöhten erlittenen Schaden",
           "formatters": []
         },
         {
@@ -5838,6 +6144,16 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "can_have_mirage_archer": {
+      "stats": ["skill_can_own_mirage_archers"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Erlaubt gleichzeitige Kontrolle von 1 Phantombogenschützen",
+          "formatters": []
         }
       ]
     },
@@ -5867,6 +6183,17 @@
               "arg": "ReminderTextDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "summon_mirage_archer": {
+      "stats": ["summon_mirage_archer_on_hit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Wenn Ihr einen Gegner mit einem Pfeil dieser Fertigkeit trefft, beschwört Ihr einen Phantombogenschützen, der diese Fertigkeit benutzt",
+          "formatters": []
         }
       ]
     },
@@ -5982,7 +6309,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Durch diese Fertigkeit verstümmelte Gegner nehmen %1%%% verstärkten physischen Schaden",
+            "Durch diese Fertigkeit verstümmelte Gegner nehmen %1%%% erhöhten physischen Schaden",
           "formatters": []
         },
         {
@@ -6020,6 +6347,60 @@
         }
       ]
     },
+    "mirage_archer_attack_speed": {
+      "stats": ["support_mirage_archer_attack_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Phantombogenschütze nutzt diese Fertigkeit mit %1%%% mehr Angriffsgeschwindigkeit",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Phantombogenschütze nutzt diese Fertigkeit mit %1%%% weniger Angriffsgeschwindigkeit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mirage_archer_duration": {
+      "stats": ["support_mirage_archer_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Phantombogenschütze hält %1% Sekunden an",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_parallel_projectiles": {
+      "stats": ["support_parallel_projectile_number_of_points_per_side"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "Feuert auch Projektile von bis zu %1% Punkt von jeder Eurer Seiten aus",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "Feuert auch Projektile von bis zu %1% Punkten von jeder Eurer Seiten aus",
+          "formatters": []
+        }
+      ]
+    },
     "support_scion_chance": {
       "stats": [
         "support_scion_onslaught_on_killing_blow_%_chance",
@@ -6038,6 +6419,90 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
+    "support_cascade_area_of_effect": {
+      "stats": ["support_spell_cascade_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% mehr Wirkungsbereich",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% weniger Wirkungsbereich",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade": {
+      "stats": ["support_spell_cascade_number_of_cascades_per_side"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Zaubert die Fertigkeit zusätzliche Male, vor und hinter dem Ziel, wodurch eine größere überlappende Fläche betroffen ist",
+          "formatters": []
+        }
+      ]
+    },
+    "storm_barrier_power_charge": {
+      "stats": [
+        "support_storm_barrier_gain_power_charge_when_hit_%",
+        "support_storm_barrier_lightning_damage_taken_when_hit_+%_final",
+        "support_storm_barrier_physical_damage_taken_when_hit_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#", "#"],
+          "text":
+            "Das Kanalisieren dieser Fertigkeit gewährt bei erlittenem Treffer %1%%% Chance auf eine Energie-Ladung\\nDas Kanalisieren dieser Fertigkeit gewährt %2%%% weniger erlittenen Blitzschaden durch Treffer\\nDas Kanalisieren dieser Fertigkeit gewährt %3%%% weniger erlittenen physischen Schaden durch Treffer",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 2
+            },
+            {
+              "id": "negate",
+              "arg": 3
+            }
+          ]
+        }
+      ]
+    },
+    "ailment_damage_incr": {
+      "stats": ["support_unbound_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% mehr Schaden bei Beeinträchtigungen",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% weniger Schaden bei Beeinträchtigungen",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
             }
           ]
         }

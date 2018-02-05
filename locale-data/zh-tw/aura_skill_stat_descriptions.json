@@ -385,6 +385,26 @@
           "formatters": []
         }
       ]
+    },
+    "energy_shield_recharge_rate": {
+      "stats": ["energy_shield_recharge_rate_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你和附近的友軍獲得增加 %1%%% 能量護盾回復率",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你和附近的友軍獲得減少 %1%%% 能量護盾回復率",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
     }
   }
 }

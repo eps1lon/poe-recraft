@@ -32,7 +32,7 @@ readdir(in_dir).then(files => {
     try {
       unprocessed = JSON.parse(unprocessed_file);
     } catch (err) {
-      console.warn(`could not parse ${file}`);
+      console.error(`could not parse ${file}`);
     }
 
     const processed = unprocessed.reduce((partial, [key, value]) => {

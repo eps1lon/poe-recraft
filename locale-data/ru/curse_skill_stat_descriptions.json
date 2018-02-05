@@ -101,6 +101,16 @@
         }
       ]
     },
+    "chaos_resist": {
+      "stats": ["base_chaos_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Проклятые враги имеют %1$+d%% к сопротивлению хаосу",
+          "formatters": []
+        }
+      ]
+    },
     "chance_to_be_frozen": {
       "stats": ["chance_to_be_frozen_%"],
       "translations": [
@@ -430,7 +440,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Получаемый проклятыми врагами урон снарядами увеличен на %1%%%",
+            "Проклятые враги получают увеличенный на %1%%% урон от ударов снарядами",
           "formatters": []
         }
       ]
@@ -619,6 +629,62 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "curse_aura": {
+      "stats": ["curse_apply_as_aura"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Усиленные проклятия используются как ауры",
+          "formatters": []
+        }
+      ]
+    },
+    "maim_when_hit_chance": {
+      "stats": ["chance_to_be_maimed_when_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Проклятые враги имеют %1%%% шанс получить увечья на 4 секунды при получении удара от атак",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
+        }
+      ]
+    },
+    "chaos_weakness_damage": {
+      "stats": [
+        "minimum_added_chaos_damage_taken",
+        "maximum_added_chaos_damage_taken"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Добавляет от %1% до %2% урона хаосом по проклятым врагам",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_dot_taken_incr": {
+      "stats": ["base_physical_damage_over_time_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Проклятые враги получают увеличенный на %1%%% физический урон от постепенного урона",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Проклятые враги получают уменьшенный на %1%%% физический урон от постепенного урона",
+          "formatters": []
         }
       ]
     }

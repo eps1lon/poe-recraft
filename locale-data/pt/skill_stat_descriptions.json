@@ -168,6 +168,22 @@
         }
       ]
     },
+    "offering_duration_per_corpse": {
+      "stats": ["offering_skill_effect_duration_per_corpse"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1% segundos adicionais de Duração Base por Cadáver extra consumido",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "cold_damage_per_frenzy_charge_range": {
       "stats": [
         "spell_minimum_base_cold_damage_per_frenzy_charge",
@@ -307,26 +323,6 @@
           "matchers": [[1, "#"]],
           "text": "Armadilhas são lançadas aleatoriamente ao seu redor",
           "formatters": []
-        }
-      ]
-    },
-    "cooldown_incr": {
-      "stats": ["virtual_cooldown_speed_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Velocidade de Recuperação de Recarga aumentada em %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Velocidade de Recuperação de Recarga reduzida em %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -1216,22 +1212,39 @@
     "pierce_num": {
       "stats": [
         "projectile_number_of_targets_to_pierce",
-        "virtual_always_pierce"
+        "virtual_always_pierce",
+        "arrow_number_of_targets_to_pierce",
+        "arrows_always_pierce"
       ],
       "translations": [
         {
-          "matchers": [1, 0],
-          "text": "Projéteis Perfuram 1 Alvo",
+          "matchers": [1, 0, 0, 0],
+          "text": "Projéteis Perfuram 1 Alvos",
           "formatters": []
         },
         {
-          "matchers": [[2, "#"], 0],
+          "matchers": [[2, "#"], 0, 0, 0],
           "text": "Projéteis Perfuram %1% Alvos",
           "formatters": []
         },
         {
-          "matchers": ["#", "#"],
+          "matchers": ["#", "#", 0, 0],
           "text": "Projéteis Perfuram todos Alvos",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", 1, 0],
+          "text": "Flechas Perfuram 1 Alvos",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", [2, "#"], 0],
+          "text": "Flechas Perfuram %1% Alvos",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", "#", "#"],
+          "text": "Flechas Perfuram todos Alvos",
           "formatters": []
         }
       ]
@@ -1450,11 +1463,6 @@
           "formatters": []
         },
         {
-          "matchers": [-300],
-          "text": "Trava o inimigo no lugar",
-          "formatters": []
-        },
-        {
           "matchers": [["#", -1]],
           "text": "Velocidade de Movimento reduzida em %1%%%",
           "formatters": [
@@ -1463,6 +1471,16 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "no_movement_speed": {
+      "stats": ["no_movement_speed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Trava o inimigo no lugar",
+          "formatters": []
         }
       ]
     },
@@ -1740,6 +1758,16 @@
         }
       ]
     },
+    "lightning_tendrils_pulse_interval": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_interval"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Libera um Pulso Fortalecido a cada %1% Pulsos",
+          "formatters": []
+        }
+      ]
+    },
     "movement_velocity_cap": {
       "stats": ["movement_velocity_cap"],
       "translations": [
@@ -1781,6 +1809,27 @@
         {
           "matchers": [["#", -1]],
           "text": "Lacaios possuem %1%%% menos Escudo de Energia",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "minion_life_incr_final": {
+      "stats": ["support_minion_maximum_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Habilidades Suportadas têm %1%%% mais Vida de Lacaio máxima",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Habilidades Suportadas têm %1%%% menos Vida de Lacaio máxima",
           "formatters": [
             {
               "id": "negate",
@@ -3277,7 +3326,7 @@
       ]
     },
     "minion_elemental_resist": {
-      "stats": ["minion_elemental_resistance_%"],
+      "stats": ["virtual_minion_elemental_resistance_%"],
       "translations": [
         {
           "matchers": ["#"],
@@ -3317,7 +3366,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Ganha uma Carga de Tolerância se essa Habilidade Atordoar um Inimigo com Dano Corpo a Corpo",
+            "Ganha uma Carga de Tolerância quando esta Habilidade Atordoa um Inimigo com Dano Corpo a Corpo",
           "formatters": []
         }
       ]
@@ -3632,6 +3681,22 @@
         }
       ]
     },
+    "cast_when_trap_triggered": {
+      "stats": ["chance_to_cast_when_your_trap_is_triggered_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chance de Ativar esta Magia quando uma de suas Armadilhas é Ativada",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Ativa esta Magia quando uma de suas Armadilhas é Ativada",
+          "formatters": []
+        }
+      ]
+    },
     "attack_speed_more": {
       "stats": ["active_skill_attack_speed_+%_final"],
       "translations": [
@@ -3818,11 +3883,31 @@
       ]
     },
     "desecrate_num_corpses": {
+      "stats": ["desecrate_number_of_corpses_to_create"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Cria %1% Cadáveres",
+          "formatters": []
+        }
+      ]
+    },
+    "desecrate_corpse_level": {
       "stats": ["desecrate_corpse_level"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "Cria Cadáveres de até Nível %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "unearth_corpse_level": {
+      "stats": ["unearth_corpse_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Cria Cadáveres com Nível %1%",
           "formatters": []
         }
       ]
@@ -5275,8 +5360,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Ganha Inervação ao Abater um Inimigo Eletrizado com esta Habilidade",
+          "text": "Ganha Inervação ao Abater um Inimigo Eletrizado",
           "formatters": []
         }
       ]
@@ -5409,20 +5493,43 @@
         }
       ]
     },
+    "aegis_value": {
+      "stats": [
+        "aegis_unique_shield_max_value",
+        "active_skill_display_aegis_variation"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"], 0],
+          "text":
+            "Dano de Fogo de Acertos é sofrido por esta Égide antes da sua Vida ou Escudo de Energia\\nA Égide pode sofrer %1% de Dano de Fogo",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"], 1],
+          "text":
+            "Dano de Gelo de Acertos é sofrido por esta Égide antes da sua Vida ou Escudo de Energia\\nA Égide pode sofrer %1% de Dano de Gelo",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"], 2],
+          "text":
+            "Dano Elemental de Acertos é sofrido por esta Égide antes da sua Vida ou Escudo de Energia\\nA Égide pode sofrer %1% de Dano Elemental",
+          "formatters": []
+        }
+      ]
+    },
     "arctic_armour_chill_when_hit_duration": {
       "stats": ["arctic_armour_chill_when_hit_duration"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Resfria o Inimigo por %1% segundos quando acertar",
+          "text":
+            "Resfria Inimigos por %1% segundos quando Acertado, os desacelerando em 30%%",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
               "arg": 1
-            },
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextChillNonHitNoDuration"
             }
           ]
         }
@@ -5620,12 +5727,32 @@
         }
       ]
     },
+    "cremation_max_geysers": {
+      "stats": ["corpse_erruption_maximum_number_of_geyers"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Máximo de %1% Gêiseres por vez",
+          "formatters": []
+        }
+      ]
+    },
     "deal_no_elemental": {
       "stats": ["deal_no_elemental_damage"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "Não causa Dano Elemental",
+          "formatters": []
+        }
+      ]
+    },
+    "desecrate_maximum_corpse_count": {
+      "stats": ["desecrate_maximum_number_of_corpses"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Máximo de %1% Cadáveres permitidos",
           "formatters": []
         }
       ]
@@ -5668,6 +5795,26 @@
           "text":
             "Monstros das Fendas não concedem Experiência e nem derrubam Itens",
           "formatters": []
+        }
+      ]
+    },
+    "endurance_charge_slam_extra_damage": {
+      "stats": ["endurance_charge_slam_damage_+%_final_with_endurance_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% mais Dano se uma Carga de Tolerância for usada",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% menos Dano se uma Carga de Tolerância for usada",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -5727,6 +5874,53 @@
         }
       ]
     },
+    "herald_of_ash_burning_percent": {
+      "stats": ["herald_of_ash_burning_%_overkill_damage_per_minute"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Dano Incendiário Base é %1%%% do Dano Excedente",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ightning_tendrils_pulse_damage": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Pulsos Fortalecidos causam %1%%% mais Dano com Acertos e Afecções",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Pulsos Fortalecidos causam %1%%% menos Dano com Acertos e Afecções",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_tendrils_pulse_radius": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_radius_+"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Pulso Fortalecido tem %1$+d de Alcance",
+          "formatters": []
+        }
+      ]
+    },
     "maim_chance": {
       "stats": ["maim_on_hit_%"],
       "translations": [
@@ -5738,6 +5932,16 @@
         {
           "matchers": [[100, "#"]],
           "text": "Mutila ao Acertar",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_spirit_strikes": {
+      "stats": ["melee_attack_number_of_spirit_strikes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Também alveja %1% Inimigos próximos",
           "formatters": []
         }
       ]
@@ -5818,6 +6022,21 @@
               "arg": "ReminderTextNonDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "number_of_effigies": {
+      "stats": ["base_number_of_effigies_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Pode ter até %1% Efígie Convocada por vez",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Pode ter até %1% Efígies Convocadas por vez",
+          "formatters": []
         }
       ]
     },
@@ -6051,6 +6270,21 @@
         }
       ]
     },
+    "support_parallel_projectiles": {
+      "stats": ["support_parallel_projectile_number_of_points_per_side"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Também dispara Projéteis de até %1% ponto de cada lado seu",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Também dispara Projéteis de até %1% pontos de cada lado seu",
+          "formatters": []
+        }
+      ]
+    },
     "support_scion_chance": {
       "stats": [
         "support_scion_onslaught_on_killing_blow_%_chance",
@@ -6069,6 +6303,65 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
+    "support_cascade_area_of_effect": {
+      "stats": ["support_spell_cascade_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% mais Área de Efeito",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% menos Área de Efeito",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade": {
+      "stats": ["support_spell_cascade_number_of_cascades_per_side"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Também afeta áreas na frente e atrás da área alvejada",
+          "formatters": []
+        }
+      ]
+    },
+    "ailment_damage_incr": {
+      "stats": ["support_unbound_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% mais Dano de Afecções",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% menos Dano de Afecções",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
             }
           ]
         }
