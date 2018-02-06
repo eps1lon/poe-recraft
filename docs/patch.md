@@ -8,6 +8,9 @@ game data.
     3. extract `MetaData/StatDescriptions/*` into `tmp/unprocessed`
 2. in this package:
     1. ```$ npm run generate-locale-data```
+        * Be aware that the description files can have sloppy formatting
+            which our grammar can sometimes not handle. These should be 
+            obvious and fixed manually.
     2. for $client in ('steam', 'garena', 'tencent') 
         1. ```pypoe_exporter config set ggpk_path {ggpk_path(client)}```
         2. ```$ ./scripts/preGenerateDatLocaleData.sh {client}```
