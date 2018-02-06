@@ -16,6 +16,10 @@ const json_dir = path.join(__dirname, '../tmp/unprocessed');
 
 const isDescriptionFile = file => file.endsWith('stat_descriptions.txt');
 
+// "In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code."
+// we will make use of this already
+process.on('unhandledRejection', up => { throw up })
+
 readdir(txt_dir)
   .then(files => {
     files.filter(isDescriptionFile).forEach(file => {
@@ -61,9 +65,6 @@ readdir(txt_dir)
       out.write('\n]');
       out.end();
     });
-  })
-  .catch(err => {
-    console.error(err);
   });
 
 function write(things, first, outstream, map = thing => thing) {

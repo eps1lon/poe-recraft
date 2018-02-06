@@ -6,6 +6,10 @@ const inflection_grammar = Grammar.fromCompiled(
   require('../src/grammars/generated/inflection.js')
 );
 
+// "In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code."
+// we will make use of this already
+process.on('unhandledRejection', up => { throw up })
+
 const export_dir = path.join(__dirname, '../tmp/exports');
 const locale_files = fs.readdirSync(export_dir);
 
