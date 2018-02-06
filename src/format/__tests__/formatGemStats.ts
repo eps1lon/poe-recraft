@@ -80,8 +80,7 @@ it('should only translate the lines that have translations', () => {
   ]);
 });
 
-// FIXME: doesnt have to have any granted effects anymore
-it.skip('should use the specified files first', () => {
+it('should use the specified files first', () => {
   const vitality_effects = formatGemStats(
     'vitality',
     [
