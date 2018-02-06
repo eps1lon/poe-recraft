@@ -3,7 +3,7 @@ import type { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { setRarity } from 'actions/item';
-import AvailableMods from 'components/RaritySwitcher';
+import RaritySwitcher, { type Props } from 'components/RaritySwitcher';
 import type { State } from 'reducers/rootReducer';
 
 const mapStateToProps = (state: State) => {
@@ -12,10 +12,13 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<*>) => {
+const mapDispatchToProps = (dispatch: Dispatch<*>, own_props: Props) => {
   return {
-    onChange: (id: string) => dispatch(setRarity(id))
+    onChange: (id: string) => {
+      dispatch(setRarity(id));
+      own_props.onChange(id);
+    }
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AvailableMods);
+export default connect(mapStateToProps, mapDispatchToProps)(RaritySwitcher);

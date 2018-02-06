@@ -13,7 +13,9 @@ import {
   toggleGeneratorModal,
   type ToggleGeneratorModalAction,
   toggleBaseItemModal,
-  type ToggleBaseItemModal
+  type ToggleBaseItemModal,
+  toggleEditItemModal,
+  type ToggleEditItemModal
 } from 'actions/gui';
 
 export type GuiIdent = string;
@@ -39,7 +41,8 @@ export default handleActions(
     [toggle.toString()]: toggleHandle,
     [setTableExpanded.toString()]: setTableExpandedHandle,
     [toggleGeneratorModal.toString()]: toggleGeneratorModalHandle,
-    [toggleBaseItemModal.toString()]: toggleBaseItemModalHandle
+    [toggleBaseItemModal.toString()]: toggleBaseItemModalHandle,
+    [toggleEditItemModal.toString()]: toggleEditItemModalHandle
   },
   initial
 );
@@ -105,6 +108,19 @@ function toggleBaseItemModalHandle(
     misc: state.misc.set(
       'baseitem-modal',
       !Boolean(state.misc.get('baseitem-modal'))
+    )
+  };
+}
+
+function toggleEditItemModalHandle(
+  state: State,
+  action: ToggleEditItemModal
+): State {
+  return {
+    ...state,
+    misc: state.misc.set(
+      'edititem-modal',
+      !Boolean(state.misc.get('edititem-modal'))
     )
   };
 }

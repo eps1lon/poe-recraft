@@ -31,14 +31,20 @@ export type SetTableExpandedAction = ReduxActionType<typeof setTableExpanded>;
 
 export const toggleGeneratorModal = createAction(
   'TOGGLE_GENERATOR_MODAL',
-  () => {}
+  () => { }
 );
 export type ToggleGeneratorModalAction = ReduxActionType<
   typeof toggleGeneratorModal
->;
+  >;
 
 export const toggleBaseItemModal = createAction(
   'TOGGLE_BASEITEM_MODAL',
-  () => {}
+  () => { }
 );
 export type ToggleBaseItemModal = ReduxActionType<typeof toggleBaseItemModal>;
+
+export const toggleEditItemModal = createAction(
+  'TOGGLE_EDITITEM_MODAL',
+  () => { }
+);
+export type ToggleEditItemModal = ReduxActionType<typeof toggleEditItemModal>;
