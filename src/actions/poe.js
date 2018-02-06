@@ -5,7 +5,8 @@ import { apiEndpoint } from 'selectors/poe';
 import type {
   BaseItemTypeProps,
   CraftingBenchOptionsProps,
-  ModProps
+  ModProps,
+  TagProps
 } from 'selectors/schema';
 
 function getEndpoint(endpoint: string, name: string) {
@@ -44,7 +45,16 @@ export function getMods() {
   return getEndpoint('data/mods.json', 'MODS');
 }
 
+export type TagsSuccessAction = {
+  type: 'POE/TAGS_SUCCESS',
+  payload: TagProps[]
+};
+export function getTags() {
+  return getEndpoint('data/tags.json', 'TAGS');
+}
+
 export type Action =
   | ItemsSuccessAction
   | BenchSuccessAction
-  | ModsSuccessAction;
+  | ModsSuccessAction
+  | TagsSuccessAction;

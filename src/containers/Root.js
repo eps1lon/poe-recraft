@@ -2,7 +2,7 @@ import React from 'react';
 import { connect, Provider } from 'react-redux';
 
 import { changeLocale } from 'actions/i18n';
-import { getItems, getBenchoptions, getMods } from 'actions/poe';
+import { getItems, getBenchoptions, getMods, getTags } from 'actions/poe';
 import App from 'components/App';
 
 const Root = ({ locale, messages, store, init, version }) => {
@@ -28,6 +28,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(getItems());
       dispatch(getBenchoptions());
       dispatch(getMods());
+      dispatch(getTags());
     }
   };
 };

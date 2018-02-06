@@ -2,6 +2,7 @@
 import React from 'react';
 
 import RaritySwitcher from 'containers/RaritySwitcher';
+import Tags from 'containers/edit_item/Tags';
 
 export type Props = {
   onToggle: () => void
@@ -21,6 +22,9 @@ const Body = (props: Props) => {
           available={['normal', 'magic', 'rare']}
           onChange={props.onToggle}
         />
+      </div>
+      <div className="edit-item tags">
+        <Tags />
       </div>
     </section>
   );

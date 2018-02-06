@@ -1,6 +1,6 @@
 // @flow
 import type { State } from 'reducers/rootReducer';
-import type { BaseItemTypeProps } from 'selectors/schema';
+import type { BaseItemTypeProps, TagProps } from 'selectors/schema';
 import { filterItems } from 'selectors/baseitemfilter';
 
 export function defaultItem(state: State): BaseItemTypeProps {
@@ -18,4 +18,12 @@ export function defaultItem(state: State): BaseItemTypeProps {
 
 export function activeBaseitem(state: State): ?BaseItemTypeProps {
   return state.craft.item != null ? state.craft.item.baseitem : undefined;
+}
+
+export function getTags(state: State): TagProps[] {
+  return state.craft.item != null ? state.craft.item.getTags() : [];
+}
+
+export function getChangeableTags(state: State): TagProps[] {
+  return state.craft.item != null ? state.craft.item.baseitem.tags : [];
 }

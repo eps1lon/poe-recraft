@@ -2,7 +2,8 @@
 import type {
   BaseItemTypeProps,
   CraftingBenchOptionsProps,
-  ModProps
+  ModProps,
+  TagProps
 } from 'selectors/schema';
 
 import type { Action } from 'actions/poe';
@@ -12,6 +13,7 @@ export type State = {
   items: BaseItemTypeProps[],
   benchoptions: CraftingBenchOptionsProps[],
   mods: ModProps[],
+  tags: TagProps[],
   version: string
 };
 
@@ -20,6 +22,7 @@ const initial: State = {
   items: [],
   benchoptions: [],
   mods: [],
+  tags: [],
   version: '3.0.1c'
 };
 
@@ -40,6 +43,11 @@ const reducer = (state: State = initial, action: Action): State => {
       return {
         ...state,
         mods: action.payload
+      };
+    case 'POE/TAGS_SUCCESS':
+      return {
+        ...state,
+        tags: action.payload
       };
     default:
       return state;
