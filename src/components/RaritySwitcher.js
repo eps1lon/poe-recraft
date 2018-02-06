@@ -5,6 +5,7 @@ type RarityId = string;
 
 export type Props = {
   available: RarityId[],
+  id: string,
   selected: ?RarityId,
   onChange: RarityId => void
 };
@@ -20,7 +21,7 @@ const RaritySwitcher = (props: Props) => {
     onChange(event.currentTarget.value);
 
   return (
-    <select onChange={handleChange} value={selected}>
+    <select id={props.id} onChange={handleChange} value={selected}>
       {available.map(rarity => (
         <option key={rarity} value={rarity}>
           {rarity}

@@ -13,7 +13,12 @@ const default_props = {
 };
 
 const Body = (props: Props) => {
-  return <RaritySwitcher available={["normal", "magic", "rare"]} onChange={props.onToggle} />;
+  return <section className="edit-item body">
+    <div className="edit-item rarity">
+      <label htmlFor="edit-item-rarity-switcher">Rarity: </label>
+      <RaritySwitcher id="edit-item-rarity-switcher" available={["normal", "magic", "rare"]} onChange={props.onToggle} />
+    </div>
+  </section>;
 };
 
 Body.defaultProps = default_props;
