@@ -10,7 +10,10 @@ export function intersperse(elements, renderSeparator = CommaSeparator) {
     return [];
   }
 
-  return elements.slice(1).reduce((joined, element, index) => {
-    return joined.concat(renderSeparator(`separator-${index}`), element);
-  }, [elements[0]]);
+  return elements.slice(1).reduce(
+    (joined, element, index) => {
+      return joined.concat(renderSeparator(`separator-${index}`), element);
+    },
+    [elements[0]]
+  );
 }
