@@ -1,9 +1,5 @@
 // @flow
-import PropsTable from '../../../../../helpers/PropsTable';
-import { BaseItemTypeProps, ModProps } from '../../../../../schema';
 import { createTables } from '../../../../../__fixtures__/util';
-import Item from '../../../Item';
-import Mod from '../../../../../mods/Mod';
 
 import build from '../ArmourProperties';
 

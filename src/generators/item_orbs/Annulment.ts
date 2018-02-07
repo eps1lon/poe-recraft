@@ -2,11 +2,8 @@ import * as _ from 'lodash';
 
 import Item from '../../containers/item';
 
-import { Flags, anySet } from '../../util/Flags';
-import ItemOrb, {
-  ApplicableFlag as BaseApplicableFlag,
-  ApplicableFlags as BaseApplicableFlags,
-} from './ItemOrb';
+import { anySet } from '../../util/Flags';
+import ItemOrb, { ApplicableFlags as BaseApplicableFlags } from './ItemOrb';
 
 export interface ApplicableFlags extends BaseApplicableFlags {
   not_magic_rare: boolean;
@@ -18,7 +15,7 @@ export default class Annulment extends ItemOrb {
     super([]);
   }
 
-  applyTo(item: Item): Item {
+  public applyTo(item: Item): Item {
     if (!anySet(this.applicableTo(item))) {
       const locked_prefixes = item.affixes.lockedPrefixes();
       const locked_suffixes = item.affixes.lockedSuffixes();
@@ -47,7 +44,7 @@ export default class Annulment extends ItemOrb {
     }
   }
 
-  applicableTo(item: Item): ApplicableFlags {
+  public applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = {
       ...super.applicableTo(item),
       not_magic_rare: false,
@@ -60,8 +57,7 @@ export default class Annulment extends ItemOrb {
     return applicable_flags;
   }
 
-  // eslint-disable-next-line no-unused-vars
-  modsFor(item: Item) {
+  public modsFor(item: Item) {
     return [];
   }
 }

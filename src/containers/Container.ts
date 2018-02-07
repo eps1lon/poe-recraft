@@ -3,6 +3,8 @@ import Mod from '../mods/Mod';
 import Stat from '../calculator/Stat';
 
 export default interface Container<T extends Mod> extends Taggable {
+  mods: ReadonlyArray<T>;
+
   addMod(mod: T): this;
   removeMod(mod: T): this;
   removeAllMods(): this;
@@ -20,5 +22,4 @@ export default interface Container<T extends Mod> extends Taggable {
   stats(): { [key: string]: Stat };
 
   asArray(): T[];
-  mods: ReadonlyArray<T>;
 };

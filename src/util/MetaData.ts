@@ -2,7 +2,7 @@ import { TagProps } from '../schema';
 
 import meta_datas from './meta_data';
 
-export type MetaDataProps = {
+export interface MetaDataProps {
   extends: string;
   inheritance: string[];
   tags: TagProps[];
@@ -37,11 +37,11 @@ export type MetaDataProps = {
     weapon_speed?: string[];
     weapon_class?: string[];
   };
-};
+}
 
-export type MetaDataMap = {
+export interface MetaDataMap {
   [key: string]: MetaDataProps;
-};
+}
 
 /**
  * class Metadata
@@ -49,7 +49,7 @@ export type MetaDataMap = {
  * representation of a .ot file in METADATA 
  */
 export default class MetaData {
-  static build(clazz: string): MetaData | undefined {
+  public static build(clazz: string): MetaData | undefined {
     if (meta_datas[clazz] != null) {
       return new MetaData(clazz, meta_datas[clazz]);
     } else {
@@ -57,15 +57,15 @@ export default class MetaData {
     }
   }
 
-  clazz: string;
-  props: MetaDataProps;
+  public clazz: string;
+  public props: MetaDataProps;
 
   constructor(clazz: string, props: MetaDataProps) {
     this.clazz = clazz;
     this.props = props;
   }
 
-  isA(other: string): boolean {
+  public isA(other: string): boolean {
     return other === this.clazz || this.props.inheritance.indexOf(other) !== -1;
   }
 }

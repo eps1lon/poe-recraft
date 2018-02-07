@@ -1,9 +1,5 @@
 // @flow
-import PropsTable from '../../../../helpers/PropsTable';
-import { BaseItemTypeProps } from '../../../../schema';
 import { createTables } from '../../../../__fixtures__/util';
-
-import Item from '../../Item';
 
 const tables = createTables();
 

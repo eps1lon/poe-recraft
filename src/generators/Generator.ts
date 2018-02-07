@@ -1,15 +1,15 @@
-import { Container } from '../containers/Container';
+import Container from '../containers/Container';
 import Mod from '../mods/Mod';
 import META_MODS from '../mods/meta_mods';
 
 import { Flags, anySet } from '../util/Flags';
 
-export type GeneratorDetails<M extends Mod> = {
+export interface GeneratorDetails<M extends Mod> {
   mod: M;
   applicable?: Flags;
   spawnable?: Flags;
   spawnweight?: number;
-};
+}
 
 export interface ModApplicableFlags extends Flags {
   domain_full: boolean;
@@ -27,33 +27,35 @@ export default abstract class Generator<
   M extends Mod,
   C extends Container<any>
 > {
-  mods: M[];
+  public mods: M[];
 
   constructor(mods: M[]) {
     this.mods = mods;
   }
 
-  abstract applyTo(container: C): C;
+  public abstract applyTo(container: C): C;
 
-  abstract modsFor(container: C, whitelist: string[]): GeneratorDetails<M>[];
+  public abstract modsFor(
+    container: C,
+    whitelist: string[],
+  ): Array<GeneratorDetails<M>>;
 
-  abstract applicableTo(container: C): Flags;
+  public abstract applicableTo(container: C): Flags;
 
   /**
    * returns a copy of #mods
    * 
    * we can stick with a shallow copy since Mod are supposed to be immutable
    */
-  getAvailableMods(): M[] {
+  public getAvailableMods(): M[] {
     return this.mods.slice();
   }
 
-  // eslint-disable-next-line no-unused-vars
-  isApplicableTo(container: C, whitelist: string[] = []): boolean {
+  public isApplicableTo(container: C, whitelist: string[] = []): boolean {
     return !anySet(this.applicableTo(container), whitelist);
   }
 
-  isModApplicableTo(mod: M, container: C): ModApplicableFlags {
+  public isModApplicableTo(mod: M, container: C): ModApplicableFlags {
     const applicable_flags: ModApplicableFlags = {
       domain_full: false,
       already_present: false,

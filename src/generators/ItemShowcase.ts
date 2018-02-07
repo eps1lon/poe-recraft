@@ -3,7 +3,7 @@ import MasterBench from '../helpers/MasterBench';
 import Mod from '../mods/Mod';
 import { CraftingBenchOptionsProps, ModProps } from '../schema';
 
-import Generator, { GeneratorDetails } from './Generator';
+import Generator from './Generator';
 import Alchemy from './item_orbs/Alchemy';
 import EnchantmentBench from './item_orbs/EnchantmentBench';
 import Vaal from './item_orbs/Vaal';
@@ -13,10 +13,10 @@ import { Flags } from '../util/Flags';
  * Masterbench/Currency hybrid
  */
 export default class ItemShowcase extends Generator<Mod, Item> {
-  enchantment: EnchantmentBench;
-  master: MasterBench;
-  explicits: Alchemy;
-  vaal: Vaal;
+  public enchantment: EnchantmentBench;
+  public master: MasterBench;
+  public explicits: Alchemy;
+  public vaal: Vaal;
 
   constructor(props: ModProps[], options: CraftingBenchOptionsProps[]) {
     const enchantment = EnchantmentBench.build(props);
@@ -42,7 +42,7 @@ export default class ItemShowcase extends Generator<Mod, Item> {
   /**
    * only abstract showcase, not for actual usage
    */
-  applyTo(item: Item) {
+  public applyTo(item: Item) {
     return item;
   }
 
@@ -50,7 +50,7 @@ export default class ItemShowcase extends Generator<Mod, Item> {
    * not applicable to anything
    * @param item 
    */
-  applicableTo(item: Item): Flags {
+  public applicableTo(item: Item): Flags {
     return {
       applicable: false,
     } as Flags;
@@ -60,7 +60,7 @@ export default class ItemShowcase extends Generator<Mod, Item> {
    * greps mod::applicableTo and (if implemented) mod::spawnableOn 
    * if we have all the space for mods we need
    */
-  modsFor(item: Item, whitelist: string[] = []) {
+  public modsFor(item: Item, whitelist: string[] = []) {
     const details = [
       ...this.master.modsFor(item, whitelist),
       ...this.enchantment.modsFor(item, whitelist),

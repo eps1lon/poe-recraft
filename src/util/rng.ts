@@ -8,7 +8,10 @@ export function choose<T>(
   pool: T[],
   getWeight: (item: T) => number,
 ): T | undefined {
-  const sum_spawnweight = pool.reduce((sum, item) => sum + getWeight(item), 0);
+  const sum_spawnweight = pool.reduce(
+    (sum, weightable) => sum + getWeight(weightable),
+    0,
+  );
 
   let min_spawnweight = 0;
 

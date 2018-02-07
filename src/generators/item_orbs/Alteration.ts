@@ -1,11 +1,8 @@
 import Item from '../../containers/item';
 import { ModProps } from '../../schema';
 
-import { Flags, anySet } from '../../util/Flags';
-import ItemOrb, {
-  ApplicableFlag as BaseApplicableFlag,
-  ApplicableFlags as BaseApplicableFlags,
-} from './ItemOrb';
+import { anySet } from '../../util/Flags';
+import ItemOrb, { ApplicableFlags as BaseApplicableFlags } from './ItemOrb';
 import Augment from './Augment';
 import Scouring from './Scouring';
 import Transmute from './Transmute';
@@ -16,14 +13,14 @@ export interface ApplicableFlags extends BaseApplicableFlags {
 export type ApplicableFlag = keyof ApplicableFlags;
 
 export default class Alteration extends ItemOrb {
-  static build(mods: ModProps[]): Alteration {
+  public static build(mods: ModProps[]): Alteration {
     return new Alteration(Transmute.buildMods(mods));
   }
 
   /**
    *  rerolls properties of magic
    */
-  applyTo(item: Item): Item {
+  public applyTo(item: Item): Item {
     if (!anySet(this.applicableTo(item))) {
       // TODO actually considers *_cannot_be_changed?
       // granted via scouring but is this true for ingame alts?
@@ -41,7 +38,7 @@ export default class Alteration extends ItemOrb {
     }
   }
 
-  applicableTo(item: Item): ApplicableFlags {
+  public applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = {
       ...super.applicableTo(item),
       not_magic: false,

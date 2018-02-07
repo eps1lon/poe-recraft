@@ -22,18 +22,18 @@ function getPropertyBulder(item: Item): PropertyBuilder | undefined {
 
 export default class ItemProperties
   implements Properties, Component<Item, Builder> {
-  parent: Item;
+  public parent: Item;
 
   // eslint-disable-next-line no-unused-vars
   constructor(item: Item, builder: Builder) {
     this.parent = item;
   }
 
-  builder(): Builder {
+  public builder(): Builder {
     return null;
   }
 
-  list(): ComputedProperties {
+  public list(): ComputedProperties {
     const build = getPropertyBulder(this.parent);
 
     if (build == null) {
@@ -43,7 +43,7 @@ export default class ItemProperties
     }
   }
 
-  any(): boolean {
+  public any(): boolean {
     return getPropertyBulder(this.parent) != null;
   }
 }

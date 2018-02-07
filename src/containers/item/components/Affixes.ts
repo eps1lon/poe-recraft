@@ -3,17 +3,17 @@ import { Mod, metaMods as META_MODS } from '../../../mods';
 import Item from '../Item';
 import ImmutableContainer from '../../ImmutableContainer';
 
-type Builder = {
+interface Builder {
   item: Item;
   mods: Mod[];
-};
+}
 
 export default class ItemAffixes extends ImmutableContainer<Mod, Builder> {
-  static withBuilder(builder: Builder): ItemAffixes {
+  public static withBuilder(builder: Builder): ItemAffixes {
     return new ItemAffixes(builder.item, builder.mods);
   }
 
-  item: Item;
+  public item: Item;
 
   constructor(item: Item, mods: Mod[]) {
     super(mods);
@@ -21,7 +21,7 @@ export default class ItemAffixes extends ImmutableContainer<Mod, Builder> {
     this.item = item;
   }
 
-  builder() {
+  public builder() {
     return {
       item: this.item,
       mods: this.mods,
@@ -31,11 +31,11 @@ export default class ItemAffixes extends ImmutableContainer<Mod, Builder> {
   /**
    * @override
    */
-  maxModsOfType(mod: Mod): number {
+  public maxModsOfType(mod: Mod): number {
     if (mod.isPrefix()) {
-      return this._maxPrefixes();
+      return this.maxPrefixes();
     } else if (mod.isSuffix()) {
-      return this._maxSuffixes();
+      return this.maxSuffixes();
     } else {
       return 0;
     }
@@ -44,39 +44,39 @@ export default class ItemAffixes extends ImmutableContainer<Mod, Builder> {
   /**
    *  checks if the domains are equiv
    */
-  inDomainOf(mod_domain: number): boolean {
+  public inDomainOf(mod_domain: number): boolean {
     switch (mod_domain) {
       case Mod.DOMAIN.MASTER:
         return this.inDomainOf(Mod.DOMAIN.ITEM);
       default:
-        return mod_domain === this._modDomainEquiv();
+        return mod_domain === this.modDomainEquiv();
     }
   }
 
-  level(): number {
+  public level(): number {
     return this.item.props.item_level;
   }
 
-  lockedPrefixes(): boolean {
+  public lockedPrefixes(): boolean {
     return this.indexOfModWithPrimary(META_MODS.LOCKED_PREFIXES) !== -1;
   }
 
-  lockedSuffixes(): boolean {
+  public lockedSuffixes(): boolean {
     return this.indexOfModWithPrimary(META_MODS.LOCKED_SUFFIXES) !== -1;
   }
 
-  getPrefixes(): Mod[] {
+  public getPrefixes(): Mod[] {
     return this.mods.filter(mod => mod.isPrefix());
   }
 
-  getSuffixes(): Mod[] {
+  public getSuffixes(): Mod[] {
     return this.mods.filter(mod => mod.isSuffix());
   }
 
   /**
    * maximum number of prefixes
    */
-  _maxPrefixes(): number {
+  public maxPrefixes(): number {
     if (this.item.rarity.isNormal()) {
       return 0;
     } else if (this.item.rarity.isMagic()) {
@@ -93,11 +93,11 @@ export default class ItemAffixes extends ImmutableContainer<Mod, Builder> {
     }
   }
 
-  _maxSuffixes(): number {
-    return this._maxPrefixes();
+  public maxSuffixes(): number {
+    return this.maxPrefixes();
   }
 
-  _modDomainEquiv(): number {
+  private modDomainEquiv(): number {
     if (this.item.meta_data.isA('AbstractJewel')) {
       return Mod.DOMAIN.JEWEL;
     }

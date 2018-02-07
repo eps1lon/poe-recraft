@@ -1,12 +1,8 @@
 // @flow
-import PropsTable from '../../../../helpers/PropsTable';
-import { BaseItemTypeProps } from '../../../../schema';
 import { createTables } from '../../../../__fixtures__/util';
 
-import Item from '../../Item';
-
 const tables = createTables();
-const { items, mods } = tables;
+const { items } = tables;
 
 it('should have no more than 4 on boots, gloves, helmets', () => {
   expect(items.fromPrimary(1544).sockets.max()).toBe(4); // Bone Helmet

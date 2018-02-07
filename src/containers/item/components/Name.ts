@@ -8,19 +8,19 @@ export interface Name {
 export type Builder = string;
 
 export default class ItemName implements Name, Component<Item, Builder> {
-  parent: Item;
-  random: string;
+  public parent: Item;
+  public random: string;
 
   constructor(item: Item, builder: Builder) {
     this.parent = item;
     this.random = builder;
   }
 
-  builder(): Builder {
+  public builder(): Builder {
     return this.random;
   }
 
-  lines(): string[] {
+  public lines(): string[] {
     if (this.parent.rarity.isNormal()) {
       return [this.parent.baseitem.name];
     } else if (this.parent.rarity.isMagic()) {
@@ -45,7 +45,7 @@ export default class ItemName implements Name, Component<Item, Builder> {
     }
   }
 
-  any(): boolean {
+  public any(): boolean {
     return true;
   }
 }

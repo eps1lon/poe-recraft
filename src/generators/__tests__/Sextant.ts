@@ -14,7 +14,9 @@ function getFromCollection<T extends { props: { primary: number } }>(
 ): T {
   const node = collection.find(other => other.props.primary === primary);
 
-  if (node === undefined) throw new Error(`node ${primary} not found`);
+  if (node === undefined) {
+    throw new Error(`node ${primary} not found`);
+  }
 
   return node;
 }

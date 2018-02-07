@@ -5,10 +5,10 @@ import applications from './stat_applications';
 
 type Classification = ReadonlyArray<string>;
 
-type Modifier = {
+interface Modifier {
   stat: Stat;
   type: 'flat' | 'inc' | 'more';
-};
+}
 
 // truncate after precision digits
 const poe_round = (n: number, precision: number) => {
@@ -19,9 +19,9 @@ const poe_round = (n: number, precision: number) => {
 };
 
 export default class Value {
-  classification: Classification;
-  modifiers: Modifier[];
-  base: ValueRange;
+  public classification: Classification;
+  public modifiers: Modifier[];
+  public base: ValueRange;
 
   constructor(
     range: [number, number] | ValueRange,
@@ -34,7 +34,7 @@ export default class Value {
     this.modifiers = modifiers;
   }
 
-  augmentWith(stats: Stat[]): Value {
+  public augmentWith(stats: Stat[]): Value {
     return new Value(
       this.base,
       this.classification,
@@ -49,7 +49,7 @@ export default class Value {
     );
   }
 
-  augmentableBy(stat: Stat): boolean {
+  public augmentableBy(stat: Stat): boolean {
     return (
       applications[stat.props.id] != null &&
       // empty clauses never augment anything
@@ -70,7 +70,7 @@ export default class Value {
    * 
    * in PoE all increase modifers get summed up to one big more modifier
    */
-  compute(precision: number = 0): ValueRange {
+  public compute(precision: number = 0): ValueRange {
     const flat = this.modifiers
       .filter(({ type }) => type === 'flat')
       .reduce(

@@ -3,12 +3,12 @@ import { GeneratorDetails } from './Generator';
 // filter nothing
 const allowAll = () => true;
 
-export type WithSpawnchance = {
+export interface WithSpawnchance {
   spawnchance: number;
-};
+}
 
 export const calculateSpawnchance = (
-  collection: GeneratorDetails<any>[],
+  collection: Array<GeneratorDetails<any>>,
   filter: (details: GeneratorDetails<any>) => boolean = allowAll,
 ): Array<GeneratorDetails<any> & WithSpawnchance> => {
   const sum_spawnweight = collection.reduce((sum, details) => {

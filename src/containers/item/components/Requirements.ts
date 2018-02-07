@@ -16,11 +16,11 @@ export type Builder =
 
 export default class ItemName
   implements Requirements, Component<Item, Builder> {
-  parent: Item;
+  public parent: Item;
 
-  dex: number = 0;
-  int: number = 0;
-  str: number = 0;
+  public dex: number = 0;
+  public int: number = 0;
+  public str: number = 0;
 
   constructor(item: Item, builder: Builder) {
     this.parent = item;
@@ -32,7 +32,7 @@ export default class ItemName
     }
   }
 
-  builder(): Builder {
+  public builder(): Builder {
     return {
       req_dex: this.dex,
       req_int: this.int,
@@ -40,7 +40,7 @@ export default class ItemName
     };
   }
 
-  level(): number {
+  public level(): number {
     if (this.parent.meta_data.isA('AbstractMap')) {
       return 0;
     } else {
@@ -51,7 +51,7 @@ export default class ItemName
     }
   }
 
-  list() {
+  public list() {
     return {
       level: this.level(),
       str: this.str,
@@ -60,7 +60,7 @@ export default class ItemName
     };
   }
 
-  any(): boolean {
+  public any(): boolean {
     return Object.values(this.list()).some(value => value !== 0);
   }
 }

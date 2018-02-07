@@ -1,10 +1,5 @@
 // @flow
-import Mod from '../../../../mods/Mod';
-import PropsTable from '../../../../helpers/PropsTable';
-import { BaseItemTypeProps, ModProps } from '../../../../schema';
 import { createTables } from '../../../../__fixtures__/util';
-
-import Item from '../../Item';
 
 const tables = createTables();
 const { items, mods } = tables;

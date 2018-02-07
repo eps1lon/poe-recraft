@@ -1,7 +1,7 @@
 export { default as Stat } from './calculator/Stat';
-import { default as ValueRange } from './calculator/ValueRange';
+export { default as ValueRange } from './calculator/ValueRange';
 export { default as Generator, GeneratorDetails } from './generators/Generator';
-export { Container } from './containers/Container';
+export { default as Container } from './containers/Container';
 export { Flags } from './util';
 
 // API definition

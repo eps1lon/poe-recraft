@@ -11,18 +11,18 @@ const craftedSpellDamage = mods.fromPrimary(5660);
 const essenceWeaponRange = mods.fromPrimary(4467);
 
 class TestImmutableContainer extends ImmutableContainer<any, any> {
-  static withBuilder(builder: { mods: any[] }) {
+  public static withBuilder(builder: { mods: any[] }) {
     return new TestImmutableContainer(builder.mods);
   }
 
-  inDomainOf(domain: number): boolean {
+  public inDomainOf(domain: number): boolean {
     return true;
   }
 
-  maxModsOfType(mod: any): number {
+  public maxModsOfType(mod: any): number {
     return Number.POSITIVE_INFINITY;
   }
-  level(): number {
+  public level(): number {
     return Number.POSITIVE_INFINITY;
   }
 }

@@ -4,10 +4,7 @@ import Mod from '../mods/Mod';
 import { ModProps } from '../schema';
 import { Flags, anySet } from '../util/Flags';
 
-import Orb, {
-  SpawnableFlag as BaseSpawnableFlag,
-  SpawnableFlags as BaseSpawnableFlags,
-} from './Orb';
+import Orb, { SpawnableFlags as BaseSpawnableFlags } from './Orb';
 
 export interface SpawnableFlags extends BaseSpawnableFlags {
   no_adjacents_with_spawnweight: boolean;
@@ -38,13 +35,13 @@ enum Type {
 }
 
 export default class Sextant extends Orb<AtlasNode> {
-  static type = Type;
+  public static type = Type;
 
-  static modFilter(mod: ModProps): boolean {
+  public static modFilter(mod: ModProps): boolean {
     return super.modFilter(mod) && mod.domain === Mod.DOMAIN.ATLAS;
   }
 
-  static build(mods: ModProps[]): Sextant {
+  public static build(mods: ModProps[]): Sextant {
     return new Sextant(this.buildMods(mods));
   }
 
@@ -57,7 +54,7 @@ export default class Sextant extends Orb<AtlasNode> {
    * @param {AtlasNode} node 
    * @param {AtlasNode[]} atlas 
    */
-  static blockedMods(target: AtlasNode, atlas: AtlasNode[]): Mod[] {
+  public static blockedMods(target: AtlasNode, atlas: AtlasNode[]): Mod[] {
     return target
       .inSextantRange(atlas, 1)
       .reduce(
@@ -66,10 +63,10 @@ export default class Sextant extends Orb<AtlasNode> {
       );
   }
 
-  atlas: AtlasNode[] | undefined;
-  type: Type = Type.master;
+  public atlas: AtlasNode[] | undefined;
+  public type: Type = Type.master;
 
-  applyTo(node: AtlasNode): AtlasNode {
+  public applyTo(node: AtlasNode): AtlasNode {
     if (!anySet(this.applicableTo(node))) {
       const rolled = super.rollMod(node.removeAllMods());
 
@@ -86,8 +83,7 @@ export default class Sextant extends Orb<AtlasNode> {
   }
 
   // applicable to any node for now
-  // eslint-disable-next-line no-unused-vars
-  applicableTo(node: AtlasNode): ApplicableFlags {
+  public applicableTo(node: AtlasNode): ApplicableFlags {
     const applicable_flags = {
       wrong_tier_group: false,
     };
@@ -110,18 +106,20 @@ export default class Sextant extends Orb<AtlasNode> {
   // I don't know which spawnweight it chooses though if
   // it can choose between multiple weights
   // for now we just search the adjacents if its 0 and pick first we find
-  findAdjacentWithSpawnweight(
+  public findAdjacentWithSpawnweight(
     mod: Mod,
     node: AtlasNode,
   ): AtlasNode | undefined {
-    if (this.atlas == null) throw new ContextUndefined('atlas');
+    if (this.atlas == null) {
+      throw new ContextUndefined('atlas');
+    }
 
     return node.inSextantRange(this.atlas).find(other => {
       return mod.spawnweightFor(other) > 0;
     });
   }
 
-  isModSpawnableOn(mod: Mod, node: AtlasNode): SpawnableFlags {
+  public isModSpawnableOn(mod: Mod, node: AtlasNode): SpawnableFlags {
     const spawnable_flags = {
       ...super.isModSpawnableOn(mod, node),
       no_adjacents_with_spawnweight: false,
@@ -143,8 +141,10 @@ export default class Sextant extends Orb<AtlasNode> {
     return spawnable_flags;
   }
 
-  modsFor(node: AtlasNode, whitelist: string[] = []) {
-    if (this.atlas == null) throw new ContextUndefined('atlas');
+  public modsFor(node: AtlasNode, whitelist: string[] = []) {
+    if (this.atlas == null) {
+      throw new ContextUndefined('atlas');
+    }
 
     const blocked = Sextant.blockedMods(node, this.atlas);
 

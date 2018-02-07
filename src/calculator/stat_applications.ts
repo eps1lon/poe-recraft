@@ -1,7 +1,7 @@
-type Application = {
+interface Application {
   classification: Array<string | string[]>;
   type: 'flat' | 'inc' | 'more';
-};
+}
 
 const applications: { [key: string]: Application } = {
   accuracy_rating: {

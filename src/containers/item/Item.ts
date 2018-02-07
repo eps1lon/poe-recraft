@@ -1,5 +1,5 @@
 // @flow
-import { Container } from '../Container';
+import Container from '../Container';
 import { Mod } from '../../mods';
 import { TagProps, BaseItemTypeProps } from '../../schema';
 import MetaData from '../../util/MetaData';
@@ -27,15 +27,15 @@ import ItemProperties, {
   Builder as PropertiesBuilder,
 } from './components/properties/ItemProperties';
 
-export type ItemProps = {
+export interface ItemProps {
   readonly corrupted: boolean;
   readonly item_level: number;
   readonly mirrored: boolean;
   readonly sockets?: number;
-};
+}
 
 export class UnacceptedMod extends Error {
-  type = 'UnacceptedMod';
+  public type = 'UnacceptedMod';
 
   constructor() {
     super('Unacceptable mods passed to this Container');
@@ -60,7 +60,7 @@ const shallowEqual = (a: { [key: string]: any }, b: { [key: string]: any }) => {
 };
 
 export default class Item implements Container<Mod> {
-  static build(baseitem: BaseItemTypeProps): Item {
+  public static build(baseitem: BaseItemTypeProps): Item {
     const clazz = String(baseitem.inherits_from.split(/[\\/]/).pop());
     const meta_data = MetaData.build(clazz);
 
@@ -91,20 +91,20 @@ export default class Item implements Container<Mod> {
     });
   }
 
-  static fromBuilder(builder: Builder): Item {
+  public static fromBuilder(builder: Builder): Item {
     return new Item(builder);
   }
 
-  affixes: ItemAffixes;
-  baseitem: BaseItemTypeProps;
-  implicits: Implicits;
-  meta_data: MetaData;
-  name: Name & Component<Item, NameBuilder>;
-  props: ItemProps;
-  properties: Properties & Component<Item, any>;
-  rarity: Rarity<Item> & Component<Item, RarityBuilder>;
-  requirements: Requirements & Component<Item, RequirementsBuilder>;
-  sockets: Sockets & Component<Item, SocketsBuilder>;
+  public affixes: ItemAffixes;
+  public baseitem: BaseItemTypeProps;
+  public implicits: Implicits;
+  public meta_data: MetaData;
+  public name: Name & Component<Item, NameBuilder>;
+  public props: ItemProps;
+  public properties: Properties & Component<Item, any>;
+  public rarity: Rarity<Item> & Component<Item, RarityBuilder>;
+  public requirements: Requirements & Component<Item, RequirementsBuilder>;
+  public sockets: Sockets & Component<Item, SocketsBuilder>;
 
   constructor(builder: Builder) {
     this.baseitem = builder.baseitem;
@@ -121,7 +121,7 @@ export default class Item implements Container<Mod> {
     this.implicits = new Implicits(this, builder.implicits);
   }
 
-  withMutations(mutate: (builder: Builder) => Builder): this {
+  public withMutations(mutate: (builder: Builder) => Builder): this {
     const prev = this.builder();
     const mutated = mutate(prev);
 
@@ -133,7 +133,7 @@ export default class Item implements Container<Mod> {
     }
   }
 
-  builder(): Builder {
+  public builder(): Builder {
     return {
       affixes: this.affixes.mods,
       baseitem: this.baseitem,
@@ -152,7 +152,7 @@ export default class Item implements Container<Mod> {
   /**
    * returns tags of item + tags from mods
    */
-  getTags(): TagProps[] {
+  public getTags(): TagProps[] {
     return [
       ...this.meta_data.props.tags,
       ...this.baseitem.tags,
@@ -162,16 +162,15 @@ export default class Item implements Container<Mod> {
   }
 
   // Container implementtion
-  // $FlowFixMe
   get mods(): Mod[] {
     return [...this.implicits.mods, ...this.affixes.mods];
   }
 
-  asArray(): Mod[] {
+  public asArray(): Mod[] {
     return this.mods;
   }
 
-  addMod(other: Mod): this {
+  public addMod(other: Mod): this {
     if (other.isAffix()) {
       return this.addAffix(other);
     } else if (other.implicitCandidate()) {
@@ -181,7 +180,7 @@ export default class Item implements Container<Mod> {
     }
   }
 
-  removeMod(other: Mod): this {
+  public removeMod(other: Mod): this {
     if (other.isAffix()) {
       return this.removeAffix(other);
     } else if (other.implicitCandidate()) {
@@ -191,15 +190,15 @@ export default class Item implements Container<Mod> {
     }
   }
 
-  removeAllMods(): this {
+  public removeAllMods(): this {
     return this.mutateAffixes(affixes => affixes.removeAllMods());
   }
 
-  hasMod(other: Mod): boolean {
+  public hasMod(other: Mod): boolean {
     return this.affixes.hasMod(other) || this.implicits.hasMod(other);
   }
 
-  hasModGroup(other: Mod): boolean {
+  public hasModGroup(other: Mod): boolean {
     return (
       // isAffix => this.affixes.hasModGroup(other)
       (!other.isAffix() || this.affixes.hasModGroup(other)) &&
@@ -208,11 +207,11 @@ export default class Item implements Container<Mod> {
     );
   }
 
-  hasRoomFor(other: Mod): boolean {
+  public hasRoomFor(other: Mod): boolean {
     return this.affixes.hasRoomFor(other) || this.implicits.hasRoomFor(other);
   }
 
-  indexOfModWithPrimary(primary: number): number {
+  public indexOfModWithPrimary(primary: number): number {
     const affix_index = this.affixes.indexOfModWithPrimary(primary);
     const implicit_index = this.implicits.indexOfModWithPrimary(primary);
 
@@ -225,7 +224,7 @@ export default class Item implements Container<Mod> {
     }
   }
 
-  maxModsOfType(other: Mod): number {
+  public maxModsOfType(other: Mod): number {
     if (other.isAffix()) {
       return this.affixes.maxModsOfType(other);
     } else if (other.implicitCandidate()) {
@@ -235,19 +234,19 @@ export default class Item implements Container<Mod> {
     }
   }
 
-  inDomainOf(mod_domain: number): boolean {
+  public inDomainOf(mod_domain: number): boolean {
     return this.affixes.inDomainOf(mod_domain);
   }
 
-  level(): number {
+  public level(): number {
     return this.props.item_level;
   }
 
-  any(): boolean {
+  public any(): boolean {
     return this.mods.length > 0;
   }
 
-  stats(): { [key: string]: Stat } {
+  public stats(): { [key: string]: Stat } {
     // merge implicit stats and affix stats by adding its stats
     const a: { [key: string]: Stat } = this.implicits.stats();
     const b: { [key: string]: Stat } = this.affixes.stats();
@@ -286,12 +285,12 @@ export default class Item implements Container<Mod> {
   }
   // End Container implementation
 
-  removeAllImplicits(): this {
+  public removeAllImplicits(): this {
     return this.mutateImplicits(implicits => implicits.removeAllMods());
   }
 
   // Begin state managment
-  setProperty(prop: keyof ItemProps, value: any): this {
+  public setProperty(prop: keyof ItemProps, value: any): this {
     return this.withMutations(builder => {
       return {
         ...builder,
@@ -303,7 +302,7 @@ export default class Item implements Container<Mod> {
     });
   }
 
-  corrupt(): this {
+  public corrupt(): this {
     if (this.props.corrupted) {
       throw new Error('invalid state: is already corrupted');
     } else {
@@ -311,7 +310,7 @@ export default class Item implements Container<Mod> {
     }
   }
 
-  mirror(): this {
+  public mirror(): this {
     if (this.props.mirrored) {
       throw new Error('invalid state: is already mirrored');
     } else {

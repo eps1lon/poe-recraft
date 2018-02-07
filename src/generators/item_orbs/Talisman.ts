@@ -7,16 +7,16 @@ import ItemOrb from './ItemOrb';
  * TODO
  */
 export default class Talisman extends ItemOrb {
-  static modFilter(): boolean {
+  public static modFilter(): boolean {
     // no mods
     return false;
   }
 
-  static build(mods: ModProps[]): Talisman {
+  public static build(mods: ModProps[]): Talisman {
     return new Talisman(this.buildMods(mods));
   }
 
-  applyTo(item: Item): Item {
+  public applyTo(item: Item): Item {
     throw new Error('not implemented');
   }
 }

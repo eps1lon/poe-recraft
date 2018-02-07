@@ -1,12 +1,10 @@
-import { Container } from '../containers/Container';
+import Container from '../containers/Container';
 import { ModProps } from '../schema';
 import { Mod } from '../mods';
 import { Flags, anySet } from '../util/Flags';
 import { choose } from '../util/rng';
 
 import Generator, { GeneratorDetails } from './Generator';
-
-const filterNone = () => true;
 
 export interface SpawnableFlags extends Flags {
   no_matching_tags: boolean;
@@ -21,18 +19,18 @@ export default abstract class Orb<C extends Container<any>> extends Generator<
   Mod,
   C
 > {
-  static modFilter(mod: ModProps): boolean {
+  public static modFilter(mod: ModProps): boolean {
     return mod.spawn_weights.length > 0;
   }
 
-  static buildMods(mods: ModProps[]): Mod[] {
+  public static buildMods(mods: ModProps[]): Mod[] {
     return mods
       .filter(props => this.modFilter(props))
       .map(props => new Mod(props));
   }
 
-  chooseMod(container: C): Mod | undefined {
-    const details: GeneratorDetails<Mod>[] = this.modsFor(container);
+  public chooseMod(container: C): Mod | undefined {
+    const details: Array<GeneratorDetails<Mod>> = this.modsFor(container);
     const detail = choose(details, other => {
       if (other.spawnweight == null) {
         throw new Error('optional spawnweight not allowed when choosing');
@@ -52,7 +50,7 @@ export default abstract class Orb<C extends Container<any>> extends Generator<
    * adds a mod from chooseMod ignoring if it's applicable
    * @param {Item} item 
    */
-  rollMod(container: C): C {
+  public rollMod(container: C): C {
     const mod = this.chooseMod(container);
     if (mod != null) {
       return container.addMod(mod);
@@ -61,7 +59,7 @@ export default abstract class Orb<C extends Container<any>> extends Generator<
     }
   }
 
-  isModSpawnableOn(mod: Mod, container: C): SpawnableFlags {
+  public isModSpawnableOn(mod: Mod, container: C): SpawnableFlags {
     const spawnable_flags: SpawnableFlags = {
       no_matching_tags: false,
       spawnweight_zero: false,
@@ -80,8 +78,11 @@ export default abstract class Orb<C extends Container<any>> extends Generator<
     return spawnable_flags;
   }
 
-  modsFor(container: C, whitelist: string[] = []): GeneratorDetails<Mod>[] {
-    const details: GeneratorDetails<Mod>[] = [];
+  public modsFor(
+    container: C,
+    whitelist: string[] = [],
+  ): Array<GeneratorDetails<Mod>> {
+    const details: Array<GeneratorDetails<Mod>> = [];
     this.getAvailableMods().forEach(mod => {
       const applicable_flags = this.isModApplicableTo(mod, container);
       const spawnable_flags = this.isModSpawnableOn(mod, container);

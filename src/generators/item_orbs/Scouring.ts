@@ -1,11 +1,8 @@
 // @flow
 import Item from '../../containers/item';
 
-import { Flags, anySet } from '../../util/Flags';
-import ItemOrb, {
-  ApplicableFlag as BaseApplicableFlag,
-  ApplicableFlags as BaseApplicableFlags,
-} from './ItemOrb';
+import { anySet } from '../../util/Flags';
+import ItemOrb, { ApplicableFlags as BaseApplicableFlags } from './ItemOrb';
 
 export interface ApplicableFlags extends BaseApplicableFlags {
   normal: boolean;
@@ -22,7 +19,7 @@ export default class Scouring extends ItemOrb {
    * applies Orb of Scouring to an item
    * considers locked affixes metamods
    */
-  applyTo(other: Item): Item {
+  public applyTo(other: Item): Item {
     if (!anySet(this.applicableTo(other))) {
       let scoured_item: Item = other;
 
@@ -60,7 +57,7 @@ export default class Scouring extends ItemOrb {
   /**
    * checks if normal or unique rarity and returns false
    */
-  applicableTo(item: Item): ApplicableFlags {
+  public applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = {
       ...super.applicableTo(item),
       normal: false,

@@ -33,7 +33,7 @@ export const createTable = <P extends PropsWithPrimary, T>(
   return json_cache[file];
 };
 
-type Tables = {
+interface Tables {
   atlas: PropsTable<AtlasNodeProps, AtlasNode>;
   craftingbenchoptions: PropsTable<
     CraftingBenchOptionsProps,
@@ -41,7 +41,7 @@ type Tables = {
   >;
   items: PropsTable<BaseItemTypeProps, Item>;
   mods: PropsTable<ModProps, Mod>;
-};
+}
 
 export const createTables = () => {
   return {

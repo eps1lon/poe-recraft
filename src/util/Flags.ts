@@ -1,6 +1,6 @@
 // @flow
 
-/**
+/*
  
 type BaseFlag = "one";
 
@@ -15,11 +15,13 @@ const flags: BaseFlags = {
 Extension
 type ExtendedFlag = BaseFlag | "two";
 
-type ExtendedFlags = BaseFlags | Flags<BaseFlag>; // Flags<ExtendedFlag> polymorphic error!
+  type ExtendedFlags = BaseFlags | Flags<BaseFlag>; // Flags<ExtendedFlag> polymorphic error!
 
  */
 
-export type Flags = { [key: string]: boolean };
+export interface Flags {
+  [key: string]: boolean;
+}
 
 export const anySet = (flags: Flags, whitelist: any[] = []) => {
   // ignore every key in which is in whitelist and no flag set (===true)

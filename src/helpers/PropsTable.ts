@@ -1,8 +1,8 @@
 import { Buildable } from '../interfaces';
 
-export type PropsWithPrimary = {
+export interface PropsWithPrimary {
   primary: number;
-};
+}
 
 export class NotFound extends Error {
   constructor(name: string, message: string) {
@@ -12,19 +12,19 @@ export class NotFound extends Error {
 
 // take care. flow accepts any as a constructor
 export default class PropsTable<P extends PropsWithPrimary, T> {
-  builder: Buildable<P, T>;
-  table: P[];
+  public builder: Buildable<P, T>;
+  public table: P[];
 
   constructor(all: P[], constructor: Buildable<P, T>) {
     this.builder = constructor;
     this.table = all;
   }
 
-  all(): P[] {
+  public all(): P[] {
     return this.table;
   }
 
-  find(finder: (props: P) => boolean): P | undefined {
+  public find(finder: (props: P) => boolean): P | undefined {
     return this.table.find(finder);
   }
 
@@ -32,7 +32,7 @@ export default class PropsTable<P extends PropsWithPrimary, T> {
    * Builds an instance for the properties for which the provided predicate is
    * true. Returns for the first value for which the predicate is true
    */
-  from(finder: (props: P) => boolean): T {
+  public from(finder: (props: P) => boolean): T {
     const props = this.find(finder);
 
     if (props == null) {
@@ -42,7 +42,7 @@ export default class PropsTable<P extends PropsWithPrimary, T> {
     return this.builder.build(props);
   }
 
-  fromPrimary(primary: number): T {
+  public fromPrimary(primary: number): T {
     try {
       return this.from(other => other.primary === primary);
     } catch (err) {

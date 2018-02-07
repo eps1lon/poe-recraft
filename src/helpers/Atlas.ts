@@ -8,9 +8,9 @@ type HumanId = string;
 
 type AtlasNodes = Map<HumanId, AtlasNode>;
 
-type Builder = {
+interface Builder {
   nodes: AtlasNodes;
-};
+}
 
 type AtlasSextant = Sextant; // sextant.atlas defined
 
@@ -20,37 +20,37 @@ type AtlasSextant = Sextant; // sextant.atlas defined
  * main purpose is for reducer like usage in redux
  */
 export default class Atlas {
-  static buildLookupTable(atlas: AtlasNodeProps[]): AtlasNodes {
+  public static buildLookupTable(atlas: AtlasNodeProps[]): AtlasNodes {
     return atlas.reduce((nodes, props) => {
       return nodes.set(AtlasNode.humanId(props), new AtlasNode([], props));
     }, new Map());
   }
 
-  static build(atlas: AtlasNodeProps[]): Atlas {
+  public static build(atlas: AtlasNodeProps[]): Atlas {
     const nodes: AtlasNodes = Atlas.buildLookupTable(atlas);
 
     return new Atlas(nodes);
   }
 
-  static withBuilder(builder: Builder): Atlas {
+  public static withBuilder(builder: Builder): Atlas {
     return new Atlas(builder.nodes);
   }
 
-  readonly nodes: AtlasNodes;
+  public readonly nodes: AtlasNodes;
 
   constructor(nodes: AtlasNodes) {
     this.nodes = nodes;
   }
 
   // TODO in the future use [Symbol.iterator]()
-  asArray(): AtlasNode[] {
+  public asArray(): AtlasNode[] {
     return Array.from(this.nodes.values());
   }
 
   /**
    * wrapper for map get that ensures a node or throws
    */
-  get(id: HumanId): AtlasNode {
+  public get(id: HumanId): AtlasNode {
     const node = this.nodes.get(id);
 
     if (node == null) {
@@ -60,7 +60,7 @@ export default class Atlas {
     return node;
   }
 
-  builder(): Builder {
+  public builder(): Builder {
     return {
       nodes: this.nodes,
     };
@@ -72,7 +72,7 @@ export default class Atlas {
    * if the returned object is strict equal to the prev one
    * it doesn't return a new copy
    */
-  withMutations(mutate: (builder: Builder) => Builder): this {
+  public withMutations(mutate: (builder: Builder) => Builder): this {
     const prev = this.builder();
     const next = mutate(prev);
 
@@ -89,7 +89,7 @@ export default class Atlas {
    * 
    * always returns a new copy
    */
-  reset(): this {
+  public reset(): this {
     return this.withMutations(({ nodes, ...builder }) => {
       return {
         ...builder,
@@ -100,15 +100,18 @@ export default class Atlas {
     });
   }
 
-  addMod(mod: Mod, node_id: HumanId): this {
+  public addMod(mod: Mod, node_id: HumanId): this {
     return this.mutateNode(node_id, node => node.addMod(mod));
   }
 
-  removeMod(mod: Mod, node_id: HumanId): this {
+  public removeMod(mod: Mod, node_id: HumanId): this {
     return this.mutateNode(node_id, node => node.removeMod(mod));
   }
 
-  mutateNode(node_id: HumanId, mutate: (node: AtlasNode) => AtlasNode): this {
+  public mutateNode(
+    node_id: HumanId,
+    mutate: (node: AtlasNode) => AtlasNode,
+  ): this {
     const target = this.get(node_id);
     const mutated = mutate(target);
 
@@ -124,27 +127,25 @@ export default class Atlas {
     }
   }
 
-  applySextant(sextant: Sextant, node_id: HumanId): this {
+  public applySextant(sextant: Sextant, node_id: HumanId): this {
     const sextant_on_atlas = this.prepareSextant(sextant);
 
     return this.mutateNode(node_id, node => sextant_on_atlas.applyTo(node));
   }
 
-  modsFor(sextant: Sextant, node_id: HumanId) {
+  public modsFor(sextant: Sextant, node_id: HumanId) {
     const sextant_on_atlas = this.prepareSextant(sextant);
 
     return sextant_on_atlas.modsFor(this.get(node_id));
   }
 
-  blockedMods(node_id: HumanId): Mod[] {
+  public blockedMods(node_id: HumanId): Mod[] {
     const target = this.get(node_id);
 
     return Sextant.blockedMods(target, this.asArray());
   }
 
-  // private
-
-  prepareSextant(sextant: Sextant): AtlasSextant {
+  private prepareSextant(sextant: Sextant): AtlasSextant {
     const clone = new Sextant(sextant.mods);
 
     clone.type = sextant.type;

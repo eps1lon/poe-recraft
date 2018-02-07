@@ -6,7 +6,7 @@ import Mod from '../../mods/Mod';
 import ItemOrb from './ItemOrb';
 
 export default class Vaal extends ItemOrb {
-  static modFilter(mod: ModProps): boolean {
+  public static modFilter(mod: ModProps): boolean {
     // vaal implicits
     return (
       super.modFilter(mod) &&
@@ -14,7 +14,7 @@ export default class Vaal extends ItemOrb {
     );
   }
 
-  static build(mods: ModProps[]): Vaal {
+  public static build(mods: ModProps[]): Vaal {
     return new Vaal(this.buildMods(mods));
   }
 
@@ -22,7 +22,7 @@ export default class Vaal extends ItemOrb {
    * replaces implicit with vaal implicit
    * TODO: white sockets, reroll (brick(, nothing
    */
-  applyTo(item: Item): Item {
+  public applyTo(item: Item): Item {
     if (!anySet(this.applicableTo(item))) {
       const blank_item = item.removeAllImplicits();
 

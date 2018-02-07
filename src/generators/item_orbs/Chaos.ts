@@ -3,11 +3,8 @@ import { random } from 'lodash';
 import Item from '../../containers/item';
 import { ModProps } from '../../schema';
 
-import { Flags, anySet } from '../../util/Flags';
-import ItemOrb, {
-  ApplicableFlag as BaseApplicableFlag,
-  ApplicableFlags as BaseApplicableFlags,
-} from './ItemOrb';
+import { anySet } from '../../util/Flags';
+import ItemOrb, { ApplicableFlags as BaseApplicableFlags } from './ItemOrb';
 import Alchemy from './Alchemy';
 import Exalted from './Exalted';
 import Scouring from './Scouring';
@@ -19,14 +16,14 @@ export interface ApplicableFlags extends BaseApplicableFlags {
 export type ApplicableFlag = keyof ApplicableFlags;
 
 export default class Chaos extends ItemOrb {
-  static build(mods: ModProps[]): Chaos {
+  public static build(mods: ModProps[]): Chaos {
     return new Chaos(Transmute.buildMods(mods));
   }
 
   /**
    *  rerolls properties of magic
    */
-  applyTo(item: Item): Item {
+  public applyTo(item: Item): Item {
     if (!anySet(this.applicableTo(item))) {
       const locked_prefixes = item.affixes.lockedPrefixes();
       const locked_suffixes = item.affixes.lockedSuffixes();
@@ -68,7 +65,7 @@ export default class Chaos extends ItemOrb {
     }
   }
 
-  applicableTo(item: Item): ApplicableFlags {
+  public applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = {
       ...super.applicableTo(item),
       not_rare: false,

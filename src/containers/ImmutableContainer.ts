@@ -2,11 +2,11 @@ import { TagProps } from '../schema';
 import Mod from '../mods/Mod';
 import Stat from '../calculator/Stat';
 
-import { Container } from './Container';
+import Container from './Container';
 
-export type Builder<T extends Mod> = {
+export interface Builder<T extends Mod> {
   mods: T[];
-};
+}
 
 export default abstract class ImmutableContainer<
   T extends Mod,
@@ -18,12 +18,12 @@ export default abstract class ImmutableContainer<
     this.mods = mods;
   }
 
-  builder(): B {
+  public builder(): B {
     return { mods: this.mods } as B;
   }
 
   // batch mutations
-  withMutations(mutate: (builder: B) => B): this {
+  public withMutations(mutate: (builder: B) => B): this {
     const builder = mutate(this.builder());
 
     // @ts-ignore
@@ -33,7 +33,7 @@ export default abstract class ImmutableContainer<
   /**
    *  adds a new non-existing mod
    */
-  addMod(mod: T): this {
+  public addMod(mod: T): this {
     if (!this.hasMod(mod)) {
       return this.withMutations(builder => {
         return Object.assign({}, builder, { mods: builder.mods.concat(mod) });
@@ -46,7 +46,7 @@ export default abstract class ImmutableContainer<
   /**
    * truncates mods
    */
-  removeAllMods(): this {
+  public removeAllMods(): this {
     if (this.mods.length > 0) {
       return this.withMutations(builder => {
         return Object.assign({}, builder, { mods: [] });
@@ -59,7 +59,7 @@ export default abstract class ImmutableContainer<
   /**
    * removes an existing mod
    */
-  removeMod(other: T): this {
+  public removeMod(other: T): this {
     if (this.hasMod(other)) {
       return this.withMutations(builder => {
         return Object.assign({}, builder, {
@@ -73,19 +73,19 @@ export default abstract class ImmutableContainer<
     }
   }
 
-  indexOfModWithPrimary(primary: number): number {
+  public indexOfModWithPrimary(primary: number): number {
     return this.mods.findIndex(mod => mod.props.primary === primary);
   }
 
-  indexOfMod(mod: T): number {
+  public indexOfMod(mod: T): number {
     return this.indexOfModWithPrimary(mod.props.primary);
   }
 
-  hasMod(mod: T): boolean {
+  public hasMod(mod: T): boolean {
     return this.indexOfMod(mod) !== -1;
   }
 
-  hasModGroup(other: T): boolean {
+  public hasModGroup(other: T): boolean {
     return (
       this.mods.find(
         mod => mod.props.correct_group === other.props.correct_group,
@@ -96,7 +96,7 @@ export default abstract class ImmutableContainer<
   /**
    * tags of the mods in the container
    */
-  getTags(): TagProps[] {
+  public getTags(): TagProps[] {
     return this.mods
       .reduce(
         (tags, mod) => {
@@ -110,14 +110,14 @@ export default abstract class ImmutableContainer<
       );
   }
 
-  asArray(): T[] {
+  public asArray(): T[] {
     return this.mods;
   }
 
   /**
    * @param {number} mod_type generation type
    */
-  numberOfModsOfType(mod_type: number): number {
+  public numberOfModsOfType(mod_type: number): number {
     return this.mods.filter(mod => mod.props.generation_type === mod_type)
       .length;
   }
@@ -125,7 +125,7 @@ export default abstract class ImmutableContainer<
   /**
    * checks if theres more place for a mod with their generationtype
    */
-  hasRoomFor(mod: T): boolean {
+  public hasRoomFor(mod: T): boolean {
     return (
       this.numberOfModsOfType(mod.props.generation_type) <
       this.maxModsOfType(mod)
@@ -135,7 +135,7 @@ export default abstract class ImmutableContainer<
   /**
    * checks if this container has any mods
    */
-  any(): boolean {
+  public any(): boolean {
     return this.mods.length > 0;
   }
 
@@ -144,7 +144,7 @@ export default abstract class ImmutableContainer<
    * 
    * mods can have multiple stats so we sum their values grouped by stat id
    */
-  stats(): { [key: string]: Stat } {
+  public stats(): { [key: string]: Stat } {
     return this.mods.reduce((stats: { [key: string]: Stat }, mod: Mod) => {
       // flattened
       return mod.statsJoined().reduce((joined, stat) => {
@@ -167,9 +167,9 @@ export default abstract class ImmutableContainer<
     }, {});
   }
 
-  abstract maxModsOfType(mod: T): number;
+  public abstract maxModsOfType(mod: T): number;
 
-  abstract inDomainOf(mod_domain: number): boolean;
+  public abstract inDomainOf(mod_domain: number): boolean;
 
-  abstract level(): number;
+  public abstract level(): number;
 }

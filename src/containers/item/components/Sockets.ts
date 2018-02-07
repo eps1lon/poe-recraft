@@ -8,40 +8,40 @@ export interface Sockets {
 export type Builder = number;
 
 export default class ItemSockets implements Sockets, Component<Item, Builder> {
-  amount: number;
-  parent: Item;
+  public amount: number;
+  public parent: Item;
 
   constructor(item: Item, builder: Builder) {
     this.parent = item;
     this.amount = builder;
   }
 
-  builder() {
+  public builder() {
     return this.amount;
   }
 
   // TODO: what about Corroded Blades or other similar 1x4 Items. Confirm
   // that they also only can have max 4 sockets like Rods or act like small_Staff
-  max(): number {
-    const by_stats = this._maxOverride();
+  public max(): number {
+    const by_stats = this.maxOverride();
 
     // tags take priority
     if (by_stats != null) {
       return by_stats;
     } else {
       return Math.min(
-        this._maxByDimensions(),
-        this._maxByLevel(),
-        this._maxByMetaData(),
+        this.maxByDimensions(),
+        this.maxByLevel(),
+        this.maxByMetaData(),
       );
     }
   }
 
-  any(): boolean {
+  public any(): boolean {
     return this.amount > 0;
   }
 
-  _maxByMetaData(): number {
+  private maxByMetaData(): number {
     const { meta_data } = this.parent;
 
     if (meta_data.isA('AbstractShield')) {
@@ -63,7 +63,7 @@ export default class ItemSockets implements Sockets, Component<Item, Builder> {
     }
   }
 
-  _maxByLevel(): number {
+  private maxByLevel(): number {
     const { props } = this.parent;
 
     if (props.item_level <= 1) {
@@ -79,13 +79,13 @@ export default class ItemSockets implements Sockets, Component<Item, Builder> {
     }
   }
 
-  _maxByDimensions(): number {
+  private maxByDimensions(): number {
     const { width, height } = this.parent.baseitem;
 
     return width * height;
   }
 
-  _maxOverride(): number | undefined {
+  private maxOverride(): number | undefined {
     const stats = this.parent.stats();
     const tags = this.parent.getTags();
 

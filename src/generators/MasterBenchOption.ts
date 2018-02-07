@@ -6,7 +6,6 @@ import { filterUndefined } from '../util/ts';
 import { metaMods as META_MODs, Mod } from '../mods';
 
 import Generator, {
-  ModApplicableFlag as BaseModApplicableFlag,
   ModApplicableFlags as BaseModApplicableFlags,
   GeneratorDetails,
 } from './Generator';
@@ -21,14 +20,12 @@ export interface ApplicableFlags extends Flags {
 }
 export type ApplicableFlag = keyof ApplicableFlags;
 
-/**
- */
 export default class MasterBenchOption extends Generator<Mod, Item> {
-  static build(option: CraftingBenchOptionsProps) {
+  public static build(option: CraftingBenchOptionsProps) {
     return new MasterBenchOption(option);
   }
 
-  readonly props: CraftingBenchOptionsProps;
+  public readonly props: CraftingBenchOptionsProps;
 
   constructor(option: CraftingBenchOptionsProps) {
     if (option.mod != null) {
@@ -45,17 +42,17 @@ export default class MasterBenchOption extends Generator<Mod, Item> {
   }
 
   /**
- * applies a chosen craftingbenchoption
- * 
- * cant overload extended method. so we have to set the chosen option before
- */
-  applyTo(item: Item): Item {
+   * applies a chosen craftingbenchoption
+   * 
+   * cant overload extended method. so we have to set the chosen option before
+   */
+  public applyTo(item: Item): Item {
     if (this.isApplicableTo(item)) {
       const { mod } = this;
 
       /**
-     * TODO customactions for no mod
-     */
+       * TODO customactions for no mod
+       */
       if (mod != null) {
         // white gets upgraded to blue
         const crafted_item = item.rarity.isNormal()
@@ -75,9 +72,9 @@ export default class MasterBenchOption extends Generator<Mod, Item> {
   }
 
   /**
- * every item is welcome
- */
-  applicableTo(item: Item): ApplicableFlags {
+   * every item is welcome
+   */
+  public applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = {
       wrong_itemclass: false,
     };
@@ -92,9 +89,12 @@ export default class MasterBenchOption extends Generator<Mod, Item> {
   }
 
   /**
- * greps mod::applicableTo 
- */
-  modsFor(item: Item, whitelist: string[] = []): GeneratorDetails<Mod>[] {
+   * greps mod::applicableTo 
+   */
+  public modsFor(
+    item: Item,
+    whitelist: string[] = [],
+  ): Array<GeneratorDetails<Mod>> {
     // TODO look into why we simulate another rarity why is a MasterMod not
     // applicable to white items?
     // simulate blue if white
@@ -122,11 +122,11 @@ export default class MasterBenchOption extends Generator<Mod, Item> {
   }
 
   /**
- * checks if the given mod is applicable to the item
- * 
- * remember that this doesn't check if the passed mod is the mod of this option
- */
-  isModApplicableTo(mod: Mod, item: Item): ModApplicableFlags {
+   * checks if the given mod is applicable to the item
+   * 
+   * remember that this doesn't check if the passed mod is the mod of this option
+   */
+  public isModApplicableTo(mod: Mod, item: Item): ModApplicableFlags {
     const applicable_flags = {
       ...super.isModApplicableTo(mod, item),
       no_multimod: false,

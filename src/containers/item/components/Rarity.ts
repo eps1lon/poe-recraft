@@ -29,35 +29,35 @@ export type Builder = RarityKind;
  */
 export default class ItemRarity
   implements Rarity<Item>, Component<Item, Builder> {
-  parent: Item;
-  kind: RarityKind;
+  public parent: Item;
+  public kind: RarityKind;
 
   constructor(item: Item, builder: Builder) {
     this.parent = item;
     this.kind = builder;
   }
 
-  builder(): Builder {
+  public builder(): Builder {
     return this.kind;
   }
 
-  isNormal(): boolean {
+  public isNormal(): boolean {
     return this.kind === RarityKind.normal;
   }
 
-  isMagic(): boolean {
+  public isMagic(): boolean {
     return this.kind === RarityKind.magic;
   }
 
-  isRare(): boolean {
+  public isRare(): boolean {
     return this.kind === RarityKind.rare || this.kind === RarityKind.showcase;
   }
 
-  isUnique(): boolean {
+  public isUnique(): boolean {
     return this.kind === RarityKind.unique;
   }
 
-  upgrade() {
+  public upgrade() {
     let new_rarity = this.kind;
 
     if (this.isNormal()) {
@@ -74,7 +74,7 @@ export default class ItemRarity
     });
   }
 
-  set(rarity: RarityIdent) {
+  public set(rarity: RarityIdent) {
     return this.parent.withMutations(builder => {
       return {
         ...builder,
@@ -83,11 +83,11 @@ export default class ItemRarity
     });
   }
 
-  toString(): RarityIdent {
+  public toString(): RarityIdent {
     return RarityKind[this.kind].toString() as RarityIdent;
   }
 
-  any(): boolean {
+  public any(): boolean {
     // ItemRarity always has a rarity
     return true;
   }

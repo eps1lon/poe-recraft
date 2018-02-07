@@ -9,21 +9,21 @@ import ItemOrb from './ItemOrb';
  * ingame representation of a enchantment bench
  */
 export default class Enchantmentbench extends ItemOrb {
-  static modFilter(mod: ModProps): boolean {
+  public static modFilter(mod: ModProps): boolean {
     return (
       super.modFilter(mod) &&
       [Mod.TYPE.ENCHANTMENT].indexOf(mod.generation_type) !== -1
     );
   }
 
-  static build(mods: ModProps[]): Enchantmentbench {
+  public static build(mods: ModProps[]): Enchantmentbench {
     return new Enchantmentbench(this.buildMods(mods));
   }
 
   /**
    * replaces implicits with new enchantment mod
    */
-  applyTo(item: Item): Item {
+  public applyTo(item: Item): Item {
     if (!anySet(this.applicableTo(item))) {
       const blank_item = item.removeAllImplicits();
 
@@ -36,7 +36,7 @@ export default class Enchantmentbench extends ItemOrb {
     return item;
   }
 
-  modsFor(item: Item, whitelist: string[] = []) {
+  public modsFor(item: Item, whitelist: string[] = []) {
     // replace so ignore full domain
     return super.modsFor(item, [...whitelist, 'domain_full']);
   }

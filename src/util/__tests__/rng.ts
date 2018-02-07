@@ -1,6 +1,9 @@
 import { choose, random } from '../rng';
 
-type Item = { id: string; spawnweight: number };
+interface Item {
+  id: string;
+  spawnweight: number;
+}
 const getWeight = (item: Item) => item.spawnweight;
 
 it('should return undefined on an empty pool', () => {
@@ -18,7 +21,7 @@ it('should return the same with a simgle member', () => {
 });
 
 it('should approximate choosing a random member with its weights', () => {
-  const pool: { id: string; spawnweight: number }[] = [
+  const pool: Array<{ id: string; spawnweight: number }> = [
     { id: 'first', spawnweight: 1000 },
     { id: 'second', spawnweight: 8000 },
     { id: 'third', spawnweight: 1000 },
@@ -42,7 +45,9 @@ it('should approximate choosing a random member with its weights', () => {
   for (let i = 1; i <= rolls; i += 1) {
     const item = choose(pool, getWeight);
 
-    if (item == null) throw new Error('item == null');
+    if (item == null) {
+      throw new Error('item == null');
+    }
 
     hits[item.id] += 1;
   }

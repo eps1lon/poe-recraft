@@ -3,14 +3,15 @@ import { createTables } from '../../__fixtures__/util';
 import { AtlasNodeProps } from '../../schema';
 
 import AtlasNode from '../AtlasNode';
-import Atlas from '../../helpers/Atlas';
 
 const { atlas: atlas_nodes, mods } = createTables();
 
 let atlas: AtlasNode[] = [];
 
 const getNode = (primary: number) => {
-  const node = atlas.find((node: AtlasNode) => node.props.primary === primary);
+  const node = atlas.find(
+    (other: AtlasNode) => other.props.primary === primary,
+  );
 
   if (node === undefined) {
     throw new Error(`node ${primary} not found`);

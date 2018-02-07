@@ -5,7 +5,7 @@ import Stat from '../calculator/Stat';
 import { isKeyOf } from '../util/ts';
 
 export default class Mod {
-  static DOMAIN = {
+  public static DOMAIN = {
     ITEM: 1,
     FLASK: 2,
     MONSTER: 3,
@@ -17,7 +17,7 @@ export default class Mod {
     ATLAS: 12,
   };
 
-  static TYPE: { [key: string]: number } = {
+  public static TYPE: { [key: string]: number } = {
     PREFIX: 1,
     SUFFIX: 2,
     PREMADE: 3,
@@ -30,7 +30,7 @@ export default class Mod {
     ENCHANTMENT: 10,
   };
 
-  static build(props: ModProps) {
+  public static build(props: ModProps) {
     return new this(props);
   }
 
@@ -40,52 +40,52 @@ export default class Mod {
     this.props = props;
   }
 
-  isType(type: string) {
+  public isType(type: string) {
     const t = type.toUpperCase();
 
     return t in Mod.TYPE && this.props.generation_type === Mod.TYPE[t];
   }
 
-  isPrefix() {
+  public isPrefix() {
     return this.isType('prefix');
   }
 
-  isSuffix() {
+  public isSuffix() {
     return this.isType('suffix');
   }
 
-  isEnchantment() {
+  public isEnchantment() {
     return this.isType('enchantment');
   }
 
-  isPremade() {
+  public isPremade() {
     return this.isType('premade');
   }
 
-  isAffix() {
+  public isAffix() {
     return this.isPrefix() || this.isSuffix();
   }
 
-  isMasterMod(): boolean {
+  public isMasterMod(): boolean {
     return this.props.domain === Mod.DOMAIN.MASTER;
   }
 
-  implicitCandidate() {
+  public implicitCandidate() {
     return (
       this.isPremade() || this.isType('vaal') || this.isType('enchantment')
     );
   }
 
-  statsJoined(): Stat[] {
+  public statsJoined(): Stat[] {
     return this.props.stats.map((stat_props, i) => {
       return this.nthStat(stat_props, i);
     });
   }
 
   /**
- * string identifier of the generation type
- */
-  modType(): string | undefined {
+   * string identifier of the generation type
+   */
+  public modType(): string | undefined {
     const entry = Object.entries(Mod.TYPE).find(([, type]) => {
       return this.props.generation_type === type;
     });
@@ -97,11 +97,11 @@ export default class Mod {
     }
   }
 
-  requiredLevel(): number {
+  public requiredLevel(): number {
     return Math.floor(this.props.level * 0.8);
   }
 
-  spawnweightPropsFor(other: Taggable): SpawnWeightProps | undefined {
+  public spawnweightPropsFor(other: Taggable): SpawnWeightProps | undefined {
     const { spawn_weights } = this.props;
     const other_tags = other.getTags();
 
@@ -121,7 +121,7 @@ export default class Mod {
     }
   }
 
-  spawnweightFor(other: Taggable): number {
+  public spawnweightFor(other: Taggable): number {
     const spawnweight = this.spawnweightPropsFor(other);
 
     if (spawnweight == null) {
@@ -131,7 +131,7 @@ export default class Mod {
     }
   }
 
-  nthStat(stat_props: StatProps, n: number) {
+  public nthStat(stat_props: StatProps, n: number) {
     const min_key = `stat${n + 1}_min`;
     const max_key = `stat${n + 1}_max`;
 

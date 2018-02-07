@@ -1,5 +1,4 @@
 import Item from '../../containers/item';
-import Mod from '../../mods/Mod';
 import { Flags } from '../../util/Flags';
 
 import Orb from '../Orb';
@@ -14,7 +13,7 @@ export default abstract class ItemOrb extends Orb<Item> {
   /**
    * currency only applies to items
    */
-  applicableTo(item: Item): ApplicableFlags {
+  public applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = {
       corrupted: false,
       mirrored: false,

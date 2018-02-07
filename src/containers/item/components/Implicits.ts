@@ -3,17 +3,17 @@ import { Mod } from '../../../mods';
 import ImmutableContainer from '../../ImmutableContainer';
 import Item from '../Item';
 
-type Builder = {
+interface Builder {
   item: Item;
   mods: Mod[];
-};
+}
 
 export default class Implicits extends ImmutableContainer<Mod, Builder> {
-  static withBuilder(builder: Builder): Implicits {
+  public static withBuilder(builder: Builder): Implicits {
     return new Implicits(builder.item, builder.mods);
   }
 
-  item: Item;
+  public item: Item;
 
   constructor(item: Item, mods: Mod[]) {
     super(mods);
@@ -24,7 +24,7 @@ export default class Implicits extends ImmutableContainer<Mod, Builder> {
   /**
    * @override
    */
-  maxModsOfType(mod: Mod): number {
+  public maxModsOfType(mod: Mod): number {
     switch (mod.props.generation_type) {
       case Mod.TYPE.PREMADE:
         return 5;
@@ -42,14 +42,14 @@ export default class Implicits extends ImmutableContainer<Mod, Builder> {
    * @override
    *  checks if the domains are equiv
    */
-  inDomainOf(): boolean {
+  public inDomainOf(): boolean {
     return true;
   }
 
   /**
    * @override
    */
-  level(): number {
+  public level(): number {
     return this.item.props.item_level;
   }
 }

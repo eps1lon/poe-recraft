@@ -1,23 +1,23 @@
-export type TagProps = {
+export interface TagProps {
   primary: number;
   id: string;
-};
+}
 
-export type ModTypeProps = {
+export interface ModTypeProps {
   primary: number;
-};
+}
 
-export type SpawnWeightProps = {
+export interface SpawnWeightProps {
   value: number;
   tag: TagProps;
-};
+}
 
-export type StatProps = {
+export interface StatProps {
   primary: number;
   id: string;
-};
+}
 
-export type ModProps = {
+export interface ModProps {
   primary: number;
   id: string;
   level: number;
@@ -39,34 +39,34 @@ export type ModProps = {
   spawn_weights: SpawnWeightProps[];
   stats: StatProps[];
   tags: TagProps[];
-};
+}
 
-export type WeaponTypeProps = {
+export interface WeaponTypeProps {
   critical: number;
   speed: number;
   damage_min: number;
   damage_max: number;
   range_max: number;
-};
+}
 
-export type AttributeRequirementProps = {
+export interface AttributeRequirementProps {
   req_str: number;
   req_dex: number;
   req_int: number;
-};
+}
 
-export type ArmourProps = {
+export interface ArmourProps {
   armour: number;
   evasion: number;
   energy_shield: number;
-};
+}
 
-export type ItemClassProps = {
+export interface ItemClassProps {
   primary: number;
   name: string;
-};
+}
 
-export type BaseItemTypeProps = {
+export interface BaseItemTypeProps {
   primary: number;
   name: string;
   width: number;
@@ -79,9 +79,9 @@ export type BaseItemTypeProps = {
   implicit_mods: ModProps[];
   item_class: ItemClassProps;
   tags: TagProps[];
-};
+}
 
-export type CraftingBenchOptionsProps = {
+export interface CraftingBenchOptionsProps {
   primary: number;
   master_level: number;
   name: string;
@@ -99,15 +99,15 @@ export type CraftingBenchOptionsProps = {
       short_name: string;
     };
   };
-  costs: {
+  costs: Array<{
     amount: number;
     base_item_type: BaseItemTypeProps;
-  }[];
+  }>;
   mod?: ModProps;
   item_classes: ItemClassProps[];
-};
+}
 
-export type WorldAreaProps = {
+export interface WorldAreaProps {
   primary: number;
   id: string;
   name: string;
@@ -115,12 +115,12 @@ export type WorldAreaProps = {
   tags: TagProps[];
   area_type_tags: TagProps[];
   mods: ModProps[];
-};
+}
 
-export type AtlasNodeProps = {
+export interface AtlasNodeProps {
   primary: number;
   x: number;
   y: number;
   adjacent: number[];
   world_area: WorldAreaProps;
-};
+}

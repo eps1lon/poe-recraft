@@ -2,8 +2,8 @@ import { StatProps } from '../schema';
 import ValueRange from './ValueRange';
 
 export default class Stat {
-  props: StatProps;
-  values: ValueRange;
+  public props: StatProps;
+  public values: ValueRange;
 
   constructor(
     props: StatProps,
@@ -16,11 +16,11 @@ export default class Stat {
         : new ValueRange(values[0], values[1]);
   }
 
-  add(other: ValueRange) {
+  public add(other: ValueRange) {
     return new Stat(this.props, this.values.add(other));
   }
 
-  mult(other: ValueRange) {
+  public mult(other: ValueRange) {
     return new Stat(this.props, this.values.mult(other));
   }
 }

@@ -5,27 +5,27 @@ import ImmutableContainer from './ImmutableContainer';
 
 export const SEXTANT_RANGE = 55; // http://poecraft.com/atlas has 55
 
-export type Builder = {
+export interface Builder {
   mods: Mod[];
   props: AtlasNodeProps;
-};
+}
 
 type HumanId = string;
 
 export default class AtlasNode extends ImmutableContainer<Mod, Builder> {
-  static humanId(props: AtlasNodeProps): HumanId {
+  public static humanId(props: AtlasNodeProps): HumanId {
     return props.world_area.id.replace(/MapAtlas/, '');
   }
 
-  props: AtlasNodeProps;
-
-  static build(props: AtlasNodeProps) {
+  public static build(props: AtlasNodeProps) {
     return new AtlasNode([], props);
   }
 
-  static withBuilder(builder: Builder): AtlasNode {
+  public static withBuilder(builder: Builder): AtlasNode {
     return new AtlasNode(builder.mods, builder.props);
   }
+
+  public props: AtlasNodeProps;
 
   constructor(mods: Mod[], props: AtlasNodeProps) {
     super(mods);
@@ -33,7 +33,7 @@ export default class AtlasNode extends ImmutableContainer<Mod, Builder> {
     this.props = props;
   }
 
-  builder(): Builder {
+  public builder(): Builder {
     return {
       mods: this.mods,
       props: this.props,
@@ -46,7 +46,10 @@ export default class AtlasNode extends ImmutableContainer<Mod, Builder> {
    * (a, b) => 1, if a.isInSextantRange(b)
    *           +inf, otherwise
    */
-  inSextantRange(atlas: AtlasNode[], max_depth: number = 1): AtlasNode[] {
+  public inSextantRange(
+    atlas: AtlasNode[],
+    max_depth: number = 1,
+  ): AtlasNode[] {
     let expand: AtlasNode[] = [this];
     const in_range: Set<AtlasNode> = new Set();
 
@@ -79,28 +82,28 @@ export default class AtlasNode extends ImmutableContainer<Mod, Builder> {
     return Array.from(in_range.values());
   }
 
-  isInSextantRange(other: AtlasNode): boolean {
+  public isInSextantRange(other: AtlasNode): boolean {
     return this.distance(other) <= SEXTANT_RANGE;
   }
 
-  distance(other: AtlasNode): number {
+  public distance(other: AtlasNode): number {
     return Math.sqrt(
       (this.props.x - other.props.x) ** 2 + (this.props.y - other.props.y) ** 2,
     );
   }
 
-  pos(): string {
+  public pos(): string {
     return `X: ${this.props.x} Y: ${this.props.y}`;
   }
 
-  getAllMods(atlas: AtlasNode[]): Mod[] {
+  public getAllMods(atlas: AtlasNode[]): Mod[] {
     return this.inSextantRange(atlas).reduce(
       (mods, other) => mods.concat(other.mods),
       this.mods,
     );
   }
 
-  getTags() {
+  public getTags() {
     return super
       .getTags()
       .concat(this.props.world_area.tags)
@@ -110,19 +113,19 @@ export default class AtlasNode extends ImmutableContainer<Mod, Builder> {
       );
   }
 
-  maxModsOfType(): number {
+  public maxModsOfType(): number {
     return Number.POSITIVE_INFINITY;
   }
 
-  inDomainOf(mod_domain: number): boolean {
+  public inDomainOf(mod_domain: number): boolean {
     return mod_domain === Mod.DOMAIN.ATLAS;
   }
 
-  level(): number {
+  public level(): number {
     return this.props.world_area.area_level;
   }
 
-  affectingMods(atlas: AtlasNode[]): Mod[] {
+  public affectingMods(atlas: AtlasNode[]): Mod[] {
     return atlas.reduce(
       (mods, other) => {
         if (this.isInSextantRange(other)) {
@@ -135,19 +138,19 @@ export default class AtlasNode extends ImmutableContainer<Mod, Builder> {
     ); // this.mods will be passed on atlas.reduce
   }
 
-  activeMods(atlas: AtlasNode[]): Mod[] {
+  public activeMods(atlas: AtlasNode[]): Mod[] {
     return this.affectingMods(atlas).filter(
       mod => mod.spawnweightFor(this) > 0,
     );
   }
 
-  inactiveMods(atlas: AtlasNode[]): Mod[] {
+  public inactiveMods(atlas: AtlasNode[]): Mod[] {
     return this.affectingMods(atlas).filter(
       mod => mod.spawnweightFor(this) <= 0,
     );
   }
 
-  humanId(): HumanId {
+  public humanId(): HumanId {
     return AtlasNode.humanId(this.props);
   }
 }

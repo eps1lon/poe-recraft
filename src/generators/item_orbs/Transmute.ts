@@ -1,11 +1,8 @@
 import Item from '../../containers/item';
 import { ModProps } from '../../schema';
 
-import { Flags, anySet } from '../../util/Flags';
-import ItemOrb, {
-  ApplicableFlag as BaseApplicableFlag,
-  ApplicableFlags as BaseApplicableFlags,
-} from './ItemOrb';
+import { anySet } from '../../util/Flags';
+import ItemOrb, { ApplicableFlags as BaseApplicableFlags } from './ItemOrb';
 import Mod from '../../mods/Mod';
 
 export interface ApplicableFlags extends BaseApplicableFlags {
@@ -14,7 +11,7 @@ export interface ApplicableFlags extends BaseApplicableFlags {
 export type ApplicableFlag = keyof ApplicableFlags;
 
 export default class Transmute extends ItemOrb {
-  static modFilter(mod: ModProps): boolean {
+  public static modFilter(mod: ModProps): boolean {
     // prefix/suffix only
     return (
       super.modFilter(mod) &&
@@ -22,14 +19,14 @@ export default class Transmute extends ItemOrb {
     );
   }
 
-  static build(mods: ModProps[]): Transmute {
+  public static build(mods: ModProps[]): Transmute {
     return new Transmute(this.buildMods(mods));
   }
 
   /**
    *  adds 1-2 mods
    */
-  applyTo(item: Item): Item {
+  public applyTo(item: Item): Item {
     let new_item = item;
 
     if (!anySet(this.applicableTo(item))) {
@@ -50,12 +47,12 @@ export default class Transmute extends ItemOrb {
   /**
    * maps mod::applicableTo as if it were already magic
    */
-  modsFor(item: Item, whitelist: string[] = []) {
+  public modsFor(item: Item, whitelist: string[] = []) {
     // simulate upgrade
     return super.modsFor(item.rarity.set('magic'), whitelist);
   }
 
-  applicableTo(item: Item): ApplicableFlags {
+  public applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = {
       ...super.applicableTo(item),
       not_white: false,

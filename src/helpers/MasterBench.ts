@@ -10,7 +10,10 @@ type OptionId = number;
 /**
  */
 export default class MasterBench {
-  static build(props: CraftingBenchOptionsProps[], master_primary?: number) {
+  public static build(
+    props: CraftingBenchOptionsProps[],
+    master_primary?: number,
+  ) {
     const options = props.filter(
       ({ npc_master_key }) =>
         // master_primary != null implies master_primary === npc_master_key
@@ -29,13 +32,13 @@ export default class MasterBench {
     );
   }
 
-  readonly options: MasterBenchOption[];
+  public readonly options: MasterBenchOption[];
 
   constructor(options: MasterBenchOption[]) {
     this.options = options;
   }
 
-  applyOptionTo(item: Item, option_id: OptionId): Item {
+  public applyOptionTo(item: Item, option_id: OptionId): Item {
     const option = this.options.find(
       other => other.props.primary === option_id,
     );
@@ -47,7 +50,7 @@ export default class MasterBench {
     return option.applyTo(item);
   }
 
-  getAvailableMods(): Mod[] {
+  public getAvailableMods(): Mod[] {
     return this.options
       .map(({ mod }) => mod)
       .filter((mod): mod is Mod => mod !== undefined);
@@ -56,10 +59,10 @@ export default class MasterBench {
   /**
    * greps mod::applicableTo 
    */
-  modsFor(item: Item, whitelist: string[] = []) {
+  public modsFor(item: Item, whitelist: string[] = []) {
     return this.options.reduce(
       (mods, option) => mods.concat(option.modsFor(item, whitelist)),
-      [] as GeneratorDetails<Mod>[],
+      [] as Array<GeneratorDetails<Mod>>,
     );
   }
 }

@@ -2,17 +2,16 @@
 import { createTables } from '../../__fixtures__/util';
 import Item from '../../containers/item';
 import META_MODS from '../../mods/meta_mods';
-import Mod from '../../mods/Mod';
 
 import Orb from '../Orb';
 
 const { items, mods } = createTables();
 
 class TestOrb extends Orb<Item> {
-  applicableTo(container: Item): any {
+  public applicableTo(container: Item): any {
     throw new Error('abstract');
   }
-  applyTo(container: Item): Item {
+  public applyTo(container: Item): Item {
     throw new Error('abstract');
   }
 }

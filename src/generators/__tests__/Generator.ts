@@ -8,15 +8,15 @@ import Generator from '../Generator';
 const { items, mods } = createTables();
 
 class TestGenerator extends Generator<any, any> {
-  applyTo(container: any): any {
+  public applyTo(container: any): any {
     throw new Error('abstract');
   }
 
-  modsFor(container: any, whitelist: string[]): any[] {
+  public modsFor(container: any, whitelist: string[]): any[] {
     throw new Error('abstract');
   }
 
-  applicableTo(container: any): any {
+  public applicableTo(container: any): any {
     throw new Error('abstract');
   }
 }

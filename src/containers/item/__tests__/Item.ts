@@ -1,6 +1,5 @@
 import { Mod } from '../../../mods/';
-import PropsTable from '../../../helpers/PropsTable';
-import { BaseItemTypeProps, ModProps, TagProps } from '../../../schema';
+import { TagProps } from '../../../schema';
 import { createTables } from '../../../__fixtures__/util';
 import Item from '../Item';
 import Stat from '../../../calculator/Stat';
