@@ -1,0 +1,10 @@
+const META_MODS = {
+  LOCKED_PREFIXES: 5874,
+  LOCKED_SUFFIXES: 5875,
+  NO_ATTACK_MODS: 5876,
+  NO_CASTER_MODS: 5877,
+  MULTIMOD: 5878,
+  LLD_MOD: 5813,
+};
+
+export default Object.freeze(META_MODS);
