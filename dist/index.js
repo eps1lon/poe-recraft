@@ -4114,12 +4114,15 @@ System.register("containers/item/components/properties/ItemProperties", ["contai
         }
     };
 });
-System.register("containers/item/Item", ["mods/index", "util/MetaData", "containers/item/components/Affixes", "containers/item/components/Sockets", "containers/item/components/Name", "containers/item/components/Rarity", "containers/item/components/Implicits", "containers/item/components/Requirements", "containers/item/components/properties/ItemProperties"], function (exports_28, context_28) {
+System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaData", "containers/item/components/Affixes", "containers/item/components/Sockets", "containers/item/components/Name", "containers/item/components/Rarity", "containers/item/components/Implicits", "containers/item/components/Requirements", "containers/item/components/properties/ItemProperties"], function (exports_28, context_28) {
     "use strict";
     var __moduleName = context_28 && context_28.id;
-    var mods_3, MetaData_2, Affixes_1, Sockets_1, Name_1, Rarity_1, Implicits_1, Requirements_1, ItemProperties_1, UnacceptedMod, shallowEqual, Item;
+    var make_error_1, mods_3, MetaData_2, Affixes_1, Sockets_1, Name_1, Rarity_1, Implicits_1, Requirements_1, ItemProperties_1, UnacceptedMod, shallowEqual, Item;
     return {
         setters: [
+            function (make_error_1_1) {
+                make_error_1 = make_error_1_1;
+            },
             function (mods_3_1) {
                 mods_3 = mods_3_1;
             },
@@ -4152,12 +4155,10 @@ System.register("containers/item/Item", ["mods/index", "util/MetaData", "contain
             UnacceptedMod = /** @class */ (function (_super) {
                 __extends(UnacceptedMod, _super);
                 function UnacceptedMod() {
-                    var _this = _super.call(this, 'Unacceptable mods passed to this Container') || this;
-                    _this.type = 'UnacceptedMod';
-                    return _this;
+                    return _super.call(this, 'Unacceptable mods passed to this Container') || this;
                 }
                 return UnacceptedMod;
-            }(Error));
+            }(make_error_1.BaseError));
             exports_28("UnacceptedMod", UnacceptedMod);
             shallowEqual = function (a, b) {
                 return a === b || Object.keys(a).every(function (key) { return a[key] === b[key]; });
@@ -5797,12 +5798,15 @@ System.register("containers/AtlasNode", ["mods/Mod", "containers/ImmutableContai
         }
     };
 });
-System.register("generators/Sextant", ["mods/Mod", "util/Flags", "generators/Orb"], function (exports_50, context_50) {
+System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "generators/Orb"], function (exports_50, context_50) {
     "use strict";
     var __moduleName = context_50 && context_50.id;
-    var Mod_6, Flags_16, Orb_2, ContextUndefined, CorruptedState, Type, Sextant;
+    var make_error_2, Mod_6, Flags_16, Orb_2, ContextUndefined, CorruptedState, Type, Sextant;
     return {
         setters: [
+            function (make_error_2_1) {
+                make_error_2 = make_error_2_1;
+            },
             function (Mod_6_1) {
                 Mod_6 = Mod_6_1;
             },
@@ -5820,7 +5824,7 @@ System.register("generators/Sextant", ["mods/Mod", "util/Flags", "generators/Orb
                     return _super.call(this, "context not set, set " + context) || this;
                 }
                 return ContextUndefined;
-            }(Error));
+            }(make_error_2.BaseError));
             exports_50("ContextUndefined", ContextUndefined);
             CorruptedState = /** @class */ (function (_super) {
                 __extends(CorruptedState, _super);
@@ -5828,7 +5832,7 @@ System.register("generators/Sextant", ["mods/Mod", "util/Flags", "generators/Orb
                     return _super.call(this, "corrupted state: " + message) || this;
                 }
                 return CorruptedState;
-            }(Error));
+            }(make_error_2.BaseError));
             exports_50("CorruptedState", CorruptedState);
             (function (Type) {
                 Type[Type["apprentice"] = 1] = "apprentice";
@@ -6187,12 +6191,16 @@ System.register("interfaces/index", [], function (exports_56, context_56) {
         }
     };
 });
-System.register("helpers/PropsTable", [], function (exports_57, context_57) {
+System.register("helpers/PropsTable", ["make-error"], function (exports_57, context_57) {
     "use strict";
     var __moduleName = context_57 && context_57.id;
-    var NotFound, PropsTable;
+    var make_error_3, NotFound, PropsTable;
     return {
-        setters: [],
+        setters: [
+            function (make_error_3_1) {
+                make_error_3 = make_error_3_1;
+            }
+        ],
         execute: function () {
             NotFound = /** @class */ (function (_super) {
                 __extends(NotFound, _super);
@@ -6200,7 +6208,7 @@ System.register("helpers/PropsTable", [], function (exports_57, context_57) {
                     return _super.call(this, name + " not found " + message) || this;
                 }
                 return NotFound;
-            }(Error));
+            }(make_error_3.BaseError));
             exports_57("NotFound", NotFound);
             // take care. flow accepts any as a constructor
             PropsTable = /** @class */ (function () {
