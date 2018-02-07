@@ -5839,6 +5839,7 @@ System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "
                 Type[Type["journeyman"] = 2] = "journeyman";
                 Type[Type["master"] = 3] = "master";
             })(Type || (Type = {}));
+            exports_50("Type", Type);
             Sextant = /** @class */ (function (_super) {
                 __extends(Sextant, _super);
                 function Sextant() {

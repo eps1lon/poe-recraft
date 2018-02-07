@@ -3,9 +3,8 @@ import ValueRange from './ValueRange';
 
 import applications from './stat_applications';
 
-type Classification = ReadonlyArray<string>;
-
-interface Modifier {
+export type Classification = ReadonlyArray<string>;
+export interface Modifier {
   stat: Stat;
   type: 'flat' | 'inc' | 'more';
 }

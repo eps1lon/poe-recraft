@@ -4,6 +4,7 @@ import { ModProps } from '../../schema';
 import { anySet } from '../../util/Flags';
 import Mod from '../../mods/Mod';
 import ItemOrb from './ItemOrb';
+import { GeneratorDetails } from '../Generator';
 
 /**
  * ingame representation of a enchantment bench
@@ -36,7 +37,10 @@ export default class Enchantmentbench extends ItemOrb {
     return item;
   }
 
-  public modsFor(item: Item, whitelist: string[] = []) {
+  public modsFor(
+    item: Item,
+    whitelist: string[] = [],
+  ): Array<GeneratorDetails<Mod>> {
     // replace so ignore full domain
     return super.modsFor(item, [...whitelist, 'domain_full']);
   }

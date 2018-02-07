@@ -4,6 +4,8 @@ import { ModProps } from '../../schema';
 import { anySet } from '../../util/Flags';
 import ItemOrb, { ApplicableFlags as BaseApplicableFlags } from './ItemOrb';
 import Transmute from './Transmute';
+import { GeneratorDetails } from '../Generator';
+import Mod from '../../mods/Mod';
 
 export interface ApplicableFlags extends BaseApplicableFlags {
   not_magic: boolean;
@@ -30,7 +32,10 @@ export default class Regal extends ItemOrb {
   /**
    * maps mod::applicableTo as if it were already magic
    */
-  public modsFor(item: Item, whitelist: string[] = []) {
+  public modsFor(
+    item: Item,
+    whitelist: string[] = [],
+  ): Array<GeneratorDetails<Mod>> {
     // simulate upgrade
     return super.modsFor(item.rarity.set('rare'), whitelist);
   }

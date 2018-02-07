@@ -2,12 +2,11 @@ import AtlasNode from '../containers/AtlasNode';
 import Sextant from '../generators/Sextant';
 import Mod from '../mods/Mod';
 import { AtlasNodeProps } from '../schema';
+import { GeneratorDetails } from '../generators/Generator';
 
-type HumanId = string;
-
-type AtlasNodes = Map<HumanId, AtlasNode>;
-
-interface Builder {
+export type HumanId = string;
+export type AtlasNodes = Map<HumanId, AtlasNode>;
+export interface Builder {
   nodes: AtlasNodes;
 }
 
@@ -132,7 +131,10 @@ export default class Atlas {
     return this.mutateNode(node_id, node => sextant_on_atlas.applyTo(node));
   }
 
-  public modsFor(sextant: Sextant, node_id: HumanId) {
+  public modsFor(
+    sextant: Sextant,
+    node_id: HumanId,
+  ): Array<GeneratorDetails<Mod>> {
     const sextant_on_atlas = this.prepareSextant(sextant);
 
     return sextant_on_atlas.modsFor(this.get(node_id));

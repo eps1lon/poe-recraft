@@ -3,7 +3,7 @@ import MasterBench from '../helpers/MasterBench';
 import Mod from '../mods/Mod';
 import { CraftingBenchOptionsProps, ModProps } from '../schema';
 
-import Generator from './Generator';
+import Generator, { GeneratorDetails } from './Generator';
 import Alchemy from './item_orbs/Alchemy';
 import EnchantmentBench from './item_orbs/EnchantmentBench';
 import Vaal from './item_orbs/Vaal';
@@ -60,7 +60,10 @@ export default class ItemShowcase extends Generator<Mod, Item> {
    * greps mod::applicableTo and (if implemented) mod::spawnableOn 
    * if we have all the space for mods we need
    */
-  public modsFor(item: Item, whitelist: string[] = []) {
+  public modsFor(
+    item: Item,
+    whitelist: string[] = [],
+  ): Array<GeneratorDetails<Mod>> {
     const details = [
       ...this.master.modsFor(item, whitelist),
       ...this.enchantment.modsFor(item, whitelist),

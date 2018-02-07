@@ -3,7 +3,7 @@ import { Mod } from '../../../mods';
 import ImmutableContainer from '../../ImmutableContainer';
 import Item from '../Item';
 
-interface Builder {
+export interface Builder {
   item: Item;
   mods: Mod[];
 }

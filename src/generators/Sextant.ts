@@ -29,7 +29,7 @@ export class CorruptedState extends BaseError {
   }
 }
 
-enum Type {
+export enum Type {
   apprentice = 1,
   journeyman = 2,
   master = 3,

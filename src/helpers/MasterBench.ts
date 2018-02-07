@@ -5,7 +5,7 @@ import { CraftingBenchOptionsProps } from '../schema';
 import { Mod } from '../mods';
 import { GeneratorDetails } from '../generators/Generator';
 
-type OptionId = number;
+export type OptionId = number;
 
 /**
  */

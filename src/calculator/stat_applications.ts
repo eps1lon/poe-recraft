@@ -1,4 +1,4 @@
-interface Application {
+export interface Application {
   classification: Array<string | string[]>;
   type: 'flat' | 'inc' | 'more';
 }

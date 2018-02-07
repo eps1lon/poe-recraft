@@ -1,5 +1,5 @@
 import Mod from '../mods/Mod';
-import { AtlasNodeProps } from '../schema';
+import { AtlasNodeProps, TagProps } from '../schema';
 
 import ImmutableContainer from './ImmutableContainer';
 
@@ -9,8 +9,7 @@ export interface Builder {
   mods: Mod[];
   props: AtlasNodeProps;
 }
-
-type HumanId = string;
+export type HumanId = string;
 
 export default class AtlasNode extends ImmutableContainer<Mod, Builder> {
   public static humanId(props: AtlasNodeProps): HumanId {
@@ -103,7 +102,7 @@ export default class AtlasNode extends ImmutableContainer<Mod, Builder> {
     );
   }
 
-  public getTags() {
+  public getTags(): TagProps[] {
     return super
       .getTags()
       .concat(this.props.world_area.tags)
