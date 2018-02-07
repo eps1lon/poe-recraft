@@ -41,7 +41,7 @@ export default class Sextant extends Orb<AtlasNode> {
   static type = Type;
 
   static modFilter(mod: ModProps): boolean {
-    return mod.domain === Mod.DOMAIN.ATLAS;
+    return super.modFilter(mod) && mod.domain === Mod.DOMAIN.ATLAS;
   }
 
   static build(mods: ModProps[]): Sextant {

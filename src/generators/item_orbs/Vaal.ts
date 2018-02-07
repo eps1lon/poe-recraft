@@ -8,7 +8,10 @@ import ItemOrb from './ItemOrb';
 export default class Vaal extends ItemOrb {
   static modFilter(mod: ModProps): boolean {
     // vaal implicits
-    return [Mod.TYPE.VAAL].indexOf(mod.generation_type) !== -1;
+    return (
+      super.modFilter(mod) &&
+      [Mod.TYPE.VAAL].indexOf(mod.generation_type) !== -1
+    );
   }
 
   static build(mods: ModProps[]): Vaal {

@@ -10,7 +10,10 @@ import ItemOrb from './ItemOrb';
  */
 export default class Enchantmentbench extends ItemOrb {
   static modFilter(mod: ModProps): boolean {
-    return [Mod.TYPE.ENCHANTMENT].indexOf(mod.generation_type) !== -1;
+    return (
+      super.modFilter(mod) &&
+      [Mod.TYPE.ENCHANTMENT].indexOf(mod.generation_type) !== -1
+    );
   }
 
   static build(mods: ModProps[]): Enchantmentbench {
