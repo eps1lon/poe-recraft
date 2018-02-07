@@ -1,3 +1,5 @@
+import { BaseError } from 'make-error';
+
 import AtlasNode from '../containers/AtlasNode';
 import Mod from '../mods/Mod';
 import { ModProps } from '../schema';
@@ -15,13 +17,13 @@ export interface ApplicableFlags extends Flags {
 }
 export type ApplicableFlag = keyof ApplicableFlags;
 
-export class ContextUndefined extends Error {
+export class ContextUndefined extends BaseError {
   constructor(context: string) {
     super(`context not set, set ${context}`);
   }
 }
 
-export class CorruptedState extends Error {
+export class CorruptedState extends BaseError {
   constructor(message: string) {
     super(`corrupted state: ${message}`);
   }

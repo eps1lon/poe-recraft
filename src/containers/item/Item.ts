@@ -1,3 +1,5 @@
+import { BaseError } from 'make-error';
+
 import Container from '../Container';
 import { Mod } from '../../mods';
 import { TagProps, BaseItemTypeProps } from '../../schema';
@@ -33,9 +35,7 @@ export interface ItemProps {
   readonly sockets?: number;
 }
 
-export class UnacceptedMod extends Error {
-  public type = 'UnacceptedMod';
-
+export class UnacceptedMod extends BaseError {
   constructor() {
     super('Unacceptable mods passed to this Container');
   }

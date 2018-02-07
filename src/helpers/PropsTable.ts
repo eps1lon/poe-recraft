@@ -1,10 +1,12 @@
+import { BaseError } from 'make-error';
+
 import { Buildable } from '../interfaces';
 
 export interface PropsWithPrimary {
   primary: number;
 }
 
-export class NotFound extends Error {
+export class NotFound extends BaseError {
   constructor(name: string, message: string) {
     super(`${name} not found ${message}`);
   }
