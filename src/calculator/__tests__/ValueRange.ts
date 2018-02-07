@@ -1,4 +1,3 @@
-// @flow
 import ValueRange from '../ValueRange';
 
 it('should not change if identity operations are performed', () => {

@@ -1,4 +1,3 @@
-// @flow
 import { createTables } from '../../../__fixtures__/util';
 import Regal from '../Regal';
 

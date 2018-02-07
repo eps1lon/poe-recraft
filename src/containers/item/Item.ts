@@ -1,4 +1,3 @@
-// @flow
 import Container from '../Container';
 import { Mod } from '../../mods';
 import { TagProps, BaseItemTypeProps } from '../../schema';

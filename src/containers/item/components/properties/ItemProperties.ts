@@ -1,4 +1,3 @@
-// @flow
 import { Properties as ComputedProperties } from './ComputedProperties';
 import buildArmourProperties from './ArmourProperties';
 import Component from '../../Component';

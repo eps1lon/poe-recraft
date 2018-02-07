@@ -1,4 +1,3 @@
-// @flow
 import { createTables } from '../../__fixtures__/util';
 import AtlasNode from '../../containers/AtlasNode';
 import Sextant from '../../generators/Sextant';

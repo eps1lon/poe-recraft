@@ -1,4 +1,3 @@
-// @flow
 import { createTables } from '../../../__fixtures__/util';
 import Alchemy from '../Alchemy';
 import META_MODS from '../../../mods/meta_mods';

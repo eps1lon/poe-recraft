@@ -1,4 +1,3 @@
-// @flow
 import AtlasNode from '../containers/AtlasNode';
 import Mod from '../mods/Mod';
 import { ModProps } from '../schema';

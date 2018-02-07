@@ -1,4 +1,3 @@
-// @flow
 import Item from '../../containers/item';
 import { ModProps } from '../../schema';
 

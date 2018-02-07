@@ -1,4 +1,3 @@
-// @flow
 import { Taggable } from '../interfaces/Taggable';
 import { ModProps, SpawnWeightProps, StatProps } from '../schema';
 import Stat from '../calculator/Stat';

@@ -1,4 +1,3 @@
-// @flow
 import MasterBenchOption from '../../generators/MasterBenchOption';
 
 import PropsTable from '../PropsTable';

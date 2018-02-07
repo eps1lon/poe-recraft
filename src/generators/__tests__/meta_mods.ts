@@ -1,4 +1,3 @@
-// @flow
 import { createTables } from '../../__fixtures__/util';
 import Alteration from '../item_orbs/Alteration';
 import Augment from '../item_orbs/Augment';

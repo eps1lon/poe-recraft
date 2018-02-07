@@ -1,4 +1,3 @@
-// @flow
 import AtlasNode from '../containers/AtlasNode';
 import Sextant from '../generators/Sextant';
 import Mod from '../mods/Mod';

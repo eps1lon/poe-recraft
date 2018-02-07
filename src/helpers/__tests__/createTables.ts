@@ -1,4 +1,3 @@
-// @flow
 // tslint:disable: no-var-requires
 import PropsTable from '../PropsTable';
 
