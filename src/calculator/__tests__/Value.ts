@@ -27,7 +27,7 @@ it('should know about the difference between flat, inc and more', () => {
     ),
     new Stat(
       {
-        id: 'local_physical_damage_reduction_rating_+%',
+        id: 'local_armour_and_energy_shield_+%',
         primary: -1,
       },
       [10, 20],

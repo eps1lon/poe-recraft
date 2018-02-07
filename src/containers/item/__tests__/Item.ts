@@ -1,7 +1,7 @@
 import { Mod } from '../../../mods/';
 import { TagProps } from '../../../schema';
 import { createTables } from '../../../__fixtures__/util';
-import Item from '../Item';
+import Item, { UnacceptedMod } from '../Item';
 import Stat from '../../../calculator/Stat';
 
 const tables = createTables();
@@ -69,6 +69,13 @@ it('should know to which container it should add', () => {
   expect(item.affixes.mods).toHaveLength(0);
   expect(item.addMod(plusLevel).affixes.mods).toHaveLength(0);
   expect(item.addMod(sturdy).affixes.mods).toHaveLength(1);
+});
+
+it('accepts non other than affixes and implicits', () => {
+  const item = items.fromPrimary(1650).rarity.set('rare');
+  const talisman = mods.fromPrimary(7019);
+
+  expect(() => item.addMod(talisman)).toThrowError(UnacceptedMod);
 });
 
 it('should also not hold duplicate mods', () => {
@@ -241,4 +248,15 @@ it('should have any if it has any mods', () => {
 
   expect(greaves.any()).toBe(false);
   expect(greaves.addMod(sturdy).any()).toBe(true);
+});
+
+it('throws if it cant find its meta data', () => {
+  expect(() => {
+    const greave_props = {
+      ...items.find(p => p.primary === 1650),
+      inherits_from: 'Unknown',
+    };
+
+    Item.build(greave_props);
+  }).toThrow('meta_data for Unknown not found');
 });
