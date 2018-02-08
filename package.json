@@ -3,6 +3,7 @@
   "version": "0.8.0-beta.2",
   "description": "i18n utility for Path of Exile",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "module": "es/index.js",
   "files": [
     "dist",
@@ -13,9 +14,9 @@
   ],
   "scripts": {
     "build": "npm run build:browser && npm run build:commonjs && npm run build:es",
-    "build:browser": "tsc --module System --outFile dist/index.js",
-    "build:commonjs": "tsc --module CommonJS --outDir lib",
-    "build:es": "tsc --module ES6 --outDir es",
+    "build:browser": "tsc --declaration --module System --outFile dist/index.js",
+    "build:commonjs": "tsc --declaration --module CommonJS --outDir lib",
+    "build:es": "tsc --declaration --module ES6 --outDir es",
     "clean": "rimraf coverage lib dist es",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "format": "prettier --write src/**/*.ts",
