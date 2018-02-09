@@ -1,0 +1,704 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "buff_duration": {
+      "stats": ["buff_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "La Maldición dura %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "action_speed_reduction": {
+      "stats": ["temporal_chains_action_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Los enemigos Malditos son %1%%% más rápidos",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Los enemigos Malditos son %1%%% más lentos",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "buff_time_passed_reduction": {
+      "stats": ["buff_time_passed_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Otros efectos sobre enemigos Malditos expiran %1%%% más lento",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Otros efectos sobre enemigos Malditos expiran %1%%% más rápido",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_resist": {
+      "stats": ["base_resist_all_elements_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los enemigos Malditos tienen %1$+d%% a las Resistencias Elementales",
+          "formatters": []
+        }
+      ]
+    },
+    "fire_resist": {
+      "stats": ["base_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los enemigos Malditos tienen %1$+d%% a la Resistencia al Fuego",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_resist": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los enemigos Malditos tienen %1$+d%% a la Resistencia al Hielo",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_resist": {
+      "stats": ["base_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los enemigos Malditos tienen %1$+d%% a la Resistencia al Rayo",
+          "formatters": []
+        }
+      ]
+    },
+    "chaos_resist": {
+      "stats": ["base_chaos_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los enemigos malditos tienen %1$+d%% a la Resistencia al Caos",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_frozen": {
+      "stats": ["chance_to_be_frozen_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los enemigos Malditos tienen %1$+d%% de probabilidad de ser Congelados por Daño de Hielo",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_ignited": {
+      "stats": ["chance_to_be_ignited_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los enemigos Malditos tienen %1$+d%% de probabilidad de ser Quemados por Daño de Fuego",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextIgnite"
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_be_shocked": {
+      "stats": ["chance_to_be_shocked_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los enemigos Malditos tienen %1$+d%% de probabilidad de ser Electrocutados por Daño de Rayo",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextShock"
+            }
+          ]
+        }
+      ]
+    },
+    "monster_flask_charges_incr": {
+      "stats": ["monster_slain_flask_charges_granted_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los enemigos Malditos otorgan %1%%% Cargas de Frasco aumentadas",
+          "formatters": []
+        }
+      ]
+    },
+    "life_leeched_when_hit": {
+      "stats": ["life_leech_on_any_damage_when_hit_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los enemigos Malditos otorgan %1%%% de Absorción de Vida al ser Golpeados",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "mana_leeched_when_hit": {
+      "stats": ["mana_leech_on_any_damage_when_hit_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los enemigos Malditos otorgan %1%%% de Absorción de Maná al ser Golpeados",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextManaLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_grant_endurance_charge_on_death": {
+      "stats": ["chance_to_grant_endurance_charge_on_death_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los enemigos Malditos tienen %1%%% de probabilidad de otorgar un Carga de Aguante al morir",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_grant_frenzy_charge_on_death": {
+      "stats": ["chance_to_grant_frenzy_charge_on_death_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los enemigos Malditos tienen %1%%% de probabilidad de otorgar un Carga de Frenesí al morir",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_grant_power_charge_on_death": {
+      "stats": ["chance_to_grant_power_charge_on_death_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los enemigos Malditos tienen %1%%% de probabilidad de otorgar un Carga de Poder al morir",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_normal": {
+      "stats": ["punishment_physical_damage_%_reflected_for_normal_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Refleja %1%%% del Daño Físico infligido por los Enemigos Malditos Normales",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_magic": {
+      "stats": ["punishment_physical_damage_%_reflected_for_magic_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Refleja %1%%% del Daño Físico infligido por los Enemigos Malditos Mágicos",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_rare": {
+      "stats": ["punishment_physical_damage_%_reflected_for_rare_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Refleja %1%%% del Daño Físico infligido por los Enemigos Malditos Raros",
+          "formatters": []
+        }
+      ]
+    },
+    "punishment_unique": {
+      "stats": ["punishment_physical_damage_%_reflected_for_unique_monsters"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Refleja %1%%% del Daño Físico infligido por los Enemigos Malditos Únicos",
+          "formatters": []
+        }
+      ]
+    },
+    "accuracy_rating_incr": {
+      "stats": ["accuracy_rating_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Los enemigos Malditos tienen Precisión aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Los enemigos Malditos tienen Precisión reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "critical_strike_chance_incr": {
+      "stats": ["critical_strike_chance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los enemigos Malditos tienen Probabilidad de Golpe Crítico aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Los enemigos Malditos tienen Probabilidad de Golpe Crítico reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "critical_strike_multiplier_incr": {
+      "stats": ["base_critical_strike_multiplier_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los enemigos Malditos tienen %1$+d%% al Multiplicador de Golpe Crítico",
+          "formatters": []
+        }
+      ]
+    },
+    "enfeeble_damage_scale": {
+      "stats": ["enfeeble_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Los enemigos Malditos infligen %1%%% más Daño",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Los enemigos Malditos infligen %1%%% menos Daño",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_take_critical_strike": {
+      "stats": ["additional_chance_to_take_critical_strike_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los enemigos Malditos tienen %1%%% de probabilidad adicional de recibir un Golpe Crítico",
+          "formatters": []
+        }
+      ]
+    },
+    "self_critical_strike_multiplier_reduction": {
+      "stats": ["base_self_critical_strike_multiplier_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los enemigos Malditos reciben Daño Extra por Golpes Críticos reducido un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Los enemigos Malditos reciben Daño Extra por Golpes Críticos aumentado un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "be_pierced": {
+      "stats": ["projectiles_always_pierce_you"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Los Proyectiles Perforan Enemigos Malditos",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_knocked_back": {
+      "stats": ["chance_to_be_knocked_back_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los Golpes a Enemigos Malditos tienen %1%%% de probabilidad adicional de Empujar",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKnockback"
+            }
+          ]
+        }
+      ]
+    },
+    "evasion_rating_poachers_mark": {
+      "stats": ["evasion_rating_+%_final_from_poachers_mark"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Los enemigos Malditos tienen %1%%% más Evasión",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Los enemigos Malditos tienen %1%%% menos Evasión",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "projectile_damage_taken_incr": {
+      "stats": ["projectile_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los enemigos Malditos reciben Daño aumentado un %1%%% de Golpes de Proyectiles",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_stunned": {
+      "stats": ["chance_to_be_stunned_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los enemigos Malditos tienen %1%%% de probabilidad adicional de ser Aturdidos",
+          "formatters": []
+        }
+      ]
+    },
+    "stun_recovery_incr": {
+      "stats": ["base_stun_recovery_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los enemigos Malditos tienen Recuperación del Aturdimiento y Bloqueo aumentadas un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Los enemigos Malditos tienen Recuperación del Aturdimiento y Bloqueo reducidas un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "physical_damage_taken_incr": {
+      "stats": ["physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los enemigos Malditos reciben Daño Físico aumentado un %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "degen_effect_incr": {
+      "stats": ["degen_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los enemigos Malditos reciben Daño aumentado un %1%%% por efectos de Daño Degenerativo",
+          "formatters": []
+        }
+      ]
+    },
+    "self_burn_duration": {
+      "stats": ["base_self_ignite_duration_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "La Quemadura sobre enemigos Malditos tiene Duración reducida un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "La Quemadura sobre enemigos Malditos tiene Duración aumentada un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "self_freeze_duration": {
+      "stats": ["base_self_freeze_duration_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "La Congelación sobre enemigos Malditos tiene Duración reducida un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "La Congelación sobre enemigos Malditos tiene Duración aumentada un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "self_shock_duration": {
+      "stats": ["base_self_shock_duration_-%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "La Electrocución sobre enemigos Malditos tiene Duración reducida un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "La Electrocución sobre enemigos Malditos tiene Duración aumentada un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cannot_cast_curses": {
+      "stats": ["cannot_cast_curses"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "No puedes Lanzar esta Maldición directamente",
+          "formatters": []
+        }
+      ]
+    },
+    "life_granted_when_hit": {
+      "stats": ["life_granted_when_hit_by_attacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los enemigos Malditos otorgan %1% de Vida al ser Golpeados por Ataques",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_granted_when_hit": {
+      "stats": ["mana_granted_when_hit_by_attacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los enemigos Malditos otorgan %1% de Maná al ser Golpeados por Ataques",
+          "formatters": []
+        }
+      ]
+    },
+    "life_granted_when_killed": {
+      "stats": ["life_granted_when_killed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Los enemigos Malditos otorgan %1% de Vida al Morir",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_granted_when_killed": {
+      "stats": ["mana_granted_when_killed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Los enemigos Malditos otorgan %1% de Maná al Morir",
+          "formatters": []
+        }
+      ]
+    },
+    "curse_area": {
+      "stats": ["curse_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Área de Efecto de Maldiciones aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Área de Efecto de Maldiciones reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "curse_aura": {
+      "stats": ["curse_apply_as_aura"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Los Hechizos de Maldición Asistidos son Lanzados como Auras",
+          "formatters": []
+        }
+      ]
+    },
+    "maim_when_hit_chance": {
+      "stats": ["chance_to_be_maimed_when_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los Enemigos malditos tienen %1%%% de probabilidad de ser Lisiados por 4 segundos cuando sean Golpeados por Ataques",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
+        }
+      ]
+    },
+    "chaos_weakness_damage": {
+      "stats": [
+        "minimum_added_chaos_damage_taken",
+        "maximum_added_chaos_damage_taken"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Agrega %1% a %2% de Daño de Caos a los Golpes contra Enemigos Malditos",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_dot_taken_incr": {
+      "stats": ["base_physical_damage_over_time_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los enemigos malditos reciben Daño Físico aumentado un %1%%% por Daño degenerativo",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Los enemigos malditos reciben Daño Físico aumentado un %1%%% por Daño degenerativo",
+          "formatters": []
+        }
+      ]
+    }
+  }
+}
