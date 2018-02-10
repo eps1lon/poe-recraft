@@ -1,4 +1,4 @@
-import { TagProps, BaseItemTypeProps } from '../../schema';
+import { TagProps } from '../../schema';
 import MetaData from '../../util/MetaData';
 
 export enum AtlasModifier {
@@ -92,12 +92,13 @@ export function tagsWithModifier(
       tag.primary !== Tag.shaper_item,
   );
 
-  if (modifier === AtlasModifier.NONE) {
-    return with_none;
-  } else if (modifier === AtlasModifier.ELDER) {
-    return with_none.concat(tagProps(Tag.elder_item), elderTag(meta_data));
-  } else if (modifier === AtlasModifier.SHAPER) {
-    return with_none.concat(tagProps(Tag.shaper_item), shaperTag(meta_data));
+  switch (modifier) {
+    case AtlasModifier.NONE:
+      return with_none;
+    case AtlasModifier.ELDER:
+      return with_none.concat(tagProps(Tag.elder_item), elderTag(meta_data));
+    case AtlasModifier.SHAPER:
+      return with_none.concat(tagProps(Tag.shaper_item), shaperTag(meta_data));
   }
 }
 
@@ -128,8 +129,8 @@ export function tagProps(tag: Tag): TagProps {
 
 function suffixedTag(suffix: string, meta_data: MetaData): TagProps {
   const tag_prefix = tagIdentifier(meta_data);
-
-  const tag: Tag | undefined = Tag[`${tag_prefix}_${suffix}`];
+  const tag: Tag | undefined =
+    Tag[`${tag_prefix}_${suffix}` as keyof typeof Tag];
 
   if (tag !== undefined) {
     return tagProps(tag);
