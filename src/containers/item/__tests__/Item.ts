@@ -3,6 +3,7 @@ import { TagProps } from '../../../schema';
 import { createTables } from '../../../__fixtures__/util';
 import Item, { UnacceptedMod } from '../Item';
 import Stat from '../../../calculator/Stat';
+import { tagProps, Tag } from '../atlasModifier';
 
 const tables = createTables();
 
@@ -261,4 +262,36 @@ it('throws if it cant find its meta data', () => {
 
     Item.build(greave_props);
   }).toThrow('meta_data for Unknown not found');
+});
+
+describe('elder/shaper items', () => {
+  const greaves = items.fromName('Iron Greaves');
+  const eldered = greaves.asElderItem();
+  const shaped = greaves.asShaperItem();
+
+  it('cant have elder/shaper mods by default', () => {
+    expect(greaves.isElderItem()).toBe(false);
+    expect(greaves.isSHaperItem()).toBe(false);
+  });
+
+  it('can be altered to be a elder/shaper item', () => {
+    expect(eldered.isElderItem()).toBe(true);
+    expect(eldered.isSHaperItem()).toBe(false);
+
+    expect(shaped.isElderItem()).toBe(false);
+    expect(shaped.isSHaperItem()).toBe(true);
+  });
+
+  it('cant be a shaper and elder item at the same time', () => {
+    expect(() =>
+      Item.build({
+        ...greaves.baseitem,
+        tags: [
+          ...greaves.baseitem.tags,
+          tagProps(Tag.elder_item),
+          tagProps(Tag.shaper_item),
+        ],
+      }),
+    ).toThrow('Item can only be shaper or elder item not both.');
+  });
 });
