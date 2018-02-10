@@ -1,3 +1,5 @@
+import { createSelector } from 'reselect';
+
 import { State } from 'reducers/rootReducer';
 import { BaseItemTypeProps, TagProps } from 'selectors/schema';
 import { filterItems } from 'selectors/baseitemfilter';
@@ -25,4 +27,23 @@ export function getTags(state: State): TagProps[] {
 
 export function getChangeableTags(state: State): TagProps[] {
   return state.craft.item != null ? state.craft.item.baseitem.tags : [];
+}
+
+const diff = (a: TagProps[], b: TagProps[]) =>
+  a.filter(tag => b.find(other => tag.primary === other.primary) === undefined);
+
+// selector to get addable, removeable and current tags
+export function editableTagsSelector() {
+  return createSelector(
+    (state: State) => state.poe.tags,
+    getTags,
+    getChangeableTags,
+    (all, current, removable) => {
+      return {
+        addable: diff(all, [...removable, ...current]),
+        removable,
+        current: diff(current, removable)
+      };
+    }
+  );
 }

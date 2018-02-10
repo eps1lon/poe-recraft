@@ -4,8 +4,8 @@ import { Button } from 'reactstrap';
 import { TagProps } from 'selectors/schema';
 
 export type Props = {
-  available: TagProps[];
-  changeable: TagProps[];
+  addable: TagProps[];
+  removable: TagProps[];
   current: TagProps[];
   addTag: (tag: TagProps) => any;
   removeTag: (tag: TagProps) => any;
@@ -27,7 +27,7 @@ export default class Tags extends React.PureComponent<Props> {
         </ul>
 
         <ul className="item tags changeable">
-          {props.changeable.map(tag => (
+          {props.removable.map(tag => (
             <li>
               {tag.id}
               <Button onClick={() => props.removeTag(tag)}>X</Button>
@@ -39,7 +39,7 @@ export default class Tags extends React.PureComponent<Props> {
           id="edit-item-add-tag"
           ref={add_tag => (this.add_tag = add_tag)}
         >
-          {props.available.map((tag, index) => (
+          {props.addable.map((tag, index) => (
             <option key={tag.id} value={index}>
               {tag.id}
             </option>
@@ -47,9 +47,7 @@ export default class Tags extends React.PureComponent<Props> {
         </select>
         <Button
           onClick={() => {
-            props.addTag(
-              props.available[this.add_tag ? +this.add_tag.value : 0]
-            );
+            props.addTag(props.addable[this.add_tag ? +this.add_tag.value : 0]);
           }}
         >
           Add

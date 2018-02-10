@@ -4,15 +4,14 @@ import { Dispatch } from 'redux';
 import { addTag, removeTag } from 'actions/item';
 import Tags, { Props } from 'components/edit_item/Tags';
 import { State } from 'reducers/rootReducer';
-import { getTags, getChangeableTags } from 'selectors/item';
+import { editableTagsSelector } from 'selectors/item';
 import { TagProps } from 'selectors/schema';
 
+const editableTags = editableTagsSelector();
+
 const mapStateToProps = (state: State) => {
-  return {
-    available: state.poe.tags,
-    changeable: getChangeableTags(state),
-    current: getTags(state)
-  };
+  const { addable, current, removable } = editableTags(state);
+  return { addable, current, removable };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
