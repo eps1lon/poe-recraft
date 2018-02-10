@@ -40,7 +40,9 @@ export default class Tags extends React.PureComponent<Props> {
           ref={add_tag => (this.add_tag = add_tag)}
         >
           {props.available.map((tag, index) => (
-            <option value={index}>{tag.id}</option>
+            <option key={tag.id} value={index}>
+              {tag.id}
+            </option>
           ))}
         </select>
         <Button
