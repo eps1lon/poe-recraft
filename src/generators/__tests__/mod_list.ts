@@ -7,6 +7,8 @@ const { craftingbenchoptions, items, mods } = createTables();
 
 // this is a non exhaustive lists of previously generated mods
 // this is mainly used to track changes in the behavior
+// this also fails when new mods are add or removed
+// so failing does not neccessarily mean that something is wrong
 
 const showcase = new ItemShowcase(mods.all(), craftingbenchoptions.all());
 
@@ -18,21 +20,21 @@ const formatForSnapshot = ({ mod, ...props }: GeneratorDetails<Mod>) => ({
 
 // some equipment classes. this is in no way complete
 it('should match the previously generated helmet mods', () => {
-  const helmet = items.fromPrimary(1511);
+  const helmet = items.fromName('Hubris Circlet');
   expect(showcase.modsFor(helmet).map(formatForSnapshot)).toMatchSnapshot();
 });
 
 it('should match the previously generated boots mods', () => {
-  const boots = items.fromPrimary(1650);
+  const boots = items.fromName('Iron Greaves');
   expect(showcase.modsFor(boots).map(formatForSnapshot)).toMatchSnapshot();
 });
 
 it('should match the previously generated gloves mods', () => {
-  const gloves = items.fromPrimary(1751);
+  const gloves = items.fromName('Wrapped Mitts');
   expect(showcase.modsFor(gloves).map(formatForSnapshot)).toMatchSnapshot();
 });
 
 it('should match the previously generated wand mods', () => {
-  const wand = items.fromPrimary(1011);
+  const wand = items.fromName('Pagan Wand');
   expect(showcase.modsFor(wand).map(formatForSnapshot)).toMatchSnapshot();
 });

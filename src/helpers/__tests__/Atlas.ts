@@ -32,7 +32,7 @@ it('should return a new only if it changed', () => {
 
 it('should add mods', () => {
   const atlas = Atlas.build(atlas_props.all());
-  const invasion_mod = mods.fromPrimary(8772);
+  const invasion_mod = mods.fromId('MapAtlasContainsAdditionalRandomBoss');
 
   const with_mods = atlas.addMod(invasion_mod, 'Dunes');
 
@@ -45,7 +45,7 @@ it('should add mods', () => {
 });
 
 it('should remove mods', () => {
-  const invasion_mod = mods.fromPrimary(8772);
+  const invasion_mod = mods.fromId('MapAtlasContainsAdditionalRandomBoss');
   const atlas = Atlas.build(atlas_props.all()).addMod(invasion_mod, 'Dunes');
 
   const without_mods = atlas.removeMod(invasion_mod, 'Dunes');
@@ -59,8 +59,8 @@ it('should remove mods', () => {
 });
 
 it('should be resettable', () => {
-  const invasion_mod = mods.fromPrimary(8772);
-  const magick_packs_mod = mods.fromPrimary(8794);
+  const invasion_mod = mods.fromId('MapAtlasContainsAdditionalRandomBoss');
+  const magick_packs_mod = mods.fromId('MapAtlasMagicPackSize');
   const atlas = Atlas.build(atlas_props.all())
     .addMod(invasion_mod, 'Dunes')
     .addMod(magick_packs_mod, 'Arcade');

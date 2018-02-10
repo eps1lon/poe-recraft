@@ -4,32 +4,32 @@ const tables = createTables();
 const { items } = tables;
 
 it('should have no more than 4 on boots, gloves, helmets', () => {
-  expect(items.fromPrimary(1544).sockets.max()).toBe(4); // Bone Helmet
-  expect(items.fromPrimary(1708).sockets.max()).toBe(4); // Iron Gauntlets
-  expect(items.fromPrimary(1650).sockets.max()).toBe(4); // Iron Greaves
-  expect(items.fromPrimary(1312).sockets.max()).toBe(4); // Fishing Rod
+  expect(items.fromName('Bone Helmet').sockets.max()).toBe(4);
+  expect(items.fromName('Iron Gauntlets').sockets.max()).toBe(4);
+  expect(items.fromName('Iron Greaves').sockets.max()).toBe(4);
+  expect(items.fromName('Fishing Rod').sockets.max()).toBe(4);
 });
 
 it('should have no more than 3 on shields and 1H', () => {
-  expect(items.fromPrimary(1099).sockets.max()).toBe(3); // Rusted Sword
-  expect(items.fromPrimary(1092).sockets.max()).toBe(3); // Siege Axe
-  expect(items.fromPrimary(1135).sockets.max()).toBe(3); // Estoc
-  expect(items.fromPrimary(1412).sockets.max()).toBe(3); // War Buckler
-  expect(items.fromPrimary(1005).sockets.max()).toBe(3); // Driftwood Wand
+  expect(items.fromName('Rusted Sword').sockets.max()).toBe(3);
+  expect(items.fromName('Siege Axe').sockets.max()).toBe(3);
+  expect(items.fromName('Estoc').sockets.max()).toBe(3);
+  expect(items.fromName('War Buckler').sockets.max()).toBe(3);
+  expect(items.fromName('Driftwood Wand').sockets.max()).toBe(3);
 });
 
 it('should have no sockets on jewelry', () => {
-  expect(items.fromPrimary(1335).sockets.max()).toBe(0); // Amber Amulet
+  expect(items.fromName('Amber Amulet').sockets.max()).toBe(0);
 });
 
 it('should have no more than 6 on armour and 2H', () => {
-  expect(items.fromPrimary(1545).sockets.max()).toBe(6); // Plate West
-  expect(items.fromPrimary(1004).sockets.max()).toBe(6); // Key Blade
-  expect(items.fromPrimary(1244).sockets.max()).toBe(6); // Judgement Staff
+  expect(items.fromName('Plate Vest').sockets.max()).toBe(6);
+  expect(items.fromName('Keyblade').sockets.max()).toBe(6);
+  expect(items.fromName('Judgement Staff').sockets.max()).toBe(6);
 });
 
 it('should check level restrictions', () => {
-  const staff = items.fromPrimary(1244);
+  const staff = items.fromName('Judgement Staff');
 
   expect(staff.setProperty('item_level', 1).sockets.max()).toBe(2);
   expect(staff.setProperty('item_level', 2).sockets.max()).toBe(3);
@@ -39,11 +39,11 @@ it('should check level restrictions', () => {
 });
 
 it('should check tags', () => {
-  expect(items.fromPrimary(1224).sockets.max()).toBe(3); // Gnarled Staff
-  expect(items.fromPrimary(1328).sockets.max()).toBe(1); // Unset
-  expect(items.fromPrimary(1347).sockets.max()).toBe(1); // Black Maw Talisman
+  expect(items.fromName('Gnarled Branch').sockets.max()).toBe(3);
+  expect(items.fromName('Unset Ring').sockets.max()).toBe(1);
+  expect(items.fromName('Black Maw Talisman').sockets.max()).toBe(1);
 });
 
 it('should have not have any currently', () => {
-  expect(items.fromPrimary(1244).sockets.any()).toBe(false);
+  expect(items.fromName('Judgement Staff').sockets.any()).toBe(false);
 });

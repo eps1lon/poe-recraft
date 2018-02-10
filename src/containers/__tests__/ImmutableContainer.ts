@@ -3,11 +3,13 @@ import ImmutableContainer from '../ImmutableContainer';
 
 const { mods } = createTables();
 
-const sturdy = mods.fromPrimary(1465);
-const plusLevel = mods.fromPrimary(5215);
-const craftedCastSpeed = mods.fromPrimary(5653);
-const craftedSpellDamage = mods.fromPrimary(5660);
-const essenceWeaponRange = mods.fromPrimary(4467);
+const sturdy = mods.fromId('LocalBaseArmourAndEvasionRating5');
+const plusLevel = mods.fromId('GemLevelCorruption');
+const craftedCastSpeed = mods.fromId('IntMasterCastSpeedCrafted');
+const craftedSpellDamage = mods.fromId('IntMasterIncreasedSpellDamageCrafted1');
+const essenceWeaponRange = mods.fromId(
+  'LocalIncreasedMeleeWeaponRangeEssence5',
+);
 
 class TestImmutableContainer extends ImmutableContainer<any, any> {
   public static withBuilder(builder: { mods: any[] }) {
@@ -81,13 +83,17 @@ it('should sum its stats grouped by stat id considering affixes/implicits', () =
 
   expect(container.stats()).toEqual({});
 
-  const with_ipd = container.addMod(mods.fromPrimary(797));
+  const with_ipd = container.addMod(
+    mods.fromId('LocalIncreasedPhysicalDamagePercent7'),
+  );
   const with_ipd_stats = with_ipd.stats();
   expect(
     Object.keys(with_ipd_stats).map(id => [id, with_ipd_stats[id].values]),
   ).toEqual([['local_physical_damage_+%', { min: 155, max: 169 }]]);
 
-  const with_hybrid_and_ipd = with_ipd.addMod(mods.fromPrimary(784));
+  const with_hybrid_and_ipd = with_ipd.addMod(
+    mods.fromId('LocalIncreasedPhysicalDamagePercentAndAccuracyRating2'),
+  );
   const with_hybrid_and_ipd_stats = with_hybrid_and_ipd.stats();
   expect(
     Object.keys(with_hybrid_and_ipd_stats).map(id => [

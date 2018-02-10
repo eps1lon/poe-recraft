@@ -21,7 +21,7 @@ it('should build with no mods on custom actions', () => {
 });
 
 it('doesnt support custom actions yet', () => {
-  const greaves = items.fromPrimary(1650);
+  const greaves = items.fromName('Iron Greaves');
   const remove_crafted_mod = options.fromPrimary(0);
 
   expect(() => remove_crafted_mod.applyTo(greaves)).toThrowError(
@@ -31,7 +31,7 @@ it('doesnt support custom actions yet', () => {
 
 it('should apply the chosen option', () => {
   const haku_life = options.fromPrimary(1);
-  const greaves = items.fromPrimary(1650);
+  const greaves = items.fromName('Iron Greaves');
 
   const crafted = haku_life.applyTo(greaves);
 
@@ -41,7 +41,7 @@ it('should apply the chosen option', () => {
 });
 
 it('should return the same item if it cant apply', () => {
-  const jewel = items.fromPrimary(2273).rarity.set('magic');
+  const jewel = items.fromName('Viridian Jewel').rarity.set('magic');
   const haku_life = options.fromPrimary(1);
 
   expect(haku_life.applyTo(jewel)).toBe(jewel);
@@ -49,12 +49,12 @@ it('should return the same item if it cant apply', () => {
 
 describe('applicable mods', () => {
   const bench = options.fromPrimary(1);
-  const greaves = items.fromPrimary(1650);
+  const greaves = items.fromName('Iron Greaves');
 
   const craftedLife = bench.mods[0];
 
   it('should check for equipment type', () => {
-    const weapon = items.fromPrimary(1025).rarity.set('magic');
+    const weapon = items.fromName('Skinning Knife').rarity.set('magic');
 
     expect(bench.isModApplicableTo(craftedLife, weapon)).toEqual({
       above_lld_level: false,
@@ -68,7 +68,7 @@ describe('applicable mods', () => {
       wrong_itemclass: true,
     });
 
-    const jewel = items.fromPrimary(2273).rarity.set('magic');
+    const jewel = items.fromName('Viridian Jewel').rarity.set('magic');
 
     expect(bench.isModApplicableTo(craftedLife, jewel)).toEqual({
       above_lld_level: false,

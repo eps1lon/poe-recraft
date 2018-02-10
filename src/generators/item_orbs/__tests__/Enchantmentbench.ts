@@ -18,7 +18,7 @@ it('should only have prefixes and suffixes', () => {
 it('should add an enchantment while preserving props', () => {
   const bench = EnchantmentBench.build(mods.all());
 
-  const boots = items.fromPrimary(1650);
+  const boots = items.fromName('Iron Greaves');
 
   const crafted_boots = bench.applyTo(boots);
 
@@ -27,7 +27,7 @@ it('should add an enchantment while preserving props', () => {
   expect(crafted_boots.implicits.mods).toHaveLength(1);
   expect(crafted_boots.implicits.mods[0].isEnchantment()).toBe(true);
 
-  const gloves = items.fromPrimary(1761);
+  const gloves = items.fromName('Gripped Gloves');
 
   expect(gloves.implicits.mods[0].isEnchantment()).toBe(false);
 
@@ -38,7 +38,7 @@ it('should add an enchantment while preserving props', () => {
   expect(crafted_gloves.implicits.mods).toHaveLength(1);
   expect(crafted_gloves.implicits.mods[0].isEnchantment()).toBe(true);
 
-  const helmet = items.fromPrimary(1544);
+  const helmet = items.fromName('Bone Helmet');
 
   expect(helmet.implicits.mods[0].isEnchantment()).toBe(false);
 

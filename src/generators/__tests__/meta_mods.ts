@@ -10,7 +10,7 @@ import META_MODS from '../../mods/meta_mods';
 const { craftingbenchoptions: options, items, mods } = createTables();
 
 describe('no_*_mods', () => {
-  const weapon = items.fromPrimary(1025).rarity.set('rare');
+  const weapon = items.fromName('Skinning Knife').rarity.set('rare');
 
   const no_attack_mods = mods.fromPrimary(META_MODS.NO_ATTACK_MODS);
   const no_caster_mods = mods.fromPrimary(META_MODS.NO_CASTER_MODS);
@@ -52,7 +52,7 @@ describe('no_*_mods', () => {
 
 describe('leo pvp mod', () => {
   it('should exclude mods above required level 28', () => {
-    const weapon = items.fromPrimary(1025).rarity.set('rare');
+    const weapon = items.fromName('Skinning Knife').rarity.set('rare');
 
     const leo_mod = mods.fromPrimary(META_MODS.LLD_MOD);
 
@@ -72,10 +72,10 @@ describe('multimod', () => {
   const bench = options.fromPrimary(1);
 
   it('should allow more than one crafted mod', () => {
-    const craftable_greaves = items.fromPrimary(1650).rarity.set('rare');
+    const craftable_greaves = items.fromName('Iron Greaves').rarity.set('rare');
 
-    const craftedLife = mods.fromPrimary(5596);
-    const craftedArmour = mods.fromPrimary(5550);
+    const craftedLife = mods.fromId('StrMasterLifeCrafted1');
+    const craftedArmour = mods.fromId('StrMasterArmourPercentCrafted1');
     const multimod = mods.fromPrimary(META_MODS.MULTIMOD);
 
     expect(bench.isModApplicableTo(craftedLife, craftable_greaves)).toEqual({
@@ -130,12 +130,12 @@ describe('multimod', () => {
 
 // see http://i.imgur.com/sNpdDBS.jpg
 describe('lock_*', () => {
-  const ipd = mods.fromPrimary(793);
-  const flatphys = mods.fromPrimary(938);
-  const ias = mods.fromPrimary(1904);
-  const crit = mods.fromPrimary(2170);
+  const ipd = mods.fromId('LocalIncreasedPhysicalDamagePercent3');
+  const flatphys = mods.fromId('LocalAddedPhysicalDamage3');
+  const ias = mods.fromId('LocalIncreasedAttackSpeed1');
+  const crit = mods.fromId('CriticalStrikeChance1');
 
-  const weapon = items.fromPrimary(1025);
+  const weapon = items.fromName('Skinning Knife');
 
   const locked_prefixes = mods.fromPrimary(META_MODS.LOCKED_PREFIXES);
 

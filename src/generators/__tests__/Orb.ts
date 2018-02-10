@@ -19,10 +19,10 @@ it('should consider tags', () => {
   const orb: Orb<Item> = new TestOrb([]);
 
   const no_attack_mods = mods.fromPrimary(META_MODS.NO_ATTACK_MODS);
-  const ipd = mods.fromPrimary(793);
-  const sturdy = mods.fromPrimary(1465);
+  const ipd = mods.fromId('LocalIncreasedPhysicalDamagePercent3');
+  const sturdy = mods.fromId('LocalBaseArmourAndEvasionRating5');
 
-  const weapon = items.fromPrimary(1025).rarity.set('rare');
+  const weapon = items.fromName('Skinning Knife').rarity.set('rare');
 
   expect(ipd.spawnweightFor(weapon)).toBe(1000);
   expect(orb.isModSpawnableOn(ipd, weapon)).toEqual({
