@@ -5,9 +5,9 @@ import { calculateSpawnchance } from '../util';
 const { mods } = createTables();
 
 it('should calculate spawnchances from weights', () => {
-  const wicked = mods.fromPrimary(793);
-  const vicious = mods.fromPrimary(794);
-  const wickedCrafted = mods.fromPrimary(5749);
+  const wicked = mods.fromId('LocalIncreasedPhysicalDamagePercent3');
+  const vicious = mods.fromId('LocalIncreasedPhysicalDamagePercent4');
+  const wickedCrafted = mods.fromId('StrDexMasterIncreasedPhysicalCrafted1');
 
   const collection = [
     {

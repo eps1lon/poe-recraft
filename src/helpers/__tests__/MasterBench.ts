@@ -20,7 +20,7 @@ it('should throw if the specified master key was not found', () => {
 });
 
 it('should apply an option', () => {
-  const greaves = items.fromPrimary(1650);
+  const greaves = items.fromName('Iron Greaves');
   const haku = MasterBench.build(craftingbenchoptions.all(), 6);
 
   expect(
@@ -29,7 +29,7 @@ it('should apply an option', () => {
 });
 
 it('throw if the option was not found', () => {
-  const greaves = items.fromPrimary(1650);
+  const greaves = items.fromName('Iron Greaves');
   const haku = MasterBench.build(craftingbenchoptions.all(), 6);
 
   expect(() => haku.applyOptionTo(greaves, 213324234)).toThrowError(

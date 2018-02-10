@@ -31,11 +31,11 @@ it('should have a mods getter which will prevent mutation', () => {
 it('should work like ingame', () => {
   const generator: Generator<Mod, Item> = new TestGenerator([]);
 
-  const greaves = items.fromPrimary(1650);
+  const greaves = items.fromName('Iron Greaves');
 
-  const ofBrute = mods.fromPrimary(0);
-  const ofWrestler = mods.fromPrimary(1);
-  const sturdy = mods.fromPrimary(1465);
+  const ofBrute = mods.fromId('Strength1');
+  const ofWrestler = mods.fromId('Strength2');
+  const sturdy = mods.fromId('LocalBaseArmourAndEvasionRating5');
 
   // normal items cant have mods
   expect(generator.isModApplicableTo(ofBrute, greaves)).toEqual({
@@ -116,9 +116,9 @@ it('should work like ingame', () => {
 
 it('should know that it can apply the same mod in implicit and explicit', () => {
   // has implicit dodge
-  const shield = items.fromPrimary(1478).rarity.set('rare');
+  const shield = items.fromName('Supreme Spiked Shield').rarity.set('rare');
   // explicit dodge
-  const dodge = mods.fromPrimary(4877);
+  const dodge = mods.fromId('ChanceToDodgeSpells3');
   const generator: Generator<Mod, Item> = new TestGenerator([]);
 
   expect(generator.isModApplicableTo(dodge, shield)).toEqual({

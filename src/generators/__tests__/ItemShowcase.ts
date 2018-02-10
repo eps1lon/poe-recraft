@@ -13,7 +13,7 @@ it('should build', () => {
 
 it('should not do anything, just showcase', () => {
   const showcase = new ItemShowcase(mods.all(), craftingbenchoptions.all());
-  const greaves = items.fromPrimary(1650);
+  const greaves = items.fromName('Iron Greaves');
 
   expect(showcase.applyTo(greaves)).toBe(greaves);
   expect(showcase.modsFor(greaves).length).toBeGreaterThan(0);
@@ -22,8 +22,8 @@ it('should not do anything, just showcase', () => {
 it('should use special rarity', () => {
   const showcase = new ItemShowcase(mods.all(), craftingbenchoptions.all());
 
-  const life = mods.fromPrimary(198);
-  const greaves = items.fromPrimary(1650).addMod(life);
+  const life = mods.fromId('IncreasedLife0');
+  const greaves = items.fromName('Iron Greaves').addMod(life);
 
   // although this item is white and already has a prefix the showcase
   // considers this item to be rare
@@ -31,6 +31,6 @@ it('should use special rarity', () => {
     showcase
       .modsFor(greaves)
       .filter(({ mod }) => mod.isPrefix() && !mod.isMasterMod())
-      .map(({ mod }) => mod.props.primary),
+      .map(({ mod }) => mod.props.id),
   ).toMatchSnapshot();
 });

@@ -4,7 +4,7 @@ import Alteration from '../Alteration';
 
 const { items, mods } = createTables();
 
-const greaves = items.fromPrimary(1650);
+const greaves = items.fromName('Iron Greaves');
 
 it('should build', () => {
   const alteration = Alteration.build(mods.all());

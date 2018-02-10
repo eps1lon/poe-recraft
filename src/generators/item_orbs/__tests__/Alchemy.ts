@@ -4,7 +4,7 @@ import Alchemy from '../Alchemy';
 
 const { items, mods } = createTables();
 
-const greaves = items.fromPrimary(1650);
+const greaves = items.fromName('Iron Greaves');
 
 it('should build', () => {
   const alchemy = Alchemy.build(mods.all());

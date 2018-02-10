@@ -71,21 +71,21 @@ describe('sextant blocking', () => {
     const sextant = Sextant.build(mods.all());
     sextant.atlas = atlas;
 
-    const getMod = (primary: number) =>
-      getFromCollection(primary, sextant.mods);
+    const getMod = (id: string) =>
+      sextant.mods.find(mod => mod.props.id === id);
 
     // this is the map on which we wanna block
     const dunes_index = getNodeIndex(26);
 
     // this is how we achieve it
     const oasis_index = getNodeIndex(7);
-    const invasion_mod = getMod(8772);
+    const invasion_mod = getMod('MapAtlasContainsAdditionalRandomBoss');
 
     const arid_index = getNodeIndex(8);
-    const onslaught_mod = getMod(8789);
+    const onslaught_mod = getMod('MapAtlasOnslaughtWhenHitAndOnslaughtEffect');
 
     const dungeon_index = getNodeIndex(18);
-    const turbo_mod = getMod(8776);
+    const turbo_mod = getMod('MapAtlasMoveAttackCastSpeed');
 
     // pre
     expect(Sextant.blockedMods(atlas[dunes_index], atlas)).toHaveLength(0);
@@ -159,11 +159,11 @@ it('should consider adjacents for spawnweight if it is zero', () => {
   const sextant = Sextant.build(mods.all());
   sextant.atlas = atlas;
 
-  const getMod = (primary: number) =>
-    sextant.mods.find(({ props }) => primary === props.primary);
+  const getMod = (id: string) =>
+    sextant.mods.find(({ props }) => id === props.id);
 
   const waka_index = getNodeIndex(38);
-  const breach_mod = getMod(8811);
+  const breach_mod = getMod('MapAtlasAdditionalBreaches');
 
   const rollable_mods = sextant.modsFor(atlas[waka_index]);
   expect(rollable_mods.map(({ mod }) => mod)).toContain(breach_mod);

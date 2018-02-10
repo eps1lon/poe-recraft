@@ -5,7 +5,7 @@ const tables = createTables();
 const { items } = tables;
 
 it('should upgrade rarity normal->magic-rare', () => {
-  const normal = items.fromPrimary(1650);
+  const normal = items.fromName('Iron Greaves');
 
   const magic = normal.rarity.upgrade();
 
@@ -23,7 +23,7 @@ it('should upgrade rarity normal->magic-rare', () => {
 });
 
 it('should have a string represantation of its rarity', () => {
-  const item = items.fromPrimary(1650);
+  const item = items.fromName('Iron Greaves');
 
   expect(item.rarity.toString()).toEqual('normal');
   expect(item.rarity.set('magic').rarity.toString()).toEqual('magic');
@@ -33,5 +33,5 @@ it('should have a string represantation of its rarity', () => {
 });
 
 it('should always have rarity', () => {
-  expect(items.fromPrimary(1650).rarity.any()).toBe(true);
+  expect(items.fromName('Iron Greaves').rarity.any()).toBe(true);
 });

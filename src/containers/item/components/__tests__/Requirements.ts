@@ -4,17 +4,21 @@ const tables = createTables();
 const { items, mods } = tables;
 
 it('should consider its mods for its required level', () => {
-  const greaves = items.fromPrimary(1652).rarity.set('rare');
+  const greaves = items.fromName('Plated Greaves').rarity.set('rare');
 
   expect(greaves.requirements.level()).toBe(23);
   // 17 modrequirements.level
-  expect(greaves.addMod(mods.fromPrimary(2)).requirements.level()).toBe(23);
+  expect(greaves.addMod(mods.fromId('Strength3')).requirements.level()).toBe(
+    23,
+  );
   // 26 mod
-  expect(greaves.addMod(mods.fromPrimary(3)).requirements.level()).toBe(26);
+  expect(greaves.addMod(mods.fromId('Strength4')).requirements.level()).toBe(
+    26,
+  );
 });
 
 it('should have attr requirements', () => {
-  const greaves = items.fromPrimary(1652);
+  const greaves = items.fromName('Plated Greaves');
 
   expect(greaves.requirements.list()).toEqual({
     level: 23,
@@ -25,7 +29,7 @@ it('should have attr requirements', () => {
 });
 
 it('should have requirements if any are greater than zero', () => {
-  expect(items.fromPrimary(2276).requirements.any()).toBe(false);
+  expect(items.fromName('Cursed Crypt Map').requirements.any()).toBe(false);
 
-  expect(items.fromPrimary(1652).requirements.any()).toBe(true);
+  expect(items.fromName('Plated Greaves').requirements.any()).toBe(true);
 });

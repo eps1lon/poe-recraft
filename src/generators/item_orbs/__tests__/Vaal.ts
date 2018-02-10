@@ -3,7 +3,7 @@ import Vaal from '../Vaal';
 
 const { items, mods } = createTables();
 
-const greaves = items.fromPrimary(1650);
+const greaves = items.fromName('Iron Greaves');
 
 it('should build', () => {
   const vaal = Vaal.build(mods.all());

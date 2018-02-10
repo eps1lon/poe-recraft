@@ -6,7 +6,7 @@ import Annulment from '../Annulment';
 
 const { items, mods } = createTables();
 
-const greaves = items.fromPrimary(1650);
+const greaves = items.fromName('Iron Greaves');
 
 it('should only work on certain items', () => {
   const annul = new Annulment();
@@ -61,11 +61,13 @@ it('should remove one mod while preserving rarity', () => {
 it('should consider meta mods', () => {
   const annul = new Annulment();
 
-  const life = mods.fromPrimary(198);
-  const armour = mods.fromPrimary(1035);
-  const ms = mods.fromPrimary(1503);
-  const res = mods.fromPrimary(2232);
-  const strength = mods.fromPrimary(0);
+  const life = mods.fromId('IncreasedLife0');
+  const armour = mods.fromId(
+    'LocalIncreasedPhysicalDamageReductionRatingPercent3',
+  );
+  const ms = mods.fromId('MovementVelocity1');
+  const res = mods.fromId('FireResist1');
+  const strength = mods.fromId('Strength1');
 
   const locked_prefixes = mods.fromPrimary(META_MODS.LOCKED_PREFIXES);
 

@@ -2,8 +2,10 @@ import { BaseError } from 'make-error';
 
 import { Buildable } from '../interfaces';
 
-export interface PropsWithPrimary {
+export interface TableProps {
   primary: number;
+  name?: string;
+  id?: string;
 }
 
 export class NotFound extends BaseError {
@@ -13,7 +15,7 @@ export class NotFound extends BaseError {
 }
 
 // take care. flow accepts any as a constructor
-export default class PropsTable<P extends PropsWithPrimary, T> {
+export default class PropsTable<P extends TableProps, T> {
   public builder: Buildable<P, T>;
   public table: P[];
 
@@ -45,12 +47,24 @@ export default class PropsTable<P extends PropsWithPrimary, T> {
   }
 
   public fromPrimary(primary: number): T {
+    return this.fromProp('primary', primary);
+  }
+
+  public fromName(name: string): T {
+    return this.fromProp('name', name);
+  }
+
+  public fromId(id: string): T {
+    return this.fromProp('id', id);
+  }
+
+  public fromProp<K extends keyof TableProps>(prop: K, value: P[K]): T {
     try {
-      return this.from(other => other.primary === primary);
+      return this.from(other => other[prop] === value);
     } catch (err) {
       // catch Notfound
       if (err instanceof NotFound) {
-        throw new NotFound(this.builder.name, `with primary '${primary}'`);
+        throw new NotFound(this.builder.name, `with ${prop} '${value}'`);
       } else {
         throw err;
       }

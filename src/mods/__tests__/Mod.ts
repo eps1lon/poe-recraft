@@ -4,12 +4,12 @@ import Mod from '../Mod';
 
 const { mods } = createTables();
 
-const ofBrute = mods.fromPrimary(0);
-const sturdy = mods.fromPrimary(1465);
-const plusLevel = mods.fromPrimary(5215);
+const ofBrute = mods.fromId('Strength1');
+const sturdy = mods.fromId('LocalBaseArmourAndEvasionRating5');
+const plusLevel = mods.fromId('GemLevelCorruption');
 
 it('should build', () => {
-  expect(mods.fromPrimary(1650)).toBeInstanceOf(Mod);
+  expect(mods.fromId('SpellDamageOnWeaponImplicitWand2')).toBeInstanceOf(Mod);
 });
 
 it('should know its type', () => {
@@ -43,16 +43,16 @@ it('should fallback to the default spawnweight if defined', () => {
       return [{ id: 'dummy_tag', primary: 1 }];
     },
   };
-  const sextant_mod = mods.fromPrimary(8776);
+  const sextant_mod = mods.fromId('MapAtlasMoveAttackCastSpeed');
 
   expect(sextant_mod.spawnweightFor(taggable));
 });
 
 it('should have a string represantation of its generation type', () => {
-  const suffix = mods.fromPrimary(2617);
+  const suffix = mods.fromId('FireDamagePercent3');
   expect(suffix.modType()).toBe('suffix');
 
-  const enchantment = mods.fromPrimary(7058);
+  const enchantment = mods.fromId('EnchantmentOfBladesOnHit1');
   expect(enchantment.modType()).toBe('enchantment');
 
   expect(

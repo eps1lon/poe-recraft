@@ -3,7 +3,7 @@ import Scouring from '../Scouring';
 
 const { items, mods } = createTables();
 
-const greaves = items.fromPrimary(1650);
+const greaves = items.fromName('Iron Greaves');
 
 it('should not work on uniques or normal items', () => {
   const scour = new Scouring();
@@ -45,8 +45,8 @@ it('should not work on uniques or normal items', () => {
 it('should remove mods and downgrade to normal', () => {
   const scour = new Scouring();
 
-  const movement = mods.fromPrimary(1503);
-  const life = mods.fromPrimary(198);
+  const movement = mods.fromId('MovementVelocity1');
+  const life = mods.fromId('IncreasedLife0');
 
   // pre
   const magic_greaves = greaves.rarity.set('magic').addMod(movement);

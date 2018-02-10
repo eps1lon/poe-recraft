@@ -3,7 +3,7 @@ import Exalted from '../Exalted';
 
 const { items, mods } = createTables();
 
-const greaves = items.fromPrimary(1650);
+const greaves = items.fromName('Iron Greaves');
 
 it('should build', () => {
   const exalted = Exalted.build(mods.all());

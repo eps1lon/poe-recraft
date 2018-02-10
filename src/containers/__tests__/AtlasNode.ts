@@ -113,8 +113,8 @@ it('should know by which mods its affected', () => {
   const strand_index = getNodeIndex(37);
   const waka_index = getNodeIndex(38);
 
-  const master_mod = mods.fromPrimary(8760);
-  const invasion_mod = mods.fromPrimary(8772);
+  const master_mod = mods.fromId('MapAtlasContainsMaster');
+  const invasion_mod = mods.fromId('MapAtlasContainsAdditionalRandomBoss');
 
   atlas[waka_index] = atlas[waka_index].addMod(master_mod);
 

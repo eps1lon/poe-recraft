@@ -3,7 +3,7 @@ import Chaos from '../Chaos';
 
 const { items, mods } = createTables();
 
-const greaves = items.fromPrimary(1650);
+const greaves = items.fromName('Iron Greaves');
 
 it('should build', () => {
   const chaos = Chaos.build(mods.all());

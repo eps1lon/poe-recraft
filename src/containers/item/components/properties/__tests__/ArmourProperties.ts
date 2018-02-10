@@ -7,7 +7,7 @@ const tables = createTables();
 const { items, mods } = tables;
 
 it('should throw while attempting to build with anything else but armours', () => {
-  const weapon = items.fromPrimary(1025);
+  const weapon = items.fromName('Skinning Knife');
 
   expect(() => build(weapon)).toThrow(
     'component_armour not set while attempting to build ArmourProperties',
@@ -15,7 +15,7 @@ it('should throw while attempting to build with anything else but armours', () =
 });
 
 it('get the basics', () => {
-  const garb = items.fromPrimary(1648);
+  const garb = items.fromName('Sacrificial Garb');
 
   expect(build(garb)).toEqual({
     armour: { type: 'simple', values: [329, 329] },
@@ -25,10 +25,14 @@ it('get the basics', () => {
 });
 
 it('should consider stats for armour', () => {
-  const garb = items.fromPrimary(1648);
+  const garb = items.fromName('Sacrificial Garb');
 
-  const flat_armour = mods.fromPrimary(1452);
-  const percent_armour = mods.fromPrimary(1226);
+  const flat_armour = mods.fromId(
+    'LocalIncreasedPhysicalDamageReductionRating5',
+  );
+  const percent_armour = mods.fromId(
+    'LocalIncreasedPhysicalDamageReductionRatingPercentAndStunRecovery4',
+  );
 
   expect(build(garb.addMod(flat_armour))).toEqual({
     armour: { type: 'augmented', values: [468, 651] },
@@ -44,10 +48,10 @@ it('should consider stats for armour', () => {
 });
 
 it('should consider stats for evasion', () => {
-  const garb = items.fromPrimary(1648);
+  const garb = items.fromName('Sacrificial Garb');
 
-  const flat_evasion = mods.fromPrimary(1416);
-  const percent_evasion = mods.fromPrimary(1082);
+  const flat_evasion = mods.fromId('LocalIncreasedEvasionRating5');
+  const percent_evasion = mods.fromId('LocalIncreasedEvasionRatingPercent5');
 
   expect(build(garb.addMod(flat_evasion))).toEqual({
     armour: { type: 'simple', values: [329, 329] },
@@ -61,10 +65,12 @@ it('should consider stats for evasion', () => {
 });
 
 it('should consider stats for es', () => {
-  const garb = items.fromPrimary(1648);
+  const garb = items.fromName('Sacrificial Garb');
 
-  const flat_es = mods.fromPrimary(468);
-  const percent_es = mods.fromPrimary(1218);
+  const flat_es = mods.fromId('LocalIncreasedEnergyShield6');
+  const percent_es = mods.fromId(
+    'LocalIncreasedEnergyShieldPercentAndStunRecovery4',
+  );
 
   expect(build(garb.addMod(flat_es))).toEqual({
     armour: { type: 'simple', values: [329, 329] },
