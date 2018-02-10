@@ -5,6 +5,7 @@ import { Buildable } from '../interfaces';
 export interface TableProps {
   primary: number;
   name?: string;
+  id?: string;
 }
 
 export class NotFound extends BaseError {
@@ -46,25 +47,24 @@ export default class PropsTable<P extends TableProps, T> {
   }
 
   public fromPrimary(primary: number): T {
-    try {
-      return this.from(other => other.primary === primary);
-    } catch (err) {
-      // catch Notfound
-      if (err instanceof NotFound) {
-        throw new NotFound(this.builder.name, `with primary '${primary}'`);
-      } else {
-        throw err;
-      }
-    }
+    return this.fromProp('primary', primary);
   }
 
   public fromName(name: string): T {
+    return this.fromProp('name', name);
+  }
+
+  public fromId(id: string): T {
+    return this.fromProp('id', id);
+  }
+
+  public fromProp<K extends keyof TableProps>(prop: K, value: P[K]): T {
     try {
-      return this.from(other => other.name === name);
+      return this.from(other => other[prop] === value);
     } catch (err) {
       // catch Notfound
       if (err instanceof NotFound) {
-        throw new NotFound(this.builder.name, `with name '${name}'`);
+        throw new NotFound(this.builder.name, `with ${prop} '${value}'`);
       } else {
         throw err;
       }
