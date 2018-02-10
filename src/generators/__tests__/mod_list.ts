@@ -38,3 +38,29 @@ it('should match the previously generated wand mods', () => {
   const wand = items.fromName('Pagan Wand');
   expect(showcase.modsFor(wand).map(formatForSnapshot)).toMatchSnapshot();
 });
+
+it('should be able to generate elder mods', () => {
+  const boots = items.fromName('Iron Greaves').asElderItem();
+
+  expect(
+    showcase
+      .modsFor(boots)
+      .filter(({ mod }) => /Elder/.test(mod.props.name))
+      .map(formatForSnapshot),
+  ).toMatchSnapshot();
+});
+
+it('should be able to generate shaper mods', () => {
+  const boots = items.fromName('Iron Greaves').asShaperItem();
+
+  expect(
+    showcase
+      .modsFor(boots)
+      .filter(
+        ({ mod }) =>
+          mod.props.name.startsWith("The Shaper's") ||
+          mod.props.name.endsWith('of Shaping'),
+      )
+      .map(formatForSnapshot),
+  ).toMatchSnapshot();
+});

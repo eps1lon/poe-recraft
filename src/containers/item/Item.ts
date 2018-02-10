@@ -6,6 +6,10 @@ import { TagProps, BaseItemTypeProps } from '../../schema';
 import MetaData from '../../util/MetaData';
 import Stat from '../../calculator/Stat';
 
+import atlasModifier, {
+  AtlasModifier,
+  tagsWithModifier as tagsWithAtlasModifier,
+} from './atlasModifier';
 import Component from './Component';
 import ItemAffixes from './components/Affixes';
 import ItemSockets, {
@@ -29,10 +33,10 @@ import ItemProperties, {
 } from './components/properties/ItemProperties';
 
 export interface ItemProps {
+  readonly atlas_modifier: AtlasModifier;
   readonly corrupted: boolean;
   readonly item_level: number;
   readonly mirrored: boolean;
-  readonly sockets?: number;
 }
 
 export class UnacceptedMod extends BaseError {
@@ -79,6 +83,7 @@ export default class Item implements Container<Mod> {
       name: 'Random Name',
       props: {
         // more like misc
+        atlas_modifier: atlasModifier(baseitem),
         corrupted: false,
         item_level: 100,
         mirrored: false,
@@ -316,6 +321,32 @@ export default class Item implements Container<Mod> {
       return this.setProperty('mirrored', true);
     }
   }
+
+  public isElderItem(): boolean {
+    return this.props.atlas_modifier === AtlasModifier.ELDER;
+  }
+
+  // returns an item that can have elder mods
+  // this does not remove existing shaper mods
+  public asElderItem(): this {
+    return this.asAtlasModifier(AtlasModifier.ELDER);
+  }
+
+  public isSHaperItem(): boolean {
+    return this.props.atlas_modifier === AtlasModifier.SHAPER;
+  }
+
+  // returns an item that can have shper mods
+  // this does not remove existing elder mods
+  public asShaperItem(): this {
+    return this.asAtlasModifier(AtlasModifier.SHAPER);
+  }
+
+  // returns an item that cant have elder or shaper mods
+  // this does not remove existing elder or shaper mods
+  public removeAtlasModifier(): this {
+    return this.asAtlasModifier(AtlasModifier.NONE);
+  }
   // End state
 
   // private
@@ -351,5 +382,29 @@ export default class Item implements Container<Mod> {
 
   private removeImplicit(other: Mod): this {
     return this.mutateImplicits(implicits => implicits.removeMod(other));
+  }
+
+  private asAtlasModifier(modifier: AtlasModifier): this {
+    if (this.props.atlas_modifier === modifier) {
+      return this;
+    } else {
+      return this.withMutations(builder => {
+        return {
+          ...builder,
+          baseitem: {
+            ...builder.baseitem,
+            tags: tagsWithAtlasModifier(
+              builder.baseitem,
+              builder.meta_data,
+              modifier,
+            ),
+          },
+          props: {
+            ...builder.props,
+            atlas_modifier: modifier,
+          },
+        };
+      });
+    }
   }
 }
