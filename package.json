@@ -1,23 +1,27 @@
 {
   "name": "poe-mods",
-  "version": "1.5.3",
+  "version": "1.6.0-alpha.3",
   "description": "Emulates interaction of Mods with Items, Atlas etc. in Path of Exile",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "module": "es/index.js",
   "files": [
-    "lib/"
+    "dist/",
+    "es/",
+    "lib/",
+    "src/"
   ],
   "scripts": {
-    "build": "npm run build:clean && npm run build:lib && npm run build:flow",
-    "build:clean": "rimraf lib",
-    "build:lib": "babel -d lib src --ignore \"**/__*__/**\"",
-    "build:flow": "flow-copy-source -v -i \"**/__*__/**\" src lib",
+    "build": "npm run build:browser && npm run build:commonjs && npm run build:es",
+    "build:browser": "tsc --declaration --module System --outFile dist/index.js",
+    "build:commonjs": "tsc --declaration --module CommonJS --outDir lib",
+    "build:es": "tsc --declaration --module ES6 --outDir es",
+    "build:verify": "tsc --watch --noEmit",
+    "clean": "rimraf coverage dist es lib",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "dev:schema": "node ./scripts/schemaRuntime",
-    "flow": "flow",
-    "flow:coverage": "flow-coverage-report -i 'src/**/*.js' -t html",
-    "format": "prettier --write src/**/*.js",
-    "format:check": "prettier --list-different src/**/*.js",
-    "lint": "eslint src/**/*.js",
+    "format": "prettier --write src/**/*.ts",
+    "format:check": "prettier --list-different src/**/*.ts",
+    "lint": "tslint --project tsconfig.json",
     "prepublishOnly": "npm run build",
     "test": "jest --watch",
     "test:check": "jest --ci",
@@ -39,43 +43,35 @@
   },
   "homepage": "https://github.com/eps1lon/poe-mods#readme",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.0",
-    "babel-jest": "^22.0.0",
-    "babel-plugin-flow-runtime": "^0.15.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-flow-strip-types": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-flow": "^6.23.0",
+    "@types/jest": "^22.1.1",
+    "@types/lodash": "^4.14.101",
+    "@types/node": "^9.4.1",
     "coveralls": "^3.0.0",
-    "eslint": "^4.6.1",
-    "eslint-config-airbnb-base": "^12.0.0",
-    "eslint-config-prettier": "^2.4.0",
-    "eslint-plugin-flowtype": "^2.35.1",
-    "eslint-plugin-import": "^2.7.0",
     "fetch-mock": "^6.0.0",
-    "flow-bin": "^0.64.0",
-    "flow-copy-source": "^1.2.1",
-    "flow-coverage-report": "^0.4.0",
     "jest": "^22.0.0",
     "pre-push": "^0.1.1",
     "prettier": "^1.6.1",
-    "regenerator-runtime": "^0.11.0",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "ts-jest": "^22.0.3",
+    "tslint": "^5.9.1",
+    "tslint-config-prettier": "^1.7.0",
+    "tslint-eslint-rules": "^4.1.1",
+    "typescript": "^2.7.1"
   },
   "dependencies": {
-    "flow-runtime": "^0.16.0",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "make-error": "^1.3.3"
   },
   "jest": {
-    "automock": false,
-    "collectCoverage": false,
-    "collectCoverageFrom": [
-      "src/**/*.js"
-    ],
-    "coverageDirectory": "coverage"
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js|ts)$",
+    "mapCoverage": true,
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ]
   },
   "pre-push": [
     "lint",
