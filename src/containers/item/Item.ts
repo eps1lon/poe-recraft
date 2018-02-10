@@ -32,7 +32,6 @@ export interface ItemProps {
   readonly corrupted: boolean;
   readonly item_level: number;
   readonly mirrored: boolean;
-  readonly sockets?: number;
 }
 
 export class UnacceptedMod extends BaseError {
