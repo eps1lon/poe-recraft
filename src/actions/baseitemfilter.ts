@@ -2,13 +2,13 @@ import { Action, ActionCreator } from 'redux';
 import { BaseitemFilter } from 'selectors/baseitemfilter';
 
 export enum Types {
-  SET_FILTER,
-  SET_ITEM_CLASS
+  SET_FILTER = 'BASEITEMFILTER/SET_FILTER',
+  SET_ITEM_CLASS = 'BASEITEMFILTER/SET_ITEM_CLASS'
 }
 
 export type Action = SetItemClass | SetFilter;
 
-interface SetItemClass {
+export interface SetItemClass {
   type: Types.SET_ITEM_CLASS;
   payload: number;
 }

@@ -4,12 +4,12 @@ import { Action } from 'util/redux';
 import { BaseItemTypeProps, TagProps } from 'selectors/schema';
 
 export enum Type {
-  SET_ITEM,
-  SET_RARITY,
-  ADD_MOD,
-  REMOVE_MOD,
-  ADD_TAG,
-  REMOVE_TAG
+  SET_ITEM = 'ITEM/SET_ITEM',
+  SET_RARITY = 'ITEM/SET_RARITY',
+  ADD_MOD = 'ITEM/ADD_MOD',
+  REMOVE_MOD = 'ITEM/REMOVE_MOD',
+  ADD_TAG = 'ITEM/ADD_TAG',
+  REMOVE_TAG = 'ITEM/REMOVE_TAG'
 }
 
 export type Action =

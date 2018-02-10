@@ -14,7 +14,7 @@ const ItemClassGroup: SFC<Props> = props => {
 
   return (
     // TODO was this working? typing indicates not
-    <DropdownItem active={+active === primary} /*onClick={onClick}*/>
+    <DropdownItem active={+active === primary} onClick={() => onClick(primary)}>
       <FormattedMessage
         id={`poe.item_classes.${primary}.name`}
         defaultMessage={name}

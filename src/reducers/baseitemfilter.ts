@@ -28,7 +28,7 @@ const reducer: Reducer<State, Action> = (
       return {
         ...state,
         item_class: action.payload,
-        tags: [[]] as string[][]
+        tags: [] as string[][]
       };
     default:
       return state;
