@@ -1,12 +1,7 @@
 import { addLocaleData } from 'react-intl';
 import { all, call, fork, put, take } from 'redux-saga/effects';
 
-import {
-  changeLocale,
-  setDescriptions,
-  setLocale,
-  setMessages
-} from 'actions/i18n';
+import { setDescriptions, setLocale, setMessages, Type } from 'actions/i18n';
 
 const requireLocaleData = (locale: string) => {
   return import(/* webpackChunkName: "i18n/[request]" */ `../i18n/${locale}`);
@@ -14,7 +9,7 @@ const requireLocaleData = (locale: string) => {
 
 function* loadLocaleData() {
   while (true) {
-    const { payload: locale } = yield take(changeLocale.toString());
+    const { payload: locale } = yield take(Type.CHANGE);
     const {
       baseitemtypes,
       item_classes,

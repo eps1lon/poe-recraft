@@ -19,7 +19,7 @@ function* initDefaultItem() {
 
   // set again on class change
   while (true) {
-    yield take(Types.SET_ITEM_CLASS.toString());
+    yield take(Types.SET_ITEM_CLASS);
     yield setDefaultItem();
   }
 }

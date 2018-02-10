@@ -1,7 +1,7 @@
 import { all, fork, put, select, take } from 'redux-saga/effects';
 
 import { combineLatest } from './util';
-import { setGenerator, useGenerator } from 'actions/craft';
+import { setGenerator, useGenerator, Type } from 'actions/craft';
 import { buildGeneratorFactory } from 'selectors/generators';
 
 function* initShowcase() {
@@ -12,7 +12,7 @@ function* initShowcase() {
 
 function* buildGenerators() {
   while (true) {
-    const action = yield take(useGenerator.toString());
+    const action = yield take(Type.USE_GENERATOR);
 
     const generator = yield select(buildGeneratorFactory(action.payload));
 
