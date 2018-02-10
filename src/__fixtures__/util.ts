@@ -12,12 +12,12 @@ import AtlasNode from '../containers/AtlasNode';
 import Item from '../containers/item/Item';
 import MasterBenchOption from '../generators/MasterBenchOption';
 import Mod from '../mods/Mod';
-import PropsTable, { PropsWithPrimary } from '../helpers/PropsTable';
+import PropsTable, { TableProps } from '../helpers/PropsTable';
 import { Buildable } from '../interfaces/Buildable';
 
 const json_cache: Partial<Tables> = {};
 
-export const createTable = <P extends PropsWithPrimary, T>(
+export const createTable = <P extends TableProps, T>(
   file: keyof Tables,
   constructor: Buildable<P, T>,
 ) => {

@@ -10,9 +10,9 @@ import Item from '../containers/item/Item';
 import MasterBenchOption from '../generators/MasterBenchOption';
 import { Buildable } from '../interfaces';
 import Mod from '../mods/Mod';
-import PropsTable, { PropsWithPrimary } from './PropsTable';
+import PropsTable, { TableProps } from './PropsTable';
 
-function createTable<P extends PropsWithPrimary, T>(
+function createTable<P extends TableProps, T>(
   props: P[],
   constructor: Buildable<P, T>,
 ): PropsTable<P, T> {
