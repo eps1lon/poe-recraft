@@ -276,10 +276,12 @@ describe('elder/shaper items', () => {
 
   it('can be altered to be a elder/shaper item', () => {
     expect(eldered.isElderItem()).toBe(true);
+    expect(eldered.removeAtlasModifier().isElderItem()).toBe(false);
     expect(eldered.isSHaperItem()).toBe(false);
 
     expect(shaped.isElderItem()).toBe(false);
     expect(shaped.isSHaperItem()).toBe(true);
+    expect(shaped.removeAtlasModifier().isSHaperItem()).toBe(false);
   });
 
   it('cant be a shaper and elder item at the same time', () => {
