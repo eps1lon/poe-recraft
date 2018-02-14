@@ -59,6 +59,9 @@ const unique_item: ItemProps = {
   explicits: [{ generation_type: 3, id: 'SomeUniqueMod', name: 'Unique' }],
 };
 
+const elder_item: ItemProps = { ...magic_item, elder: true };
+const shaped: ItemProps = { ...rare_item, shaper: true };
+
 const head_stories = storiesOf('head', module);
 
 // normal item
@@ -88,3 +91,13 @@ head_stories.add('unique', () => (
     <Head item={unique_item} />
   </div>
 ));
+
+// shaped/elder
+head_stories.add('shaped/elder', () => [
+  <div key="elder" className="poe-item magic">
+    <Head item={elder_item} />
+  </div>,
+  <div key="shaped" className="poe-item rare">
+    <Head item={shaped} />
+  </div>,
+]);

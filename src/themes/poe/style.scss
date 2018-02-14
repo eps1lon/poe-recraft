@@ -35,6 +35,14 @@
     &.double-line {
       height: 53px;
 
+      &.elder,
+      &.shaper {
+        .name-left:after,
+        .name-right:after {
+          height: 53px;
+        }
+      }
+
       .item-name {
         padding: 5.18323px 45px 2.59162px 45px;
 
@@ -47,6 +55,42 @@
       .name-right {
         height: 53px;
         width: 43px;
+      }
+    }
+
+    &.elder,
+    &.shaper {
+      .name-left:after,
+      .name-right:after {
+        width: 26px;
+        height: 33px;
+        content: ' ';
+        display: block;
+        top: 0px;
+        position: absolute;
+        background: none center no-repeat;
+      }
+
+      .name-left:after {
+        left: 2px;
+      }
+
+      .name-right:after {
+        right: 2px;
+      }
+    }
+
+    &.elder {
+      .name-left:after,
+      .name-right:after {
+        background-image: url(./image/ElderItemSymbol.png);
+      }
+    }
+
+    &.shaper {
+      .name-left:after,
+      .name-right:after {
+        background-image: url(./image/ShaperItemSymbol.png);
       }
     }
 

@@ -21,6 +21,8 @@ export interface ItemProps {
   rarity: Rarity;
   implicits?: ModProps[];
   explicits?: ModProps[];
+  elder?: boolean;
+  shaper?: boolean;
 }
 
 // TODO move to poe-mods
