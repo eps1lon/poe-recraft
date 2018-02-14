@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 
-import { ItemProps, Rarity } from '../poe';
+import { ItemProps } from '../poe';
 
 export interface Props {
   item: ItemProps;
