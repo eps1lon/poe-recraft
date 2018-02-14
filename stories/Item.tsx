@@ -1,7 +1,16 @@
-import React from 'react';
+import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import Stat from '../src/stat/Stat';
 
-storiesOf('Item', module).add('Stat', () => (
-  <Stat is_augmented={false} message="Hello World!" />
+import { ItemProps, Rarity } from '../src/item/poe';
+import Head from './Head';
+
+const magic_greaves: ItemProps = {
+  base: {
+    name: 'Iron Greaves',
+  },
+  rarity: Rarity.magic,
+};
+
+storiesOf('magic Iron Greaves', module).add('Head', () => (
+  <Head item={magic_greaves} />
 ));
