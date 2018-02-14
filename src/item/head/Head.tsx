@@ -17,6 +17,7 @@ export default class Head extends React.PureComponent<Props> {
 
     return (
       <header className={classnames({ 'double-line': !single_line })}>
+        <span className="name-left" />
         {single_line ? <TypeLine item={item} /> : <DoubleLine item={item} />}
       </header>
     );

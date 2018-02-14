@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { ItemProps, Rarity } from '../src/item/poe';
 import Head from './Head';
 
-import '../src/themes/poe/style.css';
+import '../src/themes/poe/style.scss';
 
 const magic_greaves: ItemProps = {
   base: {
