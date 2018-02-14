@@ -15,9 +15,9 @@ const MagicTypeLine: React.SFC<{
 
   return (
     <span className="typeline">
-      {prefix && String(prefix.name)}
+      {prefix && `${String(prefix.name)} `}
       <ItemType item={item} />
-      {suffix && String(suffix.name)}
+      {suffix && ` ${String(suffix.name)}`}
     </span>
   );
 };
