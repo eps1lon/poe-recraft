@@ -1,0 +1,76 @@
+{
+  "name": "poe-components-item",
+  "version": "0.0.1",
+  "description": "ts-node boilerplate",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "module": "es/index.js",
+  "files": [
+    "dist/",
+    "es/",
+    "lib/",
+    "src/"
+  ],
+  "scripts": {
+    "build": "npm run build:commonjs && npm run build:es",
+    "build:commonjs": "tsc --declaration --module CommonJS --outDir lib",
+    "build:es": "tsc --declaration --module ES6 --outDir es",
+    "build:verify": "tsc --watch --noEmit",
+    "clean": "rimraf coverage dist es lib",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+    "format:check": "prettier --list-different \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint": "tslint --project tsconfig.json",
+    "prepublishOnly": "npm run build",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "test": "jest --watch",
+    "test:check": "jest --ci",
+    "test:ci": "jest --ci --coverage --runInBand",
+    "test:coverage": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eps1lon/poe-components-item.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eps1lon/poe-components-item/issues"
+  },
+  "author": "Sebastian Silbermann",
+  "license": "MIT",
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js|ts)$",
+    "mapCoverage": true,
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ]
+  },
+  "devDependencies": {
+    "@storybook/react": "^3.3.13",
+    "@types/classnames": "^2.2.3",
+    "@types/jest": "^22.1.2",
+    "@types/react": "^16.0.38",
+    "@types/storybook__react": "^3.0.7",
+    "awesome-typescript-loader": "^3.4.1",
+    "babel-core": "^6.26.0",
+    "coveralls": "^3.0.0",
+    "css-loader": "^0.28.9",
+    "jest": "^22.2.2",
+    "prettier": "^1.10.2",
+    "react-dom": "^16.2.0",
+    "ts-jest": "^22.0.4",
+    "tslint": "^5.9.1",
+    "tslint-config-prettier": "^1.7.0",
+    "tslint-eslint-rules": "^4.1.1",
+    "tslint-react": "^3.5.1",
+    "typescript": "^2.7.1"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "poe-i18n": "^0.8.0-beta.2",
+    "react": "^16.2.0"
+  }
+}
