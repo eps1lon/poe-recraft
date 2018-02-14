@@ -3,8 +3,8 @@ import * as React from 'react';
 
 import { ItemProps, Rarity } from '../poe';
 
+import NameLine, { hasNameLine } from './NameLine';
 import TypeLine from './TypeLine';
-import DoubleLine from './DoubleLine';
 
 export interface Props {
   item: ItemProps;
@@ -13,18 +13,15 @@ export interface Props {
 export default class Head extends React.PureComponent<Props> {
   render() {
     const { item } = this.props;
-    const single_line = hasSingleNameLine(item);
+    const single_line = !hasNameLine(item);
 
     return (
       <header className={classnames({ 'double-line': !single_line })}>
         <span className="name-left" />
-        {single_line ? <TypeLine item={item} /> : <DoubleLine item={item} />}
+        <NameLine item={item} />
+        <TypeLine item={item} />
         <span className="name-right" />
       </header>
     );
   }
-}
-
-function hasSingleNameLine(item: ItemProps) {
-  return item.rarity === Rarity.magic || item.rarity === Rarity.normal;
 }

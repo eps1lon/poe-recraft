@@ -32,6 +32,7 @@ const rare_item: ItemProps = {
   base: {
     name: 'Vaal Regalia',
   },
+  name: 'Gale Salvation',
   rarity: Rarity.rare,
   explicits: [
     { generation_type: 1, id: 'Sapphire', name: 'Sapphire' },
@@ -51,8 +52,9 @@ const rare_item: ItemProps = {
 
 const unique_item: ItemProps = {
   base: {
-    name: 'Vaal Regalia',
+    name: 'Paua Amulet',
   },
+  name: 'Sidhebreath',
   rarity: Rarity.rare,
   explicits: [{ generation_type: 3, id: 'SomeUniqueMod', name: 'Unique' }],
 };
