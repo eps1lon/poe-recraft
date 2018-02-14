@@ -23,5 +23,7 @@ module.exports = (baseConfig, env) => {
     include: path.resolve(__dirname, '../'),
   });
 
+  // woff supprt
+
   return config;
 };
