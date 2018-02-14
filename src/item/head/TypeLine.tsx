@@ -14,7 +14,7 @@ const MagicTypeLine: React.SFC<{
   const suffix = explicits.filter(isSuffix)[0];
 
   return (
-    <span className="typeline">
+    <span>
       {prefix && `${String(prefix.name)} `}
       <ItemType item={item} />
       {suffix && ` ${String(suffix.name)}`}
@@ -22,11 +22,14 @@ const MagicTypeLine: React.SFC<{
   );
 };
 
-const TypeLine: React.SFC<{ item: ItemProps }> = ({ item }) =>
-  item.rarity === Rarity.magic ? (
-    <MagicTypeLine item={item} />
-  ) : (
-    <ItemType item={item} />
-  );
+const TypeLine: React.SFC<{ item: ItemProps }> = ({ item }) => (
+  <div className="item-name type-line">
+    {item.rarity === Rarity.magic ? (
+      <MagicTypeLine item={item} />
+    ) : (
+      <ItemType item={item} />
+    )}
+  </div>
+);
 
 export default TypeLine;
