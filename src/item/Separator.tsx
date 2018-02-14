@@ -1,3 +1,4 @@
-import { SFC } from 'react';
+import * as React from 'react';
 
-const Separator: SFC = () => <div className="separator" />;
+const Separator: React.SFC = () => <div className="separator" />;
+export default Separator;
