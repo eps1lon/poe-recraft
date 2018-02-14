@@ -3,7 +3,7 @@ import * as React from 'react';
 import { ItemProps, isPrefix, isSuffix, Rarity } from '../poe';
 
 const ItemType: React.SFC<{ item: ItemProps }> = ({ item }) => {
-  return <span>item.base.name</span>;
+  return <span>{item.base.name}</span>;
 };
 
 const MagicTypeLine: React.SFC<{
@@ -16,7 +16,7 @@ const MagicTypeLine: React.SFC<{
   return (
     <span className="typeline">
       {prefix && String(prefix.name)}
-      <TypeLine key="item_name" item={item} />
+      <ItemType item={item} />
       {suffix && String(suffix.name)}
     </span>
   );
