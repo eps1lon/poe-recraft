@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { BaseItemProps, ItemProps, Rarity } from './poe';
 import Head from './head';
-import Body from './Body';
+import Body from './body';
 
 export interface Props {
   className: string;
