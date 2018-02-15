@@ -9,9 +9,18 @@ export enum Rarity {
   unique,
 }
 
+export enum ModType {
+  prefix,
+  suffix,
+  unique,
+}
+
+export const isPrefix = (mod: ModProps) => mod.type === ModType.prefix;
+export const isSuffix = (mod: ModProps) => mod.type === ModType.suffix;
+
 export interface ModProps {
   id: string;
-  generation_type: number;
+  type?: ModType;
   name?: string;
 }
 
@@ -23,13 +32,4 @@ export interface ItemProps {
   explicits?: ModProps[];
   elder?: boolean;
   shaper?: boolean;
-}
-
-// TODO move to poe-mods
-export function isPrefix(mod: { generation_type: number }) {
-  return mod.generation_type === 1;
-}
-
-export function isSuffix(mod: { generation_type: number }) {
-  return mod.generation_type === 2;
 }

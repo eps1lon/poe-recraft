@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { ItemProps, Rarity } from '../src/item/poe';
+import { ItemProps, Rarity, ModType } from '../src/item/poe';
 import Head from './Head';
 
 import '../src/themes/poe/style.scss';
@@ -19,10 +19,10 @@ const magic_item: ItemProps = {
   },
   rarity: Rarity.magic,
   explicits: [
-    { id: 'LocalAddedLightningDamage2', generation_type: 1, name: 'Buzzing' },
+    { id: 'LocalAddedLightningDamage2', type: ModType.prefix, name: 'Buzzing' },
     {
       id: 'LocalIncreasedAttackSpeed3',
-      generation_type: 2,
+      type: ModType.suffix,
       name: 'of Mastery',
     },
   ],
@@ -35,18 +35,18 @@ const rare_item: ItemProps = {
   name: 'Gale Salvation',
   rarity: Rarity.rare,
   explicits: [
-    { generation_type: 1, id: 'Sapphire', name: 'Sapphire' },
+    { type: ModType.prefix, id: 'Sapphire', name: 'Sapphire' },
     {
-      generation_type: 1,
+      type: ModType.prefix,
       id: 'LocalIncreasedEnergyShieldPercentAndStunRecovery3',
       name: "Boggart's",
     },
     {
-      generation_type: 1,
+      type: ModType.prefix,
       id: 'IncreasedEnergyShieldPercent2',
       name: 'Strong-Willed',
     },
-    { generation_type: 2, id: 'FireResist6', name: 'of the Volcano' },
+    { type: ModType.suffix, id: 'FireResist6', name: 'of the Volcano' },
   ],
 };
 
@@ -56,7 +56,7 @@ const unique_item: ItemProps = {
   },
   name: 'Sidhebreath',
   rarity: Rarity.rare,
-  explicits: [{ generation_type: 3, id: 'SomeUniqueMod', name: 'Unique' }],
+  explicits: [{ type: ModType.unique, id: 'SomeUniqueMod', name: 'Unique' }],
 };
 
 const elder_item: ItemProps = { ...magic_item, elder: true };
