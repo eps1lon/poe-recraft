@@ -2,7 +2,8 @@ import { Type as ModType, Mod } from '../mod/poe';
 
 // use intersection here instead of extends to be able to test Properties
 // with only e.g. ArmourProperties
-export type Item = AbstractItem & (ArmourProperties | WeaponProperies);
+export type Item = AbstractItem &
+  (ArmourProperties | WeaponProperies | NoProperties);
 
 export interface AbstractItem {
   base: BaseItem;
@@ -34,6 +35,10 @@ export interface WeaponProperies {
   // 0 - 1
   crit: AugmentableValue<SingleValue>;
 }
+
+export type NoProperties = {
+  kind?: 'none';
+};
 
 export interface BaseItem {
   name: string;
