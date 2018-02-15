@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import { ItemProps, isPrefix, isSuffix, Rarity } from '../poe';
+import { ItemProps, Rarity } from '../poe';
+import { isPrefix, isSuffix } from '../../mod/poe';
 
 const ItemType: React.SFC<{ item: ItemProps }> = ({ item }) => {
   return <span>{item.base.name}</span>;

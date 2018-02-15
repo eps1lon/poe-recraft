@@ -1,3 +1,5 @@
+import { Type as ModType, Props as ModProps } from '../mod/poe';
+
 export interface BaseItemProps {
   name: string;
 }
@@ -7,21 +9,6 @@ export enum Rarity {
   magic,
   rare,
   unique,
-}
-
-export enum ModType {
-  prefix,
-  suffix,
-  unique,
-}
-
-export const isPrefix = (mod: ModProps) => mod.type === ModType.prefix;
-export const isSuffix = (mod: ModProps) => mod.type === ModType.suffix;
-
-export interface ModProps {
-  id: string;
-  type?: ModType;
-  name?: string;
 }
 
 export interface ItemProps {
