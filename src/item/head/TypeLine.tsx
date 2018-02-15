@@ -1,14 +1,14 @@
 import * as React from 'react';
 
-import { ItemProps, Rarity } from '../poe';
+import { Item, Rarity } from '../poe';
 import { isPrefix, isSuffix } from '../../mod/poe';
 
-const ItemType: React.SFC<{ item: ItemProps }> = ({ item }) => {
+const ItemType: React.SFC<{ item: Item }> = ({ item }) => {
   return <span>{item.base.name}</span>;
 };
 
 const MagicTypeLine: React.SFC<{
-  item: ItemProps;
+  item: Item;
 }> = ({ item }) => {
   const { explicits = [] } = item;
   const prefix = explicits.filter(isPrefix)[0];
@@ -23,7 +23,7 @@ const MagicTypeLine: React.SFC<{
   );
 };
 
-const TypeLine: React.SFC<{ item: ItemProps }> = ({ item }) => (
+const TypeLine: React.SFC<{ item: Item }> = ({ item }) => (
   <div className="item-name type-line">
     {item.rarity === Rarity.magic ? (
       <MagicTypeLine item={item} />

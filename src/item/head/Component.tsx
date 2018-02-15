@@ -1,13 +1,13 @@
 import classnames from 'classnames';
 import * as React from 'react';
 
-import { ItemProps, Rarity } from '../poe';
+import { Item, Rarity } from '../poe';
 
 import NameLine, { hasNameLine } from './NameLine';
 import TypeLine from './TypeLine';
 
 export interface Props {
-  item: ItemProps;
+  item: Item;
 }
 
 export default class Head extends React.PureComponent<Props> {

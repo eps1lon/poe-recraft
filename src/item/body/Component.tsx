@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import { ItemProps } from '../poe';
+import { Item } from '../poe';
 import { intersperse } from '../../util';
 import Separator from '../Separator';
 
 export interface Props {
-  item: ItemProps;
+  item: Item;
 }
 
 export default class Body extends React.PureComponent<Props> {

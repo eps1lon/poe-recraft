@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { ItemProps, Rarity } from '../poe';
+import { Item, Rarity } from '../poe';
 
 const NameLine: React.SFC<{
-  item: ItemProps;
+  item: Item;
 }> = ({ item }) => {
   if (!hasNameLine(item)) {
     return null;
@@ -12,7 +12,7 @@ const NameLine: React.SFC<{
   }
 };
 
-export function hasNameLine(item: ItemProps) {
+export function hasNameLine(item: Item) {
   return item.rarity === Rarity.rare || item.rarity === Rarity.unique;
 }
 

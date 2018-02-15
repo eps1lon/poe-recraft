@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { BaseItemProps, ItemProps, Rarity } from './poe';
+import { BaseItem, Item as ItemProps, Rarity } from './poe';
 import Head from './head';
 import Body from './body';
 

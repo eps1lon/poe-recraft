@@ -4,10 +4,10 @@ export enum Type {
   unique,
 }
 
-export const isPrefix = (mod: Props) => mod.type === Type.prefix;
-export const isSuffix = (mod: Props) => mod.type === Type.suffix;
+export const isPrefix = (mod: Mod) => mod.type === Type.prefix;
+export const isSuffix = (mod: Mod) => mod.type === Type.suffix;
 
-export interface Props {
+export interface Mod {
   id: string;
   type?: Type;
   name?: string;
