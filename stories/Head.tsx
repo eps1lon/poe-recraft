@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Head from '../src/item/head';
-import { ItemProps } from '../src/item/poe';
+import { Item as ItemProps } from '../src/item/poe';
 import Item from '../src/item';
 
 const Story: React.SFC<{ item: ItemProps }> = ({ item }) => {
