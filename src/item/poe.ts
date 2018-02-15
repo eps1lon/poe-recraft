@@ -23,6 +23,10 @@ export interface ArmourProperties {
   evasion?: number;
 }
 
+export interface ShieldProperties extends ArmourProperties {
+  block: number;
+}
+
 export interface WeaponProperies {
   kind: 'weapon';
   physical_damage?: AugmentableValue;
