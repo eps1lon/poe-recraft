@@ -27,7 +27,7 @@ const formatters: { [key: string]: Formatter } = {
   id: n => n
 };
 
-export default function factory<T>(
+export default function factory(
   formatter_id: string
 ): (value: StatValue) => string {
   if (!formatters.hasOwnProperty(formatter_id)) {
