@@ -436,50 +436,6 @@
         }
       ]
     },
-    "area_of_effect_incr": {
-      "stats": ["base_skill_area_of_effect_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Lacaios têm %1%%% da Área de Efeito quando usando Habilidades de Área aumentado",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "Lacaios têm %1%%% da Área de Efeito quando usando Habilidades de Área reduzido",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "concentrated_area_of_effect": {
-      "stats": ["support_concentrated_effect_skill_area_of_effect_+%_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Lacaios possuem %1%%% mais Área de Efeito quando usando Habilidades de Área",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "Lacaios possuem %1%%% menos Área de Efeito quando usando Habilidades de Área",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "aura_area_of_effect_incr": {
       "stats": ["base_aura_area_of_effect_+%"],
       "translations": [
@@ -2198,7 +2154,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Lacaios ganham uma Carga de Tolerância se Atordoarem um Inimigo com Dano Corpo a Corpo",
+            "Lacaios ganham uma Carga de Tolerância quando Atordoam um Inimigo com Dano Corpo a Corpo",
           "formatters": []
         }
       ]
@@ -2400,28 +2356,6 @@
           "matchers": ["#"],
           "text": "Essa Habilidade e Lacaios gastam vida em vez de mana",
           "formatters": []
-        }
-      ]
-    },
-    "mana_cost_reduc": {
-      "stats": ["base_mana_cost_-%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Habilidades dos Lacaios têm o Custo de Mana reduzido em %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "Habilidades dos Lacaios têm o Custo de Mana aumentado em %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -2704,7 +2638,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Les Créatures Empoisonnent les Ennemis au Toucher",
+          "text": "Lacaios Envenenam Inimigos ao Acertar",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2756,6 +2690,57 @@
           "matchers": [["#", -1]],
           "text": "Lacaios têm %1%%% menos Área de Efeito de Dano Propagado",
           "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_count": {
+      "stats": ["support_ruthless_big_hit_max_count"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Cada terceiro uso de Ataques de Lacaios causa um Golpe Impiedoso com Acertos Corpo a Corpo",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_damage": {
+      "stats": ["support_ruthless_big_hit_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Golpes Impiedosos de Lacaios causam %1%%% mais Dano Corpo a Corpo",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_bleeding_damage": {
+      "stats": [
+        "support_ruthless_blow_bleeding_damage_from_melee_hits_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Golpes Impiedosos de Lacaios causam %1%%% mais Dano com Sangramento causado por Acertos Corpo a Corpo",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_stun": {
+      "stats": ["support_ruthless_big_hit_stun_base_duration_override_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Golpes Impiedosos de Lacaios têm uma Duração de Atordoamento base de %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -2941,6 +2926,35 @@
         }
       ]
     },
+    "minion_grants_rampage_on_hit": {
+      "stats": [
+        "minion_grants_rampage_kill_to_parent_on_hitting_unique_enemy_%"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chance de ganhar um Abate de Fúria quando o Lacaio acertar um Inimigo Único",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Ganha um Abate de Fúria quando o Lacaio acertar um Inimigo Único",
+          "formatters": []
+        }
+      ]
+    },
+    "minions_cannot_taunt": {
+      "stats": ["minions_cannot_taunt_enemies"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Lacaios não podem Provocar Inimigos",
+          "formatters": []
+        }
+      ]
+    },
     "ailment_non_damaging_incr_effect": {
       "stats": ["non_damaging_ailment_effect_+%"],
       "translations": [
@@ -2969,6 +2983,21 @@
               "arg": "ReminderTextNonDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "base_pierce_num": {
+      "stats": ["projectile_base_number_of_targets_to_pierce"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Projéteis de Lacaios Perfuram um Alvo adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Projéteis de Lacaios Perfuram %1% Alvos adicionais",
+          "formatters": []
         }
       ]
     },
@@ -3092,6 +3121,43 @@
           "matchers": [["#", -1]],
           "text":
             "Lacaios e Habilidades usados por Totens causam %1%%% menos Dano Elemental",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_parallel_projectiles": {
+      "stats": ["support_parallel_projectile_number_of_points_per_side"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "Lacaios também disparam Projéteis de até %1% ponto de cada lado deles",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "Lacaios também disparam Projéteis de até %1% pontos de cada lado deles",
+          "formatters": []
+        }
+      ]
+    },
+    "parallel_projectiles_damage_final": {
+      "stats": ["support_parallel_projectiles_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Lacaios causam %1%%% mais Dano de Projéteis",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Lacaios causam %1%%% menos Dano de Projéteis",
           "formatters": [
             {
               "id": "negate",

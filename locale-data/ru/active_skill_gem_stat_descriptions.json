@@ -120,7 +120,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Если экипирован парным оружием, наносит %1%%% урона от каждого",
+            "Если экипировано парное оружие, наносит %1%%% урона от каждого",
           "formatters": [
             {
               "id": "multiplicative_damage_modifier",
@@ -1043,6 +1043,16 @@
         }
       ]
     },
+    "corpse_erruption_base_maximum_number_of_geyers": {
+      "stats": ["corpse_erruption_base_maximum_number_of_geyers"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Максимум гейзеров одновременно: %1%",
+          "formatters": []
+        }
+      ]
+    },
     "critical_strike_chance_+%": {
       "stats": ["critical_strike_chance_+%"],
       "translations": [
@@ -1530,7 +1540,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Наносит урон %1$+d врагам по цепи",
+          "text": "Поражает целей по цепи: %1$+d",
           "formatters": []
         }
       ]
@@ -1894,6 +1904,31 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "unearth_base_corpse_level": {
+      "stats": ["unearth_base_corpse_level"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Создает трупы %1% уровня",
+          "formatters": []
+        }
+      ]
+    },
+    "volatile_dead_base_number_of_corpses_to_consume": {
+      "stats": ["volatile_dead_base_number_of_corpses_to_consume"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Уничтожает 1 труп",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Уничтожает %1% трупа(-ов)",
+          "formatters": []
         }
       ]
     }

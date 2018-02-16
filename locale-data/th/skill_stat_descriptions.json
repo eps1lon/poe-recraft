@@ -167,6 +167,21 @@
         }
       ]
     },
+    "offering_duration_per_corpse": {
+      "stats": ["offering_skill_effect_duration_per_corpse"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "เพิ่มระยะเวลาวินาทีต่อ 1 ศพ %1% ",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "cold_damage_per_frenzy_charge_range": {
       "stats": [
         "spell_minimum_base_cold_damage_per_frenzy_charge",
@@ -301,26 +316,6 @@
           "matchers": [[1, "#"]],
           "text": "กับดักจะถูกสุ่มโยนออกไปรอบตัวคุณ",
           "formatters": []
-        }
-      ]
-    },
-    "cooldown_incr": {
-      "stats": ["virtual_cooldown_speed_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "เพิ่มความเร็วค่าฟื้นฟูคูลดาวน์ %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "ลดความเร็วค่าฟื้นฟูคูลดาวน์ %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -1186,22 +1181,39 @@
     "pierce_num": {
       "stats": [
         "projectile_number_of_targets_to_pierce",
-        "virtual_always_pierce"
+        "virtual_always_pierce",
+        "arrow_number_of_targets_to_pierce",
+        "arrows_always_pierce"
       ],
       "translations": [
         {
-          "matchers": [1, 0],
-          "text": "ลูกพลังเจาะเกราะเป้าหมาย 1 เป้า",
+          "matchers": [1, 0, 0, 0],
+          "text": "อาวุธระยะไกลเจาะเกราะเป้าหมาย 1 เป้า",
           "formatters": []
         },
         {
-          "matchers": [[2, "#"], 0],
-          "text": "ลูกพลังเจาะเกราะเป้าหมาย %1% เป้า",
+          "matchers": [[2, "#"], 0, 0, 0],
+          "text": "อาวุธระยะไกลเจาะเกราะเป้าหมาย %1% เป้า",
           "formatters": []
         },
         {
-          "matchers": ["#", "#"],
-          "text": "ลูกพลังเจาะเกราะเป้าหมายทุกเป้า",
+          "matchers": ["#", "#", 0, 0],
+          "text": "อาวุธระยะไกลเจาะเกราะเป้าหมายทุกเป้า",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", 1, 0],
+          "text": "ลูกธนูเจาะเกราะเป้าหมาย 1 เป้า",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", [2, "#"], 0],
+          "text": "ลูกธนูเจาะเกราะเป้าหมาย %1% เป้า",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", "#", "#"],
+          "text": "ลูกธนูเจาะเกราะเป้าหมายทุกเป้า",
           "formatters": []
         }
       ]
@@ -1420,13 +1432,18 @@
           "formatters": []
         },
         {
-          "matchers": [-300],
-          "text": "ล็อคศัตรู",
-          "formatters": []
-        },
-        {
           "matchers": [["#", -1]],
           "text": "ลดความเร็วในการเคลื่อนที่ลง %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "no_movement_speed": {
+      "stats": ["no_movement_speed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ล็อคศัตรู",
           "formatters": []
         }
       ]
@@ -1742,6 +1759,26 @@
         {
           "matchers": [["#", -1]],
           "text": "มิเนียนมีโล่พลังงานน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "minion_life_incr_final": {
+      "stats": ["support_minion_maximum_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สกิลที่ได้รับซัพจะให้มิเนียนมีขีดพลังชีวิตมากขึ้น %1%%% ",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สกิลที่ได้รับซัพจะให้มิเนียนมีขีดพลังชีวิตลดลง %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2821,6 +2858,16 @@
         }
       ]
     },
+    "elemental_penetration": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เจาะค่าป้องกันธาตุได้ %1%%%",
+          "formatters": []
+        }
+      ]
+    },
     "skeletal_chains_target_self": {
       "stats": ["skeletal_chains_no_minions_targets_self"],
       "translations": [
@@ -3223,7 +3270,7 @@
       ]
     },
     "minion_elemental_resist": {
-      "stats": ["minion_elemental_resistance_%"],
+      "stats": ["virtual_minion_elemental_resistance_%"],
       "translations": [
         {
           "matchers": ["#"],
@@ -3262,8 +3309,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "ได้รับ Endurance Charge ถ้าสกิลนี้ทำให้ศัตรูติด Stun ด้วยการโจมตีระยะประชิด",
+          "text": "ได้ Endurance Charge หากโจมตีระยะประชิดใส่ศัตรูจนติดมึนได้",
           "formatters": []
         }
       ]
@@ -3569,6 +3615,22 @@
         }
       ]
     },
+    "cast_when_trap_triggered": {
+      "stats": ["chance_to_cast_when_your_trap_is_triggered_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "มีโอกาสติดเวทนี้%1%%% หากกับดักอันในอันหนึ่งของผู้เล่นทำงาน ",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "ติดเวทนี้หากกับดักอันในอันหนึ่งของผู้เล่นทำงาน ",
+          "formatters": []
+        }
+      ]
+    },
     "attack_speed_more": {
       "stats": ["active_skill_attack_speed_+%_final"],
       "translations": [
@@ -3754,11 +3816,31 @@
       ]
     },
     "desecrate_num_corpses": {
+      "stats": ["desecrate_number_of_corpses_to_create"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "สร้างศพ %1% ตัว",
+          "formatters": []
+        }
+      ]
+    },
+    "desecrate_corpse_level": {
       "stats": ["desecrate_corpse_level"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "สร้างศพเลเวลสูงสุด %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "unearth_corpse_level": {
+      "stats": ["unearth_corpse_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "เสกศพที่มีเลเวล %1%",
           "formatters": []
         }
       ]
@@ -4061,6 +4143,28 @@
           "matchers": ["#", "#"],
           "text": "เพิ่มความเสียหายสายฟ้าเมื่อโจมตี %1% ถึง %2%",
           "formatters": []
+        }
+      ]
+    },
+    "static_strike_damage": {
+      "stats": ["static_strike_explosion_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "การระเบิดจะมีค่าโจมตีและค่าความเสียหายจากสถานะเจ็บป่วยมากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "การระเบิดจะมีค่าโจมตีและค่าความเสียหายจากสถานะเจ็บป่วยน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -5158,8 +5262,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "ได้รับ Innervation เมื่อสังหารศัตรูที่ติดสถานะ Shock ด้วยสกิลที่เชื่อมอยู่",
+          "text": "ได้ Innervation หากสังหารศัตรูที่ติดสถานะไฟช็อตได้",
           "formatters": []
         }
       ]
@@ -5291,20 +5394,43 @@
         }
       ]
     },
+    "aegis_value": {
+      "stats": [
+        "aegis_unique_shield_max_value",
+        "active_skill_display_aegis_variation"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"], 0],
+          "text":
+            "โล่เอจิสจะรับการโจมตีธาตุไฟก่อนถึงตัวเกราะพลังงานหรือตัวผู้เล่น\\n เอจิสจะรับความเสียหายธาตุไฟ %1%",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"], 1],
+          "text":
+            "โล่เอจิสจะรับการโจมตีธาตุน้ำแข็งก่อนถึงตัวเกราะพลังงานหรือตัวผู้เล่น\\n เอจิสจะรับความเสียหายธาตุน้ำแข็ง %1%",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"], 2],
+          "text":
+            "โล่เอจิสจะรับการโจมตีธาตุก่อนถึงตัวเกราะพลังงานหรือตัวผู้เล่น\\n เอจิสจะรับความเสียหายธาตุ %1%",
+          "formatters": []
+        }
+      ]
+    },
     "arctic_armour_chill_when_hit_duration": {
       "stats": ["arctic_armour_chill_when_hit_duration"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "ศัตรูจะติดสถานะหนาวสั่นเป็นเวลา %1% วินาทีเมื่อถูกโจมตี",
+          "text":
+            "แช่เย็นศัตรู %1% วินาทีถ้าโจมตีโดน, ทำให้ศัตรูเดินช้าลง 30%%",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
               "arg": 1
-            },
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextChillNonHitNoDuration"
             }
           ]
         }
@@ -5499,12 +5625,32 @@
         }
       ]
     },
+    "cremation_max_geysers": {
+      "stats": ["corpse_erruption_maximum_number_of_geyers"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มีบ่อเกเซอร์ได้สูงสุด %1% บ่อ",
+          "formatters": []
+        }
+      ]
+    },
     "deal_no_elemental": {
       "stats": ["deal_no_elemental_damage"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "ไม่ได้รับความเสียหายจากธาตุ",
+          "formatters": []
+        }
+      ]
+    },
+    "desecrate_maximum_corpse_count": {
+      "stats": ["desecrate_maximum_number_of_corpses"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ใช้ศพได้สูงสุด %1% ศพ",
           "formatters": []
         }
       ]
@@ -5547,6 +5693,26 @@
           "text":
             "สัตว์ประหลาดจาก Breach จะไม่ให้ค่าประสบการณ์หรือให้ดร็อปไอเท็ม",
           "formatters": []
+        }
+      ]
+    },
+    "endurance_charge_slam_extra_damage": {
+      "stats": ["endurance_charge_slam_damage_+%_final_with_endurance_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สกิลแรงขึ้น %1%%% ถ้าใช้ Endurance Charge",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สกิลเบาลง %1%%% ถ้าใช้ Endurance Charge",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -5606,6 +5772,22 @@
         }
       ]
     },
+    "herald_of_ash_burning_percent": {
+      "stats": ["herald_of_ash_burning_%_overkill_damage_per_minute"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "ค่าความเสียหายจากการติดไฟพื้นฐานจะเท่ากับ %1%%% ของความเสียหายจาก Overkill",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "maim_chance": {
       "stats": ["maim_on_hit_%"],
       "translations": [
@@ -5617,6 +5799,16 @@
         {
           "matchers": [[100, "#"]],
           "text": "ถ้าโจมตีโดนศัตรูจะติดสถานะ Maim ด้วย",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_spirit_strikes": {
+      "stats": ["melee_attack_number_of_spirit_strikes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "จะเลือกเป้าข้างเคียง %1% เป้าด้วย",
           "formatters": []
         }
       ]
@@ -5700,6 +5892,31 @@
         }
       ]
     },
+    "number_of_effigies": {
+      "stats": ["base_number_of_effigies_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "สามารถเสก Effigy ได้ %1% อันในขณะหนึ่ง",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "สามารถเสก Effigy ได้ %1% อันในขณะหนึ่ง",
+          "formatters": []
+        }
+      ]
+    },
+    "raised_spectre_level": {
+      "stats": ["raised_spectre_max_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "เพิ่ม Level ของ Spectres up ขึ้นไปที่ Level %1%",
+          "formatters": []
+        }
+      ]
+    },
     "shock_effect": {
       "stats": ["shock_effect_+%"],
       "translations": [
@@ -5737,6 +5954,16 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "can_have_mirage_archer": {
+      "stats": ["skill_can_own_mirage_archers"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "สามารถเสก Mirage Archer ได้ 1 ตัวในขณะหนึ่ง",
+          "formatters": []
         }
       ]
     },
@@ -5917,6 +6144,21 @@
         }
       ]
     },
+    "mirage_archer_duration": {
+      "stats": ["support_mirage_archer_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Mirage Archer อยู่ได้ %1% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_scion_chance": {
       "stats": [
         "support_scion_onslaught_on_killing_blow_%_chance",
@@ -5935,6 +6177,65 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
+    "support_cascade_area_of_effect": {
+      "stats": ["support_spell_cascade_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "AOE กว้างขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "AOE แคบลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade": {
+      "stats": ["support_spell_cascade_number_of_cascades_per_side"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มีผลต่อทั้งบริเวณด้านหน้าและด้านหลังของพื้นที่เป้าหมาย",
+          "formatters": []
+        }
+      ]
+    },
+    "ailment_damage_incr": {
+      "stats": ["support_unbound_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สร้างความเสียหายจาก Ailment เพิ่มขึ้น %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สร้างความเสียหายจาก Ailment ลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
             }
           ]
         }

@@ -599,6 +599,17 @@
         }
       ]
     },
+    "elemental_penetration": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "This Attack and Minions Penetrate %1%%% Elemental Resistances",
+          "formatters": []
+        }
+      ]
+    },
     "lightning_penetration": {
       "stats": ["base_reduce_enemy_lightning_resistance_%"],
       "translations": [
@@ -927,6 +938,26 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "spirit_strike_damage": {
+      "stats": ["support_spirit_strike_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "This Skill and Minions deal %1%%% more Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "This Skill and Minions deal %1%%% less Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
             }
           ]
         }
@@ -1276,6 +1307,57 @@
         }
       ]
     },
+    "support_ruthless_count": {
+      "stats": ["support_ruthless_big_hit_max_count"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Every third use of This Attack or Minion's Attacks deals a Ruthless Blow with Melee Hits",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_damage": {
+      "stats": ["support_ruthless_big_hit_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Ruthless Blows from this Attack or Minions deal %1%%% more Melee Damage",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_bleeding_damage": {
+      "stats": [
+        "support_ruthless_blow_bleeding_damage_from_melee_hits_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Ruthless Blows from this Attack or Minions deal %1%%% more Damage with Bleeding caused by Melee Hits",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_stun": {
+      "stats": ["support_ruthless_big_hit_stun_base_duration_override_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Ruthless Blows from this Attack or Minions have a base Stun Duration of %1% seconds",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "poison_chance": {
       "stats": ["base_chance_to_poison_on_hit_%"],
       "translations": [
@@ -1388,6 +1470,16 @@
         {
           "matchers": [[100, "#"]],
           "text": "This Attack and Minions Attacks always Maim on Hit",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_spirit_strikes": {
+      "stats": ["melee_attack_number_of_spirit_strikes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "This Skill also targets %1% nearby Enemies",
           "formatters": []
         }
       ]

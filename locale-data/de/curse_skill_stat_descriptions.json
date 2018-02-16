@@ -76,7 +76,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Verfluchte Gegner erhalten %1$+d%% zum Feuerwiderstand",
+          "text": "Verfluchte Gegner erhalten %1$+d%% zu Feuerwiderstand",
           "formatters": []
         }
       ]
@@ -86,7 +86,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Verfluchte Gegner erhalten %1$+d%% zum Kältewiderstand",
+          "text": "Verfluchte Gegner erhalten %1$+d%% zu Kältewiderstand",
           "formatters": []
         }
       ]
@@ -96,7 +96,17 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Verfluchte Gegner erhalten %1$+d%% zum Blitzwiderstand",
+          "text": "Verfluchte Gegner erhalten %1$+d%% zu Blitzwiderstand",
+          "formatters": []
+        }
+      ]
+    },
+    "chaos_resist": {
+      "stats": ["base_chaos_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Verfluchte Gegner haben %1$+d%% zu Chaoswiderstand",
           "formatters": []
         }
       ]
@@ -360,13 +370,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Verfluchte Gegner erleiden %1%%% verringerten Zusatzschaden von kritischen Treffern",
+            "Verfluchte Gegner erleiden %1%%% verringerten extra Schaden von kritischen Treffern",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Verfluchte Gegner erleiden %1%%% verstärkten Zusatzschaden von kritischen Treffern",
+            "Verfluchte Gegner erleiden %1%%% erhöhten extra Schaden von kritischen Treffern",
           "formatters": [
             {
               "id": "negate",
@@ -428,7 +438,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Verfluchte Gegner erleiden %1%%% verstärkten Projektilschaden",
+            "Verfluchte Gegner erleiden %1%%% erhöhten Schaden durch Projektiltreffer",
           "formatters": []
         }
       ]
@@ -450,13 +460,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Verfluchte Gegner haben %1%%% erhöhte Betäubungs- und Blockerholung",
+            "Verfluchte Gegner haben %1%%% beschleunigte Betäubungs- und Blockerholung",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Verfluchte Gegner haben %1%%% verringerte Betäubungs- und Blockerholung",
+            "Verfluchte Gegner haben %1%%% verlangsamte Betäubungs- und Blockerholung",
           "formatters": [
             {
               "id": "negate",
@@ -472,7 +482,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Verfluchte Gegner erleiden %1%%% verstärkten physischen Schaden",
+            "Verfluchte Gegner erleiden %1%%% erhöhten physischen Schaden",
           "formatters": []
         }
       ]
@@ -483,7 +493,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Verfluchte Gegner erleiden %1%%% verstärkten Schaden von Schaden über Zeit-Effekten",
+            "Verfluchte Gegner erleiden %1%%% erhöhten Schaden von 'Schaden über Zeit'-Effekten",
           "formatters": []
         }
       ]
@@ -493,12 +503,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Brenndauer bei verfluchten Gegnern ist um %1%%% verringert",
+          "text": "Brenndauer bei verfluchten Gegnern ist um %1%%% verkürzt",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Brenndauer bei verfluchten Gegnern ist um %1%%% erhöht",
+          "text": "Brenndauer bei verfluchten Gegnern ist um %1%%% verlängert",
           "formatters": [
             {
               "id": "negate",
@@ -514,13 +524,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Einfrierungsdauer bei verfluchten Gegnern ist um %1%%% verringert",
+            "Einfrierungsdauer bei verfluchten Gegnern ist um %1%%% verkürzt",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Einfrierungsdauer bei verfluchten Gegnern ist um %1%%% erhöht",
+            "Einfrierungsdauer bei verfluchten Gegnern ist um %1%%% verlängert",
           "formatters": [
             {
               "id": "negate",
@@ -535,12 +545,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Schockdauer bei verfluchten Gegnern ist um %1%%% verringert",
+          "text": "Schockdauer bei verfluchten Gegnern ist um %1%%% verkürzt",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Schockdauer bei verfluchten Gegnern ist um %1%%% erhöht",
+          "text": "Schockdauer bei verfluchten Gegnern ist um %1%%% verlängert",
           "formatters": [
             {
               "id": "negate",
@@ -619,6 +629,63 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "curse_aura": {
+      "stats": ["curse_apply_as_aura"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Unterstützte Flüche wirken als Auren",
+          "formatters": []
+        }
+      ]
+    },
+    "maim_when_hit_chance": {
+      "stats": ["chance_to_be_maimed_when_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Verfluchte Gegner haben %1%%% Chance, bei Treffer durch Angriffe für 4 Sekunden verstümmelt zu werden",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
+        }
+      ]
+    },
+    "chaos_weakness_damage": {
+      "stats": [
+        "minimum_added_chaos_damage_taken",
+        "maximum_added_chaos_damage_taken"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Fügt Treffern gegen verfluchte Gegner %1% bis %2% Chaosschaden hinzu",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_dot_taken_incr": {
+      "stats": ["base_physical_damage_over_time_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Verfluchte Gegner erleiden %1%%% erhöhten physischen Schaden durch Schaden über Zeit",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Verfluchte Gegner erleiden %1%%% verringerten physischen Schaden durch Schaden über Zeit",
+          "formatters": []
         }
       ]
     }

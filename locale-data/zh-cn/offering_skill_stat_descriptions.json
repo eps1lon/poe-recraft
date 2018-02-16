@@ -4,17 +4,65 @@
     "hasIdentifiers": false
   },
   "data": {
+    "blood_offering_life_loss": {
+      "stats": [
+        "blood_offering_%_of_life_to_lose",
+        "blood_offering_%_of_lost_life_to_regenerate_as_life_per_second"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "牺牲你生命的 %1%%%\\n召唤生物每秒获得所牺牲生命 %2%%% 的生命回复",
+          "formatters": []
+        }
+      ]
+    },
+    "blood_offering_life_regen_multi": {
+      "stats": ["blood_offering_life_regenerated_+%_final_per_corpse"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每消耗 1 具灵柩，召唤生物的生命回复便额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "每消耗 1 具灵柩，召唤生物的生命回复便额外降低 %1%%%",
+          "formatters": []
+        }
+      ]
+    },
     "attack_speed_incr": {
       "stats": ["attack_speed_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "召唤生物增加 %1%%% 攻击速度",
+          "text": "召唤生物的攻击速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "召唤生物减少 %1%%% 攻击速度",
+          "text": "召唤生物的攻击速度降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_incr": {
+      "stats": ["damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召唤生物的伤害提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召唤生物的伤害降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -29,12 +77,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "召唤生物增加 %1%%% 施法速度",
+          "text": "召唤生物的施法速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "召唤生物减少 %1%%% 施法速度",
+          "text": "召唤生物的施法速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -49,12 +97,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "召唤生物增加 %1%%% 移动速度",
+          "text": "召唤生物的移动速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "召唤生物减少 %1%%% 移动速度",
+          "text": "召唤生物的移动速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -69,7 +117,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "召唤生物增加 %1$+d%% 攻击格挡率",
+          "text": "召唤生物的攻击格挡率提高 %1$+d%% ",
           "formatters": []
         }
       ]
@@ -79,7 +127,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "召唤生物增加 %1$+d%% 法术格挡率",
+          "text": "召唤生物的法术格挡率提高 %1$+d%% ",
           "formatters": []
         }
       ]
@@ -98,8 +146,8 @@
       "stats": ["physical_damage_%_to_add_as_chaos"],
       "translations": [
         {
-          "matchers": ["#"],
-          "text": "召唤生物获得等同它们 %1%%% 物理伤害的额外混沌伤害",
+          "matchers": [[1, "#"]],
+          "text": "召唤生物获得额外混沌伤害，其数值等同于自身物理伤害的 %1%%%",
           "formatters": []
         }
       ]
@@ -111,7 +159,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "每消耗一具灵柩, 召唤生物获得它们最大生命 %1%%% 的额外能量护盾",
+          "text": "每消耗 1 具灵柩，召唤生物便获得等同于自身最大生命 %1%%% 的额外能量护盾",
           "formatters": []
         }
       ]

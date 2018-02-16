@@ -99,6 +99,16 @@
         }
       ]
     },
+    "chaos_resist": {
+      "stats": ["base_chaos_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ศัตรูที่ติดคำสาปจะโดน %1$+d%% เข้าค่าป้องกันเคออส",
+          "formatters": []
+        }
+      ]
+    },
     "chance_to_be_frozen": {
       "stats": ["chance_to_be_frozen_%"],
       "translations": [
@@ -418,7 +428,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "ศัตรูที่ถูกสาปจะได้รับความเสียหายจาก Projectile เพิ่มขึ้น %1%%%",
+            "ศัตรูที่ติดคำสาปจะได้รับความเสียหายจากอาวุธระยะไกลมากขึ้น %1%%%",
           "formatters": []
         }
       ]
@@ -601,6 +611,46 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "curse_aura": {
+      "stats": ["curse_apply_as_aura"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "เวทย์คำสาปที่ซัพพอร์ตจะถูกร่ายเป็นออร่า",
+          "formatters": []
+        }
+      ]
+    },
+    "maim_when_hit_chance": {
+      "stats": ["chance_to_be_maimed_when_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "ศัตรูที่โดนสาปจะมีโอกาส %1%%% ที่จะติดสถานะพิการเป็นเวลา 4 วินาทีหากโดนโจมตี",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
+        }
+      ]
+    },
+    "chaos_weakness_damage": {
+      "stats": [
+        "minimum_added_chaos_damage_taken",
+        "maximum_added_chaos_damage_taken"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "เพิ่มค่าโจมตีธาตุเคออส  %1% ถึง %2% เมื่อโจมตีศัตรูที่ติดคำสาป",
+          "formatters": []
         }
       ]
     }

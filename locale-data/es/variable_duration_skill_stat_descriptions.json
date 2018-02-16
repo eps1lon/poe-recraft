@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "skill_and_damaging_ailment_duration_incr": {
+      "stats": ["skill_effect_and_damaging_ailment_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Duración de esta Habilidad y de Achaques de Daño aumentada un %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Duración de esta Habilidad y de Achaques de Daño reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "skill_duration_incr": {
+      "stats": ["skill_effect_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Duración aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Duración reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

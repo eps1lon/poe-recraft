@@ -4,6 +4,20 @@
     "hasIdentifiers": false
   },
   "data": {
+    "blood_offering_life_loss": {
+      "stats": [
+        "blood_offering_%_of_life_to_lose",
+        "blood_offering_%_of_lost_life_to_regenerate_as_life_per_second"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Sacrifica %1%%% da sua Vida\\nLacaios Regeneram %2%%% da Vida Sacrificada por segundo",
+          "formatters": []
+        }
+      ]
+    },
     "attack_speed_incr": {
       "stats": ["attack_speed_+%"],
       "translations": [
@@ -15,6 +29,26 @@
         {
           "matchers": [["#", -1]],
           "text": "Reduz a Velocidade de Ataque dos Lacaios em %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_incr": {
+      "stats": ["damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Concede %1%%% de Dano aumentado aos Lacaios",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Concede %1%%% de Dano reduzido aos Lacaios",
           "formatters": [
             {
               "id": "negate",

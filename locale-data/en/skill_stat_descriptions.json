@@ -167,6 +167,22 @@
         }
       ]
     },
+    "offering_duration_per_corpse": {
+      "stats": ["offering_skill_effect_duration_per_corpse"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Additional %1% seconds Base Duration per extra Corpse consumed",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "cold_damage_per_frenzy_charge_range": {
       "stats": [
         "spell_minimum_base_cold_damage_per_frenzy_charge",
@@ -302,26 +318,6 @@
           "matchers": [[1, "#"]],
           "text": "Traps are thrown randomly around you",
           "formatters": []
-        }
-      ]
-    },
-    "cooldown_incr": {
-      "stats": ["virtual_cooldown_speed_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% increased Cooldown Recovery Speed",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1%%% reduced Cooldown Recovery Speed",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -1110,6 +1106,21 @@
         }
       ]
     },
+    "spectre_duration": {
+      "stats": ["spectre_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Spectres Last %1% seconds",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "enduring_cry_charges": {
       "stats": [
         "endurance_charges_granted_per_one_hundred_nearby_enemies_during_endurance_warcry"
@@ -1197,22 +1208,39 @@
     "pierce_num": {
       "stats": [
         "projectile_number_of_targets_to_pierce",
-        "virtual_always_pierce"
+        "virtual_always_pierce",
+        "arrow_number_of_targets_to_pierce",
+        "arrows_always_pierce"
       ],
       "translations": [
         {
-          "matchers": [1, 0],
+          "matchers": [1, 0, 0, 0],
           "text": "Projectiles Pierce 1 Target",
           "formatters": []
         },
         {
-          "matchers": [[2, "#"], 0],
+          "matchers": [[2, "#"], 0, 0, 0],
           "text": "Projectiles Pierce %1% Targets",
           "formatters": []
         },
         {
-          "matchers": ["#", "#"],
+          "matchers": ["#", "#", 0, 0],
           "text": "Projectiles Pierce all Targets",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", 1, 0],
+          "text": "Arrows Pierce 1 Target",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", [2, "#"], 0],
+          "text": "Arrows Pierce %1% Targets",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", "#", "#"],
+          "text": "Arrows Pierce all Targets",
           "formatters": []
         }
       ]
@@ -1431,11 +1459,6 @@
           "formatters": []
         },
         {
-          "matchers": [-300],
-          "text": "Locks enemy in place",
-          "formatters": []
-        },
-        {
           "matchers": [["#", -1]],
           "text": "%1%%% reduced Movement Speed",
           "formatters": [
@@ -1444,6 +1467,16 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "no_movement_speed": {
+      "stats": ["no_movement_speed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Locks enemy in place",
+          "formatters": []
         }
       ]
     },
@@ -1717,6 +1750,16 @@
         }
       ]
     },
+    "lightning_tendrils_pulse_interval": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_interval"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Releases a Stronger Pulse every %1% Pulses",
+          "formatters": []
+        }
+      ]
+    },
     "movement_velocity_cap": {
       "stats": ["movement_velocity_cap"],
       "translations": [
@@ -1758,6 +1801,26 @@
         {
           "matchers": [["#", -1]],
           "text": "Minions have %1%%% less Energy Shield",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "minion_life_incr_final": {
+      "stats": ["support_minion_maximum_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Supported Skills have %1%%% more Minion maximum Life",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Supported Skills have %1%%% less Minion maximum Life",
           "formatters": [
             {
               "id": "negate",
@@ -2854,6 +2917,16 @@
         }
       ]
     },
+    "elemental_penetration": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Penetrates %1%%% Elemental Resistances",
+          "formatters": []
+        }
+      ]
+    },
     "skeletal_chains_target_self": {
       "stats": ["skeletal_chains_no_minions_targets_self"],
       "translations": [
@@ -3247,7 +3320,7 @@
       ]
     },
     "minion_elemental_resist": {
-      "stats": ["minion_elemental_resistance_%"],
+      "stats": ["virtual_minion_elemental_resistance_%"],
       "translations": [
         {
           "matchers": ["#"],
@@ -3287,7 +3360,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Gain an Endurance Charge if this Skill Stuns an Enemy with Melee Damage",
+            "Gain an Endurance Charge when this Skill Stuns an Enemy with Melee Damage",
           "formatters": []
         }
       ]
@@ -3411,7 +3484,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Can use Items requiring up to level %1%",
+          "text": "Can use Items requiring up to Level %1%",
           "formatters": []
         }
       ]
@@ -3441,7 +3514,7 @@
         },
         {
           "matchers": [[100, "#"]],
-          "text": "Trigger this Spell  when you Use a Skill",
+          "text": "Trigger this Spell when you Use a Skill",
           "formatters": []
         }
       ]
@@ -3472,6 +3545,40 @@
         {
           "matchers": [[100, "#"]],
           "text": "Trigger this Spell on Kill",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_skill_use_from_chest": {
+      "stats": ["trigger_on_skill_use_from_chest_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% chance to Trigger this Spell when you Use a Skill Socketed in your Body Armour",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Trigger this Spell when you Use a Skill Socketed in your Body Armour",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_skill_use_spirit_charge": {
+      "stats": ["trigger_on_skill_use_%_if_you_have_a_spirit_charge"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% chance to Trigger this Spell when you Use a Skill while you have a Spirit Charge",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Trigger this Spell when you Use a Skill while you have a Spirit Charge",
           "formatters": []
         }
       ]
@@ -3590,6 +3697,22 @@
           "matchers": ["#", [1, "#"]],
           "text":
             "%1%%% chance to Trigger this Spell when you take a total of %2% Damage",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_when_trap_triggered": {
+      "stats": ["chance_to_cast_when_your_trap_is_triggered_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% chance to Trigger this Spell when one of your Traps is Triggered",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Trigger this Spell when one of your Traps is Triggered",
           "formatters": []
         }
       ]
@@ -3779,11 +3902,31 @@
       ]
     },
     "desecrate_num_corpses": {
+      "stats": ["desecrate_number_of_corpses_to_create"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Creates %1% Corpses",
+          "formatters": []
+        }
+      ]
+    },
+    "desecrate_corpse_level": {
       "stats": ["desecrate_corpse_level"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "Creates Corpses up to Level %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "unearth_corpse_level": {
+      "stats": ["unearth_corpse_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Creates Corpses with Level %1%",
           "formatters": []
         }
       ]
@@ -4250,7 +4393,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1%%% of Physical Damage converted to Cold Damage",
+          "text": "%1%%% of Physical Damage Converted to Cold Damage",
           "formatters": []
         }
       ]
@@ -4561,13 +4704,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Cursed enemies grant %1%%% more Physical Melee Damage on Melee hit",
+            "Cursed enemies grant %1%%% more Melee Physical Damage on Melee hit",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Cursed enemies grant %1%%% less Physical Melee Damage on Melee hit",
+            "Cursed enemies grant %1%%% less Melee Physical Damage on Melee hit",
           "formatters": [
             {
               "id": "negate",
@@ -5228,7 +5371,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Gain Innervation on Killing a Shocked Enemy with this Spell",
+          "text": "Gain Innervation on Killing a Shocked Enemy",
           "formatters": []
         }
       ]
@@ -5359,20 +5502,42 @@
         }
       ]
     },
+    "aegis_value": {
+      "stats": [
+        "aegis_unique_shield_max_value",
+        "active_skill_display_aegis_variation"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"], 0],
+          "text":
+            "Fire Damage from Hits is taken from the Aegis before your Life or Energy Shield\\nAegis can take %1% Fire Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"], 1],
+          "text":
+            "Cold Damage from Hits is taken from the Aegis before your Life or Energy Shield\\nAegis can take %1% Cold Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"], 2],
+          "text":
+            "Elemental Damage from Hits is taken from the Aegis before your Life or Energy Shield\\nAegis can take %1% Elemental Damage",
+          "formatters": []
+        }
+      ]
+    },
     "arctic_armour_chill_when_hit_duration": {
       "stats": ["arctic_armour_chill_when_hit_duration"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Chill Enemy for %1% seconds when Hit",
+          "text": "Chill Enemy for %1% seconds when Hit, slowing them by 30%%",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
               "arg": 1
-            },
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextChillNonHitNoDuration"
             }
           ]
         }
@@ -5567,12 +5732,32 @@
         }
       ]
     },
+    "cremation_max_geysers": {
+      "stats": ["corpse_erruption_maximum_number_of_geyers"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Maximum of %1% Geysers at a time",
+          "formatters": []
+        }
+      ]
+    },
     "deal_no_elemental": {
       "stats": ["deal_no_elemental_damage"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "Deals no Elemental Damage",
+          "formatters": []
+        }
+      ]
+    },
+    "desecrate_maximum_corpse_count": {
+      "stats": ["desecrate_maximum_number_of_corpses"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Maximum of %1% Corpses allowed",
           "formatters": []
         }
       ]
@@ -5615,6 +5800,26 @@
           "text":
             "Monsters from the Breach do not grant Experience or drop Items",
           "formatters": []
+        }
+      ]
+    },
+    "endurance_charge_slam_extra_damage": {
+      "stats": ["endurance_charge_slam_damage_+%_final_with_endurance_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% more Damage if an Endurance Charge was used",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% less Damage if an Endurance Charge was used",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -5674,6 +5879,53 @@
         }
       ]
     },
+    "herald_of_ash_burning_percent": {
+      "stats": ["herald_of_ash_burning_%_overkill_damage_per_minute"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Base Burning Damage is %1%%% of Overkill Damage",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ightning_tendrils_pulse_damage": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Stronger Pulses deal %1%%% more Damage with Hits and Ailments",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Stronger Pulses deal %1%%% less Damage with Hits and Ailments",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_tendrils_pulse_radius": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_radius_+"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Stronger Pulse has %1$+d to Radius",
+          "formatters": []
+        }
+      ]
+    },
     "maim_chance": {
       "stats": ["maim_on_hit_%"],
       "translations": [
@@ -5685,6 +5937,16 @@
         {
           "matchers": [[100, "#"]],
           "text": "Maim on Hit",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_spirit_strikes": {
+      "stats": ["melee_attack_number_of_spirit_strikes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Also targets %1% nearby Enemies",
           "formatters": []
         }
       ]
@@ -5766,6 +6028,21 @@
         }
       ]
     },
+    "number_of_effigies": {
+      "stats": ["base_number_of_effigies_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Can have up to %1% Effigy Summoned at a time",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Can have up to %1% Effigies Summoned at a time",
+          "formatters": []
+        }
+      ]
+    },
     "raised_spectre_level": {
       "stats": ["raised_spectre_max_level"],
       "translations": [
@@ -5816,6 +6093,16 @@
         }
       ]
     },
+    "can_have_mirage_archer": {
+      "stats": ["skill_can_own_mirage_archers"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Can have up to 1 Mirage Archer Summoned at a time",
+          "formatters": []
+        }
+      ]
+    },
     "skill_and_damaging_ailment_duration_incr": {
       "stats": ["skill_effect_and_damaging_ailment_duration_+%"],
       "translations": [
@@ -5842,6 +6129,17 @@
               "arg": "ReminderTextDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "summon_mirage_archer": {
+      "stats": ["summon_mirage_archer_on_hit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "When you Hit an Enemy with an Arrow from a this Skill, Summons a Mirage Archer which uses this Skill",
+          "formatters": []
         }
       ]
     },
@@ -5993,6 +6291,58 @@
         }
       ]
     },
+    "mirage_archer_attack_speed": {
+      "stats": ["support_mirage_archer_attack_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Mirage Archer uses this Skill with %1%%% more Attack Speed",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Mirage Archer uses this Skill with %1%%% less Attack Speed",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mirage_archer_duration": {
+      "stats": ["support_mirage_archer_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Mirage Archer lasts %1% seconds",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_parallel_projectiles": {
+      "stats": ["support_parallel_projectile_number_of_points_per_side"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "Also fires Projectiles from up to %1% point on each side of you",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "Also fires Projectiles from up to %1% points on each side of you",
+          "formatters": []
+        }
+      ]
+    },
     "support_scion_chance": {
       "stats": [
         "support_scion_onslaught_on_killing_blow_%_chance",
@@ -6011,6 +6361,89 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
+    "support_cascade_area_of_effect": {
+      "stats": ["support_spell_cascade_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% more Area of Effect",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% less Area of Effect",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade": {
+      "stats": ["support_spell_cascade_number_of_cascades_per_side"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Also affects areas in front and behind the targeted area",
+          "formatters": []
+        }
+      ]
+    },
+    "storm_barrier_power_charge": {
+      "stats": [
+        "support_storm_barrier_gain_power_charge_when_hit_%",
+        "support_storm_barrier_lightning_damage_taken_when_hit_+%_final",
+        "support_storm_barrier_physical_damage_taken_when_hit_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#", "#"],
+          "text":
+            "Channelling this Skill grants %1%%% chance to Gain a Power Charge when hit\\nChannelling this Skill grants %2%%% less Lightning Damage taken from Hits\\nChannelling this Skill grants %3%%% less Physical Damage taken from Hits",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 2
+            },
+            {
+              "id": "negate",
+              "arg": 3
+            }
+          ]
+        }
+      ]
+    },
+    "ailment_damage_incr": {
+      "stats": ["support_unbound_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% more Damage with Ailments",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% less Damage with Ailments",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
             }
           ]
         }

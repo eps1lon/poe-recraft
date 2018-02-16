@@ -409,6 +409,26 @@
           "formatters": []
         }
       ]
+    },
+    "energy_shield_recharge_rate": {
+      "stats": ["energy_shield_recharge_rate_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คุณและเพื่อนจะมีอัตราฟื้นฟูเกราะพลังงานเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "คุณและเพื่อนจะมีอัตราฟื้นฟูเกราะพลังงานน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
     }
   }
 }

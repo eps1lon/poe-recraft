@@ -3,6 +3,7 @@ const { promisify } = require('util');
 const fs = require('fs');
 const path = require('path');
 const { Grammar, Parser } = require('nearley');
+const stripBom = require('strip-bom');
 
 const grammar = Grammar.fromCompiled(
   require('../src/grammars/generated/stat_descriptions.js')
@@ -15,12 +16,16 @@ const json_dir = path.join(__dirname, '../tmp/unprocessed');
 
 const isDescriptionFile = file => file.endsWith('stat_descriptions.txt');
 
+// "In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code."
+// we will make use of this already
+process.on('unhandledRejection', up => { throw up })
+
 readdir(txt_dir)
   .then(files => {
     files.filter(isDescriptionFile).forEach(file => {
-      const text = fs.readFileSync(path.join(txt_dir, file), {
-        encoding: 'utf8'
-      });
+      const text = stripBom(fs.readFileSync(path.join(txt_dir, file), {
+        encoding: 'utf16le'
+      }));
 
       const out = fs.createWriteStream(
         path.join(json_dir, path.basename(file, '.txt') + '.json')
@@ -60,9 +65,6 @@ readdir(txt_dir)
       out.write('\n]');
       out.end();
     });
-  })
-  .catch(err => {
-    console.error(err);
   });
 
 function write(things, first, outstream, map = thing => thing) {

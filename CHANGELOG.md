@@ -4,7 +4,9 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/eps1lon/poe-i18n/compare/v0.7.1...HEAD)
+## [Unreleased](https://github.com/eps1lon/poe-i18n/compare/v0.7.1..HEAD)
+### Added 
+- Added `locale-data` for Path Of Exile@3.1.3
 
 ## [0.7.1](https://github.com/eps1lon/poe-i18n/compare/v0.7.0...v0.7.1) (2017-10-25)
 ### Fixed

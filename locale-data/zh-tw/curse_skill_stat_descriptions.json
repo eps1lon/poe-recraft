@@ -99,6 +99,16 @@
         }
       ]
     },
+    "chaos_resist": {
+      "stats": ["base_chaos_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被詛咒的敵人 %1$+d%% 混沌抗性",
+          "formatters": []
+        }
+      ]
+    },
     "chance_to_be_frozen": {
       "stats": ["chance_to_be_frozen_%"],
       "translations": [
@@ -407,7 +417,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被詛咒敵人承受投射物 %1%%% 增加傷害",
+          "text": "被詛咒的敵人被投射物擊中增加 %1%%% 承受傷害",
           "formatters": []
         }
       ]
@@ -589,6 +599,59 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "curse_aura": {
+      "stats": ["curse_apply_as_aura"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被輔助的詛咒技能將以光環形式施放",
+          "formatters": []
+        }
+      ]
+    },
+    "maim_when_hit_chance": {
+      "stats": ["chance_to_be_maimed_when_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被詛咒的敵人被攻擊擊中時，有 %1%%% 機率被癱瘓 4 秒",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
+        }
+      ]
+    },
+    "chaos_weakness_damage": {
+      "stats": [
+        "minimum_added_chaos_damage_taken",
+        "maximum_added_chaos_damage_taken"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "對被詛咒的敵人擊中附加 %1% 至 %2% 混沌傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_dot_taken_incr": {
+      "stats": ["base_physical_damage_over_time_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被詛咒的敵人增加承受 %1%%% 物理持續傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被詛咒的敵人增加承受 %1%%% 物理持續傷害",
+          "formatters": []
         }
       ]
     }

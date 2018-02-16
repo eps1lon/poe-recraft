@@ -4,6 +4,37 @@
     "hasIdentifiers": false
   },
   "data": {
+    "blood_offering_life_loss": {
+      "stats": [
+        "blood_offering_%_of_life_to_lose",
+        "blood_offering_%_of_lost_life_to_regenerate_as_life_per_second"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Sacrifices %1%%% of your Life\\nMinions Regenerate %2%%% of Sacrificed Life per second",
+          "formatters": []
+        }
+      ]
+    },
+    "blood_offering_life_regen_multi": {
+      "stats": ["blood_offering_life_regenerated_+%_final_per_corpse"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% more Life Regeneration granted to Minions per Corpse consumed",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% less Life Regeneration granted to Minions per Corpse consumed",
+          "formatters": []
+        }
+      ]
+    },
     "attack_speed_incr": {
       "stats": ["attack_speed_+%"],
       "translations": [
@@ -15,6 +46,26 @@
         {
           "matchers": [["#", -1]],
           "text": "Grants Minions %1%%% reduced Attack Speed",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_incr": {
+      "stats": ["damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Grants Minions %1%%% increased Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Grants Minions %1%%% reduced Damage",
           "formatters": [
             {
               "id": "negate",

@@ -437,14 +437,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Minions have %1%%% increased Area of Effect when using Area Skills",
+          "text": "Minions have %1%%% increased Area of Effect",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Minions have %1%%% reduced Area of Effect when using Area Skills",
+          "text": "Minions have %1%%% reduced Area of Effect",
           "formatters": [
             {
               "id": "negate",
@@ -459,14 +457,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Minions have %1%%% more Area of Effect when using Area Skills",
+          "text": "Minions have %1%%% more Area of Effect",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Minions have %1%%% less Area of Effect when using Area Skills",
+          "text": "Minions have %1%%% less Area of Effect",
           "formatters": [
             {
               "id": "negate",
@@ -1046,7 +1042,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% of Minion Cold Damage converted to Fire Damage",
+          "text": "%1%%% of Minion Cold Damage Converted to Fire Damage",
           "formatters": []
         }
       ]
@@ -1068,7 +1064,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% of Minion Physical Damage converted to Lightning Damage",
+            "%1%%% of Minion Physical Damage Converted to Lightning Damage",
           "formatters": []
         }
       ]
@@ -1837,6 +1833,16 @@
         }
       ]
     },
+    "elemental_penetration": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions Penetrate %1%%% Elemental Resistances",
+          "formatters": []
+        }
+      ]
+    },
     "lightning_penetration": {
       "stats": ["base_reduce_enemy_lightning_resistance_%"],
       "translations": [
@@ -2175,7 +2181,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Minions gain an Endurance Charge if they Stun an Enemy with Melee Damage",
+            "Minions gain an Endurance Charge when they Stun an Enemy with Melee Damage",
           "formatters": []
         }
       ]
@@ -2369,26 +2375,6 @@
           "matchers": ["#"],
           "text": "This Skill and Minions spend Life instead of Mana",
           "formatters": []
-        }
-      ]
-    },
-    "mana_cost_reduc": {
-      "stats": ["base_mana_cost_-%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Minions' Skills have %1%%% reduced Mana Cost",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Minions' Skills have %1%%% increased Mana Cost",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -2725,6 +2711,56 @@
         }
       ]
     },
+    "support_ruthless_count": {
+      "stats": ["support_ruthless_big_hit_max_count"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Every third use of Minion's Attacks deals a Ruthless Blow with Melee Hits",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_damage": {
+      "stats": ["support_ruthless_big_hit_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Minion's Ruthless Blows deal %1%%% more Melee Damage",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_bleeding_damage": {
+      "stats": [
+        "support_ruthless_blow_bleeding_damage_from_melee_hits_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Minion's Ruthless Blows deal %1%%% more Damage with Bleeding caused by Melee Hits",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_stun": {
+      "stats": ["support_ruthless_big_hit_stun_base_duration_override_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Minion's Ruthless Blows have a base Stun Duration of %1% seconds",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "minion_added_damage": {
       "stats": ["active_skill_minion_added_damage_+%_final"],
       "translations": [
@@ -2903,6 +2939,34 @@
         }
       ]
     },
+    "minion_grants_rampage_on_hit": {
+      "stats": [
+        "minion_grants_rampage_kill_to_parent_on_hitting_unique_enemy_%"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% chance to gain a Rampage Kill when Minion hits a Unique Enemy",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Gain a Rampage Kill when Minion hits a Unique Enemy",
+          "formatters": []
+        }
+      ]
+    },
+    "minions_cannot_taunt": {
+      "stats": ["minions_cannot_taunt_enemies"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Minions cannot Taunt Enemies",
+          "formatters": []
+        }
+      ]
+    },
     "ailment_non_damaging_incr_effect": {
       "stats": ["non_damaging_ailment_effect_+%"],
       "translations": [
@@ -2931,6 +2995,21 @@
               "arg": "ReminderTextNonDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "base_pierce_num": {
+      "stats": ["projectile_base_number_of_targets_to_pierce"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Minion's Projectiles Pierce an additional Target",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Minion's Projectiles Pierce %1% additional Targets",
+          "formatters": []
         }
       ]
     },
@@ -3063,6 +3142,43 @@
         }
       ]
     },
+    "support_parallel_projectiles": {
+      "stats": ["support_parallel_projectile_number_of_points_per_side"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "Minions also fire Projectiles from up to %1% point on each side of them",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "Minions fire Projectiles from up to %1% points on each side of them",
+          "formatters": []
+        }
+      ]
+    },
+    "parallel_projectiles_damage_final": {
+      "stats": ["support_parallel_projectiles_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Projectile Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Projectile Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_less_duration": {
       "stats": ["support_reduced_duration_skill_effect_duration_+%_final"],
       "translations": [
@@ -3101,6 +3217,30 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
+    "storm_barrier_power_charge": {
+      "stats": [
+        "support_storm_barrier_gain_power_charge_when_hit_%",
+        "support_storm_barrier_lightning_damage_taken_when_hit_+%_final",
+        "support_storm_barrier_physical_damage_taken_when_hit_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#", "#"],
+          "text":
+            "Minions gain %1%%% chance to Gain a Power Charge when hit while Channelling\\nMinions gain  %2%%% less Lightning Damage taken from Hits while Channelling\\nMinions gain %3%%% less Physical Damage taken from Hits while Channelling",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 2
+            },
+            {
+              "id": "negate",
+              "arg": 3
             }
           ]
         }

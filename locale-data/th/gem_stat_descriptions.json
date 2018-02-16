@@ -318,12 +318,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "สกิลที่ได้รับซัพสร้างความเสียหายเพิ่มอีก %1%%%",
+          "text": "คาถาทริกเกอร์ที่ได้รับซัพจะแรงขึ้น %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "สกิลที่ได้รับซัพสร้างความเสียหายลดลง  %1%%%",
+          "text": "คาถาทริกเกอร์ที่ได้รับซัพจะเบาลง %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -524,7 +524,7 @@
         {
           "matchers": ["#"],
           "text":
-            "สกิลสนับสนุนสร้างความเสียหายเพิ่มได้อีก 50%% เมื่อเริ่มเคลื่อนไหว แต่ลูกพลังจะเสียค่าการโจมตีเมื่อระยะทางไกลขึ้น",
+            "สกิลโจมตีระยะไกลที่ได้รับซัพจะแรงขึ้น 50%% หากจ่อยิง แต่หากระยะยิ่งไกลก็จะยิ่งเบาลง",
           "formatters": []
         }
       ]
@@ -813,6 +813,16 @@
         }
       ]
     },
+    "reduce_enemy_elemental_resistance_%": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สกิลที่ได้รับซัพจะเจาะทะลุค่าป้องกันธาตุได้ %1%%%",
+          "formatters": []
+        }
+      ]
+    },
     "base_reduce_enemy_lightning_resistance_%": {
       "stats": ["base_reduce_enemy_lightning_resistance_%"],
       "translations": [
@@ -885,6 +895,26 @@
         {
           "matchers": [["#", -1]],
           "text": "Supported Skills สร้างความเสียหาย ลดลง %1%%% เมื่อโจมตีโดน",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spirit_strike_damage_+%_final": {
+      "stats": ["support_spirit_strike_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สกิลที่ได้รับซัพจะแรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สกิลที่ได้รับซัพจะเบาลง %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2717,6 +2747,23 @@
         }
       ]
     },
+    "chance_to_summon_support_ghost_on_killing_blow_%": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "มีโอกาส %1%%% ที่จะเสก Phantasm เมื่อสกิลที่ได้รับซัพหรือมิเนียน (ที่ไม่ได้เป็น Phantasm) ที่เกิดจากสกิลที่ได้รับซัพสังหารศัตรูได้",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "เสก Phantasm เมื่อสกิลที่ได้รับซัพหรือมิเนียน (ที่ไม่ได้เป็น Phantasm) ที่เกิดจากสกิลที่ได้รับซัพสังหารศัตรูได้",
+          "formatters": []
+        }
+      ]
+    },
     "chaos_damage_+%": {
       "stats": ["chaos_damage_+%"],
       "translations": [
@@ -2986,7 +3033,7 @@
         {
           "matchers": ["#"],
           "text":
-            "ได้ Endurance Charge ถ้าใช้สกิลที่ได้ซัพเข้าโจมตีระยะประชิด แล้วทำศัตรูติดมึนได้",
+            "ได้ Endurance Charge ถ้าใช้สกิลที่ได้รับซัพโจมตีศัตรูแบบระยะประชิดจนติดมึนได้",
           "formatters": []
         }
       ]
@@ -3298,6 +3345,16 @@
         }
       ]
     },
+    "melee_attack_number_of_spirit_strikes": {
+      "stats": ["melee_attack_number_of_spirit_strikes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "สกิลโจมตีที่ได้รับซัพจะเลือกเป้าข้างเคียงอีก %1% เป้า",
+          "formatters": []
+        }
+      ]
+    },
     "melee_damage_vs_bleeding_enemies_+%": {
       "stats": ["melee_damage_vs_bleeding_enemies_+%"],
       "translations": [
@@ -3568,8 +3625,13 @@
       "stats": ["number_of_additional_mines_to_place"],
       "translations": [
         {
-          "matchers": ["#"],
-          "text": "สกิลที่ได้รับซัพจะวางกับระเบิดเพิ่มได้อีก %1% อัน",
+          "matchers": [1],
+          "text": "สกิลที่ได้รับซัพจะวางกับระเบิดเพิ่มอีกอัน",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "สกิลที่ได้รับซัพจะวางกับระเบิดเพิ่มอีก %1% อัน",
           "formatters": []
         }
       ]
@@ -3846,6 +3908,17 @@
         }
       ]
     },
+    "summon_mirage_archer_on_hit": {
+      "stats": ["summon_mirage_archer_on_hit"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "ถ้าใช้สกิลที่้ได้รับซัพยิงธนูถูกศัตรูจะเสก Mirage Archer ที่จะใช้สกิลนั้นออกมาด้วย",
+          "formatters": []
+        }
+      ]
+    },
     "support_burning_damage_+%_final": {
       "stats": ["support_burning_damage_+%_final"],
       "translations": [
@@ -4008,6 +4081,26 @@
         }
       ]
     },
+    "support_minion_maximum_life_+%_final": {
+      "stats": ["support_minion_maximum_life_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สกิลที่ได้รับซัพจะให้มิเนียนมีขีดพลังชีวิตมากขึ้น %1%%% ",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สกิลที่ได้รับซัพจะให้มิเนียนมีขีดพลังชีวิตลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_minion_totem_resistance_elemental_damage_+%_final": {
       "stats": ["support_minion_totem_resistance_elemental_damage_+%_final"],
       "translations": [
@@ -4021,6 +4114,83 @@
           "matchers": [["#", -1]],
           "text":
             "ทักษะที่ได้รับการสนับสนุนมีความเสียหายจากมินเนี่ยนและความเสียหายจากธาตุของโทเท็มลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_mirage_archer_attack_speed_+%_final": {
+      "stats": ["support_mirage_archer_attack_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Mirage Archer ใช้สกิลที่ได้รับซัพและโจมตีได้เร็วขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Mirage Archer ใช้สกิลที่ได้รับซัพและโจมตีได้ช้าลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_mirage_archer_damage_+%_final": {
+      "stats": ["support_mirage_archer_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Mirage Archer ใช้สกิลที่ได้ซัพยิงได้แรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Mirage Archer ใช้สกิลที่ได้ซัพยิงได้เบาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_parallel_projectile_number_of_points_per_side": {
+      "stats": ["support_parallel_projectile_number_of_points_per_side"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "สกิลที่ได้รับซัพจะสามารถยิงลูกพลังออกจากตำแหน่งข้างตัวได้ %1% จุด",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "สกิลที่ได้รับซัพจะสามารถยิงลูกพลังออกจากตำแหน่งข้างตัวได้ %1% จุด",
+          "formatters": []
+        }
+      ]
+    },
+    "support_parallel_projectiles_damage_+%_final": {
+      "stats": ["support_parallel_projectiles_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สกิลสนับสนุนสร้างความเสียหายระยะไกลเพิ่มอีก %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สกิลสนับสนุนสร้างความเสียหายระยะไกลลดลง  %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4175,6 +4345,81 @@
             {
               "id": "negate",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade_area_of_effect_+%_final": {
+      "stats": ["support_spell_cascade_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สกิลที่ได้รับซัพจะมี AOE มากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สกิลที่ได้รับซัพจะมี AOE ลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade_damage_+%_final": {
+      "stats": ["support_spell_cascade_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Supported Skills สร้างความเสียหาย เพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Supported Skills สร้างความเสียหาย ลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_spell_cascade_number_of_cascades_per_side": {
+      "stats": ["support_spell_cascade_number_of_cascades_per_side"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "สกิล AOE ที่ได้รับซัพจะมีผลต่อพื้นที่ตรงหน้าและด้านหลังบริเวณเป้าหมายด้วย",
+          "formatters": []
+        }
+      ]
+    },
+    "support_storm_barrier_gain_power_charge_when_hit_%": {
+      "stats": [
+        "support_storm_barrier_gain_power_charge_when_hit_%",
+        "support_storm_barrier_lightning_damage_taken_when_hit_+%_final",
+        "support_storm_barrier_physical_damage_taken_when_hit_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#", "#"],
+          "text":
+            "มีโอกาสได้ Power Charge %1%%% หากโดนโจมตีขณะแชนเนลสกิลที่ได้รับซัพอยู่\\n ได้รับความเสียหายธาตุไฟฟ้าน้อยลง %2%%% หากโดนโจมตีด้วยไฟฟ้าขณะแชนเนลสกิลที่ได้รับซัพอยู่\\nได้รับความเสียหายทางกายภาพน้อยลง %3%%% หากโดนโจมตีขณะแชนเนลสกิลที่ได้รับซัพอยู่",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 2
+            },
+            {
+              "id": "negate",
+              "arg": 3
             }
           ]
         }

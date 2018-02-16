@@ -4,17 +4,70 @@
     "hasIdentifiers": false
   },
   "data": {
+    "blood_offering_life_loss": {
+      "stats": [
+        "blood_offering_%_of_life_to_lose",
+        "blood_offering_%_of_lost_life_to_regenerate_as_life_per_second"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Sacrifiez %1%%% de votre Vie\\nVos Créatures Régénèrent %2%%% de la Vie sacrifiée par seconde",
+          "formatters": []
+        }
+      ]
+    },
+    "blood_offering_life_regen_multi": {
+      "stats": ["blood_offering_life_regenerated_+%_final_per_corpse"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% Davantage de Régénération de Vie octroyée aux Créatures par Cadavre consommé",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% de Perte de Régénération de Vie octroyée aux Créatures par Cadavre consommé",
+          "formatters": []
+        }
+      ]
+    },
     "attack_speed_incr": {
       "stats": ["attack_speed_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Accorde aux Sbires %1%%% de Vitesse d'Attaque accrue",
+          "text":
+            "Octroie aux Créatures %1%%% d'Augmentation de la Vitesse d'attaque",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Accorde aux Sbires %1%%% de Vitesse d'Attaque réduite",
+          "text":
+            "Octroie aux Créatures %1%%% de Réduction de la Vitesse d'attaque",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_incr": {
+      "stats": ["damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Octroie aux Créatures %1%%% d'Augmentation de Dégâts",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Octroie aux Créatures %1%%% de Réduction de Dégâts",
           "formatters": [
             {
               "id": "negate",
@@ -29,12 +82,14 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Accorde aux Sbires %1%%% de Vitesse d'Incantation accrue",
+          "text":
+            "Octroie aux Créatures %1%%% d'Augmentation de la Vitesse d'incantation",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Accorde aux Sbires %1%%% de Vitesse d'Incantation réduite",
+          "text":
+            "Octroie aux Créatures %1%%% de Réduction de la Vitesse d'incantation",
           "formatters": [
             {
               "id": "negate",
@@ -49,12 +104,14 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Accorde aux Sbires %1%%% de Vitesse de Déplacement accrue",
+          "text":
+            "Octroie aux Créatures %1%%% d'Augmentation de la Vitesse de déplacement",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Accorde aux Sbires %1%%% de Vitesse de Déplacement réduite",
+          "text":
+            "Octroie aux Créatures %1%%% de Réduction de la Vitesse de déplacement",
           "formatters": [
             {
               "id": "negate",
@@ -69,7 +126,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Accorde aux Sbires %1%%% de Chance de Bloquer les Attaques",
+          "text":
+            "Octroie aux Créatures %1$+d%% Chances de bloquer les Attaques",
           "formatters": []
         }
       ]
@@ -79,7 +137,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Accorde aux Sbires %1%%% de Chance de Bloquer les Sorts",
+          "text": "Octroie aux Créatures %1$+d%% Chances de bloquer les Sorts",
           "formatters": []
         }
       ]
@@ -89,7 +147,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Les Sbires récupèrent %1% de Vie quand ils Bloquent",
+          "text": "Les Créatures récupèrent %1% de Vie en Bloquant",
           "formatters": []
         }
       ]
@@ -100,7 +158,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Les Créatures %1%%% de su Daño Físico como Daño Extra de Caos",
+            "Les Créatures Rajoutent %1%%% de leurs Dégâts physiques sous forme de Dégâts de chaos",
           "formatters": []
         }
       ]
@@ -113,7 +171,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Les Créatures ont %1%%% de leur Vie maximale ajoutée en tant que\\nBouclier d'énergie maximal pour chaque cadavre consommé",
+            "Les Créatures gagnent %1%%% de leur Vie maximale sous forme de\\nBouclier d'énergie maximal pour chaque Cadavre consommé",
           "formatters": []
         }
       ]
