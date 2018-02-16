@@ -6,7 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased](https://github.com/eps1lon/poe-i18n/compare/v0.7.1..HEAD)
 ### Added 
-- Added `locale-data` for Path Of Exile@3.1.3
+- `locale-data` for Path Of Exile@3.1.3 (#14)
+- Typescript declaration files (#18)
+### Internal
+- Upgraded `tslint-eslint-rules` to 5.0.0 (#20)
 
 ## [0.7.1](https://github.com/eps1lon/poe-i18n/compare/v0.7.0...v0.7.1) (2017-10-25)
 ### Fixed
