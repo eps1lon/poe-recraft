@@ -1,20 +1,22 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { ItemProps, Rarity } from '../src/item/poe';
+import { Item, Rarity } from '../src/item/poe';
 import { Type as ModType } from '../src/mod/poe';
+
 import Head from './Head';
+import Properties from './Properties';
 
 import '../src/themes/poe/style.scss';
 
-const normal_item: ItemProps = {
+const normal_item: Item = {
   base: {
     name: 'Full Scale Armour',
   },
   rarity: Rarity.normal,
 };
 
-const magic_item: ItemProps = {
+const magic_item: Item = {
   base: {
     name: 'Blinder',
   },
@@ -29,7 +31,7 @@ const magic_item: ItemProps = {
   ],
 };
 
-const rare_item: ItemProps = {
+const rare_item: Item = {
   base: {
     name: 'Vaal Regalia',
   },
@@ -51,7 +53,7 @@ const rare_item: ItemProps = {
   ],
 };
 
-const unique_item: ItemProps = {
+const unique_item: Item = {
   base: {
     name: 'Paua Amulet',
   },
@@ -60,8 +62,8 @@ const unique_item: ItemProps = {
   explicits: [{ type: ModType.unique, id: 'SomeUniqueMod', name: 'Unique' }],
 };
 
-const elder_item: ItemProps = { ...magic_item, elder: true };
-const shaped: ItemProps = { ...rare_item, shaper: true };
+const elder_item: Item = { ...magic_item, elder: true };
+const shaped: Item = { ...rare_item, shaper: true };
 
 const head_stories = storiesOf('head', module);
 
@@ -102,3 +104,22 @@ head_stories.add('shaped/elder', () => [
     <Head item={shaped} />
   </div>,
 ]);
+
+storiesOf('properties', module)
+  .add('shield armour', () => (
+    <Properties
+      rarity="rare"
+      properties={{ kind: 'armour', armour: { value: 1 }, block: { value: 3 } }}
+    />
+  ))
+  .add('sacrifical garb', () => (
+    <Properties
+      rarity="rare"
+      properties={{
+        kind: 'armour',
+        armour: { value: 100, augmented: true },
+        energy_shield: { value: 10, augmented: true },
+        evasion: { value: 50.5, augmented: true },
+      }}
+    />
+  ));

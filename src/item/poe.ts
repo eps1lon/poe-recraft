@@ -18,13 +18,14 @@ export interface AbstractItem {
 
 export interface ArmourProperties {
   kind: 'armour';
-  armour?: number;
-  energy_shield?: number;
-  evasion?: number;
+  armour?: AugmentableValue<SingleValue>;
+  energy_shield?: AugmentableValue<SingleValue>;
+  evasion?: AugmentableValue<SingleValue>;
 }
 
 export interface ShieldProperties extends ArmourProperties {
-  block: number;
+  // in percent
+  block: AugmentableValue<SingleValue>;
 }
 
 export interface WeaponProperies {
