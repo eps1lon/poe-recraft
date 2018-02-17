@@ -2,21 +2,27 @@ import classnames from 'classnames';
 import * as React from 'react';
 
 import PropertyValue, { DisplayPropertyType } from './PropertyValue';
+import { intersperse, CommaSeparator } from '../../util/react';
 
 export interface Props {
   human: string;
-  value?: string;
-  type?: DisplayPropertyType;
 }
 
 export default class Body extends React.PureComponent<Props> {
   render() {
-    const { human, value, type = DisplayPropertyType.default } = this.props;
+    const { human, children } = this.props;
+    console.log(children, Array.isArray(children));
 
     return (
       <div className="display-property">
         <span>{human}</span>
-        {value && <PropertyValue value={value} type={type} />}
+        {children && [
+          ': ',
+          ...intersperse(
+            Array.isArray(children) ? children : [children],
+            CommaSeparator,
+          ),
+        ]}
       </div>
     );
   }

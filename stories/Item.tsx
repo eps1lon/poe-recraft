@@ -123,4 +123,44 @@ storiesOf('properties', module)
         evasion: { value: 50.5, augmented: true },
       }}
     />
+  ))
+  .add('dagger', () => (
+    <Properties
+      rarity="rare"
+      properties={{
+        quality: 5,
+        kind: 'weapon',
+        physical_damage: {
+          value: 6,
+          augmented: true,
+        },
+        cold_damage: [10, 13],
+        fire_damage: 4,
+        lightning_damage: [1, 400],
+        attack_time: {
+          value: 750,
+        },
+        crit: {
+          value: 750,
+          augmented: true,
+        },
+      }}
+    />
+  ))
+  .add('claw', () => (
+    <Properties
+      rarity="rare"
+      properties={{
+        kind: 'weapon',
+        cold_damage: [10, 13],
+        chaos_damage: [500, 600],
+        attack_time: {
+          value: 750,
+        },
+        crit: {
+          value: 750,
+          augmented: true,
+        },
+      }}
+    />
   ));

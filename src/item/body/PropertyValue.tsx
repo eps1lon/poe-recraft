@@ -19,11 +19,10 @@ export default class PropertyValue extends React.PureComponent<Props> {
   render() {
     const { value, type } = this.props;
 
-    return [
-      ': ',
+    return (
       <span className={classnames('value', DisplayPropertyType[type])}>
         {value}
-      </span>,
-    ];
+      </span>
+    );
   }
 }

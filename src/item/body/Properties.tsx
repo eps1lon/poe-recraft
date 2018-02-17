@@ -1,15 +1,20 @@
 import * as React from 'react';
 
 import Property, { Props as PropertyProps } from './Property';
-import { DisplayPropertyType } from './PropertyValue';
+import PropertyValue, { DisplayPropertyType } from './PropertyValue';
 import {
   WeaponProperties,
   ArmourProperties,
   NoProperties,
   ShieldProperties,
-  AugmentableValue,
 } from '../poe';
-import { round } from '../../util/number';
+import { round, msToPerSecond, asPercentString } from '../../util/number';
+import {
+  AugmentableValue,
+  augmentableNotZero,
+  toString as valueToString,
+  isZero,
+} from '../../util/value';
 
 export interface Props {
   properties:
@@ -21,20 +26,23 @@ export interface Props {
 
 export default class Properties extends React.PureComponent<Props> {
   public render() {
-    return this.itemProperties().map(property => <Property {...property} />);
+    return this.itemProperties();
   }
 
-  private itemProperties(): PropertyProps[] {
+  private itemProperties(): JSX.Element[] {
     const { properties } = this.props;
 
-    const display_properties: PropertyProps[] = [];
+    const display_properties = [];
 
     if (properties.quality !== undefined && properties.quality > 0) {
-      display_properties.push({
-        human: 'quality',
-        type: DisplayPropertyType.augmented,
-        value: `${round(properties.quality)}%`,
-      });
+      display_properties.push(
+        <Property key="quality" human="quality">
+          <PropertyValue
+            type={DisplayPropertyType.augmented}
+            value={`${properties.quality}%`}
+          />
+        </Property>,
+      );
     }
 
     switch (properties.kind) {
@@ -57,16 +65,115 @@ export default class Properties extends React.PureComponent<Props> {
     return display_properties;
   }
 
-  private weaponProperties(props: WeaponProperties): PropertyProps[] {
-    const displayed: PropertyProps[] = [];
+  private weaponProperties(props: WeaponProperties): JSX.Element[] {
+    const displayed: JSX.Element[] = [];
+
+    if (augmentableNotZero(props.physical_damage)) {
+      displayed.push(
+        <Property key="phys" human="physical damage">
+          <PropertyValue
+            type={
+              props.physical_damage.augmented
+                ? DisplayPropertyType.augmented
+                : DisplayPropertyType.default
+            }
+            value={`${valueToString(props.physical_damage.value)}`}
+          />
+        </Property>,
+      );
+    }
+
+    const elementals: JSX.Element[] = [];
+    // cold
+    if (props.cold_damage !== undefined && !isZero(props.cold_damage)) {
+      elementals.push(
+        <PropertyValue
+          key="cold"
+          type={DisplayPropertyType.cold_damage}
+          value={`${valueToString(props.cold_damage)}`}
+        />,
+      );
+    }
+    // fire
+    if (props.fire_damage !== undefined && !isZero(props.fire_damage)) {
+      elementals.push(
+        <PropertyValue
+          key="fire"
+          type={DisplayPropertyType.fire_damage}
+          value={`${valueToString(props.fire_damage)}`}
+        />,
+      );
+    }
+    // lightning
+    if (
+      props.lightning_damage !== undefined &&
+      !isZero(props.lightning_damage)
+    ) {
+      elementals.push(
+        <PropertyValue
+          key="lightning"
+          type={DisplayPropertyType.lightning_damage}
+          value={`${valueToString(props.lightning_damage)}`}
+        />,
+      );
+    }
+    // elementals
+    if (elementals.length > 0) {
+      displayed.push(
+        <Property key="elemental" human="elemental damage">
+          {elementals}
+        </Property>,
+      );
+    }
+
+    if (props.chaos_damage !== undefined && !isZero(props.chaos_damage)) {
+      displayed.push(
+        <Property key="chaos" human="chaos damage">
+          <PropertyValue
+            type={DisplayPropertyType.chaos_damage}
+            value={`${valueToString(props.chaos_damage)}`}
+          />
+        </Property>,
+      );
+    }
+
+    if (augmentableNotZero(props.crit)) {
+      displayed.push(
+        <Property key="crit" human="critical strike chance">
+          <PropertyValue
+            type={
+              props.crit.augmented
+                ? DisplayPropertyType.augmented
+                : DisplayPropertyType.default
+            }
+            value={`${asPercentString(props.crit.value, 2)}%`}
+          />
+        </Property>,
+      );
+    }
+
+    if (augmentableNotZero(props.attack_time)) {
+      displayed.push(
+        <Property key="aps" human="attacks per second">
+          <PropertyValue
+            type={
+              props.attack_time.augmented
+                ? DisplayPropertyType.augmented
+                : DisplayPropertyType.default
+            }
+            value={`${msToPerSecond(props.attack_time.value, 2)}%`}
+          />
+        </Property>,
+      );
+    }
 
     return displayed;
   }
 
   private armourProperties(
     props: ArmourProperties | ShieldProperties,
-  ): PropertyProps[] {
-    const displayed: PropertyProps[] = [];
+  ): JSX.Element[] {
+    const displayed: JSX.Element[] = [];
 
     const defences: Array<['armour' | 'energy_shield' | 'evasion', string]> = [
       ['armour', 'armour'],
@@ -76,29 +183,35 @@ export default class Properties extends React.PureComponent<Props> {
 
     defences.forEach(([key, human]) => {
       const prop = props[key];
-      if (prop !== undefined && prop.value > 0) {
-        displayed.push({
-          human,
-          type: prop.augmented
-            ? DisplayPropertyType.augmented
-            : DisplayPropertyType.default,
-          value: String(round(prop.value)),
-        });
+      if (augmentableNotZero(prop)) {
+        displayed.push(
+          <Property key={key} human={human}>
+            <PropertyValue
+              type={
+                prop.augmented
+                  ? DisplayPropertyType.augmented
+                  : DisplayPropertyType.default
+              }
+              value={String(round(prop.value))}
+            />
+          </Property>,
+        );
       }
     });
 
-    if (
-      'block' in props &&
-      props.block !== undefined &&
-      props.block.value > 0
-    ) {
-      displayed.push({
-        human: 'chance to block',
-        type: props.block.augmented
-          ? DisplayPropertyType.augmented
-          : DisplayPropertyType.default,
-        value: `${round(props.block.value)}%`,
-      });
+    if ('block' in props && augmentableNotZero(props.block)) {
+      displayed.push(
+        <Property key="block" human="chance to block">
+          <PropertyValue
+            type={
+              props.block.augmented
+                ? DisplayPropertyType.augmented
+                : DisplayPropertyType.default
+            }
+            value={`${round(props.block.value)}%`}
+          />
+        </Property>,
+      );
     }
 
     return displayed;

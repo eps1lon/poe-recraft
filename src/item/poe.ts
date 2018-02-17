@@ -1,4 +1,5 @@
 import { Type as ModType, Mod } from '../mod/poe';
+import { SingleValue, Value, AugmentableValue } from '../util/value';
 
 // use intersection here instead of extends to be able to test Properties
 // with only e.g. ArmourProperties
@@ -36,13 +37,20 @@ export interface WeaponProperties extends AbstractProperties {
   kind: 'weapon';
   physical_damage?: AugmentableValue;
   cold_damage?: Value;
-  fire_damge?: Value;
+  fire_damage?: Value;
   lightning_damage?: Value;
   chaos_damage?: Value;
-  // attacks per second
-  aps: number;
-  // 0 - 1
-  crit: AugmentableValue<SingleValue>;
+  // time between attacks in ms
+  attack_time?: AugmentableValue<SingleValue>;
+  /**
+   * value: 0-10000
+   *        10000 => 100%
+   *        1000 => 10%
+   *        100 => 1%
+   *        10 => 0.1%
+   *        1 => 1%
+   */
+  crit?: AugmentableValue<SingleValue>;
 }
 
 export interface NoProperties extends AbstractProperties {
@@ -58,12 +66,4 @@ export enum Rarity {
   magic,
   rare,
   unique,
-}
-
-export type Value = SingleValue | ValueRange;
-export type SingleValue = number;
-export type ValueRange = [SingleValue, SingleValue];
-export interface AugmentableValue<V extends Value = Value> {
-  value: V;
-  augmented?: boolean;
 }

@@ -15,3 +15,12 @@ export function asPercentString(n: number, precision: number = 0): string {
     return (n / 10 ** precision).toFixed(precision);
   }
 }
+
+// expects a hole number
+export function msToPerSecond(n: number, precision: number = 0): string {
+  if (precision < 1) {
+    return round(1 / (n / 1000)).toString();
+  } else {
+    return (1 / (n / 1000)).toFixed(precision);
+  }
+}
