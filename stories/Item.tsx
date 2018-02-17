@@ -116,6 +116,7 @@ storiesOf('properties', module)
     <Properties
       rarity="rare"
       properties={{
+        quality: 5,
         kind: 'armour',
         armour: { value: 100, augmented: true },
         energy_shield: { value: 10, augmented: true },

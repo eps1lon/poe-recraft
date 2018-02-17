@@ -3,7 +3,7 @@ import { Type as ModType, Mod } from '../mod/poe';
 // use intersection here instead of extends to be able to test Properties
 // with only e.g. ArmourProperties
 export type Item = AbstractItem &
-  (ArmourProperties | WeaponProperies | NoProperties);
+  (ArmourProperties | WeaponProperties | NoProperties);
 
 export interface AbstractItem {
   base: BaseItem;
@@ -16,7 +16,11 @@ export interface AbstractItem {
   shaper?: boolean;
 }
 
-export interface ArmourProperties {
+export interface AbstractProperties {
+  quality?: number;
+}
+
+export interface ArmourProperties extends AbstractProperties {
   kind: 'armour';
   armour?: AugmentableValue<SingleValue>;
   energy_shield?: AugmentableValue<SingleValue>;
@@ -28,7 +32,7 @@ export interface ShieldProperties extends ArmourProperties {
   block: AugmentableValue<SingleValue>;
 }
 
-export interface WeaponProperies {
+export interface WeaponProperties extends AbstractProperties {
   kind: 'weapon';
   physical_damage?: AugmentableValue;
   cold_damage?: Value;
@@ -41,9 +45,9 @@ export interface WeaponProperies {
   crit: AugmentableValue<SingleValue>;
 }
 
-export type NoProperties = {
+export interface NoProperties extends AbstractProperties {
   kind?: 'none';
-};
+}
 
 export interface BaseItem {
   name: string;
@@ -61,5 +65,5 @@ export type SingleValue = number;
 export type ValueRange = [SingleValue, SingleValue];
 export interface AugmentableValue<V extends Value = Value> {
   value: V;
-  augmented: boolean;
+  augmented?: boolean;
 }
