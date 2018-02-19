@@ -2,11 +2,12 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { Item, Rarity } from '../src/item/poe';
-import { Type as ModType } from '../src/mod/poe';
+import { Type as ModType, Group as ModGroup } from '../src/mod/poe';
 
 import Head from './Head';
 import Properties from './Properties';
 import Requirements from './Requirements';
+import Stats from './Stats';
 
 import '../src/themes/poe/style.scss';
 
@@ -184,5 +185,47 @@ storiesOf('requirements', module)
       requirements={{
         level: { value: 5 },
       }}
+    />
+  ));
+
+storiesOf('stats', module)
+  .add('basic', () => (
+    <Stats
+      type={ModGroup.explicit}
+      rarity="rare"
+      stats={[
+        { id: 'unknown_stat', value: 5 },
+        { id: 'dummy_stat_display_nothing', value: 5 },
+        { id: 'weapon_physical_damage_+%', value: 25 },
+        { id: 'attack_minimum_added_physical_damage', value: 5 },
+        { id: 'attack_maximum_added_physical_damage', value: 13 },
+      ]}
+    />
+  ))
+  .add('ranges', () => (
+    <Stats
+      type={ModGroup.explicit}
+      rarity="rare"
+      stats={[
+        { id: 'attack_minimum_added_physical_damage', value: [1, 3] },
+        { id: 'attack_maximum_added_physical_damage', value: [13, 18] },
+      ]}
+    />
+  ))
+  .add('only one picked', () => (
+    <Stats
+      type={ModGroup.explicit}
+      rarity="rare"
+      stats={[
+        { id: 'weapon_physical_damage_+%', value: 25 },
+        { id: 'weapon_physical_damage_+%', value: 30 },
+      ]}
+    />
+  ))
+  .add('crafted', () => (
+    <Stats
+      type={ModGroup.crafted}
+      rarity="rare"
+      stats={[{ id: 'item_generation_cannot_change_suffixes', value: 1 }]}
     />
   ));
