@@ -6,6 +6,7 @@ import { Type as ModType } from '../src/mod/poe';
 
 import Head from './Head';
 import Properties from './Properties';
+import Requirements from './Requirements';
 
 import '../src/themes/poe/style.scss';
 
@@ -161,6 +162,27 @@ storiesOf('properties', module)
           value: 750,
           augmented: true,
         },
+      }}
+    />
+  ));
+
+storiesOf('requirements', module)
+  .add('all', () => (
+    <Requirements
+      rarity="rare"
+      requirements={{
+        level: { value: 5 },
+        dexterity: { value: 10 },
+        inteliligence: { value: 1 },
+        strength: { value: 500, augmented: true },
+      }}
+    />
+  ))
+  .add('once', () => (
+    <Requirements
+      rarity="rare"
+      requirements={{
+        level: { value: 5 },
       }}
     />
   ));

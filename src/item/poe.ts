@@ -11,6 +11,7 @@ export interface AbstractItem {
   // only required for rare and unique items
   name?: string;
   rarity: Rarity;
+  requirements?: Requirements;
   implicits?: Mod[];
   explicits?: Mod[];
   elder?: boolean;
@@ -66,4 +67,12 @@ export enum Rarity {
   magic,
   rare,
   unique,
+}
+
+export interface Requirements {
+  [key: string]: AugmentableValue<SingleValue> | undefined;
+  level?: AugmentableValue<SingleValue>;
+  dexterity?: AugmentableValue<SingleValue>;
+  inteliligence?: AugmentableValue<SingleValue>;
+  strength?: AugmentableValue<SingleValue>;
 }
