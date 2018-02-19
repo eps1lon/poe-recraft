@@ -53,6 +53,7 @@ export default class Properties extends React.PureComponent<Props> {
         display_properties.push(...this.weaponProperties(properties));
         break;
       case 'none':
+      case undefined:
         break;
       default:
         // while the exhaustiveness check is nice for internal use
