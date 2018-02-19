@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import * as React from 'react';
 
 import { BaseItem, Item as ItemProps, Rarity } from './poe';
@@ -39,7 +40,7 @@ export default class Item extends React.PureComponent<Props> {
     const { item } = this.props;
 
     return (
-      <div className={this.props.classname}>
+      <div className={classnames(this.props.classname, Rarity[item.rarity])}>
         <Head item={item} />
         <Body item={item} />
       </div>
