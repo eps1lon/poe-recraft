@@ -5,7 +5,7 @@ import Head from './head';
 import Body from './body';
 
 export interface Props {
-  className: string;
+  classname?: string;
   item: ItemProps;
 }
 
@@ -24,7 +24,7 @@ export default class Item extends React.PureComponent<Props> {
   }
 
   static defaultProps = {
-    className: 'poe-item',
+    classname: 'poe-item',
   };
 
   constructor(props: Props) {
@@ -39,7 +39,7 @@ export default class Item extends React.PureComponent<Props> {
     const { item } = this.props;
 
     return (
-      <div className={this.props.className}>
+      <div className={this.props.classname}>
         <Head item={item} />
         <Body item={item} />
       </div>
