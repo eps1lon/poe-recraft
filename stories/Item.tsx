@@ -67,45 +67,35 @@ const unique_item: Item = {
 const elder_item: Item = { ...magic_item, elder: true };
 const shaped: Item = { ...rare_item, shaper: true };
 
-const head_stories = storiesOf('head', module);
-
-// normal item
-head_stories.add('normal', () => (
-  <div className="poe-item normal">
-    <Head item={normal_item} />
-  </div>
-));
-
-// magic item
-head_stories.add('magic', () => (
-  <div className="poe-item magic">
-    <Head item={magic_item} />
-  </div>
-));
-
-// rare item
-head_stories.add('rare', () => (
-  <div className="poe-item rare">
-    <Head item={rare_item} />
-  </div>
-));
-
-// unique item
-head_stories.add('unique', () => (
-  <div className="poe-item unique">
-    <Head item={unique_item} />
-  </div>
-));
-
-// shaped/elder
-head_stories.add('shaped/elder', () => [
-  <div key="elder" className="poe-item magic">
-    <Head item={elder_item} />
-  </div>,
-  <div key="shaped" className="poe-item rare">
-    <Head item={shaped} />
-  </div>,
-]);
+storiesOf('head', module)
+  .add('normal', () => (
+    <div className="poe-item normal">
+      <Head item={normal_item} />
+    </div>
+  ))
+  .add('magic', () => (
+    <div className="poe-item magic">
+      <Head item={magic_item} />
+    </div>
+  ))
+  .add('rare', () => (
+    <div className="poe-item rare">
+      <Head item={rare_item} />
+    </div>
+  ))
+  .add('unique', () => (
+    <div className="poe-item unique">
+      <Head item={unique_item} />
+    </div>
+  ))
+  .add('shaped/elder', () => [
+    <div key="elder" className="poe-item magic">
+      <Head item={elder_item} />
+    </div>,
+    <div key="shaped" className="poe-item rare">
+      <Head item={shaped} />
+    </div>,
+  ]);
 
 storiesOf('properties', module)
   .add('shield armour', () => (
