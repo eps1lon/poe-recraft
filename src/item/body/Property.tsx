@@ -8,10 +8,9 @@ export interface Props {
   human: string;
 }
 
-export default class Body extends React.PureComponent<Props> {
+export default class Property extends React.PureComponent<Props> {
   render() {
     const { human, children } = this.props;
-    console.log(children, Array.isArray(children));
 
     return (
       <div className="display-property">
