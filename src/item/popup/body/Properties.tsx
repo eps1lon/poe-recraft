@@ -7,14 +7,14 @@ import {
   ArmourProperties,
   NoProperties,
   ShieldProperties,
-} from '../poe';
-import { round, msToPerSecond, asPercentString } from '../../util/number';
+} from '../../poe';
+import { round, msToPerSecond, asPercentString } from '../../../util/number';
 import {
   AugmentableValue,
   augmentableNotZero,
   toString as valueToString,
   isZero,
-} from '../../util/value';
+} from '../../../util/value';
 
 export interface Props {
   properties:

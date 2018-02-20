@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import * as React from 'react';
 
-import { Item, Rarity } from '../poe';
+import { Item, Rarity } from '../../poe';
 
 import NameLine, { hasNameLine } from './NameLine';
 import TypeLine from './TypeLine';

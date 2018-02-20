@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import * as React from 'react';
 
-import { BaseItem, Item as ItemProps, Rarity } from './poe';
+import { BaseItem, Item as ItemProps, Rarity } from '../poe';
 import Head from './head';
 import Body from './body';
 
@@ -11,7 +11,7 @@ export interface Props {
   translations?: {};
 }
 
-export default class Item extends React.PureComponent<Props> {
+export default class Component extends React.PureComponent<Props> {
   public static assertValidProps(
     item: ItemProps,
     onError: (err: string) => void,
@@ -34,7 +34,7 @@ export default class Item extends React.PureComponent<Props> {
     super(props);
 
     if (process.env.NODE_ENV !== 'production') {
-      Item.assertValidProps(props.item, console.warn);
+      Component.assertValidProps(props.item, console.warn);
     }
   }
 

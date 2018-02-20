@@ -5,10 +5,10 @@ const stat_descriptions = require('poe-i18n/locale-data/en/stat_descriptions.jso
 import { Item, Rarity } from '../src/item/poe';
 import { Type as ModType, Group as ModGroup } from '../src/mod/poe';
 
-import ItemComponent from '../src';
+import { Popup } from '../src';
 
 storiesOf('item', module).add('shaped', () => (
-  <ItemComponent
+  <Popup
     translations={{ stat_descriptions }}
     item={{
       base: {

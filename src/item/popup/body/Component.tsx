@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import { Item } from '../poe';
-import { intersperse, Intersperse } from '../../util/react';
+import { Item } from '../../poe';
+import { intersperse, Intersperse } from '../../../util/react';
 import Separator from '../Separator';
 import Properties from './Properties';
 import Requirements from './Requirements';
-import Stats from '../../stat/Stats';
-import { Mod } from '../../mod/poe';
-import { Stat } from '../../stat/poe';
+import Stats from '../../../stat/Stats';
+import { Mod } from '../../../mod/poe';
+import { Stat } from '../../../stat/poe';
 
 export interface Props {
   item: Item;

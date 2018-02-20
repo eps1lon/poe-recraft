@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 
 import Properties, {
   Props as PropertiesProps,
-} from '../src/item/body/Properties';
+} from '../src/item/popup/body/Properties';
 
 export interface Props extends PropertiesProps {
   rarity: 'normal' | 'magic' | 'rare';

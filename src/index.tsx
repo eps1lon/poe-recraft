@@ -1,2 +1,1 @@
-import Item from './item';
-export default Item;
+export { Popup } from './item';

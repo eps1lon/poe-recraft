@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Item, Rarity } from '../poe';
+import { Item, Rarity } from '../../poe';
 
 const NameLine: React.SFC<{
   item: Item;

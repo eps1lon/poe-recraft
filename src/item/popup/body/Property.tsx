@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import * as React from 'react';
 
 import PropertyValue, { DisplayPropertyType } from './PropertyValue';
-import { intersperse, CommaSeparator } from '../../util/react';
+import { intersperse, CommaSeparator } from '../../../util/react';
 
 export interface Props {
   human: string;

@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { Requirements } from '../poe';
+import { Requirements } from '../../poe';
 import PropertyValue, { DisplayPropertyType } from './PropertyValue';
-import { intersperse, CommaSeparator } from '../../util/react';
-import { AugmentableValue, SingleValue } from '../../util/value';
+import { intersperse, CommaSeparator } from '../../../util/react';
+import { AugmentableValue, SingleValue } from '../../../util/value';
 
 export interface Props {
   requirements: Requirements;

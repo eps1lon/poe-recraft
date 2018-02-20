@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 
 import Requirements, {
   Props as RequirementsProps,
-} from '../src/item/body/Requirements';
+} from '../src/item/popup/body/Requirements';
 
 export interface Props extends RequirementsProps {
   rarity: 'normal' | 'magic' | 'rare';

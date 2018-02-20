@@ -2,14 +2,14 @@ import classnames from 'classnames';
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Head from '../src/item/head';
+import Head from '../src/item/popup/head';
 import { Type as ModType } from '../src/mod/poe';
 import { Item as ItemProps } from '../src/item/poe';
-import ItemComponent from '../src/item';
+import { Popup } from '../src/item';
 import { Item, Rarity } from '../src/item/poe';
 
 const Story: React.SFC<{ item: ItemProps }> = ({ item }) => {
-  ItemComponent.assertValidProps(item, console.warn);
+  Popup.assertValidProps(item, console.warn);
 
   return (
     <div className={classnames('poe-item', Rarity[item.rarity])}>
