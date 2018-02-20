@@ -1,5 +1,5 @@
 import { Mod } from 'poe-mods';
-import { Action } from 'util/redux';
+import { Action, NullableAction } from 'util/redux';
 
 import { BaseItemTypeProps, TagProps } from 'selectors/schema';
 
@@ -9,7 +9,10 @@ export enum Type {
   ADD_MOD = 'ITEM/ADD_MOD',
   REMOVE_MOD = 'ITEM/REMOVE_MOD',
   ADD_TAG = 'ITEM/ADD_TAG',
-  REMOVE_TAG = 'ITEM/REMOVE_TAG'
+  REMOVE_TAG = 'ITEM/REMOVE_TAG',
+  AS_ELDER_ITEM = 'ITEM/AS_ELDER_ITEM',
+  AS_SHAPER_ITEM = 'ITEM/AS_SHAPER_ITEM',
+  REMOVE_ATLAS_MODIFIER = 'ITEM/REMOVE_ATLAS_MODIFIER'
 }
 
 export type Action =
@@ -18,7 +21,10 @@ export type Action =
   | AddModAction
   | RemoveModAction
   | AddTagAction
-  | RemoveTagAction;
+  | RemoveTagAction
+  | AsElderItemAction
+  | AsShaperItemAction
+  | RemoveAtlasModifierAction;
 
 export type SetItemAction = Action<Type.SET_ITEM, BaseItemTypeProps>;
 export const setItem = (item: BaseItemTypeProps): SetItemAction => ({
@@ -59,4 +65,21 @@ export type RemoveTagAction = Action<Type.REMOVE_TAG, TagProps>;
 export const removeTag = (tag: TagProps): RemoveTagAction => ({
   type: Type.REMOVE_TAG,
   payload: tag
+});
+
+export type AsElderItemAction = NullableAction<Type.AS_ELDER_ITEM>;
+export const asElderItem = (): AsElderItemAction => ({
+  type: Type.AS_ELDER_ITEM
+});
+
+export type AsShaperItemAction = NullableAction<Type.AS_SHAPER_ITEM>;
+export const asShaperItem = (): AsShaperItemAction => ({
+  type: Type.AS_SHAPER_ITEM
+});
+
+export type RemoveAtlasModifierAction = NullableAction<
+  Type.REMOVE_ATLAS_MODIFIER
+>;
+export const removeAtlasModifier = (): RemoveAtlasModifierAction => ({
+  type: Type.REMOVE_ATLAS_MODIFIER
 });

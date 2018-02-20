@@ -28,7 +28,7 @@ export default class Tags extends React.PureComponent<Props> {
 
         <ul className="item tags changeable">
           {props.removable.map(tag => (
-            <li>
+            <li key={tag.id}>
               {tag.id}
               <Button onClick={() => props.removeTag(tag)}>X</Button>
             </li>

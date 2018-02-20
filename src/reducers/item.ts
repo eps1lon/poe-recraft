@@ -15,7 +15,13 @@ import {
   AddTagAction,
   addTag,
   RemoveTagAction,
-  removeTag
+  removeTag,
+  AsElderItemAction,
+  asElderItem,
+  AsShaperItemAction,
+  asShaperItem,
+  RemoveAtlasModifierAction,
+  removeAtlasModifier
 } from 'actions/item';
 
 export interface State {
@@ -43,6 +49,12 @@ const reducer: Reducer<State, Action> = (
       return addTagHandle(state, action);
     case Type.REMOVE_TAG:
       return removeTagHandle(state, action);
+    case Type.AS_ELDER_ITEM:
+      return asElderItemHandle(state, action);
+    case Type.AS_SHAPER_ITEM:
+      return asShaperItemHandle(state, action);
+    case Type.REMOVE_ATLAS_MODIFIER:
+      return removeAtlasModifierHandle(state, action);
     default:
       return state;
   }
@@ -139,6 +151,48 @@ function removeTagHandle(state: State, action: RemoveTagAction): State {
           tags: props.baseitem.tags.filter(tag => tag.id !== action.payload.id)
         }
       }))
+    };
+  } else {
+    return state;
+  }
+}
+
+function asElderItemHandle(state: State, action: AsElderItemAction): State {
+  const { item } = state;
+
+  if (item != null) {
+    return {
+      ...state,
+      item: item.asElderItem()
+    };
+  } else {
+    return state;
+  }
+}
+
+function asShaperItemHandle(state: State, action: AsShaperItemAction): State {
+  const { item } = state;
+
+  if (item != null) {
+    return {
+      ...state,
+      item: item.asShaperItem()
+    };
+  } else {
+    return state;
+  }
+}
+
+function removeAtlasModifierHandle(
+  state: State,
+  action: RemoveAtlasModifierAction
+): State {
+  const { item } = state;
+
+  if (item != null) {
+    return {
+      ...state,
+      item: item.removeAtlasModifier()
     };
   } else {
     return state;
