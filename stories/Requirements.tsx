@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import * as React from 'react';
+import { storiesOf } from '@storybook/react';
 
 import Requirements, {
   Props as RequirementsProps,
@@ -18,4 +19,24 @@ const Story: React.SFC<Props> = ({ rarity, ...props }) => {
     </div>
   );
 };
-export default Story;
+
+storiesOf('requirements', module)
+  .add('all', () => (
+    <Story
+      rarity="rare"
+      requirements={{
+        level: { value: 5 },
+        dexterity: { value: 10 },
+        inteliligence: { value: 1 },
+        strength: { value: 500, augmented: true },
+      }}
+    />
+  ))
+  .add('once', () => (
+    <Story
+      rarity="rare"
+      requirements={{
+        level: { value: 5 },
+      }}
+    />
+  ));
