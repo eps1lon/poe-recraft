@@ -6,26 +6,25 @@ import Stat from './Stat';
 
 export interface Props {
   classname: string;
-  stats: StatProps[];
-  translations: {};
 }
 
 export default class Stats extends React.PureComponent<Props> {
-  public static hasAny(stats: Props['stats']) {
-    // TODO: implicit movement speed gets not displayed
-    return stats.length > 0;
+  public static hasAny(children: React.ReactNode[]) {
+    // any displayable?
+    return children.some(node => node != null);
   }
 
   public render() {
-    const { classname, stats, translations } = this.props;
+    const { classname, children } = this.props;
 
-    const i18n_options = {
-      datas: translations,
-      fallback: (id: string) =>
-        id === 'dummy_stat_display_nothing' ? null : id,
-    };
-    return formatStats(stats, i18n_options).map((translation, i) => {
-      return <Stat key={i} classname={classname} message={translation} />;
-    });
+    if (Array.isArray(children)) {
+      return children.map((child, i) => (
+        <Stat key={i} classname={classname}>
+          {child}
+        </Stat>
+      ));
+    } else {
+      return null;
+    }
   }
 }

@@ -2,12 +2,11 @@ import * as React from 'react';
 
 export interface Props {
   classname: string;
-  message: string;
 }
 
 export default class Stat extends React.PureComponent<Props> {
   public render() {
-    const { classname, message } = this.props;
-    return <div className={classname}>{message}</div>;
+    const { classname, children } = this.props;
+    return <div className={classname}>{children}</div>;
   }
 }

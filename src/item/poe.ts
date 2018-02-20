@@ -1,3 +1,5 @@
+import { ReactNode, ReactElement } from 'react';
+
 import { Mod } from '../mod/poe';
 import { SingleValue, Value, AugmentableValue } from '../util/value';
 
@@ -12,8 +14,12 @@ export interface AbstractItem {
   name?: string;
   rarity: Rarity;
   requirements?: Requirements;
-  implicits?: Mod[];
-  explicits?: Mod[];
+  implicits?: Affixes;
+  explicits?: Affixes;
+  // in case only stats are given and the item is magic we need to know
+  // the name of the prefix/suffix mod
+  prefix?: string;
+  suffix?: string;
   elder?: boolean;
   shaper?: boolean;
 }
@@ -82,3 +88,6 @@ export interface Requirements {
   inteliligence?: AugmentableValue<SingleValue>;
   strength?: AugmentableValue<SingleValue>;
 }
+
+export type Affix = ReactNode | Mod;
+export type Affixes = Affix[];

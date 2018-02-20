@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { Item } from '../../poe';
-import { Mod } from '../../../mod/poe';
+import { Item, Affixes } from '../../poe';
+import { Mod, isMod } from '../../../mod/poe';
 import { Stat } from '../../../stat/poe';
 import Stats from '../../../stat/Stats';
 import { Intersperse } from '../../../util/react';
@@ -31,33 +31,32 @@ export default class Body extends React.PureComponent<Props> {
             <Requirements key="requirements" requirements={requirements} />
           )}
           {Stats.hasAny(implicit_stats) && (
-            <Stats
-              key="implicits"
-              classname="implicit"
-              stats={implicit_stats}
-              translations={translations}
-            />
+            <Stats key="implicits" classname="implicit">
+              {implicit_stats}
+            </Stats>
           )}
           {Stats.hasAny(explicit_stats) && (
-            <Stats
-              key="explicits"
-              classname="explicit"
-              stats={explicit_stats}
-              translations={translations}
-            />
+            <Stats key="explicits" classname="explicit">
+              {explicit_stats}
+            </Stats>
           )}
         </Intersperse>
       </section>
     );
   }
 
-  private collectStats(mods: Mod[]): Stat[] {
-    return mods.reduce(
-      (flattened, { stats = [] }) => {
-        flattened.push(...stats);
+  private collectStats(affixes: Affixes): React.ReactNode[] {
+    return affixes.reduce(
+      (flattened: React.ReactNode[], affix) => {
+        if (isMod(affix)) {
+          flattened.push(...affix.stats);
+        } else {
+          flattened.push(affix);
+        }
+
         return flattened;
       },
-      [] as Stat[],
+      [] as React.ReactNode[],
     );
   }
 }

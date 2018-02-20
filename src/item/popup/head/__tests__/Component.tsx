@@ -36,14 +36,14 @@ it('should display magic', () => {
             rarity: Rarity.magic,
             explicits: [
               {
-                id: 'LocalAddedLightningDamage2',
                 type: ModType.prefix,
                 name: 'Buzzing',
+                stats: [],
               },
               {
-                id: 'LocalIncreasedAttackSpeed3',
                 type: ModType.suffix,
                 name: 'of Mastery',
+                stats: [],
               },
             ],
           }}

@@ -32,78 +32,14 @@ storiesOf('item', module).add('shaped', () => (
         },
       },
       explicits: [
-        {
-          id: 'AdditionalMinesPlacedSupportedUber1_',
-          type: ModType.suffix,
-          stats: [
-            {
-              id: 'number_of_additional_mines_to_place',
-              value: 1,
-            },
-            {
-              id: 'local_display_socketed_gems_get_remote_mine_level',
-              value: 18,
-            },
-          ],
-        },
-        {
-          id: 'IncreasedChillEffectSupportedUber1',
-          type: ModType.suffix,
-          stats: [
-            {
-              id: 'chill_effect_+%',
-              value: 16,
-            },
-            {
-              id: 'local_display_socketed_gems_supported_by_x_hypothermia',
-              value: 18,
-            },
-          ],
-        },
-        {
-          id: 'LocalIncreaseSocketedMinionGemLevel1',
-          type: ModType.prefix,
-          stats: [
-            {
-              id: 'local_socketed_minion_gem_level_+',
-              value: 1,
-            },
-          ],
-        },
-        {
-          id: 'IncreasedLife6',
-          type: ModType.prefix,
-          stats: [
-            {
-              id: 'base_maximum_life',
-              value: 67,
-            },
-          ],
-        },
-        {
-          id: 'StunRecovery3',
-          type: ModType.suffix,
-          stats: [
-            {
-              id: 'base_stun_recovery_+%',
-              value: 18,
-            },
-          ],
-        },
-        {
-          id: 'SpellAddedLightningDamageUber3',
-          type: ModType.prefix,
-          stats: [
-            {
-              id: 'spell_minimum_added_lightning_damage',
-              value: 5,
-            },
-            {
-              id: 'spell_maximum_added_lightning_damage',
-              value: 89,
-            },
-          ],
-        },
+        'Place an additional Mine',
+        'Socketed Gems are Supported by Level 18 Remote Mine',
+        '16% increased Effect of Chill',
+        'Socketed Gems are Supported by Level 18 Hypothermia',
+        '+1 to Level of Socketed Minion Gems',
+        '+67 to maximum Life',
+        '18% increased Stun and Block Recovery',
+        'Adds 5 to 89 Lightning Damage to Spells',
       ],
     }}
   />

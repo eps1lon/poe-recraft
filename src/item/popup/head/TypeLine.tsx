@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { Item, Rarity } from '../../poe';
-import { isPrefix, isSuffix } from '../../../mod/poe';
+import { Item, Rarity, Affix } from '../../poe';
+import { isPrefix, isSuffix, isMod } from '../../../mod/poe';
 
 const ItemType: React.SFC<{ item: Item }> = ({ item }) => {
   return <span>{item.base.name}</span>;
@@ -11,14 +11,16 @@ const MagicTypeLine: React.SFC<{
   item: Item;
 }> = ({ item }) => {
   const { explicits = [] } = item;
-  const prefix = explicits.filter(isPrefix)[0];
-  const suffix = explicits.filter(isSuffix)[0];
+  const prefix = item.prefix || explicits.filter(isMod).find(isPrefix);
+  const suffix = item.suffix || explicits.filter(isMod).find(isSuffix);
 
   return (
     <span>
-      {prefix && `${String(prefix.name)} `}
+      {prefix &&
+        `${typeof prefix === 'string' ? prefix : String(prefix.name)} `}
       <ItemType item={item} />
-      {suffix && ` ${String(suffix.name)}`}
+      {suffix &&
+        ` ${typeof suffix === 'string' ? suffix : String(suffix.name)}`}
     </span>
   );
 };
