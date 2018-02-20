@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { Item } from '~/item//poe';
-import { Mod } from '~/mod/poe';
-import { Stat } from '~/stat/poe';
-import Stats from '~/stat/Stats';
-import { intersperse, Intersperse } from '~/util/react';
+import { Item } from '../../poe';
+import { Mod } from '../../../mod/poe';
+import { Stat } from '../../../stat/poe';
+import Stats from '../../../stat/Stats';
+import { intersperse, Intersperse } from '../../../util/react';
 import Separator from '../Separator';
 import Properties from './Properties';
 import Requirements from './Requirements';

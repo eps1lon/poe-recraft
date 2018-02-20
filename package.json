@@ -39,13 +39,15 @@
   "license": "MIT",
   "jest": {
     "transform": {
-      "^.+\\.ts$": "ts-jest"
+      "^.+\\.tsx?$": "ts-jest"
     },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js|ts)$",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "mapCoverage": true,
     "moduleFileExtensions": [
       "ts",
-      "js"
+      "js",
+      "jsx",
+      "tsx"
     ]
   },
   "devDependencies": {
@@ -72,8 +74,10 @@
     "typescript": "^2.7.1"
   },
   "dependencies": {
+    "@types/react-test-renderer": "^16.0.1",
     "classnames": "^2.2.5",
     "poe-i18n": "^0.8.0",
-    "react": "^16.2.0"
+    "react": "^16.2.0",
+    "react-test-renderer": "^16.2.0"
   }
 }
