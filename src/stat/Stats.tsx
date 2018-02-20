@@ -1,4 +1,3 @@
-import { formatStats } from 'poe-i18n';
 import * as React from 'react';
 
 import { Stat as StatProps } from './poe';

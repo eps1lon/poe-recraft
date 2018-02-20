@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-const stat_descriptions = require('poe-i18n/locale-data/en/stat_descriptions.json');
 
 import { Item, Rarity, Type } from '../src/item/poe';
 import { Type as ModType, Group as ModGroup } from '../src/mod/poe';
@@ -9,7 +8,6 @@ import { Popup } from '../src';
 
 storiesOf('item', module).add('shaped', () => (
   <Popup
-    translations={{ stat_descriptions }}
     item={{
       base: {
         name: 'Hubris Circlet',
