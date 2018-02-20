@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 
-import Mod, { Props as ModProps } from './Mod';
+import Mod, { Props as ModProps } from './Component';
 
 export interface Props {
   mods: ModProps[];

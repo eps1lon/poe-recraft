@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 const stat_descriptions = require('poe-i18n/locale-data/en/stat_descriptions.json');
 
-import { Item, Rarity } from '../src/item/poe';
+import { Item, Rarity, Type } from '../src/item/poe';
 import { Type as ModType, Group as ModGroup } from '../src/mod/poe';
 
 import { Popup } from '../src';
@@ -15,7 +15,7 @@ storiesOf('item', module).add('shaped', () => (
         name: 'Hubris Circlet',
       },
       name: 'Mind Brow',
-      kind: 'armour',
+      type: Type.armour,
       rarity: Rarity.rare,
       energy_shield: {
         value: 200,

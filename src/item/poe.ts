@@ -19,12 +19,18 @@ export interface AbstractItem {
   shaper?: boolean;
 }
 
+export enum Type {
+  none,
+  armour,
+  weapon,
+}
+
 export interface AbstractProperties {
   quality?: number;
 }
 
 export interface ArmourProperties extends AbstractProperties {
-  kind: 'armour';
+  type: Type.armour;
   armour?: AugmentableValue<SingleValue>;
   energy_shield?: AugmentableValue<SingleValue>;
   evasion?: AugmentableValue<SingleValue>;
@@ -36,7 +42,7 @@ export interface ShieldProperties extends ArmourProperties {
 }
 
 export interface WeaponProperties extends AbstractProperties {
-  kind: 'weapon';
+  type: Type.weapon;
   physical_damage?: AugmentableValue;
   cold_damage?: Value;
   fire_damage?: Value;
@@ -56,7 +62,7 @@ export interface WeaponProperties extends AbstractProperties {
 }
 
 export interface NoProperties extends AbstractProperties {
-  kind?: 'none';
+  type?: Type.none;
 }
 
 export interface BaseItem {

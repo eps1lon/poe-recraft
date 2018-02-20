@@ -7,6 +7,7 @@ import {
   ArmourProperties,
   NoProperties,
   ShieldProperties,
+  Type,
 } from '../../poe';
 import { round, msToPerSecond, asPercentString } from '../../../util/number';
 import {
@@ -30,18 +31,18 @@ export default class Properties extends React.PureComponent<Props> {
       return true;
     }
 
-    switch (properties.kind) {
-      case 'armour':
+    switch (properties.type) {
+      case Type.armour:
         const { armour, energy_shield, evasion } = properties;
         return (
           augmentableNotZero(armour) ||
           augmentableNotZero(energy_shield) ||
           augmentableNotZero(evasion)
         );
-      case 'weapon':
+      case Type.weapon:
         // at least display weapon type
         return true;
-      case 'none':
+      case Type.none:
       case undefined:
         return false;
       default:
@@ -73,14 +74,14 @@ export default class Properties extends React.PureComponent<Props> {
       );
     }
 
-    switch (properties.kind) {
-      case 'armour':
+    switch (properties.type) {
+      case Type.armour:
         display_properties.push(...this.armourProperties(properties));
         break;
-      case 'weapon':
+      case Type.weapon:
         display_properties.push(...this.weaponProperties(properties));
         break;
-      case 'none':
+      case Type.none:
       case undefined:
         break;
       default:
