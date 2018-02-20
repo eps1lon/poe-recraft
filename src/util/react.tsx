@@ -23,7 +23,7 @@ export function intersperse(
   );
 }
 
-interface Props {
+export interface Props {
   renderSeparator: (key: string) => React.ReactNode;
 }
 
