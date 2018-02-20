@@ -1,11 +1,12 @@
-import { Item } from 'poe-mods';
+import { Popup as ItemPopup } from 'poe-components-item';
 import React, { SFC } from 'react';
 
 import EditItem from 'containers/edit_item/Modal';
-import BaseItemPreview from './item/BaseItemPreview';
+
+import 'poe-components-item/themes/poe.css';
 
 export type Props = {
-  item: Item | undefined;
+  item?: ItemPopup['props']['item'] | undefined;
 };
 
 const ItemSection: SFC<Props> = props => {
@@ -13,7 +14,7 @@ const ItemSection: SFC<Props> = props => {
 
   return (
     <section id="item">
-      {item != null && <BaseItemPreview item={item} />}
+      {item != null && <ItemPopup item={item} />}
       <EditItem />
     </section>
   );
