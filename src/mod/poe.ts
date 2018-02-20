@@ -1,5 +1,4 @@
 import { Stat } from '../stat/poe';
-import { Value } from '../util/value';
 
 export enum Group {
   implicit,

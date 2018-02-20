@@ -9,7 +9,7 @@ export interface Props {
 }
 
 export default class Mod extends PureComponent<Props> {
-  render() {
+  public render() {
     return 'Mod';
   }
 }

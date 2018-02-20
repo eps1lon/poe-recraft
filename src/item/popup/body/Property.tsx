@@ -1,7 +1,5 @@
-import classnames from 'classnames';
 import * as React from 'react';
 
-import PropertyValue, { DisplayPropertyType } from './PropertyValue';
 import { intersperse, CommaSeparator } from '../../../util/react';
 
 export interface Props {
@@ -9,7 +7,7 @@ export interface Props {
 }
 
 export default class Property extends React.PureComponent<Props> {
-  render() {
+  public render() {
     const { human, children } = this.props;
 
     return (

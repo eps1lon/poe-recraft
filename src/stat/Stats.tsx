@@ -16,7 +16,7 @@ export default class Stats extends React.PureComponent<Props> {
     return stats.length > 0;
   }
 
-  render() {
+  public render() {
     const { classname, stats, translations } = this.props;
 
     const i18n_options = {

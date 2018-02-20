@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import * as React from 'react';
 
-import { BaseItem, Item as ItemProps, Rarity } from '../poe';
+import { Item as ItemProps, Rarity } from '../poe';
 import Head from './head';
 import Body from './body';
 
@@ -12,6 +12,11 @@ export interface Props {
 }
 
 export default class Component extends React.PureComponent<Props> {
+  public static defaultProps = {
+    classname: 'poe-item',
+    translations: {},
+  };
+
   public static assertValidProps(
     item: ItemProps,
     onError: (err: string) => void,
@@ -24,11 +29,6 @@ export default class Component extends React.PureComponent<Props> {
       onError('item can either be shaped or elder item but not both');
     }
   }
-
-  static defaultProps = {
-    classname: 'poe-item',
-    translations: {},
-  };
 
   constructor(props: Props) {
     super(props);

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Property, { Props as PropertyProps } from './Property';
+import Property from './Property';
 import PropertyValue, { DisplayPropertyType } from './PropertyValue';
 import {
   WeaponProperties,
@@ -11,7 +11,6 @@ import {
 } from '../../poe';
 import { round, msToPerSecond, asPercentString } from '../../../util/number';
 import {
-  AugmentableValue,
   augmentableNotZero,
   toString as valueToString,
   isZero,

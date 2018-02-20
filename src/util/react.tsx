@@ -28,7 +28,7 @@ interface Props {
 }
 
 export class Intersperse extends React.PureComponent<Props> {
-  render() {
+  public render() {
     const { children, renderSeparator } = this.props;
     if (Array.isArray(children) && children.length > 1) {
       return children.reduce((prev, cur, i) => {

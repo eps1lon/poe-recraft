@@ -16,7 +16,7 @@ export interface Props {
 }
 
 export default class PropertyValue extends React.PureComponent<Props> {
-  render() {
+  public render() {
     const { value, type } = this.props;
 
     return (

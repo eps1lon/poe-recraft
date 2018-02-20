@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import * as React from 'react';
 
-import { Item, Rarity } from '../../poe';
+import { Item } from '../../poe';
 
 import NameLine, { hasNameLine } from './NameLine';
 import TypeLine from './TypeLine';
@@ -11,7 +11,7 @@ export interface Props {
 }
 
 export default class Head extends React.PureComponent<Props> {
-  render() {
+  public render() {
     const { item } = this.props;
     const single_line = !hasNameLine(item);
 

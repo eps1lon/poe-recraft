@@ -4,7 +4,7 @@ import { Item } from '../../poe';
 import { Mod } from '../../../mod/poe';
 import { Stat } from '../../../stat/poe';
 import Stats from '../../../stat/Stats';
-import { intersperse, Intersperse } from '../../../util/react';
+import { Intersperse } from '../../../util/react';
 import Separator from '../Separator';
 import Properties from './Properties';
 import Requirements from './Requirements';
@@ -15,7 +15,7 @@ export interface Props {
 }
 
 export default class Body extends React.PureComponent<Props> {
-  render() {
+  public render() {
     const { item, translations } = this.props;
     const { implicits = [], explicits = [], requirements = {} } = item;
     const implicit_stats = this.collectStats(implicits);
@@ -23,7 +23,7 @@ export default class Body extends React.PureComponent<Props> {
 
     return (
       <section className="body">
-        <Intersperse renderSeparator={key => <Separator key={key} />}>
+        <Intersperse renderSeparator={separator}>
           {Properties.hasAny(item) && (
             <Properties key="properties" properties={item} />
           )}
@@ -60,4 +60,8 @@ export default class Body extends React.PureComponent<Props> {
       [] as Stat[],
     );
   }
+}
+
+function separator(key: string) {
+  return <Separator key={key} />;
 }

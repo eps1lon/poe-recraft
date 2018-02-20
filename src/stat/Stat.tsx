@@ -1,4 +1,3 @@
-import classnames from 'classnames';
 import * as React from 'react';
 
 export interface Props {
@@ -7,7 +6,7 @@ export interface Props {
 }
 
 export default class Stat extends React.PureComponent<Props> {
-  render() {
+  public render() {
     const { classname, message } = this.props;
     return <div className={classname}>{message}</div>;
   }
