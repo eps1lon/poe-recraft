@@ -61,6 +61,7 @@ export default class RequirementsComponent extends React.PureComponent<Props> {
       <span key="human">{human}</span>,
       ' ',
       <PropertyValue
+        key="value"
         value={String(augmentable.value)}
         type={
           augmentable.augmented
