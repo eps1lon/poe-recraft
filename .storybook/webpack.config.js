@@ -5,6 +5,10 @@ const path = require('path');
 module.exports = (baseConfig, env) => {
   const config = genDefaultConfig(baseConfig, env);
 
+  config.resolve.alias = {
+    '~': path.join(__dirname, '../src'),
+  };
+
   // add typescript loader:
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
