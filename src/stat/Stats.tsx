@@ -11,6 +11,11 @@ export interface Props {
 }
 
 export default class Stats extends React.PureComponent<Props> {
+  public static hasAny(stats: Props['stats']) {
+    // TODO: implicit movement speed gets not displayed
+    return stats.length > 0;
+  }
+
   render() {
     const { classname, stats, translations } = this.props;
 

@@ -8,6 +8,7 @@ import Body from './body';
 export interface Props {
   classname?: string;
   item: ItemProps;
+  translations?: {};
 }
 
 export default class Item extends React.PureComponent<Props> {
@@ -26,6 +27,7 @@ export default class Item extends React.PureComponent<Props> {
 
   static defaultProps = {
     classname: 'poe-item',
+    translations: {},
   };
 
   constructor(props: Props) {
@@ -37,12 +39,12 @@ export default class Item extends React.PureComponent<Props> {
   }
 
   public render() {
-    const { item } = this.props;
+    const { item, translations = {} } = this.props;
 
     return (
       <div className={classnames(this.props.classname, Rarity[item.rarity])}>
         <Head item={item} />
-        <Body item={item} />
+        <Body item={item} translations={translations} />
       </div>
     );
   }

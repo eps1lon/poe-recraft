@@ -25,6 +25,34 @@ export interface Props {
 }
 
 export default class Properties extends React.PureComponent<Props> {
+  public static hasAny(properties: Props['properties']) {
+    if (properties.quality !== undefined && properties.quality > 0) {
+      return true;
+    }
+
+    switch (properties.kind) {
+      case 'armour':
+        const { armour, energy_shield, evasion } = properties;
+        return (
+          augmentableNotZero(armour) ||
+          augmentableNotZero(energy_shield) ||
+          augmentableNotZero(evasion)
+        );
+      case 'weapon':
+        // at least display weapon type
+        return true;
+      case 'none':
+      case undefined:
+        return false;
+      default:
+        // while the exhaustiveness check is nice for internal use
+        // it's not guarenteed at runtime since this component can be consumed
+        // by normal js
+        // @ts-ignore
+        throw new Error(`unrecognized property kind '${properties.kind}'`);
+    }
+  }
+
   public render() {
     return this.itemProperties();
   }
@@ -184,6 +212,7 @@ export default class Properties extends React.PureComponent<Props> {
 
     defences.forEach(([key, human]) => {
       const prop = props[key];
+
       if (augmentableNotZero(prop)) {
         displayed.push(
           <Property key={key} human={human}>

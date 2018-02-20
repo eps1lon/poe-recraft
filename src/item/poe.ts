@@ -1,4 +1,5 @@
 import { Type as ModType, Mod } from '../mod/poe';
+import { Stat } from '../stat/poe';
 import { SingleValue, Value, AugmentableValue } from '../util/value';
 
 // use intersection here instead of extends to be able to test Properties

@@ -10,6 +10,16 @@ export interface Props {
 }
 
 export default class RequirementsComponent extends React.PureComponent<Props> {
+  public static hasAny(requirements: Props['requirements']) {
+    // Object.values throws ts error (prop not found)
+    return (
+      Object.keys(requirements).filter(key => {
+        const requirement = requirements[key];
+        return requirement !== undefined && requirement.value > 0;
+      }).length > 0
+    );
+  }
+
   public render() {
     if (!this.hasAny()) {
       return null;
@@ -23,12 +33,7 @@ export default class RequirementsComponent extends React.PureComponent<Props> {
   }
 
   private hasAny() {
-    const { requirements } = this.props;
-    // Object.values throws ts error (prop not found)
-    return Object.keys(requirements).filter(key => {
-      const requirement = requirements[key];
-      return requirement !== undefined && requirement.value > 0;
-    });
+    return RequirementsComponent.hasAny(this.props.requirements);
   }
 
   private requirements() {

@@ -22,3 +22,26 @@ export function intersperse(
     [nodes[0]],
   );
 }
+
+interface Props {
+  renderSeparator: (key: string) => React.ReactNode;
+}
+
+export class Intersperse extends React.PureComponent<Props> {
+  render() {
+    const { children, renderSeparator } = this.props;
+    if (Array.isArray(children) && children.length > 1) {
+      return children.reduce((prev, cur, i) => {
+        if (prev && cur) {
+          return [prev, renderSeparator(`separator-${i}`), cur];
+        } else if (cur) {
+          return cur;
+        } else {
+          return prev;
+        }
+      });
+    } else {
+      return children;
+    }
+  }
+}
