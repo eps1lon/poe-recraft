@@ -19,6 +19,7 @@
     "build:verify": "tsc --watch --noEmit",
     "clean": "rimraf coverage dist es lib",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "docs:api": "typedoc src --excludePrivate --mode file --out docs/api",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "format:check": "prettier --list-different \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint": "tslint --project tsconfig.json",
@@ -74,6 +75,7 @@
     "tslint-config-prettier": "^1.7.0",
     "tslint-eslint-rules": "^4.1.1",
     "tslint-react": "^3.5.1",
+    "typedoc": "^0.10.0",
     "typescript": "^2.7.1"
   },
   "dependencies": {
