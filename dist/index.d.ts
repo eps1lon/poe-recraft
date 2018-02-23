@@ -336,6 +336,70 @@ declare module "mods/index" {
     export { default as metaMods } from "mods/meta_mods";
     export { default as Mod } from "mods/Mod";
 }
+declare module "containers/item/atlasModifier" {
+    import { TagProps } from "schema";
+    import MetaData from "util/MetaData";
+    export enum AtlasModifier {
+        NONE = 0,
+        ELDER = 1,
+        SHAPER = 2,
+    }
+    export enum Tag {
+        'shaper_item' = 246,
+        'elder_item' = 247,
+        'boots_shaper' = 248,
+        'boots_elder' = 249,
+        'sword_shaper' = 250,
+        'sword_elder' = 251,
+        'gloves_shaper' = 252,
+        'gloves_elder' = 253,
+        'helmet_shaper' = 254,
+        'helmet_elder' = 255,
+        'body_armour_shaper' = 256,
+        'body_armour_elder' = 257,
+        'amulet_shaper' = 258,
+        'amulet_elder' = 259,
+        'ring_shaper' = 260,
+        'ring_elder' = 261,
+        'belt_shaper' = 262,
+        'belt_elder' = 263,
+        'quiver_shaper' = 264,
+        'quiver_elder' = 265,
+        'shield_shaper' = 266,
+        'shield_elder' = 267,
+        '2h_sword_shaper' = 268,
+        '2h_sword_elder' = 269,
+        'axe_shaper' = 270,
+        'axe_elder' = 271,
+        'mace_shaper' = 272,
+        'mace_elder' = 273,
+        'claw_shaper' = 274,
+        'claw_elder' = 275,
+        'bow_shaper' = 276,
+        'bow_elder' = 277,
+        'dagger_shaper' = 278,
+        'dagger_elder' = 279,
+        '2h_axe_shaper' = 280,
+        '2h_axe_elder' = 281,
+        '2h_mace_shaper' = 282,
+        '2h_mace_elder' = 283,
+        'staff_shaper' = 284,
+        'staff_elder' = 285,
+        'sceptre_shaper' = 286,
+        'sceptre_elder' = 287,
+        'wand_shaper' = 288,
+        'wand_elder' = 289,
+    }
+    export default function atlasModifier(baseitem: {
+        tags: TagProps[];
+    }): AtlasModifier;
+    export function tagsWithModifier(baseitem: {
+        tags: TagProps[];
+    }, meta_data: MetaData, modifier: AtlasModifier): TagProps[];
+    export function elderTag(meta_data: MetaData): TagProps;
+    export function shaperTag(meta_data: MetaData): TagProps;
+    export function tagProps(tag: Tag): TagProps;
+}
 declare module "containers/item/Component" {
     export default interface Component<T, B> {
         parent: T;
@@ -651,6 +715,7 @@ declare module "containers/item/Item" {
     import { TagProps, BaseItemTypeProps } from "schema";
     import MetaData from "util/MetaData";
     import Stat from "calculator/Stat";
+    import { AtlasModifier } from "containers/item/atlasModifier";
     import Component from "containers/item/Component";
     import ItemAffixes from "containers/item/components/Affixes";
     import { Sockets, Builder as SocketsBuilder } from "containers/item/components/Sockets";
@@ -660,10 +725,10 @@ declare module "containers/item/Item" {
     import { Requirements, Builder as RequirementsBuilder } from "containers/item/components/Requirements";
     import { Properties, Builder as PropertiesBuilder } from "containers/item/components/properties/ItemProperties";
     export interface ItemProps {
+        readonly atlas_modifier: AtlasModifier;
         readonly corrupted: boolean;
         readonly item_level: number;
         readonly mirrored: boolean;
-        readonly sockets?: number;
     }
     export class UnacceptedMod extends BaseError {
         constructor();
@@ -720,12 +785,18 @@ declare module "containers/item/Item" {
         setProperty(prop: keyof ItemProps, value: any): this;
         corrupt(): this;
         mirror(): this;
+        isElderItem(): boolean;
+        asElderItem(): this;
+        isSHaperItem(): boolean;
+        asShaperItem(): this;
+        removeAtlasModifier(): this;
         private mutateAffixes(mutate);
         private addAffix(other);
         private removeAffix(other);
         private mutateImplicits(mutate);
         private addImplicit(other);
         private removeImplicit(other);
+        private asAtlasModifier(modifier);
     }
 }
 declare module "containers/item/index" {
@@ -1287,13 +1358,15 @@ declare module "interfaces/index" {
 declare module "helpers/PropsTable" {
     import { BaseError } from 'make-error';
     import { Buildable } from "interfaces/index";
-    export interface PropsWithPrimary {
+    export interface TableProps {
         primary: number;
+        name?: string;
+        id?: string;
     }
     export class NotFound extends BaseError {
         constructor(name: string, message: string);
     }
-    export default class PropsTable<P extends PropsWithPrimary, T> {
+    export default class PropsTable<P extends TableProps, T> {
         builder: Buildable<P, T>;
         table: P[];
         constructor(all: P[], constructor: Buildable<P, T>);
@@ -1305,6 +1378,9 @@ declare module "helpers/PropsTable" {
          */
         from(finder: (props: P) => boolean): T;
         fromPrimary(primary: number): T;
+        fromName(name: string): T;
+        fromId(id: string): T;
+        fromProp<K extends keyof TableProps>(prop: K, value: P[K]): T;
     }
 }
 declare module "helpers/createTables" {
