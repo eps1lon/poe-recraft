@@ -49,11 +49,11 @@ export interface MetaDataMap {
  * representation of a .ot file in METADATA 
  */
 export default class MetaData {
-  public static build(clazz: string): MetaData | undefined {
+  public static build(clazz: string): MetaData {
     if (meta_datas[clazz] != null) {
       return new MetaData(clazz, meta_datas[clazz]);
     } else {
-      return undefined;
+      throw new Error(`meta_data for ${clazz} not found`);
     }
   }
 
