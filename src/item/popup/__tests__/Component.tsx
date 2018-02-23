@@ -1,5 +1,5 @@
 import * as React from 'react';
-import renderer from 'react-test-renderer';
+import * as renderer from 'react-test-renderer';
 const stat_descriptions = require('poe-i18n/locale-data/en/stat_descriptions.json');
 
 import { Item, Rarity, Type } from '../../poe';
