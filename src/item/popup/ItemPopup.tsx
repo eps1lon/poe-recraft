@@ -11,7 +11,7 @@ export interface Props {
   translations?: {};
 }
 
-export default class Component extends React.PureComponent<Props> {
+export default class ItemPopup extends React.PureComponent<Props> {
   public static defaultProps = {
     classname: 'poe-item',
     translations: {},
@@ -34,7 +34,7 @@ export default class Component extends React.PureComponent<Props> {
     super(props);
 
     if (process.env.NODE_ENV !== 'production') {
-      Component.assertValidProps(props.item, console.warn);
+      ItemPopup.assertValidProps(props.item, console.warn);
     }
   }
 

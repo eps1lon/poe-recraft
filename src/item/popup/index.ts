@@ -1,3 +1,3 @@
-import Component from './Component';
+import Component from './ItemPopup';
 
 export default Component;
