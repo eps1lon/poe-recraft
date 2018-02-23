@@ -5,7 +5,7 @@ module.exports = {
     alias: {
       '~': path.join(__dirname, '../src'),
     },
-    extensions: ['.ts', '.tsx']
+    extensions: ['.ts', '.tsx'],
   },
   module: {
     rules: [
@@ -21,7 +21,7 @@ module.exports = {
         test: /\.scss$/,
         loaders: ['style-loader', 'css-loader', 'sass-loader'],
         include: path.resolve(__dirname, '../'),
-      }
-    ]
-  }
+      },
+    ],
+  },
 };
