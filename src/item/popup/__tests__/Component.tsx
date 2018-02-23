@@ -4,7 +4,7 @@ const stat_descriptions = require('poe-i18n/locale-data/en/stat_descriptions.jso
 
 import { Item, Rarity, Type } from '../../poe';
 import { Type as ModType, Group as ModGroup } from '../../../mod/poe';
-import Component from '../Component';
+import Component from '../ItemPopup';
 
 it('should display Mind Brow Hubris Circlet', () => {
   expect(
