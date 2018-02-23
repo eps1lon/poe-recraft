@@ -11,7 +11,7 @@ import '../../themes/poe.scss';
 
 const ItemTypeDefinition = () => (
   <div style={{ marginTop: '10px' }}>
-    <MenuLink style={{ fontSize: '1.3em' }} href="/docs/api/globals.html#item">
+    <MenuLink style={{ fontSize: '1.3em' }} href="api/globals.html#item">
       <strong>detailed Item type definition</strong>
     </MenuLink>
   </div>
