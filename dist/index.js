@@ -308,12 +308,12 @@ System.register("mods/meta_mods", [], function (exports_8, context_8) {
         setters: [],
         execute: function () {
             META_MODS = {
-                LOCKED_PREFIXES: 5874,
-                LOCKED_SUFFIXES: 5875,
-                NO_ATTACK_MODS: 5876,
-                NO_CASTER_MODS: 5877,
-                MULTIMOD: 5878,
-                LLD_MOD: 5813,
+                LOCKED_PREFIXES: 6184,
+                LOCKED_SUFFIXES: 6185,
+                NO_ATTACK_MODS: 6186,
+                NO_CASTER_MODS: 6187,
+                MULTIMOD: 6188,
+                LLD_MOD: 6123,
             };
             exports_8("default", Object.freeze(META_MODS));
         }
@@ -2037,9 +2037,219 @@ System.register("mods/index", ["mods/meta_mods", "mods/Mod"], function (exports_
         }
     };
 });
-System.register("containers/item/Component", [], function (exports_15, context_15) {
+System.register("containers/item/atlasModifier", [], function (exports_15, context_15) {
     "use strict";
     var __moduleName = context_15 && context_15.id;
+    function atlasModifier(baseitem) {
+        var has_elder_tag = baseitem.tags.find(function (_a) {
+            var primary = _a.primary;
+            return primary === Tag.elder_item;
+        }) !==
+            undefined;
+        var has_shaper_tag = baseitem.tags.find(function (_a) {
+            var primary = _a.primary;
+            return primary === Tag.shaper_item;
+        }) !==
+            undefined;
+        if (has_elder_tag && has_shaper_tag) {
+            throw new Error('Item can only be shaper or elder item not both.');
+        }
+        if (has_elder_tag) {
+            return AtlasModifier.ELDER;
+        }
+        else if (has_shaper_tag) {
+            return AtlasModifier.SHAPER;
+        }
+        else {
+            return AtlasModifier.NONE;
+        }
+    }
+    exports_15("default", atlasModifier);
+    // generates the appropriate tags for {baseitem} with {modifier}
+    function tagsWithModifier(baseitem, meta_data, modifier) {
+        var tags = baseitem.tags;
+        var with_none = tags.filter(function (tag) {
+            return !tag.id.endsWith('_shaper') &&
+                !tag.id.endsWith('_elder') &&
+                tag.primary !== Tag.elder_item &&
+                tag.primary !== Tag.shaper_item;
+        });
+        switch (modifier) {
+            case AtlasModifier.NONE:
+                return with_none;
+            case AtlasModifier.ELDER:
+                return with_none.concat(tagProps(Tag.elder_item), elderTag(meta_data));
+            case AtlasModifier.SHAPER:
+                return with_none.concat(tagProps(Tag.shaper_item), shaperTag(meta_data));
+        }
+    }
+    exports_15("tagsWithModifier", tagsWithModifier);
+    // {baseitem} specific elder tag
+    function elderTag(meta_data) {
+        try {
+            return suffixedTag('elder', meta_data);
+        }
+        catch (err) {
+            throw new Error("this item cannot have the elder tag (" + err.message + ")");
+        }
+    }
+    exports_15("elderTag", elderTag);
+    // {baseitem} specific shaperTag tag
+    function shaperTag(meta_data) {
+        try {
+            return suffixedTag('shaper', meta_data);
+        }
+        catch (err) {
+            throw new Error("this item cannot have the shaper tag (" + err.message + ")");
+        }
+    }
+    exports_15("shaperTag", shaperTag);
+    function tagProps(tag) {
+        return {
+            primary: tag,
+            id: Tag[tag],
+        };
+    }
+    exports_15("tagProps", tagProps);
+    function suffixedTag(suffix, meta_data) {
+        var tag_prefix = tagIdentifier(meta_data);
+        var tag = Tag[tag_prefix + "_" + suffix];
+        if (tag !== undefined) {
+            return tagProps(tag);
+        }
+        else {
+            throw new Error(tag_prefix + " not set in Tag with '" + suffix + "' as suffix");
+        }
+    }
+    function tagIdentifier(meta_data) {
+        if (meta_data.isA('AbstractTwoHandAxe')) {
+            return '2h_axe';
+        }
+        else if (meta_data.isA('AbstractTwoHandMace')) {
+            return '2h_mace';
+        }
+        else if (meta_data.isA('AbstractTwoHandSword')) {
+            return '2h_sword';
+        }
+        else if (meta_data.isA('AbstractAmulet')) {
+            return 'amulet';
+        }
+        else if (meta_data.isA('AbstractOneHandAxe')) {
+            return 'axe';
+        }
+        else if (meta_data.isA('AbstractBelt')) {
+            return 'belt';
+        }
+        else if (meta_data.isA('AbstractBodyArmour')) {
+            return 'body_armour';
+        }
+        else if (meta_data.isA('AbstractBoots')) {
+            return 'boots';
+        }
+        else if (meta_data.isA('AbstractBow')) {
+            return 'bow';
+        }
+        else if (meta_data.isA('AbstractClaw')) {
+            return 'claw';
+        }
+        else if (meta_data.isA('AbstractDagger')) {
+            return 'dagger';
+        }
+        else if (meta_data.isA('AbstractGloves')) {
+            return 'gloves';
+        }
+        else if (meta_data.isA('AbstractHelmet')) {
+            return 'helmet';
+        }
+        else if (meta_data.isA('AbstractOneHandMace')) {
+            return 'mace';
+        }
+        else if (meta_data.isA('AbstractQuiver')) {
+            return 'quiver';
+        }
+        else if (meta_data.isA('AbstractRing')) {
+            return 'ring';
+        }
+        else if (meta_data.isA('AbstractSceptre')) {
+            return 'sceptre';
+        }
+        else if (meta_data.isA('AbstractShield')) {
+            return 'shield';
+        }
+        else if (meta_data.isA('AbstractStaff')) {
+            return 'staff';
+        }
+        else if (meta_data.isA('AbstractOneHandSword')) {
+            return 'sword';
+        }
+        else if (meta_data.isA('AbstractWand')) {
+            return 'wand';
+        }
+        throw new Error();
+    }
+    var AtlasModifier, Tag;
+    return {
+        setters: [],
+        execute: function () {
+            (function (AtlasModifier) {
+                AtlasModifier[AtlasModifier["NONE"] = 0] = "NONE";
+                AtlasModifier[AtlasModifier["ELDER"] = 1] = "ELDER";
+                AtlasModifier[AtlasModifier["SHAPER"] = 2] = "SHAPER";
+            })(AtlasModifier || (AtlasModifier = {}));
+            exports_15("AtlasModifier", AtlasModifier);
+            (function (Tag) {
+                Tag[Tag["shaper_item"] = 246] = "shaper_item";
+                Tag[Tag["elder_item"] = 247] = "elder_item";
+                Tag[Tag["boots_shaper"] = 248] = "boots_shaper";
+                Tag[Tag["boots_elder"] = 249] = "boots_elder";
+                Tag[Tag["sword_shaper"] = 250] = "sword_shaper";
+                Tag[Tag["sword_elder"] = 251] = "sword_elder";
+                Tag[Tag["gloves_shaper"] = 252] = "gloves_shaper";
+                Tag[Tag["gloves_elder"] = 253] = "gloves_elder";
+                Tag[Tag["helmet_shaper"] = 254] = "helmet_shaper";
+                Tag[Tag["helmet_elder"] = 255] = "helmet_elder";
+                Tag[Tag["body_armour_shaper"] = 256] = "body_armour_shaper";
+                Tag[Tag["body_armour_elder"] = 257] = "body_armour_elder";
+                Tag[Tag["amulet_shaper"] = 258] = "amulet_shaper";
+                Tag[Tag["amulet_elder"] = 259] = "amulet_elder";
+                Tag[Tag["ring_shaper"] = 260] = "ring_shaper";
+                Tag[Tag["ring_elder"] = 261] = "ring_elder";
+                Tag[Tag["belt_shaper"] = 262] = "belt_shaper";
+                Tag[Tag["belt_elder"] = 263] = "belt_elder";
+                Tag[Tag["quiver_shaper"] = 264] = "quiver_shaper";
+                Tag[Tag["quiver_elder"] = 265] = "quiver_elder";
+                Tag[Tag["shield_shaper"] = 266] = "shield_shaper";
+                Tag[Tag["shield_elder"] = 267] = "shield_elder";
+                Tag[Tag["2h_sword_shaper"] = 268] = "2h_sword_shaper";
+                Tag[Tag["2h_sword_elder"] = 269] = "2h_sword_elder";
+                Tag[Tag["axe_shaper"] = 270] = "axe_shaper";
+                Tag[Tag["axe_elder"] = 271] = "axe_elder";
+                Tag[Tag["mace_shaper"] = 272] = "mace_shaper";
+                Tag[Tag["mace_elder"] = 273] = "mace_elder";
+                Tag[Tag["claw_shaper"] = 274] = "claw_shaper";
+                Tag[Tag["claw_elder"] = 275] = "claw_elder";
+                Tag[Tag["bow_shaper"] = 276] = "bow_shaper";
+                Tag[Tag["bow_elder"] = 277] = "bow_elder";
+                Tag[Tag["dagger_shaper"] = 278] = "dagger_shaper";
+                Tag[Tag["dagger_elder"] = 279] = "dagger_elder";
+                Tag[Tag["2h_axe_shaper"] = 280] = "2h_axe_shaper";
+                Tag[Tag["2h_axe_elder"] = 281] = "2h_axe_elder";
+                Tag[Tag["2h_mace_shaper"] = 282] = "2h_mace_shaper";
+                Tag[Tag["2h_mace_elder"] = 283] = "2h_mace_elder";
+                Tag[Tag["staff_shaper"] = 284] = "staff_shaper";
+                Tag[Tag["staff_elder"] = 285] = "staff_elder";
+                Tag[Tag["sceptre_shaper"] = 286] = "sceptre_shaper";
+                Tag[Tag["sceptre_elder"] = 287] = "sceptre_elder";
+                Tag[Tag["wand_shaper"] = 288] = "wand_shaper";
+                Tag[Tag["wand_elder"] = 289] = "wand_elder";
+            })(Tag || (Tag = {}));
+            exports_15("Tag", Tag);
+        }
+    };
+});
+System.register("containers/item/Component", [], function (exports_16, context_16) {
+    "use strict";
+    var __moduleName = context_16 && context_16.id;
     return {
         setters: [],
         execute: function () {
@@ -2047,9 +2257,9 @@ System.register("containers/item/Component", [], function (exports_15, context_1
         }
     };
 });
-System.register("containers/ImmutableContainer", ["calculator/Stat"], function (exports_16, context_16) {
+System.register("containers/ImmutableContainer", ["calculator/Stat"], function (exports_17, context_17) {
     "use strict";
-    var __moduleName = context_16 && context_16.id;
+    var __moduleName = context_17 && context_17.id;
     var Stat_2, ImmutableContainer;
     return {
         setters: [
@@ -2184,13 +2394,13 @@ System.register("containers/ImmutableContainer", ["calculator/Stat"], function (
                 };
                 return ImmutableContainer;
             }());
-            exports_16("default", ImmutableContainer);
+            exports_17("default", ImmutableContainer);
         }
     };
 });
-System.register("containers/item/components/Affixes", ["mods/index", "containers/ImmutableContainer"], function (exports_17, context_17) {
+System.register("containers/item/components/Affixes", ["mods/index", "containers/ImmutableContainer"], function (exports_18, context_18) {
     "use strict";
-    var __moduleName = context_17 && context_17.id;
+    var __moduleName = context_18 && context_18.id;
     var mods_1, ImmutableContainer_1, ItemAffixes;
     return {
         setters: [
@@ -2298,13 +2508,13 @@ System.register("containers/item/components/Affixes", ["mods/index", "containers
                 };
                 return ItemAffixes;
             }(ImmutableContainer_1.default));
-            exports_17("default", ItemAffixes);
+            exports_18("default", ItemAffixes);
         }
     };
 });
-System.register("containers/item/components/Sockets", [], function (exports_18, context_18) {
+System.register("containers/item/components/Sockets", [], function (exports_19, context_19) {
     "use strict";
-    var __moduleName = context_18 && context_18.id;
+    var __moduleName = context_19 && context_19.id;
     var ItemSockets;
     return {
         setters: [],
@@ -2394,13 +2604,13 @@ System.register("containers/item/components/Sockets", [], function (exports_18, 
                 };
                 return ItemSockets;
             }());
-            exports_18("default", ItemSockets);
+            exports_19("default", ItemSockets);
         }
     };
 });
-System.register("containers/item/components/Name", [], function (exports_19, context_19) {
+System.register("containers/item/components/Name", [], function (exports_20, context_20) {
     "use strict";
-    var __moduleName = context_19 && context_19.id;
+    var __moduleName = context_20 && context_20.id;
     var ItemName;
     return {
         setters: [],
@@ -2445,13 +2655,13 @@ System.register("containers/item/components/Name", [], function (exports_19, con
                 };
                 return ItemName;
             }());
-            exports_19("default", ItemName);
+            exports_20("default", ItemName);
         }
     };
 });
-System.register("containers/item/components/Rarity", [], function (exports_20, context_20) {
+System.register("containers/item/components/Rarity", [], function (exports_21, context_21) {
     "use strict";
-    var __moduleName = context_20 && context_20.id;
+    var __moduleName = context_21 && context_21.id;
     var RarityKind, ItemRarity;
     return {
         setters: [],
@@ -2463,7 +2673,7 @@ System.register("containers/item/components/Rarity", [], function (exports_20, c
                 RarityKind[RarityKind["unique"] = 4] = "unique";
                 RarityKind[RarityKind["showcase"] = 5] = "showcase";
             })(RarityKind || (RarityKind = {}));
-            exports_20("RarityKind", RarityKind);
+            exports_21("RarityKind", RarityKind);
             /**
              * mixin for Item
              *
@@ -2514,13 +2724,13 @@ System.register("containers/item/components/Rarity", [], function (exports_20, c
                 };
                 return ItemRarity;
             }());
-            exports_20("default", ItemRarity);
+            exports_21("default", ItemRarity);
         }
     };
 });
-System.register("containers/item/components/Implicits", ["mods/index", "containers/ImmutableContainer"], function (exports_21, context_21) {
+System.register("containers/item/components/Implicits", ["mods/index", "containers/ImmutableContainer"], function (exports_22, context_22) {
     "use strict";
-    var __moduleName = context_21 && context_21.id;
+    var __moduleName = context_22 && context_22.id;
     var mods_2, ImmutableContainer_2, Implicits;
     return {
         setters: [
@@ -2573,13 +2783,13 @@ System.register("containers/item/components/Implicits", ["mods/index", "containe
                 };
                 return Implicits;
             }(ImmutableContainer_2.default));
-            exports_21("default", Implicits);
+            exports_22("default", Implicits);
         }
     };
 });
-System.register("containers/item/components/Requirements", [], function (exports_22, context_22) {
+System.register("containers/item/components/Requirements", [], function (exports_23, context_23) {
     "use strict";
-    var __moduleName = context_22 && context_22.id;
+    var __moduleName = context_23 && context_23.id;
     var ItemName;
     return {
         setters: [],
@@ -2624,22 +2834,22 @@ System.register("containers/item/components/Requirements", [], function (exports
                 };
                 return ItemName;
             }());
-            exports_22("default", ItemName);
+            exports_23("default", ItemName);
         }
     };
 });
-System.register("containers/item/components/properties/ComputedProperties", [], function (exports_23, context_23) {
+System.register("containers/item/components/properties/ComputedProperties", [], function (exports_24, context_24) {
     "use strict";
-    var __moduleName = context_23 && context_23.id;
+    var __moduleName = context_24 && context_24.id;
     return {
         setters: [],
         execute: function () {
         }
     };
 });
-System.register("calculator/stat_applications", [], function (exports_24, context_24) {
+System.register("calculator/stat_applications", [], function (exports_25, context_25) {
     "use strict";
-    var __moduleName = context_24 && context_24.id;
+    var __moduleName = context_25 && context_25.id;
     var applications;
     return {
         setters: [],
@@ -3934,13 +4144,13 @@ System.register("calculator/stat_applications", [], function (exports_24, contex
                     type: 'more',
                 },
             };
-            exports_24("default", applications);
+            exports_25("default", applications);
         }
     };
 });
-System.register("calculator/Value", ["calculator/ValueRange", "calculator/stat_applications"], function (exports_25, context_25) {
+System.register("calculator/Value", ["calculator/ValueRange", "calculator/stat_applications"], function (exports_26, context_26) {
     "use strict";
-    var __moduleName = context_25 && context_25.id;
+    var __moduleName = context_26 && context_26.id;
     var ValueRange_2, stat_applications_1, poe_round, Value;
     return {
         setters: [
@@ -4023,13 +4233,13 @@ System.register("calculator/Value", ["calculator/ValueRange", "calculator/stat_a
                 };
                 return Value;
             }());
-            exports_25("default", Value);
+            exports_26("default", Value);
         }
     };
 });
-System.register("containers/item/components/properties/ArmourProperties", ["lodash", "calculator/Value"], function (exports_26, context_26) {
+System.register("containers/item/components/properties/ArmourProperties", ["lodash", "calculator/Value"], function (exports_27, context_27) {
     "use strict";
-    var __moduleName = context_26 && context_26.id;
+    var __moduleName = context_27 && context_27.id;
     function build(item) {
         // FIXME: https://github.com/facebook/flow/issues/2383
         var component_armour = item.baseitem.component_armour;
@@ -4054,7 +4264,7 @@ System.register("containers/item/components/properties/ArmourProperties", ["loda
         });
         return augmented_props;
     }
-    exports_26("default", build);
+    exports_27("default", build);
     var _, Value_1;
     return {
         setters: [
@@ -4069,9 +4279,9 @@ System.register("containers/item/components/properties/ArmourProperties", ["loda
         }
     };
 });
-System.register("containers/item/components/properties/ItemProperties", ["containers/item/components/properties/ArmourProperties"], function (exports_27, context_27) {
+System.register("containers/item/components/properties/ItemProperties", ["containers/item/components/properties/ArmourProperties"], function (exports_28, context_28) {
     "use strict";
-    var __moduleName = context_27 && context_27.id;
+    var __moduleName = context_28 && context_28.id;
     function getPropertyBulder(item) {
         if (item.meta_data.isA('AbstractArmour')) {
             return ArmourProperties_1.default;
@@ -4110,14 +4320,14 @@ System.register("containers/item/components/properties/ItemProperties", ["contai
                 };
                 return ItemProperties;
             }());
-            exports_27("default", ItemProperties);
+            exports_28("default", ItemProperties);
         }
     };
 });
-System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaData", "containers/item/components/Affixes", "containers/item/components/Sockets", "containers/item/components/Name", "containers/item/components/Rarity", "containers/item/components/Implicits", "containers/item/components/Requirements", "containers/item/components/properties/ItemProperties"], function (exports_28, context_28) {
+System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaData", "containers/item/atlasModifier", "containers/item/components/Affixes", "containers/item/components/Sockets", "containers/item/components/Name", "containers/item/components/Rarity", "containers/item/components/Implicits", "containers/item/components/Requirements", "containers/item/components/properties/ItemProperties"], function (exports_29, context_29) {
     "use strict";
-    var __moduleName = context_28 && context_28.id;
-    var make_error_1, mods_3, MetaData_2, Affixes_1, Sockets_1, Name_1, Rarity_1, Implicits_1, Requirements_1, ItemProperties_1, UnacceptedMod, shallowEqual, Item;
+    var __moduleName = context_29 && context_29.id;
+    var make_error_1, mods_3, MetaData_2, atlasModifier_1, Affixes_1, Sockets_1, Name_1, Rarity_1, Implicits_1, Requirements_1, ItemProperties_1, UnacceptedMod, shallowEqual, Item;
     return {
         setters: [
             function (make_error_1_1) {
@@ -4128,6 +4338,9 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
             },
             function (MetaData_2_1) {
                 MetaData_2 = MetaData_2_1;
+            },
+            function (atlasModifier_1_1) {
+                atlasModifier_1 = atlasModifier_1_1;
             },
             function (Affixes_1_1) {
                 Affixes_1 = Affixes_1_1;
@@ -4159,7 +4372,7 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
                 }
                 return UnacceptedMod;
             }(make_error_1.BaseError));
-            exports_28("UnacceptedMod", UnacceptedMod);
+            exports_29("UnacceptedMod", UnacceptedMod);
             shallowEqual = function (a, b) {
                 return a === b || Object.keys(a).every(function (key) { return a[key] === b[key]; });
             };
@@ -4192,6 +4405,7 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
                         name: 'Random Name',
                         props: {
                             // more like misc
+                            atlas_modifier: atlasModifier_1.default(baseitem),
                             corrupted: false,
                             item_level: 100,
                             mirrored: false,
@@ -4378,6 +4592,27 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
                         return this.setProperty('mirrored', true);
                     }
                 };
+                Item.prototype.isElderItem = function () {
+                    return this.props.atlas_modifier === atlasModifier_1.AtlasModifier.ELDER;
+                };
+                // returns an item that can have elder mods
+                // this does not remove existing shaper mods
+                Item.prototype.asElderItem = function () {
+                    return this.asAtlasModifier(atlasModifier_1.AtlasModifier.ELDER);
+                };
+                Item.prototype.isSHaperItem = function () {
+                    return this.props.atlas_modifier === atlasModifier_1.AtlasModifier.SHAPER;
+                };
+                // returns an item that can have shper mods
+                // this does not remove existing elder mods
+                Item.prototype.asShaperItem = function () {
+                    return this.asAtlasModifier(atlasModifier_1.AtlasModifier.SHAPER);
+                };
+                // returns an item that cant have elder or shaper mods
+                // this does not remove existing elder or shaper mods
+                Item.prototype.removeAtlasModifier = function () {
+                    return this.asAtlasModifier(atlasModifier_1.AtlasModifier.NONE);
+                };
                 // End state
                 // private
                 Item.prototype.mutateAffixes = function (mutate) {
@@ -4404,15 +4639,25 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
                 Item.prototype.removeImplicit = function (other) {
                     return this.mutateImplicits(function (implicits) { return implicits.removeMod(other); });
                 };
+                Item.prototype.asAtlasModifier = function (modifier) {
+                    if (this.props.atlas_modifier === modifier) {
+                        return this;
+                    }
+                    else {
+                        return this.withMutations(function (builder) {
+                            return __assign({}, builder, { baseitem: __assign({}, builder.baseitem, { tags: atlasModifier_1.tagsWithModifier(builder.baseitem, builder.meta_data, modifier) }), props: __assign({}, builder.props, { atlas_modifier: modifier }) });
+                        });
+                    }
+                };
                 return Item;
             }());
-            exports_28("default", Item);
+            exports_29("default", Item);
         }
     };
 });
-System.register("containers/item/index", ["containers/item/Item"], function (exports_29, context_29) {
+System.register("containers/item/index", ["containers/item/Item"], function (exports_30, context_30) {
     "use strict";
-    var __moduleName = context_29 && context_29.id;
+    var __moduleName = context_30 && context_30.id;
     var Item_1;
     return {
         setters: [
@@ -4421,17 +4666,17 @@ System.register("containers/item/index", ["containers/item/Item"], function (exp
             }
         ],
         execute: function () {
-            exports_29("default", Item_1.default);
+            exports_30("default", Item_1.default);
         }
     };
 });
-System.register("util/rng", ["lodash"], function (exports_30, context_30) {
+System.register("util/rng", ["lodash"], function (exports_31, context_31) {
     "use strict";
-    var __moduleName = context_30 && context_30.id;
+    var __moduleName = context_31 && context_31.id;
     function random(min, max) {
         return _.random(min, max);
     }
-    exports_30("random", random);
+    exports_31("random", random);
     function choose(pool, getWeight) {
         var sum_spawnweight = pool.reduce(function (sum, weightable) { return sum + getWeight(weightable); }, 0);
         var min_spawnweight = 0;
@@ -4445,7 +4690,7 @@ System.register("util/rng", ["lodash"], function (exports_30, context_30) {
         });
         return item;
     }
-    exports_30("choose", choose);
+    exports_31("choose", choose);
     var _;
     return {
         setters: [
@@ -4457,9 +4702,9 @@ System.register("util/rng", ["lodash"], function (exports_30, context_30) {
         }
     };
 });
-System.register("generators/Orb", ["mods/index", "util/Flags", "util/rng", "generators/Generator"], function (exports_31, context_31) {
+System.register("generators/Orb", ["mods/index", "util/Flags", "util/rng", "generators/Generator"], function (exports_32, context_32) {
     "use strict";
-    var __moduleName = context_31 && context_31.id;
+    var __moduleName = context_32 && context_32.id;
     var mods_4, Flags_3, rng_1, Generator_1, Orb;
     return {
         setters: [
@@ -4563,13 +4808,13 @@ System.register("generators/Orb", ["mods/index", "util/Flags", "util/rng", "gene
                 };
                 return Orb;
             }(Generator_1.default));
-            exports_31("default", Orb);
+            exports_32("default", Orb);
         }
     };
 });
-System.register("generators/item_orbs/ItemOrb", ["generators/Orb"], function (exports_32, context_32) {
+System.register("generators/item_orbs/ItemOrb", ["generators/Orb"], function (exports_33, context_33) {
     "use strict";
-    var __moduleName = context_32 && context_32.id;
+    var __moduleName = context_33 && context_33.id;
     var Orb_1, ItemOrb;
     return {
         setters: [
@@ -4601,13 +4846,13 @@ System.register("generators/item_orbs/ItemOrb", ["generators/Orb"], function (ex
                 };
                 return ItemOrb;
             }(Orb_1.default));
-            exports_32("default", ItemOrb);
+            exports_33("default", ItemOrb);
         }
     };
 });
-System.register("generators/item_orbs/Transmute", ["util/Flags", "generators/item_orbs/ItemOrb", "mods/Mod"], function (exports_33, context_33) {
+System.register("generators/item_orbs/Transmute", ["util/Flags", "generators/item_orbs/ItemOrb", "mods/Mod"], function (exports_34, context_34) {
     "use strict";
-    var __moduleName = context_33 && context_33.id;
+    var __moduleName = context_34 && context_34.id;
     var Flags_4, ItemOrb_1, Mod_2, Transmute;
     return {
         setters: [
@@ -4667,13 +4912,13 @@ System.register("generators/item_orbs/Transmute", ["util/Flags", "generators/ite
                 };
                 return Transmute;
             }(ItemOrb_1.default));
-            exports_33("default", Transmute);
+            exports_34("default", Transmute);
         }
     };
 });
-System.register("generators/item_orbs/Alchemy", ["lodash", "util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Transmute"], function (exports_34, context_34) {
+System.register("generators/item_orbs/Alchemy", ["lodash", "util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Transmute"], function (exports_35, context_35) {
     "use strict";
-    var __moduleName = context_34 && context_34.id;
+    var __moduleName = context_35 && context_35.id;
     var _, Flags_5, ItemOrb_2, Transmute_1, Alchemy;
     return {
         setters: [
@@ -4739,13 +4984,13 @@ System.register("generators/item_orbs/Alchemy", ["lodash", "util/Flags", "genera
                 };
                 return Alchemy;
             }(ItemOrb_2.default));
-            exports_34("default", Alchemy);
+            exports_35("default", Alchemy);
         }
     };
 });
-System.register("generators/item_orbs/Augment", ["util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Transmute"], function (exports_35, context_35) {
+System.register("generators/item_orbs/Augment", ["util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Transmute"], function (exports_36, context_36) {
     "use strict";
-    var __moduleName = context_35 && context_35.id;
+    var __moduleName = context_36 && context_36.id;
     var Flags_6, ItemOrb_3, Transmute_2, Augment;
     return {
         setters: [
@@ -4791,13 +5036,13 @@ System.register("generators/item_orbs/Augment", ["util/Flags", "generators/item_
                 };
                 return Augment;
             }(ItemOrb_3.default));
-            exports_35("default", Augment);
+            exports_36("default", Augment);
         }
     };
 });
-System.register("generators/item_orbs/Scouring", ["util/Flags", "generators/item_orbs/ItemOrb"], function (exports_36, context_36) {
+System.register("generators/item_orbs/Scouring", ["util/Flags", "generators/item_orbs/ItemOrb"], function (exports_37, context_37) {
     "use strict";
-    var __moduleName = context_36 && context_36.id;
+    var __moduleName = context_37 && context_37.id;
     var Flags_7, ItemOrb_4, Scouring;
     return {
         setters: [
@@ -4861,13 +5106,13 @@ System.register("generators/item_orbs/Scouring", ["util/Flags", "generators/item
                 };
                 return Scouring;
             }(ItemOrb_4.default));
-            exports_36("default", Scouring);
+            exports_37("default", Scouring);
         }
     };
 });
-System.register("generators/item_orbs/Alteration", ["util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Augment", "generators/item_orbs/Scouring", "generators/item_orbs/Transmute"], function (exports_37, context_37) {
+System.register("generators/item_orbs/Alteration", ["util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Augment", "generators/item_orbs/Scouring", "generators/item_orbs/Transmute"], function (exports_38, context_38) {
     "use strict";
-    var __moduleName = context_37 && context_37.id;
+    var __moduleName = context_38 && context_38.id;
     var Flags_8, ItemOrb_5, Augment_1, Scouring_1, Transmute_3, Alteration;
     return {
         setters: [
@@ -4924,13 +5169,13 @@ System.register("generators/item_orbs/Alteration", ["util/Flags", "generators/it
                 };
                 return Alteration;
             }(ItemOrb_5.default));
-            exports_37("default", Alteration);
+            exports_38("default", Alteration);
         }
     };
 });
-System.register("generators/item_orbs/Annulment", ["lodash", "util/Flags", "generators/item_orbs/ItemOrb"], function (exports_38, context_38) {
+System.register("generators/item_orbs/Annulment", ["lodash", "util/Flags", "generators/item_orbs/ItemOrb"], function (exports_39, context_39) {
     "use strict";
-    var __moduleName = context_38 && context_38.id;
+    var __moduleName = context_39 && context_39.id;
     var _, Flags_9, ItemOrb_6, Annulment;
     return {
         setters: [
@@ -4988,13 +5233,13 @@ System.register("generators/item_orbs/Annulment", ["lodash", "util/Flags", "gene
                 };
                 return Annulment;
             }(ItemOrb_6.default));
-            exports_38("default", Annulment);
+            exports_39("default", Annulment);
         }
     };
 });
-System.register("generators/item_orbs/Exalted", ["util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Transmute"], function (exports_39, context_39) {
+System.register("generators/item_orbs/Exalted", ["util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Transmute"], function (exports_40, context_40) {
     "use strict";
-    var __moduleName = context_39 && context_39.id;
+    var __moduleName = context_40 && context_40.id;
     var Flags_10, ItemOrb_7, Transmute_4, Exalted;
     return {
         setters: [
@@ -5040,13 +5285,13 @@ System.register("generators/item_orbs/Exalted", ["util/Flags", "generators/item_
                 };
                 return Exalted;
             }(ItemOrb_7.default));
-            exports_39("default", Exalted);
+            exports_40("default", Exalted);
         }
     };
 });
-System.register("generators/item_orbs/Chaos", ["lodash", "util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Alchemy", "generators/item_orbs/Exalted", "generators/item_orbs/Scouring", "generators/item_orbs/Transmute"], function (exports_40, context_40) {
+System.register("generators/item_orbs/Chaos", ["lodash", "util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Alchemy", "generators/item_orbs/Exalted", "generators/item_orbs/Scouring", "generators/item_orbs/Transmute"], function (exports_41, context_41) {
     "use strict";
-    var __moduleName = context_40 && context_40.id;
+    var __moduleName = context_41 && context_41.id;
     var lodash_1, Flags_11, ItemOrb_8, Alchemy_1, Exalted_1, Scouring_2, Transmute_5, Chaos;
     return {
         setters: [
@@ -5125,13 +5370,13 @@ System.register("generators/item_orbs/Chaos", ["lodash", "util/Flags", "generato
                 };
                 return Chaos;
             }(ItemOrb_8.default));
-            exports_40("default", Chaos);
+            exports_41("default", Chaos);
         }
     };
 });
-System.register("generators/item_orbs/EnchantmentBench", ["util/Flags", "mods/Mod", "generators/item_orbs/ItemOrb"], function (exports_41, context_41) {
+System.register("generators/item_orbs/EnchantmentBench", ["util/Flags", "mods/Mod", "generators/item_orbs/ItemOrb"], function (exports_42, context_42) {
     "use strict";
-    var __moduleName = context_41 && context_41.id;
+    var __moduleName = context_42 && context_42.id;
     var Flags_12, Mod_3, ItemOrb_9, Enchantmentbench;
     return {
         setters: [
@@ -5181,13 +5426,13 @@ System.register("generators/item_orbs/EnchantmentBench", ["util/Flags", "mods/Mo
                 };
                 return Enchantmentbench;
             }(ItemOrb_9.default));
-            exports_41("default", Enchantmentbench);
+            exports_42("default", Enchantmentbench);
         }
     };
 });
-System.register("generators/item_orbs/Regal", ["util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Transmute"], function (exports_42, context_42) {
+System.register("generators/item_orbs/Regal", ["util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Transmute"], function (exports_43, context_43) {
     "use strict";
-    var __moduleName = context_42 && context_42.id;
+    var __moduleName = context_43 && context_43.id;
     var Flags_13, ItemOrb_10, Transmute_6, Regal;
     return {
         setters: [
@@ -5239,13 +5484,13 @@ System.register("generators/item_orbs/Regal", ["util/Flags", "generators/item_or
                 };
                 return Regal;
             }(ItemOrb_10.default));
-            exports_42("default", Regal);
+            exports_43("default", Regal);
         }
     };
 });
-System.register("generators/item_orbs/Talisman", ["generators/item_orbs/ItemOrb"], function (exports_43, context_43) {
+System.register("generators/item_orbs/Talisman", ["generators/item_orbs/ItemOrb"], function (exports_44, context_44) {
     "use strict";
-    var __moduleName = context_43 && context_43.id;
+    var __moduleName = context_44 && context_44.id;
     var ItemOrb_11, Talisman;
     return {
         setters: [
@@ -5274,13 +5519,13 @@ System.register("generators/item_orbs/Talisman", ["generators/item_orbs/ItemOrb"
                 };
                 return Talisman;
             }(ItemOrb_11.default));
-            exports_43("default", Talisman);
+            exports_44("default", Talisman);
         }
     };
 });
-System.register("generators/item_orbs/Vaal", ["util/Flags", "mods/Mod", "generators/item_orbs/ItemOrb"], function (exports_44, context_44) {
+System.register("generators/item_orbs/Vaal", ["util/Flags", "mods/Mod", "generators/item_orbs/ItemOrb"], function (exports_45, context_45) {
     "use strict";
-    var __moduleName = context_44 && context_44.id;
+    var __moduleName = context_45 && context_45.id;
     var Flags_14, Mod_4, ItemOrb_12, Vaal;
     return {
         setters: [
@@ -5328,77 +5573,77 @@ System.register("generators/item_orbs/Vaal", ["util/Flags", "mods/Mod", "generat
                 };
                 return Vaal;
             }(ItemOrb_12.default));
-            exports_44("default", Vaal);
+            exports_45("default", Vaal);
         }
     };
 });
-System.register("generators/item_orbs/index", ["generators/item_orbs/Alchemy", "generators/item_orbs/Alteration", "generators/item_orbs/Annulment", "generators/item_orbs/Augment", "generators/item_orbs/Chaos", "generators/item_orbs/EnchantmentBench", "generators/item_orbs/Exalted", "generators/item_orbs/ItemOrb", "generators/item_orbs/Regal", "generators/item_orbs/Scouring", "generators/item_orbs/Talisman", "generators/item_orbs/Transmute", "generators/item_orbs/Vaal"], function (exports_45, context_45) {
+System.register("generators/item_orbs/index", ["generators/item_orbs/Alchemy", "generators/item_orbs/Alteration", "generators/item_orbs/Annulment", "generators/item_orbs/Augment", "generators/item_orbs/Chaos", "generators/item_orbs/EnchantmentBench", "generators/item_orbs/Exalted", "generators/item_orbs/ItemOrb", "generators/item_orbs/Regal", "generators/item_orbs/Scouring", "generators/item_orbs/Talisman", "generators/item_orbs/Transmute", "generators/item_orbs/Vaal"], function (exports_46, context_46) {
     "use strict";
-    var __moduleName = context_45 && context_45.id;
+    var __moduleName = context_46 && context_46.id;
     return {
         setters: [
             function (Alchemy_2_1) {
-                exports_45({
+                exports_46({
                     "Alchemy": Alchemy_2_1["default"]
                 });
             },
             function (Alteration_1_1) {
-                exports_45({
+                exports_46({
                     "Alteration": Alteration_1_1["default"]
                 });
             },
             function (Annulment_1_1) {
-                exports_45({
+                exports_46({
                     "Annulment": Annulment_1_1["default"]
                 });
             },
             function (Augment_2_1) {
-                exports_45({
+                exports_46({
                     "Augment": Augment_2_1["default"]
                 });
             },
             function (Chaos_1_1) {
-                exports_45({
+                exports_46({
                     "Chaos": Chaos_1_1["default"]
                 });
             },
             function (EnchantmentBench_1_1) {
-                exports_45({
+                exports_46({
                     "EnchantmentBench": EnchantmentBench_1_1["default"]
                 });
             },
             function (Exalted_2_1) {
-                exports_45({
+                exports_46({
                     "Exalted": Exalted_2_1["default"]
                 });
             },
             function (ItemOrb_13_1) {
-                exports_45({
+                exports_46({
                     "ItemOrb": ItemOrb_13_1["default"]
                 });
             },
             function (Regal_1_1) {
-                exports_45({
+                exports_46({
                     "Regal": Regal_1_1["default"]
                 });
             },
             function (Scouring_3_1) {
-                exports_45({
+                exports_46({
                     "Scouring": Scouring_3_1["default"]
                 });
             },
             function (Talisman_1_1) {
-                exports_45({
+                exports_46({
                     "Talisman": Talisman_1_1["default"]
                 });
             },
             function (Transmute_7_1) {
-                exports_45({
+                exports_46({
                     "Transmute": Transmute_7_1["default"]
                 });
             },
             function (Vaal_1_1) {
-                exports_45({
+                exports_46({
                     "Vaal": Vaal_1_1["default"]
                 });
             }
@@ -5407,9 +5652,9 @@ System.register("generators/item_orbs/index", ["generators/item_orbs/Alchemy", "
         }
     };
 });
-System.register("generators/MasterBenchOption", ["util/Flags", "util/ts", "mods/index", "generators/Generator"], function (exports_46, context_46) {
+System.register("generators/MasterBenchOption", ["util/Flags", "util/ts", "mods/index", "generators/Generator"], function (exports_47, context_47) {
     "use strict";
-    var __moduleName = context_46 && context_46.id;
+    var __moduleName = context_47 && context_47.id;
     var Flags_15, ts_2, mods_5, Generator_2, MasterBenchOption;
     return {
         setters: [
@@ -5534,13 +5779,13 @@ System.register("generators/MasterBenchOption", ["util/Flags", "util/ts", "mods/
                 };
                 return MasterBenchOption;
             }(Generator_2.default));
-            exports_46("default", MasterBenchOption);
+            exports_47("default", MasterBenchOption);
         }
     };
 });
-System.register("helpers/MasterBench", ["generators/MasterBenchOption"], function (exports_47, context_47) {
+System.register("helpers/MasterBench", ["generators/MasterBenchOption"], function (exports_48, context_48) {
     "use strict";
-    var __moduleName = context_47 && context_47.id;
+    var __moduleName = context_48 && context_48.id;
     var MasterBenchOption_1, MasterBench;
     return {
         setters: [
@@ -5596,13 +5841,13 @@ System.register("helpers/MasterBench", ["generators/MasterBenchOption"], functio
                 };
                 return MasterBench;
             }());
-            exports_47("default", MasterBench);
+            exports_48("default", MasterBench);
         }
     };
 });
-System.register("generators/ItemShowcase", ["helpers/MasterBench", "generators/Generator", "generators/item_orbs/Alchemy", "generators/item_orbs/EnchantmentBench", "generators/item_orbs/Vaal"], function (exports_48, context_48) {
+System.register("generators/ItemShowcase", ["helpers/MasterBench", "generators/Generator", "generators/item_orbs/Alchemy", "generators/item_orbs/EnchantmentBench", "generators/item_orbs/Vaal"], function (exports_49, context_49) {
     "use strict";
-    var __moduleName = context_48 && context_48.id;
+    var __moduleName = context_49 && context_49.id;
     var MasterBench_1, Generator_3, Alchemy_3, EnchantmentBench_2, Vaal_2, ItemShowcase;
     return {
         setters: [
@@ -5672,13 +5917,13 @@ System.register("generators/ItemShowcase", ["helpers/MasterBench", "generators/G
                 };
                 return ItemShowcase;
             }(Generator_3.default));
-            exports_48("default", ItemShowcase);
+            exports_49("default", ItemShowcase);
         }
     };
 });
-System.register("containers/AtlasNode", ["mods/Mod", "containers/ImmutableContainer"], function (exports_49, context_49) {
+System.register("containers/AtlasNode", ["mods/Mod", "containers/ImmutableContainer"], function (exports_50, context_50) {
     "use strict";
-    var __moduleName = context_49 && context_49.id;
+    var __moduleName = context_50 && context_50.id;
     var Mod_5, ImmutableContainer_3, SEXTANT_RANGE, AtlasNode;
     return {
         setters: [
@@ -5690,7 +5935,7 @@ System.register("containers/AtlasNode", ["mods/Mod", "containers/ImmutableContai
             }
         ],
         execute: function () {
-            exports_49("SEXTANT_RANGE", SEXTANT_RANGE = 55); // http://poecraft.com/atlas has 55
+            exports_50("SEXTANT_RANGE", SEXTANT_RANGE = 55); // http://poecraft.com/atlas has 55
             AtlasNode = /** @class */ (function (_super) {
                 __extends(AtlasNode, _super);
                 function AtlasNode(mods, props) {
@@ -5794,13 +6039,13 @@ System.register("containers/AtlasNode", ["mods/Mod", "containers/ImmutableContai
                 };
                 return AtlasNode;
             }(ImmutableContainer_3.default));
-            exports_49("default", AtlasNode);
+            exports_50("default", AtlasNode);
         }
     };
 });
-System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "generators/Orb"], function (exports_50, context_50) {
+System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "generators/Orb"], function (exports_51, context_51) {
     "use strict";
-    var __moduleName = context_50 && context_50.id;
+    var __moduleName = context_51 && context_51.id;
     var make_error_2, Mod_6, Flags_16, Orb_2, ContextUndefined, CorruptedState, Type, Sextant;
     return {
         setters: [
@@ -5825,7 +6070,7 @@ System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "
                 }
                 return ContextUndefined;
             }(make_error_2.BaseError));
-            exports_50("ContextUndefined", ContextUndefined);
+            exports_51("ContextUndefined", ContextUndefined);
             CorruptedState = /** @class */ (function (_super) {
                 __extends(CorruptedState, _super);
                 function CorruptedState(message) {
@@ -5833,13 +6078,13 @@ System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "
                 }
                 return CorruptedState;
             }(make_error_2.BaseError));
-            exports_50("CorruptedState", CorruptedState);
+            exports_51("CorruptedState", CorruptedState);
             (function (Type) {
                 Type[Type["apprentice"] = 1] = "apprentice";
                 Type[Type["journeyman"] = 2] = "journeyman";
                 Type[Type["master"] = 3] = "master";
             })(Type || (Type = {}));
-            exports_50("Type", Type);
+            exports_51("Type", Type);
             Sextant = /** @class */ (function (_super) {
                 __extends(Sextant, _super);
                 function Sextant() {
@@ -5969,17 +6214,17 @@ System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "
                 Sextant.type = Type;
                 return Sextant;
             }(Orb_2.default));
-            exports_50("default", Sextant);
+            exports_51("default", Sextant);
         }
     };
 });
-System.register("generators/index", ["generators/item_orbs/index", "generators/ItemShowcase", "generators/MasterBenchOption", "generators/Sextant"], function (exports_51, context_51) {
+System.register("generators/index", ["generators/item_orbs/index", "generators/ItemShowcase", "generators/MasterBenchOption", "generators/Sextant"], function (exports_52, context_52) {
     "use strict";
-    var __moduleName = context_51 && context_51.id;
+    var __moduleName = context_52 && context_52.id;
     return {
         setters: [
             function (_5_1) {
-                exports_51({
+                exports_52({
                     "Alchemy": _5_1["Alchemy"],
                     "Annulment": _5_1["Annulment"],
                     "Alteration": _5_1["Alteration"],
@@ -5995,17 +6240,17 @@ System.register("generators/index", ["generators/item_orbs/index", "generators/I
                 });
             },
             function (ItemShowcase_1_1) {
-                exports_51({
+                exports_52({
                     "ItemShowcase": ItemShowcase_1_1["default"]
                 });
             },
             function (MasterBenchOption_2_1) {
-                exports_51({
+                exports_52({
                     "MasterBenchOption": MasterBenchOption_2_1["default"]
                 });
             },
             function (Sextant_1_1) {
-                exports_51({
+                exports_52({
                     "Sextant": Sextant_1_1["default"]
                 });
             }
@@ -6014,23 +6259,23 @@ System.register("generators/index", ["generators/item_orbs/index", "generators/I
         }
     };
 });
-System.register("containers/index", ["containers/AtlasNode", "containers/ImmutableContainer", "containers/item/index"], function (exports_52, context_52) {
+System.register("containers/index", ["containers/AtlasNode", "containers/ImmutableContainer", "containers/item/index"], function (exports_53, context_53) {
     "use strict";
-    var __moduleName = context_52 && context_52.id;
+    var __moduleName = context_53 && context_53.id;
     return {
         setters: [
             function (AtlasNode_1_1) {
-                exports_52({
+                exports_53({
                     "AtlasNode": AtlasNode_1_1["default"]
                 });
             },
             function (ImmutableContainer_4_1) {
-                exports_52({
+                exports_53({
                     "ImmutableContainer": ImmutableContainer_4_1["default"]
                 });
             },
             function (item_1_1) {
-                exports_52({
+                exports_53({
                     "Item": item_1_1["default"]
                 });
             }
@@ -6039,9 +6284,9 @@ System.register("containers/index", ["containers/AtlasNode", "containers/Immutab
         }
     };
 });
-System.register("helpers/Atlas", ["containers/AtlasNode", "generators/Sextant"], function (exports_53, context_53) {
+System.register("helpers/Atlas", ["containers/AtlasNode", "generators/Sextant"], function (exports_54, context_54) {
     "use strict";
-    var __moduleName = context_53 && context_53.id;
+    var __moduleName = context_54 && context_54.id;
     var AtlasNode_2, Sextant_2, Atlas;
     return {
         setters: [
@@ -6161,20 +6406,11 @@ System.register("helpers/Atlas", ["containers/AtlasNode", "generators/Sextant"],
                 };
                 return Atlas;
             }());
-            exports_53("default", Atlas);
+            exports_54("default", Atlas);
         }
     };
 });
-System.register("interfaces/Builder", [], function (exports_54, context_54) {
-    "use strict";
-    var __moduleName = context_54 && context_54.id;
-    return {
-        setters: [],
-        execute: function () {
-        }
-    };
-});
-System.register("interfaces/Buildable", [], function (exports_55, context_55) {
+System.register("interfaces/Builder", [], function (exports_55, context_55) {
     "use strict";
     var __moduleName = context_55 && context_55.id;
     return {
@@ -6183,7 +6419,7 @@ System.register("interfaces/Buildable", [], function (exports_55, context_55) {
         }
     };
 });
-System.register("interfaces/index", [], function (exports_56, context_56) {
+System.register("interfaces/Buildable", [], function (exports_56, context_56) {
     "use strict";
     var __moduleName = context_56 && context_56.id;
     return {
@@ -6192,9 +6428,18 @@ System.register("interfaces/index", [], function (exports_56, context_56) {
         }
     };
 });
-System.register("helpers/PropsTable", ["make-error"], function (exports_57, context_57) {
+System.register("interfaces/index", [], function (exports_57, context_57) {
     "use strict";
     var __moduleName = context_57 && context_57.id;
+    return {
+        setters: [],
+        execute: function () {
+        }
+    };
+});
+System.register("helpers/PropsTable", ["make-error"], function (exports_58, context_58) {
+    "use strict";
+    var __moduleName = context_58 && context_58.id;
     var make_error_3, NotFound, PropsTable;
     return {
         setters: [
@@ -6210,7 +6455,7 @@ System.register("helpers/PropsTable", ["make-error"], function (exports_57, cont
                 }
                 return NotFound;
             }(make_error_3.BaseError));
-            exports_57("NotFound", NotFound);
+            exports_58("NotFound", NotFound);
             // take care. flow accepts any as a constructor
             PropsTable = /** @class */ (function () {
                 function PropsTable(all, constructor) {
@@ -6235,13 +6480,22 @@ System.register("helpers/PropsTable", ["make-error"], function (exports_57, cont
                     return this.builder.build(props);
                 };
                 PropsTable.prototype.fromPrimary = function (primary) {
+                    return this.fromProp('primary', primary);
+                };
+                PropsTable.prototype.fromName = function (name) {
+                    return this.fromProp('name', name);
+                };
+                PropsTable.prototype.fromId = function (id) {
+                    return this.fromProp('id', id);
+                };
+                PropsTable.prototype.fromProp = function (prop, value) {
                     try {
-                        return this.from(function (other) { return other.primary === primary; });
+                        return this.from(function (other) { return other[prop] === value; });
                     }
                     catch (err) {
                         // catch Notfound
                         if (err instanceof NotFound) {
-                            throw new NotFound(this.builder.name, "with primary '" + primary + "'");
+                            throw new NotFound(this.builder.name, "with " + prop + " '" + value + "'");
                         }
                         else {
                             throw err;
@@ -6250,13 +6504,13 @@ System.register("helpers/PropsTable", ["make-error"], function (exports_57, cont
                 };
                 return PropsTable;
             }());
-            exports_57("default", PropsTable);
+            exports_58("default", PropsTable);
         }
     };
 });
-System.register("helpers/createTables", ["containers/AtlasNode", "containers/item/Item", "generators/MasterBenchOption", "mods/Mod", "helpers/PropsTable"], function (exports_58, context_58) {
+System.register("helpers/createTables", ["containers/AtlasNode", "containers/item/Item", "generators/MasterBenchOption", "mods/Mod", "helpers/PropsTable"], function (exports_59, context_59) {
     "use strict";
-    var __moduleName = context_58 && context_58.id;
+    var __moduleName = context_59 && context_59.id;
     function createTable(props, constructor) {
         return new PropsTable_1.default(props, constructor);
     }
@@ -6280,43 +6534,43 @@ System.register("helpers/createTables", ["containers/AtlasNode", "containers/ite
             }
         ],
         execute: function () {
-            exports_58("createAtlasNodes", createAtlasNodes = function (props) {
+            exports_59("createAtlasNodes", createAtlasNodes = function (props) {
                 return createTable(props, AtlasNode_3.default);
             });
-            exports_58("createItems", createItems = function (props) {
+            exports_59("createItems", createItems = function (props) {
                 return createTable(props, Item_2.default);
             });
-            exports_58("createMasterBenchOptions", createMasterBenchOptions = function (props) {
+            exports_59("createMasterBenchOptions", createMasterBenchOptions = function (props) {
                 return createTable(props, MasterBenchOption_3.default);
             });
-            exports_58("createMods", createMods = function (props) {
+            exports_59("createMods", createMods = function (props) {
                 return createTable(props, Mod_7.default);
             });
         }
     };
 });
-System.register("index", ["calculator/Stat", "calculator/ValueRange", "generators/Generator", "generators/index", "containers/index", "mods/index", "helpers/Atlas", "helpers/MasterBench", "helpers/createTables", "util/index"], function (exports_59, context_59) {
+System.register("index", ["calculator/Stat", "calculator/ValueRange", "generators/Generator", "generators/index", "containers/index", "mods/index", "helpers/Atlas", "helpers/MasterBench", "helpers/createTables", "util/index"], function (exports_60, context_60) {
     "use strict";
-    var __moduleName = context_59 && context_59.id;
+    var __moduleName = context_60 && context_60.id;
     return {
         setters: [
             function (Stat_3_1) {
-                exports_59({
+                exports_60({
                     "Stat": Stat_3_1["default"]
                 });
             },
             function (ValueRange_3_1) {
-                exports_59({
+                exports_60({
                     "ValueRange": ValueRange_3_1["default"]
                 });
             },
             function (Generator_4_1) {
-                exports_59({
+                exports_60({
                     "Generator": Generator_4_1["default"]
                 });
             },
             function (index_1_1) {
-                exports_59({
+                exports_60({
                     "Alchemy": index_1_1["Alchemy"],
                     "Alteration": index_1_1["Alteration"],
                     "Annulment": index_1_1["Annulment"],
@@ -6335,28 +6589,28 @@ System.register("index", ["calculator/Stat", "calculator/ValueRange", "generator
                 });
             },
             function (containers_1_1) {
-                exports_59({
+                exports_60({
                     "AtlasNode": containers_1_1["AtlasNode"],
                     "Item": containers_1_1["Item"]
                 });
             },
             function (mods_6_1) {
-                exports_59({
+                exports_60({
                     "Mod": mods_6_1["Mod"]
                 });
             },
             function (Atlas_1_1) {
-                exports_59({
+                exports_60({
                     "Atlas": Atlas_1_1["default"]
                 });
             },
             function (MasterBench_2_1) {
-                exports_59({
+                exports_60({
                     "MasterBench": MasterBench_2_1["default"]
                 });
             },
             function (createTables_1_1) {
-                exports_59({
+                exports_60({
                     "createAtlasNodes": createTables_1_1["createAtlasNodes"],
                     "createItems": createTables_1_1["createItems"],
                     "createMasterBenchOptions": createTables_1_1["createMasterBenchOptions"],
@@ -6364,7 +6618,7 @@ System.register("index", ["calculator/Stat", "calculator/ValueRange", "generator
                 });
             },
             function (util_1_1) {
-                exports_59({
+                exports_60({
                     "anySet": util_1_1["anySet"]
                 });
             }

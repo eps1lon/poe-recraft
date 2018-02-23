@@ -71,8 +71,13 @@ describe('sextant blocking', () => {
     const sextant = Sextant.build(mods.all());
     sextant.atlas = atlas;
 
-    const getMod = (id: string) =>
-      sextant.mods.find(mod => mod.props.id === id);
+    const getMod = (id: string) => {
+      const found_mod = sextant.mods.find(mod => mod.props.id === id);
+      if (found_mod === undefined) {
+        throw new Error('mod not found');
+      }
+      return found_mod;
+    };
 
     // this is the map on which we wanna block
     const dunes_index = getNodeIndex(26);

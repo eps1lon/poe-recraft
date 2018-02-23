@@ -67,10 +67,6 @@ export default class Item implements Container<Mod> {
     const clazz = String(baseitem.inherits_from.split(/[\\/]/).pop());
     const meta_data = MetaData.build(clazz);
 
-    if (meta_data == null) {
-      throw new Error(`meta_data for ${clazz} not found`);
-    }
-
     const implicits = baseitem.implicit_mods.map(
       mod_props => new Mod(mod_props),
     );

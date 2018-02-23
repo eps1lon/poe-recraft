@@ -4,6 +4,7 @@ import { createTables } from '../../../__fixtures__/util';
 import Item, { UnacceptedMod } from '../Item';
 import Stat from '../../../calculator/Stat';
 import { tagProps, Tag } from '../atlasModifier';
+import { BaseItemTypeProps } from 'schema';
 
 const tables = createTables();
 
@@ -256,7 +257,7 @@ it('should have any if it has any mods', () => {
 it('throws if it cant find its meta data', () => {
   expect(() => {
     const greave_props = {
-      ...items.find(p => p.primary === 1907),
+      ...items.find(p => p.primary === 1907) as BaseItemTypeProps,
       inherits_from: 'Unknown',
     };
 
