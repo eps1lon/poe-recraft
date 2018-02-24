@@ -32,7 +32,7 @@ it('should match all the formats', () => {
   expect(factory('per_minute_to_per_second_2dp')(6)).toBe('0.10');
 
   expect(factory('per_minute_to_per_second_2dp_if_required')(10)).toBe('0.17');
-  expect(factory('per_minute_to_per_second_2dp_if_required')(60)).toBe('1.0');
+  expect(factory('per_minute_to_per_second_2dp_if_required')(60)).toBe('1');
   expect(factory('per_minute_to_per_second_2dp_if_required')(66)).toBe('1.1');
 
   expect(factory('milliseconds_to_seconds_0dp')(100)).toBe('0');
