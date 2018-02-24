@@ -16,7 +16,7 @@ export default function asRegexp(translation: Translation): NamedGroupsRegexp {
       const prefix = modifier === '\\$\\+d' ? '\\+' : '';
 
       if (formatter === undefined) {
-        return `${prefix}(\\d+)`;
+        return `${prefix}(-?\\d+)`;
       } else {
         return `${prefix}(${regexpFactory(formatter.id)})`;
       }
