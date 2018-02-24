@@ -66,7 +66,7 @@ declare module "types/StatValue" {
 declare module "localize/formatters" {
     import { StatValue } from "types/StatValue";
     export type Formatter = (value: number) => number | string;
-    export default function factory<T>(formatter_id: string): (value: StatValue) => string;
+    export default function factory(formatter_id: string): (value: StatValue) => string;
 }
 declare module "localize/formatValues" {
     import { Formatter } from "types/StatDescription";
