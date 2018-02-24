@@ -7,7 +7,7 @@ export default function asRegexp(translation: Translation): NamedGroupsRegexp {
   const groups: string[] = [];
 
   const regexp = text
-    .replace(/%(\d+)(\$\+d|%)/, (match, arg, modifier) => {
+    .replace(/%(\d+)(\$\+d|%)/g, (match, arg, modifier) => {
       groups.push(arg);
 
       const formatter = formatters.find(({ arg: other }) => `${other}` === arg);
