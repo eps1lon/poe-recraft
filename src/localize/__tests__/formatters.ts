@@ -64,6 +64,12 @@ describe('regxp', () => {
   it('should match the output of format', () => {
     const values = [15, 0, -3];
     for (const formatter_id of Object.keys(formatters)) {
+      if (formatter_id === 'mod_value_to_item_class') {
+        // tricky because the matcher is infinite but we only have a finite
+        // amount of classes
+        continue;
+      }
+
       for (const value of values) {
         const formatted = factory(formatter_id)(value);
         const regexp = regexpFactory(formatter_id);
@@ -86,6 +92,11 @@ describe('inverse', () => {
     // which can apply divisions by 1000
     const values = [120000, 0, -30000];
     for (const formatter_id of Object.keys(formatters)) {
+      if (formatter_id === 'mod_value_to_item_class') {
+        // tricky because the matcher is infinite but we only have a finite
+        // amount of classes
+        continue;
+      }
       for (const value of values) {
         const formatted = factory(formatter_id)(value);
         const inverse = inverseFactory(formatter_id)(formatted);

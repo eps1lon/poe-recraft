@@ -2,6 +2,32 @@ import { isRange, StatValue } from '../types/StatValue';
 
 export type Formatter = (value: number) => number | string;
 
+// TODO howto translate?
+// used in 'mod_value_to_item_class' in Poorjoy's Asylum
+export const item_classes = [
+  'Amulets',
+  'Rings',
+  'Claws',
+  'Daggers',
+  'Wands',
+  'One Hand Swords',
+  // 'Rings', value: 10 }, thrusting
+  'One Hand Axes"',
+  'One Hand Maces',
+  'Bows',
+  'Staves',
+  'Two Hand Swords',
+  'Two Hand Maces"',
+  'Quivers"',
+  'Belts"',
+  'Gloves"',
+  'Boots"',
+  'Body Armours"',
+  'Helmets"',
+  'Shields"',
+  'Sceptres"'
+];
+
 // usually everything in poe is rounded down but in this case
 // it's done properly
 // evidence: life regen rolls 60 - 120 which would result in (1-2)
@@ -10,7 +36,12 @@ export type Formatter = (value: number) => number | string;
 // reason beeing that the next tier rolls 121-180.
 export const formatters: { [key: string]: Formatter } = {
   deciseconds_to_seconds: n => n * 10,
+  divide_by_two_0dp: n => (n / 2).toFixed(0),
+  divide_by_ten_0dp: n => (n / 10).toFixed(0),
+  divide_by_fifteen_0dp: n => (n / 15).toFixed(0),
+  divide_by_twenty_then_double_0dp: n => Math.floor(n / 20) * 2,
   divide_by_one_hundred: n => n / 100,
+  divide_by_one_hundred_2dp: n => (n / 100).toFixed(2),
   per_minute_to_per_second: n => Math.round(n / 60),
   milliseconds_to_seconds: n => n / 1000,
   negate: n => -n,
@@ -25,12 +56,18 @@ export const formatters: { [key: string]: Formatter } = {
   milliseconds_to_seconds_2dp: n => (n / 1000).toFixed(2),
   multiplicative_damage_modifier: n => n,
   '60%_of_value': n => n * 0.6,
-  id: n => n
+  id: n => n,
+  mod_value_to_item_class: n => item_classes[n % item_classes.length]
 };
 
 export const inverse_formatters: { [key: string]: (s: string) => number } = {
   deciseconds_to_seconds: s => +s / 10,
+  divide_by_two_0dp: s => +s * 2,
+  divide_by_ten_0dp: s => +s * 10,
+  divide_by_fifteen_0dp: s => +s * 15,
+  divide_by_twenty_then_double_0dp: s => +s * 10,
   divide_by_one_hundred: s => +s * 100,
+  divide_by_one_hundred_2dp: s => +s * 100,
   per_minute_to_per_second: s => +s * 60,
   milliseconds_to_seconds: s => +s * 1000,
   negate: s => -s,
@@ -44,14 +81,20 @@ export const inverse_formatters: { [key: string]: (s: string) => number } = {
   milliseconds_to_seconds_2dp: s => +s * 1000,
   multiplicative_damage_modifier: s => +s,
   '60%_of_value': s => +s / 0.6,
-  id: s => +s
+  id: s => +s,
+  mod_value_to_item_class: item_class => item_classes.indexOf(item_class)
 };
 
 const number = '-?\\d+';
 // "reverse" of {formatters}
 const formatter_regexp: { [key: string]: string } = {
   deciseconds_to_seconds: number,
+  divide_by_two_0dp: number,
+  divide_by_ten_0dp: number,
+  divide_by_fifteen_0dp: number,
+  divide_by_twenty_then_double_0dp: number,
   divide_by_one_hundred: `${number}\\.?\\d{0,2}`,
+  divide_by_one_hundred_2dp: `${number}\\.\\d{2}`,
   per_minute_to_per_second: number,
   milliseconds_to_seconds: `${number}\\.?\\d{0,3}`,
   negate: number,
@@ -65,7 +108,8 @@ const formatter_regexp: { [key: string]: string } = {
   milliseconds_to_seconds_2dp: `${number}\\.?\\d{2}`,
   multiplicative_damage_modifier: number,
   '60%_of_value': `${number}\\.?\\d*`,
-  id: number
+  id: number,
+  mod_value_to_item_class: '.+?'
 };
 
 export function inverseFactory(formatter_id: string): (s: string) => number {
