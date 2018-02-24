@@ -8,7 +8,7 @@ export type Formatter = (value: number) => number | string;
 // Alyways rounding down would result in virtually no 2 rolls.
 // but there are currenty ~300 amulets with 2 and ~160 with 1 listed on poe.trade
 // reason beeing that the next tier rolls 121-180.
-const formatters: { [key: string]: Formatter } = {
+export const formatters: { [key: string]: Formatter } = {
   deciseconds_to_seconds: n => n * 10,
   divide_by_one_hundred: n => n / 100,
   per_minute_to_per_second: n => Math.round(n / 60),
@@ -27,6 +27,39 @@ const formatters: { [key: string]: Formatter } = {
   '60%_of_value': n => n * 0.6,
   id: n => n
 };
+
+const number = '-?\\d+';
+// "reverse" of {formatters}
+const formatter_regexp: { [key: string]: string } = {
+  deciseconds_to_seconds: number,
+  divide_by_one_hundred: `${number}\\.?\\d{0,2}`,
+  per_minute_to_per_second: number,
+  milliseconds_to_seconds: `${number}\\.?\\d{0,3}`,
+  negate: number,
+  divide_by_one_hundred_and_negate: `${number}\\.?\\d{0,2}`,
+  old_leech_percent: `${number}\\.?\\d{0,2}`,
+  old_leech_permyriad: `${number}\\.?\\d{0,2}`,
+  per_minute_to_per_second_0dp: number,
+  per_minute_to_per_second_2dp: `${number}\\.\\d{2}`,
+  per_minute_to_per_second_2dp_if_required: `${number}\\.?\\d{0,2}`,
+  milliseconds_to_seconds_0dp: number,
+  milliseconds_to_seconds_2dp: `${number}\\.?\\d{2}`,
+  multiplicative_damage_modifier: number,
+  '60%_of_value': `${number}\\.?\\d*`,
+  id: number
+};
+
+export function regexpFactory(formatter_id: string): string {
+  if (!formatters.hasOwnProperty(formatter_id)) {
+    throw new Error(`'${formatter_id}' not found`);
+  }
+
+  const formatter = formatter_regexp[formatter_id];
+
+  // TODO add ranges
+
+  return formatter;
+}
 
 export default function factory(
   formatter_id: string

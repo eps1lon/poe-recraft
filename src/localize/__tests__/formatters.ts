@@ -1,4 +1,4 @@
-import factory from '../formatters';
+import factory, { formatters, regexpFactory } from '../formatters';
 
 it('should throw if the specified formatter doesnt exist', () => {
   expect(() => factory('foobar')).toThrowError("'foobar' not found");
@@ -54,4 +54,24 @@ it('should support ranges', () => {
 it('should not display as range if min == max', () => {
   expect(factory('id')([-10, -10])).toBe('-10');
   expect(factory('id')([-10, -11])).toBe('(-10 - -11)');
+});
+
+describe('regxp', () => {
+  it('should match the output of format', () => {
+    const values = [15, 0, -3];
+    for (const formatter_id of Object.keys(formatters)) {
+      for (const value of values) {
+        const formatted = factory(formatter_id)(value);
+        const regexp = regexpFactory(formatter_id);
+        const match = formatted.match(new RegExp(`^(${regexp})$`));
+        expect(match).not.toBe(null);
+        // if match is null expect throws => match !== null at this point
+        expect((match as RegExpMatchArray)[1]).toEqual(formatted);
+      }
+    }
+  });
+
+  it('throws if it could not produce a string for regexp', () => {
+    expect(() => regexpFactory('unknonw')).toThrow();
+  });
 });
