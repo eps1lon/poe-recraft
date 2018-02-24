@@ -1,16 +1,20 @@
-const path = require('path');
+import * as path from 'path';
+import { StatLocaleData } from '../../types/StatDescription';
 import formatGemStats, { requiredLocaleDatas } from '../gemStats';
 
 const loadLocaleData = (gem_id: string, code: string) =>
-  requiredLocaleDatas(gem_id).reduce((datas, file) => {
-    datas[file] = require(path.join(
-      __dirname,
-      '../../../locale-data',
-      code,
-      `${file}.json`
-    ));
-    return datas;
-  }, {});
+  requiredLocaleDatas(gem_id).reduce(
+    (datas, file) => {
+      datas[file] = require(path.join(
+        __dirname,
+        '../../../locale-data',
+        code,
+        `${file}.json`
+      ));
+      return datas;
+    },
+    {} as { [key: string]: StatLocaleData }
+  );
 
 it('should only translate the lines that have translations', () => {
   const empty_effects = formatGemStats(

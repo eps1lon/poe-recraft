@@ -1,7 +1,5 @@
-import formatStats from '../formatStats';
-import requiredLocaleDatas, {
-  requiredLocaleDatasFor
-} from '../requiredLocaleDatas';
+import { formatStats } from '../';
+import requiredLocaleDatas from '../requiredLocaleDatas';
 
 it('should load every file given as argument', () => {
   const datas = requiredLocaleDatas(['stat_descriptions']);
