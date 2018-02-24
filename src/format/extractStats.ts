@@ -41,7 +41,7 @@ export default function extractStats(
 
             if (matched_value !== undefined) {
               const formatter = translation.formatters.find(
-                ({ arg }) => arg === arg_index
+                ({ arg }) => String(arg) === arg_index
               );
 
               if (formatter === undefined) {
