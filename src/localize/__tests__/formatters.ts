@@ -1,4 +1,8 @@
-import factory, { formatters, regexpFactory } from '../formatters';
+import factory, {
+  formatters,
+  regexpFactory,
+  inverseFactory
+} from '../formatters';
 
 it('should throw if the specified formatter doesnt exist', () => {
   expect(() => factory('foobar')).toThrowError("'foobar' not found");
@@ -73,5 +77,21 @@ describe('regxp', () => {
 
   it('throws if it could not produce a string for regexp', () => {
     expect(() => regexpFactory('unknonw')).toThrow();
+  });
+});
+
+describe('inverse', () => {
+  it('acts as an inverse to formatters', () => {
+    // use reasonably big values because we blindly test every formatter
+    // which can apply divisions by 1000
+    const values = [120000, 0, -30000];
+    for (const formatter_id of Object.keys(formatters)) {
+      for (const value of values) {
+        const formatted = factory(formatter_id)(value);
+        const inverse = inverseFactory(formatter_id)(formatted);
+
+        expect(inverse).toBeCloseTo(value, 5);
+      }
+    }
   });
 });

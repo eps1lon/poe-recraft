@@ -28,6 +28,25 @@ export const formatters: { [key: string]: Formatter } = {
   id: n => n
 };
 
+export const inverse_formatters: { [key: string]: (s: string) => number } = {
+  deciseconds_to_seconds: s => +s / 10,
+  divide_by_one_hundred: s => +s * 100,
+  per_minute_to_per_second: s => +s * 60,
+  milliseconds_to_seconds: s => +s * 1000,
+  negate: s => -s,
+  divide_by_one_hundred_and_negate: s => -s * 100,
+  old_leech_percent: s => +s * 5,
+  old_leech_permyriad: s => +s * 50,
+  per_minute_to_per_second_0dp: s => +s * 60,
+  per_minute_to_per_second_2dp: s => +s * 60,
+  per_minute_to_per_second_2dp_if_required: s => +s * 60,
+  milliseconds_to_seconds_0dp: s => +s * 1000,
+  milliseconds_to_seconds_2dp: s => +s * 1000,
+  multiplicative_damage_modifier: s => +s,
+  '60%_of_value': s => +s / 0.6,
+  id: s => +s
+};
+
 const number = '-?\\d+';
 // "reverse" of {formatters}
 const formatter_regexp: { [key: string]: string } = {
@@ -48,6 +67,18 @@ const formatter_regexp: { [key: string]: string } = {
   '60%_of_value': `${number}\\.?\\d*`,
   id: number
 };
+
+export function inverseFactory(formatter_id: string): (s: string) => number {
+  if (!formatters.hasOwnProperty(formatter_id)) {
+    throw new Error(`'${formatter_id}' not found`);
+  }
+
+  const inverse = inverse_formatters[formatter_id];
+
+  // TODO add ranges
+
+  return inverse;
+}
 
 export function regexpFactory(formatter_id: string): string {
   if (!formatters.hasOwnProperty(formatter_id)) {
