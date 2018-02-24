@@ -19,7 +19,8 @@ const formatters: { [key: string]: Formatter } = {
   old_leech_permyriad: n => n / 50,
   per_minute_to_per_second_0dp: n => (n / 60).toFixed(0),
   per_minute_to_per_second_2dp: n => (n / 60).toFixed(2),
-  per_minute_to_per_second_2dp_if_required: n => (n / 60).toPrecision(2),
+  per_minute_to_per_second_2dp_if_required: n =>
+    (n / 60).toFixed(2).replace(/\.?0*$/, ''),
   milliseconds_to_seconds_0dp: n => (n / 1000).toFixed(0),
   milliseconds_to_seconds_2dp: n => (n / 1000).toFixed(2),
   multiplicative_damage_modifier: n => n,
