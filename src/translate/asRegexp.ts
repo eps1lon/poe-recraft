@@ -1,5 +1,5 @@
-import { Translation } from '../types/StatDescription';
 import { regexpFactory } from '../localize/formatters';
+import { Translation } from '../types/StatDescription';
 import NamedGroupsRegexp from '../util/NamedGroupsRegexp';
 
 export default function asRegexp(translation: Translation): NamedGroupsRegexp {

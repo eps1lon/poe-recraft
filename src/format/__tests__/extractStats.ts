@@ -1,7 +1,7 @@
 import datas from '../../__fixtures__/english';
+import { StatLocaleData } from '../../types/StatDescription';
 import extractStats from '../extractStats';
 import formatStats from '../stats';
-import { StatLocaleData } from '../../types/StatDescription';
 
 it('should reverse formatStats', () => {
   const formatted_stats = formatStats(

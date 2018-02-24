@@ -1,8 +1,7 @@
+import { Translation } from '../../types/StatDescription';
+import NamedGroupsRegexp from '../../util/NamedGroupsRegexp';
 import asRegexp from '../asRegexp';
 import printf from '../printf';
-import { Translation } from '../../types/StatDescription';
-
-import NamedGroupsRegexp from '../../util/NamedGroupsRegexp';
 
 it('generates a regexp for printf', () => {
   const translation = {

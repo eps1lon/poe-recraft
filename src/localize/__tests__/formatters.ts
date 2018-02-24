@@ -1,7 +1,7 @@
 import factory, {
   formatters,
-  regexpFactory,
-  inverseFactory
+  inverseFactory,
+  regexpFactory
 } from '../formatters';
 
 it('should throw if the specified formatter doesnt exist', () => {

@@ -1,6 +1,6 @@
-import { Match, matches } from '../translate/match';
 import { inverseFactory } from '../localize/formatters';
-import { Stat } from './stats';
+import asRegexp from '../translate/asRegexp';
+import { Match, matches } from '../translate/match';
 import {
   Description,
   Descriptions,
@@ -8,8 +8,8 @@ import {
   StatLocaleDatas,
   Translation
 } from '../types/StatDescription';
-import asRegexp from '../translate/asRegexp';
 import NamedGroupsRegexp from '../util/NamedGroupsRegexp';
+import { Stat } from './stats';
 
 export type Options = {
   datas: StatLocaleDatas;
@@ -30,7 +30,6 @@ export default function extractStats(
 
       for (const translation of description.translations) {
         const regexp = asRegexp(translation);
-        console.log(regexp.toString(), text);
 
         const match = regexp.match(text);
         if (match !== null) {
@@ -80,25 +79,4 @@ function* getDescriptions(datas: StatLocaleDatas, start_file: string) {
       ? datas[description_file.meta.include]
       : undefined;
   }
-}
-
-function entries<V>(keys: string[], values: V[]): [string, V][] {
-  if (keys.length !== values.length) {
-    throw new Error('keys and values must have equal length');
-  }
-
-  return Array.from(
-    { length: keys.length },
-    (_, i) => [keys[i], values[i]] as [string, V]
-  );
-}
-
-function entriesToObject<V>(entries: [string, V][]): { [key: string]: V } {
-  return entries.reduce(
-    (obj, [key, value]) => {
-      obj[key] = value;
-      return obj;
-    },
-    {} as { [key: string]: V }
-  );
 }

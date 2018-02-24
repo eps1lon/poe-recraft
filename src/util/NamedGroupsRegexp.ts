@@ -8,7 +8,7 @@ export default class NamedGroupsRegexp {
     this.groups = groups;
   }
 
-  match(text: string): { [key: string]: string } | null {
+  public match(text: string): { [key: string]: string } | null {
     const match = text.match(this.regexp);
     if (match == null) {
       return null;
@@ -26,7 +26,7 @@ export default class NamedGroupsRegexp {
     }, {} as { [key: string]: string });
   }
 
-  toString() {
+  public toString() {
     return this.regexp;
   }
 }
