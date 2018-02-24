@@ -45,3 +45,20 @@ it('can handle multiple parameters', () => {
   expect(match!['1']).toEqual('5');
   expect(match!['2']).toEqual('50');
 });
+
+it('ignores regexp modifiers', () => {
+  const translation = {
+    matchers: [[1, '#']],
+    // interesting part here is the '+' which is a regexp modifier
+    // without escaping this new RegExp would throw because there is
+    // nothing to repeat
+    text: '+1 to Level of Socketed Active Skill Gems per %1% Player Levels',
+    formatters: []
+  } as Translation;
+  const translated = printf(translation.text, [10], translation.formatters);
+  const regexp = asRegexp(translation);
+  const match = regexp.match(translated);
+
+  expect(match).not.toEqual(null);
+  expect(match!['1']).toEqual('10');
+});
