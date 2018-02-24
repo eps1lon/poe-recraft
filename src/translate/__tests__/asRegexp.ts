@@ -2,6 +2,8 @@ import asRegexp from '../asRegexp';
 import printf from '../printf';
 import { Translation } from '../../types/StatDescription';
 
+import NamedGroupsRegexp from '../../util/NamedGroupsRegexp';
+
 it('generates a regexp for printf', () => {
   const translation = {
     matchers: [[1, '#']],
@@ -9,9 +11,9 @@ it('generates a regexp for printf', () => {
     formatters: []
   } as Translation;
   const translated = printf(translation.text, [5], translation.formatters);
-  const regexp = new RegExp(asRegexp(translation));
-  const match = translated.match(regexp);
+  const regexp = asRegexp(translation);
+  const match = regexp.match(translated);
 
   expect(match).not.toEqual(null);
-  expect((match as RegExpMatchArray)[1]).toEqual('5');
+  expect(match!['1']).toEqual('5');
 });
