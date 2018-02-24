@@ -25,4 +25,8 @@ export default class NamedGroupsRegexp {
       return named;
     }, {} as { [key: string]: string });
   }
+
+  toString() {
+    return this.regexp;
+  }
 }
