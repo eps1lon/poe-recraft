@@ -7,11 +7,11 @@ export default function asRegexp(translation: Translation): NamedGroupsRegexp {
   const groups: string[] = [];
 
   const regexp = text
-    .replace(/%(\d+)(\$\+)?%/, (match, arg, leading_plus) => {
+    .replace(/%(\d+)(\$\+d|%)/, (match, arg, modifier) => {
       groups.push(arg);
 
       const formatter = formatters.find(({ arg: other }) => `${other}` === arg);
-      const prefix = leading_plus ? '\\+' : '';
+      const prefix = modifier === '$+d' ? '\\+' : '';
 
       if (formatter === undefined) {
         return `${prefix}(\\d+)`;
