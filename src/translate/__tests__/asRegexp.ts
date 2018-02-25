@@ -80,3 +80,14 @@ it('can handle negative numbers', () => {
   expect(match).not.toEqual(null);
   expect(match!['1']).toEqual('-523234');
 });
+
+it('only matches hole words', () => {
+  const translation = {
+    matchers: ['#'],
+    text: '1%% increased Movement Speed per %1% Evasion Rating, up to 100%%',
+    formatters: []
+  } as Translation;
+
+  const regexp = asRegexp(translation);
+  expect(regexp.match('1% increased Movement Speed')).toEqual(null);
+});

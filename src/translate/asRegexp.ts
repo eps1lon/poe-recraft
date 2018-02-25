@@ -23,5 +23,5 @@ export default function asRegexp(translation: Translation): NamedGroupsRegexp {
     })
     .replace('%%', '%');
 
-  return new NamedGroupsRegexp(new RegExp(regexp), groups);
+  return new NamedGroupsRegexp(new RegExp(`^${regexp}$`), groups);
 }
