@@ -1,8 +1,8 @@
 import datas from '../../__fixtures__/english';
 import { StatLocaleData } from '../../types/StatDescription';
+import { buildRandomStats } from '../../util/symbolicStats';
 import extractStats from '../extractStats';
 import formatStats from '../stats';
-import { buildRandomStats } from '../../util/symbolicStats';
 
 it('should reverse formatStats', () => {
   const formatted_stats = formatStats(
@@ -68,24 +68,6 @@ it('considers the matchers', () => {
 
 // run this only to create extract exact test cases
 it.skip('should reverse the locale-data (expensive test)', () => {
-  expect.extend({
-    statsEquals(expected, received) {
-      try {
-        expect(expected).toEqual(received);
-        return {
-          pass: true,
-          message: () => 'equals'
-        };
-      } catch (err) {
-        console.log(err);
-        return {
-          pass: false,
-          message: () => err
-        };
-      }
-    }
-  });
-
   const since = (message: string, fn: () => any) => {
     try {
       fn();
@@ -95,12 +77,12 @@ it.skip('should reverse the locale-data (expensive test)', () => {
     }
   };
 
-  const datas = {
+  const full_datas = {
     stat_descriptions: require('../../../locale-data/en/stat_descriptions.json') as StatLocaleData
   };
 
   for (const [description_id, description] of Object.entries(
-    datas.stat_descriptions.data
+    full_datas.stat_descriptions.data
   )) {
     const random_stats_combinations = buildRandomStats(description);
     if (random_stats_combinations === null) {
@@ -113,11 +95,11 @@ it.skip('should reverse the locale-data (expensive test)', () => {
     }
 
     for (const random_stats of random_stats_combinations) {
-      const formatted = formatStats(random_stats, { datas });
+      const formatted = formatStats(random_stats, { datas: full_datas });
       expect(formatted).toHaveLength(1);
       const [stat_text] = formatted;
 
-      const extracted = extractStats(stat_text, { datas });
+      const extracted = extractStats(stat_text, { datas: full_datas });
       since(
         `random_stats:${JSON.stringify(
           random_stats,
@@ -148,12 +130,13 @@ it.skip('should reverse the locale-data (expensive test)', () => {
                   }
                   return stat;
                 }),
-                { datas }
+                { datas: full_datas }
               );
               try {
                 expect(reformatted).toEqual(formatted);
               } catch (err) {
                 // continue testing most likely there are just rounding errors
+                // tslint:disable-next-line: no-console
                 console.warn(err);
               }
 

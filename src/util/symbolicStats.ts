@@ -1,6 +1,6 @@
 // test utilities
-import { Matcher, Description } from '../types/StatDescription';
 import { Stat } from '../format/stats';
+import { Description, Matcher } from '../types/StatDescription';
 
 export function deterministicValueForMatcher(matcher: Matcher): number {
   if (Array.isArray(matcher)) {
@@ -12,7 +12,7 @@ export function deterministicValueForMatcher(matcher: Matcher): number {
     } else if (min !== '#' && max === '#') {
       return min;
     } else if (min !== '#' && max !== '#') {
-      return ~((max - min) / 2);
+      return Math.floor((max - min) / 2);
     } else {
       throw new Error('ts never');
     }
@@ -73,6 +73,7 @@ interface Domain {
 }
 
 function randomNumber(domain: Partial<Domain> = {}): number {
+  // tslint:disable-next-line: no-bitwise
   const { min = 1 << 31, max = 2 ** 31 - 1, precision = 0, step = 1 } = domain;
   const range = Math.abs(max - min);
 

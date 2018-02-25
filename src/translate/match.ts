@@ -22,7 +22,7 @@ export function matchesTranslation(
   values: Value[]
 ): boolean {
   return matches(values, translation.matchers).every(
-    match => match === Match.subset || match === Match.exact
+    matched => matched === Match.subset || matched === Match.exact
   );
 }
 
