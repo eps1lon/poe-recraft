@@ -1,13 +1,6 @@
 import baseRequiredLocaleDatas from '../requiredLocaleDatas';
 import meta, { Skill } from '../translate/skill_meta';
-import { StatLocaleDatas } from '../types/StatDescription';
-import formatStats, {
-  Fallback,
-  FallbackCallback,
-  Options,
-  Stat,
-  TranslatedStats
-} from './stats';
+import formatStats, { Fallback, Options, Stat } from './stats';
 
 // args
 export type GemId = string;

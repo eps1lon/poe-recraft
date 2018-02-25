@@ -31,7 +31,7 @@
     "postprocess-locale-data": "prettier --write locale-data/**/*stat_descriptions.json",
     "generate-dat-locale-data": "node scripts/generateDatLocaleData",
     "postgenerate-dat-locale-data": "prettier --write locale-data/**/[A-Z]*.json",
-    "lint": "tslint src/**/*.ts",
+    "lint": "tslint --project tsconfig.json src/**/*.ts",
     "compile-grammars": "node scripts/compileGrammars",
     "compile-grammars:watch": "node scripts/watchGrammars",
     "prepublishOnly": "npm run build",

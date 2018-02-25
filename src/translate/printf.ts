@@ -2,7 +2,6 @@ import { formatValues } from '../localize/formatValues';
 import { Formatter } from '../types/StatDescription';
 
 export type Params = Array<number | [number, number]>;
-type PreparedParams = Array<number | string>;
 
 export default function printf(
   text: string,

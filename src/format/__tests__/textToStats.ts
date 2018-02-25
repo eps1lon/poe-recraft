@@ -2,10 +2,7 @@ import datas from '../../__fixtures__/english';
 import { StatLocaleData } from '../../types/StatDescription';
 import { buildRandomStats } from '../../util/symbolicStats';
 import formatStats from '../stats';
-import textToStats, {
-  textToStatsArray,
-  textToStatsFirst
-} from '../textToStats';
+import { textToStatsArray, textToStatsFirst } from '../textToStats';
 
 it('should reverse formatStats', () => {
   const formatted_stats = formatStats(
