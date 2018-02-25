@@ -48,6 +48,9 @@ it('should match all the formats', () => {
   expect(factory('multiplicative_damage_modifier')(4)).toBe('4');
 
   expect(factory('60%_of_value')(4)).toBe('2.4');
+
+  expect(factory('mod_value_to_item_class')(500)).toBe('Amulets');
+  expect(factory('mod_value_to_item_class')(1)).toBe('Rings');
 });
 
 it('should support ranges', () => {
@@ -104,5 +107,8 @@ describe('inverse', () => {
         expect(inverse).toBeCloseTo(value, 5);
       }
     }
+
+    expect(inverseFactory('mod_value_to_item_class')('Rings')).toBe(1);
+    expect(inverseFactory('mod_value_to_item_class')('Sceptres')).toBe(19);
   });
 });

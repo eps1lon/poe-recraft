@@ -12,20 +12,20 @@ export const item_classes = [
   'Wands',
   'One Hand Swords',
   // 'Rings', value: 10 }, thrusting
-  'One Hand Axes"',
+  'One Hand Axes',
   'One Hand Maces',
   'Bows',
   'Staves',
   'Two Hand Swords',
-  'Two Hand Maces"',
-  'Quivers"',
-  'Belts"',
-  'Gloves"',
-  'Boots"',
-  'Body Armours"',
-  'Helmets"',
-  'Shields"',
-  'Sceptres"'
+  'Two Hand Maces',
+  'Quivers',
+  'Belts',
+  'Gloves',
+  'Boots',
+  'Body Armours',
+  'Helmets',
+  'Shields',
+  'Sceptres'
 ];
 
 // usually everything in poe is rounded down but in this case

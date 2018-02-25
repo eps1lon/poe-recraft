@@ -21,6 +21,18 @@ it('should reverse formatStats', () => {
   ]);
 });
 
+it('can calculate the original value', () => {
+  const formatted_stats = formatStats(
+    [{ id: 'base_life_regeneration_rate_per_minute', value: 120 }],
+    { datas }
+  );
+  // 120 => '2 Life Regenerated per second'
+
+  expect(extractStats(formatted_stats[0], { datas })).toEqual([
+    [{ id: 'base_life_regeneration_rate_per_minute', value: 120 }]
+  ]);
+});
+
 it('creates symbolic values for non matched stats', () => {
   const formatted_stats = formatStats(
     [
