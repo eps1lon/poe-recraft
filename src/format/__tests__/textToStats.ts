@@ -1,8 +1,11 @@
 import datas from '../../__fixtures__/english';
 import { StatLocaleData } from '../../types/StatDescription';
 import { buildRandomStats } from '../../util/symbolicStats';
-import extractStats from '../extractStats';
 import formatStats from '../stats';
+import textToStats, {
+  textToStatsArray,
+  textToStatsFirst
+} from '../textToStats';
 
 it('should reverse formatStats', () => {
   const formatted_stats = formatStats(
@@ -13,7 +16,7 @@ it('should reverse formatStats', () => {
     { datas }
   );
 
-  expect(extractStats(formatted_stats[0], { datas })).toEqual([
+  expect(textToStatsArray(formatted_stats[0], { datas })).toEqual([
     [
       { id: 'attack_minimum_added_physical_damage', value: 1 },
       { id: 'attack_maximum_added_physical_damage', value: 56 }
@@ -28,7 +31,7 @@ it('can calculate the original value', () => {
   );
   // 120 => '2 Life Regenerated per second'
 
-  expect(extractStats(formatted_stats[0], { datas })).toEqual([
+  expect(textToStatsArray(formatted_stats[0], { datas })).toEqual([
     [{ id: 'base_life_regeneration_rate_per_minute', value: 120 }]
   ]);
 });
@@ -42,7 +45,7 @@ it('creates symbolic values for non matched stats', () => {
     { datas }
   );
 
-  expect(extractStats(formatted_stats[0], { datas })).toEqual([
+  expect(textToStatsArray(formatted_stats[0], { datas })).toEqual([
     [
       { id: 'spell_minimum_base_fire_damage', value: 1 },
       { id: 'spell_maximum_base_fire_damage', value: 56 },
@@ -57,7 +60,7 @@ it('only matches full stat lines', () => {
     { datas }
   );
 
-  expect(extractStats(formatted_stats[0], { datas })).toEqual([
+  expect(textToStatsArray(formatted_stats[0], { datas })).toEqual([
     [{ id: 'movement_velocity_+1%_per_X_evasion_rating', value: 5 }]
   ]);
 });
@@ -68,7 +71,7 @@ it('considers the matchers', () => {
     { datas }
   );
 
-  const possibilities = extractStats(formatted_stats[0], { datas });
+  const possibilities = textToStatsArray(formatted_stats[0], { datas });
 
   expect(possibilities).not.toContainEqual([
     { id: 'local_gem_level_+', value: -5 }
@@ -111,7 +114,7 @@ it.skip('should reverse the locale-data (expensive test)', () => {
       expect(formatted).toHaveLength(1);
       const [stat_text] = formatted;
 
-      const extracted = extractStats(stat_text, { datas: full_datas });
+      const extracted = textToStatsArray(stat_text, { datas: full_datas });
       since(
         `random_stats:${JSON.stringify(
           random_stats,
@@ -158,4 +161,17 @@ it.skip('should reverse the locale-data (expensive test)', () => {
       );
     }
   }
+});
+
+describe('extractStatsSingle', () => {
+  it('just returns the first value', () => {
+    const text = 'Adds 1 to 56 Physical Damage to Attacks';
+    expect(textToStatsArray(text, { datas })[0]).toEqual(
+      textToStatsFirst(text, { datas })
+    );
+  });
+
+  it('throws if not a single stat was extracted', () => {
+    expect(() => textToStatsFirst('Lorem ipsum', { datas })[0]).toThrow();
+  });
 });

@@ -15,20 +15,22 @@ import { Stat } from './stats';
 export type Options = {
   datas: StatLocaleDatas;
   start_file: string;
-  break_on_first_match: boolean;
 };
 
-export default function extractStats(
+/**
+ * finds every stat or list of stats that could produce this text with its values
+ * 
+ * use {textToStatsSingle} if you just want the first match
+ * use {textToStatsArray} if you want the generator values as an array
+ * 
+ * @param text the stat text
+ * @param options see type definition
+ */
+export default function* textToStats(
   text: string,
   options: Partial<Options> = {}
-): Stat[][] {
-  const {
-    datas = {},
-    start_file = 'stat_descriptions',
-    break_on_first_match = true
-  } = options;
-
-  const possible_matches = [] as Stat[][];
+): IterableIterator<Stat[]> {
+  const { datas = {}, start_file = 'stat_descriptions' } = options;
 
   for (const descriptions of getDescriptions(datas, start_file)) {
     for (const description of Object.values(descriptions)) {
@@ -79,14 +81,40 @@ export default function extractStats(
           if (
             matchesTranslation(translation, stats.map(({ value }) => value))
           ) {
-            possible_matches.push(stats);
+            yield stats;
           }
         }
       }
     }
   }
+}
 
-  return possible_matches;
+/**
+ * @see {textToStats} as array
+ * 
+ * @param text 
+ * @param options 
+ */
+export function textToStatsArray(text: string, options: Partial<Options> = {}) {
+  return Array.from(textToStats(text, options));
+}
+
+/**
+ * only first match of  @see {textToStats} but throws if none was found
+ * 
+ * @param text 
+ * @param options 
+ */
+export function textToStatsFirst(
+  text: string,
+  options: Partial<Options> = {}
+): Stat[] {
+  const { done, value } = textToStats(text, options).next();
+
+  if (done) {
+    throw new Error('Could match a single stat');
+  }
+  return value;
 }
 
 function* getDescriptions(datas: StatLocaleDatas, start_file: string) {
