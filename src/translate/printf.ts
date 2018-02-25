@@ -15,9 +15,9 @@ export default function printf(
     .reduce(
       (formatted, param, i) =>
         formatted
-          .replace(`%${i + 1}%`, String(param))
+          .replace(new RegExp(`%${i + 1}%`, 'g'), String(param))
           .replace(`%${i + 1}$+d`, `+${String(param)}`),
       text
     )
-    .replace('%%', '%');
+    .replace(/%%/g, '%');
 }

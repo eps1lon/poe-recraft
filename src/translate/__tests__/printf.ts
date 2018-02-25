@@ -57,3 +57,14 @@ it('should use formatters', () => {
   ).toBe('1 Life Regenerated per second');
   expect(printf('', [])).toBe('');
 });
+
+it('can fill values multiple times', () => {
+  expect(
+    printf(
+      '%1%%% increased Damage Taken from Hits from Labyrinth Traps\\n%1%%% increased effectiveness of Damage over Time Debuffs from Labyrinth Traps on Players',
+      [10]
+    )
+  ).toBe(
+    '10% increased Damage Taken from Hits from Labyrinth Traps\\n10% increased effectiveness of Damage over Time Debuffs from Labyrinth Traps on Players'
+  );
+});
