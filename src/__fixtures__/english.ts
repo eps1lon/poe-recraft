@@ -20,6 +20,26 @@ const english: StatLocaleDatas = {
   stat_descriptions: {
     meta: {},
     data: {
+      'local_socketed_gem_level_+': {
+        stats: ['local_socketed_gem_level_+'],
+        translations: [
+          {
+            matchers: ['#'],
+            text: '%1$+d to Level of Socketed Gems',
+            formatters: []
+          }
+        ]
+      },
+      'local_gem_level_+': {
+        stats: ['local_gem_level_+'],
+        translations: [
+          {
+            matchers: [[1, '#']],
+            text: '%1$+d to Level of Socketed Gems',
+            formatters: []
+          }
+        ]
+      },
       'movement_velocity_+1%_per_X_evasion_rating': {
         stats: ['movement_velocity_+1%_per_X_evasion_rating'],
         translations: [
