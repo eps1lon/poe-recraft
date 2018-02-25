@@ -1,3 +1,5 @@
+import { Translation } from '../types/StatDescription';
+
 export type Boundary = number | '#';
 export type BoundedRange = [Boundary, Boundary];
 export type Value = Boundary | BoundedRange;
@@ -12,6 +14,16 @@ export enum Match {
   partial_upper, // forall x in A and x in B: forall y in B and y not in A x >= y i.e. A overlaps the upper region of B
   partial_lower, // forall x in A and x in B: forall y in B and y not in A x <= y i.e. A overlaps the lower region of B
   none // A \minus B = A
+}
+
+// match value if for every value in values: value in (min, max)
+export function matchesTranslation(
+  translation: Translation,
+  values: Value[]
+): boolean {
+  return matches(values, translation.matchers).every(
+    match => match === Match.subset || match === Match.exact
+  );
 }
 
 // does a value match a matcher
