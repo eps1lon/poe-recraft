@@ -21,7 +21,7 @@ export default function asRegexp(translation: Translation): NamedGroupsRegexp {
         return `${prefix}(${regexpFactory(formatter.id)})`;
       }
     })
-    .replace('%%', '%');
+    .replace(/%%/g, '%');
 
   return new NamedGroupsRegexp(new RegExp(`^${regexp}$`), groups);
 }

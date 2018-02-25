@@ -90,4 +90,11 @@ it('only matches hole words', () => {
 
   const regexp = asRegexp(translation);
   expect(regexp.match('1% increased Movement Speed')).toEqual(null);
+
+  const match = regexp.match(
+    '1% increased Movement Speed per 5 Evasion Rating, up to 100%'
+  );
+
+  expect(match).not.toEqual(null);
+  expect(match!['1']).toEqual('5');
 });
