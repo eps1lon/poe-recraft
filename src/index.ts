@@ -1,5 +1,10 @@
 export { default as formatStats, Fallback } from './format/stats';
 export { default as formatGemStats } from './format/gemStats';
+export {
+  default as textToStats,
+  textToStatsArray,
+  textToStatsFirst
+} from './format/textToStats';
 export { default as format, Format } from './Format';
 export { default as requiredLocaleDatas } from './requiredLocaleDatas';
 export { default as formatValueRange } from './localize/formatValueRange';

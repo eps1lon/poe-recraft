@@ -1,5 +1,8 @@
 import formatGemStats, { GemId } from './format/gemStats';
 import formatStats, { Stat } from './format/stats';
+import textToStats, {
+  Options as TextToStatsOptions
+} from './format/textToStats';
 import { StatLocaleDatas } from './types/StatDescription';
 
 export enum Fallback {
@@ -34,6 +37,15 @@ export class Format {
 
   public gemStats(gem_id: GemId, stats: Stat[]) {
     return formatGemStats(gem_id, stats, this.options);
+  }
+
+  public textToStats(text: string, options: Partial<TextToStatsOptions> = {}) {
+    const { datas, start_file } = this.options;
+    return textToStats(text, {
+      datas,
+      start_file,
+      ...options
+    });
   }
 }
 
