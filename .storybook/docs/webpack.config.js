@@ -27,11 +27,6 @@ module.exports = (baseConfig, env) => {
       ],
       enforce: 'pre',
     },
-    {
-      test: /\.(ts|tsx)$/,
-      include: [path.resolve(__dirname, '../../stories')],
-      loader: require.resolve('awesome-typescript-loader'),
-    },
   ];
 
   return config;
