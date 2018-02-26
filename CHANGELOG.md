@@ -5,11 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased](https://github.com/eps1lon/poe-i18n/compare/v0.7.1...HEAD)
+### Breaking
+- ES module build now targets ES6.
+
 ### Added 
 - `locale-data` for Path Of Exile@3.1.3 (#14)
 - Typescript declaration files (#18)
 ### Internal
 - Upgraded `tslint-eslint-rules` to 5.0.0 (#20)
+- `textToStats` (also available in `Format`) which finds every combination
+  of stats that could've produced a given text. Check the API docs for more info.
 
 ## [0.7.1](https://github.com/eps1lon/poe-i18n/compare/v0.7.0...v0.7.1) (2017-10-25)
 ### Fixed
