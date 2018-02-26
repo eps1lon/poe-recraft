@@ -12,7 +12,7 @@ An inflection identifier consists of a gender identifier (`M` for masculine,
 identifier can for example be found in `BaseItemtypes` to pass to the `Mods` message. 
 
 ## Format
-Wrapper for `formatStats` and `formatGemStats` with global configuration.
+Wrapper for `formatStats`, `formatGemStats`, and `textToStats` with global configuration.
 An instance of this is exported in `format`.
 ### Format#configure(options: Options)
 Configures behavior of `formatStats` and `formatGemStats`
@@ -23,6 +23,9 @@ Partially applied [formatStats](#formatStats) with options that were previously
 applied by `#configure`
 ### Format#gemStats
 Same behavior as `#stats` but for [formatGemStats](#formatGemStats).
+### Format#textToStats
+Partially applied [textToStats](#textToStats) with options that were previously
+applied by `#configure`.
 
 
 ## formatStats(stats: Stats[], options: Options = {})
@@ -148,3 +151,25 @@ property.
 ### Return
 Defaults to `NS` if nothing is given. If only one char is given plural defaults
 to `S`
+
+## textToStats(text: string, options: Options = {})
+Yields every possible combination of that `Stats`s that could've produce the 
+given `text`.
+
+### Arguments <a name="textToStats-args"></a>
+- text: the text produced by some `Stat`s. This assumes that this is a single
+  stat description. This function cannot extract stats from text that was 
+  produced by unrelated stats (e.g. *40% fire resistance, Cannot be shocked* 
+  will not return stats for fire resistance and shock immunity). 
+  
+  In other words this function is an inverse of [`formatStats`](#formatStats)
+- options: options used for `formatStats`
+  ```typescript
+  type Options = {
+    datas: StatsLocaleDatas,
+    start_file: keyof StatsLocaleDatas
+  }
+  ```
+  - options.datas: see [`formatStats` args](#formatStats-args)
+  
+  - options.start_file: see [`formatStats` args](#formatStats-args)
