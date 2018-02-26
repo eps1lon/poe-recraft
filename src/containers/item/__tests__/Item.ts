@@ -4,7 +4,7 @@ import { createTables } from '../../../__fixtures__/util';
 import Item, { UnacceptedMod } from '../Item';
 import Stat from '../../../calculator/Stat';
 import { tagProps, Tag } from '../atlasModifier';
-import { BaseItemTypeProps } from 'schema';
+import { BaseItemTypeProps } from '../../../schema';
 
 const tables = createTables();
 
