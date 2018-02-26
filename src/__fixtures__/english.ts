@@ -20,6 +20,57 @@ const english: StatLocaleDatas = {
   stat_descriptions: {
     meta: {},
     data: {
+      'local_socketed_gem_level_+': {
+        stats: ['local_socketed_gem_level_+'],
+        translations: [
+          {
+            matchers: ['#'],
+            text: '%1$+d to Level of Socketed Gems',
+            formatters: []
+          }
+        ]
+      },
+      'local_gem_level_+': {
+        stats: ['local_gem_level_+'],
+        translations: [
+          {
+            matchers: [[1, '#']],
+            text: '%1$+d to Level of Socketed Gems',
+            formatters: []
+          }
+        ]
+      },
+      'movement_velocity_+1%_per_X_evasion_rating': {
+        stats: ['movement_velocity_+1%_per_X_evasion_rating'],
+        translations: [
+          {
+            matchers: ['#'],
+            text:
+              '1%% increased Movement Speed per %1% Evasion Rating, up to 100%%',
+            formatters: []
+          }
+        ]
+      },
+      spell_minimum_base_fire_damage: {
+        stats: [
+          'spell_minimum_base_fire_damage',
+          'spell_maximum_base_fire_damage',
+          'spell_base_fire_damage_%_maximum_life'
+        ],
+        translations: [
+          {
+            matchers: ['#', '#', 0],
+            text: 'Deals %1% to %2% Fire Damage',
+            formatters: []
+          },
+          {
+            matchers: ['#', '#', [1, '#']],
+            text:
+              'This Spell deals %1% to %2%, plus %3%%% of your maximum Life, as base Fire Damage',
+            formatters: []
+          }
+        ]
+      },
       'weapon_physical_damage_+%': {
         stats: ['weapon_physical_damage_+%'],
         translations: [

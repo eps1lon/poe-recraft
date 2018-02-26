@@ -31,7 +31,7 @@
     "postprocess-locale-data": "prettier --write locale-data/**/*stat_descriptions.json",
     "generate-dat-locale-data": "node scripts/generateDatLocaleData",
     "postgenerate-dat-locale-data": "prettier --write locale-data/**/[A-Z]*.json",
-    "lint": "tslint src/**/*.ts",
+    "lint": "tslint --project tsconfig.json src/**/*.ts",
     "compile-grammars": "node scripts/compileGrammars",
     "compile-grammars:watch": "node scripts/watchGrammars",
     "prepublishOnly": "npm run build",
@@ -55,6 +55,7 @@
   },
   "homepage": "https://github.com/eps1lon/poe-i18n#readme",
   "devDependencies": {
+    "@types/escape-string-regexp": "0.0.32",
     "@types/jest": "^22.0.0",
     "@types/node": "^9.3.0",
     "coveralls": "^3.0.0",
@@ -71,7 +72,6 @@
     "typescript": "^2.5.3"
   },
   "jest": {
-    "mapCoverage": true,
     "transform": {
       "^.+\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
@@ -82,5 +82,7 @@
       "json"
     ]
   },
-  "dependencies": {}
+  "dependencies": {
+    "escape-string-regexp": "^1.0.5"
+  }
 }

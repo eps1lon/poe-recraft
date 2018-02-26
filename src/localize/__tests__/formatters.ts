@@ -1,4 +1,8 @@
-import factory from '../formatters';
+import factory, {
+  formatters,
+  inverseFactory,
+  regexpFactory
+} from '../formatters';
 
 it('should throw if the specified formatter doesnt exist', () => {
   expect(() => factory('foobar')).toThrowError("'foobar' not found");
@@ -44,6 +48,9 @@ it('should match all the formats', () => {
   expect(factory('multiplicative_damage_modifier')(4)).toBe('4');
 
   expect(factory('60%_of_value')(4)).toBe('2.4');
+
+  expect(factory('mod_value_to_item_class')(500)).toBe('Amulets');
+  expect(factory('mod_value_to_item_class')(1)).toBe('Rings');
 });
 
 it('should support ranges', () => {
@@ -54,4 +61,54 @@ it('should support ranges', () => {
 it('should not display as range if min == max', () => {
   expect(factory('id')([-10, -10])).toBe('-10');
   expect(factory('id')([-10, -11])).toBe('(-10 - -11)');
+});
+
+describe('regxp', () => {
+  it('should match the output of format', () => {
+    const values = [15, 0, -3];
+    for (const formatter_id of Object.keys(formatters)) {
+      if (formatter_id === 'mod_value_to_item_class') {
+        // tricky because the matcher is infinite but we only have a finite
+        // amount of classes
+        continue;
+      }
+
+      for (const value of values) {
+        const formatted = factory(formatter_id)(value);
+        const regexp = regexpFactory(formatter_id);
+        const match = formatted.match(new RegExp(`^(${regexp})$`));
+        expect(match).not.toBe(null);
+        // if match is null expect throws => match !== null at this point
+        expect((match as RegExpMatchArray)[1]).toEqual(formatted);
+      }
+    }
+  });
+
+  it('throws if it could not produce a string for regexp', () => {
+    expect(() => regexpFactory('unknonw')).toThrow();
+  });
+});
+
+describe('inverse', () => {
+  it('acts as an inverse to formatters', () => {
+    // use reasonably big values because we blindly test every formatter
+    // which can apply divisions by 1000
+    const values = [120000, 0, -30000];
+    for (const formatter_id of Object.keys(formatters)) {
+      if (formatter_id === 'mod_value_to_item_class') {
+        // tricky because the matcher is infinite but we only have a finite
+        // amount of classes
+        continue;
+      }
+      for (const value of values) {
+        const formatted = factory(formatter_id)(value);
+        const inverse = inverseFactory(formatter_id)(formatted);
+
+        expect(inverse).toBeCloseTo(value, 5);
+      }
+    }
+
+    expect(inverseFactory('mod_value_to_item_class')('Rings')).toBe(1);
+    expect(inverseFactory('mod_value_to_item_class')('Sceptres')).toBe(19);
+  });
 });

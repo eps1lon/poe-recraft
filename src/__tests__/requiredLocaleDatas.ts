@@ -1,4 +1,3 @@
-import { formatStats } from '../';
 import requiredLocaleDatas from '../requiredLocaleDatas';
 
 it('should load every file given as argument', () => {
