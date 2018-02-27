@@ -1,25 +1,29 @@
+export type ValueRangeLike = ValueRange | number | [number, number];
+
 export default class ValueRange {
   public min: number;
   public max: number;
 
-  constructor(min: number, max: number) {
+  constructor(min: number, max?: number) {
     this.min = min;
-    this.max = max;
+    this.max = max != null ? max : min;
   }
 
-  public add(other: ValueRange) {
-    if (other.isAddIdentity()) {
+  public add(other: ValueRangeLike) {
+    if (other instanceof ValueRange && other.isAddIdentity()) {
       return this;
     } else {
-      return new ValueRange(this.min + other.min, this.max + other.max);
+      const [min, max] = tuple(other);
+      return new ValueRange(this.min + min, this.max + max);
     }
   }
 
-  public mult(other: ValueRange) {
-    if (other.isMultIdentity()) {
+  public mult(other: ValueRangeLike) {
+    if (other instanceof ValueRange && other.isMultIdentity()) {
       return this;
     } else {
-      return new ValueRange(this.min * other.min, this.max * other.max);
+      const [min, max] = tuple(other);
+      return new ValueRange(this.min * min, this.max * max);
     }
   }
 
@@ -50,5 +54,25 @@ export default class ValueRange {
 
   public asTuple(): [number, number] {
     return [this.min, this.max];
+  }
+
+  public valueOf(): number | [number, number] {
+    const range = this.asTuple();
+
+    if (range[0] === range[1]) {
+      return range[0];
+    } else {
+      return range;
+    }
+  }
+}
+
+function tuple(value: ValueRangeLike): [number, number] {
+  if (value instanceof ValueRange) {
+    return value.asTuple();
+  } else if (Array.isArray(value)) {
+    return value;
+  } else {
+    return [value, value];
   }
 }

@@ -18,9 +18,9 @@ it('get the basics', () => {
   const garb = items.fromName('Sacrificial Garb');
 
   expect(build(garb)).toEqual({
-    armour: { type: 'simple', values: [329, 329] },
-    evasion: { type: 'simple', values: [329, 329] },
-    energy_shield: { type: 'simple', values: [64, 64] },
+    armour: { type: 'simple', values: 329 },
+    evasion: { type: 'simple', values: 329 },
+    energy_shield: { type: 'simple', values: 64 },
   });
 });
 
@@ -36,14 +36,14 @@ it('should consider stats for armour', () => {
 
   expect(build(garb.addMod(flat_armour))).toEqual({
     armour: { type: 'augmented', values: [468, 651] },
-    evasion: { type: 'simple', values: [329, 329] },
-    energy_shield: { type: 'simple', values: [64, 64] },
+    evasion: { type: 'simple', values: 329 },
+    energy_shield: { type: 'simple', values: 64 },
   });
 
   expect(build(garb.addMod(flat_armour).addMod(percent_armour))).toEqual({
     armour: { type: 'augmented', values: [594, 859] },
-    evasion: { type: 'simple', values: [329, 329] },
-    energy_shield: { type: 'simple', values: [64, 64] },
+    evasion: { type: 'simple', values: 329 },
+    energy_shield: { type: 'simple', values: 64 },
   });
 });
 
@@ -54,9 +54,9 @@ it('should consider stats for evasion', () => {
   const percent_evasion = mods.fromId('LocalIncreasedEvasionRatingPercent5');
 
   expect(build(garb.addMod(flat_evasion))).toEqual({
-    armour: { type: 'simple', values: [329, 329] },
+    armour: { type: 'simple', values: 329 },
     evasion: { type: 'augmented', values: [468, 651] },
-    energy_shield: { type: 'simple', values: [64, 64] },
+    energy_shield: { type: 'simple', values: 64 },
   });
 
   const props = build(garb.addMod(flat_evasion).addMod(percent_evasion));
@@ -73,8 +73,8 @@ it('should consider stats for es', () => {
   );
 
   expect(build(garb.addMod(flat_es))).toEqual({
-    armour: { type: 'simple', values: [329, 329] },
-    evasion: { type: 'simple', values: [329, 329] },
+    armour: { type: 'simple', values: 329 },
+    evasion: { type: 'simple', values: 329 },
     energy_shield: { type: 'augmented', values: [95, 102] },
   });
 
