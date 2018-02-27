@@ -14,8 +14,8 @@
   "scripts": {
     "build": "npm run build:commonjs && npm run build:es && npm run build:css",
     "build:css": "node-sass themes/*.scss -o themes",
-    "build:commonjs": "tsc --declaration --module CommonJS --outDir lib",
-    "build:es": "tsc --declaration --module ES6 --outDir es",
+    "build:commonjs": "tsc --project ./tsconfig.build.json --module CommonJS --outDir lib",
+    "build:es": "tsc --project ./tsconfig.build.json --module ES6 --outDir es",
     "build:check": "tsc --watch --noEmit",
     "clean": "rimraf coverage dist es lib",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",

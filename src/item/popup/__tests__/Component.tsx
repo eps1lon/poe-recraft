@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 const stat_descriptions = require('poe-i18n/locale-data/en/stat_descriptions.json');
 
-import { Item, Rarity, Type } from '../../poe';
+import { Item, Rarity } from '../../poe';
 import { Type as ModType, Group as ModGroup } from '../../../mod/poe';
 import Component from '../ItemPopup';
 
@@ -17,7 +17,6 @@ it('should display Mind Brow Hubris Circlet', () => {
               name: 'Hubris Circlet',
             },
             name: 'Mind Brow',
-            type: Type.armour,
             rarity: Rarity.rare,
             energy_shield: {
               value: 200,

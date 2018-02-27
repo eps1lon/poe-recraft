@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 
 import Properties from '../Properties';
-import { Type } from '../../../poe';
 
 it('should display shields', () => {
   expect(
@@ -10,7 +9,6 @@ it('should display shields', () => {
       .create(
         <Properties
           properties={{
-            type: Type.armour,
             armour: { value: 1 },
             block: { value: 3 },
           }}
@@ -27,7 +25,6 @@ it('should display sacrifical garb', () => {
         <Properties
           properties={{
             quality: 5,
-            type: Type.armour,
             armour: { value: 100, augmented: true },
             energy_shield: { value: 10, augmented: true },
             evasion: { value: 50.5, augmented: true },
@@ -45,7 +42,6 @@ it('should display dagger', () => {
         <Properties
           properties={{
             quality: 5,
-            type: Type.weapon,
             physical_damage: {
               value: 6,
               augmented: true,
@@ -73,7 +69,6 @@ it('should display claw', () => {
       .create(
         <Properties
           properties={{
-            type: Type.weapon,
             cold_damage: [10, 13],
             chaos_damage: [500, 600],
             attack_time: {
