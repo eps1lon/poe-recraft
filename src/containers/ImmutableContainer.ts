@@ -8,6 +8,9 @@ export interface Builder<T extends Mod> {
   mods: T[];
 }
 
+/**
+ * immutable implementation of Container 
+ */
 export default abstract class ImmutableContainer<
   T extends Mod,
   B extends Builder<T>

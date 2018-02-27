@@ -19,6 +19,9 @@ function getPropertyBulder(item: Item): PropertyBuilder | undefined {
   }
 }
 
+/**
+ * properties for every item 
+ */
 export default class ItemProperties
   implements Properties, Component<Item, Builder> {
   public parent: Item;

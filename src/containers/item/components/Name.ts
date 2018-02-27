@@ -7,6 +7,12 @@ export interface Name {
 
 export type Builder = string;
 
+/** 
+ * the name of an item
+ * 
+ * for magic items those name consists of the baseitemname and the prefix/suffix
+ * rare and unique items have a set name
+ */
 export default class ItemName implements Name, Component<Item, Builder> {
   public parent: Item;
   public random: string;

@@ -8,6 +8,9 @@ export interface Builder {
   mods: Mod[];
 }
 
+/** 
+ * the explicits of an item
+ */
 export default class ItemAffixes extends ImmutableContainer<Mod, Builder> {
   public static withBuilder(builder: Builder): ItemAffixes {
     return new ItemAffixes(builder.item, builder.mods);

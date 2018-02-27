@@ -14,6 +14,12 @@ export type Builder =
     }
   | undefined;
 
+/** 
+ * the requirements to use this item
+ * 
+ * contains attributes strength, intelligence, evasion
+ * and the itemlevel
+ */
 export default class ItemName
   implements Requirements, Component<Item, Builder> {
   public parent: Item;

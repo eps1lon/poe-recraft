@@ -8,6 +8,9 @@ export interface Builder {
   mods: Mod[];
 }
 
+/** 
+ * the implicits of an item
+ */
 export default class Implicits extends ImmutableContainer<Mod, Builder> {
   public static withBuilder(builder: Builder): Implicits {
     return new Implicits(builder.item, builder.mods);

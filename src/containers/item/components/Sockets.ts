@@ -7,6 +7,9 @@ export interface Sockets {
 
 export type Builder = number;
 
+/** 
+ * WIP item component for sockets
+ */
 export default class ItemSockets implements Sockets, Component<Item, Builder> {
   public amount: number;
   public parent: Item;

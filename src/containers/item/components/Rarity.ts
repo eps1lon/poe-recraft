@@ -23,8 +23,7 @@ export interface Rarity<T> {
 export type Builder = RarityKind;
 
 /**
- * mixin for Item
- * 
+ * the rarity of an item
  */
 export default class ItemRarity
   implements Rarity<Item>, Component<Item, Builder> {
@@ -56,6 +55,11 @@ export default class ItemRarity
     return this.kind === RarityKind.unique;
   }
 
+  /**
+   * upgrade rarirty by one tier
+   * 
+   * normal > magic > rare
+   */
   public upgrade() {
     let new_rarity = this.kind;
 

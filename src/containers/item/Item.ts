@@ -46,9 +46,15 @@ export class UnacceptedMod extends BaseError {
 }
 
 export interface Builder {
+  /** 
+   * explicits of the item 
+   */
   affixes: Mod[];
   baseitem: BaseItemTypeProps;
   implicits: Mod[];
+  /** 
+   * reflection of the baseitem
+   */
   meta_data: MetaData;
   name: NameBuilder;
   props: ItemProps;
@@ -62,7 +68,14 @@ const shallowEqual = (a: { [key: string]: any }, b: { [key: string]: any }) => {
   return a === b || Object.keys(a).every(key => a[key] === b[key]);
 };
 
+/** 
+ * an Item in Path of Exile
+ */
 export default class Item implements Container<Mod> {
+  /**
+   * creates a new item from the baseitem
+   * @param baseitem 
+   */
   public static build(baseitem: BaseItemTypeProps): Item {
     const clazz = String(baseitem.inherits_from.split(/[\\/]/).pop());
     const meta_data = MetaData.build(clazz);
@@ -77,16 +90,24 @@ export default class Item implements Container<Mod> {
       implicits,
       meta_data,
       name: 'Random Name',
+      /**
+       * miscellaneous props
+       */
       props: {
-        // more like misc
         atlas_modifier: atlasModifier(baseitem),
         corrupted: false,
         item_level: 100,
         mirrored: false,
       },
+      /**
+       * calculation related props
+       */
       properties: null,
       rarity: RarityKind.normal,
       requirements: baseitem.component_attribute_requirement,
+      /**
+       * the sockets of the item
+       */
       sockets: 0,
     });
   }
@@ -106,6 +127,12 @@ export default class Item implements Container<Mod> {
   public requirements: Requirements & Component<Item, RequirementsBuilder>;
   public sockets: Sockets & Component<Item, SocketsBuilder>;
 
+  /**
+   * Use Item#build
+   * 
+   * @private
+   * @param builder 
+   */
   constructor(builder: Builder) {
     this.baseitem = builder.baseitem;
     this.props = builder.props;
@@ -170,6 +197,11 @@ export default class Item implements Container<Mod> {
     return this.mods;
   }
 
+  /**
+   * decides where to add the mod (explicit, implicit)
+   * throws if it could not decide where to put it
+   * @param other 
+   */
   public addMod(other: Mod): this {
     if (other.isAffix()) {
       return this.addAffix(other);
@@ -180,6 +212,12 @@ export default class Item implements Container<Mod> {
     }
   }
 
+  /**
+   * removed this mod either from implicit or explicit
+   * 
+   * if that mod fiths into neither category it throws
+   * @param other 
+   */
   public removeMod(other: Mod): this {
     if (other.isAffix()) {
       return this.removeAffix(other);
@@ -190,6 +228,9 @@ export default class Item implements Container<Mod> {
     }
   }
 
+  /**
+   * removes explicits
+   */
   public removeAllMods(): this {
     return this.mutateAffixes(affixes => affixes.removeAllMods());
   }
@@ -246,6 +287,9 @@ export default class Item implements Container<Mod> {
     return this.mods.length > 0;
   }
 
+  /**
+   * merge of implicit and explicit stats 
+   */
   public stats(): { [key: string]: Stat } {
     // merge implicit stats and affix stats by adding its stats
     const a: { [key: string]: Stat } = this.implicits.stats();
@@ -302,6 +346,9 @@ export default class Item implements Container<Mod> {
     });
   }
 
+  /**
+   * sets the corrupted property on the item or throws if it is already corrupted
+   */
   public corrupt(): this {
     if (this.props.corrupted) {
       throw new Error('invalid state: is already corrupted');
@@ -310,6 +357,9 @@ export default class Item implements Container<Mod> {
     }
   }
 
+  /**
+   * sets the mirror property on the item or throws if it is already mirrored
+   */
   public mirror(): this {
     if (this.props.mirrored) {
       throw new Error('invalid state: is already mirrored');
@@ -322,8 +372,11 @@ export default class Item implements Container<Mod> {
     return this.props.atlas_modifier === AtlasModifier.ELDER;
   }
 
-  // returns an item that can have elder mods
-  // this does not remove existing shaper mods
+  /** 
+   * returns an item that can have elder mods
+   * 
+   * this does not remove existing shaper mods 
+   */
   public asElderItem(): this {
     return this.asAtlasModifier(AtlasModifier.ELDER);
   }
@@ -332,8 +385,11 @@ export default class Item implements Container<Mod> {
     return this.props.atlas_modifier === AtlasModifier.SHAPER;
   }
 
-  // returns an item that can have shper mods
-  // this does not remove existing elder mods
+  /** 
+   * returns an item that can have shaper mods
+   * 
+   * this does not remove existing elder mods 
+   */
   public asShaperItem(): this {
     return this.asAtlasModifier(AtlasModifier.SHAPER);
   }

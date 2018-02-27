@@ -11,6 +11,10 @@ export interface ArmourProperties extends Properties {
   energy_shield: Property;
 }
 
+/**
+ * properties for armour
+ * @param item 
+ */
 export default function build(item: Item): ArmourProperties {
   // FIXME: https://github.com/facebook/flow/issues/2383
 
