@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Item, Rarity, Affix } from '../../poe';
+import { Item, Rarity } from '../../poe';
 import { isPrefix, isSuffix, isMod } from '../../../mod/poe';
 
 const ItemType: React.SFC<{ item: Item }> = ({ item }) => {

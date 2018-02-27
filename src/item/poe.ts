@@ -1,4 +1,4 @@
-import { ReactNode, ReactElement } from 'react';
+import { ReactNode } from 'react';
 
 import { Mod } from '../mod/poe';
 import { SingleValue, Value, AugmentableValue } from '../util/value';
@@ -63,7 +63,7 @@ export interface WeaponProperties extends AbstractProperties {
   crit?: AugmentableValue<SingleValue>;
 }
 
-export interface NoProperties extends AbstractProperties {}
+export type NoProperties = AbstractProperties;
 
 export interface BaseItem {
   name: string;

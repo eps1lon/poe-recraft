@@ -3,9 +3,7 @@ import * as renderer from 'react-test-renderer';
 
 import Head from '../Component';
 import { Type as ModType } from '../../../../mod/poe';
-import { Item as ItemProps } from '../../../poe';
-import { Popup } from '../../../index';
-import { Item, Rarity } from '../../../poe';
+import {  Rarity } from '../../../poe';
 
 it('should display normal', () => {
   expect(

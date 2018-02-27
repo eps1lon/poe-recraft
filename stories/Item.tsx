@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { Item, Rarity } from '../src/item/poe';
-import { Type as ModType, Group as ModGroup } from '../src/mod/poe';
+import {  Rarity } from '../src/item/poe';
 
 import { Popup } from '../src';
 

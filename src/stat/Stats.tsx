@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { Stat as StatProps } from './poe';
 import Stat from './Stat';
 
 export interface Props {

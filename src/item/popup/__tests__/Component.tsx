@@ -1,9 +1,10 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
+
+// tslint:disable-next-line: no-var-requires
 const stat_descriptions = require('poe-i18n/locale-data/en/stat_descriptions.json');
 
-import { Item, Rarity } from '../../poe';
-import { Type as ModType, Group as ModGroup } from '../../../mod/poe';
+import {  Rarity } from '../../poe';
 import Component from '../ItemPopup';
 
 it('should display Mind Brow Hubris Circlet', () => {

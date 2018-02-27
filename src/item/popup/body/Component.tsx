@@ -1,8 +1,7 @@
 import * as React from 'react';
 
 import { Item, Affixes } from '../../poe';
-import { Mod, isMod } from '../../../mod/poe';
-import { Stat } from '../../../stat/poe';
+import {  isMod } from '../../../mod/poe';
 import Stats from '../../../stat/Stats';
 import { Intersperse } from '../../../util/react';
 import Separator from '../Separator';
@@ -16,7 +15,7 @@ export interface Props {
 
 export default class Body extends React.PureComponent<Props> {
   public render() {
-    const { item, translations } = this.props;
+    const { item } = this.props;
     const { implicits = [], explicits = [], requirements = {} } = item;
     const implicit_stats = this.collectStats(implicits);
     const explicit_stats = this.collectStats(explicits);

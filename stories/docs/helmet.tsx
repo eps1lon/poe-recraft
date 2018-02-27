@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
-import { formatStats } from 'poe-i18n';
 // 'poe-components-item'
-import { Popup, Rarity, ModType } from '../../src/';
+import { Popup, Rarity } from '../../src/';
 
 import '../../themes/poe.scss';
 

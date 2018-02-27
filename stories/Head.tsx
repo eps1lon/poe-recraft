@@ -89,6 +89,6 @@ storiesOf('head', module)
     />
   ))
   .add('shaped/elder', () => [
-    <Story item={{ ...rare_item, shaper: true }} />,
-    <Story item={{ ...rare_item, elder: true }} />,
+    <Story key="shaped" item={{ ...rare_item, shaper: true }} />,
+    <Story key="elder" item={{ ...rare_item, elder: true }} />,
   ]);

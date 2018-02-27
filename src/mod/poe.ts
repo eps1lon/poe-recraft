@@ -1,7 +1,5 @@
 import { ReactNode } from 'react';
 
-import { Stat } from '../stat/poe';
-
 export enum Group {
   implicit,
   explicit,

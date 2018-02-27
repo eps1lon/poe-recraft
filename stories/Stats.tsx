@@ -4,7 +4,6 @@ import { storiesOf } from '@storybook/react';
 
 import { Group as ModGroup } from '../src/mod/poe';
 import Stats from '../src/stat/Stats';
-import { Stat } from '../src/stat/poe';
 
 export interface Props {
   rarity: 'normal' | 'magic' | 'rare';
