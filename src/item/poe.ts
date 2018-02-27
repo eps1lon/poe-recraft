@@ -5,8 +5,7 @@ import { SingleValue, Value, AugmentableValue } from '../util/value';
 
 // use intersection here instead of extends to be able to test Properties
 // with only e.g. ArmourProperties
-export type Item = AbstractItem &
-  (ArmourProperties | WeaponProperties | NoProperties);
+export type Item = AbstractItem & Properties;
 
 export interface AbstractItem {
   base: BaseItem;
@@ -24,18 +23,13 @@ export interface AbstractItem {
   shaper?: boolean;
 }
 
-export enum Type {
-  none,
-  armour,
-  weapon,
-}
+export type Properties = ShieldProperties | ArmourProperties | WeaponProperties | NoProperties;
 
 export interface AbstractProperties {
   quality?: number;
 }
 
 export interface ArmourProperties extends AbstractProperties {
-  type: Type.armour;
   armour?: AugmentableValue<SingleValue>;
   energy_shield?: AugmentableValue<SingleValue>;
   evasion?: AugmentableValue<SingleValue>;
@@ -47,7 +41,6 @@ export interface ShieldProperties extends ArmourProperties {
 }
 
 export interface WeaponProperties extends AbstractProperties {
-  type: Type.weapon;
   physical_damage?: AugmentableValue;
   cold_damage?: Value;
   fire_damage?: Value;
@@ -66,9 +59,7 @@ export interface WeaponProperties extends AbstractProperties {
   crit?: AugmentableValue<SingleValue>;
 }
 
-export interface NoProperties extends AbstractProperties {
-  type?: Type.none;
-}
+export interface NoProperties extends AbstractProperties {}
 
 export interface BaseItem {
   name: string;

@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { formatStats } from 'poe-i18n';
 // 'poe-components-item'
-import { Popup, Rarity, ModType, ItemType } from '../../src/';
+import { Popup, Rarity, ModType } from '../../src/';
 
 import '../../themes/poe.scss';
 
@@ -22,7 +22,6 @@ storiesOf('ItemPopup', module).add(
           name: 'Hubris Circlet',
         },
         name: 'Mind Brow',
-        type: ItemType.armour,
         rarity: Rarity.rare,
         energy_shield: {
           value: 200,

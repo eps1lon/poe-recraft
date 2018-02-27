@@ -7,7 +7,6 @@ import {
   ArmourProperties,
   NoProperties,
   ShieldProperties,
-  Type,
 } from '../../poe';
 import { round, msToPerSecond, asPercentString } from '../../../util/number';
 import {
@@ -30,26 +29,18 @@ export default class Properties extends React.PureComponent<Props> {
       return true;
     }
 
-    switch (properties.type) {
-      case Type.armour:
-        const { armour, energy_shield, evasion } = properties;
+    if ("armour" in properties) {
+      const { armour, energy_shield, evasion } = properties;
         return (
           augmentableNotZero(armour) ||
           augmentableNotZero(energy_shield) ||
           augmentableNotZero(evasion)
         );
-      case Type.weapon:
+    } else if ("aps" in properties) {
         // at least display weapon type
         return true;
-      case Type.none:
-      case undefined:
-        return false;
-      default:
-        // while the exhaustiveness check is nice for internal use
-        // it's not guarenteed at runtime since this component can be consumed
-        // by normal js
-        // @ts-ignore
-        throw new Error(`unrecognized property kind '${properties.kind}'`);
+    } else {
+      return false;
     }
   }
 
@@ -73,22 +64,10 @@ export default class Properties extends React.PureComponent<Props> {
       );
     }
 
-    switch (properties.type) {
-      case Type.armour:
-        display_properties.push(...this.armourProperties(properties));
-        break;
-      case Type.weapon:
-        display_properties.push(...this.weaponProperties(properties));
-        break;
-      case Type.none:
-      case undefined:
-        break;
-      default:
-        // while the exhaustiveness check is nice for internal use
-        // it's not guarenteed at runtime since this component can be consumed
-        // by normal js
-        // @ts-ignore
-        throw new Error(`unrecognized property kind '${properties.kind}'`);
+    if ("armour" in properties) {
+      display_properties.push(...this.armourProperties(properties));
+    } else if ("aps" in properties) {
+      display_properties.push(...this.weaponProperties(properties));
     }
 
     return display_properties;
