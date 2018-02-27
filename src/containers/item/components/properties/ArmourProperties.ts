@@ -46,7 +46,7 @@ export default function build(item: Item): ArmourProperties {
 
     return {
       type: augmented === value.base ? 'simple' : 'augmented',
-      values: augmented.asTuple(),
+      values: augmented.valueOf(),
     } as Property;
   });
 
