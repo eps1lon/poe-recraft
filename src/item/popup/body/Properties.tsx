@@ -29,16 +29,16 @@ export default class Properties extends React.PureComponent<Props> {
       return true;
     }
 
-    if ("armour" in properties) {
+    if ('armour' in properties) {
       const { armour, energy_shield, evasion } = properties;
-        return (
-          augmentableNotZero(armour) ||
-          augmentableNotZero(energy_shield) ||
-          augmentableNotZero(evasion)
-        );
-    } else if ("aps" in properties) {
-        // at least display weapon type
-        return true;
+      return (
+        augmentableNotZero(armour) ||
+        augmentableNotZero(energy_shield) ||
+        augmentableNotZero(evasion)
+      );
+    } else if ('aps' in properties) {
+      // at least display weapon type
+      return true;
     } else {
       return false;
     }
@@ -64,9 +64,9 @@ export default class Properties extends React.PureComponent<Props> {
       );
     }
 
-    if ("armour" in properties) {
+    if ('armour' in properties) {
       display_properties.push(...this.armourProperties(properties));
-    } else if ("aps" in properties) {
+    } else if ('aps' in properties) {
       display_properties.push(...this.weaponProperties(properties));
     }
 

@@ -23,7 +23,11 @@ export interface AbstractItem {
   shaper?: boolean;
 }
 
-export type Properties = ShieldProperties | ArmourProperties | WeaponProperties | NoProperties;
+export type Properties =
+  | ShieldProperties
+  | ArmourProperties
+  | WeaponProperties
+  | NoProperties;
 
 export interface AbstractProperties {
   quality?: number;

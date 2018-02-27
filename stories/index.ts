@@ -1,4 +1,4 @@
-import '../themes/poe.scss'
+import '../themes/poe.scss';
 import './Item';
 import './Head';
 import './Properties';
