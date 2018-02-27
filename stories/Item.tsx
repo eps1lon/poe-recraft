@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { Item, Rarity, Type } from '../src/item/poe';
+import { Item, Rarity } from '../src/item/poe';
 import { Type as ModType, Group as ModGroup } from '../src/mod/poe';
 
 import { Popup } from '../src';
@@ -13,7 +13,6 @@ storiesOf('item', module).add('shaped', () => (
         name: 'Hubris Circlet',
       },
       name: 'Mind Brow',
-      type: Type.armour,
       rarity: Rarity.rare,
       energy_shield: {
         value: 200,
