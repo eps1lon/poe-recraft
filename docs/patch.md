@@ -15,3 +15,8 @@ game data.
         1. ```$ pypoe_exporter config set ggpk_path {ggpk_path(client)}```
         2. ```$ node ./scripts/preGenerateDatLocaleData {client}```
     3. ```$ npm run generate-dat-locale-data```
+
+## clients
+1. steam
+2. tencent https://poe.qq.com/download.shtml
+3. garena http://web.poe.garena.tw/garena-page/download
