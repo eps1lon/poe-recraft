@@ -82,7 +82,7 @@ export default class MasterBenchOption extends Generator<Mod, Item> {
 
     applicable_flags.wrong_itemclass =
       item_classes.find(
-        item_class => item_class.primary === item.baseitem.item_class.primary,
+        item_class => item_class === item.baseitem.item_class,
       ) === undefined;
 
     return applicable_flags;

@@ -56,11 +56,6 @@ export interface ArmourProps {
   energy_shield: number;
 }
 
-export interface ItemClassProps {
-  primary: number;
-  name: string;
-}
-
 export interface BaseItemTypeProps {
   id: string;
   name: string;
@@ -72,7 +67,7 @@ export interface BaseItemTypeProps {
   component_attribute_requirement?: AttributeRequirementProps;
   component_armour?: ArmourProps;
   implicit_mods: ModProps[];
-  item_class: ItemClassProps;
+  item_class: string;
   tags: Tag[];
 }
 
@@ -99,7 +94,7 @@ export interface CraftingBenchOptionsProps {
     base_item_type: BaseItemTypeProps;
   }>;
   mod?: ModProps;
-  item_classes: ItemClassProps[];
+  item_classes: string[];
 }
 
 export interface WorldAreaProps {
