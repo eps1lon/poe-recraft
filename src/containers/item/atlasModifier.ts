@@ -1,68 +1,70 @@
-import { TagProps } from '../../schema';
+import { Tag } from '../../schema';
 import MetaData from '../../util/MetaData';
 
 export enum AtlasModifier {
-  NONE,
-  ELDER,
-  SHAPER,
+  NONE = '',
+  ELDER = 'elder_item',
+  SHAPER = 'shaper_item',
 }
 
-export enum Tag {
-  'shaper_item' = 246,
-  'elder_item' = 247,
-  'boots_shaper' = 248,
-  'boots_elder' = 249,
-  'sword_shaper' = 250,
-  'sword_elder' = 251,
-  'gloves_shaper' = 252,
-  'gloves_elder' = 253,
-  'helmet_shaper' = 254,
-  'helmet_elder' = 255,
-  'body_armour_shaper' = 256,
-  'body_armour_elder' = 257,
-  'amulet_shaper' = 258,
-  'amulet_elder' = 259,
-  'ring_shaper' = 260,
-  'ring_elder' = 261,
-  'belt_shaper' = 262,
-  'belt_elder' = 263,
-  'quiver_shaper' = 264,
-  'quiver_elder' = 265,
-  'shield_shaper' = 266,
-  'shield_elder' = 267,
-  '2h_sword_shaper' = 268,
-  '2h_sword_elder' = 269,
-  'axe_shaper' = 270,
-  'axe_elder' = 271,
-  'mace_shaper' = 272,
-  'mace_elder' = 273,
-  'claw_shaper' = 274,
-  'claw_elder' = 275,
-  'bow_shaper' = 276,
-  'bow_elder' = 277,
-  'dagger_shaper' = 278,
-  'dagger_elder' = 279,
-  '2h_axe_shaper' = 280,
-  '2h_axe_elder' = 281,
-  '2h_mace_shaper' = 282,
-  '2h_mace_elder' = 283,
-  'staff_shaper' = 284,
-  'staff_elder' = 285,
-  'sceptre_shaper' = 286,
-  'sceptre_elder' = 287,
-  'wand_shaper' = 288,
-  'wand_elder' = 289,
+export enum AtlasModifierTag {
+  'shaper_item',
+  'elder_item',
+  'boots_shaper',
+  'boots_elder',
+  'sword_shaper',
+  'sword_elder',
+  'gloves_shaper',
+  'gloves_elder',
+  'helmet_shaper',
+  'helmet_elder',
+  'body_armour_shaper',
+  'body_armour_elder',
+  'amulet_shaper',
+  'amulet_elder',
+  'ring_shaper',
+  'ring_elder',
+  'belt_shaper',
+  'belt_elder',
+  'quiver_shaper',
+  'quiver_elder',
+  'shield_shaper',
+  'shield_elder',
+  '2h_sword_shaper',
+  '2h_sword_elder',
+  'axe_shaper',
+  'axe_elder',
+  'mace_shaper',
+  'mace_elder',
+  'claw_shaper',
+  'claw_elder',
+  'bow_shaper',
+  'bow_elder',
+  'dagger_shaper',
+  'dagger_elder',
+  '2h_axe_shaper',
+  '2h_axe_elder',
+  '2h_mace_shaper',
+  '2h_mace_elder',
+  'staff_shaper',
+  'staff_elder',
+  'sceptre_shaper',
+  'sceptre_elder',
+  'wand_shaper',
+  'wand_elder',
 }
 
 export default function atlasModifier(baseitem: {
-  tags: TagProps[];
+  tags: Tag[];
 }): AtlasModifier {
   const has_elder_tag =
-    baseitem.tags.find(({ primary }) => primary === Tag.elder_item) !==
-    undefined;
+    baseitem.tags.find(
+      tag => tag === AtlasModifierTag[AtlasModifierTag.elder_item],
+    ) !== undefined;
   const has_shaper_tag =
-    baseitem.tags.find(({ primary }) => primary === Tag.shaper_item) !==
-    undefined;
+    baseitem.tags.find(
+      tag => tag === AtlasModifierTag[AtlasModifierTag.shaper_item],
+    ) !== undefined;
 
   if (has_elder_tag && has_shaper_tag) {
     throw new Error('Item can only be shaper or elder item not both.');
@@ -79,31 +81,37 @@ export default function atlasModifier(baseitem: {
 
 // generates the appropriate tags for {baseitem} with {modifier}
 export function tagsWithModifier(
-  baseitem: { tags: TagProps[] },
+  baseitem: { tags: Tag[] },
   meta_data: MetaData,
   modifier: AtlasModifier,
-): TagProps[] {
+): Tag[] {
   const { tags } = baseitem;
   const with_none = tags.filter(
     tag =>
-      !tag.id.endsWith('_shaper') &&
-      !tag.id.endsWith('_elder') &&
-      tag.primary !== Tag.elder_item &&
-      tag.primary !== Tag.shaper_item,
+      !tag.endsWith('_shaper') &&
+      !tag.endsWith('_elder') &&
+      tag !== AtlasModifierTag[AtlasModifierTag.elder_item] &&
+      tag !== AtlasModifierTag[AtlasModifierTag.shaper_item],
   );
 
   switch (modifier) {
     case AtlasModifier.NONE:
       return with_none;
     case AtlasModifier.ELDER:
-      return with_none.concat(tagProps(Tag.elder_item), elderTag(meta_data));
+      return with_none.concat(
+        AtlasModifierTag[AtlasModifierTag.elder_item],
+        AtlasModifierTag[elderTag(meta_data)],
+      );
     case AtlasModifier.SHAPER:
-      return with_none.concat(tagProps(Tag.shaper_item), shaperTag(meta_data));
+      return with_none.concat(
+        AtlasModifierTag[AtlasModifierTag.shaper_item],
+        AtlasModifierTag[shaperTag(meta_data)],
+      );
   }
 }
 
 // {baseitem} specific elder tag
-export function elderTag(meta_data: MetaData): TagProps {
+export function elderTag(meta_data: MetaData): AtlasModifierTag {
   try {
     return suffixedTag('elder', meta_data);
   } catch (err) {
@@ -112,7 +120,7 @@ export function elderTag(meta_data: MetaData): TagProps {
 }
 
 // {baseitem} specific shaperTag tag
-export function shaperTag(meta_data: MetaData): TagProps {
+export function shaperTag(meta_data: MetaData): AtlasModifierTag {
   try {
     return suffixedTag('shaper', meta_data);
   } catch (err) {
@@ -120,20 +128,15 @@ export function shaperTag(meta_data: MetaData): TagProps {
   }
 }
 
-export function tagProps(tag: Tag): TagProps {
-  return {
-    primary: tag,
-    id: Tag[tag],
-  };
-}
-
-function suffixedTag(suffix: string, meta_data: MetaData): TagProps {
+function suffixedTag(suffix: string, meta_data: MetaData): AtlasModifierTag {
   const tag_prefix = tagIdentifier(meta_data);
-  const tag: Tag | undefined =
-    Tag[`${tag_prefix}_${suffix}` as keyof typeof Tag];
+  const tag: AtlasModifierTag | undefined =
+    AtlasModifierTag[
+      `${tag_prefix}_${suffix}` as keyof typeof AtlasModifierTag
+    ];
 
   if (tag !== undefined) {
-    return tagProps(tag);
+    return tag;
   } else {
     throw new Error(`${tag_prefix} not set in Tag with '${suffix}' as suffix`);
   }

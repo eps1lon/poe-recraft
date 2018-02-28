@@ -1,7 +1,4 @@
-export interface TagProps {
-  primary: number;
-  id: string;
-}
+export type Tag = string;
 
 export interface ModTypeProps {
   primary: number;
@@ -9,16 +6,14 @@ export interface ModTypeProps {
 
 export interface SpawnWeightProps {
   value: number;
-  tag: TagProps;
+  tag: Tag;
 }
 
 export interface StatProps {
-  primary: number;
   id: string;
 }
 
 export interface ModProps {
-  primary: number;
   id: string;
   level: number;
   domain: number;
@@ -38,7 +33,7 @@ export interface ModProps {
   mod_type: ModTypeProps;
   spawn_weights: SpawnWeightProps[];
   stats: StatProps[];
-  tags: TagProps[];
+  tags: Tag[];
 }
 
 export interface WeaponTypeProps {
@@ -67,7 +62,7 @@ export interface ItemClassProps {
 }
 
 export interface BaseItemTypeProps {
-  primary: number;
+  id: string;
   name: string;
   width: number;
   height: number;
@@ -78,7 +73,7 @@ export interface BaseItemTypeProps {
   component_armour?: ArmourProps;
   implicit_mods: ModProps[];
   item_class: ItemClassProps;
-  tags: TagProps[];
+  tags: Tag[];
 }
 
 export interface CraftingBenchOptionsProps {
@@ -108,12 +103,11 @@ export interface CraftingBenchOptionsProps {
 }
 
 export interface WorldAreaProps {
-  primary: number;
   id: string;
   name: string;
   area_level: number;
-  tags: TagProps[];
-  area_type_tags: TagProps[];
+  tags: Tag[];
+  area_type_tags: Tag[];
   mods: ModProps[];
 }
 

@@ -8,7 +8,6 @@ it('should match tags', () => {
     local_armour.augmentableBy(
       new Stat({
         id: 'local_base_physical_damage_reduction_rating',
-        primary: -1,
       }),
     ),
   ).toBe(true);
@@ -21,14 +20,12 @@ it('should know about the difference between flat, inc and more', () => {
     new Stat(
       {
         id: 'local_base_physical_damage_reduction_rating',
-        primary: -1,
       },
       [100, 200],
     ),
     new Stat(
       {
         id: 'local_armour_and_energy_shield_+%',
-        primary: -1,
       },
       [10, 20],
     ),
@@ -49,14 +46,12 @@ it('should consider its precision', () => {
     new Stat(
       {
         id: 'local_base_physical_damage_reduction_rating',
-        primary: -1,
       },
       [1, 2],
     ),
     new Stat(
       {
         id: 'local_physical_damage_reduction_rating_+%',
-        primary: -1,
       },
       [10, 20],
     ),

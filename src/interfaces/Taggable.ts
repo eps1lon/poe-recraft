@@ -1,5 +1,5 @@
-import { TagProps } from '../schema';
+import { Tag } from '../schema';
 
 export interface Taggable {
-  getTags(): TagProps[];
+  getTags(): Tag[];
 }

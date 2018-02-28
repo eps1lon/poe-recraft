@@ -27,7 +27,7 @@ export default interface Container<T extends Mod> extends Taggable {
    */
   any(): boolean;
 
-  indexOfModWithPrimary(primary: number): number;
+  indexOfModWithId(id: string): number;
 
   maxModsOfType(mod: T): number;
   inDomainOf(domain: number): boolean;

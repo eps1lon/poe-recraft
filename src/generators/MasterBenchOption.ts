@@ -135,7 +135,7 @@ export default class MasterBenchOption extends Generator<Mod, Item> {
     // grep MasterMods and set failure if we cant multimod
     const master_mods = item.mods.filter(other => other.isMasterMod());
     const has_no_multi_mod =
-      master_mods.find(other => other.props.primary === META_MODs.MULTIMOD) ===
+      master_mods.find(other => other.props.id === META_MODs.MULTIMOD) ===
       undefined;
 
     if (master_mods.length > 0 && has_no_multi_mod) {

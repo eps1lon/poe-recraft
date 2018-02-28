@@ -1,4 +1,5 @@
 import { createTables } from '../../__fixtures__/util';
+import { Taggable } from '../../interfaces';
 
 import Mod from '../Mod';
 
@@ -38,9 +39,9 @@ it('should fill in the value range for its stats', () => {
 });
 
 it('should fallback to the default spawnweight if defined', () => {
-  const taggable = {
+  const taggable: Taggable = {
     getTags() {
-      return [{ id: 'dummy_tag', primary: 1 }];
+      return ['dummy_tag'];
     },
   };
   const sextant_mod = mods.fromId('MapAtlasMoveAttackCastSpeed');

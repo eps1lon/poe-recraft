@@ -15,8 +15,8 @@ it('should build', () => {
 it('should have a human readable getter', () => {
   const atlas = Atlas.build(atlas_props.all());
 
-  expect(atlas.get('Dunes')).toBeInstanceOf(AtlasNode);
-  expect(atlas.get('HighGardens')).toBeInstanceOf(AtlasNode);
+  expect(atlas.get('MapWorldsDunes')).toBeInstanceOf(AtlasNode);
+  expect(atlas.get('MapWorldsGardens')).toBeInstanceOf(AtlasNode);
   expect(() => atlas.get('UndefinedMap')).toThrow(
     "IndexError: 'UndefinedMap' not found",
   );
@@ -34,48 +34,55 @@ it('should add mods', () => {
   const atlas = Atlas.build(atlas_props.all());
   const invasion_mod = mods.fromId('MapAtlasContainsAdditionalRandomBoss');
 
-  const with_mods = atlas.addMod(invasion_mod, 'Dunes');
+  const with_mods = atlas.addMod(invasion_mod, 'MapWorldsDunes');
 
   expect(with_mods).not.toBe(atlas);
-  expect(atlas.get('Dunes')).not.toBe(with_mods.get('Dunes'));
-  expect(with_mods.get('Dunes').hasMod(invasion_mod)).toBe(true);
+  expect(atlas.get('MapWorldsDunes')).not.toBe(with_mods.get('MapWorldsDunes'));
+  expect(with_mods.get('MapWorldsDunes').hasMod(invasion_mod)).toBe(true);
 
   // node didnt change => atlas didnt change
-  expect(with_mods.addMod(invasion_mod, 'Dunes')).toBe(with_mods);
+  expect(with_mods.addMod(invasion_mod, 'MapWorldsDunes')).toBe(with_mods);
 });
 
 it('should remove mods', () => {
   const invasion_mod = mods.fromId('MapAtlasContainsAdditionalRandomBoss');
-  const atlas = Atlas.build(atlas_props.all()).addMod(invasion_mod, 'Dunes');
+  const atlas = Atlas.build(atlas_props.all()).addMod(
+    invasion_mod,
+    'MapWorldsDunes',
+  );
 
-  const without_mods = atlas.removeMod(invasion_mod, 'Dunes');
+  const without_mods = atlas.removeMod(invasion_mod, 'MapWorldsDunes');
 
   expect(without_mods).not.toBe(atlas);
-  expect(without_mods.get('Dunes')).not.toBe(atlas.get('Dunes'));
-  expect(without_mods.get('Dunes').hasMod(invasion_mod)).toBe(false);
+  expect(without_mods.get('MapWorldsDunes')).not.toBe(
+    atlas.get('MapWorldsDunes'),
+  );
+  expect(without_mods.get('MapWorldsDunes').hasMod(invasion_mod)).toBe(false);
 
   // node didnt change => atlas didnt change
-  expect(without_mods.removeMod(invasion_mod, 'Dunes')).toBe(without_mods);
+  expect(without_mods.removeMod(invasion_mod, 'MapWorldsDunes')).toBe(
+    without_mods,
+  );
 });
 
 it('should be resettable', () => {
   const invasion_mod = mods.fromId('MapAtlasContainsAdditionalRandomBoss');
   const magick_packs_mod = mods.fromId('MapAtlasMagicPackSize');
   const atlas = Atlas.build(atlas_props.all())
-    .addMod(invasion_mod, 'Dunes')
-    .addMod(magick_packs_mod, 'Arcade');
+    .addMod(invasion_mod, 'MapWorldsDunes')
+    .addMod(magick_packs_mod, 'MapWorldsArcade');
 
   // pre
-  expect(atlas.get('Dunes').hasMod(invasion_mod)).toBe(true);
-  expect(atlas.get('Arcade').hasMod(magick_packs_mod)).toBe(true);
+  expect(atlas.get('MapWorldsDunes').hasMod(invasion_mod)).toBe(true);
+  expect(atlas.get('MapWorldsArcade').hasMod(magick_packs_mod)).toBe(true);
 
   const without_mods = atlas.reset();
 
   // post
   expect(without_mods).not.toBe(atlas);
 
-  expect(without_mods.get('Dunes').mods).toHaveLength(0);
-  expect(without_mods.get('Arcade').mods).toHaveLength(0);
+  expect(without_mods.get('MapWorldsDunes').mods).toHaveLength(0);
+  expect(without_mods.get('MapWorldsArcade').mods).toHaveLength(0);
 
   // reset always changes
   expect(without_mods.reset).not.toBe(without_mods);
@@ -86,7 +93,7 @@ it('should calc mods from sextants', () => {
   const sextant = Sextant.build(mods.all());
 
   const available_mods = atlas
-    .modsFor(sextant, 'Dunes')
+    .modsFor(sextant, 'MapWorldsDunes')
     .map(({ mod }) => mod.props.id);
 
   expect(available_mods).toMatchSnapshot();
@@ -96,13 +103,13 @@ it('should apply sextants', () => {
   const atlas = Atlas.build(atlas_props.all());
   const sextant = Sextant.build(mods.all());
 
-  const crafted = atlas.applySextant(sextant, 'Dunes');
+  const crafted = atlas.applySextant(sextant, 'MapWorldsDunes');
 
   // post
-  expect(crafted.get('Dunes').mods).toHaveLength(1);
+  expect(crafted.get('MapWorldsDunes').mods).toHaveLength(1);
   expect(crafted).not.toBe(atlas);
 
   sextant.type = Sextant.type.apprentice;
   // apprentice on red map
-  expect(atlas.applySextant(sextant, 'Plaza')).toBe(atlas);
+  expect(atlas.applySextant(sextant, 'MapWorldsPlaza')).toBe(atlas);
 });

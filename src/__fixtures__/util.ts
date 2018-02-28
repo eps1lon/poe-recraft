@@ -54,3 +54,13 @@ export const createTables = () => {
     mods: createTable('mods', Mod),
   } as Tables;
 };
+
+export const byWorldAreaId = (id: string) => (node: AtlasNodeProps) =>
+  node.world_area.id === id;
+
+export const fromWorldAreaId = (
+  id: string,
+  atlas: PropsTable<AtlasNodeProps, AtlasNode>,
+): AtlasNode => {
+  return atlas.from(node => node.world_area.id === id);
+};

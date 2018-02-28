@@ -18,7 +18,7 @@ class TestOrb extends Orb<Item> {
 it('should consider tags', () => {
   const orb: Orb<Item> = new TestOrb([]);
 
-  const no_attack_mods = mods.fromPrimary(META_MODS.NO_ATTACK_MODS);
+  const no_attack_mods = mods.fromId(META_MODS.NO_ATTACK_MODS);
   const ipd = mods.fromId('LocalIncreasedPhysicalDamagePercent3');
   const sturdy = mods.fromId('LocalBaseArmourAndEvasionRating5');
 

@@ -105,13 +105,12 @@ export default class Mod {
     const other_tags = other.getTags();
 
     const match = spawn_weights.find(
-      ({ tag }) =>
-        other_tags.find(item_tag => tag.primary === item_tag.primary) != null,
+      ({ tag }) => other_tags.find(item_tag => tag === item_tag) != null,
     );
 
     if (match == null) {
       const default_spawnweight = spawn_weights.find(
-        ({ tag }) => tag.primary === 0,
+        ({ tag }) => tag === 'default',
       );
 
       return default_spawnweight;

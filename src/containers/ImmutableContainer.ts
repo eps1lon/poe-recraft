@@ -1,4 +1,4 @@
-import { TagProps } from '../schema';
+import { Tag } from '../schema';
 import Mod from '../mods/Mod';
 import Stat from '../calculator/Stat';
 
@@ -66,9 +66,7 @@ export default abstract class ImmutableContainer<
     if (this.hasMod(other)) {
       return this.withMutations(builder => {
         return Object.assign({}, builder, {
-          mods: this.mods.filter(
-            mod => mod.props.primary !== other.props.primary,
-          ),
+          mods: this.mods.filter(mod => mod.props.id !== other.props.id),
         });
       });
     } else {
@@ -76,12 +74,12 @@ export default abstract class ImmutableContainer<
     }
   }
 
-  public indexOfModWithPrimary(primary: number): number {
-    return this.mods.findIndex(mod => mod.props.primary === primary);
+  public indexOfModWithId(id: string): number {
+    return this.mods.findIndex(mod => mod.props.id === id);
   }
 
   public indexOfMod(mod: T): number {
-    return this.indexOfModWithPrimary(mod.props.primary);
+    return this.indexOfModWithId(mod.props.id);
   }
 
   public hasMod(mod: T): boolean {
@@ -99,17 +97,17 @@ export default abstract class ImmutableContainer<
   /**
    * tags of the mods in the container
    */
-  public getTags(): TagProps[] {
+  public getTags(): Tag[] {
     return this.mods
       .reduce(
         (tags, mod) => {
           return tags.concat(mod.props.tags);
         },
-        [] as TagProps[],
+        [] as Tag[],
       )
       .filter(
         // unique by id
-        (tag, i, tags) => tags.findIndex(other => other.id === tag.id) === i,
+        (tag, i, tags) => tags.findIndex(other => other === tag) === i,
       );
   }
 

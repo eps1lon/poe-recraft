@@ -3,7 +3,7 @@ import { BaseError } from 'make-error';
 import { Buildable } from '../interfaces';
 
 export interface TableProps {
-  primary: number;
+  primary?: number;
   name?: string;
   id?: string;
 }
@@ -58,7 +58,7 @@ export default class PropsTable<P extends TableProps, T> {
     return this.fromProp('id', id);
   }
 
-  public fromProp<K extends keyof TableProps>(prop: K, value: P[K]): T {
+  public fromProp<K extends keyof P>(prop: K, value: P[K]): T {
     try {
       return this.from(other => other[prop] === value);
     } catch (err) {

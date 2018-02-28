@@ -1,10 +1,11 @@
 const META_MODS = {
-  LOCKED_PREFIXES: 6184,
-  LOCKED_SUFFIXES: 6185,
-  NO_ATTACK_MODS: 6186,
-  NO_CASTER_MODS: 6187,
-  MULTIMOD: 6188,
-  LLD_MOD: 6123,
+  // TODO
+  LOCKED_PREFIXES: 'StrMasterItemGenerationCannotChangePrefixes',
+  LOCKED_SUFFIXES: 'DexMasterItemGenerationCannotChangeSuffixes',
+  NO_ATTACK_MODS: 'IntMasterItemGenerationCannotRollAttackAffixes',
+  NO_CASTER_MODS: 'StrDexMasterItemGenerationCannotRollCasterAffixes',
+  MULTIMOD: 'StrIntMasterItemGenerationCanHaveMultipleCraftedMods',
+  LLD_MOD: 'PvPMasterLevel28Crafting',
 };
 
 export default Object.freeze(META_MODS);

@@ -12,8 +12,8 @@ const { craftingbenchoptions: options, items, mods } = createTables();
 describe('no_*_mods', () => {
   const weapon = items.fromName('Skinning Knife').rarity.set('rare');
 
-  const no_attack_mods = mods.fromPrimary(META_MODS.NO_ATTACK_MODS);
-  const no_caster_mods = mods.fromPrimary(META_MODS.NO_CASTER_MODS);
+  const no_attack_mods = mods.fromId(META_MODS.NO_ATTACK_MODS);
+  const no_caster_mods = mods.fromId(META_MODS.NO_CASTER_MODS);
 
   const exalted = Exalted.build(mods.all());
 
@@ -54,7 +54,7 @@ describe('leo pvp mod', () => {
   it('should exclude mods above required level 28', () => {
     const weapon = items.fromName('Skinning Knife').rarity.set('rare');
 
-    const leo_mod = mods.fromPrimary(META_MODS.LLD_MOD);
+    const leo_mod = mods.fromId(META_MODS.LLD_MOD);
 
     const exalted = Exalted.build(mods.all());
 
@@ -76,7 +76,7 @@ describe('multimod', () => {
 
     const craftedLife = mods.fromId('StrMasterLifeCrafted1');
     const craftedArmour = mods.fromId('StrMasterArmourPercentCrafted1');
-    const multimod = mods.fromPrimary(META_MODS.MULTIMOD);
+    const multimod = mods.fromId(META_MODS.MULTIMOD);
 
     expect(bench.isModApplicableTo(craftedLife, craftable_greaves)).toEqual({
       above_lld_level: false,
@@ -137,9 +137,9 @@ describe('lock_*', () => {
 
   const weapon = items.fromName('Skinning Knife');
 
-  const locked_prefixes = mods.fromPrimary(META_MODS.LOCKED_PREFIXES);
+  const locked_prefixes = mods.fromId(META_MODS.LOCKED_PREFIXES);
 
-  const locked_suffixes = mods.fromPrimary(META_MODS.LOCKED_SUFFIXES);
+  const locked_suffixes = mods.fromId(META_MODS.LOCKED_SUFFIXES);
 
   describe('with alteration', () => {
     const alteration = Alteration.build(mods.all());
