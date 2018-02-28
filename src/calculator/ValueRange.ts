@@ -1,6 +1,11 @@
 export type ValueRangeLike = ValueRange | number | [number, number];
 
 export default class ValueRange {
+  public static isZero(value: ValueRangeLike) {
+    const [min, max] = tuple(value);
+    return min === 0 && max === 0;
+  }
+
   public min: number;
   public max: number;
 
