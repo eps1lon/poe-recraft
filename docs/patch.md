@@ -12,6 +12,6 @@ game data.
             which our grammar can sometimes not handle. These should be 
             obvious and fixed manually.
     2. for $client in ('steam', 'garena', 'tencent') 
-        1. ```pypoe_exporter config set ggpk_path {ggpk_path(client)}```
-        2. ```$ ./scripts/preGenerateDatLocaleData.sh {client}```
+        1. ```$ pypoe_exporter config set ggpk_path {ggpk_path(client)}```
+        2. ```$ node ./scripts/preGenerateDatLocaleData {client}```
     3. ```$ npm run generate-dat-locale-data```
