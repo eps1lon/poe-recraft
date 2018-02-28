@@ -61,6 +61,17 @@ const fieldValueMapper = {
 };
 const fields_with_inflection_rules = ['Name'];
 
+// generate key for object map
+const getKey = (row, i) => {
+  if (row.Id !== undefined) {
+    return row.Id
+  } else if (row.primary !== undefined) {
+    return row.primary
+  } else {
+    return i;
+  }
+}
+
 locale_files.filter(isExport).forEach(locale_file => {
   const locale = path.basename(locale_file, '.json');
   const export_json = fs.readFileSync(path.join(export_dir, locale_file));
@@ -82,13 +93,16 @@ locale_files.filter(isExport).forEach(locale_file => {
       return partial_header;
     }, {});
 
-    const translation = data.reduce((partial_translation, row, i) => {
-      partial_translation[i] = Object.entries(
+    const translation = data.reduce((partial_translation, values, i) => {
+      const entry = fromEntries(header.map(({name}) => name), values);
+      const key = getKey(entry, i);
+      
+      partial_translation[key] = Object.entries(
         output_header
       ).reduce((with_row, [name, info]) => {
         if (info !== undefined) {
           const mapper = fieldValueMapper[info.name] || (value => value);
-          with_row[name] = mapper(row[info.rowid]);
+          with_row[name] = mapper(values[info.rowid]);
         }
 
         return with_row;
@@ -122,4 +136,12 @@ function parseInflection(raw, grammar) {
   } catch (err) {
     return raw;
   }
+}
+
+// reverse of Object.entries
+function fromEntries(keys, values) {
+  return keys.reduce((obj, key, i) => {
+    obj[key] = values[i];
+    return obj;
+  }, {})
 }
