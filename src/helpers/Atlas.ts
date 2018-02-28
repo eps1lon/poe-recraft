@@ -20,7 +20,7 @@ type AtlasSextant = Sextant; // sextant.atlas defined
 export default class Atlas {
   public static buildLookupTable(atlas: AtlasNodeProps[]): AtlasNodes {
     return atlas.reduce((nodes, props) => {
-      return nodes.set(AtlasNode.humanId(props), new AtlasNode([], props));
+      return nodes.set(props.world_area.id, new AtlasNode([], props));
     }, new Map());
   }
 
@@ -48,11 +48,11 @@ export default class Atlas {
   /**
    * wrapper for map get that ensures a node or throws
    */
-  public get(id: HumanId): AtlasNode {
-    const node = this.nodes.get(id);
+  public get(world_area_id: string): AtlasNode {
+    const node = this.nodes.get(world_area_id);
 
     if (node == null) {
-      throw new Error(`IndexError: '${id}' not found`);
+      throw new Error(`IndexError: '${world_area_id}' not found`);
     }
 
     return node;
@@ -98,19 +98,19 @@ export default class Atlas {
     });
   }
 
-  public addMod(mod: Mod, node_id: HumanId): this {
-    return this.mutateNode(node_id, node => node.addMod(mod));
+  public addMod(mod: Mod, world_area_id: string): this {
+    return this.mutateNode(world_area_id, node => node.addMod(mod));
   }
 
-  public removeMod(mod: Mod, node_id: HumanId): this {
-    return this.mutateNode(node_id, node => node.removeMod(mod));
+  public removeMod(mod: Mod, world_area_id: HumanId): this {
+    return this.mutateNode(world_area_id, node => node.removeMod(mod));
   }
 
   public mutateNode(
-    node_id: HumanId,
+    world_area_id: string,
     mutate: (node: AtlasNode) => AtlasNode,
   ): this {
-    const target = this.get(node_id);
+    const target = this.get(world_area_id);
     const mutated = mutate(target);
 
     if (target === mutated) {
@@ -119,29 +119,31 @@ export default class Atlas {
       return this.withMutations(({ nodes, ...builder }) => {
         return {
           ...builder,
-          nodes: new Map(nodes).set(node_id, mutated),
+          nodes: new Map(nodes).set(world_area_id, mutated),
         };
       });
     }
   }
 
-  public applySextant(sextant: Sextant, node_id: HumanId): this {
+  public applySextant(sextant: Sextant, world_area_id: string): this {
     const sextant_on_atlas = this.prepareSextant(sextant);
 
-    return this.mutateNode(node_id, node => sextant_on_atlas.applyTo(node));
+    return this.mutateNode(world_area_id, node =>
+      sextant_on_atlas.applyTo(node),
+    );
   }
 
   public modsFor(
     sextant: Sextant,
-    node_id: HumanId,
+    world_area_id: string,
   ): Array<GeneratorDetails<Mod>> {
     const sextant_on_atlas = this.prepareSextant(sextant);
 
-    return sextant_on_atlas.modsFor(this.get(node_id));
+    return sextant_on_atlas.modsFor(this.get(world_area_id));
   }
 
-  public blockedMods(node_id: HumanId): Mod[] {
-    const target = this.get(node_id);
+  public blockedMods(world_area_id: string): Mod[] {
+    const target = this.get(world_area_id);
 
     return Sextant.blockedMods(target, this.asArray());
   }

@@ -9,20 +9,20 @@ export default {
       enable_rarity: ['normal', 'magic', 'rare', 'unique'],
     },
     inheritance: ['Item', 'Equipment'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Item: {
     extends: 'nothing',
     Base: { base_level: ['1\r'], tag: ['default'] },
     inheritance: ['Item'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   AbstractAmulet: {
     extends: 'Equipment',
     Base: { x_size: ['1\r'], y_size: ['1\r'], tag: ['amulet'] },
     Mods: { inventory_type: ['Amulet'] },
     inheritance: ['Item', 'Equipment', 'AbstractAmulet'],
-    tags: [{ primary: 0, id: 'default' }, { primary: 3, id: 'amulet' }],
+    tags: ['default', 'amulet'],
   },
   AbstractSocketableAmulet: {
     extends: 'AbstractAmulet',
@@ -42,7 +42,7 @@ export default {
       'AbstractAmulet',
       'AbstractSocketableAmulet',
     ],
-    tags: [{ primary: 0, id: 'default' }, { primary: 3, id: 'amulet' }],
+    tags: ['default', 'amulet'],
   },
   Talisman1_1: {
     extends: 'AbstractSocketableAmulet',
@@ -53,7 +53,7 @@ export default {
       'AbstractSocketableAmulet',
       'Talisman1_1',
     ],
-    tags: [{ primary: 0, id: 'default' }, { primary: 3, id: 'amulet' }],
+    tags: ['default', 'amulet'],
   },
   Talisman4: {
     extends: 'AbstractSocketableAmulet',
@@ -64,7 +64,7 @@ export default {
       'AbstractSocketableAmulet',
       'Talisman4',
     ],
-    tags: [{ primary: 0, id: 'default' }, { primary: 3, id: 'amulet' }],
+    tags: ['default', 'amulet'],
   },
   AbstractArmour: {
     extends: 'Equipment',
@@ -74,7 +74,7 @@ export default {
       socket_info: ['1:1:100 2:1:90 3:2:80 4:25:30 5:9999:20 6:9999:5'],
     },
     inheritance: ['Item', 'Equipment', 'AbstractArmour'],
-    tags: [{ primary: 0, id: 'default' }, { primary: 7, id: 'armour' }],
+    tags: ['default', 'armour'],
   },
   AbstractBodyArmour: {
     extends: 'AbstractArmour',
@@ -84,44 +84,28 @@ export default {
       socket_info: ['1:1:50 2:1:120 3:2:100 4:25:30 5:35:5 6:50:1'],
     },
     inheritance: ['Item', 'Equipment', 'AbstractArmour', 'AbstractBodyArmour'],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 7, id: 'armour' },
-      { primary: 16, id: 'body_armour' },
-    ],
+    tags: ['default', 'armour', 'body_armour'],
   },
   AbstractBoots: {
     extends: 'AbstractArmour',
     Base: { x_size: ['2\r'], y_size: ['2\r'], tag: ['boots'] },
     Mods: { inventory_type: ['Boots'] },
     inheritance: ['Item', 'Equipment', 'AbstractArmour', 'AbstractBoots'],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 7, id: 'armour' },
-      { primary: 4, id: 'boots' },
-    ],
+    tags: ['default', 'armour', 'boots'],
   },
   AbstractGloves: {
     extends: 'AbstractArmour',
     Base: { x_size: ['2\r'], y_size: ['2\r'], tag: ['gloves'] },
     Mods: { inventory_type: ['Gloves'] },
     inheritance: ['Item', 'Equipment', 'AbstractArmour', 'AbstractGloves'],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 7, id: 'armour' },
-      { primary: 22, id: 'gloves' },
-    ],
+    tags: ['default', 'armour', 'gloves'],
   },
   AbstractHelmet: {
     extends: 'AbstractArmour',
     Base: { x_size: ['2\r'], y_size: ['2\r'], tag: ['helmet'] },
     Mods: { inventory_type: ['Helm'] },
     inheritance: ['Item', 'Equipment', 'AbstractArmour', 'AbstractHelmet'],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 7, id: 'armour' },
-      { primary: 25, id: 'helmet' },
-    ],
+    tags: ['default', 'armour', 'helmet'],
   },
   AbstractShield: {
     extends: 'AbstractArmour',
@@ -132,30 +116,26 @@ export default {
       socket_info: ['1:1:50 2:1:120 3:2:100 4:9999:30 5:9999:20 6:9999:5'],
     },
     inheritance: ['Item', 'Equipment', 'AbstractArmour', 'AbstractShield'],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 7, id: 'armour' },
-      { primary: 1, id: 'shield' },
-    ],
+    tags: ['default', 'armour', 'shield'],
   },
   AbstractBelt: {
     extends: 'Equipment',
     Base: { x_size: ['2\r'], y_size: ['1\r'], tag: ['belt'] },
     Mods: { inventory_type: ['Belt'] },
     inheritance: ['Item', 'Equipment', 'AbstractBelt'],
-    tags: [{ primary: 0, id: 'default' }, { primary: 26, id: 'belt' }],
+    tags: ['default', 'belt'],
   },
   AbstractCurrency: {
     extends: 'Item',
     Base: { x_size: ['1\r'], y_size: ['1\r'] },
     inheritance: ['Item', 'AbstractCurrency'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   AbstractMicrotransaction: {
     extends: 'AbstractCurrency',
     Stack: {},
     inheritance: ['Item', 'AbstractCurrency', 'AbstractMicrotransaction'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   CurrencyImprint: {
     extends: 'StackableCurrency',
@@ -166,14 +146,14 @@ export default {
       'StackableCurrency',
       'CurrencyImprint',
     ],
-    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
+    tags: ['default', 'currency'],
   },
   StackableCurrency: {
     extends: 'AbstractCurrency',
     Base: { tag: ['currency'] },
     Stack: {},
     inheritance: ['Item', 'AbstractCurrency', 'StackableCurrency'],
-    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
+    tags: ['default', 'currency'],
   },
   AbstractDivinationCard: {
     extends: 'Item',
@@ -184,10 +164,7 @@ export default {
     },
     Stack: {},
     inheritance: ['Item', 'AbstractDivinationCard'],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 152, id: 'divination_card' },
-    ],
+    tags: ['default', 'divination_card'],
   },
   AbstractFlask: {
     extends: 'Item',
@@ -209,47 +186,31 @@ export default {
     Usable: { use_type: ['Usable'], action: ['flask'] },
     Imprint: {},
     inheritance: ['Item', 'AbstractFlask'],
-    tags: [{ primary: 0, id: 'default' }, { primary: 20, id: 'flask' }],
+    tags: ['default', 'flask'],
   },
   AbstractHybridFlask: {
     extends: 'AbstractFlask',
     Base: { tag: ['hybrid_flask'] },
     inheritance: ['Item', 'AbstractFlask', 'AbstractHybridFlask'],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 20, id: 'flask' },
-      { primary: 19, id: 'hybrid_flask' },
-    ],
+    tags: ['default', 'flask', 'hybrid_flask'],
   },
   AbstractLifeFlask: {
     extends: 'AbstractFlask',
     Base: { tag: ['life_flask'] },
     inheritance: ['Item', 'AbstractFlask', 'AbstractLifeFlask'],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 20, id: 'flask' },
-      { primary: 17, id: 'life_flask' },
-    ],
+    tags: ['default', 'flask', 'life_flask'],
   },
   AbstractManaFlask: {
     extends: 'AbstractFlask',
     Base: { tag: ['mana_flask'] },
     inheritance: ['Item', 'AbstractFlask', 'AbstractManaFlask'],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 20, id: 'flask' },
-      { primary: 18, id: 'mana_flask' },
-    ],
+    tags: ['default', 'flask', 'mana_flask'],
   },
   AbstractUtilityFlask: {
     extends: 'AbstractFlask',
     Base: { tag: ['utility_flask'] },
     inheritance: ['Item', 'AbstractFlask', 'AbstractUtilityFlask'],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 20, id: 'flask' },
-      { primary: 46, id: 'utility_flask' },
-    ],
+    tags: ['default', 'flask', 'utility_flask'],
   },
   CriticalUtilityFlask: {
     extends: 'AbstractUtilityFlask',
@@ -260,12 +221,7 @@ export default {
       'AbstractUtilityFlask',
       'CriticalUtilityFlask',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 20, id: 'flask' },
-      { primary: 46, id: 'utility_flask' },
-      { primary: 47, id: 'critical_utility_flask' },
-    ],
+    tags: ['default', 'flask', 'utility_flask', 'critical_utility_flask'],
   },
   FlaskUtility1: {
     extends: 'AbstractUtilityFlask',
@@ -276,11 +232,7 @@ export default {
       'AbstractUtilityFlask',
       'FlaskUtility1',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 20, id: 'flask' },
-      { primary: 46, id: 'utility_flask' },
-    ],
+    tags: ['default', 'flask', 'utility_flask'],
   },
   AbstractSkillGem: {
     extends: 'Item',
@@ -293,14 +245,14 @@ export default {
     SkillGem: {},
     Quality: { max_quality: ['20\r'] },
     inheritance: ['Item', 'AbstractSkillGem'],
-    tags: [{ primary: 0, id: 'default' }, { primary: 27, id: 'gem' }],
+    tags: ['default', 'gem'],
   },
   ActiveSkillGem: {
     extends: 'AbstractSkillGem',
     Base: { description_text: ['ItemDescriptionActiveSkillGem'] },
     SkillGem: {},
     inheritance: ['Item', 'AbstractSkillGem', 'ActiveSkillGem'],
-    tags: [{ primary: 0, id: 'default' }, { primary: 27, id: 'gem' }],
+    tags: ['default', 'gem'],
   },
   SupportSkillGem: {
     extends: 'AbstractSkillGem',
@@ -310,18 +262,14 @@ export default {
     },
     SkillGem: {},
     inheritance: ['Item', 'AbstractSkillGem', 'SupportSkillGem'],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 27, id: 'gem' },
-      { primary: 169, id: 'support_gem' },
-    ],
+    tags: ['default', 'gem', 'support_gem'],
   },
   AbstractHideoutDoodad: {
     extends: 'Item',
     Base: { x_size: ['1\r'], y_size: ['1\r'] },
     Stack: {},
     inheritance: ['Item', 'AbstractHideoutDoodad'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   AbstractJewel: {
     extends: 'Item',
@@ -337,37 +285,37 @@ export default {
       inventory_type: ['passivejewels'],
     },
     inheritance: ['Item', 'AbstractJewel'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   AbstractLabyrinthItem: {
     extends: 'Item',
     Stack: { max_stack_size: ['1\r'] },
     inheritance: ['Item', 'AbstractLabyrinthItem'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   BronzeKey: {
     extends: 'AbstractLabyrinthItem',
     Base: { description_text: ['TreasureKeyDescription'] },
     inheritance: ['Item', 'AbstractLabyrinthItem', 'BronzeKey'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   GoldenKey: {
     extends: 'AbstractLabyrinthItem',
     Base: { description_text: ['GoldenKeyDescription'] },
     inheritance: ['Item', 'AbstractLabyrinthItem', 'GoldenKey'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   LabyrinthTrinket: {
     extends: 'AbstractLabyrinthItem',
     Base: { x_size: ['1\r'], y_size: ['1\r'] },
     inheritance: ['Item', 'AbstractLabyrinthItem', 'LabyrinthTrinket'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   SilverKey: {
     extends: 'AbstractLabyrinthItem',
     Base: { description_text: ['SilverKeyDescription'] },
     inheritance: ['Item', 'AbstractLabyrinthItem', 'SilverKey'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   AbstractMapFragment: {
     extends: 'Item',
@@ -378,7 +326,7 @@ export default {
       inventory_type: ['Map'],
     },
     inheritance: ['Item', 'AbstractMapFragment'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   AbstractMap: {
     extends: 'Equipment',
@@ -388,7 +336,7 @@ export default {
     Quality: { max_quality: ['20\r'] },
     Map: {},
     inheritance: ['Item', 'Equipment', 'AbstractMap'],
-    tags: [{ primary: 0, id: 'default' }, { primary: 57, id: 'map' }],
+    tags: ['default', 'map'],
   },
   MysteryBox1x1: {
     extends: 'StackableCurrency',
@@ -399,7 +347,7 @@ export default {
       'StackableCurrency',
       'MysteryBox1x1',
     ],
-    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
+    tags: ['default', 'currency'],
   },
   MysteryBox1x2: {
     extends: 'StackableCurrency',
@@ -410,7 +358,7 @@ export default {
       'StackableCurrency',
       'MysteryBox1x2',
     ],
-    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
+    tags: ['default', 'currency'],
   },
   MysteryBox1x3: {
     extends: 'StackableCurrency',
@@ -421,7 +369,7 @@ export default {
       'StackableCurrency',
       'MysteryBox1x3',
     ],
-    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
+    tags: ['default', 'currency'],
   },
   MysteryBox1x4: {
     extends: 'StackableCurrency',
@@ -432,7 +380,7 @@ export default {
       'StackableCurrency',
       'MysteryBox1x4',
     ],
-    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
+    tags: ['default', 'currency'],
   },
   MysteryBox2x1: {
     extends: 'StackableCurrency',
@@ -443,7 +391,7 @@ export default {
       'StackableCurrency',
       'MysteryBox2x1',
     ],
-    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
+    tags: ['default', 'currency'],
   },
   MysteryBox2x2: {
     extends: 'StackableCurrency',
@@ -454,7 +402,7 @@ export default {
       'StackableCurrency',
       'MysteryBox2x2',
     ],
-    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
+    tags: ['default', 'currency'],
   },
   MysteryBox2x3: {
     extends: 'StackableCurrency',
@@ -465,7 +413,7 @@ export default {
       'StackableCurrency',
       'MysteryBox2x3',
     ],
-    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
+    tags: ['default', 'currency'],
   },
   MysteryBox2x4: {
     extends: 'StackableCurrency',
@@ -476,7 +424,7 @@ export default {
       'StackableCurrency',
       'MysteryBox2x4',
     ],
-    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
+    tags: ['default', 'currency'],
   },
   MysteryBox3x2: {
     extends: 'StackableCurrency',
@@ -487,7 +435,7 @@ export default {
       'StackableCurrency',
       'MysteryBox3x2',
     ],
-    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
+    tags: ['default', 'currency'],
   },
   MysteryBox3x3: {
     extends: 'StackableCurrency',
@@ -498,14 +446,14 @@ export default {
       'StackableCurrency',
       'MysteryBox3x3',
     ],
-    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
+    tags: ['default', 'currency'],
   },
   AbstractQuestItem: {
     extends: 'Item',
     Base: { x_size: ['1\r'], y_size: ['1\r'] },
     Quest: {},
     inheritance: ['Item', 'AbstractQuestItem'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   AllFlameLantern1: {
     extends: 'Item',
@@ -514,7 +462,7 @@ export default {
       remove_flag: ['a1q6minusDeliveredAllFlame'],
     },
     inheritance: ['Item', 'AllFlameLantern1'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   GoldenHand: {
     extends: 'Item',
@@ -524,7 +472,7 @@ export default {
       extra_flag: ['a2q5minusReceivedQuest'],
     },
     inheritance: ['Item', 'GoldenHand'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   InfernalTalc: {
     extends: 'Item',
@@ -533,7 +481,7 @@ export default {
       remove_flag: ['a3q5minusUsedTalc'],
     },
     inheritance: ['Item', 'InfernalTalc'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   MedicineSet1: {
     extends: 'Item',
@@ -543,7 +491,7 @@ export default {
       extra_flag: ['SeenMedicineChest'],
     },
     inheritance: ['Item', 'MedicineSet1'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   PoisonSkillGem: {
     extends: 'Item',
@@ -554,7 +502,7 @@ export default {
       extra_flag2: ['SeenBalefulGem'],
     },
     inheritance: ['Item', 'PoisonSkillGem'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   PoisonSpear: {
     extends: 'Item',
@@ -565,7 +513,7 @@ export default {
       extra_flag2: ['a2bminusStartNewQuests'],
     },
     inheritance: ['Item', 'PoisonSpear'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   RibbonSpool: {
     extends: 'Item',
@@ -575,7 +523,7 @@ export default {
       extra_flag: ['SeenRibbonSpool'],
     },
     inheritance: ['Item', 'RibbonSpool'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   SewerKeys: {
     extends: 'Item',
@@ -584,7 +532,7 @@ export default {
       remove_flag: ['a3q11minusUsedSewerKeys'],
     },
     inheritance: ['Item', 'SewerKeys'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   SpikeSealKey: {
     extends: 'Item',
@@ -595,7 +543,7 @@ export default {
       extra_flag2: ['a1q9minusRoadBlocked'],
     },
     inheritance: ['Item', 'SpikeSealKey'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   SulphiteFlask: {
     extends: 'Item',
@@ -605,7 +553,7 @@ export default {
       extra_flag: ['SeenSulphite'],
     },
     inheritance: ['Item', 'SulphiteFlask'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   TolmanBracelet: {
     extends: 'Item',
@@ -615,7 +563,7 @@ export default {
       extra_flag: ['a3q2minusSeenTolmanItem'],
     },
     inheritance: ['Item', 'TolmanBracelet'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   TowerKey: {
     extends: 'Item',
@@ -625,7 +573,7 @@ export default {
       extra_flag: ['SeenTowerKey'],
     },
     inheritance: ['Item', 'TowerKey'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   'Book-a4q6': {
     extends: 'AbstractQuestItem',
@@ -643,7 +591,7 @@ export default {
     Usable: { action: ['skill_book'], use_type: ['Usable'] },
     Stack: { function_text: ['ItemFunctionPassivePointAnd2RespecPoints'] },
     inheritance: ['Item', 'AbstractQuestItem', 'Book-a4q6'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   DaressoGem: {
     extends: 'Item',
@@ -653,7 +601,7 @@ export default {
       extra_flag: ['a4q1minusGemQuestsReceived'],
     },
     inheritance: ['Item', 'DaressoGem'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   KaomGem: {
     extends: 'Item',
@@ -663,7 +611,7 @@ export default {
       extra_flag: ['a4q1minusGemQuestsReceived'],
     },
     inheritance: ['Item', 'KaomGem'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Organ1: {
     extends: 'Item',
@@ -673,7 +621,7 @@ export default {
       extra_flag: ['a4q5minusSeenOrgan'],
     },
     inheritance: ['Item', 'Organ1'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Organ2: {
     extends: 'Item',
@@ -683,7 +631,7 @@ export default {
       extra_flag: ['a4q5minusSeenOrgan'],
     },
     inheritance: ['Item', 'Organ2'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Organ3: {
     extends: 'Item',
@@ -693,7 +641,7 @@ export default {
       extra_flag: ['a4q5minusSeenOrgan'],
     },
     inheritance: ['Item', 'Organ3'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   RedBanner: {
     extends: 'Item',
@@ -703,7 +651,7 @@ export default {
       extra_flag: ['a4q2minusQuestReceived'],
     },
     inheritance: ['Item', 'RedBanner'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   CombinedAmulet: {
     extends: 'Item',
@@ -712,7 +660,7 @@ export default {
       grant_flag: ['a2q8minusHaveApex'],
     },
     inheritance: ['Item', 'CombinedAmulet'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   DexAmulet: {
     extends: 'Item',
@@ -722,7 +670,7 @@ export default {
       extra_flag: ['a2bminusKilledDexBandit'],
     },
     inheritance: ['Item', 'DexAmulet'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   IntAmulet: {
     extends: 'Item',
@@ -732,7 +680,7 @@ export default {
       extra_flag: ['a2bminusKilledIntBandit'],
     },
     inheritance: ['Item', 'IntAmulet'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   StrAmulet: {
     extends: 'Item',
@@ -742,7 +690,7 @@ export default {
       extra_flag: ['a2bminusKilledStrBandit'],
     },
     inheritance: ['Item', 'StrAmulet'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Bust1: {
     extends: 'Item',
@@ -752,7 +700,7 @@ export default {
       extra_flag: ['SeenBust1'],
     },
     inheritance: ['Item', 'Bust1'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Bust2: {
     extends: 'Item',
@@ -762,7 +710,7 @@ export default {
       extra_flag: ['SeenBust2'],
     },
     inheritance: ['Item', 'Bust2'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Bust3: {
     extends: 'Item',
@@ -772,7 +720,7 @@ export default {
       extra_flag: ['SeenBust3'],
     },
     inheritance: ['Item', 'Bust3'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Decanter: {
     extends: 'Item',
@@ -782,7 +730,7 @@ export default {
       extra_flag: ['SeenDecanter'],
     },
     inheritance: ['Item', 'Decanter'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Fruit: {
     extends: 'Item',
@@ -792,7 +740,7 @@ export default {
       extra_flag: ['SeenPlum'],
     },
     inheritance: ['Item', 'Fruit'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Glyph1: {
     extends: 'Item',
@@ -803,7 +751,7 @@ export default {
       extra_flag2: ['SeenShell1'],
     },
     inheritance: ['Item', 'Glyph1'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Glyph2: {
     extends: 'Item',
@@ -814,7 +762,7 @@ export default {
       extra_flag2: ['SeenShell2'],
     },
     inheritance: ['Item', 'Glyph2'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Glyph3: {
     extends: 'Item',
@@ -825,7 +773,7 @@ export default {
       extra_flag2: ['SeenShell3'],
     },
     inheritance: ['Item', 'Glyph3'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Page1: {
     extends: 'Item',
@@ -835,7 +783,7 @@ export default {
       remove_flag: ['a3q12minusDeliveredPages'],
     },
     inheritance: ['Item', 'Page1'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Page2: {
     extends: 'Item',
@@ -845,7 +793,7 @@ export default {
       remove_flag: ['a3q12minusDeliveredPages'],
     },
     inheritance: ['Item', 'Page2'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Page3: {
     extends: 'Item',
@@ -855,7 +803,7 @@ export default {
       remove_flag: ['a3q12minusDeliveredPages'],
     },
     inheritance: ['Item', 'Page3'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Page4: {
     extends: 'Item',
@@ -865,7 +813,7 @@ export default {
       remove_flag: ['a3q12minusDeliveredPages'],
     },
     inheritance: ['Item', 'Page4'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   BanditRespecAlira: {
     extends: 'AbstractQuestItem',
@@ -874,7 +822,7 @@ export default {
     Usable: { action: ['respec_alira'], use_type: ['Usable'] },
     Stack: { function_text: ['ItemFunctionBanditRespecAlira'] },
     inheritance: ['Item', 'AbstractQuestItem', 'BanditRespecAlira'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   BanditRespecEramir: {
     extends: 'AbstractQuestItem',
@@ -883,7 +831,7 @@ export default {
     Usable: { action: ['respec_eramir'], use_type: ['Usable'] },
     Stack: { function_text: ['ItemFunctionBanditRespecEramir'] },
     inheritance: ['Item', 'AbstractQuestItem', 'BanditRespecEramir'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   BanditRespecKraityn: {
     extends: 'AbstractQuestItem',
@@ -892,7 +840,7 @@ export default {
     Usable: { action: ['respec_kraityn'], use_type: ['Usable'] },
     Stack: { function_text: ['ItemFunctionBanditRespecKraityn'] },
     inheritance: ['Item', 'AbstractQuestItem', 'BanditRespecKraityn'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   BanditRespecOak: {
     extends: 'AbstractQuestItem',
@@ -901,7 +849,7 @@ export default {
     Usable: { action: ['respec_oak'], use_type: ['Usable'] },
     Stack: { function_text: ['ItemFunctionBanditRespecOak'] },
     inheritance: ['Item', 'AbstractQuestItem', 'BanditRespecOak'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   'Book-a1q6': {
     extends: 'AbstractQuestItem',
@@ -914,7 +862,7 @@ export default {
     Usable: { action: ['skill_book'], use_type: ['Usable'] },
     Stack: { function_text: ['ItemFunctionPassivePoint'] },
     inheritance: ['Item', 'AbstractQuestItem', 'Book-a1q6'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   'Book-a1q7': {
     extends: 'AbstractQuestItem',
@@ -929,7 +877,7 @@ export default {
     Usable: { action: ['skill_book'], use_type: ['Usable'] },
     Stack: { function_text: ['ItemFunctionPassivePoint'] },
     inheritance: ['Item', 'AbstractQuestItem', 'Book-a1q7'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   'Book-a1q8': {
     extends: 'AbstractQuestItem',
@@ -945,7 +893,7 @@ export default {
     Usable: { action: ['skill_book'], use_type: ['Usable'] },
     Stack: { function_text: ['ItemFunction2RespecPoints'] },
     inheritance: ['Item', 'AbstractQuestItem', 'Book-a1q8'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   'Book-a1q9': {
     extends: 'AbstractQuestItem',
@@ -958,7 +906,7 @@ export default {
     Usable: { action: ['skill_book'], use_type: ['Usable'] },
     Stack: { function_text: ['ItemFunctionPassivePoint'] },
     inheritance: ['Item', 'AbstractQuestItem', 'Book-a1q9'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   'Book-a2q5': {
     extends: 'AbstractQuestItem',
@@ -972,7 +920,7 @@ export default {
     Usable: { action: ['skill_book'], use_type: ['Usable'] },
     Stack: { function_text: ['ItemFunction2RespecPoints'] },
     inheritance: ['Item', 'AbstractQuestItem', 'Book-a2q5'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   'Book-a3q11v0': {
     extends: 'AbstractQuestItem',
@@ -985,7 +933,7 @@ export default {
     Usable: { action: ['skill_book'], use_type: ['Usable'] },
     Stack: { function_text: ['ItemFunctionPassivePoint'] },
     inheritance: ['Item', 'AbstractQuestItem', 'Book-a3q11v0'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   'Book-a3q11v1': {
     extends: 'AbstractQuestItem',
@@ -1001,7 +949,7 @@ export default {
     Usable: { action: ['skill_book'], use_type: ['Usable'] },
     Stack: { function_text: ['ItemFunctionPassivePointAndRespecPoint'] },
     inheritance: ['Item', 'AbstractQuestItem', 'Book-a3q11v1'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   'Book-a3q11v2': {
     extends: 'AbstractQuestItem',
@@ -1019,7 +967,7 @@ export default {
     Usable: { action: ['skill_book'], use_type: ['Usable'] },
     Stack: { function_text: ['ItemFunctionPassivePointAnd2RespecPoints'] },
     inheritance: ['Item', 'AbstractQuestItem', 'Book-a3q11v2'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   'Book-a3q9': {
     extends: 'AbstractQuestItem',
@@ -1032,7 +980,7 @@ export default {
     Usable: { action: ['skill_book'], use_type: ['Usable'] },
     Stack: { function_text: ['ItemFunction2PassivePoints'] },
     inheritance: ['Item', 'AbstractQuestItem', 'Book-a3q9'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Descent2_1: {
     extends: 'AbstractQuestItem',
@@ -1044,7 +992,7 @@ export default {
     Usable: { action: ['skill_book'], use_type: ['Usable'] },
     Stack: { function_text: ['ItemFunction2PassivePoints'] },
     inheritance: ['Item', 'AbstractQuestItem', 'Descent2_1'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Descent2_2: {
     extends: 'AbstractQuestItem',
@@ -1056,7 +1004,7 @@ export default {
     Usable: { action: ['skill_book'], use_type: ['Usable'] },
     Stack: { function_text: ['ItemFunction2PassivePoints'] },
     inheritance: ['Item', 'AbstractQuestItem', 'Descent2_2'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Descent2_3: {
     extends: 'AbstractQuestItem',
@@ -1068,7 +1016,7 @@ export default {
     Usable: { action: ['skill_book'], use_type: ['Usable'] },
     Stack: { function_text: ['ItemFunction2PassivePoints'] },
     inheritance: ['Item', 'AbstractQuestItem', 'Descent2_3'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   Descent2_4: {
     extends: 'AbstractQuestItem',
@@ -1080,7 +1028,7 @@ export default {
     Usable: { action: ['skill_book'], use_type: ['Usable'] },
     Stack: { function_text: ['ItemFunction2PassivePoints'] },
     inheritance: ['Item', 'AbstractQuestItem', 'Descent2_4'],
-    tags: [{ primary: 0, id: 'default' }],
+    tags: ['default'],
   },
   AbstractQuiver: {
     extends: 'Equipment',
@@ -1088,7 +1036,7 @@ export default {
     LocalStats: {},
     Mods: { inventory_type: ['Offhand'] },
     inheritance: ['Item', 'Equipment', 'AbstractQuiver'],
-    tags: [{ primary: 0, id: 'default' }, { primary: 21, id: 'quiver' }],
+    tags: ['default', 'quiver'],
   },
   AbstractRelic: {
     extends: 'Equipment',
@@ -1096,7 +1044,7 @@ export default {
     LocalStats: {},
     Mods: {},
     inheritance: ['Item', 'Equipment', 'AbstractRelic'],
-    tags: [{ primary: 0, id: 'default' }, { primary: 28, id: 'relic' }],
+    tags: ['default', 'relic'],
   },
   AbstractLargeRelic: {
     extends: 'AbstractRelic',
@@ -1104,7 +1052,7 @@ export default {
     LocalStats: {},
     Mods: { inventory_type: ['altar_large'] },
     inheritance: ['Item', 'Equipment', 'AbstractRelic', 'AbstractLargeRelic'],
-    tags: [{ primary: 0, id: 'default' }, { primary: 28, id: 'relic' }],
+    tags: ['default', 'relic'],
   },
   AbstractMediumRelic: {
     extends: 'AbstractRelic',
@@ -1112,7 +1060,7 @@ export default {
     LocalStats: {},
     Mods: { inventory_type: ['altar_medium'] },
     inheritance: ['Item', 'Equipment', 'AbstractRelic', 'AbstractMediumRelic'],
-    tags: [{ primary: 0, id: 'default' }, { primary: 28, id: 'relic' }],
+    tags: ['default', 'relic'],
   },
   AbstractSmallRelic: {
     extends: 'AbstractRelic',
@@ -1120,14 +1068,14 @@ export default {
     LocalStats: {},
     Mods: { inventory_type: ['altar_small'] },
     inheritance: ['Item', 'Equipment', 'AbstractRelic', 'AbstractSmallRelic'],
-    tags: [{ primary: 0, id: 'default' }, { primary: 28, id: 'relic' }],
+    tags: ['default', 'relic'],
   },
   AbstractRing: {
     extends: 'Equipment',
     Base: { x_size: ['1\r'], y_size: ['1\r'], tag: ['ring'] },
     Mods: { inventory_type: ['Ring'] },
     inheritance: ['Item', 'Equipment', 'AbstractRing'],
-    tags: [{ primary: 0, id: 'default' }, { primary: 2, id: 'ring' }],
+    tags: ['default', 'ring'],
   },
   AbstractSocketableRing: {
     extends: 'AbstractRing',
@@ -1147,7 +1095,7 @@ export default {
       'AbstractRing',
       'AbstractSocketableRing',
     ],
-    tags: [{ primary: 0, id: 'default' }, { primary: 2, id: 'ring' }],
+    tags: ['default', 'ring'],
   },
   Ring15: {
     extends: 'AbstractSocketableRing',
@@ -1158,7 +1106,7 @@ export default {
       'AbstractSocketableRing',
       'Ring15',
     ],
-    tags: [{ primary: 0, id: 'default' }, { primary: 2, id: 'ring' }],
+    tags: ['default', 'ring'],
   },
   AbstractWeapon: {
     extends: 'Equipment',
@@ -1183,7 +1131,7 @@ export default {
       socket_info: ['1:1:50 2:1:120 3:2:100 4:9999:30 5:9999:20 6:9999:5'],
     },
     inheritance: ['Item', 'Equipment', 'AbstractWeapon'],
-    tags: [{ primary: 0, id: 'default' }, { primary: 8, id: 'weapon' }],
+    tags: ['default', 'weapon'],
   },
   AbstractOneHandWeapon: {
     extends: 'AbstractWeapon',
@@ -1194,11 +1142,7 @@ export default {
       'AbstractWeapon',
       'AbstractOneHandWeapon',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 8, id: 'weapon' },
-      { primary: 23, id: 'onehand' },
-    ],
+    tags: ['default', 'weapon', 'onehand'],
   },
   AbstractClaw: {
     extends: 'AbstractOneHandWeapon',
@@ -1211,13 +1155,7 @@ export default {
       'AbstractOneHandWeapon',
       'AbstractClaw',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 8, id: 'weapon' },
-      { primary: 23, id: 'onehand' },
-      { primary: 14, id: 'claw' },
-      { primary: 81, id: 'one_hand_weapon' },
-    ],
+    tags: ['default', 'weapon', 'onehand', 'claw', 'one_hand_weapon'],
   },
   AbstractDagger: {
     extends: 'AbstractOneHandWeapon',
@@ -1230,13 +1168,7 @@ export default {
       'AbstractOneHandWeapon',
       'AbstractDagger',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 8, id: 'weapon' },
-      { primary: 23, id: 'onehand' },
-      { primary: 13, id: 'dagger' },
-      { primary: 81, id: 'one_hand_weapon' },
-    ],
+    tags: ['default', 'weapon', 'onehand', 'dagger', 'one_hand_weapon'],
   },
   AbstractOneHandAxe: {
     extends: 'AbstractOneHandWeapon',
@@ -1249,13 +1181,7 @@ export default {
       'AbstractOneHandWeapon',
       'AbstractOneHandAxe',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 8, id: 'weapon' },
-      { primary: 23, id: 'onehand' },
-      { primary: 15, id: 'axe' },
-      { primary: 81, id: 'one_hand_weapon' },
-    ],
+    tags: ['default', 'weapon', 'onehand', 'axe', 'one_hand_weapon'],
   },
   AbstractOneHandMace: {
     extends: 'AbstractOneHandWeapon',
@@ -1268,13 +1194,7 @@ export default {
       'AbstractOneHandWeapon',
       'AbstractOneHandMace',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 8, id: 'weapon' },
-      { primary: 23, id: 'onehand' },
-      { primary: 11, id: 'mace' },
-      { primary: 81, id: 'one_hand_weapon' },
-    ],
+    tags: ['default', 'weapon', 'onehand', 'mace', 'one_hand_weapon'],
   },
   AbstractSceptre: {
     extends: 'AbstractOneHandWeapon',
@@ -1287,13 +1207,7 @@ export default {
       'AbstractOneHandWeapon',
       'AbstractSceptre',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 8, id: 'weapon' },
-      { primary: 23, id: 'onehand' },
-      { primary: 37, id: 'sceptre' },
-      { primary: 81, id: 'one_hand_weapon' },
-    ],
+    tags: ['default', 'weapon', 'onehand', 'sceptre', 'one_hand_weapon'],
   },
   AbstractOneHandSword: {
     extends: 'AbstractOneHandWeapon',
@@ -1306,13 +1220,7 @@ export default {
       'AbstractOneHandWeapon',
       'AbstractOneHandSword',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 8, id: 'weapon' },
-      { primary: 23, id: 'onehand' },
-      { primary: 12, id: 'sword' },
-      { primary: 81, id: 'one_hand_weapon' },
-    ],
+    tags: ['default', 'weapon', 'onehand', 'sword', 'one_hand_weapon'],
   },
   AbstractOneHandSwordThrusting: {
     extends: 'AbstractOneHandSword',
@@ -1325,13 +1233,7 @@ export default {
       'AbstractOneHandSword',
       'AbstractOneHandSwordThrusting',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 8, id: 'weapon' },
-      { primary: 23, id: 'onehand' },
-      { primary: 12, id: 'sword' },
-      { primary: 81, id: 'one_hand_weapon' },
-    ],
+    tags: ['default', 'weapon', 'onehand', 'sword', 'one_hand_weapon'],
   },
   AbstractWand: {
     extends: 'AbstractOneHandWeapon',
@@ -1344,14 +1246,7 @@ export default {
       'AbstractOneHandWeapon',
       'AbstractWand',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 8, id: 'weapon' },
-      { primary: 23, id: 'onehand' },
-      { primary: 9, id: 'wand' },
-      { primary: 32, id: 'ranged' },
-      { primary: 81, id: 'one_hand_weapon' },
-    ],
+    tags: ['default', 'weapon', 'onehand', 'wand', 'ranged', 'one_hand_weapon'],
   },
   AbstractTwoHandWeapon: {
     extends: 'AbstractWeapon',
@@ -1365,11 +1260,7 @@ export default {
       'AbstractWeapon',
       'AbstractTwoHandWeapon',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 8, id: 'weapon' },
-      { primary: 24, id: 'twohand' },
-    ],
+    tags: ['default', 'weapon', 'twohand'],
   },
   AbstractBow: {
     extends: 'AbstractTwoHandWeapon',
@@ -1382,14 +1273,7 @@ export default {
       'AbstractTwoHandWeapon',
       'AbstractBow',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 8, id: 'weapon' },
-      { primary: 24, id: 'twohand' },
-      { primary: 5, id: 'bow' },
-      { primary: 32, id: 'ranged' },
-      { primary: 82, id: 'two_hand_weapon' },
-    ],
+    tags: ['default', 'weapon', 'twohand', 'bow', 'ranged', 'two_hand_weapon'],
   },
   AbstractFishingRod: {
     extends: 'AbstractTwoHandWeapon',
@@ -1405,11 +1289,7 @@ export default {
       'AbstractTwoHandWeapon',
       'AbstractFishingRod',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 24, id: 'twohand' },
-      { primary: 80, id: 'fishing_rod' },
-    ],
+    tags: ['default', 'twohand', 'fishing_rod'],
   },
   AbstractStaff: {
     extends: 'AbstractTwoHandWeapon',
@@ -1422,13 +1302,7 @@ export default {
       'AbstractTwoHandWeapon',
       'AbstractStaff',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 8, id: 'weapon' },
-      { primary: 24, id: 'twohand' },
-      { primary: 10, id: 'staff' },
-      { primary: 82, id: 'two_hand_weapon' },
-    ],
+    tags: ['default', 'weapon', 'twohand', 'staff', 'two_hand_weapon'],
   },
   Staff1: {
     extends: 'AbstractStaff',
@@ -1443,13 +1317,7 @@ export default {
       'AbstractStaff',
       'Staff1',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 8, id: 'weapon' },
-      { primary: 24, id: 'twohand' },
-      { primary: 10, id: 'staff' },
-      { primary: 82, id: 'two_hand_weapon' },
-    ],
+    tags: ['default', 'weapon', 'twohand', 'staff', 'two_hand_weapon'],
   },
   AbstractTwoHandAxe: {
     extends: 'AbstractTwoHandWeapon',
@@ -1462,13 +1330,7 @@ export default {
       'AbstractTwoHandWeapon',
       'AbstractTwoHandAxe',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 8, id: 'weapon' },
-      { primary: 24, id: 'twohand' },
-      { primary: 15, id: 'axe' },
-      { primary: 82, id: 'two_hand_weapon' },
-    ],
+    tags: ['default', 'weapon', 'twohand', 'axe', 'two_hand_weapon'],
   },
   AbstractTwoHandMace: {
     extends: 'AbstractTwoHandWeapon',
@@ -1481,13 +1343,7 @@ export default {
       'AbstractTwoHandWeapon',
       'AbstractTwoHandMace',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 8, id: 'weapon' },
-      { primary: 24, id: 'twohand' },
-      { primary: 11, id: 'mace' },
-      { primary: 82, id: 'two_hand_weapon' },
-    ],
+    tags: ['default', 'weapon', 'twohand', 'mace', 'two_hand_weapon'],
   },
   AbstractTwoHandSword: {
     extends: 'AbstractTwoHandWeapon',
@@ -1500,13 +1356,7 @@ export default {
       'AbstractTwoHandWeapon',
       'AbstractTwoHandSword',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 8, id: 'weapon' },
-      { primary: 24, id: 'twohand' },
-      { primary: 12, id: 'sword' },
-      { primary: 82, id: 'two_hand_weapon' },
-    ],
+    tags: ['default', 'weapon', 'twohand', 'sword', 'two_hand_weapon'],
   },
   TwoHandSword1: {
     extends: 'AbstractTwoHandSword',
@@ -1521,12 +1371,6 @@ export default {
       'AbstractTwoHandSword',
       'TwoHandSword1',
     ],
-    tags: [
-      { primary: 0, id: 'default' },
-      { primary: 8, id: 'weapon' },
-      { primary: 24, id: 'twohand' },
-      { primary: 12, id: 'sword' },
-      { primary: 82, id: 'two_hand_weapon' },
-    ],
+    tags: ['default', 'weapon', 'twohand', 'sword', 'two_hand_weapon'],
   },
 } as MetaDataMap;

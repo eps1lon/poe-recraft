@@ -61,11 +61,11 @@ export default class ItemAffixes extends ImmutableContainer<Mod, Builder> {
   }
 
   public lockedPrefixes(): boolean {
-    return this.indexOfModWithPrimary(META_MODS.LOCKED_PREFIXES) !== -1;
+    return this.indexOfModWithId(META_MODS.LOCKED_PREFIXES) !== -1;
   }
 
   public lockedSuffixes(): boolean {
-    return this.indexOfModWithPrimary(META_MODS.LOCKED_SUFFIXES) !== -1;
+    return this.indexOfModWithId(META_MODS.LOCKED_SUFFIXES) !== -1;
   }
 
   public getPrefixes(): Mod[] {

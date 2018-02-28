@@ -1,11 +1,11 @@
-import { TagProps } from '../schema';
+import { Tag } from '../schema';
 
 import meta_datas from './meta_data';
 
 export interface MetaDataProps {
   extends: string;
   inheritance: string[];
-  tags: TagProps[];
+  tags: Tag[];
   // specific fascade
   AttributeRequirements?: {
     dexterity_requirement: string[];

@@ -1,5 +1,5 @@
 import Mod from '../mods/Mod';
-import { AtlasNodeProps, TagProps } from '../schema';
+import { AtlasNodeProps, Tag } from '../schema';
 
 import ImmutableContainer from './ImmutableContainer';
 
@@ -12,10 +12,6 @@ export interface Builder {
 export type HumanId = string;
 
 export default class AtlasNode extends ImmutableContainer<Mod, Builder> {
-  public static humanId(props: AtlasNodeProps): HumanId {
-    return props.world_area.id.replace(/MapAtlas/, '');
-  }
-
   public static build(props: AtlasNodeProps) {
     return new AtlasNode([], props);
   }
@@ -102,13 +98,13 @@ export default class AtlasNode extends ImmutableContainer<Mod, Builder> {
     );
   }
 
-  public getTags(): TagProps[] {
+  public getTags(): Tag[] {
     return super
       .getTags()
       .concat(this.props.world_area.tags)
       .filter(
         // unique by id
-        (tag, i, tags) => tags.findIndex(other => other.id === tag.id) === i,
+        (tag, i, tags) => tags.findIndex(other => other === tag) === i,
       );
   }
 
@@ -147,9 +143,5 @@ export default class AtlasNode extends ImmutableContainer<Mod, Builder> {
     return this.affectingMods(atlas).filter(
       mod => mod.spawnweightFor(this) <= 0,
     );
-  }
-
-  public humanId(): HumanId {
-    return AtlasNode.humanId(this.props);
   }
 }

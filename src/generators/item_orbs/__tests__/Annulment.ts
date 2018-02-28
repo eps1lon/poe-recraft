@@ -69,7 +69,7 @@ it('should consider meta mods', () => {
   const res = mods.fromId('FireResist1');
   const strength = mods.fromId('Strength1');
 
-  const locked_prefixes = mods.fromPrimary(META_MODS.LOCKED_PREFIXES);
+  const locked_prefixes = mods.fromId(META_MODS.LOCKED_PREFIXES);
 
   const crafted = greaves.rarity
     .set('rare')

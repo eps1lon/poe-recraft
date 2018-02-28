@@ -94,7 +94,7 @@ export default class ItemSockets implements Sockets, Component<Item, Builder> {
 
     if (stats.local_has_X_sockets != null) {
       return stats.local_has_X_sockets.values.max;
-    } else if (tags.find(({ id }) => id === 'small_staff') !== undefined) {
+    } else if (tags.find(id => id === 'small_staff') !== undefined) {
       return 3;
     }
 

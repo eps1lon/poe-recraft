@@ -79,7 +79,7 @@ export default abstract class Generator<
     }
 
     const has_leo_meta_mod =
-      container.indexOfModWithPrimary(META_MODS.LLD_MOD) !== -1;
+      container.indexOfModWithId(META_MODS.LLD_MOD) !== -1;
 
     if (mod.requiredLevel() > 28 && has_leo_meta_mod) {
       applicable_flags.above_lld_level = true;

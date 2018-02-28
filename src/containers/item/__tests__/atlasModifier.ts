@@ -1,9 +1,8 @@
 import atlasModifier, {
-  Tag,
+  AtlasModifierTag,
   AtlasModifier,
   elderTag,
   shaperTag,
-  tagProps,
   tagsWithModifier,
 } from '../atlasModifier';
 import MetaData from '../../../util/MetaData';
@@ -11,91 +10,86 @@ import MetaData from '../../../util/MetaData';
 it('extracts the atlas modifier from tags', () => {
   expect(atlasModifier({ tags: [] })).toEqual(AtlasModifier.NONE);
 
-  expect(
-    atlasModifier({ tags: [{ id: 'shaper_item', primary: 246 }] }),
-  ).toEqual(AtlasModifier.SHAPER);
-
-  expect(atlasModifier({ tags: [{ id: 'elder_item', primary: 247 }] })).toEqual(
-    AtlasModifier.ELDER,
+  expect(atlasModifier({ tags: ['shaper_item'] })).toEqual(
+    AtlasModifier.SHAPER,
   );
+
+  expect(atlasModifier({ tags: ['elder_item'] })).toEqual(AtlasModifier.ELDER);
 });
 
 it('throws if both are set', () => {
   expect(() =>
     atlasModifier({
-      tags: [
-        { id: 'elder_item', primary: 247 },
-        { id: 'shaper_item', primary: 246 },
-      ],
+      tags: ['elder_item', 'shaper_item'],
     }),
   ).toThrow('Item can only be shaper or elder item not both.');
 });
 
 it('determines item specific tags from meta data', () => {
   expect(elderTag(MetaData.build('AbstractAmulet'))).toEqual(
-    tagProps(Tag.amulet_elder),
+    AtlasModifierTag.amulet_elder,
   );
 
   expect(shaperTag(MetaData.build('AbstractAmulet'))).toEqual(
-    tagProps(Tag.amulet_shaper),
+    AtlasModifierTag.amulet_shaper,
   );
 
   expect(elderTag(MetaData.build('AbstractTwoHandAxe'))).toEqual(
-    tagProps(Tag['2h_axe_elder']),
+    AtlasModifierTag['2h_axe_elder'],
   );
   expect(elderTag(MetaData.build('AbstractTwoHandMace'))).toEqual(
-    tagProps(Tag['2h_mace_elder']),
+    AtlasModifierTag['2h_mace_elder'],
   );
   expect(elderTag(MetaData.build('AbstractTwoHandSword'))).toEqual(
-    tagProps(Tag['2h_sword_elder']),
+    AtlasModifierTag['2h_sword_elder'],
   );
   expect(elderTag(MetaData.build('AbstractOneHandAxe'))).toEqual(
-    tagProps(Tag.axe_elder),
+    AtlasModifierTag.axe_elder,
   );
   expect(elderTag(MetaData.build('AbstractBelt'))).toEqual(
-    tagProps(Tag.belt_elder),
+    AtlasModifierTag.belt_elder,
   );
   expect(elderTag(MetaData.build('AbstractBodyArmour'))).toEqual(
-    tagProps(Tag.body_armour_elder),
+    AtlasModifierTag.body_armour_elder,
   );
   expect(elderTag(MetaData.build('AbstractBoots'))).toEqual(
-    tagProps(Tag.boots_elder),
+    AtlasModifierTag.boots_elder,
   );
   expect(elderTag(MetaData.build('AbstractBow'))).toEqual(
-    tagProps(Tag.bow_elder),
+    AtlasModifierTag.bow_elder,
   );
   expect(elderTag(MetaData.build('AbstractClaw'))).toEqual(
-    tagProps(Tag.claw_elder),
+    AtlasModifierTag.claw_elder,
   );
   expect(elderTag(MetaData.build('AbstractDagger'))).toEqual(
-    tagProps(Tag.dagger_elder),
+    AtlasModifierTag.dagger_elder,
   );
   expect(elderTag(MetaData.build('AbstractGloves'))).toEqual(
-    tagProps(Tag.gloves_elder),
+    AtlasModifierTag.gloves_elder,
   );
   expect(elderTag(MetaData.build('AbstractHelmet'))).toEqual(
-    tagProps(Tag.helmet_elder),
+    AtlasModifierTag.helmet_elder,
   );
   expect(elderTag(MetaData.build('AbstractOneHandMace'))).toEqual(
-    tagProps(Tag.mace_elder),
+    AtlasModifierTag.mace_elder,
   );
   expect(elderTag(MetaData.build('AbstractQuiver'))).toEqual(
-    tagProps(Tag.quiver_elder),
+    AtlasModifierTag.quiver_elder,
   );
   expect(elderTag(MetaData.build('AbstractRing'))).toEqual(
-    tagProps(Tag.ring_elder),
+    AtlasModifierTag.ring_elder,
   );
   expect(elderTag(MetaData.build('AbstractShield'))).toEqual(
-    tagProps(Tag.shield_elder),
+    AtlasModifierTag.shield_elder,
   );
   expect(elderTag(MetaData.build('AbstractStaff'))).toEqual(
-    tagProps(Tag.staff_elder),
+    AtlasModifierTag.staff_elder,
   );
   expect(elderTag(MetaData.build('AbstractOneHandSword'))).toEqual(
-    tagProps(Tag.sword_elder),
+    AtlasModifierTag.sword_elder,
   );
   expect(elderTag(MetaData.build('AbstractWand'))).toEqual(
-    tagProps(Tag.wand_elder),
+    AtlasModifierTag.wand_elder,
   );
 
   expect(() => elderTag(MetaData.build('AbstractMap'))).toThrow(
@@ -107,14 +101,8 @@ it('determines item specific tags from meta data', () => {
 });
 
 it('can modify existing tags', () => {
-  const default_tag = {
-    primary: 0,
-    id: 'default',
-  };
-  const shield_tag = {
-    primary: 1,
-    id: 'shield',
-  };
+  const default_tag = 'default';
+  const shield_tag = 'shield';
   const shield_meta = MetaData.build('AbstractShield');
 
   expect(
@@ -131,8 +119,8 @@ it('can modify existing tags', () => {
         tags: [
           default_tag,
           shield_tag,
-          tagProps(Tag.elder_item),
-          tagProps(Tag.shield_elder),
+          AtlasModifierTag[AtlasModifierTag.elder_item],
+          AtlasModifierTag[AtlasModifierTag.shield_elder],
         ],
       },
       shield_meta,
@@ -146,19 +134,14 @@ it('can modify existing tags', () => {
         tags: [
           default_tag,
           shield_tag,
-          tagProps(Tag.elder_item),
-          tagProps(Tag.shield_elder),
+          AtlasModifierTag[AtlasModifierTag.elder_item],
+          AtlasModifierTag[AtlasModifierTag.shield_elder],
         ],
       },
       shield_meta,
       AtlasModifier.ELDER,
     ),
-  ).toEqual([
-    default_tag,
-    shield_tag,
-    tagProps(Tag.elder_item),
-    tagProps(Tag.shield_elder),
-  ]);
+  ).toEqual([default_tag, shield_tag, 'elder_item', 'shield_elder']);
 
   expect(
     tagsWithModifier(
@@ -166,8 +149,8 @@ it('can modify existing tags', () => {
         tags: [
           default_tag,
           shield_tag,
-          tagProps(Tag.elder_item),
-          tagProps(Tag.shield_elder),
+          AtlasModifierTag[AtlasModifierTag.elder_item],
+          AtlasModifierTag[AtlasModifierTag.shield_elder],
         ],
       },
       shield_meta,
@@ -176,7 +159,7 @@ it('can modify existing tags', () => {
   ).toEqual([
     default_tag,
     shield_tag,
-    tagProps(Tag.shaper_item),
-    tagProps(Tag.shield_shaper),
+    AtlasModifierTag[AtlasModifierTag.shaper_item],
+    AtlasModifierTag[AtlasModifierTag.shield_shaper],
   ]);
 });

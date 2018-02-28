@@ -1,4 +1,4 @@
-import { createTables } from '../../__fixtures__/util';
+import { createTables, fromWorldAreaId } from '../../__fixtures__/util';
 import { AtlasNodeProps } from '../../schema';
 
 import AtlasNode from '../AtlasNode';
@@ -7,19 +7,19 @@ const { atlas: atlas_nodes, mods } = createTables();
 
 let atlas: AtlasNode[] = [];
 
-const getNode = (primary: number) => {
+const getNode = (id: string) => {
   const node = atlas.find(
-    (other: AtlasNode) => other.props.primary === primary,
+    (other: AtlasNode) => other.props.world_area.id === id,
   );
 
   if (node === undefined) {
-    throw new Error(`node ${primary} not found`);
+    throw new Error(`node ${id} not found`);
   }
 
   return node;
 };
-const getNodeIndex = (primary: number) =>
-  atlas.findIndex((node: AtlasNode) => node.props.primary === primary);
+const getNodeIndex = (id: string) =>
+  atlas.findIndex((node: AtlasNode) => node.props.world_area.id === id);
 const ids = ({ props: { world_area: { id } } }: AtlasNode) => id;
 
 beforeEach(() => {
@@ -29,61 +29,57 @@ beforeEach(() => {
 });
 
 it('should build', () => {
-  expect(atlas_nodes.fromPrimary(26)).toBeInstanceOf(AtlasNode);
+  expect(fromWorldAreaId('MapWorldsDunes', atlas_nodes)).toBeInstanceOf(
+    AtlasNode,
+  );
 });
 
 it('should know sextant ranges', () => {
-  const dunes = atlas_nodes.fromPrimary(26);
-  const oasis = atlas_nodes.fromPrimary(7);
-  const strand = atlas_nodes.fromPrimary(37);
+  const dunes = fromWorldAreaId('MapWorldsDunes', atlas_nodes);
+  const far_map = fromWorldAreaId('MapWorldsThicket', atlas_nodes);
+  const close_map = fromWorldAreaId('MapWorldsPrecinct', atlas_nodes);
 
-  expect(dunes.isInSextantRange(strand)).toBe(true);
-  expect(strand.isInSextantRange(dunes)).toBe(true);
+  expect(dunes.isInSextantRange(close_map)).toBe(true);
+  expect(close_map.isInSextantRange(dunes)).toBe(true);
 
-  expect(dunes.isInSextantRange(oasis)).toBe(false);
-  expect(oasis.isInSextantRange(dunes)).toBe(false);
+  expect(dunes.isInSextantRange(far_map)).toBe(false);
+  expect(far_map.isInSextantRange(dunes)).toBe(false);
 });
 
 it('should collect maps in range', () => {
-  const arid = atlas_nodes.fromPrimary(8);
-  const dunes = atlas_nodes.fromPrimary(26);
-  const oasis = atlas_nodes.fromPrimary(7);
-  const peninsula = atlas_nodes.fromPrimary(25);
-  const strand = atlas_nodes.fromPrimary(37);
-  const villa = atlas_nodes.fromPrimary(22);
+  const dunes = fromWorldAreaId('MapWorldsDunes', atlas_nodes);
+  const dunes_unique = fromWorldAreaId('MapWorldsDunesUnique', atlas_nodes);
+  const precinct = fromWorldAreaId('MapWorldsPrecinct', atlas_nodes);
+  const peninsula = fromWorldAreaId('MapWorldsPeninsula', atlas_nodes);
+  const strand = fromWorldAreaId('MapWorldsStrand', atlas_nodes);
+  const villa = fromWorldAreaId('MapWorldsVilla', atlas_nodes);
 
   const affected = dunes.inSextantRange([
-    arid,
     dunes,
-    oasis,
+    dunes_unique,
+    precinct,
     peninsula,
     strand,
     villa,
   ]);
 
-  expect(affected).toHaveLength(4);
-  expect(affected).toEqual([dunes, arid, strand, villa]);
+  expect(affected).toHaveLength(3);
+  expect(affected).toEqual([dunes, dunes_unique, precinct]);
 });
 
 it('should be able to incrementally get maps in range', () => {
-  const dunes = getNode(26);
+  const dunes = getNode('MapWorldsDunes');
 
   expect(dunes).toBeInstanceOf(AtlasNode);
 
-  expect(dunes.inSextantRange(atlas, 0).map(ids)).toEqual(['MapAtlasDunes']);
+  expect(dunes.inSextantRange(atlas, 0).map(ids)).toEqual(['MapWorldsDunes']);
 
   expect(
     dunes
       .inSextantRange(atlas, 1)
       .map(ids)
       .sort(),
-  ).toEqual([
-    'MapAtlasAridLake',
-    'MapAtlasDunes',
-    'MapAtlasStrand',
-    'MapAtlasStrandUnique',
-    'MapAtlasVilla',
-  ]);
+  ).toEqual(['MapWorldsDunes', 'MapWorldsDunesUnique', 'MapWorldsPrecinct']);
 
   expect(
     dunes
@@ -91,27 +87,20 @@ it('should be able to incrementally get maps in range', () => {
       .map(ids)
       .sort(),
   ).toEqual([
-    'MapAtlasAridLake',
-    'MapAtlasCastleRuins',
-    'MapAtlasDryPeninsula',
-    'MapAtlasDunes',
-    'MapAtlasDungeon',
-    'MapAtlasGrotto',
-    'MapAtlasOasis',
-    'MapAtlasStrand',
-    'MapAtlasStrandUnique',
-    'MapAtlasVilla',
-    'MapAtlasWharf',
+    'MapWorldsDunes',
+    'MapWorldsDunesUnique',
+    'MapWorldsPrecinct',
+    'MapWorldsPromenade',
   ]);
 });
 
 it('should consider its area level', () => {
-  expect(atlas_nodes.fromPrimary(26).level()).toBe(72);
+  expect(fromWorldAreaId('MapWorldsDunes', atlas_nodes).level()).toBe(74);
 });
 
 it('should know by which mods its affected', () => {
-  const strand_index = getNodeIndex(37);
-  const waka_index = getNodeIndex(38);
+  const strand_index = getNodeIndex('MapWorldsStrand');
+  const waka_index = getNodeIndex('MapWorldsStrandUnique');
 
   const master_mod = mods.fromId('MapAtlasContainsMaster');
   const invasion_mod = mods.fromId('MapAtlasContainsAdditionalRandomBoss');
@@ -130,13 +119,4 @@ it('should know by which mods its affected', () => {
   expect(atlas[waka_index].affectingMods(atlas)).toContain(invasion_mod);
   expect(atlas[waka_index].activeMods(atlas)).toContain(invasion_mod);
   expect(atlas[waka_index].inactiveMods(atlas)).not.toContain(invasion_mod);
-});
-
-it('has a human readable identifier', () => {
-  expect(atlas_nodes.fromPrimary(8).humanId()).toBe('AridLake');
-  expect(atlas_nodes.fromPrimary(26).humanId()).toBe('Dunes');
-  expect(atlas_nodes.fromPrimary(7).humanId()).toBe('Oasis');
-  expect(atlas_nodes.fromPrimary(25).humanId()).toBe('DryPeninsula');
-  expect(atlas_nodes.fromPrimary(37).humanId()).toBe('Strand');
-  expect(atlas_nodes.fromPrimary(22).humanId()).toBe('Villa');
 });

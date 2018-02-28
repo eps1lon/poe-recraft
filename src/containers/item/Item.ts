@@ -2,7 +2,7 @@ import { BaseError } from 'make-error';
 
 import Container from '../Container';
 import { Mod } from '../../mods';
-import { TagProps, BaseItemTypeProps } from '../../schema';
+import { Tag, BaseItemTypeProps } from '../../schema';
 import MetaData from '../../util/MetaData';
 import Stat from '../../calculator/Stat';
 
@@ -179,7 +179,7 @@ export default class Item implements Container<Mod> {
   /**
    * returns tags of item + tags from mods
    */
-  public getTags(): TagProps[] {
+  public getTags(): Tag[] {
     return [
       ...this.meta_data.props.tags,
       ...this.baseitem.tags,
@@ -252,9 +252,9 @@ export default class Item implements Container<Mod> {
     return this.affixes.hasRoomFor(other) || this.implicits.hasRoomFor(other);
   }
 
-  public indexOfModWithPrimary(primary: number): number {
-    const affix_index = this.affixes.indexOfModWithPrimary(primary);
-    const implicit_index = this.implicits.indexOfModWithPrimary(primary);
+  public indexOfModWithId(id: string): number {
+    const affix_index = this.affixes.indexOfModWithId(id);
+    const implicit_index = this.implicits.indexOfModWithId(id);
 
     if (affix_index !== -1) {
       return affix_index;

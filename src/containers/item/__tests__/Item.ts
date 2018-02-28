@@ -1,10 +1,9 @@
 import { Mod } from '../../../mods/';
-import { TagProps } from '../../../schema';
+import { Tag } from '../../../schema';
 import { createTables } from '../../../__fixtures__/util';
 import Item, { UnacceptedMod } from '../Item';
 import Stat from '../../../calculator/Stat';
-import { tagProps, Tag } from '../atlasModifier';
-import { BaseItemTypeProps } from '../../../schema';
+import { AtlasModifierTag } from '../atlasModifier';
 
 const tables = createTables();
 
@@ -127,7 +126,7 @@ it('changes referentiel equality', () => {
 it('should consider the tags of meta data, baseitem and its mods', () => {
   const item = items.fromName('Iron Greaves').rarity.set('rare');
 
-  const compareableTags = (tags: TagProps[]) => tags.map(({ id }) => id).sort();
+  const compareableTags = (tags: Tag[]) => tags.sort();
 
   expect(compareableTags(item.getTags())).toEqual([
     'armour',
@@ -257,7 +256,7 @@ it('should have any if it has any mods', () => {
 it('throws if it cant find its meta data', () => {
   expect(() => {
     const greave_props = {
-      ...items.find(p => p.primary === 1907) as BaseItemTypeProps,
+      ...items.find(p => p.name === 'Iron Greaves')!,
       inherits_from: 'Unknown',
     };
 
@@ -291,8 +290,8 @@ describe('elder/shaper items', () => {
         ...greaves.baseitem,
         tags: [
           ...greaves.baseitem.tags,
-          tagProps(Tag.elder_item),
-          tagProps(Tag.shaper_item),
+          AtlasModifierTag[AtlasModifierTag.elder_item],
+          AtlasModifierTag[AtlasModifierTag.shaper_item],
         ],
       }),
     ).toThrow('Item can only be shaper or elder item not both.');
