@@ -7,31 +7,31 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.7.0...HEAD)
 
 ### Added
-- generated API docs https://eps1lon.github.io/poe-mods (#26)
+- generated API docs https://eps1lon.github.io/poe-mods ([#26](https://github.com/eps1lon/poe-mods/pull/26))
 - usable items and mods as json that work with this package. Note that this
   data is extensive and contains entities that have no meaning in this package.
   It is adviced to filter this data for your own usage if you use it in a online
-  propduction environment. (#33)
-- Data for equipment, prefix and suffix only was included. (c70b406969e23ae68f77fd170a6c207975ea3a1b)
+  propduction environment. ([#33](https://github.com/eps1lon/poe-mods/pull/33))
+- Data for equipment, prefix and suffix only was included. ([c70b406969e23ae68f77fd170a6c207975ea3a1b](https://github.com/eps1lon/poe-mods/commit/c70b406969e23ae68f77fd170a6c207975ea3a1b))
 
 ### Changed
 - props schema now uses string ids as primary whenever possible. The primaries
   originated from the row number and changed between patches which needlessly 
-  broke dependent packages. (#32)
-- Updated meta_datas (AbstractJewels and probably other important ones were missing) (#34)
+  broke dependent packages. ([#32](https://github.com/eps1lon/poe-mods/pull/32))
+- Updated meta_datas (AbstractJewels and probably other important ones were missing) ([#34](https://github.com/eps1lon/poe-mods/pull/34))
 
 ### Removed
 - `AtlasNode#humanId()` was a bad idea after all. We just use the actual id
-  with no mention about wheather this is human readable or not. (#32)
+  with no mention about wheather this is human readable or not. ([#32](https://github.com/eps1lon/poe-mods/pull/32))
 
 ## [1.7.0](https://github.com/eps1lon/poe-mods/compare/v1.6.0...v1.7.0) (2018-02-10)
 ### Added
-- shaper and elder items (and therefore ability to check for those mods) (PR [#23]) 
-- `PropsTable#fromId`, `PropsTable#fromName` and `PropsTable#fromProp` (PR [#22])
+- shaper and elder items (and therefore ability to check for those mods) ([#23](https://github.com/eps1lon/poe-mods/pull/23)) 
+- `PropsTable#fromId`, `PropsTable#fromName` and `PropsTable#fromProp` ([#22](https://github.com/eps1lon/poe-mods/pull/22))
 
 ## [1.6.0](https://github.com/eps1lon/poe-mods/compare/v1.5.3...v1.6.0) (2018-02-10)
 ### Changed
-- Moved from Flow to Typescript (PR [#18])
+- Moved from Flow to Typescript (PR [#18](https://github.com/eps1lon/poe-mods/pull/18))
 
 ## [1.5.3](https://github.com/eps1lon/poe-mods/compare/v1.5.2...v1.5.3) (2017-10-30)
 ### Changed
