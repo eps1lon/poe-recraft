@@ -11,10 +11,10 @@ import Stats from '../poe/Stats';
 
 export type Props = {
   className?: string;
-  all_details: GeneratorDetails[];
-  options: {
-    exclude?: string[];
-  };
+  details: GeneratorDetails[];
+  options?: Partial<{
+    exclude: string[];
+  }>;
   onAddMod: (mod: Mod) => any;
 };
 
@@ -22,7 +22,12 @@ const defaultSorted = [{ id: 'ilvl', desc: true }];
 
 // TODO spawnchance, flags, mod#t
 const UngroupedMods: SFC<Props> = props => {
-  const { className = '', all_details, options, onAddMod } = props;
+  const {
+    className = '',
+    details: all_details,
+    options = {},
+    onAddMod
+  } = props;
   const { exclude = [] } = options;
 
   const columns = [

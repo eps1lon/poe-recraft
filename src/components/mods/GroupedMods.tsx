@@ -65,8 +65,11 @@ const columns = [
 
 const defaultSorted = ['correct_group'];
 
-const SubComponent: SFC<{ row: GeneratorDetails[] }> = ({ row: details }) => {
-  return <UngroupedMods className="correct-group" details={details} />;
+// FIXME: await for merge of DefinitelyTyped/Definitely#23852
+const SubComponent: SFC<any> = props => {
+  return (
+    <UngroupedMods className="correct-group" details={props.original[1]} />
+  );
 };
 
 // TODO spawnchance, flags, mod#t
