@@ -12,11 +12,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
   data is extensive and contains entities that have no meaning in this package.
   It is adviced to filter this data for your own usage if you use it in a online
   propduction environment. (#33)
+- Data for equipment, prefix and suffix only was 
+  included.
 
 ### Changed
 - props schema now uses string ids as primary whenever possible. The primaries
   originated from the row number and changed between patches which needlessly 
   broke dependent packages. (#32)
+- Updated meta_datas (AbstractJewels and probably other important ones were missing) (#34)
 
 ### Removed
 - `AtlasNode#humanId()` was a bad idea after all. We just use the actual id
