@@ -7,11 +7,13 @@ export interface MetaDataProps {
   inheritance: string[];
   tags: Tag[];
   // specific fascade
-  AttributeRequirements?: {
-    dexterity_requirement: string[];
-    intelligence_requirement: string[];
-    strength_requirement: string[];
-  };
+  AttributeRequirements?:
+    | {
+        dexterity_requirement: string[];
+        intelligence_requirement: string[];
+        strength_requirement: string[];
+      }
+    | {};
   Base?: {
     tag?: string[];
     x_size?: string[];
@@ -23,10 +25,12 @@ export interface MetaDataProps {
   Sockets?: {
     socket_info: string[];
   };
-  Usable?: {
-    action: string[];
-    use_type: string[];
-  };
+  Usable?:
+    | {
+        action: string[];
+        use_type: string[];
+      }
+    | {};
   Weapon?: {
     accuracy_rating?: string[];
     critical_chance?: string[];
