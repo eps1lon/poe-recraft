@@ -22,7 +22,9 @@ export const createTable = <P extends TableProps, T>(
   constructor: Buildable<P, T>,
 ) => {
   if (json_cache[file] == null) {
-    const body = fs.readFileSync(path.join(__dirname, `./${file}.json`));
+    const body = fs.readFileSync(
+      path.join(__dirname, `../../data/${file}.json`),
+    );
 
     const json = JSON.parse(body.toString());
 
