@@ -50,7 +50,7 @@ storiesOf('i18n integration', module).add('Helmet', () => (
         level: {
           value: 69,
         },
-        inteliligence: {
+        intelligence: {
           value: 154,
         },
       },

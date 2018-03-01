@@ -23,7 +23,8 @@ module.exports = (baseConfig, env) => {
       include: path.resolve(__dirname, '../../stories'),
       loaders: [
         require.resolve('awesome-typescript-loader'),
-        require.resolve('@storybook/addon-storysource/loader'),
+        // FIXME support for ts
+        // require.resolve('@storybook/addon-storysource/loader'),
       ],
       enforce: 'pre',
     },

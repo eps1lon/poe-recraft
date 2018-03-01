@@ -27,7 +27,7 @@ storiesOf('requirements', module)
       requirements={{
         level: { value: 5 },
         dexterity: { value: 10 },
-        inteliligence: { value: 1 },
+        intelligence: { value: 1 },
         strength: { value: 500, augmented: true },
       }}
     />

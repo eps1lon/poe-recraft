@@ -38,14 +38,14 @@ export default class RequirementsComponent extends React.PureComponent<Props> {
 
   private requirements() {
     const {
-      requirements: { level, strength, dexterity, inteliligence },
+      requirements: { level, strength, dexterity, intelligence },
     } = this.props;
 
     return [
       this.requirement('level', level),
       this.attributeRequirement('str', strength),
       this.attributeRequirement('dex', dexterity),
-      this.attributeRequirement('int', inteliligence),
+      this.attributeRequirement('int', intelligence),
     ].filter(Boolean);
   }
 

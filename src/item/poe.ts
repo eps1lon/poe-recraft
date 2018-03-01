@@ -80,7 +80,7 @@ export interface Requirements {
   [key: string]: AugmentableValue<SingleValue> | undefined;
   level?: AugmentableValue<SingleValue>;
   dexterity?: AugmentableValue<SingleValue>;
-  inteliligence?: AugmentableValue<SingleValue>;
+  intelligence?: AugmentableValue<SingleValue>;
   strength?: AugmentableValue<SingleValue>;
 }
 

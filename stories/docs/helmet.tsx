@@ -32,7 +32,7 @@ storiesOf('ItemPopup', module).add(
           level: {
             value: 69,
           },
-          inteliligence: {
+          intelligence: {
             value: 154,
           },
         },

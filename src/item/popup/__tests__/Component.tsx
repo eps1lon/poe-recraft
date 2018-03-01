@@ -29,7 +29,7 @@ it('should display Mind Brow Hubris Circlet', () => {
               level: {
                 value: 69,
               },
-              inteliligence: {
+              intelligence: {
                 value: 154,
               },
             },

@@ -58,7 +58,7 @@ export default class Properties extends React.PureComponent<Props> {
         <Property key="quality" human="quality">
           <PropertyValue
             type={DisplayPropertyType.augmented}
-            value={`${properties.quality}%`}
+            value={`${valueToString(properties.quality)}%`}
           />
         </Property>,
       );
@@ -201,7 +201,7 @@ export default class Properties extends React.PureComponent<Props> {
                   ? DisplayPropertyType.augmented
                   : DisplayPropertyType.default
               }
-              value={String(round(prop.value))}
+              value={valueToString(prop.value)}
             />
           </Property>,
         );
@@ -217,7 +217,7 @@ export default class Properties extends React.PureComponent<Props> {
                 ? DisplayPropertyType.augmented
                 : DisplayPropertyType.default
             }
-            value={`${round(props.block.value)}%`}
+            value={`${valueToString(props.block.value)}%`}
           />
         </Property>,
       );

@@ -23,7 +23,7 @@ storiesOf('item', module).add('shaped', () => (
         level: {
           value: 69,
         },
-        inteliligence: {
+        intelligence: {
           value: 154,
         },
       },
