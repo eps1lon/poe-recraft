@@ -19,7 +19,7 @@ const Mods: SFC<Props> = ({ className, mods, onRemoveMod }) => {
 
         return (
           <li
-            key={mod.props.primary}
+            key={mod.props.id}
             className={`mod mod-type-${String(mod.modType())}`}
           >
             <em className="name">{mod.props.name}</em>

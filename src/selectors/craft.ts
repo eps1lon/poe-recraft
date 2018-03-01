@@ -71,8 +71,7 @@ export const baseitemInflection = (state: State) => {
 
   if (item != null) {
     return inflectionIdentifier({
-      inflection:
-        messages[`poe.baseitemtypes.${item.baseitem.primary}.inflection`]
+      inflection: messages[`poe.baseitemtypes.${item.baseitem.id}.inflection`]
     });
   } else {
     return inflectionIdentifier({});

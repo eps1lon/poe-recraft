@@ -10,11 +10,11 @@ export type Action = SetItemClass | SetFilter;
 
 export interface SetItemClass {
   type: Types.SET_ITEM_CLASS;
-  payload: number;
+  payload: string;
 }
-export const setItemClass = ({ primary }: { primary: number }) => ({
+export const setItemClass = ({ id }: { id: string }) => ({
   type: Types.SET_ITEM_CLASS,
-  payload: primary
+  payload: id
 });
 
 export interface SetFilter {

@@ -4,7 +4,7 @@ import TagFilter from './TagFilter';
 import { BaseitemFilter } from 'selectors/baseitemfilter';
 
 export type Props = {
-  item_class: number;
+  item_class: string;
   tags: string[][];
   onChange: (filter: BaseitemFilter) => any;
 };
@@ -13,7 +13,13 @@ export const default_props = {
   onChange: (filter: BaseitemFilter) => {}
 };
 
-const classes_with_defence_groups = [22, 23, 24, 25, 26];
+const classes_with_defence_groups = [
+  'Helmet',
+  'Boots',
+  'Gloves',
+  'Body Armour',
+  'Shield'
+];
 const defence_combinations = [
   'dex_armour',
   'str_dex_armour',

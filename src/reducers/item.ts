@@ -148,7 +148,7 @@ function removeTagHandle(state: State, action: RemoveTagAction): State {
         ...props,
         baseitem: {
           ...props.baseitem,
-          tags: props.baseitem.tags.filter(tag => tag.id !== action.payload.id)
+          tags: props.baseitem.tags.filter(tag => tag !== action.payload)
         }
       }))
     };

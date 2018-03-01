@@ -10,7 +10,7 @@ export type Props = {
 const FormattedModName: SFC<Props> = ({ mod, inflection }) => {
   return (
     <FormattedMessage
-      id={`poe.mods.${mod.props.primary}.name`}
+      id={`poe.mods.${mod.props.id}.name`}
       values={{ inflection }}
       defaultMessage={mod.props.name}
     />

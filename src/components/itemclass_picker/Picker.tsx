@@ -8,7 +8,7 @@ export type Props = {
   groups: Array<{
     human: string;
     name: string;
-    classes: { primary: number; name: string }[];
+    classes: string[];
   }>;
 };
 

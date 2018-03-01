@@ -30,7 +30,7 @@ export function getChangeableTags(state: State): TagProps[] {
 }
 
 const diff = (a: TagProps[], b: TagProps[]) =>
-  a.filter(tag => b.find(other => tag.primary === other.primary) === undefined);
+  a.filter(tag => b.find(other => tag === other) === undefined);
 
 // selector to get addable, removeable and current tags
 export function editableTagsSelector() {

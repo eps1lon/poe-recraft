@@ -23,13 +23,8 @@ const GeneratorPicker: SFC<Props> = props => {
     <div key="items">
       {props.baseitems.map(baseitem => {
         return (
-          <Button
-            key={baseitem.primary}
-            onClick={() => props.onChange(baseitem)}
-          >
-            <FormattedMessage
-              id={`poe.baseitemtypes.${baseitem.primary}.name`}
-            />
+          <Button key={baseitem.id} onClick={() => props.onChange(baseitem)}>
+            <FormattedMessage id={`poe.baseitemtypes.${baseitem.id}.name`} />
           </Button>
         );
       })}

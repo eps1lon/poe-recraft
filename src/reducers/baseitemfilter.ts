@@ -3,12 +3,12 @@ import { Reducer } from 'redux';
 import { Action, Types } from 'actions/baseitemfilter';
 
 export type State = {
-  item_class: number;
+  item_class: string;
   tags: string[][];
 };
 
 const initial: State = {
-  item_class: 23, // boots
+  item_class: 'Boots',
   // ccnf
   tags: [['str_armour']]
 };

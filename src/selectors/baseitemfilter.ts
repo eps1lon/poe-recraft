@@ -3,7 +3,7 @@ import { BaseItemTypeProps } from 'selectors/schema';
 import { checkCnf } from 'util/predicate';
 
 export type BaseitemFilter = {
-  item_class: number;
+  item_class: string;
   tags: string[][];
 };
 
@@ -14,15 +14,13 @@ export function filterItems(
   return items.filter(applyFilter(filter));
 }
 
-export function activeItemClass(state: State): number {
-  return state.baseitemfilter.item_class || 23;
+export function activeItemClass(state: State): string {
+  return state.baseitemfilter.item_class || 'Boots';
 }
 
 function applyFilter(filter: Partial<BaseitemFilter> = {}) {
   return (item: BaseItemTypeProps) =>
     // filter.item_class => filter.item_class == item.item_class
-    (filter.item_class == null ||
-      filter.item_class === item.item_class.primary) &&
-    (filter.tags == null ||
-      checkCnf(filter.tags, item.tags.map(({ id }) => id)));
+    (filter.item_class == null || filter.item_class === item.item_class) &&
+    (filter.tags == null || checkCnf(filter.tags, item.tags));
 }

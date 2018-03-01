@@ -9,9 +9,7 @@ import { activeItemClass } from 'selectors/baseitemfilter';
 const mapStateToProps = (state: State) => {
   const active_item_class = activeItemClass(state);
   const active_group = class_groups.find(
-    group =>
-      group.classes.find(({ primary }) => primary === active_item_class) !==
-      undefined
+    group => group.classes.find(id => id === active_item_class) !== undefined
   );
 
   return {

@@ -4,7 +4,7 @@ import { DropdownMenu } from 'reactstrap';
 import ItemClass from 'containers/itemclass_picker/ItemClass';
 
 export type Props = {
-  classes: { primary: number; name: string }[];
+  classes: string[];
 };
 
 const GroupDropdown: SFC<Props> = props => {
@@ -12,9 +12,7 @@ const GroupDropdown: SFC<Props> = props => {
 
   return (
     <DropdownMenu>
-      {classes.map(({ primary, name }) => (
-        <ItemClass key={primary} primary={primary} name={name} />
-      ))}
+      {classes.map(id => <ItemClass key={id} id={id} name={name} />)}
     </DropdownMenu>
   );
 };
