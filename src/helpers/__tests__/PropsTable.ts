@@ -3,7 +3,7 @@ import MasterBenchOption from '../../generators/MasterBenchOption';
 import PropsTable from '../PropsTable';
 
 // tslint:disable: no-var-requires
-const all_options = require('../../__fixtures__/craftingbenchoptions.json');
+const all_options = require('../../../data/craftingbenchoptions.json');
 
 it('should find props', () => {
   const table = new PropsTable(all_options, MasterBenchOption);

@@ -3,10 +3,10 @@ import PropsTable from '../PropsTable';
 
 import * as tables from '../createTables';
 
-const atlas = require('../../__fixtures__/atlas.json');
-const options = require('../../__fixtures__/craftingbenchoptions.json');
-const items = require('../../__fixtures__/items.json');
-const mods = require('../../__fixtures__/mods.json');
+const atlas = require('../../../data/atlas.json');
+const options = require('../../../data/craftingbenchoptions.json');
+const items = require('../../../data/items.json');
+const mods = require('../../../data/mods.json');
 
 it('should build an atlas table', () => {
   const table = tables.createAtlasNodes(atlas);
