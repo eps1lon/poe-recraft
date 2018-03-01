@@ -27,10 +27,11 @@ import ItemRequirements, {
   Requirements,
   Builder as RequirementsBuilder,
 } from './components/Requirements';
-import ItemProperties, {
+import {
   Properties,
   Builder as PropertiesBuilder,
-} from './components/properties/ItemProperties';
+  build as buildProperties,
+} from './components/properties';
 
 export interface ItemProps {
   readonly atlas_modifier: AtlasModifier;
@@ -102,7 +103,7 @@ export default class Item implements Container<Mod> {
       /**
        * calculation related props
        */
-      properties: null,
+      properties: { quality: 0 },
       rarity: RarityKind.normal,
       requirements: baseitem.component_attribute_requirement,
       /**
@@ -140,7 +141,7 @@ export default class Item implements Container<Mod> {
 
     // components
     this.name = new ItemName(this, builder.name);
-    this.properties = new ItemProperties(this, builder.properties);
+    this.properties = buildProperties(this, builder.properties);
     this.rarity = new ItemRarity(this, builder.rarity);
     this.requirements = new ItemRequirements(this, builder.requirements);
     this.sockets = new ItemSockets(this, builder.sockets);
