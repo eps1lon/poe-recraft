@@ -27,6 +27,8 @@ glob(path.join(meta_data_dir, 'Items/**/*.ot'))
       });
     }
 
+    computeTags('AbstractDagger', classes);
+
     for (const [classname, class_data] of Object.entries(classes)) {
       class_data.inheritance = computeInheritance(classname, classes);
       class_data.tags = computeTags(classname, classes);
@@ -92,7 +94,7 @@ function computeTags(classname, classes) {
   let tags = [];
 
   for (const super_class of computeInheritance(classname, classes)) {
-    const { Base = {} } = classes[classname];
+    const { Base = {} } = classes[super_class];
     // shallow copy
     const super_tags = Object.assign({}, Base);
     if (super_tags.tag === undefined) {
