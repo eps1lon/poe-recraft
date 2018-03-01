@@ -3,15 +3,16 @@ import { createSelector } from 'reselect';
 
 import ItemSection from 'components/ItemSection';
 import { State } from 'reducers/rootReducer';
-import snapshotItem from 'util/snapshotItem';
+import snapshotItem from 'selectors/snapshotItem';
 
 const mapStateToProps = createSelector(
   (state: State) => state.craft.item,
-  item => {
+  (state: State) => state.i18n.descriptions,
+  (item, descriptions) => {
     if (item === undefined) {
       return { item: undefined };
     } else {
-      return { item: snapshotItem(item) };
+      return { item: snapshotItem(item, descriptions) };
     }
   }
 );
