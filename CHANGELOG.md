@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.7.0...HEAD)
 
+### Added
+- generated API docs https://eps1lon.github.io/poe-mods (#26)
+- usable items and mods as json that work with this package. Note that this
+  data is extensive and contains entities that have no meaning in this package.
+  It is adviced to filter this data for your own usage if you use it in a online
+  propduction environment. (#33)
+
+### Changed
+- props schema now uses string ids as primary whenever possible. The primaries
+  originated from the row number and changed between patches which needlessly 
+  broke dependent packages. (#32)
+
+### Removed
+- `AtlasNode#humanId()` was a bad idea after all. We just use the actual id
+  with no mention about wheather this is human readable or not. (#32)
+
 ## [1.7.0](https://github.com/eps1lon/poe-mods/compare/v1.6.0...v1.7.0) (2018-02-10)
 ### Added
 - shaper and elder items (and therefore ability to check for those mods) (PR [#23]) 
