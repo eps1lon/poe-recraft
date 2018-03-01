@@ -13,8 +13,8 @@ $ npm install --save poe-mods
 ```
 
 # Usage
-Flow is supported.
-```javascript
+Typescript is supported.
+```typescript
 import { createItems, createMods, Transmute } from 'poe-mods';
 
 // data has to be provided. see eps1lon/poedb
@@ -38,10 +38,9 @@ Promise.all([
 ```
 
 ## Immutability
-To provide the best support for redux every class is immutable
+To provide the best support for redux every class is immutable.
 
-```javascript
-// @flow
+```typescript
 declare var item: Item;
 
 item.setRaritiy('magic') === item // false
