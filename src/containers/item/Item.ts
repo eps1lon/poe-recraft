@@ -408,7 +408,7 @@ export default class Item implements Container<Mod> {
    * @param value 
    * @param classification 
    */
-  computeValue(value: number, classification: string[]) {
+  public computeValue(value: number, classification: string[]) {
     const base = new Value([value, value], classification);
     return base.augmentWith(Object.values(this.stats())).compute();
   }

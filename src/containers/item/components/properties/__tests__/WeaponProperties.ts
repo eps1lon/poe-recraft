@@ -193,7 +193,9 @@ describe('weapon range', () => {
   const sword = items.fromName('Vaal Rapier');
 
   it('has the base of the weapon', () => {
-    expect((sword.properties as ItemWeaponProperties).weapon_range()).toMatchObject({
+    expect(
+      (sword.properties as ItemWeaponProperties).weapon_range(),
+    ).toMatchObject({
       augmented: false,
       value: 12,
     });
@@ -203,6 +205,6 @@ describe('weapon range', () => {
     expect(
       (sword.addMod(mods.fromId('LocalIncreasedMeleeWeaponRangeEssence6'))
         .properties as ItemWeaponProperties).weapon_range(),
-    ).toMatchObject({ augmented: true, value: 14);
+    ).toMatchObject({ augmented: true, value: 14 });
   });
 });

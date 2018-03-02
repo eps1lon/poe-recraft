@@ -1,13 +1,9 @@
-import * as _ from 'lodash';
-
 import ItemProperties, {
   NumericProperty,
   Properties,
   Builder as BaseBuilder,
 } from './Properties';
-import Stat from '../../../../calculator/Stat';
 import ValueRange from '../../../../calculator/ValueRange';
-import Value from '../../../../calculator/Value';
 
 export interface Defences {
   armour: NumericProperty;
@@ -23,7 +19,7 @@ export type Builder = BaseBuilder;
 
 export default class ItemArmourProperties extends ItemProperties
   implements ArmourProperties {
-  public defences() {
+  public defences(): Defences {
     const item = this.parent;
     const { component_armour } = item.baseitem;
 

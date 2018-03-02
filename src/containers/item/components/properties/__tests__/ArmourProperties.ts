@@ -1,5 +1,4 @@
 import { createTables } from '../../../../../__fixtures__/util';
-import ItemArmourProperties from '../ArmourProperties';
 
 const tables = createTables();
 
@@ -28,7 +27,7 @@ it('get the basics', () => {
 
   // @ts-ignore: runtime type checking only
   const defences = properties.defences();
-  expect(defences.armour).toHaveProperty('value', 329)
+  expect(defences.armour).toHaveProperty('value', 329);
   expect(defences).toMatchObject({
     armour: { augmented: false, value: 329 },
     evasion: { augmented: false, value: 329 },

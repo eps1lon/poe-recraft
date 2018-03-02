@@ -1,9 +1,11 @@
-import ArmourProperties from './ArmourProperties';
-import Stat from '../../../../calculator/Stat';
-import ValueRange from '../../../../calculator/ValueRange';
-import Value from '../../../../calculator/Value';
+import ItemArmourProperties, { ArmourProperties } from './ArmourProperties';
+import { NumericProperty } from './Properties';
 
-export default class ShieldProperties extends ArmourProperties {
+export interface ShieldProperties extends ArmourProperties {
+  block(): NumericProperty;
+}
+
+export default class ItemShieldProperties extends ItemArmourProperties {
   public block() {
     const { shield_type } = this.parent.baseitem;
 

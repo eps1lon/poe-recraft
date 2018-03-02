@@ -1,14 +1,20 @@
 import ItemProperties, {
-  NumericProperty,
   Properties,
   Builder as BaseBuilder,
+  NumericProperty,
 } from './Properties';
-import Stat from '../../../../calculator/Stat';
-import ValueRange, { ValueRangeLike } from '../../../../calculator/ValueRange';
-import Value from '../../../../calculator/Value';
 import { WeaponTypeProps } from '../../../../schema';
 
-export interface WeaponProperties extends Properties {}
+export interface WeaponProperties extends Properties {
+  physical_damage(): { min: NumericProperty; max: NumericProperty };
+  chaos_damage(): { min: NumericProperty; max: NumericProperty };
+  cold_damage(): { min: NumericProperty; max: NumericProperty };
+  fire_damage(): { min: NumericProperty; max: NumericProperty };
+  lightning_damage(): { min: NumericProperty; max: NumericProperty };
+  attack_speed(): NumericProperty;
+  crit(): NumericProperty;
+  weapon_range(): NumericProperty;
+}
 
 export type Builder = BaseBuilder;
 
@@ -39,10 +45,10 @@ export default class ItemWeaponProperties extends ItemProperties
   public attack_speed() {
     // speed is in ms, precision 2 => 1e5
     // seems to round ingame, see short bow test case
-    return this.parent.computeValue(Math.round(1e5 / this.weaponProps().speed), [
-      'local',
-      'attack_speed',
-    ]);
+    return this.parent.computeValue(
+      Math.round(1e5 / this.weaponProps().speed),
+      ['local', 'attack_speed'],
+    );
   }
 
   // crit() / 100 = crit%
@@ -75,9 +81,6 @@ export default class ItemWeaponProperties extends ItemProperties
 
   private attackDamageRange(min: number, max: number, type: string) {
     const classification = ['local', 'attack_damage', type];
-
-    const base_min = new Value([min, min], [...classification, 'min']);
-    const base_max = new Value([max, max], [...classification, 'max']);
 
     return {
       min: this.parent.computeValue(min, [...classification, 'min']),
