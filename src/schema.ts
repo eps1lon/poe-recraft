@@ -39,6 +39,7 @@ export interface ModProps {
 export interface WeaponTypeProps {
   critical: number;
   speed: number;
+  // phys
   damage_min: number;
   damage_max: number;
   range_max: number;
