@@ -33,6 +33,7 @@ import {
   Builder as PropertiesBuilder,
   build as buildProperties,
 } from './components/properties';
+import { NumericProperty } from './components/properties/Properties';
 
 export interface ItemProps {
   readonly atlas_modifier: AtlasModifier;
@@ -408,7 +409,7 @@ export default class Item implements Container<Mod> {
    * @param value 
    * @param classification 
    */
-  public computeValue(value: number, classification: string[]) {
+  public computeValue(value: number, classification: string[]): NumericProperty {
     const base = new Value([value, value], classification);
     return base.augmentWith(Object.values(this.stats())).compute();
   }

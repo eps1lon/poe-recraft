@@ -1,21 +1,16 @@
 declare module "schema" {
-    export interface TagProps {
-        primary: number;
-        id: string;
-    }
+    export type Tag = string;
     export interface ModTypeProps {
         primary: number;
     }
     export interface SpawnWeightProps {
         value: number;
-        tag: TagProps;
+        tag: Tag;
     }
     export interface StatProps {
-        primary: number;
         id: string;
     }
     export interface ModProps {
-        primary: number;
         id: string;
         level: number;
         domain: number;
@@ -35,7 +30,7 @@ declare module "schema" {
         mod_type: ModTypeProps;
         spawn_weights: SpawnWeightProps[];
         stats: StatProps[];
-        tags: TagProps[];
+        tags: Tag[];
     }
     export interface WeaponTypeProps {
         critical: number;
@@ -54,12 +49,11 @@ declare module "schema" {
         evasion: number;
         energy_shield: number;
     }
-    export interface ItemClassProps {
-        primary: number;
-        name: string;
+    export interface ShieldTypeProps {
+        block: number;
     }
     export interface BaseItemTypeProps {
-        primary: number;
+        id: string;
         name: string;
         width: number;
         height: number;
@@ -68,9 +62,10 @@ declare module "schema" {
         weapon_type?: WeaponTypeProps;
         component_attribute_requirement?: AttributeRequirementProps;
         component_armour?: ArmourProps;
+        shield_type?: ShieldTypeProps;
         implicit_mods: ModProps[];
-        item_class: ItemClassProps;
-        tags: TagProps[];
+        item_class: string;
+        tags: Tag[];
     }
     export interface CraftingBenchOptionsProps {
         primary: number;
@@ -95,15 +90,14 @@ declare module "schema" {
             base_item_type: BaseItemTypeProps;
         }>;
         mod?: ModProps;
-        item_classes: ItemClassProps[];
+        item_classes: string[];
     }
     export interface WorldAreaProps {
-        primary: number;
         id: string;
         name: string;
         area_level: number;
-        tags: TagProps[];
-        area_type_tags: TagProps[];
+        tags: Tag[];
+        area_type_tags: Tag[];
         mods: ModProps[];
     }
     export interface AtlasNodeProps {
@@ -115,12 +109,16 @@ declare module "schema" {
     }
 }
 declare module "calculator/ValueRange" {
+    export type ValueRangeLike = ValueRange | number | [number, number];
     export default class ValueRange {
+        static zero: ValueRange;
+        static one: ValueRange;
+        static isZero(value: ValueRangeLike): boolean;
         min: number;
         max: number;
-        constructor(min: number, max: number);
-        add(other: ValueRange): default;
-        mult(other: ValueRange): default;
+        constructor(range: ValueRangeLike);
+        add(other: ValueRangeLike): default;
+        mult(other: ValueRangeLike): default;
         map(mapFn: (n: number) => number): default;
         isAddIdentity(): boolean;
         isMultIdentity(): boolean;
@@ -129,6 +127,7 @@ declare module "calculator/ValueRange" {
          */
         percentToFactor(): ValueRange;
         asTuple(): [number, number];
+        valueOf(): number | [number, number];
     }
 }
 declare module "calculator/Stat" {
@@ -143,9 +142,9 @@ declare module "calculator/Stat" {
     }
 }
 declare module "interfaces/Taggable" {
-    import { TagProps } from "schema";
+    import { Tag } from "schema";
     export interface Taggable {
-        getTags(): TagProps[];
+        getTags(): Tag[];
     }
 }
 declare module "util/ts" {
@@ -197,16 +196,30 @@ declare module "containers/Container" {
     import { Taggable } from "interfaces/Taggable";
     import Mod from "mods/Mod";
     import Stat from "calculator/Stat";
+    /**
+     * a Container in poe-mods is a container of Mods
+     */
     export default interface Container<T extends Mod> extends Taggable {
         mods: ReadonlyArray<T>;
         addMod(mod: T): this;
         removeMod(mod: T): this;
         removeAllMods(): this;
         hasMod(mod: T): boolean;
+        /**
+         * already has a mod of this group?
+         * @param mod
+         */
         hasModGroup(mod: T): boolean;
+        /**
+         * will addMod actually add this mod
+         * @param mod
+         */
         hasRoomFor(mod: T): boolean;
+        /**
+         * does this container have any displayable properties?
+         */
         any(): boolean;
-        indexOfModWithPrimary(primary: number): number;
+        indexOfModWithId(id: string): number;
         maxModsOfType(mod: T): number;
         inDomainOf(domain: number): boolean;
         level(): number;
@@ -218,12 +231,12 @@ declare module "containers/Container" {
 }
 declare module "mods/meta_mods" {
     const _default: Readonly<{
-        LOCKED_PREFIXES: number;
-        LOCKED_SUFFIXES: number;
-        NO_ATTACK_MODS: number;
-        NO_CASTER_MODS: number;
-        MULTIMOD: number;
-        LLD_MOD: number;
+        LOCKED_PREFIXES: string;
+        LOCKED_SUFFIXES: string;
+        NO_ATTACK_MODS: string;
+        NO_CASTER_MODS: string;
+        MULTIMOD: string;
+        LLD_MOD: string;
     }>;
     export default _default;
 }
@@ -276,16 +289,16 @@ declare module "util/meta_data" {
     export default _default;
 }
 declare module "util/MetaData" {
-    import { TagProps } from "schema";
+    import { Tag } from "schema";
     export interface MetaDataProps {
         extends: string;
         inheritance: string[];
-        tags: TagProps[];
+        tags: Tag[];
         AttributeRequirements?: {
             dexterity_requirement: string[];
             intelligence_requirement: string[];
             strength_requirement: string[];
-        };
+        } | {};
         Base?: {
             tag?: string[];
             x_size?: string[];
@@ -300,7 +313,7 @@ declare module "util/MetaData" {
         Usable?: {
             action: string[];
             use_type: string[];
-        };
+        } | {};
         Weapon?: {
             accuracy_rating?: string[];
             critical_chance?: string[];
@@ -321,7 +334,7 @@ declare module "util/MetaData" {
      * representation of a .ot file in METADATA
      */
     export default class MetaData {
-        static build(clazz: string): MetaData | undefined;
+        static build(clazz: string): MetaData;
         clazz: string;
         props: MetaDataProps;
         constructor(clazz: string, props: MetaDataProps);
@@ -336,69 +349,106 @@ declare module "mods/index" {
     export { default as metaMods } from "mods/meta_mods";
     export { default as Mod } from "mods/Mod";
 }
+declare module "calculator/stat_applications" {
+    export interface Application {
+        classification: Array<string | string[]>;
+        type: 'flat' | 'inc' | 'more';
+    }
+    const applications: {
+        [key: string]: Application;
+    };
+    export default applications;
+}
+declare module "calculator/Value" {
+    import Stat from "calculator/Stat";
+    import ValueRange from "calculator/ValueRange";
+    export type Classification = ReadonlyArray<string>;
+    export interface Modifier {
+        stat: Stat;
+        type: 'flat' | 'inc' | 'more';
+    }
+    export default class Value {
+        classification: Classification;
+        modifiers: ReadonlyArray<Modifier>;
+        range: ValueRange;
+        /**
+         * if the value change since init
+         */
+        augmented: boolean;
+        constructor(range: [number, number] | ValueRange, classification?: Classification, modifiers?: Modifier[]);
+        readonly value: number | [number, number];
+        augmentWith(stats: Stat[]): Value;
+        augmentableBy(stat: Stat): boolean;
+        /**
+         * calculates the final ValueRange from all the applied modifers
+         *
+         * in PoE all increase modifers get summed up to one big more modifier
+         */
+        compute(precision?: number): Value;
+    }
+}
 declare module "containers/item/atlasModifier" {
-    import { TagProps } from "schema";
+    import { Tag } from "schema";
     import MetaData from "util/MetaData";
     export enum AtlasModifier {
-        NONE = 0,
-        ELDER = 1,
-        SHAPER = 2,
+        NONE = "",
+        ELDER = "elder_item",
+        SHAPER = "shaper_item",
     }
-    export enum Tag {
-        'shaper_item' = 246,
-        'elder_item' = 247,
-        'boots_shaper' = 248,
-        'boots_elder' = 249,
-        'sword_shaper' = 250,
-        'sword_elder' = 251,
-        'gloves_shaper' = 252,
-        'gloves_elder' = 253,
-        'helmet_shaper' = 254,
-        'helmet_elder' = 255,
-        'body_armour_shaper' = 256,
-        'body_armour_elder' = 257,
-        'amulet_shaper' = 258,
-        'amulet_elder' = 259,
-        'ring_shaper' = 260,
-        'ring_elder' = 261,
-        'belt_shaper' = 262,
-        'belt_elder' = 263,
-        'quiver_shaper' = 264,
-        'quiver_elder' = 265,
-        'shield_shaper' = 266,
-        'shield_elder' = 267,
-        '2h_sword_shaper' = 268,
-        '2h_sword_elder' = 269,
-        'axe_shaper' = 270,
-        'axe_elder' = 271,
-        'mace_shaper' = 272,
-        'mace_elder' = 273,
-        'claw_shaper' = 274,
-        'claw_elder' = 275,
-        'bow_shaper' = 276,
-        'bow_elder' = 277,
-        'dagger_shaper' = 278,
-        'dagger_elder' = 279,
-        '2h_axe_shaper' = 280,
-        '2h_axe_elder' = 281,
-        '2h_mace_shaper' = 282,
-        '2h_mace_elder' = 283,
-        'staff_shaper' = 284,
-        'staff_elder' = 285,
-        'sceptre_shaper' = 286,
-        'sceptre_elder' = 287,
-        'wand_shaper' = 288,
-        'wand_elder' = 289,
+    export enum AtlasModifierTag {
+        'shaper_item' = 0,
+        'elder_item' = 1,
+        'boots_shaper' = 2,
+        'boots_elder' = 3,
+        'sword_shaper' = 4,
+        'sword_elder' = 5,
+        'gloves_shaper' = 6,
+        'gloves_elder' = 7,
+        'helmet_shaper' = 8,
+        'helmet_elder' = 9,
+        'body_armour_shaper' = 10,
+        'body_armour_elder' = 11,
+        'amulet_shaper' = 12,
+        'amulet_elder' = 13,
+        'ring_shaper' = 14,
+        'ring_elder' = 15,
+        'belt_shaper' = 16,
+        'belt_elder' = 17,
+        'quiver_shaper' = 18,
+        'quiver_elder' = 19,
+        'shield_shaper' = 20,
+        'shield_elder' = 21,
+        '2h_sword_shaper' = 22,
+        '2h_sword_elder' = 23,
+        'axe_shaper' = 24,
+        'axe_elder' = 25,
+        'mace_shaper' = 26,
+        'mace_elder' = 27,
+        'claw_shaper' = 28,
+        'claw_elder' = 29,
+        'bow_shaper' = 30,
+        'bow_elder' = 31,
+        'dagger_shaper' = 32,
+        'dagger_elder' = 33,
+        '2h_axe_shaper' = 34,
+        '2h_axe_elder' = 35,
+        '2h_mace_shaper' = 36,
+        '2h_mace_elder' = 37,
+        'staff_shaper' = 38,
+        'staff_elder' = 39,
+        'sceptre_shaper' = 40,
+        'sceptre_elder' = 41,
+        'wand_shaper' = 42,
+        'wand_elder' = 43,
     }
     export default function atlasModifier(baseitem: {
-        tags: TagProps[];
+        tags: Tag[];
     }): AtlasModifier;
     export function tagsWithModifier(baseitem: {
-        tags: TagProps[];
-    }, meta_data: MetaData, modifier: AtlasModifier): TagProps[];
-    export function elderTag(meta_data: MetaData): TagProps;
-    export function shaperTag(meta_data: MetaData): TagProps;
-    export function tagProps(tag: Tag): TagProps;
+        tags: Tag[];
+    }, meta_data: MetaData, modifier: AtlasModifier): Tag[];
+    export function elderTag(meta_data: MetaData): AtlasModifierTag;
+    export function shaperTag(meta_data: MetaData): AtlasModifierTag;
 }
 declare module "containers/item/Component" {
     export default interface Component<T, B> {
@@ -408,13 +458,16 @@ declare module "containers/item/Component" {
     }
 }
 declare module "containers/ImmutableContainer" {
-    import { TagProps } from "schema";
+    import { Tag } from "schema";
     import Mod from "mods/Mod";
     import Stat from "calculator/Stat";
     import Container from "containers/Container";
     export interface Builder<T extends Mod> {
         mods: T[];
     }
+    /**
+     * immutable implementation of Container
+     */
     export default abstract class ImmutableContainer<T extends Mod, B extends Builder<T>> implements Container<T> {
         mods: T[];
         constructor(mods: T[]);
@@ -432,14 +485,14 @@ declare module "containers/ImmutableContainer" {
          * removes an existing mod
          */
         removeMod(other: T): this;
-        indexOfModWithPrimary(primary: number): number;
+        indexOfModWithId(id: string): number;
         indexOfMod(mod: T): number;
         hasMod(mod: T): boolean;
         hasModGroup(other: T): boolean;
         /**
          * tags of the mods in the container
          */
-        getTags(): TagProps[];
+        getTags(): Tag[];
         asArray(): T[];
         /**
          * @param {number} mod_type generation type
@@ -474,6 +527,9 @@ declare module "containers/item/components/Affixes" {
         item: Item;
         mods: Mod[];
     }
+    /**
+     * the explicits of an item
+     */
     export default class ItemAffixes extends ImmutableContainer<Mod, Builder> {
         static withBuilder(builder: Builder): ItemAffixes;
         item: Item;
@@ -510,6 +566,9 @@ declare module "containers/item/components/Sockets" {
         max(): number;
     }
     export type Builder = number;
+    /**
+     * WIP item component for sockets
+     */
     export default class ItemSockets implements Sockets, Component<Item, Builder> {
         amount: number;
         parent: Item;
@@ -530,6 +589,12 @@ declare module "containers/item/components/Name" {
         lines(): string[];
     }
     export type Builder = string;
+    /**
+     * the name of an item
+     *
+     * for magic items those name consists of the baseitemname and the prefix/suffix
+     * rare and unique items have a set name
+     */
     export default class ItemName implements Name, Component<Item, Builder> {
         parent: Item;
         random: string;
@@ -561,8 +626,7 @@ declare module "containers/item/components/Rarity" {
     }
     export type Builder = RarityKind;
     /**
-     * mixin for Item
-     *
+     * the rarity of an item
      */
     export default class ItemRarity implements Rarity<Item>, Component<Item, Builder> {
         parent: Item;
@@ -573,6 +637,11 @@ declare module "containers/item/components/Rarity" {
         isMagic(): boolean;
         isRare(): boolean;
         isUnique(): boolean;
+        /**
+         * upgrade rarirty by one tier
+         *
+         * normal > magic > rare
+         */
         upgrade(): Item;
         set(rarity: RarityIdent): Item;
         toString(): RarityIdent;
@@ -587,6 +656,9 @@ declare module "containers/item/components/Implicits" {
         item: Item;
         mods: Mod[];
     }
+    /**
+     * the implicits of an item
+     */
     export default class Implicits extends ImmutableContainer<Mod, Builder> {
         static withBuilder(builder: Builder): Implicits;
         item: Item;
@@ -623,6 +695,12 @@ declare module "containers/item/components/Requirements" {
         req_dex: number;
         req_int: number;
     } | undefined;
+    /**
+     * the requirements to use this item
+     *
+     * contains attributes strength, intelligence, evasion
+     * and the itemlevel
+     */
     export default class ItemName implements Requirements, Component<Item, Builder> {
         parent: Item;
         dex: number;
@@ -640,79 +718,130 @@ declare module "containers/item/components/Requirements" {
         any(): boolean;
     }
 }
-declare module "containers/item/components/properties/ComputedProperties" {
-    export interface Property {
-        values: [number, number];
-        type: 'simple' | 'augmented';
+declare module "containers/item/components/properties/Properties" {
+    import Component from "containers/item/Component";
+    import Item from "containers/item/Item";
+    export interface NumericProperty {
+        value: number | [number, number];
+        augmented: boolean;
     }
     export interface Properties {
-        [key: string]: Property;
+        quality: number;
     }
-}
-declare module "calculator/stat_applications" {
-    export interface Application {
-        classification: Array<string | string[]>;
-        type: 'flat' | 'inc' | 'more';
+    export interface Builder {
+        quality: number;
     }
-    const applications: {
-        [key: string]: Application;
-    };
-    export default applications;
-}
-declare module "calculator/Value" {
-    import Stat from "calculator/Stat";
-    import ValueRange from "calculator/ValueRange";
-    export type Classification = ReadonlyArray<string>;
-    export interface Modifier {
-        stat: Stat;
-        type: 'flat' | 'inc' | 'more';
-    }
-    export default class Value {
-        classification: Classification;
-        modifiers: Modifier[];
-        base: ValueRange;
-        constructor(range: [number, number] | ValueRange, classification?: Classification, modifiers?: Modifier[]);
-        augmentWith(stats: Stat[]): Value;
-        augmentableBy(stat: Stat): boolean;
-        /**
-         * calculates the final ValueRange from all the applied modifers
-         *
-         * in PoE all increase modifers get summed up to one big more modifier
-         */
-        compute(precision?: number): ValueRange;
+    /**
+     * properties for every item
+     *
+     * this is used for miscellaneous properties that don't really fit
+     * into any other component
+     */
+    export default class ItemProperties implements Properties, Component<Item, Builder> {
+        parent: Item;
+        quality: number;
+        constructor(item: Item, builder: Builder);
+        builder(): Builder;
+        any(): boolean;
     }
 }
 declare module "containers/item/components/properties/ArmourProperties" {
-    import { Properties, Property } from "containers/item/components/properties/ComputedProperties";
-    import Item from "containers/item/Item";
+    import ItemProperties, { NumericProperty, Properties, Builder as BaseBuilder } from "containers/item/components/properties/Properties";
+    export interface Defences {
+        armour: NumericProperty;
+        evasion: NumericProperty;
+        energy_shield: NumericProperty;
+    }
     export interface ArmourProperties extends Properties {
-        armour: Property;
-        evasion: Property;
-        energy_shield: Property;
+        defences(): Defences;
     }
-    export default function build(item: Item): ArmourProperties;
-}
-declare module "containers/item/components/properties/ItemProperties" {
-    import { Properties as ComputedProperties } from "containers/item/components/properties/ComputedProperties";
-    import Component from "containers/item/Component";
-    import Item from "containers/item/Item";
-    export interface Properties {
-        list(): ComputedProperties;
-    }
-    export type Builder = null;
-    export default class ItemProperties implements Properties, Component<Item, Builder> {
-        parent: Item;
-        constructor(item: Item, builder: Builder);
-        builder(): Builder;
-        list(): ComputedProperties;
+    export type Builder = BaseBuilder;
+    export default class ItemArmourProperties extends ItemProperties implements ArmourProperties {
+        defences(): Defences;
         any(): boolean;
     }
+}
+declare module "containers/item/components/properties/ShieldProperties" {
+    import ItemArmourProperties, { ArmourProperties } from "containers/item/components/properties/ArmourProperties";
+    import { NumericProperty } from "containers/item/components/properties/Properties";
+    export interface ShieldProperties extends ArmourProperties {
+        block(): NumericProperty;
+    }
+    export default class ItemShieldProperties extends ItemArmourProperties implements ShieldProperties {
+        block(): NumericProperty;
+    }
+}
+declare module "containers/item/components/properties/WeaponProperties" {
+    import ItemProperties, { Properties, Builder as BaseBuilder, NumericProperty } from "containers/item/components/properties/Properties";
+    export interface WeaponProperties extends Properties {
+        physical_damage(): {
+            min: NumericProperty;
+            max: NumericProperty;
+        };
+        chaos_damage(): {
+            min: NumericProperty;
+            max: NumericProperty;
+        };
+        cold_damage(): {
+            min: NumericProperty;
+            max: NumericProperty;
+        };
+        fire_damage(): {
+            min: NumericProperty;
+            max: NumericProperty;
+        };
+        lightning_damage(): {
+            min: NumericProperty;
+            max: NumericProperty;
+        };
+        attack_speed(): NumericProperty;
+        crit(): NumericProperty;
+        weapon_range(): NumericProperty;
+    }
+    export type Builder = BaseBuilder;
+    export default class ItemWeaponProperties extends ItemProperties implements WeaponProperties {
+        physical_damage(): {
+            min: NumericProperty;
+            max: NumericProperty;
+        };
+        chaos_damage(): {
+            min: NumericProperty;
+            max: NumericProperty;
+        };
+        cold_damage(): {
+            min: NumericProperty;
+            max: NumericProperty;
+        };
+        fire_damage(): {
+            min: NumericProperty;
+            max: NumericProperty;
+        };
+        lightning_damage(): {
+            min: NumericProperty;
+            max: NumericProperty;
+        };
+        attack_speed(): NumericProperty;
+        crit(): NumericProperty;
+        weapon_range(): NumericProperty;
+        any(): boolean;
+        private weaponProps();
+        private attackDamageRange(min, max, type);
+    }
+}
+declare module "containers/item/components/properties/build" {
+    import ItemProperties, { Builder } from "containers/item/components/properties/Properties";
+    import Item from "containers/item/index";
+    export default function build(item: Item, builder: Builder): ItemProperties;
+}
+declare module "containers/item/components/properties/index" {
+    export { default as ItemProperties, Builder, Properties } from "containers/item/components/properties/Properties";
+    export { default as build } from "containers/item/components/properties/build";
 }
 declare module "containers/item/Item" {
     import { BaseError } from 'make-error';
     import Container from "containers/Container";
     import { Mod } from "mods/index";
-    import { TagProps, BaseItemTypeProps } from "schema";
+    import { Tag, BaseItemTypeProps } from "schema";
     import MetaData from "util/MetaData";
     import Stat from "calculator/Stat";
     import { AtlasModifier } from "containers/item/atlasModifier";
@@ -723,7 +852,8 @@ declare module "containers/item/Item" {
     import { Builder as RarityBuilder, Rarity } from "containers/item/components/Rarity";
     import Implicits from "containers/item/components/Implicits";
     import { Requirements, Builder as RequirementsBuilder } from "containers/item/components/Requirements";
-    import { Properties, Builder as PropertiesBuilder } from "containers/item/components/properties/ItemProperties";
+    import { Properties, Builder as PropertiesBuilder } from "containers/item/components/properties/index";
+    import { NumericProperty } from "containers/item/components/properties/Properties";
     export interface ItemProps {
         readonly atlas_modifier: AtlasModifier;
         readonly corrupted: boolean;
@@ -734,9 +864,15 @@ declare module "containers/item/Item" {
         constructor();
     }
     export interface Builder {
+        /**
+         * explicits of the item
+         */
         affixes: Mod[];
         baseitem: BaseItemTypeProps;
         implicits: Mod[];
+        /**
+         * reflection of the baseitem
+         */
         meta_data: MetaData;
         name: NameBuilder;
         props: ItemProps;
@@ -745,7 +881,14 @@ declare module "containers/item/Item" {
         requirements: RequirementsBuilder;
         sockets: SocketsBuilder;
     }
+    /**
+     * an Item in Path of Exile
+     */
     export default class Item implements Container<Mod> {
+        /**
+         * creates a new item from the baseitem
+         * @param baseitem
+         */
         static build(baseitem: BaseItemTypeProps): Item;
         static fromBuilder(builder: Builder): Item;
         affixes: ItemAffixes;
@@ -758,38 +901,83 @@ declare module "containers/item/Item" {
         rarity: Rarity<Item> & Component<Item, RarityBuilder>;
         requirements: Requirements & Component<Item, RequirementsBuilder>;
         sockets: Sockets & Component<Item, SocketsBuilder>;
+        /**
+         * Use Item#build
+         *
+         * @private
+         * @param builder
+         */
         constructor(builder: Builder);
         withMutations(mutate: (builder: Builder) => Builder): this;
         builder(): Builder;
         /**
          * returns tags of item + tags from mods
          */
-        getTags(): TagProps[];
+        getTags(): Tag[];
         readonly mods: Mod[];
         asArray(): Mod[];
+        /**
+         * decides where to add the mod (explicit, implicit)
+         * throws if it could not decide where to put it
+         * @param other
+         */
         addMod(other: Mod): this;
+        /**
+         * removed this mod either from implicit or explicit
+         *
+         * if that mod fiths into neither category it throws
+         * @param other
+         */
         removeMod(other: Mod): this;
+        /**
+         * removes explicits
+         */
         removeAllMods(): this;
         hasMod(other: Mod): boolean;
         hasModGroup(other: Mod): boolean;
         hasRoomFor(other: Mod): boolean;
-        indexOfModWithPrimary(primary: number): number;
+        indexOfModWithId(id: string): number;
         maxModsOfType(other: Mod): number;
         inDomainOf(mod_domain: number): boolean;
         level(): number;
         any(): boolean;
+        /**
+         * merge of implicit and explicit stats
+         */
         stats(): {
             [key: string]: Stat;
         };
         removeAllImplicits(): this;
         setProperty(prop: keyof ItemProps, value: any): this;
+        /**
+         * sets the corrupted property on the item or throws if it is already corrupted
+         */
         corrupt(): this;
+        /**
+         * sets the mirror property on the item or throws if it is already mirrored
+         */
         mirror(): this;
         isElderItem(): boolean;
+        /**
+         * returns an item that can have elder mods
+         *
+         * this does not remove existing shaper mods
+         */
         asElderItem(): this;
         isSHaperItem(): boolean;
+        /**
+         * returns an item that can have shaper mods
+         *
+         * this does not remove existing elder mods
+         */
         asShaperItem(): this;
         removeAtlasModifier(): this;
+        /**
+         * augments a given {value} with the local stats
+         * @param value
+         * @param classification
+         */
+        computeValue(value: number, classification: string[]): NumericProperty;
         private mutateAffixes(mutate);
         private addAffix(other);
         private removeAffix(other);
@@ -801,6 +989,7 @@ declare module "containers/item/Item" {
 }
 declare module "containers/item/index" {
     import Item from "containers/item/Item";
+    export { default as ItemArmourProperties } from "containers/item/components/properties/ArmourProperties";
     export default Item;
 }
 declare module "util/rng" {
@@ -1189,7 +1378,7 @@ declare module "generators/ItemShowcase" {
 }
 declare module "containers/AtlasNode" {
     import Mod from "mods/Mod";
-    import { AtlasNodeProps, TagProps } from "schema";
+    import { AtlasNodeProps, Tag } from "schema";
     import ImmutableContainer from "containers/ImmutableContainer";
     export const SEXTANT_RANGE = 55;
     export interface Builder {
@@ -1198,7 +1387,6 @@ declare module "containers/AtlasNode" {
     }
     export type HumanId = string;
     export default class AtlasNode extends ImmutableContainer<Mod, Builder> {
-        static humanId(props: AtlasNodeProps): HumanId;
         static build(props: AtlasNodeProps): default;
         static withBuilder(builder: Builder): AtlasNode;
         props: AtlasNodeProps;
@@ -1215,14 +1403,13 @@ declare module "containers/AtlasNode" {
         distance(other: AtlasNode): number;
         pos(): string;
         getAllMods(atlas: AtlasNode[]): Mod[];
-        getTags(): TagProps[];
+        getTags(): Tag[];
         maxModsOfType(): number;
         inDomainOf(mod_domain: number): boolean;
         level(): number;
         affectingMods(atlas: AtlasNode[]): Mod[];
         activeMods(atlas: AtlasNode[]): Mod[];
         inactiveMods(atlas: AtlasNode[]): Mod[];
-        humanId(): HumanId;
     }
 }
 declare module "generators/Sextant" {
@@ -1289,7 +1476,7 @@ declare module "containers/index" {
     export { default as AtlasNode } from "containers/AtlasNode";
     export { default as Container } from "containers/Container";
     export { default as ImmutableContainer } from "containers/ImmutableContainer";
-    export { default as Item } from "containers/item/index";
+    export { default as Item, ItemArmourProperties } from "containers/item/index";
 }
 declare module "helpers/Atlas" {
     import AtlasNode from "containers/AtlasNode";
@@ -1317,7 +1504,7 @@ declare module "helpers/Atlas" {
         /**
          * wrapper for map get that ensures a node or throws
          */
-        get(id: HumanId): AtlasNode;
+        get(world_area_id: string): AtlasNode;
         builder(): Builder;
         /**
          * batch mutations
@@ -1332,12 +1519,12 @@ declare module "helpers/Atlas" {
          * always returns a new copy
          */
         reset(): this;
-        addMod(mod: Mod, node_id: HumanId): this;
-        removeMod(mod: Mod, node_id: HumanId): this;
-        mutateNode(node_id: HumanId, mutate: (node: AtlasNode) => AtlasNode): this;
-        applySextant(sextant: Sextant, node_id: HumanId): this;
-        modsFor(sextant: Sextant, node_id: HumanId): Array<GeneratorDetails<Mod>>;
-        blockedMods(node_id: HumanId): Mod[];
+        addMod(mod: Mod, world_area_id: string): this;
+        removeMod(mod: Mod, world_area_id: HumanId): this;
+        mutateNode(world_area_id: string, mutate: (node: AtlasNode) => AtlasNode): this;
+        applySextant(sextant: Sextant, world_area_id: string): this;
+        modsFor(sextant: Sextant, world_area_id: string): Array<GeneratorDetails<Mod>>;
+        blockedMods(world_area_id: string): Mod[];
         private prepareSextant(sextant);
     }
 }
@@ -1359,7 +1546,7 @@ declare module "helpers/PropsTable" {
     import { BaseError } from 'make-error';
     import { Buildable } from "interfaces/index";
     export interface TableProps {
-        primary: number;
+        primary?: number;
         name?: string;
         id?: string;
     }
@@ -1380,7 +1567,7 @@ declare module "helpers/PropsTable" {
         fromPrimary(primary: number): T;
         fromName(name: string): T;
         fromId(id: string): T;
-        fromProp<K extends keyof TableProps>(prop: K, value: P[K]): T;
+        fromProp<K extends keyof P>(prop: K, value: P[K]): T;
     }
 }
 declare module "helpers/createTables" {
@@ -1402,7 +1589,7 @@ declare module "index" {
     export { default as Container } from "containers/Container";
     export { Flags } from "util/index";
     export { Alchemy, Alteration, Annulment, Augment, Chaos, EnchantmentBench, Exalted, Regal, Scouring, Talisman, Transmute, Vaal, ItemShowcase, MasterBenchOption, Sextant } from "generators/index";
-    export { AtlasNode, Item } from "containers/index";
+    export { AtlasNode, Item, ItemArmourProperties } from "containers/index";
     export { Mod } from "mods/index";
     export { default as Atlas } from "helpers/Atlas";
     export { default as MasterBench } from "helpers/MasterBench";
