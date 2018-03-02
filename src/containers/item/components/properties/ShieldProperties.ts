@@ -11,9 +11,6 @@ export default class ShieldProperties extends ArmourProperties {
       throw new Error('shield_type not set in baseitem');
     }
 
-    const { block } = shield_type;
-    const base_block = new Value([block, block], ['local', 'block'])
-
-    return base_block.augmentWith(Object.values(this.parent.stats())).compute();
+    return this.parent.computeValue(shield_type.block, ['local', 'block']);
   }
 }

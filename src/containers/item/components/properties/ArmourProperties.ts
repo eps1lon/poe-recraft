@@ -35,24 +35,19 @@ export default class ItemArmourProperties extends ItemProperties
 
     const { armour, evasion, energy_shield } = component_armour;
 
-    const props = {
-      armour: new Value([armour, armour], ['local', 'defences', 'armour']),
-      evasion: new Value([evasion, evasion], ['local', 'defences', 'evasion']),
-      energy_shield: new Value(
-        [energy_shield, energy_shield],
-        ['local', 'defences', 'energy_shield'],
-      ),
+    return {
+      armour: this.parent.computeValue(armour, ['local', 'defences', 'armour']),
+      evasion: this.parent.computeValue(evasion, [
+        'local',
+        'defences',
+        'evasion',
+      ]),
+      energy_shield: this.parent.computeValue(energy_shield, [
+        'local',
+        'defences',
+        'energy_shield',
+      ]),
     };
-
-    const stats = item.stats();
-    // Flow false positive when using Object.values
-    const stats_as_array: Stat[] = [...Object.values(stats)];
-
-    const augmented_props = _.mapValues(props, (value: Value) => {
-      return  value.augmentWith(stats_as_array).compute() as NumericProperty;
-    });
-
-    return augmented_props;
   }
 
   public any(): boolean {

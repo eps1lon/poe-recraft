@@ -39,7 +39,7 @@ export default class ItemWeaponProperties extends ItemProperties
   public attack_speed() {
     // speed is in ms, precision 2 => 1e5
     // seems to round ingame, see short bow test case
-    return this.computeValue(Math.round(1e5 / this.weaponProps().speed), [
+    return this.parent.computeValue(Math.round(1e5 / this.weaponProps().speed), [
       'local',
       'attack_speed',
     ]);
@@ -47,14 +47,14 @@ export default class ItemWeaponProperties extends ItemProperties
 
   // crit() / 100 = crit%
   public crit() {
-    return this.computeValue(this.weaponProps().critical, [
+    return this.parent.computeValue(this.weaponProps().critical, [
       'local',
       'crit_chance',
     ]);
   }
 
   public weapon_range() {
-    return this.computeValue(this.weaponProps().range_max, [
+    return this.parent.computeValue(this.weaponProps().range_max, [
       'local',
       'weapon_range',
     ]);
@@ -80,14 +80,8 @@ export default class ItemWeaponProperties extends ItemProperties
     const base_max = new Value([max, max], [...classification, 'max']);
 
     return {
-      min: this.computeValue(min, [...classification, 'min']),
-      max: this.computeValue(max, [...classification, 'max']),
+      min: this.parent.computeValue(min, [...classification, 'min']),
+      max: this.parent.computeValue(max, [...classification, 'max']),
     };
-  }
-
-  private computeValue(value: number, classification: string[]) {
-    const base = new Value([value, value], classification);
-
-    return base.augmentWith(Object.values(this.parent.stats())).compute();
   }
 }
