@@ -6433,7 +6433,7 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
         }
     };
 });
-System.register("containers/item/index", ["containers/item/Item", "containers/item/components/properties/ArmourProperties"], function (exports_33, context_33) {
+System.register("containers/item/index", ["containers/item/Item", "containers/item/components/properties/ArmourProperties", "containers/item/components/properties/ShieldProperties", "containers/item/components/properties/WeaponProperties"], function (exports_33, context_33) {
     "use strict";
     var __moduleName = context_33 && context_33.id;
     var Item_1;
@@ -6444,7 +6444,17 @@ System.register("containers/item/index", ["containers/item/Item", "containers/it
             },
             function (ArmourProperties_3_1) {
                 exports_33({
-                    "ItemArmourProperties": ArmourProperties_3_1["default"]
+                    "ArmourProperties": ArmourProperties_3_1["default"]
+                });
+            },
+            function (ShieldProperties_2_1) {
+                exports_33({
+                    "ShieldProperties": ShieldProperties_2_1["default"]
+                });
+            },
+            function (WeaponProperties_2_1) {
+                exports_33({
+                    "WeaponProperties": WeaponProperties_2_1["default"]
                 });
             }
         ],
@@ -8054,7 +8064,9 @@ System.register("containers/index", ["containers/AtlasNode", "containers/Immutab
             function (item_1_1) {
                 exports_56({
                     "Item": item_1_1["default"],
-                    "ItemArmourProperties": item_1_1["ItemArmourProperties"]
+                    "ArmourProperties": item_1_1["ArmourProperties"],
+                    "ShieldProperties": item_1_1["ShieldProperties"],
+                    "WeaponProperties": item_1_1["WeaponProperties"]
                 });
             }
         ],
@@ -8372,7 +8384,9 @@ System.register("index", ["calculator/Stat", "calculator/ValueRange", "generator
                 exports_63({
                     "AtlasNode": containers_1_1["AtlasNode"],
                     "Item": containers_1_1["Item"],
-                    "ItemArmourProperties": containers_1_1["ItemArmourProperties"]
+                    "ArmourProperties": containers_1_1["ArmourProperties"],
+                    "ShieldProperties": containers_1_1["ShieldProperties"],
+                    "WeaponProperties": containers_1_1["WeaponProperties"]
                 });
             },
             function (mods_6_1) {

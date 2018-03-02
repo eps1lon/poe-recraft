@@ -989,7 +989,9 @@ declare module "containers/item/Item" {
 }
 declare module "containers/item/index" {
     import Item from "containers/item/Item";
-    export { default as ItemArmourProperties } from "containers/item/components/properties/ArmourProperties";
+    export { default as ArmourProperties } from "containers/item/components/properties/ArmourProperties";
+    export { default as ShieldProperties } from "containers/item/components/properties/ShieldProperties";
+    export { default as WeaponProperties } from "containers/item/components/properties/WeaponProperties";
     export default Item;
 }
 declare module "util/rng" {
@@ -1476,7 +1478,7 @@ declare module "containers/index" {
     export { default as AtlasNode } from "containers/AtlasNode";
     export { default as Container } from "containers/Container";
     export { default as ImmutableContainer } from "containers/ImmutableContainer";
-    export { default as Item, ItemArmourProperties } from "containers/item/index";
+    export { default as Item, ArmourProperties, ShieldProperties, WeaponProperties } from "containers/item/index";
 }
 declare module "helpers/Atlas" {
     import AtlasNode from "containers/AtlasNode";
@@ -1589,7 +1591,7 @@ declare module "index" {
     export { default as Container } from "containers/Container";
     export { Flags } from "util/index";
     export { Alchemy, Alteration, Annulment, Augment, Chaos, EnchantmentBench, Exalted, Regal, Scouring, Talisman, Transmute, Vaal, ItemShowcase, MasterBenchOption, Sextant } from "generators/index";
-    export { AtlasNode, Item, ItemArmourProperties } from "containers/index";
+    export { AtlasNode, Item, ArmourProperties, ShieldProperties, WeaponProperties } from "containers/index";
     export { Mod } from "mods/index";
     export { default as Atlas } from "helpers/Atlas";
     export { default as MasterBench } from "helpers/MasterBench";

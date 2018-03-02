@@ -24,7 +24,13 @@ export {
   Sextant,
 } from './generators/index';
 
-export { AtlasNode, Item, ItemArmourProperties } from './containers';
+export {
+  AtlasNode,
+  Item,
+  ArmourProperties,
+  ShieldProperties,
+  WeaponProperties,
+} from './containers';
 export { Mod } from './mods';
 
 export { default as Atlas } from './helpers/Atlas';
