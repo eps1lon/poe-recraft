@@ -17,7 +17,7 @@ const applications: { [key: string]: Application } = {
     type: 'flat',
   },
   'additional_block_%': {
-    classification: [],
+    classification: ['block'],
     type: 'flat',
   },
   'additional_block_chance_against_projectiles_%': {
@@ -653,7 +653,7 @@ const applications: { [key: string]: Application } = {
     type: 'inc',
   },
   'local_additional_block_chance_%': {
-    classification: [],
+    classification: ['local', 'block'],
     type: 'flat',
   },
   local_always_hit: {
