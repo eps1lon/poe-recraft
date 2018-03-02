@@ -1,6 +1,14 @@
 export type ValueRangeLike = ValueRange | number | [number, number];
 
 export default class ValueRange {
+  // this is evaluated before {ValueRange} is defined
+  // which will fail the constructor because we check instanceof {ValueRange}
+  // these are still available as properties
+  // public static zero = new ValueRange([0, 0]);
+  // public static one = new ValueRange([1, 1]);
+  public static zero: ValueRange;
+  public static one: ValueRange;
+
   public static isZero(value: ValueRangeLike) {
     const [min, max] = tuple(value);
     return min === 0 && max === 0;
@@ -9,9 +17,10 @@ export default class ValueRange {
   public min: number;
   public max: number;
 
-  constructor(min: number, max?: number) {
+  constructor(range: ValueRangeLike) {
+    const [min, max] = tuple(range);
     this.min = min;
-    this.max = max != null ? max : min;
+    this.max = max;
   }
 
   public add(other: ValueRangeLike) {
@@ -19,7 +28,7 @@ export default class ValueRange {
       return this;
     } else {
       const [min, max] = tuple(other);
-      return new ValueRange(this.min + min, this.max + max);
+      return new ValueRange([this.min + min, this.max + max]);
     }
   }
 
@@ -28,7 +37,7 @@ export default class ValueRange {
       return this;
     } else {
       const [min, max] = tuple(other);
-      return new ValueRange(this.min * min, this.max * max);
+      return new ValueRange([this.min * min, this.max * max]);
     }
   }
 
@@ -36,7 +45,7 @@ export default class ValueRange {
     const [min, max] = [mapFn(this.min), mapFn(this.max)];
 
     if (min !== this.min || max !== this.max) {
-      return new ValueRange(min, max);
+      return new ValueRange([min, max]);
     } else {
       return this;
     }
@@ -54,7 +63,7 @@ export default class ValueRange {
    * +29% => 1.29
    */
   public percentToFactor(): ValueRange {
-    return this.mult(new ValueRange(0.01, 0.01)).add(new ValueRange(1, 1));
+    return this.mult(new ValueRange([0.01, 0.01])).add(new ValueRange([1, 1]));
   }
 
   public asTuple(): [number, number] {
@@ -81,3 +90,8 @@ function tuple(value: ValueRangeLike): [number, number] {
     return [value, value];
   }
 }
+
+// since ValueRange is immutable we can have this singletons
+// can still be reassigned though :(
+ValueRange.zero = new ValueRange([0, 0]);
+ValueRange.one = new ValueRange([1, 1]);

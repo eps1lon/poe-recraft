@@ -19,7 +19,7 @@ const poe_round = (n: number, precision: number) => {
 
 export default class Value {
   public classification: Classification;
-  public modifiers: Modifier[];
+  public modifiers: ReadonlyArray<Modifier>;
   public base: ValueRange;
 
   constructor(
@@ -27,8 +27,7 @@ export default class Value {
     classification: Classification = [],
     modifiers: Modifier[] = [],
   ) {
-    this.base =
-      range instanceof ValueRange ? range : new ValueRange(range[0], range[1]);
+    this.base = range instanceof ValueRange ? range : new ValueRange(range);
     this.classification = classification;
     this.modifiers = modifiers;
   }
@@ -74,21 +73,21 @@ export default class Value {
       .filter(({ type }) => type === 'flat')
       .reduce(
         (sum, modifier) => sum.add(modifier.stat.values),
-        new ValueRange(0, 0),
+        ValueRange.zero,
       );
 
     const increases = this.modifiers
       .filter(({ type }) => type === 'inc')
       .reduce(
         (sum, modifier) => sum.add(modifier.stat.values),
-        new ValueRange(0, 0),
+        ValueRange.zero,
       );
 
     const more = this.modifiers
       .filter(({ type }) => type === 'more')
       .reduce(
         (sum, modifier) => sum.mult(modifier.stat.values.percentToFactor()),
-        new ValueRange(1, 1),
+        ValueRange.one,
       );
 
     return this.base
