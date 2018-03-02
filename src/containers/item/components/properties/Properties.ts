@@ -2,8 +2,8 @@ import Component from '../../Component';
 import Item from '../../Item';
 
 export interface NumericProperty {
-  values: number | [number, number];
-  type: 'simple' | 'augmented';
+  value: number | [number, number];
+  augmented: boolean;
 }
 
 export interface Properties {

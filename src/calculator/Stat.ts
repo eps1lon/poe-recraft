@@ -13,7 +13,7 @@ export default class Stat {
     this.values =
       values instanceof ValueRange
         ? values
-        : new ValueRange(values[0], values[1]);
+        : new ValueRange([values[0], values[1]]);
   }
 
   public add(other: ValueRange) {

@@ -37,6 +37,12 @@ Promise.all([
 });
 ```
 
+## Data
+Data for for the [`create*`](https://github.com/eps1lon/poe-mods/blob/master/src/helpers/createTables.ts)
+helpers can be imported from [`poe-mods/data/`](https://github.com/eps1lon/poe-mods/tree/master/data).
+
+If you want to use the data somewhere else you can use 
+https://unpkg.com/poe-mods@/data/. The data provided by unpkg supports compression. 
 ## Immutability
 To provide the best support for redux every class is immutable.
 
@@ -47,3 +53,18 @@ item.setRaritiy('magic') === item // false
 
 item.addMod(someMod) === item // false
 ```
+
+# Documentation
+- [API](https://eps1lon.github.io/poe-mods/)
+- [changelog](CHANGELOG.md)
+
+# Contributing
+Issue reports and pull requests are always welcome.
+
+When you contribute code please make sure that it passes
+the test, lint and format checks. Pull requests should be made against
+the master branch and Travis will inform you wheather all checks have
+passed.
+
+# License
+MIT

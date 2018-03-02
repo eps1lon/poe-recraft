@@ -5,6 +5,7 @@ import { Mod } from '../../mods';
 import { Tag, BaseItemTypeProps } from '../../schema';
 import MetaData from '../../util/MetaData';
 import Stat from '../../calculator/Stat';
+import Value from '../../calculator/Value';
 
 import atlasModifier, {
   AtlasModifier,
@@ -32,6 +33,7 @@ import {
   Builder as PropertiesBuilder,
   build as buildProperties,
 } from './components/properties';
+import { NumericProperty } from './components/properties/Properties';
 
 export interface ItemProps {
   readonly atlas_modifier: AtlasModifier;
@@ -401,6 +403,16 @@ export default class Item implements Container<Mod> {
     return this.asAtlasModifier(AtlasModifier.NONE);
   }
   // End state
+
+  /**
+   * augments a given {value} with the local stats
+   * @param value 
+   * @param classification 
+   */
+  public computeValue(value: number, classification: string[]): NumericProperty {
+    const base = new Value([value, value], classification);
+    return base.augmentWith(Object.values(this.stats())).compute();
+  }
 
   // private
   private mutateAffixes(mutate: (a: ItemAffixes) => ItemAffixes): this {

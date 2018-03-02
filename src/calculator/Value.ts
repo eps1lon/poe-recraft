@@ -19,23 +19,30 @@ const poe_round = (n: number, precision: number) => {
 
 export default class Value {
   public classification: Classification;
-  public modifiers: Modifier[];
-  public base: ValueRange;
+  public modifiers: ReadonlyArray<Modifier>;
+  public range: ValueRange;
+  /**
+   * if the value change since init
+   */
+  public augmented: boolean = false;
 
   constructor(
     range: [number, number] | ValueRange,
     classification: Classification = [],
     modifiers: Modifier[] = [],
   ) {
-    this.base =
-      range instanceof ValueRange ? range : new ValueRange(range[0], range[1]);
+    this.range = range instanceof ValueRange ? range : new ValueRange(range);
     this.classification = classification;
     this.modifiers = modifiers;
   }
 
+  get value() {
+    return this.range.valueOf();
+  }
+
   public augmentWith(stats: Stat[]): Value {
     return new Value(
-      this.base,
+      this.range,
       this.classification,
       this.modifiers.concat(
         stats.filter(stat => this.augmentableBy(stat)).map(stat => {
@@ -69,32 +76,37 @@ export default class Value {
    * 
    * in PoE all increase modifers get summed up to one big more modifier
    */
-  public compute(precision: number = 0): ValueRange {
+  public compute(precision: number = 0): Value {
     const flat = this.modifiers
       .filter(({ type }) => type === 'flat')
       .reduce(
         (sum, modifier) => sum.add(modifier.stat.values),
-        new ValueRange(0, 0),
+        ValueRange.zero,
       );
 
     const increases = this.modifiers
       .filter(({ type }) => type === 'inc')
       .reduce(
         (sum, modifier) => sum.add(modifier.stat.values),
-        new ValueRange(0, 0),
+        ValueRange.zero,
       );
 
     const more = this.modifiers
       .filter(({ type }) => type === 'more')
       .reduce(
         (sum, modifier) => sum.mult(modifier.stat.values.percentToFactor()),
-        new ValueRange(1, 1),
+        ValueRange.one,
       );
 
-    return this.base
-      .add(flat)
-      .mult(increases.percentToFactor())
-      .mult(more)
-      .map(n => poe_round(n, precision));
+    const calculated = new Value(
+      this.range
+        .add(flat)
+        .mult(increases.percentToFactor())
+        .mult(more)
+        .map(n => poe_round(n, precision)),
+    );
+    calculated.augmented = calculated.range !== this.range;
+
+    return calculated;
   }
 }

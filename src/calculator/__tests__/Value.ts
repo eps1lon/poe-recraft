@@ -34,8 +34,8 @@ it('should know about the difference between flat, inc and more', () => {
   expect(augmented.modifiers).toHaveLength(2);
 
   const computed = augmented.compute();
-  expect(computed.min).toBeCloseTo(110, 5);
-  expect(computed.max).toBeCloseTo(240, 5);
+  expect(computed.range.min).toBeCloseTo(110, 5);
+  expect(computed.range.max).toBeCloseTo(240, 5);
 });
 
 it('should consider its precision', () => {
@@ -57,15 +57,9 @@ it('should consider its precision', () => {
     ),
   ]);
 
-  expect(armour.compute(0).asTuple()).toEqual([1, 2]);
-  expect(armour.compute(1).asTuple()).toEqual([1.1, 2.4]);
+  expect(armour.compute(0).value).toEqual([1, 2]);
+  expect(armour.compute(1).value).toEqual([1.1, 2.4]);
 
-  expect(new Value([1.005, 1.005]).compute(3).asTuple()).toEqual([
-    1.005,
-    1.005,
-  ]);
-  expect(new Value([1.005, 1.005]).compute(4).asTuple()).toEqual([
-    1.005,
-    1.005,
-  ]);
+  expect(new Value([1.005, 1.005]).compute(3).value).toEqual(1.005);
+  expect(new Value([1.005, 1.005]).compute(4).value).toEqual(1.005);
 });

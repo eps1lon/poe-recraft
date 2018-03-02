@@ -39,6 +39,7 @@ export interface ModProps {
 export interface WeaponTypeProps {
   critical: number;
   speed: number;
+  // phys
   damage_min: number;
   damage_max: number;
   range_max: number;
@@ -56,6 +57,10 @@ export interface ArmourProps {
   energy_shield: number;
 }
 
+export interface ShieldTypeProps {
+  block: number;
+}
+
 export interface BaseItemTypeProps {
   id: string;
   name: string;
@@ -66,6 +71,7 @@ export interface BaseItemTypeProps {
   weapon_type?: WeaponTypeProps;
   component_attribute_requirement?: AttributeRequirementProps;
   component_armour?: ArmourProps;
+  shield_type?: ShieldTypeProps;
   implicit_mods: ModProps[];
   item_class: string;
   tags: Tag[];

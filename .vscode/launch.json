@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "program": "${file}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Jest Tests",
+      "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
+      "args": [
+          "${fileBasename}",
+          "--config",
+          "package.json",
+          "--runInBand"
+      ],
+      "runtimeArgs": [
+          "--nolazy"
+      ],
+      "console": "internalConsole",
+      "env": {
+          "NODE_ENV": "test"
+      }
+  }
+  ]
+}

@@ -26,10 +26,12 @@ it('get the basics', () => {
   const { properties } = garb;
 
   // @ts-ignore: runtime type checking only
-  expect(properties.defences()).toEqual({
-    armour: { type: 'simple', values: 329 },
-    evasion: { type: 'simple', values: 329 },
-    energy_shield: { type: 'simple', values: 64 },
+  const defences = properties.defences();
+  expect(defences.armour).toHaveProperty('value', 329);
+  expect(defences).toMatchObject({
+    armour: { augmented: false, value: 329 },
+    evasion: { augmented: false, value: 329 },
+    energy_shield: { augmented: false, value: 64 },
   });
 });
 
@@ -44,10 +46,10 @@ it('should consider stats for armour', () => {
   );
 
   // @ts-ignore: runtime type checking only
-  expect(garb.addMod(flat_armour).properties.defences()).toEqual({
-    armour: { type: 'augmented', values: [468, 651] },
-    evasion: { type: 'simple', values: 329 },
-    energy_shield: { type: 'simple', values: 64 },
+  expect(garb.addMod(flat_armour).properties.defences()).toMatchObject({
+    armour: { augmented: true, value: [468, 651] },
+    evasion: { augmented: false, value: 329 },
+    energy_shield: { augmented: false, value: 64 },
   });
 
   expect(
@@ -56,10 +58,10 @@ it('should consider stats for armour', () => {
       .addMod(percent_armour)
       // @ts-ignore: runtime type checking only
       .properties.defences(),
-  ).toEqual({
-    armour: { type: 'augmented', values: [594, 859] },
-    evasion: { type: 'simple', values: 329 },
-    energy_shield: { type: 'simple', values: 64 },
+  ).toMatchObject({
+    armour: { augmented: true, value: [594, 859] },
+    evasion: { augmented: false, value: 329 },
+    energy_shield: { augmented: false, value: 64 },
   });
 });
 
@@ -70,10 +72,10 @@ it('should consider stats for evasion', () => {
   const percent_evasion = mods.fromId('LocalIncreasedEvasionRatingPercent5');
 
   // @ts-ignore: runtime type checking only
-  expect(garb.addMod(flat_evasion).properties.defences()).toEqual({
-    armour: { type: 'simple', values: 329 },
-    evasion: { type: 'augmented', values: [468, 651] },
-    energy_shield: { type: 'simple', values: 64 },
+  expect(garb.addMod(flat_evasion).properties.defences()).toMatchObject({
+    armour: { augmented: false, value: 329 },
+    evasion: { augmented: true, value: [468, 651] },
+    energy_shield: { augmented: false, value: 64 },
   });
 
   const props = garb
@@ -81,8 +83,8 @@ it('should consider stats for evasion', () => {
     .addMod(percent_evasion)
     // @ts-ignore: runtime type checking only
     .properties.defences();
-  expect(props.evasion.type).toBe('augmented');
-  expect(props.evasion.values).toEqual([786, 1165]);
+  expect(props.evasion.augmented).toBe(true);
+  expect(props.evasion.value).toEqual([786, 1165]);
 });
 
 it('should consider stats for es', () => {
@@ -94,10 +96,10 @@ it('should consider stats for es', () => {
   );
 
   // @ts-ignore: runtime type checking only
-  expect(garb.addMod(flat_es).properties.defences()).toEqual({
-    armour: { type: 'simple', values: 329 },
-    evasion: { type: 'simple', values: 329 },
-    energy_shield: { type: 'augmented', values: [95, 102] },
+  expect(garb.addMod(flat_es).properties.defences()).toMatchObject({
+    armour: { augmented: false, value: 329 },
+    evasion: { augmented: false, value: 329 },
+    energy_shield: { augmented: true, value: [95, 102] },
   });
 
   const props = garb
@@ -105,6 +107,6 @@ it('should consider stats for es', () => {
     .addMod(percent_es)
     // @ts-ignore: runtime type checking only
     .properties.defences();
-  expect(props.energy_shield.type).toBe('augmented');
-  expect(props.energy_shield.values).toEqual([120, 134]);
+  expect(props.energy_shield.augmented).toBe(true);
+  expect(props.energy_shield.value).toEqual([120, 134]);
 });

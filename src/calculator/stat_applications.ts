@@ -17,7 +17,7 @@ const applications: { [key: string]: Application } = {
     type: 'flat',
   },
   'additional_block_%': {
-    classification: [],
+    classification: ['block'],
     type: 'flat',
   },
   'additional_block_chance_against_projectiles_%': {
@@ -653,7 +653,7 @@ const applications: { [key: string]: Application } = {
     type: 'inc',
   },
   'local_additional_block_chance_%': {
-    classification: [],
+    classification: ['local', 'block'],
     type: 'flat',
   },
   local_always_hit: {
@@ -673,7 +673,7 @@ const applications: { [key: string]: Application } = {
     type: 'inc',
   },
   'local_attack_speed_+%': {
-    classification: [],
+    classification: ['local', 'attack_speed'],
     type: 'inc',
   },
   'local_attribute_requirements_+%': {
@@ -697,7 +697,7 @@ const applications: { [key: string]: Application } = {
     type: 'flat',
   },
   'local_critical_strike_chance_+%': {
-    classification: [],
+    classification: ['local', 'crit_chance'],
     type: 'inc',
   },
   'local_display_fire_burst_on_hit_%': {
@@ -921,47 +921,47 @@ const applications: { [key: string]: Application } = {
     type: 'flat',
   },
   local_maximum_added_chaos_damage: {
-    classification: [],
+    classification: ['local', 'attack_damage', 'chaos', 'max'],
     type: 'flat',
   },
   local_maximum_added_cold_damage: {
-    classification: [],
+    classification: ['local', 'attack_damage', 'cold', 'max'],
     type: 'flat',
   },
   local_maximum_added_fire_damage: {
-    classification: [],
+    classification: ['local', 'attack_damage', 'fire', 'max'],
     type: 'flat',
   },
   local_maximum_added_lightning_damage: {
-    classification: [],
+    classification: ['local', 'attack_damage', 'lightning', 'max'],
     type: 'flat',
   },
   local_maximum_added_physical_damage: {
-    classification: [],
+    classification: ['local', 'attack_damage', 'physical', 'max'],
     type: 'flat',
   },
   local_minimum_added_chaos_damage: {
-    classification: [],
+    classification: ['local', 'attack_damage', 'chaos', 'min'],
     type: 'flat',
   },
   local_minimum_added_cold_damage: {
-    classification: [],
+    classification: ['local', 'attack_damage', 'cold', 'min'],
     type: 'flat',
   },
   local_minimum_added_fire_damage: {
-    classification: [],
+    classification: ['local', 'attack_damage', 'fire', 'min'],
     type: 'flat',
   },
   local_minimum_added_lightning_damage: {
-    classification: [],
+    classification: ['local', 'attack_damage', 'lightning', 'min'],
     type: 'flat',
   },
   local_minimum_added_physical_damage: {
-    classification: [],
+    classification: ['local', 'attack_damage', 'physical', 'min'],
     type: 'flat',
   },
   'local_physical_damage_+%': {
-    classification: [],
+    classification: ['local', 'attack_damage', 'physical'],
     type: 'inc',
   },
   'local_physical_damage_reduction_rating_+%': {
@@ -1029,7 +1029,7 @@ const applications: { [key: string]: Application } = {
     type: 'inc',
   },
   'local_weapon_range_+': {
-    classification: [],
+    classification: ['local', 'weapon_range'],
     type: 'flat',
   },
   'mana_%_gained_on_block': {

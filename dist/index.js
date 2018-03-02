@@ -37,35 +37,53 @@ System.register("schema", [], function (exports_1, context_1) {
 System.register("calculator/ValueRange", [], function (exports_2, context_2) {
     "use strict";
     var __moduleName = context_2 && context_2.id;
+    function tuple(value) {
+        if (value instanceof ValueRange) {
+            return value.asTuple();
+        }
+        else if (Array.isArray(value)) {
+            return value;
+        }
+        else {
+            return [value, value];
+        }
+    }
     var ValueRange;
     return {
         setters: [],
         execute: function () {
             ValueRange = /** @class */ (function () {
-                function ValueRange(min, max) {
+                function ValueRange(range) {
+                    var _a = tuple(range), min = _a[0], max = _a[1];
                     this.min = min;
                     this.max = max;
                 }
+                ValueRange.isZero = function (value) {
+                    var _a = tuple(value), min = _a[0], max = _a[1];
+                    return min === 0 && max === 0;
+                };
                 ValueRange.prototype.add = function (other) {
-                    if (other.isAddIdentity()) {
+                    if (other instanceof ValueRange && other.isAddIdentity()) {
                         return this;
                     }
                     else {
-                        return new ValueRange(this.min + other.min, this.max + other.max);
+                        var _a = tuple(other), min = _a[0], max = _a[1];
+                        return new ValueRange([this.min + min, this.max + max]);
                     }
                 };
                 ValueRange.prototype.mult = function (other) {
-                    if (other.isMultIdentity()) {
+                    if (other instanceof ValueRange && other.isMultIdentity()) {
                         return this;
                     }
                     else {
-                        return new ValueRange(this.min * other.min, this.max * other.max);
+                        var _a = tuple(other), min = _a[0], max = _a[1];
+                        return new ValueRange([this.min * min, this.max * max]);
                     }
                 };
                 ValueRange.prototype.map = function (mapFn) {
                     var _a = [mapFn(this.min), mapFn(this.max)], min = _a[0], max = _a[1];
                     if (min !== this.min || max !== this.max) {
-                        return new ValueRange(min, max);
+                        return new ValueRange([min, max]);
                     }
                     else {
                         return this;
@@ -81,14 +99,27 @@ System.register("calculator/ValueRange", [], function (exports_2, context_2) {
                  * +29% => 1.29
                  */
                 ValueRange.prototype.percentToFactor = function () {
-                    return this.mult(new ValueRange(0.01, 0.01)).add(new ValueRange(1, 1));
+                    return this.mult(new ValueRange([0.01, 0.01])).add(new ValueRange([1, 1]));
                 };
                 ValueRange.prototype.asTuple = function () {
                     return [this.min, this.max];
                 };
+                ValueRange.prototype.valueOf = function () {
+                    var range = this.asTuple();
+                    if (range[0] === range[1]) {
+                        return range[0];
+                    }
+                    else {
+                        return range;
+                    }
+                };
                 return ValueRange;
             }());
             exports_2("default", ValueRange);
+            // since ValueRange is immutable we can have this singletons
+            // can still be reassigned though :(
+            ValueRange.zero = new ValueRange([0, 0]);
+            ValueRange.one = new ValueRange([1, 1]);
         }
     };
 });
@@ -110,7 +141,7 @@ System.register("calculator/Stat", ["calculator/ValueRange"], function (exports_
                     this.values =
                         values instanceof ValueRange_1.default
                             ? values
-                            : new ValueRange_1.default(values[0], values[1]);
+                            : new ValueRange_1.default([values[0], values[1]]);
                 }
                 Stat.prototype.add = function (other) {
                     return new Stat(this.props, this.values.add(other));
@@ -227,12 +258,12 @@ System.register("mods/Mod", ["calculator/Stat", "util/ts"], function (exports_6,
                     var other_tags = other.getTags();
                     var match = spawn_weights.find(function (_a) {
                         var tag = _a.tag;
-                        return other_tags.find(function (item_tag) { return tag.primary === item_tag.primary; }) != null;
+                        return other_tags.find(function (item_tag) { return tag === item_tag; }) != null;
                     });
                     if (match == null) {
                         var default_spawnweight = spawn_weights.find(function (_a) {
                             var tag = _a.tag;
-                            return tag.primary === 0;
+                            return tag === 'default';
                         });
                         return default_spawnweight;
                     }
@@ -308,12 +339,13 @@ System.register("mods/meta_mods", [], function (exports_8, context_8) {
         setters: [],
         execute: function () {
             META_MODS = {
-                LOCKED_PREFIXES: 6184,
-                LOCKED_SUFFIXES: 6185,
-                NO_ATTACK_MODS: 6186,
-                NO_CASTER_MODS: 6187,
-                MULTIMOD: 6188,
-                LLD_MOD: 6123,
+                // TODO
+                LOCKED_PREFIXES: 'StrMasterItemGenerationCannotChangePrefixes',
+                LOCKED_SUFFIXES: 'DexMasterItemGenerationCannotChangeSuffixes',
+                NO_ATTACK_MODS: 'IntMasterItemGenerationCannotRollAttackAffixes',
+                NO_CASTER_MODS: 'StrDexMasterItemGenerationCannotRollCasterAffixes',
+                MULTIMOD: 'StrIntMasterItemGenerationCanHaveMultipleCraftedMods',
+                LLD_MOD: 'PvPMasterLevel28Crafting',
             };
             exports_8("default", Object.freeze(META_MODS));
         }
@@ -408,7 +440,7 @@ System.register("generators/Generator", ["mods/meta_mods", "util/Flags"], functi
                     if (container.hasModGroup(mod)) {
                         applicable_flags.already_present = true;
                     }
-                    var has_leo_meta_mod = container.indexOfModWithPrimary(meta_mods_1.default.LLD_MOD) !== -1;
+                    var has_leo_meta_mod = container.indexOfModWithId(meta_mods_1.default.LLD_MOD) !== -1;
                     if (mod.requiredLevel() > 28 && has_leo_meta_mod) {
                         applicable_flags.above_lld_level = true;
                     }
@@ -427,48 +459,38 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
         setters: [],
         execute: function () {
             exports_11("default", {
-                Equipment: {
-                    extends: 'Item',
-                    LocalStats: {},
-                    Mods: {
-                        stat_description_list: ['Metadata/stat_descriptions.txt'],
-                        enable_rarity: ['normal', 'magic', 'rare', 'unique'],
-                    },
-                    inheritance: ['Item', 'Equipment'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Item: {
-                    extends: 'nothing',
-                    Base: { base_level: ['1\r'], tag: ['default'] },
-                    inheritance: ['Item'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
                 AbstractAmulet: {
+                    Base: {
+                        x_size: ['1'],
+                        y_size: ['1'],
+                        tag: ['amulet'],
+                    },
+                    Mods: {
+                        inventory_type: ['Amulet'],
+                    },
                     extends: 'Equipment',
-                    Base: { x_size: ['1\r'], y_size: ['1\r'], tag: ['amulet'] },
-                    Mods: { inventory_type: ['Amulet'] },
                     inheritance: ['Item', 'Equipment', 'AbstractAmulet'],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 3, id: 'amulet' }],
+                    tags: ['default', 'amulet'],
                 },
                 AbstractSocketableAmulet: {
-                    extends: 'AbstractAmulet',
                     AttributeRequirements: {
-                        strength_requirement: ['0\r'],
-                        dexterity_requirement: ['0\r'],
-                        intelligence_requirement: ['0\r'],
+                        strength_requirement: ['0'],
+                        dexterity_requirement: ['0'],
+                        intelligence_requirement: ['0'],
                     },
                     Sockets: {
                         socket_info: [
                             '0:1:1 1:9999:100 2:9999:90 3:9999:80 4:9999:30 5:9999:20 6:9999:5',
                         ],
                     },
+                    extends: 'AbstractAmulet',
                     inheritance: [
                         'Item',
                         'Equipment',
                         'AbstractAmulet',
                         'AbstractSocketableAmulet',
                     ],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 3, id: 'amulet' }],
+                    tags: ['default', 'amulet'],
                 },
                 Talisman1_1: {
                     extends: 'AbstractSocketableAmulet',
@@ -479,7 +501,7 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractSocketableAmulet',
                         'Talisman1_1',
                     ],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 3, id: 'amulet' }],
+                    tags: ['default', 'amulet'],
                 },
                 Talisman4: {
                     extends: 'AbstractSocketableAmulet',
@@ -490,1090 +512,2633 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractSocketableAmulet',
                         'Talisman4',
                     ],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 3, id: 'amulet' }],
+                    tags: ['default', 'amulet'],
                 },
                 AbstractArmour: {
-                    extends: 'Equipment',
-                    Base: { tag: ['armour'] },
-                    Quality: { max_quality: ['20\r'] },
+                    Base: {
+                        tag: ['armour'],
+                    },
+                    AttributeRequirements: {},
+                    Quality: {
+                        max_quality: ['20'],
+                    },
+                    Armour: {},
                     Sockets: {
                         socket_info: ['1:1:100 2:1:90 3:2:80 4:25:30 5:9999:20 6:9999:5'],
                     },
+                    extends: 'Equipment',
                     inheritance: ['Item', 'Equipment', 'AbstractArmour'],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 7, id: 'armour' }],
+                    tags: ['default', 'armour'],
                 },
                 AbstractBodyArmour: {
-                    extends: 'AbstractArmour',
-                    Base: { tag: ['body_armour'] },
-                    Mods: { inventory_type: ['BodyArmour'] },
+                    Base: {
+                        tag: ['body_armour'],
+                    },
+                    Mods: {
+                        inventory_type: ['BodyArmour'],
+                    },
                     Sockets: {
                         socket_info: ['1:1:50 2:1:120 3:2:100 4:25:30 5:35:5 6:50:1'],
                     },
+                    extends: 'AbstractArmour',
                     inheritance: ['Item', 'Equipment', 'AbstractArmour', 'AbstractBodyArmour'],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 7, id: 'armour' },
-                        { primary: 16, id: 'body_armour' },
-                    ],
+                    tags: ['default', 'armour', 'body_armour'],
                 },
                 AbstractBoots: {
+                    Base: {
+                        x_size: ['2'],
+                        y_size: ['2'],
+                        tag: ['boots'],
+                    },
+                    Mods: {
+                        inventory_type: ['Boots'],
+                    },
                     extends: 'AbstractArmour',
-                    Base: { x_size: ['2\r'], y_size: ['2\r'], tag: ['boots'] },
-                    Mods: { inventory_type: ['Boots'] },
                     inheritance: ['Item', 'Equipment', 'AbstractArmour', 'AbstractBoots'],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 7, id: 'armour' },
-                        { primary: 4, id: 'boots' },
-                    ],
+                    tags: ['default', 'armour', 'boots'],
                 },
                 AbstractGloves: {
+                    Base: {
+                        x_size: ['2'],
+                        y_size: ['2'],
+                        tag: ['gloves'],
+                    },
+                    Mods: {
+                        inventory_type: ['Gloves'],
+                    },
                     extends: 'AbstractArmour',
-                    Base: { x_size: ['2\r'], y_size: ['2\r'], tag: ['gloves'] },
-                    Mods: { inventory_type: ['Gloves'] },
                     inheritance: ['Item', 'Equipment', 'AbstractArmour', 'AbstractGloves'],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 7, id: 'armour' },
-                        { primary: 22, id: 'gloves' },
-                    ],
+                    tags: ['default', 'armour', 'gloves'],
                 },
                 AbstractHelmet: {
+                    Base: {
+                        x_size: ['2'],
+                        y_size: ['2'],
+                        tag: ['helmet'],
+                    },
+                    Mods: {
+                        inventory_type: ['Helm'],
+                    },
                     extends: 'AbstractArmour',
-                    Base: { x_size: ['2\r'], y_size: ['2\r'], tag: ['helmet'] },
-                    Mods: { inventory_type: ['Helm'] },
                     inheritance: ['Item', 'Equipment', 'AbstractArmour', 'AbstractHelmet'],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 7, id: 'armour' },
-                        { primary: 25, id: 'helmet' },
-                    ],
+                    tags: ['default', 'armour', 'helmet'],
                 },
                 AbstractShield: {
-                    extends: 'AbstractArmour',
-                    Base: { x_size: ['2\r'], y_size: ['2\r'], tag: ['shield'] },
-                    Shield: { block_percentage: ['0\r'] },
-                    Mods: { inventory_type: ['Offhand'] },
+                    Base: {
+                        x_size: ['2'],
+                        y_size: ['2'],
+                        tag: ['shield'],
+                    },
+                    Shield: {
+                        block_percentage: ['0'],
+                    },
+                    Mods: {
+                        inventory_type: ['Offhand'],
+                    },
                     Sockets: {
                         socket_info: ['1:1:50 2:1:120 3:2:100 4:9999:30 5:9999:20 6:9999:5'],
                     },
+                    extends: 'AbstractArmour',
                     inheritance: ['Item', 'Equipment', 'AbstractArmour', 'AbstractShield'],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 7, id: 'armour' },
-                        { primary: 1, id: 'shield' },
-                    ],
+                    tags: ['default', 'armour', 'shield'],
                 },
                 AbstractBelt: {
+                    Base: {
+                        x_size: ['2'],
+                        y_size: ['1'],
+                        tag: ['belt'],
+                    },
+                    Mods: {
+                        inventory_type: ['Belt'],
+                    },
                     extends: 'Equipment',
-                    Base: { x_size: ['2\r'], y_size: ['1\r'], tag: ['belt'] },
-                    Mods: { inventory_type: ['Belt'] },
                     inheritance: ['Item', 'Equipment', 'AbstractBelt'],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 26, id: 'belt' }],
+                    tags: ['default', 'belt'],
                 },
-                AbstractCurrency: {
-                    extends: 'Item',
-                    Base: { x_size: ['1\r'], y_size: ['1\r'] },
-                    inheritance: ['Item', 'AbstractCurrency'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                AbstractMicrotransaction: {
-                    extends: 'AbstractCurrency',
-                    Stack: {},
-                    inheritance: ['Item', 'AbstractCurrency', 'AbstractMicrotransaction'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                CurrencyImprint: {
-                    extends: 'StackableCurrency',
-                    Imprint: {},
-                    inheritance: [
-                        'Item',
-                        'AbstractCurrency',
-                        'StackableCurrency',
-                        'CurrencyImprint',
-                    ],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
-                },
-                StackableCurrency: {
-                    extends: 'AbstractCurrency',
-                    Base: { tag: ['currency'] },
-                    Stack: {},
-                    inheritance: ['Item', 'AbstractCurrency', 'StackableCurrency'],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
-                },
-                AbstractDivinationCard: {
-                    extends: 'Item',
-                    Base: {
-                        x_size: ['1\r'],
-                        y_size: ['1\r'],
-                        tag: ['divination_card'],
-                    },
-                    Stack: {},
-                    inheritance: ['Item', 'AbstractDivinationCard'],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 152, id: 'divination_card' },
-                    ],
-                },
-                AbstractFlask: {
-                    extends: 'Item',
-                    Base: {
-                        tag: ['flask'],
-                        x_size: ['1\r'],
-                        y_size: ['2\r'],
-                        description_text: ['ItemDescriptionFlask'],
-                    },
-                    Quality: { max_quality: ['20\r'] },
-                    LocalStats: {},
-                    Charges: { max_charges: ['2\t\r'] },
-                    Mods: {
-                        stat_description_list: ['Metadata/stat_descriptions.txt'],
-                        enable_rarity: ['normal', 'magic', 'unique'],
-                        disable_rarity: ['rare'],
-                        inventory_type: ['Flask'],
-                    },
-                    Usable: { use_type: ['Usable'], action: ['flask'] },
-                    Imprint: {},
-                    inheritance: ['Item', 'AbstractFlask'],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 20, id: 'flask' }],
-                },
-                AbstractHybridFlask: {
-                    extends: 'AbstractFlask',
-                    Base: { tag: ['hybrid_flask'] },
-                    inheritance: ['Item', 'AbstractFlask', 'AbstractHybridFlask'],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 20, id: 'flask' },
-                        { primary: 19, id: 'hybrid_flask' },
-                    ],
-                },
-                AbstractLifeFlask: {
-                    extends: 'AbstractFlask',
-                    Base: { tag: ['life_flask'] },
-                    inheritance: ['Item', 'AbstractFlask', 'AbstractLifeFlask'],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 20, id: 'flask' },
-                        { primary: 17, id: 'life_flask' },
-                    ],
-                },
-                AbstractManaFlask: {
-                    extends: 'AbstractFlask',
-                    Base: { tag: ['mana_flask'] },
-                    inheritance: ['Item', 'AbstractFlask', 'AbstractManaFlask'],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 20, id: 'flask' },
-                        { primary: 18, id: 'mana_flask' },
-                    ],
-                },
-                AbstractUtilityFlask: {
-                    extends: 'AbstractFlask',
-                    Base: { tag: ['utility_flask'] },
-                    inheritance: ['Item', 'AbstractFlask', 'AbstractUtilityFlask'],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 20, id: 'flask' },
-                        { primary: 46, id: 'utility_flask' },
-                    ],
-                },
-                CriticalUtilityFlask: {
-                    extends: 'AbstractUtilityFlask',
-                    Base: { tag: ['critical_utility_flask'] },
-                    inheritance: [
-                        'Item',
-                        'AbstractFlask',
-                        'AbstractUtilityFlask',
-                        'CriticalUtilityFlask',
-                    ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 20, id: 'flask' },
-                        { primary: 46, id: 'utility_flask' },
-                        { primary: 47, id: 'critical_utility_flask' },
-                    ],
-                },
-                FlaskUtility1: {
-                    extends: 'AbstractUtilityFlask',
-                    Base: { description_text: ['ItemDescriptionFlaskUtility1'] },
-                    inheritance: [
-                        'Item',
-                        'AbstractFlask',
-                        'AbstractUtilityFlask',
-                        'FlaskUtility1',
-                    ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 20, id: 'flask' },
-                        { primary: 46, id: 'utility_flask' },
-                    ],
-                },
-                AbstractSkillGem: {
-                    extends: 'Item',
-                    Base: {
-                        tag: ['gem'],
-                        x_size: ['1\r'],
-                        y_size: ['1\r'],
-                        description_text: ['ItemDescriptionSkillGem'],
-                    },
-                    SkillGem: {},
-                    Quality: { max_quality: ['20\r'] },
-                    inheritance: ['Item', 'AbstractSkillGem'],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 27, id: 'gem' }],
-                },
-                ActiveSkillGem: {
-                    extends: 'AbstractSkillGem',
-                    Base: { description_text: ['ItemDescriptionActiveSkillGem'] },
-                    SkillGem: {},
-                    inheritance: ['Item', 'AbstractSkillGem', 'ActiveSkillGem'],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 27, id: 'gem' }],
-                },
-                SupportSkillGem: {
-                    extends: 'AbstractSkillGem',
-                    Base: {
-                        description_text: ['ItemDescriptionSupportSkillGem'],
-                        tag: ['support_gem'],
-                    },
-                    SkillGem: {},
-                    inheritance: ['Item', 'AbstractSkillGem', 'SupportSkillGem'],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 27, id: 'gem' },
-                        { primary: 169, id: 'support_gem' },
-                    ],
-                },
-                AbstractHideoutDoodad: {
-                    extends: 'Item',
-                    Base: { x_size: ['1\r'], y_size: ['1\r'] },
-                    Stack: {},
-                    inheritance: ['Item', 'AbstractHideoutDoodad'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                AbstractJewel: {
-                    extends: 'Item',
-                    Base: {
-                        x_size: ['1\r'],
-                        y_size: ['1\r'],
-                        description_text: ['ItemDescriptionPassiveJewel'],
-                    },
-                    LocalStats: {},
-                    Mods: {
-                        stat_description_list: ['Metadata/stat_descriptions.txt'],
-                        enable_rarity: ['magic', 'rare', 'unique'],
-                        inventory_type: ['passivejewels'],
-                    },
-                    inheritance: ['Item', 'AbstractJewel'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                AbstractLabyrinthItem: {
-                    extends: 'Item',
-                    Stack: { max_stack_size: ['1\r'] },
-                    inheritance: ['Item', 'AbstractLabyrinthItem'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                BronzeKey: {
-                    extends: 'AbstractLabyrinthItem',
-                    Base: { description_text: ['TreasureKeyDescription'] },
-                    inheritance: ['Item', 'AbstractLabyrinthItem', 'BronzeKey'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                GoldenKey: {
-                    extends: 'AbstractLabyrinthItem',
-                    Base: { description_text: ['GoldenKeyDescription'] },
-                    inheritance: ['Item', 'AbstractLabyrinthItem', 'GoldenKey'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                LabyrinthTrinket: {
-                    extends: 'AbstractLabyrinthItem',
-                    Base: { x_size: ['1\r'], y_size: ['1\r'] },
-                    inheritance: ['Item', 'AbstractLabyrinthItem', 'LabyrinthTrinket'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                SilverKey: {
-                    extends: 'AbstractLabyrinthItem',
-                    Base: { description_text: ['SilverKeyDescription'] },
-                    inheritance: ['Item', 'AbstractLabyrinthItem', 'SilverKey'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                AbstractMapFragment: {
-                    extends: 'Item',
-                    Base: { description_text: ['ItemDescriptionMapFragment'] },
-                    LocalStats: {},
-                    Mods: {
-                        stat_description_list: ['Metadata/stat_descriptions.txt'],
-                        inventory_type: ['Map'],
-                    },
-                    inheritance: ['Item', 'AbstractMapFragment'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                AbstractMap: {
-                    extends: 'Equipment',
-                    Base: { tag: ['map'], description_text: ['ItemDescriptionMap'] },
-                    LocalStats: {},
-                    Mods: {},
-                    Quality: { max_quality: ['20\r'] },
-                    Map: {},
-                    inheritance: ['Item', 'Equipment', 'AbstractMap'],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 57, id: 'map' }],
-                },
-                MysteryBox1x1: {
-                    extends: 'StackableCurrency',
-                    Imprint: {},
-                    inheritance: [
-                        'Item',
-                        'AbstractCurrency',
-                        'StackableCurrency',
-                        'MysteryBox1x1',
-                    ],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
-                },
-                MysteryBox1x2: {
-                    extends: 'StackableCurrency',
-                    Imprint: {},
-                    inheritance: [
-                        'Item',
-                        'AbstractCurrency',
-                        'StackableCurrency',
-                        'MysteryBox1x2',
-                    ],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
-                },
-                MysteryBox1x3: {
-                    extends: 'StackableCurrency',
-                    Imprint: {},
-                    inheritance: [
-                        'Item',
-                        'AbstractCurrency',
-                        'StackableCurrency',
-                        'MysteryBox1x3',
-                    ],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
-                },
-                MysteryBox1x4: {
-                    extends: 'StackableCurrency',
-                    Imprint: {},
-                    inheritance: [
-                        'Item',
-                        'AbstractCurrency',
-                        'StackableCurrency',
-                        'MysteryBox1x4',
-                    ],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
-                },
-                MysteryBox2x1: {
-                    extends: 'StackableCurrency',
-                    Imprint: {},
-                    inheritance: [
-                        'Item',
-                        'AbstractCurrency',
-                        'StackableCurrency',
-                        'MysteryBox2x1',
-                    ],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
-                },
-                MysteryBox2x2: {
-                    extends: 'StackableCurrency',
-                    Imprint: {},
-                    inheritance: [
-                        'Item',
-                        'AbstractCurrency',
-                        'StackableCurrency',
-                        'MysteryBox2x2',
-                    ],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
-                },
-                MysteryBox2x3: {
-                    extends: 'StackableCurrency',
-                    Imprint: {},
-                    inheritance: [
-                        'Item',
-                        'AbstractCurrency',
-                        'StackableCurrency',
-                        'MysteryBox2x3',
-                    ],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
-                },
-                MysteryBox2x4: {
-                    extends: 'StackableCurrency',
-                    Imprint: {},
-                    inheritance: [
-                        'Item',
-                        'AbstractCurrency',
-                        'StackableCurrency',
-                        'MysteryBox2x4',
-                    ],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
-                },
-                MysteryBox3x2: {
-                    extends: 'StackableCurrency',
-                    Imprint: {},
-                    inheritance: [
-                        'Item',
-                        'AbstractCurrency',
-                        'StackableCurrency',
-                        'MysteryBox3x2',
-                    ],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
-                },
-                MysteryBox3x3: {
-                    extends: 'StackableCurrency',
-                    Imprint: {},
-                    inheritance: [
-                        'Item',
-                        'AbstractCurrency',
-                        'StackableCurrency',
-                        'MysteryBox3x3',
-                    ],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 153, id: 'currency' }],
-                },
-                AbstractQuestItem: {
-                    extends: 'Item',
-                    Base: { x_size: ['1\r'], y_size: ['1\r'] },
-                    Quest: {},
-                    inheritance: ['Item', 'AbstractQuestItem'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                AllFlameLantern1: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a1q6minusHaveAllFlame'],
-                        remove_flag: ['a1q6minusDeliveredAllFlame'],
-                    },
-                    inheritance: ['Item', 'AllFlameLantern1'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                GoldenHand: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a2q5minusHaveGoldenHand'],
-                        remove_flag: ['a2q5minusDeliveredGoldenHand'],
-                        extra_flag: ['a2q5minusReceivedQuest'],
-                    },
-                    inheritance: ['Item', 'GoldenHand'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                InfernalTalc: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a3q5minusHaveTalc'],
-                        remove_flag: ['a3q5minusUsedTalc'],
-                    },
-                    inheritance: ['Item', 'InfernalTalc'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                MedicineSet1: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a1q5minusHaveMedicineChest'],
-                        remove_flag: ['a1q5minusNessaCongratulated'],
-                        extra_flag: ['SeenMedicineChest'],
-                    },
-                    inheritance: ['Item', 'MedicineSet1'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                PoisonSkillGem: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a2q6minusHaveSkillGem'],
-                        remove_flag: ['a2q9minusPoisonedTree'],
-                        extra_flag: ['a2q6minusHelenaInTown'],
-                        extra_flag2: ['SeenBalefulGem'],
-                    },
-                    inheritance: ['Item', 'PoisonSkillGem'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                PoisonSpear: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a2q4minusHavePoisonSpear'],
-                        remove_flag: ['a2q9minusPoisonedTree'],
-                        extra_flag: ['a2q4minusReceivedQuest'],
-                        extra_flag2: ['a2bminusStartNewQuests'],
-                    },
-                    inheritance: ['Item', 'PoisonSpear'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                RibbonSpool: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a3q4minusHaveRibbonSpool'],
-                        remove_flag: ['a3q4minusDeliveredSpool'],
-                        extra_flag: ['SeenRibbonSpool'],
-                    },
-                    inheritance: ['Item', 'RibbonSpool'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                SewerKeys: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a3q11minusHaveSewerKeys'],
-                        remove_flag: ['a3q11minusUsedSewerKeys'],
-                    },
-                    inheritance: ['Item', 'SewerKeys'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                SpikeSealKey: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a2q11minusHaveKey'],
-                        remove_flag: ['a1q9minusRoadOpened'],
-                        extra_flag: ['a2q11minusSeenKey'],
-                        extra_flag2: ['a1q9minusRoadBlocked'],
-                    },
-                    inheritance: ['Item', 'SpikeSealKey'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                SulphiteFlask: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a3q5minusHaveSulphite'],
-                        remove_flag: ['a3q5minusDeliveredSulphite'],
-                        extra_flag: ['SeenSulphite'],
-                    },
-                    inheritance: ['Item', 'SulphiteFlask'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                TolmanBracelet: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a3q2minusHaveTolmanItem'],
-                        remove_flag: ['a3q2minusDeliveredItem'],
-                        extra_flag: ['a3q2minusSeenTolmanItem'],
-                    },
-                    inheritance: ['Item', 'TolmanBracelet'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                TowerKey: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a3q9minusHaveTowerKey'],
-                        remove_flag: ['a3q9minusUsedTowerKey'],
-                        extra_flag: ['SeenTowerKey'],
-                    },
-                    inheritance: ['Item', 'TowerKey'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                'Book-a4q6': {
-                    extends: 'AbstractQuestItem',
-                    Base: {
-                        description_text: [
-                            'ItemDescriptionBookPassivePointAnd2RespecPointsTasuni',
-                        ],
-                    },
-                    Quest: {
-                        use_flag: ['a4q6minusUsedRewardBook'],
-                        grant_flag: ['a4q6minusHaveRewardBook'],
-                        remove_flag: ['a4q6minusUsedRewardBook'],
-                        respec_points: ['2\r'],
-                    },
-                    Usable: { action: ['skill_book'], use_type: ['Usable'] },
-                    Stack: { function_text: ['ItemFunctionPassivePointAnd2RespecPoints'] },
-                    inheritance: ['Item', 'AbstractQuestItem', 'Book-a4q6'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                DaressoGem: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a4q4minusHaveGem'],
-                        remove_flag: ['a4q4minusDeliveredGem'],
-                        extra_flag: ['a4q1minusGemQuestsReceived'],
-                    },
-                    inheritance: ['Item', 'DaressoGem'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                KaomGem: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a4q3minusHaveGem'],
-                        remove_flag: ['a4q3minusDeliveredGem'],
-                        extra_flag: ['a4q1minusGemQuestsReceived'],
-                    },
-                    inheritance: ['Item', 'KaomGem'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Organ1: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a4q5minusHaveOrgan1'],
-                        remove_flag: ['a4q5minusDeliveredOrgan1'],
-                        extra_flag: ['a4q5minusSeenOrgan'],
-                    },
-                    inheritance: ['Item', 'Organ1'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Organ2: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a4q5minusHaveOrgan2'],
-                        remove_flag: ['a4q5minusDeliveredOrgan2'],
-                        extra_flag: ['a4q5minusSeenOrgan'],
-                    },
-                    inheritance: ['Item', 'Organ2'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Organ3: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a4q5minusHaveOrgan3'],
-                        remove_flag: ['a4q5minusDeliveredOrgan3'],
-                        extra_flag: ['a4q5minusSeenOrgan'],
-                    },
-                    inheritance: ['Item', 'Organ3'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                RedBanner: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a4q2minusHaveBanner'],
-                        remove_flag: ['a4q2minusUsedBanner'],
-                        extra_flag: ['a4q2minusQuestReceived'],
-                    },
-                    inheritance: ['Item', 'RedBanner'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                CombinedAmulet: {
-                    extends: 'Item',
-                    Quest: {
-                        remove_flag: ['a2q8minusPlacedApex'],
-                        grant_flag: ['a2q8minusHaveApex'],
-                    },
-                    inheritance: ['Item', 'CombinedAmulet'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                DexAmulet: {
-                    extends: 'Item',
-                    Quest: {
-                        remove_flag: ['a2bminusDeliveredAmulets'],
-                        grant_flag: ['a2bminusHaveDexAmulet'],
-                        extra_flag: ['a2bminusKilledDexBandit'],
-                    },
-                    inheritance: ['Item', 'DexAmulet'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                IntAmulet: {
-                    extends: 'Item',
-                    Quest: {
-                        remove_flag: ['a2bminusDeliveredAmulets'],
-                        grant_flag: ['a2bminusHaveIntAmulet'],
-                        extra_flag: ['a2bminusKilledIntBandit'],
-                    },
-                    inheritance: ['Item', 'IntAmulet'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                StrAmulet: {
-                    extends: 'Item',
-                    Quest: {
-                        remove_flag: ['a2bminusDeliveredAmulets'],
-                        grant_flag: ['a2bminusHaveStrAmulet'],
-                        extra_flag: ['a2bminusKilledStrBandit'],
-                    },
-                    inheritance: ['Item', 'StrAmulet'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Bust1: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a3q11minusHaveBust1'],
-                        remove_flag: ['a3q11minusDeliveredBust1'],
-                        extra_flag: ['SeenBust1'],
-                    },
-                    inheritance: ['Item', 'Bust1'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Bust2: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a3q11minusHaveBust2'],
-                        remove_flag: ['a3q11minusDeliveredBust2'],
-                        extra_flag: ['SeenBust2'],
-                    },
-                    inheritance: ['Item', 'Bust2'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Bust3: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a3q11minusHaveBust3'],
-                        remove_flag: ['a3q11minusDeliveredBust3'],
-                        extra_flag: ['SeenBust3'],
-                    },
-                    inheritance: ['Item', 'Bust3'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Decanter: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a3q13minusHaveDecanter'],
-                        remove_flag: ['a3q13minusDecanterDelivered'],
-                        extra_flag: ['SeenDecanter'],
-                    },
-                    inheritance: ['Item', 'Decanter'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Fruit: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a3q13minusHavePlum'],
-                        remove_flag: ['a3q13minusPlumDelivered'],
-                        extra_flag: ['SeenPlum'],
-                    },
-                    inheritance: ['Item', 'Fruit'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Glyph1: {
-                    extends: 'Item',
-                    Quest: {
-                        remove_flag: ['a1q4minusPlacedGlyphs'],
-                        grant_flag: ['a1q4minusHaveGlyph1'],
-                        extra_flag: ['a1q4minusKnowsAboutGlyphs'],
-                        extra_flag2: ['SeenShell1'],
-                    },
-                    inheritance: ['Item', 'Glyph1'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Glyph2: {
-                    extends: 'Item',
-                    Quest: {
-                        remove_flag: ['a1q4minusPlacedGlyphs'],
-                        grant_flag: ['a1q4minusHaveGlyph2'],
-                        extra_flag: ['a1q4minusKnowsAboutGlyphs'],
-                        extra_flag2: ['SeenShell2'],
-                    },
-                    inheritance: ['Item', 'Glyph2'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Glyph3: {
-                    extends: 'Item',
-                    Quest: {
-                        remove_flag: ['a1q4minusPlacedGlyphs'],
-                        grant_flag: ['a1q4minusHaveGlyph3'],
-                        extra_flag: ['a1q4minusKnowsAboutGlyphs'],
-                        extra_flag2: ['SeenShell3'],
-                    },
-                    inheritance: ['Item', 'Glyph3'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Page1: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a3q12minusHavePage1'],
-                        extra_flag: ['a3q12minusSeenPages'],
-                        remove_flag: ['a3q12minusDeliveredPages'],
-                    },
-                    inheritance: ['Item', 'Page1'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Page2: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a3q12minusHavePage2'],
-                        extra_flag: ['a3q12minusSeenPages'],
-                        remove_flag: ['a3q12minusDeliveredPages'],
-                    },
-                    inheritance: ['Item', 'Page2'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Page3: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a3q12minusHavePage3'],
-                        extra_flag: ['a3q12minusSeenPages'],
-                        remove_flag: ['a3q12minusDeliveredPages'],
-                    },
-                    inheritance: ['Item', 'Page3'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Page4: {
-                    extends: 'Item',
-                    Quest: {
-                        grant_flag: ['a3q12minusHavePage4'],
-                        extra_flag: ['a3q12minusSeenPages'],
-                        remove_flag: ['a3q12minusDeliveredPages'],
-                    },
-                    inheritance: ['Item', 'Page4'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                BanditRespecAlira: {
-                    extends: 'AbstractQuestItem',
-                    Base: { description_text: ['ItemDescriptionBanditRespecAlira'] },
-                    Quest: { can_sell: ['true\r'] },
-                    Usable: { action: ['respec_alira'], use_type: ['Usable'] },
-                    Stack: { function_text: ['ItemFunctionBanditRespecAlira'] },
-                    inheritance: ['Item', 'AbstractQuestItem', 'BanditRespecAlira'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                BanditRespecEramir: {
-                    extends: 'AbstractQuestItem',
-                    Base: { description_text: ['ItemDescriptionBanditRespecEramir'] },
-                    Quest: { can_sell: ['true\r'] },
-                    Usable: { action: ['respec_eramir'], use_type: ['Usable'] },
-                    Stack: { function_text: ['ItemFunctionBanditRespecEramir'] },
-                    inheritance: ['Item', 'AbstractQuestItem', 'BanditRespecEramir'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                BanditRespecKraityn: {
-                    extends: 'AbstractQuestItem',
-                    Base: { description_text: ['ItemDescriptionBanditRespecKraityn'] },
-                    Quest: { can_sell: ['true\r'] },
-                    Usable: { action: ['respec_kraityn'], use_type: ['Usable'] },
-                    Stack: { function_text: ['ItemFunctionBanditRespecKraityn'] },
-                    inheritance: ['Item', 'AbstractQuestItem', 'BanditRespecKraityn'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                BanditRespecOak: {
-                    extends: 'AbstractQuestItem',
-                    Base: { description_text: ['ItemDescriptionBanditRespecOak'] },
-                    Quest: { can_sell: ['true\r'] },
-                    Usable: { action: ['respec_oak'], use_type: ['Usable'] },
-                    Stack: { function_text: ['ItemFunctionBanditRespecOak'] },
-                    inheritance: ['Item', 'AbstractQuestItem', 'BanditRespecOak'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                'Book-a1q6': {
-                    extends: 'AbstractQuestItem',
-                    Base: { description_text: ['ItemDescriptionBookPassivePointBestel'] },
-                    Quest: {
-                        use_flag: ['a1q6minusUsedRewardBook'],
-                        grant_flag: ['a1q6minusHaveRewardBook'],
-                        remove_flag: ['a1q6minusUsedRewardBook'],
-                    },
-                    Usable: { action: ['skill_book'], use_type: ['Usable'] },
-                    Stack: { function_text: ['ItemFunctionPassivePoint'] },
-                    inheritance: ['Item', 'AbstractQuestItem', 'Book-a1q6'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                'Book-a1q7': {
-                    extends: 'AbstractQuestItem',
-                    Base: {
-                        description_text: ['ItemDescriptionBookPassivePointTarkleigh'],
-                    },
-                    Quest: {
-                        use_flag: ['a1q7minusUsedRewardBook'],
-                        grant_flag: ['a1q7minusHaveRewardBook'],
-                        remove_flag: ['a1q7minusUsedRewardBook'],
-                    },
-                    Usable: { action: ['skill_book'], use_type: ['Usable'] },
-                    Stack: { function_text: ['ItemFunctionPassivePoint'] },
-                    inheritance: ['Item', 'AbstractQuestItem', 'Book-a1q7'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                'Book-a1q8': {
-                    extends: 'AbstractQuestItem',
-                    Base: {
-                        description_text: ['ItemDescriptionBook2RespecPointsTarkleigh'],
-                    },
-                    Quest: {
-                        use_flag: ['a1q8minusUsedRewardBook'],
-                        grant_flag: ['a1q8minusHaveRewardBook'],
-                        remove_flag: ['a1q8minusUsedRewardBook'],
-                        respec_points: ['2\r'],
-                    },
-                    Usable: { action: ['skill_book'], use_type: ['Usable'] },
-                    Stack: { function_text: ['ItemFunction2RespecPoints'] },
-                    inheritance: ['Item', 'AbstractQuestItem', 'Book-a1q8'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                'Book-a1q9': {
-                    extends: 'AbstractQuestItem',
-                    Base: { description_text: ['ItemDescriptionBookPassivePointBestel'] },
-                    Quest: {
-                        use_flag: ['a1q9minusUsedRewardBook'],
-                        grant_flag: ['a1q9minusHaveRewardBook'],
-                        remove_flag: ['a1q9minusUsedRewardBook'],
-                    },
-                    Usable: { action: ['skill_book'], use_type: ['Usable'] },
-                    Stack: { function_text: ['ItemFunctionPassivePoint'] },
-                    inheritance: ['Item', 'AbstractQuestItem', 'Book-a1q9'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                'Book-a2q5': {
-                    extends: 'AbstractQuestItem',
-                    Base: { description_text: ['ItemDescriptionBook2RespecPointsYeena'] },
-                    Quest: {
-                        use_flag: ['a2q5minusUsedRewardBook'],
-                        grant_flag: ['a2q5minusHaveRewardBook'],
-                        remove_flag: ['a2q5minusUsedRewardBook'],
-                        respec_points: ['2\r'],
-                    },
-                    Usable: { action: ['skill_book'], use_type: ['Usable'] },
-                    Stack: { function_text: ['ItemFunction2RespecPoints'] },
-                    inheritance: ['Item', 'AbstractQuestItem', 'Book-a2q5'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                'Book-a3q11v0': {
-                    extends: 'AbstractQuestItem',
-                    Base: { description_text: ['ItemDescriptionBookPassivePointHargan'] },
-                    Quest: {
-                        use_flag: ['a3q11minusUsedRewardBook'],
-                        grant_flag: ['a3q11minusHaveRewardBook'],
-                        remove_flag: ['a3q11minusUsedRewardBook'],
-                    },
-                    Usable: { action: ['skill_book'], use_type: ['Usable'] },
-                    Stack: { function_text: ['ItemFunctionPassivePoint'] },
-                    inheritance: ['Item', 'AbstractQuestItem', 'Book-a3q11v0'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                'Book-a3q11v1': {
-                    extends: 'AbstractQuestItem',
-                    Base: {
-                        description_text: ['ItemDescriptionBookPassivePointAndRespecPointHargan'],
-                    },
-                    Quest: {
-                        use_flag: ['a3q11minusUsedRewardBook'],
-                        grant_flag: ['a3q11minusHaveRewardBook'],
-                        remove_flag: ['a3q11minusUsedRewardBook'],
-                        respec_points: ['1\r'],
-                    },
-                    Usable: { action: ['skill_book'], use_type: ['Usable'] },
-                    Stack: { function_text: ['ItemFunctionPassivePointAndRespecPoint'] },
-                    inheritance: ['Item', 'AbstractQuestItem', 'Book-a3q11v1'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                'Book-a3q11v2': {
-                    extends: 'AbstractQuestItem',
-                    Base: {
-                        description_text: [
-                            'ItemDescriptionBookPassivePointAnd2RespecPointsHargan',
-                        ],
-                    },
-                    Quest: {
-                        use_flag: ['a3q11minusUsedRewardBook'],
-                        grant_flag: ['a3q11minusHaveRewardBook'],
-                        remove_flag: ['a3q11minusUsedRewardBook'],
-                        respec_points: ['2\r'],
-                    },
-                    Usable: { action: ['skill_book'], use_type: ['Usable'] },
-                    Stack: { function_text: ['ItemFunctionPassivePointAnd2RespecPoints'] },
-                    inheritance: ['Item', 'AbstractQuestItem', 'Book-a3q11v2'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                'Book-a3q9': {
-                    extends: 'AbstractQuestItem',
-                    Base: { description_text: ['ItemDescriptionBook2PassivePointsGrigor'] },
-                    Quest: {
-                        use_flag: ['a3q9minusUsedRewardBook'],
-                        grant_flag: ['a3q9minusHaveRewardBook'],
-                        remove_flag: ['a3q9minusUsedRewardBook'],
-                    },
-                    Usable: { action: ['skill_book'], use_type: ['Usable'] },
-                    Stack: { function_text: ['ItemFunction2PassivePoints'] },
-                    inheritance: ['Item', 'AbstractQuestItem', 'Book-a3q9'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Descent2_1: {
-                    extends: 'AbstractQuestItem',
-                    Base: { description_text: ['ItemDescriptionBook2PassivePoints'] },
-                    Quest: {
-                        use_flag: ['Descent2Reward1'],
-                        remove_flag: ['Descent2Reward1'],
-                    },
-                    Usable: { action: ['skill_book'], use_type: ['Usable'] },
-                    Stack: { function_text: ['ItemFunction2PassivePoints'] },
-                    inheritance: ['Item', 'AbstractQuestItem', 'Descent2_1'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Descent2_2: {
-                    extends: 'AbstractQuestItem',
-                    Base: { description_text: ['ItemDescriptionBook2PassivePoints'] },
-                    Quest: {
-                        use_flag: ['Descent2Reward2'],
-                        remove_flag: ['Descent2Reward2'],
-                    },
-                    Usable: { action: ['skill_book'], use_type: ['Usable'] },
-                    Stack: { function_text: ['ItemFunction2PassivePoints'] },
-                    inheritance: ['Item', 'AbstractQuestItem', 'Descent2_2'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Descent2_3: {
-                    extends: 'AbstractQuestItem',
-                    Base: { description_text: ['ItemDescriptionBook2PassivePoints'] },
-                    Quest: {
-                        use_flag: ['Descent2Reward3'],
-                        remove_flag: ['Descent2Reward3'],
-                    },
-                    Usable: { action: ['skill_book'], use_type: ['Usable'] },
-                    Stack: { function_text: ['ItemFunction2PassivePoints'] },
-                    inheritance: ['Item', 'AbstractQuestItem', 'Descent2_3'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                Descent2_4: {
-                    extends: 'AbstractQuestItem',
-                    Base: { description_text: ['ItemDescriptionBook2PassivePoints'] },
-                    Quest: {
-                        use_flag: ['Descent2Reward4'],
-                        remove_flag: ['Descent2Reward4'],
-                    },
-                    Usable: { action: ['skill_book'], use_type: ['Usable'] },
-                    Stack: { function_text: ['ItemFunction2PassivePoints'] },
-                    inheritance: ['Item', 'AbstractQuestItem', 'Descent2_4'],
-                    tags: [{ primary: 0, id: 'default' }],
-                },
-                AbstractQuiver: {
-                    extends: 'Equipment',
-                    Base: { tag: ['quiver'], x_size: ['2\r'], y_size: ['3\r'] },
-                    LocalStats: {},
-                    Mods: { inventory_type: ['Offhand'] },
-                    inheritance: ['Item', 'Equipment', 'AbstractQuiver'],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 21, id: 'quiver' }],
-                },
-                AbstractRelic: {
-                    extends: 'Equipment',
-                    Base: { tag: ['relic'] },
-                    LocalStats: {},
-                    Mods: {},
-                    inheritance: ['Item', 'Equipment', 'AbstractRelic'],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 28, id: 'relic' }],
-                },
-                AbstractLargeRelic: {
-                    extends: 'AbstractRelic',
-                    Base: { x_size: ['2\r'], y_size: ['2\r'] },
-                    LocalStats: {},
-                    Mods: { inventory_type: ['altar_large'] },
-                    inheritance: ['Item', 'Equipment', 'AbstractRelic', 'AbstractLargeRelic'],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 28, id: 'relic' }],
-                },
-                AbstractMediumRelic: {
-                    extends: 'AbstractRelic',
-                    Base: { x_size: ['1\r'], y_size: ['2\r'] },
-                    LocalStats: {},
-                    Mods: { inventory_type: ['altar_medium'] },
-                    inheritance: ['Item', 'Equipment', 'AbstractRelic', 'AbstractMediumRelic'],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 28, id: 'relic' }],
-                },
-                AbstractSmallRelic: {
-                    extends: 'AbstractRelic',
-                    Base: { x_size: ['1\r'], y_size: ['1\r'] },
-                    LocalStats: {},
-                    Mods: { inventory_type: ['altar_small'] },
-                    inheritance: ['Item', 'Equipment', 'AbstractRelic', 'AbstractSmallRelic'],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 28, id: 'relic' }],
-                },
-                AbstractRing: {
-                    extends: 'Equipment',
-                    Base: { x_size: ['1\r'], y_size: ['1\r'], tag: ['ring'] },
-                    Mods: { inventory_type: ['Ring'] },
-                    inheritance: ['Item', 'Equipment', 'AbstractRing'],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 2, id: 'ring' }],
-                },
-                AbstractSocketableRing: {
-                    extends: 'AbstractRing',
+                AbstractSocketableBelt: {
                     AttributeRequirements: {
-                        strength_requirement: ['0\r'],
-                        dexterity_requirement: ['0\r'],
-                        intelligence_requirement: ['0\r'],
+                        strength_requirement: ['0'],
+                        dexterity_requirement: ['0'],
+                        intelligence_requirement: ['0'],
                     },
                     Sockets: {
                         socket_info: [
                             '0:1:1 1:9999:100 2:9999:90 3:9999:80 4:9999:30 5:9999:20 6:9999:5',
                         ],
                     },
+                    extends: 'AbstractBelt',
+                    inheritance: [
+                        'Item',
+                        'Equipment',
+                        'AbstractBelt',
+                        'AbstractSocketableBelt',
+                    ],
+                    tags: ['default', 'belt'],
+                },
+                BeltAbyss: {
+                    extends: 'AbstractSocketableBelt',
+                    inheritance: [
+                        'Item',
+                        'Equipment',
+                        'AbstractBelt',
+                        'AbstractSocketableBelt',
+                        'BeltAbyss',
+                    ],
+                    tags: ['default', 'belt'],
+                },
+                Leaguestone: {
+                    Base: {
+                        description_text: ['LeagueStonePopupHelperText'],
+                    },
+                    LocalStats: {},
+                    Mods: {
+                        stat_description_list: [
+                            'Metadata/StatDescriptions/leaguestone_stat_descriptions.txt',
+                        ],
+                        inventory_type: ['Leaguestone'],
+                        enable_rarity: ['normal', 'magic', 'unique'],
+                        disable_rarity: ['rare'],
+                    },
+                    Charges: {
+                        max_charges: ['5'],
+                        charges_per_use: ['1'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Leaguestone'],
+                    tags: ['default'],
+                },
+                MysteryLeaguestone: {
+                    Imprint: {},
+                    extends: 'StackableCurrency',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'StackableCurrency',
+                        'MysteryLeaguestone',
+                    ],
+                    tags: ['default', 'currency'],
+                },
+                AbstractCurrency: {
+                    Base: {
+                        x_size: ['1'],
+                        y_size: ['1'],
+                    },
+                    Usable: {},
+                    extends: 'Item',
+                    inheritance: ['Item', 'AbstractCurrency'],
+                    tags: ['default'],
+                },
+                AbstractMicrotransaction: {
+                    Stack: {},
+                    extends: 'AbstractCurrency',
+                    inheritance: ['Item', 'AbstractCurrency', 'AbstractMicrotransaction'],
+                    tags: ['default'],
+                },
+                CurrencyImprint: {
+                    Imprint: {},
+                    extends: 'StackableCurrency',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'StackableCurrency',
+                        'CurrencyImprint',
+                    ],
+                    tags: ['default', 'currency'],
+                },
+                CurrencyItemisedProphecy: {
+                    Base: {
+                        description_text: ['ItemDescriptionItemisedProphecy'],
+                    },
+                    Prophecy: {},
+                    extends: 'StackableCurrency',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'StackableCurrency',
+                        'CurrencyItemisedProphecy',
+                    ],
+                    tags: ['default', 'currency'],
+                },
+                StackableCurrency: {
+                    Base: {
+                        tag: ['currency'],
+                    },
+                    Stack: {},
+                    extends: 'AbstractCurrency',
+                    inheritance: ['Item', 'AbstractCurrency', 'StackableCurrency'],
+                    tags: ['default', 'currency'],
+                },
+                AbstractDivinationCard: {
+                    Base: {
+                        x_size: ['1'],
+                        y_size: ['1'],
+                        tag: ['divination_card'],
+                    },
+                    Stack: {},
+                    extends: 'Item',
+                    inheritance: ['Item', 'AbstractDivinationCard'],
+                    tags: ['default', 'divination_card'],
+                },
+                Equipment: {
+                    LocalStats: {},
+                    Mods: {
+                        stat_description_list: [
+                            'Metadata/StatDescriptions/stat_descriptions.txt',
+                        ],
+                        enable_rarity: ['normal', 'magic', 'rare', 'unique'],
+                    },
+                    Base: {},
+                    extends: 'Item',
+                    inheritance: ['Item', 'Equipment'],
+                    tags: ['default'],
+                },
+                AbstractFlask: {
+                    Base: {
+                        tag: ['flask'],
+                        x_size: ['1'],
+                        y_size: ['2'],
+                        description_text: ['ItemDescriptionFlask'],
+                    },
+                    Quality: {
+                        max_quality: ['20'],
+                    },
+                    LocalStats: {},
+                    Charges: {
+                        max_charges: ['2\t'],
+                    },
+                    Mods: {
+                        stat_description_list: [
+                            'Metadata/StatDescriptions/stat_descriptions.txt',
+                        ],
+                        enable_rarity: ['normal', 'magic', 'unique'],
+                        disable_rarity: ['rare'],
+                        inventory_type: ['Flask'],
+                    },
+                    Usable: {
+                        use_type: ['Usable'],
+                        action: ['flask'],
+                    },
+                    Flask: {},
+                    extends: 'Item',
+                    inheritance: ['Item', 'AbstractFlask'],
+                    tags: ['default', 'flask'],
+                },
+                AbstractHybridFlask: {
+                    Base: {
+                        tag: ['hybrid_flask'],
+                    },
+                    extends: 'AbstractFlask',
+                    inheritance: ['Item', 'AbstractFlask', 'AbstractHybridFlask'],
+                    tags: ['default', 'flask', 'hybrid_flask'],
+                },
+                AbstractLifeFlask: {
+                    Base: {
+                        tag: ['life_flask'],
+                    },
+                    extends: 'AbstractFlask',
+                    inheritance: ['Item', 'AbstractFlask', 'AbstractLifeFlask'],
+                    tags: ['default', 'flask', 'life_flask'],
+                },
+                AbstractManaFlask: {
+                    Base: {
+                        tag: ['mana_flask'],
+                    },
+                    extends: 'AbstractFlask',
+                    inheritance: ['Item', 'AbstractFlask', 'AbstractManaFlask'],
+                    tags: ['default', 'flask', 'mana_flask'],
+                },
+                AbstractUtilityFlask: {
+                    Base: {
+                        tag: ['utility_flask'],
+                    },
+                    extends: 'AbstractFlask',
+                    inheritance: ['Item', 'AbstractFlask', 'AbstractUtilityFlask'],
+                    tags: ['default', 'flask', 'utility_flask'],
+                },
+                CriticalUtilityFlask: {
+                    Base: {
+                        tag: ['critical_utility_flask'],
+                    },
+                    extends: 'AbstractUtilityFlask',
+                    inheritance: [
+                        'Item',
+                        'AbstractFlask',
+                        'AbstractUtilityFlask',
+                        'CriticalUtilityFlask',
+                    ],
+                    tags: ['default', 'flask', 'utility_flask', 'critical_utility_flask'],
+                },
+                FlaskUtility1: {
+                    Base: {
+                        description_text: ['ItemDescriptionFlaskUtility1'],
+                    },
+                    extends: 'AbstractUtilityFlask',
+                    inheritance: [
+                        'Item',
+                        'AbstractFlask',
+                        'AbstractUtilityFlask',
+                        'FlaskUtility1',
+                    ],
+                    tags: ['default', 'flask', 'utility_flask'],
+                },
+                AbstractSkillGem: {
+                    Base: {
+                        tag: ['gem'],
+                        x_size: ['1'],
+                        y_size: ['1'],
+                        description_text: ['ItemDescriptionSkillGem'],
+                    },
+                    SkillGem: {},
+                    Quality: {
+                        max_quality: ['20'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'AbstractSkillGem'],
+                    tags: ['default', 'gem'],
+                },
+                ActiveSkillGem: {
+                    Base: {
+                        description_text: ['ItemDescriptionActiveSkillGem'],
+                    },
+                    SkillGem: {},
+                    extends: 'AbstractSkillGem',
+                    inheritance: ['Item', 'AbstractSkillGem', 'ActiveSkillGem'],
+                    tags: ['default', 'gem'],
+                },
+                SupportSkillGem: {
+                    Base: {
+                        description_text: ['ItemDescriptionSupportSkillGem'],
+                        tag: ['support_gem'],
+                    },
+                    SkillGem: {},
+                    extends: 'AbstractSkillGem',
+                    inheritance: ['Item', 'AbstractSkillGem', 'SupportSkillGem'],
+                    tags: ['default', 'gem', 'support_gem'],
+                },
+                AbstractHideoutDoodad: {
+                    Base: {
+                        x_size: ['1'],
+                        y_size: ['1'],
+                    },
+                    Usable: {},
+                    Stack: {},
+                    extends: 'Item',
+                    inheritance: ['Item', 'AbstractHideoutDoodad'],
+                    tags: ['default'],
+                },
+                Item: {
+                    Base: {
+                        base_level: ['1'],
+                        tag: ['default'],
+                    },
+                    extends: 'nothing',
+                    inheritance: ['Item'],
+                    tags: ['default'],
+                },
+                AbstractAbyssJewel: {
+                    Base: {
+                        x_size: ['1'],
+                        y_size: ['1'],
+                        description_text: ['ItemDescriptionAbyssJewel'],
+                    },
+                    LocalStats: {},
+                    Mods: {
+                        stat_description_list: [
+                            'Metadata/StatDescriptions/stat_descriptions.txt',
+                        ],
+                        enable_rarity: ['magic', 'rare', 'unique'],
+                        inventory_type: ['passivejewels'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'AbstractAbyssJewel'],
+                    tags: ['default'],
+                },
+                AbstractJewel: {
+                    Base: {
+                        x_size: ['1'],
+                        y_size: ['1'],
+                        description_text: ['ItemDescriptionPassiveJewel'],
+                    },
+                    LocalStats: {},
+                    Mods: {
+                        stat_description_list: [
+                            'Metadata/StatDescriptions/stat_descriptions.txt',
+                        ],
+                        enable_rarity: ['magic', 'rare', 'unique'],
+                        inventory_type: ['passivejewels'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'AbstractJewel'],
+                    tags: ['default'],
+                },
+                AbstractLabyrinthItem: {
+                    Stack: {
+                        max_stack_size: ['1'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'AbstractLabyrinthItem'],
+                    tags: ['default'],
+                },
+                BronzeKey: {
+                    Base: {
+                        description_text: ['TreasureKeyDescription'],
+                    },
+                    extends: 'AbstractLabyrinthItem',
+                    inheritance: ['Item', 'AbstractLabyrinthItem', 'BronzeKey'],
+                    tags: ['default'],
+                },
+                GoldenKey: {
+                    Base: {
+                        description_text: ['GoldenKeyDescription'],
+                    },
+                    extends: 'AbstractLabyrinthItem',
+                    inheritance: ['Item', 'AbstractLabyrinthItem', 'GoldenKey'],
+                    tags: ['default'],
+                },
+                LabyrinthTrinket: {
+                    Base: {
+                        x_size: ['1'],
+                        y_size: ['1'],
+                    },
+                    extends: 'AbstractLabyrinthItem',
+                    inheritance: ['Item', 'AbstractLabyrinthItem', 'LabyrinthTrinket'],
+                    tags: ['default'],
+                },
+                OfferingToTheGoddess: {
+                    Base: {
+                        description_text: ['ItemDescriptionLabyrinthMapItem'],
+                    },
+                    LocalStats: {},
+                    Mods: {
+                        stat_description_list: [
+                            'Metadata/StatDescriptions/stat_descriptions.txt',
+                        ],
+                        inventory_type: ['Map'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'OfferingToTheGoddess'],
+                    tags: ['default'],
+                },
+                SilverKey: {
+                    Base: {
+                        description_text: ['SilverKeyDescription'],
+                    },
+                    extends: 'AbstractLabyrinthItem',
+                    inheritance: ['Item', 'AbstractLabyrinthItem', 'SilverKey'],
+                    tags: ['default'],
+                },
+                AbstractMapFragment: {
+                    Base: {
+                        description_text: ['ItemDescriptionMapFragment'],
+                    },
+                    Stack: {},
+                    Usable: {},
+                    extends: 'AbstractMiscMapItem',
+                    inheritance: ['Item', 'AbstractMiscMapItem', 'AbstractMapFragment'],
+                    tags: ['default'],
+                },
+                AbstractMiscMapItem: {
+                    extends: 'Item',
+                    inheritance: ['Item', 'AbstractMiscMapItem'],
+                    tags: ['default'],
+                },
+                BreachFragmentChaos: {
+                    Base: {
+                        description_text: ['ItemDescriptionBreachMapItemChaos'],
+                    },
+                    extends: 'AbstractMiscMapItem',
+                    inheritance: ['Item', 'AbstractMiscMapItem', 'BreachFragmentChaos'],
+                    tags: ['default'],
+                },
+                BreachFragmentCold: {
+                    Base: {
+                        description_text: ['ItemDescriptionBreachMapItemCold'],
+                    },
+                    extends: 'AbstractMiscMapItem',
+                    inheritance: ['Item', 'AbstractMiscMapItem', 'BreachFragmentCold'],
+                    tags: ['default'],
+                },
+                BreachFragmentFire: {
+                    Base: {
+                        description_text: ['ItemDescriptionBreachMapItemFire'],
+                    },
+                    extends: 'AbstractMiscMapItem',
+                    inheritance: ['Item', 'AbstractMiscMapItem', 'BreachFragmentFire'],
+                    tags: ['default'],
+                },
+                BreachFragmentLightning: {
+                    Base: {
+                        description_text: ['ItemDescriptionBreachMapItemLightning'],
+                    },
+                    extends: 'AbstractMiscMapItem',
+                    inheritance: ['Item', 'AbstractMiscMapItem', 'BreachFragmentLightning'],
+                    tags: ['default'],
+                },
+                BreachFragmentPhysical: {
+                    Base: {
+                        description_text: ['ItemDescriptionBreachMapItemPhysical'],
+                    },
+                    extends: 'AbstractMiscMapItem',
+                    inheritance: ['Item', 'AbstractMiscMapItem', 'BreachFragmentPhysical'],
+                    tags: ['default'],
+                },
+                ClassicVaultKey: {
+                    Base: {
+                        description_text: ['ItemDescriptionClassicVaultKey'],
+                    },
+                    LocalStats: {},
+                    Mods: {
+                        stat_description_list: [
+                            'Metadata/StatDescriptions/stat_descriptions.txt',
+                        ],
+                        inventory_type: ['Map'],
+                        enable_rarity: ['normal'],
+                    },
+                    extends: 'AbstractMiscMapItem',
+                    inheritance: ['Item', 'AbstractMiscMapItem', 'ClassicVaultKey'],
+                    tags: ['default'],
+                },
+                FragmentPantheonFlask: {
+                    Base: {
+                        description_text: ['ItemDescriptionPantheonVessel'],
+                    },
+                    extends: 'AbstractMiscMapItem',
+                    inheritance: ['Item', 'AbstractMiscMapItem', 'FragmentPantheonFlask'],
+                    tags: ['default'],
+                },
+                AbstractMap: {
+                    Base: {
+                        tag: ['map'],
+                        description_text: ['ItemDescriptionMap'],
+                    },
+                    LocalStats: {},
+                    Mods: {},
+                    Quality: {
+                        max_quality: ['20'],
+                    },
+                    Map: {},
+                    extends: 'Equipment',
+                    inheritance: ['Item', 'Equipment', 'AbstractMap'],
+                    tags: ['default', 'map'],
+                },
+                MysteryBox1x1: {
+                    Imprint: {},
+                    extends: 'StackableCurrency',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'StackableCurrency',
+                        'MysteryBox1x1',
+                    ],
+                    tags: ['default', 'currency'],
+                },
+                MysteryBox1x2: {
+                    Imprint: {},
+                    extends: 'StackableCurrency',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'StackableCurrency',
+                        'MysteryBox1x2',
+                    ],
+                    tags: ['default', 'currency'],
+                },
+                MysteryBox1x3: {
+                    Imprint: {},
+                    extends: 'StackableCurrency',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'StackableCurrency',
+                        'MysteryBox1x3',
+                    ],
+                    tags: ['default', 'currency'],
+                },
+                MysteryBox1x4: {
+                    Imprint: {},
+                    extends: 'StackableCurrency',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'StackableCurrency',
+                        'MysteryBox1x4',
+                    ],
+                    tags: ['default', 'currency'],
+                },
+                MysteryBox2x1: {
+                    Imprint: {},
+                    extends: 'StackableCurrency',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'StackableCurrency',
+                        'MysteryBox2x1',
+                    ],
+                    tags: ['default', 'currency'],
+                },
+                MysteryBox2x2: {
+                    Imprint: {},
+                    extends: 'StackableCurrency',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'StackableCurrency',
+                        'MysteryBox2x2',
+                    ],
+                    tags: ['default', 'currency'],
+                },
+                MysteryBox2x3: {
+                    Imprint: {},
+                    extends: 'StackableCurrency',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'StackableCurrency',
+                        'MysteryBox2x3',
+                    ],
+                    tags: ['default', 'currency'],
+                },
+                MysteryBox2x4: {
+                    Imprint: {},
+                    extends: 'StackableCurrency',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'StackableCurrency',
+                        'MysteryBox2x4',
+                    ],
+                    tags: ['default', 'currency'],
+                },
+                MysteryBox3x2: {
+                    Imprint: {},
+                    extends: 'StackableCurrency',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'StackableCurrency',
+                        'MysteryBox3x2',
+                    ],
+                    tags: ['default', 'currency'],
+                },
+                MysteryBox3x3: {
+                    Imprint: {},
+                    extends: 'StackableCurrency',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'StackableCurrency',
+                        'MysteryBox3x3',
+                    ],
+                    tags: ['default', 'currency'],
+                },
+                MysteryBoxCarnage: {
+                    Imprint: {},
+                    extends: 'AbstractMicrotransaction',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'AbstractMicrotransaction',
+                        'MysteryBoxCarnage',
+                    ],
+                    tags: ['default'],
+                },
+                MysteryBoxChaosVsOrder: {
+                    Imprint: {},
+                    extends: 'AbstractMicrotransaction',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'AbstractMicrotransaction',
+                        'MysteryBoxChaosVsOrder',
+                    ],
+                    tags: ['default'],
+                },
+                MysteryBoxClassic: {
+                    Imprint: {},
+                    extends: 'AbstractMicrotransaction',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'AbstractMicrotransaction',
+                        'MysteryBoxClassic',
+                    ],
+                    tags: ['default'],
+                },
+                MysteryBoxDarkness: {
+                    Imprint: {},
+                    extends: 'AbstractMicrotransaction',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'AbstractMicrotransaction',
+                        'MysteryBoxDarkness',
+                    ],
+                    tags: ['default'],
+                },
+                MysteryBoxEmber: {
+                    Imprint: {},
+                    extends: 'AbstractMicrotransaction',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'AbstractMicrotransaction',
+                        'MysteryBoxEmber',
+                    ],
+                    tags: ['default'],
+                },
+                MysteryBoxLightChaos: {
+                    Imprint: {},
+                    extends: 'AbstractMicrotransaction',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'AbstractMicrotransaction',
+                        'MysteryBoxLightChaos',
+                    ],
+                    tags: ['default'],
+                },
+                MysteryBoxRadiant: {
+                    Imprint: {},
+                    extends: 'AbstractMicrotransaction',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'AbstractMicrotransaction',
+                        'MysteryBoxRadiant',
+                    ],
+                    tags: ['default'],
+                },
+                MysteryBoxSolaris: {
+                    Imprint: {},
+                    extends: 'AbstractMicrotransaction',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'AbstractMicrotransaction',
+                        'MysteryBoxSolaris',
+                    ],
+                    tags: ['default'],
+                },
+                MysteryBoxStormcaller: {
+                    Imprint: {},
+                    extends: 'AbstractMicrotransaction',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'AbstractMicrotransaction',
+                        'MysteryBoxStormcaller',
+                    ],
+                    tags: ['default'],
+                },
+                MysteryBoxStPatty: {
+                    Imprint: {},
+                    extends: 'AbstractMicrotransaction',
+                    inheritance: [
+                        'Item',
+                        'AbstractCurrency',
+                        'AbstractMicrotransaction',
+                        'MysteryBoxStPatty',
+                    ],
+                    tags: ['default'],
+                },
+                AbstactPantheonSoul: {
+                    Base: {
+                        description_text: ['ItemDescriptionPantheonSoul'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'AbstactPantheonSoul'],
+                    tags: ['default'],
+                },
+                AbstractQuestItem: {
+                    Base: {
+                        x_size: ['1'],
+                        y_size: ['1'],
+                    },
+                    Quest: {},
+                    extends: 'Item',
+                    inheritance: ['Item', 'AbstractQuestItem'],
+                    tags: ['default'],
+                },
+                AvariusStaff: {
+                    Quest: {
+                        grant_flag: ['a10q2minusHaveItem'],
+                        remove_flag: ['a10q2minusDeliveredItem'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'AvariusStaff'],
+                    tags: ['default'],
+                },
+                'Book-a10q3': {
+                    Base: {
+                        description_text: ['ItemDescriptionBook2RespecPoints'],
+                    },
+                    Usable: {
+                        action: ['skill_book'],
+                        use_type: ['Usable'],
+                    },
+                    Stack: {
+                        function_text: ['ItemFunction2PassivePoints'],
+                    },
+                    Quest: {
+                        use_flag: ['a10q3minusUsedRewardBook'],
+                        grant_flag: ['a10q3minusHaveRewardBook'],
+                        remove_flag: ['a10q3minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'Book-a10q3'],
+                    tags: ['default'],
+                },
+                'Book-a10q4': {
+                    Quest: {
+                        use_flag: ['a10q4minusUsedRewardBook'],
+                        grant_flag: ['a10q4minusHaveRewardBook'],
+                        remove_flag: ['a10q4minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveRespecBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveRespecBook',
+                        'Book-a10q4',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a10q6': {
+                    Quest: {
+                        use_flag: ['a10q6minusUsedRewardBook'],
+                        grant_flag: ['a10q6minusHaveRewardBook'],
+                        remove_flag: ['a10q6minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillBook',
+                        'Book-a10q6',
+                    ],
+                    tags: ['default'],
+                },
+                Potion: {
+                    Quest: {
+                        grant_flag: ['a10q4minusHaveItem'],
+                        remove_flag: ['a10q4minusDeliveredItem'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Potion'],
+                    tags: ['default'],
+                },
+                Teardrop: {
+                    Quest: {
+                        grant_flag: ['a10q5minusHaveItem'],
+                        remove_flag: ['a10q5minusDeliveredItem'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Teardrop'],
+                    tags: ['default'],
+                },
+                'Book-a4q6': {
+                    Quest: {
+                        use_flag: ['a4q6minusUsedRewardBook'],
+                        grant_flag: ['a4q6minusHaveRewardBook'],
+                        remove_flag: ['a4q6minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillAnd2RespecsBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillAnd2RespecsBook',
+                        'Book-a4q6',
+                    ],
+                    tags: ['default'],
+                },
+                DaressoGem: {
+                    Quest: {
+                        grant_flag: ['a4q4minusHaveGem'],
+                        remove_flag: ['a4q4minusDeliveredGem'],
+                        extra_flag: ['a4q1minusGemQuestsReceived'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'DaressoGem'],
+                    tags: ['default'],
+                },
+                KaomGem: {
+                    Quest: {
+                        grant_flag: ['a4q3minusHaveGem'],
+                        remove_flag: ['a4q3minusDeliveredGem'],
+                        extra_flag: ['a4q1minusGemQuestsReceived'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'KaomGem'],
+                    tags: ['default'],
+                },
+                Organ1: {
+                    Quest: {
+                        grant_flag: ['a4q5minusHaveOrgan1'],
+                        remove_flag: ['a4q5minusDeliveredOrgan1'],
+                        extra_flag: ['a4q5minusSeenOrgan'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Organ1'],
+                    tags: ['default'],
+                },
+                Organ2: {
+                    Quest: {
+                        grant_flag: ['a4q5minusHaveOrgan2'],
+                        remove_flag: ['a4q5minusDeliveredOrgan2'],
+                        extra_flag: ['a4q5minusSeenOrgan'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Organ2'],
+                    tags: ['default'],
+                },
+                Organ3: {
+                    Quest: {
+                        grant_flag: ['a4q5minusHaveOrgan3'],
+                        remove_flag: ['a4q5minusDeliveredOrgan3'],
+                        extra_flag: ['a4q5minusSeenOrgan'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Organ3'],
+                    tags: ['default'],
+                },
+                RedBanner: {
+                    Quest: {
+                        grant_flag: ['a4q2minusHaveBanner'],
+                        remove_flag: ['a4q2minusUsedBanner'],
+                        extra_flag: ['a4q2minusQuestReceived'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'RedBanner'],
+                    tags: ['default'],
+                },
+                'Book-a5q3': {
+                    Quest: {
+                        use_flag: ['a5q3minusUsedRewardBook'],
+                        grant_flag: ['a5q3minusHaveRewardBook'],
+                        remove_flag: ['a5q3minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillBook',
+                        'Book-a5q3',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a5q7': {
+                    Quest: {
+                        use_flag: ['a5q7minusUsedRewardBook'],
+                        grant_flag: ['a5q7minusHaveRewardBook'],
+                        remove_flag: ['a5q7minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillAnd2RespecsBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillAnd2RespecsBook',
+                        'Book-a5q7',
+                    ],
+                    tags: ['default'],
+                },
+                KitavaKey: {
+                    Quest: {
+                        grant_flag: ['a5q6minusHaveItem'],
+                        extra_flag: ['a5q6minusSeenItem'],
+                        remove_flag: ['a5q6minusDeliveredItem'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'KitavaKey'],
+                    tags: ['default'],
+                },
+                Miasmeter: {
+                    Quest: {
+                        grant_flag: ['a5q3minusHaveItem'],
+                        remove_flag: ['a5q3minusDeliveredItem'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Miasmeter'],
+                    tags: ['default'],
+                },
+                TemplarCourtKey: {
+                    Quest: {
+                        grant_flag: ['a5q2minusHaveKey'],
+                        remove_flag: ['a5q2minusUsedKey'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'TemplarCourtKey'],
+                    tags: ['default'],
+                },
+                Torment1: {
+                    Quest: {
+                        grant_flag: ['a5q7minusHaveItem1'],
+                        remove_flag: ['a5q7minusDeliveredItems'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Torment1'],
+                    tags: ['default'],
+                },
+                Torment2: {
+                    Quest: {
+                        grant_flag: ['a5q7minusHaveItem2'],
+                        remove_flag: ['a5q7minusDeliveredItems'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Torment2'],
+                    tags: ['default'],
+                },
+                Torment3: {
+                    Quest: {
+                        grant_flag: ['a5q7minusHaveItem3'],
+                        remove_flag: ['a5q7minusDeliveredItems'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Torment3'],
+                    tags: ['default'],
+                },
+                BestelsManuscript: {
+                    Quest: {
+                        grant_flag: ['a6q5minusHaveItem'],
+                        remove_flag: ['a6q5minusDeliveredItem'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'BestelsManuscript'],
+                    tags: ['default'],
+                },
+                BlackFlag: {
+                    Quest: {
+                        grant_flag: ['a6q1minusHaveFlag'],
+                        remove_flag: ['a6q1minusDeliveredFlag'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'BlackFlag'],
+                    tags: ['default'],
+                },
+                'Book-a6q3': {
+                    Quest: {
+                        use_flag: ['a6q3minusUsedRewardBook'],
+                        grant_flag: ['a6q3minusHaveRewardBook'],
+                        remove_flag: ['a6q3minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillBook',
+                        'Book-a6q3',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a6q4': {
+                    Quest: {
+                        use_flag: ['a6q4minusUsedRewardBook'],
+                        grant_flag: ['a6q4minusHaveRewardBook'],
+                        remove_flag: ['a6q4minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveRespecBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveRespecBook',
+                        'Book-a6q4',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a6q6': {
+                    Quest: {
+                        use_flag: ['a6q6minusUsedRewardBook'],
+                        grant_flag: ['a6q6minusHaveRewardBook'],
+                        remove_flag: ['a6q6minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillBook',
+                        'Book-a6q6',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a6q7': {
+                    Quest: {
+                        use_flag: ['a6q7minusUsedRewardBook'],
+                        grant_flag: ['a6q7minusHaveRewardBook'],
+                        remove_flag: ['a6q7minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillBook',
+                        'Book-a6q7',
+                    ],
+                    tags: ['default'],
+                },
+                KaruiEye: {
+                    Quest: {
+                        grant_flag: ['a6q3minusHaveItem'],
+                        remove_flag: ['a6q3minusDeliveredItem'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'KaruiEye'],
+                    tags: ['default'],
+                },
+                BlackVenom: {
+                    Quest: {
+                        grant_flag: ['a7q3minusHaveItem'],
+                        remove_flag: ['a7q3minusDeliveredItem'],
+                        extra_flag: ['a7q3minusSpawnSilk'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'BlackVenom'],
+                    tags: ['default'],
+                },
+                'Book-a7q1': {
+                    Quest: {
+                        use_flag: ['a7q1minusUsedRewardBook'],
+                        grant_flag: ['a7q1minusHaveRewardBook'],
+                        remove_flag: ['a7q1minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillBook',
+                        'Book-a7q1',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a7q6': {
+                    Quest: {
+                        use_flag: ['a7q6minusUsedRewardBook'],
+                        grant_flag: ['a7q6minusHaveRewardBook'],
+                        remove_flag: ['a7q6minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillAnd2RespecsBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillAnd2RespecsBook',
+                        'Book-a7q6',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a7q9': {
+                    Quest: {
+                        use_flag: ['a7q9minusUsedRewardBook'],
+                        grant_flag: ['a7q9minusHaveRewardBook'],
+                        remove_flag: ['a7q9minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillBook',
+                        'Book-a7q9',
+                    ],
+                    tags: ['default'],
+                },
+                Firefly1: {
+                    Quest: {
+                        grant_flag: ['a7q7minusHaveItem1'],
+                        remove_flag: ['a7q7minusDeliveredItems'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Firefly1'],
+                    tags: ['default'],
+                },
+                Firefly2: {
+                    Quest: {
+                        grant_flag: ['a7q7minusHaveItem2'],
+                        remove_flag: ['a7q7minusDeliveredItems'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Firefly2'],
+                    tags: ['default'],
+                },
+                Firefly3: {
+                    Quest: {
+                        grant_flag: ['a7q7minusHaveItem3'],
+                        remove_flag: ['a7q7minusDeliveredItems'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Firefly3'],
+                    tags: ['default'],
+                },
+                Firefly4: {
+                    Quest: {
+                        grant_flag: ['a7q7minusHaveItem4'],
+                        remove_flag: ['a7q7minusDeliveredItems'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Firefly4'],
+                    tags: ['default'],
+                },
+                Firefly5: {
+                    Quest: {
+                        grant_flag: ['a7q7minusHaveItem5'],
+                        remove_flag: ['a7q7minusDeliveredItems'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Firefly5'],
+                    tags: ['default'],
+                },
+                Firefly6: {
+                    Quest: {
+                        grant_flag: ['a7q7minusHaveItem6'],
+                        remove_flag: ['a7q7minusDeliveredItems'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Firefly6'],
+                    tags: ['default'],
+                },
+                Firefly7: {
+                    Quest: {
+                        grant_flag: ['a7q7minusHaveItem7'],
+                        remove_flag: ['a7q7minusDeliveredItems'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Firefly7'],
+                    tags: ['default'],
+                },
+                GreustNecklace: {
+                    Quest: {
+                        grant_flag: ['a7q8minusHaveItem'],
+                        remove_flag: ['a7q8minusDeliveredItem'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'GreustNecklace'],
+                    tags: ['default'],
+                },
+                KisharaStar: {
+                    Quest: {
+                        grant_flag: ['a7q6minusHaveItem'],
+                        remove_flag: ['a7q6minusDeliveredItem'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'KisharaStar'],
+                    tags: ['default'],
+                },
+                MaligaroMap: {
+                    Quest: {
+                        grant_flag: ['a7q2minusHaveItem'],
+                        extra_flag: ['a7q3minusSpawnSilk'],
+                        remove_flag: ['a7q3minusDeliveredItem'],
+                        is_map: ['true'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'MaligaroMap'],
+                    tags: ['default'],
+                },
+                ObsidianKey: {
+                    Quest: {
+                        grant_flag: ['a7q1minusHaveKey'],
+                        remove_flag: ['a7q1minusUsedKey'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'ObsidianKey'],
+                    tags: ['default'],
+                },
+                SilverLocket: {
+                    Quest: {
+                        grant_flag: ['a7q5minusHaveItem'],
+                        remove_flag: ['a7q5minusDeliveredItem'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'SilverLocket'],
+                    tags: ['default'],
+                },
+                AnkhOfEternity: {
+                    Quest: {
+                        grant_flag: ['a8q6minusHaveItem'],
+                        remove_flag: ['a8q6minusDeliveredItem'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'AnkhOfEternity'],
+                    tags: ['default'],
+                },
+                'Book-a8q4': {
+                    Quest: {
+                        use_flag: ['a8q4minusUsedRewardBook'],
+                        grant_flag: ['a8q4minusHaveRewardBook'],
+                        remove_flag: ['a8q4minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillBook',
+                        'Book-a8q4',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a8q6': {
+                    Quest: {
+                        use_flag: ['a8q6minusUsedRewardBook'],
+                        grant_flag: ['a8q6minusHaveRewardBook'],
+                        remove_flag: ['a8q6minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillAnd2RespecsBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillAnd2RespecsBook',
+                        'Book-a8q6',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a8q7': {
+                    Quest: {
+                        use_flag: ['a8q7minusUsedRewardBook'],
+                        grant_flag: ['a8q7minusHaveRewardBook'],
+                        remove_flag: ['a8q7minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillBook',
+                        'Book-a8q7',
+                    ],
+                    tags: ['default'],
+                },
+                LunarisOrb: {
+                    Quest: {
+                        grant_flag: ['a8q2minusHaveItem'],
+                        remove_flag: ['a8q23minusDeliveredItems'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'LunarisOrb'],
+                    tags: ['default'],
+                },
+                SolarisOrb: {
+                    Quest: {
+                        grant_flag: ['a8q3minusHaveItem'],
+                        remove_flag: ['a8q23minusDeliveredItems'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'SolarisOrb'],
+                    tags: ['default'],
+                },
+                WingsOfVastiri: {
+                    Quest: {
+                        grant_flag: ['a8q5minusHaveItem'],
+                        remove_flag: ['a8q5minusDeliveredItem'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'WingsOfVastiri'],
+                    tags: ['default'],
+                },
+                'Book-a9q2': {
+                    Quest: {
+                        use_flag: ['a9q2minusUsedRewardBook'],
+                        grant_flag: ['a9q2minusHaveRewardBook'],
+                        remove_flag: ['a9q2minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillBook',
+                        'Book-a9q2',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a9q4': {
+                    Quest: {
+                        use_flag: ['a9q4minusUsedRewardBook'],
+                        grant_flag: ['a9q4minusHaveRewardBook'],
+                        remove_flag: ['a9q4minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveRespecBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveRespecBook',
+                        'Book-a9q4',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a9q5': {
+                    Quest: {
+                        use_flag: ['a9q5minusUsedRewardBook'],
+                        grant_flag: ['a9q5minusHaveRewardBook'],
+                        remove_flag: ['a9q5minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillBook',
+                        'Book-a9q5',
+                    ],
+                    tags: ['default'],
+                },
+                BottledStorm: {
+                    Quest: {
+                        grant_flag: ['a9q5minusHaveItem'],
+                        remove_flag: ['a9q5minusUsedItem'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'BottledStorm'],
+                    tags: ['default'],
+                },
+                Calendar: {
+                    Quest: {
+                        grant_flag: ['a9q4minusHaveItem'],
+                        remove_flag: ['a9q4minusDeliveredItem'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Calendar'],
+                    tags: ['default'],
+                },
+                Ingredient1: {
+                    Quest: {
+                        grant_flag: ['a9q1minusHaveItem1'],
+                        remove_flag: ['a9q1minusDeliveredItem1'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Ingredient1'],
+                    tags: ['default'],
+                },
+                Ingredient2: {
+                    Quest: {
+                        grant_flag: ['a9q1minusHaveItem2'],
+                        remove_flag: ['a9q1minusDeliveredItem2'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Ingredient2'],
+                    tags: ['default'],
+                },
+                SekhemaFeather: {
+                    Quest: {
+                        grant_flag: ['a9q2minusHaveItem'],
+                        remove_flag: ['a9q2minusDeliveredItem'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'SekhemaFeather'],
+                    tags: ['default'],
+                },
+                StormSword: {
+                    Quest: {
+                        grant_flag: ['a9q3minusHaveItem'],
+                        remove_flag: ['a9q3minusDeliveredItem'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'StormSword'],
+                    tags: ['default'],
+                },
+                AllFlameLantern1: {
+                    Quest: {
+                        grant_flag: ['a1q6minusHaveAllFlame'],
+                        remove_flag: ['a1q6minusDeliveredAllFlame'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'AllFlameLantern1'],
+                    tags: ['default'],
+                },
+                CombinedAmulet: {
+                    Quest: {
+                        remove_flag: ['a2q8minusPlacedApex'],
+                        grant_flag: ['a2q8minusHaveApex'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'CombinedAmulet'],
+                    tags: ['default'],
+                },
+                DexAmulet: {
+                    Quest: {
+                        remove_flag: ['a2bminusDeliveredAmulets'],
+                        grant_flag: ['a2bminusHaveDexAmulet'],
+                        extra_flag: ['a2bminusKilledDexBandit'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'DexAmulet'],
+                    tags: ['default'],
+                },
+                IntAmulet: {
+                    Quest: {
+                        remove_flag: ['a2bminusDeliveredAmulets'],
+                        grant_flag: ['a2bminusHaveIntAmulet'],
+                        extra_flag: ['a2bminusKilledIntBandit'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'IntAmulet'],
+                    tags: ['default'],
+                },
+                StrAmulet: {
+                    Quest: {
+                        remove_flag: ['a2bminusDeliveredAmulets'],
+                        grant_flag: ['a2bminusHaveStrAmulet'],
+                        extra_flag: ['a2bminusKilledStrBandit'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'StrAmulet'],
+                    tags: ['default'],
+                },
+                Bust1: {
+                    Quest: {
+                        grant_flag: ['a3q11minusHaveBust1'],
+                        remove_flag: ['a3q11minusDeliveredBust1'],
+                        extra_flag: ['SeenBust1'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Bust1'],
+                    tags: ['default'],
+                },
+                Bust2: {
+                    Quest: {
+                        grant_flag: ['a3q11minusHaveBust2'],
+                        remove_flag: ['a3q11minusDeliveredBust2'],
+                        extra_flag: ['SeenBust2'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Bust2'],
+                    tags: ['default'],
+                },
+                Bust3: {
+                    Quest: {
+                        grant_flag: ['a3q11minusHaveBust3'],
+                        remove_flag: ['a3q11minusDeliveredBust3'],
+                        extra_flag: ['SeenBust3'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Bust3'],
+                    tags: ['default'],
+                },
+                Decanter: {
+                    Quest: {
+                        grant_flag: ['a3q13minusHaveDecanter'],
+                        remove_flag: ['a3q13minusDecanterDelivered'],
+                        extra_flag: ['SeenDecanter'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Decanter'],
+                    tags: ['default'],
+                },
+                Fruit: {
+                    Quest: {
+                        grant_flag: ['a3q13minusHavePlum'],
+                        remove_flag: ['a3q13minusPlumDelivered'],
+                        extra_flag: ['SeenPlum'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Fruit'],
+                    tags: ['default'],
+                },
+                Glyph1: {
+                    Quest: {
+                        remove_flag: ['a1q4minusPlacedGlyphs'],
+                        grant_flag: ['a1q4minusHaveGlyph1'],
+                        extra_flag: ['a1q4minusKnowsAboutGlyphs'],
+                        extra_flag2: ['SeenShell1'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Glyph1'],
+                    tags: ['default'],
+                },
+                Glyph2: {
+                    Quest: {
+                        remove_flag: ['a1q4minusPlacedGlyphs'],
+                        grant_flag: ['a1q4minusHaveGlyph2'],
+                        extra_flag: ['a1q4minusKnowsAboutGlyphs'],
+                        extra_flag2: ['SeenShell2'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Glyph2'],
+                    tags: ['default'],
+                },
+                Glyph3: {
+                    Quest: {
+                        remove_flag: ['a1q4minusPlacedGlyphs'],
+                        grant_flag: ['a1q4minusHaveGlyph3'],
+                        extra_flag: ['a1q4minusKnowsAboutGlyphs'],
+                        extra_flag2: ['SeenShell3'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Glyph3'],
+                    tags: ['default'],
+                },
+                GoldenHand: {
+                    Quest: {
+                        grant_flag: ['a2q5minusHaveGoldenHand'],
+                        remove_flag: ['a2q5minusDeliveredGoldenHand'],
+                        extra_flag: ['a2q5minusReceivedQuest'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'GoldenHand'],
+                    tags: ['default'],
+                },
+                Page1: {
+                    Quest: {
+                        grant_flag: ['a3q12minusHavePage1'],
+                        extra_flag: ['a3q12minusSeenPages'],
+                        remove_flag: ['a3q12minusDeliveredPages'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Page1'],
+                    tags: ['default'],
+                },
+                Page2: {
+                    Quest: {
+                        grant_flag: ['a3q12minusHavePage2'],
+                        extra_flag: ['a3q12minusSeenPages'],
+                        remove_flag: ['a3q12minusDeliveredPages'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Page2'],
+                    tags: ['default'],
+                },
+                Page3: {
+                    Quest: {
+                        grant_flag: ['a3q12minusHavePage3'],
+                        extra_flag: ['a3q12minusSeenPages'],
+                        remove_flag: ['a3q12minusDeliveredPages'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Page3'],
+                    tags: ['default'],
+                },
+                Page4: {
+                    Quest: {
+                        grant_flag: ['a3q12minusHavePage4'],
+                        extra_flag: ['a3q12minusSeenPages'],
+                        remove_flag: ['a3q12minusDeliveredPages'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'Page4'],
+                    tags: ['default'],
+                },
+                InfernalTalc: {
+                    Quest: {
+                        grant_flag: ['a3q5minusHaveTalc'],
+                        remove_flag: ['a3q5minusUsedTalc'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'InfernalTalc'],
+                    tags: ['default'],
+                },
+                MapUpgradeTier1_1: {
+                    Base: {
+                        description_text: ['MapUpgradeDescriptionText'],
+                    },
+                    Quest: {
+                        grant_flag: ['GrantMapUpgradeTier1_1'],
+                        league_remove_flag: ['UsedMapUpgradeTier1_1'],
+                    },
+                    Usable: {
+                        action: ['upgrade_atlas_map'],
+                        use_type: ['ApplyToAtlas'],
+                    },
+                    Stack: {
+                        function_text: ['MapUpgradeFunctionTier1'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier1_1'],
+                    tags: ['default'],
+                },
+                MapUpgradeTier10_1: {
+                    Base: {
+                        description_text: ['MapUpgradeDescriptionText'],
+                    },
+                    Quest: {
+                        grant_flag: ['GrantMapUpgradeTier10_1'],
+                        league_remove_flag: ['UsedMapUpgradeTier10_1'],
+                    },
+                    Usable: {
+                        action: ['upgrade_atlas_map'],
+                        use_type: ['ApplyToAtlas'],
+                    },
+                    Stack: {
+                        function_text: ['MapUpgradeFunctionTier10'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier10_1'],
+                    tags: ['default'],
+                },
+                MapUpgradeTier10_2: {
+                    Base: {
+                        description_text: ['MapUpgradeDescriptionText'],
+                    },
+                    Quest: {
+                        grant_flag: ['GrantMapUpgradeTier10_2'],
+                        league_remove_flag: ['UsedMapUpgradeTier10_2'],
+                    },
+                    Usable: {
+                        action: ['upgrade_atlas_map'],
+                        use_type: ['ApplyToAtlas'],
+                    },
+                    Stack: {
+                        function_text: ['MapUpgradeFunctionTier10'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier10_2'],
+                    tags: ['default'],
+                },
+                MapUpgradeTier10_3: {
+                    Base: {
+                        description_text: ['MapUpgradeDescriptionText'],
+                    },
+                    Quest: {
+                        grant_flag: ['GrantMapUpgradeTier10_3'],
+                        league_remove_flag: ['UsedMapUpgradeTier10_3'],
+                    },
+                    Usable: {
+                        action: ['upgrade_atlas_map'],
+                        use_type: ['ApplyToAtlas'],
+                    },
+                    Stack: {
+                        function_text: ['MapUpgradeFunctionTier10'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier10_3'],
+                    tags: ['default'],
+                },
+                MapUpgradeTier2_1: {
+                    Base: {
+                        description_text: ['MapUpgradeDescriptionText'],
+                    },
+                    Quest: {
+                        grant_flag: ['GrantMapUpgradeTier2_1'],
+                        league_remove_flag: ['UsedMapUpgradeTier2_1'],
+                    },
+                    Usable: {
+                        action: ['upgrade_atlas_map'],
+                        use_type: ['ApplyToAtlas'],
+                    },
+                    Stack: {
+                        function_text: ['MapUpgradeFunctionTier2'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier2_1'],
+                    tags: ['default'],
+                },
+                MapUpgradeTier3_1: {
+                    Base: {
+                        description_text: ['MapUpgradeDescriptionText'],
+                    },
+                    Quest: {
+                        grant_flag: ['GrantMapUpgradeTier3_1'],
+                        league_remove_flag: ['UsedMapUpgradeTier3_1'],
+                    },
+                    Usable: {
+                        action: ['upgrade_atlas_map'],
+                        use_type: ['ApplyToAtlas'],
+                    },
+                    Stack: {
+                        function_text: ['MapUpgradeFunctionTier3'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier3_1'],
+                    tags: ['default'],
+                },
+                MapUpgradeTier4_1: {
+                    Base: {
+                        description_text: ['MapUpgradeDescriptionText'],
+                    },
+                    Quest: {
+                        grant_flag: ['GrantMapUpgradeTier4_1'],
+                        league_remove_flag: ['UsedMapUpgradeTier4_1'],
+                    },
+                    Usable: {
+                        action: ['upgrade_atlas_map'],
+                        use_type: ['ApplyToAtlas'],
+                    },
+                    Stack: {
+                        function_text: ['MapUpgradeFunctionTier4'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier4_1'],
+                    tags: ['default'],
+                },
+                MapUpgradeTier5_1: {
+                    Base: {
+                        description_text: ['MapUpgradeDescriptionText'],
+                    },
+                    Quest: {
+                        grant_flag: ['GrantMapUpgradeTier5_1'],
+                        league_remove_flag: ['UsedMapUpgradeTier5_1'],
+                    },
+                    Usable: {
+                        action: ['upgrade_atlas_map'],
+                        use_type: ['ApplyToAtlas'],
+                    },
+                    Stack: {
+                        function_text: ['MapUpgradeFunctionTier5'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier5_1'],
+                    tags: ['default'],
+                },
+                MapUpgradeTier6_1: {
+                    Base: {
+                        description_text: ['MapUpgradeDescriptionText'],
+                    },
+                    Quest: {
+                        grant_flag: ['GrantMapUpgradeTier6_1'],
+                        league_remove_flag: ['UsedMapUpgradeTier6_1'],
+                    },
+                    Usable: {
+                        action: ['upgrade_atlas_map'],
+                        use_type: ['ApplyToAtlas'],
+                    },
+                    Stack: {
+                        function_text: ['MapUpgradeFunctionTier6'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier6_1'],
+                    tags: ['default'],
+                },
+                MapUpgradeTier7_1: {
+                    Base: {
+                        description_text: ['MapUpgradeDescriptionText'],
+                    },
+                    Quest: {
+                        grant_flag: ['GrantMapUpgradeTier7_1'],
+                        league_remove_flag: ['UsedMapUpgradeTier7_1'],
+                    },
+                    Usable: {
+                        action: ['upgrade_atlas_map'],
+                        use_type: ['ApplyToAtlas'],
+                    },
+                    Stack: {
+                        function_text: ['MapUpgradeFunctionTier7'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier7_1'],
+                    tags: ['default'],
+                },
+                MapUpgradeTier8_1: {
+                    Base: {
+                        description_text: ['MapUpgradeDescriptionText'],
+                    },
+                    Quest: {
+                        grant_flag: ['GrantMapUpgradeTier8_1'],
+                        league_remove_flag: ['UsedMapUpgradeTier8_1'],
+                    },
+                    Usable: {
+                        action: ['upgrade_atlas_map'],
+                        use_type: ['ApplyToAtlas'],
+                    },
+                    Stack: {
+                        function_text: ['MapUpgradeFunctionTier8'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier8_1'],
+                    tags: ['default'],
+                },
+                MapUpgradeTier8_2: {
+                    Base: {
+                        description_text: ['MapUpgradeDescriptionText'],
+                    },
+                    Quest: {
+                        grant_flag: ['GrantMapUpgradeTier8_2'],
+                        league_remove_flag: ['UsedMapUpgradeTier8_2'],
+                    },
+                    Usable: {
+                        action: ['upgrade_atlas_map'],
+                        use_type: ['ApplyToAtlas'],
+                    },
+                    Stack: {
+                        function_text: ['MapUpgradeFunctionTier8'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier8_2'],
+                    tags: ['default'],
+                },
+                MapUpgradeTier9_1: {
+                    Base: {
+                        description_text: ['MapUpgradeDescriptionText'],
+                    },
+                    Quest: {
+                        grant_flag: ['GrantMapUpgradeTier9_1'],
+                        league_remove_flag: ['UsedMapUpgradeTier9_1'],
+                    },
+                    Usable: {
+                        action: ['upgrade_atlas_map'],
+                        use_type: ['ApplyToAtlas'],
+                    },
+                    Stack: {
+                        function_text: ['MapUpgradeFunctionTier9'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier9_1'],
+                    tags: ['default'],
+                },
+                MapUpgradeTier9_2: {
+                    Base: {
+                        description_text: ['MapUpgradeDescriptionText'],
+                    },
+                    Quest: {
+                        grant_flag: ['GrantMapUpgradeTier9_2'],
+                        league_remove_flag: ['UsedMapUpgradeTier9_2'],
+                    },
+                    Usable: {
+                        action: ['upgrade_atlas_map'],
+                        use_type: ['ApplyToAtlas'],
+                    },
+                    Stack: {
+                        function_text: ['MapUpgradeFunctionTier9'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier9_2'],
+                    tags: ['default'],
+                },
+                MapUpgradeTier9_3: {
+                    Base: {
+                        description_text: ['MapUpgradeDescriptionText'],
+                    },
+                    Quest: {
+                        grant_flag: ['GrantMapUpgradeTier9_3'],
+                        league_remove_flag: ['UsedMapUpgradeTier9_3'],
+                    },
+                    Usable: {
+                        action: ['upgrade_atlas_map'],
+                        use_type: ['ApplyToAtlas'],
+                    },
+                    Stack: {
+                        function_text: ['MapUpgradeFunctionTier9'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier9_3'],
+                    tags: ['default'],
+                },
+                MedicineSet1: {
+                    Quest: {
+                        grant_flag: ['a1q5minusHaveMedicineChest'],
+                        remove_flag: ['a1q5minusNessaCongratulated'],
+                        extra_flag: ['SeenMedicineChest'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'MedicineSet1'],
+                    tags: ['default'],
+                },
+                PoisonSkillGem: {
+                    Quest: {
+                        grant_flag: ['a2q6minusHaveSkillGem'],
+                        remove_flag: ['a2q9minusPoisonedTree'],
+                        extra_flag: ['a2q6minusHelenaInTown'],
+                        extra_flag2: ['SeenBalefulGem'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'PoisonSkillGem'],
+                    tags: ['default'],
+                },
+                PoisonSpear: {
+                    Quest: {
+                        grant_flag: ['a2q4minusHavePoisonSpear'],
+                        remove_flag: ['a2q9minusPoisonedTree'],
+                        extra_flag: ['a2q4minusReceivedQuest'],
+                        extra_flag2: ['a2bminusStartNewQuests'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'PoisonSpear'],
+                    tags: ['default'],
+                },
+                RibbonSpool: {
+                    Quest: {
+                        grant_flag: ['a3q4minusHaveRibbonSpool'],
+                        remove_flag: ['a3q4minusDeliveredSpool'],
+                        extra_flag: ['SeenRibbonSpool'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'RibbonSpool'],
+                    tags: ['default'],
+                },
+                SewerKeys: {
+                    Quest: {
+                        grant_flag: ['a3q11minusHaveSewerKeys'],
+                        remove_flag: ['a3q11minusUsedSewerKeys'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'SewerKeys'],
+                    tags: ['default'],
+                },
+                ShaperMemoryFragment1_1: {
+                    Quest: {
+                        grant_flag: ['HaveShaperMemoryFragment1_1'],
+                        league_remove_flag: ['DeliveredShaperMemoryFragment1_1'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'ShaperMemoryFragment1_1'],
+                    tags: ['default'],
+                },
+                ShaperMemoryFragment10_1: {
+                    Quest: {
+                        grant_flag: ['HaveShaperMemoryFragment10_1'],
+                        league_remove_flag: ['DeliveredShaperMemoryFragment10_1'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'ShaperMemoryFragment10_1'],
+                    tags: ['default'],
+                },
+                ShaperMemoryFragment10_2: {
+                    Quest: {
+                        grant_flag: ['HaveShaperMemoryFragment10_2'],
+                        league_remove_flag: ['DeliveredShaperMemoryFragment10_2'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'ShaperMemoryFragment10_2'],
+                    tags: ['default'],
+                },
+                ShaperMemoryFragment10_3: {
+                    Quest: {
+                        grant_flag: ['HaveShaperMemoryFragment10_3'],
+                        league_remove_flag: ['DeliveredShaperMemoryFragment10_3'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'ShaperMemoryFragment10_3'],
+                    tags: ['default'],
+                },
+                ShaperMemoryFragment2_1: {
+                    Quest: {
+                        grant_flag: ['HaveShaperMemoryFragment2_1'],
+                        league_remove_flag: ['DeliveredShaperMemoryFragment2_1'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'ShaperMemoryFragment2_1'],
+                    tags: ['default'],
+                },
+                ShaperMemoryFragment3_1: {
+                    Quest: {
+                        grant_flag: ['HaveShaperMemoryFragment3_1'],
+                        league_remove_flag: ['DeliveredShaperMemoryFragment3_1'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'ShaperMemoryFragment3_1'],
+                    tags: ['default'],
+                },
+                ShaperMemoryFragment4_1: {
+                    Quest: {
+                        grant_flag: ['HaveShaperMemoryFragment4_1'],
+                        league_remove_flag: ['DeliveredShaperMemoryFragment4_1'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'ShaperMemoryFragment4_1'],
+                    tags: ['default'],
+                },
+                ShaperMemoryFragment5_1: {
+                    Quest: {
+                        grant_flag: ['HaveShaperMemoryFragment5_1'],
+                        league_remove_flag: ['DeliveredShaperMemoryFragment5_1'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'ShaperMemoryFragment5_1'],
+                    tags: ['default'],
+                },
+                ShaperMemoryFragment6_1: {
+                    Quest: {
+                        grant_flag: ['HaveShaperMemoryFragment6_1'],
+                        league_remove_flag: ['DeliveredShaperMemoryFragment6_1'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'ShaperMemoryFragment6_1'],
+                    tags: ['default'],
+                },
+                ShaperMemoryFragment7_1: {
+                    Quest: {
+                        grant_flag: ['HaveShaperMemoryFragment7_1'],
+                        league_remove_flag: ['DeliveredShaperMemoryFragment7_1'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'ShaperMemoryFragment7_1'],
+                    tags: ['default'],
+                },
+                ShaperMemoryFragment8_1: {
+                    Quest: {
+                        grant_flag: ['HaveShaperMemoryFragment8_1'],
+                        league_remove_flag: ['DeliveredShaperMemoryFragment8_1'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'ShaperMemoryFragment8_1'],
+                    tags: ['default'],
+                },
+                ShaperMemoryFragment8_2: {
+                    Quest: {
+                        grant_flag: ['HaveShaperMemoryFragment8_2'],
+                        league_remove_flag: ['DeliveredShaperMemoryFragment8_2'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'ShaperMemoryFragment8_2'],
+                    tags: ['default'],
+                },
+                ShaperMemoryFragment9_1: {
+                    Quest: {
+                        grant_flag: ['HaveShaperMemoryFragment9_1'],
+                        league_remove_flag: ['DeliveredShaperMemoryFragment9_1'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'ShaperMemoryFragment9_1'],
+                    tags: ['default'],
+                },
+                ShaperMemoryFragment9_2: {
+                    Quest: {
+                        grant_flag: ['HaveShaperMemoryFragment9_2'],
+                        league_remove_flag: ['DeliveredShaperMemoryFragment9_2'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'ShaperMemoryFragment9_2'],
+                    tags: ['default'],
+                },
+                ShaperMemoryFragment9_3: {
+                    Quest: {
+                        grant_flag: ['HaveShaperMemoryFragment9_3'],
+                        league_remove_flag: ['DeliveredShaperMemoryFragment9_3'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'ShaperMemoryFragment9_3'],
+                    tags: ['default'],
+                },
+                AbstractPassiveRespecBook: {
+                    Base: {
+                        description_text: ['ItemDescriptionBook2RespecPoints'],
+                    },
+                    Usable: {
+                        action: ['skill_book'],
+                        use_type: ['Usable'],
+                    },
+                    Stack: {
+                        function_text: ['ItemFunction2RespecPoints'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'AbstractPassiveRespecBook'],
+                    tags: ['default'],
+                },
+                AbstractPassiveSkillAnd2RespecsBook: {
+                    Base: {
+                        description_text: ['ItemDescriptionBookPassivePointAnd2RespecPoints'],
+                    },
+                    Usable: {
+                        action: ['skill_book'],
+                        use_type: ['Usable'],
+                    },
+                    Stack: {
+                        function_text: ['ItemFunctionPassivePointAnd2RespecPoints'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillAnd2RespecsBook',
+                    ],
+                    tags: ['default'],
+                },
+                AbstractPassiveSkillBook: {
+                    Base: {
+                        description_text: ['ItemDescriptionBookPassivePoint'],
+                    },
+                    Usable: {
+                        action: ['skill_book'],
+                        use_type: ['Usable'],
+                    },
+                    Stack: {
+                        function_text: ['ItemFunctionPassivePoint'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'AbstractPassiveSkillBook'],
+                    tags: ['default'],
+                },
+                BanditRespecAlira: {
+                    Base: {
+                        description_text: ['ItemDescriptionBanditRespecAlira'],
+                    },
+                    Quest: {
+                        can_sell: ['true'],
+                    },
+                    Usable: {
+                        action: ['respec_alira'],
+                        use_type: ['Usable'],
+                    },
+                    Stack: {
+                        function_text: ['ItemFunctionBanditRespecAlira'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'BanditRespecAlira'],
+                    tags: ['default'],
+                },
+                BanditRespecEramir: {
+                    Base: {
+                        description_text: ['ItemDescriptionBanditRespecEramir'],
+                    },
+                    Quest: {
+                        can_sell: ['true'],
+                    },
+                    Usable: {
+                        action: ['respec_eramir'],
+                        use_type: ['Usable'],
+                    },
+                    Stack: {
+                        function_text: ['ItemFunctionBanditRespecEramir'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'BanditRespecEramir'],
+                    tags: ['default'],
+                },
+                BanditRespecKraityn: {
+                    Base: {
+                        description_text: ['ItemDescriptionBanditRespecKraityn'],
+                    },
+                    Quest: {
+                        can_sell: ['true'],
+                    },
+                    Usable: {
+                        action: ['respec_kraityn'],
+                        use_type: ['Usable'],
+                    },
+                    Stack: {
+                        function_text: ['ItemFunctionBanditRespecKraityn'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'BanditRespecKraityn'],
+                    tags: ['default'],
+                },
+                BanditRespecOak: {
+                    Base: {
+                        description_text: ['ItemDescriptionBanditRespecOak'],
+                    },
+                    Quest: {
+                        can_sell: ['true'],
+                    },
+                    Usable: {
+                        action: ['respec_oak'],
+                        use_type: ['Usable'],
+                    },
+                    Stack: {
+                        function_text: ['ItemFunctionBanditRespecOak'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'BanditRespecOak'],
+                    tags: ['default'],
+                },
+                'Book-a1q6': {
+                    Quest: {
+                        use_flag: ['a1q6minusUsedRewardBook'],
+                        grant_flag: ['a1q6minusHaveRewardBook'],
+                        remove_flag: ['a1q6minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillBook',
+                        'Book-a1q6',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a1q7': {
+                    Quest: {
+                        use_flag: ['a1q7minusUsedRewardBook'],
+                        grant_flag: ['a1q7minusHaveRewardBook'],
+                        remove_flag: ['a1q7minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillBook',
+                        'Book-a1q7',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a1q8': {
+                    Quest: {
+                        use_flag: ['a1q8minusUsedRewardBook'],
+                        grant_flag: ['a1q8minusHaveRewardBook'],
+                        remove_flag: ['a1q8minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveRespecBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveRespecBook',
+                        'Book-a1q8',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a1q9': {
+                    Quest: {
+                        use_flag: ['a1q9minusUsedRewardBook'],
+                        grant_flag: ['a1q9minusHaveRewardBook'],
+                        remove_flag: ['a1q9minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillBook',
+                        'Book-a1q9',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a2q5': {
+                    Quest: {
+                        use_flag: ['a2q5minusUsedRewardBook'],
+                        grant_flag: ['a2q5minusHaveRewardBook'],
+                        remove_flag: ['a2q5minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveRespecBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveRespecBook',
+                        'Book-a2q5',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a3q11v0': {
+                    Quest: {
+                        use_flag: ['a3q11minusUsedRewardBook'],
+                        grant_flag: ['a3q11minusHaveRewardBook'],
+                        remove_flag: ['a3q11minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillBook',
+                        'Book-a3q11v0',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a3q11v1': {
+                    Quest: {
+                        use_flag: ['a3q11minusUsedRewardBook'],
+                        grant_flag: ['a3q11minusHaveRewardBook'],
+                        remove_flag: ['a3q11minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillAnd2RespecsBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillAnd2RespecsBook',
+                        'Book-a3q11v1',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a3q11v2': {
+                    Quest: {
+                        use_flag: ['a3q11minusUsedRewardBook'],
+                        grant_flag: ['a3q11minusHaveRewardBook'],
+                        remove_flag: ['a3q11minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillAnd2RespecsBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillAnd2RespecsBook',
+                        'Book-a3q11v2',
+                    ],
+                    tags: ['default'],
+                },
+                'Book-a3q9': {
+                    Quest: {
+                        use_flag: ['a3q9minusUsedRewardBook'],
+                        grant_flag: ['a3q9minusHaveRewardBook'],
+                        remove_flag: ['a3q9minusUsedRewardBook'],
+                    },
+                    extends: 'AbstractPassiveSkillBook',
+                    inheritance: [
+                        'Item',
+                        'AbstractQuestItem',
+                        'AbstractPassiveSkillBook',
+                        'Book-a3q9',
+                    ],
+                    tags: ['default'],
+                },
+                DelevelBook: {
+                    Base: {
+                        description_text: ['ItemDescriptionBookDelevel'],
+                    },
+                    Quest: {
+                        can_sell: ['true'],
+                    },
+                    Usable: {
+                        action: ['delevel_book'],
+                        use_type: ['Usable'],
+                    },
+                    Stack: {
+                        function_text: ['ItemFunctionDelevel'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'DelevelBook'],
+                    tags: ['default'],
+                },
+                Descent2_1: {
+                    Base: {
+                        description_text: ['ItemDescriptionBook2PassivePoints'],
+                    },
+                    Quest: {
+                        use_flag: ['Descent2Reward1'],
+                        remove_flag: ['Descent2Reward1'],
+                    },
+                    Usable: {
+                        action: ['skill_book'],
+                        use_type: ['Usable'],
+                    },
+                    Stack: {
+                        function_text: ['ItemFunction2PassivePoints'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'Descent2_1'],
+                    tags: ['default'],
+                },
+                Descent2_2: {
+                    Base: {
+                        description_text: ['ItemDescriptionBook2PassivePoints'],
+                    },
+                    Quest: {
+                        use_flag: ['Descent2Reward2'],
+                        remove_flag: ['Descent2Reward2'],
+                    },
+                    Usable: {
+                        action: ['skill_book'],
+                        use_type: ['Usable'],
+                    },
+                    Stack: {
+                        function_text: ['ItemFunction2PassivePoints'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'Descent2_2'],
+                    tags: ['default'],
+                },
+                Descent2_3: {
+                    Base: {
+                        description_text: ['ItemDescriptionBook2PassivePoints'],
+                    },
+                    Quest: {
+                        use_flag: ['Descent2Reward3'],
+                        remove_flag: ['Descent2Reward3'],
+                    },
+                    Usable: {
+                        action: ['skill_book'],
+                        use_type: ['Usable'],
+                    },
+                    Stack: {
+                        function_text: ['ItemFunction2PassivePoints'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'Descent2_3'],
+                    tags: ['default'],
+                },
+                Descent2_4: {
+                    Base: {
+                        description_text: ['ItemDescriptionBook2PassivePoints'],
+                    },
+                    Quest: {
+                        use_flag: ['Descent2Reward4'],
+                        remove_flag: ['Descent2Reward4'],
+                    },
+                    Usable: {
+                        action: ['skill_book'],
+                        use_type: ['Usable'],
+                    },
+                    Stack: {
+                        function_text: ['ItemFunction2PassivePoints'],
+                    },
+                    extends: 'AbstractQuestItem',
+                    inheritance: ['Item', 'AbstractQuestItem', 'Descent2_4'],
+                    tags: ['default'],
+                },
+                SpikeSealKey: {
+                    Quest: {
+                        grant_flag: ['a2q11minusHaveKey'],
+                        remove_flag: ['a1q9minusRoadOpened'],
+                        extra_flag: ['a2q11minusSeenKey'],
+                        extra_flag2: ['a1q9minusRoadBlocked'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'SpikeSealKey'],
+                    tags: ['default'],
+                },
+                SulphiteFlask: {
+                    Quest: {
+                        grant_flag: ['a3q5minusHaveSulphite'],
+                        remove_flag: ['a3q5minusDeliveredSulphite'],
+                        extra_flag: ['SeenSulphite'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'SulphiteFlask'],
+                    tags: ['default'],
+                },
+                TolmanBracelet: {
+                    Quest: {
+                        grant_flag: ['a3q2minusHaveTolmanItem'],
+                        remove_flag: ['a3q2minusDeliveredItem'],
+                        extra_flag: ['a3q2minusSeenTolmanItem'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'TolmanBracelet'],
+                    tags: ['default'],
+                },
+                TowerKey: {
+                    Quest: {
+                        grant_flag: ['a3q9minusHaveTowerKey'],
+                        remove_flag: ['a3q9minusUsedTowerKey'],
+                        extra_flag: ['SeenTowerKey'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'TowerKey'],
+                    tags: ['default'],
+                },
+                AbstractQuiver: {
+                    Base: {
+                        tag: ['quiver'],
+                        x_size: ['2'],
+                        y_size: ['3'],
+                    },
+                    LocalStats: {},
+                    Mods: {
+                        inventory_type: ['Offhand'],
+                    },
+                    extends: 'Equipment',
+                    inheritance: ['Item', 'Equipment', 'AbstractQuiver'],
+                    tags: ['default', 'quiver'],
+                },
+                AbstractRelic: {
+                    Base: {
+                        tag: ['relic'],
+                    },
+                    LocalStats: {},
+                    Mods: {},
+                    Usable: {},
+                    extends: 'Equipment',
+                    inheritance: ['Item', 'Equipment', 'AbstractRelic'],
+                    tags: ['default', 'relic'],
+                },
+                AbstractLargeRelic: {
+                    Base: {
+                        x_size: ['2'],
+                        y_size: ['2'],
+                    },
+                    LocalStats: {},
+                    Mods: {
+                        inventory_type: ['altar_large'],
+                    },
+                    Usable: {},
+                    extends: 'AbstractRelic',
+                    inheritance: ['Item', 'Equipment', 'AbstractRelic', 'AbstractLargeRelic'],
+                    tags: ['default', 'relic'],
+                },
+                AbstractMediumRelic: {
+                    Base: {
+                        x_size: ['1'],
+                        y_size: ['2'],
+                    },
+                    LocalStats: {},
+                    Mods: {
+                        inventory_type: ['altar_medium'],
+                    },
+                    Usable: {},
+                    extends: 'AbstractRelic',
+                    inheritance: ['Item', 'Equipment', 'AbstractRelic', 'AbstractMediumRelic'],
+                    tags: ['default', 'relic'],
+                },
+                AbstractSmallRelic: {
+                    Base: {
+                        x_size: ['1'],
+                        y_size: ['1'],
+                    },
+                    LocalStats: {},
+                    Mods: {
+                        inventory_type: ['altar_small'],
+                    },
+                    Usable: {},
+                    extends: 'AbstractRelic',
+                    inheritance: ['Item', 'Equipment', 'AbstractRelic', 'AbstractSmallRelic'],
+                    tags: ['default', 'relic'],
+                },
+                AbstractRing: {
+                    Base: {
+                        x_size: ['1'],
+                        y_size: ['1'],
+                        tag: ['ring'],
+                    },
+                    Mods: {
+                        inventory_type: ['Ring'],
+                    },
+                    extends: 'Equipment',
+                    inheritance: ['Item', 'Equipment', 'AbstractRing'],
+                    tags: ['default', 'ring'],
+                },
+                AbstractSocketableRing: {
+                    AttributeRequirements: {
+                        strength_requirement: ['0'],
+                        dexterity_requirement: ['0'],
+                        intelligence_requirement: ['0'],
+                    },
+                    Sockets: {
+                        socket_info: [
+                            '0:1:1 1:9999:100 2:9999:90 3:9999:80 4:9999:30 5:9999:20 6:9999:5',
+                        ],
+                    },
+                    extends: 'AbstractRing',
                     inheritance: [
                         'Item',
                         'Equipment',
                         'AbstractRing',
                         'AbstractSocketableRing',
                     ],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 2, id: 'ring' }],
+                    tags: ['default', 'ring'],
                 },
                 Ring15: {
                     extends: 'AbstractSocketableRing',
@@ -1584,52 +3149,76 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractSocketableRing',
                         'Ring15',
                     ],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 2, id: 'ring' }],
+                    tags: ['default', 'ring'],
+                },
+                AbstractUniqueFragment: {
+                    Base: {
+                        description_text: ['ItemDescriptionUniqueFragment'],
+                    },
+                    LocalStats: {},
+                    Mods: {
+                        stat_description_list: [
+                            'Metadata/StatDescriptions/stat_descriptions.txt',
+                        ],
+                        enable_rarity: ['"unique"\t'],
+                        inventory_type: ['maininventory'],
+                    },
+                    extends: 'Item',
+                    inheritance: ['Item', 'AbstractUniqueFragment'],
+                    tags: ['default'],
                 },
                 AbstractWeapon: {
-                    extends: 'Equipment',
                     AttributeRequirements: {
-                        strength_requirement: ['100\r'],
-                        dexterity_requirement: ['0\r'],
-                        intelligence_requirement: ['0\r'],
+                        strength_requirement: ['100'],
+                        dexterity_requirement: ['0'],
+                        intelligence_requirement: ['0'],
                     },
-                    Mods: { inventory_type: ['Weapon"'] },
+                    Mods: {
+                        inventory_type: ['"Weapon"\t'],
+                    },
                     Weapon: {
-                        minimum_attack_distance: ['0\r'],
-                        maximum_attack_distance: ['3\r'],
-                        minimum_damage: ['5\r'],
-                        maximum_damage: ['10\r'],
-                        weapon_speed: ['833\r'],
-                        critical_chance: ['500\r'],
-                        accuracy_rating: ['20\r'],
+                        minimum_attack_distance: ['0'],
+                        maximum_attack_distance: ['3'],
+                        minimum_damage: ['5'],
+                        maximum_damage: ['10'],
+                        weapon_speed: ['833'],
+                        critical_chance: ['500'],
+                        accuracy_rating: ['20'],
                     },
-                    Quality: { max_quality: ['20\r'] },
-                    Base: { tag: ['weapon'] },
+                    Quality: {
+                        max_quality: ['20'],
+                    },
+                    Base: {
+                        tag: ['weapon'],
+                    },
                     Sockets: {
                         socket_info: ['1:1:50 2:1:120 3:2:100 4:9999:30 5:9999:20 6:9999:5'],
                     },
+                    extends: 'Equipment',
                     inheritance: ['Item', 'Equipment', 'AbstractWeapon'],
-                    tags: [{ primary: 0, id: 'default' }, { primary: 8, id: 'weapon' }],
+                    tags: ['default', 'weapon'],
                 },
                 AbstractOneHandWeapon: {
+                    Base: {
+                        tag: ['onehand'],
+                    },
                     extends: 'AbstractWeapon',
-                    Base: { tag: ['onehand'] },
                     inheritance: [
                         'Item',
                         'Equipment',
                         'AbstractWeapon',
                         'AbstractOneHandWeapon',
                     ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 8, id: 'weapon' },
-                        { primary: 23, id: 'onehand' },
-                    ],
+                    tags: ['default', 'weapon', 'onehand'],
                 },
                 AbstractClaw: {
+                    Base: {
+                        tag: ['claw', 'one_hand_weapon'],
+                    },
+                    Weapon: {
+                        weapon_class: ['Claw'],
+                    },
                     extends: 'AbstractOneHandWeapon',
-                    Base: { tag: ['claw', 'one_hand_weapon'] },
-                    Weapon: { weapon_class: ['Claw'] },
                     inheritance: [
                         'Item',
                         'Equipment',
@@ -1637,18 +3226,16 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractOneHandWeapon',
                         'AbstractClaw',
                     ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 8, id: 'weapon' },
-                        { primary: 23, id: 'onehand' },
-                        { primary: 14, id: 'claw' },
-                        { primary: 81, id: 'one_hand_weapon' },
-                    ],
+                    tags: ['default', 'weapon', 'onehand', 'claw', 'one_hand_weapon'],
                 },
                 AbstractDagger: {
+                    Base: {
+                        tag: ['dagger', 'one_hand_weapon'],
+                    },
+                    Weapon: {
+                        weapon_class: ['Dagger'],
+                    },
                     extends: 'AbstractOneHandWeapon',
-                    Base: { tag: ['dagger', 'one_hand_weapon'] },
-                    Weapon: { weapon_class: ['Dagger'] },
                     inheritance: [
                         'Item',
                         'Equipment',
@@ -1656,18 +3243,16 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractOneHandWeapon',
                         'AbstractDagger',
                     ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 8, id: 'weapon' },
-                        { primary: 23, id: 'onehand' },
-                        { primary: 13, id: 'dagger' },
-                        { primary: 81, id: 'one_hand_weapon' },
-                    ],
+                    tags: ['default', 'weapon', 'onehand', 'dagger', 'one_hand_weapon'],
                 },
                 AbstractOneHandAxe: {
+                    Base: {
+                        tag: ['axe', 'one_hand_weapon'],
+                    },
+                    Weapon: {
+                        weapon_class: ['OneHandAxe'],
+                    },
                     extends: 'AbstractOneHandWeapon',
-                    Base: { tag: ['axe', 'one_hand_weapon'] },
-                    Weapon: { weapon_class: ['OneHandAxe'] },
                     inheritance: [
                         'Item',
                         'Equipment',
@@ -1675,18 +3260,16 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractOneHandWeapon',
                         'AbstractOneHandAxe',
                     ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 8, id: 'weapon' },
-                        { primary: 23, id: 'onehand' },
-                        { primary: 15, id: 'axe' },
-                        { primary: 81, id: 'one_hand_weapon' },
-                    ],
+                    tags: ['default', 'weapon', 'onehand', 'axe', 'one_hand_weapon'],
                 },
                 AbstractOneHandMace: {
+                    Base: {
+                        tag: ['mace', 'one_hand_weapon'],
+                    },
+                    Weapon: {
+                        weapon_class: ['OneHandMace'],
+                    },
                     extends: 'AbstractOneHandWeapon',
-                    Base: { tag: ['mace', 'one_hand_weapon'] },
-                    Weapon: { weapon_class: ['OneHandMace'] },
                     inheritance: [
                         'Item',
                         'Equipment',
@@ -1694,18 +3277,16 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractOneHandWeapon',
                         'AbstractOneHandMace',
                     ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 8, id: 'weapon' },
-                        { primary: 23, id: 'onehand' },
-                        { primary: 11, id: 'mace' },
-                        { primary: 81, id: 'one_hand_weapon' },
-                    ],
+                    tags: ['default', 'weapon', 'onehand', 'mace', 'one_hand_weapon'],
                 },
                 AbstractSceptre: {
+                    Base: {
+                        tag: ['sceptre', 'one_hand_weapon'],
+                    },
+                    Weapon: {
+                        weapon_class: ['Sceptre'],
+                    },
                     extends: 'AbstractOneHandWeapon',
-                    Base: { tag: ['sceptre', 'one_hand_weapon'] },
-                    Weapon: { weapon_class: ['Sceptre'] },
                     inheritance: [
                         'Item',
                         'Equipment',
@@ -1713,18 +3294,16 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractOneHandWeapon',
                         'AbstractSceptre',
                     ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 8, id: 'weapon' },
-                        { primary: 23, id: 'onehand' },
-                        { primary: 37, id: 'sceptre' },
-                        { primary: 81, id: 'one_hand_weapon' },
-                    ],
+                    tags: ['default', 'weapon', 'onehand', 'sceptre', 'one_hand_weapon'],
                 },
                 AbstractOneHandSword: {
+                    Base: {
+                        tag: ['sword', 'one_hand_weapon'],
+                    },
+                    Weapon: {
+                        weapon_class: ['OneHandSword'],
+                    },
                     extends: 'AbstractOneHandWeapon',
-                    Base: { tag: ['sword', 'one_hand_weapon'] },
-                    Weapon: { weapon_class: ['OneHandSword'] },
                     inheritance: [
                         'Item',
                         'Equipment',
@@ -1732,17 +3311,14 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractOneHandWeapon',
                         'AbstractOneHandSword',
                     ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 8, id: 'weapon' },
-                        { primary: 23, id: 'onehand' },
-                        { primary: 12, id: 'sword' },
-                        { primary: 81, id: 'one_hand_weapon' },
-                    ],
+                    tags: ['default', 'weapon', 'onehand', 'sword', 'one_hand_weapon'],
                 },
                 AbstractOneHandSwordThrusting: {
+                    Base: {},
+                    Weapon: {
+                        weapon_class: ['OneHandSwordThrusting'],
+                    },
                     extends: 'AbstractOneHandSword',
-                    Weapon: { weapon_class: ['OneHandSwordThrusting'] },
                     inheritance: [
                         'Item',
                         'Equipment',
@@ -1751,18 +3327,16 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractOneHandSword',
                         'AbstractOneHandSwordThrusting',
                     ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 8, id: 'weapon' },
-                        { primary: 23, id: 'onehand' },
-                        { primary: 12, id: 'sword' },
-                        { primary: 81, id: 'one_hand_weapon' },
-                    ],
+                    tags: ['default', 'weapon', 'onehand', 'sword', 'one_hand_weapon'],
                 },
                 AbstractWand: {
+                    Base: {
+                        tag: ['wand', 'ranged', 'one_hand_weapon'],
+                    },
+                    Weapon: {
+                        weapon_class: ['Wand'],
+                    },
                     extends: 'AbstractOneHandWeapon',
-                    Base: { tag: ['wand', 'ranged', 'one_hand_weapon'] },
-                    Weapon: { weapon_class: ['Wand'] },
                     inheritance: [
                         'Item',
                         'Equipment',
@@ -1770,37 +3344,32 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractOneHandWeapon',
                         'AbstractWand',
                     ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 8, id: 'weapon' },
-                        { primary: 23, id: 'onehand' },
-                        { primary: 9, id: 'wand' },
-                        { primary: 32, id: 'ranged' },
-                        { primary: 81, id: 'one_hand_weapon' },
-                    ],
+                    tags: ['default', 'weapon', 'onehand', 'wand', 'ranged', 'one_hand_weapon'],
                 },
                 AbstractTwoHandWeapon: {
-                    extends: 'AbstractWeapon',
-                    Base: { tag: ['twohand'] },
+                    Base: {
+                        tag: ['twohand'],
+                    },
                     Sockets: {
                         socket_info: ['1:1:50 2:1:120 3:2:100 4:25:30 5:35:5 6:50:1'],
                     },
+                    extends: 'AbstractWeapon',
                     inheritance: [
                         'Item',
                         'Equipment',
                         'AbstractWeapon',
                         'AbstractTwoHandWeapon',
                     ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 8, id: 'weapon' },
-                        { primary: 24, id: 'twohand' },
-                    ],
+                    tags: ['default', 'weapon', 'twohand'],
                 },
                 AbstractBow: {
+                    Base: {
+                        tag: ['bow', 'ranged', 'two_hand_weapon'],
+                    },
+                    Weapon: {
+                        weapon_class: ['Bow'],
+                    },
                     extends: 'AbstractTwoHandWeapon',
-                    Base: { tag: ['bow', 'ranged', 'two_hand_weapon'] },
-                    Weapon: { weapon_class: ['Bow'] },
                     inheritance: [
                         'Item',
                         'Equipment',
@@ -1808,22 +3377,20 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractTwoHandWeapon',
                         'AbstractBow',
                     ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 8, id: 'weapon' },
-                        { primary: 24, id: 'twohand' },
-                        { primary: 5, id: 'bow' },
-                        { primary: 32, id: 'ranged' },
-                        { primary: 82, id: 'two_hand_weapon' },
-                    ],
+                    tags: ['default', 'weapon', 'twohand', 'bow', 'ranged', 'two_hand_weapon'],
                 },
                 AbstractFishingRod: {
-                    extends: 'AbstractTwoHandWeapon',
-                    Base: { remove_tag: ['weapon'], tag: ['fishing_rod'] },
-                    Weapon: { weapon_class: ['FishingRod'] },
+                    Base: {
+                        remove_tag: ['weapon'],
+                        tag: ['fishing_rod'],
+                    },
+                    Weapon: {
+                        weapon_class: ['FishingRod'],
+                    },
                     Sockets: {
                         socket_info: ['1:1:50 2:1:120 3:2:100 4:25:30 5:9999:20 6:9999:5'],
                     },
+                    extends: 'AbstractTwoHandWeapon',
                     inheritance: [
                         'Item',
                         'Equipment',
@@ -1831,16 +3398,16 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractTwoHandWeapon',
                         'AbstractFishingRod',
                     ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 24, id: 'twohand' },
-                        { primary: 80, id: 'fishing_rod' },
-                    ],
+                    tags: ['default', 'twohand', 'fishing_rod'],
                 },
                 AbstractStaff: {
+                    Base: {
+                        tag: ['staff', 'two_hand_weapon'],
+                    },
+                    Weapon: {
+                        weapon_class: ['Staff'],
+                    },
                     extends: 'AbstractTwoHandWeapon',
-                    Base: { tag: ['staff', 'two_hand_weapon'] },
-                    Weapon: { weapon_class: ['Staff'] },
                     inheritance: [
                         'Item',
                         'Equipment',
@@ -1848,19 +3415,13 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractTwoHandWeapon',
                         'AbstractStaff',
                     ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 8, id: 'weapon' },
-                        { primary: 24, id: 'twohand' },
-                        { primary: 10, id: 'staff' },
-                        { primary: 82, id: 'two_hand_weapon' },
-                    ],
+                    tags: ['default', 'weapon', 'twohand', 'staff', 'two_hand_weapon'],
                 },
                 Staff1: {
-                    extends: 'AbstractStaff',
                     Sockets: {
                         socket_info: ['1:1:50 2:1:120 3:2:100 4:9999:30 5:9999:20 6:9999:5'],
                     },
+                    extends: 'AbstractStaff',
                     inheritance: [
                         'Item',
                         'Equipment',
@@ -1869,18 +3430,16 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractStaff',
                         'Staff1',
                     ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 8, id: 'weapon' },
-                        { primary: 24, id: 'twohand' },
-                        { primary: 10, id: 'staff' },
-                        { primary: 82, id: 'two_hand_weapon' },
-                    ],
+                    tags: ['default', 'weapon', 'twohand', 'staff', 'two_hand_weapon'],
                 },
                 AbstractTwoHandAxe: {
+                    Base: {
+                        tag: ['axe', 'two_hand_weapon'],
+                    },
+                    Weapon: {
+                        weapon_class: ['TwoHandAxe'],
+                    },
                     extends: 'AbstractTwoHandWeapon',
-                    Base: { tag: ['axe', 'two_hand_weapon'] },
-                    Weapon: { weapon_class: ['TwoHandAxe'] },
                     inheritance: [
                         'Item',
                         'Equipment',
@@ -1888,18 +3447,16 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractTwoHandWeapon',
                         'AbstractTwoHandAxe',
                     ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 8, id: 'weapon' },
-                        { primary: 24, id: 'twohand' },
-                        { primary: 15, id: 'axe' },
-                        { primary: 82, id: 'two_hand_weapon' },
-                    ],
+                    tags: ['default', 'weapon', 'twohand', 'axe', 'two_hand_weapon'],
                 },
                 AbstractTwoHandMace: {
+                    Base: {
+                        tag: ['mace', 'two_hand_weapon'],
+                    },
+                    Weapon: {
+                        weapon_class: ['TwoHandMace'],
+                    },
                     extends: 'AbstractTwoHandWeapon',
-                    Base: { tag: ['mace', 'two_hand_weapon'] },
-                    Weapon: { weapon_class: ['TwoHandMace'] },
                     inheritance: [
                         'Item',
                         'Equipment',
@@ -1907,18 +3464,16 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractTwoHandWeapon',
                         'AbstractTwoHandMace',
                     ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 8, id: 'weapon' },
-                        { primary: 24, id: 'twohand' },
-                        { primary: 11, id: 'mace' },
-                        { primary: 82, id: 'two_hand_weapon' },
-                    ],
+                    tags: ['default', 'weapon', 'twohand', 'mace', 'two_hand_weapon'],
                 },
                 AbstractTwoHandSword: {
+                    Base: {
+                        tag: ['sword', 'two_hand_weapon'],
+                    },
+                    Weapon: {
+                        weapon_class: ['TwoHandSword'],
+                    },
                     extends: 'AbstractTwoHandWeapon',
-                    Base: { tag: ['sword', 'two_hand_weapon'] },
-                    Weapon: { weapon_class: ['TwoHandSword'] },
                     inheritance: [
                         'Item',
                         'Equipment',
@@ -1926,19 +3481,13 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractTwoHandWeapon',
                         'AbstractTwoHandSword',
                     ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 8, id: 'weapon' },
-                        { primary: 24, id: 'twohand' },
-                        { primary: 12, id: 'sword' },
-                        { primary: 82, id: 'two_hand_weapon' },
-                    ],
+                    tags: ['default', 'weapon', 'twohand', 'sword', 'two_hand_weapon'],
                 },
                 TwoHandSword1: {
-                    extends: 'AbstractTwoHandSword',
                     Sockets: {
                         socket_info: ['1:1:50 2:1:120 3:2:100 4:9999:30 5:9999:20 6:9999:5'],
                     },
+                    extends: 'AbstractTwoHandSword',
                     inheritance: [
                         'Item',
                         'Equipment',
@@ -1947,13 +3496,7 @@ System.register("util/meta_data", [], function (exports_11, context_11) {
                         'AbstractTwoHandSword',
                         'TwoHandSword1',
                     ],
-                    tags: [
-                        { primary: 0, id: 'default' },
-                        { primary: 8, id: 'weapon' },
-                        { primary: 24, id: 'twohand' },
-                        { primary: 12, id: 'sword' },
-                        { primary: 82, id: 'two_hand_weapon' },
-                    ],
+                    tags: ['default', 'weapon', 'twohand', 'sword', 'two_hand_weapon'],
                 },
             });
         }
@@ -1985,7 +3528,7 @@ System.register("util/MetaData", ["util/meta_data"], function (exports_12, conte
                         return new MetaData(clazz, meta_data_1.default[clazz]);
                     }
                     else {
-                        return undefined;
+                        throw new Error("meta_data for " + clazz + " not found");
                     }
                 };
                 MetaData.prototype.isA = function (other) {
@@ -2037,819 +3580,9 @@ System.register("mods/index", ["mods/meta_mods", "mods/Mod"], function (exports_
         }
     };
 });
-System.register("containers/item/atlasModifier", [], function (exports_15, context_15) {
+System.register("calculator/stat_applications", [], function (exports_15, context_15) {
     "use strict";
     var __moduleName = context_15 && context_15.id;
-    function atlasModifier(baseitem) {
-        var has_elder_tag = baseitem.tags.find(function (_a) {
-            var primary = _a.primary;
-            return primary === Tag.elder_item;
-        }) !==
-            undefined;
-        var has_shaper_tag = baseitem.tags.find(function (_a) {
-            var primary = _a.primary;
-            return primary === Tag.shaper_item;
-        }) !==
-            undefined;
-        if (has_elder_tag && has_shaper_tag) {
-            throw new Error('Item can only be shaper or elder item not both.');
-        }
-        if (has_elder_tag) {
-            return AtlasModifier.ELDER;
-        }
-        else if (has_shaper_tag) {
-            return AtlasModifier.SHAPER;
-        }
-        else {
-            return AtlasModifier.NONE;
-        }
-    }
-    exports_15("default", atlasModifier);
-    // generates the appropriate tags for {baseitem} with {modifier}
-    function tagsWithModifier(baseitem, meta_data, modifier) {
-        var tags = baseitem.tags;
-        var with_none = tags.filter(function (tag) {
-            return !tag.id.endsWith('_shaper') &&
-                !tag.id.endsWith('_elder') &&
-                tag.primary !== Tag.elder_item &&
-                tag.primary !== Tag.shaper_item;
-        });
-        switch (modifier) {
-            case AtlasModifier.NONE:
-                return with_none;
-            case AtlasModifier.ELDER:
-                return with_none.concat(tagProps(Tag.elder_item), elderTag(meta_data));
-            case AtlasModifier.SHAPER:
-                return with_none.concat(tagProps(Tag.shaper_item), shaperTag(meta_data));
-        }
-    }
-    exports_15("tagsWithModifier", tagsWithModifier);
-    // {baseitem} specific elder tag
-    function elderTag(meta_data) {
-        try {
-            return suffixedTag('elder', meta_data);
-        }
-        catch (err) {
-            throw new Error("this item cannot have the elder tag (" + err.message + ")");
-        }
-    }
-    exports_15("elderTag", elderTag);
-    // {baseitem} specific shaperTag tag
-    function shaperTag(meta_data) {
-        try {
-            return suffixedTag('shaper', meta_data);
-        }
-        catch (err) {
-            throw new Error("this item cannot have the shaper tag (" + err.message + ")");
-        }
-    }
-    exports_15("shaperTag", shaperTag);
-    function tagProps(tag) {
-        return {
-            primary: tag,
-            id: Tag[tag],
-        };
-    }
-    exports_15("tagProps", tagProps);
-    function suffixedTag(suffix, meta_data) {
-        var tag_prefix = tagIdentifier(meta_data);
-        var tag = Tag[tag_prefix + "_" + suffix];
-        if (tag !== undefined) {
-            return tagProps(tag);
-        }
-        else {
-            throw new Error(tag_prefix + " not set in Tag with '" + suffix + "' as suffix");
-        }
-    }
-    function tagIdentifier(meta_data) {
-        if (meta_data.isA('AbstractTwoHandAxe')) {
-            return '2h_axe';
-        }
-        else if (meta_data.isA('AbstractTwoHandMace')) {
-            return '2h_mace';
-        }
-        else if (meta_data.isA('AbstractTwoHandSword')) {
-            return '2h_sword';
-        }
-        else if (meta_data.isA('AbstractAmulet')) {
-            return 'amulet';
-        }
-        else if (meta_data.isA('AbstractOneHandAxe')) {
-            return 'axe';
-        }
-        else if (meta_data.isA('AbstractBelt')) {
-            return 'belt';
-        }
-        else if (meta_data.isA('AbstractBodyArmour')) {
-            return 'body_armour';
-        }
-        else if (meta_data.isA('AbstractBoots')) {
-            return 'boots';
-        }
-        else if (meta_data.isA('AbstractBow')) {
-            return 'bow';
-        }
-        else if (meta_data.isA('AbstractClaw')) {
-            return 'claw';
-        }
-        else if (meta_data.isA('AbstractDagger')) {
-            return 'dagger';
-        }
-        else if (meta_data.isA('AbstractGloves')) {
-            return 'gloves';
-        }
-        else if (meta_data.isA('AbstractHelmet')) {
-            return 'helmet';
-        }
-        else if (meta_data.isA('AbstractOneHandMace')) {
-            return 'mace';
-        }
-        else if (meta_data.isA('AbstractQuiver')) {
-            return 'quiver';
-        }
-        else if (meta_data.isA('AbstractRing')) {
-            return 'ring';
-        }
-        else if (meta_data.isA('AbstractSceptre')) {
-            return 'sceptre';
-        }
-        else if (meta_data.isA('AbstractShield')) {
-            return 'shield';
-        }
-        else if (meta_data.isA('AbstractStaff')) {
-            return 'staff';
-        }
-        else if (meta_data.isA('AbstractOneHandSword')) {
-            return 'sword';
-        }
-        else if (meta_data.isA('AbstractWand')) {
-            return 'wand';
-        }
-        throw new Error();
-    }
-    var AtlasModifier, Tag;
-    return {
-        setters: [],
-        execute: function () {
-            (function (AtlasModifier) {
-                AtlasModifier[AtlasModifier["NONE"] = 0] = "NONE";
-                AtlasModifier[AtlasModifier["ELDER"] = 1] = "ELDER";
-                AtlasModifier[AtlasModifier["SHAPER"] = 2] = "SHAPER";
-            })(AtlasModifier || (AtlasModifier = {}));
-            exports_15("AtlasModifier", AtlasModifier);
-            (function (Tag) {
-                Tag[Tag["shaper_item"] = 246] = "shaper_item";
-                Tag[Tag["elder_item"] = 247] = "elder_item";
-                Tag[Tag["boots_shaper"] = 248] = "boots_shaper";
-                Tag[Tag["boots_elder"] = 249] = "boots_elder";
-                Tag[Tag["sword_shaper"] = 250] = "sword_shaper";
-                Tag[Tag["sword_elder"] = 251] = "sword_elder";
-                Tag[Tag["gloves_shaper"] = 252] = "gloves_shaper";
-                Tag[Tag["gloves_elder"] = 253] = "gloves_elder";
-                Tag[Tag["helmet_shaper"] = 254] = "helmet_shaper";
-                Tag[Tag["helmet_elder"] = 255] = "helmet_elder";
-                Tag[Tag["body_armour_shaper"] = 256] = "body_armour_shaper";
-                Tag[Tag["body_armour_elder"] = 257] = "body_armour_elder";
-                Tag[Tag["amulet_shaper"] = 258] = "amulet_shaper";
-                Tag[Tag["amulet_elder"] = 259] = "amulet_elder";
-                Tag[Tag["ring_shaper"] = 260] = "ring_shaper";
-                Tag[Tag["ring_elder"] = 261] = "ring_elder";
-                Tag[Tag["belt_shaper"] = 262] = "belt_shaper";
-                Tag[Tag["belt_elder"] = 263] = "belt_elder";
-                Tag[Tag["quiver_shaper"] = 264] = "quiver_shaper";
-                Tag[Tag["quiver_elder"] = 265] = "quiver_elder";
-                Tag[Tag["shield_shaper"] = 266] = "shield_shaper";
-                Tag[Tag["shield_elder"] = 267] = "shield_elder";
-                Tag[Tag["2h_sword_shaper"] = 268] = "2h_sword_shaper";
-                Tag[Tag["2h_sword_elder"] = 269] = "2h_sword_elder";
-                Tag[Tag["axe_shaper"] = 270] = "axe_shaper";
-                Tag[Tag["axe_elder"] = 271] = "axe_elder";
-                Tag[Tag["mace_shaper"] = 272] = "mace_shaper";
-                Tag[Tag["mace_elder"] = 273] = "mace_elder";
-                Tag[Tag["claw_shaper"] = 274] = "claw_shaper";
-                Tag[Tag["claw_elder"] = 275] = "claw_elder";
-                Tag[Tag["bow_shaper"] = 276] = "bow_shaper";
-                Tag[Tag["bow_elder"] = 277] = "bow_elder";
-                Tag[Tag["dagger_shaper"] = 278] = "dagger_shaper";
-                Tag[Tag["dagger_elder"] = 279] = "dagger_elder";
-                Tag[Tag["2h_axe_shaper"] = 280] = "2h_axe_shaper";
-                Tag[Tag["2h_axe_elder"] = 281] = "2h_axe_elder";
-                Tag[Tag["2h_mace_shaper"] = 282] = "2h_mace_shaper";
-                Tag[Tag["2h_mace_elder"] = 283] = "2h_mace_elder";
-                Tag[Tag["staff_shaper"] = 284] = "staff_shaper";
-                Tag[Tag["staff_elder"] = 285] = "staff_elder";
-                Tag[Tag["sceptre_shaper"] = 286] = "sceptre_shaper";
-                Tag[Tag["sceptre_elder"] = 287] = "sceptre_elder";
-                Tag[Tag["wand_shaper"] = 288] = "wand_shaper";
-                Tag[Tag["wand_elder"] = 289] = "wand_elder";
-            })(Tag || (Tag = {}));
-            exports_15("Tag", Tag);
-        }
-    };
-});
-System.register("containers/item/Component", [], function (exports_16, context_16) {
-    "use strict";
-    var __moduleName = context_16 && context_16.id;
-    return {
-        setters: [],
-        execute: function () {
-            ;
-        }
-    };
-});
-System.register("containers/ImmutableContainer", ["calculator/Stat"], function (exports_17, context_17) {
-    "use strict";
-    var __moduleName = context_17 && context_17.id;
-    var Stat_2, ImmutableContainer;
-    return {
-        setters: [
-            function (Stat_2_1) {
-                Stat_2 = Stat_2_1;
-            }
-        ],
-        execute: function () {
-            ImmutableContainer = /** @class */ (function () {
-                function ImmutableContainer(mods) {
-                    this.mods = mods;
-                }
-                ImmutableContainer.prototype.builder = function () {
-                    return { mods: this.mods };
-                };
-                // batch mutations
-                ImmutableContainer.prototype.withMutations = function (mutate) {
-                    var builder = mutate(this.builder());
-                    // @ts-ignore
-                    return this.constructor.withBuilder(builder);
-                };
-                /**
-                 *  adds a new non-existing mod
-                 */
-                ImmutableContainer.prototype.addMod = function (mod) {
-                    if (!this.hasMod(mod)) {
-                        return this.withMutations(function (builder) {
-                            return Object.assign({}, builder, { mods: builder.mods.concat(mod) });
-                        });
-                    }
-                    else {
-                        return this;
-                    }
-                };
-                /**
-                 * truncates mods
-                 */
-                ImmutableContainer.prototype.removeAllMods = function () {
-                    if (this.mods.length > 0) {
-                        return this.withMutations(function (builder) {
-                            return Object.assign({}, builder, { mods: [] });
-                        });
-                    }
-                    else {
-                        return this;
-                    }
-                };
-                /**
-                 * removes an existing mod
-                 */
-                ImmutableContainer.prototype.removeMod = function (other) {
-                    var _this = this;
-                    if (this.hasMod(other)) {
-                        return this.withMutations(function (builder) {
-                            return Object.assign({}, builder, {
-                                mods: _this.mods.filter(function (mod) { return mod.props.primary !== other.props.primary; }),
-                            });
-                        });
-                    }
-                    else {
-                        return this;
-                    }
-                };
-                ImmutableContainer.prototype.indexOfModWithPrimary = function (primary) {
-                    return this.mods.findIndex(function (mod) { return mod.props.primary === primary; });
-                };
-                ImmutableContainer.prototype.indexOfMod = function (mod) {
-                    return this.indexOfModWithPrimary(mod.props.primary);
-                };
-                ImmutableContainer.prototype.hasMod = function (mod) {
-                    return this.indexOfMod(mod) !== -1;
-                };
-                ImmutableContainer.prototype.hasModGroup = function (other) {
-                    return (this.mods.find(function (mod) { return mod.props.correct_group === other.props.correct_group; }) !== undefined);
-                };
-                /**
-                 * tags of the mods in the container
-                 */
-                ImmutableContainer.prototype.getTags = function () {
-                    return this.mods
-                        .reduce(function (tags, mod) {
-                        return tags.concat(mod.props.tags);
-                    }, [])
-                        .filter(
-                    // unique by id
-                    function (tag, i, tags) { return tags.findIndex(function (other) { return other.id === tag.id; }) === i; });
-                };
-                ImmutableContainer.prototype.asArray = function () {
-                    return this.mods;
-                };
-                /**
-                 * @param {number} mod_type generation type
-                 */
-                ImmutableContainer.prototype.numberOfModsOfType = function (mod_type) {
-                    return this.mods.filter(function (mod) { return mod.props.generation_type === mod_type; })
-                        .length;
-                };
-                /**
-                 * checks if theres more place for a mod with their generationtype
-                 */
-                ImmutableContainer.prototype.hasRoomFor = function (mod) {
-                    return (this.numberOfModsOfType(mod.props.generation_type) <
-                        this.maxModsOfType(mod));
-                };
-                /**
-                 * checks if this container has any mods
-                 */
-                ImmutableContainer.prototype.any = function () {
-                    return this.mods.length > 0;
-                };
-                /**
-                 * lists all the stats that are offered by its mods
-                 *
-                 * mods can have multiple stats so we sum their values grouped by stat id
-                 */
-                ImmutableContainer.prototype.stats = function () {
-                    return this.mods.reduce(function (stats, mod) {
-                        // flattened
-                        return mod.statsJoined().reduce(function (joined, stat) {
-                            var id = stat.props.id;
-                            var existing = joined[id];
-                            // group by stat.Id
-                            if (existing instanceof Stat_2.default) {
-                                return __assign({}, joined, (_a = {}, _a[id] = existing.add(stat.values), _a));
-                            }
-                            else {
-                                return __assign({}, joined, (_b = {}, _b[id] = stat, _b));
-                            }
-                            var _a, _b;
-                        }, stats);
-                    }, {});
-                };
-                return ImmutableContainer;
-            }());
-            exports_17("default", ImmutableContainer);
-        }
-    };
-});
-System.register("containers/item/components/Affixes", ["mods/index", "containers/ImmutableContainer"], function (exports_18, context_18) {
-    "use strict";
-    var __moduleName = context_18 && context_18.id;
-    var mods_1, ImmutableContainer_1, ItemAffixes;
-    return {
-        setters: [
-            function (mods_1_1) {
-                mods_1 = mods_1_1;
-            },
-            function (ImmutableContainer_1_1) {
-                ImmutableContainer_1 = ImmutableContainer_1_1;
-            }
-        ],
-        execute: function () {
-            ItemAffixes = /** @class */ (function (_super) {
-                __extends(ItemAffixes, _super);
-                function ItemAffixes(item, mods) {
-                    var _this = _super.call(this, mods) || this;
-                    _this.item = item;
-                    return _this;
-                }
-                ItemAffixes.withBuilder = function (builder) {
-                    return new ItemAffixes(builder.item, builder.mods);
-                };
-                ItemAffixes.prototype.builder = function () {
-                    return {
-                        item: this.item,
-                        mods: this.mods,
-                    };
-                };
-                /**
-                 * @override
-                 */
-                ItemAffixes.prototype.maxModsOfType = function (mod) {
-                    if (mod.isPrefix()) {
-                        return this.maxPrefixes();
-                    }
-                    else if (mod.isSuffix()) {
-                        return this.maxSuffixes();
-                    }
-                    else {
-                        return 0;
-                    }
-                };
-                /**
-                 *  checks if the domains are equiv
-                 */
-                ItemAffixes.prototype.inDomainOf = function (mod_domain) {
-                    switch (mod_domain) {
-                        case mods_1.Mod.DOMAIN.MASTER:
-                            return this.inDomainOf(mods_1.Mod.DOMAIN.ITEM);
-                        default:
-                            return mod_domain === this.modDomainEquiv();
-                    }
-                };
-                ItemAffixes.prototype.level = function () {
-                    return this.item.props.item_level;
-                };
-                ItemAffixes.prototype.lockedPrefixes = function () {
-                    return this.indexOfModWithPrimary(mods_1.metaMods.LOCKED_PREFIXES) !== -1;
-                };
-                ItemAffixes.prototype.lockedSuffixes = function () {
-                    return this.indexOfModWithPrimary(mods_1.metaMods.LOCKED_SUFFIXES) !== -1;
-                };
-                ItemAffixes.prototype.getPrefixes = function () {
-                    return this.mods.filter(function (mod) { return mod.isPrefix(); });
-                };
-                ItemAffixes.prototype.getSuffixes = function () {
-                    return this.mods.filter(function (mod) { return mod.isSuffix(); });
-                };
-                /**
-                 * maximum number of prefixes
-                 */
-                ItemAffixes.prototype.maxPrefixes = function () {
-                    if (this.item.rarity.isNormal()) {
-                        return 0;
-                    }
-                    else if (this.item.rarity.isMagic()) {
-                        return 1;
-                    }
-                    else if (this.item.rarity.isRare()) {
-                        if (this.item.meta_data.isA('AbstractJewel')) {
-                            return 2;
-                        }
-                        return 3;
-                    }
-                    else if (this.item.rarity.isUnique()) {
-                        return Number.POSITIVE_INFINITY;
-                    }
-                    else {
-                        throw new Error('rarity not recognized');
-                    }
-                };
-                ItemAffixes.prototype.maxSuffixes = function () {
-                    return this.maxPrefixes();
-                };
-                ItemAffixes.prototype.modDomainEquiv = function () {
-                    if (this.item.meta_data.isA('AbstractJewel')) {
-                        return mods_1.Mod.DOMAIN.JEWEL;
-                    }
-                    if (this.item.meta_data.isA('AbstractFlask')) {
-                        return mods_1.Mod.DOMAIN.FLASK;
-                    }
-                    if (this.item.meta_data.isA('AbstractMap')) {
-                        return mods_1.Mod.DOMAIN.MAP;
-                    }
-                    return mods_1.Mod.DOMAIN.ITEM;
-                };
-                return ItemAffixes;
-            }(ImmutableContainer_1.default));
-            exports_18("default", ItemAffixes);
-        }
-    };
-});
-System.register("containers/item/components/Sockets", [], function (exports_19, context_19) {
-    "use strict";
-    var __moduleName = context_19 && context_19.id;
-    var ItemSockets;
-    return {
-        setters: [],
-        execute: function () {
-            ItemSockets = /** @class */ (function () {
-                function ItemSockets(item, builder) {
-                    this.parent = item;
-                    this.amount = builder;
-                }
-                ItemSockets.prototype.builder = function () {
-                    return this.amount;
-                };
-                // TODO: what about Corroded Blades or other similar 1x4 Items. Confirm
-                // that they also only can have max 4 sockets like Rods or act like small_Staff
-                ItemSockets.prototype.max = function () {
-                    var by_stats = this.maxOverride();
-                    // tags take priority
-                    if (by_stats != null) {
-                        return by_stats;
-                    }
-                    else {
-                        return Math.min(this.maxByDimensions(), this.maxByLevel(), this.maxByMetaData());
-                    }
-                };
-                ItemSockets.prototype.any = function () {
-                    return this.amount > 0;
-                };
-                ItemSockets.prototype.maxByMetaData = function () {
-                    var meta_data = this.parent.meta_data;
-                    if (meta_data.isA('AbstractShield')) {
-                        return 3;
-                    }
-                    else if (meta_data.isA('AbstractArmour')) {
-                        return 6;
-                    }
-                    else if (meta_data.isA('AbstractOneHandWeapon')) {
-                        return 3;
-                    }
-                    else if (meta_data.isA('AbstractFishingRod')) {
-                        return 4;
-                    }
-                    else if (meta_data.isA('AbstractTwoHandWeapon')) {
-                        return 6;
-                    }
-                    else if (meta_data.isA('Equipment')) {
-                        return 0;
-                    }
-                    else {
-                        throw new Error("Can't determine sockes from meta data for " + meta_data.clazz);
-                    }
-                };
-                ItemSockets.prototype.maxByLevel = function () {
-                    var props = this.parent.props;
-                    if (props.item_level <= 1) {
-                        return 2;
-                    }
-                    else if (props.item_level <= 2) {
-                        return 3;
-                    }
-                    else if (props.item_level <= 25) {
-                        return 4;
-                    }
-                    else if (props.item_level <= 35) {
-                        return 5;
-                    }
-                    else {
-                        return 6;
-                    }
-                };
-                ItemSockets.prototype.maxByDimensions = function () {
-                    var _a = this.parent.baseitem, width = _a.width, height = _a.height;
-                    return width * height;
-                };
-                ItemSockets.prototype.maxOverride = function () {
-                    var stats = this.parent.stats();
-                    var tags = this.parent.getTags();
-                    if (stats.local_has_X_sockets != null) {
-                        return stats.local_has_X_sockets.values.max;
-                    }
-                    else if (tags.find(function (_a) {
-                        var id = _a.id;
-                        return id === 'small_staff';
-                    }) !== undefined) {
-                        return 3;
-                    }
-                    return undefined;
-                };
-                return ItemSockets;
-            }());
-            exports_19("default", ItemSockets);
-        }
-    };
-});
-System.register("containers/item/components/Name", [], function (exports_20, context_20) {
-    "use strict";
-    var __moduleName = context_20 && context_20.id;
-    var ItemName;
-    return {
-        setters: [],
-        execute: function () {
-            ItemName = /** @class */ (function () {
-                function ItemName(item, builder) {
-                    this.parent = item;
-                    this.random = builder;
-                }
-                ItemName.prototype.builder = function () {
-                    return this.random;
-                };
-                ItemName.prototype.lines = function () {
-                    if (this.parent.rarity.isNormal()) {
-                        return [this.parent.baseitem.name];
-                    }
-                    else if (this.parent.rarity.isMagic()) {
-                        var prefix = this.parent.affixes.getPrefixes()[0];
-                        var suffix = this.parent.affixes.getSuffixes()[0];
-                        return [
-                            [
-                                prefix && prefix.props.name,
-                                this.parent.baseitem.name,
-                                suffix && suffix.props.name,
-                            ]
-                                .filter(Boolean)
-                                .join(' '),
-                        ];
-                    }
-                    else if (this.parent.rarity.isRare()) {
-                        return [this.random, this.parent.baseitem.name];
-                    }
-                    else if (this.parent.rarity.isUnique()) {
-                        return ['TODO unique name?', this.parent.baseitem.name];
-                    }
-                    else {
-                        throw new Error("unrecognized rarity " + String(this.parent.rarity));
-                    }
-                };
-                ItemName.prototype.any = function () {
-                    return true;
-                };
-                return ItemName;
-            }());
-            exports_20("default", ItemName);
-        }
-    };
-});
-System.register("containers/item/components/Rarity", [], function (exports_21, context_21) {
-    "use strict";
-    var __moduleName = context_21 && context_21.id;
-    var RarityKind, ItemRarity;
-    return {
-        setters: [],
-        execute: function () {
-            (function (RarityKind) {
-                RarityKind[RarityKind["normal"] = 1] = "normal";
-                RarityKind[RarityKind["magic"] = 2] = "magic";
-                RarityKind[RarityKind["rare"] = 3] = "rare";
-                RarityKind[RarityKind["unique"] = 4] = "unique";
-                RarityKind[RarityKind["showcase"] = 5] = "showcase";
-            })(RarityKind || (RarityKind = {}));
-            exports_21("RarityKind", RarityKind);
-            /**
-             * mixin for Item
-             *
-             */
-            ItemRarity = /** @class */ (function () {
-                function ItemRarity(item, builder) {
-                    this.parent = item;
-                    this.kind = builder;
-                }
-                ItemRarity.prototype.builder = function () {
-                    return this.kind;
-                };
-                ItemRarity.prototype.isNormal = function () {
-                    return this.kind === RarityKind.normal;
-                };
-                ItemRarity.prototype.isMagic = function () {
-                    return this.kind === RarityKind.magic;
-                };
-                ItemRarity.prototype.isRare = function () {
-                    return this.kind === RarityKind.rare || this.kind === RarityKind.showcase;
-                };
-                ItemRarity.prototype.isUnique = function () {
-                    return this.kind === RarityKind.unique;
-                };
-                ItemRarity.prototype.upgrade = function () {
-                    var new_rarity = this.kind;
-                    if (this.isNormal()) {
-                        new_rarity = RarityKind.magic;
-                    }
-                    else if (this.isMagic()) {
-                        new_rarity = RarityKind.rare;
-                    }
-                    return this.parent.withMutations(function (builder) {
-                        return __assign({}, builder, { rarity: new_rarity });
-                    });
-                };
-                ItemRarity.prototype.set = function (rarity) {
-                    return this.parent.withMutations(function (builder) {
-                        return __assign({}, builder, { rarity: RarityKind[rarity] });
-                    });
-                };
-                ItemRarity.prototype.toString = function () {
-                    return RarityKind[this.kind].toString();
-                };
-                ItemRarity.prototype.any = function () {
-                    // ItemRarity always has a rarity
-                    return true;
-                };
-                return ItemRarity;
-            }());
-            exports_21("default", ItemRarity);
-        }
-    };
-});
-System.register("containers/item/components/Implicits", ["mods/index", "containers/ImmutableContainer"], function (exports_22, context_22) {
-    "use strict";
-    var __moduleName = context_22 && context_22.id;
-    var mods_2, ImmutableContainer_2, Implicits;
-    return {
-        setters: [
-            function (mods_2_1) {
-                mods_2 = mods_2_1;
-            },
-            function (ImmutableContainer_2_1) {
-                ImmutableContainer_2 = ImmutableContainer_2_1;
-            }
-        ],
-        execute: function () {
-            Implicits = /** @class */ (function (_super) {
-                __extends(Implicits, _super);
-                function Implicits(item, mods) {
-                    var _this = _super.call(this, mods) || this;
-                    _this.item = item;
-                    return _this;
-                }
-                Implicits.withBuilder = function (builder) {
-                    return new Implicits(builder.item, builder.mods);
-                };
-                /**
-                 * @override
-                 */
-                Implicits.prototype.maxModsOfType = function (mod) {
-                    switch (mod.props.generation_type) {
-                        case mods_2.Mod.TYPE.PREMADE:
-                            return 5;
-                        case mods_2.Mod.TYPE.ENCHANTMENT:
-                            return 1;
-                        case mods_2.Mod.TYPE.VAAL:
-                            return 1;
-                        // no other generation types allowed
-                        default:
-                            return -1;
-                    }
-                };
-                /**
-                 * @override
-                 *  checks if the domains are equiv
-                 */
-                Implicits.prototype.inDomainOf = function () {
-                    return true;
-                };
-                /**
-                 * @override
-                 */
-                Implicits.prototype.level = function () {
-                    return this.item.props.item_level;
-                };
-                return Implicits;
-            }(ImmutableContainer_2.default));
-            exports_22("default", Implicits);
-        }
-    };
-});
-System.register("containers/item/components/Requirements", [], function (exports_23, context_23) {
-    "use strict";
-    var __moduleName = context_23 && context_23.id;
-    var ItemName;
-    return {
-        setters: [],
-        execute: function () {
-            ItemName = /** @class */ (function () {
-                function ItemName(item, builder) {
-                    this.dex = 0;
-                    this.int = 0;
-                    this.str = 0;
-                    this.parent = item;
-                    if (builder != null) {
-                        this.dex = builder.req_dex;
-                        this.int = builder.req_int;
-                        this.str = builder.req_str;
-                    }
-                }
-                ItemName.prototype.builder = function () {
-                    return {
-                        req_dex: this.dex,
-                        req_int: this.int,
-                        req_str: this.str,
-                    };
-                };
-                ItemName.prototype.level = function () {
-                    if (this.parent.meta_data.isA('AbstractMap')) {
-                        return 0;
-                    }
-                    else {
-                        return Math.max.apply(Math, [this.parent.baseitem.drop_level].concat(this.parent.mods.map(function (mod) { return mod.requiredLevel(); })));
-                    }
-                };
-                ItemName.prototype.list = function () {
-                    return {
-                        level: this.level(),
-                        str: this.str,
-                        dex: this.dex,
-                        int: this.int,
-                    };
-                };
-                ItemName.prototype.any = function () {
-                    return Object.values(this.list()).some(function (value) { return value !== 0; });
-                };
-                return ItemName;
-            }());
-            exports_23("default", ItemName);
-        }
-    };
-});
-System.register("containers/item/components/properties/ComputedProperties", [], function (exports_24, context_24) {
-    "use strict";
-    var __moduleName = context_24 && context_24.id;
-    return {
-        setters: [],
-        execute: function () {
-        }
-    };
-});
-System.register("calculator/stat_applications", [], function (exports_25, context_25) {
-    "use strict";
-    var __moduleName = context_25 && context_25.id;
     var applications;
     return {
         setters: [],
@@ -2868,7 +3601,7 @@ System.register("calculator/stat_applications", [], function (exports_25, contex
                     type: 'flat',
                 },
                 'additional_block_%': {
-                    classification: [],
+                    classification: ['block'],
                     type: 'flat',
                 },
                 'additional_block_chance_against_projectiles_%': {
@@ -3504,7 +4237,7 @@ System.register("calculator/stat_applications", [], function (exports_25, contex
                     type: 'inc',
                 },
                 'local_additional_block_chance_%': {
-                    classification: [],
+                    classification: ['local', 'block'],
                     type: 'flat',
                 },
                 local_always_hit: {
@@ -3524,7 +4257,7 @@ System.register("calculator/stat_applications", [], function (exports_25, contex
                     type: 'inc',
                 },
                 'local_attack_speed_+%': {
-                    classification: [],
+                    classification: ['local', 'attack_speed'],
                     type: 'inc',
                 },
                 'local_attribute_requirements_+%': {
@@ -3548,7 +4281,7 @@ System.register("calculator/stat_applications", [], function (exports_25, contex
                     type: 'flat',
                 },
                 'local_critical_strike_chance_+%': {
-                    classification: [],
+                    classification: ['local', 'crit_chance'],
                     type: 'inc',
                 },
                 'local_display_fire_burst_on_hit_%': {
@@ -3772,47 +4505,47 @@ System.register("calculator/stat_applications", [], function (exports_25, contex
                     type: 'flat',
                 },
                 local_maximum_added_chaos_damage: {
-                    classification: [],
+                    classification: ['local', 'attack_damage', 'chaos', 'max'],
                     type: 'flat',
                 },
                 local_maximum_added_cold_damage: {
-                    classification: [],
+                    classification: ['local', 'attack_damage', 'cold', 'max'],
                     type: 'flat',
                 },
                 local_maximum_added_fire_damage: {
-                    classification: [],
+                    classification: ['local', 'attack_damage', 'fire', 'max'],
                     type: 'flat',
                 },
                 local_maximum_added_lightning_damage: {
-                    classification: [],
+                    classification: ['local', 'attack_damage', 'lightning', 'max'],
                     type: 'flat',
                 },
                 local_maximum_added_physical_damage: {
-                    classification: [],
+                    classification: ['local', 'attack_damage', 'physical', 'max'],
                     type: 'flat',
                 },
                 local_minimum_added_chaos_damage: {
-                    classification: [],
+                    classification: ['local', 'attack_damage', 'chaos', 'min'],
                     type: 'flat',
                 },
                 local_minimum_added_cold_damage: {
-                    classification: [],
+                    classification: ['local', 'attack_damage', 'cold', 'min'],
                     type: 'flat',
                 },
                 local_minimum_added_fire_damage: {
-                    classification: [],
+                    classification: ['local', 'attack_damage', 'fire', 'min'],
                     type: 'flat',
                 },
                 local_minimum_added_lightning_damage: {
-                    classification: [],
+                    classification: ['local', 'attack_damage', 'lightning', 'min'],
                     type: 'flat',
                 },
                 local_minimum_added_physical_damage: {
-                    classification: [],
+                    classification: ['local', 'attack_damage', 'physical', 'min'],
                     type: 'flat',
                 },
                 'local_physical_damage_+%': {
-                    classification: [],
+                    classification: ['local', 'attack_damage', 'physical'],
                     type: 'inc',
                 },
                 'local_physical_damage_reduction_rating_+%': {
@@ -3880,7 +4613,7 @@ System.register("calculator/stat_applications", [], function (exports_25, contex
                     type: 'inc',
                 },
                 'local_weapon_range_+': {
-                    classification: [],
+                    classification: ['local', 'weapon_range'],
                     type: 'flat',
                 },
                 'mana_%_gained_on_block': {
@@ -4144,13 +4877,13 @@ System.register("calculator/stat_applications", [], function (exports_25, contex
                     type: 'more',
                 },
             };
-            exports_25("default", applications);
+            exports_15("default", applications);
         }
     };
 });
-System.register("calculator/Value", ["calculator/ValueRange", "calculator/stat_applications"], function (exports_26, context_26) {
+System.register("calculator/Value", ["calculator/ValueRange", "calculator/stat_applications"], function (exports_16, context_16) {
     "use strict";
-    var __moduleName = context_26 && context_26.id;
+    var __moduleName = context_16 && context_16.id;
     var ValueRange_2, stat_applications_1, poe_round, Value;
     return {
         setters: [
@@ -4173,14 +4906,24 @@ System.register("calculator/Value", ["calculator/ValueRange", "calculator/stat_a
                 function Value(range, classification, modifiers) {
                     if (classification === void 0) { classification = []; }
                     if (modifiers === void 0) { modifiers = []; }
-                    this.base =
-                        range instanceof ValueRange_2.default ? range : new ValueRange_2.default(range[0], range[1]);
+                    /**
+                     * if the value change since init
+                     */
+                    this.augmented = false;
+                    this.range = range instanceof ValueRange_2.default ? range : new ValueRange_2.default(range);
                     this.classification = classification;
                     this.modifiers = modifiers;
                 }
+                Object.defineProperty(Value.prototype, "value", {
+                    get: function () {
+                        return this.range.valueOf();
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
                 Value.prototype.augmentWith = function (stats) {
                     var _this = this;
-                    return new Value(this.base, this.classification, this.modifiers.concat(stats.filter(function (stat) { return _this.augmentableBy(stat); }).map(function (stat) {
+                    return new Value(this.range, this.classification, this.modifiers.concat(stats.filter(function (stat) { return _this.augmentableBy(stat); }).map(function (stat) {
                         return {
                             stat: stat,
                             type: stat_applications_1.default[stat.props.id].type,
@@ -4212,85 +4955,937 @@ System.register("calculator/Value", ["calculator/ValueRange", "calculator/stat_a
                         var type = _a.type;
                         return type === 'flat';
                     })
-                        .reduce(function (sum, modifier) { return sum.add(modifier.stat.values); }, new ValueRange_2.default(0, 0));
+                        .reduce(function (sum, modifier) { return sum.add(modifier.stat.values); }, ValueRange_2.default.zero);
                     var increases = this.modifiers
                         .filter(function (_a) {
                         var type = _a.type;
                         return type === 'inc';
                     })
-                        .reduce(function (sum, modifier) { return sum.add(modifier.stat.values); }, new ValueRange_2.default(0, 0));
+                        .reduce(function (sum, modifier) { return sum.add(modifier.stat.values); }, ValueRange_2.default.zero);
                     var more = this.modifiers
                         .filter(function (_a) {
                         var type = _a.type;
                         return type === 'more';
                     })
-                        .reduce(function (sum, modifier) { return sum.mult(modifier.stat.values.percentToFactor()); }, new ValueRange_2.default(1, 1));
-                    return this.base
+                        .reduce(function (sum, modifier) { return sum.mult(modifier.stat.values.percentToFactor()); }, ValueRange_2.default.one);
+                    var calculated = new Value(this.range
                         .add(flat)
                         .mult(increases.percentToFactor())
                         .mult(more)
-                        .map(function (n) { return poe_round(n, precision); });
+                        .map(function (n) { return poe_round(n, precision); }));
+                    calculated.augmented = calculated.range !== this.range;
+                    return calculated;
                 };
                 return Value;
             }());
-            exports_26("default", Value);
+            exports_16("default", Value);
         }
     };
 });
-System.register("containers/item/components/properties/ArmourProperties", ["lodash", "calculator/Value"], function (exports_27, context_27) {
+System.register("containers/item/atlasModifier", [], function (exports_17, context_17) {
     "use strict";
-    var __moduleName = context_27 && context_27.id;
-    function build(item) {
-        // FIXME: https://github.com/facebook/flow/issues/2383
-        var component_armour = item.baseitem.component_armour;
-        if (component_armour == null) {
-            throw new Error('component_armour not set while attempting to build ArmourProperties');
+    var __moduleName = context_17 && context_17.id;
+    function atlasModifier(baseitem) {
+        var has_elder_tag = baseitem.tags.find(function (tag) { return tag === AtlasModifierTag[AtlasModifierTag.elder_item]; }) !== undefined;
+        var has_shaper_tag = baseitem.tags.find(function (tag) { return tag === AtlasModifierTag[AtlasModifierTag.shaper_item]; }) !== undefined;
+        if (has_elder_tag && has_shaper_tag) {
+            throw new Error('Item can only be shaper or elder item not both.');
         }
-        var armour = component_armour.armour, evasion = component_armour.evasion, energy_shield = component_armour.energy_shield;
-        var props = {
-            armour: new Value_1.default([armour, armour], ['local', 'defences', 'armour']),
-            evasion: new Value_1.default([evasion, evasion], ['local', 'defences', 'evasion']),
-            energy_shield: new Value_1.default([energy_shield, energy_shield], ['local', 'defences', 'energy_shield']),
-        };
-        var stats = item.stats();
-        // Flow false positive when using Object.values
-        var stats_as_array = Object.values(stats).slice();
-        var augmented_props = _.mapValues(props, function (value) {
-            var augmented = value.augmentWith(stats_as_array).compute();
-            return {
-                type: augmented === value.base ? 'simple' : 'augmented',
-                values: augmented.asTuple(),
-            };
-        });
-        return augmented_props;
+        if (has_elder_tag) {
+            return AtlasModifier.ELDER;
+        }
+        else if (has_shaper_tag) {
+            return AtlasModifier.SHAPER;
+        }
+        else {
+            return AtlasModifier.NONE;
+        }
     }
-    exports_27("default", build);
-    var _, Value_1;
+    exports_17("default", atlasModifier);
+    // generates the appropriate tags for {baseitem} with {modifier}
+    function tagsWithModifier(baseitem, meta_data, modifier) {
+        var tags = baseitem.tags;
+        var with_none = tags.filter(function (tag) {
+            return !tag.endsWith('_shaper') &&
+                !tag.endsWith('_elder') &&
+                tag !== AtlasModifierTag[AtlasModifierTag.elder_item] &&
+                tag !== AtlasModifierTag[AtlasModifierTag.shaper_item];
+        });
+        switch (modifier) {
+            case AtlasModifier.NONE:
+                return with_none;
+            case AtlasModifier.ELDER:
+                return with_none.concat(AtlasModifierTag[AtlasModifierTag.elder_item], AtlasModifierTag[elderTag(meta_data)]);
+            case AtlasModifier.SHAPER:
+                return with_none.concat(AtlasModifierTag[AtlasModifierTag.shaper_item], AtlasModifierTag[shaperTag(meta_data)]);
+        }
+    }
+    exports_17("tagsWithModifier", tagsWithModifier);
+    // {baseitem} specific elder tag
+    function elderTag(meta_data) {
+        try {
+            return suffixedTag('elder', meta_data);
+        }
+        catch (err) {
+            throw new Error("this item cannot have the elder tag (" + err.message + ")");
+        }
+    }
+    exports_17("elderTag", elderTag);
+    // {baseitem} specific shaperTag tag
+    function shaperTag(meta_data) {
+        try {
+            return suffixedTag('shaper', meta_data);
+        }
+        catch (err) {
+            throw new Error("this item cannot have the shaper tag (" + err.message + ")");
+        }
+    }
+    exports_17("shaperTag", shaperTag);
+    function suffixedTag(suffix, meta_data) {
+        var tag_prefix = tagIdentifier(meta_data);
+        var tag = AtlasModifierTag[tag_prefix + "_" + suffix];
+        if (tag !== undefined) {
+            return tag;
+        }
+        else {
+            throw new Error(tag_prefix + " not set in Tag with '" + suffix + "' as suffix");
+        }
+    }
+    function tagIdentifier(meta_data) {
+        if (meta_data.isA('AbstractTwoHandAxe')) {
+            return '2h_axe';
+        }
+        else if (meta_data.isA('AbstractTwoHandMace')) {
+            return '2h_mace';
+        }
+        else if (meta_data.isA('AbstractTwoHandSword')) {
+            return '2h_sword';
+        }
+        else if (meta_data.isA('AbstractAmulet')) {
+            return 'amulet';
+        }
+        else if (meta_data.isA('AbstractOneHandAxe')) {
+            return 'axe';
+        }
+        else if (meta_data.isA('AbstractBelt')) {
+            return 'belt';
+        }
+        else if (meta_data.isA('AbstractBodyArmour')) {
+            return 'body_armour';
+        }
+        else if (meta_data.isA('AbstractBoots')) {
+            return 'boots';
+        }
+        else if (meta_data.isA('AbstractBow')) {
+            return 'bow';
+        }
+        else if (meta_data.isA('AbstractClaw')) {
+            return 'claw';
+        }
+        else if (meta_data.isA('AbstractDagger')) {
+            return 'dagger';
+        }
+        else if (meta_data.isA('AbstractGloves')) {
+            return 'gloves';
+        }
+        else if (meta_data.isA('AbstractHelmet')) {
+            return 'helmet';
+        }
+        else if (meta_data.isA('AbstractOneHandMace')) {
+            return 'mace';
+        }
+        else if (meta_data.isA('AbstractQuiver')) {
+            return 'quiver';
+        }
+        else if (meta_data.isA('AbstractRing')) {
+            return 'ring';
+        }
+        else if (meta_data.isA('AbstractSceptre')) {
+            return 'sceptre';
+        }
+        else if (meta_data.isA('AbstractShield')) {
+            return 'shield';
+        }
+        else if (meta_data.isA('AbstractStaff')) {
+            return 'staff';
+        }
+        else if (meta_data.isA('AbstractOneHandSword')) {
+            return 'sword';
+        }
+        else if (meta_data.isA('AbstractWand')) {
+            return 'wand';
+        }
+        throw new Error();
+    }
+    var AtlasModifier, AtlasModifierTag;
+    return {
+        setters: [],
+        execute: function () {
+            (function (AtlasModifier) {
+                AtlasModifier["NONE"] = "";
+                AtlasModifier["ELDER"] = "elder_item";
+                AtlasModifier["SHAPER"] = "shaper_item";
+            })(AtlasModifier || (AtlasModifier = {}));
+            exports_17("AtlasModifier", AtlasModifier);
+            (function (AtlasModifierTag) {
+                AtlasModifierTag[AtlasModifierTag["shaper_item"] = 0] = "shaper_item";
+                AtlasModifierTag[AtlasModifierTag["elder_item"] = 1] = "elder_item";
+                AtlasModifierTag[AtlasModifierTag["boots_shaper"] = 2] = "boots_shaper";
+                AtlasModifierTag[AtlasModifierTag["boots_elder"] = 3] = "boots_elder";
+                AtlasModifierTag[AtlasModifierTag["sword_shaper"] = 4] = "sword_shaper";
+                AtlasModifierTag[AtlasModifierTag["sword_elder"] = 5] = "sword_elder";
+                AtlasModifierTag[AtlasModifierTag["gloves_shaper"] = 6] = "gloves_shaper";
+                AtlasModifierTag[AtlasModifierTag["gloves_elder"] = 7] = "gloves_elder";
+                AtlasModifierTag[AtlasModifierTag["helmet_shaper"] = 8] = "helmet_shaper";
+                AtlasModifierTag[AtlasModifierTag["helmet_elder"] = 9] = "helmet_elder";
+                AtlasModifierTag[AtlasModifierTag["body_armour_shaper"] = 10] = "body_armour_shaper";
+                AtlasModifierTag[AtlasModifierTag["body_armour_elder"] = 11] = "body_armour_elder";
+                AtlasModifierTag[AtlasModifierTag["amulet_shaper"] = 12] = "amulet_shaper";
+                AtlasModifierTag[AtlasModifierTag["amulet_elder"] = 13] = "amulet_elder";
+                AtlasModifierTag[AtlasModifierTag["ring_shaper"] = 14] = "ring_shaper";
+                AtlasModifierTag[AtlasModifierTag["ring_elder"] = 15] = "ring_elder";
+                AtlasModifierTag[AtlasModifierTag["belt_shaper"] = 16] = "belt_shaper";
+                AtlasModifierTag[AtlasModifierTag["belt_elder"] = 17] = "belt_elder";
+                AtlasModifierTag[AtlasModifierTag["quiver_shaper"] = 18] = "quiver_shaper";
+                AtlasModifierTag[AtlasModifierTag["quiver_elder"] = 19] = "quiver_elder";
+                AtlasModifierTag[AtlasModifierTag["shield_shaper"] = 20] = "shield_shaper";
+                AtlasModifierTag[AtlasModifierTag["shield_elder"] = 21] = "shield_elder";
+                AtlasModifierTag[AtlasModifierTag["2h_sword_shaper"] = 22] = "2h_sword_shaper";
+                AtlasModifierTag[AtlasModifierTag["2h_sword_elder"] = 23] = "2h_sword_elder";
+                AtlasModifierTag[AtlasModifierTag["axe_shaper"] = 24] = "axe_shaper";
+                AtlasModifierTag[AtlasModifierTag["axe_elder"] = 25] = "axe_elder";
+                AtlasModifierTag[AtlasModifierTag["mace_shaper"] = 26] = "mace_shaper";
+                AtlasModifierTag[AtlasModifierTag["mace_elder"] = 27] = "mace_elder";
+                AtlasModifierTag[AtlasModifierTag["claw_shaper"] = 28] = "claw_shaper";
+                AtlasModifierTag[AtlasModifierTag["claw_elder"] = 29] = "claw_elder";
+                AtlasModifierTag[AtlasModifierTag["bow_shaper"] = 30] = "bow_shaper";
+                AtlasModifierTag[AtlasModifierTag["bow_elder"] = 31] = "bow_elder";
+                AtlasModifierTag[AtlasModifierTag["dagger_shaper"] = 32] = "dagger_shaper";
+                AtlasModifierTag[AtlasModifierTag["dagger_elder"] = 33] = "dagger_elder";
+                AtlasModifierTag[AtlasModifierTag["2h_axe_shaper"] = 34] = "2h_axe_shaper";
+                AtlasModifierTag[AtlasModifierTag["2h_axe_elder"] = 35] = "2h_axe_elder";
+                AtlasModifierTag[AtlasModifierTag["2h_mace_shaper"] = 36] = "2h_mace_shaper";
+                AtlasModifierTag[AtlasModifierTag["2h_mace_elder"] = 37] = "2h_mace_elder";
+                AtlasModifierTag[AtlasModifierTag["staff_shaper"] = 38] = "staff_shaper";
+                AtlasModifierTag[AtlasModifierTag["staff_elder"] = 39] = "staff_elder";
+                AtlasModifierTag[AtlasModifierTag["sceptre_shaper"] = 40] = "sceptre_shaper";
+                AtlasModifierTag[AtlasModifierTag["sceptre_elder"] = 41] = "sceptre_elder";
+                AtlasModifierTag[AtlasModifierTag["wand_shaper"] = 42] = "wand_shaper";
+                AtlasModifierTag[AtlasModifierTag["wand_elder"] = 43] = "wand_elder";
+            })(AtlasModifierTag || (AtlasModifierTag = {}));
+            exports_17("AtlasModifierTag", AtlasModifierTag);
+        }
+    };
+});
+System.register("containers/item/Component", [], function (exports_18, context_18) {
+    "use strict";
+    var __moduleName = context_18 && context_18.id;
+    return {
+        setters: [],
+        execute: function () {
+            ;
+        }
+    };
+});
+System.register("containers/ImmutableContainer", ["calculator/Stat"], function (exports_19, context_19) {
+    "use strict";
+    var __moduleName = context_19 && context_19.id;
+    var Stat_2, ImmutableContainer;
     return {
         setters: [
-            function (_1) {
-                _ = _1;
-            },
-            function (Value_1_1) {
-                Value_1 = Value_1_1;
+            function (Stat_2_1) {
+                Stat_2 = Stat_2_1;
             }
         ],
         execute: function () {
+            /**
+             * immutable implementation of Container
+             */
+            ImmutableContainer = /** @class */ (function () {
+                function ImmutableContainer(mods) {
+                    this.mods = mods;
+                }
+                ImmutableContainer.prototype.builder = function () {
+                    return { mods: this.mods };
+                };
+                // batch mutations
+                ImmutableContainer.prototype.withMutations = function (mutate) {
+                    var builder = mutate(this.builder());
+                    // @ts-ignore
+                    return this.constructor.withBuilder(builder);
+                };
+                /**
+                 *  adds a new non-existing mod
+                 */
+                ImmutableContainer.prototype.addMod = function (mod) {
+                    if (!this.hasMod(mod)) {
+                        return this.withMutations(function (builder) {
+                            return Object.assign({}, builder, { mods: builder.mods.concat(mod) });
+                        });
+                    }
+                    else {
+                        return this;
+                    }
+                };
+                /**
+                 * truncates mods
+                 */
+                ImmutableContainer.prototype.removeAllMods = function () {
+                    if (this.mods.length > 0) {
+                        return this.withMutations(function (builder) {
+                            return Object.assign({}, builder, { mods: [] });
+                        });
+                    }
+                    else {
+                        return this;
+                    }
+                };
+                /**
+                 * removes an existing mod
+                 */
+                ImmutableContainer.prototype.removeMod = function (other) {
+                    var _this = this;
+                    if (this.hasMod(other)) {
+                        return this.withMutations(function (builder) {
+                            return Object.assign({}, builder, {
+                                mods: _this.mods.filter(function (mod) { return mod.props.id !== other.props.id; }),
+                            });
+                        });
+                    }
+                    else {
+                        return this;
+                    }
+                };
+                ImmutableContainer.prototype.indexOfModWithId = function (id) {
+                    return this.mods.findIndex(function (mod) { return mod.props.id === id; });
+                };
+                ImmutableContainer.prototype.indexOfMod = function (mod) {
+                    return this.indexOfModWithId(mod.props.id);
+                };
+                ImmutableContainer.prototype.hasMod = function (mod) {
+                    return this.indexOfMod(mod) !== -1;
+                };
+                ImmutableContainer.prototype.hasModGroup = function (other) {
+                    return (this.mods.find(function (mod) { return mod.props.correct_group === other.props.correct_group; }) !== undefined);
+                };
+                /**
+                 * tags of the mods in the container
+                 */
+                ImmutableContainer.prototype.getTags = function () {
+                    return this.mods
+                        .reduce(function (tags, mod) {
+                        return tags.concat(mod.props.tags);
+                    }, [])
+                        .filter(
+                    // unique by id
+                    function (tag, i, tags) { return tags.findIndex(function (other) { return other === tag; }) === i; });
+                };
+                ImmutableContainer.prototype.asArray = function () {
+                    return this.mods;
+                };
+                /**
+                 * @param {number} mod_type generation type
+                 */
+                ImmutableContainer.prototype.numberOfModsOfType = function (mod_type) {
+                    return this.mods.filter(function (mod) { return mod.props.generation_type === mod_type; })
+                        .length;
+                };
+                /**
+                 * checks if theres more place for a mod with their generationtype
+                 */
+                ImmutableContainer.prototype.hasRoomFor = function (mod) {
+                    return (this.numberOfModsOfType(mod.props.generation_type) <
+                        this.maxModsOfType(mod));
+                };
+                /**
+                 * checks if this container has any mods
+                 */
+                ImmutableContainer.prototype.any = function () {
+                    return this.mods.length > 0;
+                };
+                /**
+                 * lists all the stats that are offered by its mods
+                 *
+                 * mods can have multiple stats so we sum their values grouped by stat id
+                 */
+                ImmutableContainer.prototype.stats = function () {
+                    return this.mods.reduce(function (stats, mod) {
+                        // flattened
+                        return mod.statsJoined().reduce(function (joined, stat) {
+                            var id = stat.props.id;
+                            var existing = joined[id];
+                            // group by stat.Id
+                            if (existing instanceof Stat_2.default) {
+                                return __assign({}, joined, (_a = {}, _a[id] = existing.add(stat.values), _a));
+                            }
+                            else {
+                                return __assign({}, joined, (_b = {}, _b[id] = stat, _b));
+                            }
+                            var _a, _b;
+                        }, stats);
+                    }, {});
+                };
+                return ImmutableContainer;
+            }());
+            exports_19("default", ImmutableContainer);
         }
     };
 });
-System.register("containers/item/components/properties/ItemProperties", ["containers/item/components/properties/ArmourProperties"], function (exports_28, context_28) {
+System.register("containers/item/components/Affixes", ["mods/index", "containers/ImmutableContainer"], function (exports_20, context_20) {
+    "use strict";
+    var __moduleName = context_20 && context_20.id;
+    var mods_1, ImmutableContainer_1, ItemAffixes;
+    return {
+        setters: [
+            function (mods_1_1) {
+                mods_1 = mods_1_1;
+            },
+            function (ImmutableContainer_1_1) {
+                ImmutableContainer_1 = ImmutableContainer_1_1;
+            }
+        ],
+        execute: function () {
+            /**
+             * the explicits of an item
+             */
+            ItemAffixes = /** @class */ (function (_super) {
+                __extends(ItemAffixes, _super);
+                function ItemAffixes(item, mods) {
+                    var _this = _super.call(this, mods) || this;
+                    _this.item = item;
+                    return _this;
+                }
+                ItemAffixes.withBuilder = function (builder) {
+                    return new ItemAffixes(builder.item, builder.mods);
+                };
+                ItemAffixes.prototype.builder = function () {
+                    return {
+                        item: this.item,
+                        mods: this.mods,
+                    };
+                };
+                /**
+                 * @override
+                 */
+                ItemAffixes.prototype.maxModsOfType = function (mod) {
+                    if (mod.isPrefix()) {
+                        return this.maxPrefixes();
+                    }
+                    else if (mod.isSuffix()) {
+                        return this.maxSuffixes();
+                    }
+                    else {
+                        return 0;
+                    }
+                };
+                /**
+                 *  checks if the domains are equiv
+                 */
+                ItemAffixes.prototype.inDomainOf = function (mod_domain) {
+                    switch (mod_domain) {
+                        case mods_1.Mod.DOMAIN.MASTER:
+                            return this.inDomainOf(mods_1.Mod.DOMAIN.ITEM);
+                        default:
+                            return mod_domain === this.modDomainEquiv();
+                    }
+                };
+                ItemAffixes.prototype.level = function () {
+                    return this.item.props.item_level;
+                };
+                ItemAffixes.prototype.lockedPrefixes = function () {
+                    return this.indexOfModWithId(mods_1.metaMods.LOCKED_PREFIXES) !== -1;
+                };
+                ItemAffixes.prototype.lockedSuffixes = function () {
+                    return this.indexOfModWithId(mods_1.metaMods.LOCKED_SUFFIXES) !== -1;
+                };
+                ItemAffixes.prototype.getPrefixes = function () {
+                    return this.mods.filter(function (mod) { return mod.isPrefix(); });
+                };
+                ItemAffixes.prototype.getSuffixes = function () {
+                    return this.mods.filter(function (mod) { return mod.isSuffix(); });
+                };
+                /**
+                 * maximum number of prefixes
+                 */
+                ItemAffixes.prototype.maxPrefixes = function () {
+                    if (this.item.rarity.isNormal()) {
+                        return 0;
+                    }
+                    else if (this.item.rarity.isMagic()) {
+                        return 1;
+                    }
+                    else if (this.item.rarity.isRare()) {
+                        if (this.item.meta_data.isA('AbstractJewel')) {
+                            return 2;
+                        }
+                        return 3;
+                    }
+                    else if (this.item.rarity.isUnique()) {
+                        return Number.POSITIVE_INFINITY;
+                    }
+                    else {
+                        throw new Error('rarity not recognized');
+                    }
+                };
+                ItemAffixes.prototype.maxSuffixes = function () {
+                    return this.maxPrefixes();
+                };
+                ItemAffixes.prototype.modDomainEquiv = function () {
+                    if (this.item.meta_data.isA('AbstractJewel')) {
+                        return mods_1.Mod.DOMAIN.JEWEL;
+                    }
+                    if (this.item.meta_data.isA('AbstractFlask')) {
+                        return mods_1.Mod.DOMAIN.FLASK;
+                    }
+                    if (this.item.meta_data.isA('AbstractMap')) {
+                        return mods_1.Mod.DOMAIN.MAP;
+                    }
+                    return mods_1.Mod.DOMAIN.ITEM;
+                };
+                return ItemAffixes;
+            }(ImmutableContainer_1.default));
+            exports_20("default", ItemAffixes);
+        }
+    };
+});
+System.register("containers/item/components/Sockets", [], function (exports_21, context_21) {
+    "use strict";
+    var __moduleName = context_21 && context_21.id;
+    var ItemSockets;
+    return {
+        setters: [],
+        execute: function () {
+            /**
+             * WIP item component for sockets
+             */
+            ItemSockets = /** @class */ (function () {
+                function ItemSockets(item, builder) {
+                    this.parent = item;
+                    this.amount = builder;
+                }
+                ItemSockets.prototype.builder = function () {
+                    return this.amount;
+                };
+                // TODO: what about Corroded Blades or other similar 1x4 Items. Confirm
+                // that they also only can have max 4 sockets like Rods or act like small_Staff
+                ItemSockets.prototype.max = function () {
+                    var by_stats = this.maxOverride();
+                    // tags take priority
+                    if (by_stats != null) {
+                        return by_stats;
+                    }
+                    else {
+                        return Math.min(this.maxByDimensions(), this.maxByLevel(), this.maxByMetaData());
+                    }
+                };
+                ItemSockets.prototype.any = function () {
+                    return this.amount > 0;
+                };
+                ItemSockets.prototype.maxByMetaData = function () {
+                    var meta_data = this.parent.meta_data;
+                    if (meta_data.isA('AbstractShield')) {
+                        return 3;
+                    }
+                    else if (meta_data.isA('AbstractArmour')) {
+                        return 6;
+                    }
+                    else if (meta_data.isA('AbstractOneHandWeapon')) {
+                        return 3;
+                    }
+                    else if (meta_data.isA('AbstractFishingRod')) {
+                        return 4;
+                    }
+                    else if (meta_data.isA('AbstractTwoHandWeapon')) {
+                        return 6;
+                    }
+                    else if (meta_data.isA('Equipment')) {
+                        return 0;
+                    }
+                    else {
+                        throw new Error("Can't determine sockes from meta data for " + meta_data.clazz);
+                    }
+                };
+                ItemSockets.prototype.maxByLevel = function () {
+                    var props = this.parent.props;
+                    if (props.item_level <= 1) {
+                        return 2;
+                    }
+                    else if (props.item_level <= 2) {
+                        return 3;
+                    }
+                    else if (props.item_level <= 25) {
+                        return 4;
+                    }
+                    else if (props.item_level <= 35) {
+                        return 5;
+                    }
+                    else {
+                        return 6;
+                    }
+                };
+                ItemSockets.prototype.maxByDimensions = function () {
+                    var _a = this.parent.baseitem, width = _a.width, height = _a.height;
+                    return width * height;
+                };
+                ItemSockets.prototype.maxOverride = function () {
+                    var stats = this.parent.stats();
+                    var tags = this.parent.getTags();
+                    if (stats.local_has_X_sockets != null) {
+                        return stats.local_has_X_sockets.values.max;
+                    }
+                    else if (tags.find(function (id) { return id === 'small_staff'; }) !== undefined) {
+                        return 3;
+                    }
+                    return undefined;
+                };
+                return ItemSockets;
+            }());
+            exports_21("default", ItemSockets);
+        }
+    };
+});
+System.register("containers/item/components/Name", [], function (exports_22, context_22) {
+    "use strict";
+    var __moduleName = context_22 && context_22.id;
+    var ItemName;
+    return {
+        setters: [],
+        execute: function () {
+            /**
+             * the name of an item
+             *
+             * for magic items those name consists of the baseitemname and the prefix/suffix
+             * rare and unique items have a set name
+             */
+            ItemName = /** @class */ (function () {
+                function ItemName(item, builder) {
+                    this.parent = item;
+                    this.random = builder;
+                }
+                ItemName.prototype.builder = function () {
+                    return this.random;
+                };
+                ItemName.prototype.lines = function () {
+                    if (this.parent.rarity.isNormal()) {
+                        return [this.parent.baseitem.name];
+                    }
+                    else if (this.parent.rarity.isMagic()) {
+                        var prefix = this.parent.affixes.getPrefixes()[0];
+                        var suffix = this.parent.affixes.getSuffixes()[0];
+                        return [
+                            [
+                                prefix && prefix.props.name,
+                                this.parent.baseitem.name,
+                                suffix && suffix.props.name,
+                            ]
+                                .filter(Boolean)
+                                .join(' '),
+                        ];
+                    }
+                    else if (this.parent.rarity.isRare()) {
+                        return [this.random, this.parent.baseitem.name];
+                    }
+                    else if (this.parent.rarity.isUnique()) {
+                        return ['TODO unique name?', this.parent.baseitem.name];
+                    }
+                    else {
+                        throw new Error("unrecognized rarity " + String(this.parent.rarity));
+                    }
+                };
+                ItemName.prototype.any = function () {
+                    return true;
+                };
+                return ItemName;
+            }());
+            exports_22("default", ItemName);
+        }
+    };
+});
+System.register("containers/item/components/Rarity", [], function (exports_23, context_23) {
+    "use strict";
+    var __moduleName = context_23 && context_23.id;
+    var RarityKind, ItemRarity;
+    return {
+        setters: [],
+        execute: function () {
+            (function (RarityKind) {
+                RarityKind[RarityKind["normal"] = 1] = "normal";
+                RarityKind[RarityKind["magic"] = 2] = "magic";
+                RarityKind[RarityKind["rare"] = 3] = "rare";
+                RarityKind[RarityKind["unique"] = 4] = "unique";
+                RarityKind[RarityKind["showcase"] = 5] = "showcase";
+            })(RarityKind || (RarityKind = {}));
+            exports_23("RarityKind", RarityKind);
+            /**
+             * the rarity of an item
+             */
+            ItemRarity = /** @class */ (function () {
+                function ItemRarity(item, builder) {
+                    this.parent = item;
+                    this.kind = builder;
+                }
+                ItemRarity.prototype.builder = function () {
+                    return this.kind;
+                };
+                ItemRarity.prototype.isNormal = function () {
+                    return this.kind === RarityKind.normal;
+                };
+                ItemRarity.prototype.isMagic = function () {
+                    return this.kind === RarityKind.magic;
+                };
+                ItemRarity.prototype.isRare = function () {
+                    return this.kind === RarityKind.rare || this.kind === RarityKind.showcase;
+                };
+                ItemRarity.prototype.isUnique = function () {
+                    return this.kind === RarityKind.unique;
+                };
+                /**
+                 * upgrade rarirty by one tier
+                 *
+                 * normal > magic > rare
+                 */
+                ItemRarity.prototype.upgrade = function () {
+                    var new_rarity = this.kind;
+                    if (this.isNormal()) {
+                        new_rarity = RarityKind.magic;
+                    }
+                    else if (this.isMagic()) {
+                        new_rarity = RarityKind.rare;
+                    }
+                    return this.parent.withMutations(function (builder) {
+                        return __assign({}, builder, { rarity: new_rarity });
+                    });
+                };
+                ItemRarity.prototype.set = function (rarity) {
+                    return this.parent.withMutations(function (builder) {
+                        return __assign({}, builder, { rarity: RarityKind[rarity] });
+                    });
+                };
+                ItemRarity.prototype.toString = function () {
+                    return RarityKind[this.kind].toString();
+                };
+                ItemRarity.prototype.any = function () {
+                    // ItemRarity always has a rarity
+                    return true;
+                };
+                return ItemRarity;
+            }());
+            exports_23("default", ItemRarity);
+        }
+    };
+});
+System.register("containers/item/components/Implicits", ["mods/index", "containers/ImmutableContainer"], function (exports_24, context_24) {
+    "use strict";
+    var __moduleName = context_24 && context_24.id;
+    var mods_2, ImmutableContainer_2, Implicits;
+    return {
+        setters: [
+            function (mods_2_1) {
+                mods_2 = mods_2_1;
+            },
+            function (ImmutableContainer_2_1) {
+                ImmutableContainer_2 = ImmutableContainer_2_1;
+            }
+        ],
+        execute: function () {
+            /**
+             * the implicits of an item
+             */
+            Implicits = /** @class */ (function (_super) {
+                __extends(Implicits, _super);
+                function Implicits(item, mods) {
+                    var _this = _super.call(this, mods) || this;
+                    _this.item = item;
+                    return _this;
+                }
+                Implicits.withBuilder = function (builder) {
+                    return new Implicits(builder.item, builder.mods);
+                };
+                /**
+                 * @override
+                 */
+                Implicits.prototype.maxModsOfType = function (mod) {
+                    switch (mod.props.generation_type) {
+                        case mods_2.Mod.TYPE.PREMADE:
+                            return 5;
+                        case mods_2.Mod.TYPE.ENCHANTMENT:
+                            return 1;
+                        case mods_2.Mod.TYPE.VAAL:
+                            return 1;
+                        // no other generation types allowed
+                        default:
+                            return -1;
+                    }
+                };
+                /**
+                 * @override
+                 *  checks if the domains are equiv
+                 */
+                Implicits.prototype.inDomainOf = function () {
+                    return true;
+                };
+                /**
+                 * @override
+                 */
+                Implicits.prototype.level = function () {
+                    return this.item.props.item_level;
+                };
+                return Implicits;
+            }(ImmutableContainer_2.default));
+            exports_24("default", Implicits);
+        }
+    };
+});
+System.register("containers/item/components/Requirements", [], function (exports_25, context_25) {
+    "use strict";
+    var __moduleName = context_25 && context_25.id;
+    var ItemName;
+    return {
+        setters: [],
+        execute: function () {
+            /**
+             * the requirements to use this item
+             *
+             * contains attributes strength, intelligence, evasion
+             * and the itemlevel
+             */
+            ItemName = /** @class */ (function () {
+                function ItemName(item, builder) {
+                    this.dex = 0;
+                    this.int = 0;
+                    this.str = 0;
+                    this.parent = item;
+                    if (builder != null) {
+                        this.dex = builder.req_dex;
+                        this.int = builder.req_int;
+                        this.str = builder.req_str;
+                    }
+                }
+                ItemName.prototype.builder = function () {
+                    return {
+                        req_dex: this.dex,
+                        req_int: this.int,
+                        req_str: this.str,
+                    };
+                };
+                ItemName.prototype.level = function () {
+                    if (this.parent.meta_data.isA('AbstractMap')) {
+                        return 0;
+                    }
+                    else {
+                        return Math.max.apply(Math, [this.parent.baseitem.drop_level].concat(this.parent.mods.map(function (mod) { return mod.requiredLevel(); })));
+                    }
+                };
+                ItemName.prototype.list = function () {
+                    return {
+                        level: this.level(),
+                        str: this.str,
+                        dex: this.dex,
+                        int: this.int,
+                    };
+                };
+                ItemName.prototype.any = function () {
+                    return Object.values(this.list()).some(function (value) { return value !== 0; });
+                };
+                return ItemName;
+            }());
+            exports_25("default", ItemName);
+        }
+    };
+});
+System.register("containers/item/components/properties/Properties", [], function (exports_26, context_26) {
+    "use strict";
+    var __moduleName = context_26 && context_26.id;
+    var ItemProperties;
+    return {
+        setters: [],
+        execute: function () {
+            /**
+             * properties for every item
+             *
+             * this is used for miscellaneous properties that don't really fit
+             * into any other component
+             */
+            ItemProperties = /** @class */ (function () {
+                // eslint-disable-next-line no-unused-vars
+                function ItemProperties(item, builder) {
+                    this.parent = item;
+                    this.quality = builder.quality;
+                }
+                ItemProperties.prototype.builder = function () {
+                    return {
+                        quality: this.quality,
+                    };
+                };
+                ItemProperties.prototype.any = function () {
+                    return this.quality > 0;
+                };
+                return ItemProperties;
+            }());
+            exports_26("default", ItemProperties);
+        }
+    };
+});
+System.register("containers/item/components/properties/ArmourProperties", ["containers/item/components/properties/Properties", "calculator/ValueRange"], function (exports_27, context_27) {
+    "use strict";
+    var __moduleName = context_27 && context_27.id;
+    var Properties_1, ValueRange_3, ItemArmourProperties;
+    return {
+        setters: [
+            function (Properties_1_1) {
+                Properties_1 = Properties_1_1;
+            },
+            function (ValueRange_3_1) {
+                ValueRange_3 = ValueRange_3_1;
+            }
+        ],
+        execute: function () {
+            ItemArmourProperties = /** @class */ (function (_super) {
+                __extends(ItemArmourProperties, _super);
+                function ItemArmourProperties() {
+                    return _super !== null && _super.apply(this, arguments) || this;
+                }
+                ItemArmourProperties.prototype.defences = function () {
+                    var item = this.parent;
+                    var component_armour = item.baseitem.component_armour;
+                    if (component_armour == null) {
+                        throw new Error('component_armour not set while attempting to calculate defences');
+                    }
+                    var armour = component_armour.armour, evasion = component_armour.evasion, energy_shield = component_armour.energy_shield;
+                    return {
+                        armour: this.parent.computeValue(armour, ['local', 'defences', 'armour']),
+                        evasion: this.parent.computeValue(evasion, [
+                            'local',
+                            'defences',
+                            'evasion',
+                        ]),
+                        energy_shield: this.parent.computeValue(energy_shield, [
+                            'local',
+                            'defences',
+                            'energy_shield',
+                        ]),
+                    };
+                };
+                ItemArmourProperties.prototype.any = function () {
+                    var _a = this.defences(), armour = _a.armour, energy_shield = _a.energy_shield, evasion = _a.evasion;
+                    return (_super.prototype.any.call(this) ||
+                        // armour > 0
+                        !ValueRange_3.default.isZero(armour.value) ||
+                        // es > 0
+                        !ValueRange_3.default.isZero(energy_shield.value) ||
+                        // eva > 0
+                        !ValueRange_3.default.isZero(evasion.value));
+                };
+                return ItemArmourProperties;
+            }(Properties_1.default));
+            exports_27("default", ItemArmourProperties);
+        }
+    };
+});
+System.register("containers/item/components/properties/ShieldProperties", ["containers/item/components/properties/ArmourProperties"], function (exports_28, context_28) {
     "use strict";
     var __moduleName = context_28 && context_28.id;
-    function getPropertyBulder(item) {
-        if (item.meta_data.isA('AbstractArmour')) {
-            return ArmourProperties_1.default;
-        }
-        else {
-            return undefined;
-        }
-    }
-    var ArmourProperties_1, ItemProperties;
+    var ArmourProperties_1, ItemShieldProperties;
     return {
         setters: [
             function (ArmourProperties_1_1) {
@@ -4298,36 +5893,160 @@ System.register("containers/item/components/properties/ItemProperties", ["contai
             }
         ],
         execute: function () {
-            ItemProperties = /** @class */ (function () {
-                // eslint-disable-next-line no-unused-vars
-                function ItemProperties(item, builder) {
-                    this.parent = item;
+            ItemShieldProperties = /** @class */ (function (_super) {
+                __extends(ItemShieldProperties, _super);
+                function ItemShieldProperties() {
+                    return _super !== null && _super.apply(this, arguments) || this;
                 }
-                ItemProperties.prototype.builder = function () {
-                    return null;
-                };
-                ItemProperties.prototype.list = function () {
-                    var build = getPropertyBulder(this.parent);
-                    if (build == null) {
-                        return {};
+                ItemShieldProperties.prototype.block = function () {
+                    var shield_type = this.parent.baseitem.shield_type;
+                    if (shield_type === undefined) {
+                        throw new Error('shield_type not set in baseitem');
                     }
-                    else {
-                        return build(this.parent);
-                    }
+                    return this.parent.computeValue(shield_type.block, ['local', 'block']);
                 };
-                ItemProperties.prototype.any = function () {
-                    return getPropertyBulder(this.parent) != null;
-                };
-                return ItemProperties;
-            }());
-            exports_28("default", ItemProperties);
+                return ItemShieldProperties;
+            }(ArmourProperties_1.default));
+            exports_28("default", ItemShieldProperties);
         }
     };
 });
-System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaData", "containers/item/atlasModifier", "containers/item/components/Affixes", "containers/item/components/Sockets", "containers/item/components/Name", "containers/item/components/Rarity", "containers/item/components/Implicits", "containers/item/components/Requirements", "containers/item/components/properties/ItemProperties"], function (exports_29, context_29) {
+System.register("containers/item/components/properties/WeaponProperties", ["containers/item/components/properties/Properties"], function (exports_29, context_29) {
     "use strict";
     var __moduleName = context_29 && context_29.id;
-    var make_error_1, mods_3, MetaData_2, atlasModifier_1, Affixes_1, Sockets_1, Name_1, Rarity_1, Implicits_1, Requirements_1, ItemProperties_1, UnacceptedMod, shallowEqual, Item;
+    var Properties_2, ItemWeaponProperties;
+    return {
+        setters: [
+            function (Properties_2_1) {
+                Properties_2 = Properties_2_1;
+            }
+        ],
+        execute: function () {
+            ItemWeaponProperties = /** @class */ (function (_super) {
+                __extends(ItemWeaponProperties, _super);
+                function ItemWeaponProperties() {
+                    return _super !== null && _super.apply(this, arguments) || this;
+                }
+                ItemWeaponProperties.prototype.physical_damage = function () {
+                    var _a = this.weaponProps(), damage_min = _a.damage_min, damage_max = _a.damage_max;
+                    return this.attackDamageRange(damage_min, damage_max, 'physical');
+                };
+                ItemWeaponProperties.prototype.chaos_damage = function () {
+                    return this.attackDamageRange(0, 0, 'chaos');
+                };
+                ItemWeaponProperties.prototype.cold_damage = function () {
+                    return this.attackDamageRange(0, 0, 'cold');
+                };
+                ItemWeaponProperties.prototype.fire_damage = function () {
+                    return this.attackDamageRange(0, 0, 'fire');
+                };
+                ItemWeaponProperties.prototype.lightning_damage = function () {
+                    return this.attackDamageRange(0, 0, 'lightning');
+                };
+                // attacks per 100s
+                ItemWeaponProperties.prototype.attack_speed = function () {
+                    // speed is in ms, precision 2 => 1e5
+                    // seems to round ingame, see short bow test case
+                    return this.parent.computeValue(Math.round(1e5 / this.weaponProps().speed), ['local', 'attack_speed']);
+                };
+                // crit() / 100 = crit%
+                ItemWeaponProperties.prototype.crit = function () {
+                    return this.parent.computeValue(this.weaponProps().critical, [
+                        'local',
+                        'crit_chance',
+                    ]);
+                };
+                ItemWeaponProperties.prototype.weapon_range = function () {
+                    return this.parent.computeValue(this.weaponProps().range_max, [
+                        'local',
+                        'weapon_range',
+                    ]);
+                };
+                ItemWeaponProperties.prototype.any = function () {
+                    return _super.prototype.any.call(this);
+                };
+                ItemWeaponProperties.prototype.weaponProps = function () {
+                    var weapon_type = this.parent.baseitem.weapon_type;
+                    if (weapon_type === undefined) {
+                        throw new Error('weapon_type not set in baseitem');
+                    }
+                    return weapon_type;
+                };
+                ItemWeaponProperties.prototype.attackDamageRange = function (min, max, type) {
+                    var classification = ['local', 'attack_damage', type];
+                    return {
+                        min: this.parent.computeValue(min, classification.concat(['min'])),
+                        max: this.parent.computeValue(max, classification.concat(['max'])),
+                    };
+                };
+                return ItemWeaponProperties;
+            }(Properties_2.default));
+            exports_29("default", ItemWeaponProperties);
+        }
+    };
+});
+System.register("containers/item/components/properties/build", ["containers/item/components/properties/Properties", "containers/item/components/properties/ArmourProperties", "containers/item/components/properties/ShieldProperties", "containers/item/components/properties/WeaponProperties"], function (exports_30, context_30) {
+    "use strict";
+    var __moduleName = context_30 && context_30.id;
+    function build(item, builder) {
+        if (item.meta_data.isA('AbstractShield')) {
+            return new ShieldProperties_1.default(item, builder);
+        }
+        else if (item.meta_data.isA('AbstractArmour')) {
+            return new ArmourProperties_2.default(item, builder);
+        }
+        else if (item.meta_data.isA('AbstractWeapon')) {
+            return new WeaponProperties_1.default(item, builder);
+        }
+        else {
+            return new Properties_3.default(item, builder);
+        }
+    }
+    exports_30("default", build);
+    var Properties_3, ArmourProperties_2, ShieldProperties_1, WeaponProperties_1;
+    return {
+        setters: [
+            function (Properties_3_1) {
+                Properties_3 = Properties_3_1;
+            },
+            function (ArmourProperties_2_1) {
+                ArmourProperties_2 = ArmourProperties_2_1;
+            },
+            function (ShieldProperties_1_1) {
+                ShieldProperties_1 = ShieldProperties_1_1;
+            },
+            function (WeaponProperties_1_1) {
+                WeaponProperties_1 = WeaponProperties_1_1;
+            }
+        ],
+        execute: function () {
+        }
+    };
+});
+System.register("containers/item/components/properties/index", ["containers/item/components/properties/Properties", "containers/item/components/properties/build"], function (exports_31, context_31) {
+    "use strict";
+    var __moduleName = context_31 && context_31.id;
+    return {
+        setters: [
+            function (Properties_4_1) {
+                exports_31({
+                    "ItemProperties": Properties_4_1["default"]
+                });
+            },
+            function (build_1_1) {
+                exports_31({
+                    "build": build_1_1["default"]
+                });
+            }
+        ],
+        execute: function () {
+        }
+    };
+});
+System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaData", "calculator/Value", "containers/item/atlasModifier", "containers/item/components/Affixes", "containers/item/components/Sockets", "containers/item/components/Name", "containers/item/components/Rarity", "containers/item/components/Implicits", "containers/item/components/Requirements", "containers/item/components/properties/index"], function (exports_32, context_32) {
+    "use strict";
+    var __moduleName = context_32 && context_32.id;
+    var make_error_1, mods_3, MetaData_2, Value_1, atlasModifier_1, Affixes_1, Sockets_1, Name_1, Rarity_1, Implicits_1, Requirements_1, properties_1, UnacceptedMod, shallowEqual, Item;
     return {
         setters: [
             function (make_error_1_1) {
@@ -4338,6 +6057,9 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
             },
             function (MetaData_2_1) {
                 MetaData_2 = MetaData_2_1;
+            },
+            function (Value_1_1) {
+                Value_1 = Value_1_1;
             },
             function (atlasModifier_1_1) {
                 atlasModifier_1 = atlasModifier_1_1;
@@ -4360,8 +6082,8 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
             function (Requirements_1_1) {
                 Requirements_1 = Requirements_1_1;
             },
-            function (ItemProperties_1_1) {
-                ItemProperties_1 = ItemProperties_1_1;
+            function (properties_1_1) {
+                properties_1 = properties_1_1;
             }
         ],
         execute: function () {
@@ -4372,30 +6094,40 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
                 }
                 return UnacceptedMod;
             }(make_error_1.BaseError));
-            exports_29("UnacceptedMod", UnacceptedMod);
+            exports_32("UnacceptedMod", UnacceptedMod);
             shallowEqual = function (a, b) {
                 return a === b || Object.keys(a).every(function (key) { return a[key] === b[key]; });
             };
+            /**
+             * an Item in Path of Exile
+             */
             Item = /** @class */ (function () {
+                /**
+                 * Use Item#build
+                 *
+                 * @private
+                 * @param builder
+                 */
                 function Item(builder) {
                     this.baseitem = builder.baseitem;
                     this.props = builder.props;
                     this.meta_data = builder.meta_data;
                     // components
                     this.name = new Name_1.default(this, builder.name);
-                    this.properties = new ItemProperties_1.default(this, builder.properties);
+                    this.properties = properties_1.build(this, builder.properties);
                     this.rarity = new Rarity_1.default(this, builder.rarity);
                     this.requirements = new Requirements_1.default(this, builder.requirements);
                     this.sockets = new Sockets_1.default(this, builder.sockets);
                     this.affixes = new Affixes_1.default(this, builder.affixes);
                     this.implicits = new Implicits_1.default(this, builder.implicits);
                 }
+                /**
+                 * creates a new item from the baseitem
+                 * @param baseitem
+                 */
                 Item.build = function (baseitem) {
                     var clazz = String(baseitem.inherits_from.split(/[\\/]/).pop());
                     var meta_data = MetaData_2.default.build(clazz);
-                    if (meta_data == null) {
-                        throw new Error("meta_data for " + clazz + " not found");
-                    }
                     var implicits = baseitem.implicit_mods.map(function (mod_props) { return new mods_3.Mod(mod_props); });
                     return new Item({
                         affixes: [],
@@ -4403,16 +6135,24 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
                         implicits: implicits,
                         meta_data: meta_data,
                         name: 'Random Name',
+                        /**
+                         * miscellaneous props
+                         */
                         props: {
-                            // more like misc
                             atlas_modifier: atlasModifier_1.default(baseitem),
                             corrupted: false,
                             item_level: 100,
                             mirrored: false,
                         },
-                        properties: null,
+                        /**
+                         * calculation related props
+                         */
+                        properties: { quality: 0 },
                         rarity: Rarity_1.RarityKind.normal,
                         requirements: baseitem.component_attribute_requirement,
+                        /**
+                         * the sockets of the item
+                         */
                         sockets: 0,
                     });
                 };
@@ -4462,6 +6202,11 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
                 Item.prototype.asArray = function () {
                     return this.mods;
                 };
+                /**
+                 * decides where to add the mod (explicit, implicit)
+                 * throws if it could not decide where to put it
+                 * @param other
+                 */
                 Item.prototype.addMod = function (other) {
                     if (other.isAffix()) {
                         return this.addAffix(other);
@@ -4473,6 +6218,12 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
                         throw new UnacceptedMod();
                     }
                 };
+                /**
+                 * removed this mod either from implicit or explicit
+                 *
+                 * if that mod fiths into neither category it throws
+                 * @param other
+                 */
                 Item.prototype.removeMod = function (other) {
                     if (other.isAffix()) {
                         return this.removeAffix(other);
@@ -4484,6 +6235,9 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
                         throw new UnacceptedMod();
                     }
                 };
+                /**
+                 * removes explicits
+                 */
                 Item.prototype.removeAllMods = function () {
                     return this.mutateAffixes(function (affixes) { return affixes.removeAllMods(); });
                 };
@@ -4500,9 +6254,9 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
                 Item.prototype.hasRoomFor = function (other) {
                     return this.affixes.hasRoomFor(other) || this.implicits.hasRoomFor(other);
                 };
-                Item.prototype.indexOfModWithPrimary = function (primary) {
-                    var affix_index = this.affixes.indexOfModWithPrimary(primary);
-                    var implicit_index = this.implicits.indexOfModWithPrimary(primary);
+                Item.prototype.indexOfModWithId = function (id) {
+                    var affix_index = this.affixes.indexOfModWithId(id);
+                    var implicit_index = this.implicits.indexOfModWithId(id);
                     if (affix_index !== -1) {
                         return affix_index;
                     }
@@ -4533,6 +6287,9 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
                 Item.prototype.any = function () {
                     return this.mods.length > 0;
                 };
+                /**
+                 * merge of implicit and explicit stats
+                 */
                 Item.prototype.stats = function () {
                     // merge implicit stats and affix stats by adding its stats
                     var a = this.implicits.stats();
@@ -4576,6 +6333,9 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
                         var _a;
                     });
                 };
+                /**
+                 * sets the corrupted property on the item or throws if it is already corrupted
+                 */
                 Item.prototype.corrupt = function () {
                     if (this.props.corrupted) {
                         throw new Error('invalid state: is already corrupted');
@@ -4584,6 +6344,9 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
                         return this.setProperty('corrupted', true);
                     }
                 };
+                /**
+                 * sets the mirror property on the item or throws if it is already mirrored
+                 */
                 Item.prototype.mirror = function () {
                     if (this.props.mirrored) {
                         throw new Error('invalid state: is already mirrored');
@@ -4595,16 +6358,22 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
                 Item.prototype.isElderItem = function () {
                     return this.props.atlas_modifier === atlasModifier_1.AtlasModifier.ELDER;
                 };
-                // returns an item that can have elder mods
-                // this does not remove existing shaper mods
+                /**
+                 * returns an item that can have elder mods
+                 *
+                 * this does not remove existing shaper mods
+                 */
                 Item.prototype.asElderItem = function () {
                     return this.asAtlasModifier(atlasModifier_1.AtlasModifier.ELDER);
                 };
                 Item.prototype.isSHaperItem = function () {
                     return this.props.atlas_modifier === atlasModifier_1.AtlasModifier.SHAPER;
                 };
-                // returns an item that can have shper mods
-                // this does not remove existing elder mods
+                /**
+                 * returns an item that can have shaper mods
+                 *
+                 * this does not remove existing elder mods
+                 */
                 Item.prototype.asShaperItem = function () {
                     return this.asAtlasModifier(atlasModifier_1.AtlasModifier.SHAPER);
                 };
@@ -4614,6 +6383,15 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
                     return this.asAtlasModifier(atlasModifier_1.AtlasModifier.NONE);
                 };
                 // End state
+                /**
+                 * augments a given {value} with the local stats
+                 * @param value
+                 * @param classification
+                 */
+                Item.prototype.computeValue = function (value, classification) {
+                    var base = new Value_1.default([value, value], classification);
+                    return base.augmentWith(Object.values(this.stats())).compute();
+                };
                 // private
                 Item.prototype.mutateAffixes = function (mutate) {
                     var _this = this;
@@ -4651,32 +6429,37 @@ System.register("containers/item/Item", ["make-error", "mods/index", "util/MetaD
                 };
                 return Item;
             }());
-            exports_29("default", Item);
+            exports_32("default", Item);
         }
     };
 });
-System.register("containers/item/index", ["containers/item/Item"], function (exports_30, context_30) {
+System.register("containers/item/index", ["containers/item/Item", "containers/item/components/properties/ArmourProperties"], function (exports_33, context_33) {
     "use strict";
-    var __moduleName = context_30 && context_30.id;
+    var __moduleName = context_33 && context_33.id;
     var Item_1;
     return {
         setters: [
             function (Item_1_1) {
                 Item_1 = Item_1_1;
+            },
+            function (ArmourProperties_3_1) {
+                exports_33({
+                    "ItemArmourProperties": ArmourProperties_3_1["default"]
+                });
             }
         ],
         execute: function () {
-            exports_30("default", Item_1.default);
+            exports_33("default", Item_1.default);
         }
     };
 });
-System.register("util/rng", ["lodash"], function (exports_31, context_31) {
+System.register("util/rng", ["lodash"], function (exports_34, context_34) {
     "use strict";
-    var __moduleName = context_31 && context_31.id;
+    var __moduleName = context_34 && context_34.id;
     function random(min, max) {
         return _.random(min, max);
     }
-    exports_31("random", random);
+    exports_34("random", random);
     function choose(pool, getWeight) {
         var sum_spawnweight = pool.reduce(function (sum, weightable) { return sum + getWeight(weightable); }, 0);
         var min_spawnweight = 0;
@@ -4690,21 +6473,21 @@ System.register("util/rng", ["lodash"], function (exports_31, context_31) {
         });
         return item;
     }
-    exports_31("choose", choose);
+    exports_34("choose", choose);
     var _;
     return {
         setters: [
-            function (_2) {
-                _ = _2;
+            function (_1) {
+                _ = _1;
             }
         ],
         execute: function () {
         }
     };
 });
-System.register("generators/Orb", ["mods/index", "util/Flags", "util/rng", "generators/Generator"], function (exports_32, context_32) {
+System.register("generators/Orb", ["mods/index", "util/Flags", "util/rng", "generators/Generator"], function (exports_35, context_35) {
     "use strict";
-    var __moduleName = context_32 && context_32.id;
+    var __moduleName = context_35 && context_35.id;
     var mods_4, Flags_3, rng_1, Generator_1, Orb;
     return {
         setters: [
@@ -4808,13 +6591,13 @@ System.register("generators/Orb", ["mods/index", "util/Flags", "util/rng", "gene
                 };
                 return Orb;
             }(Generator_1.default));
-            exports_32("default", Orb);
+            exports_35("default", Orb);
         }
     };
 });
-System.register("generators/item_orbs/ItemOrb", ["generators/Orb"], function (exports_33, context_33) {
+System.register("generators/item_orbs/ItemOrb", ["generators/Orb"], function (exports_36, context_36) {
     "use strict";
-    var __moduleName = context_33 && context_33.id;
+    var __moduleName = context_36 && context_36.id;
     var Orb_1, ItemOrb;
     return {
         setters: [
@@ -4846,13 +6629,13 @@ System.register("generators/item_orbs/ItemOrb", ["generators/Orb"], function (ex
                 };
                 return ItemOrb;
             }(Orb_1.default));
-            exports_33("default", ItemOrb);
+            exports_36("default", ItemOrb);
         }
     };
 });
-System.register("generators/item_orbs/Transmute", ["util/Flags", "generators/item_orbs/ItemOrb", "mods/Mod"], function (exports_34, context_34) {
+System.register("generators/item_orbs/Transmute", ["util/Flags", "generators/item_orbs/ItemOrb", "mods/Mod"], function (exports_37, context_37) {
     "use strict";
-    var __moduleName = context_34 && context_34.id;
+    var __moduleName = context_37 && context_37.id;
     var Flags_4, ItemOrb_1, Mod_2, Transmute;
     return {
         setters: [
@@ -4912,18 +6695,18 @@ System.register("generators/item_orbs/Transmute", ["util/Flags", "generators/ite
                 };
                 return Transmute;
             }(ItemOrb_1.default));
-            exports_34("default", Transmute);
+            exports_37("default", Transmute);
         }
     };
 });
-System.register("generators/item_orbs/Alchemy", ["lodash", "util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Transmute"], function (exports_35, context_35) {
+System.register("generators/item_orbs/Alchemy", ["lodash", "util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Transmute"], function (exports_38, context_38) {
     "use strict";
-    var __moduleName = context_35 && context_35.id;
+    var __moduleName = context_38 && context_38.id;
     var _, Flags_5, ItemOrb_2, Transmute_1, Alchemy;
     return {
         setters: [
-            function (_3) {
-                _ = _3;
+            function (_2) {
+                _ = _2;
             },
             function (Flags_5_1) {
                 Flags_5 = Flags_5_1;
@@ -4984,13 +6767,13 @@ System.register("generators/item_orbs/Alchemy", ["lodash", "util/Flags", "genera
                 };
                 return Alchemy;
             }(ItemOrb_2.default));
-            exports_35("default", Alchemy);
+            exports_38("default", Alchemy);
         }
     };
 });
-System.register("generators/item_orbs/Augment", ["util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Transmute"], function (exports_36, context_36) {
+System.register("generators/item_orbs/Augment", ["util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Transmute"], function (exports_39, context_39) {
     "use strict";
-    var __moduleName = context_36 && context_36.id;
+    var __moduleName = context_39 && context_39.id;
     var Flags_6, ItemOrb_3, Transmute_2, Augment;
     return {
         setters: [
@@ -5036,13 +6819,13 @@ System.register("generators/item_orbs/Augment", ["util/Flags", "generators/item_
                 };
                 return Augment;
             }(ItemOrb_3.default));
-            exports_36("default", Augment);
+            exports_39("default", Augment);
         }
     };
 });
-System.register("generators/item_orbs/Scouring", ["util/Flags", "generators/item_orbs/ItemOrb"], function (exports_37, context_37) {
+System.register("generators/item_orbs/Scouring", ["util/Flags", "generators/item_orbs/ItemOrb"], function (exports_40, context_40) {
     "use strict";
-    var __moduleName = context_37 && context_37.id;
+    var __moduleName = context_40 && context_40.id;
     var Flags_7, ItemOrb_4, Scouring;
     return {
         setters: [
@@ -5106,13 +6889,13 @@ System.register("generators/item_orbs/Scouring", ["util/Flags", "generators/item
                 };
                 return Scouring;
             }(ItemOrb_4.default));
-            exports_37("default", Scouring);
+            exports_40("default", Scouring);
         }
     };
 });
-System.register("generators/item_orbs/Alteration", ["util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Augment", "generators/item_orbs/Scouring", "generators/item_orbs/Transmute"], function (exports_38, context_38) {
+System.register("generators/item_orbs/Alteration", ["util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Augment", "generators/item_orbs/Scouring", "generators/item_orbs/Transmute"], function (exports_41, context_41) {
     "use strict";
-    var __moduleName = context_38 && context_38.id;
+    var __moduleName = context_41 && context_41.id;
     var Flags_8, ItemOrb_5, Augment_1, Scouring_1, Transmute_3, Alteration;
     return {
         setters: [
@@ -5169,18 +6952,18 @@ System.register("generators/item_orbs/Alteration", ["util/Flags", "generators/it
                 };
                 return Alteration;
             }(ItemOrb_5.default));
-            exports_38("default", Alteration);
+            exports_41("default", Alteration);
         }
     };
 });
-System.register("generators/item_orbs/Annulment", ["lodash", "util/Flags", "generators/item_orbs/ItemOrb"], function (exports_39, context_39) {
+System.register("generators/item_orbs/Annulment", ["lodash", "util/Flags", "generators/item_orbs/ItemOrb"], function (exports_42, context_42) {
     "use strict";
-    var __moduleName = context_39 && context_39.id;
+    var __moduleName = context_42 && context_42.id;
     var _, Flags_9, ItemOrb_6, Annulment;
     return {
         setters: [
-            function (_4) {
-                _ = _4;
+            function (_3) {
+                _ = _3;
             },
             function (Flags_9_1) {
                 Flags_9 = Flags_9_1;
@@ -5233,13 +7016,13 @@ System.register("generators/item_orbs/Annulment", ["lodash", "util/Flags", "gene
                 };
                 return Annulment;
             }(ItemOrb_6.default));
-            exports_39("default", Annulment);
+            exports_42("default", Annulment);
         }
     };
 });
-System.register("generators/item_orbs/Exalted", ["util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Transmute"], function (exports_40, context_40) {
+System.register("generators/item_orbs/Exalted", ["util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Transmute"], function (exports_43, context_43) {
     "use strict";
-    var __moduleName = context_40 && context_40.id;
+    var __moduleName = context_43 && context_43.id;
     var Flags_10, ItemOrb_7, Transmute_4, Exalted;
     return {
         setters: [
@@ -5285,13 +7068,13 @@ System.register("generators/item_orbs/Exalted", ["util/Flags", "generators/item_
                 };
                 return Exalted;
             }(ItemOrb_7.default));
-            exports_40("default", Exalted);
+            exports_43("default", Exalted);
         }
     };
 });
-System.register("generators/item_orbs/Chaos", ["lodash", "util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Alchemy", "generators/item_orbs/Exalted", "generators/item_orbs/Scouring", "generators/item_orbs/Transmute"], function (exports_41, context_41) {
+System.register("generators/item_orbs/Chaos", ["lodash", "util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Alchemy", "generators/item_orbs/Exalted", "generators/item_orbs/Scouring", "generators/item_orbs/Transmute"], function (exports_44, context_44) {
     "use strict";
-    var __moduleName = context_41 && context_41.id;
+    var __moduleName = context_44 && context_44.id;
     var lodash_1, Flags_11, ItemOrb_8, Alchemy_1, Exalted_1, Scouring_2, Transmute_5, Chaos;
     return {
         setters: [
@@ -5370,13 +7153,13 @@ System.register("generators/item_orbs/Chaos", ["lodash", "util/Flags", "generato
                 };
                 return Chaos;
             }(ItemOrb_8.default));
-            exports_41("default", Chaos);
+            exports_44("default", Chaos);
         }
     };
 });
-System.register("generators/item_orbs/EnchantmentBench", ["util/Flags", "mods/Mod", "generators/item_orbs/ItemOrb"], function (exports_42, context_42) {
+System.register("generators/item_orbs/EnchantmentBench", ["util/Flags", "mods/Mod", "generators/item_orbs/ItemOrb"], function (exports_45, context_45) {
     "use strict";
-    var __moduleName = context_42 && context_42.id;
+    var __moduleName = context_45 && context_45.id;
     var Flags_12, Mod_3, ItemOrb_9, Enchantmentbench;
     return {
         setters: [
@@ -5426,13 +7209,13 @@ System.register("generators/item_orbs/EnchantmentBench", ["util/Flags", "mods/Mo
                 };
                 return Enchantmentbench;
             }(ItemOrb_9.default));
-            exports_42("default", Enchantmentbench);
+            exports_45("default", Enchantmentbench);
         }
     };
 });
-System.register("generators/item_orbs/Regal", ["util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Transmute"], function (exports_43, context_43) {
+System.register("generators/item_orbs/Regal", ["util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Transmute"], function (exports_46, context_46) {
     "use strict";
-    var __moduleName = context_43 && context_43.id;
+    var __moduleName = context_46 && context_46.id;
     var Flags_13, ItemOrb_10, Transmute_6, Regal;
     return {
         setters: [
@@ -5484,13 +7267,13 @@ System.register("generators/item_orbs/Regal", ["util/Flags", "generators/item_or
                 };
                 return Regal;
             }(ItemOrb_10.default));
-            exports_43("default", Regal);
+            exports_46("default", Regal);
         }
     };
 });
-System.register("generators/item_orbs/Talisman", ["generators/item_orbs/ItemOrb"], function (exports_44, context_44) {
+System.register("generators/item_orbs/Talisman", ["generators/item_orbs/ItemOrb"], function (exports_47, context_47) {
     "use strict";
-    var __moduleName = context_44 && context_44.id;
+    var __moduleName = context_47 && context_47.id;
     var ItemOrb_11, Talisman;
     return {
         setters: [
@@ -5519,13 +7302,13 @@ System.register("generators/item_orbs/Talisman", ["generators/item_orbs/ItemOrb"
                 };
                 return Talisman;
             }(ItemOrb_11.default));
-            exports_44("default", Talisman);
+            exports_47("default", Talisman);
         }
     };
 });
-System.register("generators/item_orbs/Vaal", ["util/Flags", "mods/Mod", "generators/item_orbs/ItemOrb"], function (exports_45, context_45) {
+System.register("generators/item_orbs/Vaal", ["util/Flags", "mods/Mod", "generators/item_orbs/ItemOrb"], function (exports_48, context_48) {
     "use strict";
-    var __moduleName = context_45 && context_45.id;
+    var __moduleName = context_48 && context_48.id;
     var Flags_14, Mod_4, ItemOrb_12, Vaal;
     return {
         setters: [
@@ -5573,77 +7356,77 @@ System.register("generators/item_orbs/Vaal", ["util/Flags", "mods/Mod", "generat
                 };
                 return Vaal;
             }(ItemOrb_12.default));
-            exports_45("default", Vaal);
+            exports_48("default", Vaal);
         }
     };
 });
-System.register("generators/item_orbs/index", ["generators/item_orbs/Alchemy", "generators/item_orbs/Alteration", "generators/item_orbs/Annulment", "generators/item_orbs/Augment", "generators/item_orbs/Chaos", "generators/item_orbs/EnchantmentBench", "generators/item_orbs/Exalted", "generators/item_orbs/ItemOrb", "generators/item_orbs/Regal", "generators/item_orbs/Scouring", "generators/item_orbs/Talisman", "generators/item_orbs/Transmute", "generators/item_orbs/Vaal"], function (exports_46, context_46) {
+System.register("generators/item_orbs/index", ["generators/item_orbs/Alchemy", "generators/item_orbs/Alteration", "generators/item_orbs/Annulment", "generators/item_orbs/Augment", "generators/item_orbs/Chaos", "generators/item_orbs/EnchantmentBench", "generators/item_orbs/Exalted", "generators/item_orbs/ItemOrb", "generators/item_orbs/Regal", "generators/item_orbs/Scouring", "generators/item_orbs/Talisman", "generators/item_orbs/Transmute", "generators/item_orbs/Vaal"], function (exports_49, context_49) {
     "use strict";
-    var __moduleName = context_46 && context_46.id;
+    var __moduleName = context_49 && context_49.id;
     return {
         setters: [
             function (Alchemy_2_1) {
-                exports_46({
+                exports_49({
                     "Alchemy": Alchemy_2_1["default"]
                 });
             },
             function (Alteration_1_1) {
-                exports_46({
+                exports_49({
                     "Alteration": Alteration_1_1["default"]
                 });
             },
             function (Annulment_1_1) {
-                exports_46({
+                exports_49({
                     "Annulment": Annulment_1_1["default"]
                 });
             },
             function (Augment_2_1) {
-                exports_46({
+                exports_49({
                     "Augment": Augment_2_1["default"]
                 });
             },
             function (Chaos_1_1) {
-                exports_46({
+                exports_49({
                     "Chaos": Chaos_1_1["default"]
                 });
             },
             function (EnchantmentBench_1_1) {
-                exports_46({
+                exports_49({
                     "EnchantmentBench": EnchantmentBench_1_1["default"]
                 });
             },
             function (Exalted_2_1) {
-                exports_46({
+                exports_49({
                     "Exalted": Exalted_2_1["default"]
                 });
             },
             function (ItemOrb_13_1) {
-                exports_46({
+                exports_49({
                     "ItemOrb": ItemOrb_13_1["default"]
                 });
             },
             function (Regal_1_1) {
-                exports_46({
+                exports_49({
                     "Regal": Regal_1_1["default"]
                 });
             },
             function (Scouring_3_1) {
-                exports_46({
+                exports_49({
                     "Scouring": Scouring_3_1["default"]
                 });
             },
             function (Talisman_1_1) {
-                exports_46({
+                exports_49({
                     "Talisman": Talisman_1_1["default"]
                 });
             },
             function (Transmute_7_1) {
-                exports_46({
+                exports_49({
                     "Transmute": Transmute_7_1["default"]
                 });
             },
             function (Vaal_1_1) {
-                exports_46({
+                exports_49({
                     "Vaal": Vaal_1_1["default"]
                 });
             }
@@ -5652,9 +7435,9 @@ System.register("generators/item_orbs/index", ["generators/item_orbs/Alchemy", "
         }
     };
 });
-System.register("generators/MasterBenchOption", ["util/Flags", "util/ts", "mods/index", "generators/Generator"], function (exports_47, context_47) {
+System.register("generators/MasterBenchOption", ["util/Flags", "util/ts", "mods/index", "generators/Generator"], function (exports_50, context_50) {
     "use strict";
-    var __moduleName = context_47 && context_47.id;
+    var __moduleName = context_50 && context_50.id;
     var Flags_15, ts_2, mods_5, Generator_2, MasterBenchOption;
     return {
         setters: [
@@ -5731,7 +7514,7 @@ System.register("generators/MasterBenchOption", ["util/Flags", "util/ts", "mods/
                     };
                     var item_classes = this.props.item_classes;
                     applicable_flags.wrong_itemclass =
-                        item_classes.find(function (item_class) { return item_class.primary === item.baseitem.item_class.primary; }) === undefined;
+                        item_classes.find(function (item_class) { return item_class === item.baseitem.item_class; }) === undefined;
                     return applicable_flags;
                 };
                 /**
@@ -5770,7 +7553,7 @@ System.register("generators/MasterBenchOption", ["util/Flags", "util/ts", "mods/
                     var applicable_flags = __assign({}, _super.prototype.isModApplicableTo.call(this, mod, item), { no_multimod: false });
                     // grep MasterMods and set failure if we cant multimod
                     var master_mods = item.mods.filter(function (other) { return other.isMasterMod(); });
-                    var has_no_multi_mod = master_mods.find(function (other) { return other.props.primary === mods_5.metaMods.MULTIMOD; }) ===
+                    var has_no_multi_mod = master_mods.find(function (other) { return other.props.id === mods_5.metaMods.MULTIMOD; }) ===
                         undefined;
                     if (master_mods.length > 0 && has_no_multi_mod) {
                         applicable_flags.no_multimod = true;
@@ -5779,13 +7562,13 @@ System.register("generators/MasterBenchOption", ["util/Flags", "util/ts", "mods/
                 };
                 return MasterBenchOption;
             }(Generator_2.default));
-            exports_47("default", MasterBenchOption);
+            exports_50("default", MasterBenchOption);
         }
     };
 });
-System.register("helpers/MasterBench", ["generators/MasterBenchOption"], function (exports_48, context_48) {
+System.register("helpers/MasterBench", ["generators/MasterBenchOption"], function (exports_51, context_51) {
     "use strict";
-    var __moduleName = context_48 && context_48.id;
+    var __moduleName = context_51 && context_51.id;
     var MasterBenchOption_1, MasterBench;
     return {
         setters: [
@@ -5841,13 +7624,13 @@ System.register("helpers/MasterBench", ["generators/MasterBenchOption"], functio
                 };
                 return MasterBench;
             }());
-            exports_48("default", MasterBench);
+            exports_51("default", MasterBench);
         }
     };
 });
-System.register("generators/ItemShowcase", ["helpers/MasterBench", "generators/Generator", "generators/item_orbs/Alchemy", "generators/item_orbs/EnchantmentBench", "generators/item_orbs/Vaal"], function (exports_49, context_49) {
+System.register("generators/ItemShowcase", ["helpers/MasterBench", "generators/Generator", "generators/item_orbs/Alchemy", "generators/item_orbs/EnchantmentBench", "generators/item_orbs/Vaal"], function (exports_52, context_52) {
     "use strict";
-    var __moduleName = context_49 && context_49.id;
+    var __moduleName = context_52 && context_52.id;
     var MasterBench_1, Generator_3, Alchemy_3, EnchantmentBench_2, Vaal_2, ItemShowcase;
     return {
         setters: [
@@ -5917,13 +7700,13 @@ System.register("generators/ItemShowcase", ["helpers/MasterBench", "generators/G
                 };
                 return ItemShowcase;
             }(Generator_3.default));
-            exports_49("default", ItemShowcase);
+            exports_52("default", ItemShowcase);
         }
     };
 });
-System.register("containers/AtlasNode", ["mods/Mod", "containers/ImmutableContainer"], function (exports_50, context_50) {
+System.register("containers/AtlasNode", ["mods/Mod", "containers/ImmutableContainer"], function (exports_53, context_53) {
     "use strict";
-    var __moduleName = context_50 && context_50.id;
+    var __moduleName = context_53 && context_53.id;
     var Mod_5, ImmutableContainer_3, SEXTANT_RANGE, AtlasNode;
     return {
         setters: [
@@ -5935,7 +7718,7 @@ System.register("containers/AtlasNode", ["mods/Mod", "containers/ImmutableContai
             }
         ],
         execute: function () {
-            exports_50("SEXTANT_RANGE", SEXTANT_RANGE = 55); // http://poecraft.com/atlas has 55
+            exports_53("SEXTANT_RANGE", SEXTANT_RANGE = 55); // http://poecraft.com/atlas has 55
             AtlasNode = /** @class */ (function (_super) {
                 __extends(AtlasNode, _super);
                 function AtlasNode(mods, props) {
@@ -5943,9 +7726,6 @@ System.register("containers/AtlasNode", ["mods/Mod", "containers/ImmutableContai
                     _this.props = props;
                     return _this;
                 }
-                AtlasNode.humanId = function (props) {
-                    return props.world_area.id.replace(/MapAtlas/, '');
-                };
                 AtlasNode.build = function (props) {
                     return new AtlasNode([], props);
                 };
@@ -6004,7 +7784,7 @@ System.register("containers/AtlasNode", ["mods/Mod", "containers/ImmutableContai
                         .concat(this.props.world_area.tags)
                         .filter(
                     // unique by id
-                    function (tag, i, tags) { return tags.findIndex(function (other) { return other.id === tag.id; }) === i; });
+                    function (tag, i, tags) { return tags.findIndex(function (other) { return other === tag; }) === i; });
                 };
                 AtlasNode.prototype.maxModsOfType = function () {
                     return Number.POSITIVE_INFINITY;
@@ -6034,18 +7814,15 @@ System.register("containers/AtlasNode", ["mods/Mod", "containers/ImmutableContai
                     var _this = this;
                     return this.affectingMods(atlas).filter(function (mod) { return mod.spawnweightFor(_this) <= 0; });
                 };
-                AtlasNode.prototype.humanId = function () {
-                    return AtlasNode.humanId(this.props);
-                };
                 return AtlasNode;
             }(ImmutableContainer_3.default));
-            exports_50("default", AtlasNode);
+            exports_53("default", AtlasNode);
         }
     };
 });
-System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "generators/Orb"], function (exports_51, context_51) {
+System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "generators/Orb"], function (exports_54, context_54) {
     "use strict";
-    var __moduleName = context_51 && context_51.id;
+    var __moduleName = context_54 && context_54.id;
     var make_error_2, Mod_6, Flags_16, Orb_2, ContextUndefined, CorruptedState, Type, Sextant;
     return {
         setters: [
@@ -6070,7 +7847,7 @@ System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "
                 }
                 return ContextUndefined;
             }(make_error_2.BaseError));
-            exports_51("ContextUndefined", ContextUndefined);
+            exports_54("ContextUndefined", ContextUndefined);
             CorruptedState = /** @class */ (function (_super) {
                 __extends(CorruptedState, _super);
                 function CorruptedState(message) {
@@ -6078,13 +7855,13 @@ System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "
                 }
                 return CorruptedState;
             }(make_error_2.BaseError));
-            exports_51("CorruptedState", CorruptedState);
+            exports_54("CorruptedState", CorruptedState);
             (function (Type) {
                 Type[Type["apprentice"] = 1] = "apprentice";
                 Type[Type["journeyman"] = 2] = "journeyman";
                 Type[Type["master"] = 3] = "master";
             })(Type || (Type = {}));
-            exports_51("Type", Type);
+            exports_54("Type", Type);
             Sextant = /** @class */ (function (_super) {
                 __extends(Sextant, _super);
                 function Sextant() {
@@ -6214,43 +7991,43 @@ System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "
                 Sextant.type = Type;
                 return Sextant;
             }(Orb_2.default));
-            exports_51("default", Sextant);
+            exports_54("default", Sextant);
         }
     };
 });
-System.register("generators/index", ["generators/item_orbs/index", "generators/ItemShowcase", "generators/MasterBenchOption", "generators/Sextant"], function (exports_52, context_52) {
+System.register("generators/index", ["generators/item_orbs/index", "generators/ItemShowcase", "generators/MasterBenchOption", "generators/Sextant"], function (exports_55, context_55) {
     "use strict";
-    var __moduleName = context_52 && context_52.id;
+    var __moduleName = context_55 && context_55.id;
     return {
         setters: [
-            function (_5_1) {
-                exports_52({
-                    "Alchemy": _5_1["Alchemy"],
-                    "Annulment": _5_1["Annulment"],
-                    "Alteration": _5_1["Alteration"],
-                    "Augment": _5_1["Augment"],
-                    "Chaos": _5_1["Chaos"],
-                    "EnchantmentBench": _5_1["EnchantmentBench"],
-                    "Exalted": _5_1["Exalted"],
-                    "Regal": _5_1["Regal"],
-                    "Scouring": _5_1["Scouring"],
-                    "Talisman": _5_1["Talisman"],
-                    "Transmute": _5_1["Transmute"],
-                    "Vaal": _5_1["Vaal"]
+            function (_4_1) {
+                exports_55({
+                    "Alchemy": _4_1["Alchemy"],
+                    "Annulment": _4_1["Annulment"],
+                    "Alteration": _4_1["Alteration"],
+                    "Augment": _4_1["Augment"],
+                    "Chaos": _4_1["Chaos"],
+                    "EnchantmentBench": _4_1["EnchantmentBench"],
+                    "Exalted": _4_1["Exalted"],
+                    "Regal": _4_1["Regal"],
+                    "Scouring": _4_1["Scouring"],
+                    "Talisman": _4_1["Talisman"],
+                    "Transmute": _4_1["Transmute"],
+                    "Vaal": _4_1["Vaal"]
                 });
             },
             function (ItemShowcase_1_1) {
-                exports_52({
+                exports_55({
                     "ItemShowcase": ItemShowcase_1_1["default"]
                 });
             },
             function (MasterBenchOption_2_1) {
-                exports_52({
+                exports_55({
                     "MasterBenchOption": MasterBenchOption_2_1["default"]
                 });
             },
             function (Sextant_1_1) {
-                exports_52({
+                exports_55({
                     "Sextant": Sextant_1_1["default"]
                 });
             }
@@ -6259,24 +8036,25 @@ System.register("generators/index", ["generators/item_orbs/index", "generators/I
         }
     };
 });
-System.register("containers/index", ["containers/AtlasNode", "containers/ImmutableContainer", "containers/item/index"], function (exports_53, context_53) {
+System.register("containers/index", ["containers/AtlasNode", "containers/ImmutableContainer", "containers/item/index"], function (exports_56, context_56) {
     "use strict";
-    var __moduleName = context_53 && context_53.id;
+    var __moduleName = context_56 && context_56.id;
     return {
         setters: [
             function (AtlasNode_1_1) {
-                exports_53({
+                exports_56({
                     "AtlasNode": AtlasNode_1_1["default"]
                 });
             },
             function (ImmutableContainer_4_1) {
-                exports_53({
+                exports_56({
                     "ImmutableContainer": ImmutableContainer_4_1["default"]
                 });
             },
             function (item_1_1) {
-                exports_53({
-                    "Item": item_1_1["default"]
+                exports_56({
+                    "Item": item_1_1["default"],
+                    "ItemArmourProperties": item_1_1["ItemArmourProperties"]
                 });
             }
         ],
@@ -6284,9 +8062,9 @@ System.register("containers/index", ["containers/AtlasNode", "containers/Immutab
         }
     };
 });
-System.register("helpers/Atlas", ["containers/AtlasNode", "generators/Sextant"], function (exports_54, context_54) {
+System.register("helpers/Atlas", ["containers/AtlasNode", "generators/Sextant"], function (exports_57, context_57) {
     "use strict";
-    var __moduleName = context_54 && context_54.id;
+    var __moduleName = context_57 && context_57.id;
     var AtlasNode_2, Sextant_2, Atlas;
     return {
         setters: [
@@ -6309,7 +8087,7 @@ System.register("helpers/Atlas", ["containers/AtlasNode", "generators/Sextant"],
                 }
                 Atlas.buildLookupTable = function (atlas) {
                     return atlas.reduce(function (nodes, props) {
-                        return nodes.set(AtlasNode_2.default.humanId(props), new AtlasNode_2.default([], props));
+                        return nodes.set(props.world_area.id, new AtlasNode_2.default([], props));
                     }, new Map());
                 };
                 Atlas.build = function (atlas) {
@@ -6326,10 +8104,10 @@ System.register("helpers/Atlas", ["containers/AtlasNode", "generators/Sextant"],
                 /**
                  * wrapper for map get that ensures a node or throws
                  */
-                Atlas.prototype.get = function (id) {
-                    var node = this.nodes.get(id);
+                Atlas.prototype.get = function (world_area_id) {
+                    var node = this.nodes.get(world_area_id);
                     if (node == null) {
-                        throw new Error("IndexError: '" + id + "' not found");
+                        throw new Error("IndexError: '" + world_area_id + "' not found");
                     }
                     return node;
                 };
@@ -6367,14 +8145,14 @@ System.register("helpers/Atlas", ["containers/AtlasNode", "generators/Sextant"],
                         return __assign({}, builder, { nodes: Atlas.buildLookupTable(_this.asArray().map(function (node) { return node.removeAllMods().props; })) });
                     });
                 };
-                Atlas.prototype.addMod = function (mod, node_id) {
-                    return this.mutateNode(node_id, function (node) { return node.addMod(mod); });
+                Atlas.prototype.addMod = function (mod, world_area_id) {
+                    return this.mutateNode(world_area_id, function (node) { return node.addMod(mod); });
                 };
-                Atlas.prototype.removeMod = function (mod, node_id) {
-                    return this.mutateNode(node_id, function (node) { return node.removeMod(mod); });
+                Atlas.prototype.removeMod = function (mod, world_area_id) {
+                    return this.mutateNode(world_area_id, function (node) { return node.removeMod(mod); });
                 };
-                Atlas.prototype.mutateNode = function (node_id, mutate) {
-                    var target = this.get(node_id);
+                Atlas.prototype.mutateNode = function (world_area_id, mutate) {
+                    var target = this.get(world_area_id);
                     var mutated = mutate(target);
                     if (target === mutated) {
                         return this;
@@ -6382,20 +8160,22 @@ System.register("helpers/Atlas", ["containers/AtlasNode", "generators/Sextant"],
                     else {
                         return this.withMutations(function (_a) {
                             var nodes = _a.nodes, builder = __rest(_a, ["nodes"]);
-                            return __assign({}, builder, { nodes: new Map(nodes).set(node_id, mutated) });
+                            return __assign({}, builder, { nodes: new Map(nodes).set(world_area_id, mutated) });
                         });
                     }
                 };
-                Atlas.prototype.applySextant = function (sextant, node_id) {
+                Atlas.prototype.applySextant = function (sextant, world_area_id) {
                     var sextant_on_atlas = this.prepareSextant(sextant);
-                    return this.mutateNode(node_id, function (node) { return sextant_on_atlas.applyTo(node); });
+                    return this.mutateNode(world_area_id, function (node) {
+                        return sextant_on_atlas.applyTo(node);
+                    });
                 };
-                Atlas.prototype.modsFor = function (sextant, node_id) {
+                Atlas.prototype.modsFor = function (sextant, world_area_id) {
                     var sextant_on_atlas = this.prepareSextant(sextant);
-                    return sextant_on_atlas.modsFor(this.get(node_id));
+                    return sextant_on_atlas.modsFor(this.get(world_area_id));
                 };
-                Atlas.prototype.blockedMods = function (node_id) {
-                    var target = this.get(node_id);
+                Atlas.prototype.blockedMods = function (world_area_id) {
+                    var target = this.get(world_area_id);
                     return Sextant_2.default.blockedMods(target, this.asArray());
                 };
                 Atlas.prototype.prepareSextant = function (sextant) {
@@ -6406,40 +8186,40 @@ System.register("helpers/Atlas", ["containers/AtlasNode", "generators/Sextant"],
                 };
                 return Atlas;
             }());
-            exports_54("default", Atlas);
+            exports_57("default", Atlas);
         }
     };
 });
-System.register("interfaces/Builder", [], function (exports_55, context_55) {
-    "use strict";
-    var __moduleName = context_55 && context_55.id;
-    return {
-        setters: [],
-        execute: function () {
-        }
-    };
-});
-System.register("interfaces/Buildable", [], function (exports_56, context_56) {
-    "use strict";
-    var __moduleName = context_56 && context_56.id;
-    return {
-        setters: [],
-        execute: function () {
-        }
-    };
-});
-System.register("interfaces/index", [], function (exports_57, context_57) {
-    "use strict";
-    var __moduleName = context_57 && context_57.id;
-    return {
-        setters: [],
-        execute: function () {
-        }
-    };
-});
-System.register("helpers/PropsTable", ["make-error"], function (exports_58, context_58) {
+System.register("interfaces/Builder", [], function (exports_58, context_58) {
     "use strict";
     var __moduleName = context_58 && context_58.id;
+    return {
+        setters: [],
+        execute: function () {
+        }
+    };
+});
+System.register("interfaces/Buildable", [], function (exports_59, context_59) {
+    "use strict";
+    var __moduleName = context_59 && context_59.id;
+    return {
+        setters: [],
+        execute: function () {
+        }
+    };
+});
+System.register("interfaces/index", [], function (exports_60, context_60) {
+    "use strict";
+    var __moduleName = context_60 && context_60.id;
+    return {
+        setters: [],
+        execute: function () {
+        }
+    };
+});
+System.register("helpers/PropsTable", ["make-error"], function (exports_61, context_61) {
+    "use strict";
+    var __moduleName = context_61 && context_61.id;
     var make_error_3, NotFound, PropsTable;
     return {
         setters: [
@@ -6455,7 +8235,7 @@ System.register("helpers/PropsTable", ["make-error"], function (exports_58, cont
                 }
                 return NotFound;
             }(make_error_3.BaseError));
-            exports_58("NotFound", NotFound);
+            exports_61("NotFound", NotFound);
             // take care. flow accepts any as a constructor
             PropsTable = /** @class */ (function () {
                 function PropsTable(all, constructor) {
@@ -6504,13 +8284,13 @@ System.register("helpers/PropsTable", ["make-error"], function (exports_58, cont
                 };
                 return PropsTable;
             }());
-            exports_58("default", PropsTable);
+            exports_61("default", PropsTable);
         }
     };
 });
-System.register("helpers/createTables", ["containers/AtlasNode", "containers/item/Item", "generators/MasterBenchOption", "mods/Mod", "helpers/PropsTable"], function (exports_59, context_59) {
+System.register("helpers/createTables", ["containers/AtlasNode", "containers/item/Item", "generators/MasterBenchOption", "mods/Mod", "helpers/PropsTable"], function (exports_62, context_62) {
     "use strict";
-    var __moduleName = context_59 && context_59.id;
+    var __moduleName = context_62 && context_62.id;
     function createTable(props, constructor) {
         return new PropsTable_1.default(props, constructor);
     }
@@ -6534,43 +8314,43 @@ System.register("helpers/createTables", ["containers/AtlasNode", "containers/ite
             }
         ],
         execute: function () {
-            exports_59("createAtlasNodes", createAtlasNodes = function (props) {
+            exports_62("createAtlasNodes", createAtlasNodes = function (props) {
                 return createTable(props, AtlasNode_3.default);
             });
-            exports_59("createItems", createItems = function (props) {
+            exports_62("createItems", createItems = function (props) {
                 return createTable(props, Item_2.default);
             });
-            exports_59("createMasterBenchOptions", createMasterBenchOptions = function (props) {
+            exports_62("createMasterBenchOptions", createMasterBenchOptions = function (props) {
                 return createTable(props, MasterBenchOption_3.default);
             });
-            exports_59("createMods", createMods = function (props) {
+            exports_62("createMods", createMods = function (props) {
                 return createTable(props, Mod_7.default);
             });
         }
     };
 });
-System.register("index", ["calculator/Stat", "calculator/ValueRange", "generators/Generator", "generators/index", "containers/index", "mods/index", "helpers/Atlas", "helpers/MasterBench", "helpers/createTables", "util/index"], function (exports_60, context_60) {
+System.register("index", ["calculator/Stat", "calculator/ValueRange", "generators/Generator", "generators/index", "containers/index", "mods/index", "helpers/Atlas", "helpers/MasterBench", "helpers/createTables", "util/index"], function (exports_63, context_63) {
     "use strict";
-    var __moduleName = context_60 && context_60.id;
+    var __moduleName = context_63 && context_63.id;
     return {
         setters: [
             function (Stat_3_1) {
-                exports_60({
+                exports_63({
                     "Stat": Stat_3_1["default"]
                 });
             },
-            function (ValueRange_3_1) {
-                exports_60({
-                    "ValueRange": ValueRange_3_1["default"]
+            function (ValueRange_4_1) {
+                exports_63({
+                    "ValueRange": ValueRange_4_1["default"]
                 });
             },
             function (Generator_4_1) {
-                exports_60({
+                exports_63({
                     "Generator": Generator_4_1["default"]
                 });
             },
             function (index_1_1) {
-                exports_60({
+                exports_63({
                     "Alchemy": index_1_1["Alchemy"],
                     "Alteration": index_1_1["Alteration"],
                     "Annulment": index_1_1["Annulment"],
@@ -6589,28 +8369,29 @@ System.register("index", ["calculator/Stat", "calculator/ValueRange", "generator
                 });
             },
             function (containers_1_1) {
-                exports_60({
+                exports_63({
                     "AtlasNode": containers_1_1["AtlasNode"],
-                    "Item": containers_1_1["Item"]
+                    "Item": containers_1_1["Item"],
+                    "ItemArmourProperties": containers_1_1["ItemArmourProperties"]
                 });
             },
             function (mods_6_1) {
-                exports_60({
+                exports_63({
                     "Mod": mods_6_1["Mod"]
                 });
             },
             function (Atlas_1_1) {
-                exports_60({
+                exports_63({
                     "Atlas": Atlas_1_1["default"]
                 });
             },
             function (MasterBench_2_1) {
-                exports_60({
+                exports_63({
                     "MasterBench": MasterBench_2_1["default"]
                 });
             },
             function (createTables_1_1) {
-                exports_60({
+                exports_63({
                     "createAtlasNodes": createTables_1_1["createAtlasNodes"],
                     "createItems": createTables_1_1["createItems"],
                     "createMasterBenchOptions": createTables_1_1["createMasterBenchOptions"],
@@ -6618,7 +8399,7 @@ System.register("index", ["calculator/Stat", "calculator/ValueRange", "generator
                 });
             },
             function (util_1_1) {
-                exports_60({
+                exports_63({
                     "anySet": util_1_1["anySet"]
                 });
             }
