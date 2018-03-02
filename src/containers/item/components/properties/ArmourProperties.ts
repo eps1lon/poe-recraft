@@ -49,14 +49,7 @@ export default class ItemArmourProperties extends ItemProperties
     const stats_as_array: Stat[] = [...Object.values(stats)];
 
     const augmented_props = _.mapValues(props, (value: Value) => {
-      const augmented = value.augmentWith(stats_as_array).compute();
-
-      const property: NumericProperty = {
-        type: augmented === value.base ? 'simple' : 'augmented',
-        values: augmented.valueOf(),
-      };
-
-      return property;
+      return  value.augmentWith(stats_as_array).compute() as NumericProperty;
     });
 
     return augmented_props;
@@ -67,11 +60,11 @@ export default class ItemArmourProperties extends ItemProperties
     return (
       super.any() ||
       // armour > 0
-      !ValueRange.isZero(armour.values) ||
+      !ValueRange.isZero(armour.value) ||
       // es > 0
-      !ValueRange.isZero(energy_shield.values) ||
+      !ValueRange.isZero(energy_shield.value) ||
       // eva > 0
-      !ValueRange.isZero(evasion.values)
+      !ValueRange.isZero(evasion.value)
     );
   }
 }
