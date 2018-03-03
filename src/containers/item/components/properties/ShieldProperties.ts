@@ -5,7 +5,8 @@ export interface ShieldProperties extends ArmourProperties {
   block(): NumericProperty;
 }
 
-export default class ItemShieldProperties extends ItemArmourProperties implements ShieldProperties {
+export default class ItemShieldProperties extends ItemArmourProperties
+  implements ShieldProperties {
   public block() {
     const { shield_type } = this.parent.baseitem;
 
