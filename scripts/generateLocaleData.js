@@ -23,7 +23,8 @@ process.on('unhandledRejection', up => { throw up })
 readdir(txt_dir)
   .then(files => {
     files.filter(isDescriptionFile).forEach(file => {
-      const text = stripBom(fs.readFileSync(path.join(txt_dir, file), {
+      const filepath = path.join(txt_dir, file);
+      const text = stripBom(fs.readFileSync(filepath, {
         encoding: 'utf16le'
       }));
 
@@ -48,7 +49,7 @@ readdir(txt_dir)
           try {
             parser.feed(chunk);
           } catch (err) {
-            console.log(file);
+            console.log(filepath);
             console.log(chunk);
             throw err;
           }

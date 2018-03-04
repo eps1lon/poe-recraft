@@ -74,8 +74,17 @@ const getKey = (row, i) => {
 
 locale_files.filter(isExport).forEach(locale_file => {
   const locale = path.basename(locale_file, '.json');
-  const export_json = fs.readFileSync(path.join(export_dir, locale_file));
-  const datas = JSON.parse(export_json);
+  const filepath = path.join(export_dir, locale_file);
+  const export_json = fs.readFileSync(filepath);
+
+  let datas;
+  try {
+    datas = JSON.parse(export_json);
+  } catch (err) {
+    err.message = `error in ${filepath}:\n${err.message}`;
+    throw err;
+  }
+ 
 
   const locale_data_dir = path.join(__dirname, '../locale-data');
 
