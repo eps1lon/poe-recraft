@@ -17,6 +17,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
   It is adviced to filter this data for your own usage if you use it in a online
   propduction environment. ([#33](https://github.com/eps1lon/poe-mods/pull/33))
 - Data for equipment, prefix and suffix only was included. ([c70b406969e23ae68f77fd170a6c207975ea3a1b](https://github.com/eps1lon/poe-mods/commit/c70b406969e23ae68f77fd170a6c207975ea3a1b))
+- Shield and Weapon properties. This also changed the api of armour properties.
+  ([#36](https://github.com/eps1lon/poe-mods/pull/36))
 
 ### Changed
 - props schema now uses string ids as primary whenever possible. The primaries
