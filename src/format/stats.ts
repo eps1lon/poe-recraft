@@ -52,10 +52,9 @@ const formatStats = (
   while (description_file !== undefined) {
     const data: Descriptions = description_file.data;
 
-    lines.push(...formatWithFinder(untranslated, ({ id }) => data[id]));
-    lines.push(
-      ...formatWithFinder(untranslated, ({ id }) => findDescription(id, data))
-    );
+    for (const descriptionFinder of createDescriptionFindStrategies(data)) {
+      lines.push(...formatWithFinder(untranslated, descriptionFinder));
+    }
 
     description_file = description_file.meta.include
       ? datas[description_file.meta.include]
@@ -68,6 +67,22 @@ const formatStats = (
 };
 
 export default formatStats;
+
+/**
+ * creates an array of methods that can be used to find a description for a
+ * given stat. 
+ * 
+ * return value is to be interpreted as a priority queue
+ * @param descriptions 
+ */
+export function createDescriptionFindStrategies(
+  descriptions: Descriptions
+): Array<(stat: Stat) => Description | undefined> {
+  return [
+    ({ id }) => descriptions[id],
+    ({ id }) => findDescription(id, descriptions)
+  ];
+}
 
 /**
  * O(n) lookup if hash lookup fails
