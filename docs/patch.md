@@ -5,7 +5,7 @@ game data.
 1. in Omega2k/PyPoe:
     1. `pypoe_ui`
     2. open `Content.ggpk` for `{client}`
-    3. extract `MetaData/StatDescriptions/*` into `tmp/unprocessed`
+    3. extract `MetaData/StatDescriptions/*` into `tmp/raw`
 2. in this package:
     1. ```$ npm run generate-locale-data```
         * Be aware that the description files can have sloppy formatting
