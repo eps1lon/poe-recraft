@@ -68,7 +68,7 @@ if (distributor_codes === undefined) {
     const cmd = `pypoe_exporter \
       dat json tmp/exports/${code}.json \
       --files ${dats.join(' ')} \
-      --language ${language}`;
+      --language "${language}"`;
 
     console.log(`exporting '${code}'...`);
     await exec(cmd);
