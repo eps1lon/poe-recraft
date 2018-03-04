@@ -160,16 +160,16 @@ export default class Properties extends React.PureComponent<Props> {
       );
     }
 
-    if (augmentableNotZero(props.attack_time)) {
+    if (augmentableNotZero(props.aps)) {
       displayed.push(
         <Property key="aps" human="attacks per second">
           <PropertyValue
             type={
-              props.attack_time.augmented
+              props.aps.augmented
                 ? DisplayPropertyType.augmented
                 : DisplayPropertyType.default
             }
-            value={`${msToPerSecond(props.attack_time.value, 2)}%`}
+            value={`${msToPerSecond(props.aps.value, 2)}%`}
           />
         </Property>,
       );

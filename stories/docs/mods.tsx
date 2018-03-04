@@ -2,9 +2,10 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import {
   Item,
+  ArmourProperties,
+  WeaponProperties,
   createItems,
   createMods,
-  ItemArmourProperties,
   Container,
 } from 'poe-mods';
 import { format, Format } from 'poe-i18n';
@@ -37,31 +38,36 @@ const helmet = base_helmet.rarity
   .addMod(mods.fromId('ReducedLocalAttributeRequirements1'))
   .addMod(mods.fromId('AdditionalMinesPlacedSupportedUber1_'));
 
+const dagger: Item = items
+  .fromId('Metadata/Items/Weapons/OneHandWeapons/Daggers/Dagger20')
+  .rarity.set('rare')
+  .asElderItem()
+  .addMod(mods.fromId('LocalAddedChaosDamage1'))
+  .addMod(mods.fromId('LocalIncreasedPhysicalDamagePercent7'))
+  .addMod(mods.fromId('LocalAddedColdDamage1'))
+  .addMod(mods.fromId('LocalIncreasedAttackSpeed8'))
+  .addMod(mods.fromId('LocalCriticalStrikeChance5'));
+
 const snapshotProperties = (item: Item) => {
   const { properties } = item;
   const base_properties = {
     quality: properties.quality,
   };
 
-  if (properties instanceof ItemArmourProperties) {
-    const { armour, energy_shield, evasion } = properties.defences();
-    console.log(energy_shield)
+  if (properties instanceof ArmourProperties) {
+    return {
+      ...base_properties,
+      ...properties.defences(),
+    };
+  } else if (properties instanceof WeaponProperties) {
+    const cold_damage = properties.cold_damage()
 
     return {
       ...base_properties,
-      armour: {
-        augmented: armour.type === 'augmented',
-        value: armour.values,
-      },
-      energy_shield: {
-        augmented: energy_shield.type === 'augmented',
-        value: energy_shield.values,
-      },
-      evasion: {
-        augmented: evasion.type === 'augmented',
-        value: evasion.values,
-      },
-    };
+      physical_damage: properties.physical_damage(),
+      cold_damage: [cold_damage.min.value, cold_damage.max.value],
+      aps: properties.attack_speed()
+    }
   } else {
     return base_properties;
   }
@@ -138,8 +144,8 @@ const snapShotItem = (item: Item, format: Format): Popup['props']['item'] => {
   };
 };
 
-format.configure({datas: i18n.datas})
+format.configure({ datas: i18n.datas });
 
-storiesOf('poe-mods integration', module).add('Helmet', () => (
-  <Popup item={snapShotItem(helmet, format)} />
-));
+storiesOf('poe-mods integration', module)
+  .add('Helmet', () => <Popup item={snapShotItem(helmet, format)} />)
+  .add('Weapon', () => <Popup item={snapShotItem(dagger, format)} />);

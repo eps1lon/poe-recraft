@@ -51,7 +51,7 @@ export interface WeaponProperties extends AbstractProperties {
   lightning_damage?: Value;
   chaos_damage?: Value;
   // time between attacks in ms
-  attack_time?: AugmentableValue<SingleValue>;
+  aps?: AugmentableValue<SingleValue>;
   /**
    * value: 0-10000
    *        10000 => 100%

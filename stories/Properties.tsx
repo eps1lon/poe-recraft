@@ -53,7 +53,7 @@ storiesOf('properties', module)
         cold_damage: [10, 13],
         fire_damage: 4,
         lightning_damage: [1, 400],
-        attack_time: {
+        aps: {
           value: 750,
         },
         crit: {
@@ -69,7 +69,7 @@ storiesOf('properties', module)
       properties={{
         cold_damage: [10, 13],
         chaos_damage: [500, 600],
-        attack_time: {
+        aps: {
           value: 750,
         },
         crit: {
