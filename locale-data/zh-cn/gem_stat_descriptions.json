@@ -353,12 +353,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助技能的效果范围扩大 %1%%%",
+          "text": "被辅助技能的范围效果扩大 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助技能的效果范围缩小 %1%%%",
+          "text": "被辅助技能的范围效果缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -373,12 +373,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助技能的总效果范围额外扩大 %1%%%",
+          "text": "被辅助技能的总范围效果额外扩大 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助技能的总效果范围额外缩小 %1%%%",
+          "text": "被辅助技能的总范围效果额外缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -393,12 +393,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助技能会使死亡时产生的效果范围扩大 %1%%%",
+          "text": "被辅助技能会使死亡时产生的范围效果扩大 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助技能会使死亡时产生的效果范围缩小 %1%%%",
+          "text": "被辅助技能会使死亡时产生的范围效果缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -758,12 +758,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助技能的攻击和法术基础暴击率提高 %1%%%",
+          "text": "被辅助技能的攻击和法术暴击率提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助技能的攻击和法术基础暴击率降低 %1%%%",
+          "text": "被辅助技能的攻击和法术暴击率降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -778,7 +778,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "被辅助技能获得 %1$+d%% 暴击伤害加成",
+          "text": "被辅助技能获得 %1$+d%% 攻击和法术基础暴击伤害加成",
           "formatters": []
         }
       ]
@@ -961,12 +961,12 @@
       "translations": [
         {
           "matchers": [[1, "#"], "#"],
-          "text": "被辅助技能击中中毒目标时，每层中毒效果造成的总伤害额外提高 %1%%%，最多额外提高 %2%",
+          "text": "被辅助技能击中中毒目标时，每层中毒效果造成的总伤害额外提高 %1%%%，最多 %2% 层中毒效果",
           "formatters": []
         },
         {
           "matchers": [["#", -1], "#"],
-          "text": "被辅助技能击中中毒目标时，每层中毒效果造成的总伤害额外降低 %1%%%，最多额外降低 %2%",
+          "text": "被辅助技能击中中毒目标时，每层中毒效果造成的总伤害额外降低 %1%%%，最多 %2% 层中毒效果",
           "formatters": [
             {
               "id": "negate",
@@ -1814,12 +1814,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助的技能的投射物总速度额外提高 %1%%%",
+          "text": "被辅助技能的投射物总速度额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助的技能的投射物总速度额外降低 %1%%%",
+          "text": "被辅助技能的投射物总速度额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1925,7 +1925,12 @@
         {
           "matchers": ["#"],
           "text": "被辅助技能无法造成点燃、冰冻、冰缓和感电状态",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextElementalStatusAilments"
+            }
+          ]
         }
       ]
     },
@@ -2119,6 +2124,21 @@
         }
       ]
     },
+    "chance_to_summon_support_ghost_on_killing_blow_%": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "当被辅助技能、或被辅助技能召唤的非幻灵召唤生物击败敌人时，有 %1%%% 几率召唤 1 个幻灵",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "当被辅助技能、或被辅助技能召唤的非幻灵召唤生物击败敌人时，召唤 1 个幻灵",
+          "formatters": []
+        }
+      ]
+    },
     "accuracy_rating": {
       "stats": ["accuracy_rating"],
       "translations": [
@@ -2169,7 +2189,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "被辅助技能会使攻击和法术基础暴击率提高 %1$+d%% ",
+          "text": "被辅助技能的攻击和法术基础暴击率提高 %1$+d%% ",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -2466,6 +2486,21 @@
         }
       ]
     },
+    "base_number_of_support_ghosts_allowed": {
+      "stats": ["base_number_of_support_ghosts_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "最多可同时拥有 1 个幻灵",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "最多可同时拥有 %1% 个幻灵",
+          "formatters": []
+        }
+      ]
+    },
     "base_physical_damage_%_to_convert_to_lightning": {
       "stats": ["base_physical_damage_%_to_convert_to_lightning"],
       "translations": [
@@ -2604,7 +2639,7 @@
         },
         {
           "matchers": ["#", "#", 0],
-          "text": "被辅助的攻击技能会使敌人流血",
+          "text": "被辅助的攻击技能无法使敌人流血",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2614,7 +2649,7 @@
         },
         {
           "matchers": ["#", "#", "#"],
-          "text": "被辅助的攻击技能会使敌人流血",
+          "text": "被辅助的攻击技能无法使敌人流血",
           "formatters": []
         }
       ]
@@ -2690,21 +2725,6 @@
         {
           "matchers": [[100, "#"]],
           "text": "被辅助技能击败冰冻敌人时会获得狂怒球",
-          "formatters": []
-        }
-      ]
-    },
-    "chance_to_summon_support_ghost_on_killing_blow_%": {
-      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text": "当被辅助技能、或被辅助技能召唤的非幻灵召唤生物击败敌人时，有 %1%%% 几率召唤 1 个幻灵",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text": "当被辅助技能、或被辅助技能召唤的非幻灵召唤生物击败敌人时，召唤 1 个幻灵",
           "formatters": []
         }
       ]
@@ -3833,7 +3853,7 @@
       "stats": ["summon_mirage_archer_on_hit"],
       "translations": [
         {
-          "matchers": ["#"],
+          "matchers": [[1, "#"]],
           "text": "当你用被辅助技能发射的箭矢击中敌人时，召唤 1 个会使用此技能的【幻影弓手】",
           "formatters": []
         }
@@ -3888,6 +3908,21 @@
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_ghost_base_duration": {
+      "stats": ["support_ghost_base_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【幻灵】持续 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
               "arg": 1
             }
           ]
@@ -3971,7 +4006,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "被辅助技能对燃烧敌人附加 %1% - %2% 基础火焰伤害",
+          "text": "被辅助技能对燃烧的敌人附加 %1% - %2% 火焰伤害",
           "formatters": []
         }
       ]
@@ -4118,12 +4153,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助攻击技能的投射物击中造成的流血和中毒总伤害额外增加 %1%%%",
+          "text": "被辅助攻击技能的投射物击中造成的流血和中毒总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助攻击技能的投射物击中造成的流血和中毒总伤害额外减少 %1%%%",
+          "text": "被辅助攻击技能的投射物击中造成的流血和中毒总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4138,12 +4173,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助的技能额外增加 %1%%% 投射物总伤害",
+          "text": "被辅助技能额外提高 %1%%% 投射物总伤害",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助的技能额外减少 %1%%% 投射物总伤害",
+          "text": "被辅助技能额外降低 %1%%% 投射物总伤害",
           "formatters": [
             {
               "id": "negate",
@@ -4158,12 +4193,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助的攻击技能额外增加 %1%%% 投射物物理总伤害",
+          "text": "被辅助的攻击技能额外提高 %1%%% 投射物物理总伤害",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助的攻击技能额外减少 %1%%% 投射物物理总伤害",
+          "text": "被辅助的攻击技能额外降低 %1%%% 投射物物理总伤害",
           "formatters": [
             {
               "id": "negate",
@@ -4178,12 +4213,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助的技能额外增加 %1%%% 投射物攻击总速度",
+          "text": "被辅助技能额外提高 %1%%% 投射物攻击总速度",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助的技能额外减少 %1%%% 投射物攻击总速度",
+          "text": "被辅助技能额外降低 %1%%% 投射物攻击总速度",
           "formatters": [
             {
               "id": "negate",
@@ -4198,12 +4233,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助的技能石击中时额外增加 %1%%% 地雷总伤害",
+          "text": "被辅助的技能石击中时额外提高 %1%%% 地雷总伤害",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助的技能石击中时额外减少 %1%%% 地雷总伤害",
+          "text": "被辅助的技能石击中时额外降低 %1%%% 地雷总伤害",
           "formatters": [
             {
               "id": "negate",
@@ -4221,7 +4256,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "被辅助的技能击败时有 %1%%% 几率获得持续 %2% 秒的猛攻状态",
+          "text": "被辅助技能击败时有 %1%%% 几率获得持续 %2% 秒的猛攻状态",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -4240,12 +4275,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助的投射物技能额外增加 %1%%% 投射物总伤害",
+          "text": "被辅助的投射物技能额外提高 %1%%% 投射物总伤害",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助的投射物技能额外减少 %1%%% 投射物总伤害",
+          "text": "被辅助的投射物技能额外降低 %1%%% 投射物总伤害",
           "formatters": [
             {
               "id": "negate",
@@ -4260,12 +4295,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助技能的总效果范围扩大 %1%%%",
+          "text": "被辅助技能的总范围效果额外扩大 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助技能的总效果范围缩小 %1%%%",
+          "text": "被辅助技能的总范围效果额外缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4300,7 +4335,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助的范围技能还会影响身前和身后的指定区域",
+          "text": "被辅助的范围效果还会影响身前和身后的指定区域",
           "formatters": []
         }
       ]
@@ -4334,12 +4369,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助的技能额外提高 %1%%% 陷阱和地雷总伤害",
+          "text": "被辅助技能额外提高 %1%%% 陷阱和地雷总伤害",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助的技能额外降低 %1%%% 陷阱和地雷总伤害",
+          "text": "被辅助技能额外降低 %1%%% 陷阱和地雷总伤害",
           "formatters": [
             {
               "id": "negate",
@@ -4354,12 +4389,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助的技能石击中时额外增加 %1%%% 陷阱总伤害",
+          "text": "被辅助的技能石击中时额外提高 %1%%% 陷阱总伤害",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助的技能石击中时额外减少 %1%%% 陷阱总伤害",
+          "text": "被辅助的技能石击中时额外降低 %1%%% 陷阱总伤害",
           "formatters": [
             {
               "id": "negate",
@@ -4374,7 +4409,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助的技能额外增加 %1%%% 异常效果总伤害",
+          "text": "被辅助技能额外提高 %1%%% 异常效果总伤害",
           "formatters": [
             {
               "id": "reminderstring",
@@ -4384,7 +4419,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助的技能额外减少 %1%%% 异常效果总伤害",
+          "text": "被辅助技能额外降低 %1%%% 异常效果总伤害",
           "formatters": [
             {
               "id": "negate",
@@ -4403,12 +4438,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助的技能增加 %1%%% 陷阱伤害",
+          "text": "被辅助技能提高 %1%%% 陷阱伤害",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助的技能减少 %1%%% 陷阱伤害",
+          "text": "被辅助技能降低 %1%%% 陷阱伤害",
           "formatters": [
             {
               "id": "negate",
@@ -4423,12 +4458,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助的技能增加 %1%%% 陷阱投掷速度",
+          "text": "被辅助技能提高 %1%%% 陷阱投掷速度",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助的技能减少 %1%%% 陷阱投掷速度",
+          "text": "被辅助技能降低 %1%%% 陷阱投掷速度",
           "formatters": [
             {
               "id": "negate",
@@ -4443,12 +4478,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助的技能增加 %1%%% 陷阱引爆范围",
+          "text": "被辅助技能扩大 %1%%% 陷阱引爆范围",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助的技能减少 %1%%% 陷阱引爆范围",
+          "text": "被辅助技能缩小 %1%%% 陷阱引爆范围",
           "formatters": [
             {
               "id": "negate",

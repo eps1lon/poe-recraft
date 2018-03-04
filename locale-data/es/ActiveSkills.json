@@ -43,12 +43,12 @@
   "inspiring_cry": {
     "displayedname": "Grito Inspirador",
     "description":
-      "Ejecuta un grito de guerra que aumenta tu daño y tu regeneración de maná y los de tus aliados si hay enemigos cercanos. El aumento de daño escala de acuerdo a los enemigos cercanos. Provoca a los enemigos cercanos para atacar al usuario. Comparte tiempo de recarga con otros Gritos de Guerra."
+      "Ejecuta un grito de guerra que otorga al usuario y a sus aliados cercanos aumento de daño y de regeneración de maná si hay enemigos cercanos. El aumento de daño escala proporcionalmente a los enemigos cercanos. Provoca a todos los enemigos cercanos para atacar al usuario. Comparte su tiempo de recarga con otras habilidades de Grito de Guerra."
   },
   "abyssal_cry": {
     "displayedname": "Grito Abisal",
     "description":
-      "Ejecuta un grito de guerra que entumece a los enemigos cercanos y hace que exploten cuando mueren. El entumecimiento aumenta en base a los enemigos cercanos. Provoca a los enemigos cercanos para atacar al usuario. Comparte tiempo de recarga con otros Gritos de Guerra."
+      "Ejecuta un grito de guerra que Entumece a los enemigos cercanos y hace que exploten cuando mueren. El efecto de Entumecer escala proporcionalmente a los enemigos cercanos. Provoca a todos los enemigos cercanos para atacar al usuario. Comparte su tiempo de recarga con otras habilidades de Grito de Guerra."
   },
   "leap_slam": {
     "displayedname": "Salto con Impacto",
@@ -191,7 +191,7 @@
   "raise_zombie": {
     "displayedname": "Levantar Zombi",
     "description":
-      "Levanta un esbirro zombi de algún cadáver, que te seguirá y atacará enemigos con ataques cuerpo a cuerpo y con un impacto en área."
+      "Levanta un esbirro zombi de algún cadáver, que te seguirá y atacará enemigos con ataques cuerpo a cuerpo y con un embate con área de efecto que no puede ser evadido."
   },
   "righteous_fire": {
     "displayedname": "Fuego Justo",
@@ -545,7 +545,7 @@
   },
   "monster_hatred": { "displayedname": "", "description": "" },
   "wrath": {
-    "displayedname": "Ira",
+    "displayedname": "Cólera",
     "description":
       "Proyecta un aura que añade daño de rayo a tus ataques y los de tus aliados, y hace que tus hechizos inflijan más daño de rayo."
   },
@@ -1005,7 +1005,7 @@
   "herald_of_ash": {
     "displayedname": "Heraldo de Ceniza",
     "description":
-      "Otorga un bonus que añade daño de fuego basado en tu daño físico. Mientras tengas este bonus, si matas a un enemigo con un ataque, otros enemigos cerca de él se incendiarán basado en el daño excedido. El incendio infligido por esta habilidad solamente puede ser afectado por modificadores al daño degenerativo (daño de incendio es daño degenerativo)."
+      "Otorga un bonus que añade daño de fuego basado en tu daño físico. Mientras tengas este bonus, si matas a un enemigo, otros enemigos cerca de él se incendiarán basándose en el daño excesivo. El incendio infligido por esta habilidad solamente puede ser afectado por modificadores al daño degenerativo (el daño de incendio es daño degenerativo)."
   },
   "herald_of_ice": {
     "displayedname": "Heraldo de Hielo",
@@ -1947,7 +1947,11 @@
   "repeated_pulse": { "displayedname": "", "description": "" },
   "add_buff_to_parent_caster": { "displayedname": "", "description": "" },
   "taunt_target": { "displayedname": "", "description": "" },
-  "curse_nova": { "displayedname": "", "description": "" },
+  "curse_nova": {
+    "displayedname": "Guarda Elemental",
+    "description":
+      "Dispara proyectiles en una nova, convirtiendo todo su daño físico a un elemento aleatorio, y otorga un bonus que te hace inmune a maldiciones por un tiempo."
+  },
   "vulnerable": { "displayedname": "", "description": "" },
   "super_goat_emerge": { "displayedname": "", "description": "" },
   "fire_orbs": { "displayedname": "", "description": "" },
@@ -2053,8 +2057,9 @@
       "Este hechizo crea filos etéreos que rotan en un área a tu alrededor que dañan cada 0,6 segundos a todos los enemigos dentro del área. A medida que se añaden más filos, el daño aumenta y se vuelve más frecuente."
   },
   "thrown_shield_projectile": {
-    "displayedname": "Escudo Lanzado",
-    "description": ""
+    "displayedname": "Lanzamiento de Escudo Espectral",
+    "description":
+      "Lanza una copia espectral de tu escudo en forma de proyectil que no puede perforar, e inflige daño proveniente de la mano secundaria potenciado por las defensas del escudo. Cuando choca con algo, se hará añicos, lanzando algunas esquirlas más pequeñas como proyectiles en todas las direcciones. Los modificadores que causan el lanzamiento de proyectiles adicionales añadirán más esquirlas, no más copias del escudo."
   },
   "avarius_cleave": {
     "displayedname": "Hendidura de Avarius",
@@ -2121,7 +2126,12 @@
   "breach_bone_nova_triggered": {
     "displayedname": "Nova de Hueso",
     "description":
-      "Una espiral de huesos estalla alrededor tuyo e inflige daño físico."
+      "Una nova de huesos estalla alrededor tuyo e inflige daño físico."
+  },
+  "icicle_nova_triggered": {
+    "displayedname": "Estallido de Carámbanos",
+    "description":
+      "Este ataque dispara proyectiles helados en una nova a tu alrededor, e inflige daño de ataque con todo el daño físico convertido a hielo."
   },
   "transition_object": { "displayedname": "", "description": "" },
   "breach_ball_lightning": { "displayedname": "", "description": "" },
@@ -2280,8 +2290,8 @@
       "El personaje usa sus puños para impactar el suelo delante suyo, con menor velocidad de ataque pero con más daño. Este ataque inflige Daño de Rayo a enemigos en un área grande, con una probabilidad de Electrocutarlos. No puede ser usada mientras se empuña un Arma. No puede ser asistida por Golpe Múltiple."
   },
   "player_fire_chasm": { "displayedname": "", "description": "" },
-  "empty_action": { "displayedname": "", "description": "" },
-  "empty_action_ally": { "displayedname": "", "description": "" },
+  "empty_action_spell": { "displayedname": "", "description": "" },
+  "empty_action_spell_ally": { "displayedname": "", "description": "" },
   "trigger_cascade": { "displayedname": "", "description": "" },
   "garukhan_combo_attack": { "displayedname": "", "description": "" },
   "garukhan_tornado": { "displayedname": "", "description": "" },
@@ -2454,8 +2464,9 @@
   },
   "lightning_elder_teleport_spark": { "displayedname": "", "description": "" },
   "endurance_charge_slam": {
-    "displayedname": "Impacto de Carga de Aguante",
-    "description": ""
+    "displayedname": "Embate Tectónico",
+    "description":
+      "Golpea el suelo con tu arma de mano principal desatando una ardiente fisura delante tuyo que inflige daño en área y libera un número aleatorio de fisuras más pequeñas que se dividen a partir de ella. Si tienes alguna Carga de Aguante, el número de fisuras se maximizará y una Carga de Aguante será consumida. Requiere una Maza, Espada, Hacha, Báculo, o estar Desarmado."
   },
   "lightning_elder_bolt": { "displayedname": "", "description": "" },
   "lightning_elder_tendrils": { "displayedname": "", "description": "" },
@@ -2470,10 +2481,10 @@
     "description":
       "Mientras caminas, esta habilidad causará que los cadáveres cerca de tus pisadas exploten e inflijan daño de fuego en un área. Las explosiones de los cadáveres no serán afectadas por modificadores al daño de hechizo y no pueden ser reflejadas."
   },
-  "empty_action2": { "displayedname": "", "description": "" },
-  "empty_action3": { "displayedname": "", "description": "" },
-  "empty_action4": { "displayedname": "", "description": "" },
-  "empty_action5": { "displayedname": "", "description": "" },
+  "empty_action_spell_2": { "displayedname": "", "description": "" },
+  "empty_action_spell_3": { "displayedname": "", "description": "" },
+  "empty_action_spell_4": { "displayedname": "", "description": "" },
+  "empty_action_spell_5": { "displayedname": "", "description": "" },
   "elder_siphon": { "displayedname": "", "description": "" },
   "elder_slamming_tentacles": { "displayedname": "", "description": "" },
   "elder_doom_projectile": { "displayedname": "", "description": "" },
@@ -2496,22 +2507,113 @@
   "summon_petrification_statue": {
     "displayedname": "Invocar Estatua de Petrificación",
     "description":
-      "Invoca una Estatua de Petrificación delante tuyo, que ralentiza a los enemigos con su mirada."
+      "Crea una Estatua de Petrificación delante tuyo, que ralentiza a los enemigos con su mirada hasta que se petrifican completamente."
   },
   "petrification_statue_gaze": { "displayedname": "", "description": "" },
   "ryslatha_parasite_ground": { "displayedname": "", "description": "" },
   "ice_flower": { "displayedname": "", "description": "" },
-  "void_shot": { "displayedname": "Disparo de Vacío", "description": "" },
+  "void_shot": {
+    "displayedname": "Disparo de Vacío",
+    "description":
+      "Dispara una flecha que desacelera hasta alcanzar el lugar objetivo. Allí, la flecha se vuelve inestable y explota, con lo que inflige daño de arma en un área y convierte la mitad del daño físico en daño de hielo."
+  },
   "tentacle_smash": {
-    "displayedname": "Aplastamiento de Tentáculos",
-    "description": ""
+    "displayedname": "Látigo de Tentáculos",
+    "description":
+      "Este ataque causa que tres tentáculos de otro mundo golpeen la tierra a tu alrededor, cada uno de los cuales inflige tu daño de ataque en un área."
   },
   "temporal_anomaly": {
     "displayedname": "Anomalía Temporal",
     "description": ""
   },
   "summon_void_sphere": {
-    "displayedname": "Invocar Esfera de Vacío",
+    "displayedname": "Anomalía Volátil",
+    "description":
+      "Crea un orbe que se mueve hacia los enemigos cercanos y que explota luego de un tiempo o cuando se acerca lo suficiente. La explosión inflige daño de hechizo de hielo en un área y deja tras de sí un Vórtice en el suelo por un tiempo secundario que continúa infligiendo daño degenerativo de hielo y escarcha a los enemigos atrapados dentro."
+  },
+  "empty_action_spell_loop": { "displayedname": "", "description": "" },
+  "empty_action_spell_loop2": { "displayedname": "", "description": "" },
+  "empty_action_spell_loop3": { "displayedname": "", "description": "" },
+  "empty_action_spell_loop4": { "displayedname": "", "description": "" },
+  "empty_action_spell_loop5": { "displayedname": "", "description": "" },
+  "mass_special_beam_cannon": { "displayedname": "", "description": "" },
+  "bestiary_stampede": { "displayedname": "", "description": "" },
+  "tiger_spirit_fangs": { "displayedname": "", "description": "" },
+  "tiger_spirit_lacerate": { "displayedname": "", "description": "" },
+  "tiger_spirit_teleport_slam": { "displayedname": "", "description": "" },
+  "tora_monster_trap": { "displayedname": "", "description": "" },
+  "intimidating_cry": {
+    "displayedname": "Grito Intimidatorio",
+    "description":
+      "Realiza un Grito de Guerra que otorga al usuario y a sus aliados cercanos velocidad de ataque aumentada si hay enemigos cercanos. El aumento de la velocidad de ataque escala con el número de enemigos cercanos. Provoca a todos los enemigos a atacar al usuario y los Intimida. Comparte su tiempo de recarga con otras habilidades de Grito de Guerra."
+  },
+  "monster_detonate_dead_area": { "displayedname": "", "description": "" },
+  "aspect_cat": {
+    "displayedname": "Aspecto del Gato",
+    "description":
+      "Mientras está activo otorga los bonus Sigilo del Gato y Agilidad del Gato en ese orden. Sigilo del Gato aumenta tu probabilidad de golpe crítico, hace que verte sea más difícil, y te da una probabilidad de evitar daño por un corto tiempo. Agilidad del Gato aumenta tu velocidad de ataque y lanzamiento de hechizos por un tiempo mayor."
+  },
+  "aspect_bird": {
+    "displayedname": "Aspecto del Ave",
+    "description":
+      "Mientras está activo, otorga Poder del Ave y Vuelo del Ave en ese orden. Poder del Ave te otorga a ti y a tus esbirros una probabilidad de infligir Daño Doble con golpes por un tiempo. Vuelo del Ave te otorga a ti y a tus esbirros Velocidad de Movimiento aumentada por un tiempo mayor."
+  },
+  "aspect_spider": {
+    "displayedname": "Aspecto de la Araña",
+    "description":
+      "Mientras está activo, periódicamente aplica una penalización de Telaraña a Enemigos cercanos y los Lisia. Cada Telaraña en un Enemigo aumenta el Daño que este recibe. Lisiar reduce su velocidad de movimiento."
+  },
+  "aspect_crab": {
+    "displayedname": "Aspecto del Cangrejo",
+    "description":
+      "Mientras está activo, te agrega periódicamente Barreras de Cangrejo, y otorga reducción adicional de Daño Físico por cada Barrera de Cangrejo que tengas. Todas las Barreras de Cangrejo se pierden cuando recibes daño físico de un golpe."
+  },
+  "vilenta_bomb_toss": { "displayedname": "", "description": "" },
+  "crab_spirit_burrow_path": { "displayedname": "", "description": "" },
+  "crab_spirit_charge": { "displayedname": "", "description": "" },
+  "fire_projectile_retaliation": {
+    "displayedname": "Represalia de Proyectil de Fuego",
     "description": ""
+  },
+  "physical_projectile_retaliation": {
+    "displayedname": "Represalia de Proyectil Físico",
+    "description": ""
+  },
+  "avian_tornado": {
+    "displayedname": "Tornado",
+    "description":
+      "Lanza un proyectil de tornado impredecible y perforante que se mueve aleatoriamente por un tiempo, infligiendo daño repetidamente a los enemigos que se cruza."
+  },
+  "monster_fading_projectile_spell": { "displayedname": "", "description": "" },
+  "empty_action_attack": { "displayedname": "", "description": "" },
+  "empty_action_attack_2": { "displayedname": "", "description": "" },
+  "empty_action_attack_3": { "displayedname": "", "description": "" },
+  "empty_action_attack_4": { "displayedname": "", "description": "" },
+  "empty_action_attack_5": { "displayedname": "", "description": "" },
+  "empty_action_loop_attack": { "displayedname": "", "description": "" },
+  "empty_action_loop_attack_2": { "displayedname": "", "description": "" },
+  "empty_action_loop_attack_3": { "displayedname": "", "description": "" },
+  "empty_action_loop_attack_4": { "displayedname": "", "description": "" },
+  "empty_action_loop_attack_5": { "displayedname": "", "description": "" },
+  "bestiary_spider_ground_stab": { "displayedname": "", "description": "" },
+  "bestiary_spider_hallucinate": { "displayedname": "", "description": "" },
+  "lightning_clone_retaliation": {
+    "displayedname": "Represalia de Clon de Rayo",
+    "description": ""
+  },
+  "capture_monster": {
+    "displayedname": "Capturar Monstruo",
+    "description": ""
+  },
+  "cold_beam_retaliation": { "displayedname": "", "description": "" },
+  "rabbit_summon_tiger": { "displayedname": "", "description": "" },
+  "ground_crab": { "displayedname": "", "description": "" },
+  "animate_guardian_weapon": {
+    "displayedname": "Animar Arma Guardiana",
+    "description": ""
+  },
+  "blinding_aura": {
+    "displayedname": "Aura Cegadora",
+    "description": "Emite un aura que ciega a los enemigos en un radio."
   }
 }

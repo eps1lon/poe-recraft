@@ -922,6 +922,26 @@
         }
       ]
     },
+    "spirit_strike_damage": {
+      "stats": ["support_spirit_strike_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สกิลนี้และมิเนียนจะแรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สกิลนี้และมิเนียนจะเบาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "trap_mine_damage": {
       "stats": ["support_trap_and_mine_damage_+%_final"],
       "translations": [
@@ -1433,6 +1453,16 @@
         {
           "matchers": [[100, "#"]],
           "text": "การโจมตีและสมุนเหล่านี้ี่จะ Maim การโจมตีเสมอ",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_spirit_strikes": {
+      "stats": ["melee_attack_number_of_spirit_strikes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "สกิลนี้จะโจมตีใส่ศัตรูข้างเคียง %1% ตัวด้วย",
           "formatters": []
         }
       ]

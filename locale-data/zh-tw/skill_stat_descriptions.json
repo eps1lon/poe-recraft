@@ -14,8 +14,28 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "犧牲目標的 %1%%% 生命，造成範圍混沌傷害",
+          "text": "犧牲 %1%%% 骷髏的生命造成相等的混沌傷害",
           "formatters": []
+        }
+      ]
+    },
+    "cast_speed_incr_skill_granted": {
+      "stats": ["cast_speed_+%_granted_from_skill"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "增加 %1%%% 施放速度",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "減少 %1%%% 施放速度",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -1016,7 +1036,22 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "技能持續 %1% 秒",
+          "text": "技能持續時間為 %1%",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "secondary_skill_duration": {
+      "stats": ["secondary_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "附帶持續時間為 %1% 秒",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -2233,16 +2268,6 @@
         }
       ]
     },
-    "physical_damage_taken_incr": {
-      "stats": ["physical_damage_taken_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "承受 %1%%% 更多物理傷害",
-          "formatters": []
-        }
-      ]
-    },
     "degen_effect_incr": {
       "stats": ["degen_effect_+%"],
       "translations": [
@@ -3427,6 +3452,21 @@
         }
       ]
     },
+    "attack_on_kill": {
+      "stats": ["attack_trigger_on_kill_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "擊殺時有 %1%%% 機率觸發此攻擊",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "擊殺時觸發此攻擊",
+          "formatters": []
+        }
+      ]
+    },
     "cast_on_attack": {
       "stats": ["cast_on_attack_use_%"],
       "translations": [
@@ -3547,6 +3587,21 @@
         }
       ]
     },
+    "cast_when_hit_target_self": {
+      "stats": ["cast_when_hit_%_target_self"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "你被擊中時有 %1%%% 機率觸發此法術",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "你被擊中時觸發此法術",
+          "formatters": []
+        }
+      ]
+    },
     "cast_on_death": {
       "stats": ["cast_on_death_%"],
       "translations": [
@@ -3577,6 +3632,21 @@
         }
       ]
     },
+    "cast_on_avian_buff": {
+      "stats": ["cast_on_gain_avians_flight_or_avians_might_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "當你獲得飛羽意志或飛羽飄翔時，有 %1%%% 機率觸發此法術",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "當你獲得飛羽意志或飛羽飄翔時觸發此法術",
+          "formatters": []
+        }
+      ]
+    },
     "cast_on_hit": {
       "stats": ["cast_on_hit_%"],
       "translations": [
@@ -3588,6 +3658,31 @@
         {
           "matchers": [[100, "#"]],
           "text": "當你擊中時，觸發此法術",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_hit_if_cursed": {
+      "stats": ["cast_on_hit_if_cursed_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "當你被詛咒時擊中敵人，有 %1%%% 機率觸發此法術",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "當你被詛咒時擊中敵人觸發此法術",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_lose_cats_stealth": {
+      "stats": ["cast_on_lose_cats_stealth"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "當你失去傲貓隱身時觸發此法術",
           "formatters": []
         }
       ]
@@ -4112,6 +4207,26 @@
         }
       ]
     },
+    "herald_of_ash_spell_fire_damage_incr": {
+      "stats": ["herald_of_ash_spell_fire_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% 更多火焰法術傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% 更少火焰法術傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "herald_of_ice_cold_damage_incr": {
       "stats": ["herald_of_ice_cold_damage_+%"],
       "translations": [
@@ -4500,6 +4615,26 @@
         {
           "matchers": [["#", -1]],
           "text": "周圍每 100 個敵人減少 %1%%% 傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "intimidating_cry_attack_speed": {
+      "stats": ["intimidating_cry_attack_speed_+%_per_100_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "附近每 100 個敵人增加 %1%%% 攻擊速度",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "附近每 100 個敵人減少 %1%%% 攻擊速度",
           "formatters": [
             {
               "id": "negate",
@@ -5234,7 +5369,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "當你使用此技能消耗 %1% 魔力時，獲得秘能波動",
+          "text": "此法術消耗 %1% 魔力時獲得秘能波動",
           "formatters": []
         }
       ]
@@ -5472,6 +5607,36 @@
         }
       ]
     },
+    "avoid_damage_chance": {
+      "stats": ["avoid_damage_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "被擊中時有 %1%%% 機率避免所有傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "被擊中時避免所有傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "damage_taken_incr": {
+      "stats": ["base_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "增加 %1%%% 承受傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "減少 %1%%% 承受傷害",
+          "formatters": []
+        }
+      ]
+    },
     "deal_no_chaos": {
       "stats": ["base_deal_no_chaos_damage"],
       "translations": [
@@ -5596,6 +5761,46 @@
         }
       ]
     },
+    "double_damage_chance": {
+      "stats": ["chance_to_deal_double_damage_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1%%% 機率造成 2 倍傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "trigger_on_animate_guardian_kill": {
+      "stats": ["chance_to_trigger_on_animate_guardian_kill_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "你的幻化守衛擊殺敵人時有 %1%%% 機率觸發此法術",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "你的幻化守衛擊殺敵人時觸發此法術",
+          "formatters": []
+        }
+      ]
+    },
+    "trigger_on_animate_weapon_kill": {
+      "stats": ["chance_to_trigger_on_animate_weapon_kill_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "當你幻化武器擊殺敵人時，有 %1%%% 機率觸發此技能",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "當你幻化武器擊殺敵人時觸發此技能",
+          "formatters": []
+        }
+      ]
+    },
     "charged_attack_damage_stages": {
       "stats": ["charged_attack_damage_per_stack_+%_final"],
       "translations": [
@@ -5640,6 +5845,21 @@
             {
               "id": "negate",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chilled_ground_magnitude_override": {
+      "stats": ["chilled_ground_base_magnitude_override"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "此技能的冰緩地面有基礎緩速效果 %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChilledGround"
             }
           ]
         }
@@ -5720,12 +5940,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "消耗 1 個耐力球造成 %1%%% 更多傷害",
+          "text": "若你有耐力球則造成 %1%%% 更多傷害",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "消耗 1 個耐力球造成 %1%%% 更少傷害",
+          "text": "若你有耐力球則造成 %1%%% 更少傷害",
           "formatters": [
             {
               "id": "negate",
@@ -5908,6 +6128,16 @@
         }
       ]
     },
+    "minion_double_damage_chance": {
+      "stats": ["minion_chance_to_deal_double_damage_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "召喚物有 %1%%% 機率造成兩倍傷害",
+          "formatters": []
+        }
+      ]
+    },
     "ailment_non_damaging_incr_effect": {
       "stats": ["non_damaging_ailment_effect_+%"],
       "translations": [
@@ -5948,6 +6178,16 @@
         {
           "matchers": [[2, "#"]],
           "text": "同時至多可以召喚 %1% 個肖像",
+          "formatters": []
+        }
+      ]
+    },
+    "phys_reduction_per_crab_barrier": {
+      "stats": ["physical_damage_reduction_%_per_crab_aspect_stack"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每層蟹將重盾有 %1%%% 額外物理減傷",
           "formatters": []
         }
       ]
@@ -6038,6 +6278,21 @@
               "arg": "ReminderTextDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "spider_aspect_max_webs": {
+      "stats": ["spider_aspect_max_web_count"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "對敵人至多可以造成 1 層蛛網",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "對敵人至多可以造成 %1% 層蛛網",
+          "formatters": []
         }
       ]
     },
@@ -6305,7 +6560,7 @@
         {
           "matchers": ["#", "#", "#"],
           "text":
-            "引導施放此技能擊中時，有 %1%%% 機率獲得 1 顆暴擊球\\n引導施放此技能時，減少承受 %2%%% 閃電傷害\\n引導施放此技能時，減少承受 %2%%% 物理傷害",
+            "引導施放此技能被擊中時，有 %1%%% 機率獲得 1 顆暴擊球\\n引導施放此技能時，減少承受 %2%%% 閃電傷害\\n引導施放此技能時，減少承受 %2%%% 物理傷害",
           "formatters": [
             {
               "id": "negate",
@@ -6343,6 +6598,51 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "trigger_on_frozen_kill": {
+      "stats": ["trigger_on_kill_vs_frozen_enemy_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "當你擊殺冰凍敵人時，有 %1%%% 機率觸發此技能",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "當你擊殺冰凍敵人時觸發此技能",
+          "formatters": []
+        }
+      ]
+    },
+    "trigger_on_skill_use_void_arrow": {
+      "stats": ["trigger_on_skill_use_%_if_you_have_a_void_arrow"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "你發射箭矢時有 %1%%% 機率消耗 1 個虛空能量球觸發此法術",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "你發射箭矢時消耗 1 個虛空能量球觸發此法術",
+          "formatters": []
+        }
+      ]
+    },
+    "spider_aspect_interval": {
+      "stats": ["virtual_spider_aspect_web_interval_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每 %1% 秒造成蛛網和緩速",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
             }
           ]
         }

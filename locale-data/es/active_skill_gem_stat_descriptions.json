@@ -4,6 +4,49 @@
     "hasIdentifiers": false
   },
   "data": {
+    "off_hand_local_minimum_added_physical_damage": {
+      "stats": [
+        "off_hand_local_minimum_added_physical_damage",
+        "off_hand_local_maximum_added_physical_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "%1% a %2% de Daño Físico Base con la Mano Secundaria",
+          "formatters": []
+        }
+      ]
+    },
+    "off_hand_minimum_added_physical_damage_per_15_shield_armour_and_evasion_rating": {
+      "stats": [
+        "off_hand_minimum_added_physical_damage_per_15_shield_armour_and_evasion_rating",
+        "off_hand_maximum_added_physical_damage_per_15_shield_armour_and_evasion_rating"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "%1% a %2% de Daño Físico Agregado por cada 15 de Armadura o Evasión en el Escudo",
+          "formatters": []
+        }
+      ]
+    },
+    "off_hand_base_weapon_attack_duration_ms": {
+      "stats": ["off_hand_base_weapon_attack_duration_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "El tiempo base del Ataque con la Mano Secundaria es de %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "global_minimum_added_physical_damage": {
       "stats": [
         "global_minimum_added_physical_damage",
@@ -185,7 +228,7 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Puede levantar hasta %1% Espectros a la vez",
+          "text": "Puede levantar hasta %1% Espectro a la vez",
           "formatters": []
         },
         {
@@ -306,7 +349,7 @@
         {
           "matchers": ["#"],
           "text":
-            "%1% segundos adicionales de Duración Base por Cadáver extra consumido",
+            "%1% segundos adicionales de Duración Base por cada Cadáver extra consumido",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -347,12 +390,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% más Daño de Área",
+          "text": "%1%%% más Daño en Área",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% menos Daño de Área",
+          "text": "%1%%% menos Daño en Área",
           "formatters": [
             {
               "id": "negate",
@@ -387,7 +430,7 @@
         },
         {
           "matchers": [[2, "#"]],
-          "text": "Los Hechizos se repiten %1% veces",
+          "text": "El Hechizo se repite %1% veces",
           "formatters": []
         }
       ]
@@ -657,7 +700,7 @@
         },
         {
           "matchers": [[100, "#"]],
-          "text": "Siempre Eletrocuta",
+          "text": "Siempre Electrocuta",
           "formatters": [
             {
               "id": "reminderstring",
@@ -763,6 +806,21 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "base_number_of_additional_arrows": {
+      "stats": ["base_number_of_additional_arrows"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Dispara una Flecha adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Dispara %1% Flechas adicionales",
+          "formatters": []
         }
       ]
     },
@@ -993,12 +1051,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Duración de Escarcha en Enemigos aumentada un %1%%%",
+          "text": "Duración de Escarchamiento en Enemigos aumentada un %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Duración de Escarcha en Enemigos reducida un %1%%%",
+          "text": "Duración de Escarchamiento en Enemigos reducida un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1013,12 +1071,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Efecto de Escarcha en Enemigos aumentado un %1%%%",
+          "text": "Efecto de Escarchamiento en Enemigos aumentado un %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Efecto de Escarcha en Enemigos reducido un %1%%%",
+          "text": "Efecto de Escarchamiento en Enemigos reducido un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1133,14 +1191,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Daño por Golpes contra Enemigos Congelados aumentado un %1%%%",
+          "text": "Daño por Golpes a Enemigos Congelados aumentado un %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Daño por Golpes contra Enemigos Congelados reducido un %1%%%",
+          "text": "Daño por Golpes a Enemigos Congelados reducido un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1259,7 +1315,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Probabilidad de Bloqueo de los Enemigos reducida un %1%%%",
+          "text": "Probabilidad de Bloquear de los Enemigos reducida un %1%%%",
           "formatters": []
         }
       ]
@@ -1426,13 +1482,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Daño Cuerpo a Cuerpo contra enemigos con Sangrado aumentado un %1%%%",
+            "Daño Cuerpo a Cuerpo a Enemigos con Sangrado aumentado un %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Daño Cuerpo a Cuerpo contra enemigos con Sangrado reducido un %1%%%",
+            "Daño Cuerpo a Cuerpo a Enemigos con Sangrado reducido un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1547,12 +1603,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Agrega un Proyectil adicional",
+          "text": "Dispara un Proyectil adicional",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
-          "text": "%1% Proyectiles adicionales",
+          "text": "Dispara %1% Proyectiles adicionales",
           "formatters": []
         }
       ]
@@ -1717,7 +1773,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Los Proyectiles se dividen en %1%",
+          "text": "Los Proyectiles se Dividen en %1%",
           "formatters": []
         }
       ]
@@ -1860,6 +1916,21 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "tornado_shot_num_of_secondary_projectiles": {
+      "stats": ["tornado_shot_num_of_secondary_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Dispara %1% Proyectil secundario",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Dispara %1% Proyectiles secundarios",
+          "formatters": []
         }
       ]
     },

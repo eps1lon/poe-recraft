@@ -1040,21 +1040,6 @@
         }
       ]
     },
-    "skill_duration": {
-      "stats": ["skill_effect_duration"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Habilidade Dura %1% segundos",
-          "formatters": [
-            {
-              "id": "milliseconds_to_seconds_2dp",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "projectile_ground_effect_duration": {
       "stats": ["projectile_ground_effect_duration"],
       "translations": [
@@ -2271,16 +2256,6 @@
         }
       ]
     },
-    "physical_damage_taken_incr": {
-      "stats": ["physical_damage_taken_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% mais Dano Físico sofrido",
-          "formatters": []
-        }
-      ]
-    },
     "degen_effect_incr": {
       "stats": ["degen_effect_+%"],
       "translations": [
@@ -2926,6 +2901,16 @@
         {
           "matchers": [[1, "#"]],
           "text": "Penetra %1%%% da Resistência a Raio",
+          "formatters": []
+        }
+      ]
+    },
+    "elemental_penetration": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Penetra %1%%% das Resistências Elementais",
           "formatters": []
         }
       ]
@@ -5299,17 +5284,6 @@
         }
       ]
     },
-    "support_arcane_surge_chance": {
-      "stats": ["support_arcane_surge_gain_buff_on_mana_use_threshold"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Ganha Fúria Arcana quando você gastar %1% de Mana com esta Habilidade",
-          "formatters": []
-        }
-      ]
-    },
     "support_arcane_surge_damage": {
       "stats": [
         "support_arcane_surge_spell_damage_+%_final",
@@ -5795,26 +5769,6 @@
           "text":
             "Monstros das Fendas não concedem Experiência e nem derrubam Itens",
           "formatters": []
-        }
-      ]
-    },
-    "endurance_charge_slam_extra_damage": {
-      "stats": ["endurance_charge_slam_damage_+%_final_with_endurance_charge"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% mais Dano se uma Carga de Tolerância for usada",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1%%% menos Dano se uma Carga de Tolerância for usada",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },

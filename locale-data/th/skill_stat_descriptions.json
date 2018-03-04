@@ -20,6 +20,26 @@
         }
       ]
     },
+    "cast_speed_incr_skill_granted": {
+      "stats": ["cast_speed_+%_granted_from_skill"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ร่ายคาถาเร็วขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ร่ายคาถาช้าลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "spell_physical_damage_range": {
       "stats": [
         "spell_minimum_physical_damage",
@@ -1015,21 +1035,6 @@
         }
       ]
     },
-    "skill_duration": {
-      "stats": ["skill_effect_duration"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "สกิลมีผล %1% วินาที",
-          "formatters": [
-            {
-              "id": "milliseconds_to_seconds_2dp",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "projectile_ground_effect_duration": {
       "stats": ["projectile_ground_effect_duration"],
       "translations": [
@@ -1089,6 +1094,21 @@
         {
           "matchers": [[1, "#"]],
           "text": "มินเนียลวินาทีสุดท้าย %1%",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "spectre_duration": {
+      "stats": ["spectre_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Spectre จะอยู่ได้ %1% วินาที",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -1718,6 +1738,16 @@
         }
       ]
     },
+    "lightning_tendrils_pulse_interval": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_interval"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ปล่อยคลื่นที่แรงขึ้นทุกๆ %1% คลื่น",
+          "formatters": []
+        }
+      ]
+    },
     "movement_velocity_cap": {
       "stats": ["movement_velocity_cap"],
       "translations": [
@@ -2214,16 +2244,6 @@
               "arg": 1
             }
           ]
-        }
-      ]
-    },
-    "physical_damage_taken_incr": {
-      "stats": ["physical_damage_taken_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "ได้รับความเสียหายทางกายภาพเพิ่มขึ้น %1%%%",
-          "formatters": []
         }
       ]
     },
@@ -3498,6 +3518,38 @@
         }
       ]
     },
+    "cast_on_skill_use_from_chest": {
+      "stats": ["trigger_on_skill_use_from_chest_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "มีโอกาสติดคาถานี้ %1%%% หากผู้เล่นใช้สกิลที่ใส่ไว้ในชุดเกราะ",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "ติดคาถานี้หากผู้เล่นใช้สกิลที่ใส่ไว้ในชุดเกราะ",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_skill_use_spirit_charge": {
+      "stats": ["trigger_on_skill_use_%_if_you_have_a_spirit_charge"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "มีโอกาสติดคาถานี้ %1%%% หากผู้เล่นใช้สกิลขณะมี Spirit Charge",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "ติดคาถานี้หากผู้เล่นใช้สกิลขณะมี Spirit Charge",
+          "formatters": []
+        }
+      ]
+    },
     "cast_when_damaged": {
       "stats": ["cast_on_any_damage_taken_%"],
       "translations": [
@@ -3524,6 +3576,21 @@
         {
           "matchers": [[100, "#"]],
           "text": "จะติดเวทย์นี้ถ้าถูกโจมตีโดน",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_when_hit_target_self": {
+      "stats": ["cast_when_hit_%_target_self"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "มีโอกาสติดคาถานี้ %1%%% หากผู้เล่นโดนโจมตี",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "ติดคาถานี้หากผู้เล่นโดนโจมตี",
           "formatters": []
         }
       ]
@@ -4097,6 +4164,26 @@
           "matchers": [[1, "#"]],
           "text": "เพิ่มความเสียหายทางไฟขึ้น %1%%%",
           "formatters": []
+        }
+      ]
+    },
+    "herald_of_ash_spell_fire_damage_incr": {
+      "stats": ["herald_of_ash_spell_fire_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คาถาไฟแรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "คาถาไฟเบาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -5207,7 +5294,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "ได้ Arcane Surge หากใช้มานา %1% ไปกับคาถานี้",
+          "text": "ได้ Arcane Surge หากผู้เล่นใช้มานาไป %1% ด้วยคาถานี้",
           "formatters": []
         }
       ]
@@ -5452,6 +5539,36 @@
         }
       ]
     },
+    "avoid_damage_chance": {
+      "stats": ["avoid_damage_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "มีโอกาส %1%%% ที่จะไม่ได้รับบาดเจ็บเวลาโดนโจมตี",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "ไม่ได้รับบาดเจ็บเวลาโดนโจมตี",
+          "formatters": []
+        }
+      ]
+    },
+    "damage_taken_incr": {
+      "stats": ["base_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มความเสียหายที่ได้รับ %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดความเสียหายที่ได้รับ %1%%%",
+          "formatters": []
+        }
+      ]
+    },
     "deal_no_chaos": {
       "stats": ["base_deal_no_chaos_damage"],
       "translations": [
@@ -5576,6 +5693,50 @@
         }
       ]
     },
+    "double_damage_chance": {
+      "stats": ["chance_to_deal_double_damage_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "มีโอกาสเบิ้ลความเสียหาย %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "trigger_on_animate_guardian_kill": {
+      "stats": ["chance_to_trigger_on_animate_guardian_kill_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "มีโอกาส %1%%% ที่สกิลนี้จะทำงานหาก Animated Guardian ของผู้เล่นสังหารศัตรูได้",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "สกิลนี้จะทำงานหาก Animated Guardian ของผู้เล่นสังหารศัตรูได้",
+          "formatters": []
+        }
+      ]
+    },
+    "trigger_on_animate_weapon_kill": {
+      "stats": ["chance_to_trigger_on_animate_weapon_kill_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "มีโอกาส %1%%% ที่สกิลนี้จะทำงานหากอาวุธที่ผู้เล่นปลุกเสก (Animated Weapon) สังหารศัตรูได้",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "สกิลนี้จะทำงานหากอาวุธที่ผู้เล่นปลุกเสก (Animated Weapon) สังหารศัตรูได้",
+          "formatters": []
+        }
+      ]
+    },
     "charged_attack_damage_stages": {
       "stats": ["charged_attack_damage_per_stack_+%_final"],
       "translations": [
@@ -5696,26 +5857,6 @@
         }
       ]
     },
-    "endurance_charge_slam_extra_damage": {
-      "stats": ["endurance_charge_slam_damage_+%_final_with_endurance_charge"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "สกิลแรงขึ้น %1%%% ถ้าใช้ Endurance Charge",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "สกิลเบาลง %1%%% ถ้าใช้ Endurance Charge",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "fire_beam_add_damage": {
       "stats": ["fire_beam_additional_stack_damage_+%_final"],
       "translations": [
@@ -5785,6 +5926,38 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "ightning_tendrils_pulse_damage": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "คลื่นพลังที่แรงขึ้นมาจะโจมตีได้แรงขึ้น และค่าโจมตีจากสถานะเจ็บป่วยจะสูงขึ้นอีก %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "คลื่นพลังที่แรงขึ้นมาจะโจมตีได้เบาลง และค่าโจมตีจากสถานะเจ็บป่วยจะเบาลงอีก %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_tendrils_pulse_radius": {
+      "stats": ["lightning_tendrils_channelled_larger_pulse_radius_+"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คลื่นพลังที่แรงขึ้นจะมีรัศมีเพิ่ม %1$+d",
+          "formatters": []
         }
       ]
     },
@@ -5862,6 +6035,16 @@
         }
       ]
     },
+    "minion_double_damage_chance": {
+      "stats": ["minion_chance_to_deal_double_damage_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "มิเนียนมีโอกาสทำความเสียหายสองเท่า %1%%%",
+          "formatters": []
+        }
+      ]
+    },
     "ailment_non_damaging_incr_effect": {
       "stats": ["non_damaging_ailment_effect_+%"],
       "translations": [
@@ -5903,6 +6086,16 @@
         {
           "matchers": [[2, "#"]],
           "text": "สามารถเสก Effigy ได้ %1% อันในขณะหนึ่ง",
+          "formatters": []
+        }
+      ]
+    },
+    "phys_reduction_per_crab_barrier": {
+      "stats": ["physical_damage_reduction_%_per_crab_aspect_stack"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ได้ตัวช่วยลดความเสียหายอีก %1%%% ต่อ Crab Barrier",
           "formatters": []
         }
       ]
@@ -5993,6 +6186,32 @@
               "arg": "ReminderTextDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "spider_aspect_max_webs": {
+      "stats": ["spider_aspect_max_web_count"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "สามารถทำศัตรูติด Spider's Web ได้อีกครั้ง",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "สามารถทำศัตรูติด Spider's Web ได้อีก %1% ครั้ง",
+          "formatters": []
+        }
+      ]
+    },
+    "summon_mirage_archer": {
+      "stats": ["summon_mirage_archer_on_hit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "หากผู้เล่นใช้สกิลนี้ยิงธนูโดนศัตรู จะเสก Mirage Archer ที่จะใช้สกิลนี้",
+          "formatters": []
         }
       ]
     },
@@ -6144,6 +6363,26 @@
         }
       ]
     },
+    "mirage_archer_attack_speed": {
+      "stats": ["support_mirage_archer_attack_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Mirage Archer โจมตีด้วยสกิลนี้เร็วขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Mirage Archer โจมตีด้วยสกิลนี้ช้าลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "mirage_archer_duration": {
       "stats": ["support_mirage_archer_duration"],
       "translations": [
@@ -6156,6 +6395,21 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "support_parallel_projectiles": {
+      "stats": ["support_parallel_projectile_number_of_points_per_side"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "ยิงอาวุธออกจาก %1% จุดข้างตัวผู้เล่น",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "ยิงอาวุธออกจาก %1% จุดข้างตัวผู้เล่น",
+          "formatters": []
         }
       ]
     },
@@ -6212,6 +6466,30 @@
         }
       ]
     },
+    "storm_barrier_power_charge": {
+      "stats": [
+        "support_storm_barrier_gain_power_charge_when_hit_%",
+        "support_storm_barrier_lightning_damage_taken_when_hit_+%_final",
+        "support_storm_barrier_physical_damage_taken_when_hit_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#", "#"],
+          "text":
+            "หากแชนเนลสกิลนี้ มีโอกาสได้ Power Charge %1%%% หากโดนโจมตีขณะแชนเนล\\nหากแชนเนลสกิลนี้ จะได้รับบาดเจ็บจากธาตุไฟฟ้าน้อยลง %2%%% ระหว่างแชนเนล\\nหากแชนเนลสกิลนี้ จะได้รับบาดเจ็บแบบกายภาพน้อยลง %3%%% ระหว่างแชนเนล",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 2
+            },
+            {
+              "id": "negate",
+              "arg": 3
+            }
+          ]
+        }
+      ]
+    },
     "ailment_damage_incr": {
       "stats": ["support_unbound_ailments_ailment_damage_+%_final"],
       "translations": [
@@ -6238,6 +6516,38 @@
               "arg": "ReminderTextDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "trigger_on_frozen_kill": {
+      "stats": ["trigger_on_kill_vs_frozen_enemy_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "มีโอกาส %1%%% ที่สกิลนี้จะทำงานหากผู้เล่นสังหารศัตรูที่ถูกแช่แข็ง",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "สกิลนี้จะทำงานหากผู้เล่นสังหารศัตรูที่ถูกแช่แข็ง",
+          "formatters": []
+        }
+      ]
+    },
+    "trigger_on_skill_use_void_arrow": {
+      "stats": ["trigger_on_skill_use_%_if_you_have_a_void_arrow"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "มีโอกาสใช้ Void Charge %1%%% เพื่อให้สกิลนี้ทำงานขณะที่ยิงธนู",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "ใช้ Void Charge เพื่อให้สกิลนี้ทำงานขณะที่ยิงธนู",
+          "formatters": []
         }
       ]
     }

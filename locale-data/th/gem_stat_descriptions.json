@@ -475,7 +475,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "สกิลซัพพอร์ตจะใช้เลือดแทนมานา",
+          "text": "สกิลที่ได้รับซัพจะใช้พลังชีวิตแทนมานา",
           "formatters": []
         }
       ]
@@ -1985,7 +1985,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "ได้ Arcane Surge เมื่อใช้มานา %1% ไปกับสกิลที่ได้รับซัพ",
+          "text": "ได้ Arcane Surge หากใช้มานาไป %1% ด้วยสกิลที่ได้รับซัพ",
           "formatters": []
         }
       ]
@@ -2157,6 +2157,23 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "chance_to_summon_support_ghost_on_killing_blow_%": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "มีโอกาส %1%%% ที่จะเสก Phantasm เมื่อสกิลที่ได้รับซัพหรือมิเนียน (ที่ไม่ได้เป็น Phantasm) ที่เกิดจากสกิลที่ได้รับซัพสังหารศัตรูได้",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "เสก Phantasm เมื่อสกิลที่ได้รับซัพหรือมิเนียน (ที่ไม่ได้เป็น Phantasm) ที่เกิดจากสกิลที่ได้รับซัพสังหารศัตรูได้",
+          "formatters": []
         }
       ]
     },
@@ -2514,6 +2531,21 @@
         }
       ]
     },
+    "base_number_of_support_ghosts_allowed": {
+      "stats": ["base_number_of_support_ghosts_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "เสกวิญญาณสนับสนุนได้สูงสุด 1 ตัวในเวลาหนึ่ง",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "เสกวิญญาณสนับสนุนได้สูงสุด %1% ตัวในเวลาหนึ่ง",
+          "formatters": []
+        }
+      ]
+    },
     "base_physical_damage_%_to_convert_to_lightning": {
       "stats": ["base_physical_damage_%_to_convert_to_lightning"],
       "translations": [
@@ -2743,23 +2775,6 @@
           "matchers": [[100, "#"]],
           "text":
             "สกิลที่ได้รับซัพจะให้สเตตัส Frenzy Charge หากฆ่าศัตรูที่ติดสถานะแข็งได้",
-          "formatters": []
-        }
-      ]
-    },
-    "chance_to_summon_support_ghost_on_killing_blow_%": {
-      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text":
-            "มีโอกาส %1%%% ที่จะเสก Phantasm เมื่อสกิลที่ได้รับซัพหรือมิเนียน (ที่ไม่ได้เป็น Phantasm) ที่เกิดจากสกิลที่ได้รับซัพสังหารศัตรูได้",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text":
-            "เสก Phantasm เมื่อสกิลที่ได้รับซัพหรือมิเนียน (ที่ไม่ได้เป็น Phantasm) ที่เกิดจากสกิลที่ได้รับซัพสังหารศัตรูได้",
           "formatters": []
         }
       ]
@@ -3641,12 +3656,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "สกิลที่ได้รับซัพจะมีลูกพลังหรือกระสุนออกมามากขึ้นหนึ่งลูก",
+          "text": "สกิลที่ได้รับซัพจะยิงอาวุธเพิ่มอีกลูก",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
-          "text": "สกิลที่ได้รับซัพจะมีลูกพลังหรือกระสุนออกมามากขึ้น %1% ลูก",
+          "text": "สกิลที่ได้รับซัพจะยิงอาวุธเพิ่มอีก %1% ลูก",
           "formatters": []
         }
       ]
@@ -3968,6 +3983,21 @@
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_ghost_base_duration": {
+      "stats": ["support_ghost_base_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Phantasm อยู่ได้ %1% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
               "arg": 1
             }
           ]

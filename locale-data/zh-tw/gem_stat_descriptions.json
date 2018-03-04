@@ -468,7 +468,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "輔助的技能使用生命代替魔力消耗",
+          "text": "被輔助的技能將消耗生命使用",
           "formatters": []
         }
       ]
@@ -1939,7 +1939,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "當你消耗被輔助的技能 %1% 魔力時，獲得秘能波動",
+          "text": "被輔助的技能消耗 %1% 魔力時獲得秘能波動",
           "formatters": []
         }
       ]
@@ -2042,7 +2042,7 @@
       "translations": [
         {
           "matchers": [1000],
-          "text": "亢奮持續 %1% 秒",
+          "text": "亢奮效果持續 %1% 秒",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -2052,7 +2052,7 @@
         },
         {
           "matchers": ["#"],
-          "text": "亢奮持續 %1% 秒",
+          "text": "亢奮效果持續 %1% 秒",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -2106,6 +2106,21 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "chance_to_summon_support_ghost_on_killing_blow_%": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "當被輔助的技能或被輔助的非幻影召喚物擊殺敵人時，有 %1%%% 機率召喚 1 個幻影",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "當被輔助的技能或被輔助的非幻影召喚物擊殺敵人時，召喚 1 個幻影",
+          "formatters": []
         }
       ]
     },
@@ -2456,6 +2471,21 @@
         }
       ]
     },
+    "base_number_of_support_ghosts_allowed": {
+      "stats": ["base_number_of_support_ghosts_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "同時至多可以召喚 1 個幻影",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "同時至多可以召喚 %1% 個幻影",
+          "formatters": []
+        }
+      ]
+    },
     "base_physical_damage_%_to_convert_to_lightning": {
       "stats": ["base_physical_damage_%_to_convert_to_lightning"],
       "translations": [
@@ -2680,21 +2710,6 @@
         {
           "matchers": [[100, "#"]],
           "text": "被輔助的技能擊殺冰凍的敵人時獲得狂怒球",
-          "formatters": []
-        }
-      ]
-    },
-    "chance_to_summon_support_ghost_on_killing_blow_%": {
-      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text": "當被輔助的技能或被輔助的非幻影召喚物擊殺敵人時，有 %1%%% 機率召喚 1 個幻影",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text": "當被輔助的技能或被輔助的非幻影召喚物擊殺敵人時，召喚 1 個幻影",
           "formatters": []
         }
       ]
@@ -3566,12 +3581,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "被輔助的技能有 1 個額外的投射物",
+          "text": "被輔助的技能發射 1 個額外投射物",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
-          "text": "被輔助的技能有 %1% 個額外的投射物",
+          "text": "被輔助的技能發射 %1% 個額外投射物",
           "formatters": []
         }
       ]
@@ -3883,6 +3898,21 @@
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_ghost_base_duration": {
+      "stats": ["support_ghost_base_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "幻影持續 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
               "arg": 1
             }
           ]
@@ -4310,7 +4340,7 @@
         {
           "matchers": ["#", "#", "#"],
           "text":
-            "當被輔助的引導施放技能擊中時，有 %1%%% 機率獲得暴擊球\\n當使用被輔助的引導施放技能時，減少承受 %2%%% 閃電傷害\\n當使用被輔助的引導施放技能時，減少承受 %3%%% 物裡傷害",
+            "當使用被輔助的引導施放技能時，被擊中有 %1%%% 機率獲得暴擊球\\n當使用被輔助的引導施放技能時，減少承受 %2%%% 閃電傷害\\n當使用被輔助的引導施放技能時，減少承受 %3%%% 物裡傷害",
           "formatters": [
             {
               "id": "negate",

@@ -2303,7 +2303,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "สกิลและมิเนียนนี้ จะใช้พลังชีวิตแทนมานา",
+          "text": "สกิลนี้และมิเนียนจะใช้พลังชีวิตแทนมานา",
           "formatters": []
         }
       ]
@@ -3067,6 +3067,21 @@
         }
       ]
     },
+    "support_parallel_projectiles": {
+      "stats": ["support_parallel_projectile_number_of_points_per_side"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "มิเนียนจะยิงอาวุธระยะไกลจาก %1% จุดข้างตัวด้วย",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "มิเนียนจะยิงอาวุธระยะไกลจาก %1% จุดข้างตัวด้วย",
+          "formatters": []
+        }
+      ]
+    },
     "parallel_projectiles_damage_final": {
       "stats": ["support_parallel_projectiles_damage_+%_final"],
       "translations": [
@@ -3125,6 +3140,30 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
+    "storm_barrier_power_charge": {
+      "stats": [
+        "support_storm_barrier_gain_power_charge_when_hit_%",
+        "support_storm_barrier_lightning_damage_taken_when_hit_+%_final",
+        "support_storm_barrier_physical_damage_taken_when_hit_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#", "#"],
+          "text":
+            "มิเนียนมีโอกาสได้ Power Charge %1%%% หากโดนโจมตีขณะแชนเนล\\nมิเนียนได้รับบาดเจ็บจากธาตุไฟฟ้าน้อยลง %2%%% ระหว่างแชนเนล\\nมิเนียนได้รับบาดเจ็บแบบกายภาพน้อยลง %3%%% ระหว่างแชนเนล",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 2
+            },
+            {
+              "id": "negate",
+              "arg": 3
             }
           ]
         }

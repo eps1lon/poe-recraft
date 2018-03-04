@@ -2277,6 +2277,23 @@
         }
       ]
     },
+    "chance_to_summon_support_ghost_on_killing_blow_%": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chances d'Invoquer une Apparition lorsque les Aptitudes modifiées ou les Créatures (autres que des Apparitions) issues des Aptitudes modifiées infligent un Coup mortel",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Invoque une Apparition lorsque les Aptitudes modifiées ou les Créatures (autres que des Apparitions) issues des Aptitudes modifiées infligent un Coup mortel",
+          "formatters": []
+        }
+      ]
+    },
     "accuracy_rating": {
       "stats": ["accuracy_rating"],
       "translations": [
@@ -2647,6 +2664,22 @@
         }
       ]
     },
+    "base_number_of_support_ghosts_allowed": {
+      "stats": ["base_number_of_support_ghosts_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Vous pouvez avoir jusqu'à 1 Apparition Invoquée à la fois",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "Vous pouvez avoir jusqu'à %1% Apparitions Invoquées à la fois",
+          "formatters": []
+        }
+      ]
+    },
     "base_physical_damage_%_to_convert_to_lightning": {
       "stats": ["base_physical_damage_%_to_convert_to_lightning"],
       "translations": [
@@ -2883,23 +2916,6 @@
           "matchers": [[100, "#"]],
           "text":
             "Les Aptitudes smodifiées génèrent une Charge de frénésie en Tuant un Ennemi Gelé",
-          "formatters": []
-        }
-      ]
-    },
-    "chance_to_summon_support_ghost_on_killing_blow_%": {
-      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text":
-            "%1%%% de chances d'Invoquer une Apparition lorsque les Aptitudes modifiées ou les Créatures (autres que des Apparitions) issues des Aptitudes modifiées infligent un Coup mortel",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text":
-            "Invoque une Apparition lorsque les Aptitudes modifiées ou les Créatures (autres que des Apparitions) issues des Aptitudes modifiées infligent un Coup mortel",
           "formatters": []
         }
       ]
@@ -3829,12 +3845,13 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Les Aptitudes modifiées ont un Projectile supplémentaire",
+          "text": "L'Aptitude modifiée Tire un Projectile supplémentaire",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
-          "text": "Les Aptitudes modifiées ont %1% Projectiles supplémentaires",
+          "text":
+            "Les Aptitudes modifiées Tirent %1% Projetiles supplémentaires",
           "formatters": []
         }
       ]
@@ -4175,6 +4192,21 @@
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_ghost_base_duration": {
+      "stats": ["support_ghost_base_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "L'Apparition dure %1% secondes",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
               "arg": 1
             }
           ]

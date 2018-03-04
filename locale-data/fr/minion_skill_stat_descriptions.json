@@ -3304,6 +3304,30 @@
           ]
         }
       ]
+    },
+    "storm_barrier_power_charge": {
+      "stats": [
+        "support_storm_barrier_gain_power_charge_when_hit_%",
+        "support_storm_barrier_lightning_damage_taken_when_hit_+%_final",
+        "support_storm_barrier_physical_damage_taken_when_hit_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#", "#"],
+          "text":
+            "Les Créatures ont %1%%% de chances de gagner une Charge de pouvoir en étant Touchées pendant la Canalisation\\nLes Créatures ont %2%%% de Perte de Dégâts de foudre subis au Toucher pendant la Canalisation\\nLes Créatures ont %3%%% de Perte de Dégâts physiques subis au Toucher pendant la Canalisation",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 2
+            },
+            {
+              "id": "negate",
+              "arg": 3
+            }
+          ]
+        }
+      ]
     }
   }
 }
