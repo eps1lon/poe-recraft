@@ -3,7 +3,8 @@ import {
   Description,
   Descriptions,
   StatLocaleData,
-  StatLocaleDatas
+  StatLocaleDatas,
+  Translation
 } from '../types/StatDescription';
 
 // arg types
@@ -12,6 +13,7 @@ export type Options = {
   datas: StatLocaleDatas;
   fallback: Fallback | FallbackCallback;
   start_file: string;
+  getFormatters: (t: Translation, stat: Stat, n: number) => Translation['formatters'];
 };
 // return type
 export type TranslatedStats = string[];
@@ -27,7 +29,8 @@ export enum Fallback {
 const initial_options: Options = {
   datas: {},
   fallback: Fallback.throw,
-  start_file: 'stat_descriptions'
+  start_file: 'stat_descriptions',
+  getFormatters: t => t.formatters
 };
 
 const formatStats = (
@@ -53,7 +56,13 @@ const formatStats = (
     const data: Descriptions = description_file.data;
 
     for (const descriptionFinder of createDescriptionFindStrategies(data)) {
-      lines.push(...formatWithFinder(untranslated, descriptionFinder));
+      lines.push(
+        ...formatWithFinder(
+          untranslated,
+          descriptionFinder,
+          options.getFormatters
+        )
+      );
     }
 
     description_file = description_file.meta.include
@@ -80,26 +89,17 @@ export function createDescriptionFindStrategies(
 ): Array<(stat: Stat) => Description | undefined> {
   return [
     ({ id }) => descriptions[id],
-    ({ id }) => findDescription(id, descriptions)
+    ({ id }) =>
+      Object.values(descriptions).find(({ stats }) => stats.includes(id))
   ];
-}
-
-/**
- * O(n) lookup if hash lookup fails
- * 
- * @param stat_id 
- * @param locale_data 
- */
-function findDescription(stat_id: string, locale_data: Descriptions) {
-  return Object.values(locale_data).find(({ stats }) =>
-    stats.includes(stat_id)
-  );
 }
 
 // stats will get mutated
 function formatWithFinder(
   stats: Map<string, Stat>,
-  find: (stat: Stat) => Description | undefined
+  find: (stat: Stat) => Description | undefined,
+  getFormatter: (t: Translation, stat: Stat, n: number) => Translation['formatters'] = t =>
+    t.formatters
 ): string[] {
   const lines: string[] = [];
   const translated: Set<string> = new Set();
@@ -112,7 +112,9 @@ function formatWithFinder(
     const description = find(stat);
 
     if (description !== undefined) {
-      const translation = translate(description, stats);
+      const translation = translate(description, stats, (t: Translation, n) =>
+        getFormatter(t, stat, n)
+      );
 
       if (translation === undefined) {
         throw new Error(`matching translation not found for '${stat.id}'`);

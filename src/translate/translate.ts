@@ -11,7 +11,13 @@ export type Stat = {
 export const NO_DESCRIPTION = 'NO_DESCRIPTION';
 export default function translate(
   description: Description,
-  provided: Map<string, Stat>
+  provided: Map<string, Stat>,
+  /**
+   * @param t 
+   * @param count {number} number of params 
+   */
+  getFormatters: (t: Translation, count: number) => Translation['formatters'] = t =>
+    t.formatters
 ): string | undefined {
   const { stats, no_description, translations } = description;
 
@@ -44,7 +50,7 @@ export default function translate(
     return printf(
       translation.text,
       required_stats.map(({ value }) => value),
-      translation.formatters
+      getFormatters(translation, required_stats.length)
     );
   }
 }

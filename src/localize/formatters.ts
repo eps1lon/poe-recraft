@@ -58,7 +58,8 @@ export const formatters: { [key: string]: Formatter } = {
   '60%_of_value': n => n * 0.6,
   id: n => n,
   mod_value_to_item_class: n => item_classes[n % item_classes.length],
-  canonical_stat: n => n
+  canonical_stat: n => n,
+  placeholder: () => '#'
 };
 
 export const inverse_formatters: { [key: string]: (s: string) => number } = {
@@ -84,7 +85,8 @@ export const inverse_formatters: { [key: string]: (s: string) => number } = {
   '60%_of_value': s => +s / 0.6,
   id: s => +s,
   mod_value_to_item_class: item_class => item_classes.indexOf(item_class),
-  canonical_stat: s => +s
+  canonical_stat: s => +s,
+  placeholder: s => Number.NaN
 };
 
 const number = '-?\\d+';
@@ -113,7 +115,8 @@ const formatter_regexp: { [key: string]: string } = {
   id: number,
   mod_value_to_item_class: '.+?',
   // TODO what is this
-  canonical_stat: number
+  canonical_stat: number,
+  placeholder: '#'
 };
 
 export function inverseFactory(formatter_id: string): (s: string) => number {

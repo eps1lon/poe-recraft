@@ -91,11 +91,12 @@ describe('regxp', () => {
 
 describe('inverse', () => {
   it('acts as an inverse to formatters', () => {
+    const skip = ['mod_value_to_item_class', 'placeholder']
     // use reasonably big values because we blindly test every formatter
     // which can apply divisions by 1000
     const values = [120000, 0, -30000];
     for (const formatter_id of Object.keys(formatters)) {
-      if (formatter_id === 'mod_value_to_item_class') {
+      if (skip.includes(formatter_id)) {
         // tricky because the matcher is infinite but we only have a finite
         // amount of classes
         continue;

@@ -20,6 +20,66 @@ const english: StatLocaleDatas = {
   stat_descriptions: {
     meta: {},
     data: {
+      'local_socketed_fire_gem_level_+': {
+        stats: ['local_socketed_fire_gem_level_+'],
+        translations: [
+          {
+            matchers: ['#'],
+            text: '%1$+d to Level of Socketed Fire Gems',
+            formatters: []
+          }
+        ]
+      },
+      'local_socketed_cold_gem_level_+': {
+        stats: ['local_socketed_cold_gem_level_+'],
+        translations: [
+          {
+            matchers: ['#'],
+            text: '%1$+d to Level of Socketed Cold Gems',
+            formatters: []
+          }
+        ]
+      },
+      'local_energy_shield_+%': {
+        stats: ['local_energy_shield_+%'],
+        translations: [
+          {
+            matchers: [[1, '#']],
+            text: '%1%%% increased Energy Shield',
+            formatters: []
+          },
+          {
+            matchers: [['#', -1]],
+            text: '%1%%% reduced Energy Shield',
+            formatters: [
+              {
+                id: 'negate',
+                arg: 1
+              }
+            ]
+          }
+        ]
+      },
+      'base_stun_recovery_+%': {
+        stats: ['base_stun_recovery_+%'],
+        translations: [
+          {
+            matchers: [[1, '#']],
+            text: '%1%%% increased Stun and Block Recovery',
+            formatters: []
+          },
+          {
+            matchers: [['#', -1]],
+            text: '%1%%% reduced Stun and Block Recovery',
+            formatters: [
+              {
+                id: 'negate',
+                arg: 1
+              }
+            ]
+          }
+        ]
+      },
       'local_socketed_gem_level_+': {
         stats: ['local_socketed_gem_level_+'],
         translations: [
