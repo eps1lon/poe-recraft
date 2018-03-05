@@ -56,7 +56,11 @@ it('its resolve conflict strategy can be configured', () => {
   ).toEqual('+# to Level of Socketed * Gems');
 });
 
-describe.only('usage with poe-mods', () => {
+it('returns an emtpy string if no mods were given', () => {
+  expect(groupMods([])).toEqual('');
+})
+
+describe('usage with poe-mods', () => {
   const modStats = (mod: Mod['props']) =>
     mod.stats.map((stat, i) => {
       const key_min = `stat${i + 1}_min` as keyof typeof mod;
