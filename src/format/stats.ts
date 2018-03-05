@@ -6,6 +6,7 @@ import {
   StatLocaleDatas,
   Translation
 } from '../types/StatDescription';
+import { isZero } from '../types/StatValue';
 
 // arg types
 export { Stat } from '../translate';
@@ -13,17 +14,29 @@ export type Options = {
   datas: StatLocaleDatas;
   fallback: Fallback | FallbackCallback;
   start_file: string;
-  getFormatters: (t: Translation, stat: Stat, n: number) => Translation['formatters'];
+  getFormatters: (
+    t: Translation,
+    stat: Stat,
+    n: number
+  ) => Translation['formatters'];
 };
 // return type
 export type TranslatedStats = string[];
 
 export type FallbackCallback = (id: string, stat: Stat) => string | null;
 
+export class NoDescriptionFound extends Error {
+  constructor(stats: Stat[]) {
+    super('no descriptions found for ' + stats.map(({ id }) => id).join(','));
+  }
+}
 export enum Fallback {
   throw, // throw if no stat was found
   id,
-  skip
+  skip,
+  // ignore if no matching translation is found in stat description
+  // if the stat value is equiv to zero (e.g. 0 or [0, 9])
+  skip_if_zero
 }
 
 const initial_options: Options = {
@@ -57,11 +70,10 @@ const formatStats = (
 
     for (const descriptionFinder of createDescriptionFindStrategies(data)) {
       lines.push(
-        ...formatWithFinder(
-          untranslated,
-          descriptionFinder,
-          options.getFormatters
-        )
+        ...formatWithFinder(untranslated, descriptionFinder, {
+          getFormatter: options.getFormatters,
+          ignore_if_zero: fallback === Fallback.skip_if_zero
+        })
       );
     }
 
@@ -95,12 +107,23 @@ export function createDescriptionFindStrategies(
 }
 
 // stats will get mutated
+interface FormatWithFinderOptions {
+  getFormatter: (
+    t: Translation,
+    stat: Stat,
+    n: number
+  ) => Translation['formatters'];
+  ignore_if_zero: boolean;
+}
 function formatWithFinder(
   stats: Map<string, Stat>,
   find: (stat: Stat) => Description | undefined,
-  getFormatter: (t: Translation, stat: Stat, n: number) => Translation['formatters'] = t =>
-    t.formatters
+  options: Partial<FormatWithFinderOptions> = {}
 ): string[] {
+  const {
+    ignore_if_zero = false,
+    getFormatter = (t: Translation) => t.formatters
+  } = options;
   const lines: string[] = [];
   const translated: Set<string> = new Set();
 
@@ -117,7 +140,14 @@ function formatWithFinder(
       );
 
       if (translation === undefined) {
-        throw new Error(`matching translation not found for '${stat.id}'`);
+        const requiredStatsAreZero = requiredStats(
+          description,
+          stats
+        ).every(({ value }) => isZero(value));
+
+        if (!ignore_if_zero || !requiredStatsAreZero) {
+          throw new Error(`matching translation not found for '${stat.id}'`);
+        }
       } else {
         // mark as translated
         description.stats.forEach(translated_id => {
@@ -137,15 +167,35 @@ function formatWithFinder(
   return lines;
 }
 
+function requiredStats(
+  description: Description,
+  provided: Map<string, Stat>
+): Stat[] {
+  // intersect the required stat_ids from the desc with the provided
+  return description.stats
+    .map(stat_id => {
+      const stat = provided.get(stat_id);
+
+      // default the value to 0
+      if (stat === undefined) {
+        return {
+          id: stat_id,
+          value: 0
+        };
+      } else {
+        return stat;
+      }
+    })
+    .filter((stat: Stat | null): stat is Stat => stat !== null);
+}
+
 function formatWithFallback(
   stats: Map<string, Stat>,
   fallback: Fallback | FallbackCallback
 ): string[] {
   if (fallback === Fallback.throw) {
     if (stats.size > 0) {
-      throw new Error(
-        'no descriptions found for ' + Array.from(stats.keys()).join(',')
-      );
+      throw new NoDescriptionFound(Array.from(stats.values()));
     } else {
       return [];
     }
@@ -157,6 +207,16 @@ function formatWithFallback(
     return Array.from(stats.entries())
       .map(([id, stat]) => fallback(id, stat))
       .filter((line): line is string => typeof line === 'string');
+  } else if (fallback === Fallback.skip_if_zero) {
+    const non_zero_stats = Array.from(stats.values()).filter(
+      stat => !isZero(stat.value)
+    );
+
+    if (non_zero_stats.length > 0) {
+      throw new NoDescriptionFound(non_zero_stats);
+    } else {
+      return [];
+    }
   } else {
     // should ts recognize that this is unreachable code? enums can prob
     // be extended at runtime an therfore somebody could mess with them
