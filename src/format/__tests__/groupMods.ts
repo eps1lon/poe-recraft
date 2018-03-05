@@ -58,7 +58,7 @@ it('its resolve conflict strategy can be configured', () => {
 
 it('returns an emtpy string if no mods were given', () => {
   expect(groupMods([])).toEqual('');
-})
+});
 
 describe('usage with poe-mods', () => {
   const modStats = (mod: Mod['props']) =>
