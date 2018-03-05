@@ -1,4 +1,5 @@
 import formatGemStats, { GemId } from './format/gemStats';
+import groupMods from './format/groupMods';
 import formatStats, { Stat } from './format/stats';
 import textToStats, {
   Options as TextToStatsOptions
@@ -37,6 +38,10 @@ export class Format {
 
   public gemStats(gem_id: GemId, stats: Stat[]) {
     return formatGemStats(gem_id, stats, this.options);
+  }
+
+  public groupMods(mods: Stat[][]) {
+    return groupMods(mods, this.options);
   }
 
   public textToStats(text: string, options: Partial<TextToStatsOptions> = {}) {
