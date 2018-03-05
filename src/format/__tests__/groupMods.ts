@@ -1,9 +1,8 @@
 import { createMods, Mod } from 'poe-mods';
 
-import groupMods, { Stat, Options } from '../groupMods';
-import { Fallback } from '../stats';
 import datas from '../../__fixtures__/english';
-import { create } from 'domain';
+import groupMods, { Options, Stat } from '../groupMods';
+import { Fallback } from '../stats';
 
 it('merges multiple mods (mod = one ore more stats) into a single line', () => {
   expect(
@@ -57,42 +56,52 @@ it('its resolve conflict strategy can be configured', () => {
   ).toEqual('+# to Level of Socketed * Gems');
 });
 
-it.only(
-  'is designed to create a description of correct_group in eps1lon/poe-mods',
-  () => {
-    const groupByCorrectGroup = (mods: Mod['props'][]) => {
-      return mods.reduce((groups, mod) => {
-        if (!groups.has(mod.correct_group)) {
-          groups.set(mod.correct_group, []);
-        }
-        groups.get(mod.correct_group)!.push(
-          mod.stats.map((stat, i) => {
-            const key_min = `stat${i + 1}_min` as keyof typeof mod;
-            const key_max = `stat${i + 1}_min` as keyof typeof mod;
+describe.only('usage with poe-mods', () => {
+  const modStats = (mod: Mod['props']) =>
+    mod.stats.map((stat, i) => {
+      const key_min = `stat${i + 1}_min` as keyof typeof mod;
+      const key_max = `stat${i + 1}_min` as keyof typeof mod;
 
-            return {
-              id: stat.id,
-              value: [+mod[key_min], +mod[key_max]] as [number, number]
-            };
-          })
-        );
-        return groups;
-      }, new Map<string, Stat[][]>());
-    };
+      return {
+        id: stat.id,
+        value: [+mod[key_min], +mod[key_max]] as [number, number]
+      };
+    });
+  const groupByCorrectGroup = (mods: Array<Mod['props']>) => {
+    return mods.reduce((groups, mod) => {
+      if (!groups.has(mod.correct_group)) {
+        groups.set(mod.correct_group, []);
+      }
+      groups.get(mod.correct_group)!.push(modStats(mod));
+      return groups;
+    }, new Map<string, Stat[][]>());
+  };
 
-    const locale_data = {
-      stat_descriptions: require('../../../locale-data/en/stat_descriptions.json')
-    };
+  const locale_data = {
+    stat_descriptions: require('../../../locale-data/en/stat_descriptions.json')
+  };
 
-    const options: Partial<Options> = {
-      datas: locale_data,
-      fallback: Fallback.skip
-    };
+  const options: Partial<Options> = {
+    datas: locale_data,
+    fallback: Fallback.skip
+  };
 
-    const prefixes = createMods(require('poe-mods/data/mods/prefixes.json'));
-    const prefix_groups = groupByCorrectGroup(prefixes.all());
-    for (const [correct_group, mods] of prefix_groups.entries()) {
-      console.log(correct_group, groupMods(mods, options));
-    }
+  const prefixes = createMods(require('poe-mods/data/mods/prefixes.json'));
+  // skip monster domain
+  const prefix_groups = groupByCorrectGroup(
+    prefixes.all().filter(mod => mod.domain === 1)
+  );
+  for (const [correct_group, mods] of prefix_groups.entries()) {
+    it(`matches the snapshot of '${correct_group}'`, () => {
+      expect(groupMods(mods, options)).toMatchSnapshot();
+    });
   }
-);
+
+  it('groups matching words', () => {
+    const group = prefixes
+      .all()
+      .filter(mod => mod.correct_group === 'AreaOfEffect');
+    const t = groupMods(group.map(modStats), options);
+    expect(t).toEqual('#% increased Area of Effect *');
+  });
+});

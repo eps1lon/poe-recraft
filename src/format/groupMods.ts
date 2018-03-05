@@ -1,5 +1,8 @@
-import formatStats, { Stat, Options as FormatStatsOptions } from './stats';
-import { StatLocaleDatas } from '../types/StatDescription';
+import formatStats, {
+  Fallback,
+  Options as FormatStatsOptions,
+  Stat
+} from './stats';
 
 // arg types
 export { Stat } from './stats';
@@ -40,7 +43,9 @@ export default function groupMod(
     translations.push(groupStats(mod, format_stats_options).split(' '));
   }
 
-  return collapseTable(translations, resolveWordConflict).join(' ');
+  return collapseTable(translations, resolveWordConflict)
+    .join(' ')
+    .replace(/\*( \*)*/, '*');
 }
 
 function groupStats(
@@ -49,8 +54,13 @@ function groupStats(
 ): string {
   const lines = formatStats(stats, {
     ...options,
-    getFormatters: (t, s, n) =>
-      Array.from({ length: n }, (_, i) => ({ arg: i + 1, id: 'placeholder' }))
+    getFormatters: (t, s, n) => {
+      return Array.from({ length: n }, (_, i) => ({
+        arg: i + 1,
+        id: 'placeholder'
+      }));
+    },
+    fallback: Fallback.skip_if_zero
   });
 
   return lines.join(' / ');
@@ -67,7 +77,7 @@ function collapseTable<T>(
   const column_count = table[0].length;
 
   // rows to columns
-  const columns: Set<T>[] = new Array(column_count);
+  const columns: Array<Set<T>> = new Array(column_count);
   for (let j = 0; j < column_count; ++j) {
     columns[j] = table.reduce((column, row) => {
       return column.add(row[j]);

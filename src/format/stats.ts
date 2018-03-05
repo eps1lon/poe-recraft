@@ -50,7 +50,7 @@ const formatStats = (
   stats: Stat[],
   options: Partial<Options> = {}
 ): TranslatedStats => {
-  const { datas, fallback, start_file } = Object.assign(
+  const { datas, fallback, start_file, getFormatters } = Object.assign(
     {},
     initial_options,
     options
@@ -71,7 +71,7 @@ const formatStats = (
     for (const descriptionFinder of createDescriptionFindStrategies(data)) {
       lines.push(
         ...formatWithFinder(untranslated, descriptionFinder, {
-          getFormatter: options.getFormatters,
+          getFormatters,
           ignore_if_zero: fallback === Fallback.skip_if_zero
         })
       );
@@ -108,7 +108,7 @@ export function createDescriptionFindStrategies(
 
 // stats will get mutated
 interface FormatWithFinderOptions {
-  getFormatter: (
+  getFormatters: (
     t: Translation,
     stat: Stat,
     n: number
@@ -122,7 +122,7 @@ function formatWithFinder(
 ): string[] {
   const {
     ignore_if_zero = false,
-    getFormatter = (t: Translation) => t.formatters
+    getFormatters = (t: Translation) => t.formatters
   } = options;
   const lines: string[] = [];
   const translated: Set<string> = new Set();
@@ -136,7 +136,7 @@ function formatWithFinder(
 
     if (description !== undefined) {
       const translation = translate(description, stats, (t: Translation, n) =>
-        getFormatter(t, stat, n)
+        getFormatters(t, stat, n)
       );
 
       if (translation === undefined) {
