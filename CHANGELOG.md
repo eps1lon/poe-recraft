@@ -9,6 +9,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - ES module build now targets ES6. (#24)
 
 ### Added 
+- `skip_if_zero` fallback for `formatStats()` which suppresses thrown errors
+  if the stat has a value that is equivilant to zero. (#29)
 - `textToStats` (also available in `Format`) which finds every combination
   of stats that could've produced a given text. Check the API docs for more info. (#24)
 

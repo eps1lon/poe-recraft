@@ -177,6 +177,36 @@ it('should support skipping fallback', () => {
   ).toEqual([]);
 });
 
+it('should support skip if zero fallback', () => {
+  const stats = [{ id: 'from_armour_movement_speed_+%', value: 0 }];
+
+  expect(() =>
+    formatStats(stats, {
+      datas
+    })
+  ).toThrow('no descriptions found for from_armour_movement_speed_+%');
+  expect(
+    formatStats(stats, {
+      datas,
+      fallback: Fallback.skip_if_zero
+    })
+  ).toEqual([]);
+
+  // only warn about non zero stats for which no desc was found
+  expect(() =>
+    formatStats(
+      [
+        { id: 'from_armour_movement_speed_+%', value: 0 },
+        { id: 'non_existing_non_zero', value: [0, 1] }
+      ],
+      {
+        datas,
+        fallback: Fallback.skip_if_zero
+      }
+    )
+  ).toThrow('no descriptions found for non_existing_non_zero');
+});
+
 it('should throw if we provide an unrecognize fallback', () => {
   expect(() =>
     formatStats([{ id: 'from_armour_movement_speed_+%', value: -3 }], {
