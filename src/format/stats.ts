@@ -7,6 +7,7 @@ import {
   StatLocaleDatas,
   Translation
 } from '../types/StatDescription';
+import { isZero } from '../types/StatValue';
 
 // arg types
 export type Stat = {
@@ -25,10 +26,18 @@ export type TranslatedStats = string[];
 
 export type FallbackCallback = (id: string, stat: Stat) => string | null;
 
+export class NoDescriptionFound extends Error {
+  constructor(stats: Stat[]) {
+    super('no descriptions found for ' + stats.map(({ id }) => id).join(','));
+  }
+}
 export enum Fallback {
   throw, // throw if no stat was found
   id,
-  skip
+  skip,
+  // ignore if no matching translation is found in stat description
+  // if the stat value is equiv to zero (e.g. 0 or [0, 9])
+  skip_if_zero
 }
 
 const initial_options: Options = {
@@ -93,8 +102,10 @@ const NO_DESCRIPTION = 'NO_DESCRIPTION';
 // stats will get mutated
 function formatWithFinder(
   stats: Map<string, Stat>,
-  find: (stat: Stat) => Description | undefined
+  find: (stat: Stat) => Description | undefined,
+  options: Partial<{ ignore_if_zero: boolean }> = {}
 ): string[] {
+  const { ignore_if_zero = false } = options;
   const lines: string[] = [];
   const translated: Set<string> = new Set();
 
@@ -109,7 +120,14 @@ function formatWithFinder(
       const translation = translate(description, stats);
 
       if (translation === undefined) {
-        throw new Error(`matching translation not found for '${stat.id}'`);
+        const requiredStatsAreZero = requiredStats(
+          description,
+          stats
+        ).every(({ value }) => isZero(value));
+
+        if (!ignore_if_zero || !requiredStatsAreZero) {
+          throw new Error(`matching translation not found for '${stat.id}'`);
+        }
       } else {
         // mark as translated
         description.stats.forEach(translated_id => {
@@ -133,14 +151,32 @@ function translate(
   description: Description,
   provided: Map<string, Stat>
 ): string | undefined {
-  const { stats, no_description, translations } = description;
+  const { no_description, translations } = description;
 
   if (no_description === true) {
     return NO_DESCRIPTION;
   }
 
+  const required_stats = requiredStats(description, provided);
+  const translation = matchingTranslation(translations, required_stats);
+
+  if (translation === undefined) {
+    return undefined;
+  } else {
+    return printf(
+      translation.text,
+      required_stats.map(({ value }) => value),
+      translation.formatters
+    );
+  }
+}
+
+function requiredStats(
+  description: Description,
+  provided: Map<string, Stat>
+): Stat[] {
   // intersect the required stat_ids from the desc with the provided
-  const required_stats = stats
+  return description.stats
     .map(stat_id => {
       const stat = provided.get(stat_id);
 
@@ -155,18 +191,6 @@ function translate(
       }
     })
     .filter((stat: Stat | null): stat is Stat => stat !== null);
-
-  const translation = matchingTranslation(translations, required_stats);
-
-  if (translation === undefined) {
-    return undefined;
-  } else {
-    return printf(
-      translation.text,
-      required_stats.map(({ value }) => value),
-      translation.formatters
-    );
-  }
 }
 
 function matchingTranslation(translations: Translation[], stats: Stat[]) {
@@ -183,9 +207,7 @@ function formatWithFallback(
 ): string[] {
   if (fallback === Fallback.throw) {
     if (stats.size > 0) {
-      throw new Error(
-        'no descriptions found for ' + Array.from(stats.keys()).join(',')
-      );
+      throw new NoDescriptionFound(Array.from(stats.values()));
     } else {
       return [];
     }
@@ -197,6 +219,16 @@ function formatWithFallback(
     return Array.from(stats.entries())
       .map(([id, stat]) => fallback(id, stat))
       .filter((line): line is string => typeof line === 'string');
+  } else if (fallback === Fallback.skip_if_zero) {
+    const non_zero_stats = Array.from(stats.values()).filter(
+      stat => !isZero(stat.value)
+    );
+
+    if (non_zero_stats.length > 0) {
+      throw new NoDescriptionFound(non_zero_stats);
+    } else {
+      return [];
+    }
   } else {
     // should ts recognize that this is unreachable code? enums can prob
     // be extended at runtime an therfore somebody could mess with them
