@@ -16,8 +16,10 @@ export default function translate(
    * @param t 
    * @param count {number} number of params 
    */
-  getFormatters: (t: Translation, count: number) => Translation['formatters'] = t =>
-    t.formatters
+  getFormatters: (
+    t: Translation,
+    count: number
+  ) => Translation['formatters'] = t => t.formatters
 ): string | undefined {
   const { stats, no_description, translations } = description;
 

@@ -1,7 +1,7 @@
 import {
   Descriptions,
   StatLocaleData,
-  StatLocaleDatas,
+  StatLocaleDatas
 } from '../types/StatDescription';
 
 export function* getDescriptions(

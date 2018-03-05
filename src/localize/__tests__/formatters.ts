@@ -91,7 +91,7 @@ describe('regxp', () => {
 
 describe('inverse', () => {
   it('acts as an inverse to formatters', () => {
-    const skip = ['mod_value_to_item_class', 'placeholder']
+    const skip = ['mod_value_to_item_class', 'placeholder'];
     // use reasonably big values because we blindly test every formatter
     // which can apply divisions by 1000
     const values = [120000, 0, -30000];

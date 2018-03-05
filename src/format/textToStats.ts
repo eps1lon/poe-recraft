@@ -1,5 +1,5 @@
 import { inverseFactory } from '../localize/formatters';
-import { asRegexp,  matchesTranslation, Stat } from '../translate';
+import { asRegexp, matchesTranslation, Stat } from '../translate';
 import {
   Description,
   Descriptions,
