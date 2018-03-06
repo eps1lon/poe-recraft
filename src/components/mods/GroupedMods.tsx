@@ -68,7 +68,7 @@ const columns = [
   }
 ];
 
-const defaultSorted = ['correct_group'];
+const defaultSorted = [{ id: 'correct_group' }];
 
 // FIXME: await for merge of DefinitelyTyped/Definitely#23852
 const SubComponent: SFC<any> = props => {

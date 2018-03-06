@@ -18,7 +18,7 @@ export type Props = {
   onAddMod: (mod: Mod) => any;
 };
 
-const defaultSorted = [{ id: 'ilvl', desc: true }];
+const defaultSorted = [{ id: 'ilvl', desc: undefined }];
 
 // TODO spawnchance, flags, mod#t
 const UngroupedMods: SFC<Props> = props => {

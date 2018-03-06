@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { NavDropdown, DropdownToggle } from 'reactstrap';
+import { Dropdown, DropdownToggle } from 'reactstrap';
 
 import GroupDropdown from './GroupDropdown';
 
@@ -42,7 +42,8 @@ export default class ItemClassGroup extends PureComponent<Props, State> {
 
     return groups.map(group => {
       return (
-        <NavDropdown
+        <Dropdown
+          nav={true}
           key={group.name}
           className={active === group.name ? 'active' : ''}
           isOpen={expanded[group.name]}
@@ -52,7 +53,7 @@ export default class ItemClassGroup extends PureComponent<Props, State> {
             {group.human}
           </DropdownToggle>
           <GroupDropdown classes={group.classes} />
-        </NavDropdown>
+        </Dropdown>
       );
     });
   }

@@ -1,6 +1,6 @@
 import React, { SFC } from 'react';
 import {
-  UncontrolledNavDropdown,
+  UncontrolledDropdown,
   DropdownItem,
   DropdownMenu,
   DropdownToggle
@@ -23,7 +23,7 @@ const LanguagePicker: SFC<Props> = props => {
   const { active_locale, locales, onChange } = props;
 
   return (
-    <UncontrolledNavDropdown className="languages">
+    <UncontrolledDropdown nav={true} className="languages">
       <DropdownToggle nav={true} caret={true}>
         <LocaleIcon code={active_locale} />
       </DropdownToggle>
@@ -40,7 +40,7 @@ const LanguagePicker: SFC<Props> = props => {
           );
         })}
       </DropdownMenu>
-    </UncontrolledNavDropdown>
+    </UncontrolledDropdown>
   );
 };
 
