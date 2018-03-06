@@ -1,6 +1,6 @@
 import { Popup as ItemPopup, Rarity } from 'poe-components-item';
 import { formatStats } from 'poe-i18n';
-import { Container, Item, ItemArmourProperties } from 'poe-mods';
+import { Container, Item, ArmourProperties } from 'poe-mods';
 
 /**
  * creates a "dumb" object with view relevant properties from item
@@ -50,23 +50,10 @@ function snapshotProperties(item: Item) {
     quality: properties.quality
   };
 
-  if (properties instanceof ItemArmourProperties) {
-    const { armour, energy_shield, evasion } = properties.defences();
-
+  if (properties instanceof ArmourProperties) {
     return {
       ...base_properties,
-      armour: {
-        augmented: armour.type === 'augmented',
-        value: armour.values
-      },
-      energy_shield: {
-        augmented: energy_shield.type === 'augmented',
-        value: energy_shield.values
-      },
-      evasion: {
-        augmented: evasion.type === 'augmented',
-        value: evasion.values
-      }
+      ...properties.defences()
     };
   } else {
     return base_properties;
