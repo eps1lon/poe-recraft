@@ -63,7 +63,8 @@ function groupStats(
     fallback: Fallback.skip_if_zero
   });
 
-  return lines.join(' / ');
+  // collapes value ranges into single placeholder
+  return lines.map(line => line.replace(/\(# - #\)/g, '#')).join(' / ');
 }
 
 function collapseTable<T>(

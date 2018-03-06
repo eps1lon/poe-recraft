@@ -60,6 +60,29 @@ it('returns an emtpy string if no mods were given', () => {
   expect(groupMods([])).toEqual('');
 });
 
+it('merges multiple mods (mod = one ore more stats) into a single line', () => {
+  expect(
+    groupMods([[{ id: 'weapon_physical_damage_+%', value: 25 }]], { datas })
+  ).toEqual('#% increased Physical Damage with Weapons');
+
+  expect(
+    groupMods(
+      [
+        [
+          { id: 'attack_minimum_added_physical_damage', value: [1, 5] },
+          { id: 'attack_maximum_added_physical_damage', value: [10, 15] }
+        ],
+
+        [
+          { id: 'attack_minimum_added_physical_damage', value: [6, 10] },
+          { id: 'attack_maximum_added_physical_damage', value: [16, 20] }
+        ]
+      ],
+      { datas }
+    )
+  ).toEqual('Adds # to # Physical Damage to Attacks');
+});
+
 describe('usage with poe-mods', () => {
   const modStats = (mod: Mod['props']) =>
     mod.stats.map((stat, i) => {
