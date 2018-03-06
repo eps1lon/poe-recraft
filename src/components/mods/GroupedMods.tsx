@@ -1,7 +1,9 @@
+import { Mod } from 'poe-mods';
 import React, { SFC } from 'react';
 import ReactTable, { ControlledStateOverrideProps, RowInfo } from 'react-table';
 
 import UngroupedMods from 'containers/mods/UngroupedMods';
+import CorrectGroup from 'containers/i18n/CorrectGroup';
 import { ReactTableExpanded } from 'actions/gui';
 
 import { GeneratorDetails } from './ModsTable';
@@ -47,7 +49,10 @@ const columns = [
   {
     accessor: '0',
     id: 'correct_group',
-    className: 'correct-group'
+    className: 'correct-group',
+    Cell: ({ original }: { original: [any, GeneratorDetails[]] }) => {
+      return <CorrectGroup mods={original[1].map(({ mod }) => mod)} />;
+    }
   },
   {
     accessor: '1.length',
