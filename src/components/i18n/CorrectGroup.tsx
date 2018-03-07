@@ -18,7 +18,7 @@ const CorrectGroup: React.SFC<Props> = ({ descriptions, mods }) => {
   );
 
   // string not assignable to ReactElement so fallback to <em>
-  return <em>{translation}</em>;
+  return <em title={translation}>{translation}</em>;
 };
 
 export default CorrectGroup;

@@ -22,7 +22,7 @@ export type Action =
   | ModsSuccessAction
   | TagsSuccessAction;
 
-function getEndpoint(endpoint: string, name: string) {
+function getEndpoint(endpoint: string, name: string): RSAAction<any, any, any> {
   return {
     [RSAA]: {
       endpoint: apiEndpoint(endpoint),

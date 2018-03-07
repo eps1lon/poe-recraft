@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { Mod } from 'poe-mods';
 import React, { SFC } from 'react';
-import ReactTable, { RowInfo } from 'react-table';
 
 import FormattedModName from 'containers/i18n/FormattedModName';
 import { disabled } from 'util/mods';
@@ -89,38 +88,7 @@ const UngroupedMods: SFC<Props> = props => {
     }
   ].filter(({ id }) => !exclude.includes(id));
 
-  return (
-    <ReactTable
-      {...{
-        className: `mods ${className}`,
-        data: all_details,
-        columns,
-        defaultSorted,
-        showPagination: false,
-        minRows: 1,
-        pageSize: Number.MAX_VALUE,
-        getTrProps: (state: any, rowInfo: any) => {
-          // rowInfo.original.mod || undefined
-          const mod: Mod | null =
-            rowInfo !== undefined && rowInfo.original
-              ? rowInfo.original.mod
-              : null;
-
-          if (mod instanceof Mod) {
-            return {
-              className: classNames(
-                `mod domain-${mod.props.domain}`,
-                mod.modType(),
-                { disabled: disabled(rowInfo.original) }
-              )
-            };
-          } else {
-            return {};
-          }
-        }
-      }}
-    />
-  );
+  return <div />;
 };
 
 UngroupedMods.defaultProps = {

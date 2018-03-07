@@ -75,9 +75,7 @@ const ModsTable: SFC<Props> = props => {
           </Button>
         )}
       </h4>
-      {expanded && (
-        <Mods className={className} details={details} options={{ exclude }} />
-      )}
+      {expanded && <Mods details={details} options={{ exclude }} />}
     </div>
   );
 };

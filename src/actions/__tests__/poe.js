@@ -6,7 +6,7 @@ import * as actions from '../poe';
 const middlewares = [apiMiddleware];
 const mockStore = configureMockStore(middlewares);
 
-const mock_root = 'http://example.com';
+const mockRoot = 'http://example.com';
 
 /**
  * this is not really testing anything
@@ -18,7 +18,7 @@ describe('async actions', () => {
   });
 
   it('should fetch item types that conform to schema', async () => {
-    const store = mockStore({ poe: { api_root: mock_root } });
+    const store = mockStore({ poe: { api_root: mockRoot } });
 
     fetchMock.mock('http://example.com/data/baseitemtypes.json', {
       body: [],

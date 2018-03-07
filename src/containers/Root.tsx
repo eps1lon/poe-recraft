@@ -1,18 +1,18 @@
 import React, { SFC } from 'react';
 import { connect, Provider } from 'react-redux';
-import { Dispatch, Store } from 'redux';
 
 import { changeLocale } from 'actions/i18n';
 import { getItems, getBenchoptions, getMods, getTags } from 'actions/poe';
 import App from 'components/App';
 import { State } from 'reducers/rootReducer';
+import { Dispatch, Store } from '../';
 
 export type Props = {
   locale: string;
   messages: { [key: string]: any };
   version: string;
   init: () => void;
-  store: Store<State>;
+  store: Store;
 };
 
 const Root: SFC<Props> = ({ locale, messages, store, init, version }) => {

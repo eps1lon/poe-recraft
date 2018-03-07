@@ -3,10 +3,16 @@ import {
   applyMiddleware,
   compose,
   Store as ReduxStore,
-  DeepPartial
+  DeepPartial,
+  AnyAction
 } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { apiMiddleware } from 'redux-api-middleware';
+import {
+  apiMiddleware,
+  RSAAction,
+  ApiMiddleware,
+  RSAA
+} from 'redux-api-middleware';
 
 import createLogger from './createLogger';
 import rootReducer, { State } from 'reducers/rootReducer';
@@ -22,26 +28,21 @@ const __DEV__ = process.env.NODE_ENV !== 'production';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const middlewares = [apiMiddleware, sagaMiddleware, createLogger()];
+const middlewareEnhancer = applyMiddleware(
+  apiMiddleware as ApiMiddleware,
+  sagaMiddleware,
+  createLogger()
+);
 
-const middlewareEnhancer = applyMiddleware(...middlewares);
-
-let storeEnhancer = middlewareEnhancer;
+const storeEnhancer = middlewareEnhancer;
 
 /* TODO: typescript
 if (__DEV__ && window.devToolsExtension) {
   // If the user has the "Redux DevTools" browser extension installed, use that.
   storeEnhancer = compose(middlewareEnhancer, window.devToolsExtension());
 } */
-export type Store = ReduxStore<State>;
-export default function configureStore(
-  initialState: DeepPartial<State> = {}
-): Store {
-  const store = createStore<State, any, any>(
-    rootReducer,
-    initialState,
-    storeEnhancer
-  );
+export default function configureStore(initialState: DeepPartial<State> = {}) {
+  const store = createStore(rootReducer, initialState, storeEnhancer);
 
   // run sagas
   SagaManager.startSagas(sagaMiddleware);

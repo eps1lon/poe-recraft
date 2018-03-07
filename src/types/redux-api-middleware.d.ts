@@ -2,7 +2,7 @@
 // related: agraboso/redux-api-middleware#93
 // tslint:disable
 declare module 'redux-api-middleware' {
-  import { Middleware, Action } from 'redux';
+  import { Middleware, Action, AnyAction, Dispatch } from 'redux';
 
   /**
    * Symbol key that carries API call info interpreted by this Redux middleware.
@@ -11,7 +11,7 @@ declare module 'redux-api-middleware' {
    * @access public
    * @default
    */
-  export const RSAA: string;
+  export const RSAA: 'rsaa';
 
   //// ERRORS
 
@@ -114,7 +114,7 @@ declare module 'redux-api-middleware' {
   /**
    * A Redux middleware that processes RSAA actions.
    */
-  export const apiMiddleware: Middleware;
+  export const apiMiddleware: ApiMiddleware;
 
   //// UTIL
 
@@ -147,7 +147,7 @@ declare module 'redux-api-middleware' {
     | 'OPTIONS';
 
   export interface RSAAction<R, S, F> {
-    [propName: string]: {
+    [RSAA]: {
       // Symbol as object key seems impossible
       endpoint: (state: any) => string | string; // or function
       method: HTTPVerb;
@@ -159,9 +159,9 @@ declare module 'redux-api-middleware' {
     };
   }
 
-  module 'redux' {
-    export interface Dispatch<D = Action> {
-      <R, S, F>(rsaa: RSAAction<R, S, F>): void;
-    }
+  interface ApiDispatch<A extends Action = AnyAction> {
+    <T extends A>(action: T): T;
+    <R, S, F>(rsaa: RSAAction<R, S, F>): TypeDescriptor<any>;
   }
+  export type ApiMiddleware = Middleware<ApiDispatch>;
 }

@@ -5,6 +5,8 @@ import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store/configureStore';
 
 const store = configureStore();
+export type Store = typeof store;
+export type Dispatch = Store['dispatch'];
 
 const rootEl = document.getElementById('root');
 

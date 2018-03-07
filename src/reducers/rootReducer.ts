@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers, Reducer } from 'redux';
 
 import baseitemfilter, { State as BaseitemfilterState } from './baseitemfilter';
 import craft, { State as CraftState } from './craft';
@@ -14,7 +14,10 @@ export type State = {
   poe: PoeState;
 };
 
-// @ts-ignore
-// not sure whats happening
-// everthing is working (which I know is not a valid excuse but still)
-export default combineReducers({ baseitemfilter, craft, gui, i18n, poe });
+export default combineReducers({
+  baseitemfilter,
+  craft,
+  gui,
+  i18n,
+  poe
+}) as Reducer<State>;
