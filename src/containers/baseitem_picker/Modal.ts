@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import { toggleBaseItemModal } from 'actions/gui';
 import Modal from 'components/baseitem_picker/Modal';
-import { State } from 'reducers/rootReducer';
-import { activeBaseitem } from 'selectors/item';
+import { State } from 'state';
+import { gui_actions } from 'state/gui';
+import { activeBaseitem } from 'state/item/selectors';
 
 const mapStateToProps = (state: State) => {
   return {
@@ -15,7 +15,7 @@ const mapStateToProps = (state: State) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    onToggle: () => dispatch(toggleBaseItemModal())
+    onToggle: () => dispatch(gui_actions.expanded_actions.toggleBaseItemModal())
   };
 };
 

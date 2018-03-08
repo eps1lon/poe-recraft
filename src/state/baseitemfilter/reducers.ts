@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { Action, Types } from 'actions/baseitemfilter';
+import { Action, Types } from './actions';
 
 export type State = {
   item_class: string;

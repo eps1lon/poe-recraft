@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
 import AvailableMods from 'components/mods/AvailableMods';
-import { State } from 'reducers/rootReducer';
-import { cachedAvailableMods } from 'selectors/craft';
+import { State } from 'state';
+import { cachedAvailableMods } from 'state/craft/selectors';
 
 const whitelist = [
   'lower_ilvl',

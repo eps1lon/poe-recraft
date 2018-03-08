@@ -1,9 +1,9 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
-import { setRarity } from 'actions/item';
 import RaritySwitcher, { Props } from 'components/RaritySwitcher';
-import { State } from 'reducers/rootReducer';
+import { State } from 'state';
+import { item_actions } from 'state/item';
 
 const mapStateToProps = (state: State) => {
   return {
@@ -14,7 +14,7 @@ const mapStateToProps = (state: State) => {
 const mapDispatchToProps = (dispatch: Dispatch, own_props: Props) => {
   return {
     onChange: (id: 'normal' | 'magic' | 'rare') => {
-      dispatch(setRarity(id));
+      dispatch(item_actions.setRarity(id));
       own_props.onChange(id);
     }
   };

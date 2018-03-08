@@ -9,7 +9,7 @@ import {
   SetLocaleAction,
   setMessages,
   SetMessagesAction
-} from 'actions/i18n';
+} from './actions';
 
 export type State = {
   locale: string;

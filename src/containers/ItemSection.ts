@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import ItemSection from 'components/ItemSection';
-import { State } from 'reducers/rootReducer';
-import snapshotItem from 'selectors/snapshotItem';
+import { State } from 'state';
+import snapshotItem from 'state/item/snapshotItem';
 
 const mapStateToProps = createSelector(
   (state: State) => state.craft.item,

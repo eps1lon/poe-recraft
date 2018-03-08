@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import { changeLocale } from 'actions/i18n';
 import { LanguagePicker } from 'components/language_picker/';
-import { State } from 'reducers/rootReducer';
+import { State } from 'state';
+import { i18n_actions } from 'state/i18n';
 
 const mapStateToProps = (state: State) => {
   return {
@@ -13,7 +13,7 @@ const mapStateToProps = (state: State) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    onChange: (locale: string) => dispatch(changeLocale(locale))
+    onChange: (locale: string) => dispatch(i18n_actions.changeLocale(locale))
   };
 };
 

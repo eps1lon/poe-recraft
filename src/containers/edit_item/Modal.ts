@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import { toggleEditItemModal } from 'actions/gui';
 import Modal, { Props } from 'components/edit_item/Modal';
-import { State } from 'reducers/rootReducer';
+import { State } from 'state';
+import { gui_actions } from 'state/gui';
 
 const mapStateToProps = (state: State): Partial<Props> => {
   return {
@@ -13,7 +13,7 @@ const mapStateToProps = (state: State): Partial<Props> => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    onToggle: () => dispatch(toggleEditItemModal())
+    onToggle: () => dispatch(gui_actions.expanded_actions.toggleEditItemModal())
   };
 };
 

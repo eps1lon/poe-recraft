@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import expanded, { State as ExpandedState } from './expanded';
+import expanded, { ExpandedState } from './expanded';
 
 export type State = {
   expanded: ExpandedState;

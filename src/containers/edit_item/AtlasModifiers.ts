@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { createSelector } from 'reselect';
 
-import { asElderItem, asShaperItem, removeAtlasModifier } from 'actions/item';
 import AtlasModifiers, { Props } from 'components/edit_item/AtlasModifiers';
-import { State } from 'reducers/rootReducer';
+import { State } from 'state';
+import { item_actions } from 'state/item';
 
 const mapStateToProps = createSelector(
   (state: State) => state.craft.item,
@@ -28,9 +28,9 @@ const mapStateToProps = createSelector(
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    onElder: () => dispatch(asElderItem()),
-    onShape: () => dispatch(asShaperItem()),
-    onNone: () => dispatch(removeAtlasModifier())
+    onElder: () => dispatch(item_actions.asElderItem()),
+    onShape: () => dispatch(item_actions.asShaperItem()),
+    onNone: () => dispatch(item_actions.removeAtlasModifier())
   };
 };
 

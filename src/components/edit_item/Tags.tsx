@@ -1,14 +1,12 @@
 import React, { SFC } from 'react';
 import { Button } from 'reactstrap';
 
-import { TagProps } from 'selectors/schema';
-
 export type Props = {
-  addable: TagProps[];
-  removable: TagProps[];
-  current: TagProps[];
-  addTag: (tag: TagProps) => any;
-  removeTag: (tag: TagProps) => any;
+  addable: string[];
+  removable: string[];
+  current: string[];
+  addTag: (tag: string) => any;
+  removeTag: (tag: string) => any;
 };
 
 export default class Tags extends React.PureComponent<Props> {

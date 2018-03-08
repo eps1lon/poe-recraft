@@ -1,13 +1,13 @@
 import { RSAA, RSAAction } from 'redux-api-middleware';
 
-import { apiEndpoint } from 'selectors/poe';
+import { Action } from 'util/redux';
+import { apiEndpoint } from './selectors';
 import {
   BaseItemTypeProps,
   CraftingBenchOptionsProps,
   ModProps,
   TagProps
-} from 'selectors/schema';
-import { Action } from 'util/redux';
+} from './schema';
 
 export enum Type {
   ITEMS_SUCCESS = 'POE/ITEMS_SUCCESS',

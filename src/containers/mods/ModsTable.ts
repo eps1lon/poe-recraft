@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import { collapse, expand, toggle } from 'actions/gui';
 import ModsTable, { Props } from 'components/mods/ModsTable';
-import { State } from 'reducers/rootReducer';
+import { State } from 'state';
+import { gui_actions } from 'state/gui';
 
 const mapStateToProps = (state: State, props: Props) => {
   return {
@@ -18,10 +18,10 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     onToggle: (class_name: string, is_expanded: boolean) =>
       is_expanded
-        ? dispatch(collapse(class_name))
-        : dispatch(expand(class_name)),
+        ? dispatch(gui_actions.expanded_actions.collapse(class_name))
+        : dispatch(gui_actions.expanded_actions.expand(class_name)),
     onGroupToggle: (class_name: string) =>
-      dispatch(toggle(`${class_name}-group`))
+      dispatch(gui_actions.expanded_actions.toggle(`${class_name}-group`))
   };
 };
 

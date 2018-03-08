@@ -1,11 +1,10 @@
+import { Action, Type } from './actions';
 import {
   BaseItemTypeProps,
   CraftingBenchOptionsProps,
   ModProps,
   TagProps
-} from 'selectors/schema';
-
-import { Action, Type } from 'actions/poe';
+} from './schema';
 
 export type State = {
   api_root: string;

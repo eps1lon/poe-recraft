@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 
-import { State } from 'reducers/rootReducer';
-import { makeGetTableExpanded } from 'selectors/gui';
+import { State } from 'state';
+import { gui_selectors } from 'state/gui';
 import { expanded as expandedHandles } from '../handles/gui';
 import GroupedMods from 'components/mods/GroupedMods';
-import { createSelector } from 'reselect';
 import { GeneratorDetails } from 'components/mods/ModsTable';
 
 const groupSelector = createSelector(
@@ -25,7 +25,7 @@ const groupSelector = createSelector(
 );
 
 const makeMapStateToProps = () => {
-  const getTableExpanded = makeGetTableExpanded();
+  const getTableExpanded = gui_selectors.expanded_selectors.makeGetTableExpanded();
 
   const mapStateToProps = (
     state: State,

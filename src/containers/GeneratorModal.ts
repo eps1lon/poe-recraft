@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import { useGenerator } from 'actions/craft';
-import { toggleGeneratorModal } from 'actions/gui';
+import { craftActions } from 'state/craft';
+import { activeGenerator } from 'state/craft/selectors';
+import { gui_actions } from 'state/gui';
+import { State } from 'state';
 import GeneratorModal from 'components/generator_picker/Modal';
-import { State } from 'reducers/rootReducer';
-import { activeGenerator } from 'selectors/craft';
 
 const mapStateToProps = (state: State) => {
   return {
@@ -16,8 +16,10 @@ const mapStateToProps = (state: State) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    onChange: (generator: string) => dispatch(useGenerator(generator)),
-    onToggle: () => dispatch(toggleGeneratorModal())
+    onChange: (generator: string) =>
+      dispatch(craftActions.useGenerator(generator)),
+    onToggle: () =>
+      dispatch(gui_actions.expanded_actions.toggleGeneratorModal())
   };
 };
 

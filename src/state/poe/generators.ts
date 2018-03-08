@@ -10,23 +10,25 @@ import {
   Transmute
 } from 'poe-mods';
 
-import { State } from 'reducers/rootReducer';
+import { State } from './reducers';
 
-export function buildShowcase(state: State): ItemShowcase {
+export function buildShowcase(state: { poe: State }): ItemShowcase {
   const mods = state.poe.mods;
   const options = state.poe.benchoptions;
 
   return new ItemShowcase(mods, options);
 }
 
-const buildAlchemy = (state: State) => Alchemy.build(state.poe.mods);
-const buildAugment = (state: State) => Augment.build(state.poe.mods);
-const buildAlteration = (state: State) => Alteration.build(state.poe.mods);
-const buildChaos = (state: State) => Chaos.build(state.poe.mods);
-const buildExalted = (state: State) => Exalted.build(state.poe.mods);
-const buildRegal = (state: State) => Regal.build(state.poe.mods);
-const buildScouring = (state: State) => new Scouring();
-const buildTransmute = (state: State) => Transmute.build(state.poe.mods);
+const buildAlchemy = (state: { poe: State }) => Alchemy.build(state.poe.mods);
+const buildAugment = (state: { poe: State }) => Augment.build(state.poe.mods);
+const buildAlteration = (state: { poe: State }) =>
+  Alteration.build(state.poe.mods);
+const buildChaos = (state: { poe: State }) => Chaos.build(state.poe.mods);
+const buildExalted = (state: { poe: State }) => Exalted.build(state.poe.mods);
+const buildRegal = (state: { poe: State }) => Regal.build(state.poe.mods);
+const buildScouring = (state: { poe: State }) => new Scouring();
+const buildTransmute = (state: { poe: State }) =>
+  Transmute.build(state.poe.mods);
 
 export function buildGeneratorFactory(generator: string) {
   switch (generator) {

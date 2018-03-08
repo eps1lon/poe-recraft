@@ -1,7 +1,11 @@
 import React, { SFC } from 'react';
 
 import TagFilter from './TagFilter';
-import { BaseitemFilter } from 'selectors/baseitemfilter';
+
+export interface BaseitemFilter {
+  item_class: string;
+  tags: string[][];
+}
 
 export type Props = {
   item_class: string;

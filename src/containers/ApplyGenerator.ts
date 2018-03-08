@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import { applyGenerator } from 'actions/craft';
+import { craftActions } from 'state/craft';
+import { activeGenerator } from 'state/craft/selectors';
 import ApplyGenerator from 'components/ApplyGenerator';
-import { State } from 'reducers/rootReducer';
-import { activeGenerator } from 'selectors/craft';
+import { State } from 'state';
 
 const mapStateToProps = (state: State) => {
   return {
@@ -14,7 +14,7 @@ const mapStateToProps = (state: State) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    onClick: () => dispatch(applyGenerator())
+    onClick: () => dispatch(craftActions.applyGenerator())
   };
 };
 

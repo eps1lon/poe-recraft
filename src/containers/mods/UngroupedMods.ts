@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
-import { State } from 'reducers/rootReducer';
 import modHandles from '../handles/mod';
 import UngroupedMods from 'components/mods/UngroupedMods';
+import { State } from 'state';
 
 const mapDispatchToProps = modHandles;
 

@@ -1,7 +1,7 @@
 import { addLocaleData } from 'react-intl';
 import { all, call, fork, put, take } from 'redux-saga/effects';
 
-import { setDescriptions, setLocale, setMessages, Type } from 'actions/i18n';
+import { i18n_actions } from 'state/i18n';
 
 const requireLocaleData = (locale: string) => {
   return import(/* webpackChunkName: "i18n/[request]" */ `../i18n/${locale}`);
@@ -9,7 +9,7 @@ const requireLocaleData = (locale: string) => {
 
 function* loadLocaleData() {
   while (true) {
-    const { payload: locale } = yield take(Type.CHANGE);
+    const { payload: locale } = yield take(i18n_actions.Type.CHANGE);
     const {
       baseitemtypes,
       item_classes,
@@ -19,10 +19,12 @@ function* loadLocaleData() {
     } = yield call(requireLocaleData, locale);
 
     yield call(addLocaleData, locale_data);
-    yield put(setMessages({ poe: { baseitemtypes, item_classes, mods } }));
-    yield put(setDescriptions({ stat_descriptions }));
+    yield put(
+      i18n_actions.setMessages({ poe: { baseitemtypes, item_classes, mods } })
+    );
+    yield put(i18n_actions.setDescriptions({ stat_descriptions }));
     // set last to trigger re-render
-    yield put(setLocale(locale));
+    yield put(i18n_actions.setLocale(locale));
   }
 }
 

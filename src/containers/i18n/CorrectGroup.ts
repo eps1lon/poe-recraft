@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { State } from 'reducers/rootReducer';
+import { State } from 'state';
 import CorrectGroup from 'components/i18n/CorrectGroup';
 import injectDescriptions from 'containers/injectDescriptions';
 

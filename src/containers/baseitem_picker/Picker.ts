@@ -2,21 +2,17 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { createSelector } from 'reselect';
 
-import { setItem } from 'actions/item';
 import Picker, {
   default_props,
   Props
 } from 'components/baseitem_picker/Picker';
-import { State } from 'reducers/rootReducer';
-import { filterItems } from 'selectors/baseitemfilter';
-import { activeBaseitem } from 'selectors/item';
-import { BaseItemTypeProps } from 'selectors/schema';
+import { State } from 'state';
+import { makeFilterItems } from 'state/baseitemfilter/selectors';
+import { item_actions } from 'state/item';
+import { activeBaseitem } from 'state/item/selectors';
+import { BaseItemTypeProps } from 'state/poe/schema';
 
-const baseitemsSelector = createSelector(
-  (state: State) => state.baseitemfilter,
-  (state: State) => state.poe.items,
-  ({ item_class, tags }, items) => filterItems({ item_class, tags }, items)
-);
+const baseitemsSelector = makeFilterItems();
 
 const mapStateToProps = (state: State): Partial<Props> => {
   return {
@@ -31,7 +27,7 @@ const mapDispatchToProps = (
 ): Partial<Props> => {
   return {
     onChange: (item: BaseItemTypeProps) =>
-      ownProps.onChange(item) && dispatch(setItem(item))
+      ownProps.onChange(item) && dispatch(item_actions.setItem(item))
   };
 };
 

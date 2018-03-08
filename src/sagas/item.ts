@@ -1,14 +1,13 @@
 import { all, fork, put, select, take } from 'redux-saga/effects';
 
 import { combineLatest } from './util';
-import { setItemClass, Types } from 'actions/baseitemfilter';
-import { setItem } from 'actions/item';
-import { defaultItem } from 'selectors/item';
+import { baseitem_filter_actions } from 'state/baseitemfilter';
+import { item_actions, item_selectors } from 'state/item';
 
 function* setDefaultItem() {
-  const item = yield select(defaultItem);
+  const item = yield select(item_selectors.defaultItem);
 
-  yield put(setItem(item));
+  yield put(item_actions.setItem(item));
 }
 
 function* initDefaultItem() {
@@ -19,7 +18,7 @@ function* initDefaultItem() {
 
   // set again on class change
   while (true) {
-    yield take(Types.SET_ITEM_CLASS);
+    yield take(baseitem_filter_actions.Types.SET_ITEM_CLASS);
     yield setDefaultItem();
   }
 }

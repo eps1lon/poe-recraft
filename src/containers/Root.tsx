@@ -1,10 +1,10 @@
 import React, { SFC } from 'react';
 import { connect, Provider } from 'react-redux';
 
-import { changeLocale } from 'actions/i18n';
-import { getItems, getBenchoptions, getMods, getTags } from 'actions/poe';
+import { i18n_actions } from 'state/i18n';
+import { poe_actions } from 'state/poe';
 import App from 'components/App';
-import { State } from 'reducers/rootReducer';
+import { State } from 'state';
 import { Dispatch, Store } from '../';
 
 export type Props = {
@@ -34,11 +34,11 @@ const mapStateToProps = (state: State) => {
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     init: () => {
-      dispatch(changeLocale('en'));
-      dispatch(getItems());
-      dispatch(getBenchoptions());
-      dispatch(getMods());
-      dispatch(getTags());
+      dispatch(i18n_actions.changeLocale('en'));
+      dispatch(poe_actions.getItems());
+      dispatch(poe_actions.getBenchoptions());
+      dispatch(poe_actions.getMods());
+      dispatch(poe_actions.getTags());
     }
   };
 };

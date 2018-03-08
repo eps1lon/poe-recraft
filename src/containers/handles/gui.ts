@@ -1,19 +1,14 @@
 import { Dispatch } from 'redux';
 
-import { collapse, setTableExpanded } from 'actions/gui';
-import { GuiIdent, ReactTableExpanded } from 'actions/gui';
+import { gui_actions } from 'state/gui';
 
 export type ExpandedHandles = {
-  onCollapse: (id: GuiIdent) => any;
-  onTableExpandedChange: (id: GuiIdent, expanded: ReactTableExpanded) => any;
+  onCollapse: (id: gui_actions.GuiIdent) => any;
 };
 export const expanded = (dispatch: Dispatch): ExpandedHandles => {
   return {
-    onCollapse: (ident: GuiIdent) => dispatch(collapse(ident)),
-    onTableExpandedChange: (
-      ident: GuiIdent,
-      changed_expanded: ReactTableExpanded
-    ) => dispatch(setTableExpanded(ident, changed_expanded))
+    onCollapse: (ident: gui_actions.GuiIdent) =>
+      dispatch(gui_actions.expanded_actions.collapse(ident))
   };
 };
 

@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import { setFilter } from 'actions/baseitemfilter';
+import { baseitem_filter_actions } from 'state/baseitemfilter';
+import { BaseitemFilter } from 'state/baseitemfilter/selectors';
+import { State } from 'state';
 import Filter, { default_props } from 'components/baseitem_picker/Filter';
-import { State } from 'reducers/rootReducer';
-import { BaseitemFilter } from 'selectors/baseitemfilter';
 
 const mapStateToProps = (state: State) => {
   return {
@@ -19,7 +19,8 @@ const mapDispatchToProps = (
 ) => {
   return {
     onChange: (filter: BaseitemFilter) =>
-      own_props.onChange(filter) && dispatch(setFilter(filter))
+      own_props.onChange(filter) &&
+      dispatch(baseitem_filter_actions.setFilter(filter))
   };
 };
 

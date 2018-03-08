@@ -2,7 +2,7 @@ import React, { SFC } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Button } from 'reactstrap';
 
-import { BaseItemTypeProps } from 'selectors/schema';
+import { BaseItemTypeProps } from 'state/poe/schema';
 
 export type Props = {
   active?: BaseItemTypeProps;

@@ -1,7 +1,7 @@
 import fetchMock from 'fetch-mock';
 import configureMockStore from 'redux-mock-store';
 import { apiMiddleware } from 'redux-api-middleware';
-import * as actions from '../poe';
+import * as actions from '../actions';
 
 const middlewares = [apiMiddleware];
 const mockStore = configureMockStore(middlewares);

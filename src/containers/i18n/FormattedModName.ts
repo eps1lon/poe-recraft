@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 
-import { State } from 'reducers/rootReducer';
+import { State } from 'state';
 import FormattedModName from 'components/i18n/FormattedModName';
-import { baseitemInflection } from 'selectors/craft';
+import { craft_selectors } from 'state/craft';
 
 const mapStateToProsp = (state: State) => {
   return {
-    inflection: baseitemInflection(state)
+    inflection: craft_selectors.baseitemInflection(state)
   };
 };
 

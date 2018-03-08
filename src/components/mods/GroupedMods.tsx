@@ -3,7 +3,7 @@ import React, { SFC } from 'react';
 
 import UngroupedMods from 'containers/mods/UngroupedMods';
 import CorrectGroup from 'containers/i18n/CorrectGroup';
-import { ReactTableExpanded } from 'actions/gui';
+import { gui_actions } from 'state/gui';
 
 import { GeneratorDetails } from './ModsTable';
 
@@ -11,8 +11,11 @@ export type Props = {
   className: string;
   groups: Map<string, GeneratorDetails[]>;
   options: {};
-  expanded: ReactTableExpanded;
-  onTableExpandedChange: (id: string, expanded: ReactTableExpanded) => any;
+  expanded: gui_actions.expanded_actions.ReactTableExpanded;
+  onTableExpandedChange: (
+    id: string,
+    expanded: gui_actions.expanded_actions.ReactTableExpanded
+  ) => any;
 };
 
 const default_props = {

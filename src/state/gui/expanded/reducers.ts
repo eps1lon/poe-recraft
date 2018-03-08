@@ -17,7 +17,7 @@ import {
   ToggleEditItemModalAction,
   ReactTableExpanded,
   GuiIdent
-} from 'actions/gui';
+} from './actions';
 import { handleActions } from 'util/redux';
 
 export type State = {

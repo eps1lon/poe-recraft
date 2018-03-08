@@ -1,6 +1,6 @@
 import { ComponentType } from 'react';
 import { connect } from 'react-redux';
-import { State } from 'reducers/rootReducer';
+import { State } from 'state';
 
 const mapStateToProps = (state: State) => {
   return {

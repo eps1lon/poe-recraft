@@ -4,7 +4,7 @@ import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import Filter from 'containers/baseitem_picker/Filter';
 import Picker from 'containers/baseitem_picker/Picker';
-import { BaseItemTypeProps } from 'selectors/schema';
+import { BaseItemTypeProps } from 'state/poe/schema';
 
 export type Props = {
   active: BaseItemTypeProps | undefined;

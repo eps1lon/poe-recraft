@@ -15,7 +15,7 @@ import {
 } from 'redux-api-middleware';
 
 import createLogger from './createLogger';
-import rootReducer, { State } from 'reducers/rootReducer';
+import rootReducer, { State } from '../state';
 
 import SagaManager from 'sagas/SagaManager';
 
@@ -50,8 +50,8 @@ export default function configureStore(initialState: DeepPartial<State> = {}) {
   if (__DEV__) {
     // Hot reload reducers (requires Webpack or Browserify HMR to be enabled)
     if ((module as any).hot) {
-      (module as any).hot.accept('../reducers/rootReducer', () =>
-        store.replaceReducer(require('../reducers/rootReducer').default)
+      (module as any).hot.accept('../state', () =>
+        store.replaceReducer(require('../state').default)
       );
 
       (module as any).hot.accept('../sagas/SagaManager', () => {
