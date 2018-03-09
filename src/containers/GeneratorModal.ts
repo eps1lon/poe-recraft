@@ -10,7 +10,7 @@ import GeneratorModal from 'components/generator_picker/Modal';
 const mapStateToProps = (state: State) => {
   return {
     active: activeGenerator(state),
-    is_open: state.gui.expanded.misc.get('generator-modal')
+    is_open: state.gui.expanded.get('generator-modal')
   };
 };
 

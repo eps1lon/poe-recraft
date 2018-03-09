@@ -7,10 +7,8 @@ import { gui_actions } from 'state/gui';
 
 const mapStateToProps = (state: State, props: Props) => {
   return {
-    expanded: Boolean(state.gui.expanded.misc.get(props.className)),
-    group_expanded: Boolean(
-      state.gui.expanded.misc.get(`${props.className}-group`)
-    )
+    expanded: Boolean(state.gui.expanded.get(props.className)),
+    group_expanded: Boolean(state.gui.expanded.get(`${props.className}-group`))
   };
 };
 

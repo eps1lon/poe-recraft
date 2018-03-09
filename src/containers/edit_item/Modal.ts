@@ -7,7 +7,7 @@ import { gui_actions } from 'state/gui';
 
 const mapStateToProps = (state: State): Partial<Props> => {
   return {
-    is_open: state.gui.expanded.misc.get('edititem-modal')
+    is_open: state.gui.expanded.get('edititem-modal')
   };
 };
 

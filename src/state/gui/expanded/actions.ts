@@ -5,7 +5,6 @@ export enum Type {
   COLLAPSE = 'COLLAPSE',
   EXPAND = 'EXPAND',
   TOGGLE = 'TOGGLE',
-  SET_TABLE_EXPANDED = 'SET_TABLE_EXPANDED',
   TOGGLE_GENERATOR_MODAL = 'TOGGLE_GENERATOR_MODAL',
   TOGGLE_BASEITEM_MODAL = 'TOGGLE_BASEITEM_MODAL',
   TOGGLE_EDITITEM_MODAL = 'TOGGLE_EDITITEM_MODAL'
@@ -15,7 +14,6 @@ export type Action =
   | CollapseAction
   | ExpandAction
   | ToggleAction
-  | SetTableExpandedAction
   | ToggleGeneratorModalAction
   | ToggleBaseItemModalAction
   | ToggleEditItemModalAction;
@@ -40,21 +38,6 @@ export type ToggleAction = Action<Type.TOGGLE, GuiIdent>;
 export const toggle = (component: GuiIdent): ToggleAction => ({
   type: Type.TOGGLE,
   payload: component
-});
-
-export type SetTableExpandedAction = Action<
-  Type.SET_TABLE_EXPANDED,
-  { component: GuiIdent; expanded: ReactTableExpanded }
->;
-export const setTableExpanded = (
-  component: GuiIdent,
-  expanded: ReactTableExpanded
-): SetTableExpandedAction => ({
-  type: Type.SET_TABLE_EXPANDED,
-  payload: {
-    component,
-    expanded
-  }
 });
 
 export type ToggleGeneratorModalAction = NullableAction<

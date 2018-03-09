@@ -6,6 +6,7 @@ import FormattedModName from 'containers/i18n/FormattedModName';
 import { disabled } from 'util/mods';
 import FlagsTooltip from './FlagsTooltip';
 import { GeneratorDetails } from './ModsTable';
+import Table from '../FlexTable';
 import Stats from '../poe/Stats';
 
 export type Props = {
@@ -17,9 +18,51 @@ export type Props = {
   onAddMod: (mod: Mod) => any;
 };
 
-const defaultSorted = [{ id: 'ilvl', desc: undefined }];
+const columns = [
+  {
+    renderCell: (details: GeneratorDetails) => details.mod.props.level,
+    className: 'ilvl',
+    id: 'ilvl',
+    renderHeader: () => 'iLvl'
+  },
+  {
+    renderCell: (details: GeneratorDetails) => {
+      const id = `${details.mod.props.id}-stats`;
+      return (
+        <div>
+          <span id={id}>
+            <Stats className="stats" stats={details.mod.statsJoined()} />
+          </span>
+          <FlagsTooltip
+            id={id}
+            flags={[details.applicable, details.spawnable]}
+          />
+        </div>
+      );
+    },
+    className: 'stats',
+    renderHeader: () => 'Stats',
+    id: 'stats'
+  },
+  {
+    renderCell: (details: GeneratorDetails) => (
+      <FormattedModName mod={details.mod} />
+    ),
+    className: 'name',
+    renderHeader: () => 'Name',
+    id: 'name',
+    minWidth: 80
+  },
+  {
+    renderCell: (details: GeneratorDetails) =>
+      String(details.spawnweight || 'none'),
+    className: 'spawn-chance',
+    renderHeader: () => 'Chance',
+    id: 'chance'
+  }
+];
 
-// TODO spawnchance, flags, mod#t
+// TODO spawnchance, flags, mod#t, sort
 const UngroupedMods: SFC<Props> = props => {
   const {
     className = '',
@@ -29,66 +72,12 @@ const UngroupedMods: SFC<Props> = props => {
   } = props;
   const { exclude = [] } = options;
 
-  const columns = [
-    {
-      accessor: 'mod.props.level',
-      className: 'ilvl',
-      id: 'ilvl',
-      Header: 'iLvl',
-      minWidth: 15
-    },
-    {
-      accessor: (details: GeneratorDetails) => {
-        const id = `${details.mod.props.id}-stats`;
-        return (
-          <div>
-            <span id={id}>
-              <Stats className="stats" stats={details.mod.statsJoined()} />
-            </span>
-            <FlagsTooltip
-              id={id}
-              flags={[details.applicable, details.spawnable]}
-            />
-          </div>
-        );
-      },
-      className: 'stats',
-      Header: 'Stats',
-      id: 'stats',
-      minWidth: 200
-    },
-    {
-      accessor: (details: GeneratorDetails) => (
-        <FormattedModName mod={details.mod} />
-      ),
-      className: 'name',
-      Header: 'Name',
-      id: 'name',
-      minWidth: 80
-    },
-    {
-      accessor: (details: GeneratorDetails) =>
-        String(details.spawnweight || 'none'),
-      className: 'spawn-chance',
-      Header: 'Chance',
-      id: 'chance',
-      minWidth: 30
-    },
-    {
-      Header: '',
-      id: 'add_mod',
-      Cell: ({ original }: { original: GeneratorDetails }) => {
-        return (
-          !disabled(original) && (
-            <button onClick={() => onAddMod(original.mod)}>add</button>
-          )
-        );
-      },
-      minWdth: 30
-    }
-  ].filter(({ id }) => !exclude.includes(id));
-
-  return <div />;
+  return (
+    <Table
+      data={all_details}
+      columns={columns.filter(({ id }) => !exclude.includes(id))}
+    />
+  );
 };
 
 UngroupedMods.defaultProps = {

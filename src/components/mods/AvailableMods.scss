@@ -3,12 +3,48 @@
   width: 100%;
 
   .mods-table {
-    h4 {
+    h4,
+    h5 {
       cursor: pointer;
+
+      &:hover {
+        color: white;
+      }
     }
 
-    h4:hover {
-      color: white;
+    .flex-table {
+      .flex-table-head {
+        .flex-table-cell {
+          font-weight: bold;
+        }
+      }
+
+      .flex-table-row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 95%;
+
+        .flex-table-cell {
+          flex-grow: 0;
+          flex-shrink: 0;
+          margin: 2px 5px;
+        }
+
+        .ilvl {
+          width: 2em;
+          text-align: right;
+        }
+
+        .stats {
+          flex: 1;
+        }
+
+        .spawn-chance {
+          text-align: right;
+          width: 4em;
+        }
+      }
     }
   }
 

@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { createSelector } from 'reselect';
 
 import { State } from 'state';
-import { gui_selectors } from 'state/gui';
-import { expanded as expandedHandles } from '../handles/gui';
+import { gui_actions } from 'state/gui';
 import GroupedMods from 'components/mods/GroupedMods';
 import { GeneratorDetails } from 'components/mods/ModsTable';
 
@@ -24,23 +24,27 @@ const groupSelector = createSelector(
   }
 );
 
-const makeMapStateToProps = () => {
-  const getTableExpanded = gui_selectors.expanded_selectors.makeGetTableExpanded();
-
-  const mapStateToProps = (
-    state: State,
-    props: { className: string; details: GeneratorDetails[] }
-  ) => {
-    return {
-      expanded: getTableExpanded(state, props),
-      groups: groupSelector(props)
-    };
+const mapStateToProps = (
+  state: State,
+  props: { className: string; details: GeneratorDetails[] }
+) => {
+  return {
+    isExpanded: (group: string) =>
+      Boolean(state.gui.expanded.get(`${props.className}.${group}`)),
+    groups: groupSelector(props)
   };
-
-  return mapStateToProps;
 };
 
-const mapDispatchToProps = expandedHandles;
+const mapDispatchToProps = (
+  dispatch: Dispatch,
+  props: { className: string }
+) => {
+  return {
+    onGroupClick: (group: string) =>
+      dispatch(
+        gui_actions.expanded_actions.toggle(`${props.className}.${group}`)
+      )
+  };
+};
 
-// @ts-ignore: react-redux typings are broken atm :(
-export default connect(makeMapStateToProps, mapDispatchToProps)(GroupedMods);
+export default connect(mapStateToProps, mapDispatchToProps)(GroupedMods);

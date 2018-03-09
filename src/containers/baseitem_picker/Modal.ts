@@ -9,7 +9,7 @@ import { activeBaseitem } from 'state/item/selectors';
 const mapStateToProps = (state: State) => {
   return {
     active: activeBaseitem(state),
-    is_open: state.gui.expanded.misc.get('baseitem-modal')
+    is_open: state.gui.expanded.get('baseitem-modal')
   };
 };
 
