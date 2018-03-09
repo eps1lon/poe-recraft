@@ -18,7 +18,7 @@ export const default_props = {
   onChange: (item: BaseItemTypeProps) => {}
 };
 
-const GeneratorPicker: SFC<Props> = props => {
+const Picker: SFC<Props> = props => {
   return (
     <div key="items">
       {props.baseitems.map(baseitem => {
@@ -32,6 +32,6 @@ const GeneratorPicker: SFC<Props> = props => {
   );
 };
 
-GeneratorPicker.defaultProps = default_props;
+Picker.defaultProps = default_props;
 
-export default GeneratorPicker;
+export default Picker;
