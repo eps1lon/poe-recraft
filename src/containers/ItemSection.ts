@@ -8,11 +8,12 @@ import snapshotItem from 'state/item/snapshotItem';
 const mapStateToProps = createSelector(
   (state: State) => state.craft.item,
   (state: State) => state.i18n.descriptions,
-  (item, descriptions) => {
+  (state: State) => state.i18n.messages,
+  (item, descriptions, messages) => {
     if (item === undefined) {
       return { item: undefined };
     } else {
-      return { item: snapshotItem(item, descriptions) };
+      return { item: snapshotItem(item, descriptions, messages) };
     }
   }
 );

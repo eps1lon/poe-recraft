@@ -2,6 +2,8 @@ import { Popup as ItemPopup, Rarity } from 'poe-components-item';
 import { formatStats } from 'poe-i18n';
 import { Container, Item, ArmourProperties } from 'poe-mods';
 
+import { namei18n } from '../../util/item';
+
 /**
  * creates a "dumb" object with view relevant properties from item
  *
@@ -10,7 +12,8 @@ import { Container, Item, ArmourProperties } from 'poe-mods';
  */
 export default function snapshotItem(
   item: Item,
-  descriptions: {}
+  descriptions: {},
+  messages: {}
 ): ItemPopup['props']['item'] {
   let rarity: Rarity;
   if (item.rarity.isNormal()) {
@@ -31,7 +34,7 @@ export default function snapshotItem(
 
   return {
     base: {
-      name: item.baseitem.id
+      name: namei18n(item, messages)
     },
     name: item.name.lines()[0],
     elder: item.isElderItem(),
