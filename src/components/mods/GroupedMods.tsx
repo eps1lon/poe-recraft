@@ -27,9 +27,13 @@ const GroupedMods: SFC<Props> = props => {
   return (
     <>
       {Array.from(groups.entries()).map(([group, details]) => {
+        const mods = details.map(({ mod }) => mod);
+
         return (
           <>
-            <h5 onClick={() => onGroupClick(group)}>{group}</h5>
+            <h5 onClick={() => onGroupClick(group)}>
+              <CorrectGroup mods={mods} />
+            </h5>
             {isExpanded(group) && (
               <UngroupedMods className={className} details={details} />
             )}
