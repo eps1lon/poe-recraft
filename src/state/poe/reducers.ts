@@ -21,7 +21,7 @@ const initial: State = {
   benchoptions: [],
   mods: [],
   tags: [],
-  version: '3.0.1c'
+  version: '3.2.0'
 };
 
 // TODO add normalizr
