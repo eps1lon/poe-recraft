@@ -14,6 +14,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - `textToStats` (also available in `Format`) which finds every combination
   of stats that could've produced a given text. Check the API docs for more info. (#24)
 
+### Changed
+- Value ranges should now be displayed ordered. This caused #32 and was fixed with #37.
+
 ### Fixes
 - Some translations had standard printf syntax which is not understood by
   `formatStats`. This caused #34 and is fixed with #35.

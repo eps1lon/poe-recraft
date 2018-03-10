@@ -311,8 +311,8 @@ describe('expensive test cases', () => {
         }
       )
     ).toEqual([
-      '(10 - 7)% chance to Freeze',
-      'Adds (16 - 13) to (36 - 33) Cold Damage against Chilled or Frozen Enemies'
+      '(7 - 10)% chance to Freeze',
+      'Adds (13 - 16) to (33 - 36) Cold Damage against Chilled or Frozen Enemies'
     ]);
   });
 });

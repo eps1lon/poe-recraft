@@ -157,10 +157,32 @@ export default function factory(
       if (value[0] === value[1]) {
         return String(formatter(value[0]));
       } else {
-        return `(${formatter(value[0])} - ${formatter(value[1])})`;
+        const [min, max] = valueOrder(value, formatter_id);
+
+        return `(${formatter(min)} - ${formatter(max)})`;
       }
     } else {
       return String(formatter(value));
     }
   };
+}
+
+/**
+ * orders the given values so that the smallest displayed is min
+ * 
+ * reduced stats are given as negative values and then negated for display
+ * whichs results in [-30, -15] being displayed as "(30 - 15) reduced"
+ * @param param0 
+ * 
+ */
+function valueOrder(
+  [left, right]: [number, number],
+  formatter_id: string
+): [number, number] {
+  const sign = Math.sign(left);
+  if ((left < right && sign === 1) || (left > right && sign === -1)) {
+    return [left, right];
+  } else {
+    return [right, left];
+  }
 }
