@@ -1,5 +1,6 @@
 export { default as formatStats, Fallback } from './format/stats';
 export { default as formatGemStats } from './format/gemStats';
+export { default as groupMods } from './format/groupMods';
 export {
   default as textToStats,
   textToStatsArray,

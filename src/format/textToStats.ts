@@ -1,16 +1,14 @@
 import { inverseFactory } from '../localize/formatters';
-import asRegexp from '../translate/asRegexp';
-import { matchesTranslation } from '../translate/match';
+import { asRegexp, matchesTranslation, Stat } from '../translate';
 import {
   Description,
   Descriptions,
-  StatLocaleData,
   StatLocaleDatas,
   Translation
 } from '../types/StatDescription';
 import NamedGroupsRegexp from '../util/NamedGroupsRegexp';
 import { deterministicValueForMatcher } from '../util/symbolicStats';
-import { Stat } from './stats';
+import { getDescriptions } from './util';
 
 export type Options = {
   datas: StatLocaleDatas;
@@ -115,16 +113,4 @@ export function textToStatsFirst(
     throw new Error('Could match a single stat');
   }
   return value;
-}
-
-function* getDescriptions(datas: StatLocaleDatas, start_file: string) {
-  let description_file: StatLocaleData | undefined = datas[start_file];
-
-  while (description_file !== undefined) {
-    yield description_file.data;
-
-    description_file = description_file.meta.include
-      ? datas[description_file.meta.include]
-      : undefined;
-  }
 }

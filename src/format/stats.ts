@@ -1,5 +1,4 @@
-import { matchesTranslation } from '../translate/match';
-import printf from '../translate/printf';
+import translate, { NO_DESCRIPTION, Stat } from '../translate';
 import {
   Description,
   Descriptions,
@@ -10,16 +9,16 @@ import {
 import { isZero } from '../types/StatValue';
 
 // arg types
-export type Stat = {
-  id: string;
-  value: number | [number, number];
-  alias?: string;
-};
-
+export { Stat } from '../translate';
 export type Options = {
   datas: StatLocaleDatas;
   fallback: Fallback | FallbackCallback;
   start_file: string;
+  getFormatters: (
+    t: Translation,
+    stat: Stat,
+    n: number
+  ) => Translation['formatters'];
 };
 // return type
 export type TranslatedStats = string[];
@@ -43,14 +42,15 @@ export enum Fallback {
 const initial_options: Options = {
   datas: {},
   fallback: Fallback.throw,
-  start_file: 'stat_descriptions'
+  start_file: 'stat_descriptions',
+  getFormatters: t => t.formatters
 };
 
 const formatStats = (
   stats: Stat[],
   options: Partial<Options> = {}
 ): TranslatedStats => {
-  const { datas, fallback, start_file } = Object.assign(
+  const { datas, fallback, start_file, getFormatters } = Object.assign(
     {},
     initial_options,
     options
@@ -68,10 +68,14 @@ const formatStats = (
   while (description_file !== undefined) {
     const data: Descriptions = description_file.data;
 
-    lines.push(...formatWithFinder(untranslated, ({ id }) => data[id]));
-    lines.push(
-      ...formatWithFinder(untranslated, ({ id }) => findDescription(id, data))
-    );
+    for (const descriptionFinder of createDescriptionFindStrategies(data)) {
+      lines.push(
+        ...formatWithFinder(untranslated, descriptionFinder, {
+          getFormatters,
+          ignore_if_zero: fallback === Fallback.skip_if_zero
+        })
+      );
+    }
 
     description_file = description_file.meta.include
       ? datas[description_file.meta.include]
@@ -86,26 +90,40 @@ const formatStats = (
 export default formatStats;
 
 /**
- * O(n) lookup if hash lookup fails
+ * creates an array of methods that can be used to find a description for a
+ * given stat. 
  * 
- * @param stat_id 
- * @param locale_data 
+ * return value is to be interpreted as a priority queue
+ * @param descriptions 
  */
-function findDescription(stat_id: string, locale_data: Descriptions) {
-  return Object.values(locale_data).find(({ stats }) =>
-    stats.includes(stat_id)
-  );
+export function createDescriptionFindStrategies(
+  descriptions: Descriptions
+): Array<(stat: Stat) => Description | undefined> {
+  return [
+    ({ id }) => descriptions[id],
+    ({ id }) =>
+      Object.values(descriptions).find(({ stats }) => stats.includes(id))
+  ];
 }
 
-const NO_DESCRIPTION = 'NO_DESCRIPTION';
-
 // stats will get mutated
+interface FormatWithFinderOptions {
+  getFormatters: (
+    t: Translation,
+    stat: Stat,
+    n: number
+  ) => Translation['formatters'];
+  ignore_if_zero: boolean;
+}
 function formatWithFinder(
   stats: Map<string, Stat>,
   find: (stat: Stat) => Description | undefined,
-  options: Partial<{ ignore_if_zero: boolean }> = {}
+  options: Partial<FormatWithFinderOptions> = {}
 ): string[] {
-  const { ignore_if_zero = false } = options;
+  const {
+    ignore_if_zero = false,
+    getFormatters = (t: Translation) => t.formatters
+  } = options;
   const lines: string[] = [];
   const translated: Set<string> = new Set();
 
@@ -117,7 +135,9 @@ function formatWithFinder(
     const description = find(stat);
 
     if (description !== undefined) {
-      const translation = translate(description, stats);
+      const translation = translate(description, stats, (t: Translation, n) =>
+        getFormatters(t, stat, n)
+      );
 
       if (translation === undefined) {
         const requiredStatsAreZero = requiredStats(
@@ -147,30 +167,6 @@ function formatWithFinder(
   return lines;
 }
 
-function translate(
-  description: Description,
-  provided: Map<string, Stat>
-): string | undefined {
-  const { no_description, translations } = description;
-
-  if (no_description === true) {
-    return NO_DESCRIPTION;
-  }
-
-  const required_stats = requiredStats(description, provided);
-  const translation = matchingTranslation(translations, required_stats);
-
-  if (translation === undefined) {
-    return undefined;
-  } else {
-    return printf(
-      translation.text,
-      required_stats.map(({ value }) => value),
-      translation.formatters
-    );
-  }
-}
-
 function requiredStats(
   description: Description,
   provided: Map<string, Stat>
@@ -191,14 +187,6 @@ function requiredStats(
       }
     })
     .filter((stat: Stat | null): stat is Stat => stat !== null);
-}
-
-function matchingTranslation(translations: Translation[], stats: Stat[]) {
-  const args = stats.map(({ value }) => value);
-
-  return translations.find(translation => {
-    return matchesTranslation(translation, args);
-  });
 }
 
 function formatWithFallback(
