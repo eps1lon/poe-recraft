@@ -13,7 +13,6 @@ const ItemClassGroup: SFC<Props> = props => {
   const { active, name, onClick, id } = props;
 
   return (
-    // TODO was this working? typing indicates not
     <DropdownItem active={active === id} onClick={() => onClick(id)}>
       <FormattedMessage
         id={`poe.item_classes.${id}.name`}
