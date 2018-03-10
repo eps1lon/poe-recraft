@@ -74,7 +74,7 @@ Formatters ->
   | Formatter Whitespaces Formatters 
     {% ([formatter, , formatters]) => [formatter, ...formatters] %}
 Formatter -> (NullaryFormatter | UnaryFormatter) {% pipeId %}
-NullaryFormatter -> "canonical_line"
+NullaryFormatter -> "canonical_line" {% ([formatter]) => formatter %}
 UnaryFormatter -> 
   FormatterIdentifier Whitespaces FormatterArgument
   {% ([id, , arg]) => ({ id, arg }) %}

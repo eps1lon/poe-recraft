@@ -124,7 +124,7 @@ var grammar = {
     {"name": "Formatter$subexpression$1", "symbols": ["UnaryFormatter"]},
     {"name": "Formatter", "symbols": ["Formatter$subexpression$1"], "postprocess": pipeId},
     {"name": "NullaryFormatter$string$1", "symbols": [{"literal":"c"}, {"literal":"a"}, {"literal":"n"}, {"literal":"o"}, {"literal":"n"}, {"literal":"i"}, {"literal":"c"}, {"literal":"a"}, {"literal":"l"}, {"literal":"_"}, {"literal":"l"}, {"literal":"i"}, {"literal":"n"}, {"literal":"e"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "NullaryFormatter", "symbols": ["NullaryFormatter$string$1"]},
+    {"name": "NullaryFormatter", "symbols": ["NullaryFormatter$string$1"], "postprocess": ([formatter]) => formatter},
     {"name": "UnaryFormatter", "symbols": ["FormatterIdentifier", "Whitespaces", "FormatterArgument"], "postprocess": ([id, , arg]) => ({ id, arg })},
     {"name": "FormatterIdentifier$ebnf$1", "symbols": [/[a-zA-Z0-9_%]/]},
     {"name": "FormatterIdentifier$ebnf$1", "symbols": ["FormatterIdentifier$ebnf$1", /[a-zA-Z0-9_%]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},

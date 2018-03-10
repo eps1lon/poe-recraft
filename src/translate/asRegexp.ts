@@ -1,7 +1,7 @@
 import * as escapeStringRegexp from 'escape-string-regexp';
 
 import { regexpFactory } from '../localize/formatters';
-import { Translation } from '../types/StatDescription';
+import { Translation, UnaryFormatter } from '../types/StatDescription';
 import NamedGroupsRegexp from '../util/NamedGroupsRegexp';
 
 export default function asRegexp(translation: Translation): NamedGroupsRegexp {
@@ -12,7 +12,9 @@ export default function asRegexp(translation: Translation): NamedGroupsRegexp {
     .replace(/%(\d+)(\\\$\\\+d|%)/g, (match, arg, modifier) => {
       groups.push(arg);
 
-      const formatter = formatters.find(({ arg: other }) => `${other}` === arg);
+      const formatter = formatters
+        .filter((f): f is UnaryFormatter => typeof f !== 'string')
+        .find(({ arg: other }) => `${other}` === arg);
       const prefix = modifier === '\\$\\+d' ? '\\+' : '';
 
       if (formatter === undefined) {

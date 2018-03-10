@@ -20,60 +20,6 @@ const english: StatLocaleDatas = {
   stat_descriptions: {
     meta: {},
     data: {
-      "base_chance_to_freeze_%": {
-        "stats": ["base_chance_to_freeze_%", "always_freeze"],
-        "translations": [
-          {
-            "matchers": ["#", [1, "#"]],
-            "text": "Always Freezes Enemies on Hit",
-            "formatters": [
-              {
-                "id": "reminderstring",
-                "arg": "ReminderTextFreeze"
-              }
-            ]
-          },
-          {
-            "matchers": [[100, "#"], 0],
-            "text": "Always Freeze",
-            "formatters": [
-              {
-                "id": "reminderstring",
-                "arg": "ReminderTextFreeze"
-              }
-            ]
-          },
-          {
-            "matchers": [[1, 99], 0],
-            "text": "%1%%% chance to Freeze",
-            "formatters": [
-              ["canonical_line"],
-              {
-                "id": "canonical_stat",
-                "arg": 0
-              },
-              {
-                "id": "reminderstring",
-                "arg": "ReminderTextFreeze"
-              }
-            ]
-          }
-        ]
-      },
-      "global_minimum_added_cold_damage_vs_chilled_or_frozen_enemies": {
-        "stats": [
-          "global_minimum_added_cold_damage_vs_chilled_or_frozen_enemies",
-          "global_maximum_added_cold_damage_vs_chilled_or_frozen_enemies"
-        ],
-        "translations": [
-          {
-            "matchers": ["#", "#"],
-            "text":
-              "Adds %1% to %2% Cold Damage against Chilled or Frozen Enemies",
-            "formatters": []
-          }
-        ]
-      },
       'local_socketed_fire_gem_level_+': {
         stats: ['local_socketed_fire_gem_level_+'],
         translations: [
