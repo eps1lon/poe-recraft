@@ -286,3 +286,33 @@ it('should try each included file', () => {
     })
   ).toEqual(['Suffixes Cannot Be Changed']);
 });
+
+describe('expensive test cases', () => {
+  const full_datas = {
+    stat_descriptions: require('../../../locale-data/en/stat_descriptions.json') as StatLocaleData
+  };
+
+  it('translates ChanceToFreezeAddedDamageUber2', () => {
+    expect(
+      formatStats(
+        [
+          { id: 'base_chance_to_freeze_%', value: [10, 7] },
+          {
+            id: 'global_minimum_added_cold_damage_vs_chilled_or_frozen_enemies',
+            value: [16, 13]
+          },
+          {
+            id: 'global_maximum_added_cold_damage_vs_chilled_or_frozen_enemies',
+            value: [36, 33]
+          }
+        ],
+        {
+          datas
+        }
+      )
+    ).toEqual([
+      '(10 - 7)% chance to Freeze',
+      'Adds (16 - 13) to (36 - 33) Cold Damage against Chilled or Frozen Enemies'
+    ]);
+  });
+});
