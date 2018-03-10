@@ -1,3 +1,43 @@
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (this && this.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
+};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __values = (this && this.__values) || function (o) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+    if (m) return m.call(o);
+    return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+};
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -6,18 +46,68 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
-System.register("translate/match", [], function (exports_1, context_1) {
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+System.register("types/StatDescription", [], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
+    return {
+        setters: [],
+        execute: function () {
+        }
+    };
+});
+System.register("translate/match", [], function (exports_2, context_2) {
+    "use strict";
+    var __moduleName = context_2 && context_2.id;
+    // match value if for every value in values: value in (min, max)
+    function matchesTranslation(translation, values) {
+        return matches(values, translation.matchers).every(function (matched) { return matched === Match.subset || matched === Match.exact; });
+    }
+    exports_2("matchesTranslation", matchesTranslation);
     // does a value match a matcher
     function matchesSingle(value, matcher) {
         return matches([value], [matcher])[0];
     }
-    exports_1("matchesSingle", matchesSingle);
+    exports_2("matchesSingle", matchesSingle);
     function matches(values, matchers) {
         return matchers.map(function (matcher, i) { return match(values[i], matcher); });
     }
-    exports_1("matches", matches);
+    exports_2("matches", matches);
     // interval matching
     function match(value, matcher) {
         if (value === undefined) {
@@ -45,7 +135,7 @@ System.register("translate/match", [], function (exports_1, context_1) {
         }
     }
     function rangeCast(value) {
-        var _a = isBoundedRange(value) ? value : [value, value], lower = _a[0], upper = _a[1];
+        var _a = __read(isBoundedRange(value) ? value : [value, value], 2), lower = _a[0], upper = _a[1];
         return [
             lower === '#' ? Number.NEGATIVE_INFINITY : lower,
             upper === '#' ? Number.POSITIVE_INFINITY : upper
@@ -67,28 +157,22 @@ System.register("translate/match", [], function (exports_1, context_1) {
                 Match[Match["partial_lower"] = 4] = "partial_lower";
                 Match[Match["none"] = 5] = "none"; // A \minus B = A
             })(Match || (Match = {}));
-            exports_1("Match", Match);
-        }
-    };
-});
-System.register("types/StatDescription", [], function (exports_2, context_2) {
-    "use strict";
-    var __moduleName = context_2 && context_2.id;
-    return {
-        setters: [],
-        execute: function () {
+            exports_2("Match", Match);
         }
     };
 });
 System.register("types/StatValue", [], function (exports_3, context_3) {
     "use strict";
     var __moduleName = context_3 && context_3.id;
-    var isRange;
+    var isRange, isZero;
     return {
         setters: [],
         execute: function () {
             exports_3("isRange", isRange = function (value) {
                 return Array.isArray(value) && value.length === 2;
+            });
+            exports_3("isZero", isZero = function (value) {
+                return isRange(value) ? value[0] === 0 && value[1] === 0 : value === 0;
             });
         }
     };
@@ -96,6 +180,24 @@ System.register("types/StatValue", [], function (exports_3, context_3) {
 System.register("localize/formatters", ["types/StatValue"], function (exports_4, context_4) {
     "use strict";
     var __moduleName = context_4 && context_4.id;
+    function inverseFactory(formatter_id) {
+        if (!formatters.hasOwnProperty(formatter_id)) {
+            throw new Error("'" + formatter_id + "' not found");
+        }
+        var inverse = inverse_formatters[formatter_id];
+        // TODO add ranges
+        return inverse;
+    }
+    exports_4("inverseFactory", inverseFactory);
+    function regexpFactory(formatter_id) {
+        if (!formatters.hasOwnProperty(formatter_id)) {
+            throw new Error("'" + formatter_id + "' not found");
+        }
+        var formatter = formatter_regexp[formatter_id];
+        // TODO add ranges
+        return formatter;
+    }
+    exports_4("regexpFactory", regexpFactory);
     function factory(formatter_id) {
         if (!formatters.hasOwnProperty(formatter_id)) {
             throw new Error("'" + formatter_id + "' not found");
@@ -116,7 +218,7 @@ System.register("localize/formatters", ["types/StatValue"], function (exports_4,
         };
     }
     exports_4("default", factory);
-    var StatValue_1, formatters;
+    var StatValue_1, item_classes, formatters, inverse_formatters, number, formatter_regexp;
     return {
         setters: [
             function (StatValue_1_1) {
@@ -124,15 +226,45 @@ System.register("localize/formatters", ["types/StatValue"], function (exports_4,
             }
         ],
         execute: function () {
+            // TODO howto translate?
+            // used in 'mod_value_to_item_class' in Poorjoy's Asylum
+            exports_4("item_classes", item_classes = [
+                'Amulets',
+                'Rings',
+                'Claws',
+                'Daggers',
+                'Wands',
+                'One Hand Swords',
+                // 'Rings', value: 10 }, thrusting
+                'One Hand Axes',
+                'One Hand Maces',
+                'Bows',
+                'Staves',
+                'Two Hand Swords',
+                'Two Hand Maces',
+                'Quivers',
+                'Belts',
+                'Gloves',
+                'Boots',
+                'Body Armours',
+                'Helmets',
+                'Shields',
+                'Sceptres'
+            ]);
             // usually everything in poe is rounded down but in this case
             // it's done properly
             // evidence: life regen rolls 60 - 120 which would result in (1-2)
             // Alyways rounding down would result in virtually no 2 rolls.
             // but there are currenty ~300 amulets with 2 and ~160 with 1 listed on poe.trade
             // reason beeing that the next tier rolls 121-180.
-            formatters = {
+            exports_4("formatters", formatters = {
                 deciseconds_to_seconds: function (n) { return n * 10; },
+                divide_by_two_0dp: function (n) { return (n / 2).toFixed(0); },
+                divide_by_ten_0dp: function (n) { return (n / 10).toFixed(0); },
+                divide_by_fifteen_0dp: function (n) { return (n / 15).toFixed(0); },
+                divide_by_twenty_then_double_0dp: function (n) { return Math.floor(n / 20) * 2; },
                 divide_by_one_hundred: function (n) { return n / 100; },
+                divide_by_one_hundred_2dp: function (n) { return (n / 100).toFixed(2); },
                 per_minute_to_per_second: function (n) { return Math.round(n / 60); },
                 milliseconds_to_seconds: function (n) { return n / 1000; },
                 negate: function (n) { return -n; },
@@ -141,12 +273,72 @@ System.register("localize/formatters", ["types/StatValue"], function (exports_4,
                 old_leech_permyriad: function (n) { return n / 50; },
                 per_minute_to_per_second_0dp: function (n) { return (n / 60).toFixed(0); },
                 per_minute_to_per_second_2dp: function (n) { return (n / 60).toFixed(2); },
-                per_minute_to_per_second_2dp_if_required: function (n) { return (n / 60).toPrecision(2); },
+                per_minute_to_per_second_2dp_if_required: function (n) {
+                    return (n / 60).toFixed(2).replace(/\.?0*$/, '');
+                },
                 milliseconds_to_seconds_0dp: function (n) { return (n / 1000).toFixed(0); },
                 milliseconds_to_seconds_2dp: function (n) { return (n / 1000).toFixed(2); },
                 multiplicative_damage_modifier: function (n) { return n; },
                 '60%_of_value': function (n) { return n * 0.6; },
-                id: function (n) { return n; }
+                id: function (n) { return n; },
+                mod_value_to_item_class: function (n) { return item_classes[n % item_classes.length]; },
+                canonical_stat: function (n) { return n; },
+                placeholder: function () { return '#'; }
+            });
+            exports_4("inverse_formatters", inverse_formatters = {
+                deciseconds_to_seconds: function (s) { return +s / 10; },
+                divide_by_two_0dp: function (s) { return +s * 2; },
+                divide_by_ten_0dp: function (s) { return +s * 10; },
+                divide_by_fifteen_0dp: function (s) { return +s * 15; },
+                divide_by_twenty_then_double_0dp: function (s) { return +s * 10; },
+                divide_by_one_hundred: function (s) { return +s * 100; },
+                divide_by_one_hundred_2dp: function (s) { return +s * 100; },
+                per_minute_to_per_second: function (s) { return +s * 60; },
+                milliseconds_to_seconds: function (s) { return +s * 1000; },
+                negate: function (s) { return -s; },
+                divide_by_one_hundred_and_negate: function (s) { return -s * 100; },
+                old_leech_percent: function (s) { return +s * 5; },
+                old_leech_permyriad: function (s) { return +s * 50; },
+                per_minute_to_per_second_0dp: function (s) { return +s * 60; },
+                per_minute_to_per_second_2dp: function (s) { return +s * 60; },
+                per_minute_to_per_second_2dp_if_required: function (s) { return +s * 60; },
+                milliseconds_to_seconds_0dp: function (s) { return +s * 1000; },
+                milliseconds_to_seconds_2dp: function (s) { return +s * 1000; },
+                multiplicative_damage_modifier: function (s) { return +s; },
+                '60%_of_value': function (s) { return +s / 0.6; },
+                id: function (s) { return +s; },
+                mod_value_to_item_class: function (item_class) { return item_classes.indexOf(item_class); },
+                canonical_stat: function (s) { return +s; },
+                placeholder: function (s) { return Number.NaN; }
+            });
+            number = '-?\\d+';
+            // "reverse" of {formatters}
+            formatter_regexp = {
+                deciseconds_to_seconds: number,
+                divide_by_two_0dp: number,
+                divide_by_ten_0dp: number,
+                divide_by_fifteen_0dp: number,
+                divide_by_twenty_then_double_0dp: number,
+                divide_by_one_hundred: number + "\\.?\\d{0,2}",
+                divide_by_one_hundred_2dp: number + "\\.\\d{2}",
+                per_minute_to_per_second: number,
+                milliseconds_to_seconds: number + "\\.?\\d{0,3}",
+                negate: number,
+                divide_by_one_hundred_and_negate: number + "\\.?\\d{0,2}",
+                old_leech_percent: number + "\\.?\\d{0,2}",
+                old_leech_permyriad: number + "\\.?\\d{0,2}",
+                per_minute_to_per_second_0dp: number,
+                per_minute_to_per_second_2dp: number + "\\.\\d{2}",
+                per_minute_to_per_second_2dp_if_required: number + "\\.?\\d{0,2}",
+                milliseconds_to_seconds_0dp: number,
+                milliseconds_to_seconds_2dp: number + "\\.?\\d{2}",
+                multiplicative_damage_modifier: number,
+                '60%_of_value': number + "\\.?\\d*",
+                id: number,
+                mod_value_to_item_class: '.+?',
+                // TODO what is this
+                canonical_stat: number,
+                placeholder: '#'
             };
         }
     };
@@ -159,7 +351,7 @@ System.register("localize/formatValues", ["localize/formatters"], function (expo
         if (formatters === undefined) {
             throw new Error('formatters not set');
         }
-        var formatted = values.slice();
+        var formatted = __spread(values);
         formatters.forEach(function (formatter, i) {
             if (typeof formatter.arg === 'number') {
                 var target_param = values[+formatter.arg - 1];
@@ -208,10 +400,10 @@ System.register("translate/printf", ["localize/formatValues"], function (exports
         return prepared
             .reduce(function (formatted, param, i) {
             return formatted
-                .replace("%" + (i + 1) + "%", String(param))
+                .replace(new RegExp("%" + (i + 1) + "%", 'g'), String(param))
                 .replace("%" + (i + 1) + "$+d", "+" + String(param));
         }, text)
-            .replace('%%', '%');
+            .replace(/%%/g, '%');
     }
     exports_6("default", printf);
     var formatValues_1;
@@ -225,54 +417,20 @@ System.register("translate/printf", ["localize/formatValues"], function (exports
         }
     };
 });
-System.register("format/stats", ["translate/match", "translate/printf"], function (exports_7, context_7) {
+System.register("translate/translate", ["translate/match", "translate/printf"], function (exports_7, context_7) {
     "use strict";
     var __moduleName = context_7 && context_7.id;
-    /**
-     * O(n) lookup if hash lookup fails
-     *
-     * @param stat_id
-     * @param locale_data
-     */
-    function findDescription(stat_id, locale_data) {
-        return Object.values(locale_data).find(function (_a) {
-            var stats = _a.stats;
-            return stats.includes(stat_id);
-        });
-    }
-    // stats will get mutated
-    function formatWithFinder(stats, find) {
-        var lines = [];
-        var translated = new Set();
-        for (var _i = 0, _a = Array.from(stats.entries()); _i < _a.length; _i++) {
-            var _b = _a[_i], stat_id = _b[0], stat = _b[1];
-            if (translated.has(stat_id)) {
-                continue;
-            }
-            var description = find(stat);
-            if (description !== undefined) {
-                var translation = translate(description, stats);
-                if (translation === undefined) {
-                    throw new Error("matching translation not found for '" + stat.id + "'");
-                }
-                else {
-                    // mark as translated
-                    description.stats.forEach(function (translated_id) {
-                        stats.delete(translated_id);
-                        translated.add(translated_id);
-                    });
-                    if (translation === NO_DESCRIPTION) {
-                        lines.push(stat_id + " (hidden)");
-                    }
-                    else {
-                        lines.push(translation);
-                    }
-                }
-            }
-        }
-        return lines;
-    }
-    function translate(description, provided) {
+    function translate(description, provided, 
+        /**
+         * @param t
+         * @param count {number} number of params
+         */
+        getFormatters) {
+        /**
+         * @param t
+         * @param count {number} number of params
+         */
+        if (getFormatters === void 0) { getFormatters = function (t) { return t.formatters; }; }
         var stats = description.stats, no_description = description.no_description, translations = description.translations;
         if (no_description === true) {
             return NO_DESCRIPTION;
@@ -301,22 +459,242 @@ System.register("format/stats", ["translate/match", "translate/printf"], functio
             return printf_1.default(translation.text, required_stats.map(function (_a) {
                 var value = _a.value;
                 return value;
-            }), translation.formatters);
+            }), getFormatters(translation, required_stats.length));
         }
     }
+    exports_7("default", translate);
     function matchingTranslation(translations, stats) {
         var args = stats.map(function (_a) {
             var value = _a.value;
             return value;
         });
         return translations.find(function (translation) {
-            return match_1.matches(args, translation.matchers).every(function (match) { return match === match_1.Match.subset || match === match_1.Match.exact; });
+            return match_1.matchesTranslation(translation, args);
         });
+    }
+    var match_1, printf_1, NO_DESCRIPTION;
+    return {
+        setters: [
+            function (match_1_1) {
+                match_1 = match_1_1;
+            },
+            function (printf_1_1) {
+                printf_1 = printf_1_1;
+            }
+        ],
+        execute: function () {
+            exports_7("NO_DESCRIPTION", NO_DESCRIPTION = 'NO_DESCRIPTION');
+        }
+    };
+});
+System.register("util/NamedGroupsRegexp", [], function (exports_8, context_8) {
+    "use strict";
+    var __moduleName = context_8 && context_8.id;
+    var NamedGroupsRegexp;
+    return {
+        setters: [],
+        execute: function () {
+            NamedGroupsRegexp = /** @class */ (function () {
+                function NamedGroupsRegexp(regexp, groups) {
+                    this.regexp = regexp;
+                    this.groups = groups;
+                }
+                NamedGroupsRegexp.prototype.match = function (text) {
+                    var _this = this;
+                    var match = text.match(this.regexp);
+                    if (match == null) {
+                        return null;
+                    }
+                    // first element is hole string followed by matches
+                    if (match.length - 1 !== this.groups.length) {
+                        throw new Error('named groups count did not match matched groups count');
+                    }
+                    return match.slice(1).reduce(function (named, matched, i) {
+                        named[_this.groups[i]] = matched;
+                        return named;
+                    }, {});
+                };
+                NamedGroupsRegexp.prototype.toString = function () {
+                    return this.regexp;
+                };
+                return NamedGroupsRegexp;
+            }());
+            exports_8("default", NamedGroupsRegexp);
+        }
+    };
+});
+System.register("translate/asRegexp", ["escape-string-regexp", "localize/formatters", "util/NamedGroupsRegexp"], function (exports_9, context_9) {
+    "use strict";
+    var __moduleName = context_9 && context_9.id;
+    function asRegexp(translation) {
+        var formatters = translation.formatters, text = translation.text;
+        var groups = [];
+        var regexp = escapeStringRegexp(text)
+            .replace(/%(\d+)(\\\$\\\+d|%)/g, function (match, arg, modifier) {
+            groups.push(arg);
+            var formatter = formatters.find(function (_a) {
+                var other = _a.arg;
+                return "" + other === arg;
+            });
+            var prefix = modifier === '\\$\\+d' ? '\\+' : '';
+            if (formatter === undefined) {
+                return prefix + "(-?\\d+)";
+            }
+            else {
+                return prefix + "(" + formatters_2.regexpFactory(formatter.id) + ")";
+            }
+        })
+            .replace(/%%/g, '%');
+        return new NamedGroupsRegexp_1.default(new RegExp("^" + regexp + "$"), groups);
+    }
+    exports_9("default", asRegexp);
+    var escapeStringRegexp, formatters_2, NamedGroupsRegexp_1;
+    return {
+        setters: [
+            function (escapeStringRegexp_1) {
+                escapeStringRegexp = escapeStringRegexp_1;
+            },
+            function (formatters_2_1) {
+                formatters_2 = formatters_2_1;
+            },
+            function (NamedGroupsRegexp_1_1) {
+                NamedGroupsRegexp_1 = NamedGroupsRegexp_1_1;
+            }
+        ],
+        execute: function () {
+        }
+    };
+});
+System.register("translate/index", ["translate/translate", "translate/asRegexp", "translate/match"], function (exports_10, context_10) {
+    "use strict";
+    var __moduleName = context_10 && context_10.id;
+    var translate_1;
+    return {
+        setters: [
+            function (translate_1_1) {
+                translate_1 = translate_1_1;
+                exports_10({
+                    "NO_DESCRIPTION": translate_1_1["NO_DESCRIPTION"]
+                });
+            },
+            function (asRegexp_1_1) {
+                exports_10({
+                    "asRegexp": asRegexp_1_1["default"]
+                });
+            },
+            function (match_2_1) {
+                exports_10({
+                    "matchesTranslation": match_2_1["matchesTranslation"]
+                });
+            }
+        ],
+        execute: function () {
+            exports_10("default", translate_1.default);
+        }
+    };
+});
+System.register("format/stats", ["translate/index", "types/StatValue"], function (exports_11, context_11) {
+    "use strict";
+    var __moduleName = context_11 && context_11.id;
+    /**
+     * creates an array of methods that can be used to find a description for a
+     * given stat.
+     *
+     * return value is to be interpreted as a priority queue
+     * @param descriptions
+     */
+    function createDescriptionFindStrategies(descriptions) {
+        return [
+            function (_a) {
+                var id = _a.id;
+                return descriptions[id];
+            },
+            function (_a) {
+                var id = _a.id;
+                return Object.values(descriptions).find(function (_a) {
+                    var stats = _a.stats;
+                    return stats.includes(id);
+                });
+            }
+        ];
+    }
+    exports_11("createDescriptionFindStrategies", createDescriptionFindStrategies);
+    function formatWithFinder(stats, find, options) {
+        if (options === void 0) { options = {}; }
+        var _a = options.ignore_if_zero, ignore_if_zero = _a === void 0 ? false : _a, _b = options.getFormatters, getFormatters = _b === void 0 ? function (t) { return t.formatters; } : _b;
+        var lines = [];
+        var translated = new Set();
+        var _loop_1 = function (stat_id, stat) {
+            if (translated.has(stat_id)) {
+                return "continue";
+            }
+            var description = find(stat);
+            if (description !== undefined) {
+                var translation = translate_2.default(description, stats, function (t, n) {
+                    return getFormatters(t, stat, n);
+                });
+                if (translation === undefined) {
+                    var requiredStatsAreZero = requiredStats(description, stats).every(function (_a) {
+                        var value = _a.value;
+                        return StatValue_2.isZero(value);
+                    });
+                    if (!ignore_if_zero || !requiredStatsAreZero) {
+                        throw new Error("matching translation not found for '" + stat.id + "'");
+                    }
+                }
+                else {
+                    // mark as translated
+                    description.stats.forEach(function (translated_id) {
+                        stats.delete(translated_id);
+                        translated.add(translated_id);
+                    });
+                    if (translation === translate_2.NO_DESCRIPTION) {
+                        lines.push(stat_id + " (hidden)");
+                    }
+                    else {
+                        lines.push(translation);
+                    }
+                }
+            }
+        };
+        try {
+            for (var _c = __values(Array.from(stats.entries())), _d = _c.next(); !_d.done; _d = _c.next()) {
+                var _e = __read(_d.value, 2), stat_id = _e[0], stat = _e[1];
+                _loop_1(stat_id, stat);
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (_d && !_d.done && (_f = _c.return)) _f.call(_c);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        return lines;
+        var e_1, _f;
+    }
+    function requiredStats(description, provided) {
+        // intersect the required stat_ids from the desc with the provided
+        return description.stats
+            .map(function (stat_id) {
+            var stat = provided.get(stat_id);
+            // default the value to 0
+            if (stat === undefined) {
+                return {
+                    id: stat_id,
+                    value: 0
+                };
+            }
+            else {
+                return stat;
+            }
+        })
+            .filter(function (stat) { return stat !== null; });
     }
     function formatWithFallback(stats, fallback) {
         if (fallback === Fallback.throw) {
             if (stats.size > 0) {
-                throw new Error('no descriptions found for ' + Array.from(stats.keys()).join(','));
+                throw new NoDescriptionFound(Array.from(stats.values()));
             }
             else {
                 return [];
@@ -331,10 +709,19 @@ System.register("format/stats", ["translate/match", "translate/printf"], functio
         else if (typeof fallback === 'function') {
             return Array.from(stats.entries())
                 .map(function (_a) {
-                var id = _a[0], stat = _a[1];
+                var _b = __read(_a, 2), id = _b[0], stat = _b[1];
                 return fallback(id, stat);
             })
                 .filter(function (line) { return typeof line === 'string'; });
+        }
+        else if (fallback === Fallback.skip_if_zero) {
+            var non_zero_stats = Array.from(stats.values()).filter(function (stat) { return !StatValue_2.isZero(stat.value); });
+            if (non_zero_stats.length > 0) {
+                throw new NoDescriptionFound(non_zero_stats);
+            }
+            else {
+                return [];
+            }
         }
         else {
             // should ts recognize that this is unreachable code? enums can prob
@@ -342,68 +729,88 @@ System.register("format/stats", ["translate/match", "translate/printf"], functio
             throw new Error("unrecognized fallback type '" + fallback + "'");
         }
     }
-    var match_1, printf_1, Fallback, initial_options, formatStats, NO_DESCRIPTION;
+    var translate_2, StatValue_2, NoDescriptionFound, Fallback, initial_options, formatStats;
     return {
         setters: [
-            function (match_1_1) {
-                match_1 = match_1_1;
+            function (translate_2_1) {
+                translate_2 = translate_2_1;
             },
-            function (printf_1_1) {
-                printf_1 = printf_1_1;
+            function (StatValue_2_1) {
+                StatValue_2 = StatValue_2_1;
             }
         ],
         execute: function () {
+            NoDescriptionFound = /** @class */ (function (_super) {
+                __extends(NoDescriptionFound, _super);
+                function NoDescriptionFound(stats) {
+                    return _super.call(this, 'no descriptions found for ' + stats.map(function (_a) {
+                        var id = _a.id;
+                        return id;
+                    }).join(',')) || this;
+                }
+                return NoDescriptionFound;
+            }(Error));
+            exports_11("NoDescriptionFound", NoDescriptionFound);
             (function (Fallback) {
                 Fallback[Fallback["throw"] = 0] = "throw";
                 Fallback[Fallback["id"] = 1] = "id";
                 Fallback[Fallback["skip"] = 2] = "skip";
+                // ignore if no matching translation is found in stat description
+                // if the stat value is equiv to zero (e.g. 0 or [0, 9])
+                Fallback[Fallback["skip_if_zero"] = 3] = "skip_if_zero";
             })(Fallback || (Fallback = {}));
-            exports_7("Fallback", Fallback);
+            exports_11("Fallback", Fallback);
             initial_options = {
                 datas: {},
                 fallback: Fallback.throw,
-                start_file: 'stat_descriptions'
+                start_file: 'stat_descriptions',
+                getFormatters: function (t) { return t.formatters; }
             };
             formatStats = function (stats, options) {
                 if (options === void 0) { options = {}; }
-                var _a = Object.assign({}, initial_options, options), datas = _a.datas, fallback = _a.fallback, start_file = _a.start_file;
+                var _a = Object.assign({}, initial_options, options), datas = _a.datas, fallback = _a.fallback, start_file = _a.start_file, getFormatters = _a.getFormatters;
                 // translated lines
                 var lines = [];
                 // array of stat_ids for which hash lookup failed
                 var untranslated = new Map(stats.map(function (stat) { return [stat.id, stat]; }));
                 var description_file = datas[start_file];
-                var _loop_1 = function () {
+                while (description_file !== undefined) {
                     var data = description_file.data;
-                    lines.push.apply(lines, formatWithFinder(untranslated, function (_a) {
-                        var id = _a.id;
-                        return data[id];
-                    }));
-                    lines.push.apply(lines, formatWithFinder(untranslated, function (_a) {
-                        var id = _a.id;
-                        return findDescription(id, data);
-                    }));
+                    try {
+                        for (var _b = __values(createDescriptionFindStrategies(data)), _c = _b.next(); !_c.done; _c = _b.next()) {
+                            var descriptionFinder = _c.value;
+                            lines.push.apply(lines, __spread(formatWithFinder(untranslated, descriptionFinder, {
+                                getFormatters: getFormatters,
+                                ignore_if_zero: fallback === Fallback.skip_if_zero
+                            })));
+                        }
+                    }
+                    catch (e_2_1) { e_2 = { error: e_2_1 }; }
+                    finally {
+                        try {
+                            if (_c && !_c.done && (_d = _b.return)) _d.call(_b);
+                        }
+                        finally { if (e_2) throw e_2.error; }
+                    }
                     description_file = description_file.meta.include
                         ? datas[description_file.meta.include]
                         : undefined;
-                };
-                while (description_file !== undefined) {
-                    _loop_1();
                 }
-                lines.push.apply(lines, formatWithFallback(untranslated, fallback));
+                lines.push.apply(lines, __spread(formatWithFallback(untranslated, fallback)));
                 return lines;
+                var e_2, _d;
             };
-            exports_7("default", formatStats);
-            NO_DESCRIPTION = 'NO_DESCRIPTION';
+            exports_11("default", formatStats);
         }
     };
 });
-System.register("translate/descriptions_dependency", [], function (exports_8, context_8) {
+System.register("translate/descriptions_dependency", [], function (exports_12, context_12) {
     "use strict";
-    var __moduleName = context_8 && context_8.id;
+    var __moduleName = context_12 && context_12.id;
     return {
         setters: [],
         execute: function () {
-            exports_8("default", Object.freeze({
+            exports_12("default", Object.freeze({
                 active_skill_gem_stat_descriptions: 'gem_stat_descriptions',
                 atlas_stat_descriptions: 'map_stat_descriptions',
                 aura_skill_stat_descriptions: 'skill_stat_descriptions',
@@ -425,12 +832,12 @@ System.register("translate/descriptions_dependency", [], function (exports_8, co
         }
     };
 });
-System.register("requiredLocaleDatas", ["translate/descriptions_dependency"], function (exports_9, context_9) {
+System.register("requiredLocaleDatas", ["translate/descriptions_dependency"], function (exports_13, context_13) {
     "use strict";
-    var __moduleName = context_9 && context_9.id;
+    var __moduleName = context_13 && context_13.id;
     function requiredLocaleDatas(files) {
-        var datas = files.slice();
-        var queued = files.slice(); // clone
+        var datas = __spread(files);
+        var queued = __spread(files); // clone
         while (queued.length > 0) {
             var file = queued.shift();
             var include = descriptions_dependency_1.default[file];
@@ -441,7 +848,7 @@ System.register("requiredLocaleDatas", ["translate/descriptions_dependency"], fu
         }
         return datas;
     }
-    exports_9("default", requiredLocaleDatas);
+    exports_13("default", requiredLocaleDatas);
     var descriptions_dependency_1;
     return {
         setters: [
@@ -453,13 +860,13 @@ System.register("requiredLocaleDatas", ["translate/descriptions_dependency"], fu
         }
     };
 });
-System.register("translate/skill_meta", [], function (exports_10, context_10) {
+System.register("translate/skill_meta", [], function (exports_14, context_14) {
     "use strict";
-    var __moduleName = context_10 && context_10.id;
+    var __moduleName = context_14 && context_14.id;
     return {
         setters: [],
         execute: function () {
-            exports_10("default", {
+            exports_14("default", {
                 groups: {
                     weapon_damage: [
                         'weapon_physical_damage_range',
@@ -4591,20 +4998,20 @@ System.register("translate/skill_meta", [], function (exports_10, context_10) {
         }
     };
 });
-System.register("format/gemStats", ["requiredLocaleDatas", "translate/skill_meta", "format/stats"], function (exports_11, context_11) {
+System.register("format/gemStats", ["requiredLocaleDatas", "translate/skill_meta", "format/stats"], function (exports_15, context_15) {
     "use strict";
-    var __moduleName = context_11 && context_11.id;
+    var __moduleName = context_15 && context_15.id;
     function formatGemStats(gem_id, stats, options) {
         if (options === void 0) { options = {}; }
         var filter = findSkill(gem_id);
         return stats_1.default(stats, __assign({}, options, { fallback: stats_1.Fallback.skip, start_file: filter.start_file }));
     }
-    exports_11("default", formatGemStats);
+    exports_15("default", formatGemStats);
     function requiredLocaleDatas(gem_id) {
         var filter = findSkill(gem_id);
         return requiredLocaleDatas_1.default([filter.start_file]);
     }
-    exports_11("requiredLocaleDatas", requiredLocaleDatas);
+    exports_15("requiredLocaleDatas", requiredLocaleDatas);
     function findSkill(id) {
         var skill = skill_meta_1.default.skills[id];
         if (skill === undefined) {
@@ -4639,17 +5046,433 @@ System.register("format/gemStats", ["requiredLocaleDatas", "translate/skill_meta
         }
     };
 });
-System.register("Format", ["format/gemStats", "format/stats"], function (exports_12, context_12) {
+System.register("format/groupMods", ["format/stats"], function (exports_16, context_16) {
     "use strict";
-    var __moduleName = context_12 && context_12.id;
-    var gemStats_1, stats_2, Fallback, Format;
+    var __moduleName = context_16 && context_16.id;
+    /**
+     * tries to find a string that describes the given mods
+     *
+     * given a list of mods where a mod consists of at least one stat
+     * get a translation t of that mod and consider it a row
+     * split t into words and consider every word as a column
+     * collapse the table into a single row
+     * columns with different words get resolved by a given strategy
+     *
+     *
+     *
+     * Adds # to Fire Gems
+     * Adds # to Cold Gems
+     * ----
+     * Adds # to * Gems
+     *
+     * @param mods
+     * @param options
+     */
+    function groupMod(mods, options) {
+        if (options === void 0) { options = {}; }
+        // default options
+        var _a = options.resolveWordConflict, resolveWordConflict = _a === void 0 ? function () { return '*'; } : _a, format_stats_options = __rest(options, ["resolveWordConflict"]);
+        // reduce mods to array
+        var translations = [];
+        try {
+            for (var mods_1 = __values(mods), mods_1_1 = mods_1.next(); !mods_1_1.done; mods_1_1 = mods_1.next()) {
+                var mod = mods_1_1.value;
+                translations.push(groupStats(mod, format_stats_options).split(' '));
+            }
+        }
+        catch (e_3_1) { e_3 = { error: e_3_1 }; }
+        finally {
+            try {
+                if (mods_1_1 && !mods_1_1.done && (_b = mods_1.return)) _b.call(mods_1);
+            }
+            finally { if (e_3) throw e_3.error; }
+        }
+        return collapseTable(translations, resolveWordConflict)
+            .join(' ')
+            .replace(/\*( \*)*/, '*');
+        var e_3, _b;
+    }
+    exports_16("default", groupMod);
+    function groupStats(stats, options) {
+        if (options === void 0) { options = {}; }
+        var lines = stats_2.default(stats, __assign({}, options, { getFormatters: function (t, s, n) {
+                return Array.from({ length: n }, function (_, i) { return ({
+                    arg: i + 1,
+                    id: 'placeholder'
+                }); });
+            }, fallback: stats_2.Fallback.skip_if_zero }));
+        // collapes value ranges into single placeholder
+        return lines.map(function (line) { return line.replace(/\(# - #\)/g, '#'); }).join(' / ');
+    }
+    function collapseTable(table, resolveColumnConflict) {
+        if (table.length < 1) {
+            return [];
+        }
+        var column_count = table[0].length;
+        // rows to columns
+        var columns = new Array(column_count);
+        var _loop_2 = function (j) {
+            columns[j] = table.reduce(function (column, row) {
+                return column.add(row[j]);
+            }, new Set());
+        };
+        for (var j = 0; j < column_count; ++j) {
+            _loop_2(j);
+        }
+        return columns.map(function (column) {
+            if (column.size > 1) {
+                return resolveColumnConflict(Array.from(column));
+            }
+            else {
+                return column.values().next().value;
+            }
+        });
+    }
+    var stats_2;
+    return {
+        setters: [
+            function (stats_2_1) {
+                stats_2 = stats_2_1;
+            }
+        ],
+        execute: function () {
+        }
+    };
+});
+System.register("util/symbolicStats", [], function (exports_17, context_17) {
+    "use strict";
+    var __moduleName = context_17 && context_17.id;
+    function deterministicValueForMatcher(matcher) {
+        if (Array.isArray(matcher)) {
+            var _a = __read(matcher, 2), min = _a[0], max = _a[1];
+            if (min === '#' && max === '#') {
+                return 0;
+            }
+            else if (min === '#' && max !== '#') {
+                return max;
+            }
+            else if (min !== '#' && max === '#') {
+                return min;
+            }
+            else if (min !== '#' && max !== '#') {
+                return Math.floor((max - min) / 2);
+            }
+            else {
+                throw new Error('ts never');
+            }
+        }
+        else if (matcher === '#') {
+            return 0;
+        }
+        else {
+            return matcher;
+        }
+    }
+    exports_17("deterministicValueForMatcher", deterministicValueForMatcher);
+    // builds random stats matching every single translation of the description
+    function buildRandomStats(description) {
+        if (description.no_description) {
+            return null;
+        }
+        return description.translations.map(function (_a) {
+            var matchers = _a.matchers;
+            return description.stats.map(function (stat_id, i) {
+                return {
+                    id: stat_id,
+                    // division by 60 can produce nasty rounding errors
+                    value: randomNumberForMatcher(matchers[i])
+                };
+            });
+        });
+    }
+    exports_17("buildRandomStats", buildRandomStats);
+    function randomNumberForMatcher(matcher, step, precision) {
+        if (step === void 0) { step = 1; }
+        if (precision === void 0) { precision = 0; }
+        if (Array.isArray(matcher)) {
+            var _a = __read(matcher, 2), min = _a[0], max = _a[1];
+            if (min === '#' && max === '#') {
+                return randomNumberForMatcher('#', step, precision);
+            }
+            else if (min === '#' && max !== '#') {
+                return randomNumber({ precision: precision, max: max });
+            }
+            else if (min !== '#' && max === '#') {
+                return randomNumber({ precision: precision, min: min });
+            }
+            else if (min !== '#' && max !== '#') {
+                return randomNumber({ precision: precision, min: min, max: max, step: step });
+            }
+            else {
+                throw new Error('ts never');
+            }
+        }
+        else if (matcher === '#') {
+            return randomNumber({ precision: precision, max: -1, step: step });
+        }
+        else {
+            return matcher;
+        }
+    }
+    function randomNumber(domain) {
+        if (domain === void 0) { domain = {}; }
+        // tslint:disable-next-line: no-bitwise
+        var _a = domain.min, min = _a === void 0 ? 1 << 31 : _a, _b = domain.max, max = _b === void 0 ? Math.pow(2, 31) - 1 : _b, _c = domain.precision, precision = _c === void 0 ? 0 : _c, _d = domain.step, step = _d === void 0 ? 1 : _d;
+        var range = Math.abs(max - min);
+        var rand = Math.random();
+        var n = +(rand * range + min);
+        return +(n - +(n % step).toFixed(precision)).toFixed(precision);
+    }
+    return {
+        setters: [],
+        execute: function () {
+        }
+    };
+});
+System.register("format/util", [], function (exports_18, context_18) {
+    "use strict";
+    var __moduleName = context_18 && context_18.id;
+    function getDescriptions(datas, start_file) {
+        var description_file;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    description_file = datas[start_file];
+                    _a.label = 1;
+                case 1:
+                    if (!(description_file !== undefined)) return [3 /*break*/, 3];
+                    return [4 /*yield*/, description_file.data];
+                case 2:
+                    _a.sent();
+                    description_file = description_file.meta.include
+                        ? datas[description_file.meta.include]
+                        : undefined;
+                    return [3 /*break*/, 1];
+                case 3: return [2 /*return*/];
+            }
+        });
+    }
+    exports_18("getDescriptions", getDescriptions);
+    return {
+        setters: [],
+        execute: function () {
+        }
+    };
+});
+System.register("format/textToStats", ["localize/formatters", "translate/index", "util/symbolicStats", "format/util"], function (exports_19, context_19) {
+    "use strict";
+    var __moduleName = context_19 && context_19.id;
+    /**
+     * finds every stat or list of stats that could produce this text with its values
+     *
+     * use {textToStatsSingle} if you just want the first match
+     * use {textToStatsArray} if you want the generator values as an array
+     *
+     * @param text the stat text
+     * @param options see type definition
+     */
+    function textToStats(text, options) {
+        if (options === void 0) { options = {}; }
+        var _a, datas, _b, start_file, _c, _d, descriptions, _e, _f, description, _loop_3, _g, _h, translation, e_4_1, e_5_1, e_6_1, e_6, _j, e_5, _k, e_4, _l;
+        return __generator(this, function (_m) {
+            switch (_m.label) {
+                case 0:
+                    _a = options.datas, datas = _a === void 0 ? {} : _a, _b = options.start_file, start_file = _b === void 0 ? 'stat_descriptions' : _b;
+                    _m.label = 1;
+                case 1:
+                    _m.trys.push([1, 18, 19, 20]);
+                    _c = __values(util_1.getDescriptions(datas, start_file)), _d = _c.next();
+                    _m.label = 2;
+                case 2:
+                    if (!!_d.done) return [3 /*break*/, 17];
+                    descriptions = _d.value;
+                    _m.label = 3;
+                case 3:
+                    _m.trys.push([3, 14, 15, 16]);
+                    _e = __values(Object.values(descriptions)), _f = _e.next();
+                    _m.label = 4;
+                case 4:
+                    if (!!_f.done) return [3 /*break*/, 13];
+                    description = _f.value;
+                    if (description.no_description) {
+                        return [3 /*break*/, 12];
+                    }
+                    _loop_3 = function (translation) {
+                        var regexp, match, stats;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    regexp = translate_3.asRegexp(translation);
+                                    match = regexp.match(text);
+                                    if (!(match !== null)) return [3 /*break*/, 2];
+                                    stats = description.stats.map(function (stat_id, i) {
+                                        // arguments are 1-based
+                                        var arg_index = String(i + 1);
+                                        var matched_value = match[arg_index];
+                                        var matcher = translation.matchers[i];
+                                        var value = Number.NaN;
+                                        if (matched_value !== undefined) {
+                                            var formatter = translation.formatters.find(function (_a) {
+                                                var arg = _a.arg;
+                                                return String(arg) === arg_index;
+                                            });
+                                            if (formatter === undefined) {
+                                                value = +matched_value;
+                                            }
+                                            else {
+                                                value = formatters_3.inverseFactory(formatter.id)(matched_value);
+                                                if (Number.isNaN(value)) {
+                                                    // otherwise the return value would be equal to the case
+                                                    // where the value is not contained in the text
+                                                    throw new Error('int parsing returned NaN');
+                                                }
+                                            }
+                                        }
+                                        else if (typeof matcher === 'number') {
+                                            // value is not contained in the text
+                                            // guess (deterministically) a value for this instance
+                                            // that would have produced that translation
+                                            value = symbolicStats_1.deterministicValueForMatcher(translation.matchers[i]);
+                                        }
+                                        return {
+                                            id: stat_id,
+                                            value: value
+                                        };
+                                    });
+                                    if (!translate_3.matchesTranslation(translation, stats.map(function (_a) {
+                                        var value = _a.value;
+                                        return value;
+                                    }))) return [3 /*break*/, 2];
+                                    return [4 /*yield*/, stats];
+                                case 1:
+                                    _a.sent();
+                                    _a.label = 2;
+                                case 2: return [2 /*return*/];
+                            }
+                        });
+                    };
+                    _m.label = 5;
+                case 5:
+                    _m.trys.push([5, 10, 11, 12]);
+                    _g = __values(description.translations), _h = _g.next();
+                    _m.label = 6;
+                case 6:
+                    if (!!_h.done) return [3 /*break*/, 9];
+                    translation = _h.value;
+                    return [5 /*yield**/, _loop_3(translation)];
+                case 7:
+                    _m.sent();
+                    _m.label = 8;
+                case 8:
+                    _h = _g.next();
+                    return [3 /*break*/, 6];
+                case 9: return [3 /*break*/, 12];
+                case 10:
+                    e_4_1 = _m.sent();
+                    e_4 = { error: e_4_1 };
+                    return [3 /*break*/, 12];
+                case 11:
+                    try {
+                        if (_h && !_h.done && (_l = _g.return)) _l.call(_g);
+                    }
+                    finally { if (e_4) throw e_4.error; }
+                    return [7 /*endfinally*/];
+                case 12:
+                    _f = _e.next();
+                    return [3 /*break*/, 4];
+                case 13: return [3 /*break*/, 16];
+                case 14:
+                    e_5_1 = _m.sent();
+                    e_5 = { error: e_5_1 };
+                    return [3 /*break*/, 16];
+                case 15:
+                    try {
+                        if (_f && !_f.done && (_k = _e.return)) _k.call(_e);
+                    }
+                    finally { if (e_5) throw e_5.error; }
+                    return [7 /*endfinally*/];
+                case 16:
+                    _d = _c.next();
+                    return [3 /*break*/, 2];
+                case 17: return [3 /*break*/, 20];
+                case 18:
+                    e_6_1 = _m.sent();
+                    e_6 = { error: e_6_1 };
+                    return [3 /*break*/, 20];
+                case 19:
+                    try {
+                        if (_d && !_d.done && (_j = _c.return)) _j.call(_c);
+                    }
+                    finally { if (e_6) throw e_6.error; }
+                    return [7 /*endfinally*/];
+                case 20: return [2 /*return*/];
+            }
+        });
+    }
+    exports_19("default", textToStats);
+    /**
+     * @see {textToStats} as array
+     *
+     * @param text
+     * @param options
+     */
+    function textToStatsArray(text, options) {
+        if (options === void 0) { options = {}; }
+        return Array.from(textToStats(text, options));
+    }
+    exports_19("textToStatsArray", textToStatsArray);
+    /**
+     * only first match of  @see {textToStats} but throws if none was found
+     *
+     * @param text
+     * @param options
+     */
+    function textToStatsFirst(text, options) {
+        if (options === void 0) { options = {}; }
+        var _a = textToStats(text, options).next(), done = _a.done, value = _a.value;
+        if (done) {
+            throw new Error('Could match a single stat');
+        }
+        return value;
+    }
+    exports_19("textToStatsFirst", textToStatsFirst);
+    var formatters_3, translate_3, symbolicStats_1, util_1;
+    return {
+        setters: [
+            function (formatters_3_1) {
+                formatters_3 = formatters_3_1;
+            },
+            function (translate_3_1) {
+                translate_3 = translate_3_1;
+            },
+            function (symbolicStats_1_1) {
+                symbolicStats_1 = symbolicStats_1_1;
+            },
+            function (util_1_1) {
+                util_1 = util_1_1;
+            }
+        ],
+        execute: function () {
+        }
+    };
+});
+System.register("Format", ["format/gemStats", "format/groupMods", "format/stats", "format/textToStats"], function (exports_20, context_20) {
+    "use strict";
+    var __moduleName = context_20 && context_20.id;
+    var gemStats_1, groupMods_1, stats_3, textToStats_1, Fallback, Format;
     return {
         setters: [
             function (gemStats_1_1) {
                 gemStats_1 = gemStats_1_1;
             },
-            function (stats_2_1) {
-                stats_2 = stats_2_1;
+            function (groupMods_1_1) {
+                groupMods_1 = groupMods_1_1;
+            },
+            function (stats_3_1) {
+                stats_3 = stats_3_1;
+            },
+            function (textToStats_1_1) {
+                textToStats_1 = textToStats_1_1;
             }
         ],
         execute: function () {
@@ -4658,7 +5481,7 @@ System.register("Format", ["format/gemStats", "format/stats"], function (exports
                 Fallback[Fallback["id"] = 1] = "id";
                 Fallback[Fallback["skip"] = 2] = "skip";
             })(Fallback || (Fallback = {}));
-            exports_12("Fallback", Fallback);
+            exports_20("Fallback", Fallback);
             Format = /** @class */ (function () {
                 function Format() {
                     this.options = {
@@ -4671,25 +5494,34 @@ System.register("Format", ["format/gemStats", "format/stats"], function (exports
                     this.options = __assign({}, this.options, options);
                 };
                 Format.prototype.stats = function (stats) {
-                    return stats_2.default(stats, this.options);
+                    return stats_3.default(stats, this.options);
                 };
                 Format.prototype.gemStats = function (gem_id, stats) {
                     return gemStats_1.default(gem_id, stats, this.options);
                 };
+                Format.prototype.groupMods = function (mods) {
+                    return groupMods_1.default(mods, this.options);
+                };
+                Format.prototype.textToStats = function (text, options) {
+                    if (options === void 0) { options = {}; }
+                    var _a = this.options, datas = _a.datas, start_file = _a.start_file;
+                    return textToStats_1.default(text, __assign({ datas: datas,
+                        start_file: start_file }, options));
+                };
                 return Format;
             }());
-            exports_12("Format", Format);
-            exports_12("default", new Format());
+            exports_20("Format", Format);
+            exports_20("default", new Format());
         }
     };
 });
-System.register("localize/formatValueRange", ["localize/formatValues"], function (exports_13, context_13) {
+System.register("localize/formatValueRange", ["localize/formatValues"], function (exports_21, context_21) {
     "use strict";
-    var __moduleName = context_13 && context_13.id;
+    var __moduleName = context_21 && context_21.id;
     function formatValueRange(values, options) {
         return formatValues_2.formatValue(values[0], options) + " - " + formatValues_2.formatValue(values[1], options);
     }
-    exports_13("default", formatValueRange);
+    exports_21("default", formatValueRange);
     var formatValues_2;
     return {
         setters: [
@@ -4701,20 +5533,20 @@ System.register("localize/formatValueRange", ["localize/formatValues"], function
         }
     };
 });
-System.register("util/inflectionIdentifier", [], function (exports_14, context_14) {
+System.register("util/inflectionIdentifier", [], function (exports_22, context_22) {
     "use strict";
-    var __moduleName = context_14 && context_14.id;
+    var __moduleName = context_22 && context_22.id;
     function inflectionIdentifier(context) {
         var inflection = context.inflection;
         var gender;
         var plural;
         if (inflection != null) {
-            _a = inflection.split(''), gender = _a[0], plural = _a[1];
+            _a = __read(inflection.split(''), 2), gender = _a[0], plural = _a[1];
         }
         return [gender || default_gender, plural || default_plural].join('');
         var _a;
     }
-    exports_14("default", inflectionIdentifier);
+    exports_22("default", inflectionIdentifier);
     var default_gender, default_plural;
     return {
         setters: [],
@@ -4724,45 +5556,57 @@ System.register("util/inflectionIdentifier", [], function (exports_14, context_1
         }
     };
 });
-System.register("index", ["format/stats", "format/gemStats", "Format", "requiredLocaleDatas", "localize/formatValueRange", "localize/formatValues", "util/inflectionIdentifier"], function (exports_15, context_15) {
+System.register("index", ["format/stats", "format/gemStats", "format/groupMods", "format/textToStats", "Format", "requiredLocaleDatas", "localize/formatValueRange", "localize/formatValues", "util/inflectionIdentifier"], function (exports_23, context_23) {
     "use strict";
-    var __moduleName = context_15 && context_15.id;
+    var __moduleName = context_23 && context_23.id;
     return {
         setters: [
-            function (stats_3_1) {
-                exports_15({
-                    "formatStats": stats_3_1["default"],
-                    "Fallback": stats_3_1["Fallback"]
+            function (stats_4_1) {
+                exports_23({
+                    "formatStats": stats_4_1["default"],
+                    "Fallback": stats_4_1["Fallback"]
                 });
             },
             function (gemStats_2_1) {
-                exports_15({
+                exports_23({
                     "formatGemStats": gemStats_2_1["default"]
                 });
             },
+            function (groupMods_2_1) {
+                exports_23({
+                    "groupMods": groupMods_2_1["default"]
+                });
+            },
+            function (textToStats_2_1) {
+                exports_23({
+                    "textToStats": textToStats_2_1["default"],
+                    "textToStatsArray": textToStats_2_1["textToStatsArray"],
+                    "textToStatsFirst": textToStats_2_1["textToStatsFirst"]
+                });
+            },
             function (Format_1_1) {
-                exports_15({
+                exports_23({
                     "format": Format_1_1["default"],
                     "Format": Format_1_1["Format"]
                 });
             },
             function (requiredLocaleDatas_2_1) {
-                exports_15({
+                exports_23({
                     "requiredLocaleDatas": requiredLocaleDatas_2_1["default"]
                 });
             },
             function (formatValueRange_1_1) {
-                exports_15({
+                exports_23({
                     "formatValueRange": formatValueRange_1_1["default"]
                 });
             },
             function (formatValues_3_1) {
-                exports_15({
+                exports_23({
                     "formatValue": formatValues_3_1["formatValue"]
                 });
             },
             function (inflectionIdentifier_1_1) {
-                exports_15({
+                exports_23({
                     "inflectionIdentifier": inflectionIdentifier_1_1["default"]
                 });
             }
