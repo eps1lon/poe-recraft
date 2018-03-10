@@ -177,34 +177,55 @@ it('should support skipping fallback', () => {
   ).toEqual([]);
 });
 
-it('should support skip if zero fallback', () => {
-  const stats = [{ id: 'from_armour_movement_speed_+%', value: 0 }];
+describe('skip_if_zero fallback', () => {
+  it('ignores stats with 0 value', () => {
+    const stats = [{ id: 'weapon_physical_damage_+%', value: 0 }];
 
-  expect(() =>
-    formatStats(stats, {
-      datas
-    })
-  ).toThrow('no descriptions found for from_armour_movement_speed_+%');
-  expect(
-    formatStats(stats, {
-      datas,
-      fallback: Fallback.skip_if_zero
-    })
-  ).toEqual([]);
-
-  // only warn about non zero stats for which no desc was found
-  expect(() =>
-    formatStats(
-      [
-        { id: 'from_armour_movement_speed_+%', value: 0 },
-        { id: 'non_existing_non_zero', value: [0, 1] }
-      ],
-      {
+    expect(() =>
+      formatStats(stats, {
+        datas
+      })
+    ).toThrow("matching translation not found for 'weapon_physical_damage_+%'");
+    expect(
+      formatStats(stats, {
         datas,
         fallback: Fallback.skip_if_zero
-      }
-    )
-  ).toThrow('no descriptions found for non_existing_non_zero');
+      })
+    ).toEqual([]);
+  });
+
+  it('still throws for stats which are not 0 and no matching translation was found', () => {
+    expect(() =>
+      formatStats(
+        [
+          { id: 'weapon_physical_damage_+%', value: 0 },
+          { id: 'local_energy_shield_+%', value: [0, 1] }
+        ],
+        {
+          datas,
+          fallback: Fallback.skip_if_zero
+        }
+      )
+    ).toThrow("matching translation not found for 'local_energy_shield_+%'");
+  });
+
+  it('ignores 0 stats for which no description was found', () => {
+    expect(
+      formatStats([{ id: 'non_existing_zero', value: 0 }], {
+        datas,
+        fallback: Fallback.skip_if_zero
+      })
+    ).toEqual([]);
+  });
+
+  it('still throws if stats are non zero and have no description', () => {
+    expect(() =>
+      formatStats([{ id: 'non_existing_zero', value: [0, 1] }], {
+        datas,
+        fallback: Fallback.skip_if_zero
+      })
+    ).toThrow('no descriptions found for non_existing_zero');
+  });
 });
 
 it('should throw if we provide an unrecognize fallback', () => {
