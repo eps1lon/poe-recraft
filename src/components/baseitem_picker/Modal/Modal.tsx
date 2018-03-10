@@ -5,6 +5,7 @@ import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import Filter from 'containers/baseitem_picker/Filter';
 import Picker from 'containers/baseitem_picker/Picker';
 import { BaseItemTypeProps } from 'state/poe/schema';
+import './style.css';
 
 export type Props = {
   active: BaseItemTypeProps | undefined;
@@ -33,10 +34,20 @@ const BaseItemModal: SFC<Props> = props => {
         )}
       </Button>
 
-      <Modal isOpen={props.is_open} toggle={toggle} autoFocus={false}>
-        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+      <Modal
+        className="baseitems"
+        isOpen={props.is_open}
+        toggle={toggle}
+        autoFocus={false}
+      >
+        <ModalHeader toggle={toggle}>
+          <FormattedMessage
+            id="baseitem_picker.modal_title"
+            defaultMessage="Choose a baseitem"
+          />
+        </ModalHeader>
         <ModalBody>
-          <Filter onChange={toggle} />
+          <Filter />
           <Picker onChange={toggle} />
         </ModalBody>
       </Modal>
