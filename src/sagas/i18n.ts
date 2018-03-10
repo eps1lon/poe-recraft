@@ -4,7 +4,7 @@ import { all, call, fork, put, take } from 'redux-saga/effects';
 import { i18n_actions } from 'state/i18n';
 
 const requireLocaleData = (locale: string) => {
-  return import(/* webpackChunkName: "i18n/[request]" */ `../i18n/${locale}`);
+  return import(/* webpackChunkName: "i18n/[request]" */ `../locales/${locale}`);
 };
 
 function* loadLocaleData() {
