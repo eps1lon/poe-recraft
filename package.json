@@ -17,7 +17,7 @@
     "build:browser": "tsc --project ./tsconfig.build.json --module System --outFile dist/index.js",
     "build:commonjs": "tsc --project ./tsconfig.build.json --module CommonJS --outDir lib",
     "build:es": "tsc --project ./tsconfig.build.json --module ES6 --outDir es",
-    "build:check": "tsc --noEmit --watch",
+    "build:check": "tsc --project ./tsconfig.build.json --noEmit --watch",
     "clean": "rimraf coverage lib dist es",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "format": "prettier --write src/**/*.ts",
@@ -70,7 +70,7 @@
     "tslint": "^5.7.0",
     "tslint-config-prettier": "^1.5.0",
     "tslint-eslint-rules": "^5.0.0",
-    "typescript": "^2.5.3"
+    "typescript": "^2.7.2"
   },
   "jest": {
     "transform": {

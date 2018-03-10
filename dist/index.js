@@ -353,8 +353,14 @@ System.register("localize/formatValues", ["localize/formatters"], function (expo
         }
         var formatted = __spread(values);
         formatters.forEach(function (formatter, i) {
-            if (typeof formatter.arg === 'number') {
-                var target_param = values[+formatter.arg - 1];
+            if (typeof formatter !== 'string' && typeof formatter.arg === 'number') {
+                // base_chance_to_freeze% is the only exception
+                // see issues #25 and #33
+                var offset = formatter.id === 'canonical_stat' &&
+                    formatters.includes('canonical_line')
+                    ? 0
+                    : -1;
+                var target_param = values[+formatter.arg + offset];
                 if (target_param !== undefined) {
                     formatted[+formatter.arg - 1] = formatValue(target_param, {
                         formatter: formatter
@@ -421,11 +427,11 @@ System.register("translate/translate", ["translate/match", "translate/printf"], 
     "use strict";
     var __moduleName = context_7 && context_7.id;
     function translate(description, provided, 
-        /**
-         * @param t
-         * @param count {number} number of params
-         */
-        getFormatters) {
+    /**
+     * @param t
+     * @param count {number} number of params
+     */
+    getFormatters) {
         /**
          * @param t
          * @param count {number} number of params
@@ -532,7 +538,9 @@ System.register("translate/asRegexp", ["escape-string-regexp", "localize/formatt
         var regexp = escapeStringRegexp(text)
             .replace(/%(\d+)(\\\$\\\+d|%)/g, function (match, arg, modifier) {
             groups.push(arg);
-            var formatter = formatters.find(function (_a) {
+            var formatter = formatters
+                .filter(function (f) { return typeof f !== 'string'; })
+                .find(function (_a) {
                 var other = _a.arg;
                 return "" + other === arg;
             });
@@ -5312,7 +5320,9 @@ System.register("format/textToStats", ["localize/formatters", "translate/index",
                                         var matcher = translation.matchers[i];
                                         var value = Number.NaN;
                                         if (matched_value !== undefined) {
-                                            var formatter = translation.formatters.find(function (_a) {
+                                            var formatter = translation.formatters
+                                                .filter(function (f) { return typeof f !== 'string'; })
+                                                .find(function (_a) {
                                                 var arg = _a.arg;
                                                 return String(arg) === arg_index;
                                             });

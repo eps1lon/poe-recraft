@@ -32,7 +32,9 @@ declare module "types/StatDescription" {
         text: string;
         formatters: Formatter[];
     }
-    export interface Formatter {
+    export type Formatter = NullaryFormatter | UnaryFormatter;
+    export type NullaryFormatter = string;
+    export interface UnaryFormatter {
         id: string;
         arg: ArrayIndex | ReminderIdentifier;
     }
@@ -81,10 +83,10 @@ declare module "localize/formatters" {
     export default function factory(formatter_id: string): (value: StatValue) => string;
 }
 declare module "localize/formatValues" {
-    import { Formatter } from "types/StatDescription";
+    import { Formatter, UnaryFormatter } from "types/StatDescription";
     import { StatValue } from "types/StatValue";
     export type Options = {
-        formatter?: Formatter;
+        formatter?: UnaryFormatter;
         formatters?: Formatter[];
     };
     export function formatValues(values: StatValue[], options: Options): string[];
