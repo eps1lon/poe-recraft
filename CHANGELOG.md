@@ -14,6 +14,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - `textToStats` (also available in `Format`) which finds every combination
   of stats that could've produced a given text. Check the API docs for more info. (#24)
 
+### Fixes
+- Some translations had standard printf syntax which is not understood by
+  `formatStats`. This caused #34 and is fixed with #35.
+
 ## [0.8.0](https://github.com/eps1lon/poe-i18n/compare/v0.7.1...v0.8.0) (2017-02-16)
 ### Added 
 - `locale-data` for Path Of Exile@3.1.3 (#14)
