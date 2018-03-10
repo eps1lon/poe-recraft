@@ -59,7 +59,7 @@ export const activeGenerator = (state: State) => {
   const orb = orbs[String(mod_generator_id)];
 
   if (orb !== undefined) {
-    return state.i18n.messages[`poe.baseitemtypes.${orb.primary}.name`];
+    return orb.id;
   } else {
     return String(mod_generator_id);
   }

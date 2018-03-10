@@ -9,3 +9,5 @@ export { default as mods } from 'poe-i18n/locale-data/en/Mods.json';
 export {
   default as stat_descriptions
 } from 'poe-i18n/locale-data/en/stat_descriptions.json';
+
+export { messages } from './default';

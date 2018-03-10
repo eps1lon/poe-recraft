@@ -17,20 +17,59 @@ import vaal from './assets/vaal.png';
 import whetstone from './assets/whetstone.png';
 
 export default {
-  alchemy: { icon: alchemy, primary: 5 },
-  alteration: { icon: alteration, primary: 9 },
-  armourers: { icon: armourers, primary: 3 },
-  augmentation: { icon: augmentation, primary: 13 },
-  blessed: { icon: blessed, primary: 21 },
-  chaos: { icon: chaos, primary: 2 },
-  chromatic: { icon: chromatic, primary: 17 },
-  divine: { icon: divine, primary: 20 },
-  exalted: { icon: exalted, primary: 11 },
-  fusing: { icon: fusing, primary: 18 },
-  jeweller: { icon: jeweller, primary: 19 },
-  regal: { icon: regal, primary: 12 },
-  scouring: { icon: scouring, primary: 10 },
-  transmute: { icon: transmute, primary: 8 },
-  vaal: { icon: vaal, primary: 30 },
-  whetstone: { icon: whetstone, primary: 0 }
-} as { [key: string]: { icon: string; primary: number } };
+  alchemy: {
+    icon: alchemy,
+    id: 'Metadata/Items/Currency/CurrencyUpgradeToRare'
+  },
+  alteration: {
+    icon: alteration,
+    id: 'Metadata/Items/Currency/CurrencyRerollMagic'
+  },
+  armourers: {
+    icon: armourers,
+    id: 'Metadata/Items/Currency/CurrencyArmourQuality'
+  },
+  augmentation: {
+    icon: augmentation,
+    id: 'Metadata/Items/Currency/CurrencyAddModToMagic'
+  },
+  blessed: {
+    icon: blessed,
+    id: 'Metadata/Items/Currency/CurrencyRerollImplicit'
+  },
+  chaos: { icon: chaos, id: 'Metadata/Items/Currency/CurrencyRerollRare' },
+  chromatic: {
+    icon: chromatic,
+    id: 'Metadata/Items/Currency/CurrencyRerollSocketColours'
+  },
+  divine: { icon: divine, id: 'Metadata/Items/Currency/CurrencyModValues' },
+  exalted: {
+    icon: exalted,
+    id: 'Metadata/Items/Currency/CurrencyAddModToRare'
+  },
+  fusing: {
+    icon: fusing,
+    id: 'Metadata/Items/Currency/CurrencyRerollSocketLinks'
+  },
+  jeweller: {
+    icon: jeweller,
+    id: 'Metadata/Items/Currency/CurrencyRerollSocketNumbers'
+  },
+  regal: {
+    icon: regal,
+    id: 'Metadata/Items/Currency/CurrencyUpgradeMagicToRare'
+  },
+  scouring: {
+    icon: scouring,
+    id: 'Metadata/Items/Currency/CurrencyConvertToNormal'
+  },
+  transmute: {
+    icon: transmute,
+    id: 'Metadata/Items/Currency/CurrencyUpgradeToMagic'
+  },
+  vaal: { icon: vaal, id: 'Metadata/Items/Currency/CurrencyCorrupt' },
+  whetstone: {
+    icon: whetstone,
+    id: 'Metadata/Items/Currency/CurrencyWeaponQuality'
+  }
+} as { [key: string]: { icon: string; id: string } };
