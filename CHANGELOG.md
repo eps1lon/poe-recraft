@@ -6,33 +6,33 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased](https://github.com/eps1lon/poe-i18n/compare/v0.8.0...HEAD)
 ### Added 
-- `locale-data` for Path Of Exile@3.2.0 (#28)
+- `locale-data` for Path Of Exile@3.2.0 ([#28](https://github.com/eps1lon/poe-i18n/pull/28))
 - `groupMods()` to generate a fitting translation for a collection of mods 
-  (e.g. mods of a `correct_group`) (#30)
+  (e.g. mods of a `correct_group`). ([#30](https://github.com/eps1lon/poe-i18n/pull/30))
 - `skip_if_zero` fallback for `formatStats()` which suppresses thrown errors
-  if the stat has a value that is equivilant to zero. (#29)
+  if the stat has a value that is equivilant to zero. ([#29](https://github.com/eps1lon/poe-i18n/pull/29))
 - `textToStats` (also available in `Format`) which finds every combination
-  of stats that could've produced a given text. Check the API docs for more info. (#24)
+  of stats that could've produced a given text. Check the API docs for more info. ([#24](https://github.com/eps1lon/poe-i18n/pull/24))
 
 ### Changed
-- Value ranges should now be displayed ordered. This caused #32 and was fixed with #37.
+- Value ranges should now be displayed ordered. This caused [#32](https://github.com/eps1lon/poe-i18n/issues/32) and was fixed with [#37](https://github.com/eps1lon/poe-i18n/pull/37).
 
 ### Fixes
 - Some translations had standard printf syntax which is not understood by
-  `formatStats`. This caused #34 and is fixed with #35.
+  `formatStats`. This caused [#34](https://github.com/eps1lon/poe-i18n/issues/34) and is fixed with [#35](https://github.com/eps1lon/poe-i18n/pull/35).
 - False positive in `base_chance_to_freeze%` which threw 
-  `no param given for formatter`. This fixed #33 with #36.
+  `no param given for formatter`. This fixed [#33](https://github.com/eps1lon/poe-i18n/issues/33) with [#36](https://github.com/eps1lon/poe-i18n/pull/36).
 
 ## [0.8.0](https://github.com/eps1lon/poe-i18n/compare/v0.7.1...v0.8.0) (2017-02-16)
 ### Added 
-- `locale-data` for Path Of Exile@3.1.3 (#14)
-- Typescript declaration files (#18)
+- `locale-data` for Path Of Exile@3.1.3 ([#14](https://github.com/eps1lon/poe-i18n/pull/14))
+- Typescript declaration files ([#18](https://github.com/eps1lon/poe-i18n/pull/18))
 ### Internal
-- Upgraded `tslint-eslint-rules` to 5.0.0 (#20)
+- Upgraded `tslint-eslint-rules` to 5.0.0 ([#20](https://github.com/eps1lon/poe-i18n/pull/20))
 
 ## [0.7.1](https://github.com/eps1lon/poe-i18n/compare/v0.7.0...v0.7.1) (2017-10-25)
 ### Fixed
-- Fixed bundling error caused by require instead of import
+- Fixed bundling error caused by require instead of import.
 
 ## [0.7.0](https://github.com/eps1lon/poe-i18n/compare/v0.6.1...v0.7.0) (2017-10-24)
 ### Added
