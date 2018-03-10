@@ -17,6 +17,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Fixes
 - Some translations had standard printf syntax which is not understood by
   `formatStats`. This caused #34 and is fixed with #35.
+- False positive in `base_chance_to_freeze%` which threw 
+  `no param given for formatter`. This fixed #33 with #36.
 
 ## [0.8.0](https://github.com/eps1lon/poe-i18n/compare/v0.7.1...v0.8.0) (2017-02-16)
 ### Added 

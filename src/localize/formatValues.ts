@@ -1,9 +1,9 @@
-import { Formatter } from '../types/StatDescription';
+import { Formatter, UnaryFormatter } from '../types/StatDescription';
 import { StatValue } from '../types/StatValue';
 import formatFactory from './formatters';
 
 export type Options = {
-  formatter?: Formatter;
+  formatter?: UnaryFormatter;
   formatters?: Formatter[];
 };
 
@@ -17,8 +17,15 @@ export function formatValues(values: StatValue[], options: Options): string[] {
   const formatted: Array<StatValue | string> = [...values];
 
   formatters.forEach((formatter, i) => {
-    if (typeof formatter.arg === 'number') {
-      const target_param = values[+formatter.arg - 1];
+    if (typeof formatter !== 'string' && typeof formatter.arg === 'number') {
+      // base_chance_to_freeze% is the only exception
+      // see issues #25 and #33
+      const offset =
+        formatter.id === 'canonical_stat' &&
+        formatters.includes('canonical_line')
+          ? 0
+          : -1;
+      const target_param = values[+formatter.arg + offset];
 
       if (target_param !== undefined) {
         formatted[+formatter.arg - 1] = formatValue(target_param, {

@@ -4,7 +4,8 @@ import {
   Description,
   Descriptions,
   StatLocaleDatas,
-  Translation
+  Translation,
+  UnaryFormatter
 } from '../types/StatDescription';
 import NamedGroupsRegexp from '../util/NamedGroupsRegexp';
 import { deterministicValueForMatcher } from '../util/symbolicStats';
@@ -49,9 +50,9 @@ export default function* textToStats(
             let value: number = Number.NaN;
 
             if (matched_value !== undefined) {
-              const formatter = translation.formatters.find(
-                ({ arg }) => String(arg) === arg_index
-              );
+              const formatter = translation.formatters
+                .filter((f): f is UnaryFormatter => typeof f !== 'string')
+                .find(({ arg }) => String(arg) === arg_index);
 
               if (formatter === undefined) {
                 value = +matched_value;

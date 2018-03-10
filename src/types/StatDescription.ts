@@ -41,7 +41,9 @@ export interface Translation {
   formatters: Formatter[];
 }
 
-export interface Formatter {
+export type Formatter = NullaryFormatter | UnaryFormatter;
+export type NullaryFormatter = string;
+export interface UnaryFormatter {
   id: string;
   arg: ArrayIndex | ReminderIdentifier;
 }
