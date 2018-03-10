@@ -28,10 +28,18 @@ const columns = [
   {
     renderCell: (details: GeneratorDetails) => {
       const id = `${details.mod.props.id}-stats`;
+      const { mod } = details;
+
       return (
         <div>
-          <span id={id}>
-            <Stats className="stats" stats={details.mod.statsJoined()} />
+          <span
+            id={id}
+            className={classNames('mod-stats', {
+              master: mod.isMasterMod(),
+              enchantment: mod.isEnchantment()
+            })}
+          >
+            <Stats className="stats" stats={mod.statsJoined()} />
           </span>
           <FlagsTooltip
             id={id}

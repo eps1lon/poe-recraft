@@ -1,10 +1,25 @@
+@import 'poe-components-item/themes/poe/colors.scss';
+
 #available_mods {
   display: table;
   width: 100%;
 
   .mods-table {
+    .mod-stats {
+      color: $mod_stats;
+
+      &.master {
+        color: $crafted_color;
+      }
+
+      &.enchantment {
+        color: $enchant_color;
+      }
+    }
+
     h4,
     h5 {
+      color: inherit;
       cursor: pointer;
 
       &:hover {
