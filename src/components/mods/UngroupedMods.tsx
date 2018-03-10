@@ -23,7 +23,8 @@ const columns = [
     renderCell: (details: GeneratorDetails) => details.mod.props.level,
     className: 'ilvl',
     id: 'ilvl',
-    renderHeader: () => 'iLvl'
+    renderHeader: () => 'iLvl',
+    sortBy: (details: GeneratorDetails) => details.mod.props.level
   },
   {
     renderCell: (details: GeneratorDetails) => {
@@ -66,7 +67,9 @@ const columns = [
       String(details.spawnweight || 'none'),
     className: 'spawn-chance',
     renderHeader: () => 'Chance',
-    id: 'chance'
+    id: 'chance',
+    sortBy: ({ spawnweight }: GeneratorDetails) =>
+      spawnweight === undefined ? 0 : spawnweight
   }
 ];
 

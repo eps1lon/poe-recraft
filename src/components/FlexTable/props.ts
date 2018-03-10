@@ -5,4 +5,5 @@ export interface Column<T> {
   className: string;
   renderHeader: () => ReactNode;
   renderCell: (data: T) => ReactNode;
+  sortBy?: (data: T) => number;
 }
