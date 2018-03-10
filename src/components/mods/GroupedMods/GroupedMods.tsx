@@ -4,7 +4,8 @@ import React, { SFC } from 'react';
 import UngroupedMods from 'containers/mods/UngroupedMods';
 import CorrectGroup from 'containers/i18n/CorrectGroup';
 
-import { GeneratorDetails } from './ModsTable';
+import { GeneratorDetails } from '../ModsTable';
+import './style.css';
 
 export type Props = {
   className: string;
@@ -31,7 +32,7 @@ const GroupedMods: SFC<Props> = props => {
 
         return (
           <>
-            <h5 onClick={() => onGroupClick(group)}>
+            <h5 className="correct-group" onClick={() => onGroupClick(group)}>
               <CorrectGroup mods={mods} />
             </h5>
             {isExpanded(group) && (

@@ -1,4 +1,6 @@
-@import 'bootstrap/scss/bootstrap.scss';
+@import 'bootswatch/dist/cyborg/variables';
+@import 'bootstrap/scss/bootstrap';
+@import 'bootswatch/dist/cyborg/bootswatch';
 @import './poe/colors.scss';
 
 body {
@@ -6,7 +8,7 @@ body {
   padding: 0;
   background: #000;
   color: #a38d6d;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
 a {
@@ -17,19 +19,16 @@ a:hover {
   color: #fff;
 }
 
-.augmented-value,
-.mod .stats {
-  color: $mod_stats;
+.btn {
+  margin: 0 3px;
 }
 
-.crafted-mod,
-.mod.domain-10 .stats,
-.mod.enchantment .stats {
-  color: $craft_color;
-}
+.nav .nav-item {
+  &.active .nav-link {
+    color: #fff;
+  }
 
-// = .nav-item.dropdown.active a:focus
-.nav-item.dropdown.active a {
-  border-color: #eceeef #eceeef #ddd;
-  border-style: dashed;
+  .nav-link {
+    color: rgba($color: #fff, $alpha: 0.5);
+  }
 }
