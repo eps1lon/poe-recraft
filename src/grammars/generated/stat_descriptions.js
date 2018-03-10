@@ -7,6 +7,15 @@ function id(x) {return x[0]; }
 
   // (for  | bar) => [[foo | bar]]
   const pipeId = ([[id]]) => id
+
+  const createSanitizeText = () => {
+    let i = 1;
+    return text => {
+      // monster chance to flee has %d%% which is normal printf 
+      // syntax that is nowhere else used
+      return text.replace(/%d%%/g, () => `%${i++}%%%`);
+    }
+  }
 var grammar = {
     Lexer: undefined,
     ParserRules: [
@@ -102,7 +111,7 @@ var grammar = {
     {"name": "Translations", "symbols": ["Translations$ebnf$1"], "postprocess": ([translations]) => translations.map(([, translation]) => translation)},
     {"name": "TranslationMatcher$ebnf$1", "symbols": ["Whitespaces"], "postprocess": id},
     {"name": "TranslationMatcher$ebnf$1", "symbols": [], "postprocess": function(d) {return null;}},
-    {"name": "TranslationMatcher", "symbols": ["Matchers", "Whitespaces", "StringLiteral", "OptionalFormatters", "TranslationMatcher$ebnf$1"], "postprocess": ([matchers, , text, formatters]) => ({ matchers, text, formatters})},
+    {"name": "TranslationMatcher", "symbols": ["Matchers", "Whitespaces", "StringLiteral", "OptionalFormatters", "TranslationMatcher$ebnf$1"], "postprocess": ([matchers, , text, formatters]) => ({ matchers, text: createSanitizeText()(text), formatters})},
     {"name": "OptionalFormatters$ebnf$1$subexpression$1$ebnf$1", "symbols": ["Whitespaces"], "postprocess": id},
     {"name": "OptionalFormatters$ebnf$1$subexpression$1$ebnf$1", "symbols": [], "postprocess": function(d) {return null;}},
     {"name": "OptionalFormatters$ebnf$1$subexpression$1", "symbols": ["OptionalFormatters$ebnf$1$subexpression$1$ebnf$1", "Formatters"]},

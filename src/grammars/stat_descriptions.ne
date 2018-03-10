@@ -64,7 +64,7 @@ Translations ->
 
 TranslationMatcher -> 
   Matchers Whitespaces StringLiteral OptionalFormatters Whitespaces:?
-  {% ([matchers, , text, formatters]) => ({ matchers, text, formatters}) %}
+  {% ([matchers, , text, formatters]) => ({ matchers, text: createSanitizeText()(text), formatters}) %}
 
 # Formatter
 OptionalFormatters -> (Whitespaces:? Formatters):? {% ([matched]) => matched ? matched[1] : [] %}
@@ -113,4 +113,13 @@ IndexNumber -> [0-9]:+ {% (...args) => +ebnfToString(args) %}
 
   // (for  | bar) => [[foo | bar]]
   const pipeId = ([[id]]) => id
+
+  const createSanitizeText = () => {
+    let i = 1;
+    return text => {
+      // monster chance to flee has %d%% which is normal printf 
+      // syntax that is nowhere else used
+      return text.replace(/%d%%/g, () => `%${i++}%%%`);
+    }
+  }
 %}
