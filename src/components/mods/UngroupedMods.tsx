@@ -87,6 +87,9 @@ const UngroupedMods: SFC<Props> = props => {
     <Table
       data={all_details}
       columns={columns.filter(({ id }) => !exclude.includes(id))}
+      getTrProps={data => ({
+        className: classNames({ disabled: disabled(data) })
+      })}
     />
   );
 };

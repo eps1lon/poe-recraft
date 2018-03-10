@@ -1,5 +1,6 @@
 import { Mod } from 'poe-mods';
 import React, { SFC } from 'react';
+import classnames from 'classnames';
 
 import UngroupedMods from 'containers/mods/UngroupedMods';
 import CorrectGroup from 'containers/i18n/CorrectGroup';
@@ -9,7 +10,7 @@ import './style.css';
 
 export type Props = {
   className: string;
-  groups: Map<string, GeneratorDetails[]>;
+  groups: Map<string, { details: GeneratorDetails[]; disabled: boolean }>;
   options: {};
   isExpanded: (id: string) => boolean;
   onGroupClick: (id: string) => any;
@@ -27,12 +28,15 @@ const GroupedMods: SFC<Props> = props => {
 
   return (
     <>
-      {Array.from(groups.entries()).map(([group, details]) => {
+      {Array.from(groups.entries()).map(([group, { details, disabled }]) => {
         const mods = details.map(({ mod }) => mod);
 
         return (
           <>
-            <h5 className="correct-group" onClick={() => onGroupClick(group)}>
+            <h5
+              className={classnames('correct-group', { disabled })}
+              onClick={() => onGroupClick(group)}
+            >
               <CorrectGroup mods={mods} />
             </h5>
             {isExpanded(group) && (

@@ -3,11 +3,12 @@ import * as classnames from 'classnames';
 
 import { Column } from './props';
 import Header from './Header';
-import Row from './Row';
+import Row, { Props as RowProps } from './Row';
 
 export interface Props<T> {
   columns: Column<T>[];
   data: T[];
+  getTrProps: (data: T) => Partial<Pick<RowProps<T>, 'className'>>;
 }
 
 export interface State {
@@ -25,7 +26,7 @@ export default class Table<T> extends React.PureComponent<Props<T>, State> {
   }
 
   render() {
-    const { columns, data } = this.props;
+    const { columns, data, getTrProps } = this.props;
     const { sortColumn, sortOrder } = this.state;
 
     let sorted_data = data;
@@ -48,7 +49,7 @@ export default class Table<T> extends React.PureComponent<Props<T>, State> {
           }
         />
         {sorted_data.map((row, i) => (
-          <Row key={i} data={row} columns={columns} />
+          <Row key={i} data={row} columns={columns} {...getTrProps(row)} />
         ))}
       </div>
     );

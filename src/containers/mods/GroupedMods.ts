@@ -6,21 +6,28 @@ import { State } from 'state';
 import { gui_actions } from 'state/gui';
 import GroupedMods from 'components/mods/GroupedMods';
 import { GeneratorDetails } from 'components/mods/ModsTable';
+import { disabled } from 'util/mods';
 
 const groupSelector = createSelector(
   (props: { details: GeneratorDetails[] }) => props.details,
   details => {
-    return details.reduce((groups, detail) => {
+    const all_groups = details.reduce((groups, detail) => {
       const group = detail.mod.props.correct_group;
 
       if (!groups.has(group)) {
-        groups.set(group, []);
+        groups.set(group, { details: [], disabled: false });
         // ts: groups.get(group) !== undefined
       }
-      groups.get(group)!.push(detail);
+      groups.get(group)!.details.push(detail);
 
       return groups;
-    }, new Map<string, GeneratorDetails[]>());
+    }, new Map<string, { details: GeneratorDetails[]; disabled: boolean }>());
+
+    for (const group of all_groups.values()) {
+      group.disabled = group.details.every(detail => disabled(detail));
+    }
+
+    return all_groups;
   }
 );
 
