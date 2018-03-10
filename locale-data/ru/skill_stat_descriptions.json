@@ -20,6 +20,26 @@
         }
       ]
     },
+    "cast_speed_incr_skill_granted": {
+      "stats": ["cast_speed_+%_granted_from_skill"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% повышение скорости сотворения чар",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% снижение скорости сотворения чар",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "spell_physical_damage_range": {
       "stats": [
         "spell_minimum_physical_damage",
@@ -281,6 +301,17 @@
           "matchers": ["#"],
           "text":
             "Модификаторы урона снарядами действуют на эффект постепенного урона этого умения",
+          "formatters": []
+        }
+      ]
+    },
+    "light_raidus_is_area": {
+      "stats": ["light_radius_increases_apply_to_area_of_effect"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Увеличения и уменьшения радиуса обзора также применяются к области действия этого умения",
           "formatters": []
         }
       ]
@@ -1040,7 +1071,22 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Длительность умения: %1% секунд",
+          "text": "Длительность умения %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "secondary_skill_duration": {
+      "stats": ["secondary_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вторичная длительность %1% секунд(-ы)",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -2274,16 +2320,6 @@
         }
       ]
     },
-    "physical_damage_taken_incr": {
-      "stats": ["physical_damage_taken_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "На %1%%% больше получаемого физического урона",
-          "formatters": []
-        }
-      ]
-    },
     "degen_effect_incr": {
       "stats": ["degen_effect_+%"],
       "translations": [
@@ -2783,7 +2819,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Регенерирует %1% здоровья в секунду",
+          "text": "Регенерация %1% здоровья в секунду",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -2798,7 +2834,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Регенерирует %1%%% от максимума здоровья в секунду",
+          "text": "Регенерация %1%%% от максимума здоровья в секунду",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -3494,6 +3530,21 @@
         }
       ]
     },
+    "attack_on_kill": {
+      "stats": ["attack_trigger_on_kill_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "%1%%% шанс вызвать срабатывание этой атаки при убийстве",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Эта атака срабатывает при убийстве",
+          "formatters": []
+        }
+      ]
+    },
     "cast_on_attack": {
       "stats": ["cast_on_attack_use_%"],
       "translations": [
@@ -3621,6 +3672,22 @@
         }
       ]
     },
+    "cast_when_hit_target_self": {
+      "stats": ["cast_when_hit_%_target_self"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% шанс вызвать срабатывание этих чар при получении удара",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Вызывает срабатывание этих чар при получении удара",
+          "formatters": []
+        }
+      ]
+    },
     "cast_on_death": {
       "stats": ["cast_on_death_%"],
       "translations": [
@@ -3652,6 +3719,23 @@
         }
       ]
     },
+    "cast_on_avian_buff": {
+      "stats": ["cast_on_gain_avians_flight_or_avians_might_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% шанс вызвать срабатывание этих чар, когда вы получаете Птичью силу или Птичий полет",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Вызывает срабатывание этих чар, когда вы получаете Птичью силу или Птичий полет",
+          "formatters": []
+        }
+      ]
+    },
     "cast_on_hit": {
       "stats": ["cast_on_hit_%"],
       "translations": [
@@ -3664,6 +3748,34 @@
         {
           "matchers": [[100, "#"]],
           "text": "Вызывает срабатывание этих чар при нанесении удара",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_hit_if_cursed": {
+      "stats": ["cast_on_hit_if_cursed_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% шанс вызвать срабатывание этих чар при нанесении удара по врагу, пока на вас действует проклятие",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Вызывает срабатывание этих чар при нанесении удара по врагу, пока на вас действует проклятие",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_lose_cats_stealth": {
+      "stats": ["cast_on_lose_cats_stealth"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Вызывает срабатывание этих чар, когда вы теряете Кошачью скрытность",
           "formatters": []
         }
       ]
@@ -3707,7 +3819,7 @@
         {
           "matchers": ["#", [1, "#"]],
           "text":
-            "%1%%% шанс вызвать срабатывание этих чар, когда вы получаете %2% урона в сумме",
+            "%1%%% шанс вызвать срабатывание этих чар, когда вы получаете в сумме %2% урона",
           "formatters": []
         }
       ]
@@ -4083,6 +4195,16 @@
         }
       ]
     },
+    "never_freeze": {
+      "stats": ["never_freeze"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Не может быть заморожен",
+          "formatters": []
+        }
+      ]
+    },
     "never_ignite": {
       "stats": ["never_ignite"],
       "translations": [
@@ -4208,6 +4330,26 @@
           "matchers": [[1, "#"]],
           "text": "%1%%% увеличение урона от огня",
           "formatters": []
+        }
+      ]
+    },
+    "herald_of_ash_spell_fire_damage_incr": {
+      "stats": ["herald_of_ash_spell_fire_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "На %1%%% больше урона от огня чарами",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "На %1%%% меньше урона от огня чарами",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -4377,7 +4519,8 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "%1%%% шанс на Укрепление при нанесении удара в ближнем бою",
+          "text":
+            "%1%%% шанс получить Укрепление при нанесении удара в ближнем бою",
           "formatters": [
             {
               "id": "reminderstring",
@@ -4610,12 +4753,34 @@
         }
       ]
     },
+    "intimidating_cry_attack_speed": {
+      "stats": ["intimidating_cry_attack_speed_+%_per_100_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% повышение скорости атаки за каждую сотню врагов поблизости",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% снижение скорости атаки за каждую сотню врагов поблизости",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "mana_regen": {
       "stats": ["base_mana_regeneration_rate_per_minute"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Регенерирует %1% маны в секунду",
+          "text": "Регенерация %1% маны в секунду",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -4725,7 +4890,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1%%% повышение скорости установки тотема",
+          "text": "%1%%% повышение скорости установки тотемов",
           "formatters": []
         }
       ]
@@ -5011,7 +5176,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Регенерирует %1%%% урона от отрицательного эффекта в виде здоровья",
+            "Регенерация %1%%% урона от отрицательного эффекта в виде здоровья",
           "formatters": [
             {
               "id": "divide_by_one_hundred_2dp",
@@ -5590,6 +5755,41 @@
         }
       ]
     },
+    "avoid_damage_chance": {
+      "stats": ["avoid_damage_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "%1%%% шанс избежать всего урона при получении удара",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Избегает весь урон при получении удара",
+          "formatters": []
+        }
+      ]
+    },
+    "damage_taken_incr": {
+      "stats": ["base_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% увеличение получаемого урона",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% уменьшение получаемого урона",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "deal_no_chaos": {
       "stats": ["base_deal_no_chaos_damage"],
       "translations": [
@@ -5716,6 +5916,50 @@
         }
       ]
     },
+    "double_damage_chance": {
+      "stats": ["chance_to_deal_double_damage_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1%%% шанс нанести двойной урон",
+          "formatters": []
+        }
+      ]
+    },
+    "trigger_on_animate_guardian_kill": {
+      "stats": ["chance_to_trigger_on_animate_guardian_kill_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% шанс вызвать срабатывание этого умения, когда Аниматрон убивает врага",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Вызывает срабатывание этого умения, когда Аниматрон убивает врага",
+          "formatters": []
+        }
+      ]
+    },
+    "trigger_on_animate_weapon_kill": {
+      "stats": ["chance_to_trigger_on_animate_weapon_kill_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% шанс вызвать срабатывание этого умения, когда ваше оживленное оружие убивает врага",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Вызывает срабатывание этого умения, когда ваше оживленное оружие убивает врага",
+          "formatters": []
+        }
+      ]
+    },
     "charged_attack_damage_stages": {
       "stats": ["charged_attack_damage_per_stack_+%_final"],
       "translations": [
@@ -5764,6 +6008,22 @@
             {
               "id": "negate",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chilled_ground_magnitude_override": {
+      "stats": ["chilled_ground_base_magnitude_override"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Замерзшая земля, созданная этим умением, имеет %1%%% базовый эффект замедления",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChilledGround"
             }
           ]
         }
@@ -5846,12 +6106,14 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "На %1%%% больше урона, если был потрачен заряд выносливости",
+          "text":
+            "Наносит на %1%%% больше урона, если у вас есть заряд выносливости",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "На %1%%% меньше урона, если был потрачен заряд выносливости",
+          "text":
+            "Наносит на %1%%% меньше урона, если у вас есть заряд выносливости",
           "formatters": [
             {
               "id": "negate",
@@ -5982,6 +6244,16 @@
         }
       ]
     },
+    "max_crab_barriers": {
+      "stats": ["max_crab_aspect_stacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Может иметь до %1% Крабьих преград",
+          "formatters": []
+        }
+      ]
+    },
     "number_of_spirit_strikes": {
       "stats": ["melee_attack_number_of_spirit_strikes"],
       "translations": [
@@ -6040,6 +6312,16 @@
         }
       ]
     },
+    "minion_double_damage_chance": {
+      "stats": ["minion_chance_to_deal_double_damage_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Приспешники получают %1%%% шанс нанести двойной урон",
+          "formatters": []
+        }
+      ]
+    },
     "ailment_non_damaging_incr_effect": {
       "stats": ["non_damaging_ailment_effect_+%"],
       "translations": [
@@ -6082,6 +6364,17 @@
         {
           "matchers": [[2, "#"]],
           "text": "Одновременно можно призвать %1% Образа(-ов)",
+          "formatters": []
+        }
+      ]
+    },
+    "phys_reduction_per_crab_barrier": {
+      "stats": ["physical_damage_reduction_%_per_crab_aspect_stack"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Дарует %1%%% дополнительного уменьшения получаемого физического урона за каждую Крабью преграду",
           "formatters": []
         }
       ]
@@ -6172,6 +6465,21 @@
               "arg": "ReminderTextDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "spider_aspect_max_webs": {
+      "stats": ["spider_aspect_max_web_count"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Может наложить 1 Паучью паутину на врага",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Может наложить до %1% Паучьих паутин(-ы) на врага",
+          "formatters": []
         }
       ]
     },
@@ -6489,6 +6797,56 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "trigger_on_frozen_kill": {
+      "stats": ["trigger_on_kill_vs_frozen_enemy_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% шанс вызвать срабатывание этого умения при убийстве замороженного врага",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Вызывает срабатывание этого умения при убийстве замороженного врага",
+          "formatters": []
+        }
+      ]
+    },
+    "trigger_on_skill_use_void_arrow": {
+      "stats": ["trigger_on_skill_use_%_if_you_have_a_void_arrow"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% шанс потратить заряд пустоты, чтобы вызвать срабатывание этого умения, когда вы выпускаете стрелы",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Расходует заряд пустоты, чтобы вызвать срабатывание этого умения, когда вы выпускаете стрелы",
+          "formatters": []
+        }
+      ]
+    },
+    "spider_aspect_interval": {
+      "stats": ["virtual_spider_aspect_web_interval_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Накладывает Паучьи паутины и Скованность каждые %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
             }
           ]
         }

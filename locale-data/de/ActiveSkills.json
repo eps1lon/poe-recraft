@@ -32,7 +32,7 @@
   "new_shield_charge": {
     "displayedname": "Schildansturm",
     "description":
-      "Stürmt auf ein Ziel oder einen Gegner zu, schiebt diese zur Seite und verursacht Schaden in einem kleinen Bereich vor Euch. Ihr fügt in einem größeren Bereich Schaden zu, wenn Ihr das Ziel erreicht. Je weiter der Weg, desto größer der Schaden und die Chance, Gegner zu betäuben. Kann nicht durch 'Mehrfachschlag' unterstützt werden."
+      "Stürmt auf ein Ziel oder einen Gegner zu, schiebt diesen zur Seite und verursacht Schaden in einem kleinen Bereich vor Euch. Ihr fügt in einem größeren Bereich Schaden zu, wenn Ihr das Ziel erreicht. Je weiter der Weg, desto größer der Schaden und die Chance, Gegner zu betäuben. Kann nicht durch 'Mehrfachschlag' unterstützt werden."
   },
   "enduring_cry": {
     "displayedname": "Widerstandsschrei",
@@ -43,12 +43,12 @@
   "inspiring_cry": {
     "displayedname": "Schlachtruf",
     "description":
-      "Übt einen Kriegsschrei aus, der Euch und Euren Verbündeten bei anwesenden Gegnern erhöhten Schaden und erhöhte Manaregeneration gewährt. Der Schaden wird durch Gegner im Umkreis erhöht. Umstehende Gegner werden verspottet und greifen an. Teilt seine Abklingzeit mit anderen Kriegsschrei-Fertigkeiten."
+      "Entfesselt einen Kriegsschrei, der Euch und Euren Verbündeten bei anwesenden Gegnern erhöhten Schaden und erhöhte Manaregeneration gewährt. Der Schaden wird proportional zur Anzahl an Gegnern im Umkreis erhöht. Umstehende Gegner werden verspottet und greifen Euch an. Teilt seine Abklingzeit mit anderen Kriegsschrei-Fertigkeiten."
   },
   "abyssal_cry": {
     "displayedname": "Abyssischer Schrei",
     "description":
-      "Übt einen Schlachtruf aus, der Gegner im Umkreis lähmt und sie zum Explodieren bringt, wenn sie sterben. Der Lähmungseffekt wird durch Gegner im Umkreis erhöht. Umstehende Gegner werden verspottet und greifen an. Teilt seine Abklingzeit mit anderen Kriegsschrei-Fertigkeiten."
+      "Entfesselt einen Kriegsschrei, der Gegner im Umkreis lähmt und sie zum Explodieren bringt, wenn sie sterben. Der Lähmungseffekt wird proportional zur Anzahl an Gegnern im Umkreis erhöht. Umstehende Gegner werden verspottet und greifen Euch an. Teilt seine Abklingzeit mit anderen Kriegsschrei-Fertigkeiten."
   },
   "leap_slam": {
     "displayedname": "Sprunghieb",
@@ -187,7 +187,7 @@
   "raise_zombie": {
     "displayedname": "Zombie erwecken",
     "description":
-      "Beschwört eine Zombie-Kreatur aus einem Leichnam, die Euch folgt und Eure Gegner angreift."
+      "Beschwört eine Zombie-Kreatur aus einem Leichnam, die Euch folgt und Eure Gegner mit Nahkampf und einem Wirkungsbereich-Hieb angreift, dem nicht ausgewichen werden kann."
   },
   "righteous_fire": {
     "displayedname": "Sühnendes Feuer",
@@ -583,7 +583,7 @@
       "Beschwört ein Totem mit einer Aura, die Euch und Euren Verbündeten im Umkreis Lebensregeneration gewährt."
   },
   "trap_convert": {
-    "displayedname": "Falle der Bekehrung",
+    "displayedname": "Bekehrungsfalle",
     "description":
       "Wirft eine Falle, die, wenn sie von einem Gegner ausgelöst wird, diesen Gegner kurzzeitig für Euch kämpfen lässt. Hat keinen Effekt auf einzigartige Monster oder Spieler."
   },
@@ -1003,7 +1003,7 @@
   "herald_of_ash": {
     "displayedname": "Herold der Asche",
     "description":
-      "Erhaltet eine Stärkung, die Feuerschaden basierend auf Eurem physischen Schaden gewährt. Tötet Ihr einen Gegner mit einem Angriff, während die Stärkung aktiv ist, werden in der Nähe befindliche Gegner entzündet und erleiden den überzähligen Schaden. Der durch diese Fertigkeit zugefügte Brand kann nur durch Modifikatoren von Schaden über Zeit-Effekten beeinflusst werden. (Brandschaden ist Schaden über Zeit)."
+      "Erhaltet eine Stärkung, die Feuerschaden basierend auf Eurem physischen Schaden gewährt. Tötet Ihr einen Gegner, während die Stärkung aktiv ist, werden andere Gegner in der Nähe entsprechend des überzähligen Schadens verbrannt. Der durch diese Fertigkeit zugefügte Brand kann nur durch Modifikatoren, die Schaden über Zeit beeinflussen, verändert werden. (Brandschaden ist Schaden über Zeit)."
   },
   "herald_of_ice": {
     "displayedname": "Herold des Eises",
@@ -1406,7 +1406,7 @@
       "Entfesselt eine Feuernova um Euch herum und fügt Gegnern im Umkreis Schaden zu."
   },
   "unique_animate_weapon": {
-    "displayedname": "Tanzender Derwisch",
+    "displayedname": "Tanzenden Derwisch manifestieren",
     "description":
       "Entfesselt einen tanzenden Derwisch, der an Eurer Seite kämpft. Solange der Derwisch aktiv ist, verfügt Ihr über Ansturm und könnt keine Waffen benutzen."
   },
@@ -1928,7 +1928,11 @@
   "repeated_pulse": { "displayedname": "", "description": "" },
   "add_buff_to_parent_caster": { "displayedname": "", "description": "" },
   "taunt_target": { "displayedname": "", "description": "" },
-  "curse_nova": { "displayedname": "", "description": "" },
+  "curse_nova": {
+    "displayedname": "Elementare Abwehr",
+    "description":
+      "Feuert Projektile in einer Nova, wandelt deren gesamten physischen Schaden in Schaden eines zufälligen Elements um, und gewährt eine Stärkung, die Euch für eine Dauer immun gegen Flüche macht."
+  },
   "vulnerable": { "displayedname": "", "description": "" },
   "super_goat_emerge": { "displayedname": "", "description": "" },
   "fire_orbs": { "displayedname": "", "description": "" },
@@ -2031,8 +2035,9 @@
       "Zaubert ätherische Klingen, die in einem Wirbel um Euch herum kreisen, und Gegnern im Radius alle 0,6 Sekunden Schaden zufügt. Je mehr Klingen hinzugefügt werden, desto größer und häufiger wird der verursachte Schaden."
   },
   "thrown_shield_projectile": {
-    "displayedname": "Schildwurf",
-    "description": ""
+    "displayedname": "Spektralschildwurf",
+    "description":
+      "Wirft eine spektrale Kopie Eures Schilds als Projektil, das nicht durchbohren kann, und verursacht Nebenhandschaden, der durch die Verteidigungswerte des Schilds verstärkt wird. Bei Kollision zersplittert das Projektil in kleinere Projektile, die in alle Richtungen fliegen. Modifikatoren, durch die zusätzliche Projektile gefeuert werden, fügen mehr Splitter hinzu, nicht mehr Kopien des Schilds."
   },
   "avarius_cleave": {
     "displayedname": "Avarius - Zerfleischen",
@@ -2096,7 +2101,12 @@
   "breach_bone_nova_triggered": {
     "displayedname": "Knochennova",
     "description":
-      "Ein Kreis aus Knochenprojektilen entlädt sich um Euch herum, der physischen Schaden verursacht."
+      "Eine Nova aus Knochen entlädt sich um Euch herum, die physischen Schaden verursacht."
+  },
+  "icicle_nova_triggered": {
+    "displayedname": "Eiszapfenberster",
+    "description":
+      "Dieser Angriff feuert eisige Projektile in einer Nova um Euch herum und verursacht Angriffscheiden, bei dem sämtlicher physischer Schaden in Kälteschaden umgewandelt wird."
   },
   "transition_object": { "displayedname": "", "description": "" },
   "breach_ball_lightning": { "displayedname": "", "description": "" },
@@ -2255,8 +2265,8 @@
       "Der Charakter schlägt mit seiner Faust auf den Boden vor sich, zwar mit weniger Angriffsgeschwindigkeit, jedoch mit mehr Schaden. Dieser Angriff verursacht Blitzschaden bei Gegnern in einem großen Bereich und gewährt eine Chance, diese zu schocken. Kann nicht während des Tragens einer Waffe verwendet werden. Kann nicht durch 'Mehrfachschlag' unterstützt werden."
   },
   "player_fire_chasm": { "displayedname": "", "description": "" },
-  "empty_action": { "displayedname": "", "description": "" },
-  "empty_action_ally": { "displayedname": "", "description": "" },
+  "empty_action_spell": { "displayedname": "", "description": "" },
+  "empty_action_spell_ally": { "displayedname": "", "description": "" },
   "trigger_cascade": { "displayedname": "", "description": "" },
   "garukhan_combo_attack": { "displayedname": "", "description": "" },
   "garukhan_tornado": { "displayedname": "", "description": "" },
@@ -2438,8 +2448,9 @@
   },
   "lightning_elder_teleport_spark": { "displayedname": "", "description": "" },
   "endurance_charge_slam": {
-    "displayedname": "Trotzschlag",
-    "description": ""
+    "displayedname": "Tektonischer Schlag",
+    "description":
+      "Schlagt mit Eurer Haupthandwaffe auf den Boden und entfesselt einen feurigen Riss vor Euch, der Flächenschaden verursacht und vom Hauptriss ausgehend eine zufällige Anzahl kleinerer Risse erzeugt. Falls Ihr über Widerstands-Ladungen verfügt, wird die Anzahl der Risse maximiert, und eine Widerstands-Ladung wird verbraucht. Erfordert einen Streitkolben, ein Schwert, eine Axt, einen Stab oder kann unbewaffnet verwendet werden."
   },
   "lightning_elder_bolt": { "displayedname": "", "description": "" },
   "lightning_elder_tendrils": { "displayedname": "", "description": "" },
@@ -2454,10 +2465,10 @@
     "description":
       "Während Ihr Euch fortbewegt, lässt diese Fertigkeit Leichen neben Euch explodieren und verursacht Feuerschaden in einem Bereich. Modifikatoren für Zauberschaden wirken sich nicht auf die Leichenexplosion aus, und der Explosionsschaden kann nicht reflektiert werden."
   },
-  "empty_action2": { "displayedname": "", "description": "" },
-  "empty_action3": { "displayedname": "", "description": "" },
-  "empty_action4": { "displayedname": "", "description": "" },
-  "empty_action5": { "displayedname": "", "description": "" },
+  "empty_action_spell_2": { "displayedname": "", "description": "" },
+  "empty_action_spell_3": { "displayedname": "", "description": "" },
+  "empty_action_spell_4": { "displayedname": "", "description": "" },
+  "empty_action_spell_5": { "displayedname": "", "description": "" },
   "elder_siphon": { "displayedname": "", "description": "" },
   "elder_slamming_tentacles": { "displayedname": "", "description": "" },
   "elder_doom_projectile": { "displayedname": "", "description": "" },
@@ -2478,21 +2489,116 @@
       "Macht Euch immun gegen physischen Schaden, und für eine bestimmte Dauer seid Ihr für Gegner schwieriger zu entdecken."
   },
   "summon_petrification_statue": {
-    "displayedname": "Versteinerungsstatue beschwören",
+    "displayedname": "Versteinerungsstatue",
     "description":
-      "Beschwört vor Euch eine Versteinerungsstatue, die Feinde mit ihrem Blick verlangsamt."
+      "Erschafft vor Euch eine Versteinerungsstatue, die Gegner mit ihrem Blick verlangsamt, bis sie vollständig versteinern."
   },
   "petrification_statue_gaze": { "displayedname": "", "description": "" },
   "ryslatha_parasite_ground": { "displayedname": "", "description": "" },
   "ice_flower": { "displayedname": "", "description": "" },
-  "void_shot": { "displayedname": "Leerenschuss", "description": "" },
-  "tentacle_smash": { "displayedname": "Tentakelschlag", "description": "" },
+  "void_shot": {
+    "displayedname": "Leerenschuss",
+    "description":
+      "Feuert einen Pfeil ab, der sich zum Zielort hin verlangsamt. Der Pfeil wird instabil, explodiert und verursacht in einem Gebiet Waffenschaden, dessen physischer Schaden zur Hälfte in Kälteschaden umgewandelt wird."
+  },
+  "tentacle_smash": {
+    "displayedname": "Tentakelschlag",
+    "description":
+      "Durch diesen Angriff schlagen drei außerweltliche Tentakel auf den Boden um Euch herum ein, während jeder davon Euren Angriffsschaden in einem Bereich verursacht."
+  },
   "temporal_anomaly": {
     "displayedname": "Temporale Anomalie",
     "description": ""
   },
   "summon_void_sphere": {
-    "displayedname": "Leerensphäre beschwören",
+    "displayedname": "Explosive Anomalie",
+    "description":
+      "Erzeugt eine Kugel, die sich auf Gegner im Umkreis zubewegt und nach einer Dauer, oder wenn sie nah genug ist, explodiert. Die Explosion verursacht Kälte-Zauberschaden in einem Bereich und hinterlässt auf dem Boden einen Vortex für eine sekundäre Dauer, der Kälteschaden über Zeit verursacht und alle Gegner darin unterkühlt."
+  },
+  "empty_action_spell_loop": { "displayedname": "", "description": "" },
+  "empty_action_spell_loop2": { "displayedname": "", "description": "" },
+  "empty_action_spell_loop3": { "displayedname": "", "description": "" },
+  "empty_action_spell_loop4": { "displayedname": "", "description": "" },
+  "empty_action_spell_loop5": { "displayedname": "", "description": "" },
+  "mass_special_beam_cannon": { "displayedname": "", "description": "" },
+  "bestiary_stampede": { "displayedname": "", "description": "" },
+  "tiger_spirit_fangs": { "displayedname": "", "description": "" },
+  "tiger_spirit_lacerate": { "displayedname": "", "description": "" },
+  "tiger_spirit_teleport_slam": { "displayedname": "", "description": "" },
+  "tora_monster_trap": { "displayedname": "", "description": "" },
+  "intimidating_cry": {
+    "displayedname": "Einschüchternder Schrei",
+    "description":
+      "Entfesselt einen Kriegsschrei, der Euch und Verbündeten im Umkreis bei anwesenden Gegnern erhöhte Angriffsgeschwindigkeit gewährt. Die Angriffsgeschwindigkeit wird proportional zur Anzahl an Gegnern im Umkreis erhöht. Umstehende Gegner werden verspottet, greifen Euch an und werden eingeschüchtert. Teilt seine Abklingzeit mit anderen Kriegsschrei-Fertigkeiten."
+  },
+  "monster_detonate_dead_area": { "displayedname": "", "description": "" },
+  "aspect_cat": {
+    "displayedname": "Aspekt der Katze",
+    "description":
+      "Während 'Aspekt der Katze' aktiv ist, werden die Stärkungen 'List der Katze' und 'Wendigkeit der Katze' nacheinander gewährt. 'List der Katze' gewährt Euch erhöhte kritische Trefferchance, eine Chance, für eine kurze Dauer Schaden zu vermeiden und macht Euch für Gegner schwieriger sichtbar. 'Wendigkeit der Katze' gewährt Euch für eine längere sekundäre Dauer erhöhte Angriffs- und Zaubergeschwindigkeit."
+  },
+  "aspect_bird": {
+    "displayedname": "Aspekt des Vogels",
+    "description":
+      "Während 'Aspekt des Vogels' aktiv ist, werden die Stärkungen 'Macht des Vogels' und 'Flug des Vogels' nacheinander gewährt. 'Macht des Vogels' gewährt Euch und Euren Kreaturen für einige Zeit eine Chance, doppelten Schaden mit Treffern zu verursachen. 'Flug des Vogels' gewährt Euch und Euren Kreaturen für eine kurze sekundäre Dauer erhöhte Bewegungsgeschwindigkeit."
+  },
+  "aspect_spider": {
+    "displayedname": "Aspekt der Spinne",
+    "description":
+      "Während 'Aspekt der Spinne' aktiv ist, werden Gegner im Umkreis periodisch mit einem Spinnennetz bedeckt, wodurch sie gelähmt werden. Jedes Spinnennetz auf dem Gegner erhöht dessen erlittenen Schaden. Lähmen verringert ihre Bewegungsgeschwindigkeit. "
+  },
+  "aspect_crab": {
+    "displayedname": "Aspekt des Krebses",
+    "description":
+      "Während 'Aspekt des Krebses' aktiv ist, werden Euch periodisch Krebsbarrieren hinzugefügt und zusätzliche physische Schadensminderung pro Krebsbarriere auf Euch gewährt. Sämtliche Krebsbarrieren gehen verloren, wenn Ihr physischen Schaden durch einen Treffer erleidet."
+  },
+  "vilenta_bomb_toss": { "displayedname": "", "description": "" },
+  "crab_spirit_burrow_path": { "displayedname": "", "description": "" },
+  "crab_spirit_charge": { "displayedname": "", "description": "" },
+  "fire_projectile_retaliation": {
+    "displayedname": "Feuer-Projektilgegenschlag",
     "description": ""
+  },
+  "physical_projectile_retaliation": {
+    "displayedname": "Physischer Projektilgegenschlag",
+    "description": ""
+  },
+  "avian_tornado": {
+    "displayedname": "Tornado",
+    "description":
+      "Feuert ein unberechenbares, durchbohrendes Tornadoprojektil, das für eine Dauer in zufällige Richtungen fliegt und bei Gegnern, die es kreuzt, wiederholt Schaden verursacht."
+  },
+  "monster_fading_projectile_spell": { "displayedname": "", "description": "" },
+  "empty_action_attack": { "displayedname": "", "description": "" },
+  "empty_action_attack_2": { "displayedname": "", "description": "" },
+  "empty_action_attack_3": { "displayedname": "", "description": "" },
+  "empty_action_attack_4": { "displayedname": "", "description": "" },
+  "empty_action_attack_5": { "displayedname": "", "description": "" },
+  "empty_action_loop_attack": { "displayedname": "", "description": "" },
+  "empty_action_loop_attack_2": { "displayedname": "", "description": "" },
+  "empty_action_loop_attack_3": { "displayedname": "", "description": "" },
+  "empty_action_loop_attack_4": { "displayedname": "", "description": "" },
+  "empty_action_loop_attack_5": { "displayedname": "", "description": "" },
+  "bestiary_spider_ground_stab": { "displayedname": "", "description": "" },
+  "bestiary_spider_hallucinate": { "displayedname": "", "description": "" },
+  "lightning_clone_retaliation": {
+    "displayedname": "Blitzklon-Gegenschlag",
+    "description": ""
+  },
+  "capture_monster": {
+    "displayedname": "Monster einfangen",
+    "description": ""
+  },
+  "cold_beam_retaliation": { "displayedname": "", "description": "" },
+  "rabbit_summon_tiger": { "displayedname": "", "description": "" },
+  "ground_crab": { "displayedname": "", "description": "" },
+  "animate_guardian_weapon": {
+    "displayedname": "Waffe des beseelten Wächters",
+    "description": ""
+  },
+  "blinding_aura": {
+    "displayedname": "Blendaura",
+    "description":
+      "Zaubert eine Aura, die Gegner innerhalb eines Radius blendet."
   }
 }

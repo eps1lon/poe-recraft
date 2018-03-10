@@ -1046,21 +1046,6 @@
         }
       ]
     },
-    "skill_duration": {
-      "stats": ["skill_effect_duration"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "L'Aptitude dure %1% secondes",
-          "formatters": [
-            {
-              "id": "milliseconds_to_seconds_2dp",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "projectile_ground_effect_duration": {
       "stats": ["projectile_ground_effect_duration"],
       "translations": [
@@ -2305,16 +2290,6 @@
               "arg": 1
             }
           ]
-        }
-      ]
-    },
-    "physical_damage_taken_incr": {
-      "stats": ["physical_damage_taken_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% Davantage de Dégâts physiques subis",
-          "formatters": []
         }
       ]
     },
@@ -3688,6 +3663,22 @@
           "matchers": [[1, 99]],
           "text":
             "%1%%% de chances de Déclencher ce Sort lorsque vous êtes Touché(e)",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Déclenche ce Sort lorsque vous êtes Touché(e)",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_when_hit_target_self": {
+      "stats": ["cast_when_hit_%_target_self"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chances de déclencher ce Sort lorsque vous êtes Touché(e)",
           "formatters": []
         },
         {
@@ -5816,6 +5807,33 @@
         }
       ]
     },
+    "double_damage_chance": {
+      "stats": ["chance_to_deal_double_damage_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1%%% de chances d'infliger des Dégâts doublés",
+          "formatters": []
+        }
+      ]
+    },
+    "trigger_on_animate_guardian_kill": {
+      "stats": ["chance_to_trigger_on_animate_guardian_kill_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chances de Déclencher cette Aptitude lorsque votre Gardien animé Tue un Ennemi",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Cette Aptitude se Déclenche lorsque votre Gardien animé Tue un Ennemi",
+          "formatters": []
+        }
+      ]
+    },
     "charged_attack_damage_stages": {
       "stats": ["charged_attack_damage_per_stack_+%_final"],
       "translations": [
@@ -5938,28 +5956,6 @@
           "text":
             "Les Monstres de la Brèche n'octroient pas d'Expérience et ne cèdent pas d'Objets",
           "formatters": []
-        }
-      ]
-    },
-    "endurance_charge_slam_extra_damage": {
-      "stats": ["endurance_charge_slam_damage_+%_final_with_endurance_charge"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% Davantage de Dégâts si une Charge d'endurance a été utilisée",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "%1%%% de Perte de Dégâts si une Charge d'endurance a été utilisée",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -6598,6 +6594,23 @@
               "arg": "ReminderTextDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "trigger_on_skill_use_void_arrow": {
+      "stats": ["trigger_on_skill_use_%_if_you_have_a_void_arrow"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chances de consommer une Charge du Néant afin de\\ndéclencher cette Aptitude lorsque vous tirez des Flèches",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Consomme une Charge du Néant afin de déclencher cette Aptitude lorsque vous tirez des Flèches",
+          "formatters": []
         }
       ]
     }

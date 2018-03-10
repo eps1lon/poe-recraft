@@ -1216,7 +1216,12 @@
           "matchers": [[1, "#"]],
           "text":
             "Unterstützte Fertigkeiten verursachen %1%%% mehr Schaden mit Beeinträchtigungen",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
         },
         {
           "matchers": [["#", -1]],
@@ -1226,6 +1231,10 @@
             {
               "id": "negate",
               "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
             }
           ]
         }
@@ -1369,7 +1378,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Erhaltet %1$+d Leben für jeden Gegner, der bei Angriff durch unterstützte Fertigkeiten getroffen wurde",
+            "Erhaltet %1$+d Leben für jeden Gegner, der bei Angriff durch unterstützte Fertigkeiten getroffen wird",
           "formatters": []
         }
       ]
@@ -2256,6 +2265,23 @@
         }
       ]
     },
+    "chance_to_summon_support_ghost_on_killing_blow_%": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% Chance, ein Phantasma zu beschwören, wenn unterstützte Fertigkeiten oder Kreaturen durch unterstützte Fertigkeiten (Phantasmen ausgenommen) einen tödlichen Schlag verursachen",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Beschwört ein Phantasma, wenn unterstützte Fertigkeiten oder Kreaturen durch unterstützte Fertigkeiten (Phantasmen ausgenommen) einen tödlichen Schlag verursachen",
+          "formatters": []
+        }
+      ]
+    },
     "accuracy_rating": {
       "stats": ["accuracy_rating"],
       "translations": [
@@ -2625,6 +2651,21 @@
         }
       ]
     },
+    "base_number_of_support_ghosts_allowed": {
+      "stats": ["base_number_of_support_ghosts_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Erlaubt gleichzeitige Kontrolle von 1 Phantasma",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Erlaubt gleichzeitige Kontrolle von %1% Phantasmen",
+          "formatters": []
+        }
+      ]
+    },
     "base_physical_damage_%_to_convert_to_lightning": {
       "stats": ["base_physical_damage_%_to_convert_to_lightning"],
       "translations": [
@@ -2869,23 +2910,6 @@
           "matchers": [[100, "#"]],
           "text":
             "Unterstützte Fertigkeiten gewähren eine Raserei-Ladung bei Tötung eines gefrorenen Gegners",
-          "formatters": []
-        }
-      ]
-    },
-    "chance_to_summon_support_ghost_on_killing_blow_%": {
-      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text":
-            "%1%%% Chance, ein Phantasma zu beschwören, wenn unterstützte Fertigkeiten oder Kreaturen durch unterstützte Fertigkeiten (Phantasmen ausgenommen) einen tödlichen Schlag verursachen",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text":
-            "Beschwört ein Phantasma, wenn unterstützte Fertigkeiten oder Kreaturen durch unterstützte Fertigkeiten (Phantasmen ausgenommen) einen tödlichen Schlag verursachen",
           "formatters": []
         }
       ]
@@ -3288,7 +3312,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Die Blockchance von Gegnern ist für unterstützte Fertigkeiten um %1%%% reduziert",
+            "Die Blockchance von Gegnern ist für unterstützte Fertigkeiten um %1%%% verringert",
           "formatters": []
         }
       ]
@@ -4018,7 +4042,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% des Kälteschadens unterstützter Fähigkeiten werden in Feuerschaden umgewandelt",
+            "%1%%% des Kälteschadens unterstützter Fertigkeiten werden in Feuerschaden umgewandelt",
           "formatters": []
         }
       ]
@@ -4082,7 +4106,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% des physischen Schadens unterstützter Fähigkeiten werden in Blitzschaden umgewandelt",
+            "%1%%% des physischen Schadens unterstützter Fertigkeiten werden in Blitzschaden umgewandelt",
           "formatters": []
         }
       ]
@@ -4173,6 +4197,21 @@
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_ghost_base_duration": {
+      "stats": ["support_ghost_base_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Phantasmen halten %1% Sekunden an",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
               "arg": 1
             }
           ]
@@ -4361,12 +4400,14 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Mirage Archer ใช้สกิลที่ได้ซัพยิงได้แรงขึ้น %1%%%",
+          "text":
+            "Phantombogenschütze verursacht %1%%% mehr Schaden mit unterstützten Fertigkeiten",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Mirage Archer ใช้สกิลที่ได้ซัพยิงได้เบาลง %1%%%",
+          "text":
+            "Phantombogenschütze verursacht %1%%% weniger Schaden mit unterstützten Fertigkeiten",
           "formatters": [
             {
               "id": "negate",
@@ -4698,7 +4739,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%% mehr Schaden bei Beeinträchtigungen",
+            "Unterstützte Fertigkeiten verursachen %1%%% mehr Schaden mit Beeinträchtigungen",
           "formatters": [
             {
               "id": "reminderstring",
@@ -4709,7 +4750,7 @@
         {
           "matchers": [["#", -1]],
           "text":
-            "Unterstützte Fertigkeiten verursachen %1%%% weniger Schaden bei Beeinträchtigungen",
+            "Unterstützte Fertigkeiten verursachen %1%%% weniger Schaden mit Beeinträchtigungen",
           "formatters": [
             {
               "id": "negate",

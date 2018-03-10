@@ -4,6 +4,33 @@
     "hasIdentifiers": false
   },
   "data": {
+    "off_hand_local_minimum_added_physical_damage": {
+      "stats": [
+        "off_hand_local_minimum_added_physical_damage",
+        "off_hand_local_maximum_added_physical_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "%1% à %2% Dégâts physiques de base de main secondaire",
+          "formatters": []
+        }
+      ]
+    },
+    "off_hand_minimum_added_physical_damage_per_15_shield_armour_and_evasion_rating": {
+      "stats": [
+        "off_hand_minimum_added_physical_damage_per_15_shield_armour_and_evasion_rating",
+        "off_hand_maximum_added_physical_damage_per_15_shield_armour_and_evasion_rating"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "%1% à %2% Dégâts physiques supplémentaires tous les 15 de Score d'Armure ou d'Évasion du bouclier",
+          "formatters": []
+        }
+      ]
+    },
     "global_minimum_added_physical_damage": {
       "stats": [
         "global_minimum_added_physical_damage",
@@ -752,6 +779,21 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "base_number_of_additional_arrows": {
+      "stats": ["base_number_of_additional_arrows"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Tire une Flèche supplémentaire",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Tire %1% Flèches supplémentaires",
+          "formatters": []
         }
       ]
     },
@@ -1546,12 +1588,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Ajoute un Projectile supplémentaire",
+          "text": "Tire un Projectile supplémentaire",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
-          "text": "%1% Projectiles supplémentaires",
+          "text": "Tire %1% Projectiles supplémentaires",
           "formatters": []
         }
       ]
@@ -1865,17 +1907,32 @@
         }
       ]
     },
+    "tornado_shot_num_of_secondary_projectiles": {
+      "stats": ["tornado_shot_num_of_secondary_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Tire %1% Projectile secondaire",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Tire %1% Projectiles secondaires",
+          "formatters": []
+        }
+      ]
+    },
     "trap_damage_+%": {
       "stats": ["trap_damage_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% d'Augmentation des Dégâts du Piège",
+          "text": "%1%%% d'Augmentation des Dégâts des Pièges",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% de Réduction des Dégâts du Piège",
+          "text": "%1%%% de Réduction des Dégâts des Pièges",
           "formatters": [
             {
               "id": "negate",

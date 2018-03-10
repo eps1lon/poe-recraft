@@ -43,12 +43,12 @@
   "inspiring_cry": {
     "displayedname": "Rallying Cry",
     "description":
-      "Performs a warcry, granting increased damage and mana regeneration to you and your allies if there are nearby enemies. The damage increase is scaled by surrounding enemies. Taunts all nearby enemies to attack the user. Shares a cooldown with other Warcry skills."
+      "Performs a warcry, granting increased damage and mana regeneration to the user and nearby allies if there are nearby enemies. The damage increase is proportional to the number of surrounding enemies. Taunts all nearby enemies to attack the user. Shares a cooldown with other Warcry skills."
   },
   "abyssal_cry": {
     "displayedname": "Abyssal Cry",
     "description":
-      "Performs a warcry, Hindering nearby enemies and causing them to explode when killed. The hinder effect is increased by surrounding enemies. Taunts all nearby enemies to attack the user. Shares a cooldown with other Warcry skills."
+      "Performs a warcry, Hindering nearby enemies and causing them to explode when killed. The Hinder effect is proportional to the number of surrounding enemies. Taunts all nearby enemies to attack the user. Shares a cooldown with other Warcry skills."
   },
   "leap_slam": {
     "displayedname": "Leap Slam",
@@ -188,7 +188,7 @@
   "raise_zombie": {
     "displayedname": "Raise Zombie",
     "description":
-      "Raises a zombie minion from a corpse, which will follow you and attack enemies with a melee attack and an area of effect slam."
+      "Raises a zombie minion from a corpse, which will follow you and attack enemies with a melee attack and an area of effect slam which cannot be evaded."
   },
   "righteous_fire": {
     "displayedname": "Righteous Fire",
@@ -994,17 +994,17 @@
   "herald_of_ash": {
     "displayedname": "Herald of Ash",
     "description":
-      "Grants a buff providing fire damage based on your physical damage. While you have this buff, if you kill an enemy with an attack, other enemies near them will be burned based on the overkill damage. The burn inflicted by this skill can only be affected by modifiers to damage over time (burning damage is damage over time)."
+      "Grants a buff providing fire damage based on your physical damage. While you have this buff, if you kill an enemy, other enemies near them will be burned based on the overkill damage. The burn inflicted by this skill can only be affected by modifiers to damage over time (burning damage is damage over time)."
   },
   "herald_of_ice": {
     "displayedname": "Herald of Ice",
     "description":
-      "Channel ice through your hands, adding cold damage to spells and attacks. If you shatter an enemy, they explode and deal AoE cold damage to enemies near them."
+      "Channel ice through your hands, adding cold damage to spells and attacks. If you shatter an enemy, they explode and deal AoE cold damage to enemies near them. The AoE cold damage inflicted by this skill is not affected by modifiers to spell damage."
   },
   "herald_of_thunder": {
     "displayedname": "Herald of Thunder",
     "description":
-      "Channel lightning through your hands, adding lightning damage to spells and attacks. If you kill a shocked enemy, lightning bolts will strike enemies around you for a short duration."
+      "Channel lightning through your hands, adding lightning damage to spells and attacks. If you kill a shocked enemy, lightning bolts will strike enemies around you for a short duration. The lightning bolt damage inflicted by this skill is not affected by modifiers to spell damage."
   },
   "rampage_summon_animated_weapon": { "displayedname": "", "description": "" },
   "ground_effect_ring": { "displayedname": "", "description": "" },
@@ -1804,7 +1804,7 @@
     "description":
       "Consumes a corpse, granting energy shield, extra chaos damage and elemental resistances to your minions. The new energy shield is recovered as it's granted. The skill consumes other nearby corpses, increasing the duration and amount of energy shield granted for each corpse consumed."
   },
-  "trap_blade": { "displayedname": "Blade Trap", "description": "" },
+  "trap_blade": { "displayedname": "", "description": "" },
   "izaro_pedestal_buff": { "displayedname": "", "description": "" },
   "doom_arrow": {
     "displayedname": "Doom Arrow",
@@ -1839,7 +1839,7 @@
     "description":
       "Curses all targets in an area, making them less resistant to elemental damage."
   },
-  "izaro_reave": { "displayedname": "Izaro Reave", "description": "" },
+  "izaro_reave": { "displayedname": "", "description": "" },
   "enrage": { "displayedname": "", "description": "" },
   "perandus_revive": { "displayedname": "", "description": "" },
   "perandus_buff": { "displayedname": "", "description": "" },
@@ -1919,7 +1919,11 @@
   "repeated_pulse": { "displayedname": "", "description": "" },
   "add_buff_to_parent_caster": { "displayedname": "", "description": "" },
   "taunt_target": { "displayedname": "", "description": "" },
-  "curse_nova": { "displayedname": "", "description": "" },
+  "curse_nova": {
+    "displayedname": "Elemental Warding",
+    "description":
+      "Fires projectiles in a nova, converting all their physical damage to a random element, and grants a buff which makes you immune to curses for a duration."
+  },
   "vulnerable": { "displayedname": "", "description": "" },
   "super_goat_emerge": { "displayedname": "", "description": "" },
   "fire_orbs": { "displayedname": "", "description": "" },
@@ -2019,38 +2023,18 @@
       "This spell creates ethereal blades which orbit in an area around you, dealing damage every 0.6 seconds to all enemies in their radius. As more blades are added, the damage becomes greater and more frequent."
   },
   "thrown_shield_projectile": {
-    "displayedname": "Thrown Shield",
-    "description": ""
+    "displayedname": "Spectral Shield Throw",
+    "description":
+      "Throws a spectral copy of your shield as a projectile which cannot pierce, and deals off-hand damage augmented by the defences of the shield. When it collides with something it will shatter, launching a number of smaller shards as projectiles in all directions. Modifiers that cause additional projectiles to be fired will add more shards, not more copies of the shield."
   },
-  "avarius_cleave": { "displayedname": "Avarius Cleave", "description": "" },
-  "avarius_offset_projectile": {
-    "displayedname": "Avarius Offset Projectile",
-    "description": ""
-  },
-  "avarius_super_projectile": {
-    "displayedname": "Avarius Super Projectile",
-    "description": ""
-  },
-  "avarius_pentagon_projectile": {
-    "displayedname": "Avarius Pentagon Projectile",
-    "description": ""
-  },
-  "avarius_rapid_projectile": {
-    "displayedname": "Avarius Rapid Projectile",
-    "description": ""
-  },
-  "avarius_divine_slam": {
-    "displayedname": "Avarius Divine Slam",
-    "description": ""
-  },
-  "avarius_summon_templars": {
-    "displayedname": "Avarius Summon Templars",
-    "description": ""
-  },
-  "avarius_raise_statues": {
-    "displayedname": "Avarius Raise Statues",
-    "description": ""
-  },
+  "avarius_cleave": { "displayedname": "", "description": "" },
+  "avarius_offset_projectile": { "displayedname": "", "description": "" },
+  "avarius_super_projectile": { "displayedname": "", "description": "" },
+  "avarius_pentagon_projectile": { "displayedname": "", "description": "" },
+  "avarius_rapid_projectile": { "displayedname": "", "description": "" },
+  "avarius_divine_slam": { "displayedname": "", "description": "" },
+  "avarius_summon_templars": { "displayedname": "", "description": "" },
+  "avarius_raise_statues": { "displayedname": "", "description": "" },
   "breach_consume_bones": {
     "displayedname": "Consume Bones",
     "description": ""
@@ -2080,8 +2064,12 @@
   },
   "breach_bone_nova_triggered": {
     "displayedname": "Bone Nova",
+    "description": "A nova of bones erupts around you, dealing physical damage."
+  },
+  "icicle_nova_triggered": {
+    "displayedname": "Icicle Burst",
     "description":
-      "A spiral of bones erupts around you, dealing physical damage."
+      "This attack fires icy projectiles in a nova around you, dealing attack damage with all physical damage converted to cold."
   },
   "transition_object": { "displayedname": "", "description": "" },
   "breach_ball_lightning": { "displayedname": "", "description": "" },
@@ -2240,8 +2228,8 @@
       "The character uses their fist to slam the ground in front of them, with less attack speed, but more damage. This attack deals Lightning Damage to enemies in a large area, with a chance to Shock them. Cannot be used while wielding a Weapon. Cannot be supported by Multistrike."
   },
   "player_fire_chasm": { "displayedname": "", "description": "" },
-  "empty_action": { "displayedname": "", "description": "" },
-  "empty_action_ally": { "displayedname": "", "description": "" },
+  "empty_action_spell": { "displayedname": "", "description": "" },
+  "empty_action_spell_ally": { "displayedname": "", "description": "" },
   "trigger_cascade": { "displayedname": "", "description": "" },
   "garukhan_combo_attack": { "displayedname": "", "description": "" },
   "garukhan_tornado": { "displayedname": "", "description": "" },
@@ -2350,10 +2338,7 @@
     "description":
       "Fires a projectile that will pierce through enemies to impact the ground at the targeted location, creating a Bone Archer corpse where it lands."
   },
-  "shakari_tail_strike": {
-    "displayedname": "Shakari Tail Strike",
-    "description": ""
-  },
+  "shakari_tail_strike": { "displayedname": "", "description": "" },
   "shakari_upheaval": { "displayedname": "", "description": "" },
   "infernal_sweep": { "displayedname": "Infernal Sweep", "description": "" },
   "shakari_burrow": { "displayedname": "", "description": "" },
@@ -2414,8 +2399,9 @@
   },
   "lightning_elder_teleport_spark": { "displayedname": "", "description": "" },
   "endurance_charge_slam": {
-    "displayedname": "Endurance Charge Slam",
-    "description": ""
+    "displayedname": "Tectonic Slam",
+    "description":
+      "Slam the ground with your main hand weapon, unleashing a fiery fissure in front of you, dealing area damage and releasing a random number of smaller fissures branching off from it. If you have Endurance Charges, the number of fissures will be maximised, and one Endurance Charge will be consumed. Requires a Mace, Sword, Axe, Staff, or Unarmed."
   },
   "lightning_elder_bolt": { "displayedname": "", "description": "" },
   "lightning_elder_tendrils": { "displayedname": "", "description": "" },
@@ -2430,10 +2416,10 @@
     "description":
       "While you walk, this skill causes corpses near your steps to explode, dealing fire damage in an area. The explosions of the corpses are not affected by modifiers to spell damage, and cannot be reflected."
   },
-  "empty_action2": { "displayedname": "", "description": "" },
-  "empty_action3": { "displayedname": "", "description": "" },
-  "empty_action4": { "displayedname": "", "description": "" },
-  "empty_action5": { "displayedname": "", "description": "" },
+  "empty_action_spell_2": { "displayedname": "", "description": "" },
+  "empty_action_spell_3": { "displayedname": "", "description": "" },
+  "empty_action_spell_4": { "displayedname": "", "description": "" },
+  "empty_action_spell_5": { "displayedname": "", "description": "" },
   "elder_siphon": { "displayedname": "", "description": "" },
   "elder_slamming_tentacles": { "displayedname": "", "description": "" },
   "elder_doom_projectile": { "displayedname": "", "description": "" },
@@ -2454,21 +2440,112 @@
       "Makes you immune to physical damage, and harder for enemies to detect, for a duration."
   },
   "summon_petrification_statue": {
-    "displayedname": "Summon Petrification Statue",
+    "displayedname": "Petrification Statue",
     "description":
-      "Summons a Petrification Statue in front of you, which will slow enemies with it's gaze."
+      "Creates a Petrification Statue in front of you, which will slow enemies with its gaze, until they become fully petrified."
   },
   "petrification_statue_gaze": { "displayedname": "", "description": "" },
   "ryslatha_parasite_ground": { "displayedname": "", "description": "" },
   "ice_flower": { "displayedname": "", "description": "" },
-  "void_shot": { "displayedname": "Void Shot", "description": "" },
-  "tentacle_smash": { "displayedname": "Tentacle Smash", "description": "" },
+  "void_shot": {
+    "displayedname": "Void Shot",
+    "description":
+      "Fires an arrow which decelerates to the target location, the arrow will then become unstable and explode dealing weapon damage in an area, converting half of the physical damage to cold damage."
+  },
+  "tentacle_smash": {
+    "displayedname": "Tentacle Whip",
+    "description":
+      "This attack causes three otherworldly tentacles to strike the ground around you, each dealing your attack damage in an area."
+  },
   "temporal_anomaly": {
     "displayedname": "Temporal Anomaly",
     "description": ""
   },
   "summon_void_sphere": {
-    "displayedname": "Summon Void Sphere",
+    "displayedname": "Volatile Anomaly",
+    "description":
+      "Creates an orb which moves towards nearby enemies, exploding after a duration or when it gets close enough. The explosion deals cold spell damage in an area, and leaves behind a Vortex on the ground for a secondary duration which continues to deal cold damage over time and chill enemies caught in it."
+  },
+  "empty_action_spell_loop": { "displayedname": "", "description": "" },
+  "empty_action_spell_loop2": { "displayedname": "", "description": "" },
+  "empty_action_spell_loop3": { "displayedname": "", "description": "" },
+  "empty_action_spell_loop4": { "displayedname": "", "description": "" },
+  "empty_action_spell_loop5": { "displayedname": "", "description": "" },
+  "mass_special_beam_cannon": { "displayedname": "", "description": "" },
+  "bestiary_stampede": { "displayedname": "", "description": "" },
+  "tiger_spirit_fangs": { "displayedname": "", "description": "" },
+  "tiger_spirit_lacerate": { "displayedname": "", "description": "" },
+  "tiger_spirit_teleport_slam": { "displayedname": "", "description": "" },
+  "tora_monster_trap": { "displayedname": "", "description": "" },
+  "intimidating_cry": {
+    "displayedname": "Intimidating Cry",
+    "description":
+      "Performs a warcry, granting the user and nearby allies increased attack speed if there are nearby enemies. The attack speed increase is proportional to the number of surrounding enemies. Taunts all nearby enemies to attack the user, and Intimidates them. Shares a cooldown with other Warcry skills."
+  },
+  "monster_detonate_dead_area": { "displayedname": "", "description": "" },
+  "aspect_cat": {
+    "displayedname": "Aspect of the Cat",
+    "description":
+      "While active, grants the Cat's Stealth and Cat's Agility buffs in sequence. Cat's Stealth increases your critical strike chance, makes you harder to see, and gives you a chance to avoid damage for a short duration. Cat's Agility increases your attack and cast speed for a longer secondary duration."
+  },
+  "aspect_bird": {
+    "displayedname": "Aspect of the Avian",
+    "description":
+      "While active, grants the Avian's Might and Avian's Flight buffs in sequence. Avian's Might grants you and your minions a chance to deal Double Damage with hits for a duration. Avian's Flight grants you and your minions increased Movement Speed for a secondary duration."
+  },
+  "aspect_spider": {
+    "displayedname": "Aspect of the Spider",
+    "description":
+      "While active, periodically applies a Spider's Web debuff to nearby Enemies, and Hinders them. Each Spider's Web on an Enemy increases the Damage they take. Hinder reduces their movement speed."
+  },
+  "aspect_crab": {
+    "displayedname": "Aspect of the Crab",
+    "description":
+      "While active, periodically adds Crab Barriers to you, and grants additional Physical Damage reduction for each Crab Barrier you have. All Crab Barriers are lost when you take physical damage from a hit."
+  },
+  "vilenta_bomb_toss": { "displayedname": "", "description": "" },
+  "crab_spirit_burrow_path": { "displayedname": "", "description": "" },
+  "crab_spirit_charge": { "displayedname": "", "description": "" },
+  "fire_projectile_retaliation": {
+    "displayedname": "Fire Projectile Retaliation",
     "description": ""
+  },
+  "physical_projectile_retaliation": {
+    "displayedname": "Physical Projectile Retaliation",
+    "description": ""
+  },
+  "avian_tornado": {
+    "displayedname": "Tornado",
+    "description":
+      "Launches an unpredictable, piercing tornado projectile that moves randomly for a duration, repeatedly dealing damage to enemies it intersects."
+  },
+  "monster_fading_projectile_spell": { "displayedname": "", "description": "" },
+  "empty_action_attack": { "displayedname": "", "description": "" },
+  "empty_action_attack_2": { "displayedname": "", "description": "" },
+  "empty_action_attack_3": { "displayedname": "", "description": "" },
+  "empty_action_attack_4": { "displayedname": "", "description": "" },
+  "empty_action_attack_5": { "displayedname": "", "description": "" },
+  "empty_action_loop_attack": { "displayedname": "", "description": "" },
+  "empty_action_loop_attack_2": { "displayedname": "", "description": "" },
+  "empty_action_loop_attack_3": { "displayedname": "", "description": "" },
+  "empty_action_loop_attack_4": { "displayedname": "", "description": "" },
+  "empty_action_loop_attack_5": { "displayedname": "", "description": "" },
+  "bestiary_spider_ground_stab": { "displayedname": "", "description": "" },
+  "bestiary_spider_hallucinate": { "displayedname": "", "description": "" },
+  "lightning_clone_retaliation": {
+    "displayedname": "Lightning Clone Retaliation",
+    "description": ""
+  },
+  "capture_monster": { "displayedname": "Capture Monster", "description": "" },
+  "cold_beam_retaliation": { "displayedname": "", "description": "" },
+  "rabbit_summon_tiger": { "displayedname": "", "description": "" },
+  "ground_crab": { "displayedname": "", "description": "" },
+  "animate_guardian_weapon": {
+    "displayedname": "Animate Guardian Weapon",
+    "description": ""
+  },
+  "blinding_aura": {
+    "displayedname": "Blinding Aura",
+    "description": "Casts an aura that blinds enemies in a radius."
   }
 }

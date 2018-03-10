@@ -1663,13 +1663,13 @@
         {
           "matchers": [[1, 99], [1, "#"]],
           "text":
-            "%1%%% шанс вызвать срабатывание усиленных чар, когда вы получаете %2% урона в сумме",
+            "%1%%% шанс вызвать срабатывание усиленных чар, когда вы получаете в сумме %2% урона",
           "formatters": []
         },
         {
           "matchers": [[100, "#"], [1, "#"]],
           "text":
-            "Вызывает срабатывание усиленных чар, когда вы получаете %2% урона в сумме",
+            "Вызывает срабатывание усиленных чар, когда вы получаете в сумме %2% урона",
           "formatters": []
         }
       ]
@@ -2176,6 +2176,23 @@
         }
       ]
     },
+    "chance_to_summon_support_ghost_on_killing_blow_%": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% шанс призвать фантома, когда усиленные умения или приспешники не-фантомы усиленных умений наносят смертельный удар",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Призывает фантома, когда усиленные умения или приспешники не-фантомы усиленных умений наносят смертельный удар",
+          "formatters": []
+        }
+      ]
+    },
     "accuracy_rating": {
       "stats": ["accuracy_rating"],
       "translations": [
@@ -2537,6 +2554,21 @@
         }
       ]
     },
+    "base_number_of_support_ghosts_allowed": {
+      "stats": ["base_number_of_support_ghosts_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Одновременно можно призвать 1 фантома",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Можно призвать до %1% фантомов одновременно",
+          "formatters": []
+        }
+      ]
+    },
     "base_physical_damage_%_to_convert_to_lightning": {
       "stats": ["base_physical_damage_%_to_convert_to_lightning"],
       "translations": [
@@ -2774,23 +2806,6 @@
           "matchers": [[100, "#"]],
           "text":
             "Усиленные умения получают заряд ярости при убийстве замороженного врага",
-          "formatters": []
-        }
-      ]
-    },
-    "chance_to_summon_support_ghost_on_killing_blow_%": {
-      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text":
-            "%1%%% шанс призвать фантома, когда усиленные умения или приспешники не-фантомы усиленных умений наносят смертельный удар",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text":
-            "Призывает фантома, когда усиленные умения или приспешники не-фантомы усиленных умений наносят смертельный удар",
           "formatters": []
         }
       ]
@@ -4050,6 +4065,21 @@
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_ghost_base_duration": {
+      "stats": ["support_ghost_base_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Фантомы существуют %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
               "arg": 1
             }
           ]

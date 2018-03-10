@@ -481,16 +481,6 @@
         }
       ]
     },
-    "base_use_life_in_place_of_mana": {
-      "stats": ["base_use_life_in_place_of_mana"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Habilidades Suportadas gastam Vida em vez de Mana",
-          "formatters": []
-        }
-      ]
-    },
     "support_ignite_proliferation_radius": {
       "stats": ["support_ignite_proliferation_radius"],
       "translations": [
@@ -833,6 +823,17 @@
         {
           "matchers": [[1, "#"]],
           "text": "Habilidades Suportadas Penetram %1%%% de Resistência a Gelo",
+          "formatters": []
+        }
+      ]
+    },
+    "reduce_enemy_elemental_resistance_%": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Habilidades Suportadas Penetram %1%%% das Resistências Elementais",
           "formatters": []
         }
       ]
@@ -2019,17 +2020,6 @@
         }
       ]
     },
-    "support_arcane_surge_gain_buff_on_mana_use_threshold": {
-      "stats": ["support_arcane_surge_gain_buff_on_mana_use_threshold"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Ganha Fúria Arcana quando você gastar %1% de Mana com Habilidades Suportadas",
-          "formatters": []
-        }
-      ]
-    },
     "support_arcane_surge_spell_damage_+%_final": {
       "stats": [
         "support_arcane_surge_spell_damage_+%_final",
@@ -2197,6 +2187,23 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "chance_to_summon_support_ghost_on_killing_blow_%": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chance de Convocar um Fantasma quando Habilidades Suportadas, ou Lacaios Não Fantasmas de Habilidades Suportadas, causam um Golpe Fatal",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Convoca um Fantasma quando Habilidades Suportadas, ou Lacaios Não Fantasmas de Habilidades Suportadas, causam um Golpe Fatal",
+          "formatters": []
         }
       ]
     },
@@ -2566,6 +2573,21 @@
         }
       ]
     },
+    "base_number_of_support_ghosts_allowed": {
+      "stats": ["base_number_of_support_ghosts_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Pode ter até 1 Fantasma Convocado por vez",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Pode ter até %2% Fantasmas Convocados por vez",
+          "formatters": []
+        }
+      ]
+    },
     "base_physical_damage_%_to_convert_to_lightning": {
       "stats": ["base_physical_damage_%_to_convert_to_lightning"],
       "translations": [
@@ -2810,23 +2832,6 @@
           "matchers": [[100, "#"]],
           "text":
             "Habilidades Suportadas ganham uma Carga de Frenesi ao Abater um Inimigo Congelado",
-          "formatters": []
-        }
-      ]
-    },
-    "chance_to_summon_support_ghost_on_killing_blow_%": {
-      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text":
-            "%1%%% de chance de Convocar um Fantasma quando Habilidades Suportadas, ou Lacaios Não Fantasmas de Habilidades Suportadas, causam um Golpe Fatal",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text":
-            "Convoca um Fantasma quando Habilidades Suportadas, ou Lacaios Não Fantasmas de Habilidades Suportadas, causam um Golpe Fatal",
           "formatters": []
         }
       ]
@@ -3758,21 +3763,6 @@
         }
       ]
     },
-    "number_of_additional_projectiles": {
-      "stats": ["number_of_additional_projectiles"],
-      "translations": [
-        {
-          "matchers": [1],
-          "text": "Habilidades Suportadas têm um Projétil adicional",
-          "formatters": []
-        },
-        {
-          "matchers": [[2, "#"]],
-          "text": "Habilidades Suportadas têm %1% Projéteis adicionais",
-          "formatters": []
-        }
-      ]
-    },
     "number_of_additional_remote_mines_allowed": {
       "stats": ["number_of_additional_remote_mines_allowed"],
       "translations": [
@@ -4103,6 +4093,21 @@
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_ghost_base_duration": {
+      "stats": ["support_ghost_base_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Fantasmas duram %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
               "arg": 1
             }
           ]

@@ -4,6 +4,48 @@
     "hasIdentifiers": false
   },
   "data": {
+    "off_hand_local_minimum_added_physical_damage": {
+      "stats": [
+        "off_hand_local_minimum_added_physical_damage",
+        "off_hand_local_maximum_added_physical_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "%1% to %2% Base Off Hand Physical Damage",
+          "formatters": []
+        }
+      ]
+    },
+    "off_hand_minimum_added_physical_damage_per_15_shield_armour_and_evasion_rating": {
+      "stats": [
+        "off_hand_minimum_added_physical_damage_per_15_shield_armour_and_evasion_rating",
+        "off_hand_maximum_added_physical_damage_per_15_shield_armour_and_evasion_rating"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "%1% to %2% Added Physical Damage per 15 Armour or Evasion Rating on Shield",
+          "formatters": []
+        }
+      ]
+    },
+    "off_hand_base_weapon_attack_duration_ms": {
+      "stats": ["off_hand_base_weapon_attack_duration_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Base Off Hand Attack time is %1% seconds",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "global_minimum_added_physical_damage": {
       "stats": [
         "global_minimum_added_physical_damage",
@@ -758,6 +800,21 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "base_number_of_additional_arrows": {
+      "stats": ["base_number_of_additional_arrows"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Fires an additional Arrow",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Fires %1% additional Arrows",
+          "formatters": []
         }
       ]
     },
@@ -1532,12 +1589,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Adds an additional Projectile",
+          "text": "Fires an additional Projectile",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
-          "text": "%1% additional Projectiles",
+          "text": "Fires %1% additional Projectiles",
           "formatters": []
         }
       ]
@@ -1839,6 +1896,21 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "tornado_shot_num_of_secondary_projectiles": {
+      "stats": ["tornado_shot_num_of_secondary_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Fires %1% secondary Projectile",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Fires %1% secondary Projectiles",
+          "formatters": []
         }
       ]
     },

@@ -4,6 +4,32 @@
     "hasIdentifiers": false
   },
   "data": {
+    "off_hand_local_minimum_added_physical_damage": {
+      "stats": [
+        "off_hand_local_minimum_added_physical_damage",
+        "off_hand_local_maximum_added_physical_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "%1% - %2% 基础副手物理伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "off_hand_minimum_added_physical_damage_per_15_shield_armour_and_evasion_rating": {
+      "stats": [
+        "off_hand_minimum_added_physical_damage_per_15_shield_armour_and_evasion_rating",
+        "off_hand_maximum_added_physical_damage_per_15_shield_armour_and_evasion_rating"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "盾牌上每有 15 点护甲或闪避值，则附加 %1% - %2% 物理伤害",
+          "formatters": []
+        }
+      ]
+    },
     "global_minimum_added_physical_damage": {
       "stats": [
         "global_minimum_added_physical_damage",
@@ -104,7 +130,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "造成 %1%%% 基础武器伤害",
+          "text": "造成 %1%%% 基础攻击伤害",
           "formatters": [
             {
               "id": "multiplicative_damage_modifier",
@@ -119,7 +145,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "双持武器时, 每把武器造成 %1%%% 伤害",
+          "text": "双持武器时，每把武器造成 %1%%% 伤害",
           "formatters": [
             {
               "id": "multiplicative_damage_modifier",
@@ -134,7 +160,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "召唤物造成 %1%%% 基础伤害",
+          "text": "召唤生物造成 %1%%% 基础伤害",
           "formatters": [
             {
               "id": "multiplicative_damage_modifier",
@@ -229,12 +255,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "光环效果范围扩大 %1%%%",
+          "text": "光环范围效果扩大 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "光环效果范围缩小 %1%%%",
+          "text": "光环范围效果缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -454,12 +480,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "在寒冰弹上施放时总伤害额外提高 %1%%%",
+          "text": "在【寒冰弹】上施放时总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "在寒冰弹上施放时总伤害额外降低 %1%%%",
+          "text": "在【寒冰弹】上施放时总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -509,12 +535,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "死亡时效果范围扩大 %1%%%",
+          "text": "死亡时范围效果扩大 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "死亡时效果范围缩小 %1%%%",
+          "text": "死亡时范围效果缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -759,6 +785,21 @@
         }
       ]
     },
+    "base_number_of_additional_arrows": {
+      "stats": ["base_number_of_additional_arrows"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "额外获得 1 个箭矢",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "额外获得 %1% 个箭矢",
+          "formatters": []
+        }
+      ]
+    },
     "base_physical_damage_%_to_convert_to_lightning": {
       "stats": ["base_physical_damage_%_to_convert_to_lightning"],
       "translations": [
@@ -839,12 +880,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "效果范围扩大 %1%%%",
+          "text": "范围效果扩大 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "效果范围缩小 %1%%%",
+          "text": "范围效果缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1064,12 +1105,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "攻击和法术基础暴击率提高 %1%%%",
+          "text": "攻击和法术暴击率提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "攻击和法术基础暴击率降低 %1%%%",
+          "text": "攻击和法术暴击率降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1449,12 +1490,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "地雷引爆的效果范围扩大 %1%%% ",
+          "text": "地雷引爆的范围效果扩大 %1%%% ",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "地雷引爆的效果范围缩小 %1%%%",
+          "text": "地雷引爆的范围效果缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1529,12 +1570,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "额外获得 1 个投射物",
+          "text": "额外发射 1 个投射物",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
-          "text": "额外获得 %1% 个投射物",
+          "text": "额外发射 %1% 个投射物",
           "formatters": []
         }
       ]
@@ -1624,7 +1665,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "获得额外物理伤害， 其数值等同于闪电伤害的 %1%%%",
+          "text": "获得额闪电伤害， 其数值等同于物理伤害的 %1%%%",
           "formatters": []
         }
       ]
@@ -1836,6 +1877,21 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "tornado_shot_num_of_secondary_projectiles": {
+      "stats": ["tornado_shot_num_of_secondary_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "额外发射 1 个附属投射物",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "额外发射 %1% 个附属投射物",
+          "formatters": []
         }
       ]
     },

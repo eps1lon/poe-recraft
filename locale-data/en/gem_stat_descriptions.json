@@ -474,7 +474,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Supported Skills spend Life instead of Mana",
+          "text": "Supported Skills Spend Life instead of Mana",
           "formatters": []
         }
       ]
@@ -1992,7 +1992,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Gain Arcane Surge when you spend %1% Mana with Supported Skills",
+            "Gain Arcane Surge when you Spend %1% Mana with Supported Skills",
           "formatters": []
         }
       ]
@@ -2164,6 +2164,23 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "chance_to_summon_support_ghost_on_killing_blow_%": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% chance to Summon a Phantasm when Supported Skills, or Non-Phantasm Minions\\nfrom Supported Skills, deal a Killing Blow",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Summon a Phantasm when Supported Skills, or Non-Phantasm Minions\\nfrom Supported Skills, deal a Killing Blow",
+          "formatters": []
         }
       ]
     },
@@ -2524,6 +2541,21 @@
         }
       ]
     },
+    "base_number_of_support_ghosts_allowed": {
+      "stats": ["base_number_of_support_ghosts_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Can have up to 1 Phantasm Summoned at a time",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Can have up to %1% Phantasms Summoned at a time",
+          "formatters": []
+        }
+      ]
+    },
     "base_physical_damage_%_to_convert_to_lightning": {
       "stats": ["base_physical_damage_%_to_convert_to_lightning"],
       "translations": [
@@ -2754,23 +2786,6 @@
           "matchers": [[100, "#"]],
           "text":
             "Supported Skills gain a Frenzy Charge on Killing a Frozen Enemy",
-          "formatters": []
-        }
-      ]
-    },
-    "chance_to_summon_support_ghost_on_killing_blow_%": {
-      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text":
-            "%1%%% chance to Summon a Phantasm when Supported Skills, or Non-Phantasm Minions from Supported Skills, deal a Killing Blow",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text":
-            "Summon a Phantasm when Supported Skills, or Non-Phantasm Minions from Supported Skills, deal a Killing Blow",
           "formatters": []
         }
       ]
@@ -3664,12 +3679,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Supported Skills have an additional Projectile",
+          "text": "Supported Skills fire an additional Projectile",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
-          "text": "Supported Skills have %1% additional Projectiles",
+          "text": "Supported Skills fire %1% additional Projectiles",
           "formatters": []
         }
       ]
@@ -3997,6 +4012,21 @@
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_ghost_base_duration": {
+      "stats": ["support_ghost_base_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Phantasms last %1% seconds",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
               "arg": 1
             }
           ]

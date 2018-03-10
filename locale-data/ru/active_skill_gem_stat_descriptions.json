@@ -4,6 +4,48 @@
     "hasIdentifiers": false
   },
   "data": {
+    "off_hand_local_minimum_added_physical_damage": {
+      "stats": [
+        "off_hand_local_minimum_added_physical_damage",
+        "off_hand_local_maximum_added_physical_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "От %1% до %2% базового физического урона левой рукой",
+          "formatters": []
+        }
+      ]
+    },
+    "off_hand_minimum_added_physical_damage_per_15_shield_armour_and_evasion_rating": {
+      "stats": [
+        "off_hand_minimum_added_physical_damage_per_15_shield_armour_and_evasion_rating",
+        "off_hand_maximum_added_physical_damage_per_15_shield_armour_and_evasion_rating"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "От %1% до %2% добавленного физического урона за каждые 15 брони или уклонения на щите",
+          "formatters": []
+        }
+      ]
+    },
+    "off_hand_base_weapon_attack_duration_ms": {
+      "stats": ["off_hand_base_weapon_attack_duration_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Базовое время атаки левой рукой составляет %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "global_minimum_added_physical_damage": {
       "stats": [
         "global_minimum_added_physical_damage",
@@ -751,6 +793,21 @@
         }
       ]
     },
+    "base_number_of_additional_arrows": {
+      "stats": ["base_number_of_additional_arrows"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Выпускает дополнительную стрелу",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Выпускает %1% дополнительных стрел(-ы)",
+          "formatters": []
+        }
+      ]
+    },
     "base_physical_damage_%_to_convert_to_lightning": {
       "stats": ["base_physical_damage_%_to_convert_to_lightning"],
       "translations": [
@@ -926,7 +983,8 @@
         },
         {
           "matchers": [[1, 99]],
-          "text": "%1%%% шанс на Укрепление при нанесении удара в ближнем бою",
+          "text":
+            "%1%%% шанс получить Укрепление при нанесении удара в ближнем бою",
           "formatters": [
             {
               "id": "reminderstring",
@@ -1525,12 +1583,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Дополнительный снаряд",
+          "text": "Выпускает дополнительный снаряд",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
-          "text": "Дополнительных снарядов: %1%",
+          "text": "Выпускает дополнительных снарядов: %1%",
           "formatters": []
         }
       ]
@@ -1824,6 +1882,21 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "tornado_shot_num_of_secondary_projectiles": {
+      "stats": ["tornado_shot_num_of_secondary_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Выпускает %1% вторичный снаряд",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Выпускает вторичных снарядов: %1%",
+          "formatters": []
         }
       ]
     },

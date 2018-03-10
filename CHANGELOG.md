@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased](https://github.com/eps1lon/poe-i18n/compare/v0.8.0...HEAD)
 ### Added 
+- `locale-data` for Path Of Exile@3.2.0 (#28)
 - `groupMods()` to generate a fitting translation for a collection of mods 
   (e.g. mods of a `correct_group`) (#30)
 - `skip_if_zero` fallback for `formatStats()` which suppresses thrown errors
