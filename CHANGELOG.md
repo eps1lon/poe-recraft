@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.8.0...HEAD)
+### Fixed
+- Fixed `ItemShowcase` returning true from `isApplicableTo`  ([#41](https://github.com/eps1lon/poe-mods/pull/42)). 
+  It is not supposed to provide any functionallity upon application. 
+  ([#41](https://github.com/eps1lon/poe-mods/pull/42))
 
 ## [1.8.0](https://github.com/eps1lon/poe-mods/compare/v1.7.0...v1.8.0) (2018-03-04)
 
