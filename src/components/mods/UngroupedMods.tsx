@@ -3,7 +3,7 @@ import { Mod } from 'poe-mods';
 import React, { SFC } from 'react';
 
 import FormattedModName from 'containers/i18n/FormattedModName';
-import { disabled } from 'util/mods';
+import { disabled } from 'util/flags';
 import FlagsTooltip from './FlagsTooltip';
 import { GeneratorDetails } from './ModsTable';
 import Table from '../FlexTable';

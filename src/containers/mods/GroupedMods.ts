@@ -6,7 +6,7 @@ import { State } from 'state';
 import { gui_actions } from 'state/gui';
 import GroupedMods from 'components/mods/GroupedMods';
 import { GeneratorDetails } from 'components/mods/ModsTable';
-import { disabled } from 'util/mods';
+import { disabled } from 'util/flags';
 
 const groupSelector = createSelector(
   (props: { details: GeneratorDetails[] }) => props.details,

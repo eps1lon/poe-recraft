@@ -4,6 +4,7 @@ import { createSelector } from 'reselect';
 
 import orbs from 'components/generator_picker/orbs';
 import { State } from 'state';
+import { falseFlags } from 'util/flags';
 
 export type GeneratorDetails = {
   mod: Mod;
@@ -77,3 +78,15 @@ export const baseitemInflection = (state: State) => {
     return inflectionIdentifier({});
   }
 };
+
+export const activeGeneratorApplicableTo = createSelector(
+  (state: State) => state.craft.mod_generator,
+  (state: State) => state.craft.item,
+  (generator, item) => {
+    if (generator === undefined || item === undefined) {
+      return falseFlags();
+    } else {
+      return generator.applicableTo(item);
+    }
+  }
+);
