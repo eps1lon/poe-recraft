@@ -34,3 +34,9 @@ it('should use special rarity', () => {
       .map(({ mod }) => mod.props.id),
   ).toMatchSnapshot();
 });
+
+it('is not applicable to anything', () => {
+  const showcase = new ItemShowcase(mods.all(), craftingbenchoptions.all());
+
+  expect(showcase.isApplicableTo(items.fromName('Iron Greaves'))).toBe(false);
+});
