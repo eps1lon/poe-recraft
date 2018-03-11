@@ -52,7 +52,7 @@ export default class ItemShowcase extends Generator<Mod, Item> {
    */
   public applicableTo(item: Item): Flags {
     return {
-      applicable: false,
+      not_applicable: true,
     } as Flags;
   }
 
