@@ -5,7 +5,7 @@ import { craftActions } from 'state/craft';
 import { activeGenerator } from 'state/craft/selectors';
 import { gui_actions } from 'state/gui';
 import { State } from 'state';
-import GeneratorModal from 'components/generator_picker/Modal';
+import GeneratorModal from 'components/GeneratorModal';
 
 const mapStateToProps = (state: State) => {
   return {

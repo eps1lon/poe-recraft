@@ -2,7 +2,8 @@ import React, { SFC } from 'react';
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import GeneratorPicker from './Picker';
-import { FormattedGenerator } from '../i18n';
+import { FormattedGenerator } from 'components/i18n';
+import './style.css';
 
 type GeneratorId = string;
 
@@ -35,7 +36,7 @@ const GeneratorModal: SFC<Props> = props => {
 
       <Modal isOpen={props.is_open} toggle={toggle} autoFocus={false}>
         <ModalHeader toggle={toggle}>Pick a generator</ModalHeader>
-        <ModalBody>
+        <ModalBody className="generators">
           <GeneratorPicker active={props.active} onChange={onChange} />
         </ModalBody>
       </Modal>
