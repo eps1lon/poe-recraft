@@ -4,9 +4,12 @@ import Property from './Property';
 import PropertyValue, { DisplayPropertyType } from './PropertyValue';
 import {
   WeaponProperties,
+  isWeaponProperties,
   ArmourProperties,
+  isArmourProperties,
   NoProperties,
   ShieldProperties,
+  isShieldProperties,
 } from '../../poe';
 import { round, msToPerSecond, asPercentString } from '../../../util/number';
 import {
@@ -29,14 +32,14 @@ export default class Properties extends React.PureComponent<Props> {
       return true;
     }
 
-    if ('armour' in properties) {
+    if (isArmourProperties(properties)) {
       const { armour, energy_shield, evasion } = properties;
       return (
         augmentableNotZero(armour) ||
         augmentableNotZero(energy_shield) ||
         augmentableNotZero(evasion)
       );
-    } else if ('aps' in properties) {
+    } else if (isWeaponProperties(properties)) {
       // at least display weapon type
       return true;
     } else {
@@ -64,9 +67,9 @@ export default class Properties extends React.PureComponent<Props> {
       );
     }
 
-    if ('armour' in properties) {
+    if (isArmourProperties(properties)) {
       display_properties.push(...this.armourProperties(properties));
-    } else if ('aps' in properties) {
+    } else if (isWeaponProperties(properties)) {
       display_properties.push(...this.weaponProperties(properties));
     }
 
@@ -83,7 +86,7 @@ export default class Properties extends React.PureComponent<Props> {
             type={
               props.physical_damage.augmented
                 ? DisplayPropertyType.augmented
-                : DisplayPropertyType.default
+                : DisplayPropertyType.simple
             }
             value={`${valueToString(props.physical_damage.value)}`}
           />
@@ -152,7 +155,7 @@ export default class Properties extends React.PureComponent<Props> {
             type={
               props.crit.augmented
                 ? DisplayPropertyType.augmented
-                : DisplayPropertyType.default
+                : DisplayPropertyType.simple
             }
             value={`${asPercentString(props.crit.value, 2)}%`}
           />
@@ -167,7 +170,7 @@ export default class Properties extends React.PureComponent<Props> {
             type={
               props.aps.augmented
                 ? DisplayPropertyType.augmented
-                : DisplayPropertyType.default
+                : DisplayPropertyType.simple
             }
             value={`${msToPerSecond(props.aps.value, 2)}%`}
           />
@@ -199,7 +202,7 @@ export default class Properties extends React.PureComponent<Props> {
               type={
                 prop.augmented
                   ? DisplayPropertyType.augmented
-                  : DisplayPropertyType.default
+                  : DisplayPropertyType.simple
               }
               value={valueToString(prop.value)}
             />
@@ -208,14 +211,14 @@ export default class Properties extends React.PureComponent<Props> {
       }
     });
 
-    if ('block' in props && augmentableNotZero(props.block)) {
+    if (isShieldProperties(props) && augmentableNotZero(props.block)) {
       displayed.push(
         <Property key="block" human="chance to block">
           <PropertyValue
             type={
               props.block.augmented
                 ? DisplayPropertyType.augmented
-                : DisplayPropertyType.default
+                : DisplayPropertyType.simple
             }
             value={`${valueToString(props.block.value)}%`}
           />

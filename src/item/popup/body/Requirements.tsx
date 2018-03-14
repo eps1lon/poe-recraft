@@ -66,7 +66,7 @@ export default class RequirementsComponent extends React.PureComponent<Props> {
         type={
           augmentable.augmented
             ? DisplayPropertyType.augmented
-            : DisplayPropertyType.default
+            : DisplayPropertyType.simple
         }
       />,
     ];
@@ -87,7 +87,7 @@ export default class RequirementsComponent extends React.PureComponent<Props> {
         type={
           augmentable.augmented
             ? DisplayPropertyType.augmented
-            : DisplayPropertyType.default
+            : DisplayPropertyType.simple
         }
       />,
       ' ',

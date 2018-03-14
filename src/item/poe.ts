@@ -3,6 +3,34 @@ import { ReactNode } from 'react';
 import { Mod } from '../mod/poe';
 import { SingleValue, Value, AugmentableValue } from '../util/value';
 
+export interface ApiItem {
+  // only required for rare and unique items
+  name: string;
+  typeLine: string;
+  icon: string;
+  identified: boolean;
+  category: { [key: string]: string[] };
+  frameType: number;
+  requirements: ApiLineContent[];
+  properties: ApiLineContent[];
+  elder?: boolean;
+  shaper?: boolean;
+  corrupted?: boolean;
+  isRelic?: boolean;
+  utilityMods?: string[];
+  implicitMods?: string[];
+  explicitMods?: string[];
+  craftedMods?: string[];
+  enchantMods?: string[];
+}
+
+export interface ApiLineContent {
+  name: string;
+  values: [string, number][];
+  displayMode: number;
+  type?: number;
+}
+
 // use intersection here instead of extends to be able to test Properties
 // with only e.g. ArmourProperties
 export type Item = AbstractItem & Properties;
@@ -38,10 +66,20 @@ export interface ArmourProperties extends AbstractProperties {
   energy_shield?: AugmentableValue<SingleValue>;
   evasion?: AugmentableValue<SingleValue>;
 }
+export function isArmourProperties(
+  props: AbstractProperties,
+): props is ArmourProperties {
+  return ['armour', 'energy_shield', 'evasion'].some(prop => prop in props);
+}
 
 export interface ShieldProperties extends ArmourProperties {
   // in percent
   block: AugmentableValue<SingleValue>;
+}
+export function isShieldProperties(
+  props: ArmourProperties,
+): props is ShieldProperties {
+  return 'block' in props;
 }
 
 export interface WeaponProperties extends AbstractProperties {
@@ -61,6 +99,19 @@ export interface WeaponProperties extends AbstractProperties {
    *        1 => 1%
    */
   crit?: AugmentableValue<SingleValue>;
+}
+export function isWeaponProperties(
+  props: AbstractProperties,
+): props is WeaponProperties {
+  return [
+    'physical_damage',
+    'cold_damage',
+    'fire_damage',
+    'lightning_damage',
+    'chaos_damage',
+    'aps',
+    'crit',
+  ].some(prop => prop in props);
 }
 
 export type NoProperties = AbstractProperties;

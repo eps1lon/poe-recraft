@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Item, Affixes } from '../../poe';
-import {  isMod } from '../../../mod/poe';
+import { isMod } from '../../../mod/poe';
 import Stats from '../../../stat/Stats';
 import { Intersperse } from '../../../util/react';
 import Separator from '../Separator';
@@ -35,7 +35,7 @@ export default class Body extends React.PureComponent<Props> {
             </Stats>
           )}
           {Stats.hasAny(explicit_stats) && (
-            <Stats key="explicits" classname="explicit">
+            <Stats key="explicits" classname="explicitMod">
               {explicit_stats}
             </Stats>
           )}

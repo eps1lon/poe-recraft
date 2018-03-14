@@ -15,7 +15,7 @@ const Story: React.SFC<Props> = ({ rarity, type, stats }) => {
   return (
     <div className={classnames('poe-item', rarity)}>
       <section className="body">
-        <Stats classname={ModGroup[type]}>{stats}</Stats>
+        <Stats classname={`${ModGroup[type]}Mod`}>{stats}</Stats>
       </section>
     </div>
   );

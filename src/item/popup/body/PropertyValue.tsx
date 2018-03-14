@@ -1,8 +1,7 @@
-import * as classnames from 'classnames';
 import * as React from 'react';
 
 export enum DisplayPropertyType {
-  default,
+  simple,
   augmented,
   chaos_damage,
   cold_damage,
@@ -19,10 +18,6 @@ export default class PropertyValue extends React.PureComponent<Props> {
   public render() {
     const { value, type } = this.props;
 
-    return (
-      <span className={classnames('value', DisplayPropertyType[type])}>
-        {value}
-      </span>
-    );
+    return <span className={DisplayPropertyType[type]}>{value}</span>;
   }
 }
