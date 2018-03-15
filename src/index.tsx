@@ -1,2 +1,2 @@
-export { Popup, Rarity } from './item';
-export { Group as ModGroup, Type as ModType } from './mod';
+export { Popup, Rarity, ApiPopup } from './item';
+export { Type as ModType } from './mod';

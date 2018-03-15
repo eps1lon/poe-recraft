@@ -36,7 +36,7 @@ storiesOf('ItemPopup', module).add(
             value: 154,
           },
         },
-        explicits: [
+        explicitStats: [
           'Place an additional Mine',
           'Socketed Gems are Supported by Level 18 Remote Mine',
           '16% increased Effect of Chill',

@@ -6,15 +6,15 @@ export interface Props {
   properties: LineContent['props'][];
 }
 
-export default class Lines extends React.PureComponent<Props> {
+export default class Properties extends React.PureComponent<Props> {
   render() {
     const { properties } = this.props;
     return this.props.properties
       .sort((a, b) => (a.type || 0) - (b.type || 0))
       .map((line, index) => (
-        <div className="displayProperty">
+        <div key={index} className="displayProperty">
           <span className="lc">
-            <LineContent key={index} {...line} />
+            <LineContent {...line} />
           </span>
         </div>
       ));

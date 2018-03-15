@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { Item, Affixes } from '../../poe';
 import { isMod } from '../../../mod/poe';
 import { Intersperse } from '../../../util/react';
 import Separator from '../Separator';
@@ -38,22 +37,32 @@ export default class Body extends React.PureComponent<Props> {
         <Intersperse renderSeparator={separator}>
           {properties.length > 0 && <Properties properties={properties} />}
           {requirements.length > 0 && (
-            <Requirements requirements={requirements} />
+            <Requirements key="requirements" requirements={requirements} />
           )}
           {utilityMods.length > 0 && (
-            <Stats className="utilityMod">{utilityMods}</Stats>
+            <Stats key="utilityMods" className="utilityMod">
+              {utilityMods}
+            </Stats>
           )}
           {implicitMods.length > 0 && (
-            <Stats className="implicitMod">{implicitMods}</Stats>
+            <Stats key="implicitMods" className="implicitMod">
+              {implicitMods}
+            </Stats>
           )}
           {enchantmentMods.length > 0 && (
-            <Stats className="enchantmentMod">{enchantmentMods}</Stats>
+            <Stats key="enchantmentMods" className="enchantmentMod">
+              {enchantmentMods}
+            </Stats>
           )}
           {explicitMods.length > 0 && (
-            <Stats className="explicitMod">{explicitMods}</Stats>
+            <Stats key="explicitMods" className="explicitMod">
+              {explicitMods}
+            </Stats>
           )}
           {craftedMods.length > 0 && (
-            <Stats className="craftedMod">{craftedMods}</Stats>
+            <Stats key="craftedMods" className="craftedMod">
+              {craftedMods}
+            </Stats>
           )}
         </Intersperse>
       </section>

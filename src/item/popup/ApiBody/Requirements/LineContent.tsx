@@ -37,7 +37,9 @@ export default class LineContent extends React.PureComponent<Props> {
   public render() {
     const { displayMode, values, name } = this.props;
     const formatted_values = intersperse(
-      values.map(value => <FormattedValue value={value} />),
+      values.map((value, index) => (
+        <FormattedValue key={index} value={value} />
+      )),
       () => ', ',
     );
 

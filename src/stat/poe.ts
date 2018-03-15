@@ -1,6 +1,6 @@
-import { Value } from '../util/value';
+import { RollableValue } from '../util/value';
 
 export interface Stat {
   id: string;
-  value: Value;
+  value: RollableValue;
 }

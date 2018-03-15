@@ -28,7 +28,9 @@ export default class Head extends React.PureComponent<Props> {
       >
         <span className="name-left" />
         {double_line && <div className="item-name">{item.name}</div>}
-        <div className="item-name typeLine">{item.typeLine}</div>
+        <div className="item-name typeLine">
+          <span>{item.typeLine}</span>
+        </div>
         <span className="name-right" />
       </header>
     );

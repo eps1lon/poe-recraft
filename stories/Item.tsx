@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import {  Rarity } from '../src/item/poe';
-
-import { Popup } from '../src';
+import { Popup, Rarity } from '../src';
 
 storiesOf('item', module).add('shaped', () => (
   <Popup
@@ -27,7 +25,7 @@ storiesOf('item', module).add('shaped', () => (
           value: 154,
         },
       },
-      explicits: [
+      explicitStats: [
         'Place an additional Mine',
         'Socketed Gems are Supported by Level 18 Remote Mine',
         '16% increased Effect of Chill',

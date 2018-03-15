@@ -1,12 +1,5 @@
 import { ReactNode } from 'react';
 
-export enum Group {
-  implicit,
-  explicit,
-  enchantment,
-  crafted,
-}
-
 export enum Type {
   prefix,
   suffix,

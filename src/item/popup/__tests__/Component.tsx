@@ -1,18 +1,13 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 
-// tslint:disable-next-line: no-var-requires
-const stat_descriptions = require('poe-i18n/locale-data/en/stat_descriptions.json');
-
-import {  Rarity } from '../../poe';
-import Component from '../ItemPopup';
+import Component, { Rarity } from '../ItemPopup';
 
 it('should display Mind Brow Hubris Circlet', () => {
   expect(
     renderer
       .create(
         <Component
-          translations={{ stat_descriptions }}
           item={{
             base: {
               name: 'Hubris Circlet',
@@ -33,7 +28,7 @@ it('should display Mind Brow Hubris Circlet', () => {
                 value: 154,
               },
             },
-            explicits: [
+            explicitStats: [
               'Place an additional Mine',
               'Socketed Gems are Supported by Level 18 Remote Mine',
               '16% increased Effect of Chill',

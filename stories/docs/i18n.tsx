@@ -12,14 +12,14 @@ const stat_descriptions = require('poe-i18n/locale-data/en/stat_descriptions.jso
 storiesOf('i18n integration', module).add('Helmet', () => (
   <Popup
     item={{
-      explicits: formatStats(
+      explicitStats: formatStats(
         [
           { id: 'number_of_additional_mines_to_place', value: 1 },
           {
             id: 'local_display_socketed_gems_get_remote_mine_level',
             value: 18,
           },
-          { id: 'chill_effectiveness_on_self_+%', value: 16 },
+          { id: 'chill_effectiveness_on_self_+%', value: [16, 18] },
           {
             id: 'local_display_socketed_gems_supported_by_x_hypothermia',
             value: 18,
@@ -36,7 +36,8 @@ storiesOf('i18n integration', module).add('Helmet', () => (
         },
       ),
       base: {
-        name: base_item_types['1768'].name,
+        name:
+          base_item_types['Metadata/Items/Armours/Helmets/HelmetInt11'].name,
       },
       name: 'Mind Brow',
       rarity: Rarity.rare,

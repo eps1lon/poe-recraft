@@ -12,6 +12,10 @@ export default class Stats extends React.PureComponent<Props> {
       return children;
     }
 
-    return children.map(stat => <div className={className}>{stat}</div>);
+    return children.map((stat, index) => (
+      <div key={index} className={className}>
+        {stat}
+      </div>
+    ));
   }
 }

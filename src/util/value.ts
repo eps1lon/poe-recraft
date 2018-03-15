@@ -1,7 +1,9 @@
-export type Value = SingleValue | ValueRange;
+// (1 to 2)-(3 to 4)
+export type MinMaxValue = RollableValue | [RollableValue, RollableValue];
+export type RollableValue = SingleValue | ValueRange;
 export type SingleValue = number;
 export type ValueRange = [SingleValue, SingleValue];
-export interface AugmentableValue<V extends Value = Value> {
+export interface AugmentableValue<V extends MinMaxValue = MinMaxValue> {
   value: V;
   augmented?: boolean;
 }
@@ -9,13 +11,36 @@ export interface AugmentableValue<V extends Value = Value> {
 export function augmentableNotZero(
   augmentable: AugmentableValue | undefined,
 ): augmentable is AugmentableValue {
-  return augmentable !== undefined && !isZero(augmentable.value);
+  return augmentable !== undefined && valueNotZero(augmentable.value);
 }
 
-export function isZero(value?: Value) {
-  return Array.isArray(value) ? value[0] === 0 && value[1] === 0 : value === 0;
+export function valueNotZero<T extends MinMaxValue>(
+  value: T | undefined,
+): value is T {
+  return Array.isArray(value)
+    ? valueNotZero(value[0]) || valueNotZero(value[1])
+    : value !== undefined && value !== 0;
 }
 
-export function toString(value: Value, delim = '-') {
-  return Array.isArray(value) ? `${value[0]}${delim}${value[1]}` : `${value}`;
+// support valuerange up to depth=2
+// (2-3)-(4-5)
+// first depth is for stats with min max
+// second for rollable stat values
+export function minMaxToString(
+  value: MinMaxValue,
+  format?: (n: number) => string,
+): string {
+  return Array.isArray(value)
+    ? `${rollableToString(value[0], format)}-${rollableToString(
+        value[1],
+        format,
+      )}`
+    : `${value}`;
+}
+
+export function rollableToString(
+  value: RollableValue,
+  format: (n: number) => string = n => n.toString(),
+): string {
+  return Array.isArray(value) ? `(${value[0]} - ${value[1]})` : `${value}`;
 }

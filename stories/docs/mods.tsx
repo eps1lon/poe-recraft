@@ -60,14 +60,14 @@ const snapshotProperties = (item: Item) => {
       ...properties.defences(),
     };
   } else if (properties instanceof WeaponProperties) {
-    const cold_damage = properties.cold_damage()
+    const cold_damage = properties.cold_damage();
 
     return {
       ...base_properties,
       physical_damage: properties.physical_damage(),
       cold_damage: [cold_damage.min.value, cold_damage.max.value],
-      aps: properties.attack_speed()
-    }
+      aps: properties.attack_speed(),
+    };
   } else {
     return base_properties;
   }
@@ -136,8 +136,8 @@ const snapShotItem = (item: Item, format: Format): Popup['props']['item'] => {
     name: item.name.lines()[0],
     elder: item.isElderItem(),
     shaper: item.isSHaperItem(),
-    implicits: statsTranslated(item.implicits, format),
-    explicits: statsTranslated(item.affixes, format),
+    implicitStats: statsTranslated(item.implicits, format),
+    explicitStats: statsTranslated(item.affixes, format),
     rarity,
     ...properties,
     requirements: snapshotRequirements(item),

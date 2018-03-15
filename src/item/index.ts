@@ -1,2 +1,2 @@
-export { default as Popup, ApiPopup } from './popup';
-export { Rarity } from './poe';
+export { default as Popup, ApiPopup, Rarity } from './popup';
+export { default as FrameType } from './FrameType';

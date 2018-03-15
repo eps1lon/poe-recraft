@@ -42,8 +42,8 @@ const FormattedValue: React.SFC<{ value: Value }> = ({
 export default class LineContent extends React.PureComponent<Props> {
   public render() {
     const { displayMode, values, name } = this.props;
-    const formatted_values = values.map(value => (
-      <FormattedValue value={value} />
+    const formatted_values = values.map((value, index) => (
+      <FormattedValue key={index} value={value} />
     ));
 
     switch (displayMode) {
