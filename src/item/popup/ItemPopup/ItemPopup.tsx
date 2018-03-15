@@ -14,7 +14,7 @@ import {
 } from '../../../util/value';
 import { round, msToPerSecond, asPercentString } from '../../../util/number';
 
-type ApiProps = ApiPopup['props'];
+export type ApiProps = ApiPopup['props'];
 
 // requirements below that threshold will not be displayed
 const MIN_ATTRIBUTE_REQUIREMENTS = 14;
