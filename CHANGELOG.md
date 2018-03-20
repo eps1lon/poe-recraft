@@ -9,13 +9,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - `locale-data` for Path Of Exile@3.2.0 ([#28](https://github.com/eps1lon/poe-i18n/pull/28))
 - `groupMods()` to generate a fitting translation for a collection of mods 
   (e.g. mods of a `correct_group`). ([#30](https://github.com/eps1lon/poe-i18n/pull/30))
-- `skip_if_zero` fallback for `formatStats()` which suppresses thrown errors
-  if the stat has a value that is equivilant to zero. ([#29](https://github.com/eps1lon/poe-i18n/pull/29))
 - `textToStats` (also available in `Format`) which finds every combination
   of stats that could've produced a given text. Check the API docs for more info. ([#24](https://github.com/eps1lon/poe-i18n/pull/24))
 
 ### Changed
-- Value ranges should now be displayed ordered. This caused [#32](https://github.com/eps1lon/poe-i18n/issues/32) and was fixed with [#37](https://github.com/eps1lon/poe-i18n/pull/37).
+- Value ranges should now be displayed ordered. 
+  This caused [#32](https://github.com/eps1lon/poe-i18n/issues/32) and 
+  was fixed with [#37](https://github.com/eps1lon/poe-i18n/pull/37).
+
+- Stats with zero or equivalent (range 0 - 0) are now ignored by default. 
+  This matches ingame behavior. ([#29](https://github.com/eps1lon/poe-i18n/pull/29)
+  and [#39](https://github.com/eps1lon/poe-i18n/pull/39))
 
 ### Fixes
 - Some translations had standard printf syntax which is not understood by

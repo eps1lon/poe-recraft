@@ -3,15 +3,15 @@ import { StatLocaleData } from '../../types/StatDescription';
 import datas from '../../__fixtures__/english';
 import formatStats, { Fallback, Stat } from '../stats';
 
-it('should translate single stat line', () => {
+it('should throw if the values dont match', () => {
   expect(() =>
-    formatStats([{ id: 'weapon_physical_damage_+%', value: 0 }], { datas })
+    formatStats([{ id: 'weapon_physical_damage_+%', value: -1 }], { datas })
   ).toThrowError(
     "matching translation not found for 'weapon_physical_damage_+%'"
   );
 });
 
-it('should throw if the values dont match', () => {
+it('should translate single stat line', () => {
   expect(
     formatStats([{ id: 'weapon_physical_damage_+%', value: 25 }], { datas })
   ).toEqual(['25% increased Physical Damage with Weapons']);
@@ -177,19 +177,14 @@ it('should support skipping fallback', () => {
   ).toEqual([]);
 });
 
-describe('skip_if_zero fallback', () => {
+describe('zero stats', () => {
   it('ignores stats with 0 value', () => {
     const stats = [{ id: 'weapon_physical_damage_+%', value: 0 }];
 
-    expect(() =>
-      formatStats(stats, {
-        datas
-      })
-    ).toThrow("matching translation not found for 'weapon_physical_damage_+%'");
     expect(
       formatStats(stats, {
         datas,
-        fallback: Fallback.skip_if_zero
+        fallback: Fallback.throw
       })
     ).toEqual([]);
   });
@@ -203,7 +198,7 @@ describe('skip_if_zero fallback', () => {
         ],
         {
           datas,
-          fallback: Fallback.skip_if_zero
+          fallback: Fallback.throw
         }
       )
     ).toThrow("matching translation not found for 'local_energy_shield_+%'");
@@ -213,7 +208,7 @@ describe('skip_if_zero fallback', () => {
     expect(
       formatStats([{ id: 'non_existing_zero', value: 0 }], {
         datas,
-        fallback: Fallback.skip_if_zero
+        fallback: Fallback.throw
       })
     ).toEqual([]);
   });
@@ -222,7 +217,7 @@ describe('skip_if_zero fallback', () => {
     expect(() =>
       formatStats([{ id: 'non_existing_zero', value: [0, 1] }], {
         datas,
-        fallback: Fallback.skip_if_zero
+        fallback: Fallback.throw
       })
     ).toThrow('no descriptions found for non_existing_zero');
   });

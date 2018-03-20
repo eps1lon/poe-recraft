@@ -154,7 +154,6 @@ declare module "format/stats" {
         throw = 0,
         id = 1,
         skip = 2,
-        skip_if_zero = 3,
     }
     const formatStats: (stats: Stat[], options?: Partial<Options>) => string[];
     export default formatStats;
