@@ -1,8 +1,4 @@
-import formatStats, {
-  Fallback,
-  Options as FormatStatsOptions,
-  Stat
-} from './stats';
+import formatStats, { Options as FormatStatsOptions, Stat } from './stats';
 
 // arg types
 export { Stat } from './stats';
@@ -59,8 +55,7 @@ function groupStats(
         arg: i + 1,
         id: 'placeholder'
       }));
-    },
-    fallback: Fallback.skip_if_zero
+    }
   });
 
   // collapes value ranges into single placeholder

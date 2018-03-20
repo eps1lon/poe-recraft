@@ -209,7 +209,8 @@ System.register("localize/formatters", ["types/StatValue"], function (exports_4,
                     return String(formatter(value[0]));
                 }
                 else {
-                    return "(" + formatter(value[0]) + " - " + formatter(value[1]) + ")";
+                    var _a = __read(valueOrder(value, formatter_id), 2), min = _a[0], max = _a[1];
+                    return "(" + formatter(min) + " - " + formatter(max) + ")";
                 }
             }
             else {
@@ -218,6 +219,24 @@ System.register("localize/formatters", ["types/StatValue"], function (exports_4,
         };
     }
     exports_4("default", factory);
+    /**
+     * orders the given values so that the smallest displayed is min
+     *
+     * reduced stats are given as negative values and then negated for display
+     * whichs results in [-30, -15] being displayed as "(30 - 15) reduced"
+     * @param param0
+     *
+     */
+    function valueOrder(_a, formatter_id) {
+        var _b = __read(_a, 2), left = _b[0], right = _b[1];
+        var sign = Math.sign(left);
+        if ((left < right && sign === 1) || (left > right && sign === -1)) {
+            return [left, right];
+        }
+        else {
+            return [right, left];
+        }
+    }
     var StatValue_1, item_classes, formatters, inverse_formatters, number, formatter_regexp;
     return {
         setters: [
@@ -629,7 +648,7 @@ System.register("format/stats", ["translate/index", "types/StatValue"], function
     exports_11("createDescriptionFindStrategies", createDescriptionFindStrategies);
     function formatWithFinder(stats, find, options) {
         if (options === void 0) { options = {}; }
-        var _a = options.ignore_if_zero, ignore_if_zero = _a === void 0 ? false : _a, _b = options.getFormatters, getFormatters = _b === void 0 ? function (t) { return t.formatters; } : _b;
+        var _a = options.getFormatters, getFormatters = _a === void 0 ? function (t) { return t.formatters; } : _a;
         var lines = [];
         var translated = new Set();
         var _loop_1 = function (stat_id, stat) {
@@ -646,7 +665,7 @@ System.register("format/stats", ["translate/index", "types/StatValue"], function
                         var value = _a.value;
                         return StatValue_2.isZero(value);
                     });
-                    if (!ignore_if_zero || !requiredStatsAreZero) {
+                    if (!requiredStatsAreZero) {
                         throw new Error("matching translation not found for '" + stat.id + "'");
                     }
                 }
@@ -666,20 +685,20 @@ System.register("format/stats", ["translate/index", "types/StatValue"], function
             }
         };
         try {
-            for (var _c = __values(Array.from(stats.entries())), _d = _c.next(); !_d.done; _d = _c.next()) {
-                var _e = __read(_d.value, 2), stat_id = _e[0], stat = _e[1];
+            for (var _b = __values(Array.from(stats.entries())), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var _d = __read(_c.value, 2), stat_id = _d[0], stat = _d[1];
                 _loop_1(stat_id, stat);
             }
         }
         catch (e_1_1) { e_1 = { error: e_1_1 }; }
         finally {
             try {
-                if (_d && !_d.done && (_f = _c.return)) _f.call(_c);
+                if (_c && !_c.done && (_e = _b.return)) _e.call(_b);
             }
             finally { if (e_1) throw e_1.error; }
         }
         return lines;
-        var e_1, _f;
+        var e_1, _e;
     }
     function requiredStats(description, provided) {
         // intersect the required stat_ids from the desc with the provided
@@ -700,36 +719,40 @@ System.register("format/stats", ["translate/index", "types/StatValue"], function
             .filter(function (stat) { return stat !== null; });
     }
     function formatWithFallback(stats, fallback) {
+        var non_zero_stats = Array.from(stats.entries()).filter(function (_a) {
+            var _b = __read(_a, 2), stat = _b[1];
+            return !StatValue_2.isZero(stat.value);
+        });
+        if (non_zero_stats.length === 0) {
+            return [];
+        }
         if (fallback === Fallback.throw) {
             if (stats.size > 0) {
-                throw new NoDescriptionFound(Array.from(stats.values()));
+                throw new NoDescriptionFound(non_zero_stats.map(function (_a) {
+                    var _b = __read(_a, 2), stat = _b[1];
+                    return stat;
+                }));
             }
             else {
                 return [];
             }
         }
         else if (fallback === Fallback.id) {
-            return Array.from(stats.keys());
+            return non_zero_stats.map(function (_a) {
+                var _b = __read(_a, 1), key = _b[0];
+                return key;
+            });
         }
         else if (fallback === Fallback.skip) {
             return [];
         }
         else if (typeof fallback === 'function') {
-            return Array.from(stats.entries())
+            return non_zero_stats
                 .map(function (_a) {
                 var _b = __read(_a, 2), id = _b[0], stat = _b[1];
                 return fallback(id, stat);
             })
                 .filter(function (line) { return typeof line === 'string'; });
-        }
-        else if (fallback === Fallback.skip_if_zero) {
-            var non_zero_stats = Array.from(stats.values()).filter(function (stat) { return !StatValue_2.isZero(stat.value); });
-            if (non_zero_stats.length > 0) {
-                throw new NoDescriptionFound(non_zero_stats);
-            }
-            else {
-                return [];
-            }
         }
         else {
             // should ts recognize that this is unreachable code? enums can prob
@@ -763,9 +786,6 @@ System.register("format/stats", ["translate/index", "types/StatValue"], function
                 Fallback[Fallback["throw"] = 0] = "throw";
                 Fallback[Fallback["id"] = 1] = "id";
                 Fallback[Fallback["skip"] = 2] = "skip";
-                // ignore if no matching translation is found in stat description
-                // if the stat value is equiv to zero (e.g. 0 or [0, 9])
-                Fallback[Fallback["skip_if_zero"] = 3] = "skip_if_zero";
             })(Fallback || (Fallback = {}));
             exports_11("Fallback", Fallback);
             initial_options = {
@@ -788,8 +808,7 @@ System.register("format/stats", ["translate/index", "types/StatValue"], function
                         for (var _b = __values(createDescriptionFindStrategies(data)), _c = _b.next(); !_c.done; _c = _b.next()) {
                             var descriptionFinder = _c.value;
                             lines.push.apply(lines, __spread(formatWithFinder(untranslated, descriptionFinder, {
-                                getFormatters: getFormatters,
-                                ignore_if_zero: fallback === Fallback.skip_if_zero
+                                getFormatters: getFormatters
                             })));
                         }
                     }
@@ -5108,7 +5127,7 @@ System.register("format/groupMods", ["format/stats"], function (exports_16, cont
                     arg: i + 1,
                     id: 'placeholder'
                 }); });
-            }, fallback: stats_2.Fallback.skip_if_zero }));
+            } }));
         // collapes value ranges into single placeholder
         return lines.map(function (line) { return line.replace(/\(# - #\)/g, '#'); }).join(' / ');
     }
