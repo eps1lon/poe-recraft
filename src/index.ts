@@ -2,6 +2,7 @@ export { default as Stat } from './calculator/Stat';
 export { default as ValueRange } from './calculator/ValueRange';
 export { default as Generator, GeneratorDetails } from './generators/Generator';
 export { default as Container } from './containers/Container';
+import * as schema from './schema';
 export { Flags } from './util';
 
 // API definition
@@ -42,5 +43,7 @@ export {
   createMasterBenchOptions,
   createMods,
 } from './helpers/createTables';
+
+export { schema };
 
 export { anySet } from './util';

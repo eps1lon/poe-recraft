@@ -107,6 +107,58 @@ declare module "schema" {
         adjacent: number[];
         world_area: WorldAreaProps;
     }
+    export interface EssenceProps {
+        tier: number;
+        base_item_type: BaseItemTypeProps;
+        essence_type: {
+            id: string;
+            essence_type: number;
+            is_corrupted_essence: boolean;
+        };
+        is_screaming: boolean;
+        item_level_restriction: number;
+        quiver_mods_key: string;
+        amulet1_mods_key: string;
+        amulet2_mods_key: string;
+        ring_mods_key: string;
+        belt1_mods_key: string;
+        belt2_mods_key: string;
+        belt3_mods_key: string;
+        gloves1_mods_key: string;
+        boots1_mods_key: string;
+        body_armour1_mods_key: string;
+        helmet1_mods_key: string;
+        shield1_mods_key: string;
+        shield2_mods_key: string;
+        boots3_mods_key: string;
+        ranged_mods_key: string;
+        helmet2_mods_key: string;
+        body_armour2_mods_key: string;
+        boots2_mods_key: string;
+        gloves2_mods_key: string;
+        bow_mods_key: string;
+        wand_mods_key: string;
+        '2_hand_mods_key1': string;
+        '2_hand_mods_key2': string;
+        '2_hand_mods_key3': string;
+        '2_hand_mods_key4': string;
+        '2_hand_mods_key5': string;
+        '1_hand_mods_key1': string;
+        '1_hand_mods_key2': string;
+        '1_hand_mods_key3': string;
+        '1_hand_mods_key4': string;
+        '1_hand_mods_key5': string;
+        '1_hand_mods_key6': string;
+        '1_hand_mods_key7': string;
+        '1_hand_mods_key8': string;
+        mods_key1: string;
+        mods_key2: string;
+        mods_key13: string;
+        mods_key14: string;
+        mods_key15: string;
+        mods_key41: string;
+        mods_key43: string;
+    }
 }
 declare module "calculator/ValueRange" {
     export type ValueRangeLike = ValueRange | number | [number, number];
@@ -1011,6 +1063,8 @@ declare module "generators/Orb" {
     export type SpawnableFlag = keyof SpawnableFlags;
     /**
      * @abstract
+     * a Generator that randomly rolls one of its mods
+     * ignores mods that have no spawnweight or 0 spawnweight for every tag
      */
     export default abstract class Orb<C extends Container<any>> extends Generator<Mod, C> {
         static modFilter(mod: ModProps): boolean;
@@ -1075,12 +1129,21 @@ declare module "generators/item_orbs/Alchemy" {
         not_white: boolean;
     }
     export type ApplicableFlag = keyof ApplicableFlags;
+    /**
+     * options for Alchemy#applyTo()
+     */
+    export interface ApplyOptions {
+        /**
+         * ignores Alchemy#applicableTo() if true
+         */
+        force: boolean;
+    }
     export default class Alchemy extends ItemOrb {
         static build(mods: ModProps[]): Alchemy;
         /**
          *  adds 1-2 mods
          */
-        applyTo(item: Item): Item;
+        applyTo(item: Item, options?: Partial<ApplyOptions>): Item;
         /**
          * maps mod::applicableTo as if it were already magic
          */
@@ -1589,6 +1652,7 @@ declare module "index" {
     export { default as ValueRange } from "calculator/ValueRange";
     export { default as Generator, GeneratorDetails } from "generators/Generator";
     export { default as Container } from "containers/Container";
+    import * as schema from "schema";
     export { Flags } from "util/index";
     export { Alchemy, Alteration, Annulment, Augment, Chaos, EnchantmentBench, Exalted, Regal, Scouring, Talisman, Transmute, Vaal, ItemShowcase, MasterBenchOption, Sextant } from "generators/index";
     export { AtlasNode, Item, ArmourProperties, ShieldProperties, WeaponProperties } from "containers/index";
@@ -1596,5 +1660,6 @@ declare module "index" {
     export { default as Atlas } from "helpers/Atlas";
     export { default as MasterBench } from "helpers/MasterBench";
     export { createAtlasNodes, createItems, createMasterBenchOptions, createMods } from "helpers/createTables";
+    export { schema };
     export { anySet } from "util/index";
 }

@@ -6517,6 +6517,8 @@ System.register("generators/Orb", ["mods/index", "util/Flags", "util/rng", "gene
         execute: function () {
             /**
              * @abstract
+             * a Generator that randomly rolls one of its mods
+             * ignores mods that have no spawnweight or 0 spawnweight for every tag
              */
             Orb = /** @class */ (function (_super) {
                 __extends(Orb, _super);
@@ -6524,7 +6526,11 @@ System.register("generators/Orb", ["mods/index", "util/Flags", "util/rng", "gene
                     return _super !== null && _super.apply(this, arguments) || this;
                 }
                 Orb.modFilter = function (mod) {
-                    return mod.spawn_weights.length > 0;
+                    return (mod.spawn_weights.length > 0 &&
+                        mod.spawn_weights.some(function (_a) {
+                            var value = _a.value;
+                            return value > 0;
+                        }));
                 };
                 Orb.buildMods = function (mods) {
                     var _this = this;
@@ -6740,11 +6746,14 @@ System.register("generators/item_orbs/Alchemy", ["lodash", "util/Flags", "genera
                 /**
                  *  adds 1-2 mods
                  */
-                Alchemy.prototype.applyTo = function (item) {
-                    if (!Flags_5.anySet(this.applicableTo(item))) {
+                Alchemy.prototype.applyTo = function (item, options) {
+                    if (options === void 0) { options = {}; }
+                    var _a = options.force, force = _a === void 0 ? false : _a;
+                    if (force || !Flags_5.anySet(this.applicableTo(item))) {
                         // upgrade to rare
                         var alched_item = item.rarity.set('rare');
-                        var new_mods = _.random(4, 6);
+                        // rare items can have no more than 6 affixes
+                        var new_mods = _.random(4, 6) - item.affixes.mods.length;
                         for (var rolled_mods = 1; rolled_mods <= new_mods; rolled_mods += 1) {
                             alched_item = this.rollMod(alched_item);
                         }
@@ -7692,7 +7701,7 @@ System.register("generators/ItemShowcase", ["helpers/MasterBench", "generators/G
                  */
                 ItemShowcase.prototype.applicableTo = function (item) {
                     return {
-                        applicable: false,
+                        not_applicable: true,
                     };
                 };
                 /**
@@ -8341,9 +8350,10 @@ System.register("helpers/createTables", ["containers/AtlasNode", "containers/ite
         }
     };
 });
-System.register("index", ["calculator/Stat", "calculator/ValueRange", "generators/Generator", "generators/index", "containers/index", "mods/index", "helpers/Atlas", "helpers/MasterBench", "helpers/createTables", "util/index"], function (exports_63, context_63) {
+System.register("index", ["calculator/Stat", "calculator/ValueRange", "generators/Generator", "schema", "generators/index", "containers/index", "mods/index", "helpers/Atlas", "helpers/MasterBench", "helpers/createTables", "util/index"], function (exports_63, context_63) {
     "use strict";
     var __moduleName = context_63 && context_63.id;
+    var schema;
     return {
         setters: [
             function (Stat_3_1) {
@@ -8360,6 +8370,9 @@ System.register("index", ["calculator/Stat", "calculator/ValueRange", "generator
                 exports_63({
                     "Generator": Generator_4_1["default"]
                 });
+            },
+            function (schema_1) {
+                schema = schema_1;
             },
             function (index_1_1) {
                 exports_63({
@@ -8419,6 +8432,7 @@ System.register("index", ["calculator/Stat", "calculator/ValueRange", "generator
             }
         ],
         execute: function () {
+            exports_63("schema", schema);
         }
     };
 });
