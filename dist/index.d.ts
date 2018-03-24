@@ -108,6 +108,7 @@ declare module "schema" {
         world_area: WorldAreaProps;
     }
     export interface EssenceProps {
+        primary: number;
         tier: number;
         base_item_type: BaseItemTypeProps;
         essence_type: {
@@ -115,49 +116,29 @@ declare module "schema" {
             essence_type: number;
             is_corrupted_essence: boolean;
         };
-        is_screaming: boolean;
         item_level_restriction: number;
-        quiver_mods_key: string;
-        amulet1_mods_key: string;
-        amulet2_mods_key: string;
-        ring_mods_key: string;
-        belt1_mods_key: string;
-        belt2_mods_key: string;
-        belt3_mods_key: string;
-        gloves1_mods_key: string;
-        boots1_mods_key: string;
-        body_armour1_mods_key: string;
-        helmet1_mods_key: string;
-        shield1_mods_key: string;
-        shield2_mods_key: string;
-        boots3_mods_key: string;
-        ranged_mods_key: string;
-        helmet2_mods_key: string;
-        body_armour2_mods_key: string;
-        boots2_mods_key: string;
-        gloves2_mods_key: string;
-        bow_mods_key: string;
-        wand_mods_key: string;
-        '2_hand_mods_key1': string;
-        '2_hand_mods_key2': string;
-        '2_hand_mods_key3': string;
-        '2_hand_mods_key4': string;
-        '2_hand_mods_key5': string;
-        '1_hand_mods_key1': string;
-        '1_hand_mods_key2': string;
-        '1_hand_mods_key3': string;
-        '1_hand_mods_key4': string;
-        '1_hand_mods_key5': string;
-        '1_hand_mods_key6': string;
-        '1_hand_mods_key7': string;
-        '1_hand_mods_key8': string;
-        mods_key1: string;
-        mods_key2: string;
-        mods_key13: string;
-        mods_key14: string;
-        mods_key15: string;
-        mods_key41: string;
-        mods_key43: string;
+        quiver_mod?: ModProps;
+        amulet_mod?: ModProps;
+        ring_mod?: ModProps;
+        belt_mod?: ModProps;
+        shield_mod?: ModProps;
+        helmet_mod?: ModProps;
+        body_armour_mod?: ModProps;
+        boots_mod?: ModProps;
+        gloves_mod?: ModProps;
+        bow_mod?: ModProps;
+        wand_mod?: ModProps;
+        staff_mod?: ModProps;
+        two_hand_sword_mod?: ModProps;
+        two_hand_axe_mod?: ModProps;
+        two_hand_mace_mod?: ModProps;
+        claw_mod?: ModProps;
+        dagger_mod?: ModProps;
+        one_hand_sword_mod?: ModProps;
+        one_hand_thrusting_sword_mod?: ModProps;
+        one_hand_axe_mod?: ModProps;
+        one_hand_mace_mod?: ModProps;
+        sceptre_mod?: ModProps;
     }
 }
 declare module "calculator/ValueRange" {
@@ -169,9 +150,9 @@ declare module "calculator/ValueRange" {
         min: number;
         max: number;
         constructor(range: ValueRangeLike);
-        add(other: ValueRangeLike): default;
-        mult(other: ValueRangeLike): default;
-        map(mapFn: (n: number) => number): default;
+        add(other: ValueRangeLike): ValueRange;
+        mult(other: ValueRangeLike): ValueRange;
+        map(mapFn: (n: number) => number): ValueRange;
         isAddIdentity(): boolean;
         isMultIdentity(): boolean;
         /**
@@ -189,8 +170,8 @@ declare module "calculator/Stat" {
         props: StatProps;
         values: ValueRange;
         constructor(props: StatProps, values?: [number, number] | ValueRange);
-        add(other: ValueRange): default;
-        mult(other: ValueRange): default;
+        add(other: ValueRange): Stat;
+        mult(other: ValueRange): Stat;
     }
 }
 declare module "interfaces/Taggable" {
@@ -222,7 +203,7 @@ declare module "mods/Mod" {
         static TYPE: {
             [key: string]: number;
         };
-        static build(props: ModProps): default;
+        static build(props: ModProps): Mod;
         readonly props: ModProps;
         constructor(props: ModProps);
         isType(type: string): boolean;
@@ -1279,6 +1260,44 @@ declare module "generators/item_orbs/EnchantmentBench" {
         modsFor(item: Item, whitelist?: string[]): Array<GeneratorDetails<Mod>>;
     }
 }
+declare module "generators/item_orbs/Essence" {
+    import Item from "containers/item/index";
+    import { ModProps, EssenceProps } from "schema";
+    import ItemOrb, { ApplicableFlags as BaseApplicableFlags } from "generators/item_orbs/ItemOrb";
+    import Mod from "mods/Mod";
+    import { GeneratorDetails } from "generators/Generator";
+    export interface ApplicableFlags extends BaseApplicableFlags {
+        wrong_rarity: boolean;
+        wrong_itemclass: boolean;
+    }
+    export type ApplicableFlag = keyof ApplicableFlags;
+    export default class Essence extends ItemOrb {
+        static build(props: EssenceProps, mods: ModProps[]): Essence;
+        props: EssenceProps;
+        private alchemy;
+        /**
+         *
+         * @param props props of a specific essence (contains the guarenteed mod)
+         * @param mods mods that are rolled onto the item after th guarenteed is applied
+         */
+        constructor(props: EssenceProps, mods: ModProps[]);
+        /**
+         *  add the guarenteed mod and fill up the rest like alchemy
+         */
+        applyTo(item: Item, options?: Partial<{
+            force: boolean;
+        }>): Item;
+        /**
+         * only one mod per itemclass
+         */
+        modsFor(item: Item, whitelist?: string[]): Array<GeneratorDetails<Mod>>;
+        chooseMod(item: Item): Mod | undefined;
+        modForItemclass(itemclass: string): Mod | undefined;
+        applicableTo(item: Item): ApplicableFlags;
+        reforges(): boolean;
+        private modPropsFor(item_class);
+    }
+}
 declare module "generators/item_orbs/Regal" {
     import Item from "containers/item/index";
     import { ModProps } from "schema";
@@ -1336,6 +1355,7 @@ declare module "generators/item_orbs/index" {
     export { default as Augment } from "generators/item_orbs/Augment";
     export { default as Chaos } from "generators/item_orbs/Chaos";
     export { default as EnchantmentBench } from "generators/item_orbs/EnchantmentBench";
+    export { default as Essence } from "generators/item_orbs/Essence";
     export { default as Exalted } from "generators/item_orbs/Exalted";
     export { default as ItemOrb } from "generators/item_orbs/ItemOrb";
     export { default as Regal } from "generators/item_orbs/Regal";
@@ -1359,7 +1379,7 @@ declare module "generators/MasterBenchOption" {
     }
     export type ApplicableFlag = keyof ApplicableFlags;
     export default class MasterBenchOption extends Generator<Mod, Item> {
-        static build(option: CraftingBenchOptionsProps): default;
+        static build(option: CraftingBenchOptionsProps): MasterBenchOption;
         readonly props: CraftingBenchOptionsProps;
         constructor(option: CraftingBenchOptionsProps);
         readonly mod: Mod | undefined;
@@ -1395,7 +1415,7 @@ declare module "helpers/MasterBench" {
     /**
      */
     export default class MasterBench {
-        static build(props: CraftingBenchOptionsProps[], master_primary?: number): default;
+        static build(props: CraftingBenchOptionsProps[], master_primary?: number): MasterBench;
         readonly options: MasterBenchOption[];
         constructor(options: MasterBenchOption[]);
         applyOptionTo(item: Item, option_id: OptionId): Item;
@@ -1452,7 +1472,7 @@ declare module "containers/AtlasNode" {
     }
     export type HumanId = string;
     export default class AtlasNode extends ImmutableContainer<Mod, Builder> {
-        static build(props: AtlasNodeProps): default;
+        static build(props: AtlasNodeProps): AtlasNode;
         static withBuilder(builder: Builder): AtlasNode;
         props: AtlasNodeProps;
         constructor(mods: Mod[], props: AtlasNodeProps);
@@ -1532,7 +1552,7 @@ declare module "generators/Sextant" {
     }
 }
 declare module "generators/index" {
-    export { Alchemy, Annulment, Alteration, Augment, Chaos, EnchantmentBench, Exalted, Regal, Scouring, Talisman, Transmute, Vaal } from "generators/item_orbs/index";
+    export { Alchemy, Annulment, Alteration, Augment, Chaos, EnchantmentBench, Essence, Exalted, Regal, Scouring, Talisman, Transmute, Vaal } from "generators/item_orbs/index";
     export { default as ItemShowcase } from "generators/ItemShowcase";
     export { default as MasterBenchOption } from "generators/MasterBenchOption";
     export { default as Sextant } from "generators/Sextant";
@@ -1597,9 +1617,9 @@ declare module "interfaces/Builder" {
     export type Builder<P, T> = (props: P) => T;
 }
 declare module "interfaces/Buildable" {
-    export interface Buildable<P, T> {
+    export interface Buildable<P, T, A1> {
         name: string;
-        build(props: P): T;
+        build(props: P, arg1: A1): T;
     }
 }
 declare module "interfaces/index" {
@@ -1618,10 +1638,11 @@ declare module "helpers/PropsTable" {
     export class NotFound extends BaseError {
         constructor(name: string, message: string);
     }
-    export default class PropsTable<P extends TableProps, T> {
-        builder: Buildable<P, T>;
+    export default class PropsTable<P extends TableProps, T, A1> {
+        builder: Buildable<P, T, A1>;
         table: P[];
-        constructor(all: P[], constructor: Buildable<P, T>);
+        builder_arg1: A1;
+        constructor(all: P[], constructor: Buildable<P, T, A1>, arg1: A1);
         all(): P[];
         find(finder: (props: P) => boolean): P | undefined;
         /**
@@ -1636,16 +1657,17 @@ declare module "helpers/PropsTable" {
     }
 }
 declare module "helpers/createTables" {
-    import { AtlasNodeProps, BaseItemTypeProps, CraftingBenchOptionsProps, ModProps } from "schema";
+    import { AtlasNodeProps, BaseItemTypeProps, CraftingBenchOptionsProps, EssenceProps, ModProps } from "schema";
     import AtlasNode from "containers/AtlasNode";
     import Item from "containers/item/Item";
-    import MasterBenchOption from "generators/MasterBenchOption";
+    import { Essence, MasterBenchOption } from "generators/index";
     import Mod from "mods/Mod";
     import PropsTable from "helpers/PropsTable";
-    export const createAtlasNodes: (props: AtlasNodeProps[]) => PropsTable<AtlasNodeProps, AtlasNode>;
-    export const createItems: (props: BaseItemTypeProps[]) => PropsTable<BaseItemTypeProps, Item>;
-    export const createMasterBenchOptions: (props: CraftingBenchOptionsProps[]) => PropsTable<CraftingBenchOptionsProps, MasterBenchOption>;
-    export const createMods: (props: ModProps[]) => PropsTable<ModProps, Mod>;
+    export const createAtlasNodes: (props: AtlasNodeProps[]) => PropsTable<AtlasNodeProps, AtlasNode, undefined>;
+    export const createItems: (props: BaseItemTypeProps[]) => PropsTable<BaseItemTypeProps, Item, undefined>;
+    export const createMasterBenchOptions: (props: CraftingBenchOptionsProps[]) => PropsTable<CraftingBenchOptionsProps, MasterBenchOption, undefined>;
+    export const createMods: (props: ModProps[]) => PropsTable<ModProps, Mod, undefined>;
+    export const createEssences: (props: EssenceProps[], mods: ModProps[]) => PropsTable<EssenceProps, Essence, ModProps[]>;
 }
 declare module "index" {
     export { default as Stat } from "calculator/Stat";

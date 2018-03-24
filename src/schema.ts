@@ -121,6 +121,7 @@ export interface AtlasNodeProps {
 }
 
 export interface EssenceProps {
+  primary: number;
   tier: number;
   base_item_type: BaseItemTypeProps;
   essence_type: {
@@ -128,47 +129,27 @@ export interface EssenceProps {
     essence_type: number;
     is_corrupted_essence: boolean;
   };
-  is_screaming: boolean;
   item_level_restriction: number;
-  quiver_mods_key: string;
-  amulet1_mods_key: string;
-  amulet2_mods_key: string;
-  ring_mods_key: string;
-  belt1_mods_key: string;
-  belt2_mods_key: string;
-  belt3_mods_key: string;
-  gloves1_mods_key: string;
-  boots1_mods_key: string;
-  body_armour1_mods_key: string;
-  helmet1_mods_key: string;
-  shield1_mods_key: string;
-  shield2_mods_key: string;
-  boots3_mods_key: string;
-  ranged_mods_key: string;
-  helmet2_mods_key: string;
-  body_armour2_mods_key: string;
-  boots2_mods_key: string;
-  gloves2_mods_key: string;
-  bow_mods_key: string;
-  wand_mods_key: string;
-  '2_hand_mods_key1': string;
-  '2_hand_mods_key2': string;
-  '2_hand_mods_key3': string;
-  '2_hand_mods_key4': string;
-  '2_hand_mods_key5': string;
-  '1_hand_mods_key1': string;
-  '1_hand_mods_key2': string;
-  '1_hand_mods_key3': string;
-  '1_hand_mods_key4': string;
-  '1_hand_mods_key5': string;
-  '1_hand_mods_key6': string;
-  '1_hand_mods_key7': string;
-  '1_hand_mods_key8': string;
-  mods_key1: string;
-  mods_key2: string;
-  mods_key13: string;
-  mods_key14: string;
-  mods_key15: string;
-  mods_key41: string;
-  mods_key43: string;
+  quiver_mod?: ModProps;
+  amulet_mod?: ModProps;
+  ring_mod?: ModProps;
+  belt_mod?: ModProps;
+  shield_mod?: ModProps;
+  helmet_mod?: ModProps;
+  body_armour_mod?: ModProps;
+  boots_mod?: ModProps;
+  gloves_mod?: ModProps;
+  bow_mod?: ModProps;
+  wand_mod?: ModProps;
+  staff_mod?: ModProps;
+  two_hand_sword_mod?: ModProps;
+  two_hand_axe_mod?: ModProps;
+  two_hand_mace_mod?: ModProps;
+  claw_mod?: ModProps;
+  dagger_mod?: ModProps;
+  one_hand_sword_mod?: ModProps;
+  one_hand_thrusting_sword_mod?: ModProps;
+  one_hand_axe_mod?: ModProps;
+  one_hand_mace_mod?: ModProps;
+  sceptre_mod?: ModProps;
 }

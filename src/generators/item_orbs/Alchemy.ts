@@ -40,7 +40,7 @@ export default class Alchemy extends ItemOrb {
       let alched_item = item.rarity.set('rare');
 
       // rare items can have no more than 6 affixes
-      const new_mods = _.random(4, 6) -  item.affixes.mods.length;
+      const new_mods = _.random(4, 6) - item.affixes.mods.length;
       for (let rolled_mods = 1; rolled_mods <= new_mods; rolled_mods += 1) {
         alched_item = this.rollMod(alched_item);
       }
