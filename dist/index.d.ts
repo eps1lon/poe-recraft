@@ -1160,13 +1160,26 @@ declare module "generators/item_orbs/Scouring" {
         unique: boolean;
     }
     export type ApplicableFlag = keyof ApplicableFlags;
+    /**
+     * options for Scouring.applyTo()
+     */
+    export interface ApplyToOptions {
+        /**
+         * ignores meta mods such as "Prefixes cannot be changed"
+         */
+        ignore_meta_mods: boolean;
+        /**
+         * apply even if not applyicable
+         */
+        force: boolean;
+    }
     export default class Scouring extends ItemOrb {
         constructor();
         /**
          * applies Orb of Scouring to an item
          * considers locked affixes metamods
          */
-        applyTo(other: Item): Item;
+        applyTo(other: Item, options?: Partial<ApplyToOptions>): Item;
         /**
          * checks if normal or unique rarity and returns false
          */
@@ -1273,6 +1286,7 @@ declare module "generators/item_orbs/Essence" {
     export type ApplicableFlag = keyof ApplicableFlags;
     export default class Essence extends ItemOrb {
         static build(props: EssenceProps, mods: ModProps[]): Essence;
+        private static reforger;
         props: EssenceProps;
         private alchemy;
         /**

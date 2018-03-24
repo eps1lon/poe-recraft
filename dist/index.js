@@ -6865,20 +6865,27 @@ System.register("generators/item_orbs/Scouring", ["util/Flags", "generators/item
                  * applies Orb of Scouring to an item
                  * considers locked affixes metamods
                  */
-                Scouring.prototype.applyTo = function (other) {
-                    if (!Flags_7.anySet(this.applicableTo(other))) {
+                Scouring.prototype.applyTo = function (other, options) {
+                    if (options === void 0) { options = {}; }
+                    var _a = options.force, force = _a === void 0 ? false : _a, _b = options.ignore_meta_mods, ignore_meta_mods = _b === void 0 ? false : _b;
+                    if (force || !Flags_7.anySet(this.applicableTo(other))) {
                         var scoured_item = other;
-                        var locked_prefixes = scoured_item.affixes.lockedPrefixes();
-                        var locked_suffixes = scoured_item.affixes.lockedSuffixes();
-                        if (!locked_prefixes) {
-                            scoured_item = scoured_item.affixes
-                                .getPrefixes()
-                                .reduce(function (item, prefix) { return item.removeMod(prefix); }, scoured_item);
+                        if (!ignore_meta_mods) {
+                            var locked_prefixes = scoured_item.affixes.lockedPrefixes();
+                            var locked_suffixes = scoured_item.affixes.lockedSuffixes();
+                            if (!locked_prefixes) {
+                                scoured_item = scoured_item.affixes
+                                    .getPrefixes()
+                                    .reduce(function (item, prefix) { return item.removeMod(prefix); }, scoured_item);
+                            }
+                            if (!locked_suffixes) {
+                                scoured_item = scoured_item.affixes
+                                    .getSuffixes()
+                                    .reduce(function (item, suffix) { return item.removeMod(suffix); }, scoured_item);
+                            }
                         }
-                        if (!locked_suffixes) {
-                            scoured_item = scoured_item.affixes
-                                .getSuffixes()
-                                .reduce(function (item, suffix) { return item.removeMod(suffix); }, scoured_item);
+                        else {
+                            scoured_item = scoured_item.removeAllMods();
                         }
                         // set correct rarity
                         var remaining_prefixes = scoured_item.affixes.getPrefixes().length;
@@ -7232,10 +7239,10 @@ System.register("generators/item_orbs/EnchantmentBench", ["util/Flags", "mods/Mo
         }
     };
 });
-System.register("generators/item_orbs/Essence", ["util/Flags", "generators/item_orbs/ItemOrb", "mods/Mod", "generators/item_orbs/Alchemy"], function (exports_46, context_46) {
+System.register("generators/item_orbs/Essence", ["util/Flags", "generators/item_orbs/ItemOrb", "mods/Mod", "generators/item_orbs/Alchemy", "generators/item_orbs/Scouring"], function (exports_46, context_46) {
     "use strict";
     var __moduleName = context_46 && context_46.id;
-    var Flags_13, ItemOrb_10, Mod_4, Alchemy_2, Essence;
+    var Flags_13, ItemOrb_10, Mod_4, Alchemy_2, Scouring_3, Essence;
     return {
         setters: [
             function (Flags_13_1) {
@@ -7249,6 +7256,9 @@ System.register("generators/item_orbs/Essence", ["util/Flags", "generators/item_
             },
             function (Alchemy_2_1) {
                 Alchemy_2 = Alchemy_2_1;
+            },
+            function (Scouring_3_1) {
+                Scouring_3 = Scouring_3_1;
             }
         ],
         execute: function () {
@@ -7280,7 +7290,10 @@ System.register("generators/item_orbs/Essence", ["util/Flags", "generators/item_
                         if (this.reforges()) {
                             // essences ignore meta mods so dont use a scour implementation
                             // and just blindly remove mods
-                            new_item = new_item.removeAllMods();
+                            new_item = Essence.reforger.applyTo(new_item, {
+                                ignore_meta_mods: true,
+                                force: true,
+                            });
                         }
                         // 1. add guarenteed
                         var guarenteed = this.chooseMod(new_item);
@@ -7378,6 +7391,7 @@ System.register("generators/item_orbs/Essence", ["util/Flags", "generators/item_
                             return undefined;
                     }
                 };
+                Essence.reforger = new Scouring_3.default();
                 return Essence;
             }(ItemOrb_10.default));
             exports_46("default", Essence);
@@ -7586,9 +7600,9 @@ System.register("generators/item_orbs/index", ["generators/item_orbs/Alchemy", "
                     "Regal": Regal_1_1["default"]
                 });
             },
-            function (Scouring_3_1) {
+            function (Scouring_4_1) {
                 exports_50({
-                    "Scouring": Scouring_3_1["default"]
+                    "Scouring": Scouring_4_1["default"]
                 });
             },
             function (Talisman_1_1) {

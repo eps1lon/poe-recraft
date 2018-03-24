@@ -6,6 +6,7 @@ import ItemOrb, { ApplicableFlags as BaseApplicableFlags } from './ItemOrb';
 import Mod from '../../mods/Mod';
 import { GeneratorDetails } from '../Generator';
 import Alchemy from './Alchemy';
+import Scouring from './Scouring';
 
 export interface ApplicableFlags extends BaseApplicableFlags {
   wrong_rarity: boolean;
@@ -17,6 +18,7 @@ export default class Essence extends ItemOrb {
   public static build(props: EssenceProps, mods: ModProps[]) {
     return new Essence(props, mods);
   }
+  private static reforger = new Scouring();
 
   public props: EssenceProps;
   private alchemy: Alchemy;
@@ -44,7 +46,10 @@ export default class Essence extends ItemOrb {
       if (this.reforges()) {
         // essences ignore meta mods so dont use a scour implementation
         // and just blindly remove mods
-        new_item = new_item.removeAllMods();
+        new_item = Essence.reforger.applyTo(new_item, {
+          ignore_meta_mods: true,
+          force: true,
+        });
       }
 
       // 1. add guarenteed
