@@ -112,8 +112,15 @@ export default class Essence extends ItemOrb {
     return applicable_flags;
   }
 
-  public reforges() {
+  public reforges(): boolean {
     return this.props.tier > 5;
+  }
+
+  /**
+   * @returns true if the essence is the best of its type
+   */
+  public isTopTier(): boolean {
+    return this.props.tier === 7;
   }
 
   private modPropsFor(item_class: string): ModProps | undefined {

@@ -2,17 +2,25 @@ import { createTables } from '../../__fixtures__/util';
 
 import ItemShowcase from '../ItemShowcase';
 
-const { craftingbenchoptions, items, mods } = createTables();
+const { craftingbenchoptions, essences, items, mods } = createTables();
 
 it('should build', () => {
-  const showcase = new ItemShowcase(mods.all(), craftingbenchoptions.all());
+  const showcase = new ItemShowcase(
+    mods.all(),
+    craftingbenchoptions.all(),
+    essences.all(),
+  );
 
   expect(showcase).toBeInstanceOf(ItemShowcase);
   expect(showcase.mods.length).toBeGreaterThan(0);
 });
 
 it('should not do anything, just showcase', () => {
-  const showcase = new ItemShowcase(mods.all(), craftingbenchoptions.all());
+  const showcase = new ItemShowcase(
+    mods.all(),
+    craftingbenchoptions.all(),
+    essences.all(),
+  );
   const greaves = items.fromName('Iron Greaves');
 
   expect(showcase.applyTo(greaves)).toBe(greaves);
@@ -20,7 +28,11 @@ it('should not do anything, just showcase', () => {
 });
 
 it('should use special rarity', () => {
-  const showcase = new ItemShowcase(mods.all(), craftingbenchoptions.all());
+  const showcase = new ItemShowcase(
+    mods.all(),
+    craftingbenchoptions.all(),
+    essences.all(),
+  );
 
   const life = mods.fromId('IncreasedLife0');
   const greaves = items.fromName('Iron Greaves').addMod(life);
@@ -36,7 +48,11 @@ it('should use special rarity', () => {
 });
 
 it('is not applicable to anything', () => {
-  const showcase = new ItemShowcase(mods.all(), craftingbenchoptions.all());
+  const showcase = new ItemShowcase(
+    mods.all(),
+    craftingbenchoptions.all(),
+    essences.all(),
+  );
 
   expect(showcase.isApplicableTo(items.fromName('Iron Greaves'))).toBe(false);
 });
