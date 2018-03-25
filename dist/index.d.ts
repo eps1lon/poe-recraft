@@ -1284,6 +1284,10 @@ declare module "generators/item_orbs/Essence" {
         wrong_itemclass: boolean;
     }
     export type ApplicableFlag = keyof ApplicableFlags;
+    /**
+     * Essences guarantee at least exactly one mod depending on itemclass
+     * or are not applicable. They should provide a mod for every equipment type.
+     */
     export default class Essence extends ItemOrb {
         static build(props: EssenceProps, mods: ModProps[]): Essence;
         private static reforger;
@@ -1305,10 +1309,34 @@ declare module "generators/item_orbs/Essence" {
          * only one mod per itemclass
          */
         modsFor(item: Item, whitelist?: string[]): Array<GeneratorDetails<Mod>>;
+        /**
+         * @returns Mod if the itemclass of the Item is eligible
+         */
         chooseMod(item: Item): Mod | undefined;
+        /**
+         *
+         * @param itemclass
+         * @returns the guaranteed mod for the itemclass
+         */
         modForItemclass(itemclass: string): Mod | undefined;
+        /**
+         * applicable if the essence guarantees a mod for the itemclass
+         * and the rarity is either white or rare (only if essence can reforge)
+         * @param item
+         */
         applicableTo(item: Item): ApplicableFlags;
+        /**
+         * @returns true if the essence can reforge (i.e. reroll) the item
+         */
         reforges(): boolean;
+        /**
+         * @returns true if the essence is the best of its type
+         */
+        isTopTier(): boolean;
+        /**
+         * mapping from itemclass to mod prop in essence props
+         * @param item_class
+         */
         private modPropsFor(item_class);
     }
 }
@@ -1444,11 +1472,9 @@ declare module "generators/ItemShowcase" {
     import Item from "containers/item/Item";
     import MasterBench from "helpers/MasterBench";
     import Mod from "mods/Mod";
-    import { CraftingBenchOptionsProps, ModProps } from "schema";
+    import { CraftingBenchOptionsProps, EssenceProps, ModProps } from "schema";
     import Generator, { GeneratorDetails } from "generators/Generator";
-    import Alchemy from "generators/item_orbs/Alchemy";
-    import EnchantmentBench from "generators/item_orbs/EnchantmentBench";
-    import Vaal from "generators/item_orbs/Vaal";
+    import { Alchemy, EnchantmentBench, Vaal } from "generators/item_orbs/index";
     import { Flags } from "util/Flags";
     /**
      * Masterbench/Currency hybrid
@@ -1458,7 +1484,8 @@ declare module "generators/ItemShowcase" {
         master: MasterBench;
         explicits: Alchemy;
         vaal: Vaal;
-        constructor(props: ModProps[], options: CraftingBenchOptionsProps[]);
+        private essences;
+        constructor(props: ModProps[], options: CraftingBenchOptionsProps[], essences: EssenceProps[]);
         /**
          * only abstract showcase, not for actual usage
          */
@@ -1471,6 +1498,8 @@ declare module "generators/ItemShowcase" {
         /**
          * greps mod::applicableTo and (if implemented) mod::spawnableOn
          * if we have all the space for mods we need
+         *
+         * @returns master-, enchantment-, vaal-, explicit-, (top tier) essence-mods
          */
         modsFor(item: Item, whitelist?: string[]): Array<GeneratorDetails<Mod>>;
     }

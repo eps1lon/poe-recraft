@@ -7318,9 +7318,17 @@ System.register("generators/item_orbs/Essence", ["util/Flags", "generators/item_
                     }
                     return [{ mod: mod, spawnweight: Number.POSITIVE_INFINITY }];
                 };
+                /**
+                 * @returns Mod if the itemclass of the Item is eligible
+                 */
                 Essence.prototype.chooseMod = function (item) {
                     return this.modForItemclass(item.baseitem.item_class);
                 };
+                /**
+                 *
+                 * @param itemclass
+                 * @returns the guaranteed mod for the itemclass
+                 */
                 Essence.prototype.modForItemclass = function (itemclass) {
                     var mod_props = this.modPropsFor(itemclass);
                     if (mod_props === undefined) {
@@ -7330,6 +7338,11 @@ System.register("generators/item_orbs/Essence", ["util/Flags", "generators/item_
                         return new Mod_4.default(mod_props);
                     }
                 };
+                /**
+                 * applicable if the essence guarantees a mod for the itemclass
+                 * and the rarity is either white or rare (only if essence can reforge)
+                 * @param item
+                 */
                 Essence.prototype.applicableTo = function (item) {
                     var applicable_flags = __assign({}, _super.prototype.applicableTo.call(this, item), { wrong_rarity: !item.rarity.isNormal(), wrong_itemclass: this.chooseMod(item) === undefined });
                     if (this.reforges()) {
@@ -7338,9 +7351,22 @@ System.register("generators/item_orbs/Essence", ["util/Flags", "generators/item_
                     }
                     return applicable_flags;
                 };
+                /**
+                 * @returns true if the essence can reforge (i.e. reroll) the item
+                 */
                 Essence.prototype.reforges = function () {
                     return this.props.tier > 5;
                 };
+                /**
+                 * @returns true if the essence is the best of its type
+                 */
+                Essence.prototype.isTopTier = function () {
+                    return this.props.tier === 7;
+                };
+                /**
+                 * mapping from itemclass to mod prop in essence props
+                 * @param item_class
+                 */
                 Essence.prototype.modPropsFor = function (item_class) {
                     switch (item_class) {
                         case 'Amulet':
@@ -7818,10 +7844,10 @@ System.register("helpers/MasterBench", ["generators/MasterBenchOption"], functio
         }
     };
 });
-System.register("generators/ItemShowcase", ["helpers/MasterBench", "generators/Generator", "generators/item_orbs/Alchemy", "generators/item_orbs/EnchantmentBench", "generators/item_orbs/Vaal"], function (exports_53, context_53) {
+System.register("generators/ItemShowcase", ["helpers/MasterBench", "generators/Generator", "generators/item_orbs/index"], function (exports_53, context_53) {
     "use strict";
     var __moduleName = context_53 && context_53.id;
-    var MasterBench_1, Generator_3, Alchemy_4, EnchantmentBench_2, Vaal_2, ItemShowcase;
+    var MasterBench_1, Generator_3, item_orbs_1, ItemShowcase;
     return {
         setters: [
             function (MasterBench_1_1) {
@@ -7830,14 +7856,8 @@ System.register("generators/ItemShowcase", ["helpers/MasterBench", "generators/G
             function (Generator_3_1) {
                 Generator_3 = Generator_3_1;
             },
-            function (Alchemy_4_1) {
-                Alchemy_4 = Alchemy_4_1;
-            },
-            function (EnchantmentBench_2_1) {
-                EnchantmentBench_2 = EnchantmentBench_2_1;
-            },
-            function (Vaal_2_1) {
-                Vaal_2 = Vaal_2_1;
+            function (item_orbs_1_1) {
+                item_orbs_1 = item_orbs_1_1;
             }
         ],
         execute: function () {
@@ -7846,18 +7866,19 @@ System.register("generators/ItemShowcase", ["helpers/MasterBench", "generators/G
              */
             ItemShowcase = /** @class */ (function (_super) {
                 __extends(ItemShowcase, _super);
-                function ItemShowcase(props, options) {
+                function ItemShowcase(props, options, essences) {
                     var _this = this;
-                    var enchantment = EnchantmentBench_2.default.build(props);
+                    var enchantment = item_orbs_1.EnchantmentBench.build(props);
                     var master = MasterBench_1.default.build(options);
-                    var explicits = Alchemy_4.default.build(props);
-                    var vaal = Vaal_2.default.build(props);
+                    var explicits = item_orbs_1.Alchemy.build(props);
+                    var vaal = item_orbs_1.Vaal.build(props);
                     var mods = enchantment.mods.concat(explicits.mods, vaal.mods, master.getAvailableMods());
                     _this = _super.call(this, mods) || this;
                     _this.enchantment = enchantment;
                     _this.master = master;
                     _this.explicits = explicits;
                     _this.vaal = vaal;
+                    _this.essences = essences;
                     return _this;
                 }
                 /**
@@ -7878,10 +7899,25 @@ System.register("generators/ItemShowcase", ["helpers/MasterBench", "generators/G
                 /**
                  * greps mod::applicableTo and (if implemented) mod::spawnableOn
                  * if we have all the space for mods we need
+                 *
+                 * @returns master-, enchantment-, vaal-, explicit-, (top tier) essence-mods
                  */
                 ItemShowcase.prototype.modsFor = function (item, whitelist) {
                     if (whitelist === void 0) { whitelist = []; }
-                    var details = this.master.modsFor(item, whitelist).concat(this.enchantment.modsFor(item, whitelist), this.explicits.modsFor(item, whitelist), this.vaal.modsFor(item, whitelist));
+                    var details = this.master.modsFor(item, whitelist).concat(this.enchantment.modsFor(item, whitelist), this.explicits.modsFor(item, whitelist), this.vaal.modsFor(item, whitelist), this.essences
+                        .map(function (props) {
+                        var essence = new item_orbs_1.Essence(props, []);
+                        if (essence.isTopTier()) {
+                            return essence.chooseMod(item);
+                        }
+                        else {
+                            return undefined;
+                        }
+                    })
+                        .filter(function (mod) {
+                        return mod !== undefined;
+                    })
+                        .map(function (mod) { return ({ mod: mod }); }));
                     // flow cant merge object types
                     // { mod: OneMod, prop: number } | { mod: AnotherMod, prop: number }
                     // will not become { mod: OneMod | AnotherMod, prop: number }
