@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.8.0...HEAD)
+### Added
+- `Essence` mod generator. Adds one guarenteed mod (the essence mod) and fills
+  up the rest like an Alchemy. `Essence.modsFor` only returns the guaranteed mod. 
+  Properties for all essences are included in `data/essences.json`. ([#43](https://github.com/eps1lon/poe-mods/pull/43))
+- Added `ignore_meta_mods` option to `Scouring.applyTo` which ignores locked
+  prefixes and locked suffixes meta mods. ([#43](https://github.com/eps1lon/poe-mods/pull/43))
+
 ### Fixed
 - Fixed `ItemShowcase` returning true from `isApplicableTo`  ([#41](https://github.com/eps1lon/poe-mods/pull/42)). 
   It is not supposed to provide any functionallity upon application. 
