@@ -14,6 +14,10 @@ export interface ApplicableFlags extends BaseApplicableFlags {
 }
 export type ApplicableFlag = keyof ApplicableFlags;
 
+/**
+ * Essences guarantee at least exactly one mod depending on itemclass
+ * or are not applicable. They should provide a mod for every equipment type.
+ */
 export default class Essence extends ItemOrb {
   public static build(props: EssenceProps, mods: ModProps[]) {
     return new Essence(props, mods);
@@ -84,10 +88,18 @@ export default class Essence extends ItemOrb {
     return [{ mod, spawnweight: Number.POSITIVE_INFINITY }];
   }
 
+  /**
+   * @returns Mod if the itemclass of the Item is eligible
+   */
   public chooseMod(item: Item): Mod | undefined {
     return this.modForItemclass(item.baseitem.item_class);
   }
 
+  /**
+   *
+   * @param itemclass 
+   * @returns the guaranteed mod for the itemclass
+   */
   public modForItemclass(itemclass: string): Mod | undefined {
     const mod_props = this.modPropsFor(itemclass);
     if (mod_props === undefined) {
@@ -97,6 +109,11 @@ export default class Essence extends ItemOrb {
     }
   }
 
+  /**
+   * applicable if the essence guarantees a mod for the itemclass
+   * and the rarity is either white or rare (only if essence can reforge)
+   * @param item 
+   */
   public applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = {
       ...super.applicableTo(item),
@@ -112,6 +129,9 @@ export default class Essence extends ItemOrb {
     return applicable_flags;
   }
 
+  /**
+   * @returns true if the essence can reforge (i.e. reroll) the item
+   */
   public reforges(): boolean {
     return this.props.tier > 5;
   }
@@ -123,6 +143,10 @@ export default class Essence extends ItemOrb {
     return this.props.tier === 7;
   }
 
+  /**
+   * mapping from itemclass to mod prop in essence props
+   * @param item_class 
+   */
   private modPropsFor(item_class: string): ModProps | undefined {
     switch (item_class) {
       case 'Amulet':
