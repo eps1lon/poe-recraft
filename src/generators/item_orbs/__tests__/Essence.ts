@@ -196,4 +196,40 @@ describe('application', () => {
       crafted.affixes.mods.find(mod => mod.props.id === 'IncreasedMana11'),
     ).toBeDefined();
   });
+
+  it('throws if forced but no mod is provided for the given itemclass', () => {
+    const flask = items.fromName('Divine Life Flask');
+    const essence = essences.from(byEssenceName('Deafening Essence of Fear'));
+
+    expect(() => essence.applyTo(flask, { force: true })).toThrow(
+      "'LifeFlask' has no guarentedd mod",
+    );
+  });
+
+  it('returns the same item if not applicable', () => {
+    const boots = items.fromName('Iron Greaves').rarity.set('magic');
+    const essence = essences.from(byEssenceName('Deafening Essence of Fear'));
+
+    expect(essence.applyTo(boots)).toBe(boots);
+  });
+});
+
+describe('mods', () => {
+  it('guarantees on mod if the itemclass matches', () => {
+    const boots = items.fromName('Iron Greaves');
+    const essence = essences.from(byEssenceName('Screaming Essence of Rage'));
+
+    const essence_mods = essence.modsFor(boots);
+    expect(essence_mods).toHaveLength(1);
+    expect(essence_mods[0].spawnweight).toEqual(Number.POSITIVE_INFINITY);
+    expect(essence_mods[0].mod.props.id).toEqual('Strength6');
+  });
+
+  it('has none if the itemclass doesnt match', () => {
+    const map = items.fromName('Graveyard Map');
+    const essence = essences.from(byEssenceName('Screaming Essence of Spite'));
+
+    const essence_mods = essence.modsFor(map);
+    expect(essence_mods).toHaveLength(0);
+  });
 });
