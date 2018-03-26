@@ -31,12 +31,13 @@ export default function snapshotItem(
   }
 
   const properties = snapshotProperties(item);
+  const [typeLineOrName, typeLine] = item.name.lines();
 
   return {
     base: {
       name: namei18n(item, messages)
     },
-    name: item.name.lines()[0],
+    name: typeLine !== undefined ? typeLineOrName : undefined,
     elder: item.isElderItem(),
     shaper: item.isSHaperItem(),
     implicitStats: statsTranslated(item.implicits, descriptions),
