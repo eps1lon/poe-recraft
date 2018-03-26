@@ -39,8 +39,8 @@ export default function snapshotItem(
     name: item.name.lines()[0],
     elder: item.isElderItem(),
     shaper: item.isSHaperItem(),
-    implicits: statsTranslated(item.implicits, descriptions),
-    explicits: statsTranslated(item.affixes, descriptions),
+    implicitStats: statsTranslated(item.implicits, descriptions),
+    explicitStats: statsTranslated(item.affixes, descriptions),
     rarity,
     ...properties,
     requirements: snapshotRequirements(item)
