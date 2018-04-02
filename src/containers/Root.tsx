@@ -39,6 +39,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       dispatch(poe_actions.getBenchoptions());
       dispatch(poe_actions.getMods());
       dispatch(poe_actions.getTags());
+      dispatch(poe_actions.getEssences());
     }
   };
 };

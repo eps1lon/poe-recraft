@@ -13,8 +13,9 @@ export interface StatProps {
   id: string;
 }
 
+export type ModId = string;
 export interface ModProps {
-  id: string;
+  id: ModId;
   level: number;
   domain: number;
   name: string;
@@ -113,4 +114,110 @@ export interface AtlasNodeProps {
   y: number;
   adjacent: number[];
   world_area: WorldAreaProps;
+}
+
+export interface NormalizedEssenceProps {
+  primary: number;
+  tier: number;
+  base_item_type: BaseItemTypeProps;
+  essence_type: {
+    id: string;
+    essence_type: number;
+    is_corrupted_essence: boolean;
+  };
+  item_level_restriction: number;
+  quiver_mods_key?: ModId;
+  amulet_mods_key?: ModId;
+  ring_mods_key?: ModId;
+  belt_mods_key?: ModId;
+  shield_mods_key?: ModId;
+  helmet_mods_key?: ModId;
+  body_armour_mods_key?: ModId;
+  boots_mods_key?: ModId;
+  gloves_mods_key?: ModId;
+  bow_mods_key?: ModId;
+  wand_mods_key?: ModId;
+  staff_mods_key?: ModId;
+  two_hand_sword_mods_key?: ModId;
+  two_hand_axe_mods_key?: ModId;
+  two_hand_mace_mods_key?: ModId;
+  claw_mods_key?: ModId;
+  dagger_mods_key?: ModId;
+  one_hand_sword_mods_key?: ModId;
+  one_hand_thrusting_sword_mods_key?: ModId;
+  one_hand_axe_mods_key?: ModId;
+  one_hand_mace_mods_key?: ModId;
+  sceptre_mods_key?: ModId;
+  display_wand_mods_key?: ModId;
+  display_bow_mods_key?: ModId;
+  display_amulet_mods_key?: ModId;
+  display_ring_mods_key?: ModId;
+  display_belt_mods_key?: ModId;
+  display_gloves_mods_key?: ModId;
+  display_boots_mods_key?: ModId;
+  display_body_armour_mods_key?: ModId;
+  display_helmet_mods_key?: ModId;
+  display_shield_mods_key?: ModId;
+  display_weapon_mods_key?: ModId;
+  display_melee_weapon_mods_key?: ModId;
+  display_1_hand_weapon_mods_key?: ModId;
+  display_2_hand_weapon_mods_key?: ModId;
+  display_2_hand_melee_weapon_mods_key?: ModId;
+  display_armour_mods_key?: ModId;
+  display_ranged_mods_key?: ModId;
+  display_item_mods_key?: ModId;
+  display_jewellry_mods_key?: ModId;
+}
+
+export interface EssenceProps {
+  primary: number;
+  tier: number;
+  base_item_type: BaseItemTypeProps;
+  essence_type: {
+    id: string;
+    essence_type: number;
+    is_corrupted_essence: boolean;
+  };
+  item_level_restriction: number;
+  quiver_mod?: ModProps;
+  amulet_mod?: ModProps;
+  ring_mod?: ModProps;
+  belt_mod?: ModProps;
+  shield_mod?: ModProps;
+  helmet_mod?: ModProps;
+  body_armour_mod?: ModProps;
+  boots_mod?: ModProps;
+  gloves_mod?: ModProps;
+  bow_mod?: ModProps;
+  wand_mod?: ModProps;
+  staff_mod?: ModProps;
+  two_hand_sword_mod?: ModProps;
+  two_hand_axe_mod?: ModProps;
+  two_hand_mace_mod?: ModProps;
+  claw_mod?: ModProps;
+  dagger_mod?: ModProps;
+  one_hand_sword_mod?: ModProps;
+  one_hand_thrusting_sword_mod?: ModProps;
+  one_hand_axe_mod?: ModProps;
+  one_hand_mace_mod?: ModProps;
+  sceptre_mod?: ModProps;
+  display_wand_mod?: ModProps;
+  display_bow_mod?: ModProps;
+  display_amulet_mod?: ModProps;
+  display_ring_mod?: ModProps;
+  display_belt_mod?: ModProps;
+  display_gloves_mod?: ModProps;
+  display_boots_mod?: ModProps;
+  display_body_armour_mod?: ModProps;
+  display_helmet_mod?: ModProps;
+  display_shield_mod?: ModProps;
+  display_weapon_mod?: ModProps;
+  display_melee_weapon_mod?: ModProps;
+  display_1_hand_weapon_mod?: ModProps;
+  display_2_hand_weapon_mod?: ModProps;
+  display_2_hand_melee_weapon_mod?: ModProps;
+  display_armour_mod?: ModProps;
+  display_ranged_mod?: ModProps;
+  display_item_mod?: ModProps;
+  display_jewellry_mod?: ModProps;
 }

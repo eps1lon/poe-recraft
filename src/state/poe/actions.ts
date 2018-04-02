@@ -6,21 +6,25 @@ import {
   BaseItemTypeProps,
   CraftingBenchOptionsProps,
   ModProps,
-  TagProps
+  TagProps,
+  EssenceProps,
+  NormalizedEssenceProps
 } from './schema';
 
 export enum Type {
   ITEMS_SUCCESS = 'POE/ITEMS_SUCCESS',
   BENCH_SUCCESS = 'POE/BENCH_SUCCESS',
   MODS_SUCCESS = 'POE/MODS_SUCCESS',
-  TAGS_SUCCESS = 'POE/TAGS_SUCCESS'
+  TAGS_SUCCESS = 'POE/TAGS_SUCCESS',
+  ESSENCES_SUCCESS = 'POE/ESSENCES_SUCCESS'
 }
 
 export type Action =
   | ItemsSuccessAction
   | BenchSuccessAction
   | ModsSuccessAction
-  | TagsSuccessAction;
+  | TagsSuccessAction
+  | EssencesSuccessAction;
 
 function getEndpoint(endpoint: string, name: string): RSAAction<any, any, any> {
   return {
@@ -58,4 +62,12 @@ export function getMods() {
 export type TagsSuccessAction = Action<Type.TAGS_SUCCESS, TagProps[]>;
 export function getTags() {
   return getEndpoint('data/tags.json', 'TAGS');
+}
+
+export type EssencesSuccessAction = Action<
+  Type.ESSENCES_SUCCESS,
+  NormalizedEssenceProps[]
+>;
+export function getEssences() {
+  return getEndpoint('data/essences.json', 'ESSENCES');
 }
