@@ -15,7 +15,6 @@ export type State = {
   mods: { [key: string]: ModProps };
   tags: TagProps[];
   essences: NormalizedEssenceProps[];
-  version: string;
 };
 
 const initial: State = {
@@ -24,8 +23,8 @@ const initial: State = {
   benchoptions: [],
   mods: {},
   tags: [],
-  essences: [],
-  version: '3.2.0'
+  essences: []
+  // TODO: extract version from data and keep it synced across entities
 };
 
 // TODO add normalizr

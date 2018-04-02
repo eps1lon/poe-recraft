@@ -26,8 +26,7 @@ const Root: SFC<Props> = ({ locale, messages, store, init, version }) => {
 const mapStateToProps = (state: State) => {
   return {
     locale: state.i18n.locale,
-    messages: state.i18n.messages,
-    version: state.poe.version
+    messages: state.i18n.messages
   };
 };
 

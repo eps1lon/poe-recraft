@@ -9,6 +9,8 @@ import LanguagePicker from 'containers/LanguagePicker';
 import ItemSection from 'containers/ItemSection';
 import ItemclassPicker from 'containers/itemclass_picker/Picker';
 
+import * as settings from './settings';
+
 import './index.css';
 
 export type Props = {
@@ -16,20 +18,8 @@ export type Props = {
 };
 
 const default_props = {
-  version: 'undefined'
+  version: settings.GAME_VERSION
 };
-
-const supported_locales = [
-  'en',
-  'ru',
-  'th',
-  'pt',
-  'zh-cn', // simplified chinese
-  'zh-tw', // traditional chinese
-  'de',
-  'es',
-  'fr'
-];
 
 // @ts-ignore: jsx array elements not supported
 const AppUI: SFC<Props> = props => {
@@ -42,7 +32,7 @@ const AppUI: SFC<Props> = props => {
         (Patch: <em id="game_version">{version}</em>)
       </span>
       <Nav tabs={true}>
-        <ItemclassPicker />
+        <ItemclassPicker groups={settings.ITEMCLASSES_GROUPED} />
         <NavItem>
           <BaseItemModal />
         </NavItem>
@@ -52,7 +42,7 @@ const AppUI: SFC<Props> = props => {
         <NavItem>
           <ApplyGenerator />
         </NavItem>
-        <LanguagePicker locales={supported_locales} />
+        <LanguagePicker locales={settings.SUPPORTED_LOCALES} />
       </Nav>
     </header>,
     <div key="content" id="content">
