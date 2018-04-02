@@ -1,5 +1,5 @@
 import { Popup as ItemPopup, Rarity } from 'poe-components-item';
-import { formatStats } from 'poe-i18n';
+import { formatStats, Fallback } from 'poe-i18n';
 import { Container, Item, ArmourProperties } from 'poe-mods';
 
 import { namei18n } from '../../util/item';
@@ -95,6 +95,6 @@ function statsTranslated(container: Container<any>, descriptions: {}) {
         value: stat.values.valueOf()
       };
     }),
-    { datas: descriptions }
+    { datas: descriptions, fallback: Fallback.id }
   );
 }
