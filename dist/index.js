@@ -302,6 +302,7 @@ System.register("mods/Mod", ["calculator/Stat", "util/ts"], function (exports_6,
                     MASTER: 10,
                     JEWEL: 11,
                     ATLAS: 12,
+                    ABYSS_JEWEL: 14
                 };
                 Mod.TYPE = {
                     PREFIX: 1,
@@ -5418,6 +5419,9 @@ System.register("containers/item/components/Affixes", ["mods/index", "containers
                         if (this.item.meta_data.isA('AbstractJewel')) {
                             return 2;
                         }
+                        else if (this.item.meta_data.isA('AbstractAbyssJewel')) {
+                            return 2;
+                        }
                         return 3;
                     }
                     else if (this.item.rarity.isUnique()) {
@@ -5439,6 +5443,9 @@ System.register("containers/item/components/Affixes", ["mods/index", "containers
                     }
                     if (this.item.meta_data.isA('AbstractMap')) {
                         return mods_1.Mod.DOMAIN.MAP;
+                    }
+                    if (this.item.meta_data.isA('AbstractAbyssJewel')) {
+                        return mods_1.Mod.DOMAIN.ABYSS_JEWEL;
                     }
                     return mods_1.Mod.DOMAIN.ITEM;
                 };

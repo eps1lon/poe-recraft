@@ -43,6 +43,16 @@ it('should match the previously generated wand mods', () => {
   expect(showcase.modsFor(wand).map(formatForSnapshot)).toMatchSnapshot();
 });
 
+it('should match the previously generated jewel mods', () => {
+  const jewel = items.fromName('Crimson Jewel');
+  expect(showcase.modsFor(jewel).map(formatForSnapshot)).toMatchSnapshot();
+});
+
+it('should match the previously generated abyss jewel mods', () => {
+  const jewel = items.fromName('Murderous Eye Jewel');
+  expect(showcase.modsFor(jewel).map(formatForSnapshot)).toMatchSnapshot();
+});
+
 it('should be able to generate elder mods', () => {
   const boots = items.fromName('Iron Greaves').asElderItem();
 

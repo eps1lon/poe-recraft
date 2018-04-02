@@ -14,6 +14,7 @@ export default class Mod {
     MASTER: 10,
     JEWEL: 11,
     ATLAS: 12,
+    ABYSS_JEWEL: 14,
   };
 
   public static TYPE: { [key: string]: number } = {
