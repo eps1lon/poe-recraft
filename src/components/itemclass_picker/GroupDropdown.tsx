@@ -12,7 +12,7 @@ const GroupDropdown: SFC<Props> = props => {
 
   return (
     <DropdownMenu>
-      {classes.map(id => <ItemClass key={id} id={id} name={name} />)}
+      {classes.map(id => <ItemClass key={id} id={id} name={id} />)}
     </DropdownMenu>
   );
 };

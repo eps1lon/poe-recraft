@@ -28,7 +28,10 @@ const BaseItemModal: SFC<Props> = props => {
       <Button onClick={toggle}>
         Baseitem:{' '}
         {active != null ? (
-          <FormattedMessage id={`poe.baseitemtypes.${active.id}.name`} />
+          <FormattedMessage
+            id={`poe.baseitemtypes.${active.id}.name`}
+            defaultMessage={active.id}
+          />
         ) : (
           'undefined'
         )}

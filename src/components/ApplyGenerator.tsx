@@ -1,5 +1,4 @@
 import React, { SFC } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { Button } from 'reactstrap';
 
 import { FormattedGenerator } from './i18n';
