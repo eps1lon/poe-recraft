@@ -2,6 +2,7 @@ import {
   ItemShowcase,
   Alchemy,
   Alteration,
+  Annulment,
   Augment,
   Chaos,
   Exalted,
@@ -25,6 +26,7 @@ const buildAlchemy = createSelector(
   (state: { poe: State }) => getMods(state),
   mods => Alchemy.build(mods)
 );
+const buildAnnullment = () => new Annulment();
 const buildAugment = createSelector(
   (state: { poe: State }) => getMods(state),
   mods => Augment.build(mods)
@@ -55,6 +57,8 @@ export function buildGeneratorFactory(generator: string) {
   switch (generator) {
     case 'alchemy':
       return buildAlchemy;
+    case 'annullment':
+      return buildAnnullment;
     case 'augment':
       return buildAugment;
     case 'alteration':

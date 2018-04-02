@@ -1,5 +1,6 @@
 import alchemy from './assets/alchemy.png';
 import alteration from './assets/alteration.png';
+import annullment from './assets/annullment.png';
 import armourers from './assets/armourers.png';
 import augmentation from './assets/augmentation.png';
 import blessed from './assets/blessed.png';
@@ -24,6 +25,10 @@ export default {
   alteration: {
     icon: alteration,
     id: 'Metadata/Items/Currency/CurrencyRerollMagic'
+  },
+  annullment: {
+    icon: annullment,
+    id: 'Metadata/Items/Currency/CurrencyRemoveMod'
   },
   armourers: {
     icon: armourers,
