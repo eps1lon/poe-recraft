@@ -199,6 +199,7 @@ declare module "mods/Mod" {
             MASTER: number;
             JEWEL: number;
             ATLAS: number;
+            ABYSS_JEWEL: number;
         };
         static TYPE: {
             [key: string]: number;

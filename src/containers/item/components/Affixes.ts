@@ -87,6 +87,8 @@ export default class ItemAffixes extends ImmutableContainer<Mod, Builder> {
     } else if (this.item.rarity.isRare()) {
       if (this.item.meta_data.isA('AbstractJewel')) {
         return 2;
+      } else if (this.item.meta_data.isA('AbstractAbyssJewel')) {
+        return 2;
       }
       return 3;
     } else if (this.item.rarity.isUnique()) {
@@ -109,6 +111,9 @@ export default class ItemAffixes extends ImmutableContainer<Mod, Builder> {
     }
     if (this.item.meta_data.isA('AbstractMap')) {
       return Mod.DOMAIN.MAP;
+    }
+    if (this.item.meta_data.isA('AbstractAbyssJewel')) {
+      return Mod.DOMAIN.ABYSS_JEWEL;
     }
     return Mod.DOMAIN.ITEM;
   }
