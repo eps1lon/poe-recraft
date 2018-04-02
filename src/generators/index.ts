@@ -6,6 +6,7 @@ export {
   Augment,
   Chaos,
   EnchantmentBench,
+  Essence,
   Exalted,
   Regal,
   Scouring,

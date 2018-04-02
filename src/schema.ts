@@ -119,3 +119,37 @@ export interface AtlasNodeProps {
   adjacent: number[];
   world_area: WorldAreaProps;
 }
+
+export interface EssenceProps {
+  primary: number;
+  tier: number;
+  base_item_type: BaseItemTypeProps;
+  essence_type: {
+    id: string;
+    essence_type: number;
+    is_corrupted_essence: boolean;
+  };
+  item_level_restriction: number;
+  quiver_mod?: ModProps;
+  amulet_mod?: ModProps;
+  ring_mod?: ModProps;
+  belt_mod?: ModProps;
+  shield_mod?: ModProps;
+  helmet_mod?: ModProps;
+  body_armour_mod?: ModProps;
+  boots_mod?: ModProps;
+  gloves_mod?: ModProps;
+  bow_mod?: ModProps;
+  wand_mod?: ModProps;
+  staff_mod?: ModProps;
+  two_hand_sword_mod?: ModProps;
+  two_hand_axe_mod?: ModProps;
+  two_hand_mace_mod?: ModProps;
+  claw_mod?: ModProps;
+  dagger_mod?: ModProps;
+  one_hand_sword_mod?: ModProps;
+  one_hand_thrusting_sword_mod?: ModProps;
+  one_hand_axe_mod?: ModProps;
+  one_hand_mace_mod?: ModProps;
+  sceptre_mod?: ModProps;
+}

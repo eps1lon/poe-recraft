@@ -15,13 +15,15 @@ export class NotFound extends BaseError {
 }
 
 // take care. flow accepts any as a constructor
-export default class PropsTable<P extends TableProps, T> {
-  public builder: Buildable<P, T>;
+export default class PropsTable<P extends TableProps, T, A1> {
+  public builder: Buildable<P, T, A1>;
   public table: P[];
+  public builder_arg1: A1;
 
-  constructor(all: P[], constructor: Buildable<P, T>) {
+  constructor(all: P[], constructor: Buildable<P, T, A1>, arg1: A1) {
     this.builder = constructor;
     this.table = all;
+    this.builder_arg1 = arg1;
   }
 
   public all(): P[] {
@@ -43,7 +45,7 @@ export default class PropsTable<P extends TableProps, T> {
       throw new NotFound(this.builder.name, `with custom finder`);
     }
 
-    return this.builder.build(props);
+    return this.builder.build(props, this.builder_arg1!);
   }
 
   public fromPrimary(primary: number): T {

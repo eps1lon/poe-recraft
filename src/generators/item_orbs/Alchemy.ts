@@ -14,6 +14,16 @@ export interface ApplicableFlags extends BaseApplicableFlags {
 }
 export type ApplicableFlag = keyof ApplicableFlags;
 
+/**
+ * options for Alchemy#applyTo()
+ */
+export interface ApplyOptions {
+  /**
+   * ignores Alchemy#applicableTo() if true
+   */
+  force: boolean;
+}
+
 export default class Alchemy extends ItemOrb {
   public static build(mods: ModProps[]): Alchemy {
     return new Alchemy(Transmute.buildMods(mods));
@@ -22,12 +32,15 @@ export default class Alchemy extends ItemOrb {
   /**
    *  adds 1-2 mods
    */
-  public applyTo(item: Item): Item {
-    if (!anySet(this.applicableTo(item))) {
+  public applyTo(item: Item, options: Partial<ApplyOptions> = {}): Item {
+    const { force = false } = options;
+
+    if (force || !anySet(this.applicableTo(item))) {
       // upgrade to rare
       let alched_item = item.rarity.set('rare');
 
-      const new_mods = _.random(4, 6);
+      // rare items can have no more than 6 affixes
+      const new_mods = _.random(4, 6) - item.affixes.mods.length;
       for (let rolled_mods = 1; rolled_mods <= new_mods; rolled_mods += 1) {
         alched_item = this.rollMod(alched_item);
       }

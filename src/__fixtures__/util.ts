@@ -5,21 +5,23 @@ import {
   AtlasNodeProps,
   BaseItemTypeProps,
   CraftingBenchOptionsProps,
+  EssenceProps,
   ModProps,
 } from '../schema';
 
 import AtlasNode from '../containers/AtlasNode';
 import Item from '../containers/item/Item';
-import MasterBenchOption from '../generators/MasterBenchOption';
+import { Essence, MasterBenchOption } from '../generators';
 import Mod from '../mods/Mod';
 import PropsTable, { TableProps } from '../helpers/PropsTable';
 import { Buildable } from '../interfaces/Buildable';
 
 const json_cache: Partial<Tables> = {};
 
-export const createTable = <P extends TableProps, T>(
+export const createTable = <P extends TableProps, T, A1>(
   file: keyof Tables,
-  constructor: Buildable<P, T>,
+  constructor: Buildable<P, T, A1>,
+  arg1: A1,
 ) => {
   if (json_cache[file] == null) {
     const body = fs.readFileSync(
@@ -29,32 +31,40 @@ export const createTable = <P extends TableProps, T>(
     const json = JSON.parse(body.toString());
 
     // @ts-ignore
-    json_cache[file] = new PropsTable(json, constructor);
+    json_cache[file] = new PropsTable(json, constructor, arg1);
   }
 
   return json_cache[file];
 };
 
 interface Tables {
-  atlas: PropsTable<AtlasNodeProps, AtlasNode>;
+  atlas: PropsTable<AtlasNodeProps, AtlasNode, undefined>;
   craftingbenchoptions: PropsTable<
     CraftingBenchOptionsProps,
-    MasterBenchOption
+    MasterBenchOption,
+    undefined
   >;
-  items: PropsTable<BaseItemTypeProps, Item>;
-  mods: PropsTable<ModProps, Mod>;
+  essences: PropsTable<EssenceProps, Essence, ModProps>;
+  items: PropsTable<BaseItemTypeProps, Item, undefined>;
+  mods: PropsTable<ModProps, Mod, undefined>;
 }
 
 export const createTables = () => {
-  return {
-    atlas: createTable('atlas', AtlasNode),
+  const tables = {
+    atlas: createTable('atlas', AtlasNode, undefined),
     craftingbenchoptions: createTable(
       'craftingbenchoptions',
       MasterBenchOption,
+      undefined,
     ),
-    items: createTable('items', Item),
-    mods: createTable('mods', Mod),
+    items: createTable('items', Item, undefined),
+    mods: createTable('mods', Mod, undefined),
   } as Tables;
+
+  // @ts-ignore: its not undefined though?!
+  tables.essences = createTable('essences', Essence, tables.mods.all());
+
+  return tables;
 };
 
 export const byWorldAreaId = (id: string) => (node: AtlasNodeProps) =>
@@ -62,7 +72,10 @@ export const byWorldAreaId = (id: string) => (node: AtlasNodeProps) =>
 
 export const fromWorldAreaId = (
   id: string,
-  atlas: PropsTable<AtlasNodeProps, AtlasNode>,
+  atlas: PropsTable<AtlasNodeProps, AtlasNode, undefined>,
 ): AtlasNode => {
   return atlas.from(node => node.world_area.id === id);
 };
+
+export const byEssenceName = (name: string) => (essence: EssenceProps) =>
+  essence.base_item_type.name === name;

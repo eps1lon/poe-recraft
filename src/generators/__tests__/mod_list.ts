@@ -3,14 +3,18 @@ import ItemShowcase from '../ItemShowcase';
 import { GeneratorDetails } from '../Generator';
 import Mod from '../../mods/Mod';
 
-const { craftingbenchoptions, items, mods } = createTables();
+const { craftingbenchoptions, essences, items, mods } = createTables();
 
 // this is a non exhaustive lists of previously generated mods
 // this is mainly used to track changes in the behavior
 // this also fails when new mods are add or removed
 // so failing does not neccessarily mean that something is wrong
 
-const showcase = new ItemShowcase(mods.all(), craftingbenchoptions.all());
+const showcase = new ItemShowcase(
+  mods.all(),
+  craftingbenchoptions.all(),
+  essences.all(),
+);
 
 const formatForSnapshot = ({ mod, ...props }: GeneratorDetails<Mod>) => ({
   mod: mod.props.id,

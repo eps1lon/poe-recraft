@@ -14,13 +14,18 @@ export type SpawnableFlag = keyof SpawnableFlags;
 
 /**
  * @abstract
+ * a Generator that randomly rolls one of its mods
+ * ignores mods that have no spawnweight or 0 spawnweight for every tag
  */
 export default abstract class Orb<C extends Container<any>> extends Generator<
   Mod,
   C
 > {
   public static modFilter(mod: ModProps): boolean {
-    return mod.spawn_weights.length > 0;
+    return (
+      mod.spawn_weights.length > 0 &&
+      mod.spawn_weights.some(({ value }) => value > 0)
+    );
   }
 
   public static buildMods(mods: ModProps[]): Mod[] {

@@ -9,6 +9,20 @@ export interface ApplicableFlags extends BaseApplicableFlags {
 }
 export type ApplicableFlag = keyof ApplicableFlags;
 
+/**
+ * options for Scouring.applyTo()
+ */
+export interface ApplyToOptions {
+  /**
+   * ignores meta mods such as "Prefixes cannot be changed"
+   */
+  ignore_meta_mods: boolean;
+  /**
+   * apply even if not applyicable
+   */
+  force: boolean;
+}
+
 export default class Scouring extends ItemOrb {
   constructor() {
     super([]);
@@ -18,23 +32,29 @@ export default class Scouring extends ItemOrb {
    * applies Orb of Scouring to an item
    * considers locked affixes metamods
    */
-  public applyTo(other: Item): Item {
-    if (!anySet(this.applicableTo(other))) {
+  public applyTo(other: Item, options: Partial<ApplyToOptions> = {}): Item {
+    const { force = false, ignore_meta_mods = false } = options;
+
+    if (force || !anySet(this.applicableTo(other))) {
       let scoured_item: Item = other;
 
-      const locked_prefixes = scoured_item.affixes.lockedPrefixes();
-      const locked_suffixes = scoured_item.affixes.lockedSuffixes();
+      if (!ignore_meta_mods) {
+        const locked_prefixes = scoured_item.affixes.lockedPrefixes();
+        const locked_suffixes = scoured_item.affixes.lockedSuffixes();
 
-      if (!locked_prefixes) {
-        scoured_item = scoured_item.affixes
-          .getPrefixes()
-          .reduce((item, prefix) => item.removeMod(prefix), scoured_item);
-      }
+        if (!locked_prefixes) {
+          scoured_item = scoured_item.affixes
+            .getPrefixes()
+            .reduce((item, prefix) => item.removeMod(prefix), scoured_item);
+        }
 
-      if (!locked_suffixes) {
-        scoured_item = scoured_item.affixes
-          .getSuffixes()
-          .reduce((item, suffix) => item.removeMod(suffix), scoured_item);
+        if (!locked_suffixes) {
+          scoured_item = scoured_item.affixes
+            .getSuffixes()
+            .reduce((item, suffix) => item.removeMod(suffix), scoured_item);
+        }
+      } else {
+        scoured_item = scoured_item.removeAllMods();
       }
 
       // set correct rarity

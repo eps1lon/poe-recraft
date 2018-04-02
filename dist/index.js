@@ -6517,6 +6517,8 @@ System.register("generators/Orb", ["mods/index", "util/Flags", "util/rng", "gene
         execute: function () {
             /**
              * @abstract
+             * a Generator that randomly rolls one of its mods
+             * ignores mods that have no spawnweight or 0 spawnweight for every tag
              */
             Orb = /** @class */ (function (_super) {
                 __extends(Orb, _super);
@@ -6524,7 +6526,11 @@ System.register("generators/Orb", ["mods/index", "util/Flags", "util/rng", "gene
                     return _super !== null && _super.apply(this, arguments) || this;
                 }
                 Orb.modFilter = function (mod) {
-                    return mod.spawn_weights.length > 0;
+                    return (mod.spawn_weights.length > 0 &&
+                        mod.spawn_weights.some(function (_a) {
+                            var value = _a.value;
+                            return value > 0;
+                        }));
                 };
                 Orb.buildMods = function (mods) {
                     var _this = this;
@@ -6740,11 +6746,14 @@ System.register("generators/item_orbs/Alchemy", ["lodash", "util/Flags", "genera
                 /**
                  *  adds 1-2 mods
                  */
-                Alchemy.prototype.applyTo = function (item) {
-                    if (!Flags_5.anySet(this.applicableTo(item))) {
+                Alchemy.prototype.applyTo = function (item, options) {
+                    if (options === void 0) { options = {}; }
+                    var _a = options.force, force = _a === void 0 ? false : _a;
+                    if (force || !Flags_5.anySet(this.applicableTo(item))) {
                         // upgrade to rare
                         var alched_item = item.rarity.set('rare');
-                        var new_mods = _.random(4, 6);
+                        // rare items can have no more than 6 affixes
+                        var new_mods = _.random(4, 6) - item.affixes.mods.length;
                         for (var rolled_mods = 1; rolled_mods <= new_mods; rolled_mods += 1) {
                             alched_item = this.rollMod(alched_item);
                         }
@@ -6856,20 +6865,27 @@ System.register("generators/item_orbs/Scouring", ["util/Flags", "generators/item
                  * applies Orb of Scouring to an item
                  * considers locked affixes metamods
                  */
-                Scouring.prototype.applyTo = function (other) {
-                    if (!Flags_7.anySet(this.applicableTo(other))) {
+                Scouring.prototype.applyTo = function (other, options) {
+                    if (options === void 0) { options = {}; }
+                    var _a = options.force, force = _a === void 0 ? false : _a, _b = options.ignore_meta_mods, ignore_meta_mods = _b === void 0 ? false : _b;
+                    if (force || !Flags_7.anySet(this.applicableTo(other))) {
                         var scoured_item = other;
-                        var locked_prefixes = scoured_item.affixes.lockedPrefixes();
-                        var locked_suffixes = scoured_item.affixes.lockedSuffixes();
-                        if (!locked_prefixes) {
-                            scoured_item = scoured_item.affixes
-                                .getPrefixes()
-                                .reduce(function (item, prefix) { return item.removeMod(prefix); }, scoured_item);
+                        if (!ignore_meta_mods) {
+                            var locked_prefixes = scoured_item.affixes.lockedPrefixes();
+                            var locked_suffixes = scoured_item.affixes.lockedSuffixes();
+                            if (!locked_prefixes) {
+                                scoured_item = scoured_item.affixes
+                                    .getPrefixes()
+                                    .reduce(function (item, prefix) { return item.removeMod(prefix); }, scoured_item);
+                            }
+                            if (!locked_suffixes) {
+                                scoured_item = scoured_item.affixes
+                                    .getSuffixes()
+                                    .reduce(function (item, suffix) { return item.removeMod(suffix); }, scoured_item);
+                            }
                         }
-                        if (!locked_suffixes) {
-                            scoured_item = scoured_item.affixes
-                                .getSuffixes()
-                                .reduce(function (item, suffix) { return item.removeMod(suffix); }, scoured_item);
+                        else {
+                            scoured_item = scoured_item.removeAllMods();
                         }
                         // set correct rarity
                         var remaining_prefixes = scoured_item.affixes.getPrefixes().length;
@@ -7223,10 +7239,10 @@ System.register("generators/item_orbs/EnchantmentBench", ["util/Flags", "mods/Mo
         }
     };
 });
-System.register("generators/item_orbs/Regal", ["util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Transmute"], function (exports_46, context_46) {
+System.register("generators/item_orbs/Essence", ["util/Flags", "generators/item_orbs/ItemOrb", "mods/Mod", "generators/item_orbs/Alchemy", "generators/item_orbs/Scouring"], function (exports_46, context_46) {
     "use strict";
     var __moduleName = context_46 && context_46.id;
-    var Flags_13, ItemOrb_10, Transmute_6, Regal;
+    var Flags_13, ItemOrb_10, Mod_4, Alchemy_2, Scouring_3, Essence;
     return {
         setters: [
             function (Flags_13_1) {
@@ -7234,6 +7250,191 @@ System.register("generators/item_orbs/Regal", ["util/Flags", "generators/item_or
             },
             function (ItemOrb_10_1) {
                 ItemOrb_10 = ItemOrb_10_1;
+            },
+            function (Mod_4_1) {
+                Mod_4 = Mod_4_1;
+            },
+            function (Alchemy_2_1) {
+                Alchemy_2 = Alchemy_2_1;
+            },
+            function (Scouring_3_1) {
+                Scouring_3 = Scouring_3_1;
+            }
+        ],
+        execute: function () {
+            Essence = /** @class */ (function (_super) {
+                __extends(Essence, _super);
+                /**
+                 *
+                 * @param props props of a specific essence (contains the guarenteed mod)
+                 * @param mods mods that are rolled onto the item after th guarenteed is applied
+                 */
+                function Essence(props, mods) {
+                    var _this = _super.call(this, []) || this;
+                    _this.alchemy = Alchemy_2.default.build(mods);
+                    _this.props = props;
+                    return _this;
+                }
+                Essence.build = function (props, mods) {
+                    return new Essence(props, mods);
+                };
+                /**
+                 *  add the guarenteed mod and fill up the rest like alchemy
+                 */
+                Essence.prototype.applyTo = function (item, options) {
+                    if (options === void 0) { options = {}; }
+                    var _a = options.force, force = _a === void 0 ? false : _a;
+                    var new_item = item;
+                    if (force || !Flags_13.anySet(this.applicableTo(item))) {
+                        // scour first if this reforges
+                        if (this.reforges()) {
+                            // essences ignore meta mods so dont use a scour implementation
+                            // and just blindly remove mods
+                            new_item = Essence.reforger.applyTo(new_item, {
+                                ignore_meta_mods: true,
+                                force: true,
+                            });
+                        }
+                        // 1. add guarenteed
+                        var guarenteed = this.chooseMod(new_item);
+                        if (guarenteed === undefined) {
+                            throw new Error("'" + new_item.baseitem.item_class + "' has no guarentedd mod");
+                        }
+                        new_item = new_item.rarity.set('rare').addMod(guarenteed);
+                        // 2. fill up like alch
+                        new_item = this.alchemy.applyTo(new_item, { force: true });
+                        return new_item;
+                    }
+                    return new_item;
+                };
+                /**
+                 * only one mod per itemclass
+                 */
+                Essence.prototype.modsFor = function (item, whitelist) {
+                    if (whitelist === void 0) { whitelist = []; }
+                    var mod = this.chooseMod(item);
+                    if (mod === undefined) {
+                        return [];
+                    }
+                    return [{ mod: mod, spawnweight: Number.POSITIVE_INFINITY }];
+                };
+                /**
+                 * @returns Mod if the itemclass of the Item is eligible
+                 */
+                Essence.prototype.chooseMod = function (item) {
+                    return this.modForItemclass(item.baseitem.item_class);
+                };
+                /**
+                 *
+                 * @param itemclass
+                 * @returns the guaranteed mod for the itemclass
+                 */
+                Essence.prototype.modForItemclass = function (itemclass) {
+                    var mod_props = this.modPropsFor(itemclass);
+                    if (mod_props === undefined) {
+                        return undefined;
+                    }
+                    else {
+                        return new Mod_4.default(mod_props);
+                    }
+                };
+                /**
+                 * applicable if the essence guarantees a mod for the itemclass
+                 * and the rarity is either white or rare (only if essence can reforge)
+                 * @param item
+                 */
+                Essence.prototype.applicableTo = function (item) {
+                    var applicable_flags = __assign({}, _super.prototype.applicableTo.call(this, item), { wrong_rarity: !item.rarity.isNormal(), wrong_itemclass: this.chooseMod(item) === undefined });
+                    if (this.reforges()) {
+                        applicable_flags.wrong_rarity =
+                            applicable_flags.wrong_rarity && !item.rarity.isRare();
+                    }
+                    return applicable_flags;
+                };
+                /**
+                 * @returns true if the essence can reforge (i.e. reroll) the item
+                 */
+                Essence.prototype.reforges = function () {
+                    return this.props.tier > 5;
+                };
+                /**
+                 * @returns true if the essence is the best of its type
+                 */
+                Essence.prototype.isTopTier = function () {
+                    return this.props.tier === 7;
+                };
+                /**
+                 * mapping from itemclass to mod prop in essence props
+                 * @param item_class
+                 */
+                Essence.prototype.modPropsFor = function (item_class) {
+                    switch (item_class) {
+                        case 'Amulet':
+                            return this.props.amulet_mod;
+                        case 'Belt':
+                            return this.props.belt_mod;
+                        case 'Body Armour':
+                            return this.props.body_armour_mod;
+                        case 'Boots':
+                            return this.props.boots_mod;
+                        case 'Bow':
+                            return this.props.bow_mod;
+                        case 'Claw':
+                            return this.props.claw_mod;
+                        case 'Dagger':
+                            return this.props.dagger_mod;
+                        case 'Gloves':
+                            return this.props.gloves_mod;
+                        case 'Helmet':
+                            return this.props.helmet_mod;
+                        case 'One Hand Axe':
+                            return this.props.one_hand_axe_mod;
+                        case 'One Hand Mace':
+                            return this.props.one_hand_mace_mod;
+                        case 'One Hand Sword':
+                            return this.props.one_hand_sword_mod;
+                        case 'Thrusting One Hand Sword':
+                            return this.props.one_hand_thrusting_sword_mod;
+                        case 'Quiver':
+                            return this.props.quiver_mod;
+                        case 'Ring':
+                            return this.props.ring_mod;
+                        case 'Sceptre':
+                            return this.props.sceptre_mod;
+                        case 'Shield':
+                            return this.props.shield_mod;
+                        case 'Staff':
+                            return this.props.staff_mod;
+                        case 'Two Hand Axe':
+                            return this.props.two_hand_axe_mod;
+                        case 'Two Hand Mace':
+                            return this.props.two_hand_mace_mod;
+                        case 'Two Hand Sword':
+                            return this.props.two_hand_sword_mod;
+                        case 'Wand':
+                            return this.props.wand_mod;
+                        default:
+                            return undefined;
+                    }
+                };
+                Essence.reforger = new Scouring_3.default();
+                return Essence;
+            }(ItemOrb_10.default));
+            exports_46("default", Essence);
+        }
+    };
+});
+System.register("generators/item_orbs/Regal", ["util/Flags", "generators/item_orbs/ItemOrb", "generators/item_orbs/Transmute"], function (exports_47, context_47) {
+    "use strict";
+    var __moduleName = context_47 && context_47.id;
+    var Flags_14, ItemOrb_11, Transmute_6, Regal;
+    return {
+        setters: [
+            function (Flags_14_1) {
+                Flags_14 = Flags_14_1;
+            },
+            function (ItemOrb_11_1) {
+                ItemOrb_11 = ItemOrb_11_1;
             },
             function (Transmute_6_1) {
                 Transmute_6 = Transmute_6_1;
@@ -7252,7 +7453,7 @@ System.register("generators/item_orbs/Regal", ["util/Flags", "generators/item_or
                  *  adds 1 mod
                  */
                 Regal.prototype.applyTo = function (item) {
-                    if (!Flags_13.anySet(this.applicableTo(item))) {
+                    if (!Flags_14.anySet(this.applicableTo(item))) {
                         // upgrade to rare
                         return this.rollMod(item.rarity.set('rare'));
                     }
@@ -7276,19 +7477,19 @@ System.register("generators/item_orbs/Regal", ["util/Flags", "generators/item_or
                     return applicable_flags;
                 };
                 return Regal;
-            }(ItemOrb_10.default));
-            exports_46("default", Regal);
+            }(ItemOrb_11.default));
+            exports_47("default", Regal);
         }
     };
 });
-System.register("generators/item_orbs/Talisman", ["generators/item_orbs/ItemOrb"], function (exports_47, context_47) {
+System.register("generators/item_orbs/Talisman", ["generators/item_orbs/ItemOrb"], function (exports_48, context_48) {
     "use strict";
-    var __moduleName = context_47 && context_47.id;
-    var ItemOrb_11, Talisman;
+    var __moduleName = context_48 && context_48.id;
+    var ItemOrb_12, Talisman;
     return {
         setters: [
-            function (ItemOrb_11_1) {
-                ItemOrb_11 = ItemOrb_11_1;
+            function (ItemOrb_12_1) {
+                ItemOrb_12 = ItemOrb_12_1;
             }
         ],
         execute: function () {
@@ -7311,25 +7512,25 @@ System.register("generators/item_orbs/Talisman", ["generators/item_orbs/ItemOrb"
                     throw new Error('not implemented');
                 };
                 return Talisman;
-            }(ItemOrb_11.default));
-            exports_47("default", Talisman);
+            }(ItemOrb_12.default));
+            exports_48("default", Talisman);
         }
     };
 });
-System.register("generators/item_orbs/Vaal", ["util/Flags", "mods/Mod", "generators/item_orbs/ItemOrb"], function (exports_48, context_48) {
+System.register("generators/item_orbs/Vaal", ["util/Flags", "mods/Mod", "generators/item_orbs/ItemOrb"], function (exports_49, context_49) {
     "use strict";
-    var __moduleName = context_48 && context_48.id;
-    var Flags_14, Mod_4, ItemOrb_12, Vaal;
+    var __moduleName = context_49 && context_49.id;
+    var Flags_15, Mod_5, ItemOrb_13, Vaal;
     return {
         setters: [
-            function (Flags_14_1) {
-                Flags_14 = Flags_14_1;
+            function (Flags_15_1) {
+                Flags_15 = Flags_15_1;
             },
-            function (Mod_4_1) {
-                Mod_4 = Mod_4_1;
+            function (Mod_5_1) {
+                Mod_5 = Mod_5_1;
             },
-            function (ItemOrb_12_1) {
-                ItemOrb_12 = ItemOrb_12_1;
+            function (ItemOrb_13_1) {
+                ItemOrb_13 = ItemOrb_13_1;
             }
         ],
         execute: function () {
@@ -7341,7 +7542,7 @@ System.register("generators/item_orbs/Vaal", ["util/Flags", "mods/Mod", "generat
                 Vaal.modFilter = function (mod) {
                     // vaal implicits
                     return (_super.modFilter.call(this, mod) &&
-                        [Mod_4.default.TYPE.VAAL].indexOf(mod.generation_type) !== -1);
+                        [Mod_5.default.TYPE.VAAL].indexOf(mod.generation_type) !== -1);
                 };
                 Vaal.build = function (mods) {
                     return new Vaal(this.buildMods(mods));
@@ -7351,7 +7552,7 @@ System.register("generators/item_orbs/Vaal", ["util/Flags", "mods/Mod", "generat
                  * TODO: white sockets, reroll (brick(, nothing
                  */
                 Vaal.prototype.applyTo = function (item) {
-                    if (!Flags_14.anySet(this.applicableTo(item))) {
+                    if (!Flags_15.anySet(this.applicableTo(item))) {
                         var blank_item = item.removeAllImplicits();
                         var implicit = this.chooseMod(blank_item);
                         if (implicit != null) {
@@ -7365,78 +7566,83 @@ System.register("generators/item_orbs/Vaal", ["util/Flags", "mods/Mod", "generat
                     return item;
                 };
                 return Vaal;
-            }(ItemOrb_12.default));
-            exports_48("default", Vaal);
+            }(ItemOrb_13.default));
+            exports_49("default", Vaal);
         }
     };
 });
-System.register("generators/item_orbs/index", ["generators/item_orbs/Alchemy", "generators/item_orbs/Alteration", "generators/item_orbs/Annulment", "generators/item_orbs/Augment", "generators/item_orbs/Chaos", "generators/item_orbs/EnchantmentBench", "generators/item_orbs/Exalted", "generators/item_orbs/ItemOrb", "generators/item_orbs/Regal", "generators/item_orbs/Scouring", "generators/item_orbs/Talisman", "generators/item_orbs/Transmute", "generators/item_orbs/Vaal"], function (exports_49, context_49) {
+System.register("generators/item_orbs/index", ["generators/item_orbs/Alchemy", "generators/item_orbs/Alteration", "generators/item_orbs/Annulment", "generators/item_orbs/Augment", "generators/item_orbs/Chaos", "generators/item_orbs/EnchantmentBench", "generators/item_orbs/Essence", "generators/item_orbs/Exalted", "generators/item_orbs/ItemOrb", "generators/item_orbs/Regal", "generators/item_orbs/Scouring", "generators/item_orbs/Talisman", "generators/item_orbs/Transmute", "generators/item_orbs/Vaal"], function (exports_50, context_50) {
     "use strict";
-    var __moduleName = context_49 && context_49.id;
+    var __moduleName = context_50 && context_50.id;
     return {
         setters: [
-            function (Alchemy_2_1) {
-                exports_49({
-                    "Alchemy": Alchemy_2_1["default"]
+            function (Alchemy_3_1) {
+                exports_50({
+                    "Alchemy": Alchemy_3_1["default"]
                 });
             },
             function (Alteration_1_1) {
-                exports_49({
+                exports_50({
                     "Alteration": Alteration_1_1["default"]
                 });
             },
             function (Annulment_1_1) {
-                exports_49({
+                exports_50({
                     "Annulment": Annulment_1_1["default"]
                 });
             },
             function (Augment_2_1) {
-                exports_49({
+                exports_50({
                     "Augment": Augment_2_1["default"]
                 });
             },
             function (Chaos_1_1) {
-                exports_49({
+                exports_50({
                     "Chaos": Chaos_1_1["default"]
                 });
             },
             function (EnchantmentBench_1_1) {
-                exports_49({
+                exports_50({
                     "EnchantmentBench": EnchantmentBench_1_1["default"]
                 });
             },
+            function (Essence_1_1) {
+                exports_50({
+                    "Essence": Essence_1_1["default"]
+                });
+            },
             function (Exalted_2_1) {
-                exports_49({
+                exports_50({
                     "Exalted": Exalted_2_1["default"]
                 });
             },
-            function (ItemOrb_13_1) {
-                exports_49({
-                    "ItemOrb": ItemOrb_13_1["default"]
+            function (ItemOrb_14_1) {
+                exports_50({
+                    "ItemOrb": ItemOrb_14_1["default"]
                 });
             },
             function (Regal_1_1) {
-                exports_49({
+                exports_50({
                     "Regal": Regal_1_1["default"]
                 });
             },
-            function (Scouring_3_1) {
-                exports_49({
-                    "Scouring": Scouring_3_1["default"]
+            function (Scouring_4_1) {
+                exports_50({
+                    "Scouring": Scouring_4_1["default"]
                 });
             },
             function (Talisman_1_1) {
-                exports_49({
+                exports_50({
                     "Talisman": Talisman_1_1["default"]
                 });
             },
             function (Transmute_7_1) {
-                exports_49({
+                exports_50({
                     "Transmute": Transmute_7_1["default"]
                 });
             },
             function (Vaal_1_1) {
-                exports_49({
+                exports_50({
                     "Vaal": Vaal_1_1["default"]
                 });
             }
@@ -7445,14 +7651,14 @@ System.register("generators/item_orbs/index", ["generators/item_orbs/Alchemy", "
         }
     };
 });
-System.register("generators/MasterBenchOption", ["util/Flags", "util/ts", "mods/index", "generators/Generator"], function (exports_50, context_50) {
+System.register("generators/MasterBenchOption", ["util/Flags", "util/ts", "mods/index", "generators/Generator"], function (exports_51, context_51) {
     "use strict";
-    var __moduleName = context_50 && context_50.id;
-    var Flags_15, ts_2, mods_5, Generator_2, MasterBenchOption;
+    var __moduleName = context_51 && context_51.id;
+    var Flags_16, ts_2, mods_5, Generator_2, MasterBenchOption;
     return {
         setters: [
-            function (Flags_15_1) {
-                Flags_15 = Flags_15_1;
+            function (Flags_16_1) {
+                Flags_16 = Flags_16_1;
             },
             function (ts_2_1) {
                 ts_2 = ts_2_1;
@@ -7542,7 +7748,7 @@ System.register("generators/MasterBenchOption", ["util/Flags", "util/ts", "mods/
                     return this.getAvailableMods()
                         .map(function (mod) {
                         var applicable_flags = __assign({}, _this.isModApplicableTo(mod, simulated_item), _this.applicableTo(simulated_item));
-                        if (Flags_15.anySet(applicable_flags, whitelist)) {
+                        if (Flags_16.anySet(applicable_flags, whitelist)) {
                             return null;
                         }
                         else {
@@ -7572,13 +7778,13 @@ System.register("generators/MasterBenchOption", ["util/Flags", "util/ts", "mods/
                 };
                 return MasterBenchOption;
             }(Generator_2.default));
-            exports_50("default", MasterBenchOption);
+            exports_51("default", MasterBenchOption);
         }
     };
 });
-System.register("helpers/MasterBench", ["generators/MasterBenchOption"], function (exports_51, context_51) {
+System.register("helpers/MasterBench", ["generators/MasterBenchOption"], function (exports_52, context_52) {
     "use strict";
-    var __moduleName = context_51 && context_51.id;
+    var __moduleName = context_52 && context_52.id;
     var MasterBenchOption_1, MasterBench;
     return {
         setters: [
@@ -7634,14 +7840,14 @@ System.register("helpers/MasterBench", ["generators/MasterBenchOption"], functio
                 };
                 return MasterBench;
             }());
-            exports_51("default", MasterBench);
+            exports_52("default", MasterBench);
         }
     };
 });
-System.register("generators/ItemShowcase", ["helpers/MasterBench", "generators/Generator", "generators/item_orbs/Alchemy", "generators/item_orbs/EnchantmentBench", "generators/item_orbs/Vaal"], function (exports_52, context_52) {
+System.register("generators/ItemShowcase", ["helpers/MasterBench", "generators/Generator", "generators/item_orbs/index"], function (exports_53, context_53) {
     "use strict";
-    var __moduleName = context_52 && context_52.id;
-    var MasterBench_1, Generator_3, Alchemy_3, EnchantmentBench_2, Vaal_2, ItemShowcase;
+    var __moduleName = context_53 && context_53.id;
+    var MasterBench_1, Generator_3, item_orbs_1, ItemShowcase;
     return {
         setters: [
             function (MasterBench_1_1) {
@@ -7650,14 +7856,8 @@ System.register("generators/ItemShowcase", ["helpers/MasterBench", "generators/G
             function (Generator_3_1) {
                 Generator_3 = Generator_3_1;
             },
-            function (Alchemy_3_1) {
-                Alchemy_3 = Alchemy_3_1;
-            },
-            function (EnchantmentBench_2_1) {
-                EnchantmentBench_2 = EnchantmentBench_2_1;
-            },
-            function (Vaal_2_1) {
-                Vaal_2 = Vaal_2_1;
+            function (item_orbs_1_1) {
+                item_orbs_1 = item_orbs_1_1;
             }
         ],
         execute: function () {
@@ -7666,18 +7866,19 @@ System.register("generators/ItemShowcase", ["helpers/MasterBench", "generators/G
              */
             ItemShowcase = /** @class */ (function (_super) {
                 __extends(ItemShowcase, _super);
-                function ItemShowcase(props, options) {
+                function ItemShowcase(props, options, essences) {
                     var _this = this;
-                    var enchantment = EnchantmentBench_2.default.build(props);
+                    var enchantment = item_orbs_1.EnchantmentBench.build(props);
                     var master = MasterBench_1.default.build(options);
-                    var explicits = Alchemy_3.default.build(props);
-                    var vaal = Vaal_2.default.build(props);
+                    var explicits = item_orbs_1.Alchemy.build(props);
+                    var vaal = item_orbs_1.Vaal.build(props);
                     var mods = enchantment.mods.concat(explicits.mods, vaal.mods, master.getAvailableMods());
                     _this = _super.call(this, mods) || this;
                     _this.enchantment = enchantment;
                     _this.master = master;
                     _this.explicits = explicits;
                     _this.vaal = vaal;
+                    _this.essences = essences;
                     return _this;
                 }
                 /**
@@ -7692,16 +7893,31 @@ System.register("generators/ItemShowcase", ["helpers/MasterBench", "generators/G
                  */
                 ItemShowcase.prototype.applicableTo = function (item) {
                     return {
-                        applicable: false,
+                        not_applicable: true,
                     };
                 };
                 /**
                  * greps mod::applicableTo and (if implemented) mod::spawnableOn
                  * if we have all the space for mods we need
+                 *
+                 * @returns master-, enchantment-, vaal-, explicit-, (top tier) essence-mods
                  */
                 ItemShowcase.prototype.modsFor = function (item, whitelist) {
                     if (whitelist === void 0) { whitelist = []; }
-                    var details = this.master.modsFor(item, whitelist).concat(this.enchantment.modsFor(item, whitelist), this.explicits.modsFor(item, whitelist), this.vaal.modsFor(item, whitelist));
+                    var details = this.master.modsFor(item, whitelist).concat(this.enchantment.modsFor(item, whitelist), this.explicits.modsFor(item, whitelist), this.vaal.modsFor(item, whitelist), this.essences
+                        .map(function (props) {
+                        var essence = new item_orbs_1.Essence(props, []);
+                        if (essence.isTopTier()) {
+                            return essence.chooseMod(item);
+                        }
+                        else {
+                            return undefined;
+                        }
+                    })
+                        .filter(function (mod) {
+                        return mod !== undefined;
+                    })
+                        .map(function (mod) { return ({ mod: mod }); }));
                     // flow cant merge object types
                     // { mod: OneMod, prop: number } | { mod: AnotherMod, prop: number }
                     // will not become { mod: OneMod | AnotherMod, prop: number }
@@ -7710,25 +7926,25 @@ System.register("generators/ItemShowcase", ["helpers/MasterBench", "generators/G
                 };
                 return ItemShowcase;
             }(Generator_3.default));
-            exports_52("default", ItemShowcase);
+            exports_53("default", ItemShowcase);
         }
     };
 });
-System.register("containers/AtlasNode", ["mods/Mod", "containers/ImmutableContainer"], function (exports_53, context_53) {
+System.register("containers/AtlasNode", ["mods/Mod", "containers/ImmutableContainer"], function (exports_54, context_54) {
     "use strict";
-    var __moduleName = context_53 && context_53.id;
-    var Mod_5, ImmutableContainer_3, SEXTANT_RANGE, AtlasNode;
+    var __moduleName = context_54 && context_54.id;
+    var Mod_6, ImmutableContainer_3, SEXTANT_RANGE, AtlasNode;
     return {
         setters: [
-            function (Mod_5_1) {
-                Mod_5 = Mod_5_1;
+            function (Mod_6_1) {
+                Mod_6 = Mod_6_1;
             },
             function (ImmutableContainer_3_1) {
                 ImmutableContainer_3 = ImmutableContainer_3_1;
             }
         ],
         execute: function () {
-            exports_53("SEXTANT_RANGE", SEXTANT_RANGE = 55); // http://poecraft.com/atlas has 55
+            exports_54("SEXTANT_RANGE", SEXTANT_RANGE = 55); // http://poecraft.com/atlas has 55
             AtlasNode = /** @class */ (function (_super) {
                 __extends(AtlasNode, _super);
                 function AtlasNode(mods, props) {
@@ -7800,7 +8016,7 @@ System.register("containers/AtlasNode", ["mods/Mod", "containers/ImmutableContai
                     return Number.POSITIVE_INFINITY;
                 };
                 AtlasNode.prototype.inDomainOf = function (mod_domain) {
-                    return mod_domain === Mod_5.default.DOMAIN.ATLAS;
+                    return mod_domain === Mod_6.default.DOMAIN.ATLAS;
                 };
                 AtlasNode.prototype.level = function () {
                     return this.props.world_area.area_level;
@@ -7826,24 +8042,24 @@ System.register("containers/AtlasNode", ["mods/Mod", "containers/ImmutableContai
                 };
                 return AtlasNode;
             }(ImmutableContainer_3.default));
-            exports_53("default", AtlasNode);
+            exports_54("default", AtlasNode);
         }
     };
 });
-System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "generators/Orb"], function (exports_54, context_54) {
+System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "generators/Orb"], function (exports_55, context_55) {
     "use strict";
-    var __moduleName = context_54 && context_54.id;
-    var make_error_2, Mod_6, Flags_16, Orb_2, ContextUndefined, CorruptedState, Type, Sextant;
+    var __moduleName = context_55 && context_55.id;
+    var make_error_2, Mod_7, Flags_17, Orb_2, ContextUndefined, CorruptedState, Type, Sextant;
     return {
         setters: [
             function (make_error_2_1) {
                 make_error_2 = make_error_2_1;
             },
-            function (Mod_6_1) {
-                Mod_6 = Mod_6_1;
+            function (Mod_7_1) {
+                Mod_7 = Mod_7_1;
             },
-            function (Flags_16_1) {
-                Flags_16 = Flags_16_1;
+            function (Flags_17_1) {
+                Flags_17 = Flags_17_1;
             },
             function (Orb_2_1) {
                 Orb_2 = Orb_2_1;
@@ -7857,7 +8073,7 @@ System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "
                 }
                 return ContextUndefined;
             }(make_error_2.BaseError));
-            exports_54("ContextUndefined", ContextUndefined);
+            exports_55("ContextUndefined", ContextUndefined);
             CorruptedState = /** @class */ (function (_super) {
                 __extends(CorruptedState, _super);
                 function CorruptedState(message) {
@@ -7865,13 +8081,13 @@ System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "
                 }
                 return CorruptedState;
             }(make_error_2.BaseError));
-            exports_54("CorruptedState", CorruptedState);
+            exports_55("CorruptedState", CorruptedState);
             (function (Type) {
                 Type[Type["apprentice"] = 1] = "apprentice";
                 Type[Type["journeyman"] = 2] = "journeyman";
                 Type[Type["master"] = 3] = "master";
             })(Type || (Type = {}));
-            exports_54("Type", Type);
+            exports_55("Type", Type);
             Sextant = /** @class */ (function (_super) {
                 __extends(Sextant, _super);
                 function Sextant() {
@@ -7880,7 +8096,7 @@ System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "
                     return _this;
                 }
                 Sextant.modFilter = function (mod) {
-                    return _super.modFilter.call(this, mod) && mod.domain === Mod_6.default.DOMAIN.ATLAS;
+                    return _super.modFilter.call(this, mod) && mod.domain === Mod_7.default.DOMAIN.ATLAS;
                 };
                 Sextant.build = function (mods) {
                     return new Sextant(this.buildMods(mods));
@@ -7900,7 +8116,7 @@ System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "
                         .reduce(function (mods, secondary) { return mods.concat(secondary.getAllMods(atlas)); }, []);
                 };
                 Sextant.prototype.applyTo = function (node) {
-                    if (!Flags_16.anySet(this.applicableTo(node))) {
+                    if (!Flags_17.anySet(this.applicableTo(node))) {
                         var rolled = _super.prototype.rollMod.call(this, node.removeAllMods());
                         if (rolled !== node) {
                             // something change
@@ -8001,23 +8217,24 @@ System.register("generators/Sextant", ["make-error", "mods/Mod", "util/Flags", "
                 Sextant.type = Type;
                 return Sextant;
             }(Orb_2.default));
-            exports_54("default", Sextant);
+            exports_55("default", Sextant);
         }
     };
 });
-System.register("generators/index", ["generators/item_orbs/index", "generators/ItemShowcase", "generators/MasterBenchOption", "generators/Sextant"], function (exports_55, context_55) {
+System.register("generators/index", ["generators/item_orbs/index", "generators/ItemShowcase", "generators/MasterBenchOption", "generators/Sextant"], function (exports_56, context_56) {
     "use strict";
-    var __moduleName = context_55 && context_55.id;
+    var __moduleName = context_56 && context_56.id;
     return {
         setters: [
             function (_4_1) {
-                exports_55({
+                exports_56({
                     "Alchemy": _4_1["Alchemy"],
                     "Annulment": _4_1["Annulment"],
                     "Alteration": _4_1["Alteration"],
                     "Augment": _4_1["Augment"],
                     "Chaos": _4_1["Chaos"],
                     "EnchantmentBench": _4_1["EnchantmentBench"],
+                    "Essence": _4_1["Essence"],
                     "Exalted": _4_1["Exalted"],
                     "Regal": _4_1["Regal"],
                     "Scouring": _4_1["Scouring"],
@@ -8027,17 +8244,17 @@ System.register("generators/index", ["generators/item_orbs/index", "generators/I
                 });
             },
             function (ItemShowcase_1_1) {
-                exports_55({
+                exports_56({
                     "ItemShowcase": ItemShowcase_1_1["default"]
                 });
             },
             function (MasterBenchOption_2_1) {
-                exports_55({
+                exports_56({
                     "MasterBenchOption": MasterBenchOption_2_1["default"]
                 });
             },
             function (Sextant_1_1) {
-                exports_55({
+                exports_56({
                     "Sextant": Sextant_1_1["default"]
                 });
             }
@@ -8046,23 +8263,23 @@ System.register("generators/index", ["generators/item_orbs/index", "generators/I
         }
     };
 });
-System.register("containers/index", ["containers/AtlasNode", "containers/ImmutableContainer", "containers/item/index"], function (exports_56, context_56) {
+System.register("containers/index", ["containers/AtlasNode", "containers/ImmutableContainer", "containers/item/index"], function (exports_57, context_57) {
     "use strict";
-    var __moduleName = context_56 && context_56.id;
+    var __moduleName = context_57 && context_57.id;
     return {
         setters: [
             function (AtlasNode_1_1) {
-                exports_56({
+                exports_57({
                     "AtlasNode": AtlasNode_1_1["default"]
                 });
             },
             function (ImmutableContainer_4_1) {
-                exports_56({
+                exports_57({
                     "ImmutableContainer": ImmutableContainer_4_1["default"]
                 });
             },
             function (item_1_1) {
-                exports_56({
+                exports_57({
                     "Item": item_1_1["default"],
                     "ArmourProperties": item_1_1["ArmourProperties"],
                     "ShieldProperties": item_1_1["ShieldProperties"],
@@ -8074,9 +8291,9 @@ System.register("containers/index", ["containers/AtlasNode", "containers/Immutab
         }
     };
 });
-System.register("helpers/Atlas", ["containers/AtlasNode", "generators/Sextant"], function (exports_57, context_57) {
+System.register("helpers/Atlas", ["containers/AtlasNode", "generators/Sextant"], function (exports_58, context_58) {
     "use strict";
-    var __moduleName = context_57 && context_57.id;
+    var __moduleName = context_58 && context_58.id;
     var AtlasNode_2, Sextant_2, Atlas;
     return {
         setters: [
@@ -8198,20 +8415,11 @@ System.register("helpers/Atlas", ["containers/AtlasNode", "generators/Sextant"],
                 };
                 return Atlas;
             }());
-            exports_57("default", Atlas);
+            exports_58("default", Atlas);
         }
     };
 });
-System.register("interfaces/Builder", [], function (exports_58, context_58) {
-    "use strict";
-    var __moduleName = context_58 && context_58.id;
-    return {
-        setters: [],
-        execute: function () {
-        }
-    };
-});
-System.register("interfaces/Buildable", [], function (exports_59, context_59) {
+System.register("interfaces/Builder", [], function (exports_59, context_59) {
     "use strict";
     var __moduleName = context_59 && context_59.id;
     return {
@@ -8220,7 +8428,7 @@ System.register("interfaces/Buildable", [], function (exports_59, context_59) {
         }
     };
 });
-System.register("interfaces/index", [], function (exports_60, context_60) {
+System.register("interfaces/Buildable", [], function (exports_60, context_60) {
     "use strict";
     var __moduleName = context_60 && context_60.id;
     return {
@@ -8229,9 +8437,18 @@ System.register("interfaces/index", [], function (exports_60, context_60) {
         }
     };
 });
-System.register("helpers/PropsTable", ["make-error"], function (exports_61, context_61) {
+System.register("interfaces/index", [], function (exports_61, context_61) {
     "use strict";
     var __moduleName = context_61 && context_61.id;
+    return {
+        setters: [],
+        execute: function () {
+        }
+    };
+});
+System.register("helpers/PropsTable", ["make-error"], function (exports_62, context_62) {
+    "use strict";
+    var __moduleName = context_62 && context_62.id;
     var make_error_3, NotFound, PropsTable;
     return {
         setters: [
@@ -8247,12 +8464,13 @@ System.register("helpers/PropsTable", ["make-error"], function (exports_61, cont
                 }
                 return NotFound;
             }(make_error_3.BaseError));
-            exports_61("NotFound", NotFound);
+            exports_62("NotFound", NotFound);
             // take care. flow accepts any as a constructor
             PropsTable = /** @class */ (function () {
-                function PropsTable(all, constructor) {
+                function PropsTable(all, constructor, arg1) {
                     this.builder = constructor;
                     this.table = all;
+                    this.builder_arg1 = arg1;
                 }
                 PropsTable.prototype.all = function () {
                     return this.table;
@@ -8269,7 +8487,7 @@ System.register("helpers/PropsTable", ["make-error"], function (exports_61, cont
                     if (props == null) {
                         throw new NotFound(this.builder.name, "with custom finder");
                     }
-                    return this.builder.build(props);
+                    return this.builder.build(props, this.builder_arg1);
                 };
                 PropsTable.prototype.fromPrimary = function (primary) {
                     return this.fromProp('primary', primary);
@@ -8296,17 +8514,17 @@ System.register("helpers/PropsTable", ["make-error"], function (exports_61, cont
                 };
                 return PropsTable;
             }());
-            exports_61("default", PropsTable);
+            exports_62("default", PropsTable);
         }
     };
 });
-System.register("helpers/createTables", ["containers/AtlasNode", "containers/item/Item", "generators/MasterBenchOption", "mods/Mod", "helpers/PropsTable"], function (exports_62, context_62) {
+System.register("helpers/createTables", ["containers/AtlasNode", "containers/item/Item", "generators/index", "mods/Mod", "helpers/PropsTable"], function (exports_63, context_63) {
     "use strict";
-    var __moduleName = context_62 && context_62.id;
-    function createTable(props, constructor) {
-        return new PropsTable_1.default(props, constructor);
+    var __moduleName = context_63 && context_63.id;
+    function createTable(props, constructor, arg1) {
+        return new PropsTable_1.default(props, constructor, arg1);
     }
-    var AtlasNode_3, Item_2, MasterBenchOption_3, Mod_7, PropsTable_1, createAtlasNodes, createItems, createMasterBenchOptions, createMods;
+    var AtlasNode_3, Item_2, generators_1, Mod_8, PropsTable_1, createAtlasNodes, createItems, createMasterBenchOptions, createMods, createEssences;
     return {
         setters: [
             function (AtlasNode_3_1) {
@@ -8315,54 +8533,61 @@ System.register("helpers/createTables", ["containers/AtlasNode", "containers/ite
             function (Item_2_1) {
                 Item_2 = Item_2_1;
             },
-            function (MasterBenchOption_3_1) {
-                MasterBenchOption_3 = MasterBenchOption_3_1;
+            function (generators_1_1) {
+                generators_1 = generators_1_1;
             },
-            function (Mod_7_1) {
-                Mod_7 = Mod_7_1;
+            function (Mod_8_1) {
+                Mod_8 = Mod_8_1;
             },
             function (PropsTable_1_1) {
                 PropsTable_1 = PropsTable_1_1;
             }
         ],
         execute: function () {
-            exports_62("createAtlasNodes", createAtlasNodes = function (props) {
-                return createTable(props, AtlasNode_3.default);
+            exports_63("createAtlasNodes", createAtlasNodes = function (props) {
+                return createTable(props, AtlasNode_3.default, undefined);
             });
-            exports_62("createItems", createItems = function (props) {
-                return createTable(props, Item_2.default);
+            exports_63("createItems", createItems = function (props) {
+                return createTable(props, Item_2.default, undefined);
             });
-            exports_62("createMasterBenchOptions", createMasterBenchOptions = function (props) {
-                return createTable(props, MasterBenchOption_3.default);
+            exports_63("createMasterBenchOptions", createMasterBenchOptions = function (props) {
+                return createTable(props, generators_1.MasterBenchOption, undefined);
             });
-            exports_62("createMods", createMods = function (props) {
-                return createTable(props, Mod_7.default);
+            exports_63("createMods", createMods = function (props) {
+                return createTable(props, Mod_8.default, undefined);
+            });
+            exports_63("createEssences", createEssences = function (props, mods) {
+                return createTable(props, generators_1.Essence, mods);
             });
         }
     };
 });
-System.register("index", ["calculator/Stat", "calculator/ValueRange", "generators/Generator", "generators/index", "containers/index", "mods/index", "helpers/Atlas", "helpers/MasterBench", "helpers/createTables", "util/index"], function (exports_63, context_63) {
+System.register("index", ["calculator/Stat", "calculator/ValueRange", "generators/Generator", "schema", "generators/index", "containers/index", "mods/index", "helpers/Atlas", "helpers/MasterBench", "helpers/createTables", "util/index"], function (exports_64, context_64) {
     "use strict";
-    var __moduleName = context_63 && context_63.id;
+    var __moduleName = context_64 && context_64.id;
+    var schema;
     return {
         setters: [
             function (Stat_3_1) {
-                exports_63({
+                exports_64({
                     "Stat": Stat_3_1["default"]
                 });
             },
             function (ValueRange_4_1) {
-                exports_63({
+                exports_64({
                     "ValueRange": ValueRange_4_1["default"]
                 });
             },
             function (Generator_4_1) {
-                exports_63({
+                exports_64({
                     "Generator": Generator_4_1["default"]
                 });
             },
+            function (schema_1) {
+                schema = schema_1;
+            },
             function (index_1_1) {
-                exports_63({
+                exports_64({
                     "Alchemy": index_1_1["Alchemy"],
                     "Alteration": index_1_1["Alteration"],
                     "Annulment": index_1_1["Annulment"],
@@ -8381,7 +8606,7 @@ System.register("index", ["calculator/Stat", "calculator/ValueRange", "generator
                 });
             },
             function (containers_1_1) {
-                exports_63({
+                exports_64({
                     "AtlasNode": containers_1_1["AtlasNode"],
                     "Item": containers_1_1["Item"],
                     "ArmourProperties": containers_1_1["ArmourProperties"],
@@ -8390,22 +8615,22 @@ System.register("index", ["calculator/Stat", "calculator/ValueRange", "generator
                 });
             },
             function (mods_6_1) {
-                exports_63({
+                exports_64({
                     "Mod": mods_6_1["Mod"]
                 });
             },
             function (Atlas_1_1) {
-                exports_63({
+                exports_64({
                     "Atlas": Atlas_1_1["default"]
                 });
             },
             function (MasterBench_2_1) {
-                exports_63({
+                exports_64({
                     "MasterBench": MasterBench_2_1["default"]
                 });
             },
             function (createTables_1_1) {
-                exports_63({
+                exports_64({
                     "createAtlasNodes": createTables_1_1["createAtlasNodes"],
                     "createItems": createTables_1_1["createItems"],
                     "createMasterBenchOptions": createTables_1_1["createMasterBenchOptions"],
@@ -8413,12 +8638,13 @@ System.register("index", ["calculator/Stat", "calculator/ValueRange", "generator
                 });
             },
             function (util_1_1) {
-                exports_63({
+                exports_64({
                     "anySet": util_1_1["anySet"]
                 });
             }
         ],
         execute: function () {
+            exports_64("schema", schema);
         }
     };
 });

@@ -6,7 +6,7 @@ import PropsTable from '../PropsTable';
 const all_options = require('../../../data/craftingbenchoptions.json');
 
 it('should find props', () => {
-  const table = new PropsTable(all_options, MasterBenchOption);
+  const table = new PropsTable(all_options, MasterBenchOption, undefined);
 
   expect(table.find(props => props.primary === 3)).toBeDefined();
   expect(table.find(() => false)).toBeUndefined();
@@ -16,7 +16,7 @@ it('should find props', () => {
 });
 
 it('should throw when the entry was not found', () => {
-  const table = new PropsTable(all_options, MasterBenchOption);
+  const table = new PropsTable(all_options, MasterBenchOption, undefined);
 
   expect(() => table.fromPrimary(-5)).toThrowError(
     "MasterBenchOption not found with primary '-5'",
@@ -24,7 +24,7 @@ it('should throw when the entry was not found', () => {
 });
 
 it('should have a fromPrimary finder', () => {
-  const table = new PropsTable(all_options, MasterBenchOption);
+  const table = new PropsTable(all_options, MasterBenchOption, undefined);
 
   expect(table.fromPrimary(1)).toBeInstanceOf(MasterBenchOption);
 });

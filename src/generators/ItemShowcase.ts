@@ -1,12 +1,10 @@
 import Item from '../containers/item/Item';
 import MasterBench from '../helpers/MasterBench';
 import Mod from '../mods/Mod';
-import { CraftingBenchOptionsProps, ModProps } from '../schema';
+import { CraftingBenchOptionsProps, EssenceProps, ModProps } from '../schema';
 
 import Generator, { GeneratorDetails } from './Generator';
-import Alchemy from './item_orbs/Alchemy';
-import EnchantmentBench from './item_orbs/EnchantmentBench';
-import Vaal from './item_orbs/Vaal';
+import { Alchemy, EnchantmentBench, Essence, Vaal } from './item_orbs';
 import { Flags } from '../util/Flags';
 
 /**
@@ -18,7 +16,13 @@ export default class ItemShowcase extends Generator<Mod, Item> {
   public explicits: Alchemy;
   public vaal: Vaal;
 
-  constructor(props: ModProps[], options: CraftingBenchOptionsProps[]) {
+  private essences: EssenceProps[];
+
+  constructor(
+    props: ModProps[],
+    options: CraftingBenchOptionsProps[],
+    essences: EssenceProps[],
+  ) {
     const enchantment = EnchantmentBench.build(props);
     const master = MasterBench.build(options);
     const explicits = Alchemy.build(props);
@@ -37,6 +41,8 @@ export default class ItemShowcase extends Generator<Mod, Item> {
     this.master = master;
     this.explicits = explicits;
     this.vaal = vaal;
+
+    this.essences = essences;
   }
 
   /**
@@ -59,6 +65,8 @@ export default class ItemShowcase extends Generator<Mod, Item> {
   /**
    * greps mod::applicableTo and (if implemented) mod::spawnableOn 
    * if we have all the space for mods we need
+   * 
+   * @returns master-, enchantment-, vaal-, explicit-, (top tier) essence-mods
    */
   public modsFor(
     item: Item,
@@ -69,6 +77,19 @@ export default class ItemShowcase extends Generator<Mod, Item> {
       ...this.enchantment.modsFor(item, whitelist),
       ...this.explicits.modsFor(item, whitelist),
       ...this.vaal.modsFor(item, whitelist),
+      ...this.essences
+        .map(props => {
+          const essence = new Essence(props, []);
+          if (essence.isTopTier()) {
+            return essence.chooseMod(item);
+          } else {
+            return undefined;
+          }
+        })
+        .filter((mod): mod is Mod => {
+          return mod !== undefined;
+        })
+        .map(mod => ({ mod })),
     ];
 
     // flow cant merge object types
