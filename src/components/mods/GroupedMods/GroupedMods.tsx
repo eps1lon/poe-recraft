@@ -28,23 +28,25 @@ const GroupedMods: SFC<Props> = props => {
 
   return (
     <>
-      {Array.from(groups.entries()).map(([group, { details, disabled }]) => {
-        const mods = details.map(({ mod }) => mod);
+      {Array.from(groups.entries()).map(
+        ([group, { details, disabled }], key) => {
+          const mods = details.map(({ mod }) => mod);
 
-        return (
-          <>
-            <h5
-              className={classnames('correct-group', { disabled })}
-              onClick={() => onGroupClick(group)}
-            >
-              <CorrectGroup mods={mods} />
-            </h5>
-            {isExpanded(group) && (
-              <UngroupedMods className={className} details={details} />
-            )}
-          </>
-        );
-      })}
+          return (
+            <React.Fragment key={key}>
+              <h5
+                className={classnames('correct-group', { disabled })}
+                onClick={() => onGroupClick(group)}
+              >
+                <CorrectGroup mods={mods} />
+              </h5>
+              {isExpanded(group) && (
+                <UngroupedMods className={className} details={details} />
+              )}
+            </React.Fragment>
+          );
+        }
+      )}
     </>
   );
 };

@@ -21,6 +21,7 @@ export default class Header<T> extends React.PureComponent<Props<T>> {
       <div className="flex-table-head flex-table-row">
         {columns.map((col, index) => (
           <div
+            key={col.id}
             onClick={() => onHeaderClick(col, index)}
             className={classnames('flex-table-cell', col.className)}
           >
