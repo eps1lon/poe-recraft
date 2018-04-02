@@ -10,7 +10,7 @@ export interface Props<T> {
   data: T;
 }
 
-export default class Table<T> extends React.PureComponent<Props<T>> {
+export default class Row<T> extends React.PureComponent<Props<T>> {
   render() {
     const { className, columns, data } = this.props;
     return (

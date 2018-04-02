@@ -7,7 +7,7 @@ export interface Props<T> {
   renderItem: (data: T) => React.ReactNode;
 }
 
-export default class Table<T> extends React.PureComponent<Props<T>> {
+export default class Cell<T> extends React.PureComponent<Props<T>> {
   render() {
     const { className, data, renderItem } = this.props;
     return (
