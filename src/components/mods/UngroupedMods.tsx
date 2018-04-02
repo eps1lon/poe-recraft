@@ -18,6 +18,9 @@ export type Props = {
   onAddMod: (mod: Mod) => any;
 };
 
+const renderSpawnweight = (spawnweight?: number) =>
+  String(spawnweight || 'none');
+
 const columns = [
   {
     renderCell: (details: GeneratorDetails) => details.mod.props.level,
@@ -63,8 +66,28 @@ const columns = [
     minWidth: 80
   },
   {
-    renderCell: (details: GeneratorDetails) =>
-      String(details.spawnweight || 'none'),
+    renderCell: ({
+      spawnchance,
+      spawnweight,
+      relative_weight = 0
+    }: GeneratorDetails) => {
+      if (spawnchance !== undefined) {
+        return (
+          <span
+            title={renderSpawnweight(spawnweight)}
+            className={classNames(
+              'color-scale',
+              // scale 0..1 to from 0..4
+              `scale-${Math.floor(relative_weight * 4)}`
+            )}
+          >
+            {(spawnchance * 100).toFixed(2)}%
+          </span>
+        );
+      } else {
+        return renderSpawnweight(spawnweight);
+      }
+    },
     className: 'spawn-chance',
     renderHeader: () => 'Chance',
     id: 'chance',
@@ -73,7 +96,6 @@ const columns = [
   }
 ];
 
-// TODO spawnchance, flags, mod#t, sort
 const UngroupedMods: SFC<Props> = props => {
   const {
     className = '',

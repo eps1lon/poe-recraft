@@ -5,6 +5,7 @@ import { createSelector } from 'reselect';
 import { orbs } from 'components/GeneratorModal/Orb';
 import { State } from 'state';
 import { falseFlags } from 'util/flags';
+import { withSpawnchance } from 'util/spawnweight';
 
 export type GeneratorDetails = {
   mod: Mod;
@@ -37,9 +38,9 @@ const availableMods = (
   }
 
   return {
-    prefixes,
-    suffixes,
-    implicits
+    prefixes: withSpawnchance(prefixes),
+    suffixes: withSpawnchance(suffixes),
+    implicits: withSpawnchance(implicits)
   };
 };
 

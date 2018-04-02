@@ -14,7 +14,6 @@ const whitelist = [
 
 const getAvailableMods = cachedAvailableMods(whitelist);
 
-// TODO spawnchance
 const mapStateToProps = (state: State) => {
   const { prefixes, suffixes, implicits } = getAvailableMods(state);
 

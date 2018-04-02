@@ -16,6 +16,8 @@ export type GeneratorDetails = {
   applicable?: Flags;
   spawnable?: Flags;
   spawnweight?: number;
+  spawnchance?: number;
+  relative_weight?: number;
 };
 
 export type Props = {
