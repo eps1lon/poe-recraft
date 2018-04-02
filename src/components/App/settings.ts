@@ -45,6 +45,6 @@ export const ITEMCLASSES_GROUPED = [
   {
     name: 'equipment',
     human: 'Jewelry',
-    classes: ['Amulet', 'Ring', 'Belt', 'Jewel']
+    classes: ['Amulet', 'Ring', 'Belt', 'Jewel', 'AbyssJewel']
   }
 ];
