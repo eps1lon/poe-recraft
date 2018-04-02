@@ -11,17 +11,17 @@ type State = {
 };
 
 export function apiEndpoint(endpoint: string): (state: State) => string {
-  return (state: State) => `${state.poe.api_root}/${endpoint}`;
+  return (state: State) => `./${endpoint}`;
 }
 
 export const getMods: (state: State) => ModProps[] = createSelector(
-  (state: State) => state.poe.mods,
-  mods => Object.values(mods)
+  (state: State) => state.poe.mods.data,
+  (mods: { [key: string]: ModProps }) => Object.values(mods)
 );
 
 export const getEssences = createSelector(
-  (state: State) => state.poe.mods,
-  (state: State) => state.poe.essences,
+  (state: State) => state.poe.mods.data,
+  (state: State) => state.poe.essences.data,
   (mods, essences) =>
     essences.map(essence => {
       return {

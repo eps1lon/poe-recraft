@@ -1,4 +1,5 @@
-import { Action, Type } from './actions';
+import { combineReducers, Reducer } from 'redux';
+import { Type } from './actions';
 import {
   BaseItemTypeProps,
   CraftingBenchOptionsProps,
@@ -7,61 +8,50 @@ import {
   NormalizedEssenceProps,
   ModId
 } from './schema';
+import createApiReducer, {
+  State as ApiState
+} from '../redux-api-middleware-reducer';
 
-export type State = {
-  api_root: string;
-  items: BaseItemTypeProps[];
-  benchoptions: CraftingBenchOptionsProps[];
-  mods: { [key: string]: ModProps };
-  tags: TagProps[];
-  essences: NormalizedEssenceProps[];
-};
-
-const initial: State = {
-  api_root: '.',
-  items: [],
-  benchoptions: [],
-  mods: {},
-  tags: [],
-  essences: []
-  // TODO: extract version from data and keep it synced across entities
-};
-
-// TODO add normalizr
-export default function reducer(state: State = initial, action: Action): State {
-  switch (action.type) {
-    case Type.ITEMS_SUCCESS:
-      return {
-        ...state,
-        items: action.payload
-      };
-    case Type.BENCH_SUCCESS:
-      return {
-        ...state,
-        benchoptions: action.payload
-      };
-    case Type.MODS_SUCCESS:
-      return {
-        ...state,
-        mods: action.payload.reduce(
-          (mods, mod) => {
-            mods[mod.id] = mod;
-            return mods;
-          },
-          {} as State['mods']
-        )
-      };
-    case Type.TAGS_SUCCESS:
-      return {
-        ...state,
-        tags: action.payload
-      };
-    case Type.ESSENCES_SUCCESS:
-      return {
-        ...state,
-        essences: action.payload
-      };
-    default:
-      return state;
-  }
+export interface State {
+  benchoptions: ApiState<CraftingBenchOptionsProps[]>;
+  essences: ApiState<NormalizedEssenceProps[]>;
+  items: ApiState<BaseItemTypeProps[]>;
+  mods: ApiState<{ [key: string]: ModProps }>;
+  tags: ApiState<TagProps[]>;
 }
+
+export default combineReducers({
+  benchoptions: createApiReducer(
+    [Type.BENCHS_REQUEST, Type.BENCHS_SUCCESS, Type.BENCHS_FAILURE],
+    [],
+    (options: CraftingBenchOptionsProps[]) => options
+  ),
+  essences: createApiReducer(
+    [Type.ESSENCES_REQUEST, Type.ESSENCES_SUCCESS, Type.ESSENCES_FAILURE],
+    [],
+    (essences: NormalizedEssenceProps[]) => essences
+  ),
+  items: createApiReducer(
+    [Type.ITEMS_REQUEST, Type.ITEMS_SUCCESS, Type.ITEMS_FAILURE],
+    [],
+    (items: BaseItemTypeProps[]) => items
+  ),
+  mods: createApiReducer(
+    [Type.MODS_REQUEST, Type.MODS_SUCCESS, Type.MODS_FAILURE],
+    {} as State['mods']['data'],
+    (mods: ModProps[]) => {
+      return mods.reduce(
+        (obj, mod) => {
+          obj[mod.id] = mod;
+          return obj;
+        },
+        {} as State['mods']['data']
+      );
+    }
+  ),
+  tags: createApiReducer(
+    [Type.TAGS_REQUEST, Type.TAGS_SUCCESS, Type.TAGS_FAILURE],
+    [],
+    (tags: TagProps[]) => tags
+  )
+}) as Reducer<State>;

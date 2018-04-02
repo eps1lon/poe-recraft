@@ -35,7 +35,7 @@ const diff = (a: TagProps[], b: TagProps[]) =>
 // selector to get addable, removeable and current tags
 export function editableTagsSelector() {
   return createSelector(
-    (state: State) => state.poe.tags,
+    (state: State) => state.poe.tags.data,
     getTags,
     getChangeableTags,
     (all, current, removable) => {

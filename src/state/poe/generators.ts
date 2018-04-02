@@ -17,9 +17,11 @@ import { getEssences, getMods } from './selectors';
 
 export const buildShowcase = createSelector(
   (state: { poe: State }) => getMods(state),
-  (state: { poe: State }) => state.poe.benchoptions,
+  (state: { poe: State }) => state.poe.benchoptions.data,
   (state: { poe: State }) => getEssences(state),
-  (mods, options, essences) => new ItemShowcase(mods, options, essences)
+  (mods, options, essences) => {
+    return new ItemShowcase(mods, options, essences);
+  }
 );
 
 const buildAlchemy = createSelector(

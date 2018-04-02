@@ -12,19 +12,22 @@ import {
 } from './schema';
 
 export enum Type {
+  ITEMS_REQUEST = 'POE/ITEMS_REQUEST',
   ITEMS_SUCCESS = 'POE/ITEMS_SUCCESS',
-  BENCH_SUCCESS = 'POE/BENCH_SUCCESS',
+  ITEMS_FAILURE = 'POE/ITEMS_FAILURE',
+  BENCHS_REQUEST = 'POE/BENCHS_REQUEST',
+  BENCHS_SUCCESS = 'POE/BENCHS_SUCCESS',
+  BENCHS_FAILURE = 'POE/BENCHS_FAILURE',
+  MODS_REQUEST = 'POE/MODS_REQUEST',
   MODS_SUCCESS = 'POE/MODS_SUCCESS',
+  MODS_FAILURE = 'POE/MODS_FAILURE',
+  TAGS_REQUEST = 'POE/TAGS_REQUEST',
   TAGS_SUCCESS = 'POE/TAGS_SUCCESS',
-  ESSENCES_SUCCESS = 'POE/ESSENCES_SUCCESS'
+  TAGS_FAILURE = 'POE/TAGS_FAILRE',
+  ESSENCES_REQUEST = 'POE/ESSENCES_REQUEST',
+  ESSENCES_SUCCESS = 'POE/ESSENCES_SUCCESS',
+  ESSENCES_FAILURE = 'POE/ESSENCES_FAILURE'
 }
-
-export type Action =
-  | ItemsSuccessAction
-  | BenchSuccessAction
-  | ModsSuccessAction
-  | TagsSuccessAction
-  | EssencesSuccessAction;
 
 function getEndpoint(endpoint: string, name: string): RSAAction<any, any, any> {
   return {
@@ -38,36 +41,22 @@ function getEndpoint(endpoint: string, name: string): RSAAction<any, any, any> {
   } as RSAAction<any, any, any>;
 }
 
-export type ItemsSuccessAction = Action<
-  Type.ITEMS_SUCCESS,
-  BaseItemTypeProps[]
->;
 export function getItems() {
   return getEndpoint('data/baseitemtypes.json', 'ITEMS');
 }
 
-export type BenchSuccessAction = Action<
-  Type.BENCH_SUCCESS,
-  CraftingBenchOptionsProps[]
->;
 export function getBenchoptions() {
-  return getEndpoint('data/craftingbenchoptions.json', 'BENCH');
+  return getEndpoint('data/craftingbenchoptions.json', 'BENCHS');
 }
 
-export type ModsSuccessAction = Action<Type.MODS_SUCCESS, ModProps[]>;
 export function getMods() {
   return getEndpoint('data/mods.json', 'MODS');
 }
 
-export type TagsSuccessAction = Action<Type.TAGS_SUCCESS, TagProps[]>;
 export function getTags() {
   return getEndpoint('data/tags.json', 'TAGS');
 }
 
-export type EssencesSuccessAction = Action<
-  Type.ESSENCES_SUCCESS,
-  NormalizedEssenceProps[]
->;
 export function getEssences() {
   return getEndpoint('data/essences.json', 'ESSENCES');
 }
