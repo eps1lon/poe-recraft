@@ -20,7 +20,7 @@ const EditModal: SFC<Props> = props => {
   // set autofocus to false because
   // FIXME: https://github.com/reactstrap/reactstrap/issues/532
   return (
-    <div className="generators">
+    <div className="edit-item">
       <Button onClick={toggle}>Edit</Button>
 
       <Modal isOpen={props.is_open} toggle={toggle} autoFocus={false}>
