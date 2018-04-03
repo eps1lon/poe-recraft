@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 import { State as PoeState } from './reducers';
 import * as generators from './generators';
 import { EssenceProps, ModProps } from './schema';
+import { isRequested } from '../redux-api-middleware-reducer';
 
 export { generators };
 
@@ -77,3 +78,5 @@ export const getEssences = createSelector(
       };
     })
 );
+
+export const isItemsLoading = (state: State) => isRequested(state.poe.items);

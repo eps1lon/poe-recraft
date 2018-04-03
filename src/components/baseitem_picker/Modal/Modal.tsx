@@ -2,6 +2,7 @@ import React, { SFC } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
+import FillLoading from 'components/FillLoading';
 import Filter from 'containers/baseitem_picker/Filter';
 import Picker from 'containers/baseitem_picker/Picker';
 import { BaseItemTypeProps } from 'state/poe/schema';
@@ -10,6 +11,7 @@ import './style.css';
 export type Props = {
   active: BaseItemTypeProps | undefined;
   is_open: boolean;
+  loading: boolean;
   onToggle: () => any;
 };
 
@@ -18,13 +20,14 @@ const default_props = {
 };
 
 const BaseItemModal: SFC<Props> = props => {
-  const { active } = props;
+  const { active, loading } = props;
   const toggle = props.onToggle;
 
   // set autofocus to false because
   // FIXME: https://github.com/reactstrap/reactstrap/issues/532
   return (
-    <div className="baseitems">
+    <div className="baseitems wrapper">
+      <FillLoading loading={loading} />
       <Button onClick={toggle}>
         Baseitem:{' '}
         {active != null ? (
