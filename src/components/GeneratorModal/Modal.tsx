@@ -3,6 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import GeneratorPicker from './Picker';
 import { FormattedGenerator } from 'components/i18n';
+import FillLoading from 'components/FillLoading';
 import './style.css';
 
 type GeneratorId = string;
@@ -10,6 +11,7 @@ type GeneratorId = string;
 export type Props = {
   active: GeneratorId;
   is_open: boolean;
+  loading: boolean;
   onChange: (id: GeneratorId) => any;
   onToggle: () => any;
 };
@@ -29,7 +31,8 @@ const GeneratorModal: SFC<Props> = props => {
   // set autofocus to false because
   // FIXME: https://github.com/reactstrap/reactstrap/issues/532
   return (
-    <div className="generators">
+    <div className="generators wrapper">
+      <FillLoading loading={props.loading} />
       <Button onClick={toggle}>
         Generator: <FormattedGenerator id={props.active} />
       </Button>

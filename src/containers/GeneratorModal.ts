@@ -4,12 +4,16 @@ import { Dispatch } from 'redux';
 import { craftActions } from 'state/craft';
 import { activeGenerator } from 'state/craft/selectors';
 import { gui_actions } from 'state/gui';
+import { poe_selectors } from 'state/poe';
 import { State } from 'state';
 import GeneratorModal from 'components/GeneratorModal';
 
 const mapStateToProps = (state: State) => {
   return {
     active: activeGenerator(state),
+    loading:
+      poe_selectors.isBenchsLoading(state) ||
+      poe_selectors.isModsLoading(state),
     is_open: state.gui.expanded.get('generator-modal')
   };
 };

@@ -10,7 +10,7 @@ export interface Props {
   loading: boolean;
 }
 
-const duration = 500;
+const duration = 5000;
 
 // eps1lon: tried to move styles into css but nothing happened
 const default_styles = {
@@ -24,7 +24,11 @@ const transition_styles = {
   entered: { width: '100%' },
   // accelerate
   exiting: { width: '100%', transition: `width 1ms` },
-  exited: { width: '100%', opacity: 0, transition: 'opacity 500ms ease-out' }
+  exited: {
+    width: '100%',
+    opacity: 0,
+    transition: `opacity 500ms ease-out`
+  }
 };
 
 export const FillLoading: React.SFC<Props> = ({ loading }) => {

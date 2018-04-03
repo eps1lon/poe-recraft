@@ -79,4 +79,7 @@ export const getEssences = createSelector(
     })
 );
 
+export const isBenchsLoading = (state: State) =>
+  isRequested(state.poe.benchoptions);
 export const isItemsLoading = (state: State) => isRequested(state.poe.items);
+export const isModsLoading = (state: State) => isRequested(state.poe.mods);
