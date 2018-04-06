@@ -74,8 +74,8 @@
 				<pre><code class="lang-bash">$ npm install --save poe-mods
 </code></pre>
 				<h1 id="usage">Usage</h1>
-				<p>Flow is supported.</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { createItems, createMods, Transmute } <span class="hljs-keyword">from</span> <span class="hljs-string">'poe-mods'</span>;
+				<p>Typescript is supported.</p>
+				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { createItems, createMods, Transmute } <span class="hljs-keyword">from</span> <span class="hljs-string">'poe-mods'</span>;
 
 <span class="hljs-comment">// data has to be provided. see eps1lon/poedb</span>
 <span class="hljs-built_in">Promise</span>.all([
@@ -96,15 +96,32 @@
   <span class="hljs-built_in">console</span>.log(transmute.applyTo(greaves)); <span class="hljs-comment">// =&gt; Item</span>
 });
 </code></pre>
+				<h2 id="data">Data</h2>
+				<p>Data for for the <a href="https://github.com/eps1lon/poe-mods/blob/master/src/helpers/createTables.ts"><code>create*</code></a>
+				helpers can be imported from <a href="https://github.com/eps1lon/poe-mods/tree/master/data"><code>poe-mods/data/</code></a>.</p>
+				<p>If you want to use the data somewhere else you can use
+				<a href="https://unpkg.com/poe-mods@/data/">https://unpkg.com/poe-mods@/data/</a>. The data provided by unpkg supports compression. </p>
 				<h2 id="immutability">Immutability</h2>
-				<p>To provide the best support for redux every class is immutable</p>
-				<pre><code class="lang-javascript"><span class="hljs-comment">// @flow</span>
-declare <span class="hljs-keyword">var</span> item: Item;
+				<p>To provide the best support for redux every class is immutable.</p>
+				<pre><code class="lang-typescript"><span class="hljs-keyword">declare</span> <span class="hljs-keyword">var</span> item: Item;
 
 item.setRaritiy(<span class="hljs-string">'magic'</span>) === item <span class="hljs-comment">// false</span>
 
 item.addMod(someMod) === item <span class="hljs-comment">// false</span>
 </code></pre>
+				<h1 id="documentation">Documentation</h1>
+				<ul>
+					<li><a href="https://eps1lon.github.io/poe-mods/">API</a></li>
+					<li><a href="CHANGELOG.md">changelog</a></li>
+				</ul>
+				<h1 id="contributing">Contributing</h1>
+				<p>Issue reports and pull requests are always welcome.</p>
+				<p>When you contribute code please make sure that it passes
+					the test, lint and format checks. Pull requests should be made against
+					the master branch and Travis will inform you wheather all checks have
+				passed.</p>
+				<h1 id="license">License</h1>
+				<p>MIT</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -121,10 +138,10 @@ item.addMod(someMod) === item <span class="hljs-comment">// false</span>
 						<a href="enums/atlasmodifier.html" class="tsd-kind-icon">Atlas<wbr>Modifier</a>
 					</li>
 					<li class=" tsd-kind-enum">
-						<a href="enums/raritykind.html" class="tsd-kind-icon">Rarity<wbr>Kind</a>
+						<a href="enums/atlasmodifiertag.html" class="tsd-kind-icon">Atlas<wbr>Modifier<wbr>Tag</a>
 					</li>
 					<li class=" tsd-kind-enum">
-						<a href="enums/tag.html" class="tsd-kind-icon">Tag</a>
+						<a href="enums/raritykind.html" class="tsd-kind-icon">Rarity<wbr>Kind</a>
 					</li>
 					<li class=" tsd-kind-enum">
 						<a href="enums/type.html" class="tsd-kind-icon">Type</a>
@@ -160,6 +177,9 @@ item.addMod(someMod) === item <span class="hljs-comment">// false</span>
 						<a href="classes/enchantmentbench.html" class="tsd-kind-icon">Enchantmentbench</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/essence.html" class="tsd-kind-icon">Essence</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/exalted.html" class="tsd-kind-icon">Exalted</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
@@ -178,6 +198,9 @@ item.addMod(someMod) === item <span class="hljs-comment">// false</span>
 						<a href="classes/itemaffixes.html" class="tsd-kind-icon">Item<wbr>Affixes</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/itemarmourproperties.html" class="tsd-kind-icon">Item<wbr>Armour<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/itemname.html" class="tsd-kind-icon">Item<wbr>Name</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -190,10 +213,16 @@ item.addMod(someMod) === item <span class="hljs-comment">// false</span>
 						<a href="classes/itemrarity.html" class="tsd-kind-icon">Item<wbr>Rarity</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/itemshieldproperties.html" class="tsd-kind-icon">Item<wbr>Shield<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/itemshowcase.html" class="tsd-kind-icon">Item<wbr>Showcase</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/itemsockets.html" class="tsd-kind-icon">Item<wbr>Sockets</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/itemweaponproperties.html" class="tsd-kind-icon">Item<wbr>Weapon<wbr>Properties</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/masterbench.html" class="tsd-kind-icon">Master<wbr>Bench</a>
@@ -262,6 +291,12 @@ item.addMod(someMod) === item <span class="hljs-comment">// false</span>
 						<a href="interfaces/application.html" class="tsd-kind-icon">Application</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/applyoptions.html" class="tsd-kind-icon">Apply<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/applytooptions.html" class="tsd-kind-icon">Apply<wbr>ToOptions</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/armourproperties.html" class="tsd-kind-icon">Armour<wbr>Properties</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -292,13 +327,16 @@ item.addMod(someMod) === item <span class="hljs-comment">// false</span>
 						<a href="interfaces/craftingbenchoptionsprops.html" class="tsd-kind-icon">Crafting<wbr>Bench<wbr>Options<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/defences.html" class="tsd-kind-icon">Defences</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/essenceprops.html" class="tsd-kind-icon">Essence<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/flags.html" class="tsd-kind-icon">Flags</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="interfaces/generatordetails.html" class="tsd-kind-icon">Generator<wbr>Details</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/itemclassprops.html" class="tsd-kind-icon">Item<wbr>Class<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/itemprops.html" class="tsd-kind-icon">Item<wbr>Props</a>
@@ -325,16 +363,22 @@ item.addMod(someMod) === item <span class="hljs-comment">// false</span>
 						<a href="interfaces/name.html" class="tsd-kind-icon">Name</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/properties.html" class="tsd-kind-icon">Properties</a>
+						<a href="interfaces/numericproperty.html" class="tsd-kind-icon">Numeric<wbr>Property</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/property.html" class="tsd-kind-icon">Property</a>
+						<a href="interfaces/properties.html" class="tsd-kind-icon">Properties</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="interfaces/rarity.html" class="tsd-kind-icon">Rarity</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/requirements.html" class="tsd-kind-icon">Requirements</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/shieldproperties.html" class="tsd-kind-icon">Shield<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/shieldtypeprops.html" class="tsd-kind-icon">Shield<wbr>Type<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/sockets.html" class="tsd-kind-icon">Sockets</a>
@@ -355,10 +399,10 @@ item.addMod(someMod) === item <span class="hljs-comment">// false</span>
 						<a href="interfaces/tables.html" class="tsd-kind-icon">Tables</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/tagprops.html" class="tsd-kind-icon">Tag<wbr>Props</a>
+						<a href="interfaces/taggable.html" class="tsd-kind-icon">Taggable</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/taggable.html" class="tsd-kind-icon">Taggable</a>
+						<a href="interfaces/weaponproperties.html" class="tsd-kind-icon">Weapon<wbr>Properties</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/weapontypeprops.html" class="tsd-kind-icon">Weapon<wbr>Type<wbr>Props</a>
@@ -390,14 +434,17 @@ item.addMod(someMod) === item <span class="hljs-comment">// false</span>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#optionid" class="tsd-kind-icon">Option<wbr>Id</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-is-not-exported">
-						<a href="globals.html#propertybuilder" class="tsd-kind-icon">Property<wbr>Builder</a>
-					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#rarityident" class="tsd-kind-icon">Rarity<wbr>Ident</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#spawnableflag" class="tsd-kind-icon">Spawnable<wbr>Flag</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#tag" class="tsd-kind-icon">Tag</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#valuerangelike" class="tsd-kind-icon">Value<wbr>Range<wbr>Like</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#sextant_range" class="tsd-kind-icon">SEXTANT_<wbr>RANGE</a>
@@ -428,6 +475,12 @@ item.addMod(someMod) === item <span class="hljs-comment">// false</span>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#essenceweaponrange" class="tsd-kind-icon">essence<wbr>Weapon<wbr>Range</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#essences" class="tsd-kind-icon">essences</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#global_atlas" class="tsd-kind-icon">global_<wbr>atlas</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#greaves" class="tsd-kind-icon">greaves</a>
@@ -472,6 +525,12 @@ item.addMod(someMod) === item <span class="hljs-comment">// false</span>
 						<a href="globals.html#build" class="tsd-kind-icon">build</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="globals.html#byessencename" class="tsd-kind-icon">by<wbr>Essence<wbr>Name</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#byworldareaid" class="tsd-kind-icon">by<wbr>World<wbr>Area<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="globals.html#calculatespawnchance" class="tsd-kind-icon">calculate<wbr>Spawnchance</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
@@ -479,6 +538,9 @@ item.addMod(someMod) === item <span class="hljs-comment">// false</span>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#createatlasnodes" class="tsd-kind-icon">create<wbr>Atlas<wbr>Nodes</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createessences" class="tsd-kind-icon">create<wbr>Essences</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#createitems" class="tsd-kind-icon">create<wbr>Items</a>
@@ -504,17 +566,17 @@ item.addMod(someMod) === item <span class="hljs-comment">// false</span>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#formatforsnapshot" class="tsd-kind-icon">format<wbr>For<wbr>Snapshot</a>
 					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#getfromcollection" class="tsd-kind-icon">get<wbr>From<wbr>Collection</a>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#fromworldareaid" class="tsd-kind-icon">from<wbr>World<wbr>Area<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#getfromatlas" class="tsd-kind-icon">get<wbr>From<wbr>Atlas</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#getnode" class="tsd-kind-icon">get<wbr>Node</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#getnodeindex" class="tsd-kind-icon">get<wbr>Node<wbr>Index</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#getpropertybulder" class="tsd-kind-icon">get<wbr>Property<wbr>Bulder</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#getweight" class="tsd-kind-icon">get<wbr>Weight</a>
@@ -547,10 +609,10 @@ item.addMod(someMod) === item <span class="hljs-comment">// false</span>
 						<a href="globals.html#tagidentifier" class="tsd-kind-icon">tag<wbr>Identifier</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#tagprops" class="tsd-kind-icon">tag<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-function">
 						<a href="globals.html#tagswithmodifier" class="tsd-kind-icon">tags<wbr>With<wbr>Modifier</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#tuple" class="tsd-kind-icon">tuple</a>
 					</li>
 					<li class=" tsd-kind-object-literal tsd-is-not-exported">
 						<a href="globals.html#meta_mods" class="tsd-kind-icon">META_<wbr>MODS</a>
