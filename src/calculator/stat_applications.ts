@@ -1,4 +1,5 @@
 export interface Application {
+  // dnf
   classification: Array<string | string[]>;
   type: 'flat' | 'inc' | 'more';
 }
@@ -702,6 +703,15 @@ const applications: { [key: string]: Application } = {
   },
   'local_critical_strike_chance_+%': {
     classification: [['local', 'crit_chance']],
+    type: 'inc',
+  },
+  local_quality: {
+    classification: [
+      ['local', 'armour'],
+      ['local', 'energy_shield'],
+      ['local', 'evasion'],
+      ['local', 'attack_damage', 'physical'],
+    ],
     type: 'inc',
   },
   'local_display_fire_burst_on_hit_%': {

@@ -18,6 +18,15 @@ it('should match tags', () => {
       }),
     ),
   ).toBe(false);
+
+  const local_shield = new Value([0, 0], ['local', 'block']);
+  expect(
+    local_shield.augmentableBy(
+      new Stat({
+        id: 'additional_block_%',
+      }),
+    ),
+  ).toBe(true);
 });
 
 it('should know about the difference between flat, inc and more', () => {

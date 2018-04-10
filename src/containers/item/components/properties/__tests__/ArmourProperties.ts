@@ -1,4 +1,5 @@
 import { createTables } from '../../../../../__fixtures__/util';
+import ArmourProperties from '../ArmourProperties';
 
 const tables = createTables();
 
@@ -109,4 +110,44 @@ it('should consider stats for es', () => {
     .properties.defences();
   expect(props.energy_shield.augmented).toBe(true);
   expect(props.energy_shield.value).toEqual([120, 134]);
+});
+
+it('should consider quality as increased modifier', () => {
+  const garb = items
+    .fromName('Sacrificial Garb')
+    // +(56-67)%
+    .addMod(mods.fromId('LocalIncreasedPhysicalDamageReductionRatingPercent4'))
+    // +(15-26)%
+    .addMod(mods.fromId('LocalIncreasedEvasionRatingPercent1'))
+    // +(11-28)%
+    .addMod(mods.fromId('LocalIncreasedEnergyShieldPercent1'));
+
+  // pre
+  expect((garb.properties as ArmourProperties).defences()).toMatchObject({
+    armour: { augmented: true, value: [513, 549] },
+    evasion: { augmented: true, value: [378, 414] },
+    energy_shield: { augmented: true, value: [71, 81] },
+  });
+
+  const with_quality = garb.properties.setQuality(20);
+
+  // post
+  expect(
+    (with_quality.properties as ArmourProperties).defences(),
+  ).toMatchObject({
+    armour: { augmented: true, value: [579, 615] },
+    evasion: { augmented: true, value: [444, 480] },
+    energy_shield: { augmented: true, value: [83, 94] },
+  });
+
+  const white_with_quality = items
+    .fromName('Sacrificial Garb')
+    .properties.setQuality(20);
+  expect(
+    (white_with_quality.properties as ArmourProperties).defences(),
+  ).toMatchObject({
+    armour: { augmented: true, value: 394 },
+    evasion: { augmented: true, value: 394 },
+    energy_shield: { augmented: true, value: 76 },
+  });
 });

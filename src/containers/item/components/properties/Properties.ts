@@ -7,7 +7,8 @@ export interface NumericProperty {
 }
 
 export interface Properties {
-  quality: number;
+  readonly quality: number;
+  setQuality(quality: number): Item;
 }
 
 export interface Builder {
@@ -39,5 +40,21 @@ export default class ItemProperties
 
   public any(): boolean {
     return this.quality > 0;
+  }
+
+  public setQuality(new_quality: number): Item {
+    if (new_quality === this.quality) {
+      return this.parent;
+    }
+
+    return this.parent.withMutations(builder => {
+      return {
+        ...builder,
+        properties: {
+          ...builder.properties,
+          quality: new_quality,
+        },
+      };
+    });
   }
 }

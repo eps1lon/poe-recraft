@@ -414,7 +414,15 @@ export default class Item implements Container<Mod> {
     classification: string[],
   ): NumericProperty {
     const base = new Value([value, value], classification);
-    return base.augmentWith(Object.values(this.stats())).compute();
+    return base
+      .augmentWith(Object.values(this.stats()))
+      .augmentWith([
+        new Stat({ id: 'local_quality' }, [
+          this.properties.quality,
+          this.properties.quality,
+        ]),
+      ])
+      .compute();
   }
 
   // private

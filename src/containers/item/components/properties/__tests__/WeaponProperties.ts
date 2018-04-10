@@ -60,6 +60,25 @@ describe('physical damage', () => {
       max: { augmented: true, value: [346, 387] },
     });
   });
+
+  it('is affected by quality', () => {
+    // pre
+    expect(
+      (dagger.properties as ItemWeaponProperties).physical_damage(),
+    ).toMatchObject({
+      min: { augmented: false, value: 24 },
+      max: { augmented: false, value: 95 },
+    });
+    // add quality
+    const with_quality = dagger.properties.setQuality(15);
+    // post
+    expect(
+      (with_quality.properties as ItemWeaponProperties).physical_damage(),
+    ).toMatchObject({
+      min: { augmented: true, value: 27 },
+      max: { augmented: true, value: 109 },
+    });
+  });
 });
 
 describe('chaos damage', () => {
@@ -82,6 +101,15 @@ describe('chaos damage', () => {
       min: { augmented: true, value: [47, 72] },
       max: { augmented: true, value: [98, 123] },
     });
+  });
+
+  it('is not affected by quality', () => {
+    const with_damage = dagger.addMod(mods.fromId('LocalAddedChaosDamage1'));
+    const with_quality = with_damage.properties.setQuality(1);
+
+    expect(
+      (with_damage.properties as ItemWeaponProperties).chaos_damage(),
+    ).toEqual((with_quality.properties as ItemWeaponProperties).chaos_damage());
   });
 });
 
@@ -106,6 +134,15 @@ describe('cold damage', () => {
       max: { augmented: true, value: 3 },
     });
   });
+
+  it('is not affected by quality', () => {
+    const with_damage = dagger.addMod(mods.fromId('LocalAddedColdDamage1'));
+    const with_quality = with_damage.properties.setQuality(3);
+
+    expect(
+      (with_damage.properties as ItemWeaponProperties).chaos_damage(),
+    ).toEqual((with_quality.properties as ItemWeaponProperties).chaos_damage());
+  });
 });
 
 describe('fire damage', () => {
@@ -129,6 +166,15 @@ describe('fire damage', () => {
       max: { augmented: true, value: [15, 18] },
     });
   });
+
+  it('is not affected by quality', () => {
+    const with_damage = dagger.addMod(mods.fromId('LocalAddedFireDamage2'));
+    const with_quality = with_damage.properties.setQuality(7);
+
+    expect(
+      (with_damage.properties as ItemWeaponProperties).chaos_damage(),
+    ).toEqual((with_quality.properties as ItemWeaponProperties).chaos_damage());
+  });
 });
 
 describe('lightning damage', () => {
@@ -151,6 +197,17 @@ describe('lightning damage', () => {
       min: { augmented: true, value: [1, 3] },
       max: { augmented: true, value: [41, 43] },
     });
+  });
+
+  it('is not affected by quality', () => {
+    const with_damage = dagger.addMod(
+      mods.fromId('LocalAddedLightningDamage3'),
+    );
+    const with_quality = with_damage.properties.setQuality(13);
+
+    expect(
+      (with_damage.properties as ItemWeaponProperties).chaos_damage(),
+    ).toEqual((with_quality.properties as ItemWeaponProperties).chaos_damage());
   });
 });
 

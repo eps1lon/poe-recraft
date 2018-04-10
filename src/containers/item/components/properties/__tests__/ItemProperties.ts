@@ -21,3 +21,14 @@ it.skip('should have some for weapons', () => {
 
   expect(weapon.properties.any()).toBe(true);
 });
+
+it('can return an new item with different quality', () => {
+  const boots = items.fromName('Iron Greaves');
+
+  // no change in quality so items are equal
+  expect(boots.properties.setQuality(0)).toBe(boots);
+
+  const with_quality = boots.properties.setQuality(1);
+  expect(with_quality).not.toBe(boots);
+  expect(with_quality.properties.quality).toEqual(1);
+});
