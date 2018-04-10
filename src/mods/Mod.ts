@@ -17,7 +17,7 @@ export default class Mod {
     ABYSS_JEWEL: 14,
   };
 
-  public static TYPE: { [key: string]: number } = {
+  public static GENERATION_TYPE: { [key: string]: number } = {
     PREFIX: 1,
     SUFFIX: 2,
     PREMADE: 3,
@@ -43,7 +43,10 @@ export default class Mod {
   public isType(type: string) {
     const t = type.toUpperCase();
 
-    return t in Mod.TYPE && this.props.generation_type === Mod.TYPE[t];
+    return (
+      t in Mod.GENERATION_TYPE &&
+      this.props.generation_type === Mod.GENERATION_TYPE[t]
+    );
   }
 
   public isPrefix() {
@@ -86,7 +89,7 @@ export default class Mod {
    * string identifier of the generation type
    */
   public modType(): string | undefined {
-    const entry = Object.entries(Mod.TYPE).find(([, type]) => {
+    const entry = Object.entries(Mod.GENERATION_TYPE).find(([, type]) => {
       return this.props.generation_type === type;
     });
 

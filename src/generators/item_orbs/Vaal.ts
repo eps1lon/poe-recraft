@@ -10,7 +10,7 @@ export default class Vaal extends ItemOrb {
     // vaal implicits
     return (
       super.modFilter(mod) &&
-      [Mod.TYPE.VAAL].indexOf(mod.generation_type) !== -1
+      [Mod.GENERATION_TYPE.VAAL].indexOf(mod.generation_type) !== -1
     );
   }
 

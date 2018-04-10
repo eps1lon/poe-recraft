@@ -29,11 +29,11 @@ export default class Implicits extends ImmutableContainer<Mod, Builder> {
    */
   public maxModsOfType(mod: Mod): number {
     switch (mod.props.generation_type) {
-      case Mod.TYPE.PREMADE:
+      case Mod.GENERATION_TYPE.PREMADE:
         return 5;
-      case Mod.TYPE.ENCHANTMENT:
+      case Mod.GENERATION_TYPE.ENCHANTMENT:
         return 1;
-      case Mod.TYPE.VAAL:
+      case Mod.GENERATION_TYPE.VAAL:
         return 1;
       // no other generation types allowed
       default:

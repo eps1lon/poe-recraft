@@ -13,7 +13,7 @@ export default class Enchantmentbench extends ItemOrb {
   public static modFilter(mod: ModProps): boolean {
     return (
       super.modFilter(mod) &&
-      [Mod.TYPE.ENCHANTMENT].indexOf(mod.generation_type) !== -1
+      [Mod.GENERATION_TYPE.ENCHANTMENT].indexOf(mod.generation_type) !== -1
     );
   }
 

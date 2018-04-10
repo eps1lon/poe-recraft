@@ -16,7 +16,9 @@ export default class Transmute extends ItemOrb {
     // prefix/suffix only
     return (
       super.modFilter(mod) &&
-      [Mod.TYPE.PREFIX, Mod.TYPE.SUFFIX].indexOf(mod.generation_type) !== -1
+      [Mod.GENERATION_TYPE.PREFIX, Mod.GENERATION_TYPE.SUFFIX].indexOf(
+        mod.generation_type,
+      ) !== -1
     );
   }
 
