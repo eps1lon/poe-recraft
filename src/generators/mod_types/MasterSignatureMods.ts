@@ -46,11 +46,11 @@ export default class MasterSignatureMods extends ViewOnlyOrb {
     pvp: item => ['Amulet', 'Ring', 'Belt'].includes(item.baseitem.item_class),
     // Zana
     str_dex_int: item => ['Map'].includes(item.baseitem.item_class),
-    // Catarina TODO: es bases only?
+    // Catarina
     int: item =>
-      ['Helmet', 'Dagger', 'Wand', 'Sceptre'].includes(
-        item.baseitem.item_class,
-      ) || isSpiritShield(item),
+      ['Dagger', 'Wand', 'Sceptre'].includes(item.baseitem.item_class) ||
+      isSpiritShield(item) ||
+      isIntHelmet(item),
     // Vorici
     dex_int: item => ['Gloves', 'Amulet'].includes(item.baseitem.item_class),
     // Haku
@@ -138,5 +138,12 @@ function isSpiritShield(item: Item): boolean {
   return (
     item.baseitem.item_class === 'Shield' &&
     item.baseitem.tags.includes('focus')
+  );
+}
+
+function isIntHelmet(item: Item): boolean {
+  return (
+    item.baseitem.item_class === 'Helmet' &&
+    item.baseitem.tags.includes('int_armour')
   );
 }

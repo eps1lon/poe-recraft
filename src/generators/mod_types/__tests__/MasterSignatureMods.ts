@@ -8,6 +8,7 @@ const snapshot = ({ mod }: { mod: Mod }) => mod.props.id;
 
 const item_class_samples = {
   helmets: 'Hunter Hood',
+  es_helmets: 'Solaris Circlet',
   boots: 'Iron Greaves',
   gloves: 'Iron Gauntlets',
   amulets: 'Amber Amulet',
