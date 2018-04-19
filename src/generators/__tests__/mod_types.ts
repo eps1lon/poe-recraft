@@ -3,6 +3,7 @@ import {
   ShapedMods,
   BestiaryAspectMods,
   MasterSignatureMods,
+  WarbandsMods,
 } from '../mod_types';
 import { createTables } from '../../__fixtures__/util';
 
@@ -29,5 +30,11 @@ it('should match the curated list of Bestiary Aspect mods', () => {
 it('should match the curated list of Master Signature mods', () => {
   expect(
     MasterSignatureMods.build(mods.all()).mods.map(mod => mod.props.id),
+  ).toMatchSnapshot();
+});
+
+it('should match the curated list of Warbands mods', () => {
+  expect(
+    WarbandsMods.build(mods.all()).mods.map(mod => mod.props.id),
   ).toMatchSnapshot();
 });
