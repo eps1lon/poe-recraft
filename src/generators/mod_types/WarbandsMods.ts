@@ -1,9 +1,10 @@
+import { GeneratorDetails } from '../Generator';
 import ViewOnlyOrb from '../ViewOnlyOrb';
 import Item from '../../containers/item';
 import { Mod } from '../../mods';
 import { ModProps } from '../../schema';
 
-type Faction = 'brinerot' | 'mutewind' | 'redblade' | 'renegade';
+export type Faction = 'brinerot' | 'mutewind' | 'redblade' | 'renegade';
 
 /**
  * Generator for all mods that can appear on items dropped by Warbands
@@ -53,7 +54,7 @@ export default class WarbandsMods extends ViewOnlyOrb {
    * @param mod 
    * @returns true if the mod can spawn on Warbands drops
    */
-  public static isWarbands(mod: ModProps) {
+  public static isWarbands(mod: ModProps): boolean {
     return (
       Object.values(WarbandsMods.FACTION_MODS).find(mods =>
         mods.has(mod.id),
@@ -61,7 +62,10 @@ export default class WarbandsMods extends ViewOnlyOrb {
     );
   }
 
-  public modsFor(item: Item, whitelist: string[] = []) {
+  public modsFor(
+    item: Item,
+    whitelist: string[] = [],
+  ): Array<GeneratorDetails<Mod>> {
     const faction = this.factionOf(item);
     if (faction === undefined) {
       return [];

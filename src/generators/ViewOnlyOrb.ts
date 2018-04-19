@@ -2,12 +2,17 @@ import Orb from './Orb';
 import Item from '../containers/item';
 import { Flags } from '../util';
 
+export interface ApplicableFlags extends Flags {
+  not_applicable: boolean;
+}
+export type ApplicableFlag = keyof ApplicableFlags;
+
 export default class ViewOnlyOrb extends Orb<Item> {
   /**
    * not applicable to anything
    * @param item 
    */
-  public applicableTo(item: Item): Flags {
+  public applicableTo(item: Item): ApplicableFlags {
     return {
       not_applicable: true,
     };

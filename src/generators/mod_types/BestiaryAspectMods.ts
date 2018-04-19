@@ -1,3 +1,4 @@
+import { GeneratorDetails } from '../Generator';
 import ViewOnlyOrb from '../ViewOnlyOrb';
 import Item from '../../containers/item';
 import { Mod } from '../../mods';
@@ -31,11 +32,14 @@ export default class BestiaryAspectMods extends ViewOnlyOrb {
    * @returns true if the mod can only crafted with the Blood Altar from a
    *          Spirit Beast
    */
-  public static isBestiaryAspect(mod: ModProps) {
+  public static isBestiaryAspect(mod: ModProps): boolean {
     return BestiaryAspectMods.ASPECT_MODS.has(mod.id);
   }
 
-  public modsFor(item: Item, whitelist: string[] = []) {
+  public modsFor(
+    item: Item,
+    whitelist: string[] = [],
+  ): Array<GeneratorDetails<Mod>> {
     // omit everything spawnable related. crafting is deterministic
     return super
       .modsFor(item, whitelist.concat('no_matching_tags', 'spawnweight_zero'))

@@ -1,3 +1,4 @@
+import { GeneratorDetails } from '../Generator';
 import ViewOnlyOrb from '../ViewOnlyOrb';
 import Item from '../../containers/item';
 import { Mod } from '../../mods';
@@ -31,7 +32,10 @@ export default class ElderMods extends ViewOnlyOrb {
    * @param item 
    * @param whitelist
    */
-  public modsFor(item: Item, whitelist: string[] = []) {
+  public modsFor(
+    item: Item,
+    whitelist: string[] = [],
+  ): Array<GeneratorDetails<Mod>> {
     return super.modsFor(item.asElderItem(), whitelist);
   }
 }

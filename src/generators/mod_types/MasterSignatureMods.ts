@@ -1,3 +1,4 @@
+import { GeneratorDetails } from '../Generator';
 import ViewOnlyOrb from '../ViewOnlyOrb';
 import Item from '../../containers/item';
 import { Mod } from '../../mods';
@@ -102,7 +103,10 @@ export default class MasterSignatureMods extends ViewOnlyOrb {
    * @param item 
    * @param whitelist
    */
-  public modsFor(item: Item, whitelist: string[] = []) {
+  public modsFor(
+    item: Item,
+    whitelist: string[] = [],
+  ): Array<GeneratorDetails<Mod>> {
     // basically ignore spawnweight
     const whitelist_spawnable = whitelist.concat(
       'no_matching_tags',

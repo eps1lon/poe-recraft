@@ -1,3 +1,4 @@
+import { GeneratorDetails } from '../Generator';
 import ViewOnlyOrb from '../ViewOnlyOrb';
 import Item from '../../containers/item';
 import { Mod } from '../../mods';
@@ -30,7 +31,10 @@ export default class ShaperMods extends ViewOnlyOrb {
    * 
    * @param item 
    */
-  public modsFor(item: Item, whitelist: string[] = []) {
+  public modsFor(
+    item: Item,
+    whitelist: string[] = [],
+  ): Array<GeneratorDetails<Mod>> {
     return super.modsFor(item.asShaperItem(), whitelist);
   }
 }
