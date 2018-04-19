@@ -24,6 +24,13 @@ export {
   MasterBenchOption,
   Sextant,
 } from './generators/index';
+export {
+  BestiaryAspectMods,
+  ElderMods,
+  MasterSignatureMods,
+  ShapedMods,
+  WarbandsMods,
+} from './generators/mod_types';
 
 export {
   AtlasNode,

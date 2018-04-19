@@ -4,11 +4,11 @@ import { Mod } from '../../mods';
 import { ModProps } from '../../schema';
 
 /**
- * Generator for all mods that are possible of the item is an Elder item
+ * Generator for all mods that can be crafted at the Blood Altar with Spirit Beasts
  */
 export default class BestiaryAspectMods extends ViewOnlyOrb {
   /**
-   * list of mods that can no longer appear in master vendor
+   * list of mod ids that can be crafted with Spirit Beasts
    */
   public static readonly ASPECT_MODS: Set<Mod['props']['id']> = new Set([
     'GrantsCatAspect1',

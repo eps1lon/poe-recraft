@@ -5,7 +5,10 @@ import { ModProps } from '../../schema';
 import { anySet } from '../../util';
 
 /**
- * Generator for all mods that are possible of the item is an Elder item
+ * Generator for all mods that can appear on items sold by Master vendors
+ * 
+ * Remember that items sold from the vendor have a fixed item level and might
+ * not be able to hold mods for higher item levels
  */
 export default class MasterSignatureMods extends ViewOnlyOrb {
   /**

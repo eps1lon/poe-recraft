@@ -6,7 +6,10 @@ import { ModProps } from '../../schema';
 type Faction = 'brinerot' | 'mutewind' | 'redblade' | 'renegade';
 
 /**
- * Generator for all mods that are possible of the item is an Elder item
+ * Generator for all mods that can appear on items dropped by Warbands
+ * 
+ * Each Faction of Warbands can drop a magic item that has a single Warbands
+ * mod. The itemclass of that item depends on the faction
  */
 export default class WarbandsMods extends ViewOnlyOrb {
   /**
