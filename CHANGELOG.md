@@ -7,7 +7,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.8.0...HEAD)
 ### Added
+- various generators for certain mod groups (`BestiaryAspectMods`, `ElderMods`, 
+  `MasterSignatureMods`, `ShapedMods`, `WarbandsMods`). 
+  ([#47](https://github.com/eps1lon/poe-mods/pull/47))
 - `Essence` mod generator. Adds one guarenteed mod (the essence mod) and fills
+  up the rest like an Alchemy. `Essence.modsFor` only returns the guaranteed mod.  and fills
   up the rest like an Alchemy. `Essence.modsFor` only returns the guaranteed mod. 
   Properties for all essences are included in `data/essences.json`. ([#43](https://github.com/eps1lon/poe-mods/pull/43))
 - Added `ignore_meta_mods` option to `Scouring.applyTo` which ignores locked
