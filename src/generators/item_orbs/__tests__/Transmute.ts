@@ -45,9 +45,11 @@ it('should add mods while upgrading the item to magic', () => {
 
   expect(anySet(transmute.applicableTo(craftable))).toBe(false);
 
-  const crafted = transmute.applyTo(craftable);
-
-  expect(crafted).not.toBe(craftable);
-  expect(crafted.props).toEqual(craftable.rarity.set('magic').props);
-  expect(crafted.mods.length).toBeGreaterThan(0);
+  // random testing with seeded Math.random from jest setupFiles
+  for (let i = 0; i < 5; i += 1) {
+    const crafted = transmute.applyTo(craftable);
+    expect(crafted).not.toBe(craftable);
+    expect(crafted.props).toEqual(craftable.rarity.set('magic').props);
+    expect(crafted.mods.length).toBeGreaterThan(0);
+  }
 });
