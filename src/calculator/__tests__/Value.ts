@@ -11,6 +11,13 @@ it('should match tags', () => {
       }),
     ),
   ).toBe(true);
+  expect(
+    local_armour.augmentableBy(
+      new Stat({
+        id: 'local_evasion_and_energy_shield_+%',
+      }),
+    ),
+  ).toBe(false);
 });
 
 it('should know about the difference between flat, inc and more', () => {

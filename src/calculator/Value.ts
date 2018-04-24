@@ -60,13 +60,13 @@ export default class Value {
       applications[stat.props.id] != null &&
       // empty clauses never augment anything
       applications[stat.props.id].classification.length > 0 &&
-      // applications[stat.props.id].classification is in KNF
-      // [a, b, [c, d]] => a && b && (c || d)
-      applications[stat.props.id].classification.every(
-        tag =>
-          Array.isArray(tag)
-            ? tag.some(or => this.classification.includes(or))
-            : this.classification.includes(tag),
+      // applications[stat.props.id].classification is in DNF
+      // [a, b, [c, d]] => a || b || (c && d)
+      applications[stat.props.id].classification.some(
+        clause =>
+          Array.isArray(clause)
+            ? clause.every(term => this.classification.includes(term))
+            : this.classification.includes(clause),
       )
     );
   }
