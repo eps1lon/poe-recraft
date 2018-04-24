@@ -1,4 +1,5 @@
 export interface Application {
+  // dnf
   classification: Array<string | string[]>;
   type: 'flat' | 'inc' | 'more';
 }
@@ -653,7 +654,7 @@ const applications: { [key: string]: Application } = {
     type: 'inc',
   },
   'local_additional_block_chance_%': {
-    classification: ['local', 'block'],
+    classification: [['local', 'block']],
     type: 'flat',
   },
   local_always_hit: {
@@ -661,19 +662,23 @@ const applications: { [key: string]: Application } = {
     type: 'flat',
   },
   'local_armour_and_energy_shield_+%': {
-    classification: ['local', ['armour', 'energy_shield']],
+    classification: [['local', 'armour'], ['local', 'energy_shield']],
     type: 'inc',
   },
   'local_armour_and_evasion_+%': {
-    classification: ['local', ['armour', 'evasion']],
+    classification: [['local', 'armour'], ['local', 'evasion']],
     type: 'inc',
   },
   'local_armour_and_evasion_and_energy_shield_+%': {
-    classification: ['local', ['armour', 'evasion', 'energy_shield']],
+    classification: [
+      ['local', 'armour'],
+      ['local', 'energy_shield'],
+      ['local', 'energy_shield'],
+    ],
     type: 'inc',
   },
   'local_attack_speed_+%': {
-    classification: ['local', 'attack_speed'],
+    classification: [['local', 'attack_speed']],
     type: 'inc',
   },
   'local_attribute_requirements_+%': {
@@ -681,11 +686,11 @@ const applications: { [key: string]: Application } = {
     type: 'inc',
   },
   local_base_evasion_rating: {
-    classification: ['local', 'evasion'],
+    classification: [['local', 'evasion']],
     type: 'flat',
   },
   local_base_physical_damage_reduction_rating: {
-    classification: ['local', 'armour'],
+    classification: [['local', 'armour']],
     type: 'flat',
   },
   'local_chance_to_bleed_on_hit_%': {
@@ -697,7 +702,16 @@ const applications: { [key: string]: Application } = {
     type: 'flat',
   },
   'local_critical_strike_chance_+%': {
-    classification: ['local', 'crit_chance'],
+    classification: [['local', 'crit_chance']],
+    type: 'inc',
+  },
+  local_quality: {
+    classification: [
+      ['local', 'armour'],
+      ['local', 'energy_shield'],
+      ['local', 'evasion'],
+      ['local', 'attack_damage', 'physical'],
+    ],
     type: 'inc',
   },
   'local_display_fire_burst_on_hit_%': {
@@ -889,19 +903,19 @@ const applications: { [key: string]: Application } = {
     type: 'inc',
   },
   local_energy_shield: {
-    classification: ['local', 'energy_shield'],
+    classification: [['local', 'energy_shield']],
     type: 'flat',
   },
   'local_energy_shield_+%': {
-    classification: ['local', 'energy_shield'],
+    classification: [['local', 'energy_shield']],
     type: 'inc',
   },
   'local_evasion_and_energy_shield_+%': {
-    classification: ['local', ['evasion', 'energy_shield']],
+    classification: [['local', 'evasion'], ['local', 'energy_shield']],
     type: 'inc',
   },
   'local_evasion_rating_+%': {
-    classification: ['local', 'evasion'],
+    classification: [['local', 'evasion']],
     type: 'inc',
   },
   local_item_drops_on_death_if_equipped_by_animate_armour: {
@@ -921,51 +935,51 @@ const applications: { [key: string]: Application } = {
     type: 'flat',
   },
   local_maximum_added_chaos_damage: {
-    classification: ['local', 'attack_damage', 'chaos', 'max'],
+    classification: [['local', 'attack_damage', 'chaos', 'max']],
     type: 'flat',
   },
   local_maximum_added_cold_damage: {
-    classification: ['local', 'attack_damage', 'cold', 'max'],
+    classification: [['local', 'attack_damage', 'cold', 'max']],
     type: 'flat',
   },
   local_maximum_added_fire_damage: {
-    classification: ['local', 'attack_damage', 'fire', 'max'],
+    classification: [['local', 'attack_damage', 'fire', 'max']],
     type: 'flat',
   },
   local_maximum_added_lightning_damage: {
-    classification: ['local', 'attack_damage', 'lightning', 'max'],
+    classification: [['local', 'attack_damage', 'lightning', 'max']],
     type: 'flat',
   },
   local_maximum_added_physical_damage: {
-    classification: ['local', 'attack_damage', 'physical', 'max'],
+    classification: [['local', 'attack_damage', 'physical', 'max']],
     type: 'flat',
   },
   local_minimum_added_chaos_damage: {
-    classification: ['local', 'attack_damage', 'chaos', 'min'],
+    classification: [['local', 'attack_damage', 'chaos', 'min']],
     type: 'flat',
   },
   local_minimum_added_cold_damage: {
-    classification: ['local', 'attack_damage', 'cold', 'min'],
+    classification: [['local', 'attack_damage', 'cold', 'min']],
     type: 'flat',
   },
   local_minimum_added_fire_damage: {
-    classification: ['local', 'attack_damage', 'fire', 'min'],
+    classification: [['local', 'attack_damage', 'fire', 'min']],
     type: 'flat',
   },
   local_minimum_added_lightning_damage: {
-    classification: ['local', 'attack_damage', 'lightning', 'min'],
+    classification: [['local', 'attack_damage', 'lightning', 'min']],
     type: 'flat',
   },
   local_minimum_added_physical_damage: {
-    classification: ['local', 'attack_damage', 'physical', 'min'],
+    classification: [['local', 'attack_damage', 'physical', 'min']],
     type: 'flat',
   },
   'local_physical_damage_+%': {
-    classification: ['local', 'attack_damage', 'physical'],
+    classification: [['local', 'attack_damage', 'physical']],
     type: 'inc',
   },
   'local_physical_damage_reduction_rating_+%': {
-    classification: ['local', 'armour'],
+    classification: [['local', 'armour']],
     type: 'inc',
   },
   'local_poison_on_hit_%': {
@@ -1029,7 +1043,7 @@ const applications: { [key: string]: Application } = {
     type: 'inc',
   },
   'local_weapon_range_+': {
-    classification: ['local', 'weapon_range'],
+    classification: [['local', 'weapon_range']],
     type: 'flat',
   },
   'mana_%_gained_on_block': {
