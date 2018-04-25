@@ -1,9 +1,15 @@
 import Component from '../Component';
 import Item from '../Item';
+import { AugmentableValue } from '../util';
 
 export interface Requirements {
-  list(): { level: number; dex: number; int: number; str: number };
-  level(): number;
+  list(): {
+    level: AugmentableValue;
+    dex: AugmentableValue;
+    int: AugmentableValue;
+    str: AugmentableValue;
+  };
+  level(): AugmentableValue;
 }
 
 export type Builder =
@@ -46,7 +52,47 @@ export default class ItemName
     };
   }
 
-  public level(): number {
+  /**
+   * Computes the required level including stat applications
+   */
+  public level(): AugmentableValue {
+    return this.parent.computeValue(this.baseLevel(), [
+      'local',
+      'requirements',
+      'level',
+    ]);
+  }
+
+  public list() {
+    const attribute_requirements_classification = ['local', 'requirements'];
+
+    return {
+      level: this.level(),
+      str: this.parent.computeValue(this.str, [
+        ...attribute_requirements_classification,
+        'strength',
+      ]),
+      dex: this.parent.computeValue(this.dex, [
+        ...attribute_requirements_classification,
+        'dexterity',
+      ]),
+      int: this.parent.computeValue(this.int, [
+        ...attribute_requirements_classification,
+        'intelligence',
+      ]),
+    };
+  }
+
+  public any(): boolean {
+    return Object.values(this.list()).some(({ value }) => value !== 0);
+  }
+
+  /**
+   * computes required level before stat applications
+   * 
+   * @returns number
+   */
+  private baseLevel(): number {
     if (this.parent.meta_data.isA('AbstractMap')) {
       return 0;
     } else {
@@ -55,18 +101,5 @@ export default class ItemName
         ...this.parent.mods.map(mod => mod.requiredLevel()),
       );
     }
-  }
-
-  public list() {
-    return {
-      level: this.level(),
-      str: this.str,
-      dex: this.dex,
-      int: this.int,
-    };
-  }
-
-  public any(): boolean {
-    return Object.values(this.list()).some(value => value !== 0);
   }
 }

@@ -1,14 +1,14 @@
 import ItemProperties, {
-  NumericProperty,
   Properties,
   Builder as BaseBuilder,
 } from './Properties';
 import ValueRange from '../../../../calculator/ValueRange';
+import { AugmentableValue } from '../../util';
 
 export interface Defences {
-  armour: NumericProperty;
-  evasion: NumericProperty;
-  energy_shield: NumericProperty;
+  armour: AugmentableValue;
+  evasion: AugmentableValue;
+  energy_shield: AugmentableValue;
 }
 
 export interface ArmourProperties extends Properties {

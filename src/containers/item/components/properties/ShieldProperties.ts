@@ -1,8 +1,8 @@
 import ItemArmourProperties, { ArmourProperties } from './ArmourProperties';
-import { NumericProperty } from './Properties';
+import { AugmentableValue } from '../../util';
 
 export interface ShieldProperties extends ArmourProperties {
-  block(): NumericProperty;
+  block(): AugmentableValue;
 }
 
 export default class ItemShieldProperties extends ItemArmourProperties

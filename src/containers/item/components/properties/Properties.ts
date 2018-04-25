@@ -1,11 +1,6 @@
 import Component from '../../Component';
 import Item from '../../Item';
 
-export interface NumericProperty {
-  value: number | [number, number];
-  augmented: boolean;
-}
-
 export interface Properties {
   readonly quality: number;
   setQuality(quality: number): Item;
