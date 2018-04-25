@@ -13,7 +13,7 @@
     "src"
   ],
   "scripts": {
-    "build": "npm run build:browser && npm run build:commonjs && npm run build:es",
+    "build": "yarn run build:browser && yarn run build:commonjs && yarn run build:es",
     "build:browser": "tsc --project ./tsconfig.build.json --module System --outFile dist/index.js",
     "build:commonjs": "tsc --project ./tsconfig.build.json --module CommonJS --outDir lib",
     "build:es": "tsc --project ./tsconfig.build.json --module ES6 --outDir es",
@@ -23,7 +23,7 @@
     "format": "prettier --write src/**/*.ts",
     "format:check": "prettier --list-different src/**/*.ts",
     "generate-locale-data:clean": "rimraf locale-data/**/*.json",
-    "generate-locale-data": "npm run parse-locale-data && npm run process-locale-data",
+    "generate-locale-data": "yarn run parse-locale-data && yarn run process-locale-data",
     "generate-skill-meta": "node scripts/generateSkillMeta",
     "postgenerate-skill-meta": "prettier --write src/translate/skill_meta.json",
     "parse-locale-data": "node scripts/generateLocaleData",
@@ -34,7 +34,7 @@
     "lint": "tslint --project tsconfig.json src/**/*.ts",
     "compile-grammars": "node scripts/compileGrammars",
     "compile-grammars:watch": "node scripts/watchGrammars",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "yarn run build",
     "test": "jest --watch",
     "test:check": "jest",
     "test:ci": "jest --ci --coverage --runInBand",
