@@ -1,19 +1,19 @@
 import ItemProperties, {
   Properties,
   Builder as BaseBuilder,
-  NumericProperty,
 } from './Properties';
 import { WeaponTypeProps } from '../../../../schema';
+import { AugmentableValue } from '../../util';
 
 export interface WeaponProperties extends Properties {
-  physical_damage(): { min: NumericProperty; max: NumericProperty };
-  chaos_damage(): { min: NumericProperty; max: NumericProperty };
-  cold_damage(): { min: NumericProperty; max: NumericProperty };
-  fire_damage(): { min: NumericProperty; max: NumericProperty };
-  lightning_damage(): { min: NumericProperty; max: NumericProperty };
-  attack_speed(): NumericProperty;
-  crit(): NumericProperty;
-  weapon_range(): NumericProperty;
+  physical_damage(): { min: AugmentableValue; max: AugmentableValue };
+  chaos_damage(): { min: AugmentableValue; max: AugmentableValue };
+  cold_damage(): { min: AugmentableValue; max: AugmentableValue };
+  fire_damage(): { min: AugmentableValue; max: AugmentableValue };
+  lightning_damage(): { min: AugmentableValue; max: AugmentableValue };
+  attack_speed(): AugmentableValue;
+  crit(): AugmentableValue;
+  weapon_range(): AugmentableValue;
 }
 
 export type Builder = BaseBuilder;

@@ -682,7 +682,11 @@ const applications: { [key: string]: Application } = {
     type: 'inc',
   },
   'local_attribute_requirements_+%': {
-    classification: [],
+    classification: [
+      ['local', 'requirements', 'strength'],
+      ['local', 'requirements', 'dexterity'],
+      ['local', 'requirements', 'intelligence'],
+    ],
     type: 'inc',
   },
   local_base_evasion_rating: {
