@@ -25,6 +25,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Fixed item quality not affecting Armour, Evasion, Energy Shield and Physical 
   Damage. Reported in [#38](https://github.com/eps1lon/poe-mods/issues/38) and
   fixed in [#52](https://github.com/eps1lon/poe-mods/pull/52)
+- Reduced attribute requirements mod not applying to attribute requirements. 
+  Reported in [#35](https://github.com/eps1lon/poe-mods/issues/35) and
+  fixed in [#53](https://github.com/eps1lon/poe-mods/pull/53).
 
 ## [1.8.0](https://github.com/eps1lon/poe-mods/compare/v1.7.0...v1.8.0) (2018-03-04)
 
