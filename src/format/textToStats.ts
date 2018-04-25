@@ -7,7 +7,6 @@ import {
   Translation,
   UnaryFormatter
 } from '../types/StatDescription';
-import NamedGroupsRegexp from '../util/NamedGroupsRegexp';
 import { deterministicValueForMatcher } from '../util/symbolicStats';
 import { getDescriptions } from './util';
 
@@ -18,10 +17,10 @@ export type Options = {
 
 /**
  * finds every stat or list of stats that could produce this text with its values
- * 
+ *
  * use {textToStatsSingle} if you just want the first match
  * use {textToStatsArray} if you want the generator values as an array
- * 
+ *
  * @param text the stat text
  * @param options see type definition
  */
@@ -90,9 +89,9 @@ export default function* textToStats(
 
 /**
  * @see {textToStats} as array
- * 
- * @param text 
- * @param options 
+ *
+ * @param text
+ * @param options
  */
 export function textToStatsArray(text: string, options: Partial<Options> = {}) {
   return Array.from(textToStats(text, options));
@@ -100,9 +99,9 @@ export function textToStatsArray(text: string, options: Partial<Options> = {}) {
 
 /**
  * only first match of  @see {textToStats} but throws if none was found
- * 
- * @param text 
- * @param options 
+ *
+ * @param text
+ * @param options
  */
 export function textToStatsFirst(
   text: string,

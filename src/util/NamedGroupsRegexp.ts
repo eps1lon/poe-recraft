@@ -19,11 +19,14 @@ export default class NamedGroupsRegexp {
       throw new Error('named groups count did not match matched groups count');
     }
 
-    return match.slice(1).reduce((named, matched, i) => {
-      named[this.groups[i]] = matched;
+    return match.slice(1).reduce(
+      (named, matched, i) => {
+        named[this.groups[i]] = matched;
 
-      return named;
-    }, {} as { [key: string]: string });
+        return named;
+      },
+      {} as { [key: string]: string }
+    );
   }
 
   public toString() {

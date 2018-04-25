@@ -87,10 +87,10 @@ export default formatStats;
 
 /**
  * creates an array of methods that can be used to find a description for a
- * given stat. 
- * 
+ * given stat.
+ *
  * return value is to be interpreted as a priority queue
- * @param descriptions 
+ * @param descriptions
  */
 export function createDescriptionFindStrategies(
   descriptions: Descriptions
@@ -132,10 +132,9 @@ function formatWithFinder(
       );
 
       if (translation === undefined) {
-        const requiredStatsAreZero = requiredStats(
-          description,
-          stats
-        ).every(({ value }) => isZero(value));
+        const requiredStatsAreZero = requiredStats(description, stats).every(
+          ({ value }) => isZero(value)
+        );
 
         if (!requiredStatsAreZero) {
           throw new Error(`matching translation not found for '${stat.id}'`);

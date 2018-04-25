@@ -9,22 +9,22 @@ export type Options = {
 
 /**
  * tries to find a string that describes the given mods
- * 
+ *
  * given a list of mods where a mod consists of at least one stat
  * get a translation t of that mod and consider it a row
  * split t into words and consider every word as a column
  * collapse the table into a single row
  * columns with different words get resolved by a given strategy
- * 
- * 
- * 
+ *
+ *
+ *
  * Adds # to Fire Gems
  * Adds # to Cold Gems
  * ----
  * Adds # to * Gems
- * 
- * @param mods 
- * @param options 
+ *
+ * @param mods
+ * @param options
  */
 export default function groupMod(
   mods: Stat[][],
