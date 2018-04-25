@@ -13,8 +13,8 @@ export default function translate(
   description: Description,
   provided: Map<string, Stat>,
   /**
-   * @param t 
-   * @param count {number} number of params 
+   * @param t
+   * @param count {number} number of params
    */
   getFormatters: (
     t: Translation,

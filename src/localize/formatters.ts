@@ -169,11 +169,11 @@ export default function factory(
 
 /**
  * orders the given values so that the smallest displayed is min
- * 
+ *
  * reduced stats are given as negative values and then negated for display
  * whichs results in [-30, -15] being displayed as "(30 - 15) reduced"
- * @param param0 
- * 
+ * @param param0
+ *
  */
 function valueOrder(
   [left, right]: [number, number],
