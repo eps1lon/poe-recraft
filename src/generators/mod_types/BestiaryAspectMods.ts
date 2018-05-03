@@ -27,8 +27,8 @@ export default class BestiaryAspectMods extends ViewOnlyOrb {
   }
 
   /**
-   * 
-   * @param mod 
+   *
+   * @param mod
    * @returns true if the mod can only crafted with the Blood Altar from a
    *          Spirit Beast
    */

@@ -14,16 +14,16 @@ export default interface Container<T extends Mod> extends Taggable {
   hasMod(mod: T): boolean;
   /**
    * already has a mod of this group?
-   * @param mod 
+   * @param mod
    */
   hasModGroup(mod: T): boolean;
   /**
    * will addMod actually add this mod
-   * @param mod 
+   * @param mod
    */
   hasRoomFor(mod: T): boolean;
-  /** 
-   * does this container have any displayable properties? 
+  /**
+   * does this container have any displayable properties?
    */
   any(): boolean;
 
@@ -36,4 +36,4 @@ export default interface Container<T extends Mod> extends Taggable {
   stats(): { [key: string]: Stat };
 
   asArray(): T[];
-};
+}

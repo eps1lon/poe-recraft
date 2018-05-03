@@ -14,7 +14,7 @@ type AtlasSextant = Sextant; // sextant.atlas defined
 
 /**
  * immutable data structure for the atlas in Path of Exile
- * 
+ *
  * main purpose is for reducer like usage in redux
  */
 export default class Atlas {
@@ -66,7 +66,7 @@ export default class Atlas {
 
   /**
    * batch mutations
-   * 
+   *
    * if the returned object is strict equal to the prev one
    * it doesn't return a new copy
    */
@@ -84,7 +84,7 @@ export default class Atlas {
 
   /**
    * removes mods on all maps
-   * 
+   *
    * always returns a new copy
    */
   public reset(): this {

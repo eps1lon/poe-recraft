@@ -7,14 +7,14 @@ import { anySet } from '../../util';
 
 /**
  * Generator for all mods that can appear on items sold by Master vendors
- * 
+ *
  * Remember that items sold from the vendor have a fixed item level and might
  * not be able to hold mods for higher item levels
  */
 export default class MasterSignatureMods extends ViewOnlyOrb {
   /**
    * mapping from mod id to master id
-   * 
+   *
    * we need to know what master vendor can spawn the mods because the vendor
    * tells us what itemclasses can appear
    */
@@ -40,7 +40,7 @@ export default class MasterSignatureMods extends ViewOnlyOrb {
   /**
    * mapping from master id to a filter function that returns true if it could've
    * sold the given item
-   * 
+   *
    * TODO required level? Do master sell the best bases e.g. Hubris Circlets
    */
   public static readonly MASTER_ITEMCLASSES: {
@@ -91,8 +91,8 @@ export default class MasterSignatureMods extends ViewOnlyOrb {
   }
 
   /**
-   * 
-   * @param mod 
+   *
+   * @param mod
    * @returns true if the mod can only be found on items bought from masters
    */
   public static isMasterSignature(mod: ModProps) {
@@ -100,7 +100,7 @@ export default class MasterSignatureMods extends ViewOnlyOrb {
   }
 
   /**
-   * @param item 
+   * @param item
    * @param whitelist
    */
   public modsFor(

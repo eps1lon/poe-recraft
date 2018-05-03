@@ -20,7 +20,11 @@ const getNode = (id: string) => {
 };
 const getNodeIndex = (id: string) =>
   atlas.findIndex((node: AtlasNode) => node.props.world_area.id === id);
-const ids = ({ props: { world_area: { id } } }: AtlasNode) => id;
+const ids = ({
+  props: {
+    world_area: { id },
+  },
+}: AtlasNode) => id;
 
 beforeEach(() => {
   atlas = atlas_nodes

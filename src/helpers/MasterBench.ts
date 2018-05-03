@@ -57,7 +57,7 @@ export default class MasterBench {
   }
 
   /**
-   * greps mod::applicableTo 
+   * greps mod::applicableTo
    */
   public modsFor(item: Item, whitelist: string[] = []) {
     return this.options.reduce(

@@ -28,7 +28,7 @@ export default class Essence extends ItemOrb {
   private alchemy: Alchemy;
 
   /**
-   * 
+   *
    * @param props props of a specific essence (contains the guarenteed mod)
    * @param mods mods that are rolled onto the item after th guarenteed is applied
    */
@@ -97,7 +97,7 @@ export default class Essence extends ItemOrb {
 
   /**
    *
-   * @param itemclass 
+   * @param itemclass
    * @returns the guaranteed mod for the itemclass
    */
   public modForItemclass(itemclass: string): Mod | undefined {
@@ -112,7 +112,7 @@ export default class Essence extends ItemOrb {
   /**
    * applicable if the essence guarantees a mod for the itemclass
    * and the rarity is either white or rare (only if essence can reforge)
-   * @param item 
+   * @param item
    */
   public applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = {
@@ -145,7 +145,7 @@ export default class Essence extends ItemOrb {
 
   /**
    * mapping from itemclass to mod prop in essence props
-   * @param item_class 
+   * @param item_class
    */
   private modPropsFor(item_class: string): ModProps | undefined {
     switch (item_class) {

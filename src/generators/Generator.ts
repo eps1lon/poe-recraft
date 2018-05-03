@@ -44,7 +44,7 @@ export default abstract class Generator<
 
   /**
    * returns a copy of #mods
-   * 
+   *
    * we can stick with a shallow copy since Mod are supposed to be immutable
    */
   public getAvailableMods(): M[] {

@@ -8,7 +8,7 @@ export type Faction = 'brinerot' | 'mutewind' | 'redblade' | 'renegade';
 
 /**
  * Generator for all mods that can appear on items dropped by Warbands
- * 
+ *
  * Each Faction of Warbands can drop a magic item that has a single Warbands
  * mod. The itemclass of that item depends on the faction
  */
@@ -50,8 +50,8 @@ export default class WarbandsMods extends ViewOnlyOrb {
   }
 
   /**
-   * 
-   * @param mod 
+   *
+   * @param mod
    * @returns true if the mod can spawn on Warbands drops
    */
   public static isWarbands(mod: ModProps): boolean {
@@ -82,9 +82,9 @@ export default class WarbandsMods extends ViewOnlyOrb {
   }
 
   private factionOf(item: Item): Faction | undefined {
-    const faction = Object.entries(
-      WarbandsMods.FACTION_ITEM_CLASSES,
-    ).find(([, isDroppable]) => isDroppable(item));
+    const faction = Object.entries(WarbandsMods.FACTION_ITEM_CLASSES).find(
+      ([, isDroppable]) => isDroppable(item),
+    );
 
     if (faction === undefined) {
       return undefined;

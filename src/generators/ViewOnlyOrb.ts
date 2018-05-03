@@ -10,7 +10,7 @@ export type ApplicableFlag = keyof ApplicableFlags;
 export default class ViewOnlyOrb extends Orb<Item> {
   /**
    * not applicable to anything
-   * @param item 
+   * @param item
    */
   public applicableTo(item: Item): ApplicableFlags {
     return {
@@ -20,7 +20,7 @@ export default class ViewOnlyOrb extends Orb<Item> {
 
   /**
    * do nothing
-   * @param item 
+   * @param item
    */
   public applyTo(item: Item): Item {
     // do nothing

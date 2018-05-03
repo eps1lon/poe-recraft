@@ -49,8 +49,8 @@ export interface MetaDataMap {
 
 /**
  * class Metadata
- * 
- * representation of a .ot file in METADATA 
+ *
+ * representation of a .ot file in METADATA
  */
 export default class MetaData {
   public static build(clazz: string): MetaData {
