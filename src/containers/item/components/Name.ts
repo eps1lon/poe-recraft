@@ -28,7 +28,8 @@ export default class ItemName implements Name, Component<Item, Builder> {
 
   public lines(): string[] {
     if (this.parent.rarity.isNormal()) {
-      return [this.parent.baseitem.name];
+      const prefix = this.parent.properties.quality > 0 ? 'Superior ' : '';
+      return [`${prefix}${this.parent.baseitem.name}`];
     } else if (this.parent.rarity.isMagic()) {
       const prefix = this.parent.affixes.getPrefixes()[0];
       const suffix = this.parent.affixes.getSuffixes()[0];

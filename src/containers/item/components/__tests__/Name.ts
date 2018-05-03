@@ -36,3 +36,13 @@ it('should generate the name lines like ingame', () => {
 it('should always have a name', () => {
   expect(items.fromName('Iron Greaves').name.any()).toBe(true);
 });
+
+it('should prefix the baseitem name for normal items with quality', () => {
+  const item = items.fromName('Iron Greaves');
+  // pre
+  expect(item.name.lines()).toEqual(['Iron Greaves']);
+  // post
+  expect(item.properties.setQuality(5).name.lines()).toEqual([
+    'Superior Iron Greaves',
+  ]);
+});
