@@ -52,8 +52,8 @@ export default class Sextant extends Orb<AtlasNode> {
    * b) already applied to adjacent nodes and would create duplicates if applied
    *    to this node
    * in other words: consider every mod from maps within a sextant distance of 2
-   * @param {AtlasNode} node 
-   * @param {AtlasNode[]} atlas 
+   * @param {AtlasNode} node
+   * @param {AtlasNode[]} atlas
    */
   public static blockedMods(target: AtlasNode, atlas: AtlasNode[]): Mod[] {
     return target

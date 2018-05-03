@@ -26,10 +26,10 @@ export default class ShaperMods extends ViewOnlyOrb {
   }
 
   /**
-   * returns mods that could appear on the given item if it is a Shaper 
+   * returns mods that could appear on the given item if it is a Shaper
    * influenced item. Ignores maximum number of possible mods.
-   * 
-   * @param item 
+   *
+   * @param item
    */
   public modsFor(
     item: Item,

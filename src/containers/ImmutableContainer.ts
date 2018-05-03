@@ -9,7 +9,7 @@ export interface Builder<T extends Mod> {
 }
 
 /**
- * immutable implementation of Container 
+ * immutable implementation of Container
  */
 export default abstract class ImmutableContainer<
   T extends Mod,
@@ -142,7 +142,7 @@ export default abstract class ImmutableContainer<
 
   /**
    * lists all the stats that are offered by its mods
-   * 
+   *
    * mods can have multiple stats so we sum their values grouped by stat id
    */
   public stats(): { [key: string]: Stat } {

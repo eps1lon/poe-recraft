@@ -55,23 +55,22 @@ it('should know about the difference between flat, inc and more', () => {
 });
 
 it('should consider its precision', () => {
-  const armour = new Value(
-    [0, 0],
-    ['local', 'defences', 'armour'],
-  ).augmentWith([
-    new Stat(
-      {
-        id: 'local_base_physical_damage_reduction_rating',
-      },
-      [1, 2],
-    ),
-    new Stat(
-      {
-        id: 'local_physical_damage_reduction_rating_+%',
-      },
-      [10, 20],
-    ),
-  ]);
+  const armour = new Value([0, 0], ['local', 'defences', 'armour']).augmentWith(
+    [
+      new Stat(
+        {
+          id: 'local_base_physical_damage_reduction_rating',
+        },
+        [1, 2],
+      ),
+      new Stat(
+        {
+          id: 'local_physical_damage_reduction_rating_+%',
+        },
+        [10, 20],
+      ),
+    ],
+  );
 
   expect(armour.compute(0).value).toEqual([1, 2]);
   expect(armour.compute(1).value).toEqual([1.1, 2.4]);

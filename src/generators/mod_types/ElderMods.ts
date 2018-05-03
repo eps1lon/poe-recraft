@@ -26,10 +26,10 @@ export default class ElderMods extends ViewOnlyOrb {
   }
 
   /**
-   * returns mods that could appear on the given item if it is a Elder 
+   * returns mods that could appear on the given item if it is a Elder
    * influenced item. Ignores maximum number of possible mods.
-   * 
-   * @param item 
+   *
+   * @param item
    * @param whitelist
    */
   public modsFor(

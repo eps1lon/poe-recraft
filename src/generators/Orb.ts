@@ -53,7 +53,7 @@ export default abstract class Orb<C extends Container<any>> extends Generator<
 
   /**
    * adds a mod from chooseMod ignoring if it's applicable
-   * @param {Item} item 
+   * @param {Item} item
    */
   public rollMod(container: C): C {
     const mod = this.chooseMod(container);

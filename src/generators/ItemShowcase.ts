@@ -54,7 +54,7 @@ export default class ItemShowcase extends Generator<Mod, Item> {
 
   /**
    * not applicable to anything
-   * @param item 
+   * @param item
    */
   public applicableTo(item: Item): Flags {
     return {
@@ -63,9 +63,9 @@ export default class ItemShowcase extends Generator<Mod, Item> {
   }
 
   /**
-   * greps mod::applicableTo and (if implemented) mod::spawnableOn 
+   * greps mod::applicableTo and (if implemented) mod::spawnableOn
    * if we have all the space for mods we need
-   * 
+   *
    * @returns master-, enchantment-, vaal-, explicit-, (top tier) essence-mods
    */
   public modsFor(

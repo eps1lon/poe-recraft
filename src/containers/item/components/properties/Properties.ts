@@ -12,7 +12,7 @@ export interface Builder {
 
 /**
  * properties for every item
- * 
+ *
  * this is used for miscellaneous properties that don't really fit
  * into any other component
  */

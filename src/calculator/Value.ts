@@ -73,7 +73,7 @@ export default class Value {
 
   /**
    * calculates the final ValueRange from all the applied modifers
-   * 
+   *
    * in PoE all increase modifers get summed up to one big more modifier
    */
   public compute(precision: number = 0): Value {

@@ -43,7 +43,7 @@ export default class MasterBenchOption extends Generator<Mod, Item> {
 
   /**
    * applies a chosen craftingbenchoption
-   * 
+   *
    * cant overload extended method. so we have to set the chosen option before
    */
   public applyTo(item: Item): Item {
@@ -89,7 +89,7 @@ export default class MasterBenchOption extends Generator<Mod, Item> {
   }
 
   /**
-   * greps mod::applicableTo 
+   * greps mod::applicableTo
    */
   public modsFor(
     item: Item,
@@ -123,7 +123,7 @@ export default class MasterBenchOption extends Generator<Mod, Item> {
 
   /**
    * checks if the given mod is applicable to the item
-   * 
+   *
    * remember that this doesn't check if the passed mod is the mod of this option
    */
   public isModApplicableTo(mod: Mod, item: Item): ModApplicableFlags {

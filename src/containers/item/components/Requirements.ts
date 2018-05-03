@@ -20,9 +20,9 @@ export type Builder =
     }
   | undefined;
 
-/** 
+/**
  * the requirements to use this item
- * 
+ *
  * contains attributes strength, intelligence, evasion
  * and the itemlevel
  */
@@ -89,7 +89,7 @@ export default class ItemName
 
   /**
    * computes required level before stat applications
-   * 
+   *
    * @returns number
    */
   private baseLevel(): number {

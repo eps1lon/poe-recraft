@@ -57,7 +57,7 @@ export default class ItemRarity
 
   /**
    * upgrade rarirty by one tier
-   * 
+   *
    * normal > magic > rare
    */
   public upgrade() {
