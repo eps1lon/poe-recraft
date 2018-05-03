@@ -28,6 +28,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Reduced attribute requirements mod not applying to attribute requirements. 
   Reported in [#35](https://github.com/eps1lon/poe-mods/issues/35) and
   fixed in [#53](https://github.com/eps1lon/poe-mods/pull/53).
+- Fixed Normal items with quality not being prefixed with `Superior`. 
+  Reported in [#59](https://github.com/eps1lon/poe-mods/issues/59) and
+  fixed in [#60](https://github.com/eps1lon/poe-mods/pull/60).
 
 ## [1.8.0](https://github.com/eps1lon/poe-mods/compare/v1.7.0...v1.8.0) (2018-03-04)
 
