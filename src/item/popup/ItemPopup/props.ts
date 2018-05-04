@@ -82,7 +82,7 @@ export interface WeaponProperties extends AbstractProperties {
   fire_damage?: RollableValue;
   lightning_damage?: RollableValue;
   chaos_damage?: RollableValue;
-  // time between attacks in ms
+  // attacks per 100s
   aps?: AugmentableValue<RollableValue>;
   /**
    * value: 0-10000

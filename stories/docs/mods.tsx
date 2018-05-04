@@ -77,22 +77,10 @@ const snapshotRequirements = (item: Item) => {
   const { level, dex, int, str } = item.requirements.list();
 
   return {
-    level: {
-      augmented: false,
-      value: level,
-    },
-    dexterity: {
-      augmented: false,
-      value: dex,
-    },
-    intelligence: {
-      augmented: false,
-      value: int,
-    },
-    strength: {
-      augmented: false,
-      value: str,
-    },
+    level,
+    dexterity: dex,
+    intelligence: int,
+    strength: str
   };
 };
 
@@ -133,7 +121,7 @@ const snapShotItem = (item: Item, format: Format): Popup['props']['item'] => {
     base: {
       name: i18n.base_item_types[item.baseitem.id].name,
     },
-    name: item.name.lines()[0],
+    name: item.name.lines()[1],
     elder: item.isElderItem(),
     shaper: item.isSHaperItem(),
     implicitStats: statsTranslated(item.implicits, format),

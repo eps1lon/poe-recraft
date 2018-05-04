@@ -12,7 +12,7 @@ import {
   augmentableNotZero,
   valueNotZero,
 } from '../../../util/value';
-import { round, msToPerSecond, asPercentString } from '../../../util/number';
+import { round, asPercentString } from '../../../util/number';
 
 export type ApiProps = ApiPopup['props'];
 
@@ -229,7 +229,7 @@ export default class ItemPopup extends React.PureComponent<Props> {
         name: 'Attacks per Second',
         values: [
           [
-            `${rollableToString(aps.value, n => msToPerSecond(n, 2))}`,
+            `${rollableToString(aps.value, n => (n / 100).toFixed(2))}`,
             aps.augmented ? 1 : 0,
           ],
         ],
