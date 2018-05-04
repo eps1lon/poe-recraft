@@ -1,5 +1,5 @@
 import * as React from 'react';
-import reactStringReplace from 'react-string-replace';
+import * as reactStringReplace from 'react-string-replace';
 
 import { intersperse } from '../../../../util/react';
 
@@ -62,8 +62,8 @@ export default class LineContent extends React.PureComponent<Props> {
       case DisplayMode.progressbar:
         throw new Error('not implemented');
       case DisplayMode.printf:
-        return reactStringReplace(name, /%\d+/g, match => {
-          const argument_index = +match.substr(1);
+        return reactStringReplace(name, /%(\d+)/g, match => {
+          const argument_index = +match;
           const value = formatted_values[argument_index];
 
           if (value === undefined) {

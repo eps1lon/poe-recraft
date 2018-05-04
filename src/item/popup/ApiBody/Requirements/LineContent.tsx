@@ -1,5 +1,4 @@
 import * as React from 'react';
-import reactStringReplace from 'react-string-replace';
 
 import { intersperse } from '../../../../util/react';
 

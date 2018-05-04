@@ -4,5 +4,5 @@ declare module 'react-string-replace' {
     match: RegExp | string,
     fn: (match: string, index: number) => JSX.Element,
   ) => string | T;
-  export default replace;
+  export = replace;
 }
