@@ -14,7 +14,7 @@ export default class Stats extends React.PureComponent<Props> {
 
     return children.map((stat, index) => (
       <div key={index} className={className}>
-        {stat}
+        <span className="lc">{stat}</span>
       </div>
     ));
   }
