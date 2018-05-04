@@ -44,3 +44,31 @@ it('should display Mind Brow Hubris Circlet', () => {
       .toJSON(),
   ).toMatchSnapshot();
 });
+
+it('should display Noble Axe', () => {
+  expect(
+    renderer
+      .create(
+        <Component
+          item={{
+            base: {
+              name: 'Noble Axe',
+            },
+            rarity: Rarity.normal,
+            requirements: {
+              level: {
+                value: 65,
+              },
+              strength: {
+                value: 113,
+              },
+            },
+            aps: {
+              value: 769
+            }
+          }}
+        />,
+      )
+      .toJSON(),
+  ).toMatchSnapshot();
+});

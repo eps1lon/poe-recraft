@@ -229,7 +229,7 @@ export default class ItemPopup extends React.PureComponent<Props> {
         name: 'Attacks per Second',
         values: [
           [
-            `${rollableToString(aps.value, n => msToPerSecond(n, 2))}%`,
+            `${rollableToString(aps.value, n => msToPerSecond(n, 2))}`,
             aps.augmented ? 1 : 0,
           ],
         ],

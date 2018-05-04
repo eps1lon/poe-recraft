@@ -42,5 +42,7 @@ export function rollableToString(
   value: RollableValue,
   format: (n: number) => string = n => n.toString(),
 ): string {
-  return Array.isArray(value) ? `(${value[0]} - ${value[1]})` : `${value}`;
+  return Array.isArray(value)
+    ? `(${format(value[0])} - ${format(value[1])}`
+    : `${format(value)}`;
 }
