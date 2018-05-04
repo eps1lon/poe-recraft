@@ -48,6 +48,12 @@ export default class ItemPopup extends React.PureComponent<Props, State> {
     classname: 'poe-item',
   };
 
+  public static DIMENSIONS = {
+    min_width: 262.88032454361,
+    max_width: 742.39350912779,
+    max_description_width: 365.11156186613,
+  };
+
   static getDerivedStateFromProps(next_props: Props, prevState: State) {
     // prev_props hack
     if (next_props === prevState.props) {
@@ -103,8 +109,11 @@ export default class ItemPopup extends React.PureComponent<Props, State> {
   public render() {
     const { classname, item } = this.props;
     const { width } = this.state;
-    const style = { width: width === undefined ? 'auto' : width };
-    console.log(style)
+    const style = {
+      width: width === undefined ? 'auto' : width,
+      minWidth: ItemPopup.DIMENSIONS.min_width,
+      maxWidth: ItemPopup.DIMENSIONS.max_width,
+    };
 
     return (
       <div
@@ -131,9 +140,11 @@ export default class ItemPopup extends React.PureComponent<Props, State> {
         ...[
           ...element.querySelectorAll('.descrText span, .secDescrText span'),
         ].map(el => {
-          console.log(el.innerHTML, outerWidth(el as HTMLElement))
           // Todo "o.MaxDescriptionWidth"
-          return Math.min(800, outerWidth(el as HTMLElement));
+          return Math.min(
+            ItemPopup.DIMENSIONS.max_description_width,
+            outerWidth(el as HTMLElement),
+          );
         }),
       );
       this.setState({ width });
