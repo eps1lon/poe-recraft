@@ -56,3 +56,6 @@ function() {
   this.$el.width(width + this.$el.outerWidth(true) - this.$el.outerWidth(true));
 }
 ```
+
+## Todo
+Do we actually need to compute anything or would it be enough to set a maxWidth?

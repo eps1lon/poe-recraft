@@ -40,6 +40,7 @@ export interface Props {
 
 export interface State {
   width?: number;
+  props: Props;
 }
 
 export default class ItemPopup extends React.PureComponent<Props, State> {
@@ -47,12 +48,14 @@ export default class ItemPopup extends React.PureComponent<Props, State> {
     classname: 'poe-item',
   };
 
-  static getDerivedStateFromProps(nextProps: Props, prevState: State) {
-    if (nextProps.width === prevState.width) {
+  static getDerivedStateFromProps(next_props: Props, prevState: State) {
+    // prev_props hack
+    if (next_props === prevState.props) {
       return null;
     } else {
+      // mark width for recomputation because we will render a different item
       return {
-        width: prevState.width,
+        width: next_props.width,
       };
     }
   }
@@ -78,6 +81,7 @@ export default class ItemPopup extends React.PureComponent<Props, State> {
     this.ref = React.createRef();
     this.state = {
       width: props.width,
+      props
     };
   }
 
@@ -90,9 +94,8 @@ export default class ItemPopup extends React.PureComponent<Props, State> {
     }
   }
 
-  public componentDidUpdate(prev_props: Props) {
-    // width was fixed and is now unfixed so compute the width in state
-    if (this.props.width === undefined && prev_props.width !== undefined) {
+  public componentDidUpdate(prev_props: Props, prev_state: State) {
+    if (this.state.width === undefined) {
       this.computeWidth();
     }
   }
@@ -101,6 +104,7 @@ export default class ItemPopup extends React.PureComponent<Props, State> {
     const { classname, item } = this.props;
     const { width } = this.state;
     const style = { width: width === undefined ? 'auto' : width };
+    console.log(style)
 
     return (
       <div
@@ -128,6 +132,7 @@ export default class ItemPopup extends React.PureComponent<Props, State> {
         ...[
           ...element.querySelectorAll('.descrText span, .secDescrText span'),
         ].map(el => {
+          console.log(el.innerHTML, outerWidth(el as HTMLElement))
           // Todo "o.MaxDescriptionWidth"
           return Math.min(800, outerWidth(el as HTMLElement));
         }),
