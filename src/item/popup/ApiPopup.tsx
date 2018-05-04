@@ -81,7 +81,7 @@ export default class ItemPopup extends React.PureComponent<Props, State> {
     this.ref = React.createRef();
     this.state = {
       width: props.width,
-      props
+      props,
     };
   }
 
@@ -126,7 +126,6 @@ export default class ItemPopup extends React.PureComponent<Props, State> {
     if (element !== null) {
       const width = Math.max(
         ...[...element.querySelectorAll('.lc')].map(lc => {
-          console.log(lc.innerHTML, outerWidth(lc as HTMLElement))
           return outerWidth(lc as HTMLElement) + 2;
         }),
         ...[
