@@ -14,6 +14,6 @@ fs
     const grammar_file = path.join(grammar_dir, file);
 
     fs.watchFile(grammar_file, () => {
-      exec('npm run compile-grammars');
+      exec('yarn run compile-grammars');
     });
   });

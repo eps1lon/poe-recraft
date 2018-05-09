@@ -7,14 +7,14 @@ game data.
     2. open `Content.ggpk` for `{client}`
     3. extract `MetaData/StatDescriptions/*` into `tmp/raw`
 2. in this package:
-    1. ```$ npm run generate-locale-data```
+    1. ```$ yarn run generate-locale-data```
         * Be aware that the description files can have sloppy formatting
             which our grammar can sometimes not handle. These should be 
             obvious and fixed manually.
     2. for $client in ('steam', 'garena', 'tencent') 
         1. ```$ pypoe_exporter config set ggpk_path {ggpk_path(client)}```
         2. ```$ node ./scripts/preGenerateDatLocaleData {client}```
-    3. ```$ npm run generate-dat-locale-data```
+    3. ```$ yarn run generate-dat-locale-data```
 
 ## clients
 1. steam
