@@ -1,6 +1,8 @@
 import datas from '../__fixtures__/english';
-import format from '../Format';
+import Format from '../Format';
 import textToStats from '../format/textToStats';
+
+const format = new Format();
 
 it('can be configured to use global local data', () => {
   expect(() =>

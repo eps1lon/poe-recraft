@@ -18,7 +18,7 @@ export type Options = {
   start_file: string;
 };
 
-export class Format {
+export default class Format {
   private options: Options = {
     datas: {} as StatLocaleDatas,
     fallback: Fallback.throw,
@@ -53,5 +53,3 @@ export class Format {
     });
   }
 }
-
-export default new Format();
