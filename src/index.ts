@@ -6,7 +6,7 @@ export {
   textToStatsArray,
   textToStatsFirst
 } from './format/textToStats';
-export { default as format, Format } from './Format';
+export { default as Format } from './Format';
 export { default as requiredLocaleDatas } from './requiredLocaleDatas';
 export { default as formatValueRange } from './localize/formatValueRange';
 export { formatValue } from './localize/formatValues';
