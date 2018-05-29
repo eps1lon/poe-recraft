@@ -20,6 +20,26 @@
         }
       ]
     },
+    "cast_speed_incr_skill_granted": {
+      "stats": ["cast_speed_+%_granted_from_skill"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% d'Augmentation de la Vitesse d'attaque",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de Réduction de la Vitesse d'attaque",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "spell_physical_damage_range": {
       "stats": [
         "spell_minimum_physical_damage",
@@ -281,6 +301,17 @@
           "matchers": ["#"],
           "text":
             "Les Modificateurs aux Dégâts des Projectiles s'appliquent aux Dégâts sur la durée de cette Aptitude",
+          "formatters": []
+        }
+      ]
+    },
+    "light_raidus_is_area": {
+      "stats": ["light_radius_increases_apply_to_area_of_effect"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Augmentations et Réductions du Rayonnement lumineux s'appliquent également à la Zone d'effet de cette Aptitude",
           "formatters": []
         }
       ]
@@ -1046,6 +1077,36 @@
         }
       ]
     },
+    "skill_duration": {
+      "stats": ["skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "La Durée de l'Aptitude est de %1% secondes",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "secondary_skill_duration": {
+      "stats": ["secondary_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "La Durée secondaire est de %1% secondes",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "projectile_ground_effect_duration": {
       "stats": ["projectile_ground_effect_duration"],
       "translations": [
@@ -1491,7 +1552,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Verrouille l'Ennemi sur place",
+          "text": "L'Ennemi ne peut plus se déplacer",
           "formatters": []
         }
       ]
@@ -1859,7 +1920,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% d'Augmentation de la Vie maximale des Créatures",
+          "text": "%1%%% d'Augmentation de la Vie maximale de la Créature",
           "formatters": []
         }
       ]
@@ -2699,8 +2760,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Les Totems Invoqués par cette Aptitudes ne peuvent pas Éviter",
+          "text": "Les Totems Invoqués par cette Aptitudes n'ont pas d'Évasion",
           "formatters": []
         }
       ]
@@ -3517,7 +3577,7 @@
         },
         {
           "matchers": [[100, "#"]],
-          "text": "Déclenche cette Aptitude lorsque vous Bloquez",
+          "text": "Cette Aptitude se déclenche lorsque vous Bloquez",
           "formatters": []
         }
       ]
@@ -3539,6 +3599,21 @@
           "matchers": ["#"],
           "text":
             "Vous pouvez utiliser des Objets dont le Niveau ne dépasse pas %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_on_kill": {
+      "stats": ["attack_trigger_on_kill_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "%1%%% de chances de Déclencher cette Attaque en Tuant",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Déclenche cette Attaque en Tuant",
           "formatters": []
         }
       ]
@@ -3720,6 +3795,23 @@
         }
       ]
     },
+    "cast_on_avian_buff": {
+      "stats": ["cast_on_gain_avians_flight_or_avians_might_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chances de Déclencher ce Sort lorsque vous gagnez Puissance du Rapace ou Vol du Rapace",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Déclenche ce Sort lorsque vous gagnez Puissance du Rapace ou Vol du Rapace",
+          "formatters": []
+        }
+      ]
+    },
     "cast_on_hit": {
       "stats": ["cast_on_hit_%"],
       "translations": [
@@ -3731,6 +3823,33 @@
         {
           "matchers": [[100, "#"]],
           "text": "Déclenche ce Sort au Toucher",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_hit_if_cursed": {
+      "stats": ["cast_on_hit_if_cursed_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chances de Déclencher ce Sort lorsque vous Touchez un Ennemi pendant que vous êtes Maudit(e)",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Déclenche ce Sort lorsque vous Touchez un Ennemi pendant que vous êtes Maudit(e)",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_lose_cats_stealth": {
+      "stats": ["cast_on_lose_cats_stealth"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Déclenche ce Sort lorsque vous perdez Discréation du Félin",
           "formatters": []
         }
       ]
@@ -4068,7 +4187,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Ne peut pas être Évité",
+          "text": "Ignore l'Évasion de la cible",
           "formatters": []
         }
       ]
@@ -4141,6 +4260,16 @@
               "arg": "ReminderTextDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "never_freeze": {
+      "stats": ["never_freeze"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ne peut pas Geler",
+          "formatters": []
         }
       ]
     },
@@ -4272,6 +4401,26 @@
         }
       ]
     },
+    "herald_of_ash_spell_fire_damage_incr": {
+      "stats": ["herald_of_ash_spell_fire_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% Davantage de Dégâts de feu pour les Sorts",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de Perte de Dégâts de feu pour les Sorts",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "herald_of_ice_cold_damage_incr": {
       "stats": ["herald_of_ice_cold_damage_+%"],
       "translations": [
@@ -4388,7 +4537,7 @@
         },
         {
           "matchers": [-300],
-          "text": "Verrouille l'Ennemi sur place",
+          "text": "L'Ennemi ne peut plus se déplacer",
           "formatters": []
         },
         {
@@ -4537,12 +4686,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Le Golem vous octroie %1%%% d'Augmentation des Dégâts",
+          "text": "Le Golem vous octroie %1%%% d'Augmentation de Dégâts",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Le Golem vous octroie %1%%% de Réduction des Dégâts",
+          "text": "Le Golem vous octroie %1%%% de Réduction de Dégâts",
           "formatters": [
             {
               "id": "negate",
@@ -4675,6 +4824,28 @@
           "matchers": [["#", -1]],
           "text":
             "%1%%% de Réduction des Dégâts tous les 100 Ennemis à proximité",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "intimidating_cry_attack_speed": {
+      "stats": ["intimidating_cry_attack_speed_+%_per_100_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% d'Augmentation de la Vitesse d'attaque tous les cent Ennemis à proximité",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% de Réduction de la Vitesse d'attaque tous les cent Ennemis à proximité",
           "formatters": [
             {
               "id": "negate",
@@ -5681,12 +5852,59 @@
         }
       ]
     },
+    "avoid_damage_chance": {
+      "stats": ["avoid_damage_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chances de ne pas subir de Dégâts en étant Touché(e)",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Vous ne subissez pas de Dégâts en étant Touché(e)",
+          "formatters": []
+        }
+      ]
+    },
+    "damage_taken_incr": {
+      "stats": ["base_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% d'Augmentation des Dégâts subis",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de Réduction des Dégâts subis",
+          "formatters": []
+        }
+      ]
+    },
     "deal_no_chaos": {
       "stats": ["base_deal_no_chaos_damage"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "N'inflige pas de Dégâts de chaos",
+          "formatters": []
+        }
+      ]
+    },
+    "ghost_limit": {
+      "stats": ["base_number_of_support_ghosts_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Vous pouvez avoir jusqu'à 1 Apparition Invoquée à la fois",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "Vous pouvez avoir jusqu'à %1% Apparitions Invoquées à la fois",
           "formatters": []
         }
       ]
@@ -5834,6 +6052,23 @@
         }
       ]
     },
+    "trigger_on_animate_weapon_kill": {
+      "stats": ["chance_to_trigger_on_animate_weapon_kill_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chances de Déclencher cette Aptitude lorsque votre Arme animée Tue un Ennemi",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Déclenche cette Aptitude lorsque votre Arme animée Tue un Ennemi",
+          "formatters": []
+        }
+      ]
+    },
     "charged_attack_damage_stages": {
       "stats": ["charged_attack_damage_per_stack_+%_final"],
       "translations": [
@@ -5882,6 +6117,22 @@
             {
               "id": "negate",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chilled_ground_magnitude_override": {
+      "stats": ["chilled_ground_base_magnitude_override"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Le Sol frigorifiant de cette Aptitude a un effet de Ralentissement de base de %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChilledGround"
             }
           ]
         }
@@ -5956,6 +6207,28 @@
           "text":
             "Les Monstres de la Brèche n'octroient pas d'Expérience et ne cèdent pas d'Objets",
           "formatters": []
+        }
+      ]
+    },
+    "endurance_charge_slam_extra_damage": {
+      "stats": ["endurance_charge_slam_damage_+%_final_with_endurance_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% Davantage de Dégâts si vous avez une Charge d'endurance",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% de Perte de Dégâts si vous avez une Charge d'endurance",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -6080,6 +6353,16 @@
         }
       ]
     },
+    "max_crab_barriers": {
+      "stats": ["max_crab_aspect_stacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Vous pouvez avoir jusqu'à %1% Barrières du Crabe",
+          "formatters": []
+        }
+      ]
+    },
     "number_of_spirit_strikes": {
       "stats": ["melee_attack_number_of_spirit_strikes"],
       "translations": [
@@ -6138,6 +6421,17 @@
         }
       ]
     },
+    "minion_double_damage_chance": {
+      "stats": ["minion_chance_to_deal_double_damage_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Créatures ont %1%%% de chances d'infliger des Dégâts doublés",
+          "formatters": []
+        }
+      ]
+    },
     "ailment_non_damaging_incr_effect": {
       "stats": ["non_damaging_ailment_effect_+%"],
       "translations": [
@@ -6180,6 +6474,17 @@
         {
           "matchers": [[2, "#"]],
           "text": "Vous pouvez avoir jusqu'à %1% Effigies Invoquées à la fois",
+          "formatters": []
+        }
+      ]
+    },
+    "phys_reduction_per_crab_barrier": {
+      "stats": ["physical_damage_reduction_%_per_crab_aspect_stack"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Octroie une Réduction supplémentaire des Dégâts physiques de %1%%% par Barrière du Crabe",
           "formatters": []
         }
       ]
@@ -6275,6 +6580,22 @@
         }
       ]
     },
+    "spider_aspect_max_webs": {
+      "stats": ["spider_aspect_max_web_count"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Vous pouvez infliger jusqu'à 1 Toile d'araignée à un Ennemi",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "Vous pouvez infliger jusqu'à %1% Toiles d'araignée à un Ennemi",
+          "formatters": []
+        }
+      ]
+    },
     "summon_mirage_archer": {
       "stats": ["summon_mirage_archer_on_hit"],
       "translations": [
@@ -6351,6 +6672,21 @@
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ghost_duration": {
+      "stats": ["support_ghost_base_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "L'Apparition dure %1% secondes",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
               "arg": 1
             }
           ]
@@ -6479,13 +6815,13 @@
         {
           "matchers": [1],
           "text":
-            "Les Projectiles sont également tirés à partir de %1% point de chaque côté de vous",
+            "Les Projectiles sont également tirés à partir de %1% point de part et d'autre de vous",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
           "text":
-            "Les Projectiles sont également tirés à partir de %1% points de chaque côté de vous",
+            "Les Projectiles sont également tirés à partir de %1% points de part et d'autre de vous",
           "formatters": []
         }
       ]
@@ -6597,6 +6933,22 @@
         }
       ]
     },
+    "trigger_on_frozen_kill": {
+      "stats": ["trigger_on_kill_vs_frozen_enemy_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chances de Déclencher cette Aptitude lorsque vous Tuez un Ennemi Gelé",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Déclenche cette Aptitude lorsque vous Tuez un Ennemi Gelé",
+          "formatters": []
+        }
+      ]
+    },
     "trigger_on_skill_use_void_arrow": {
       "stats": ["trigger_on_skill_use_%_if_you_have_a_void_arrow"],
       "translations": [
@@ -6611,6 +6963,22 @@
           "text":
             "Consomme une Charge du Néant afin de déclencher cette Aptitude lorsque vous tirez des Flèches",
           "formatters": []
+        }
+      ]
+    },
+    "spider_aspect_interval": {
+      "stats": ["virtual_spider_aspect_web_interval_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Inflige Toiles d'araignée et Entrave toutes les %1% secondes",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
         }
       ]
     }

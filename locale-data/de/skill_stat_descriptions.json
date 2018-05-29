@@ -305,6 +305,17 @@
         }
       ]
     },
+    "light_raidus_is_area": {
+      "stats": ["light_radius_increases_apply_to_area_of_effect"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Erhöhungen und Verringerungen des Lichtradius gelten auch für den Wirkungsbereich dieser Fertigkeit",
+          "formatters": []
+        }
+      ]
+    },
     "mine": {
       "stats": ["is_remote_mine", "number_of_mines_to_place"],
       "translations": [
@@ -1038,6 +1049,36 @@
         {
           "matchers": [[1, "#"]],
           "text": "Sekundäre Stärkung hält %1% Sekunden an",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "skill_duration": {
+      "stats": ["skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Fertigkeitsdauer beträgt %1% Sekunden",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "secondary_skill_duration": {
+      "stats": ["secondary_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Sekundäre Dauer beträgt %1% Sekunden",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -3503,6 +3544,21 @@
         }
       ]
     },
+    "attack_on_kill": {
+      "stats": ["attack_trigger_on_kill_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "%1%%% Chance, diesen Angriff bei Tötung auszulösen",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Löst diesen Angriff bei Tötung aus",
+          "formatters": []
+        }
+      ]
+    },
     "cast_on_attack": {
       "stats": ["cast_on_attack_use_%"],
       "translations": [
@@ -3678,6 +3734,23 @@
         }
       ]
     },
+    "cast_on_avian_buff": {
+      "stats": ["cast_on_gain_avians_flight_or_avians_might_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% Chance, diesen Zauber auszulösen, wenn Ihr 'Macht des Vogels' oder 'Flug des Vogels' erhaltet",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Löst diesen Zauber aus, wenn Ihr 'Macht des Vogels' oder 'Flug des Vogels' erhaltet",
+          "formatters": []
+        }
+      ]
+    },
     "cast_on_hit": {
       "stats": ["cast_on_hit_%"],
       "translations": [
@@ -3689,6 +3762,33 @@
         {
           "matchers": [[100, "#"]],
           "text": "Löst diesen Zauber bei Treffer aus",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_hit_if_cursed": {
+      "stats": ["cast_on_hit_if_cursed_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% Chance, diesen Zauber auszulösen, wenn Ihr einen Gegner trefft, während Ihr verflucht seid",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Löst diesen Zauber aus, wenn Ihr einen Gegner trefft, während Ihr verflucht seid",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_lose_cats_stealth": {
+      "stats": ["cast_on_lose_cats_stealth"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Löst diesen Zauber aus, wenn Ihr 'List der Katze' verliert",
           "formatters": []
         }
       ]
@@ -4103,6 +4203,16 @@
               "arg": "ReminderTextDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "never_freeze": {
+      "stats": ["never_freeze"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Kann nicht einfrieren",
+          "formatters": []
         }
       ]
     },
@@ -4660,6 +4770,28 @@
         }
       ]
     },
+    "intimidating_cry_attack_speed": {
+      "stats": ["intimidating_cry_attack_speed_+%_per_100_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% erhöhte Angriffsgeschwindigkeit pro 100 Gegner im Umkreis",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% verringerte Angriffsgeschwindigkeit pro 100 Gegner im Umkreis",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "mana_regen": {
       "stats": ["base_mana_regeneration_rate_per_minute"],
       "translations": [
@@ -5201,12 +5333,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verlängerte Vergiftungsdauer",
+          "text": "%1%%% verlängerte Giftdauer",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verkürzte Vergiftungsdauer",
+          "text": "%1%%% verkürzte Giftdauer",
           "formatters": []
         }
       ]
@@ -5673,6 +5805,21 @@
         }
       ]
     },
+    "ghost_limit": {
+      "stats": ["base_number_of_support_ghosts_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Erlaubt gleichzeitige Kontrolle von 1 Phantasma",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Erlaubt gleichzeitige Kontrolle von %1% Phantasmen",
+          "formatters": []
+        }
+      ]
+    },
     "blade_vortex_hit_rate": {
       "stats": ["blade_vortex_hit_rate_ms"],
       "translations": [
@@ -5885,6 +6032,22 @@
         }
       ]
     },
+    "chilled_ground_magnitude_override": {
+      "stats": ["chilled_ground_base_magnitude_override"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Der unterkühlende Boden von dieser Fertigkeit hat einen Basis-Verlangsamungseffekt von %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChilledGround"
+            }
+          ]
+        }
+      ]
+    },
     "cremation_max_geysers": {
       "stats": ["corpse_erruption_maximum_number_of_geyers"],
       "translations": [
@@ -5953,6 +6116,28 @@
           "text":
             "Monster aus dem Riss gewähren keine Erfahrung und lassen keine Gegenstände fallen",
           "formatters": []
+        }
+      ]
+    },
+    "endurance_charge_slam_extra_damage": {
+      "stats": ["endurance_charge_slam_damage_+%_final_with_endurance_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Verursacht %1%%% mehr Schaden, wenn Ihr eine Widerstands-Ladung habt",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Verursacht %1%%% weniger Schaden, wenn Ihr eine Widerstands-Ladung habt",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -6071,6 +6256,16 @@
         {
           "matchers": [[100, "#"]],
           "text": "Verstümmeln bei Treffer",
+          "formatters": []
+        }
+      ]
+    },
+    "max_crab_barriers": {
+      "stats": ["max_crab_aspect_stacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ihr könnt bis zu %1% Krebsbarrieren haben",
           "formatters": []
         }
       ]
@@ -6383,6 +6578,21 @@
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ghost_duration": {
+      "stats": ["support_ghost_base_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Phantasmen halten %1% Sekunden an",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
               "arg": 1
             }
           ]

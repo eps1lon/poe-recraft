@@ -516,7 +516,7 @@
         {
           "matchers": ["#"],
           "text":
-            "L'Embrasement causé par les Aptitudes modifiées se propage aux autres Ennemis dans une Rayon de %1%",
+            "L'Embrasement causé par les Aptitudes modifiées se propage aux autres Ennemis dans un Rayon de %1%",
           "formatters": []
         }
       ]
@@ -576,7 +576,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Le Bonus de Dégâts de la Force s'applique aussi aux Dégâts des Sorts pour les Aptitudes modifiées",
+            "Le Bonus de Dégâts décloulant de la Force s'applique aussi aux Dégâts des Sorts des Aptitudes modifiées",
           "formatters": []
         }
       ]
@@ -908,28 +908,6 @@
         {
           "matchers": ["#"],
           "text": "Les Aptitudes modifiées se Scindent",
-          "formatters": []
-        }
-      ]
-    },
-    "projectiles_return": {
-      "stats": ["projectiles_return", "projectiles_return_if_no_hit_object"],
-      "translations": [
-        {
-          "matchers": ["#", 0],
-          "text":
-            "Les Aptitudes modifiées Reviennent à vous après avoir Touché leurs cibles",
-          "formatters": []
-        },
-        {
-          "matchers": [0, "#"],
-          "text":
-            "Les Aptitudes modifiées Reviennent à vous au bout de leur trajectoire",
-          "formatters": []
-        },
-        {
-          "matchers": ["#", "#"],
-          "text": "Les Aptitudes modifiées Reviennent à vous",
           "formatters": []
         }
       ]
@@ -1480,16 +1458,21 @@
       "stats": ["support_multicast_cast_speed_+%_final"],
       "translations": [
         {
-          "matchers": [1],
+          "matchers": [[1, "#"]],
           "text":
             "Les Aptitudes modifiées ont %1%%% Davantage de Vitesse d'incantation",
           "formatters": []
         },
         {
-          "matchers": [[2, "#"]],
+          "matchers": [["#", -1]],
           "text":
             "Les Aptitudes modifiées ont %1%%% de Perte de Vitesse d'incantation",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -1726,8 +1709,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text":
-            "Vous ne pouvez pas Lancer les Sorts à déclenchement modifiés directement",
+          "text": "les Sorts modifiés ne peuvent plus être Lancés directement",
           "formatters": []
         }
       ]
@@ -3851,7 +3833,7 @@
         {
           "matchers": [[2, "#"]],
           "text":
-            "Les Aptitudes modifiées Tirent %1% Projetiles supplémentaires",
+            "Les Aptitudes modifiées Tirent %1% Projectiles supplémentaires",
           "formatters": []
         }
       ]
@@ -3916,7 +3898,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Les Aptitudes modifiées ont %1%%% de leurs Dégâts physiques qui sont Rajoutés sous forme de Dégâts de feu",
+            "Les Aptitudes modifiées Rajoutent %1%%% de leurs Dégâts physiques sous forme de Dégâts de feu",
           "formatters": []
         }
       ]
@@ -3927,7 +3909,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Les Aptitudes modifiées ont %1%%% de leurs Dégâts physiques qui sont Rajoutés sous forme de Dégâts de foudre",
+            "Les Aptitudes modifiées Rajoutent %1%%% de leurs Dégâts physiques sous forme de Dégâts de foudre",
           "formatters": []
         }
       ]
@@ -4418,13 +4400,13 @@
         {
           "matchers": [1],
           "text":
-            "Les Aptitudes modifiées tirent également leurs Projectiles à partir de %1% point de chaque côté de vous",
+            "Les Aptitudes modifiées tirent également leurs Projectiles à partir de %1% point de part et d'autre de vous",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
           "text":
-            "Les Aptitudes modifiées tirent également leurs Projectiles à partir de %1% points de chaque côté de vous",
+            "Les Aptitudes modifiées tirent également leurs Projectiles à partir de %1% points de part et d'autre de vous",
           "formatters": []
         }
       ]

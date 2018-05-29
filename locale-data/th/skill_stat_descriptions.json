@@ -5579,6 +5579,21 @@
         }
       ]
     },
+    "ghost_limit": {
+      "stats": ["base_number_of_support_ghosts_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "เสกวิญญาณสนับสนุนได้สูงสุด 1 ตัวในเวลาหนึ่ง",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "เสกวิญญาณสนับสนุนได้สูงสุด %1% ตัวในเวลาหนึ่ง",
+          "formatters": []
+        }
+      ]
+    },
     "blade_vortex_hit_rate": {
       "stats": ["blade_vortex_hit_rate_ms"],
       "translations": [
@@ -6278,6 +6293,21 @@
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ghost_duration": {
+      "stats": ["support_ghost_base_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Phantasm อยู่ได้ %1% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
               "arg": 1
             }
           ]

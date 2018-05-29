@@ -305,6 +305,17 @@
         }
       ]
     },
+    "light_raidus_is_area": {
+      "stats": ["light_radius_increases_apply_to_area_of_effect"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los aumentos y las reducciones al Radio de Iluminación también se aplican a esta Habilidad",
+          "formatters": []
+        }
+      ]
+    },
     "mine": {
       "stats": ["is_remote_mine", "number_of_mines_to_place"],
       "translations": [
@@ -1058,6 +1069,36 @@
         {
           "matchers": [[1, "#"]],
           "text": "El Bonus Secundario Dura %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "skill_duration": {
+      "stats": ["skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "La Duración de la Habilidad es %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "secondary_skill_duration": {
+      "stats": ["secondary_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "La Duración Secundaria es %1% segundos",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -3539,6 +3580,21 @@
         }
       ]
     },
+    "attack_on_kill": {
+      "stats": ["attack_trigger_on_kill_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "%1%%% de probabilidad de Activar este Ataque al Matar",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Activa este Ataque al Matar",
+          "formatters": []
+        }
+      ]
+    },
     "cast_on_attack": {
       "stats": ["cast_on_attack_use_%"],
       "translations": [
@@ -3714,6 +3770,23 @@
         }
       ]
     },
+    "cast_on_avian_buff": {
+      "stats": ["cast_on_gain_avians_flight_or_avians_might_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de probabilidad de Activar este Hechizo cuando ganas Poder del Ave o Vuelo del Ave",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Activa este Hechizo cuando ganas Poder del Ave o Vuelo del Ave",
+          "formatters": []
+        }
+      ]
+    },
     "cast_on_hit": {
       "stats": ["cast_on_hit_%"],
       "translations": [
@@ -3743,6 +3816,16 @@
           "matchers": [[100, "#"]],
           "text":
             "Activa este Hechizo cuando Golpeas a un Enemigo mientras estás Maldito",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_lose_cats_stealth": {
+      "stats": ["cast_on_lose_cats_stealth"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Activa este Hechizo cuando pierdes Sigilo del Gato",
           "formatters": []
         }
       ]
@@ -4147,6 +4230,16 @@
               "arg": "ReminderTextDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "never_freeze": {
+      "stats": ["never_freeze"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "No puede Congelar",
+          "formatters": []
         }
       ]
     },
@@ -4693,6 +4786,28 @@
         {
           "matchers": [["#", -1]],
           "text": "Daño reducido un %1%%% por cada cien Enemigos cercanos",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "intimidating_cry_attack_speed": {
+      "stats": ["intimidating_cry_attack_speed_+%_per_100_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Velocidad de Ataque aumentada un %1%%% por cada cien Enemigos cercanos",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Velocidad de Ataque reducida un %1%%% por cada cien Enemigos cercanos",
           "formatters": [
             {
               "id": "negate",
@@ -5729,6 +5844,21 @@
         }
       ]
     },
+    "ghost_limit": {
+      "stats": ["base_number_of_support_ghosts_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Puedes tener hasta 1 Fantasma Invocado a la vez",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Puedes tener hasta %1% Fantasmas Invocados a la vez",
+          "formatters": []
+        }
+      ]
+    },
     "blade_vortex_hit_rate": {
       "stats": ["blade_vortex_hit_rate_ms"],
       "translations": [
@@ -5840,7 +5970,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Este Hechizo se Activa al ser Equipado",
+          "text": "Este Hechizo se Activa cuando es Equipado",
           "formatters": []
         }
       ]
@@ -5938,6 +6068,22 @@
         }
       ]
     },
+    "chilled_ground_magnitude_override": {
+      "stats": ["chilled_ground_base_magnitude_override"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "El Suelo Escarchado de esta Habilidad tiene un efecto Ralentizador base de %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChilledGround"
+            }
+          ]
+        }
+      ]
+    },
     "cremation_max_geysers": {
       "stats": ["corpse_erruption_maximum_number_of_geyers"],
       "translations": [
@@ -6007,6 +6153,26 @@
           "text":
             "Los Monstruos de la Fisura no otorgan Experiencia ni arrojan Ítems",
           "formatters": []
+        }
+      ]
+    },
+    "endurance_charge_slam_extra_damage": {
+      "stats": ["endurance_charge_slam_damage_+%_final_with_endurance_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Inflige %1%%% más Daño si tienes una Carga de Aguante",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Inflige %1%%% menos Daño si tienes una Carga de Aguante",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -6124,6 +6290,16 @@
         {
           "matchers": [[100, "#"]],
           "text": "Lisia con cada Golpe",
+          "formatters": []
+        }
+      ]
+    },
+    "max_crab_barriers": {
+      "stats": ["max_crab_aspect_stacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Puede tener hasta %1% Barreras de Cangrejo",
           "formatters": []
         }
       ]
@@ -6433,6 +6609,21 @@
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ghost_duration": {
+      "stats": ["support_ghost_base_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Los Fantasmas duran %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
               "arg": 1
             }
           ]

@@ -49,7 +49,6 @@ const dats = [
   'Prophecies',
   'Quest',
   'Realms',
-  'ShopItem',
   'ShopToken',
   'Shrines',
   'SkillGems',

@@ -19,6 +19,26 @@
         }
       ]
     },
+    "cast_speed_incr_skill_granted": {
+      "stats": ["cast_speed_+%_granted_from_skill"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "施法速度提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "施法速度降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "spell_physical_damage_range": {
       "stats": [
         "spell_minimum_physical_damage",
@@ -272,6 +292,16 @@
         {
           "matchers": ["#"],
           "text": "投射物伤害的词缀效果同样套用于持续伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "light_raidus_is_area": {
+      "stats": ["light_radius_increases_apply_to_area_of_effect"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "照亮范围的扩大和缩小也同样作用于该技能的范围效果",
           "formatters": []
         }
       ]
@@ -563,7 +593,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "当图腾存在时，获得额外火焰伤害， 其数值等同于自身物理伤害的 %1%%%",
+          "text":
+            "当图腾存在时，获得额外火焰伤害， 其数值等同于自身物理伤害的 %1%%%",
           "formatters": []
         }
       ]
@@ -1007,6 +1038,36 @@
         {
           "matchers": [[1, "#"]],
           "text": "附加增益效果持续 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "skill_duration": {
+      "stats": ["skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "技能效果持续 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "secondary_skill_duration": {
+      "stats": ["secondary_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "额外效果持续时间 %1% seconds",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -3422,7 +3483,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "该法术无法直接施放",
+          "text": "该技能无法直接施放",
           "formatters": []
         }
       ]
@@ -3433,6 +3494,21 @@
         {
           "matchers": ["#"],
           "text": "使用物品要求提升到 %1% 级",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_on_kill": {
+      "stats": ["attack_trigger_on_kill_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "击败敌人时有 %1%%% 几率触发该攻击",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "击败敌人时触发该攻击",
           "formatters": []
         }
       ]
@@ -3602,6 +3678,21 @@
         }
       ]
     },
+    "cast_on_avian_buff": {
+      "stats": ["cast_on_gain_avians_flight_or_avians_might_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "你获得【鸟之力量】或【鸟之斗魄】时有 %1%%% 几率触发该法术",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "你获得【鸟之力量】或【鸟之斗魄】时触发该法术",
+          "formatters": []
+        }
+      ]
+    },
     "cast_on_hit": {
       "stats": ["cast_on_hit_%"],
       "translations": [
@@ -3613,6 +3704,31 @@
         {
           "matchers": [[100, "#"]],
           "text": "被击中时触发该法术",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_hit_if_cursed": {
+      "stats": ["cast_on_hit_if_cursed_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "当你被诅咒时击中敌人，则有 %1%%% 几率触发该法术",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "当你被诅咒时击中敌人，则触发该法术",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_lose_cats_stealth": {
+      "stats": ["cast_on_lose_cats_stealth"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "失去【猫之隐匿】时触发该法术",
           "formatters": []
         }
       ]
@@ -4008,6 +4124,16 @@
               "arg": "ReminderTextDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "never_freeze": {
+      "stats": ["never_freeze"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "无法被冰冻",
+          "formatters": []
         }
       ]
     },
@@ -4545,6 +4671,26 @@
         {
           "matchers": [["#", -1]],
           "text": "周围每有 100 个敌人，伤害便降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "intimidating_cry_attack_speed": {
+      "stats": ["intimidating_cry_attack_speed_+%_per_100_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "周围每有 100 名敌人，攻击速度便提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "周围每有 100 名敌人，攻击速度便降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -5404,7 +5550,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "近战攻击击中时，所触发的【无情一击】会使流血总伤害额外提高 %1%%%",
+          "text":
+            "近战攻击击中时，所触发的【无情一击】会使流血总伤害额外提高 %1%%%",
           "formatters": []
         }
       ]
@@ -5472,12 +5619,14 @@
       "translations": [
         {
           "matchers": [[1, "#"], 0],
-          "text": "你被击中后受到的火焰伤害会先由【神盾】承担，再由生命或能量护盾承担\\n【神盾】可以承受 %1% 火焰伤害",
+          "text":
+            "你被击中后受到的火焰伤害会先由【神盾】承担，再由生命或能量护盾承担\\n【神盾】可以承受 %1% 火焰伤害",
           "formatters": []
         },
         {
           "matchers": [[1, "#"], 1],
-          "text": "你被击中后受到的冰霜伤害会先由【神盾】承担，再由生命或能量护盾承担\\n【神盾】可以承受 %1% 冰霜伤害",
+          "text":
+            "你被击中后受到的冰霜伤害会先由【神盾】承担，再由生命或能量护盾承担\\n【神盾】可以承受 %1% 冰霜伤害",
           "formatters": []
         },
         {
@@ -5518,12 +5667,57 @@
         }
       ]
     },
+    "avoid_damage_chance": {
+      "stats": ["avoid_damage_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "被击中时有 %1%%% 几率避免所有伤害",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "被击中时避免所有伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "damage_taken_incr": {
+      "stats": ["base_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "承受伤害提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "承受伤害降低 %1%%%",
+          "formatters": []
+        }
+      ]
+    },
     "deal_no_chaos": {
       "stats": ["base_deal_no_chaos_damage"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "无法造成混沌伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "ghost_limit": {
+      "stats": ["base_number_of_support_ghosts_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "最多可同时拥有 1 个幻灵",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "最多可同时拥有 %1% 个幻灵",
           "formatters": []
         }
       ]
@@ -5642,6 +5836,31 @@
         }
       ]
     },
+    "double_damage_chance": {
+      "stats": ["chance_to_deal_double_damage_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "有 %1%%% 几率造成双倍伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "ghost_chance": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "当此技能击败敌人时，有 %1%%% 几率召唤 1 个幻灵",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "当此技能击败敌人时，召唤 1 个幻灵",
+          "formatters": []
+        }
+      ]
+    },
     "trigger_on_animate_guardian_kill": {
       "stats": ["chance_to_trigger_on_animate_guardian_kill_%"],
       "translations": [
@@ -5721,6 +5940,21 @@
         }
       ]
     },
+    "chilled_ground_magnitude_override": {
+      "stats": ["chilled_ground_base_magnitude_override"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "该技能造成冰缓地面的基础减速效果为 %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChilledGround"
+            }
+          ]
+        }
+      ]
+    },
     "cremation_max_geysers": {
       "stats": ["corpse_erruption_maximum_number_of_geyers"],
       "translations": [
@@ -5788,6 +6022,26 @@
           "matchers": ["#"],
           "text": "来自裂隙的怪物不掉落物品，不增加经验",
           "formatters": []
+        }
+      ]
+    },
+    "endurance_charge_slam_extra_damage": {
+      "stats": ["endurance_charge_slam_damage_+%_final_with_endurance_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "若你拥有 1 个耐力球，总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "若你拥有 1 个耐力球，总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -5906,6 +6160,16 @@
         }
       ]
     },
+    "max_crab_barriers": {
+      "stats": ["max_crab_aspect_stacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "最多可同时拥有 %1% 个【深海屏障】",
+          "formatters": []
+        }
+      ]
+    },
     "number_of_spirit_strikes": {
       "stats": ["melee_attack_number_of_spirit_strikes"],
       "translations": [
@@ -5964,6 +6228,16 @@
         }
       ]
     },
+    "minion_double_damage_chance": {
+      "stats": ["minion_chance_to_deal_double_damage_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "召唤生物有 %1%%% 几率造成双倍伤害",
+          "formatters": []
+        }
+      ]
+    },
     "ailment_non_damaging_incr_effect": {
       "stats": ["non_damaging_ailment_effect_+%"],
       "translations": [
@@ -6004,6 +6278,16 @@
         {
           "matchers": [[2, "#"]],
           "text": "最多可同时拥有 %1% 个塑像",
+          "formatters": []
+        }
+      ]
+    },
+    "phys_reduction_per_crab_barrier": {
+      "stats": ["physical_damage_reduction_%_per_crab_aspect_stack"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每层【深海屏障】可使你获得额外 %1%%% 的物理伤害减免",
           "formatters": []
         }
       ]
@@ -6097,12 +6381,28 @@
         }
       ]
     },
+    "spider_aspect_max_webs": {
+      "stats": ["spider_aspect_max_web_count"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "对一个敌人最多可覆盖 1 层蜘蛛网",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "对一个敌人最多可覆盖 %1% 层蜘蛛网",
+          "formatters": []
+        }
+      ]
+    },
     "summon_mirage_archer": {
       "stats": ["summon_mirage_archer_on_hit"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "当你用此技能发射的箭矢击中敌人时，召唤 1 个会使用此技能的【幻影弓手】",
+          "text":
+            "当你用此技能发射的箭矢击中敌人时，召唤 1 个会使用此技能的【幻影弓手】",
           "formatters": []
         }
       ]
@@ -6159,15 +6459,32 @@
       "translations": [
         {
           "matchers": [[1, "#"], "#"],
-          "text": "敌人每有一层中毒状态，召唤生物击中时的总伤害便额外提高 %1%%%，最多 %2%",
+          "text":
+            "敌人每有一层中毒状态，召唤生物击中时的总伤害便额外提高 %1%%%，最多 %2%",
           "formatters": []
         },
         {
           "matchers": [["#", -1], "#"],
-          "text": "敌人每有一层中毒状态，召唤生物击中时的总伤害便额外降低 %1%%%，最多 %2%",
+          "text":
+            "敌人每有一层中毒状态，召唤生物击中时的总伤害便额外降低 %1%%%，最多 %2%",
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ghost_duration": {
+      "stats": ["support_ghost_base_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【幻灵】持续 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
               "arg": 1
             }
           ]
@@ -6346,7 +6663,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助技能可在目标前后方位额外施放多次，影响范围更大，并可重叠",
+          "text":
+            "被辅助技能可在目标前后方位额外施放多次，影响范围更大，并可重叠",
           "formatters": []
         }
       ]
@@ -6404,18 +6722,48 @@
         }
       ]
     },
+    "trigger_on_frozen_kill": {
+      "stats": ["trigger_on_kill_vs_frozen_enemy_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "你击败一个被冻结的敌人时，有 %1%%% 几率触发此技能",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "你击败一个被冻结的敌人时触发此技能",
+          "formatters": []
+        }
+      ]
+    },
     "trigger_on_skill_use_void_arrow": {
       "stats": ["trigger_on_skill_use_%_if_you_have_a_void_arrow"],
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "当你发射火焰箭矢时，有 %1%%% 几率消耗 1 个Void Charge",
+          "text": "当你发射箭矢时，有 %1%%% 几率消耗 1 个虚空之矢",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "当你发射火焰箭矢时，消耗 1 个Void Charge来触发此技能",
+          "text": "当你发射箭矢时，消耗 1 个虚空之矢来触发此技能",
           "formatters": []
+        }
+      ]
+    },
+    "spider_aspect_interval": {
+      "stats": ["virtual_spider_aspect_web_interval_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每 %1% 秒制造蜘蛛网和减速效果",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
         }
       ]
     }

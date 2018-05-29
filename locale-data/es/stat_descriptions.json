@@ -3124,6 +3124,26 @@
         }
       ]
     },
+    "local_display_grant_level_x_petrification_statue": {
+      "stats": ["local_display_grant_level_x_petrification_statue"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Otorga la Habilidad Estatua de Petrificación Nivel %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_level_X_blinding_aura_skill_on_equip": {
+      "stats": ["local_display_trigger_level_X_blinding_aura_skill_on_equip"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Activa Aura Cegadora Nivel %1% cuando es Equipado",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_grants_level_x_blood_offering_skill": {
       "stats": ["local_display_grants_level_x_blood_offering_skill"],
       "translations": [
@@ -3311,7 +3331,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Activa Espíritus Espectrales Nivel 20 cuando está Equipado",
+          "text": "Activa Espíritus Espectrales Nivel 20 cuando es Equipado",
           "formatters": []
         }
       ]
@@ -3321,7 +3341,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Activa Furia de Abberath Nivel %1% cuando está Equipado",
+          "text": "Activa Furia de Abberath Nivel %1% cuando es Equipado",
           "formatters": []
         }
       ]
@@ -3355,7 +3375,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Activa Égida de Hielo Nivel %1% cuando está Equipado",
+          "text": "Activa Égida de Hielo Nivel %1% cuando es Equipado",
           "formatters": []
         }
       ]
@@ -3365,7 +3385,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Activa Égida Elemental Nivel %1% cuando está Equipado",
+          "text": "Activa Égida Elemental Nivel %1% cuando es Equipado",
           "formatters": []
         }
       ]
@@ -3375,7 +3395,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Activa Égida de Fuego Nivel %1% cuando está Equipado",
+          "text": "Activa Égida de Fuego Nivel %1% cuando es Equipado",
           "formatters": []
         }
       ]
@@ -3461,7 +3481,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Activa Caminata de Muerte Nivel %1% cuando está Equipado",
+          "text": "Activa Caminata de Muerte Nivel %1% cuando es Equipado",
           "formatters": []
         }
       ]
@@ -5658,6 +5678,37 @@
         }
       ]
     },
+    "unarmed_melee_physical_damage_+%": {
+      "stats": ["unarmed_melee_physical_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Daño Físico Cuerpo a Cuerpo aumentado un %1% con Ataques Desarmado",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Daño Físico Cuerpo a Cuerpo reducido un %1% con Ataques Desarmado",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
     "physical_axe_damage_+%": {
       "stats": ["physical_axe_damage_+%"],
       "translations": [
@@ -7295,6 +7346,36 @@
             {
               "id": "negate",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "unarmed_melee_attack_speed_+%": {
+      "stats": ["unarmed_melee_attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Velocidad de Ataque aumentada un %1%%% con Ataques Desarmado",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmed"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Velocidad de Ataque reducida un %1%%% con Ataques Desarmado",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmed"
             }
           ]
         }
@@ -20203,6 +20284,35 @@
         }
       ]
     },
+    "unique_facebreaker_unarmed_physical_damage_+%_final": {
+      "stats": ["unique_facebreaker_unarmed_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% más Daño Físico con Ataques Desarmado",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% menos Daño Físico con Ataques Desarmado",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
     "attack_minimum_added_lightning_damage_while_unarmed": {
       "stats": [
         "attack_minimum_added_lightning_damage_while_unarmed",
@@ -21364,6 +21474,22 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextCullingStrike"
+            }
+          ]
+        }
+      ]
+    },
+    "melee_range_+": {
+      "stats": ["melee_range_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1$+d al Rango del Arma Cuerpo a Cuerpo y de los Ataques Desarmado",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
             }
           ]
         }
@@ -29146,6 +29272,21 @@
           "text":
             "Si al menos %1% de Inteligencia es Asignada dentro del Radio, los Enemigos pueden tener una Maldición adicional",
           "formatters": []
+        }
+      ]
+    },
+    "melee_range_+_while_unarmed": {
+      "stats": ["melee_range_+_while_unarmed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d al rango de los Ataques Desarmado",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
         }
       ]
     },
@@ -37073,6 +37214,37 @@
         }
       ]
     },
+    "unarmed_damage_+%_vs_bleeding_enemies": {
+      "stats": ["unarmed_damage_+%_vs_bleeding_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Daño con Ataques Desarmado aumentado un %1%%% contra Enemigos con Sangrado",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Daño con Ataques Desarmado reducido un %1%%% contra Enemigos con Sangrado",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
     "life_gained_on_bleeding_enemy_hit": {
       "stats": ["life_gained_on_bleeding_enemy_hit"],
       "translations": [
@@ -37080,6 +37252,106 @@
           "matchers": [[1, "#"]],
           "text": "Gana %1$+d de Vida cuando Golpeas un Enemigo con Sangrado",
           "formatters": []
+        }
+      ]
+    },
+    "base_critical_strike_chance_while_unarmed_%": {
+      "stats": ["base_critical_strike_chance_while_unarmed_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1$+d%% a la Probabilidad de Crítico de Ataques Desarmado",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
+    "modifiers_to_claw_damage_also_affect_unarmed_damage": {
+      "stats": ["modifiers_to_claw_damage_also_affect_unarmed_damage"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los Modificadores de Daño de Garras también se aplican al Daño de Ataque Desarmado",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
+    "modifiers_to_claw_attack_speed_also_affect_unarmed_attack_speed": {
+      "stats": [
+        "modifiers_to_claw_attack_speed_also_affect_unarmed_attack_speed"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los Modificadores de Velocidad de Ataque de Garras también se aplican a la Velocidad de Ataque Desarmado",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
+    "modifiers_to_claw_critical_strike_chance_also_affect_unarmed_critical_strike_chance": {
+      "stats": [
+        "modifiers_to_claw_critical_strike_chance_also_affect_unarmed_critical_strike_chance"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los Modificacores de probabilidad de Crítico de Garras también se aplican a la Probabilidad de Crítico de Ataque Desarmado",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
+    "damage_+%_while_unarmed": {
+      "stats": ["damage_+%_while_unarmed"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Daño con Ataques Desarmado aumentado un %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Daño con Ataques Desarmado reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
         }
       ]
     },
@@ -51720,6 +51992,23 @@
         }
       ]
     },
+    "aspect_of_the_spider_web_count_+": {
+      "stats": ["aspect_of_the_spider_web_count_+"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "Aspecto de la Araña puede aplicar Telaraña en Enemigos una vez adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "Aspecto de la Araña puede aplicar Telaraña en Enemigos %1% veces adicionales",
+          "formatters": []
+        }
+      ]
+    },
     "attack_additional_critical_strike_chance_permyriad": {
       "stats": ["attack_additional_critical_strike_chance_permyriad"],
       "translations": [
@@ -55498,28 +55787,6 @@
         {
           "matchers": [["#", -1]],
           "text": "Las Penalidades sobre ti expiran %1%%% más lento",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "debuff_time_passed_+%_while_affected_by_haste": {
-      "stats": ["debuff_time_passed_+%_while_affected_by_haste"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Las penalidades sobre ti expiran %1%%% más rápido mientras estés afectado por Celeridad",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "Las penalidades sobre ti expiran %1%%% más rápido mientras estés afectado por Celeridad",
           "formatters": [
             {
               "id": "negate",
@@ -59571,13 +59838,26 @@
         {
           "matchers": [[1, 99]],
           "text":
-            "%1%%% de probabilidad de Activar Animar Arma Guardiana Nivel 20 cuando Arma Animada Mata a un Enemigo",
+            "%1%%% de probabilidad de Activar Animar Arma Guardiana Nivel 18 cuando Arma Animada Mata a un Enemigo",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
           "text":
-            "Activa Animar Arma Guardiana Nivel 20 cuando Arma Animada Mata a un Enemigo",
+            "Activa Animar Arma Guardiana Nivel 18 cuando Arma Animada Mata a un Enemigo",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_level_x_icicle_nova_on_kill_vs_frozen_enemy": {
+      "stats": [
+        "local_display_trigger_level_x_icicle_nova_on_kill_vs_frozen_enemy"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Activa Explosión de Carámbanos Nivel %1% cuando Matas un Enemigo Congelado",
           "formatters": []
         }
       ]
@@ -59589,6 +59869,17 @@
           "matchers": ["#"],
           "text":
             "%1%%% de probabilidad de Activar Anomalía Temporal Nivel 20 cuando eres Golpeado",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_tentacle_smash_on_kill_%_chance": {
+      "stats": ["local_display_trigger_tentacle_smash_on_kill_%_chance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% de probabilidad de Activar Latigazo de Tentáculos Nivel 20 al Matar",
           "formatters": []
         }
       ]
@@ -65482,6 +65773,20 @@
         }
       ]
     },
+    "minimum_added_fire_damage_to_hits_vs_blinded_enemies": {
+      "stats": [
+        "minimum_added_fire_damage_to_hits_vs_blinded_enemies",
+        "maximum_added_fire_damage_to_hits_vs_blinded_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Agrega %1% a %2% de Daño de Fuego a los Golpes con esta Arma contra Enemigos Cegados",
+          "formatters": []
+        }
+      ]
+    },
     "minimum_added_lightning_damage_per_shocked_enemy_killed_recently": {
       "stats": [
         "minimum_added_lightning_damage_per_shocked_enemy_killed_recently",
@@ -65594,20 +65899,6 @@
           "matchers": ["#", "#"],
           "text":
             "Agrega %1% a %2% de Daño de Rayo mientras no tengas Vida Reservada",
-          "formatters": []
-        }
-      ]
-    },
-    "minimum_fire_damage_to_hits_against_blinded_enemies": {
-      "stats": [
-        "minimum_fire_damage_to_hits_against_blinded_enemies",
-        "maximum_fire_damage_to_hits_against_blinded_enemies"
-      ],
-      "translations": [
-        {
-          "matchers": ["#", "#"],
-          "text":
-            "Agrega %1% a %2% de Daño de Fuego a los Golpes contra Enemigos Cegados",
           "formatters": []
         }
       ]
@@ -66480,6 +66771,23 @@
         }
       ]
     },
+    "number_of_additional_traps_to_throw": {
+      "stats": ["number_of_additional_traps_to_throw"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "Las Habilidades que Lanzan Trampas lanzan una Trampa adicional",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text":
+            "Las Habilidades que Lanzan Trampas lanzan %1% Trampas adicionales",
+          "formatters": []
+        }
+      ]
+    },
     "number_of_animated_weapons_allowed": {
       "stats": ["number_of_animated_weapons_allowed"],
       "translations": [
@@ -66985,7 +67293,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Duración de Veneno aumentada un %1%%% por cada Veneno aplicado Recientemente",
+            "Duración de Veneno aumentada un %1%%% por cada Veneno que hayas aplicado Recientemente",
           "formatters": [
             {
               "id": "reminderstring",
@@ -66996,7 +67304,7 @@
         {
           "matchers": [["#", -1]],
           "text":
-            "Duración de Veneno reducida un %1%%% por cada Veneno aplicado Recientemente",
+            "Duración de Veneno reducida un %1%%% por cada Veneno que hayas aplicado Recientemente",
           "formatters": [
             {
               "id": "reminderstring",
@@ -68007,6 +68315,65 @@
         }
       ]
     },
+    "spectral_shield_throw_damage_+%": {
+      "stats": ["spectral_shield_throw_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Daño de Lanzamiento de Escudo Espectral aumentado un %1%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Daño de Lanzamiento de Escudo Espectral reducido un %1%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "spectral_shield_throw_num_of_additional_projectiles": {
+      "stats": ["spectral_shield_throw_num_of_additional_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "Lanzamiento de Escudo Espectral dispara un Proyectil Esquirla adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "Lanzamiento de Escudo Espectral dispara %1% Proyectiles Esquirla adicionales",
+          "formatters": []
+        }
+      ]
+    },
+    "spectral_shield_throw_projectile_speed_+%": {
+      "stats": ["spectral_shield_throw_projectile_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Velocidad de Proyectiles de Lanzamiento de Escudo Espectral aumentada un %1%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Velocidad de Proyectiles de Lanzamiento de Escudo Espectral reducida un %1%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "spectral_shield_throw_secondary_projectiles_pierce": {
       "stats": ["spectral_shield_throw_secondary_projectiles_pierce"],
       "translations": [
@@ -68637,28 +69004,6 @@
         }
       ]
     },
-    "tailwind_effect_on_self_+%": {
-      "stats": ["tailwind_effect_on_self_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Efecto de Viento a Favor sobre Ti aumentado un %1%%% por cada Habilidad que hayas usado Recientemente, hasta 100%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "Efecto de Viento a Favor sobre Ti reducido un %1%%% por cada Habilidad que hayas usado Recientemente",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "tailwind_effect_on_self_+%_for_each_skill_used_recently": {
       "stats": ["tailwind_effect_on_self_+%_for_each_skill_used_recently"],
       "translations": [
@@ -68713,6 +69058,57 @@
           "formatters": [
             {
               "id": "divide_by_twenty_then_double_0dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "tectonic_slam_area_of_effect_+%": {
+      "stats": ["tectonic_slam_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Área de Efecto de Embate Tectónico aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Área de Efecto de Embate Tectónico reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "tectonic_slam_chance_to_not_consume_endurance_charge_%": {
+      "stats": ["tectonic_slam_chance_to_not_consume_endurance_charge_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% de probabilidad de que Embate Tectónico no consuma una Carga de Aguante",
+          "formatters": []
+        }
+      ]
+    },
+    "tectonic_slam_damage_+%": {
+      "stats": ["tectonic_slam_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Daño de Embate Tectónico aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Daño de Embate Tectónico reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
               "arg": 1
             }
           ]
