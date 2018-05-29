@@ -2,6 +2,13 @@ const fs = require('fs');
 const path = require('path');
 const { Grammar, Parser } = require('nearley');
 
+/**
+ * Generates locale data in a lookup map where the key is determined by
+ * {getKey()} and the values are determined by {fields}
+ * 
+ * For usage see docs/patch.md 
+ */
+
 const inflection_grammar = Grammar.fromCompiled(
   require('../src/grammars/generated/inflection.js')
 );
