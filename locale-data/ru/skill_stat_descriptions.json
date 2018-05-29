@@ -2250,7 +2250,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Один огненный шар падает каждые %1% секунд",
+          "text": "Наносит один удар каждые %1% секунд(-ы)",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -4726,6 +4726,10 @@
           "text": "Время существования замерзшей земли: %1% секунд",
           "formatters": [
             {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
               "id": "reminderstring",
               "arg": "ReminderTextChilledGround"
             }
@@ -5800,6 +5804,21 @@
         }
       ]
     },
+    "ghost_limit": {
+      "stats": ["base_number_of_support_ghosts_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Одновременно можно призвать 1 фантома",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Можно призвать до %1% фантомов одновременно",
+          "formatters": []
+        }
+      ]
+    },
     "blade_vortex_hit_rate": {
       "stats": ["blade_vortex_hit_rate_ms"],
       "translations": [
@@ -6559,6 +6578,21 @@
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ghost_duration": {
+      "stats": ["support_ghost_base_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Фантомы существуют %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
               "arg": 1
             }
           ]

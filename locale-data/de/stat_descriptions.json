@@ -3142,6 +3142,28 @@
         }
       ]
     },
+    "local_display_grant_level_x_petrification_statue": {
+      "stats": ["local_display_grant_level_x_petrification_statue"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Gewährt die Fertigkeit 'Versteinerungsstatue beschwören' Stufe %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_level_X_blinding_aura_skill_on_equip": {
+      "stats": ["local_display_trigger_level_X_blinding_aura_skill_on_equip"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Löst die Fertigkeit 'Blendaura' Stufe %1% aus, wenn ausgerüstet",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_grants_level_x_blood_offering_skill": {
       "stats": ["local_display_grants_level_x_blood_offering_skill"],
       "translations": [
@@ -3492,6 +3514,36 @@
           "matchers": ["#"],
           "text":
             "%1%%% Chance, 'Schattenform' Stufe 20 auszulösen, wenn Ihr eine eingefasste Fertigkeit benutzt",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_level_20_tornado_when_you_gain_avians_flight_or_avians_might_%": {
+      "stats": [
+        "local_display_trigger_level_20_tornado_when_you_gain_avians_flight_or_avians_might_%"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% Chance, 'Tornado' Stufe 20 auszulösen, wenn Ihr 'Macht des Vogels' oder 'Flug des Vogels' erhaltet",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Löst 'Tornado' Stufe 20 aus, wenn Ihr 'Macht des Vogels' oder 'Flug des Vogels' erhaltet",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_level_x_curse_nova_on_hit_while_cursed": {
+      "stats": ["local_display_trigger_level_x_curse_nova_on_hit_while_cursed"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Löst 'Elementare Abwehr' Stufe %1% aus, wenn Ihr einen Gegner trefft, während Ihr verflucht seid",
           "formatters": []
         }
       ]
@@ -5619,6 +5671,37 @@
         }
       ]
     },
+    "unarmed_melee_physical_damage_+%": {
+      "stats": ["unarmed_melee_physical_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% erhöhter physischer Nahkampfschaden mit unbewaffneten Angriffen",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% verringerter physischer Nahkampfschaden mit unbewaffneten Angriffen",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
     "physical_axe_damage_+%": {
       "stats": ["physical_axe_damage_+%"],
       "translations": [
@@ -7252,6 +7335,37 @@
             {
               "id": "negate",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "unarmed_melee_attack_speed_+%": {
+      "stats": ["unarmed_melee_attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% erhöhte Angriffsgeschwindigkeit mit unbewaffneten Angriffen",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmed"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% verringerte Angriffsgeschwindigkeit mit unbewaffneten Angriffen",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmed"
             }
           ]
         }
@@ -15669,7 +15783,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Eure Treffer können nicht ausgewichen werden",
+          "text": "Euren Treffern kann nicht ausgewichen werden",
           "formatters": []
         }
       ]
@@ -20166,6 +20280,36 @@
         }
       ]
     },
+    "unique_facebreaker_unarmed_physical_damage_+%_final": {
+      "stats": ["unique_facebreaker_unarmed_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% mehr physischer Schaden mit unbewaffneten Angriffen",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% weniger physischer Schaden mit unbewaffneten Angriffen",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
     "attack_minimum_added_lightning_damage_while_unarmed": {
       "stats": [
         "attack_minimum_added_lightning_damage_while_unarmed",
@@ -21320,6 +21464,22 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextCullingStrike"
+            }
+          ]
+        }
+      ]
+    },
+    "melee_range_+": {
+      "stats": ["melee_range_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1$+d zu Reichweite mit Nahkampfwaffen und unbewaffneten Angriffen",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
             }
           ]
         }
@@ -29066,6 +29226,21 @@
         }
       ]
     },
+    "melee_range_+_while_unarmed": {
+      "stats": ["melee_range_+_while_unarmed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d zu Reichweite mit unbewaffneten Angriffen",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
     "damage_+%_per_equipped_magic_item": {
       "stats": ["damage_+%_per_equipped_magic_item"],
       "translations": [
@@ -30359,12 +30534,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% verlängerte Vergiftungsdauer",
+          "text": "%1%%% verlängerte Giftdauer",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verkürzte Vergiftungsdauer",
+          "text": "%1%%% verkürzte Giftdauer",
           "formatters": []
         }
       ]
@@ -30374,7 +30549,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% mehr Vergiftungsdauer",
+          "text": "%1%%% mehr Giftdauer",
           "formatters": [
             {
               "id": "reminderstring",
@@ -30384,7 +30559,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% weniger Vergiftungsdauer",
+          "text": "%1%%% weniger Giftdauer",
           "formatters": [
             {
               "id": "reminderstring",
@@ -31442,7 +31617,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Bei mindestens 40 Geschick im Radius verfügt 'Heftiger Schlag' über \\n%1%%% Chance, doppelten Schaden zu verursachen",
+            "Bei mindestens 40 Stärke im Radius verfügt 'Heftiger Schlag' über \\n%1%%% Chance, doppelten Schaden zu verursachen",
           "formatters": []
         }
       ]
@@ -36928,6 +37103,37 @@
         }
       ]
     },
+    "unarmed_damage_+%_vs_bleeding_enemies": {
+      "stats": ["unarmed_damage_+%_vs_bleeding_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% erhöhter Schaden mit unbewaffneten Angriffen gegen blutende Gegner",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% verringerter Schaden mit unbewaffneten Angriffen gegen blutende Gegner",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
     "life_gained_on_bleeding_enemy_hit": {
       "stats": ["life_gained_on_bleeding_enemy_hit"],
       "translations": [
@@ -36935,6 +37141,107 @@
           "matchers": [[1, "#"]],
           "text": "Erhaltet %1$+d Leben bei Treffer eines blutenden Gegners",
           "formatters": []
+        }
+      ]
+    },
+    "base_critical_strike_chance_while_unarmed_%": {
+      "stats": ["base_critical_strike_chance_while_unarmed_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1$+d%% zu kritischer Trefferchance mit unbewaffneten Angriffen",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
+    "modifiers_to_claw_damage_also_affect_unarmed_damage": {
+      "stats": ["modifiers_to_claw_damage_also_affect_unarmed_damage"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Modifikatoren für Schaden mit Klauen gelten auch für unbewaffneten Angriffsschaden",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
+    "modifiers_to_claw_attack_speed_also_affect_unarmed_attack_speed": {
+      "stats": [
+        "modifiers_to_claw_attack_speed_also_affect_unarmed_attack_speed"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Modifikatoren für Angriffsgeschwindigkeit mit Klauen gelten auch für unbewaffnete Angriffsgeschwindigkeit",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
+    "modifiers_to_claw_critical_strike_chance_also_affect_unarmed_critical_strike_chance": {
+      "stats": [
+        "modifiers_to_claw_critical_strike_chance_also_affect_unarmed_critical_strike_chance"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Modifikatoren für kritische Trefferchance mit Klauen gelten auch für kritische Trefferchance mit unbewaffneten Angriffen",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
+    "damage_+%_while_unarmed": {
+      "stats": ["damage_+%_while_unarmed"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% erhöhter Schaden mit unbewaffneten Angriffen",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verringerter Schaden mit unbewaffneten Angriffen",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
         }
       ]
     },
@@ -40842,7 +41149,7 @@
         {
           "matchers": ["#", "#"],
           "text":
-            "Fallen und Minen verursachen %1% bis %1% zusätzlichen physischen Schaden",
+            "Fallen und Minen verursachen %1% bis %2% zusätzlichen physischen Schaden",
           "formatters": []
         }
       ]
@@ -51531,6 +51838,23 @@
         }
       ]
     },
+    "aspect_of_the_spider_web_count_+": {
+      "stats": ["aspect_of_the_spider_web_count_+"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "'Aspekt der Spinne' kann Gegner ein zusätzliches Mal mit einem Spinnennetz bedecken",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "'Aspekt der Spinne' kann Gegner %1% zusätzliche Male mit einem Spinnennetz bedecken",
+          "formatters": []
+        }
+      ]
+    },
     "attack_additional_critical_strike_chance_permyriad": {
       "stats": ["attack_additional_critical_strike_chance_permyriad"],
       "translations": [
@@ -52776,7 +53100,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Durch Euch verursachtes Bluten wird auf Euch selbst zurückgeworfen",
+            "Durch Euch verursachtes Bluten wird auf Euch selbst reflektiert",
           "formatters": [
             {
               "id": "reminderstring",
@@ -55293,28 +55617,6 @@
         {
           "matchers": [["#", -1]],
           "text": "Schwächungen auf Euch klingen %1%%% langsamer ab",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "debuff_time_passed_+%_while_affected_by_haste": {
-      "stats": ["debuff_time_passed_+%_while_affected_by_haste"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Schwächungen auf Euch klingen %1%%% schneller ab während unter dem Einfluss von 'Hast'",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "Schwächungen auf Euch klingen %1%%% schneller ab während unter dem Einfluss von 'Hast'",
           "formatters": [
             {
               "id": "negate",
@@ -58066,7 +58368,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% erhöhte Seltenheit gefundener Gegenstände pro %1% Amok-Tötungen",
+            "1%% erhöhte Seltenheit gefundener Gegenstände pro %1% Amok-Tötungen",
           "formatters": []
         }
       ]
@@ -59000,7 +59302,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Wenn Ihr ein Juwel der suchenden Augen eingefasst habt, schüchtert Ihr Gegner bei Treffern mit Angriffen für 4 Sekunden ein",
+            "Wenn Ihr ein Juwel der suchenden Augen eingefasst habt, verstümmelt Ihr Gegner bei Treffern mit Angriffen für 4 Sekunden",
           "formatters": [
             {
               "id": "reminderstring",
@@ -59355,13 +59657,26 @@
         {
           "matchers": [[1, 99]],
           "text":
-            "%1%%% Chance, 'Waffe des Wächters beseelen' Stufe 20 auszulösen, wenn die beseelte Waffe einen Gegner tötet",
+            "%1%%% Chance, 'Waffe des Wächters beseelen' Stufe 18 auszulösen, wenn die beseelte Waffe einen Gegner tötet",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
           "text":
-            "Löst 'Waffe des Wächters beseelen' Stufe 20 aus, wenn die beseelte Waffe einen Gegner tötet",
+            "Löst 'Waffe des Wächters beseelen' Stufe 18 aus, wenn die beseelte Waffe einen Gegner tötet",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_level_x_icicle_nova_on_kill_vs_frozen_enemy": {
+      "stats": [
+        "local_display_trigger_level_x_icicle_nova_on_kill_vs_frozen_enemy"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Löst 'Eiszapfenberster' Stufe %1% aus, wenn Ihr einen eingefrorenen Gegner tötet",
           "formatters": []
         }
       ]
@@ -59373,6 +59688,17 @@
           "matchers": ["#"],
           "text":
             "%1%%% Chance, bei Treffer 'Temporale Anomalie' Stufe 20 auszulösen",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_tentacle_smash_on_kill_%_chance": {
+      "stats": ["local_display_trigger_tentacle_smash_on_kill_%_chance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% Chance, 'Tentakelschlag' Stufe 20 auszulösen bei Tötung",
           "formatters": []
         }
       ]
@@ -65227,6 +65553,20 @@
         }
       ]
     },
+    "minimum_added_fire_damage_to_hits_vs_blinded_enemies": {
+      "stats": [
+        "minimum_added_fire_damage_to_hits_vs_blinded_enemies",
+        "maximum_added_fire_damage_to_hits_vs_blinded_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Fügt Treffern mit dieser Waffe gegen geblendete Gegner %1% bis %2% Feuerschaden hinzu",
+          "formatters": []
+        }
+      ]
+    },
     "minimum_added_lightning_damage_per_shocked_enemy_killed_recently": {
       "stats": [
         "minimum_added_lightning_damage_per_shocked_enemy_killed_recently",
@@ -65339,20 +65679,6 @@
           "matchers": ["#", "#"],
           "text":
             "Fügt %1% bis %2% Blitzschaden hinzu, während kein Leben reserviert ist",
-          "formatters": []
-        }
-      ]
-    },
-    "minimum_fire_damage_to_hits_against_blinded_enemies": {
-      "stats": [
-        "minimum_fire_damage_to_hits_against_blinded_enemies",
-        "maximum_fire_damage_to_hits_against_blinded_enemies"
-      ],
-      "translations": [
-        {
-          "matchers": ["#", "#"],
-          "text":
-            "Fügt Treffern gegen geblendete Gegner %1% bis %2% Feuerschaden hinzu",
           "formatters": []
         }
       ]
@@ -66222,6 +66548,23 @@
         }
       ]
     },
+    "number_of_additional_traps_to_throw": {
+      "stats": ["number_of_additional_traps_to_throw"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "Fertigkeiten, die Fallen werfen, werfen eine zusätzliche Falle",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text":
+            "Fertigkeiten, die Fallen werfen, werfen %1% zusätzliche Fallen",
+          "formatters": []
+        }
+      ]
+    },
     "number_of_animated_weapons_allowed": {
       "stats": ["number_of_animated_weapons_allowed"],
       "translations": [
@@ -66716,7 +67059,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% verlängerte Vergiftungsdauer pro kürzlich angewendeten Gift",
+            "%1%%% verlängerte Giftdauer für jedes Gift, das Ihr kürzlich verursacht habt",
           "formatters": [
             {
               "id": "reminderstring",
@@ -66727,7 +67070,7 @@
         {
           "matchers": [["#", -1]],
           "text":
-            "%1%%% verkürzte Vergiftungsdauer pro kürzlich angewendeten Gift",
+            "%1%%% verkürzte Giftdauer für jedes Gift, das Ihr kürzlich verursacht habt",
           "formatters": [
             {
               "id": "reminderstring",
@@ -67743,6 +68086,65 @@
         }
       ]
     },
+    "spectral_shield_throw_damage_+%": {
+      "stats": ["spectral_shield_throw_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% erhöhter Schaden von 'Spektralschildwurf'",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verringerter Schaden von 'Spektralschildwurf'",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "spectral_shield_throw_num_of_additional_projectiles": {
+      "stats": ["spectral_shield_throw_num_of_additional_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "'Spektralschildwurf' feuert ein zusätzliches Splitterprojektil",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text":
+            "'Spektralschildwurf' feuert %1% zusätzliche Splitterprojektile",
+          "formatters": []
+        }
+      ]
+    },
+    "spectral_shield_throw_projectile_speed_+%": {
+      "stats": ["spectral_shield_throw_projectile_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% erhöhte Projektilgeschwindigkeit von 'Spektralschildwurf'",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% verringerte Projektilgeschwindigkeit von 'Spektralschildwurf'",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "spectral_shield_throw_secondary_projectiles_pierce": {
       "stats": ["spectral_shield_throw_secondary_projectiles_pierce"],
       "translations": [
@@ -68365,28 +68767,6 @@
         }
       ]
     },
-    "tailwind_effect_on_self_+%": {
-      "stats": ["tailwind_effect_on_self_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% erhöhte Wirkung von Rückenwind auf Euch für jede Fertigkeit, die Ihr kürzlich benutzt habt, bis zu 100%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "%1%%% verringerte Wirkung von Rückenwind auf Euch für jede Fertigkeit, die Ihr kürzlich benutzt habt, bis zu 100%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "tailwind_effect_on_self_+%_for_each_skill_used_recently": {
       "stats": ["tailwind_effect_on_self_+%_for_each_skill_used_recently"],
       "translations": [
@@ -68441,6 +68821,59 @@
           "formatters": [
             {
               "id": "divide_by_twenty_then_double_0dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "tectonic_slam_area_of_effect_+%": {
+      "stats": ["tectonic_slam_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% vergrößerter Wirkungsbereich von 'Tektonischer Schlag'",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% verkleinerter Wirkungsbereich von 'Tektonischer Schlag'",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "tectonic_slam_chance_to_not_consume_endurance_charge_%": {
+      "stats": ["tectonic_slam_chance_to_not_consume_endurance_charge_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% Chance, dass 'Tektonischer Schlag' keine Widerstands-Ladung verbraucht",
+          "formatters": []
+        }
+      ]
+    },
+    "tectonic_slam_damage_+%": {
+      "stats": ["tectonic_slam_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% erhöhter Schaden von 'Tektonischer Schlag'",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verringerter Schaden von 'Tektonischer Schlag'",
+          "formatters": [
+            {
+              "id": "negate",
               "arg": 1
             }
           ]

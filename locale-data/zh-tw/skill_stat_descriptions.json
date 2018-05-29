@@ -296,6 +296,16 @@
         }
       ]
     },
+    "light_raidus_is_area": {
+      "stats": ["light_radius_increases_apply_to_area_of_effect"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "增加和減少照量販為同時套用至此技能的範圍效果",
+          "formatters": []
+        }
+      ]
+    },
     "mine": {
       "stats": ["is_remote_mine", "number_of_mines_to_place"],
       "translations": [
@@ -2931,12 +2941,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "連結 %1% 次",
+          "text": "連鎖 %1% 次",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
-          "text": "連結 %1% 次",
+          "text": "連鎖 %1% 次",
           "formatters": []
         }
       ]
@@ -4078,6 +4088,16 @@
               "arg": "ReminderTextDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "never_freeze": {
+      "stats": ["never_freeze"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "無法冰凍",
+          "formatters": []
         }
       ]
     },
@@ -5562,17 +5582,20 @@
       "translations": [
         {
           "matchers": [[1, "#"], 0],
-          "text": "承受的火焰傷害先從聖盾扣除，而不是生命或能量護盾\\n聖盾可以承受 %1% 火焰傷害",
+          "text":
+            "承受的火焰傷害先從聖盾扣除，而不是生命或能量護盾\\n聖盾可以承受 %1% 火焰傷害",
           "formatters": []
         },
         {
           "matchers": [[1, "#"], 1],
-          "text": "承受的冰冷傷害先從聖盾扣除，而不是生命或能量護盾\\n聖盾可以承受 %1% 冰冷傷害",
+          "text":
+            "承受的冰冷傷害先從聖盾扣除，而不是生命或能量護盾\\n聖盾可以承受 %1% 冰冷傷害",
           "formatters": []
         },
         {
           "matchers": [[1, "#"], 2],
-          "text": "承受的元素傷害先從聖盾扣除，而不是生命或能量護盾\\n聖盾可以承受 %1% 元素傷害",
+          "text":
+            "承受的元素傷害先從聖盾扣除，而不是生命或能量護盾\\n聖盾可以承受 %1% 元素傷害",
           "formatters": []
         }
       ]
@@ -5643,6 +5666,21 @@
         {
           "matchers": ["#"],
           "text": "無法造成混沌傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "ghost_limit": {
+      "stats": ["base_number_of_support_ghosts_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "同時至多可以召喚 1 個幻影",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "同時至多可以召喚 %1% 個幻影",
           "formatters": []
         }
       ]
@@ -6070,6 +6108,16 @@
         }
       ]
     },
+    "max_crab_barriers": {
+      "stats": ["max_crab_aspect_stacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "至多可以有 %1% 層蟹將重盾",
+          "formatters": []
+        }
+      ]
+    },
     "number_of_spirit_strikes": {
       "stats": ["melee_attack_number_of_spirit_strikes"],
       "translations": [
@@ -6301,7 +6349,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "當你的技能發射箭矢擊中敵人時，召喚 1 個也使用此技能的幻影射手",
+          "text":
+            "當你的技能發射箭矢擊中敵人時，召喚 1 個也使用此技能的幻影射手",
           "formatters": []
         }
       ]
@@ -6367,6 +6416,21 @@
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ghost_duration": {
+      "stats": ["support_ghost_base_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "幻影持續 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
               "arg": 1
             }
           ]

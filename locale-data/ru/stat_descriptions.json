@@ -2923,7 +2923,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Дает умение Расплата %1% уровня",
+          "text": "Дает умение Возмездие %1% уровня",
           "formatters": []
         }
       ]
@@ -13230,7 +13230,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d к общим затратам маны умений",
+          "text": "%1$+d к итоговой стоимости маны умений",
           "formatters": []
         }
       ]
@@ -39447,12 +39447,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% увеличение урона Расплаты",
+          "text": "%1%%% увеличение урона Возмездия",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% уменьшение урона Расплаты",
+          "text": "%1%%% уменьшение урона Возмездия",
           "formatters": [
             {
               "id": "negate",
@@ -42385,12 +42385,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% повышение скорости перезарядки Расплаты",
+          "text": "%1%%% повышение скорости перезарядки Возмездия",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% снижение скорости перезарядки Расплаты",
+          "text": "%1%%% снижение скорости перезарядки Возмездия",
           "formatters": [
             {
               "id": "negate",
@@ -52191,7 +52191,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Атаки имеют %1%%% шанс наложить кровотечение при нанесении удара проклятым врагам",
+            "Атаки имеют 25%% шанс наложить кровотечение при нанесении удара проклятым врагам",
           "formatters": [
             {
               "id": "reminderstring",
@@ -53455,7 +53455,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1%%% шанс увернуться от атак под действием Спешки",
+          "text": "%1%%% шанс увернуться от чар под действием Спешки",
           "formatters": []
         }
       ]
@@ -55151,7 +55151,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Не наносит урона от стихий",
+          "text": "Не наносит урон от стихий",
           "formatters": []
         }
       ]
@@ -55161,7 +55161,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Наносит не-стихийный урон",
+          "text": "Наносит только урон от стихий",
           "formatters": []
         }
       ]
@@ -55178,28 +55178,6 @@
           "matchers": [["#", -1]],
           "text":
             "Отрицательные эффекты на вас заканчиваются на %1%%% медленнее",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "debuff_time_passed_+%_while_affected_by_haste": {
-      "stats": ["debuff_time_passed_+%_while_affected_by_haste"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Под действием Спешки отрицательные эффекты на вас истекают на %1%%% быстрее",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "Под действием Спешки отрицательные эффекты на вас истекают на %1%%% быстрее",
           "formatters": [
             {
               "id": "negate",
@@ -59211,13 +59189,13 @@
         {
           "matchers": [[1, 99]],
           "text":
-            "%1%%% шанс использовать Живое оружие 20 уровня на оружие Аниматрона, когда ваше оживлённое оружие убивает врага",
+            "%1%%% шанс использовать Живое оружие 18 уровня на оружие Аниматрона, когда ваше оживлённое оружие убивает врага",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
           "text":
-            "Использует Живое оружие 20 уровня на оружие Аниматрона, когда ваше оживлённое оружие убивает врага",
+            "Использует Живое оружие 18 уровня на оружие Аниматрона, когда ваше оживлённое оружие убивает врага",
           "formatters": []
         }
       ]
@@ -65106,6 +65084,20 @@
         }
       ]
     },
+    "minimum_added_fire_damage_to_hits_vs_blinded_enemies": {
+      "stats": [
+        "minimum_added_fire_damage_to_hits_vs_blinded_enemies",
+        "maximum_added_fire_damage_to_hits_vs_blinded_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Добавляет от %1% до %2% урона от огня к ударам этим оружием по истекающим кровью врагам",
+          "formatters": []
+        }
+      ]
+    },
     "minimum_added_lightning_damage_per_shocked_enemy_killed_recently": {
       "stats": [
         "minimum_added_lightning_damage_per_shocked_enemy_killed_recently",
@@ -65219,20 +65211,6 @@
           "matchers": ["#", "#"],
           "text":
             "Добавляет от %1% до %2% урона от молнии к чарам, если не удержано здоровье",
-          "formatters": []
-        }
-      ]
-    },
-    "minimum_fire_damage_to_hits_against_blinded_enemies": {
-      "stats": [
-        "minimum_fire_damage_to_hits_against_blinded_enemies",
-        "maximum_fire_damage_to_hits_against_blinded_enemies"
-      ],
-      "translations": [
-        {
-          "matchers": ["#", "#"],
-          "text":
-            "Добавляет %1% от %2% урона от огня к ударам по ослеплённым врагам",
           "formatters": []
         }
       ]
@@ -66097,6 +66075,21 @@
         }
       ]
     },
+    "number_of_additional_traps_to_throw": {
+      "stats": ["number_of_additional_traps_to_throw"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Умения, бросающие дополнительные ловушки",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Умения, бросающие дополнительные ловушки: %1%",
+          "formatters": []
+        }
+      ]
+    },
     "number_of_animated_weapons_allowed": {
       "stats": ["number_of_animated_weapons_allowed"],
       "translations": [
@@ -66600,7 +66593,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% увеличение длительности яда за каждый заряд яда, наложенный недавно",
+            "%1%%% увеличение длительности яда за каждый недавно наложенный вами яд",
           "formatters": [
             {
               "id": "reminderstring",
@@ -66611,7 +66604,7 @@
         {
           "matchers": [["#", -1]],
           "text":
-            "%1%%% уменьшение длительности яда за каждый заряд яда, наложенный недавно",
+            "%1%%% уменьшение длительности яда за каждый недавно наложенный вами яд",
           "formatters": [
             {
               "id": "reminderstring",
@@ -66944,12 +66937,13 @@
         {
           "matchers": [[1, 99]],
           "text":
-            "%1%%% chance to gain 1 Rage when you Hit a Rare or Unique Enemy",
+            "%1%%% шанс получить 1 заряд Свирепости при нанесении удара по редкому или уникальному врагу",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "Gain 1 Rage when you Hit a Rare or Unique Enemy",
+          "text":
+            "Дарует 1 заряд Свирепости при нанесении удара по редкому или уникальному врагу",
           "formatters": []
         }
       ]
@@ -67568,7 +67562,7 @@
         {
           "matchers": ["#"],
           "text":
-            "%1$+d к общим затратам маны умений под действием Ясности ума",
+            "%1$+d к итоговой стоимости маны умений под действием Ясности ума",
           "formatters": []
         }
       ]
@@ -68289,28 +68283,6 @@
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "tailwind_effect_on_self_+%": {
-      "stats": ["tailwind_effect_on_self_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% усиление эффекта Попутного ветра на вас за каждое недавно использованное вами умение, вплоть до 100%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "%1%%% ослабление эффекта Попутного ветра на вас за каждое недавно использованное вами умение",
-          "formatters": [
-            {
-              "id": "negate",
               "arg": 1
             }
           ]

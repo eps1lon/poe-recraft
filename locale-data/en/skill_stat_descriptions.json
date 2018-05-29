@@ -3033,17 +3033,17 @@
       "translations": [
         {
           "matchers": ["#", 0],
-          "text": "Projectiles Return to You after hitting targets",
+          "text": "Projectiles Return to you after hitting targets",
           "formatters": []
         },
         {
           "matchers": [0, "#"],
-          "text": "Projectiles Return to You at end of flight",
+          "text": "Projectiles Return to you at end of flight",
           "formatters": []
         },
         {
           "matchers": ["#", "#"],
-          "text": "Projectiles Return to You",
+          "text": "Projectiles Return to you",
           "formatters": []
         }
       ]
@@ -3765,7 +3765,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Trigger this Spell when lose Cat's Stealth",
+          "text": "Trigger this Spell when you lose Cat's Stealth",
           "formatters": []
         }
       ]
@@ -5759,6 +5759,21 @@
         }
       ]
     },
+    "ghost_limit": {
+      "stats": ["base_number_of_support_ghosts_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Can have up to 1 Phantasm Summoned at a time",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Can have up to %1% Phantasms Summoned at a time",
+          "formatters": []
+        }
+      ]
+    },
     "blade_vortex_hit_rate": {
       "stats": ["blade_vortex_hit_rate_ms"],
       "translations": [
@@ -5883,6 +5898,22 @@
         }
       ]
     },
+    "ghost_chance": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% chance to Summon a Phantasm when this Skill deals a Killing Blow",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Summon a Phantasm when this Skill deals a Killing Blow",
+          "formatters": []
+        }
+      ]
+    },
     "trigger_on_animate_guardian_kill": {
       "stats": ["chance_to_trigger_on_animate_guardian_kill_%"],
       "translations": [
@@ -5906,12 +5937,12 @@
         {
           "matchers": [[1, 99]],
           "text":
-            "%1%%% chance to Trigger this Skill when your Animated Weapon Kills an Enemy",
+            "%1%%% chance to Trigger this Skill when an Animated Weapon Kills an Enemy",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "Trigger this Skill when your Animated Weapon Kills an Enemy",
+          "text": "Trigger this Skill when an Animated Weapon Kills an Enemy",
           "formatters": []
         }
       ]
@@ -6501,6 +6532,21 @@
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ghost_duration": {
+      "stats": ["support_ghost_base_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Phantasms last %1% seconds",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
               "arg": 1
             }
           ]

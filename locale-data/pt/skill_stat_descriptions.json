@@ -5536,6 +5536,21 @@
         }
       ]
     },
+    "ghost_limit": {
+      "stats": ["base_number_of_support_ghosts_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Pode ter até 1 Fantasma Convocado por vez",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Pode ter até %1% Fantasmas Convocados por vez",
+          "formatters": []
+        }
+      ]
+    },
     "blade_vortex_hit_rate": {
       "stats": ["blade_vortex_hit_rate_ms"],
       "translations": [
@@ -6134,6 +6149,21 @@
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ghost_duration": {
+      "stats": ["support_ghost_base_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Fantasmas duram %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
               "arg": 1
             }
           ]

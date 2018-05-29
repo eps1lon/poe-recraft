@@ -384,22 +384,26 @@
       "translations": [
         {
           "matchers": [1, 0],
-          "text": "當插槽內的輔助寶石等級達到最大時吞噬該寶石\\n可以吞噬 %1% 個輔助寶石\\n尚未吞噬任何寶石",
+          "text":
+            "當插槽內的輔助寶石等級達到最大時吞噬該寶石\\n可以吞噬 %1% 個輔助寶石\\n尚未吞噬任何寶石",
           "formatters": []
         },
         {
           "matchers": [1, "#"],
-          "text": "當插槽內的輔助寶石等級達到最大時吞噬該寶石\\n可以吞噬 %1% 個額外輔助寶石",
+          "text":
+            "當插槽內的輔助寶石等級達到最大時吞噬該寶石\\n可以吞噬 %1% 個額外輔助寶石",
           "formatters": []
         },
         {
           "matchers": [[2, "#"], 0],
-          "text": "當插槽內的輔助寶石等級達到最大時吞噬該寶石\\n可以吞噬 %1% 個輔助寶石\\n尚未吞噬任何寶石",
+          "text":
+            "當插槽內的輔助寶石等級達到最大時吞噬該寶石\\n可以吞噬 %1% 個輔助寶石\\n尚未吞噬任何寶石",
           "formatters": []
         },
         {
           "matchers": [[2, "#"], "#"],
-          "text": "當插槽內的輔助寶石等級達到最大時吞噬該寶石\\n可以吞噬 %1% 個額外輔助寶石",
+          "text":
+            "當插槽內的輔助寶石等級達到最大時吞噬該寶石\\n可以吞噬 %1% 個額外輔助寶石",
           "formatters": []
         },
         {
@@ -2978,6 +2982,16 @@
         }
       ]
     },
+    "local_display_trigger_level_X_blinding_aura_skill_on_equip": {
+      "stats": ["local_display_trigger_level_X_blinding_aura_skill_on_equip"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "裝備時觸發等級 %1% 的致盲光環",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_grants_level_x_blood_offering_skill": {
       "stats": ["local_display_grants_level_x_blood_offering_skill"],
       "translations": [
@@ -2993,7 +3007,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "獲得等級 %1% 的召喚德瑞肖像技能\\n當召喚德瑞肖像時施放插槽中的詛咒技能\\n插槽中的詛咒無視詛咒上限",
+          "text":
+            "獲得等級 %1% 的召喚德瑞肖像技能\\n當召喚德瑞肖像時施放插槽中的詛咒技能\\n插槽中的詛咒無視詛咒上限",
           "formatters": []
         }
       ]
@@ -3327,7 +3342,8 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "當你獲得飛羽意志或飛羽飄翔時，有 %1%%% 機率觸發等級 20 的龍捲風",
+          "text":
+            "當你獲得飛羽意志或飛羽飄翔時，有 %1%%% 機率觸發等級 20 的龍捲風",
           "formatters": []
         },
         {
@@ -3955,7 +3971,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "藥劑效果持續時間內使用技能獲得 %1%%% 魔力消耗的生命並在 4 秒內回復",
+          "text":
+            "藥劑效果持續時間內使用技能獲得 %1%%% 魔力消耗的生命並在 4 秒內回復",
           "formatters": []
         }
       ]
@@ -5188,7 +5205,8 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "你身上的每個增益效果為你的攻擊及法術附加 %1% 至 %2% 火焰傷害",
+          "text":
+            "你身上的每個增益效果為你的攻擊及法術附加 %1% 至 %2% 火焰傷害",
           "formatters": []
         }
       ]
@@ -5391,6 +5409,35 @@
             {
               "id": "negate",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "unarmed_melee_physical_damage_+%": {
+      "stats": ["unarmed_melee_physical_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "空手攻擊時增加 %1%%% 近物理傷害",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "空手攻擊時減少 %1%%% 近物理傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
             }
           ]
         }
@@ -7014,6 +7061,35 @@
             {
               "id": "negate",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "unarmed_melee_attack_speed_+%": {
+      "stats": ["unarmed_melee_attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "空手攻擊時增加 %1%%% 攻擊速度",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmed"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "空手攻擊時減少 %1%%% 攻擊速度",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmed"
             }
           ]
         }
@@ -11576,7 +11652,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "投射物連結數 %1$+d",
+          "text": "投射物連鎖 %1$+d",
           "formatters": []
         }
       ]
@@ -16982,7 +17058,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "免疫暈眩",
+          "text": "不會被暈眩",
           "formatters": []
         }
       ]
@@ -19363,7 +19439,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "怪物的技能附加 %1% 次連結",
+          "text": "怪物的技能附加 %1% 次連鎖",
           "formatters": []
         }
       ]
@@ -19565,6 +19641,35 @@
           "matchers": ["#"],
           "text": "地圖裡沒有怪物",
           "formatters": []
+        }
+      ]
+    },
+    "unique_facebreaker_unarmed_physical_damage_+%_final": {
+      "stats": ["unique_facebreaker_unarmed_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "空手攻擊時有 %1%%% 更多物理傷害",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "空手攻擊時有 %1%%% 更少物理傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
         }
       ]
     },
@@ -20370,12 +20475,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 照明範圍",
+          "text": "增加 %1%%% 照亮範圍",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "減少 %1%%% 照明範圍",
+          "text": "減少 %1%%% 照亮範圍",
           "formatters": [
             {
               "id": "negate",
@@ -20679,6 +20784,21 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextCullingStrike"
+            }
+          ]
+        }
+      ]
+    },
+    "melee_range_+": {
+      "stats": ["melee_range_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d 近戰武器和空手攻擊範圍",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
             }
           ]
         }
@@ -25502,7 +25622,7 @@
       "translations": [
         {
           "matchers": [1000],
-          "text": "在被冰緩後你有 %1% 秒免疫冰緩",
+          "text": "在被冰緩後你有 %1% 秒不會被冰緩",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -25512,7 +25632,7 @@
         },
         {
           "matchers": [[1, "#"]],
-          "text": "在被冰緩後你有 %1% 秒免疫冰緩",
+          "text": "在被冰緩後你有 %1% 秒不會被冰緩",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -25527,7 +25647,7 @@
       "translations": [
         {
           "matchers": [1000],
-          "text": "在被冰凍後你有 %1% 秒免疫冰凍",
+          "text": "在被冰凍後你有 %1% 秒不會被冰凍",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -25537,7 +25657,7 @@
         },
         {
           "matchers": [[1, "#"]],
-          "text": "在被冰凍後你有 %1% 秒免疫冰凍",
+          "text": "在被冰凍後你有 %1% 秒不會被冰凍",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -25552,7 +25672,7 @@
       "translations": [
         {
           "matchers": [1000],
-          "text": "在被點燃後你有 %1% 秒免疫點燃",
+          "text": "在被點燃後你有 %1% 秒不會點燃",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -25562,7 +25682,7 @@
         },
         {
           "matchers": [[1, "#"]],
-          "text": "在被點燃後你有 %1% 秒免疫點燃",
+          "text": "在被點燃後你有 %1% 秒不會點燃",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -25577,7 +25697,7 @@
       "translations": [
         {
           "matchers": [1000],
-          "text": "在被感電後你有 %1% 秒免疫感電",
+          "text": "在被感電後你有 %1% 秒不會被感電",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -25587,7 +25707,7 @@
         },
         {
           "matchers": [[1, "#"]],
-          "text": "在被感電後你有 %1% 秒免疫感電",
+          "text": "在被感電後你有 %1% 秒不會被感電",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -25642,12 +25762,14 @@
       "translations": [
         {
           "matchers": [[100, "#"]],
-          "text": "擊中時觸發插槽中的閃電法術\\n觸發插槽的閃電法術增加 100%% 法術傷害",
+          "text":
+            "擊中時觸發插槽中的閃電法術\\n觸發插槽的閃電法術增加 100%% 法術傷害",
           "formatters": []
         },
         {
           "matchers": [[0, 99]],
-          "text": "擊中時有 %1%%% 機率觸發插槽中的閃電法術\\n觸發插槽的閃電法術增加 100%% 法術傷害",
+          "text":
+            "擊中時有 %1%%% 機率觸發插槽中的閃電法術\\n觸發插槽的閃電法術增加 100%% 法術傷害",
           "formatters": []
         }
       ]
@@ -27912,7 +28034,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "若範圍內有 4 個核心天賦配置，當你殺死稀有怪物時你會獲得該怪物 %1% 屬性 20 秒",
+          "text":
+            "若範圍內有 4 個核心天賦配置，當你殺死稀有怪物時你會獲得該怪物 %1% 屬性 20 秒",
           "formatters": []
         }
       ]
@@ -28096,6 +28219,21 @@
           "matchers": ["#"],
           "text": "若範圍內配置 %1% 點智慧以上，可額外給敵人 1 個詛咒",
           "formatters": []
+        }
+      ]
+    },
+    "melee_range_+_while_unarmed": {
+      "stats": ["melee_range_+_while_unarmed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d 空手攻擊範圍",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
         }
       ]
     },
@@ -28385,7 +28523,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "若範圍內配置 70 點敏捷以上，獲得物理傷害 %1%%% 的額外混沌傷害",
+          "text":
+            "若範圍內配置 70 點敏捷以上，獲得物理傷害 %1%%% 的額外混沌傷害",
           "formatters": []
         }
       ]
@@ -28685,7 +28824,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "裝備 %1% 個被汙染物品時：50%% 受到的混沌傷害由能量護盾承受，50%% 受到的物理傷害會穿透能量護盾",
+          "text":
+            "裝備 %1% 個被汙染物品時：50%% 受到的混沌傷害由能量護盾承受，50%% 受到的物理傷害會穿透能量護盾",
           "formatters": [
             {
               "id": "reminderstring",
@@ -29041,7 +29181,8 @@
       "translations": [
         {
           "matchers": [[1, "#"], [1, "#"]],
-          "text": "將生命值扣至剩餘 1 點，扣除的生命值將在 %1$+d 秒內轉換為能量護盾",
+          "text":
+            "將生命值扣至剩餘 1 點，扣除的生命值將在 %1$+d 秒內轉換為能量護盾",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -29923,7 +30064,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "生命偷取時免疫暈眩",
+          "text": "生命偷取時無法被暈眩",
           "formatters": []
         }
       ]
@@ -30283,7 +30424,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "若範圍內含 40 點力量，被冰霜之錘擊碎的敵人增加 %1%%% 物品稀有度",
+          "text":
+            "若範圍內含 40 點力量，被冰霜之錘擊碎的敵人增加 %1%%% 物品稀有度",
           "formatters": []
         }
       ]
@@ -30319,7 +30461,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "範圍內至少有 40 點敏捷時，毒蛇打擊根據敵人身上每個中毒增加 %1%%% 擊中和中毒傷害",
+          "text":
+            "範圍內至少有 40 點敏捷時，毒蛇打擊根據敵人身上每個中毒增加 %1%%% 擊中和中毒傷害",
           "formatters": []
         }
       ]
@@ -30657,12 +30800,14 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "若範圍內含 40 智力，火球投射物爆炸範圍將隨著飛行距離提升，最多增加 %1%%% 範圍",
+          "text":
+            "若範圍內含 40 智力，火球投射物爆炸範圍將隨著飛行距離提升，最多增加 %1%%% 範圍",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "若範圍內含 40 智力，火球投射物爆炸範圍將隨著飛行距離減少，最多減少 %1%%% 範圍",
+          "text":
+            "若範圍內含 40 智力，火球投射物爆炸範圍將隨著飛行距離減少，最多減少 %1%%% 範圍",
           "formatters": [
             {
               "id": "negate",
@@ -30679,7 +30824,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "若範圍內含 40 智力，火球投射物爆炸範圍將隨著飛行距離提升，最多增加 %1$+d 範圍",
+          "text":
+            "若範圍內含 40 智力，火球投射物爆炸範圍將隨著飛行距離提升，最多增加 %1$+d 範圍",
           "formatters": []
         }
       ]
@@ -30709,7 +30855,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "火球投射物爆炸範圍將隨著飛行距離提升，最多增加 %1$+d 範圍半徑",
+          "text":
+            "火球投射物爆炸範圍將隨著飛行距離提升，最多增加 %1$+d 範圍半徑",
           "formatters": []
         }
       ]
@@ -30743,7 +30890,8 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "若範圍內含 40 點力量，\\裂地之擊在暈眩敵人時有 %1%%% 機率獲得耐力球",
+          "text":
+            "若範圍內含 40 點力量，\\裂地之擊在暈眩敵人時有 %1%%% 機率獲得耐力球",
           "formatters": []
         },
         {
@@ -30824,7 +30972,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "範圍內至少有 40 點智力時，你和隊友在激勵戰吼效果期間，%1%%% 承受傷害轉化成魔力並在 4 秒內回復",
+          "text":
+            "範圍內至少有 40 點智力時，你和隊友在激勵戰吼效果期間，%1%%% 承受傷害轉化成魔力並在 4 秒內回復",
           "formatters": []
         }
       ]
@@ -30834,7 +30983,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "在你和隊友激勵戰吼效果期間，承受 %1%%% 的傷害會在 4 秒內恢復成魔力",
+          "text":
+            "在你和隊友激勵戰吼效果期間，承受 %1%%% 的傷害會在 4 秒內恢復成魔力",
           "formatters": []
         }
       ]
@@ -30846,12 +30996,14 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "若範圍內含 40 點敏捷，彈幕的第一次和最後一次攻擊附加一個額外的投射物",
+          "text":
+            "若範圍內含 40 點敏捷，彈幕的第一次和最後一次攻擊附加一個額外的投射物",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
-          "text": "若範圍內配置了 40 點敏捷，彈幕的第一次最後一次攻擊附加 %1% 個額外的投射物",
+          "text":
+            "若範圍內含 40 點敏捷，彈幕的第一次最後一次攻擊附加 %1% 個額外的投射物",
           "formatters": []
         }
       ]
@@ -31642,7 +31794,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你擊殺的敵人有 %1%%% 機率爆炸，造成等同四分之一其最大生命的混沌傷害",
+          "text":
+            "你擊殺的敵人有 %1%%% 機率爆炸，造成等同四分之一其最大生命的混沌傷害",
           "formatters": []
         }
       ]
@@ -31654,7 +31807,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你或你的召喚物擊殺受詛咒的敵人有 %1%%% 機率爆炸，並造成他們 1/4 最大生命的混沌傷害",
+          "text":
+            "你或你的召喚物擊殺受詛咒的敵人有 %1%%% 機率爆炸，並造成他們 1/4 最大生命的混沌傷害",
           "formatters": []
         }
       ]
@@ -31785,7 +31939,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "若你近期有使用戰吼，你和附近友軍增加 %1%%% 攻擊、施放和移動速度",
+          "text":
+            "若你近期有使用戰吼，你和附近友軍增加 %1%%% 攻擊、施放和移動速度",
           "formatters": [
             {
               "id": "reminderstring",
@@ -32035,12 +32190,14 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "當你或你的圖騰擊殺了燃燒中的敵人，\\n你和你的圖騰有 %1%%% 機率各獲得一個耐力球",
+          "text":
+            "當你或你的圖騰擊殺了燃燒中的敵人，\\n你和你的圖騰有 %1%%% 機率各獲得一個耐力球",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "當你或你的圖騰擊殺了燃燒中的敵人，\\n你和你的圖騰各獲得一個耐力球",
+          "text":
+            "當你或你的圖騰擊殺了燃燒中的敵人，\\n你和你的圖騰各獲得一個耐力球",
           "formatters": []
         }
       ]
@@ -32052,7 +32209,8 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "當你的圖騰擊殺燃燒中的敵人，你和你的圖騰有 %1%%% 機率獲得一個耐力球",
+          "text":
+            "當你的圖騰擊殺燃燒中的敵人，你和你的圖騰有 %1%%% 機率獲得一個耐力球",
           "formatters": []
         },
         {
@@ -32319,7 +32477,8 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "若範圍內含 40 點敏捷，燃燒箭矢有 %1%%% 機率在點燃敵人時產生燃燒地面",
+          "text":
+            "若範圍內含 40 點敏捷，燃燒箭矢有 %1%%% 機率在點燃敵人時產生燃燒地面",
           "formatters": []
         },
         {
@@ -32353,7 +32512,8 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "若範圍內含 40 點敏捷，燃燒箭矢有 %1%%% 機率在沒有點燃敵人時產生焦油地面",
+          "text":
+            "若範圍內含 40 點敏捷，燃燒箭矢有 %1%%% 機率在沒有點燃敵人時產生焦油地面",
           "formatters": []
         },
         {
@@ -32387,12 +32547,14 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "若範圍內含 40 點力量，\\n周圍每個敵人增加劈砍 %1%%% 範圍效果",
+          "text":
+            "若範圍內含 40 點力量，\\n周圍每個敵人增加劈砍 %1%%% 範圍效果",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "若範圍內含 40 點力量，\\n周圍每個敵人減少劈砍 %1%%% 範圍效果",
+          "text":
+            "若範圍內含 40 點力量，\\n周圍每個敵人減少劈砍 %1%%% 範圍效果",
           "formatters": [
             {
               "id": "negate",
@@ -32450,7 +32612,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "若範圍內含 40 點力量，\\n冰霜之錘 %1%%% 的物理傷害轉換為冰冷傷害",
+          "text":
+            "若範圍內含 40 點力量，\\n冰霜之錘 %1%%% 的物理傷害轉換為冰冷傷害",
           "formatters": []
         }
       ]
@@ -32525,7 +32688,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "若範圍內含 40 點智力，近期你若粉碎冰凍敵人，冰霜脈衝增加 %1%%% 傷害",
+          "text":
+            "若範圍內含 40 點智力，近期你若粉碎冰凍敵人，冰霜脈衝增加 %1%%% 傷害",
           "formatters": [
             {
               "id": "reminderstring",
@@ -32535,7 +32699,8 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "若範圍內含 40 點智力，近期你若粉碎冰凍敵人，冰霜脈衝減少 %1%%% 傷害",
+          "text":
+            "若範圍內含 40 點智力，近期你若粉碎冰凍敵人，冰霜脈衝減少 %1%%% 傷害",
           "formatters": [
             {
               "id": "negate",
@@ -32875,7 +33040,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "當你冰凍、感電，或點燃敵人時，每秒回復 %1%%% 最大魔力和能量護盾，持續 2 秒",
+          "text":
+            "當你冰凍、感電，或點燃敵人時，每秒回復 %1%%% 最大魔力和能量護盾，持續 2 秒",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -33581,7 +33747,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你死亡時產生腐蝕的毒雲，每秒造成等同 %1%%% 最大生命的混沌傷害",
+          "text":
+            "你死亡時產生腐蝕的毒雲，每秒造成等同 %1%%% 最大生命的混沌傷害",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -33598,7 +33765,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你的召喚物死亡時產生腐蝕的毒雲，每秒造成等同 %1%%% 最大生命的混沌傷害",
+          "text":
+            "你的召喚物死亡時產生腐蝕的毒雲，每秒造成等同 %1%%% 最大生命的混沌傷害",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -34212,7 +34380,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "擊殺流血的敵人時產生爆炸，造成等同其 %1%%% 最大生命的物理傷害",
+          "text":
+            "擊殺流血的敵人時產生爆炸，造成等同其 %1%%% 最大生命的物理傷害",
           "formatters": []
         }
       ]
@@ -34925,7 +35094,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "近期內若你擊殺了有你持續傷害狀態的敵人，增加 %1%%% 生命、魔力，和能量護盾回復",
+          "text":
+            "近期內若你擊殺了有你持續傷害狀態的敵人，增加 %1%%% 生命、魔力，和能量護盾回復",
           "formatters": [
             {
               "id": "reminderstring",
@@ -34935,7 +35105,8 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "近期內若你擊殺了有你持續傷害狀態的敵人，減少 %1%%% 生命、魔力，和能量護盾回復",
+          "text":
+            "近期內若你擊殺了有你持續傷害狀態的敵人，減少 %1%%% 生命、魔力，和能量護盾回復",
           "formatters": [
             {
               "id": "negate",
@@ -35553,6 +35724,35 @@
         }
       ]
     },
+    "unarmed_damage_+%_vs_bleeding_enemies": {
+      "stats": ["unarmed_damage_+%_vs_bleeding_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "對流血的敵人空手攻擊時增加 %1%%% 傷害",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "對流血的敵人空手攻擊時減少 %1%%% 傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
     "life_gained_on_bleeding_enemy_hit": {
       "stats": ["life_gained_on_bleeding_enemy_hit"],
       "translations": [
@@ -35560,6 +35760,103 @@
           "matchers": [[1, "#"]],
           "text": "擊中流血中的敵人時回復 %1$+d 生命",
           "formatters": []
+        }
+      ]
+    },
+    "base_critical_strike_chance_while_unarmed_%": {
+      "stats": ["base_critical_strike_chance_while_unarmed_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1$+d%% 空手攻擊暴擊率",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
+    "modifiers_to_claw_damage_also_affect_unarmed_damage": {
+      "stats": ["modifiers_to_claw_damage_also_affect_unarmed_damage"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "爪傷害詞綴同時套用至空手攻擊傷害",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
+    "modifiers_to_claw_attack_speed_also_affect_unarmed_attack_speed": {
+      "stats": [
+        "modifiers_to_claw_attack_speed_also_affect_unarmed_attack_speed"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "爪攻擊速度詞綴同時套用至空手攻擊速度",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
+    "modifiers_to_claw_critical_strike_chance_also_affect_unarmed_critical_strike_chance": {
+      "stats": [
+        "modifiers_to_claw_critical_strike_chance_also_affect_unarmed_critical_strike_chance"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "爪暴擊率詞綴同時套用至空手暴擊率",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        }
+      ]
+    },
+    "damage_+%_while_unarmed": {
+      "stats": ["damage_+%_while_unarmed"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "增加 %1%%% 空手攻擊傷害",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "減少 %1%%% 空手攻擊傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnarmedAttacks"
+            }
+          ]
         }
       ]
     },
@@ -36155,7 +36452,8 @@
         },
         {
           "matchers": [[2, "#"]],
-          "text": "若過去 8 秒內你或你的圖騰造成擊殺時，可以召喚額外 %1% 個圖騰",
+          "text":
+            "若過去 8 秒內你或你的圖騰造成擊殺時，可以召喚額外 %1% 個圖騰",
           "formatters": []
         }
       ]
@@ -38706,7 +39004,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "近期你或你的召喚物擊殺每個敵人\\n每秒回復 %1%%% 能量護盾，至多 30%%",
+          "text":
+            "近期你或你的召喚物擊殺每個敵人\\n每秒回復 %1%%% 能量護盾，至多 30%%",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -38854,7 +39153,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "當你擊殺敵人時，敵人身上每個詛咒賦予你等同 %1%%% 非混沌傷害的額外混沌傷害，持續 4 秒",
+          "text":
+            "當你擊殺敵人時，敵人身上每個詛咒賦予你等同 %1%%% 非混沌傷害的額外混沌傷害，持續 4 秒",
           "formatters": []
         }
       ]
@@ -44271,7 +44571,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "若你近期內有吞噬或爆破一個屍體，你和你的召喚物增加 %1%%% 攻擊和施放速度",
+          "text":
+            "若你近期內有吞噬或爆破一個屍體，你和你的召喚物增加 %1%%% 攻擊和施放速度",
           "formatters": [
             {
               "id": "reminderstring",
@@ -44281,7 +44582,8 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "若你近期內有吞噬或爆破一個屍體，你和你的召喚物減少 %1%%% 攻擊和施放速度",
+          "text":
+            "若你近期內有吞噬或爆破一個屍體，你和你的召喚物減少 %1%%% 攻擊和施放速度",
           "formatters": [
             {
               "id": "negate",
@@ -44446,7 +44748,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "投射物傷害隨著飛行距離而提升，\\n擊中目標時至多增加 %1%%% 傷害",
+          "text":
+            "投射物傷害隨著飛行距離而提升，\\n擊中目標時至多增加 %1%%% 傷害",
           "formatters": []
         }
       ]
@@ -44476,7 +44779,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "在任何藥劑效果持續時間內，有 %1%%% 機率免疫冰緩、感電、點燃和流血",
+          "text":
+            "在任何藥劑效果持續時間內，有 %1%%% 機率免疫冰緩、感電、點燃和流血",
           "formatters": []
         }
       ]
@@ -45673,7 +45977,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "召喚物1不會被致盲",
+          "text": "召喚物不會被致盲",
           "formatters": []
         }
       ]
@@ -45969,7 +46273,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你在最大耐力球時無法被感電",
+          "text": "你在最大耐力球時不會被感電",
           "formatters": []
         }
       ]
@@ -47652,7 +47956,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "若近期內你或你的圖騰有造成擊殺，獲得等同 %1%%% 物理傷害的額外火焰傷害",
+          "text":
+            "若近期內你或你的圖騰有造成擊殺，獲得等同 %1%%% 物理傷害的額外火焰傷害",
           "formatters": [
             {
               "id": "reminderstring",
@@ -48629,7 +48934,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你獲得 1 層蟹將重盾時，有 %1%%% 機率\\n獲得你最大層數的蟹將重盾",
+          "text":
+            "你獲得 1 層蟹將重盾時，有 %1%%% 機率\\n獲得你最大層數的蟹將重盾",
           "formatters": []
         }
       ]
@@ -49653,8 +49959,22 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "飛羽祝福使附近友軍也獲得飛羽意志和飛羽飄翔Aspect of the Avian also grants Avian's Might and Avian's Flight to nearby Allies",
+          "text": "飛羽祝福使附近友軍也獲得飛羽意志和飛羽飄翔",
+          "formatters": []
+        }
+      ]
+    },
+    "aspect_of_the_spider_web_count_+": {
+      "stats": ["aspect_of_the_spider_web_count_+"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "毒蛛祝福可以對擊人額外造成 1 次蛛網",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "毒蛛祝福可以對擊人額外造成 %1% 次蛛網",
           "formatters": []
         }
       ]
@@ -50113,7 +50433,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "如果近期受到殘暴打擊，增加 %1%%% 攻擊速度、施放速度和移動速度",
+          "text":
+            "如果近期受到殘暴打擊，增加 %1%%% 攻擊速度、施放速度和移動速度",
           "formatters": [
             {
               "id": "reminderstring",
@@ -50127,7 +50448,8 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "如果近期受到殘暴打擊，減少 %1%%% 攻擊速度、施放速度和移動速度",
+          "text":
+            "如果近期受到殘暴打擊，減少 %1%%% 攻擊速度、施放速度和移動速度",
           "formatters": [
             {
               "id": "negate",
@@ -50862,7 +51184,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你可造成敵人流血，至多 %1% 次\\n當敵人移動時你的流血無法造成額外的傷害",
+          "text":
+            "你可造成敵人流血，至多 %1% 次\\n當敵人移動時你的流血無法造成額外的傷害",
           "formatters": []
         }
       ]
@@ -51136,7 +51459,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你有召喚寒冰魔像時無法被冰緩或冰凍",
+          "text": "你有召喚寒冰魔像時不會被冰緩或冰凍",
           "formatters": []
         }
       ]
@@ -51146,7 +51469,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "如果你近期被冰凍，你將無法再被冰凍",
+          "text": "如果你近期被冰凍，你將不會再被冰凍",
           "formatters": [
             {
               "id": "reminderstring",
@@ -51161,7 +51484,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "若敏捷高於智慧則免疫冰凍",
+          "text": "若敏捷高於智慧則不會被冰凍",
           "formatters": []
         }
       ]
@@ -51171,7 +51494,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你有召喚烈焰魔像時無法被點燃",
+          "text": "你有召喚烈焰魔像時不會被點燃",
           "formatters": []
         }
       ]
@@ -51181,7 +51504,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "若力量高於敏捷則免疫點燃",
+          "text": "若力量高於敏捷則不會被點燃",
           "formatters": []
         }
       ]
@@ -51191,7 +51514,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你有召喚閃電魔像時無法被感電",
+          "text": "你有召喚閃電魔像時不會被感電",
           "formatters": []
         }
       ]
@@ -51201,7 +51524,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "若智慧高於力量則免疫感電",
+          "text": "若智慧高於力量則不會被感電",
           "formatters": []
         }
       ]
@@ -51233,7 +51556,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "若妳盡其沒有被擊中則無法被暈眩",
+          "text": "若你近期沒有被擊中則無法被暈眩",
           "formatters": [
             {
               "id": "reminderstring",
@@ -53149,7 +53472,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "被清晰影響時被擊中，%1%%% 承受的傷害轉化為魔力，在 4 秒內回復",
+          "text":
+            "被清晰影響時被擊中，%1%%% 承受的傷害轉化為魔力，在 4 秒內回復",
           "formatters": []
         }
       ]
@@ -53234,26 +53558,6 @@
         {
           "matchers": [["#", -1]],
           "text": "減緩減益效果失效 %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "debuff_time_passed_+%_while_affected_by_haste": {
-      "stats": ["debuff_time_passed_+%_while_affected_by_haste"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "被迅捷影響時你身上的減益效果消失速度提高 %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "被迅捷影響時你身上的減益效果消失速度下降 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -53740,7 +54044,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "每14秒：\\n獲得 4 秒冰緩匯流\\n獲得 4 秒感電匯流\\n獲得 4 秒點燃匯流\\n獲得 2 秒元素匯流",
+          "text":
+            "每14秒：\\n獲得 4 秒冰緩匯流\\n獲得 4 秒感電匯流\\n獲得 4 秒點燃匯流\\n獲得 2 秒元素匯流",
           "formatters": []
         }
       ]
@@ -55948,12 +56253,14 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 被帝王迷宮陷阱擊中傷害\\n對玩家增加 %1%%% 帝王迷宮陷阱持續傷害效果",
+          "text":
+            "增加 %1%%% 被帝王迷宮陷阱擊中傷害\\n對玩家增加 %1%%% 帝王迷宮陷阱持續傷害效果",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "減少 %1%%% 被帝王迷宮陷阱擊中傷害\\n對玩家減少 %1%%% 帝王迷宮陷阱持續傷害效果",
+          "text":
+            "減少 %1%%% 被帝王迷宮陷阱擊中傷害\\n對玩家減少 %1%%% 帝王迷宮陷阱持續傷害效果",
           "formatters": [
             {
               "id": "negate",
@@ -56569,7 +56876,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "增加和減少照明範圍同時套用至命中",
+          "text": "增加和減少照亮範圍同時套用至命中",
           "formatters": []
         }
       ]
@@ -56579,7 +56886,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "增加和減少照明範圍同時套用至範圍效果",
+          "text": "增加和減少照亮範圍同時套用至範圍效果",
           "formatters": []
         }
       ]
@@ -57062,7 +57369,8 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "當幻化守衛擊殺敵人時，有 %1%%% 機率觸發等級 20 的幻化守衛武器",
+          "text":
+            "當幻化守衛擊殺敵人時，有 %1%%% 機率觸發等級 20 的幻化守衛武器",
           "formatters": []
         },
         {
@@ -57079,12 +57387,25 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "當幻化武器擊殺敵人時，有 %1%%% 機率觸發等級 20 的幻化守衛武器",
+          "text":
+            "當幻化武器擊殺敵人時，有 %1%%% 機率觸發等級 20 的幻化守衛武器",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
           "text": "當幻化武器擊殺敵人時觸發等級 20 的幻化守衛武器",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_level_x_icicle_nova_on_kill_vs_frozen_enemy": {
+      "stats": [
+        "local_display_trigger_level_x_icicle_nova_on_kill_vs_frozen_enemy"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "當你擊殺被冰凍的敵人時觸發等擊 %1% 的冰柱爆裂",
           "formatters": []
         }
       ]
@@ -57337,7 +57658,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "藥劑效果期間，你絕對抗性最低的屬性，你所受到該屬性的傷害增加 %1%%%",
+          "text":
+            "藥劑效果期間，你絕對抗性最低的屬性，你所受到該屬性的傷害增加 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -57347,7 +57669,8 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "藥劑效果期間，你絕對抗性最低的屬性，你所受到該屬性的傷害減少 %1%%%",
+          "text":
+            "藥劑效果期間，你絕對抗性最低的屬性，你所受到該屬性的傷害減少 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -57368,7 +57691,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "藥劑效果期間，你絕對抗性最高的屬性，你所造成該屬性的傷害穿透 %1%%% 該抗性",
+          "text":
+            "藥劑效果期間，你絕對抗性最高的屬性，你所造成該屬性的傷害穿透 %1%%% 該抗性",
           "formatters": [
             {
               "id": "reminderstring",
@@ -57397,7 +57721,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "範圍內至少有 40 點智力時，萎滅增加 %1%%% 緩速時間",
+          "text": "若範圍內含 40 點智力時，萎滅增加 %1%%% 緩速時間",
           "formatters": []
         }
       ]
@@ -57409,7 +57733,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "若範圍內含 40 點智力，被萎滅緩速的敵人增加 %1%%% 承受混沌傷害",
+          "text":
+            "若範圍內含 40 點智力，被萎滅緩速的敵人增加 %1%%% 承受混沌傷害",
           "formatters": []
         }
       ]
@@ -57445,7 +57770,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "範圍內的冰冷抗性或全元素抗性\\n同時獲得等同 %1%%% 其數值的躲避攻擊機率",
+          "text":
+            "範圍內的冰冷抗性或全元素抗性\\n同時獲得等同 %1%%% 其數值的躲避攻擊機率",
           "formatters": []
         }
       ]
@@ -57457,7 +57783,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "範圍內的冰冷抗性或全元素抗性\\n同時提供等同其數值的擊殺時獲得一顆狂怒球機率",
+          "text":
+            "範圍內的冰冷抗性或全元素抗性\\n同時提供等同其數值的擊殺時獲得一顆狂怒球機率",
           "formatters": []
         }
       ]
@@ -57469,7 +57796,8 @@
       "translations": [
         {
           "matchers": [["#", 99]],
-          "text": "若範圍內含 40 敏捷，\\n雙持打擊時主手武器有 %1%%% 機率造成雙倍傷害",
+          "text":
+            "若範圍內含 40 敏捷，\\n雙持打擊時主手武器有 %1%%% 機率造成雙倍傷害",
           "formatters": []
         },
         {
@@ -57486,7 +57814,8 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "若範圍內含 40 敏捷，\\n雙持打擊時副手武器對周圍敵人造成擴散傷害",
+          "text":
+            "若範圍內含 40 敏捷，\\n雙持打擊時副手武器對周圍敵人造成擴散傷害",
           "formatters": []
         }
       ]
@@ -57520,7 +57849,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "範圍內的火焰抗性或全元素抗性\\n同時提供等同 %1%%% 其數值的格擋機率",
+          "text":
+            "範圍內的火焰抗性或全元素抗性\\n同時提供等同 %1%%% 其數值的格擋機率",
           "formatters": []
         }
       ]
@@ -57532,7 +57862,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "範圍內的火焰抗性或全元素抗性\\n同時提供等同其數值的擊殺時獲得一顆耐力球機率",
+          "text":
+            "範圍內的火焰抗性或全元素抗性\\n同時提供等同其數值的擊殺時獲得一顆耐力球機率",
           "formatters": []
         }
       ]
@@ -57561,7 +57892,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "若範圍內含 40 點敏捷，冰霜之刃造成\\n的近戰傷害穿透 %1%%% 冰冷抗性",
+          "text":
+            "若範圍內含 40 點敏捷，冰霜之刃造成\\n的近戰傷害穿透 %1%%% 冰冷抗性",
           "formatters": []
         }
       ]
@@ -57646,7 +57978,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "若範圍內含 40 點智慧，%1%%% 冰川之刺的物理傷害轉化為冰冷傷害",
+          "text":
+            "若範圍內含 40 點智慧，%1%%% 冰川之刺的物理傷害轉化為冰冷傷害",
           "formatters": []
         }
       ]
@@ -57707,7 +58040,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "範圍內的閃電抗性或全元素抗性\\n同時提供等同 %1%%% 其數值的法術格擋機率",
+          "text":
+            "範圍內的閃電抗性或全元素抗性\\n同時提供等同 %1%%% 其數值的法術格擋機率",
           "formatters": []
         }
       ]
@@ -57719,7 +58053,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "範圍內的閃電抗性或全元素抗性\\n同時提供等同其數值的擊殺時獲得一顆暴擊球機率",
+          "text":
+            "範圍內的閃電抗性或全元素抗性\\n同時提供等同其數值的擊殺時獲得一顆暴擊球機率",
           "formatters": []
         }
       ]
@@ -57743,12 +58078,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "若範圍內配置了 40 點智力，熔岩之核額外發射 1 枚投射物",
+          "text": "若範圍內含 40 點智力，熔岩之核額外發射 1 枚投射物",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text": "若範圍內配置了 40 點智力，熔岩之核額外發射 %1% 枚投射物",
+          "text": "若範圍內含 40 點智力，熔岩之核額外發射 %1% 枚投射物",
           "formatters": []
         }
       ]
@@ -57841,7 +58176,8 @@
       "translations": [
         {
           "matchers": [["#", 99]],
-          "text": "若範圍內含 40 點敏捷，流星射擊的錐形範圍有 %1%%% 機率造成雙倍傷害",
+          "text":
+            "若範圍內含 40 點敏捷，流星射擊的錐形範圍有 %1%%% 機率造成雙倍傷害",
           "formatters": []
         },
         {
@@ -57887,7 +58223,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "若範圍內含 40 點敏捷，靈體投擲擊中時有 %1%%% 機率給瓦爾．靈體投擲 1 個瓦爾靈魂",
+          "text":
+            "若範圍內含 40 點敏捷，靈體投擲擊中時有 %1%%% 機率給瓦爾．靈體投擲 1 個瓦爾靈魂",
           "formatters": []
         }
       ]
@@ -57899,7 +58236,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "若範圍內含 40 點智力，喚醒幽魂擊殺時有 %1%%% 機率獲得 30 秒的噬魂者效果",
+          "text":
+            "若範圍內含 40 點智力，喚醒幽魂擊殺時有 %1%%% 機率獲得 30 秒的噬魂者效果",
           "formatters": [
             {
               "id": "reminderstring",
@@ -57928,12 +58266,14 @@
       "translations": [
         {
           "matchers": [["#", 99]],
-          "text": "若範圍內含 40 點敏捷，毒蛇打擊每次造成中毒時有 %1%%% 機率獲得 4 秒不潔之力",
+          "text":
+            "若範圍內含 40 點敏捷，毒蛇打擊每次造成中毒時有 %1%%% 機率獲得 4 秒不潔之力",
           "formatters": []
         },
         {
           "matchers": [100],
-          "text": "若範圍內含 40 點敏捷，毒蛇打擊每次造成中毒時獲得 4 秒不潔之力",
+          "text":
+            "若範圍內含 40 點敏捷，毒蛇打擊每次造成中毒時獲得 4 秒不潔之力",
           "formatters": []
         }
       ]
@@ -57945,7 +58285,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "若範圍內含 40 點智力，\\n復甦的殭屍重擊攻擊增加 %1%%% 冷卻回復速度",
+          "text":
+            "若範圍內含 40 點智力，\\n復甦的殭屍重擊攻擊增加 %1%%% 冷卻回復速度",
           "formatters": []
         }
       ]
@@ -59014,12 +59355,14 @@
       "translations": [
         {
           "matchers": [[1, "#"], [1, "#"]],
-          "text": "區域含有 3 群魔法怪物，\\n他們將增加 %1%%% 攻擊、施法、移動速度，並且掉落 %2%%% 更多物品",
+          "text":
+            "區域含有 3 群魔法怪物，\\n他們將增加 %1%%% 攻擊、施法、移動速度，並且掉落 %2%%% 更多物品",
           "formatters": []
         },
         {
           "matchers": [["#", -1], ["#", -1]],
-          "text": "區域含有 3 群魔法怪物，\\n他們將減少 %1%%% 攻擊、施法、移動速度，並且掉落 %2%%% 較少物品",
+          "text":
+            "區域含有 3 群魔法怪物，\\n他們將減少 %1%%% 攻擊、施法、移動速度，並且掉落 %2%%% 較少物品",
           "formatters": [
             {
               "id": "negate",
@@ -62617,7 +62960,8 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "使用此武器攻擊中毒 5 層以上的敵人\\n附加 %1% 至 %2% 混沌傷害",
+          "text":
+            "使用此武器攻擊中毒 5 層以上的敵人\\n附加 %1% 至 %2% 混沌傷害",
           "formatters": []
         }
       ]
@@ -62792,19 +63136,6 @@
         {
           "matchers": ["#", "#"],
           "text": "當沒有生命保留時法術附加 %1% 至 %2% 閃電傷害",
-          "formatters": []
-        }
-      ]
-    },
-    "minimum_fire_damage_to_hits_against_blinded_enemies": {
-      "stats": [
-        "minimum_fire_damage_to_hits_against_blinded_enemies",
-        "maximum_fire_damage_to_hits_against_blinded_enemies"
-      ],
-      "translations": [
-        {
-          "matchers": ["#", "#"],
-          "text": "對致盲敵人擊中附加 %1% 至 %2% 火焰傷害",
           "formatters": []
         }
       ]
@@ -63089,7 +63420,8 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "召喚物使用法術擊中敵人時，有 %1%%% 機率降低敵人 30%% 移動速度",
+          "text":
+            "召喚物使用法術擊中敵人時，有 %1%%% 機率降低敵人 30%% 移動速度",
           "formatters": [
             {
               "id": "reminderstring",
@@ -63730,7 +64062,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "當有女神擁抱時，每等級每秒受到 %1%%% 你的總最大生命和能量護盾的火焰傷害",
+          "text":
+            "當有女神擁抱時，每等級每秒受到 %1%%% 你的總最大生命和能量護盾的火焰傷害",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -64847,7 +65180,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你擊殺感電的敵人爆炸造成等同於 %1%%% 敵人最大生命的閃電傷害\\n爆炸無法造成感電",
+          "text":
+            "你擊殺感電的敵人爆炸造成等同於 %1%%% 敵人最大生命的閃電傷害\\n爆炸無法造成感電",
           "formatters": []
         }
       ]
@@ -65197,7 +65531,8 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "在任何藥劑效果持續時間內，法術和攻擊附加 %1% 至 %2% 混沌傷害",
+          "text":
+            "在任何藥劑效果持續時間內，法術和攻擊附加 %1% 至 %2% 混沌傷害",
           "formatters": []
         }
       ]
@@ -65695,37 +66030,19 @@
         }
       ]
     },
-    "tailwind_effect_on_self_+%": {
-      "stats": ["tailwind_effect_on_self_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "近期每個你使用的技能增加 %1%%% 流順之風對你的效果，至多 100%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "近期每個你使用的技能減少 %1%%% 流順之風對你的效果，至多 100%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "tailwind_effect_on_self_+%_for_each_skill_used_recently": {
       "stats": ["tailwind_effect_on_self_+%_for_each_skill_used_recently"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "近期每個你使用的技能增加 %1%%% 流順之風對你的效果，至多 100%%",
+          "text":
+            "近期每個你使用的技能增加 %1%%% 流順之風對你的效果，至多 100%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "近期每個你使用的技能減少 %1%%% 流順之風對你的效果，至多 100%%",
+          "text":
+            "近期每個你使用的技能減少 %1%%% 流順之風對你的效果，至多 100%%",
           "formatters": [
             {
               "id": "negate",
@@ -66248,12 +66565,14 @@
       "translations": [
         {
           "matchers": ["#", 0, 0, 0, 0, 0, 0],
-          "text": "當你天賦樹和野蠻人起始點相連，你獲得:\\n近戰技能增加 %1%%% 範圍效果",
+          "text":
+            "當你天賦樹和野蠻人起始點相連，你獲得:\\n近戰技能增加 %1%%% 範圍效果",
           "formatters": []
         },
         {
           "matchers": [0, "#", 0, 0, 0, 0, 0],
-          "text": "當你天賦樹和決鬥者起始點相連，你獲得:\\n%2%%% 攻擊傷害偷取生命",
+          "text":
+            "當你天賦樹和決鬥者起始點相連，你獲得:\\n%2%%% 攻擊傷害偷取生命",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -66282,7 +66601,8 @@
         },
         {
           "matchers": [0, 0, 0, 0, "#", 0, 0],
-          "text": "當你天賦樹和女巫起始點相連，你獲得:\\n每秒回復 %5%%% 最大魔力",
+          "text":
+            "當你天賦樹和女巫起始點相連，你獲得:\\n每秒回復 %5%%% 最大魔力",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -66292,7 +66612,8 @@
         },
         {
           "matchers": [0, 0, 0, 0, 0, "#", 0],
-          "text": "當你天賦樹和聖堂武僧起始點相連，你獲得:\\n傷害穿透 %6%%% 元素抗性",
+          "text":
+            "當你天賦樹和聖堂武僧起始點相連，你獲得:\\n傷害穿透 %6%%% 元素抗性",
           "formatters": []
         },
         {
@@ -66371,7 +66692,8 @@
       "translations": [
         {
           "matchers": [["#", 99]],
-          "text": "範圍內若配置 40 點敏捷，毒蛇打擊擊中時有 %1%%% 機率獲得 4 秒不潔之力",
+          "text":
+            "範圍內若配置 40 點敏捷，毒蛇打擊擊中時有 %1%%% 機率獲得 4 秒不潔之力",
           "formatters": []
         },
         {
@@ -66643,7 +66965,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "若你近期沒有造成暴擊\\n每秒每顆暴擊球承受 %1% 閃電傷害",
+          "text": "若你近期有造成暴擊\\n每秒每顆暴擊球承受 %1% 閃電傷害",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -66664,7 +66986,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你的殭屍復甦死亡時噴散腐蝕毒雲，每秒造成 %1%%% 他們最大生命的混沌傷害",
+          "text":
+            "你的殭屍復甦死亡時噴散腐蝕毒雲，每秒造成 %1%%% 他們最大生命的混沌傷害",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -66681,7 +67004,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "當力量超過 1000 時，召喚殭屍承所造成傷害的 %1%%% 為你偷取生命",
+          "text":
+            "當力量超過 1000 時，召喚殭屍承所造成傷害的 %1%%% 為你偷取生命",
           "formatters": [
             {
               "id": "divide_by_one_hundred",

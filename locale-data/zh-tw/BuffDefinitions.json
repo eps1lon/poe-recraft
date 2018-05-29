@@ -1,1084 +1,2668 @@
 {
-  "0": { "name": "點燃", "description": "你被點燃了。" },
-  "1": { "name": "冰緩", "description": "你被冰緩一段時間。" },
-  "2": { "name": "冰凍", "description": "你被冰凍了。" },
-  "3": { "name": "感電", "description": "你受到 50% 額外傷害。" },
-  "4": { "name": "疾跑", "description": "增加移動速度。" },
-  "5": { "name": "生命回復", "description": "你不會受到傷害。" },
-  "6": { "name": "恩典", "description": "你不會受到傷害。" },
-  "7": { "name": "無敵", "description": "你不會受到任何傷害。" },
-  "8": { "name": "經驗增加", "description": "30 秒內增加經驗值。" },
-  "9": {
+  "ignited": { "name": "點燃", "description": "你被點燃了。" },
+  "chilled": { "name": "冰緩", "description": "你被冰緩一段時間。" },
+  "frozen": { "name": "冰凍", "description": "你被冰凍了。" },
+  "shocked": { "name": "感電", "description": "你受到 50% 額外傷害。" },
+  "sprinting": { "name": "疾跑", "description": "增加移動速度。" },
+  "flask_effect_life": {
+    "name": "生命回復",
+    "description": "你不會受到傷害。"
+  },
+  "grace_period": { "name": "恩典", "description": "你不會受到傷害。" },
+  "god_mode": { "name": "無敵", "description": "你不會受到任何傷害。" },
+  "experience": { "name": "經驗增加", "description": "30 秒內增加經驗值。" },
+  "flask_effect_mana": {
     "name": "魔力回復",
-    "description": "持續消耗生命、增加生命偷取、生命過低時增加攻擊速度、每擊殺一個敵人獲得一個狂怒能量球。"
+    "description":
+      "持續消耗生命、增加生命偷取、生命過低時增加攻擊速度、每擊殺一個敵人獲得一個狂怒能量球。"
   },
-  "10": { "name": "中毒", "description": "你受到混沌傷害。" },
-  "11": {
+  "poison": { "name": "中毒", "description": "你受到混沌傷害。" },
+  "blood_rage": {
     "name": "鮮血狂怒",
-    "description": "受到根據生命和能量護盾的持續物理傷害、增加生命偷取和攻擊速度、每擊殺一個敵人獲得一個狂怒能量球。"
+    "description":
+      "受到根據生命和能量護盾的持續物理傷害、增加生命偷取和攻擊速度、每擊殺一個敵人獲得一個狂怒能量球。"
   },
-  "12": { "name": "正義之火", "description": "點燃自己並對周圍的敵人造成傷害，增加法術傷害。" },
-  "13": { "name": "正義之火", "description": "附近正在使用正義之火的敵人對你造成燃燒傷害。" },
-  "14": { "name": "邪惡之火", "description": "點燃自己並對周圍的敵人造成傷害，增加法術傷害。" },
-  "15": { "name": "邪惡之火", "description": "附近正在使用邪惡之火的敵人對你造成燃燒傷害。" },
-  "16": { "name": "正義之火", "description": "點燃自己並對周圍的敵人造成傷害，增加法術傷害。" },
-  "17": { "name": "正義之火", "description": "附近正在使用正義之火的敵人對你造成燃燒傷害。" },
-  "18": { "name": "", "description": "" },
-  "19": { "name": "苦難蔓延", "description": "苦難蔓延對你造成燃燒傷害。" },
-  "20": { "name": "聖光束", "description": "聖光束對你造成燃燒傷害。" },
-  "21": { "name": "聖光束", "description": "聖光束對你造成燃燒傷害。" },
-  "22": { "name": "惡光束", "description": "惡光束對你造成物理傷害。" },
-  "23": { "name": "電光束", "description": "電光束對你造成閃電傷害。" },
-  "24": { "name": "蔓延寒霜", "description": "蔓延寒霜對你造成冰冷傷害。" },
-  "25": { "name": "汙水毒素", "description": "你持續受到混沌傷害。" },
-  "26": { "name": "烈焰武器", "description": "你的武器造成額外火焰傷害。" },
-  "27": { "name": "狂怒能量球", "description": "每顆狂怒能量球提供更多傷害，增加攻擊、施放速度。" },
-  "28": { "name": "耐力能量球", "description": "每顆耐力能量球提供額外物理傷害減免。" },
-  "29": { "name": "暴擊能量球", "description": "每顆暴擊能量球增加暴擊機率。" },
-  "30": { "name": "靈體能量球", "description": "需要使用某些技能。" },
-  "31": { "name": "虹吸能量球", "description": "" },
-  "32": { "name": "虛空箭矢", "description": "" },
-  "33": { "name": "殘酷攻擊", "description": "狂熱的揮動著武器。" },
-  "34": { "name": "魔力偷取", "description": "你正在偷取魔力。" },
-  "35": { "name": "生命偷取", "description": "你正在偷取生命。" },
-  "36": { "name": "能量護盾偷取", "description": "你正在偷取生命轉化為能量護盾。" },
-  "37": { "name": "更多的玩家", "description": "更多玩家加入遊戲。" },
-  "38": { "name": "增加護甲", "description": "在藥劑發揮作用時增加護甲值。" },
-  "39": { "name": "增加閃避", "description": "在藥劑發揮作用時增加閃避值。" },
-  "40": { "name": "增加能量護盾", "description": "在藥劑發揮作用時增加能量護盾上限。" },
-  "41": { "name": "增加移動速度", "description": "在藥劑發揮作用時增加你的移動速度。" },
-  "42": { "name": "提升暈眩回復", "description": "在藥劑發揮作用時縮短你的暈眩回復時間。" },
-  "43": { "name": "增加抗性", "description": "在藥劑發揮作用時增加你的抗性。" },
-  "44": { "name": "增加生命偷取", "description": "在藥劑發揮作用時獲得生命偷取效果。" },
-  "45": { "name": "增加魔力偷取", "description": "在藥劑發揮作用時獲得魔力偷取效果。" },
-  "46": { "name": "增加擊退", "description": "在藥劑發揮作用時攻擊附加擊退敵人效果。" },
-  "47": { "name": "增加擊退", "description": "在藥劑發揮作用時你能擊退敵人。" },
-  "48": { "name": "死亡免疫", "description": "在藥劑發揮作用時你不會死亡。" },
-  "49": { "name": "冰凍與冰緩免疫", "description": "在藥劑發揮作用時免疫被冰凍與冰緩。" },
-  "50": { "name": "點燃免疫", "description": "在藥劑發揮作用時免疫被點燃。" },
-  "51": { "name": "感電免疫", "description": "在藥劑發揮作用時免疫被感電。" },
-  "52": { "name": "流血免疫", "description": "在藥劑發揮作用時免疫流血。" },
-  "53": { "name": "詛咒免疫", "description": "在藥劑發揮作用時免疫詛咒。" },
-  "54": { "name": "特別", "description": "你要爆炸了。" },
-  "55": { "name": "被煉獄之擊擊中", "description": "你被詛咒了，時間的流動在你身上變得更緩慢。" },
-  "56": { "name": "被毒蛇打擊擊中", "description": "你受到毒蛇打擊而中毒了。" },
-  "57": {
+  "righteous_fire": {
+    "name": "正義之火",
+    "description": "點燃自己並對周圍的敵人造成傷害，增加法術傷害。"
+  },
+  "righteous_fire_aura": {
+    "name": "正義之火",
+    "description": "附近正在使用正義之火的敵人對你造成燃燒傷害。"
+  },
+  "demon_righteous_fire": {
+    "name": "邪惡之火",
+    "description": "點燃自己並對周圍的敵人造成傷害，增加法術傷害。"
+  },
+  "demon_righteous_fire_aura": {
+    "name": "邪惡之火",
+    "description": "附近正在使用邪惡之火的敵人對你造成燃燒傷害。"
+  },
+  "avatar_righteous_fire": {
+    "name": "正義之火",
+    "description": "點燃自己並對周圍的敵人造成傷害，增加法術傷害。"
+  },
+  "avatar_righteous_fire_aura": {
+    "name": "正義之火",
+    "description": "附近正在使用正義之火的敵人對你造成燃燒傷害。"
+  },
+  "invisible_fire_aura": { "name": "", "description": "" },
+  "invisible_fire_debuff": {
+    "name": "苦難蔓延",
+    "description": "苦難蔓延對你造成燃燒傷害。"
+  },
+  "invisible_holy_fire_debuff": {
+    "name": "聖光束",
+    "description": "聖光束對你造成燃燒傷害。"
+  },
+  "invisible_holy_fire_elder_debuff": {
+    "name": "聖光束",
+    "description": "聖光束對你造成燃燒傷害。"
+  },
+  "invisible_kitava_fire_debuff": {
+    "name": "惡光束",
+    "description": "惡光束對你造成物理傷害。"
+  },
+  "ion_beam_debuff": {
+    "name": "電光束",
+    "description": "電光束對你造成閃電傷害。"
+  },
+  "frost_ion_beam_debuff": {
+    "name": "蔓延寒霜",
+    "description": "蔓延寒霜對你造成冰冷傷害。"
+  },
+  "doedre_invisible_chaos_debuff": {
+    "name": "汙水毒素",
+    "description": "你持續受到混沌傷害。"
+  },
+  "fire_weapon": {
+    "name": "烈焰武器",
+    "description": "你的武器造成額外火焰傷害。"
+  },
+  "frenzy_charge": {
+    "name": "狂怒能量球",
+    "description": "每顆狂怒能量球提供更多傷害，增加攻擊、施放速度。"
+  },
+  "endurance_charge": {
+    "name": "耐力能量球",
+    "description": "每顆耐力能量球提供額外物理傷害減免。"
+  },
+  "power_charge": {
+    "name": "暴擊能量球",
+    "description": "每顆暴擊能量球增加暴擊機率。"
+  },
+  "spirit_charge": {
+    "name": "靈體能量球",
+    "description": "需要使用某些技能。"
+  },
+  "siphoning_charge": { "name": "虹吸能量球", "description": "" },
+  "void_arrow": { "name": "虛空箭矢", "description": "" },
+  "hillock_buff": { "name": "殘酷攻擊", "description": "狂熱的揮動著武器。" },
+  "mana_leech": { "name": "魔力偷取", "description": "你正在偷取魔力。" },
+  "life_leech": { "name": "生命偷取", "description": "你正在偷取生命。" },
+  "energy_shield_leech": {
+    "name": "能量護盾偷取",
+    "description": "你正在偷取生命轉化為能量護盾。"
+  },
+  "players_increased": {
+    "name": "更多的玩家",
+    "description": "更多玩家加入遊戲。"
+  },
+  "flask_bonus_armour": {
+    "name": "增加護甲",
+    "description": "在藥劑發揮作用時增加護甲值。"
+  },
+  "flask_bonus_evasion": {
+    "name": "增加閃避",
+    "description": "在藥劑發揮作用時增加閃避值。"
+  },
+  "flask_bonus_energy_shield": {
+    "name": "增加能量護盾",
+    "description": "在藥劑發揮作用時增加能量護盾上限。"
+  },
+  "flask_bonus_movement_speed": {
+    "name": "增加移動速度",
+    "description": "在藥劑發揮作用時增加你的移動速度。"
+  },
+  "flask_bonus_stun_recovery": {
+    "name": "提升暈眩回復",
+    "description": "在藥劑發揮作用時縮短你的暈眩回復時間。"
+  },
+  "flask_bonus_resistances": {
+    "name": "增加抗性",
+    "description": "在藥劑發揮作用時增加你的抗性。"
+  },
+  "flask_bonus_life_leech": {
+    "name": "增加生命偷取",
+    "description": "在藥劑發揮作用時獲得生命偷取效果。"
+  },
+  "flask_bonus_mana_leech": {
+    "name": "增加魔力偷取",
+    "description": "在藥劑發揮作用時獲得魔力偷取效果。"
+  },
+  "flask_bonus_knockback": {
+    "name": "增加擊退",
+    "description": "在藥劑發揮作用時攻擊附加擊退敵人效果。"
+  },
+  "flask_bonus_global_knockback": {
+    "name": "增加擊退",
+    "description": "在藥劑發揮作用時你能擊退敵人。"
+  },
+  "flask_bonus_prevents_death": {
+    "name": "死亡免疫",
+    "description": "在藥劑發揮作用時你不會死亡。"
+  },
+  "flask_bonus_chill_and_freeze_immunity": {
+    "name": "冰凍與冰緩免疫",
+    "description": "在藥劑發揮作用時免疫被冰凍與冰緩。"
+  },
+  "flask_bonus_ignite_immunity": {
+    "name": "點燃免疫",
+    "description": "在藥劑發揮作用時免疫被點燃。"
+  },
+  "flask_bonus_shock_immunity": {
+    "name": "感電免疫",
+    "description": "在藥劑發揮作用時免疫被感電。"
+  },
+  "flask_bonus_bleeding_immunity": {
+    "name": "流血免疫",
+    "description": "在藥劑發揮作用時免疫流血。"
+  },
+  "flask_bonus_curse_immunity": {
+    "name": "詛咒免疫",
+    "description": "在藥劑發揮作用時免疫詛咒。"
+  },
+  "spectre_buff": { "name": "特別", "description": "你要爆炸了。" },
+  "infernal_blow_hit": {
+    "name": "被煉獄之擊擊中",
+    "description": "你被詛咒了，時間的流動在你身上變得更緩慢。"
+  },
+  "viper_strike_orb": {
+    "name": "被毒蛇打擊擊中",
+    "description": "你受到毒蛇打擊而中毒了。"
+  },
+  "phase_run": {
     "name": "暗影迷蹤",
-    "description": "你變得迅速而且難以捉摸。如果藉由攻擊來結束這個增益效果，該攻擊會有額外傷害。"
+    "description":
+      "你變得迅速而且難以捉摸。如果藉由攻擊來結束這個增益效果，該攻擊會有額外傷害。"
   },
-  "58": { "name": "", "description": "" },
-  "59": { "name": "", "description": "" },
-  "60": { "name": "被爆炸箭矢擊中", "description": "你要爆炸了。" },
-  "61": { "name": "時空鎖鏈", "description": "你被詛咒了，時間的流動在你身上變得更緩慢。" },
-  "62": { "name": "元素要害", "description": "你被詛咒了，將會受到更多元素傷害。" },
-  "63": { "name": "易燃", "description": "你被詛咒了，將會受到更多火焰傷害並且更容易被點燃。" },
-  "64": { "name": "凍傷", "description": "你被詛咒了，將會受到更多冰冷傷害並且更容易被冰凍。" },
-  "65": { "name": "導電", "description": "你被詛咒了，將會受到更多閃電傷害並且更容易被感電。" },
-  "66": {
+  "monster_magic_effect_buff": { "name": "", "description": "" },
+  "monster_rare_effect_buff": { "name": "", "description": "" },
+  "fuse_arrow_orb": { "name": "被爆炸箭矢擊中", "description": "你要爆炸了。" },
+  "curse_temporal_chains": {
+    "name": "時空鎖鏈",
+    "description": "你被詛咒了，時間的流動在你身上變得更緩慢。"
+  },
+  "curse_elemental_weakness": {
+    "name": "元素要害",
+    "description": "你被詛咒了，將會受到更多元素傷害。"
+  },
+  "curse_fire_weakness": {
+    "name": "易燃",
+    "description": "你被詛咒了，將會受到更多火焰傷害並且更容易被點燃。"
+  },
+  "curse_cold_weakness": {
+    "name": "凍傷",
+    "description": "你被詛咒了，將會受到更多冰冷傷害並且更容易被冰凍。"
+  },
+  "curse_lightning_weakness": {
+    "name": "導電",
+    "description": "你被詛咒了，將會受到更多閃電傷害並且更容易被感電。"
+  },
+  "curse_warlords_mark": {
     "name": "督軍印記",
-    "description": "你被詛咒了，將會更容易且暈眩更久，敵人擊中你時獲得生命與魔力吸取，並在被殺死時有機會提供敵人耐力球。"
+    "description":
+      "你被詛咒了，將會更容易且暈眩更久，敵人擊中你時獲得生命與魔力吸取，並在被殺死時有機會提供敵人耐力球。"
   },
-  "67": { "name": "懲戒", "description": "你被詛咒了，你造成物理攻擊的同時也會受到一定比例的物理傷害。" },
-  "68": { "name": "衰弱", "description": "你被詛咒了，你攻擊力降低、更難命中敵人、更不容易暴擊" },
-  "69": {
+  "curse_punishment": {
+    "name": "懲戒",
+    "description":
+      "你被詛咒了，你造成物理攻擊的同時也會受到一定比例的物理傷害。"
+  },
+  "curse_enfeeble": {
+    "name": "衰弱",
+    "description": "你被詛咒了，你攻擊力降低、更難命中敵人、更不容易暴擊"
+  },
+  "curse_assassins_mark": {
     "name": "刺客印記",
-    "description": "你被詛咒了，將會更容易被暴擊、受到更多暴擊傷害、被殺死時為敵人回復生命與魔力並有機會提供其暴擊球。"
+    "description":
+      "你被詛咒了，將會更容易被暴擊、受到更多暴擊傷害、被殺死時為敵人回復生命與魔力並有機會提供其暴擊球。"
   },
-  "70": { "name": "投射物要害", "description": "你被詛咒了，你受到更多的投射物傷害，且更容易被擊退或投射物穿透。" },
-  "71": { "name": "脆弱", "description": "你被詛咒了，你將增加承受物理傷害，且攻擊有機率造成你癱瘓或流血。" },
-  "72": {
+  "curse_projectile_weakness": {
+    "name": "投射物要害",
+    "description":
+      "你被詛咒了，你受到更多的投射物傷害，且更容易被擊退或投射物穿透。"
+  },
+  "curse_vulnerability": {
+    "name": "脆弱",
+    "description":
+      "你被詛咒了，你將增加承受物理傷害，且攻擊有機率造成你癱瘓或流血。"
+  },
+  "curse_poachers_mark": {
     "name": "盜獵者印記",
-    "description": "你被詛咒了，你閃避值降低，敵人擊中你時獲得生命與魔力，被殺死時為敵人回復額外藥劑充能並有機會提供狂怒球。"
+    "description":
+      "你被詛咒了，你閃避值降低，敵人擊中你時獲得生命與魔力，被殺死時為敵人回復額外藥劑充能並有機會提供狂怒球。"
   },
-  "73": {
+  "curse_newpunishment": {
     "name": "新懲戒",
-    "description": "你被詛咒了，你的近戰攻擊給予敵人一個增益效果，使它們造成更多近戰傷害和攻擊速度。"
+    "description":
+      "你被詛咒了，你的近戰攻擊給予敵人一個增益效果，使它們造成更多近戰傷害和攻擊速度。"
   },
-  "74": { "name": "平衡", "description": "測試" },
-  "75": { "name": "物理反射光環", "description": "周圍友軍反射物理傷害" },
-  "76": { "name": "元素反射光環", "description": "周圍友軍反射元素傷害" },
-  "77": { "name": "物理反射", "description": "反射物理傷害" },
-  "78": { "name": "元素反射", "description": "反射元素傷害" },
-  "79": { "name": "物理增傷光環", "description": "周圍友軍增加物理傷害" },
-  "80": { "name": "強化物理增傷光環", "description": "周圍友軍大幅增加物理傷害" },
-  "81": { "name": "速度光環", "description": "周圍友軍增加攻擊與移動速度" },
-  "82": { "name": "生命回復光環", "description": "周圍友軍增加每秒生命回復" },
-  "83": { "name": "抗性光環", "description": "周圍友軍增加元素抗性" },
-  "84": { "name": "護盾光環", "description": "周圍友軍獲得能量護盾" },
-  "85": { "name": "護盾光環", "description": "周圍友軍獲得能量護盾" },
-  "86": { "name": "精準暴擊光環", "description": "周圍友軍增加命中與暴擊機率" },
-  "87": { "name": "退化光環", "description": "敵人持續受到混沌傷害" },
-  "88": { "name": "退化光環", "description": "敵人持續受到混沌傷害" },
-  "89": { "name": "退化光環", "description": "敵人持續受到物理傷害" },
-  "90": { "name": "退化光環", "description": "敵人持續受到閃電傷害" },
-  "91": { "name": "元素傷害光環", "description": "周圍友軍獲得額外元素傷害" },
-  "92": { "name": "退化光環", "description": "敵人持續受到混沌傷害" },
-  "93": { "name": "反射", "description": "反射物理傷害" },
-  "94": { "name": "反射", "description": "反射元素傷害" },
-  "95": { "name": "反射", "description": "反射物理傷害" },
-  "96": { "name": "反射", "description": "反射元素傷害" },
-  "97": { "name": "反射", "description": "你獲得額外護甲值直到護盾爆炸" },
-  "98": { "name": "反射", "description": "你現在比較容易暴擊" },
-  "99": { "name": "被霸氣控制的", "description": "你獲得額外火焰抗性" },
-  "100": { "name": "被霸氣之擊擊中", "description": "你獲得額外冰冷抗性" },
-  "101": { "name": "不朽怒嚎", "description": "你對物理傷害免疫" },
-  "102": { "name": "瓦爾不朽怒嚎", "description": "你不會死亡" },
-  "103": { "name": "寶藏！", "description": "掉落測試" },
-  "104": { "name": "暴風之盾", "description": "你獲得額外的盾牌格擋率，格擋時重置持續時間。" },
-  "105": { "name": "熔岩護盾", "description": "你獲得額外護甲值直到護盾爆炸" },
-  "106": { "name": "寶鑽藥劑", "description": "你現在比較容易暴擊" },
-  "107": { "name": "紅玉藥劑", "description": "你獲得額外火焰抗性和最大火焰抗性" },
-  "108": { "name": "藍玉藥劑", "description": "你獲得額外冰冷抗性和最大冰冷抗性" },
-  "109": { "name": "黃玉藥劑", "description": "你獲得額外閃電抗性和最大閃電抗性" },
-  "110": { "name": "堅岩藥劑", "description": "你獲得額外的護甲值" },
-  "111": { "name": "水銀藥劑", "description": "你獲得額外的移動速度" },
-  "112": { "name": "紫晶藥劑", "description": "你獲得額外的混沌抗性" },
-  "113": { "name": "石英藥劑", "description": "你獲得迷蹤狀態和額外法術、攻擊躲避機率，你的移動不會被敵人阻擋" },
-  "114": { "name": "翠玉藥劑", "description": "你獲得額外的閃避值" },
-  "115": { "name": "石化藥劑", "description": "你獲得額外的物理傷害減免" },
-  "116": { "name": "海藍藥劑", "description": "你有機率避免受到冰冷傷害" },
-  "117": { "name": "灰岩藥劑", "description": "你獲得額外的元素抗性" },
-  "118": { "name": "迷霧藥劑", "description": "你獲得更多的閃避" },
-  "119": { "name": "硫磺藥劑", "description": "你獲得額外的傷害" },
-  "120": { "name": "真銀藥劑", "description": "你獲得猛攻" },
-  "121": { "name": "不死光環", "description": "周圍的友軍不會死亡" },
-  "122": { "name": "緩速光環", "description": "周圍的敵軍被緩速" },
-  "123": { "name": "減傷光環", "description": "周圍的友軍承受較少傷害" },
-  "124": { "name": "元素之相", "description": "你正受到元素之相影響。你的抗性暫時發生了變化。" },
-  "125": { "name": "", "description": "" },
-  "126": { "name": "格擋測試", "description": "我要擋十個！" },
-  "127": { "name": "放血", "description": "你正在流血，使你受到持續性的物理傷害。移動時將會受到額外的傷害。" },
-  "128": { "name": "", "description": "" },
-  "129": { "name": "堅定光環", "description": "獲得額外護甲" },
-  "130": { "name": "優雅光環", "description": "獲得額外閃避" },
-  "131": { "name": "元素淨化光環", "description": "增加所有元素抗性" },
-  "132": { "name": "火焰淨化光環", "description": "增加額外火焰抗性" },
-  "133": { "name": "冰冷淨化光環", "description": "增加額外冰冷抗性" },
-  "134": { "name": "閃電淨化光環", "description": "增加額外閃電抗性" },
-  "135": { "name": "紀律光環", "description": "增加額外的能量護盾和增加能量護盾回復率" },
-  "136": { "name": "憤怒光環", "description": "增加額外的火焰傷害" },
-  "137": { "name": "憎恨光環", "description": "增加等同物理傷害一定數值的額外冰冷傷害" },
-  "138": { "name": "雷霆光環", "description": "增加額外閃電傷害" },
-  "139": { "name": "迅捷光環", "description": "增加攻擊與施放速度" },
-  "140": { "name": "活力光環", "description": "增加生命回復" },
-  "141": { "name": "被力量抽取擊中", "description": "如果你在被力量抽取擊中的情況下死亡，你將會產生一個暴擊能量球" },
-  "142": { "name": "清晰光環", "description": "增加魔力回復" },
-  "143": { "name": "瓦爾堅定光環", "description": "增加額外護甲和抗性" },
-  "144": { "name": "瓦爾活力光環", "description": "增加生命回復" },
-  "145": { "name": "瓦爾清晰光環", "description": "施放技能不消耗魔力" },
-  "146": { "name": "瓦爾優雅光環", "description": "增加額外躲避機率" },
-  "147": { "name": "瓦爾紀律光環", "description": "增加額外能量護盾，並且不會因為受到攻擊而延遲護盾的回復。" },
-  "148": { "name": "瓦爾迅捷光環", "description": "額外增加施放、攻擊以及移動速度。" },
-  "149": { "name": "被陷阱夾住", "description": "你被捕熊陷阱夾住了" },
-  "150": { "name": "變換陣營", "description": "你暫時被轉換到另一方了" },
-  "151": { "name": "燃燒地面", "description": "你站在燃燒的地面上並持續受到火焰傷害" },
-  "152": { "name": "冰凍地面", "description": "你站在結冰的地面上並將持續被冰緩" },
-  "153": { "name": "汙油地面", "description": "你站在佈滿焦油的地板上且移動速度受到減緩" },
-  "154": { "name": "", "description": "" },
-  "155": { "name": "回春圖騰光環", "description": "增加生命回復" },
-  "156": { "name": "生命與魔力回復圖騰光環", "description": "增加生命和魔力回復" },
-  "157": { "name": "冰冷傷害光環", "description": "周圍友軍造成額外冰冷傷害" },
-  "158": { "name": "火焰傷害光環", "description": "周圍友軍造成額外火焰傷害" },
-  "159": { "name": "閃電傷害光環", "description": "周圍友軍造成額外閃電傷害" },
-  "160": { "name": "火焰傷害光環", "description": "周圍友軍造成額外火焰傷害" },
-  "161": { "name": "閃電傷害光環", "description": "周圍友軍造成額外閃電傷害" },
-  "162": { "name": "致盲", "description": "你的命中率大幅降低" },
-  "163": { "name": "必定暴擊光環", "description": "周圍的友軍必定暴擊" },
-  "164": { "name": "閃避光環", "description": "周圍友軍獲得額外的閃避" },
-  "165": { "name": "極地裝甲", "description": "持續消耗魔力，但你獲得部分的物理及火焰傷害減免。" },
-  "166": { "name": "", "description": "" },
-  "167": { "name": "冰凍傷害增加", "description": "你將受到更多傷害" },
-  "168": { "name": "紅隊", "description": "你現在是紅隊。" },
-  "169": { "name": "籃隊", "description": "你現在是藍隊。" },
-  "170": { "name": "紅隊", "description": "你現在是紅隊。" },
-  "171": { "name": "籃隊", "description": "你現在是藍隊。" },
-  "172": { "name": "紅隊", "description": "你現在是紅隊。" },
-  "173": { "name": "籃隊", "description": "你現在是藍隊。" },
-  "174": { "name": "作弊", "description": "你現在使用的是替換的技能模組" },
-  "175": { "name": "閃電護盾", "description": "你被擊中時發射閃電投射物" },
-  "176": { "name": "", "description": "" },
-  "177": { "name": "", "description": "" },
-  "178": { "name": "", "description": "" },
-  "179": { "name": "血量金手指", "description": "你站在腐蝕地面上，將受到持續性的混沌傷害" },
-  "180": { "name": "", "description": "" },
-  "181": { "name": "", "description": "不死光環" },
-  "182": { "name": "", "description": "三相之力" },
-  "183": { "name": "閃電連結", "description": "你正受到閃電連結的閃電傷害" },
-  "184": { "name": "灼熱連結", "description": "你正受到灼熱連結的燃燒傷害" },
-  "185": { "name": "召喚測試", "description": "測試" },
-  "186": { "name": "投射物測試", "description": "測試" },
-  "187": { "name": "持久測試", "description": "測試" },
-  "188": { "name": "圖騰測試", "description": "測試" },
-  "189": { "name": "陷阱測試", "description": "測試" },
-  "190": { "name": "腐化地面", "description": "你站在腐蝕地面上，將受到持續性的混沌傷害" },
-  "191": { "name": "奉獻地面", "description": "獲得生命回復" },
-  "192": { "name": "腳印", "description": "你正在使用足跡特效" },
-  "193": { "name": "鬼盜", "description": "生命偷取應用於能量護盾" },
-  "194": { "name": "狂熱者的誓言", "description": "生命回復應用於能量護盾" },
-  "195": { "name": "澤佛伊的終息", "description": "技能魔力消耗將依照比率回復生命" },
-  "196": { "name": "免疫", "description": "你對傷害免疫" },
-  "197": { "name": "淬鍊占卜", "description": "獲得額外物品數量與稀有度增幅，並最大化所有抗性數值及視野範圍。" },
-  "198": { "name": "猛攻狀態", "description": "獲得額外攻擊速度、施放速度及移動速度。" },
-  "199": { "name": "不朽狂暴", "description": "獲得額外物理攻擊傷害及移動速度" },
-  "200": { "name": "死亡誓約", "description": "你將持續承受混沌傷害" },
-  "201": { "name": "死亡誓約", "description": "你將持續承受混沌傷害" },
-  "202": { "name": "投射物返還", "description": "你的投射物會返還到自身" },
-  "203": { "name": "", "description": "" },
-  "204": { "name": "傷害光環", "description": "造成額外傷害" },
-  "205": { "name": "超級衝擊波", "description": "你所使用的衝擊波攻擊範圍更廣了" },
-  "206": { "name": "寒冰射線", "description": "你正受到冰寒連結的冰冷傷害及冰緩效果。" },
-  "207": { "name": "額外圖騰", "description": "你可以召喚額外的圖騰" },
-  "208": { "name": "神主標記", "description": "召喚幻影來阻撓你，它們會追著你並且進行自爆攻擊。" },
-  "209": { "name": "魔力護盾", "description": "當你受到傷害時，會優先扣除魔力值而非生命。" },
-  "210": { "name": "相位護罩", "description": "在力場之外的敵人無法對你造成直接傷害" },
-  "211": { "name": "燃火燒盡", "description": "你的燒盡將造成更多傷害並且巨大化" },
-  "212": { "name": "", "description": "" },
-  "213": { "name": "新星", "description": "在力場之外的敵人無法對你造成直接傷害" },
-  "214": { "name": "火力抑制", "description": "你的法術和遠程攻擊受到抑制，使得射擊與施放速度減緩。" },
-  "215": { "name": "感電地面", "description": "你站在感電地面上，受到的傷害將會增加。" },
-  "216": { "name": "致盲", "description": "當你站在煙霧中時命中率將會大幅下降" },
-  "217": { "name": "疾跑", "description": "你獲得額外的移動速度" },
-  "218": { "name": "陷阱、地雷與圖騰傷害", "description": "陷阱傷害、地雷傷害、召喚物傷害。" },
-  "219": { "name": "戴伯王子之淚", "description": "對惡魔生物造成額外的傷害，同時惡魔生物對你造成的傷害將會減少。" },
-  "220": { "name": "跑的快！", "description": "你獲得額外的移動速度" },
-  "221": { "name": "相位護罩", "description": "在力場之外的敵人無法對你造成直接傷害" },
-  "222": { "name": "冰凍地雷", "description": "你被冰凍地雷冰凍了，同時將失去冰冷抗性。" },
-  "223": { "name": "腐化之血", "description": "腐化之血讓你流血，使你受到物理持續傷害。" },
-  "224": { "name": "腐化之血雨", "description": "腐化之血雨讓你流血並同時受到物理持續傷害 － 快逃到安全的區域！" },
-  "225": { "name": "迅速神殿", "description": "你動的更快，且你的投射物速度也獲得提升。" },
-  "226": { "name": "狂擊神殿", "description": "你的攻擊造成更多傷害、會擊退敵人且增加敵人被你暈眩的時間。" },
-  "227": { "name": "荊棘神殿", "description": "你將反射部分的物理及元素傷害" },
-  "228": { "name": "回復神殿", "description": "你獲得額外的生命及魔力回復" },
-  "229": { "name": "鑽石神殿", "description": "你持續造成暴擊" },
-  "230": { "name": "燃燒神殿", "description": "你的周圍下起了火雨" },
-  "231": { "name": "雷霆神殿", "description": "你的周圍持續的放電" },
-  "232": { "name": "霜寒神殿", "description": "你的周圍將持續散發冰霜新星" },
-  "233": { "name": "靜電神殿", "description": "你將會持續散發電弧" },
-  "234": { "name": "迷霧神殿", "description": "你的周圍環繞著煙霧" },
-  "235": { "name": "骷髏神殿", "description": "你將被骷髏護衛所圍繞" },
-  "236": { "name": "迴響神殿", "description": "你的技能將會被重複施放" },
-  "237": { "name": "邪法神殿", "description": "你的打擊充滿怨念，會造成隨機的詛咒。" },
-  "238": { "name": "威猛神殿", "description": "你的體型、生命與範圍攻擊都獲得了強化。" },
-  "239": { "name": "無畏神殿", "description": "你獲得額外護甲，閃避值與能量護盾。" },
-  "240": { "name": "聖潔神殿", "description": "聖潔之力讓你不會受到任何傷害" },
-  "241": { "name": "抗性神殿", "description": "你獲得額外的元素抗性" },
-  "242": { "name": "遠射", "description": "測試" },
-  "243": { "name": "地雷陷阱測試", "description": "測試" },
-  "244": { "name": "", "description": "" },
-  "245": { "name": "", "description": "" },
-  "246": { "name": "卡魯族之血", "description": "在藥劑效果時間內你將無法回復生命，但效果結束後將會回滿生命。" },
-  "247": { "name": "拉維安加的聖杯", "description": "在藥劑效果時間內你的技能不需消耗魔力" },
-  "248": { "name": "獵頭者", "description": "你獲得所擊殺之稀有怪物的異能" },
-  "249": { "name": "難逃一死", "description": "等增益結束後，我就要回老家結婚了..." },
-  "250": { "name": "紅旗背負者", "description": "點擊右鍵丟棄。每一層效果將受到額外 50% 的傷害。" },
-  "251": { "name": "藍旗背負者", "description": "點擊右鍵丟棄。每一層效果將受到額外 50% 的傷害。" },
-  "252": { "name": "綠旗背負者", "description": "點擊右鍵丟棄。每一層效果將受到額外 50% 的傷害。" },
-  "253": { "name": "狂暴之怒", "description": "你獲得額外攻擊、施放及移動速度，並且減少受到的傷害。" },
-  "254": { "name": "沉默", "description": "你無法施放法術或戰吼" },
-  "255": { "name": "沉默", "description": "你無法施放法術" },
-  "256": { "name": "靈魂吞食", "description": "靈魂吞食" },
-  "257": {
-    "name": "靈魂吞食",
-    "description": "你獲得額外攻擊、施放速度，體型獲得強化，並且減少受到的物理、元素傷害。"
+  "CarlsTestCheat": { "name": "平衡", "description": "測試" },
+  "monster_aura_physical_thorns": {
+    "name": "物理反射光環",
+    "description": "周圍友軍反射物理傷害"
   },
-  "258": { "name": "", "description": "" },
-  "259": { "name": "", "description": "" },
-  "260": { "name": "閃電連結", "description": "你目前正受到閃電連結的閃電傷害" },
-  "261": { "name": "生命回復", "description": "你的生命正在回復" },
-  "262": { "name": "測試", "description": "測試" },
-  "263": { "name": "漩渦地雷", "description": "你的移動速度下降了" },
-  "264": { "name": "烈焰爆破", "description": "你正在使用烈焰爆破" },
-  "265": { "name": "免疫冰緩", "description": "你無法被冰緩" },
-  "266": { "name": "免疫冰凍", "description": "你無法被冰凍" },
-  "267": { "name": "免疫點燃", "description": "你無法被點燃" },
-  "268": { "name": "免疫感電", "description": "你無法被感電" },
-  "269": { "name": "死亡吐息", "description": "你所受到的詛咒效果將會受到強化" },
-  "270": { "name": "死亡吐息", "description": "你的傷害增加了" },
-  "271": { "name": "不潔傷害", "description": "在腐化不死者周圍的敵人與友軍會造成更多傷害。" },
-  "272": { "name": "海妖之嚎", "description": "你的移動速度下降了" },
-  "273": { "name": "血肉奉獻", "description": "你的攻擊、施放和移動速度增加。" },
-  "274": { "name": "骸骨奉獻", "description": "你獲得格擋、法術格擋和格擋時回復生命。" },
-  "275": { "name": "不潔之力", "description": "你將造成額外的混沌傷害，數值依據你的物理攻擊傷害而定。" },
-  "276": { "name": "不潔之力", "description": "你將造成額外的混沌傷害，數值依據你的物理攻擊傷害而定。" },
-  "277": { "name": "不潔之力", "description": "你將造成額外的混沌傷害，數值依據你的物理攻擊傷害而定。" },
-  "278": { "name": "", "description": "" },
-  "279": { "name": "", "description": "" },
-  "280": { "name": "", "description": "" },
-  "281": { "name": "", "description": "" },
-  "282": { "name": "", "description": "" },
-  "283": { "name": "瓦爾之怒", "description": "你正持續承受混沌傷害" },
-  "284": { "name": "", "description": "" },
-  "285": { "name": "", "description": "" },
-  "286": { "name": "", "description": "" },
-  "287": { "name": "女王的允諾", "description": "你能從造成的混沌傷害中偷取生命，並將造成額外的混沌傷害。" },
-  "288": { "name": "", "description": "" },
-  "289": { "name": "被標記", "description": "你已被箭矢鎖定" },
-  "290": { "name": "", "description": "" },
-  "291": { "name": "腐敗煙幕", "description": "你將持續承受物理傷害" },
-  "292": { "name": "", "description": "" },
-  "293": { "name": "", "description": "" },
-  "294": { "name": "", "description": "" },
-  "295": { "name": "", "description": "" },
-  "296": { "name": "", "description": "" },
-  "297": { "name": "", "description": "" },
-  "298": { "name": "動亂", "description": "你的移動速度已減低" },
-  "299": { "name": "強化不朽怒嚎", "description": "你的移動將不再會被敵人所阻礙" },
-  "300": { "name": "費爾船長的幸運", "description": "費爾船長為您帶來幸運！" },
-  "301": { "name": "迷彩", "description": "你融入了周圍的環境，獲得了額外的躲避以及法術躲避。" },
-  "302": { "name": "禁果", "description": "你正持續承受混沌傷害" },
-  "303": { "name": "", "description": "" },
-  "304": { "name": "", "description": "" },
-  "305": { "name": "暴怒", "description": "@#%*)@#%*@^)" },
-  "306": { "name": "魯米的靈藥", "description": "你獲得額外的機率以阻擋攻擊和法術" },
-  "307": { "name": "背負卡魯之靈", "description": "背負卡魯之靈回到入口" },
-  "308": { "name": "", "description": "地雷爆發距離 +%、地雷持續時間 +%" },
-  "309": { "name": "", "description": "召喚物傷害 +%" },
-  "310": { "name": "黑暗潛伏", "description": "能見度、物品稀有度、物品數量隨著時間遞減，並在擊殺時增加。" },
-  "311": { "name": "物理傷害免疫", "description": "你對物理傷害免疫" },
-  "312": { "name": "移動速度減低（流血）", "description": "你的移動速度已減低" },
-  "313": { "name": "迷蹤狀態", "description": "你在迷蹤狀態，移動時不會被敵人阻擋。" },
-  "314": { "name": "", "description": "" },
-  "315": { "name": "", "description": "" },
-  "316": { "name": "", "description": "" },
-  "317": { "name": "", "description": "" },
-  "318": { "name": "", "description": "" },
-  "319": { "name": "", "description": "" },
-  "320": {
-    "name": "灰燼之捷",
-    "description": "你造成額外火焰傷害，並在殺死敵人時將溢出的傷害以點燃的方式擴散給附近的敵人"
+  "monster_aura_elemental_thorns": {
+    "name": "元素反射光環",
+    "description": "周圍友軍反射元素傷害"
   },
-  "321": { "name": "寒冰之捷", "description": "你造成額外冰冷傷害，在粉碎敵人時對附近的敵人造成冰冷傷害" },
-  "322": { "name": "閃電之捷", "description": "你造成額外閃電傷害，並在殺死感電狀態的敵人時會呼喚一道雷霆降臨。" },
-  "323": { "name": "", "description": "" },
-  "324": { "name": "傷害免疫", "description": "免疫所有傷害" },
-  "325": { "name": "", "description": "" },
-  "326": { "name": "", "description": "" },
-  "327": { "name": "", "description": "" },
-  "328": { "name": "", "description": "" },
-  "329": { "name": "", "description": "" },
-  "330": { "name": "", "description": "" },
-  "331": { "name": "", "description": "" },
-  "332": { "name": "", "description": "" },
-  "333": { "name": "", "description": "" },
-  "334": { "name": "", "description": "" },
-  "335": { "name": "", "description": "" },
-  "336": { "name": "火傷與點燃", "description": "火焰傷害與點燃" },
-  "337": { "name": "冰傷與冰凍", "description": "冰冷傷害與冰凍" },
-  "338": { "name": "電傷與感電", "description": "閃電傷害與感電" },
-  "339": { "name": "火焰傷害", "description": "火焰傷害" },
-  "340": { "name": "冰冷傷害", "description": "冰冷傷害" },
-  "341": { "name": "閃電傷害", "description": "閃電傷害" },
-  "342": { "name": "物傷與流血", "description": "額外傷害與流血" },
-  "343": { "name": "", "description": "" },
-  "344": { "name": "測試用", "description": "發射螺旋投射物" },
-  "345": { "name": "暴怒", "description": "在混沌鏈結中受到持續混沌傷害" },
-  "346": { "name": "沙暴", "description": "你正受到持續的物理傷害" },
-  "347": { "name": "聚魂", "description": "你從死亡的血族成員中聚集魂魄，獲得力量與體型增大" },
-  "348": { "name": "", "description": "" },
-  "349": { "name": "守護之靈", "description": "死亡的血族成員正保護著你" },
-  "350": { "name": "", "description": "" },
-  "351": { "name": "", "description": "" },
-  "352": { "name": "", "description": "" },
-  "353": { "name": "", "description": "" },
-  "354": { "name": "寒冰之刺", "description": "被擊中時反射冰冷傷害" },
-  "355": { "name": "燃燒光環", "description": "在光環內持續受到燃燒傷害" },
-  "356": { "name": "寒冷光環", "description": "在光環內所有動作受到緩速" },
-  "357": { "name": "脆弱光環", "description": "在光環內受到額外傷害" },
-  "358": { "name": "充能打擊", "description": "充能打擊在能量釋放時對周圍造成範圍傷害" },
-  "359": { "name": "", "description": "隱蔽" },
-  "360": { "name": "", "description": "" },
-  "361": { "name": "", "description": "" },
-  "362": { "name": "", "description": "" },
-  "363": { "name": "", "description": "" },
-  "364": { "name": "", "description": "" },
-  "365": { "name": "", "description": "" },
-  "366": { "name": "野性殘暴", "description": "額外物理傷害與攻擊速度" },
-  "367": {
-    "name": "酷寒憎恨",
-    "description": "造成額外冰冷傷害，同時自身受到依據物理傷害比例的冰冷傷害。有機率不被冰凍及冰緩"
+  "monster_physical_thorns": {
+    "name": "物理反射",
+    "description": "反射物理傷害"
   },
-  "368": { "name": "凝滯之息", "description": "降低生命、魔力與能量護盾回復速度" },
-  "369": { "name": "混沌沙暴", "description": "你正受到混沌持續傷害" },
-  "370": { "name": "旋渦", "description": "你正受到冰冷持續傷害" },
-  "371": { "name": "狂牛銳角", "description": "你被擊中時反射物理和元素傷害" },
-  "372": { "name": "傷害光環", "description": "你的傷害增加了" },
-  "373": { "name": "", "description": "" },
-  "374": { "name": "激勵戰吼", "description": "你造成更多傷害及獲得額外魔力回復" },
-  "375": { "name": "", "description": "" },
-  "376": { "name": "", "description": "" },
-  "377": { "name": "深淵戰吼", "description": "你的移動速度減慢" },
-  "378": { "name": "塑型者之籽", "description": "獲得生命回復及增加魔力回復" },
-  "379": { "name": "元素之癒", "description": "受到元素傷害時將會轉化為對你的治療" },
-  "380": { "name": "", "description": "" },
-  "381": { "name": "", "description": "" },
-  "382": { "name": "護體", "description": "你在被擊中時受到的傷害減少" },
-  "383": { "name": "被嘲諷", "description": "你對沒有嘲諷你的敵人所造成傷害減少" },
-  "384": { "name": "", "description": "" },
-  "385": { "name": "", "description": "" },
-  "386": { "name": "", "description": "" },
-  "387": { "name": "點燃", "description": "你身上起火啦！" },
-  "388": { "name": "屬性偷竊", "description": "你已獲得擊殺稀有怪物的隨機一項屬性" },
-  "389": { "name": "寒冰魔像", "description": "在寒冰魔像啟動時增加命中和暴擊率" },
-  "390": { "name": "烈焰魔像", "description": "在烈焰魔像啟動時增加傷害" },
-  "391": { "name": "混沌魔像", "description": "在混沌魔像啟動時獲得額外物理傷害減傷" },
-  "392": { "name": "雷電魔像", "description": "在雷電魔像啟動時獲得額外攻擊速度和施放速度" },
-  "393": { "name": "存在王者之刃", "description": "附近有友軍使用王者之刃時，你獲得撲殺效果。" },
-  "394": { "name": "存在王者之刃", "description": "附近有友軍使用王者之刃時，你獲得撲殺效果和增加物品稀有度。" },
-  "395": { "name": "派蒂之怒", "description": "每疊加一層派蒂之怒將會受到更多傷害" },
-  "396": { "name": "堅決戰吼", "description": "獲得生命回復" },
-  "397": { "name": "", "description": "" },
-  "398": { "name": "", "description": "" },
-  "399": { "name": "", "description": "" },
-  "400": { "name": "懲戒者", "description": "你造成更多近戰傷害並獲得額外攻擊速度" },
-  "401": { "name": "", "description": "" },
-  "402": {
+  "monster_elemental_thorns": {
+    "name": "元素反射",
+    "description": "反射元素傷害"
+  },
+  "monster_aura_medium_physical_damage": {
+    "name": "物理增傷光環",
+    "description": "周圍友軍增加物理傷害"
+  },
+  "monster_aura_large_physical_damage": {
+    "name": "強化物理增傷光環",
+    "description": "周圍友軍大幅增加物理傷害"
+  },
+  "monster_aura_speed": {
+    "name": "速度光環",
+    "description": "周圍友軍增加攻擊與移動速度"
+  },
+  "monster_aura_life_regen": {
+    "name": "生命回復光環",
+    "description": "周圍友軍增加每秒生命回復"
+  },
+  "monster_aura_resists": {
+    "name": "抗性光環",
+    "description": "周圍友軍增加元素抗性"
+  },
+  "monster_aura_energy_shield": {
+    "name": "護盾光環",
+    "description": "周圍友軍獲得能量護盾"
+  },
+  "monster_aura_energy_shield_bubble": {
+    "name": "護盾光環",
+    "description": "周圍友軍獲得能量護盾"
+  },
+  "monster_aura_accuracy_and_crits": {
+    "name": "精準暴擊光環",
+    "description": "周圍友軍增加命中與暴擊機率"
+  },
+  "monster_aura_pus_puke_degen": {
+    "name": "退化光環",
+    "description": "敵人持續受到混沌傷害"
+  },
+  "monster_aura_chaos_degen": {
+    "name": "退化光環",
+    "description": "敵人持續受到混沌傷害"
+  },
+  "monster_aura_physical_degen": {
+    "name": "退化光環",
+    "description": "敵人持續受到物理傷害"
+  },
+  "monster_aura_lightning_degen": {
+    "name": "退化光環",
+    "description": "敵人持續受到閃電傷害"
+  },
+  "monster_aura_elemental_damage": {
+    "name": "元素傷害光環",
+    "description": "周圍友軍獲得額外元素傷害"
+  },
+  "monster_aura_essence_daemon_degen": {
+    "name": "退化光環",
+    "description": "敵人持續受到混沌傷害"
+  },
+  "monster_thorns_physical": { "name": "反射", "description": "反射物理傷害" },
+  "monster_thorns_elemental": { "name": "反射", "description": "反射元素傷害" },
+  "monster_thorns_physical_large": {
+    "name": "反射",
+    "description": "反射物理傷害"
+  },
+  "monster_thorns_elemental_large": {
+    "name": "反射",
+    "description": "反射元素傷害"
+  },
+  "monster_thorns_bloodline": {
+    "name": "反射",
+    "description": "你獲得額外護甲值直到護盾爆炸"
+  },
+  "monster_thorns_bloodline_large_model": {
+    "name": "反射",
+    "description": "你現在比較容易暴擊"
+  },
+  "dominated": { "name": "被霸氣控制的", "description": "你獲得額外火焰抗性" },
+  "dominating_blow_hit_buff": {
+    "name": "被霸氣之擊擊中",
+    "description": "你獲得額外冰冷抗性"
+  },
+  "immortal_call": { "name": "不朽怒嚎", "description": "你對物理傷害免疫" },
+  "vaal_immortal_call": { "name": "瓦爾不朽怒嚎", "description": "你不會死亡" },
+  "monty_haul": { "name": "寶藏！", "description": "掉落測試" },
+  "lightning_shield": {
+    "name": "暴風之盾",
+    "description": "你獲得額外的盾牌格擋率，格擋時重置持續時間。"
+  },
+  "fire_shield": {
+    "name": "熔岩護盾",
+    "description": "你獲得額外護甲值直到護盾爆炸"
+  },
+  "flask_utility_critical_strike_chance": {
+    "name": "寶鑽藥劑",
+    "description": "你現在比較容易暴擊"
+  },
+  "flask_utility_resist_fire": {
+    "name": "紅玉藥劑",
+    "description": "你獲得額外火焰抗性和最大火焰抗性"
+  },
+  "flask_utility_resist_cold": {
+    "name": "藍玉藥劑",
+    "description": "你獲得額外冰冷抗性和最大冰冷抗性"
+  },
+  "flask_utility_resist_lightning": {
+    "name": "黃玉藥劑",
+    "description": "你獲得額外閃電抗性和最大閃電抗性"
+  },
+  "flask_utility_ironskin": {
+    "name": "堅岩藥劑",
+    "description": "你獲得額外的護甲值"
+  },
+  "flask_utility_sprint": {
+    "name": "水銀藥劑",
+    "description": "你獲得額外的移動速度"
+  },
+  "flask_utility_resist_chaos": {
+    "name": "紫晶藥劑",
+    "description": "你獲得額外的混沌抗性"
+  },
+  "flask_utility_phase": {
+    "name": "石英藥劑",
+    "description":
+      "你獲得迷蹤狀態和額外法術、攻擊躲避機率，你的移動不會被敵人阻擋"
+  },
+  "flask_utility_evasion": {
+    "name": "翠玉藥劑",
+    "description": "你獲得額外的閃避值"
+  },
+  "flask_utility_stone": {
+    "name": "石化藥劑",
+    "description": "你獲得額外的物理傷害減免"
+  },
+  "flask_utility_aquamarine": {
+    "name": "海藍藥劑",
+    "description": "你有機率避免受到冰冷傷害"
+  },
+  "flask_utility_prismatic": {
+    "name": "灰岩藥劑",
+    "description": "你獲得額外的元素抗性"
+  },
+  "flask_utility_smoke": {
+    "name": "迷霧藥劑",
+    "description": "你獲得更多的閃避"
+  },
+  "flask_utility_consecrate": {
+    "name": "硫磺藥劑",
+    "description": "你獲得額外的傷害"
+  },
+  "flask_utility_haste": { "name": "真銀藥劑", "description": "你獲得猛攻" },
+  "monster_aura_cannot_die": {
+    "name": "不死光環",
+    "description": "周圍的友軍不會死亡"
+  },
+  "monster_aura_slow": {
+    "name": "緩速光環",
+    "description": "周圍的敵軍被緩速"
+  },
+  "monster_aura_damage_reduction": {
+    "name": "減傷光環",
+    "description": "周圍的友軍承受較少傷害"
+  },
+  "elemental_equilibrium_buff": {
+    "name": "元素之相",
+    "description": "你正受到元素之相影響。你的抗性暫時發生了變化。"
+  },
+  "hidden_monster": { "name": "", "description": "" },
+  "block_test": { "name": "格擋測試", "description": "我要擋十個！" },
+  "bleeding": {
+    "name": "放血",
+    "description":
+      "你正在流血，使你受到持續性的物理傷害。移動時將會受到額外的傷害。"
+  },
+  "bleeding_moving": { "name": "", "description": "" },
+  "player_aura_armour": { "name": "堅定光環", "description": "獲得額外護甲" },
+  "player_aura_evasion": { "name": "優雅光環", "description": "獲得額外閃避" },
+  "player_aura_resists": {
+    "name": "元素淨化光環",
+    "description": "增加所有元素抗性"
+  },
+  "player_aura_fire_resist": {
+    "name": "火焰淨化光環",
+    "description": "增加額外火焰抗性"
+  },
+  "player_aura_cold_resist": {
+    "name": "冰冷淨化光環",
+    "description": "增加額外冰冷抗性"
+  },
+  "player_aura_lightning_resist": {
+    "name": "閃電淨化光環",
+    "description": "增加額外閃電抗性"
+  },
+  "player_aura_energy_shield": {
+    "name": "紀律光環",
+    "description": "增加額外的能量護盾和增加能量護盾回復率"
+  },
+  "player_aura_fire_damage": {
+    "name": "憤怒光環",
+    "description": "增加額外的火焰傷害"
+  },
+  "player_aura_cold_damage": {
+    "name": "憎恨光環",
+    "description": "增加等同物理傷害一定數值的額外冰冷傷害"
+  },
+  "player_aura_lightning_damage": {
+    "name": "雷霆光環",
+    "description": "增加額外閃電傷害"
+  },
+  "player_aura_speed": {
+    "name": "迅捷光環",
+    "description": "增加攻擊與施放速度"
+  },
+  "player_aura_life_regen": {
+    "name": "活力光環",
+    "description": "增加生命回復"
+  },
+  "power_shot_hit": {
+    "name": "被力量抽取擊中",
+    "description":
+      "如果你在被力量抽取擊中的情況下死亡，你將會產生一個暴擊能量球"
+  },
+  "player_aura_mana_regen": {
+    "name": "清晰光環",
+    "description": "增加魔力回復"
+  },
+  "vaal_aura_armour": {
+    "name": "瓦爾堅定光環",
+    "description": "增加額外護甲和抗性"
+  },
+  "vaal_aura_life_regen": {
+    "name": "瓦爾活力光環",
+    "description": "增加生命回復"
+  },
+  "vaal_aura_no_mana_cost": {
+    "name": "瓦爾清晰光環",
+    "description": "施放技能不消耗魔力"
+  },
+  "vaal_aura_dodge": {
+    "name": "瓦爾優雅光環",
+    "description": "增加額外躲避機率"
+  },
+  "vaal_aura_energy_shield": {
+    "name": "瓦爾紀律光環",
+    "description": "增加額外能量護盾，並且不會因為受到攻擊而延遲護盾的回復。"
+  },
+  "vaal_aura_speed": {
+    "name": "瓦爾迅捷光環",
+    "description": "額外增加施放、攻擊以及移動速度。"
+  },
+  "beartrap_debuff": {
+    "name": "被陷阱夾住",
+    "description": "你被捕熊陷阱夾住了"
+  },
+  "trap_convert_buff": {
+    "name": "變換陣營",
+    "description": "你暫時被轉換到另一方了"
+  },
+  "ground_fire_burn": {
+    "name": "燃燒地面",
+    "description": "你站在燃燒的地面上並持續受到火焰傷害"
+  },
+  "ground_ice_chill": {
+    "name": "冰凍地面",
+    "description": "你站在結冰的地面上並將持續被冰緩"
+  },
+  "ground_tar_slow": {
+    "name": "汙油地面",
+    "description": "你站在佈滿焦油的地板上且移動速度受到減緩"
+  },
+  "monster_no_drops_buff": { "name": "", "description": "" },
+  "totem_aura_life_regen": {
+    "name": "回春圖騰光環",
+    "description": "增加生命回復"
+  },
+  "totem_aura_life_mana_regen": {
+    "name": "生命與魔力回復圖騰光環",
+    "description": "增加生命和魔力回復"
+  },
+  "monster_aura_cold_damage": {
+    "name": "冰冷傷害光環",
+    "description": "周圍友軍造成額外冰冷傷害"
+  },
+  "monster_aura_fire_damage": {
+    "name": "火焰傷害光環",
+    "description": "周圍友軍造成額外火焰傷害"
+  },
+  "monster_aura_lightning_damage": {
+    "name": "閃電傷害光環",
+    "description": "周圍友軍造成額外閃電傷害"
+  },
+  "ambrosia_aura_fire_damage": {
+    "name": "火焰傷害光環",
+    "description": "周圍友軍造成額外火焰傷害"
+  },
+  "amarissa_aura_lightning_damage": {
+    "name": "閃電傷害光環",
+    "description": "周圍友軍造成額外閃電傷害"
+  },
+  "blinded": { "name": "致盲", "description": "你的命中率大幅降低" },
+  "monster_aura_always_crit": {
+    "name": "必定暴擊光環",
+    "description": "周圍的友軍必定暴擊"
+  },
+  "monster_aura_evasion": {
+    "name": "閃避光環",
+    "description": "周圍友軍獲得額外的閃避"
+  },
+  "ice_shield": {
     "name": "極地裝甲",
-    "description": "擊中敵人時造成冰緩。移動時造成冰結地面。當靜止不動時減少受到的物理及火焰傷害。"
+    "description": "持續消耗魔力，但你獲得部分的物理及火焰傷害減免。"
   },
-  "403": { "name": "", "description": "" },
-  "404": { "name": "獅吼", "description": "你造成更多近戰物理傷害並會擊退敵人。" },
-  "405": { "name": "", "description": "" },
-  "406": { "name": "", "description": "" },
-  "407": { "name": "閃耀精華", "description": "混沌傷害無法穿透能量護盾" },
-  "408": { "name": "閃耀精華", "description": "" },
-  "409": {
+  "ice_shield_moving": { "name": "", "description": "" },
+  "frozen_damage_increase": {
+    "name": "冰凍傷害增加",
+    "description": "你將受到更多傷害"
+  },
+  "red_team": { "name": "紅隊", "description": "你現在是紅隊。" },
+  "blue_team": { "name": "籃隊", "description": "你現在是藍隊。" },
+  "minion_red_team": { "name": "紅隊", "description": "你現在是紅隊。" },
+  "minion_blue_team": { "name": "籃隊", "description": "你現在是藍隊。" },
+  "trap_red_team": { "name": "紅隊", "description": "你現在是紅隊。" },
+  "trap_blue_team": { "name": "籃隊", "description": "你現在是藍隊。" },
+  "cheat_alternate_skill_art": {
+    "name": "作弊",
+    "description": "你現在使用的是替換的技能模組"
+  },
+  "lightning_thorns": {
+    "name": "閃電護盾",
+    "description": "你被擊中時發射閃電投射物"
+  },
+  "piety_fire_form": { "name": "", "description": "" },
+  "piety_ice_form": { "name": "", "description": "" },
+  "piety_transformed_debuff": { "name": "", "description": "" },
+  "cheat_blood_override": {
+    "name": "血量金手指",
+    "description": "你站在腐蝕地面上，將受到持續性的混沌傷害"
+  },
+  "leaving_area_protection": { "name": "", "description": "" },
+  "awesomerorybuff": { "name": "", "description": "不死光環" },
+  "strdexint": { "name": "", "description": "三相之力" },
+  "vinktar_lightning_bond_in_beam": {
+    "name": "閃電連結",
+    "description": "你正受到閃電連結的閃電傷害"
+  },
+  "searing_bond_in_beam": {
+    "name": "灼熱連結",
+    "description": "你正受到灼熱連結的燃燒傷害"
+  },
+  "minionstest": { "name": "召喚測試", "description": "測試" },
+  "projectiletest": { "name": "投射物測試", "description": "測試" },
+  "durationtest": { "name": "持久測試", "description": "測試" },
+  "totemtest": { "name": "圖騰測試", "description": "測試" },
+  "traptest": { "name": "陷阱測試", "description": "測試" },
+  "ground_desecration": {
+    "name": "腐化地面",
+    "description": "你站在腐蝕地面上，將受到持續性的混沌傷害"
+  },
+  "ground_consecration": { "name": "奉獻地面", "description": "獲得生命回復" },
+  "footstep_cheat": { "name": "腳印", "description": "你正在使用足跡特效" },
+  "unique_flask_ghost_reaver": {
+    "name": "鬼盜",
+    "description": "生命偷取應用於能量護盾"
+  },
+  "unique_flask_zealots_oath": {
+    "name": "狂熱者的誓言",
+    "description": "生命回復應用於能量護盾"
+  },
+  "unique_flask_zerphis_last_breath": {
+    "name": "澤佛伊的終息",
+    "description": "技能魔力消耗將依照比率回復生命"
+  },
+  "flask_immune_to_damage": { "name": "免疫", "description": "你對傷害免疫" },
+  "unique_flask_divination_distillate": {
+    "name": "淬鍊占卜",
+    "description":
+      "獲得額外物品數量與稀有度增幅，並最大化所有抗性數值及視野範圍。"
+  },
+  "onslaught": {
+    "name": "猛攻狀態",
+    "description": "獲得額外攻擊速度、施放速度及移動速度。"
+  },
+  "undying_rage": {
+    "name": "不朽狂暴",
+    "description": "獲得額外物理攻擊傷害及移動速度"
+  },
+  "unique_deaths_oath_aura": {
+    "name": "死亡誓約",
+    "description": "你將持續承受混沌傷害"
+  },
+  "unique_deaths_oath_debuff": {
+    "name": "死亡誓約",
+    "description": "你將持續承受混沌傷害"
+  },
+  "projectile_homing_test": {
+    "name": "投射物返還",
+    "description": "你的投射物會返還到自身"
+  },
+  "birdman_consume_corpse_buff": { "name": "", "description": "" },
+  "damage_aura": { "name": "傷害光環", "description": "造成額外傷害" },
+  "reave_counter": {
+    "name": "超級衝擊波",
+    "description": "你所使用的衝擊波攻擊範圍更廣了"
+  },
+  "chilling_bond_in_beam": {
+    "name": "寒冰射線",
+    "description": "你正受到冰寒連結的冰冷傷害及冰緩效果。"
+  },
+  "additional_totems_test": {
+    "name": "額外圖騰",
+    "description": "你可以召喚額外的圖騰"
+  },
+  "dominus_mark": {
+    "name": "神主標記",
+    "description": "召喚幻影來阻撓你，它們會追著你並且進行自爆攻擊。"
+  },
+  "manashield": {
+    "name": "魔力護盾",
+    "description": "當你受到傷害時，會優先扣除魔力值而非生命。"
+  },
+  "proximity_shield_aura": {
+    "name": "相位護罩",
+    "description": "在力場之外的敵人無法對你造成直接傷害"
+  },
+  "incinerate_counter": {
+    "name": "燃火燒盡",
+    "description": "你的燒盡將造成更多傷害並且巨大化"
+  },
+  "chilled_burn_damage_increase": { "name": "", "description": "" },
+  "testnova": {
+    "name": "新星",
+    "description": "在力場之外的敵人無法對你造成直接傷害"
+  },
+  "suppressing_fire": {
+    "name": "火力抑制",
+    "description": "你的法術和遠程攻擊受到抑制，使得射擊與施放速度減緩。"
+  },
+  "ground_lightning_shock": {
+    "name": "感電地面",
+    "description": "你站在感電地面上，受到的傷害將會增加。"
+  },
+  "ground_smoke_blind": {
+    "name": "致盲",
+    "description": "當你站在煙霧中時命中率將會大幅下降"
+  },
+  "smoke_mine_movement_speed": {
+    "name": "疾跑",
+    "description": "你獲得額外的移動速度"
+  },
+  "trapdamage": {
+    "name": "陷阱、地雷與圖騰傷害",
+    "description": "陷阱傷害、地雷傷害、召喚物傷害。"
+  },
+  "unique_flask_tears_of_the_dybbuk_prince": {
+    "name": "戴伯王子之淚",
+    "description":
+      "對惡魔生物造成額外的傷害，同時惡魔生物對你造成的傷害將會減少。"
+  },
+  "movement_speed_buff": {
+    "name": "跑的快！",
+    "description": "你獲得額外的移動速度"
+  },
+  "proximity_shield_buff": {
+    "name": "相位護罩",
+    "description": "在力場之外的敵人無法對你造成直接傷害"
+  },
+  "freeze_mine_cold_resistsance_debuff": {
+    "name": "冰凍地雷",
+    "description": "你被冰凍地雷冰凍了，同時將失去冰冷抗性。"
+  },
+  "corrupted_blood": {
+    "name": "腐化之血",
+    "description": "腐化之血讓你流血，使你受到物理持續傷害。"
+  },
+  "corrupted_blood_rain": {
+    "name": "腐化之血雨",
+    "description":
+      "腐化之血雨讓你流血並同時受到物理持續傷害 － 快逃到安全的區域！"
+  },
+  "shrine_acceleration": {
+    "name": "迅速神殿",
+    "description": "你動的更快，且你的投射物速度也獲得提升。"
+  },
+  "shrine_brutal": {
+    "name": "狂擊神殿",
+    "description": "你的攻擊造成更多傷害、會擊退敵人且增加敵人被你暈眩的時間。"
+  },
+  "shrine_thorns": {
+    "name": "荊棘神殿",
+    "description": "你將反射部分的物理及元素傷害"
+  },
+  "shrine_regen": {
+    "name": "回復神殿",
+    "description": "你獲得額外的生命及魔力回復"
+  },
+  "shrine_critical": { "name": "鑽石神殿", "description": "你持續造成暴擊" },
+  "shrine_fire": { "name": "燃燒神殿", "description": "你的周圍下起了火雨" },
+  "shrine_lightning": {
+    "name": "雷霆神殿",
+    "description": "你的周圍持續的放電"
+  },
+  "shrine_cold": {
+    "name": "霜寒神殿",
+    "description": "你的周圍將持續散發冰霜新星"
+  },
+  "shrine_arc": { "name": "靜電神殿", "description": "你將會持續散發電弧" },
+  "shrine_smoke": { "name": "迷霧神殿", "description": "你的周圍環繞著煙霧" },
+  "shrine_skeleton": {
+    "name": "骷髏神殿",
+    "description": "你將被骷髏護衛所圍繞"
+  },
+  "shrine_echoing": {
+    "name": "迴響神殿",
+    "description": "你的技能將會被重複施放"
+  },
+  "shrine_curses": {
+    "name": "邪法神殿",
+    "description": "你的打擊充滿怨念，會造成隨機的詛咒。"
+  },
+  "shrine_massive": {
+    "name": "威猛神殿",
+    "description": "你的體型、生命與範圍攻擊都獲得了強化。"
+  },
+  "shrine_defence": {
+    "name": "無畏神殿",
+    "description": "你獲得額外護甲，閃避值與能量護盾。"
+  },
+  "shrine_godmode": {
+    "name": "聖潔神殿",
+    "description": "聖潔之力讓你不會受到任何傷害"
+  },
+  "shrine_resistance": {
+    "name": "抗性神殿",
+    "description": "你獲得額外的元素抗性"
+  },
+  "farshot": { "name": "遠射", "description": "測試" },
+  "mine_trap_test": { "name": "地雷陷阱測試", "description": "測試" },
+  "animated_armour": { "name": "", "description": "" },
+  "tower_demon_explode": { "name": "", "description": "" },
+  "unique_flask_blood_of_the_karui": {
+    "name": "卡魯族之血",
+    "description":
+      "在藥劑效果時間內你將無法回復生命，但效果結束後將會回滿生命。"
+  },
+  "unique_flask_laviangas_cup": {
+    "name": "拉維安加的聖杯",
+    "description": "在藥劑效果時間內你的技能不需消耗魔力"
+  },
+  "stolen_mods_buff": {
+    "name": "獵頭者",
+    "description": "你獲得所擊殺之稀有怪物的異能"
+  },
+  "oba_death_buff": {
+    "name": "難逃一死",
+    "description": "等增益結束後，我就要回老家結婚了..."
+  },
+  "ctf_have_red_flag": {
+    "name": "紅旗背負者",
+    "description": "點擊右鍵丟棄。每一層效果將受到額外 50% 的傷害。"
+  },
+  "ctf_have_blue_flag": {
+    "name": "藍旗背負者",
+    "description": "點擊右鍵丟棄。每一層效果將受到額外 50% 的傷害。"
+  },
+  "ctf_have_green_flag": {
+    "name": "綠旗背負者",
+    "description": "點擊右鍵丟棄。每一層效果將受到額外 50% 的傷害。"
+  },
+  "nemesis_transformed": {
+    "name": "狂暴之怒",
+    "description": "你獲得額外攻擊、施放及移動速度，並且減少受到的傷害。"
+  },
+  "curse_silence": { "name": "沉默", "description": "你無法施放法術或戰吼" },
+  "curse_aura_silence": { "name": "沉默", "description": "你無法施放法術" },
+  "soul_eater_aura": { "name": "靈魂吞食", "description": "靈魂吞食" },
+  "soul_eater": {
+    "name": "靈魂吞食",
+    "description":
+      "你獲得額外攻擊、施放速度，體型獲得強化，並且減少受到的物理、元素傷害。"
+  },
+  "frostwall_epk": { "name": "", "description": "" },
+  "nemesis_stealth_mode": { "name": "", "description": "" },
+  "seawitch_lightning_beam": {
+    "name": "閃電連結",
+    "description": "你目前正受到閃電連結的閃電傷害"
+  },
+  "usemax_life_regen": {
+    "name": "生命回復",
+    "description": "你的生命正在回復"
+  },
+  "statusailmenttest": { "name": "測試", "description": "測試" },
+  "vortex_mine": { "name": "漩渦地雷", "description": "你的移動速度下降了" },
+  "charged_blast_counter": {
+    "name": "烈焰爆破",
+    "description": "你正在使用烈焰爆破"
+  },
+  "chill_prevention": { "name": "免疫冰緩", "description": "你無法被冰緩" },
+  "freeze_prevention": { "name": "免疫冰凍", "description": "你無法被冰凍" },
+  "ignite_prevention": { "name": "免疫點燃", "description": "你無法被點燃" },
+  "shock_prevention": { "name": "免疫感電", "description": "你無法被感電" },
+  "unique_dying_breath_curse_aura": {
+    "name": "死亡吐息",
+    "description": "你所受到的詛咒效果將會受到強化"
+  },
+  "unique_dying_breath_damage_aura": {
+    "name": "死亡吐息",
+    "description": "你的傷害增加了"
+  },
+  "int_mission_dying_breath_aura": {
+    "name": "不潔傷害",
+    "description": "在腐化不死者周圍的敵人與友軍會造成更多傷害。"
+  },
+  "sea_witch_screech_debuff": {
+    "name": "海妖之嚎",
+    "description": "你的移動速度下降了"
+  },
+  "offering_offensive": {
+    "name": "血肉奉獻",
+    "description": "你的攻擊、施放和移動速度增加。"
+  },
+  "offering_defensive": {
+    "name": "骸骨奉獻",
+    "description": "你獲得格擋、法術格擋和格擋時回復生命。"
+  },
+  "unholy_might": {
+    "name": "不潔之力",
+    "description": "你將造成額外的混沌傷害，數值依據你的物理攻擊傷害而定。"
+  },
+  "unholy_might_permanent": {
+    "name": "不潔之力",
+    "description": "你將造成額外的混沌傷害，數值依據你的物理攻擊傷害而定。"
+  },
+  "unholy_might_from_flask": {
+    "name": "不潔之力",
+    "description": "你將造成額外的混沌傷害，數值依據你的物理攻擊傷害而定。"
+  },
+  "daemon_delay": { "name": "", "description": "" },
+  "fire_enrage": { "name": "", "description": "" },
+  "atziri_fire_charge": { "name": "", "description": "" },
+  "atziri_lightning_charge": { "name": "", "description": "" },
+  "atziri_physical_charge": { "name": "", "description": "" },
+  "vaal_twin_enrage": {
+    "name": "瓦爾之怒",
+    "description": "你正持續承受混沌傷害"
+  },
+  "demon_one_enrage": { "name": "", "description": "" },
+  "demon_two_enrage": { "name": "", "description": "" },
+  "demon_three_enrage": { "name": "", "description": "" },
+  "unique_flask_atziris_promise": {
+    "name": "女王的允諾",
+    "description": "你能從造成的混沌傷害中偷取生命，並將造成額外的混沌傷害。"
+  },
+  "kiweth_enrage": { "name": "", "description": "" },
+  "pinned": { "name": "被標記", "description": "你已被箭矢鎖定" },
+  "vaal_cloud_stack": { "name": "", "description": "" },
+  "vaal_cloud": { "name": "腐敗煙幕", "description": "你將持續承受物理傷害" },
+  "cannot_die": { "name": "", "description": "" },
+  "atziri_charge_requirement_reduction": { "name": "", "description": "" },
+  "atziri_demon_summoning": { "name": "", "description": "" },
+  "status_immunity_enrage": { "name": "", "description": "" },
+  "summoned_monster_epk_buff": { "name": "", "description": "" },
+  "pvp_keep_animated_armour_dead": { "name": "", "description": "" },
+  "upheavalbuff": { "name": "動亂", "description": "你的移動速度已減低" },
+  "godmode_west": {
+    "name": "強化不朽怒嚎",
+    "description": "你的移動將不再會被敵人所阻礙"
+  },
+  "garena_drops_display_buff": {
+    "name": "費爾船長的幸運",
+    "description": "費爾船長為您帶來幸運！"
+  },
+  "camoflage": {
+    "name": "迷彩",
+    "description": "你融入了周圍的環境，獲得了額外的躲避以及法術躲避。"
+  },
+  "unique_flask_forbidden_taste": {
+    "name": "禁果",
+    "description": "你正持續承受混沌傷害"
+  },
+  "darkexile_corruption": { "name": "", "description": "" },
+  "darkseawitch_corruption": { "name": "", "description": "" },
+  "rampage_stack": { "name": "暴怒", "description": "@#%*)@#%*@^)" },
+  "unique_flask_rumis_concoction": {
+    "name": "魯米的靈藥",
+    "description": "你獲得額外的機率以阻擋攻擊和法術"
+  },
+  "marauder_mission_have_idol": {
+    "name": "背負卡魯之靈",
+    "description": "背負卡魯之靈回到入口"
+  },
+  "mine_test": {
+    "name": "",
+    "description": "地雷爆發距離 +%、地雷持續時間 +%"
+  },
+  "minion_stat_test": { "name": "", "description": "召喚物傷害 +%" },
+  "cagan_darkness": {
+    "name": "黑暗潛伏",
+    "description": "能見度、物品稀有度、物品數量隨著時間遞減，並在擊殺時增加。"
+  },
+  "physical_immunity": {
+    "name": "物理傷害免疫",
+    "description": "你對物理傷害免疫"
+  },
+  "bleeding_movespeed_penalty": {
+    "name": "移動速度減低（流血）",
+    "description": "你的移動速度已減低"
+  },
+  "phasing_buff": {
+    "name": "迷蹤狀態",
+    "description": "你在迷蹤狀態，移動時不會被敵人阻擋。"
+  },
+  "mission_relic_grace": { "name": "", "description": "" },
+  "mission_duelist_grace": { "name": "", "description": "" },
+  "hound_effect_buff": { "name": "", "description": "" },
+  "exile_arcane_buff": { "name": "", "description": "" },
+  "oba_decapitated": { "name": "", "description": "" },
+  "heal": { "name": "", "description": "" },
+  "herald_of_ash": {
+    "name": "灰燼之捷",
+    "description":
+      "你造成額外火焰傷害，並在殺死敵人時將溢出的傷害以點燃的方式擴散給附近的敵人"
+  },
+  "herald_of_ice": {
+    "name": "寒冰之捷",
+    "description": "你造成額外冰冷傷害，在粉碎敵人時對附近的敵人造成冰冷傷害"
+  },
+  "herald_of_thunder": {
+    "name": "閃電之捷",
+    "description":
+      "你造成額外閃電傷害，並在殺死感電狀態的敵人時會呼喚一道雷霆降臨。"
+  },
+  "herald_of_thunder_active": { "name": "", "description": "" },
+  "cannot_be_damaged": { "name": "傷害免疫", "description": "免疫所有傷害" },
+  "spectating_pvp_buff": { "name": "", "description": "" },
+  "str_int_mission_mana_regen_relic": { "name": "", "description": "" },
+  "display_bodyguard_effect": { "name": "", "description": "" },
+  "mission_relic_praying": { "name": "", "description": "" },
+  "mission_beast_corrupted": { "name": "", "description": "" },
+  "mission_monster_target": { "name": "", "description": "" },
+  "dex_mission_enable_pointers": { "name": "", "description": "" },
+  "stun_display_buff": { "name": "", "description": "" },
+  "visual_display_buff": { "name": "", "description": "" },
+  "visual_display_buff_gargoyle": { "name": "", "description": "" },
+  "mission_int_buff": { "name": "", "description": "" },
+  "fire_damage_and_ignite": {
+    "name": "火傷與點燃",
+    "description": "火焰傷害與點燃"
+  },
+  "cold_damage_and_freeze": {
+    "name": "冰傷與冰凍",
+    "description": "冰冷傷害與冰凍"
+  },
+  "lightning_damage_and_shock": {
+    "name": "電傷與感電",
+    "description": "閃電傷害與感電"
+  },
+  "strdex_mission_fire_damage": {
+    "name": "火焰傷害",
+    "description": "火焰傷害"
+  },
+  "strdex_mission_cold_damage": {
+    "name": "冰冷傷害",
+    "description": "冰冷傷害"
+  },
+  "strdex_mission_lightning_damage": {
+    "name": "閃電傷害",
+    "description": "閃電傷害"
+  },
+  "physical_damage_and_bleed": {
+    "name": "物傷與流血",
+    "description": "額外傷害與流血"
+  },
+  "monster_life_flask": { "name": "", "description": "" },
+  "spirals": { "name": "測試用", "description": "發射螺旋投射物" },
+  "drop_bear_enrage": {
+    "name": "暴怒",
+    "description": "在混沌鏈結中受到持續混沌傷害"
+  },
+  "sandstorm": { "name": "沙暴", "description": "你正受到持續的物理傷害" },
+  "union_of_souls": {
+    "name": "聚魂",
+    "description": "你從死亡的血族成員中聚集魂魄，獲得力量與體型增大"
+  },
+  "bloodlines_shrouded": { "name": "", "description": "" },
+  "bloodlines_necrovigil": {
+    "name": "守護之靈",
+    "description": "死亡的血族成員正保護著你"
+  },
+  "daresso_kneeling": { "name": "", "description": "" },
+  "daresso_enrage": { "name": "", "description": "" },
+  "bloodlines_damage_charge": { "name": "", "description": "" },
+  "bloodlines_speed_charge": { "name": "", "description": "" },
+  "cold_thorns": { "name": "寒冰之刺", "description": "被擊中時反射冰冷傷害" },
+  "monster_aura_burning": {
+    "name": "燃燒光環",
+    "description": "在光環內持續受到燃燒傷害"
+  },
+  "monster_aura_chill": {
+    "name": "寒冷光環",
+    "description": "在光環內所有動作受到緩速"
+  },
+  "monster_aura_shock": {
+    "name": "脆弱光環",
+    "description": "在光環內受到額外傷害"
+  },
+  "static_weapon_buff": {
+    "name": "充能打擊",
+    "description": "充能打擊在能量釋放時對周圍造成範圍傷害"
+  },
+  "hidden_player": { "name": "", "description": "隱蔽" },
+  "monster_bloodlines_damage_reduction": { "name": "", "description": "" },
+  "bloodlines_invulnerable": { "name": "", "description": "" },
+  "bloodlines_vulnerable": { "name": "", "description": "" },
+  "torment_touched": { "name": "", "description": "" },
+  "torment_possessed": { "name": "", "description": "" },
+  "visual_display_buff_not_hidden": { "name": "", "description": "" },
+  "torment_cutthroat": {
+    "name": "野性殘暴",
+    "description": "額外物理傷害與攻擊速度"
+  },
+  "unique_flask_taste_of_hate": {
+    "name": "酷寒憎恨",
+    "description":
+      "造成額外冰冷傷害，同時自身受到依據物理傷害比例的冰冷傷害。有機率不被冰凍及冰緩"
+  },
+  "torment_embezzler": {
+    "name": "凝滯之息",
+    "description": "降低生命、魔力與能量護盾回復速度"
+  },
+  "sandstorm_chaos": {
+    "name": "混沌沙暴",
+    "description": "你正受到混沌持續傷害"
+  },
+  "sandstorm_water": { "name": "旋渦", "description": "你正受到冰冷持續傷害" },
+  "bull_thorns": {
+    "name": "狂牛銳角",
+    "description": "你被擊中時反射物理和元素傷害"
+  },
+  "damage_aura_skeleton_elite": {
+    "name": "傷害光環",
+    "description": "你的傷害增加了"
+  },
+  "trap_nonplayer_immunity": { "name": "", "description": "" },
+  "inspiring_cry": {
+    "name": "激勵戰吼",
+    "description": "你造成更多傷害及獲得額外魔力回復"
+  },
+  "kaom_archer_effect": { "name": "", "description": "" },
+  "lb_kaom_archer_effect": { "name": "", "description": "" },
+  "abyssal_cry": { "name": "深淵戰吼", "description": "你的移動速度減慢" },
+  "unique_shapers_seed_regeneration": {
+    "name": "塑型者之籽",
+    "description": "獲得生命回復及增加魔力回復"
+  },
+  "vaal_aura_elemental_damage_healing": {
+    "name": "元素之癒",
+    "description": "受到元素傷害時將會轉化為對你的治療"
+  },
+  "kaom_warrior2_effect": { "name": "", "description": "" },
+  "kaom_warrior3_effect": { "name": "", "description": "" },
+  "fortify": { "name": "護體", "description": "你在被擊中時受到的傷害減少" },
+  "taunted": {
+    "name": "被嘲諷",
+    "description": "你對沒有嘲諷你的敵人所造成傷害減少"
+  },
+  "blackguardzombie_speedbuff": { "name": "", "description": "" },
+  "kaom_fire": { "name": "", "description": "" },
+  "taunt_immunity": { "name": "", "description": "" },
+  "stacking_ignite": { "name": "點燃", "description": "你身上起火啦！" },
+  "stolen_mod_buff": {
+    "name": "屬性偷竊",
+    "description": "你已獲得擊殺稀有怪物的隨機一項屬性"
+  },
+  "ice_elemental_buff": {
+    "name": "寒冰魔像",
+    "description": "在寒冰魔像啟動時增加命中和暴擊率"
+  },
+  "fire_elemental_buff": {
+    "name": "烈焰魔像",
+    "description": "在烈焰魔像啟動時增加傷害"
+  },
+  "chaos_elemental_buff": {
+    "name": "混沌魔像",
+    "description": "在混沌魔像啟動時獲得額外物理傷害減傷"
+  },
+  "lightning_elemental_buff": {
+    "name": "雷電魔像",
+    "description": "在雷電魔像啟動時獲得額外攻擊速度和施放速度"
+  },
+  "culling_strike_aura": {
+    "name": "存在王者之刃",
+    "description": "附近有友軍使用王者之刃時，你獲得撲殺效果。"
+  },
+  "increased_item_rarity_aura": {
+    "name": "存在王者之刃",
+    "description": "附近有友軍使用王者之刃時，你獲得撲殺效果和增加物品稀有度。"
+  },
+  "piety_fire_form_stacking_damage_taken": {
+    "name": "派蒂之怒",
+    "description": "每疊加一層派蒂之怒將會受到更多傷害"
+  },
+  "enduring_cry_life_regeneration": {
+    "name": "堅決戰吼",
+    "description": "獲得生命回復"
+  },
+  "flame_golem_effects": { "name": "", "description": "" },
+  "flame_golem_summoned_effects": { "name": "", "description": "" },
+  "flame_golem_runic_effects": { "name": "", "description": "" },
+  "new_punishment_buff": {
+    "name": "懲戒者",
+    "description": "你造成更多近戰傷害並獲得額外攻擊速度"
+  },
+  "totem_placement_buff": { "name": "", "description": "" },
+  "new_arctic_armour": {
+    "name": "極地裝甲",
+    "description":
+      "擊中敵人時造成冰緩。移動時造成冰結地面。當靜止不動時減少受到的物理及火焰傷害。"
+  },
+  "new_arctic_armour_stationary": { "name": "", "description": "" },
+  "unique_flask_lions_roar": {
+    "name": "獅吼",
+    "description": "你造成更多近戰物理傷害並會擊退敵人。"
+  },
+  "revenant_revive_possessed": { "name": "", "description": "" },
+  "revenant_revive_explode": { "name": "", "description": "" },
+  "unique_flask_chaos_damage_damages_es": {
+    "name": "閃耀精華",
+    "description": "混沌傷害無法穿透能量護盾"
+  },
+  "unique_flask_es_regen": { "name": "閃耀精華", "description": "" },
+  "blood_rage_xandro": {
     "name": "鮮血狂怒",
-    "description": "持續消耗生命、生命偷取、增加攻擊速度。每擊殺一個敵人獲得一個狂怒能量球。"
+    "description":
+      "持續消耗生命、生命偷取、增加攻擊速度。每擊殺一個敵人獲得一個狂怒能量球。"
   },
-  "410": { "name": "傷害免疫", "description": "" },
-  "411": { "name": "派蒂光束", "description": "你目前正受到閃電連結的閃電傷害。" },
-  "412": { "name": "", "description": "" },
-  "413": { "name": "刺針風暴", "description": "你總是造成暴擊。" },
-  "414": { "name": "苛責風暴", "description": "你總是造成暴擊。" },
-  "415": { "name": "回復風暴", "description": "你獲得額外的生命及魔力回復。" },
-  "416": { "name": "回聲風暴", "description": "你的技能將會被重複施放。" },
-  "417": { "name": "神聖風暴", "description": "你不會受到任何傷害。" },
-  "418": {
+  "malachai_invulnerable": { "name": "傷害免疫", "description": "" },
+  "piety_ally_beam": {
+    "name": "派蒂光束",
+    "description": "你目前正受到閃電連結的閃電傷害。"
+  },
+  "exploding_storm_buff": { "name": "", "description": "" },
+  "diamond_storm": { "name": "刺針風暴", "description": "你總是造成暴擊。" },
+  "uber_diamond_storm": {
+    "name": "苛責風暴",
+    "description": "你總是造成暴擊。"
+  },
+  "replenishing_storm": {
+    "name": "回復風暴",
+    "description": "你獲得額外的生命及魔力回復。"
+  },
+  "echoing_storm": {
+    "name": "回聲風暴",
+    "description": "你的技能將會被重複施放。"
+  },
+  "divine_storm": { "name": "神聖風暴", "description": "你不會受到任何傷害。" },
+  "rarity_storm": {
     "name": "閃亮風暴",
-    "description": "物品稀有度及數量提升。受此增益效果的怪物所掉落物品的稀有度與數量提升。"
+    "description":
+      "物品稀有度及數量提升。受此增益效果的怪物所掉落物品的稀有度與數量提升。"
   },
-  "419": {
+  "uber_rarity_storm": {
     "name": "輻射風暴",
-    "description": "物品稀有度及數量提升。受此增益效果的怪物所掉落物品的稀有度與數量提升。"
+    "description":
+      "物品稀有度及數量提升。受此增益效果的怪物所掉落物品的稀有度與數量提升。"
   },
-  "420": {
+  "massive_storm": {
     "name": "巨化風暴",
-    "description": "你的體型、生命與傷害都獲得了強化。受此增益效果怪物所掉落物品的稀有度與數量提升，被擊殺時給予額外經驗值。"
+    "description":
+      "你的體型、生命與傷害都獲得了強化。受此增益效果怪物所掉落物品的稀有度與數量提升，被擊殺時給予額外經驗值。"
   },
-  "421": { "name": "縮小風暴", "description": "你的體型、生命與傷害都已降低。" },
-  "422": {
+  "tiny_storm": {
+    "name": "縮小風暴",
+    "description": "你的體型、生命與傷害都已降低。"
+  },
+  "fire_damage_storm": {
     "name": "滾溢風暴",
-    "description": "你部分的物理傷害轉換為火焰傷害，你的攻擊必定點燃敵人，並使你的火焰傷害增加。"
+    "description":
+      "你部分的物理傷害轉換為火焰傷害，你的攻擊必定點燃敵人，並使你的火焰傷害增加。"
   },
-  "423": {
+  "cold_damage_storm": {
     "name": "顫抖風暴",
-    "description": "你部分的物理傷害轉換為冰冷傷害，你的攻擊必定冰凍敵人，並使你的冰冷傷害增加。"
+    "description":
+      "你部分的物理傷害轉換為冰冷傷害，你的攻擊必定冰凍敵人，並使你的冰冷傷害增加。"
   },
-  "424": {
+  "lightning_damage_storm": {
     "name": "激昂風暴",
-    "description": "你部分的物理傷害轉換為閃電傷害，你的攻擊必定感電敵人，並使你的閃電傷害增加。"
+    "description":
+      "你部分的物理傷害轉換為閃電傷害，你的攻擊必定感電敵人，並使你的閃電傷害增加。"
   },
-  "425": { "name": "環繞風暴", "description": "你的周圍環繞著煙霧。" },
-  "426": { "name": "蠶食風暴", "description": "吞食附近的屍體治療你。" },
-  "427": { "name": "裂片風暴", "description": "以新星狀投射攻擊。你會額外投射 2 發投射物。增加範圍效果。" },
-  "428": { "name": "幕蔽風暴", "description": "元素抗性歸零，能見度降低。" },
-  "429": { "name": "深淵風暴", "description": "你造成的傷害一部分轉換為混沌傷害。" },
-  "430": {
+  "smoke_trail_storm": {
+    "name": "環繞風暴",
+    "description": "你的周圍環繞著煙霧。"
+  },
+  "corpse_devour_storm": {
+    "name": "蠶食風暴",
+    "description": "吞食附近的屍體治療你。"
+  },
+  "projectile_nova_storm": {
+    "name": "裂片風暴",
+    "description": "以新星狀投射攻擊。你會額外投射 2 發投射物。增加範圍效果。"
+  },
+  "veil_storm": {
+    "name": "幕蔽風暴",
+    "description": "元素抗性歸零，能見度降低。"
+  },
+  "voltaxic_storm": {
+    "name": "深淵風暴",
+    "description": "你造成的傷害一部分轉換為混沌傷害。"
+  },
+  "phasing_storm": {
     "name": "虛無風暴",
-    "description": "你處於迷蹤狀態，移動將不再會被敵人所阻礙。你有機率躲避敵人的攻擊和法術。"
+    "description":
+      "你處於迷蹤狀態，移動將不再會被敵人所阻礙。你有機率躲避敵人的攻擊和法術。"
   },
-  "431": { "name": "腐化風暴", "description": "你找到的物品皆為已汙染。身上有此增益效果的敵人掉落已汙染物品。" },
-  "432": { "name": "轉化風暴", "description": "除通貨、寶石、地圖以外，你發現的非傳奇物品以售價掉落。" },
-  "433": { "name": "精煉風暴", "description": "你發現的物品品質優良。此增益效果怪物會掉落品質優良物品。" },
-  "434": { "name": "鑑識風暴", "description": "你發現的物品將會被鑑定。" },
-  "435": {
+  "corrupted_drops_storm": {
+    "name": "腐化風暴",
+    "description":
+      "你找到的物品皆為已汙染。身上有此增益效果的敵人掉落已汙染物品。"
+  },
+  "drop_as_sell_price_storm": {
+    "name": "轉化風暴",
+    "description": "除通貨、寶石、地圖以外，你發現的非傳奇物品以售價掉落。"
+  },
+  "quality_drops_storm": {
+    "name": "精煉風暴",
+    "description": "你發現的物品品質優良。此增益效果怪物會掉落品質優良物品。"
+  },
+  "identify_items_storm": {
+    "name": "鑑識風暴",
+    "description": "你發現的物品將會被鑑定。"
+  },
+  "arcane_storm": {
     "name": "秘能風暴",
-    "description": "你獲得額外的元素傷害和施放速度。每次施放將在 1 秒內回復 10 生命值。"
+    "description":
+      "你獲得額外的元素傷害和施放速度。每次施放將在 1 秒內回復 10 生命值。"
   },
-  "436": {
+  "status_immunity_storm": {
     "name": "抗性風暴",
-    "description": "你無法被冰緩、冰凍、點燃、或感電。你獲得額外的元素抗性以及最大元素抗性。"
+    "description":
+      "你無法被冰緩、冰凍、點燃、或感電。你獲得額外的元素抗性以及最大元素抗性。"
   },
-  "437": { "name": "瑪拉凱孢子", "description": "" },
-  "438": { "name": "增加物品稀有度", "description": "" },
-  "439": { "name": "", "description": "" },
-  "440": { "name": "孢子地面", "description": "你站在孢子地面上，正在受到物理傷害。" },
-  "441": {
+  "ground_spore_damage": { "name": "瑪拉凱孢子", "description": "" },
+  "flask_bonus_item_rarity": { "name": "增加物品稀有度", "description": "" },
+  "map_boss_duet_enrage": { "name": "", "description": "" },
+  "ground_spores": {
+    "name": "孢子地面",
+    "description": "你站在孢子地面上，正在受到物理傷害。"
+  },
+  "new_phase_run": {
     "name": "暗影迷蹤",
-    "description": "你處於迷蹤狀態，你能穿過敵人，增加移動速度，較不容易被怪物看見，並且造成更多近戰傷害。"
+    "description":
+      "你處於迷蹤狀態，你能穿過敵人，增加移動速度，較不容易被怪物看見，並且造成更多近戰傷害。"
   },
-  "442": { "name": "暗影迷蹤傷害", "description": "你造成更多近戰傷害。" },
-  "443": { "name": "消耗風暴", "description": "你有噬魂者。" },
-  "444": { "name": "靜電鎖鏈", "description": "" },
-  "445": { "name": "", "description": "" },
-  "446": { "name": "", "description": "" },
-  "447": { "name": "霜害", "description": "你的冰冷抗性和生命回復速度降低了。" },
-  "448": { "name": "雷禍", "description": "你的閃電抗性和生命回復速度降低了。" },
-  "449": { "name": "力量借貸", "description": "" },
-  "450": { "name": "狂舞德爾維希", "description": "你獲得猛攻，並且你的武器處於失效狀態。" },
-  "451": { "name": "死亡倫巴", "description": "" },
-  "452": { "name": "魔力回復", "description": "你的魔力正在回復" },
-  "453": { "name": "正義怒雷", "description": "對周圍敵人造成閃電傷害，持續扣除魔力" },
-  "454": { "name": "正義怒雷", "description": "你在敵人的正義怒雷中持續受到傷害" },
-  "455": { "name": "生命偷取傷害", "description": "你正在受到從敵人生命偷取的混沌傷害" },
-  "456": { "name": "附魔特效", "description": "你獲得額外附加火焰傷害" },
-  "457": { "name": "附魔特效", "description": "你獲得了額外的躲避機率" },
-  "458": { "name": "魔符", "description": "" },
-  "459": { "name": "腐蝕毒雲", "description": "你正受到腐蝕毒雲的混沌傷害。" },
-  "460": { "name": "附魔效果 (隱形)", "description": "你技能的魔力消耗減少了" },
-  "461": { "name": "", "description": "你增加了護甲和暈眩回復" },
-  "462": { "name": "附魔效果 (隱形)", "description": "你獲得了額外法術躲避率" },
-  "463": { "name": "附魔效果 (隱形)", "description": "你獲得了額外的攻擊速度和施法速度" },
-  "464": { "name": "附魔效果 (隱形)", "description": "你獲得了額外的附加冰冷傷害" },
-  "465": { "name": "附魔效果 (隱形)", "description": "你獲得了額外的生命和魔力偷取" },
-  "466": { "name": "", "description": "" },
-  "467": { "name": "附魔效果 (隱形)", "description": "你獲得了額外的攻擊速度" },
-  "468": { "name": "附魔效果 (隱形)", "description": "你的移動速度降低了" },
-  "469": { "name": "附魔效果 (隱形)", "description": "你獲得了額外的生命和魔力偷取" },
-  "470": { "name": "火焰傷害", "description": "你造成額外物理傷害比例的火焰傷害" },
-  "471": { "name": "功擊和施放速度", "description": "你的功擊和施放速度增加" },
-  "472": { "name": "狂暴催化", "description": "你的物理傷害和移動速度增加" },
-  "473": { "name": "昇華效果 (隱形)", "description": "你的格擋機率增加" },
-  "474": { "name": "昇華效果 (隱形)", "description": "你的物理傷害增加" },
-  "475": { "name": "昇華效果 (隱形)", "description": "增加你被暈眩的機率和增加承受的傷害" },
-  "476": { "name": "啟發", "description": "增加傷害和移動速度" },
-  "477": { "name": "靈魂吸取", "description": "你受到持續混沌傷害" },
-  "478": { "name": "瘟疫", "description": "你受到持續混沌傷害" },
-  "479": { "name": "緩速", "description": "你的移動速度降低" },
-  "480": { "name": "死亡凋零", "description": "你受到的混沌傷害增加" },
-  "481": { "name": "靈魂吸取回復", "description": "你正在從靈魂吸取回復生命" },
-  "482": { "name": "激勵戰吼傷害回魔力", "description": "你受到的部分傷害回復魔力" },
-  "483": { "name": "審判奉獻", "description": "你正受到燃燒傷害" },
-  "484": { "name": "審判奉獻", "description": "你正受到持續混沌傷害" },
-  "485": { "name": "", "description": "" },
-  "486": {
+  "new_phase_run_damage": {
+    "name": "暗影迷蹤傷害",
+    "description": "你造成更多近戰傷害。"
+  },
+  "tempest_soul_eater": { "name": "消耗風暴", "description": "你有噬魂者。" },
+  "static_tether": { "name": "靜電鎖鏈", "description": "" },
+  "flask_bonus_mana_regeneration_rate": { "name": "", "description": "" },
+  "flask_bonus_flask_charge_recovery": { "name": "", "description": "" },
+  "frost_bomb": {
+    "name": "霜害",
+    "description": "你的冰冷抗性和生命回復速度降低了。"
+  },
+  "lightning_bomb": {
+    "name": "雷禍",
+    "description": "你的閃電抗性和生命回復速度降低了。"
+  },
+  "borrowed_power_lightning_aura": { "name": "力量借貸", "description": "" },
+  "disable_weapons_buff": {
+    "name": "狂舞德爾維希",
+    "description": "你獲得猛攻，並且你的武器處於失效狀態。"
+  },
+  "sawblade_damage": { "name": "死亡倫巴", "description": "" },
+  "usemax_mana_regen": {
+    "name": "魔力回復",
+    "description": "你的魔力正在回復"
+  },
+  "righteous_lightning": {
+    "name": "正義怒雷",
+    "description": "對周圍敵人造成閃電傷害，持續扣除魔力"
+  },
+  "righteous_lightning_aura": {
+    "name": "正義怒雷",
+    "description": "你在敵人的正義怒雷中持續受到傷害"
+  },
+  "life_leech_damage": {
+    "name": "生命偷取傷害",
+    "description": "你正在受到從敵人生命偷取的混沌傷害"
+  },
+  "enchantment_added_fire_damage": {
+    "name": "附魔特效",
+    "description": "你獲得額外附加火焰傷害"
+  },
+  "enchantment_dodge_chance": {
+    "name": "附魔特效",
+    "description": "你獲得了額外的躲避機率"
+  },
+  "talisman_monster": { "name": "魔符", "description": "" },
+  "caustic_cloud": {
+    "name": "腐蝕毒雲",
+    "description": "你正受到腐蝕毒雲的混沌傷害。"
+  },
+  "enchantment_reduced_mana_cost": {
+    "name": "附魔效果 (隱形)",
+    "description": "你技能的魔力消耗減少了"
+  },
+  "enchantment_stun_avoid": {
+    "name": "",
+    "description": "你增加了護甲和暈眩回復"
+  },
+  "enchantment_spell_dodge": {
+    "name": "附魔效果 (隱形)",
+    "description": "你獲得了額外法術躲避率"
+  },
+  "enchantment_attack_and_cast_speed": {
+    "name": "附魔效果 (隱形)",
+    "description": "你獲得了額外的攻擊速度和施法速度"
+  },
+  "enchantment_added_cold_damage": {
+    "name": "附魔效果 (隱形)",
+    "description": "你獲得了額外的附加冰冷傷害"
+  },
+  "enchantment_life_and_mana_leech": {
+    "name": "附魔效果 (隱形)",
+    "description": "你獲得了額外的生命和魔力偷取"
+  },
+  "enchantment_life_mana_regen": { "name": "", "description": "" },
+  "attack_speed_when_hit": {
+    "name": "附魔效果 (隱形)",
+    "description": "你獲得了額外的攻擊速度"
+  },
+  "negate_move_speed_increase": {
+    "name": "附魔效果 (隱形)",
+    "description": "你的移動速度降低了"
+  },
+  "berserker_life_and_mana_leech": {
+    "name": "附魔效果 (隱形)",
+    "description": "你獲得了額外的生命和魔力偷取"
+  },
+  "added_fire_damage": {
+    "name": "火焰傷害",
+    "description": "你造成額外物理傷害比例的火焰傷害"
+  },
+  "attack_and_cast_speed": {
+    "name": "功擊和施放速度",
+    "description": "你的功擊和施放速度增加"
+  },
+  "physical_damage_stacking": {
+    "name": "狂暴催化",
+    "description": "你的物理傷害和移動速度增加"
+  },
+  "block_chance": {
+    "name": "昇華效果 (隱形)",
+    "description": "你的格擋機率增加"
+  },
+  "damage": { "name": "昇華效果 (隱形)", "description": "你的物理傷害增加" },
+  "taunted_special": {
+    "name": "昇華效果 (隱形)",
+    "description": "增加你被暈眩的機率和增加承受的傷害"
+  },
+  "damage_and_movement_speed": {
+    "name": "啟發",
+    "description": "增加傷害和移動速度"
+  },
+  "siphon_damage": { "name": "靈魂吸取", "description": "你受到持續混沌傷害" },
+  "contagion": { "name": "瘟疫", "description": "你受到持續混沌傷害" },
+  "hinder": { "name": "緩速", "description": "你的移動速度降低" },
+  "wither_resistance": {
+    "name": "死亡凋零",
+    "description": "你受到的混沌傷害增加"
+  },
+  "siphon_leech": {
+    "name": "靈魂吸取回復",
+    "description": "你正在從靈魂吸取回復生命"
+  },
+  "rallying_cry_damage_added_as_mana": {
+    "name": "激勵戰吼傷害回魔力",
+    "description": "你受到的部分傷害回復魔力"
+  },
+  "offering_of_judgement_fire": {
+    "name": "審判奉獻",
+    "description": "你正受到燃燒傷害"
+  },
+  "offering_of_judgement_chaos": {
+    "name": "審判奉獻",
+    "description": "你正受到持續混沌傷害"
+  },
+  "offering_of_judgement_counter": { "name": "", "description": "" },
+  "her_blessing": {
     "name": "女神的祝福",
-    "description": "你得到女神的祝福，每秒鐘受到等同你 33% 最大生命以及最大能量護盾的火焰傷害。"
+    "description":
+      "你得到女神的祝福，每秒鐘受到等同你 33% 最大生命以及最大能量護盾的火焰傷害。"
   },
-  "487": { "name": "癱瘓", "description": "你被癱瘓而移動速度降低。" },
-  "488": { "name": "維克塔血器", "description": "你與周遭的敵人受到感電，你的閃電傷害會偷取生命。" },
-  "489": { "name": "維克塔血器", "description": "你的攻擊造成額外閃電傷害。" },
-  "490": { "name": "維克塔血器", "description": "你的法術造成額外閃電傷害。" },
-  "491": { "name": "維克塔血器", "description": "你一部分的物裡傷害轉換為閃電傷害。" },
-  "492": { "name": "維克塔血器", "description": "你造成的傷害可穿透敵人的閃電抗性。" },
-  "493": { "name": "感電光環", "description": "你在感電光環中將受到額外的傷害。" },
-  "494": { "name": "刺穿", "description": "" },
-  "495": { "name": "附魔效果 (隱形)", "description": "" },
-  "496": { "name": "附魔效果 (隱形)", "description": "" },
-  "497": { "name": "附魔效果 (隱形)", "description": "" },
-  "498": { "name": "附魔效果 (隱形)", "description": "" },
-  "499": { "name": "附魔效果 (隱形)", "description": "" },
-  "500": { "name": "昇華效果 (隱形)", "description": "" },
-  "501": { "name": "昇華效果 (隱形)", "description": "" },
-  "502": { "name": "長杖精通", "description": "你獲得了來自守護者的暈眩免疫" },
-  "503": { "name": "熔岩", "description": "能量護盾 一般/殘酷/無情，生命 一般/殘酷/無情" },
-  "504": { "name": "死亡倫巴", "description": "" },
-  "505": { "name": "飛舞死亡倫巴", "description": "" },
-  "506": { "name": "", "description": "" },
-  "507": { "name": "", "description": "" },
-  "508": { "name": "", "description": "" },
-  "509": { "name": "", "description": "" },
-  "510": { "name": "", "description": "" },
-  "511": { "name": "", "description": "" },
-  "512": { "name": "昇華", "description": "" },
-  "513": { "name": "迴旋之刃", "description": "" },
-  "514": { "name": "增加移動速度", "description": "你的移動速度增加了" },
-  "515": { "name": "", "description": "" },
-  "516": { "name": "元素傷害減免", "description": "" },
-  "517": { "name": "", "description": "" },
-  "518": { "name": "", "description": "" },
-  "519": { "name": "信念之環", "description": "你獲得了來自守護者的能量護盾" },
-  "520": { "name": "信念之環", "description": "你獲得了來自守護者的護甲" },
-  "521": { "name": "奇異", "description": "你陷入了奇異的領域中" },
-  "522": { "name": "", "description": "" },
-  "523": { "name": "", "description": "" },
-  "524": { "name": "", "description": "額外火焰傷害" },
-  "525": { "name": "", "description": "額外火焰傷害" },
-  "526": { "name": "", "description": "額外冰冷傷害" },
-  "527": { "name": "", "description": "額外冰冷傷害" },
-  "528": { "name": "", "description": "額外閃電傷害" },
-  "529": { "name": "", "description": "額外閃電傷害" },
-  "530": { "name": "", "description": "增加物理傷害" },
-  "531": { "name": "", "description": "增加物理傷害" },
-  "532": { "name": "", "description": "額外火焰傷害和點燃機率" },
-  "533": { "name": "", "description": "額外火焰傷害和點燃機率" },
-  "534": { "name": "", "description": "額外冰冷傷害和冰凍機率" },
-  "535": { "name": "", "description": "額外冰冷傷害和冰凍機率" },
-  "536": { "name": "", "description": "額外閃電傷害和感電機率" },
-  "537": { "name": "", "description": "額外閃電傷害和感電機率" },
-  "538": { "name": "", "description": "額外傷害和流血" },
-  "539": { "name": "", "description": "額外傷害和流血" },
-  "540": { "name": "維克塔閃電連結", "description": "你正受到連結" },
-  "541": { "name": "", "description": "" },
-  "542": { "name": "憤怒之擁", "description": "獲得額外生命偷取、傷害和攻擊速度" },
-  "543": { "name": "昇華效果 (隱形)", "description": "" },
-  "544": { "name": "昇華效果 (隱形)", "description": "" },
-  "545": { "name": "昇華效果 (隱形)", "description": "" },
-  "546": { "name": "堅韌活力", "description": "你獲得了來自守護者力量的額外近戰物理傷害" },
-  "547": { "name": "遲緩束縛", "description": "站在遲緩束縛中你的移動、施放、攻擊速度降低了。" },
-  "548": { "name": "遲緩觸手", "description": "站在遲緩觸手中你的移動、施放、攻擊速度降低了。" },
-  "549": { "name": "", "description": "" },
-  "550": { "name": "", "description": "" },
-  "551": { "name": "盾牌精通", "description": "你獲得了來自守護者之盾的額外防禦" },
-  "552": { "name": "迷宮陷阱效果", "description": "" },
-  "553": { "name": "昇華效果 (隱形)", "description": "" },
-  "554": { "name": "懺悔之兆", "description": "你所造成的元素傷害降低了，且承受的元素傷害增加了。" },
-  "555": { "name": "WIP", "description": "" },
-  "556": { "name": "WIP", "description": "" },
-  "557": { "name": "昇華效果 (隱形)", "description": "" },
-  "558": { "name": "昇華效果 (隱形)", "description": "" },
-  "559": { "name": "昇華效果 (隱形)", "description": "" },
-  "560": { "name": "昇華效果 (隱形)", "description": "" },
-  "561": { "name": "昇華效果 (隱形)", "description": "" },
-  "562": { "name": "巨石魔像", "description": "在巨石魔像啟動時獲得額外生命回復" },
-  "563": { "name": "", "description": "" },
-  "564": { "name": "", "description": "" },
-  "565": { "name": "", "description": "" },
-  "566": { "name": "縮小", "description": "你被縮小了。" },
-  "567": { "name": "", "description": "" },
-  "568": { "name": "骨骼震盪", "description": "你正從骨骼震盪受到持續性的物理傷害。" },
-  "569": { "name": "飛刃風暴", "description": "你周圍的飛刃風暴對於範圍內的敵人造成傷害" },
-  "570": {
+  "maim": { "name": "癱瘓", "description": "你被癱瘓而移動速度降低。" },
+  "lightning_flask": {
+    "name": "維克塔血器",
+    "description": "你與周遭的敵人受到感電，你的閃電傷害會偷取生命。"
+  },
+  "lightning_flask_attack_damage": {
+    "name": "維克塔血器",
+    "description": "你的攻擊造成額外閃電傷害。"
+  },
+  "lightning_flask_spell_damage": {
+    "name": "維克塔血器",
+    "description": "你的法術造成額外閃電傷害。"
+  },
+  "lightning_flask_physical_to_lightning": {
+    "name": "維克塔血器",
+    "description": "你一部分的物裡傷害轉換為閃電傷害。"
+  },
+  "lightning_flask_lightning_penetration": {
+    "name": "維克塔血器",
+    "description": "你造成的傷害可穿透敵人的閃電抗性。"
+  },
+  "shock_aura": {
+    "name": "感電光環",
+    "description": "你在感電光環中將受到額外的傷害。"
+  },
+  "trap_pinned": { "name": "刺穿", "description": "" },
+  "enchantment_physical_to_fire": {
+    "name": "附魔效果 (隱形)",
+    "description": ""
+  },
+  "enchantment_physical_to_cold": {
+    "name": "附魔效果 (隱形)",
+    "description": ""
+  },
+  "enchantment_physical_to_lightning": {
+    "name": "附魔效果 (隱形)",
+    "description": ""
+  },
+  "enchantment_added_chaos_damage": {
+    "name": "附魔效果 (隱形)",
+    "description": ""
+  },
+  "stacking_increased_spell_damage": {
+    "name": "附魔效果 (隱形)",
+    "description": ""
+  },
+  "templar_ascendency_movement_speed": {
+    "name": "昇華效果 (隱形)",
+    "description": ""
+  },
+  "guardian_warcry": { "name": "昇華效果 (隱形)", "description": "" },
+  "avoid_stun_staff_aura": {
+    "name": "長杖精通",
+    "description": "你獲得了來自守護者的暈眩免疫"
+  },
+  "labyrinth_lava_aura": {
+    "name": "熔岩",
+    "description": "能量護盾 一般/殘酷/無情，生命 一般/殘酷/無情"
+  },
+  "roomba_damage": { "name": "死亡倫巴", "description": "" },
+  "flying_roomba_damage": { "name": "飛舞死亡倫巴", "description": "" },
+  "offering_of_judgement_ground": { "name": "", "description": "" },
+  "curse_damage_taken": { "name": "", "description": "" },
+  "increased_crit_chance": { "name": "", "description": "" },
+  "increased_minion_damage": { "name": "", "description": "" },
+  "increased_damage": { "name": "", "description": "" },
+  "damage_taken": { "name": "", "description": "" },
+  "avoid_stun": { "name": "昇華", "description": "" },
+  "spinning_blade_damage": { "name": "迴旋之刃", "description": "" },
+  "stacking_movement_speed_buff": {
+    "name": "增加移動速度",
+    "description": "你的移動速度增加了"
+  },
+  "nightwane_effects": { "name": "", "description": "" },
+  "increased_elemental_damage_taken": {
+    "name": "元素傷害減免",
+    "description": ""
+  },
+  "mana_and_es_regeneration": { "name": "", "description": "" },
+  "vinktar_boss_buff": { "name": "", "description": "" },
+  "grant_es_to_nearby_allies": {
+    "name": "信念之環",
+    "description": "你獲得了來自守護者的能量護盾"
+  },
+  "grant_armour_to_nearby_allies": {
+    "name": "信念之環",
+    "description": "你獲得了來自守護者的護甲"
+  },
+  "singularity_aura": { "name": "奇異", "description": "你陷入了奇異的領域中" },
+  "power_symbol_aura": { "name": "", "description": "" },
+  "gargoyle_statue_buff": { "name": "", "description": "" },
+  "izaro_fire_buff_phase1": { "name": "", "description": "額外火焰傷害" },
+  "izaro_fire_buff": { "name": "", "description": "額外火焰傷害" },
+  "izaro_cold_buff_phase1": { "name": "", "description": "額外冰冷傷害" },
+  "izaro_cold_buff": { "name": "", "description": "額外冰冷傷害" },
+  "izaro_lightning_buff_phase1": { "name": "", "description": "額外閃電傷害" },
+  "izaro_lightning_buff": { "name": "", "description": "額外閃電傷害" },
+  "izaro_physical_buff_phase1": { "name": "", "description": "增加物理傷害" },
+  "izaro_physical_buff": { "name": "", "description": "增加物理傷害" },
+  "izaro_ignite_buff_phase1": {
+    "name": "",
+    "description": "額外火焰傷害和點燃機率"
+  },
+  "izaro_ignite_buff": { "name": "", "description": "額外火焰傷害和點燃機率" },
+  "izaro_freeze_buff_phase1": {
+    "name": "",
+    "description": "額外冰冷傷害和冰凍機率"
+  },
+  "izaro_freeze_buff": { "name": "", "description": "額外冰冷傷害和冰凍機率" },
+  "izaro_shock_buff_phase1": {
+    "name": "",
+    "description": "額外閃電傷害和感電機率"
+  },
+  "izaro_shock_buff": { "name": "", "description": "額外閃電傷害和感電機率" },
+  "izaro_bleed_buff_phase1": { "name": "", "description": "額外傷害和流血" },
+  "izaro_bleed_buff": { "name": "", "description": "額外傷害和流血" },
+  "vinktar_lightning_bond": {
+    "name": "維克塔閃電連結",
+    "description": "你正受到連結"
+  },
+  "killed_rare_monsters_drop_uniques": { "name": "", "description": "" },
+  "savage_hit_life_leech": {
+    "name": "憤怒之擁",
+    "description": "獲得額外生命偷取、傷害和攻擊速度"
+  },
+  "savage_hit_damage": { "name": "昇華效果 (隱形)", "description": "" },
+  "savage_hit_attack_cast_speed": {
+    "name": "昇華效果 (隱形)",
+    "description": ""
+  },
+  "savage_hit_attack_speed": { "name": "昇華效果 (隱形)", "description": "" },
+  "melee_physical_damage": {
+    "name": "堅韌活力",
+    "description": "你獲得了來自守護者力量的額外近戰物理傷害"
+  },
+  "grasping_ornaments_slow_aura": {
+    "name": "遲緩束縛",
+    "description": "站在遲緩束縛中你的移動、施放、攻擊速度降低了。"
+  },
+  "grasping_tentacles_slow_aura": {
+    "name": "遲緩觸手",
+    "description": "站在遲緩觸手中你的移動、施放、攻擊速度降低了。"
+  },
+  "labyrinth_boss_grace": { "name": "", "description": "" },
+  "izaro_summon_lieutenant_delay": { "name": "", "description": "" },
+  "shield_defence_aura": {
+    "name": "盾牌精通",
+    "description": "你獲得了來自守護者之盾的額外防禦"
+  },
+  "labyrinth_trap_bleed": { "name": "迷宮陷阱效果", "description": "" },
+  "mine_detonation": { "name": "昇華效果 (隱形)", "description": "" },
+  "augry_of_penitence": {
+    "name": "懺悔之兆",
+    "description": "你所造成的元素傷害降低了，且承受的元素傷害增加了。"
+  },
+  "labyrinth_power_symbol_shield": { "name": "WIP", "description": "" },
+  "awaken_gargoyle": { "name": "WIP", "description": "" },
+  "spell_damage_increase": { "name": "昇華效果 (隱形)", "description": "" },
+  "attack_damage_increase": { "name": "昇華效果 (隱形)", "description": "" },
+  "attack_speed_increase": { "name": "昇華效果 (隱形)", "description": "" },
+  "cast_speed_increase": { "name": "昇華效果 (隱形)", "description": "" },
+  "life_es_and_mana_recovery": { "name": "昇華效果 (隱形)", "description": "" },
+  "rock_golem_buff": {
+    "name": "巨石魔像",
+    "description": "在巨石魔像啟動時獲得額外生命回復"
+  },
+  "talisman_totem_effects": { "name": "", "description": "" },
+  "spike_trap_immunity": { "name": "", "description": "" },
+  "labyrinth_arrow_slow": { "name": "", "description": "" },
+  "shrink": { "name": "縮小", "description": "你被縮小了。" },
+  "lightning_eye_effects": { "name": "", "description": "" },
+  "talisman_degen": {
+    "name": "骨骼震盪",
+    "description": "你正從骨骼震盪受到持續性的物理傷害。"
+  },
+  "blade_vortex_counter": {
+    "name": "飛刃風暴",
+    "description": "你周圍的飛刃風暴對於範圍內的敵人造成傷害"
+  },
+  "soul_eater_from_stat_parent": {
     "name": "",
     "description": "mechanical buff for handling soul eater shile using flask"
   },
-  "571": { "name": "火焰飛蟲", "description": "你正成受著火焰飛蟲的火焰傷害" },
-  "572": { "name": "寒冰飛蟲", "description": "你正成受著寒冰飛蟲的冰冷傷害" },
-  "573": { "name": "閃電飛蟲", "description": "你正成受著閃電飛蟲的閃電傷害" },
-  "574": { "name": "瑞佛狼王彈幕", "description": "" },
-  "575": { "name": "", "description": "" },
-  "576": { "name": "元素超載", "description": "你獲得了更多元素傷害" },
-  "577": { "name": "極霜新星", "description": "你的冰冷傷害增加了" },
-  "578": { "name": "", "description": "擊中時附加時空鎖鍊" },
-  "579": { "name": "", "description": "擊中時附加元素要害" },
-  "580": { "name": "", "description": "擊中時附加脆弱" },
-  "581": { "name": "攻擊和法術傷害", "description": "你的傷害增加了" },
-  "582": { "name": "更多圖騰", "description": "" },
-  "583": { "name": "石化", "description": "你被石化了" },
-  "584": {
+  "LocustSwarmStackingDegenAuraFire": {
+    "name": "火焰飛蟲",
+    "description": "你正成受著火焰飛蟲的火焰傷害"
+  },
+  "LocustSwarmStackingDegenAuraCold": {
+    "name": "寒冰飛蟲",
+    "description": "你正成受著寒冰飛蟲的冰冷傷害"
+  },
+  "LocustSwarmStackingDegenAuraLightning": {
+    "name": "閃電飛蟲",
+    "description": "你正成受著閃電飛蟲的閃電傷害"
+  },
+  "rigwald_channeling": { "name": "瑞佛狼王彈幕", "description": "" },
+  "blade_vortex": { "name": "", "description": "" },
+  "elemental_overload": {
+    "name": "元素超載",
+    "description": "你獲得了更多元素傷害"
+  },
+  "frost_nova_counter": {
+    "name": "極霜新星",
+    "description": "你的冰冷傷害增加了"
+  },
+  "izaro_pylon_temporal_chains_on_hit": {
+    "name": "",
+    "description": "擊中時附加時空鎖鍊"
+  },
+  "izaro_pylon_elemental_weakness_on_hit": {
+    "name": "",
+    "description": "擊中時附加元素要害"
+  },
+  "izaro_pylon_vulnerability_on_hit": {
+    "name": "",
+    "description": "擊中時附加脆弱"
+  },
+  "heirophant_attack_and_spell_damage": {
+    "name": "攻擊和法術傷害",
+    "description": "你的傷害增加了"
+  },
+  "heirophant_additional_totems": { "name": "更多圖騰", "description": "" },
+  "petrified": { "name": "石化", "description": "你被石化了" },
+  "flask_petrification": {
     "name": "NAME OF FLASK GOES HERE",
     "description": "你變得堅硬化並承受較少的物理傷害"
   },
-  "585": { "name": "枯萎", "description": "你正在承受持續性的混沌傷害" },
-  "586": { "name": "免疫中毒", "description": "藥劑作用期間免疫中毒" },
-  "587": { "name": "WIP", "description": "" },
-  "588": { "name": "生命回復", "description": "" },
-  "589": { "name": "昇華效果 (隱形)", "description": "" },
-  "590": { "name": "昇華效果 (隱形)", "description": "" },
-  "591": { "name": "昇華效果 (隱形)", "description": "" },
-  "592": { "name": "昇華效果 (隱形)", "description": "" },
-  "593": { "name": "昇華效果 (隱形)", "description": "" },
-  "594": { "name": "昇華效果 (隱形)", "description": "" },
-  "595": { "name": "昇華效果 (隱形)", "description": "" },
-  "596": { "name": "元素匯流", "description": "你的所有傷害都能冰緩、感電，和點燃" },
-  "597": { "name": "昇華效果 (隱形)", "description": "" },
-  "598": { "name": "昇華效果 (隱形)", "description": "" },
-  "599": { "name": "昇華效果 (隱形)", "description": "" },
-  "600": { "name": "昇華效果 (隱形)", "description": "" },
-  "601": { "name": "昇華效果 (隱形)", "description": "" },
-  "602": { "name": "昇華效果 (隱形)", "description": "你因為在秘術家的周圍降低了生命回復和混沌抗性" },
-  "603": { "name": "昇華效果 (隱形)", "description": "" },
-  "604": { "name": "", "description": "友軍造成額外火焰傷害" },
-  "605": { "name": "火焰傷害光環", "description": "友軍造成額外火焰傷害" },
-  "606": { "name": "", "description": "友軍造成額外冰冷傷害" },
-  "607": { "name": "冰冷傷害光環", "description": "友軍造成額外冰冷傷害" },
-  "608": { "name": "", "description": "友軍造成額外閃電傷害" },
-  "609": { "name": "閃電傷害光環", "description": "友軍造成額外閃電傷害" },
-  "610": { "name": "刀鋒亂舞", "description": "刀鋒亂舞造成更多傷害" },
-  "611": { "name": "WIP", "description": "" },
-  "612": { "name": "昇華效果 (隱形)", "description": "你正在回復能量護盾" },
-  "613": { "name": "", "description": "額外格擋率" },
-  "614": { "name": "", "description": "額外格擋率" },
-  "615": { "name": "", "description": "額外法術格擋率" },
-  "616": { "name": "", "description": "額外法術格擋率" },
-  "617": { "name": "", "description": "額外躲避法術和攻擊機率" },
-  "618": { "name": "", "description": "額外躲避法術和攻擊機率" },
-  "619": { "name": "伊澤洛傷害", "description": "伊澤洛的傷害增加了" },
-  "620": { "name": "伊澤洛傷害", "description": "伊澤洛的傷害增加了" },
-  "621": { "name": "伊澤洛速度", "description": "伊澤洛的攻擊、施放，和移動速度都增加了" },
-  "622": { "name": "伊澤洛速度", "description": "伊澤洛的攻擊、施放，和移動速度都增加了" },
-  "623": { "name": "伊澤洛承受傷害", "description": "伊澤洛承受的傷害減少了" },
-  "624": { "name": "伊澤洛承受傷害", "description": "伊澤洛承受的傷害減少了" },
-  "625": { "name": "", "description": "增加物理傷害減免" },
-  "626": { "name": "", "description": "增加物理傷害減免" },
-  "627": { "name": "", "description": "增加物理傷害" },
-  "628": { "name": "", "description": "增加物理傷害" },
-  "629": { "name": "", "description": "額外能量護盾" },
-  "630": { "name": "", "description": "額外能量護盾" },
-  "631": { "name": "狂怒球", "description": "每個狂怒球賦予更多傷害和增加攻擊與施放速度" },
-  "632": { "name": "超級狂怒球", "description": "" },
-  "633": { "name": "靈魂奉獻", "description": "你得到額外的能量護盾，元素抗性並且額外造成等同物理傷害的混沌傷害。" },
-  "634": { "name": "酋長圖騰光環", "description": "你在酋長的圖騰周圍被降低了傷害，並且增加承受的物理和火焰傷害。" },
-  "635": { "name": "昇華效果 (隱形)", "description": "你和此光環中的友軍分享充能球。" },
-  "636": { "name": "昇華效果 (隱形)", "description": "你無法獲得充能球。" },
-  "637": { "name": "昇華效果 (隱形)", "description": "" },
-  "638": { "name": "昇華效果 (隱形)", "description": "" },
-  "639": { "name": "", "description": "" },
-  "640": { "name": "", "description": "" },
-  "641": { "name": "", "description": "" },
-  "642": { "name": "", "description": "" },
-  "643": { "name": "", "description": "" },
-  "644": { "name": "昇華效果 (隱形)", "description": "" },
-  "645": { "name": "", "description": "" },
-  "646": { "name": "閃電魔像憤怒", "description": "賦予攻擊和法術額外閃電傷害" },
-  "647": { "name": "", "description": "" },
-  "648": { "name": "", "description": "" },
-  "649": { "name": "", "description": "" },
-  "650": { "name": "", "description": "" },
-  "651": { "name": "", "description": "" },
-  "652": { "name": "", "description": "" },
-  "653": { "name": "", "description": "" },
-  "654": { "name": "", "description": "" },
-  "655": { "name": "啟發", "description": "一名有護體的昇華使徒增加了你的傷害。" },
-  "656": { "name": "", "description": "" },
-  "657": { "name": "", "description": "" },
-  "658": { "name": "", "description": "" },
-  "659": { "name": "", "description": "" },
-  "660": { "name": "", "description": "" },
-  "661": { "name": "", "description": "" },
-  "662": { "name": "", "description": "" },
-  "663": { "name": "", "description": "" },
-  "664": { "name": "", "description": "" },
-  "665": { "name": "", "description": "" },
-  "666": { "name": "", "description": "" },
-  "667": { "name": "雕像生命回復", "description": "" },
-  "668": { "name": "", "description": "" },
-  "669": { "name": "守護", "description": "" },
-  "670": { "name": "火焰強化", "description": "" },
-  "671": { "name": "冰冷強化", "description": "" },
-  "672": { "name": "閃電強化", "description": "" },
-  "673": { "name": "物理強化", "description": "" },
-  "674": { "name": "忠臣之災", "description": "你下次攻擊的將軍將立即死亡。" },
-  "675": { "name": "石像之心", "description": "你下次攻擊的石像將立即死亡。" },
-  "676": { "name": "融合方晶", "description": "你下次觸碰的通道將會被永久封閉。" },
-  "677": { "name": "元素核心之球", "description": "你下次攻擊的元素核心將立即死亡。" },
-  "678": { "name": "爆裂之杖", "description": "你下次攻擊的水晶塔將立即被摧毀。" },
-  "679": { "name": "永恆之沙", "description": "你下次攻擊的魔偶將不會再回復生命。  " },
-  "680": { "name": "瓦解之輪", "description": "你下一次使用的電極阻斷器在短暫的持續時間後會重新啟動。" },
-  "681": { "name": "傳送門破壞者", "description": "你下次所點擊的傳送門將立即被摧毀。" },
-  "682": { "name": "", "description": "" },
-  "683": { "name": "奉獻", "description": "你正有一個奉獻技能作用著。" },
-  "684": { "name": "旋渦", "description": "你正受到旋渦的傷害。" },
-  "685": { "name": "無盡苦痛", "description": "任何傷害來源對你造成的傷害增加。" },
-  "686": { "name": "無盡浩難", "description": "你發動位移技能時會受到物理傷害。" },
-  "687": { "name": "奮勇進軍生命回復", "description": "給予生命回復。" },
-  "688": { "name": "滿溢聖杯", "description": "此藥劑效果作用時增加你獲得的藥劑充能。" },
-  "689": { "name": "", "description": "" },
-  "690": { "name": "薛朗的光環", "description": "友軍受到的混沌傷害不會穿透能量護盾。" },
-  "691": { "name": "", "description": "在此藥劑效果中，增加你獲得的藥劑充能數量。" },
-  "692": { "name": "緩速", "description": "你被緩速。" },
-  "693": { "name": "", "description": "" },
-  "694": { "name": "女神光束", "description": "你正在受到燃燒傷害。" },
-  "695": { "name": "", "description": "" },
-  "696": { "name": "", "description": "" },
-  "697": { "name": "Ascendancy Effect (Invisible)", "description": "" },
-  "698": { "name": "Ascendancy Effect (Invisible)", "description": "" },
-  "699": { "name": "", "description": "" },
-  "700": { "name": "", "description": "" },
-  "701": { "name": "", "description": "" },
-  "702": { "name": "", "description": "" },
-  "703": { "name": "", "description": "" },
-  "704": { "name": "受到威嚇", "description": "你受到威嚇" },
-  "705": { "name": "", "description": "" },
-  "706": { "name": "", "description": "" },
-  "707": { "name": "", "description": "" },
-  "708": { "name": "奇亞拉的決心", "description": "藥劑作用期間，你免疫冰凍，冰緩，詛咒以及暈眩。" },
-  "709": { "name": "獵人的指導", "description": "你得到你所撃殺的稀有怪物之詞綴做為己用。" },
-  "710": { "name": "無法死亡", "description": "" },
-  "711": { "name": "鳳凰燃彈", "description": "你的火焰抗性降低" },
-  "712": { "name": "憎恨精髓", "description": "你的冰冷抗性降低" },
-  "713": { "name": "雷霆精髓", "description": "你的閃電抗性降低" },
-  "714": { "name": "憤怒精髓", "description": "你的火焰抗性降低" },
-  "715": { "name": "苦難精髓", "description": "你正在受到混沌持續傷害" },
-  "716": { "name": "", "description": "" },
-  "717": { "name": "", "description": "" },
-  "718": { "name": "", "description": "" },
-  "719": { "name": "", "description": "你的傷害穿透 敵人的 元素抗性" },
-  "720": { "name": "", "description": "" },
-  "721": { "name": "", "description": "" },
-  "722": { "name": "", "description": "" },
-  "723": { "name": "", "description": "" },
-  "724": { "name": "", "description": "" },
-  "725": { "name": "", "description": "" },
-  "726": { "name": "", "description": "" },
-  "727": { "name": "", "description": "" },
-  "728": { "name": "", "description": "" },
-  "729": { "name": "炙熱", "description": "你的最大火焰抗性降低" },
-  "730": { "name": "熾灼奔流", "description": "你正在燃燒，受到持續火焰傷害。你的火焰抗性減少。" },
-  "731": { "name": "腦亂者", "description": "" },
-  "732": { "name": "七日鋒", "description": "" },
-  "733": { "name": "", "description": "" },
-  "734": { "name": "RENAME ME", "description": "DESCRIBE ME" },
-  "735": { "name": "腐蝕", "description": "你正在受到混沌持續傷害" },
-  "736": { "name": "", "description": "獲得耐力與狂怒球" },
-  "737": { "name": "腐化遺駭", "description": "你被緩速，並正受到物理持續傷害。" },
-  "738": { "name": "", "description": "" },
-  "739": { "name": "", "description": "" },
-  "740": { "name": "盛怒恐喙鳥頭目", "description": "" },
-  "741": { "name": "", "description": "" },
-  "742": { "name": "", "description": "" },
-  "743": { "name": "", "description": "" },
-  "744": { "name": "電弧陷阱", "description": "你被緩速。" },
-  "745": { "name": "飛刃風暴", "description": "你身旁環繞著飛刃風暴的刀刃。" },
-  "746": { "name": "", "description": "" },
-  "747": { "name": "TEMP", "description": "" },
-  "748": { "name": "", "description": "" },
-  "749": { "name": "", "description": "" },
-  "750": {
+  "blight": { "name": "枯萎", "description": "你正在承受持續性的混沌傷害" },
+  "flask_bonus_poison_immunity": {
+    "name": "免疫中毒",
+    "description": "藥劑作用期間免疫中毒"
+  },
+  "flask_bonus_physical_damage_reduction_percent": {
+    "name": "WIP",
+    "description": ""
+  },
+  "life_regen_from_spread_poison": { "name": "生命回復", "description": "" },
+  "elementalist_increased_fire_damage": {
+    "name": "昇華效果 (隱形)",
+    "description": ""
+  },
+  "elementalist_increased_lightning_damage": {
+    "name": "昇華效果 (隱形)",
+    "description": ""
+  },
+  "elementalist_increased_cold_damage": {
+    "name": "昇華效果 (隱形)",
+    "description": ""
+  },
+  "elementalist_increased_elemental_damage": {
+    "name": "昇華效果 (隱形)",
+    "description": ""
+  },
+  "elementalist_cold_penetration": {
+    "name": "昇華效果 (隱形)",
+    "description": ""
+  },
+  "elementalist_fire_penetration": {
+    "name": "昇華效果 (隱形)",
+    "description": ""
+  },
+  "elementalist_lightning_penetration": {
+    "name": "昇華效果 (隱形)",
+    "description": ""
+  },
+  "elemental_conflux": {
+    "name": "元素匯流",
+    "description": "你的所有傷害都能冰緩、感電，和點燃"
+  },
+  "elementalist_increased_fire_damage_taken": {
+    "name": "昇華效果 (隱形)",
+    "description": ""
+  },
+  "elementalist_increased_lightning_damage_taken": {
+    "name": "昇華效果 (隱形)",
+    "description": ""
+  },
+  "elementalist_increased_cold_damage_taken": {
+    "name": "昇華效果 (隱形)",
+    "description": ""
+  },
+  "elementalist_increased_elemental_damage_cooldown": {
+    "name": "昇華效果 (隱形)",
+    "description": ""
+  },
+  "occultist_non_chaos_to_chaos_damage": {
+    "name": "昇華效果 (隱形)",
+    "description": ""
+  },
+  "occultist_nearby_enemies_chaos_resist_life_regen": {
+    "name": "昇華效果 (隱形)",
+    "description": "你因為在秘術家的周圍降低了生命回復和混沌抗性"
+  },
+  "occultist_no_energy_shield_recharge_delay": {
+    "name": "昇華效果 (隱形)",
+    "description": ""
+  },
+  "izaro_elemental_fire_buff_phase1": {
+    "name": "",
+    "description": "友軍造成額外火焰傷害"
+  },
+  "izaro_elemental_fire_buff": {
+    "name": "火焰傷害光環",
+    "description": "友軍造成額外火焰傷害"
+  },
+  "izaro_elemental_cold_buff_phase1": {
+    "name": "",
+    "description": "友軍造成額外冰冷傷害"
+  },
+  "izaro_elemental_cold_buff": {
+    "name": "冰冷傷害光環",
+    "description": "友軍造成額外冰冷傷害"
+  },
+  "izaro_elemental_lightning_buff_phase1": {
+    "name": "",
+    "description": "友軍造成額外閃電傷害"
+  },
+  "izaro_elemental_lightning_buff": {
+    "name": "閃電傷害光環",
+    "description": "友軍造成額外閃電傷害"
+  },
+  "charged_attack": {
+    "name": "刀鋒亂舞",
+    "description": "刀鋒亂舞造成更多傷害"
+  },
+  "petrify_enrage": { "name": "WIP", "description": "" },
+  "occultist_stacking_es_recovery_per_minute_percent": {
+    "name": "昇華效果 (隱形)",
+    "description": "你正在回復能量護盾"
+  },
+  "izaro_chronos_statue_damage_phase1": {
+    "name": "",
+    "description": "額外格擋率"
+  },
+  "izaro_chronos_statue_damage": { "name": "", "description": "額外格擋率" },
+  "izaro_chronos_statue_speed_phase1": {
+    "name": "",
+    "description": "額外法術格擋率"
+  },
+  "izaro_chronos_statue_speed": { "name": "", "description": "額外法術格擋率" },
+  "izaro_chronos_statue_damage_taken_phase1": {
+    "name": "",
+    "description": "額外躲避法術和攻擊機率"
+  },
+  "izaro_chronos_statue_damage_taken": {
+    "name": "",
+    "description": "額外躲避法術和攻擊機率"
+  },
+  "izaro_gargoyles_damage_buff_phase1": {
+    "name": "伊澤洛傷害",
+    "description": "伊澤洛的傷害增加了"
+  },
+  "izaro_gargoyles_damage_buff": {
+    "name": "伊澤洛傷害",
+    "description": "伊澤洛的傷害增加了"
+  },
+  "izaro_gargoyles_speed_buff_phase1": {
+    "name": "伊澤洛速度",
+    "description": "伊澤洛的攻擊、施放，和移動速度都增加了"
+  },
+  "izaro_gargoyles_speed_buff": {
+    "name": "伊澤洛速度",
+    "description": "伊澤洛的攻擊、施放，和移動速度都增加了"
+  },
+  "izaro_gargoyles_damage_taken_buff_phase1": {
+    "name": "伊澤洛承受傷害",
+    "description": "伊澤洛承受的傷害減少了"
+  },
+  "izaro_gargoyles_damage_taken_buff": {
+    "name": "伊澤洛承受傷害",
+    "description": "伊澤洛承受的傷害減少了"
+  },
+  "izaro_pedestals_physical_damage_reduction_buff_phase 1": {
+    "name": "",
+    "description": "增加物理傷害減免"
+  },
+  "izaro_pedestals_physical_damage_reduction_buff": {
+    "name": "",
+    "description": "增加物理傷害減免"
+  },
+  "izaro_pedestals_physical_damage_buff_phase 1": {
+    "name": "",
+    "description": "增加物理傷害"
+  },
+  "izaro_pedestals_physical_damage_buff": {
+    "name": "",
+    "description": "增加物理傷害"
+  },
+  "izaro_pedestals_additional_energy_shield_phase 1": {
+    "name": "",
+    "description": "額外能量護盾"
+  },
+  "izaro_pedestals_additional_energy_shield": {
+    "name": "",
+    "description": "額外能量護盾"
+  },
+  "izaro_charge": {
+    "name": "狂怒球",
+    "description": "每個狂怒球賦予更多傷害和增加攻擊與施放速度"
+  },
+  "izaro_super_charge": { "name": "超級狂怒球", "description": "" },
+  "offering_spirit": {
+    "name": "靈魂奉獻",
+    "description":
+      "你得到額外的能量護盾，元素抗性並且額外造成等同物理傷害的混沌傷害。"
+  },
+  "totem_aura_chieftain": {
+    "name": "酋長圖騰光環",
+    "description":
+      "你在酋長的圖騰周圍被降低了傷害，並且增加承受的物理和火焰傷害。"
+  },
+  "guardian_share_charges_with_party_members_in_aura": {
+    "name": "昇華效果 (隱形)",
+    "description": "你和此光環中的友軍分享充能球。"
+  },
+  "guardian_conduit_aura_enemies": {
+    "name": "昇華效果 (隱形)",
+    "description": "你無法獲得充能球。"
+  },
+  "guardian_dispel_cooldown": { "name": "昇華效果 (隱形)", "description": "" },
+  "guardian_life_regen": { "name": "昇華效果 (隱形)", "description": "" },
+  "izaro_disrupter_inactive": { "name": "", "description": "" },
+  "izaro_buff_loot_bonus": { "name": "", "description": "" },
+  "melee_ancestor_totem_attack_speed": { "name": "", "description": "" },
+  "slash_ancestor_totem_phys_added_as_fire": { "name": "", "description": "" },
+  "slam_ancestor_totem_melee_damage": { "name": "", "description": "" },
+  "guardian_cannot_be_stunned_aura": {
+    "name": "昇華效果 (隱形)",
+    "description": ""
+  },
+  "izaro_pedestal_timer_buff": { "name": "", "description": "" },
+  "lightning_golem_wrath": {
+    "name": "閃電魔像憤怒",
+    "description": "賦予攻擊和法術額外閃電傷害"
+  },
+  "chronos_statues_buff": { "name": "", "description": "" },
+  "damage_increase_when_killed_bleeding_enemy": {
+    "name": "",
+    "description": ""
+  },
+  "damage_increase_when_killed_cursed_enemy": { "name": "", "description": "" },
+  "increased_minion_attack_and_cast_speed": { "name": "", "description": "" },
+  "increased_attack_and_cast_speed": { "name": "", "description": "" },
+  "curse_enemy_chaos_resistance": { "name": "", "description": "" },
+  "guardian_increased_attack_and_cast_speed": { "name": "", "description": "" },
+  "guardian_increased_damage": { "name": "", "description": "" },
+  "champion_aura_increased_damage_under_fortify": {
+    "name": "啟發",
+    "description": "一名有護體的昇華使徒增加了你的傷害。"
+  },
+  "enrage_buff": { "name": "", "description": "" },
+  "elemental_penetration_from_mine_detonation": {
+    "name": "",
+    "description": ""
+  },
+  "have_killed_recently": { "name": "", "description": "" },
+  "number_of_times_have_been_hit_recently": { "name": "", "description": "" },
+  "have_been_crit_recently": { "name": "", "description": "" },
+  "have_crit_recently": { "name": "", "description": "" },
+  "have_taken_attack_damage_recently": { "name": "", "description": "" },
+  "have_taken_spell_damage_recently": { "name": "", "description": "" },
+  "have_used_a_warcry_recently": { "name": "", "description": "" },
+  "have_been_savage_hit_recently": { "name": "", "description": "" },
+  "have_hit_an_enemy_recently": { "name": "", "description": "" },
+  "chronos_statue_life_regen": { "name": "雕像生命回復", "description": "" },
+  "perandus_gold_spectre_buff": { "name": "", "description": "" },
+  "perandus_chest_protection": { "name": "守護", "description": "" },
+  "perandus_chest_fire_empowered": { "name": "火焰強化", "description": "" },
+  "perandus_chest_cold_empowered": { "name": "冰冷強化", "description": "" },
+  "perandus_chest_lightning_empowered": {
+    "name": "閃電強化",
+    "description": ""
+  },
+  "perandus_chest_physical_empowered": {
+    "name": "物理強化",
+    "description": ""
+  },
+  "bane_of_the_loyal": {
+    "name": "忠臣之災",
+    "description": "你下次攻擊的將軍將立即死亡。"
+  },
+  "heart_of_the_gargoyle": {
+    "name": "石像之心",
+    "description": "你下次攻擊的石像將立即死亡。"
+  },
+  "cube_of_absorption": {
+    "name": "融合方晶",
+    "description": "你下次觸碰的通道將會被永久封閉。"
+  },
+  "orb_of_elemental_essence": {
+    "name": "元素核心之球",
+    "description": "你下次攻擊的元素核心將立即死亡。"
+  },
+  "rod_of_detonation": {
+    "name": "爆裂之杖",
+    "description": "你下次攻擊的水晶塔將立即被摧毀。"
+  },
+  "sand_of_eternity": {
+    "name": "永恆之沙",
+    "description": "你下次攻擊的魔偶將不會再回復生命。  "
+  },
+  "cogs_of_disruption": {
+    "name": "瓦解之輪",
+    "description": "你下一次使用的電極阻斷器在短暫的持續時間後會重新啟動。"
+  },
+  "portal_shredder": {
+    "name": "傳送門破壞者",
+    "description": "你下次所點擊的傳送門將立即被摧毀。"
+  },
+  "perandus_chest_revive_marker": { "name": "", "description": "" },
+  "active_offering": {
+    "name": "奉獻",
+    "description": "你正有一個奉獻技能作用著。"
+  },
+  "ground_maelstrom_chill": {
+    "name": "旋渦",
+    "description": "你正受到旋渦的傷害。"
+  },
+  "aura_increased_damage_taken": {
+    "name": "無盡苦痛",
+    "description": "任何傷害來源對你造成的傷害增加。"
+  },
+  "aura_damage_on_movement_skill_use": {
+    "name": "無盡浩難",
+    "description": "你發動位移技能時會受到物理傷害。"
+  },
+  "savage_hit_life_regen": {
+    "name": "奮勇進軍生命回復",
+    "description": "給予生命回復。"
+  },
+  "overflowing_chalice": {
+    "name": "滿溢聖杯",
+    "description": "此藥劑效果作用時增加你獲得的藥劑充能。"
+  },
+  "have_killed_a_taunted_enemy_recently": { "name": "", "description": "" },
+  "shavronne_torment_aura": {
+    "name": "薛朗的光環",
+    "description": "友軍受到的混沌傷害不會穿透能量護盾。"
+  },
+  "flask_bonus_flask_charges_gained": {
+    "name": "",
+    "description": "在此藥劑效果中，增加你獲得的藥劑充能數量。"
+  },
+  "goddess_slow": { "name": "緩速", "description": "你被緩速。" },
+  "have_pierced_recently": { "name": "", "description": "" },
+  "goddess_beam": { "name": "女神光束", "description": "你正在受到燃燒傷害。" },
+  "have_killed_a_maimed_enemy_recently": { "name": "", "description": "" },
+  "have_taunted_an_enemy_recently": { "name": "", "description": "" },
+  "guardian_additional_block_chance": {
+    "name": "Ascendancy Effect (Invisible)",
+    "description": ""
+  },
+  "guardian_block_cooldown": {
+    "name": "Ascendancy Effect (Invisible)",
+    "description": ""
+  },
+  "blocked_unique_enemy_hit_recently": { "name": "", "description": "" },
+  "elementalist_increased_area_of_effect": { "name": "", "description": "" },
+  "guardian_increased_elemental_resist": { "name": "", "description": "" },
+  "pale_court_invulnerability": { "name": "", "description": "" },
+  "pale_court_ghost_invulnerability": { "name": "", "description": "" },
+  "intimidated": { "name": "受到威嚇", "description": "你受到威嚇" },
+  "number_of_corpses_consumed_recently": { "name": "", "description": "" },
+  "flask_cannot_be_stunned": { "name": "", "description": "" },
+  "ascendancy_life_leech": { "name": "", "description": "" },
+  "kiaras_determination": {
+    "name": "奇亞拉的決心",
+    "description": "藥劑作用期間，你免疫冰凍，冰緩，詛咒以及暈眩。"
+  },
+  "prophecy_stolen_mods_buff": {
+    "name": "獵人的指導",
+    "description": "你得到你所撃殺的稀有怪物之詞綴做為己用。"
+  },
+  "summon_specific_monsters_cannot_die": {
+    "name": "無法死亡",
+    "description": ""
+  },
+  "phoenix_firebomb": { "name": "鳳凰燃彈", "description": "你的火焰抗性降低" },
+  "repeated_pulse_cold": {
+    "name": "憎恨精髓",
+    "description": "你的冰冷抗性降低"
+  },
+  "repeated_pulse_lightning": {
+    "name": "雷霆精髓",
+    "description": "你的閃電抗性降低"
+  },
+  "repeated_pulse_fire": {
+    "name": "憤怒精髓",
+    "description": "你的火焰抗性降低"
+  },
+  "repeated_pulse_chaos": {
+    "name": "苦難精髓",
+    "description": "你正在受到混沌持續傷害"
+  },
+  "essence_alternating_buffs_dodge_and_spell_dodge": {
+    "name": "",
+    "description": ""
+  },
+  "essence_alternating_buffs_reduced_damage_taken": {
+    "name": "",
+    "description": ""
+  },
+  "essence_alternating_buffs_always_crit": { "name": "", "description": "" },
+  "flask_elemental_penetration": {
+    "name": "",
+    "description": "你的傷害穿透 敵人的 元素抗性"
+  },
+  "essence_elemental_damage_taken": { "name": "", "description": "" },
+  "essence_burning_ground": { "name": "", "description": "" },
+  "essence_elemental_damage_taken_granted": { "name": "", "description": "" },
+  "curse_immunity": { "name": "", "description": "" },
+  "essence_base_buffs_move_atack_cast_speed": { "name": "", "description": "" },
+  "essence_base_buffs_damage": { "name": "", "description": "" },
+  "essence_base_buffs_crit_immune": { "name": "", "description": "" },
+  "permanent_debuff_on_minion_death": { "name": "", "description": "" },
+  "have_blocked_attack_recently": { "name": "", "description": "" },
+  "phoenix_stacking_debuff": {
+    "name": "炙熱",
+    "description": "你的最大火焰抗性降低"
+  },
+  "fire_beam_damage_stacks": {
+    "name": "熾灼奔流",
+    "description": "你正在燃燒，受到持續火焰傷害。你的火焰抗性減少。"
+  },
+  "brain_scrambler_shock_effects": { "name": "腦亂者", "description": "" },
+  "razor_unique_increased_burning_damage": {
+    "name": "七日鋒",
+    "description": ""
+  },
+  "shaper_immune": { "name": "", "description": "" },
+  "shaper_beam": { "name": "RENAME ME", "description": "DESCRIBE ME" },
+  "decay": { "name": "腐蝕", "description": "你正在受到混沌持續傷害" },
+  "endurance_frenzy_charge_essence": {
+    "name": "",
+    "description": "獲得耐力與狂怒球"
+  },
+  "remnant_of_corruption_aura": {
+    "name": "腐化遺駭",
+    "description": "你被緩速，並正受到物理持續傷害。"
+  },
+  "chieftain_enrage_aura": { "name": "", "description": "" },
+  "chieftain_enrage_buff": { "name": "", "description": "" },
+  "rhoa_map_boss_enrage_buff": { "name": "盛怒恐喙鳥頭目", "description": "" },
+  "monolith_monster_freedom": { "name": "", "description": "" },
+  "essence_random_charge": { "name": "", "description": "" },
+  "essence_charge_max_and_duration": { "name": "", "description": "" },
+  "minotaur_arctrap_debuff": {
+    "name": "電弧陷阱",
+    "description": "你被緩速。"
+  },
+  "new_blade_vortex": {
+    "name": "飛刃風暴",
+    "description": "你身旁環繞著飛刃風暴的刀刃。"
+  },
+  "new_blade_vortex_effect": { "name": "", "description": "" },
+  "zana_immune_buff": { "name": "TEMP", "description": "" },
+  "hidden_monster_disable_minions": { "name": "", "description": "" },
+  "aura_movement_speed_for_spiders": { "name": "", "description": "" },
+  "covered_in_spiders": {
     "name": "蜘蛛纏身",
-    "description": "你被蜘蛛覆蓋！燒掉它們！你移動的更快，但攻擊與施放速度降低，並造成較少傷害。"
+    "description":
+      "你被蜘蛛覆蓋！燒掉它們！你移動的更快，但攻擊與施放速度降低，並造成較少傷害。"
   },
-  "751": { "name": "火烤蜘蛛！", "description": "你正在燒掉蜘蛛，但同時也受到火焰持續傷害。" },
-  "752": { "name": "回復", "description": "你持續的回復生命、魔力或能量護盾。" },
-  "753": { "name": "", "description": "" },
-  "754": { "name": "", "description": "" },
-  "755": { "name": "巫火秘釀", "description": "你造成的持續傷害增加" },
-  "756": { "name": "滅日", "description": "你的影響範圍增加，並發射額外投射物。" },
-  "757": { "name": "", "description": "" },
-  "758": { "name": "寶藏堆", "description": "你造成的傷害增加" },
-  "759": { "name": "", "description": "" },
-  "760": { "name": "冰緩匯流", "description": "你的所有傷害都能冰緩" },
-  "761": { "name": "感電匯流", "description": "你的所有傷害都能感電" },
-  "762": { "name": "點燃匯流", "description": "你的所有傷害都能點燃" },
-  "763": { "name": "元素匯流", "description": "你的所有傷害都能冰緩、感電，和點燃" },
-  "764": { "name": "", "description": "" },
-  "765": { "name": "", "description": "" },
-  "766": { "name": "", "description": "" },
-  "767": { "name": "", "description": "" },
-  "768": { "name": "激流", "description": "每個激流都將使你的動作更加迅速。" },
-  "769": { "name": "", "description": "" },
-  "770": { "name": "", "description": "" },
-  "771": { "name": "", "description": "" },
-  "772": { "name": "", "description": "" },
-  "773": { "name": "液態金", "description": "站在液態金裡使你的移動速度降低。" },
-  "774": { "name": "", "description": "" },
-  "775": { "name": "餘燼纏身", "description": "你被緩速，受到的火焰傷害將會提高。" },
-  "776": { "name": "增強怒嚎", "description": "" },
-  "777": { "name": "飛刃風暴", "description": "你身旁環繞著飛刃風暴的刀刃。" },
-  "778": { "name": "", "description": "" },
-  "779": { "name": "", "description": "" },
-  "780": { "name": "", "description": "" },
-  "781": { "name": "萎滅", "description": "你正在受到混沌持續傷害" },
-  "782": { "name": "怪物吸收", "description": "" },
-  "783": { "name": "Asset Lock Buff", "description": "騰訊" },
-  "784": { "name": "Asset Lock Inactive", "description": "騰訊" },
-  "785": { "name": "TAS Lock", "description": "騰訊" },
-  "786": { "name": "暴風雪", "description": "你受到冰緩，在暴風雪中命中大幅降低。" },
-  "787": { "name": "", "description": "" },
-  "788": { "name": "", "description": "" },
-  "789": { "name": "", "description": "" },
-  "790": { "name": "", "description": "" },
-  "791": { "name": "", "description": "" },
-  "792": { "name": "", "description": "" },
-  "793": { "name": "", "description": "" },
-  "794": { "name": "", "description": "" },
-  "795": { "name": "", "description": "" },
-  "796": { "name": "妒忌光環", "description": "獲得額外混沌傷害" },
-  "797": { "name": "", "description": "" },
-  "798": { "name": "", "description": "" },
-  "799": { "name": "", "description": "" },
-  "800": { "name": "嗜血洪流", "description": "每層嗜血洪流增加 10% 對你的傷害。" },
-  "801": { "name": "碧綠洪流", "description": "每層碧綠洪流減少 7% 你和召喚物造成的傷害。" },
-  "802": { "name": "紫諱洪流", "description": "每層紫諱洪流減少 7% 你的速度。" },
-  "803": { "name": "嗜血效果", "description": "" },
-  "804": { "name": "碧綠效果", "description": "" },
-  "805": { "name": "紫諱效果", "description": "" },
-  "806": { "name": "艾貝拉斯之怒", "description": "你的每腳步將產生小型爆炸，對你的周圍造成火焰傷害。" },
-  "807": { "name": "聖潔光束", "description": "受到火焰持續傷害。" },
-  "808": { "name": "聖潔光束", "description": "在光束中受到的火焰傷害持續增加。" },
-  "809": { "name": "", "description": "" },
-  "810": { "name": "盤纏蛛絲", "description": "被蜘蛛網覆蓋時減少移動速度。" },
-  "811": { "name": "", "description": "" },
-  "812": { "name": "", "description": "" },
-  "813": { "name": "點燃", "description": "你著火了。" },
-  "814": { "name": "基礎", "description": "" },
-  "815": { "name": "預言數量", "description": "" },
-  "816": { "name": "", "description": "" },
-  "817": { "name": "自投網羅", "description": "站在網羅上時減少移動速度。" },
-  "818": { "name": "鮮血奉獻", "description": "你的傷害增加並回復生命。" },
-  "819": { "name": "", "description": "" },
-  "820": { "name": "", "description": "" },
-  "821": { "name": "", "description": "" },
-  "822": { "name": "維多里奧的飛昇", "description": "你與友軍獲得額外的移動速度。" },
-  "823": { "name": "受到威嚇", "description": "你受到威嚇。" },
-  "824": { "name": "", "description": "" },
-  "825": { "name": "受潮", "description": "被捲入潮汐中，被緩速且持續受到冰冷傷害。" },
-  "826": { "name": "", "description": "" },
-  "827": { "name": "暗夜吞噬", "description": "持續受到物理傷害。" },
-  "828": { "name": "", "description": "" },
-  "829": { "name": "", "description": "" },
-  "830": { "name": "", "description": "" },
-  "831": { "name": "", "description": "" },
-  "832": { "name": "", "description": "" },
-  "833": { "name": "", "description": "" },
-  "834": { "name": "", "description": "" },
-  "835": { "name": "受感染", "description": "寄身蟲在你體內爆裂，並且將你的藥水充能吸乾。" },
-  "836": {
+  "remove_covered_in_spiders": {
+    "name": "火烤蜘蛛！",
+    "description": "你正在燒掉蜘蛛，但同時也受到火焰持續傷害。"
+  },
+  "restore": {
+    "name": "回復",
+    "description": "你持續的回復生命、魔力或能量護盾。"
+  },
+  "alternating_buffs_item_rarity": { "name": "", "description": "" },
+  "base_buffs_item_quantity": { "name": "", "description": "" },
+  "unique_flask_witchfire_brew": {
+    "name": "巫火秘釀",
+    "description": "你造成的持續傷害增加"
+  },
+  "unique_flask_dying_sun": {
+    "name": "滅日",
+    "description": "你的影響範圍增加，並發射額外投射物。"
+  },
+  "atlas_lightning_golem_buff": { "name": "", "description": "" },
+  "aura_atlas_gold_pile": {
+    "name": "寶藏堆",
+    "description": "你造成的傷害增加"
+  },
+  "hallowed_ground_boss_invulnerability": { "name": "", "description": "" },
+  "elementalist_all_damage_chills": {
+    "name": "冰緩匯流",
+    "description": "你的所有傷害都能冰緩"
+  },
+  "elementalist_all_damage_shocks": {
+    "name": "感電匯流",
+    "description": "你的所有傷害都能感電"
+  },
+  "elementalist_all_damage_ignites": {
+    "name": "點燃匯流",
+    "description": "你的所有傷害都能點燃"
+  },
+  "elementalist_all_damage_chills_shocks_ignites": {
+    "name": "元素匯流",
+    "description": "你的所有傷害都能冰緩、感電，和點燃"
+  },
+  "shaper_minions_buff": { "name": "", "description": "" },
+  "map_poisoned_while_moving": { "name": "", "description": "" },
+  "map_damage_taken_while_stationary": { "name": "", "description": "" },
+  "map_damage_taken": { "name": "", "description": "" },
+  "ground_haste": {
+    "name": "激流",
+    "description": "每個激流都將使你的動作更加迅速。"
+  },
+  "damage_taken_on_200_mana_spent": { "name": "", "description": "" },
+  "mass_summon_ravens": { "name": "", "description": "" },
+  "damage_and_damage_taken": { "name": "", "description": "" },
+  "map_damage_and_damage_taken_while_stationary": {
+    "name": "",
+    "description": ""
+  },
+  "ground_tar_gold": {
+    "name": "液態金",
+    "description": "站在液態金裡使你的移動速度降低。"
+  },
+  "strongbox_enrage": { "name": "", "description": "" },
+  "cover_in_ash": {
+    "name": "餘燼纏身",
+    "description": "你被緩速，受到的火焰傷害將會提高。"
+  },
+  "empowering_howl": { "name": "增強怒嚎", "description": "" },
+  "new_new_blade_vortex": {
+    "name": "飛刃風暴",
+    "description": "你身旁環繞著飛刃風暴的刀刃。"
+  },
+  "have_summoned_golem_in_past_8_seconds": { "name": "", "description": "" },
+  "golem_summoned_in_past_8_seconds": { "name": "", "description": "" },
+  "elementalist_shaper_of_desolation_cooldown": {
+    "name": "",
+    "description": ""
+  },
+  "new_blight": { "name": "萎滅", "description": "你正在受到混沌持續傷害" },
+  "monster_consume_charges": { "name": "怪物吸收", "description": "" },
+  "player_tencent_asset_lock_bonus": {
+    "name": "Asset Lock Buff",
+    "description": "騰訊"
+  },
+  "player_tencent_no_asset_lock": {
+    "name": "Asset Lock Inactive",
+    "description": "騰訊"
+  },
+  "tencent_tas_lock": { "name": "TAS Lock", "description": "騰訊" },
+  "blizzard_enemy": {
+    "name": "暴風雪",
+    "description": "你受到冰緩，在暴風雪中命中大幅降低。"
+  },
+  "blizzard_ally": { "name": "", "description": "" },
+  "monster_convert_on_death": { "name": "", "description": "" },
+  "breach_team_warp_buff": { "name": "", "description": "" },
+  "breach_discharge_aura": { "name": "", "description": "" },
+  "breach_discharge": { "name": "", "description": "" },
+  "have_dealt_non_crit_recently": { "name": "", "description": "" },
+  "have_frozen_enemy_recently": { "name": "", "description": "" },
+  "number_of_shocked_enemies_killed_recently": {
+    "name": "",
+    "description": ""
+  },
+  "track_movement": { "name": "", "description": "" },
+  "envy_chaos_damage": {
+    "name": "妒忌光環",
+    "description": "獲得額外混沌傷害"
+  },
+  "fire_beam_max_damage_stacks": { "name": "", "description": "" },
+  "rhoa_enrage": { "name": "", "description": "" },
+  "fire_beam_resistance_stacks": { "name": "", "description": "" },
+  "doedre2_red_aura": {
+    "name": "嗜血洪流",
+    "description": "每層嗜血洪流增加 10% 對你的傷害。"
+  },
+  "doedre2_green_aura": {
+    "name": "碧綠洪流",
+    "description": "每層碧綠洪流減少 7% 你和召喚物造成的傷害。"
+  },
+  "doedre2_purple_aura": {
+    "name": "紫諱洪流",
+    "description": "每層紫諱洪流減少 7% 你的速度。"
+  },
+  "doedre2_red_buff": { "name": "嗜血效果", "description": "" },
+  "doedre2_green_buff": { "name": "碧綠效果", "description": "" },
+  "doedre2_purple_buff": { "name": "紫諱效果", "description": "" },
+  "abberaths_hooves_display_buff": {
+    "name": "艾貝拉斯之怒",
+    "description": "你的每腳步將產生小型爆炸，對你的周圍造成火焰傷害。"
+  },
+  "avarius_divine_beam_damage": {
+    "name": "聖潔光束",
+    "description": "受到火焰持續傷害。"
+  },
+  "avarius_divine_beam_debuff": {
+    "name": "聖潔光束",
+    "description": "在光束中受到的火焰傷害持續增加。"
+  },
+  "avarius_statue_buff": { "name": "", "description": "" },
+  "spider_god_spiders": {
+    "name": "盤纏蛛絲",
+    "description": "被蜘蛛網覆蓋時減少移動速度。"
+  },
+  "number_of_chests_opened_recently": { "name": "", "description": "" },
+  "have_shattered_recently": { "name": "", "description": "" },
+  "additional_ignite": { "name": "點燃", "description": "你著火了。" },
+  "unique_flask_the_basics": { "name": "基礎", "description": "" },
+  "classic_prophecy_quantity": { "name": "預言數量", "description": "" },
+  "tukohama_shield": { "name": "", "description": "" },
+  "ground_tar_net": {
+    "name": "自投網羅",
+    "description": "站在網羅上時減少移動速度。"
+  },
+  "offering_blood": {
+    "name": "鮮血奉獻",
+    "description": "你的傷害增加並回復生命。"
+  },
+  "have_blocked_spell_recently": { "name": "", "description": "" },
+  "have_used_a_fire_skill_recently": { "name": "", "description": "" },
+  "brutus_empowered": { "name": "", "description": "" },
+  "unique_victarios_flight_movement_velocity": {
+    "name": "維多里奧的飛昇",
+    "description": "你與友軍獲得額外的移動速度。"
+  },
+  "intimidated_aura": { "name": "受到威嚇", "description": "你受到威嚇。" },
+  "beyond_host": { "name": "", "description": "" },
+  "brine_king_tide": {
+    "name": "受潮",
+    "description": "被捲入潮汐中，被緩速且持續受到冰冷傷害。"
+  },
+  "energy_shield_has_started_recharging_recently": {
+    "name": "",
+    "description": ""
+  },
+  "ground_devouring_darkness": {
+    "name": "暗夜吞噬",
+    "description": "持續受到物理傷害。"
+  },
+  "have_stopped_taking_damage_over_time_recently": {
+    "name": "",
+    "description": ""
+  },
+  "have_been_frozen_recently": { "name": "", "description": "" },
+  "have_been_stunned_recently": { "name": "", "description": "" },
+  "tukohama_god_stationary_buff": { "name": "", "description": "" },
+  "ryslatha_god_life_flask_charges_gain": { "name": "", "description": "" },
+  "tangmazu_god_curses_have_no_effect_on_you_cooldown": {
+    "name": "",
+    "description": ""
+  },
+  "curses_have_no_effect_on_you": { "name": "", "description": "" },
+  "infested": {
+    "name": "受感染",
+    "description": "寄身蟲在你體內爆裂，並且將你的藥水充能吸乾。"
+  },
+  "despair_bear_buff": {
     "name": "葛魯斯寇的絕望",
-    "description": "葛魯斯寇的絕望腐蝕著你。你被緩速、受到更多傷害且視線範圍縮小。"
+    "description":
+      "葛魯斯寇的絕望腐蝕著你。你被緩速、受到更多傷害且視線範圍縮小。"
   },
-  "837": { "name": "無畏", "description": "無法受到傷害與死亡。可以摧毀附近恐懼的表象。" },
-  "838": { "name": "恐懼", "description": "每個恐懼的表象造成冰冷持續傷害。" },
-  "839": { "name": "恐懼", "description": "每個恐懼的表象造成冰冷持續傷害。" },
-  "840": { "name": "恐懼", "description": "每個恐懼的表象造成冰冷持續傷害。" },
-  "841": { "name": "求知的熱情", "description": "獲得擊殺稀有怪的詞綴能力。" },
-  "842": { "name": "復仇聯盟石", "description": "獲得擊殺稀有怪的詞綴能力。" },
-  "843": { "name": "", "description": "" },
-  "844": { "name": "燃燒", "description": "受到敵人灰燼之捷的效果，持續受到火焰傷害。" },
-  "845": { "name": "", "description": "" },
-  "846": { "name": "", "description": "" },
-  "847": { "name": "", "description": "" },
-  "848": { "name": "", "description": "" },
-  "849": { "name": "", "description": "" },
-  "850": { "name": "", "description": "" },
-  "851": { "name": "", "description": "" },
-  "852": { "name": "", "description": "" },
-  "853": { "name": "沉重的絕望", "description": "持續受到物理傷害，並且減少移動速度。" },
-  "854": { "name": "", "description": "" },
-  "855": { "name": "", "description": "" },
-  "856": { "name": "", "description": "" },
-  "857": { "name": "", "description": "" },
-  "858": { "name": "黑暗漩渦", "description": "受到月影神的黑暗漩渦攻擊。" },
-  "859": { "name": "", "description": "" },
-  "860": { "name": "沙瀑卡洛翰", "description": "你正在承受物理持續傷害。" },
-  "861": { "name": "", "description": "" },
-  "862": { "name": "", "description": "" },
-  "863": { "name": "病疫", "description": "你正在承受混沌持續傷害。" },
-  "864": { "name": "", "description": "" },
-  "865": { "name": "秘能波動", "description": "你造成更多法術傷害，並增加施放速度和魔力回復。" },
-  "866": { "name": "", "description": "" },
-  "867": { "name": "寒冰之刺", "description": "你被擊中時反射冰冷傷害。" },
-  "868": { "name": "", "description": "" },
-  "869": { "name": "", "description": "" },
-  "870": { "name": "亢奮", "description": "你造成額外閃電傷害。" },
-  "871": { "name": "", "description": "" },
-  "872": { "name": "石化凝視", "description": "你正在石化。" },
-  "873": { "name": "", "description": "" },
-  "874": { "name": "流血", "description": "你正在流血，造成你持續受到物理傷害。" },
-  "875": { "name": "", "description": "" },
-  "876": { "name": "礫沖之怒", "description": "" },
-  "877": { "name": "德瑞的折磨", "description": "每層德瑞的折磨讓你增加 6% 承受傷害。" },
-  "878": { "name": "德瑞的枯萎", "description": "每層德瑞的枯萎讓你和你的召喚物造成 5% 較少傷害。" },
-  "879": { "name": "德瑞的受難", "description": "每層德瑞的受難緩速你 5%。" },
-  "880": { "name": "", "description": "" },
-  "881": { "name": "", "description": "" },
-  "882": { "name": "威嚇", "description": "你被威嚇了" },
-  "883": { "name": "", "description": "" },
-  "884": { "name": "禁忌之吻", "description": "你持續受到混沌傷害" },
-  "885": { "name": "", "description": "" },
-  "886": { "name": "", "description": "" },
-  "887": { "name": "虛空凝視", "description": "你已經減少混沌傷害抗性" },
-  "888": { "name": "", "description": "" },
-  "889": { "name": "", "description": "" },
-  "890": { "name": "", "description": "" },
-  "891": { "name": "潺流不息", "description": "在你周圍的時間過得更快速。" },
-  "892": { "name": "不滅意志", "description": "你無法被暈眩和受到異常狀態，受到傷害減少。" },
-  "893": { "name": "裂斷蛛絲", "description": "你的投射物有額外的屬性。" },
-  "894": { "name": "惡言聖語", "description": "你的攻擊、攻擊速度和移動速度被增強，受到傷害減少。" },
-  "895": { "name": "", "description": "" },
-  "896": { "name": "", "description": "" },
-  "897": { "name": "", "description": "" },
-  "898": { "name": "", "description": "" },
-  "899": { "name": "", "description": "" },
-  "900": { "name": "", "description": "" },
-  "901": { "name": "腐蝕之襲", "description": "你正在目前位置上製造腐蝕酸雲。持續移動來移除此件減益效果。" },
-  "902": { "name": "", "description": "" },
-  "903": { "name": "", "description": "" },
-  "904": { "name": "瑪拉凱之耐力", "description": "瑪拉凱之耐力給予你擊殺敵人時有20%機率獲得耐力球。" },
-  "905": { "name": "瑪拉凱之狂怒", "description": "瑪拉凱之狂怒給予你擊殺敵人時有20%機率獲得狂怒球。" },
-  "906": { "name": "瑪拉凱之暴擊", "description": "瑪拉凱之暴擊給予你擊殺敵人時有20%機率獲得暴擊球。" },
-  "907": { "name": "", "description": "" },
-  "908": { "name": "", "description": "" },
-  "909": { "name": "", "description": "" },
-  "910": { "name": "流沙", "description": "你正被流沙緩速。" },
-  "911": {
+  "fearless": {
+    "name": "無畏",
+    "description": "無法受到傷害與死亡。可以摧毀附近恐懼的表象。"
+  },
+  "frog_orb_aura": {
+    "name": "恐懼",
+    "description": "每個恐懼的表象造成冰冷持續傷害。"
+  },
+  "frog_orb_aura_minions": {
+    "name": "恐懼",
+    "description": "每個恐懼的表象造成冰冷持續傷害。"
+  },
+  "water_orb_aura": {
+    "name": "恐懼",
+    "description": "每個恐懼的表象造成冰冷持續傷害。"
+  },
+  "stolen_mods_inspired_learning": {
+    "name": "求知的熱情",
+    "description": "獲得擊殺稀有怪的詞綴能力。"
+  },
+  "stolen_mods_leaguestone": {
+    "name": "復仇聯盟石",
+    "description": "獲得擊殺稀有怪的詞綴能力。"
+  },
+  "abberath_minion_buff": { "name": "", "description": "" },
+  "herald_of_ash_burning": {
+    "name": "燃燒",
+    "description": "受到敵人灰燼之捷的效果，持續受到火焰傷害。"
+  },
+  "have_shocked_recently": { "name": "", "description": "" },
+  "kitava_swipe_debuff": { "name": "", "description": "" },
+  "despair_bear_slow": { "name": "", "description": "" },
+  "have_used_movement_skill_recently": { "name": "", "description": "" },
+  "ascendant_chaos_resistance": { "name": "", "description": "" },
+  "ascendant_block_chance": { "name": "", "description": "" },
+  "ascendant_attack_cast_movement_speed": { "name": "", "description": "" },
+  "have_placed_trap_or_mine_recently": { "name": "", "description": "" },
+  "ground_despair_geyser": {
+    "name": "沉重的絕望",
+    "description": "持續受到物理傷害，並且減少移動速度。"
+  },
+  "support_maimed_enemies_damage_taken": { "name": "", "description": "" },
+  "have_used_a_cold_skill_recently": { "name": "", "description": "" },
+  "attack_speed_debuff_from_hitting_enemy_recently": {
+    "name": "",
+    "description": ""
+  },
+  "yugul_hidden_monster": { "name": "", "description": "" },
+  "ground_maelstrom_chill_lunaris": {
+    "name": "黑暗漩渦",
+    "description": "受到月影神的黑暗漩渦攻擊。"
+  },
+  "silver_orb_aggressive": { "name": "", "description": "" },
+  "ground_sandstorm": {
+    "name": "沙瀑卡洛翰",
+    "description": "你正在承受物理持續傷害。"
+  },
+  "number_of_nearby_enemies": { "name": "", "description": "" },
+  "ralakesh_buff": { "name": "", "description": "" },
+  "plague": { "name": "病疫", "description": "你正在承受混沌持續傷害。" },
+  "accelerate": { "name": "", "description": "" },
+  "arcane_surge": {
+    "name": "秘能波動",
+    "description": "你造成更多法術傷害，並增加施放速度和魔力回復。"
+  },
+  "mana_gained_from_hit_damage": { "name": "", "description": "" },
+  "lightning_thorns_cold": {
+    "name": "寒冰之刺",
+    "description": "你被擊中時反射冰冷傷害。"
+  },
+  "blight_hinder_chaos_damage_taken": { "name": "", "description": "" },
+  "moontouched_buff": { "name": "", "description": "" },
+  "innervate_support": {
+    "name": "亢奮",
+    "description": "你造成額外閃電傷害。"
+  },
+  "blackguardzombie_enrage": { "name": "", "description": "" },
+  "basilisk_slow": { "name": "石化凝視", "description": "你正在石化。" },
+  "basilisk_gaze": { "name": "", "description": "" },
+  "bleeding_stack": {
+    "name": "流血",
+    "description": "你正在流血，造成你持續受到物理傷害。"
+  },
+  "ruthless_big_hit_counter": { "name": "", "description": "" },
+  "boulderdash_enrage": { "name": "礫沖之怒", "description": "" },
+  "doedre_pillar_red_aura": {
+    "name": "德瑞的折磨",
+    "description": "每層德瑞的折磨讓你增加 6% 承受傷害。"
+  },
+  "doedre_pillar_green_aura": {
+    "name": "德瑞的枯萎",
+    "description": "每層德瑞的枯萎讓你和你的召喚物造成 5% 較少傷害。"
+  },
+  "doedre_pillar_purple_aura": {
+    "name": "德瑞的受難",
+    "description": "每層德瑞的受難緩速你 5%。"
+  },
+  "general_adus_supercharged": { "name": "", "description": "" },
+  "monster_temporary_additional_projectiles": { "name": "", "description": "" },
+  "intimidated_aura_rhoa": { "name": "威嚇", "description": "你被威嚇了" },
+  "arcane_surge_mana_spent": { "name": "", "description": "" },
+  "darktongue_kiss": {
+    "name": "禁忌之吻",
+    "description": "你持續受到混沌傷害"
+  },
+  "harbinger_minion_new": { "name": "", "description": "" },
+  "have_blocked_a_stun_recently": { "name": "", "description": "" },
+  "void_gaze": { "name": "虛空凝視", "description": "你已經減少混沌傷害抗性" },
+  "charged_dash_chance_to_dodge": { "name": "", "description": "" },
+  "kitava_heart_damage_taken": { "name": "", "description": "" },
+  "abyss_monsters_damage_taken": { "name": "", "description": "" },
+  "harbinger_action_speed_aura": {
+    "name": "潺流不息",
+    "description": "在你周圍的時間過得更快速。"
+  },
+  "harbinger_channel_buff": {
+    "name": "不滅意志",
+    "description": "你無法被暈眩和受到異常狀態，受到傷害減少。"
+  },
+  "harbinger_projectile_buff": {
+    "name": "裂斷蛛絲",
+    "description": "你的投射物有額外的屬性。"
+  },
+  "harbinger_damage_buff": {
+    "name": "惡言聖語",
+    "description": "你的攻擊、攻擊速度和移動速度被增強，受到傷害減少。"
+  },
+  "harbinger_minion_buff": { "name": "", "description": "" },
+  "pantheon_brine_king_stun_immunity": { "name": "", "description": "" },
+  "harbinger_cold_beacon": { "name": "", "description": "" },
+  "harbinger_tiger_enrage": { "name": "", "description": "" },
+  "harbinger_mortar_buff": { "name": "", "description": "" },
+  "power_charge_on_mana_spent": { "name": "", "description": "" },
+  "caustic_cloud_trail": {
+    "name": "腐蝕之襲",
+    "description": "你正在目前位置上製造腐蝕酸雲。持續移動來移除此件減益效果。"
+  },
+  "quicksand_aura": { "name": "", "description": "" },
+  "quicksand_buff": { "name": "", "description": "" },
+  "malachais_endurance": {
+    "name": "瑪拉凱之耐力",
+    "description": "瑪拉凱之耐力給予你擊殺敵人時有20%機率獲得耐力球。"
+  },
+  "malachais_frenzy": {
+    "name": "瑪拉凱之狂怒",
+    "description": "瑪拉凱之狂怒給予你擊殺敵人時有20%機率獲得狂怒球。"
+  },
+  "malachais_power": {
+    "name": "瑪拉凱之暴擊",
+    "description": "瑪拉凱之暴擊給予你擊殺敵人時有20%機率獲得暴擊球。"
+  },
+  "thaumaturgy_rotation": { "name": "", "description": "" },
+  "ankh_of_eternity_enrage": { "name": "", "description": "" },
+  "gain_random_charges_while_stationary": { "name": "", "description": "" },
+  "quicksand_display_buff": {
+    "name": "流沙",
+    "description": "你正被流沙緩速。"
+  },
+  "unique_flask_gorgon_poison": {
     "name": "克拉里多的名印",
-    "description": "你正受到混沌傷害，並獲得絕對受難效果。你的攻擊有機率造成中毒並增加中毒持續時間，你的暴擊不再造成額外傷害。"
+    "description":
+      "你正受到混沌傷害，並獲得絕對受難效果。你的攻擊有機率造成中毒並增加中毒持續時間，你的暴擊不再造成額外傷害。"
   },
-  "912": { "name": "", "description": "" },
-  "913": { "name": "夏卡莉之沙", "description": "" },
-  "914": { "name": "", "description": "" },
-  "915": { "name": "", "description": "" },
-  "916": { "name": "", "description": "" },
-  "917": { "name": "", "description": "" },
-  "918": { "name": "", "description": "" },
-  "919": {
+  "spectral_spinning_weapon": { "name": "", "description": "" },
+  "unique_flask_shakari_increased_speed": {
+    "name": "夏卡莉之沙",
+    "description": ""
+  },
+  "unique_flask_shakari_reduced_speed_per_second": {
+    "name": "",
+    "description": ""
+  },
+  "have_been_damaged_by_hit_recently": { "name": "", "description": "" },
+  "have_used_a_minion_skill_recently": { "name": "", "description": "" },
+  "has_player_minion_been_killed_recently": { "name": "", "description": "" },
+  "minion_has_killed_enemy_recently": { "name": "", "description": "" },
+  "aegis_fire_buff": {
     "name": "火焰聖盾",
-    "description": "被擊中時，火焰傷害會先由此屏障承受。若近期沒受到火焰傷害，聖盾會回復滿溢狀態。"
+    "description":
+      "被擊中時，火焰傷害會先由此屏障承受。若近期沒受到火焰傷害，聖盾會回復滿溢狀態。"
   },
-  "920": {
+  "aegis_cold_buff": {
     "name": "冰冷聖盾",
-    "description": "被擊中時，冰冷傷害會先由此屏障承受。若近期沒受到冰冷傷害，聖盾會回復滿溢狀態。"
+    "description":
+      "被擊中時，冰冷傷害會先由此屏障承受。若近期沒受到冰冷傷害，聖盾會回復滿溢狀態。"
   },
-  "921": {
+  "aegis_elemental_buff": {
     "name": "元素聖盾",
-    "description": "被擊中時，元素傷害會先由此屏障承受。若近期沒受到元素傷害，聖盾會回復滿溢狀態。"
+    "description":
+      "被擊中時，元素傷害會先由此屏障承受。若近期沒受到元素傷害，聖盾會回復滿溢狀態。"
   },
-  "922": { "name": "火焰聖盾", "description": "聖盾被消耗殆盡。若近期沒受到火焰傷害，聖盾會回復滿溢狀態。" },
-  "923": { "name": "冰冷聖盾", "description": "聖盾被消耗殆盡。若近期沒受到冰冷傷害，聖盾會回復滿溢狀態。" },
-  "924": { "name": "元素聖盾", "description": "聖盾被消耗殆盡。若近期沒受到元素傷害，聖盾會回復滿溢狀態。" },
-  "925": { "name": "", "description": "" },
-  "926": { "name": "", "description": "" },
-  "927": { "name": "", "description": "" },
-  "928": { "name": "不淨之火", "description": "獲得免疫點燃並減少承受火焰傷害" },
-  "929": { "name": "不淨之冰", "description": "獲得免疫冰凍並減少承受冰冷傷害" },
-  "930": { "name": "不淨之雷", "description": "獲得免疫感電並減少承受閃電傷害" },
-  "931": {
+  "aegis_fire_depleted": {
+    "name": "火焰聖盾",
+    "description": "聖盾被消耗殆盡。若近期沒受到火焰傷害，聖盾會回復滿溢狀態。"
+  },
+  "aegis_cold_depleted": {
+    "name": "冰冷聖盾",
+    "description": "聖盾被消耗殆盡。若近期沒受到冰冷傷害，聖盾會回復滿溢狀態。"
+  },
+  "aegis_elemental_depleted": {
+    "name": "元素聖盾",
+    "description": "聖盾被消耗殆盡。若近期沒受到元素傷害，聖盾會回復滿溢狀態。"
+  },
+  "aegis_fire_persist_value": { "name": "", "description": "" },
+  "aegis_cold_persist_value": { "name": "", "description": "" },
+  "aegis_elemental_persist_value": { "name": "", "description": "" },
+  "fire_impurity_buff": {
+    "name": "不淨之火",
+    "description": "獲得免疫點燃並減少承受火焰傷害"
+  },
+  "cold_impurity_buff": {
+    "name": "不淨之冰",
+    "description": "獲得免疫冰凍並減少承受冰冷傷害"
+  },
+  "lightning_impurity_buff": {
+    "name": "不淨之雷",
+    "description": "獲得免疫感電並減少承受閃電傷害"
+  },
+  "storm_barrier_support": {
     "name": "風暴屏障",
-    "description": "因正在使用引導施放技能而獲得風暴屏障效果，減少擊中的承受閃電和物理傷害。"
+    "description":
+      "因正在使用引導施放技能而獲得風暴屏障效果，減少擊中的承受閃電和物理傷害。"
   },
-  "932": { "name": "", "description": "" },
-  "933": { "name": "卡莉莎的優雅", "description": "你有更高的機率造成暴擊。" },
-  "934": {
+  "critical_strike_chance_on_mana_spent": { "name": "", "description": "" },
+  "critical_strike_chance_unique": {
+    "name": "卡莉莎的優雅",
+    "description": "你有更高的機率造成暴擊。"
+  },
+  "her_embrace_unique": {
     "name": "女神的擁抱",
     "description":
       "無法被暈眩\n獲得等同於劍物理傷害123%的額外火焰傷害\n不受燃燒地面影響\n免疫冰凍、冰緩和點燃\n增加 20% 攻擊、施放和移動速度"
   },
-  "935": { "name": "緩速藤蔓", "description": "你靜止時會被緩速" },
-  "936": { "name": "緩速藤蔓", "description": "你正被緩速藤蔓緩速。移動以掙脫藤蔓" },
-  "937": { "name": "", "description": "" },
-  "938": { "name": "惡之狂亂", "description": "你被緩速和降低造成傷害。" },
-  "939": { "name": "惡之狂亂", "description": "你因為附近的惡魔觸手被緩速和降低造成傷害。" },
-  "940": { "name": "分解", "description": "你正在承受物理持續傷害" },
-  "941": { "name": "", "description": "" },
-  "942": { "name": "萌芽狂亂", "description": "你被緩速了。" },
-  "943": { "name": "晶化恐懼", "description": "你無法移動。" },
-  "944": { "name": "", "description": "" },
-  "945": { "name": "", "description": "" },
-  "946": { "name": "", "description": "" },
-  "947": { "name": "", "description": "" },
-  "948": { "name": "", "description": "" },
-  "949": { "name": "", "description": "" },
-  "950": { "name": "盜竊之力", "description": "獲得擊殺稀有怪的詞綴能力。" },
-  "951": { "name": "", "description": "" },
-  "952": { "name": "", "description": "" },
-  "953": { "name": "霸體", "description": "你有霸體。" },
-  "954": { "name": "", "description": "" },
-  "955": { "name": "", "description": "" },
-  "956": { "name": "屍行", "description": "每一步會摧毀附近屍體，造成範圍火焰傷害。" },
-  "957": { "name": "發射熔岩之核", "description": "" },
-  "958": { "name": "", "description": "" },
-  "959": { "name": "元素超載", "description": "你有元素超載。" },
-  "960": { "name": "", "description": "" },
-  "961": { "name": "火之化身", "description": "你有火之化身。" },
-  "962": { "name": "物理棘刺", "description": "當你承受物理傷害時發射一個投射物造成物理傷害。" },
-  "963": { "name": "元素棘刺", "description": "當你承受元素傷害時發射一個投射物造成元素傷害。" },
-  "964": { "name": "", "description": "" },
-  "965": {
-    "name": "絕望",
-    "description": "你被詛咒了。你被減少混沌傷害，增加受到持續傷害。擊中你的傷害造成額外混沌傷害。"
+  "grasping_vines_aura": {
+    "name": "緩速藤蔓",
+    "description": "你靜止時會被緩速"
   },
-  "966": { "name": "", "description": "" },
-  "967": { "name": "暗影姿態", "description": "你免疫物理傷害並且很難被發現。" },
-  "968": { "name": "", "description": "" },
-  "969": { "name": "石化", "description": "你被石化了" },
-  "970": { "name": "尊師之淖", "description": "你站在孢子地面上，正在受到物理傷害" },
-  "971": { "name": "", "description": "" },
-  "972": { "name": "", "description": "" },
-  "973": { "name": "", "description": "" },
-  "974": { "name": "老婆最棒", "description": "你被老婆札娜保護。你不會受到傷害和死亡。" },
-  "975": { "name": "", "description": "" },
-  "976": { "name": "", "description": "" },
-  "977": { "name": "", "description": "" },
-  "978": { "name": "", "description": "" }
+  "grasping_vines_buff": {
+    "name": "緩速藤蔓",
+    "description": "你正被緩速藤蔓緩速。移動以掙脫藤蔓"
+  },
+  "disable_light": { "name": "", "description": "" },
+  "tentacle_fiend_aura": {
+    "name": "惡之狂亂",
+    "description": "你被緩速和降低造成傷害。"
+  },
+  "tentacle_fiend_aura_monster": {
+    "name": "惡之狂亂",
+    "description": "你因為附近的惡魔觸手被緩速和降低造成傷害。"
+  },
+  "elder_siphon_debuff": {
+    "name": "分解",
+    "description": "你正在承受物理持續傷害"
+  },
+  "elder_siphon_buff": { "name": "", "description": "" },
+  "elder_siphon_slow": { "name": "萌芽狂亂", "description": "你被緩速了。" },
+  "elder_siphon_immobilise": {
+    "name": "晶化恐懼",
+    "description": "你無法移動。"
+  },
+  "ailments_types_grant_damage_taken_child_buff_shock": {
+    "name": "",
+    "description": ""
+  },
+  "ailments_types_grant_damage_taken_child_buff_freeze": {
+    "name": "",
+    "description": ""
+  },
+  "ailments_types_grant_damage_taken_child_buff_chill": {
+    "name": "",
+    "description": ""
+  },
+  "ailments_types_grant_damage_taken_child_buff_ignite": {
+    "name": "",
+    "description": ""
+  },
+  "ailments_types_grant_damage_taken_child_buff_bleeding": {
+    "name": "",
+    "description": ""
+  },
+  "ailments_types_grant_damage_taken_child_buff_poison": {
+    "name": "",
+    "description": ""
+  },
+  "stolen_mods_elder_stat": {
+    "name": "盜竊之力",
+    "description": "獲得擊殺稀有怪的詞綴能力。"
+  },
+  "reduced_evasion_from_hit": { "name": "", "description": "" },
+  "iron_reflexes_every_16_sec": { "name": "", "description": "" },
+  "iron_reflexes_from_unique": { "name": "霸體", "description": "你有霸體。" },
+  "have_stunned_an_enemy_recently": { "name": "", "description": "" },
+  "gain_endurance_charges_while_stationary": { "name": "", "description": "" },
+  "death_walk_display_buff": {
+    "name": "屍行",
+    "description": "每一步會摧毀附近屍體，造成範圍火焰傷害。"
+  },
+  "mother_of_flames_daemon_debuff": {
+    "name": "發射熔岩之核",
+    "description": ""
+  },
+  "elemental_overload_every_16_sec": { "name": "", "description": "" },
+  "elemental_overload_from_unique": {
+    "name": "元素超載",
+    "description": "你有元素超載。"
+  },
+  "avatar_of_fire_every_8_sec": { "name": "", "description": "" },
+  "avatar_of_fire_from_unique": {
+    "name": "火之化身",
+    "description": "你有火之化身。"
+  },
+  "physical_reflect_mortar_mod": {
+    "name": "物理棘刺",
+    "description": "當你承受物理傷害時發射一個投射物造成物理傷害。"
+  },
+  "elemental_reflect_mortar_mod": {
+    "name": "元素棘刺",
+    "description": "當你承受元素傷害時發射一個投射物造成元素傷害。"
+  },
+  "disable_rarity_epk": { "name": "", "description": "" },
+  "curse_chaos_weakness": {
+    "name": "絕望",
+    "description":
+      "你被詛咒了。你被減少混沌傷害，增加受到持續傷害。擊中你的傷害造成額外混沌傷害。"
+  },
+  "mirage_archer_visual_buff": { "name": "", "description": "" },
+  "shade_form": {
+    "name": "暗影姿態",
+    "description": "你免疫物理傷害並且很難被發現。"
+  },
+  "lich_crystal_damage_reduction": { "name": "", "description": "" },
+  "petrification_statue_gaze": { "name": "石化", "description": "你被石化了" },
+  "elder_ground_spores": {
+    "name": "尊師之淖",
+    "description": "你站在孢子地面上，正在受到物理傷害"
+  },
+  "kitava_visual_display_buff": { "name": "", "description": "" },
+  "elder_tentacle_portal_no_revive": { "name": "", "description": "" },
+  "minions_no_drops_or_experience": { "name": "", "description": "" },
+  "zana_dont_hurt_me": {
+    "name": "老婆最棒",
+    "description": "你被老婆札娜保護。你不會受到傷害和死亡。"
+  },
+  "skill_interruption": { "name": "", "description": "" },
+  "total_mana_spent_recently": { "name": "", "description": "" },
+  "have_used_a_skill_recently": { "name": "", "description": "" },
+  "gain_void_arrows": { "name": "", "description": "" }
 }
