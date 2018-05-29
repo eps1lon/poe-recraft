@@ -47,6 +47,8 @@ const fields = {
   Prophecies: ['Name', 'PredictionText', 'FlavourText'],
   Quest: ['Name'],
   Realms: ['Name'],
+  // deprecated, newly cloned projects dont need this entry
+  // unless they use old tmp/ files
   ShopItem: ['Name', 'Description', 'Description2'],
   ShopToken: ['Description'],
   Shrines: ['Name', 'Description'],
