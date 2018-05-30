@@ -14,6 +14,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
   of stats that could've produced a given text. Check the API docs for more info. ([#24](https://github.com/eps1lon/poe-i18n/pull/24))
 
 ### Changed
+- Browser build should be used via `unpkg`. Using the `dist/` directly from github
+  was a bad idea to begin with. ([#49](https://github.com/eps1lon/poe-i18n/issues/49))
 - Value ranges should now be displayed ordered. 
   This caused [#32](https://github.com/eps1lon/poe-i18n/issues/32) and 
   was fixed with [#37](https://github.com/eps1lon/poe-i18n/pull/37).

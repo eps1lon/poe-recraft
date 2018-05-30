@@ -2,23 +2,22 @@
   "name": "poe-i18n",
   "version": "0.8.0",
   "description": "i18n utility for Path of Exile",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "module": "es/index.js",
+  "main": "dist/cjs/index.js",
+  "types": "dist/cjs/index.d.ts",
+  "module": "dist/esm/index.js",
+  "unpkg": "dist/umd/bundle.min.js",
   "files": [
     "dist",
-    "lib",
     "locale-data",
-    "es",
     "src"
   ],
   "scripts": {
     "build": "yarn run build:browser && yarn run build:commonjs && yarn run build:es",
-    "build:browser": "tsc --project ./tsconfig.build.json --module System --outFile dist/index.js",
-    "build:commonjs": "tsc --project ./tsconfig.build.json --module CommonJS --outDir lib",
-    "build:es": "tsc --project ./tsconfig.build.json --module ES6 --outDir es",
+    "build:browser": "webpack --config ./config/webpack.umd.js",
+    "build:commonjs": "tsc --project ./tsconfig.build.json --module ES6 --outDir dist/cjs",
+    "build:es": "tsc --project ./tsconfig.build.json --module ES6 --outDir dist/esm",
     "build:check": "tsc --project ./tsconfig.build.json --noEmit --watch",
-    "clean": "rimraf coverage lib dist es",
+    "clean": "rimraf coverage dist",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "format": "prettier --write src/**/*.ts",
     "format:check": "prettier --list-different src/**/*.ts",
@@ -67,10 +66,13 @@
     "rimraf": "^2.6.2",
     "strip-bom": "^3.0.0",
     "ts-jest": "^22.0.0",
+    "ts-loader": "^4.3.0",
     "tslint": "^5.7.0",
     "tslint-config-prettier": "^1.5.0",
     "tslint-eslint-rules": "^5.0.0",
-    "typescript": "^2.7.2"
+    "typescript": "^2.7.2",
+    "webpack": "^4.10.1",
+    "webpack-cli": "^2.1.4"
   },
   "jest": {
     "transform": {
