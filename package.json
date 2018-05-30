@@ -14,7 +14,7 @@
   "scripts": {
     "build": "yarn run build:browser && yarn run build:commonjs && yarn run build:es",
     "build:browser": "webpack --config ./config/webpack.umd.js",
-    "build:commonjs": "tsc --project ./tsconfig.build.json --module ES6 --outDir dist/cjs",
+    "build:commonjs": "tsc --project ./tsconfig.build.json --module CommonJS --outDir dist/cjs",
     "build:es": "tsc --project ./tsconfig.build.json --module ES6 --outDir dist/esm",
     "build:check": "tsc --project ./tsconfig.build.json --noEmit --watch",
     "clean": "rimraf coverage dist",
