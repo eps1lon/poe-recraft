@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.9.0...HEAD)
 
+### Added 
+- Path of Exile@`3.2.4c` data ([#62](https://github.com/eps1lon/poe-mods/pull/62)).
+
 ### Changed
 - Bumped `lodash` dependency to `^4.17.10` which fixes a security invulnerability.
   ([#64](https://github.com/eps1lon/poe-mods/pull/64))
