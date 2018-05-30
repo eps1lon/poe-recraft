@@ -37,7 +37,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
   ([#45](https://github.com/eps1lon/poe-i18n/issues/45))
   
 
-## [0.8.0](https://github.com/eps1lon/poe-i18n/compare/v0.7.1...v0.8.0) (2017-02-16)
+## [0.8.0](https://github.com/eps1lon/poe-i18n/compare/v0.7.1...v0.8.0) (2018-02-16)
 ### Added 
 - `locale-data` for Path Of Exile@3.1.3 ([#14](https://github.com/eps1lon/poe-i18n/pull/14))
 - Typescript declaration files ([#18](https://github.com/eps1lon/poe-i18n/pull/18))
