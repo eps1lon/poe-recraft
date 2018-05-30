@@ -19,6 +19,8 @@
     "build:es": "tsc --project tsconfig.build.json --module ES6 --outDir es",
     "build:verify": "tsc --watch --noEmit",
     "build:docs": "typedoc ./src --out docs/ --mode file --excludePrivate",
+    "build:data": "node scripts/data/create && node scripts/filterData",
+    "postbuild:data": "yarn run format:data",
     "clean": "rimraf coverage dist es lib docs",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "format": "prettier --write \"src/**/*.ts\"",
