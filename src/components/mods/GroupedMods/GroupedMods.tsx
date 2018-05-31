@@ -11,7 +11,7 @@ import './style.css';
 export type Props = {
   className: string;
   groups: Map<string, { details: GeneratorDetails[]; disabled: boolean }>;
-  options: {};
+  options?: {};
   isExpanded: (id: string) => boolean;
   onGroupClick: (id: string) => any;
 };

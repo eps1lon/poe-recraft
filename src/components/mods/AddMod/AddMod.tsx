@@ -1,7 +1,7 @@
 import { Mod } from 'poe-mods';
 import * as React from 'react';
 
-import './style.css';
+// import './style.css';
 
 export interface Props {
   mod: Mod;

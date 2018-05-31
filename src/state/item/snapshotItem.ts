@@ -68,22 +68,10 @@ function snapshotRequirements(item: Item) {
   const { level, dex, int, str } = item.requirements.list();
 
   return {
-    level: {
-      augmented: false,
-      value: level
-    },
-    dexterity: {
-      augmented: false,
-      value: dex
-    },
-    intelligence: {
-      augmented: false,
-      value: int
-    },
-    strength: {
-      augmented: false,
-      value: str
-    }
+    level,
+    dexterity: dex,
+    intelligence: int,
+    strength: str
   };
 }
 
