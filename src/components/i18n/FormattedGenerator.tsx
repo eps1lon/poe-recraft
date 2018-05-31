@@ -3,20 +3,20 @@ import { FormattedMessage } from 'react-intl';
 
 export type Props = {
   id: string;
-  render?: (name: string | JSX.Element) => React.ReactNode;
+  children?: (name: string | JSX.Element) => React.ReactNode;
 };
 
 const FormattedModName: React.SFC<Props> = props => {
-  const { render } = props;
+  const { children } = props;
   const id =
     props.id.indexOf('Metadata') !== -1
       ? currencyId(props.id)
       : `generators.${props.id}`;
 
-  if (render) {
+  if (typeof children === 'function') {
     return (
       <FormattedMessage id={id} defaultMessage={id}>
-        {name => render(name)}
+        {name => children(name)}
       </FormattedMessage>
     );
   } else {

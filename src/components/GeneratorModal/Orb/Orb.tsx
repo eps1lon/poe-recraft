@@ -22,12 +22,17 @@ const Orb: SFC<Props> = ({ id, onClick }) => {
 
   return (
     <FormattedGenerator id={orb.id}>
-      {(name: string) => {
+      {(name: string | JSX.Element) => {
         const dom_id = `generator-orb-${id}`;
         return (
           <>
             <Button onClick={() => onClick(id)} id={dom_id}>
-              <img width="40" height="40" src={orb.icon} alt={name} />
+              <img
+                width="40"
+                height="40"
+                src={orb.icon}
+                alt={name.toString()}
+              />
             </Button>
             <UncontrolledTooltip placement="top" target={dom_id}>
               {name}
