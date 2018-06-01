@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.10.0...HEAD)
 
+### Added
+- Path of Exile@`3.3.0` data. Some mod domains were changed.
+  ([#67](https://github.com/eps1lon/poe-mods/pull/67)).
+
 ## [1.10.0](https://github.com/eps1lon/poe-mods/compare/v1.9.0...v1.10.0) (2018-05-30)
 
 ### Added 

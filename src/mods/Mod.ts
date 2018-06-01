@@ -10,11 +10,12 @@ export default class Mod {
     MONSTER: 3,
     STRONGBOX: 4,
     MAP: 5,
-    STANCE: 9,
-    MASTER: 10,
-    JEWEL: 11,
-    ATLAS: 12,
-    ABYSS_JEWEL: 14,
+    MASTER: 9,
+    JEWEL: 10,
+    ATLAS: 11,
+    LEAGUESTONE: 12,
+    ABYSS_JEWEL: 13,
+    MAP_DEVICE: 14,
   };
 
   public static GENERATION_TYPE: { [key: string]: number } = {
