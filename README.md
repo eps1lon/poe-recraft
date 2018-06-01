@@ -6,7 +6,7 @@
 [![devDependencies Status](https://david-dm.org/eps1lon/poe-i18n/dev-status.svg)](https://david-dm.org/eps1lon/poe-i18n?type=dev)
 [![Greenkeeper badge](https://badges.greenkeeper.io/eps1lon/poe-i18n.svg)](https://greenkeeper.io/)
 
-i18n utility for Path of Exile with minimal dependencies.
+i18n utility for Path of Exile@`3.3.0` with minimal dependencies.
 
 ## Install
 ```bash
