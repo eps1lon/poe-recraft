@@ -5,8 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.10.0...HEAD)
+## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.11.0...HEAD)
 
+## [1.11.0](https://github.com/eps1lon/poe-mods/compare/v1.10.0...v1.11.0) (2018-06-31)
 ### Added
 - Path of Exile@`3.3.0` data. Some mod domains were changed.
   ([#67](https://github.com/eps1lon/poe-mods/pull/67)).
