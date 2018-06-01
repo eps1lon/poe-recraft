@@ -320,7 +320,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% 機率躲避攻擊",
+          "text": "%1%%% 機率躲避攻擊擊中",
           "formatters": []
         }
       ]
@@ -330,7 +330,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% 機率躲避法術傷害",
+          "text": "%1%%% 機率躲避法術擊中",
           "formatters": []
         }
       ]
@@ -386,6 +386,66 @@
         }
       ]
     },
+    "immune_to_chill": {
+      "stats": ["base_immune_to_chill"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你和附近的隊友免疫冰緩",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_freeze": {
+      "stats": ["base_immune_to_freeze"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你和附近的隊友免疫冰凍",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_ignite": {
+      "stats": ["base_immune_to_ignite"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你和附近的隊友免疫點燃",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_shock": {
+      "stats": ["base_immune_to_shock"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你和附近的隊友免疫感電",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_damage_taken": {
+      "stats": ["cold_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "增加 %1%%% 承受的冰冷傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "減少 %1%%% 承受的冰冷傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "energy_shield_recharge_rate": {
       "stats": ["energy_shield_recharge_rate_+%"],
       "translations": [
@@ -397,6 +457,76 @@
         {
           "matchers": [["#", -1]],
           "text": "你和附近的友軍獲得減少 %1%%% 能量護盾回復率",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "fire_damage_taken": {
+      "stats": ["fire_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "增加 %1%%% 承受的火焰傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "減少 %1%%% 承受的火焰傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hits_ignore_cold_res": {
+      "stats": ["hits_ignore_my_cold_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "擊中附近的敵人無視他們的冰冷抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "hits_ignore_fire_res": {
+      "stats": ["hits_ignore_my_fire_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "擊中附近的敵人無視他們的火焰抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "hits_ignore_lightning_res": {
+      "stats": ["hits_ignore_my_lightning_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "擊中附近的敵人無視他們的閃電抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_damage_taken": {
+      "stats": ["lightning_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "增加 %1%%% 承受的閃電傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "減少 %1%%% 承受的閃電傷害",
           "formatters": [
             {
               "id": "negate",

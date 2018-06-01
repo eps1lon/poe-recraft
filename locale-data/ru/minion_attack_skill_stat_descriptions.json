@@ -695,13 +695,13 @@
         {
           "matchers": [[1, 99]],
           "text":
-            "Эта атака и приспешники имеют скорость атаки ближнего боя на %1%%% выше",
+            "Эта атака и приспешники имеют на %1%%% больше скорости атаки ближнего боя",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
           "text":
-            "Эта атака и приспешники имеют скорость атаки ближнего боя на %1%%% ниже",
+            "Эта атака и приспешники имеют на %1%%% меньше скорости атаки ближнего боя",
           "formatters": []
         }
       ]
@@ -819,12 +819,14 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Эта атака и приспешники имеют скорость атаки на %1%%% выше",
+          "text":
+            "Эта атака и приспешники имеют на %1%%% больше скорости атаки",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Эта атака и приспешники имеют скорость атаки на %1%%% ниже",
+          "text":
+            "Эта атака и приспешники имеют на %1%%% меньше скорости атаки",
           "formatters": []
         }
       ]
@@ -1331,6 +1333,23 @@
         }
       ]
     },
+    "ghost_chance": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% шанс призвать фантома, когда это умение или приспешники не-фантомы наносят смертельный удар",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Призывает фантома, когда это умение или приспешники не-фантомы наносят смертельный удар",
+          "formatters": []
+        }
+      ]
+    },
     "support_ruthless_count": {
       "stats": ["support_ruthless_big_hit_max_count"],
       "translations": [
@@ -1485,6 +1504,17 @@
         }
       ]
     },
+    "ignites_apply_fire_res": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Враги, подожжённые этой атакой или приспешниками, имеют %1$+d%% к сопротивлению огню",
+          "formatters": []
+        }
+      ]
+    },
     "maim_chance": {
       "stats": ["maim_on_hit_%"],
       "translations": [
@@ -1497,7 +1527,7 @@
         {
           "matchers": [[100, "#"]],
           "text":
-            "Эта атака и приспешники всегда накладывают увечья при нанесении удара",
+            "Эта атака и приспешники всегда накладывают увечье при нанесении удара",
           "formatters": []
         }
       ]
@@ -1534,6 +1564,28 @@
         }
       ]
     },
+    "hypothermia_cold_damage": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Эта атака и приспешники наносят на %1%%% больше постепенного урона от холода",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Эта атака и приспешники наносят на %1%%% меньше постепенного урона от холода",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "maimed_phys_damage_taken_incr": {
       "stats": ["support_maimed_enemies_physical_damage_taken_+%"],
       "translations": [
@@ -1558,15 +1610,39 @@
     },
     "added_fire_against_burning": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
           "matchers": ["#", "#"],
           "text":
-            "Эта атака и приспешники наносят от %1% до %2% дополнительного урона от огня атаками по горящим врагам",
+            "Эта атака и приспешники наносят от %1% до %2% дополнительного урона от огня по горящим врагам",
           "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_crit_damage": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Эта атака и приспешники наносят на %1%%% больше урона за заряд энергии",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Эта атака и приспешники наносят на %1%%% меньше урона за заряд энергии",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     }

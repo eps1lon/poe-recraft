@@ -33,6 +33,130 @@
           ]
         }
       ]
+    },
+    "ice_siphon_trap_max_targets": {
+      "stats": ["ice_siphon_trap_max_beam_targets"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "發射射線至附近 %1% 名敵人",
+          "formatters": []
+        }
+      ]
+    },
+    "life_regen_with_at_least_one_enemy": {
+      "stats": [
+        "skill_life_regeneration_per_minute_with_at_least_1_affected_enemy"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "若有任何敵人被射線影響，獲得每秒 %1% 生命回復",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mana_regen_with_at_least_one_enemy": {
+      "stats": [
+        "skill_mana_regeneration_per_minute_with_at_least_1_affected_enemy"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "若有任何敵人被射線影響，獲得每秒 %1% 魔力回復",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "life_regen_per_enemy": {
+      "stats": ["skill_life_regeneration_per_minute_per_affected_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每個被射線影響的敵人，獲得每秒 1.3 生命回復",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mana_regen_per_enemy": {
+      "stats": ["skill_mana_regeneration_per_minute_per_affected_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每個被射線影響的敵人，獲得每秒 1.3 魔力回復",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_taken_incr_per_enemy": {
+      "stats": ["skill_damage_taken_+%_per_affected_enemy"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每個被影響的敵人，獲得增加 %1%%% 承受傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "每個被影響的敵人，獲得減少 %1%%% 承受傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chaos_res": {
+      "stats": ["base_chaos_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "敵人獲得 %1$+d%% 混沌抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "trap_and_mine_damage_taken": {
+      "stats": ["bear_trap_damage_taken_+%_from_traps_and_mines"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "敵人增加 %1%%% 來自陷阱或地雷擊中的傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "敵人減少 %1%%% 來自陷阱或地雷擊中的傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
     }
   }
 }

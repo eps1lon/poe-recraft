@@ -493,12 +493,14 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% mehr Schaden beim Zaubern einer Frostkugel",
+          "text":
+            "%1%%% mehr Schaden beim Zaubern ausgehend von einer Frostkugel",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% weniger Schaden beim Zaubern einer Frostkugel",
+          "text":
+            "%1%%% weniger Schaden beim Zaubern ausgehend von einer Frostkugel",
           "formatters": [
             {
               "id": "negate",
@@ -1416,6 +1418,21 @@
         }
       ]
     },
+    "lightning_tower_trap_base_interval_duration_ms": {
+      "stats": ["lightning_tower_trap_base_interval_duration_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Schlägt alle %1% Sekunden ein",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "mana_leech_from_any_damage_permyriad": {
       "stats": ["mana_leech_from_any_damage_permyriad"],
       "translations": [
@@ -1650,12 +1667,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Werft %1% zusätzliche Falle",
+          "text": "Werft bis zu 1 zusätzliche Falle",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text": "Werft %1% zusätzliche Fallen",
+          "text": "Werft bis zu %1% zusätzliche Fallen",
           "formatters": []
         }
       ]
@@ -1672,6 +1689,46 @@
           "matchers": [[1, "#"]],
           "text": "Erlaubt gleichzeitige Kontrolle von %1% beseelten Waffen",
           "formatters": []
+        }
+      ]
+    },
+    "orb_of_storms_base_bolt_frequency_ms": {
+      "stats": ["orb_of_storms_base_bolt_frequency_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Schlägt jede %1% Sekunde ein",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Schlägt alle %1% Sekunden ein",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "phys_cascade_trap_base_interval_duration_ms": {
+      "stats": ["phys_cascade_trap_base_interval_duration_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Löst alle %1% Sekunden Wellen aus",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -1737,6 +1794,21 @@
         }
       ]
     },
+    "projectile_base_number_of_targets_to_pierce": {
+      "stats": ["projectile_base_number_of_targets_to_pierce"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Projektile durchbohren ein zusätzliches Ziel",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Projektile durchbohren %1% zusätzliche Ziele",
+          "formatters": []
+        }
+      ]
+    },
     "projectile_damage_+%": {
       "stats": ["projectile_damage_+%"],
       "translations": [
@@ -1793,6 +1865,21 @@
         {
           "matchers": ["#", "#"],
           "text": "Projektile kehren zurück",
+          "formatters": []
+        }
+      ]
+    },
+    "rain_of_arrows_additional_sequences": {
+      "stats": ["rain_of_arrows_additional_sequences"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Feuert eine zusätzliche Serie von Pfeilen",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Feuert %1%  zusätzliche Serien von Pfeilen",
           "formatters": []
         }
       ]
@@ -2010,6 +2097,31 @@
           "matchers": [[1, "#"]],
           "text": "Erschafft Leichen mit Stufe %1%",
           "formatters": []
+        }
+      ]
+    },
+    "vaal_storm_call_base_delay_ms": {
+      "stats": ["vaal_storm_call_base_delay_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Trifft einen Gegner jede %1% Sekunde",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Trifft einen Gegner alle %1% Sekunden",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
         }
       ]
     },

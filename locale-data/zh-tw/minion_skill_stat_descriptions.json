@@ -9,12 +9,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "召喚物投擲額外一個陷阱",
+          "text": "召喚物投擲至多 1 個額外陷阱",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text": "召喚物投擲額外 %1% 個陷阱",
+          "text": "召喚物投擲至多 %1% 個額外陷阱",
           "formatters": []
         }
       ]
@@ -2150,7 +2150,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "召喚物瀕血時增加 %1%%% 攻擊速度",
+          "text": "召喚物貧血時增加 %1%%% 攻擊速度",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2160,7 +2160,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "召喚物瀕血時減少 %1%%% 攻擊速度",
+          "text": "召喚物貧血時減少 %1%%% 攻擊速度",
           "formatters": [
             {
               "id": "negate",
@@ -2179,7 +2179,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "召喚物瀕血時增加 %1%%% 施放速度",
+          "text": "召喚物貧血時增加 %1%%% 施放速度",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2189,7 +2189,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "召喚物瀕血時減少 %1%%% 施放速度",
+          "text": "召喚物貧血時減少 %1%%% 施放速度",
           "formatters": [
             {
               "id": "negate",
@@ -2796,6 +2796,21 @@
         }
       ]
     },
+    "ghost_chance": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "當非幻影召喚物造成致命一擊時，有 %1%%% 機率召喚 1 個幻影",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "當非幻影召喚物造成致命一擊時召喚 1 個幻影",
+          "formatters": []
+        }
+      ]
+    },
     "decay_on_hit": {
       "stats": ["deal_chaos_damage_per_second_for_10_seconds_on_hit"],
       "translations": [
@@ -2812,6 +2827,16 @@
         {
           "matchers": ["#"],
           "text": "召喚物無法造成元素傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "ignites_apply_fire_res": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被召喚物點燃的敵人 %1$+d%% 火焰抗性",
           "formatters": []
         }
       ]
@@ -2900,6 +2925,38 @@
         }
       ]
     },
+    "frenzy_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "當你的陷阱被敵人觸發時，此技能和召喚物有 %1%%% 機率獲得 1 顆狂怒球",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text": "當你的陷阱被敵人觸發時，此技能和召喚物獲得 1 顆狂怒球",
+          "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "當你的陷阱被敵人觸發時，此技能和召喚物有 %1%%% 機率獲得 1 顆暴擊球",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text": "當你的陷阱被敵人觸發時，此技能和召喚物獲得 1 顆暴擊球",
+          "formatters": []
+        }
+      ]
+    },
     "base_pierce_num": {
       "stats": ["projectile_base_number_of_targets_to_pierce"],
       "translations": [
@@ -2964,6 +3021,26 @@
         }
       ]
     },
+    "hypothermia_cold_damage": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召喚物造成 %1%%% 更多冰冷持續傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召喚物造成 %1%%% 更少冰冷持續傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "maim_phys_damage": {
       "stats": ["support_maim_chance_physical_damage_+%_final"],
       "translations": [
@@ -3006,8 +3083,8 @@
     },
     "added_fire_against_burning": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
@@ -3063,6 +3140,28 @@
         {
           "matchers": [["#", -1]],
           "text": "召喚物有 %1%%% 較少投射物傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "power_charge_on_crit_damage": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每顆暴擊球使召喚物造成 %1%%% 更多傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "每顆暴擊球使召喚物造成 %1%%% 更少傷害",
           "formatters": [
             {
               "id": "negate",
@@ -3135,6 +3234,46 @@
               "arg": 3
             }
           ]
+        }
+      ]
+    },
+    "ailment_damage_incr": {
+      "stats": ["support_unbound_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召喚物造成 %1%%% 更多異常狀態傷害",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召喚物造成 %1%%% 更少異常狀態傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "trap_crit_per_power_charge": {
+      "stats": ["trap_critical_strike_multiplier_+_per_power_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "當被陷阱使用此技能和召喚物的技能時，每顆暴擊球 %1$+d%% 暴擊加成",
+          "formatters": []
         }
       ]
     }

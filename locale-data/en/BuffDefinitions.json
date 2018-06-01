@@ -579,16 +579,23 @@
   "vaal_aura_energy_shield": {
     "name": "Vaal Discipline Aura",
     "description":
-      "Grants Energy Shield and prevents Energy Shield Recharge from being delayed by Damage"
+      "Prevents Energy Shield Recharge from being delayed by Damage"
   },
   "vaal_aura_speed": {
     "name": "Vaal Haste Aura",
     "description": "Grants increased Cast, Attack and Movement Speeds."
   },
   "beartrap_debuff": {
-    "name": "Beartrap",
-    "description": "You are held in place by a Bear Trap"
+    "name": "Bear Trap",
+    "description":
+      "You are held in place by a Bear Trap and will take increased damage from Traps and Mines."
   },
+  "beartrap_debuff_slow": {
+    "name": "Bear Trap",
+    "description":
+      "Your Movement Speed is lowered and you will take increased damage from Traps and Mines."
+  },
+  "beartrap_debuff_damage_taken": { "name": "", "description": "" },
   "trap_convert_buff": {
     "name": "Converted",
     "description": "You have been temporarily converted to another team"
@@ -988,7 +995,7 @@
   "soul_eater": {
     "name": "Soul Eater",
     "description":
-      "You have increased Attack speed, Cast speed, Physical Damage Reduction, Elemental Resistances and Character Size"
+      "You have increased Attack speed, Cast speed and Character Size"
   },
   "frostwall_epk": { "name": "", "description": "" },
   "nemesis_stealth_mode": { "name": "", "description": "" },
@@ -1150,7 +1157,7 @@
   "herald_of_ash": {
     "name": "Herald Of Ash",
     "description":
-      "You deal additional fire damage, and killing an enemy with an attack applies the overkill damage as an ignite to nearby enemies"
+      "You deal additional fire damage, and killing an enemy applies burning damage to nearby enemies based on the overkill damage"
   },
   "herald_of_ice": {
     "name": "Herald Of Ice",
@@ -1172,7 +1179,6 @@
   "display_bodyguard_effect": { "name": "", "description": "" },
   "mission_relic_praying": { "name": "", "description": "" },
   "mission_beast_corrupted": { "name": "", "description": "" },
-  "mission_monster_target": { "name": "", "description": "" },
   "dex_mission_enable_pointers": { "name": "", "description": "" },
   "stun_display_buff": { "name": "", "description": "" },
   "visual_display_buff": { "name": "", "description": "" },
@@ -2864,15 +2870,16 @@
   "aegis_cold_persist_value": { "name": "", "description": "" },
   "aegis_elemental_persist_value": { "name": "", "description": "" },
   "fire_impurity_buff": {
-    "name": "Impurity of Fire",
+    "name": "Vaal Impurity of Fire",
     "description": "Grants immunity to Ignite and reduces Fire Damage taken."
   },
   "cold_impurity_buff": {
-    "name": "Impurity of Ice",
-    "description": "Grants immunity to Freeze and reduces Cold Damage taken."
+    "name": "Vaal Impurity of Ice",
+    "description":
+      "Grants immunity to Freeze and Chill, and reduces Cold Damage taken."
   },
   "lightning_impurity_buff": {
-    "name": "Impurity of Lightning",
+    "name": "Vaal Impurity of Lightning",
     "description":
       "Grants immunity to Shock and reduces Lightning Damage taken."
   },
@@ -3074,7 +3081,10 @@
     "description": ""
   },
   "physical_projectile_retaliation_charging": { "name": "", "description": "" },
-  "master_buff_treasure_hunter": { "name": "", "description": "" },
+  "master_buff_treasure_hunter": {
+    "name": "Balek's Gift",
+    "description": "You have increased Quantity and Rarity of Items found"
+  },
   "godmode_ghost": { "name": "", "description": "" },
   "best_crab_roar": {
     "name": "Craiceann's Torment",
@@ -3107,6 +3117,10 @@
       "You are taking Chaos Damage over time and have reduced Movement Speed"
   },
   "lightning_clone_retaliation": {
+    "name": "Lightning Clone Retaliation",
+    "description": ""
+  },
+  "lightning_clone_retaliation_large": {
     "name": "Lightning Clone Retaliation",
     "description": ""
   },
@@ -3146,6 +3160,7 @@
   "capture_monster_captured": { "name": "", "description": "" },
   "capture_monster_disappearing": { "name": "", "description": "" },
   "cold_beam_retaliation": { "name": "", "description": "" },
+  "cold_beam_retaliation_large": { "name": "", "description": "" },
   "juggernaut_phys_damage_prevented_as_life_regen": {
     "name": "",
     "description": ""
@@ -3232,5 +3247,109 @@
     "name": "Death",
     "description":
       "You are dying from being outside of the active Royale combat zone. Follow the pointer underneath your character."
+  },
+  "cold_snap_degen": { "name": "Cold Snap", "description": "" },
+  "vaal_cold_snap_degen": { "name": "Vaal Cold Snap", "description": "" },
+  "disable_vaal_souls": { "name": "", "description": "" },
+  "ice_siphon_trap_debuff": {
+    "name": "Siphoning Trap",
+    "description": "You are taking Cold Damage over Time from a Siphoning Trap"
+  },
+  "ice_siphon_trap_regen_buff": {
+    "name": "Siphoning Trap",
+    "description": "You are regenerating Life and Mana from a Siphoning Trap"
+  },
+  "keystone_vaal_attack_cooldown": { "name": "", "description": "" },
+  "keystone_vaal_spell_cooldown": { "name": "", "description": "" },
+  "soul_regeneration": { "name": "", "description": "" },
+  "charged_dash_damage": {
+    "name": "Charged Dash",
+    "description": "Your Charged Dash has more Damage when released."
+  },
+  "ignore_enemy_fire_resistance": {
+    "name": "Impurity of Fire",
+    "description": "Hits ignore your Fire Resistance"
+  },
+  "ignore_enemy_cold_resistance": {
+    "name": "Impurity of Ice",
+    "description": "Hits ignore your Cold Resistance"
+  },
+  "ignore_enemy_lightning_resistance": {
+    "name": "Impurity of Lightning",
+    "description": "Hits ignore your Lightning Resistance"
+  },
+  "physical_projectile_retaliation_large": {
+    "name": "Physical Projectile Retaliation",
+    "description": ""
+  },
+  "infernal_blow_new_debuff": {
+    "name": "Infernal Blow",
+    "description":
+      "You will explode if killed, dealing fire damage based on your maximum life. If this debuff has charges, it will deal attack damage in an area around you when it expires or has 6 charges."
+  },
+  "infernal_blow_debuff_visual2": { "name": "", "description": "" },
+  "infernal_blow_debuff_visual3": { "name": "", "description": "" },
+  "life_regen_aura_from_corpse_consumption": { "name": "", "description": "" },
+  "vaal_lightning_strike_debuff": { "name": "", "description": "" },
+  "cannot_gain_souls": { "name": "", "description": "" },
+  "cannot_gain_vaal_souls_at_life_thresholds": {
+    "name": "",
+    "description": ""
+  },
+  "fire_resistance_from_ignite": { "name": "", "description": "" },
+  "unique_flask_no_recovery_and_soul_gain": { "name": "", "description": "" },
+  "number_of_enemies_killed_recently": { "name": "", "description": "" },
+  "have_used_a_vaal_skill_recently": { "name": "", "description": "" },
+  "ground_vaal_cold_snap": { "name": "WIP", "description": "WIP" },
+  "architect_healing_totem_buff": { "name": "", "description": "" },
+  "number_of_frostbolts_destroyed_recently": { "name": "", "description": "" },
+  "elemental_hit_last_damage_type": { "name": "", "description": "" },
+  "architect_ground_blood": {
+    "name": "Boiling Blood",
+    "description": "You are taking Physical Damage over time"
+  },
+  "vaal_righteous_fire_duration_aura": {
+    "name": "Vaal Righteous Fire",
+    "description":
+      "You are taking burning damage from being near an enemy using Vaal Righteous Fire"
+  },
+  "vaal_novasoul_immune": { "name": "", "description": "" },
+  "burning_damage_per_shocked_enemy": { "name": "", "description": "" },
+  "incursion_demon_sacrifice_buff": { "name": "", "description": "" },
+  "arc_enhanced_behaviour": {
+    "name": "Lucky Arc",
+    "description": "Your Arc Damage is Lucky"
+  },
+  "incursion_construct_enrage": { "name": "", "description": "" },
+  "cold_snap_expanding_chilled_ground": {
+    "name": "Chilled Ground",
+    "description": "Your actions are slowed while standing on chilled ground"
+  },
+  "vaal_earthquake_display_buff": {
+    "name": "Vaal Earthquake",
+    "description": "With each step, the earth trembles"
+  },
+  "vaal_earthquake_stationary": { "name": "", "description": "" },
+  "master_buff_alva": {
+    "name": "Alva's Gift",
+    "description": "You have increased Quantity and Rarity of Items found"
+  },
+  "unique_flask_soul_catcher": { "name": "Soul Catcher", "description": "" },
+  "unique_flask_soul_ripper": { "name": "Soul Ripper", "description": "" },
+  "vaal_righteous_fire_duration": {
+    "name": "Vaal Righteous Fire",
+    "description": "You deal more spell damage."
+  },
+  "cannot_recover_life": { "name": "", "description": "" },
+  "omnitect_thrusters": {
+    "name": "Omnitect's Thruster",
+    "description":
+      "You are taking more damage from the Omnitect's thruster the longer you stand underneath it."
+  },
+  "omnitect_turret_damage_buff": { "name": "", "description": "" },
+  "omnitect_cone_debuff": {
+    "name": "Lightning Exposure",
+    "description":
+      "You have less Movement Speed and take increased Lightning Damage"
   }
 }

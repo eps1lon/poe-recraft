@@ -1419,6 +1419,16 @@
         }
       ]
     },
+    "ignites_apply_fire_res": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被此攻击或召唤生物点燃的敌人，其火焰抗性提高 %1$+d%%",
+          "formatters": []
+        }
+      ]
+    },
     "maim_chance": {
       "stats": ["maim_on_hit_%"],
       "translations": [
@@ -1464,6 +1474,26 @@
         }
       ]
     },
+    "hypothermia_cold_damage": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "此攻击与召唤物的持续性冰霜总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "此攻击与召唤物的持续性冰霜总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "maimed_phys_damage_taken_incr": {
       "stats": ["support_maimed_enemies_physical_damage_taken_+%"],
       "translations": [
@@ -1486,14 +1516,36 @@
     },
     "added_fire_against_burning": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
           "matchers": ["#", "#"],
           "text": "此攻击和召唤生物对燃烧的敌人附加 %1% - %2% 火焰伤害",
           "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_crit_damage": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每个暴击球可使此攻击与召唤物的总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "每个暴击球可使此攻击与召唤物的总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     }

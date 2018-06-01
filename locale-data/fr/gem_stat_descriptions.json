@@ -603,12 +603,14 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Les Aptitudes modifiées lancent un Piège supplémentaire",
+          "text":
+            "Les Aptitudes modifiées permettent de jeter jusqu'à 1 Piège supplémentaire",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text": "Les Aptitudes modifiées lancent %1% Pièges supplémentaires",
+          "text":
+            "Les Aptitudes modifiées permettent de jeter jusqu'à %1% Pièges supplémentaires",
           "formatters": []
         }
       ]
@@ -908,6 +910,28 @@
         {
           "matchers": ["#"],
           "text": "Les Aptitudes modifiées se Scindent",
+          "formatters": []
+        }
+      ]
+    },
+    "projectiles_return": {
+      "stats": ["projectiles_return", "projectiles_return_if_no_hit_object"],
+      "translations": [
+        {
+          "matchers": ["#", 0],
+          "text":
+            "Les Projectiles des Aptitudes modifiées reviennent à vous après avoir Touché leurs cibles",
+          "formatters": []
+        },
+        {
+          "matchers": [0, "#"],
+          "text":
+            "Les Projectiles des Aptitudes modifiées reviennent à vous à la fin de leur déplacement",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#"],
+          "text": "Les Projectiles des Aptitudes modifiées reviennent à vous",
           "formatters": []
         }
       ]
@@ -2084,7 +2108,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Gagnez Éruption arcanique lorsque vous dépensez %1% de Mana avec les Aptitudes modifiées",
+            "Vous gagnez Éruption arcanique après avoir dépensé %1% de Mana au total avec les Aptitudes modifiées",
           "formatters": []
         }
       ]
@@ -3359,6 +3383,17 @@
         }
       ]
     },
+    "ignites_apply_fire_resistance_+": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Ennemis Embrasés par Aptitudes modifiées ont %1$+d%% de Résistance au feu",
+          "formatters": []
+        }
+      ]
+    },
     "knockback_distance_+%": {
       "stats": ["knockback_distance_+%"],
       "translations": [
@@ -3455,12 +3490,22 @@
           "matchers": [[1, 99]],
           "text":
             "Les Aptitudes modifiées ont %1%%% de chances de Mutiler au Toucher",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[100, "#"]],
           "text": "Les Aptitudes modifiées Mutilent toujours au Toucher",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -3892,6 +3937,40 @@
         }
       ]
     },
+    "%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy": {
+      "stats": ["%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Aptitudes modifiées ont %1%%% de chances d'octroyer une Charge de frénésie lorsque votre Piège est déclenché par un Ennemi",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Les Aptitudes modifiées octroient une Charge de frénésie lorsque votre Piège est déclenché par un Ennemi",
+          "formatters": []
+        }
+      ]
+    },
+    "%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy": {
+      "stats": ["%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Aptitudes modifiées ont %1%%% de chances de gagner une Charge de pouvoir lorsque votre Piège est déclenché par un Ennemi",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Les Aptitudes modifiées gagnent une Charge de pouvoir lorsque votre Piège est déclenché par un Ennemi",
+          "formatters": []
+        }
+      ]
+    },
     "physical_damage_%_to_add_as_fire": {
       "stats": ["physical_damage_%_to_add_as_fire"],
       "translations": [
@@ -3986,7 +4065,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Les Aptitudes modifiées ont %1%%% de Réduction des chances d'Esquive de l'Ennemi",
+            "Les Ennemis ont %1%%% de Réduction des chances d'Esquiver les Aptitudes modifiées",
           "formatters": []
         }
       ]
@@ -4195,6 +4274,28 @@
         }
       ]
     },
+    "support_hypothermia_cold_damage_over_time_+%_final": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Aptitudes modifiées ont %1%%% Davantage de Dégâts de froid sur la durée",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Les Aptitudes modifiées ont %1%%% de Perte de Dégâts de froid sur la durée",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_hypothermia_damage_+%_vs_chilled_enemies_final": {
       "stats": ["support_hypothermia_damage_+%_vs_chilled_enemies_final"],
       "translations": [
@@ -4270,10 +4371,10 @@
         }
       ]
     },
-    "support_minimum_added_fire_damage_vs_burning_enemies": {
+    "global_minimum_added_fire_damage_vs_burning_enemies": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
@@ -4470,6 +4571,30 @@
           "matchers": [["#", -1]],
           "text":
             "Les Aptitudes modifiées ont %1%%% de Perte de Dégâts des Projectiles",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_power_charge_on_crit_damage_+%_final_per_power_charge": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Aptitudes modifiées ont %1%%% Davantage de Dégâts par Charge de pouvoir",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Les Aptitudes modifiées ont %1%%% de Perte de Dégâts par Charge de pouvoir",
           "formatters": [
             {
               "id": "negate",
@@ -4740,6 +4865,17 @@
         }
       ]
     },
+    "trap_critical_strike_multiplier_+_per_power_charge": {
+      "stats": ["trap_critical_strike_multiplier_+_per_power_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Aptitudes modifiées ont %1$+d%% au Multiplicateur de coup\\ncritique par Charge de pouvoir lorsqu'elles sont utilisées par des Pièges",
+          "formatters": []
+        }
+      ]
+    },
     "trap_damage_+%": {
       "stats": ["trap_damage_+%"],
       "translations": [
@@ -4775,6 +4911,28 @@
           "matchers": [["#", -1]],
           "text":
             "Les Aptitudes soutenues ont %1%%% de Réduction de la Vitesse de jet des Pièges",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "trap_throwing_speed_+%_per_frenzy_charge": {
+      "stats": ["trap_throwing_speed_+%_per_frenzy_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Aptitudes modifiées ont %1%%% d'Augmentation de la\\nVitesse de jet des Pièges par Charge de frénésie",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Les Aptitudes modifiées ont %1%%% de Réduction de la\\nVitesse de jet des Pièges par Charge de frénésie",
           "formatters": [
             {
               "id": "negate",

@@ -1354,6 +1354,23 @@
         }
       ]
     },
+    "ghost_chance": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% Chance, ein Phantasma zu beschwören, wenn diese Fertigkeit oder Kreaturen (Phantasmen ausgenommen) einen tödlichen Schlag verursachen",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Beschwört ein Phantasma, wenn diese Fertigkeit oder Kreaturen (Phantasmen ausgenommen) einen tödlichen Schlag verursachen",
+          "formatters": []
+        }
+      ]
+    },
     "support_ruthless_count": {
       "stats": ["support_ruthless_big_hit_max_count"],
       "translations": [
@@ -1509,6 +1526,17 @@
         }
       ]
     },
+    "ignites_apply_fire_res": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Durch diesen Angriff oder durch Kreaturen entzündete Gegner haben %1$+d%% zu Feuerwiderstand",
+          "formatters": []
+        }
+      ]
+    },
     "maim_chance": {
       "stats": ["maim_on_hit_%"],
       "translations": [
@@ -1557,6 +1585,28 @@
         }
       ]
     },
+    "hypothermia_cold_damage": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Dieser Angriff und Kreaturen verursachen %1%%% mehr Kälteschaden über Zeit",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Dieser Angriff und Kreaturen verursachen %1%%% weniger Kälteschaden über Zeit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "maimed_phys_damage_taken_incr": {
       "stats": ["support_maimed_enemies_physical_damage_taken_+%"],
       "translations": [
@@ -1581,8 +1631,8 @@
     },
     "added_fire_against_burning": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
@@ -1590,6 +1640,30 @@
           "text":
             "Dieser Angriff und Kreaturen fügen %1% bis %2% Feuerschaden gegen brennende Gegner hinzu",
           "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_crit_damage": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Dieser Angriff und Kreaturen verursachen %1%%% mehr Schaden pro Energie-Ladung",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Dieser Angriff und Kreaturen verursachen %1%%% weniger Schaden pro Energie-Ladung",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     }

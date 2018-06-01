@@ -1291,6 +1291,23 @@
         }
       ]
     },
+    "ghost_chance": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "มีโอกาส %1%%% ที่จะเสก Phantasm หากใช้สกิลนี้หรือมิเนียนที่ไม่ใช่ Phantasm สังหารศัตรูได้",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "เสก Phantasm หากใช้สกิลนี้หรือมิเนียนที่ไม่ใช่ Phantasm สังหารศัตรูได้",
+          "formatters": []
+        }
+      ]
+    },
     "support_ruthless_count": {
       "stats": ["support_ruthless_big_hit_max_count"],
       "translations": [
@@ -1442,6 +1459,17 @@
         }
       ]
     },
+    "ignites_apply_fire_res": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "ศัตรูที่ติดไฟจากการโจมตีของผู้เล่นครั้งนี้ หรือของมิเนียนจะมีค่าป้องกันธาตุไฟเพิ่ม %1$+d%%",
+          "formatters": []
+        }
+      ]
+    },
     "maim_chance": {
       "stats": ["maim_on_hit_%"],
       "translations": [
@@ -1489,6 +1517,28 @@
         }
       ]
     },
+    "hypothermia_cold_damage": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "การโจมตีครั้งนี้และมิเนียนจะมีค่าโจมตีธาตุน้ำแข็งตามเวลาแรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "การโจมตีครั้งนี้และมิเนียนจะมีค่าโจมตีธาตุน้ำแข็งตามเวลาเบาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "maimed_phys_damage_taken_incr": {
       "stats": ["support_maimed_enemies_physical_damage_taken_+%"],
       "translations": [
@@ -1513,8 +1563,8 @@
     },
     "added_fire_against_burning": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
@@ -1522,6 +1572,30 @@
           "text":
             "การโจมตีและสมุนเหล่านี้จัดการเพิ่มความเสียหายจากไฟ %1% ถึง %2% ที่จะเผาไหม้ศัตรู",
           "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_crit_damage": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "การโจมตีครั้งนี้และการโจมตีของมิเนียนจะแรงขึ้น %1%%% ต่อ Power Charge แต่ละอัน",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "การโจมตีครั้งนี้และการโจมตีของมิเนียนจะเบาลง %1%%% ต่อ Power Charge แต่ละอัน",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     }

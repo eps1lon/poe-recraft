@@ -1960,7 +1960,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "被辅助技能消耗 %1% 魔力时获得【秘术增强】效果",
+          "text": "被辅助技能总计消耗 %1% 魔力后获得【秘术增强】效果",
           "formatters": []
         }
       ]
@@ -2282,7 +2282,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "被辅助技能会使敌人受到的冰缓、点燃、冰冻和感电状态持续时间延长 %1%%%",
+            "被辅助技能会使敌人受到的冰缓、点燃、冰冻、流血、中毒和感电状态持续时间延长 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2293,7 +2293,7 @@
         {
           "matchers": [["#", -1]],
           "text":
-            "被辅助技能会使敌人受到的冰缓、点燃、冰冻和感电状态持续时间缩短 %1%%%",
+            "被辅助技能会使敌人受到的冰缓、点燃、冰冻、流血、中毒和感电状态持续时间缩短 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3171,6 +3171,16 @@
         }
       ]
     },
+    "ignites_apply_fire_resistance_+": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被辅助技能点燃的敌人，其火焰抗性提高 %1$+d%%",
+          "formatters": []
+        }
+      ]
+    },
     "knockback_distance_+%": {
       "stats": ["knockback_distance_+%"],
       "translations": [
@@ -3260,12 +3270,22 @@
         {
           "matchers": [[1, 99]],
           "text": "被辅助的攻击技能击中时有 %1%%% 几率瘫痪敌人",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[100, "#"]],
           "text": "被辅助的攻击技能击中时必定瘫痪敌人",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -3663,6 +3683,38 @@
         }
       ]
     },
+    "%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy": {
+      "stats": ["%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "当你的陷阱被敌人触发时，被辅助技能有 %1%%% 的机会获得 1 个狂怒球",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text": "当你的陷阱被敌人触发时，被辅助技能获得 1 个狂怒球",
+          "formatters": []
+        }
+      ]
+    },
+    "%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy": {
+      "stats": ["%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "当你的陷阱被敌人触发时，被辅助技能有 %1%%% 的几率获得 1 个暴击球",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text": "当你的陷阱被敌人触发时，被辅助技能获得 1 个暴击球",
+          "formatters": []
+        }
+      ]
+    },
     "physical_damage_%_to_add_as_fire": {
       "stats": ["physical_damage_%_to_add_as_fire"],
       "translations": [
@@ -3748,7 +3800,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助技能会使敌人的躲避率降低 %1%%%",
+          "text": "被辅助技能会使敌人的躲避击中的几率降低 %1%%%",
           "formatters": []
         }
       ]
@@ -3943,6 +3995,26 @@
         }
       ]
     },
+    "support_hypothermia_cold_damage_over_time_+%_final": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助技能造成的持续性冰霜总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被辅助技能造成的持续性冰霜总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_hypothermia_damage_+%_vs_chilled_enemies_final": {
       "stats": ["support_hypothermia_damage_+%_vs_chilled_enemies_final"],
       "translations": [
@@ -4013,10 +4085,10 @@
         }
       ]
     },
-    "support_minimum_added_fire_damage_vs_burning_enemies": {
+    "global_minimum_added_fire_damage_vs_burning_enemies": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
@@ -4196,6 +4268,28 @@
         {
           "matchers": [["#", -1]],
           "text": "被辅助技能额外降低 %1%%% 投射物总伤害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_power_charge_on_crit_damage_+%_final_per_power_charge": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每个暴击球可使被辅助技能造成的总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "每个暴击球可使被辅助技能造成的总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4450,6 +4544,16 @@
         }
       ]
     },
+    "trap_critical_strike_multiplier_+_per_power_charge": {
+      "stats": ["trap_critical_strike_multiplier_+_per_power_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "使用陷阱时，每个暴击球可使被辅助技能 %1$+d%% 暴击伤害加成",
+          "formatters": []
+        }
+      ]
+    },
     "trap_damage_+%": {
       "stats": ["trap_damage_+%"],
       "translations": [
@@ -4481,6 +4585,26 @@
         {
           "matchers": [["#", -1]],
           "text": "被辅助技能降低 %1%%% 陷阱投掷速度",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "trap_throwing_speed_+%_per_frenzy_charge": {
+      "stats": ["trap_throwing_speed_+%_per_frenzy_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每有一个狂怒球，被辅助技能提高 %1%%% 陷阱投掷速度",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "每有一个狂怒球，被辅助技能降低 %1%%% 陷阱投掷速度",
           "formatters": [
             {
               "id": "negate",

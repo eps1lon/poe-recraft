@@ -260,6 +260,16 @@
           ]
         },
         {
+          "matchers": [200],
+          "text": "固定基底词缀三倍效果加成",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextImplicitMod"
+            }
+          ]
+        },
+        {
           "matchers": [[1, "#"]],
           "text": "%1%%% 固定基底词缀效果加成",
           "formatters": [
@@ -543,6 +553,26 @@
         }
       ]
     },
+    "local_socketed_duration_gem_level_+": {
+      "stats": ["local_socketed_duration_gem_level_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "此物品上装备的【持续时间技能石】等级 %1$+d",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_area_of_effect_gem_level_+": {
+      "stats": ["local_socketed_area_of_effect_gem_level_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "此物品上装备的【范围效果技能石】等级 %1$+d",
+          "formatters": []
+        }
+      ]
+    },
     "local_socketed_projectile_gem_level_+": {
       "stats": ["local_socketed_projectile_gem_level_+"],
       "translations": [
@@ -619,6 +649,16 @@
         {
           "matchers": ["#"],
           "text": "此物品上装备的【诅咒技能石】等级 %1$+d",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_trap_and_mine_gem_level_+": {
+      "stats": ["local_socketed_trap_and_mine_gem_level_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "此物品上装备的【陷阱技能石】或【地雷技能石】等级 %1$+d",
           "formatters": []
         }
       ]
@@ -900,7 +940,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "此物品上的技能石受到 %1% 级的 几率点燃 辅助",
+          "text": "此物品上的技能石受到 %1% 级的 灼烧 辅助",
           "formatters": []
         }
       ]
@@ -1023,6 +1063,18 @@
         {
           "matchers": ["#"],
           "text": "此物品上的技能石受到 %1% 级的 火焰穿透 辅助",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_socketed_gems_supported_by_level_x_frenzy_power_on_trap_trigger": {
+      "stats": [
+        "local_display_socketed_gems_supported_by_level_x_frenzy_power_on_trap_trigger"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "此物品上的技能石受到 %1% 级的【充能陷阱】辅助",
           "formatters": []
         }
       ]
@@ -2276,6 +2328,33 @@
         }
       ]
     },
+    "local_display_socketed_attacks_additional_critical_strike_chance": {
+      "stats": [
+        "local_display_socketed_attacks_additional_critical_strike_chance"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "插槽内的攻击技能获得 %1$+d%% 基础暴击率",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "local_display_socketed_attacks_critical_strike_multiplier_+": {
+      "stats": ["local_display_socketed_attacks_critical_strike_multiplier_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "插槽内的攻击技能获得 %1$+d%% 暴击伤害加成",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_socketed_gems_attack_and_cast_speed_+%_final": {
       "stats": ["local_display_socketed_gems_attack_and_cast_speed_+%_final"],
       "translations": [
@@ -2337,6 +2416,43 @@
         {
           "matchers": ["#"],
           "text": "此物品上的技能石获得 %1%%% 物理伤害，并转化为额外闪电伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_socketed_movement_skills_have_no_mana_cost": {
+      "stats": ["local_display_socketed_movement_skills_have_no_mana_cost"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "插槽内的移动技能不消耗魔力",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_socketed_spells_additional_critical_strike_chance": {
+      "stats": [
+        "local_display_socketed_spells_additional_critical_strike_chance"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "插槽内的法术获得 %1$+d%% 法术基础暴击率",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "local_display_socketed_spells_critical_strike_multiplier_+": {
+      "stats": ["local_display_socketed_spells_critical_strike_multiplier_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "插槽内的法术获得 %1$+d%% 暴击伤害加成",
           "formatters": []
         }
       ]
@@ -2605,6 +2721,16 @@
         }
       ]
     },
+    "local_display_grants_level_x_despair": {
+      "stats": ["local_display_grants_level_x_despair"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "获得 %1% 级的主动技能【绝望】，且可被此道具上的技能石辅助",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_grants_skill_purity_of_cold_level": {
       "stats": ["local_display_grants_skill_purity_of_cold_level"],
       "translations": [
@@ -2729,6 +2855,16 @@
         {
           "matchers": ["#"],
           "text": "获得 %1% 级的主动技能【迅捷】，且可被此道具上的技能石辅助",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_has_additional_implicit_mod": {
+      "stats": ["local_display_has_additional_implicit_mod"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "拥有 1 个额外的Implicit Mod",
           "formatters": []
         }
       ]
@@ -3166,6 +3302,39 @@
         }
       ]
     },
+    "local_display_grants_skill_vaal_impurity_of_fire_level": {
+      "stats": ["local_display_grants_skill_vaal_impurity_of_fire_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "获得 %1% 级的主动技能【瓦尔火焰净化】，且可被此道具上的技能石辅助",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_grants_skill_vaal_impurity_of_ice_level": {
+      "stats": ["local_display_grants_skill_vaal_impurity_of_ice_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "获得 %1% 级的主动技能【瓦尔冰霜净化】，且可被此道具上的技能石辅助",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_grants_skill_vaal_impurity_of_lightning_level": {
+      "stats": ["local_display_grants_skill_vaal_impurity_of_lightning_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "获得 %1% 级的主动技能【瓦尔闪电净化】，且可被此道具上的技能石辅助",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_trigger_level_X_darktongue_kiss_on_curse": {
       "stats": ["local_display_trigger_level_X_darktongue_kiss_on_curse"],
       "translations": [
@@ -3338,12 +3507,63 @@
         }
       ]
     },
+    "local_display_trigger_commandment_of_inferno_on_crit_%": {
+      "stats": ["local_display_trigger_commandment_of_inferno_on_crit_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "暴击时有 %1%%% 几率触发【炼狱之诫】",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "暴击时触发【炼狱之诫】",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_trigger_death_walk_on_equip_level": {
       "stats": ["local_display_trigger_death_walk_on_equip_level"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "装备时触发 %1% 级的【泯灭之舞】",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_level_20_animate_guardian_weapon_on_guardian_kill_%_chance": {
+      "stats": [
+        "local_display_trigger_level_20_animate_guardian_weapon_on_guardian_kill_%_chance"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "当幻化守卫击败一个敌人时，有 %1%%% 几率触发 20 级的【幻化守卫武器】",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "当幻化守卫击败一个敌人时，触发 20 级的【幻化守卫武器】",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_level_20_animate_guardian_weapon_on_weapon_kill_%_chance": {
+      "stats": [
+        "local_display_trigger_level_20_animate_guardian_weapon_on_weapon_kill_%_chance"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "当幻化武器击败一个敌人时，有 %1%%% 几率触发 18 级的【幻化守卫武器】",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "当幻化武器击败一个敌人时，触发 18 级的【幻化守卫武器】",
           "formatters": []
         }
       ]
@@ -3387,6 +3607,18 @@
         }
       ]
     },
+    "local_display_trigger_level_x_icicle_nova_on_kill_vs_frozen_enemy": {
+      "stats": [
+        "local_display_trigger_level_x_icicle_nova_on_kill_vs_frozen_enemy"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你击败被冻结的敌人时触发 %1% 级的【爆环冰刺】",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_trigger_level_x_intimidating_cry_when_you_lose_cats_stealth": {
       "stats": [
         "local_display_trigger_level_x_intimidating_cry_when_you_lose_cats_stealth"
@@ -3421,6 +3653,18 @@
         }
       ]
     },
+    "local_display_trigger_level_x_summon_phantasm_on_corpse_consume": {
+      "stats": [
+        "local_display_trigger_level_x_summon_phantasm_on_corpse_consume"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "当你吞噬灵柩时触发 %1% 级的【召唤幻灵】技能",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_trigger_level_x_void_shot_on_arrow_fire_while_you_have_void_arrow": {
       "stats": [
         "local_display_trigger_level_x_void_shot_on_arrow_fire_while_you_have_void_arrow"
@@ -3430,6 +3674,36 @@
           "matchers": ["#"],
           "text":
             "当你发射箭矢时，会消耗 1 个虚空之矢来触发 %1% 级的【虚空射击】",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_temporal_anomaly_when_hit_%_chance": {
+      "stats": ["local_display_trigger_temporal_anomaly_when_hit_%_chance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被击中时有 %1%%% 几率触发 20 级的【时间异动】",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_tentacle_smash_on_kill_%_chance": {
+      "stats": ["local_display_trigger_tentacle_smash_on_kill_%_chance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "击败敌人时有 %1%%% 几率触发 20 级的【藤蔓抽击】",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_void_sphere_on_kill_%_chance": {
+      "stats": ["local_display_trigger_void_sphere_on_kill_%_chance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "击败敌人时有 %1%%% 几率触发 20 级的【召唤异动奇点】",
           "formatters": []
         }
       ]
@@ -3679,12 +3953,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "使用药剂时产生一只敌队的蠕虫",
+          "text": "使用药剂时产生一只敌队的蠕虫\\n击中时摧毁蠕虫",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
-          "text": "使用药剂时产生 %1% 只敌队的蠕虫",
+          "text": "使用药剂时产生 %1% 只敌队的蠕虫\\n击中时摧毁蠕虫",
           "formatters": []
         }
       ]
@@ -9783,26 +10057,6 @@
         }
       ]
     },
-    "curse_effect_on_self_+%": {
-      "stats": ["curse_effect_on_self_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "你受到的诅咒效果提高 %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "你受到的诅咒效果降低 %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "temporal_chains_effeciveness_+%": {
       "stats": ["temporal_chains_effeciveness_+%"],
       "translations": [
@@ -11564,26 +11818,6 @@
         }
       ]
     },
-    "self_curse_duration_+%": {
-      "stats": ["self_curse_duration_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "受到诅咒的持续时间延长 %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "受到诅咒的持续时间缩短 %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "taunt_duration_+%": {
       "stats": ["taunt_duration_+%"],
       "translations": [
@@ -13232,7 +13466,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "敌人的躲避几率降低 %1%%%",
+          "text": "敌人躲避你击中它的几率降低 %1%%%",
           "formatters": []
         }
       ]
@@ -15086,6 +15320,66 @@
         {
           "matchers": [[1, "#"]],
           "text": "每 10 点力量可使持续时间延长 %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "gain_no_maximum_life_from_strength": {
+      "stats": ["gain_no_maximum_life_from_strength"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "力量不对最大生命提供加成",
+          "formatters": []
+        }
+      ]
+    },
+    "gain_no_maximum_mana_from_intelligence": {
+      "stats": ["gain_no_maximum_mana_from_intelligence"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "智慧不对最大魔力提供加成",
+          "formatters": []
+        }
+      ]
+    },
+    "X_accuracy_per_2_intelligence": {
+      "stats": ["X_accuracy_per_2_intelligence"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每 2 点智慧 %1$+d 命中值",
+          "formatters": []
+        }
+      ]
+    },
+    "X_life_per_4_dexterity": {
+      "stats": ["X_life_per_4_dexterity"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每 4 点敏捷 %1$+d 生命",
+          "formatters": []
+        }
+      ]
+    },
+    "X_mana_per_4_strength": {
+      "stats": ["X_mana_per_4_strength"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每 4 点力量 %1$+d 魔力",
+          "formatters": []
+        }
+      ]
+    },
+    "x_to_maximum_life_per_2_intelligence": {
+      "stats": ["x_to_maximum_life_per_2_intelligence"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每 2 点智慧 %1$+d 最大生命",
           "formatters": []
         }
       ]
@@ -17014,7 +17308,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% 几率躲避攻击",
+          "text": "%1%%% 几率躲避攻击击中",
           "formatters": []
         }
       ]
@@ -17024,7 +17318,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% 几率躲避法术伤害",
+          "text": "%1%%% 几率躲避法术击中",
           "formatters": []
         }
       ]
@@ -17086,6 +17380,46 @@
           "matchers": ["#"],
           "text": "你可以受到 %1$+d 个额外的诅咒",
           "formatters": []
+        }
+      ]
+    },
+    "curse_effect_on_self_+%": {
+      "stats": ["curse_effect_on_self_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你受到的诅咒效果提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你受到的诅咒效果降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "self_curse_duration_+%": {
+      "stats": ["self_curse_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "受到诅咒的持续时间延长 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "受到诅咒的持续时间缩短 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -17642,12 +17976,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "有额外 %1%%% 几率躲避攻击",
+          "text": "有额外 %1%%% 几率躲避攻击击中",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1$+d%% 几率躲避攻击",
+          "text": "%1$+d%% 几率躲避攻击击中",
           "formatters": []
         }
       ]
@@ -17657,7 +17991,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "额外 %1%%% 几率躲避法术伤害",
+          "text": "额外 %1%%% 几率躲避法术击中",
           "formatters": []
         }
       ]
@@ -19890,6 +20224,16 @@
         }
       ]
     },
+    "bleeding_damage_on_self_converted_to_chaos": {
+      "stats": ["bleeding_damage_on_self_converted_to_chaos"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你承受的流血伤害改为混沌伤害",
+          "formatters": []
+        }
+      ]
+    },
     "physical_damage_taken_%_as_chaos": {
       "stats": ["physical_damage_taken_%_as_chaos"],
       "translations": [
@@ -20630,7 +20974,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "【迷踪】状态时有 %1%%% 几率躲避攻击",
+          "text": "【迷踪】状态时有 %1%%% 几率躲避攻击击中",
           "formatters": []
         }
       ]
@@ -20801,6 +21145,26 @@
         {
           "matchers": ["#"],
           "text": "击中敌人时，用 %1% 级的【冻伤】诅咒敌人",
+          "formatters": []
+        }
+      ]
+    },
+    "curse_on_hit_level_despair": {
+      "stats": ["curse_on_hit_level_despair"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "击中敌人时，用 %1% 级的【绝望】诅咒敌人",
+          "formatters": []
+        }
+      ]
+    },
+    "curse_on_hit_level_enfeeble": {
+      "stats": ["curse_on_hit_level_enfeeble"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "击中敌人时，用 %1% 级的【衰弱】诅咒敌人",
           "formatters": []
         }
       ]
@@ -21076,7 +21440,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "每拥有 1 个狂怒球，有 %1%%% 几率躲避攻击",
+          "text": "每拥有 1 个狂怒球，有 %1%%% 几率躲避攻击击中",
           "formatters": []
         }
       ]
@@ -24521,7 +24885,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "药剂持续期间，你无法回复生命",
+          "text": "药剂持续期间，你无法获得生命",
           "formatters": []
         }
       ]
@@ -25649,6 +26013,16 @@
         {
           "matchers": ["#"],
           "text": "你的冰霜伤害无法冰缓",
+          "formatters": []
+        }
+      ]
+    },
+    "chaos_damage_can_ignite_chill_and_shock": {
+      "stats": ["chaos_damage_can_ignite_chill_and_shock"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "混沌伤害可以造成点燃、冰缓和感电效果",
           "formatters": []
         }
       ]
@@ -27216,42 +27590,42 @@
         }
       ]
     },
-    "curse_on_block_level_X_vulnerability": {
-      "stats": ["curse_on_block_level_X_vulnerability"],
+    "curse_on_block_level_5_vulnerability": {
+      "stats": ["curse_on_block_level_5_vulnerability"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "格挡时对敌人施放 %1% 级【脆弱】诅咒",
+          "text": "格挡时，用 5 级的【脆弱】诅咒敌人",
           "formatters": []
         }
       ]
     },
-    "curse_on_melee_block_level_X_punishment": {
-      "stats": ["curse_on_melee_block_level_X_punishment"],
+    "curse_on_melee_block_level_15_punishment": {
+      "stats": ["curse_on_melee_block_level_15_punishment"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "无视诅咒数量上限，当格挡近战攻击时施放 %1% 级【惩戒】",
+          "text": "无视诅咒数量上限，当格挡近战攻击时施放 15 级【惩戒】",
           "formatters": []
         }
       ]
     },
-    "curse_on_projectile_block_level_X_temporal_chains": {
-      "stats": ["curse_on_projectile_block_level_X_temporal_chains"],
+    "curse_on_projectile_block_level_15_temporal_chains": {
+      "stats": ["curse_on_projectile_block_level_15_temporal_chains"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "无视诅咒数量上限，当格挡投射物攻击时施放 %1% 级【时空锁链】",
+          "text": "无视诅咒数量上限，当格挡投射物攻击时施放 15 级【时空锁链】",
           "formatters": []
         }
       ]
     },
-    "curse_on_spell_block_level_X_elemental_weakness": {
-      "stats": ["curse_on_spell_block_level_X_elemental_weakness"],
+    "curse_on_spell_block_level_15_elemental_weakness": {
+      "stats": ["curse_on_spell_block_level_15_elemental_weakness"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "无视诅咒数量上限，当格挡法术时施放 %1% 级【元素要害】",
+          "text": "无视诅咒数量上限，当格挡法术时施放 15 级【元素要害】",
           "formatters": []
         }
       ]
@@ -28159,7 +28533,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "召唤生物有额外 %1%%% 躲避率",
+          "text": "召唤生物有额外 %1%%% 躲避击中几率",
           "formatters": []
         }
       ]
@@ -28443,7 +28817,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "能量护盾全满时，有 %1%%% 几率躲避法术伤害",
+          "text": "能量护盾全满时，有 %1%%% 几率躲避法术击中",
           "formatters": []
         }
       ]
@@ -29011,12 +29385,57 @@
         }
       ]
     },
+    "enemy_extra_damage_rolls_while_affected_by_vulnerability": {
+      "stats": ["enemy_extra_damage_rolls_while_affected_by_vulnerability"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "受到【脆弱】诅咒时，敌人攻击你会特别幸运",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLucky"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "受到【脆弱】诅咒时，敌人攻击你会特别不幸",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnlucky"
+            }
+          ]
+        }
+      ]
+    },
     "start_at_zero_energy_shield": {
       "stats": ["start_at_zero_energy_shield"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "你的能量护盾从 0 开始",
+          "formatters": []
+        }
+      ]
+    },
+    "no_energy_shield_recovery": {
+      "stats": ["no_energy_shield_recovery"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "无法获得能量护盾",
+          "formatters": []
+        }
+      ]
+    },
+    "you_count_as_low_life_while_affected_by_vulnerability": {
+      "stats": ["you_count_as_low_life_while_affected_by_vulnerability"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "受到【脆弱】诅咒时，非满血时被视作低血状态",
           "formatters": []
         }
       ]
@@ -29032,6 +29451,16 @@
         {
           "matchers": ["#"],
           "text": "击败敌人时，有 %1%%% 几率得到 10 级的【惩戒诅咒】",
+          "formatters": []
+        }
+      ]
+    },
+    "self_cursed_with_level_x_vulnerability": {
+      "stats": ["self_cursed_with_level_x_vulnerability"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你受到 %1% 级【脆弱】的诅咒",
           "formatters": []
         }
       ]
@@ -30232,6 +30661,21 @@
         }
       ]
     },
+    "trap_throw_skills_have_blood_magic": {
+      "stats": ["trap_throw_skills_have_blood_magic"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "投掷陷阱的技能受到血魔法辅助",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBloodMagicCosts"
+            }
+          ]
+        }
+      ]
+    },
     "armour_and_evasion_on_low_life_+%": {
       "stats": ["armour_and_evasion_on_low_life_+%"],
       "translations": [
@@ -30739,7 +31183,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "近期内你若有承受法术伤害，则有 %1%%% 几率躲避法术伤害",
+          "text": "近期内你若有承受法术伤害，则有 %1%%% 几率躲避法术击中",
           "formatters": [
             {
               "id": "reminderstring",
@@ -30898,7 +31342,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "近期内你若受到暴击，则获得 %1%%% 躲避率",
+          "text": "近期内你若受到暴击，则获得 %1%%% 几率躲避攻击击中",
           "formatters": [
             {
               "id": "reminderstring",
@@ -31671,12 +32115,22 @@
         {
           "matchers": [[1, 99]],
           "text": "击中中毒的敌人有 %1%%% 几率使其瘫痪",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[99, 100]],
           "text": "击中中毒的敌人使其瘫痪",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -32150,12 +32604,22 @@
         {
           "matchers": [[1, 99]],
           "text": "攻击击中流血的敌人时，有 %1%%% 几率瘫痪敌人",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[100, "#"]],
           "text": "攻击击中流血的敌人时瘫痪敌人",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -32936,12 +33400,122 @@
         }
       ]
     },
+    "wrath_aura_effect_+%": {
+      "stats": ["wrath_aura_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【雷霆】的光环效果提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【雷霆】的光环效果降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "grace_aura_effect_+%": {
+      "stats": ["grace_aura_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【优雅】的光环效果提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【优雅】的光环效果降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hatred_aura_effect_+%": {
+      "stats": ["hatred_aura_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【憎恨】的光环效果提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【憎恨】的光环效果降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "determination_aura_effect_+%": {
+      "stats": ["determination_aura_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【坚定】的光环效果提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【坚定】的光环效果降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "discipline_aura_effect_+%": {
+      "stats": ["discipline_aura_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【纪律】的光环效果提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【纪律】的光环效果降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "cannot_be_poisoned": {
       "stats": ["cannot_be_poisoned"],
       "translations": [
         {
           "matchers": [[1, "#"]],
           "text": "不会中毒",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_poisoned_%": {
+      "stats": ["chance_to_be_poisoned_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1$+d%% 几率中毒",
           "formatters": []
         }
       ]
@@ -34349,7 +34923,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "【迷踪】状态时有 %1%%% 几率躲避法术伤害",
+          "text": "【迷踪】状态时有 %1%%% 几率躲避法术伤害击中",
           "formatters": []
         }
       ]
@@ -34497,12 +35071,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "陷阱范围扩大 %1%%%",
+          "text": "陷阱所使用的技能范围扩大 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "陷阱范围缩小 %1%%%",
+          "text": "陷阱所使用的技能范围缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -39419,7 +39993,12 @@
         {
           "matchers": ["#"],
           "text": "药剂持续期间获得【狂热誓言】",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKeystoneZealotsOath"
+            }
+          ]
         }
       ]
     },
@@ -40829,26 +41408,6 @@
         {
           "matchers": [["#", -1]],
           "text": "【震波图腾】范围缩小 %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "charged_dash_area_of_effect_radius_+_of_final_explosion": {
-      "stats": ["charged_dash_area_of_effect_radius_+_of_final_explosion"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "【蓄力疾风闪】最终伤害范围 %1$+d",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "【蓄力疾风闪】最终伤害范围 %1$+d",
           "formatters": [
             {
               "id": "negate",
@@ -46280,7 +46839,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "近期内你若受到过攻击伤害，则有 %1%%% 几率躲避法术伤害",
+          "text": "近期内你若受到过攻击伤害，则有 %1%%% 几率躲避法术击中",
           "formatters": [
             {
               "id": "reminderstring",
@@ -46295,7 +46854,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "近期内你若受到过法术伤害，则有 %1%%% 躲避几率",
+          "text": "近期内你若受到过法术伤害，则有 %1%%% 几率躲避攻击击中",
           "formatters": [
             {
               "id": "reminderstring",
@@ -49255,12 +49814,168 @@
         }
       ]
     },
-    "X_accuracy_per_2_intelligence": {
-      "stats": ["X_accuracy_per_2_intelligence"],
+    "local_physical_damage_%_to_convert_to_a_random_element": {
+      "stats": ["local_physical_damage_%_to_convert_to_a_random_element"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "该武器击中后造成的 %1%%% 物理伤害转换为一种随机元素伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "local_hits_always_inflict_elemental_ailments": {
+      "stats": ["local_hits_always_inflict_elemental_ailments"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "每 2 点智慧 %1$+d 命中值",
+          "text": "该武器击中时必定造成元素异常状态",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextElementalStatusAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "local_hit_damage_+%_vs_ignited_enemies": {
+      "stats": ["local_hit_damage_+%_vs_ignited_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "该武器对被点燃敌人的击中伤害提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "该武器对被点燃敌人的击中伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "local_hit_damage_+%_vs_frozen_enemies": {
+      "stats": ["local_hit_damage_+%_vs_frozen_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "该武器对被冰冻敌人的击中伤害提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "该武器对被冰冻敌人的击中伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "local_hit_damage_+%_vs_shocked_enemies": {
+      "stats": ["local_hit_damage_+%_vs_shocked_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "该武器对被感电敌人的击中伤害提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "该武器对被感电敌人的击中伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "life_regeneration_per_minute_if_you_have_at_least_500_maximum_energy_shield": {
+      "stats": [
+        "life_regeneration_per_minute_if_you_have_at_least_500_maximum_energy_shield"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "若你至少拥有 500 层能量护盾，则每秒回复 %1% 生命",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "life_regeneration_per_minute_if_you_have_at_least_1000_maximum_energy_shield": {
+      "stats": [
+        "life_regeneration_per_minute_if_you_have_at_least_1000_maximum_energy_shield"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "若你至少拥有 1000 层能量护盾，则每秒回复 %1% 生命",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "life_regeneration_per_minute_if_you_have_at_least_1500_maximum_energy_shield": {
+      "stats": [
+        "life_regeneration_per_minute_if_you_have_at_least_1500_maximum_energy_shield"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "若你至少拥有 1500 层能量护盾，则每秒回复 %1% 生命",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "area_of_effect_+%_per_25_rampage_stacks": {
+      "stats": ["area_of_effect_+%_per_25_rampage_stacks"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每完成 25 次暴走连击，范围效果扩大 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "每完成 25 次暴走连击，范围效果缩小 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "add_frenzy_charge_every_50_rampage_stacks": {
+      "stats": ["add_frenzy_charge_every_50_rampage_stacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每达到 50 次暴走连击，就获得 1 个狂怒球",
           "formatters": []
         }
       ]
@@ -49286,26 +50001,6 @@
         {
           "matchers": ["#"],
           "text": "每个激活的图腾提供 %1$+d 护甲",
-          "formatters": []
-        }
-      ]
-    },
-    "X_life_per_4_dexterity": {
-      "stats": ["X_life_per_4_dexterity"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "每 4 点敏捷 %1$+d 生命",
-          "formatters": []
-        }
-      ]
-    },
-    "X_mana_per_4_strength": {
-      "stats": ["X_mana_per_4_strength"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "每 4 点力量 %1$+d 魔力",
           "formatters": []
         }
       ]
@@ -49385,16 +50080,6 @@
         {
           "matchers": ["#"],
           "text": "狂怒球达到上限时，%1$+d 命中值",
-          "formatters": []
-        }
-      ]
-    },
-    "add_frenzy_charge_every_50_rampage_stacks": {
-      "stats": ["add_frenzy_charge_every_50_rampage_stacks"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "每达到 50 次暴走连击，就获得 1 个狂怒球",
           "formatters": []
         }
       ]
@@ -49532,6 +50217,16 @@
         }
       ]
     },
+    "additional_maximum_all_resistances_%_while_poisoned": {
+      "stats": ["additional_maximum_all_resistances_%_while_poisoned"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "中毒时 %1$+d%% 全部抗性上限",
+          "formatters": []
+        }
+      ]
+    },
     "additional_maximum_all_resistances_%_with_no_endurance_charges": {
       "stats": [
         "additional_maximum_all_resistances_%_with_no_endurance_charges"
@@ -49634,6 +50329,16 @@
         }
       ]
     },
+    "additive_cast_speed_modifiers_apply_to_trap_throwing_speed": {
+      "stats": ["additive_cast_speed_modifiers_apply_to_trap_throwing_speed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "施法速度的提高和降低也同样作用于陷阱投掷速度",
+          "formatters": []
+        }
+      ]
+    },
     "ailment_damage_+%_per_equipped_elder_item": {
       "stats": ["ailment_damage_+%_per_equipped_elder_item"],
       "translations": [
@@ -49720,7 +50425,7 @@
           "formatters": [
             {
               "id": "reminderstring",
-              "arg": "ReminderTextCoveredInAsh"
+              "arg": "ReminderTextCoveredInAshNoDuration"
             }
           ]
         }
@@ -49748,6 +50453,16 @@
               "arg": "ReminderTextCoveredInAsh"
             }
           ]
+        }
+      ]
+    },
+    "arc_damage_+%_per_chain": {
+      "stats": ["arc_damage_+%_per_chain"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "【电弧】每连锁弹射 1 次，伤害便提高 %1%%%",
+          "formatters": []
         }
       ]
     },
@@ -49804,6 +50519,26 @@
         }
       ]
     },
+    "area_damage_taken_from_hits_+%": {
+      "stats": ["area_damage_taken_from_hits_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被击中时承受的范围伤害提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被击中时承受的范围伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "area_of_effect_+%_if_have_stunned_an_enemy_recently": {
       "stats": ["area_of_effect_+%_if_have_stunned_an_enemy_recently"],
       "translations": [
@@ -49848,26 +50583,6 @@
         }
       ]
     },
-    "area_of_effect_+%_per_25_rampage_stacks": {
-      "stats": ["area_of_effect_+%_per_25_rampage_stacks"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "每完成 25 次暴走连击，范围效果扩大 %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "每完成 25 次暴走连击，范围效果缩小 %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "area_of_effect_+%_per_50_strength": {
       "stats": ["area_of_effect_+%_per_50_strength"],
       "translations": [
@@ -49903,6 +50618,35 @@
             {
               "id": "negate",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "area_of_effect_+%_per_enemy_killed_recently": {
+      "stats": ["area_of_effect_+%_per_enemy_killed_recently"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "近期内你若有击败敌人，则范围效果扩大 %1%%%，最多 50%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "近期内你若有击败敌人，则范围效果缩小 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
             }
           ]
         }
@@ -51326,6 +52070,91 @@
         }
       ]
     },
+    "bear_trap_additional_damage_taken_+%_from_traps_and_mines": {
+      "stats": ["bear_trap_additional_damage_taken_+%_from_traps_and_mines"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "踩中【捕熊陷阱】的敌人受到陷阱或地雷的击中伤害提高 %1%%% ",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "踩中【捕熊陷阱】的敌人受到陷阱或地雷的击中伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bear_trap_damage_taken_+%_from_traps_and_mines": {
+      "stats": ["bear_trap_damage_taken_+%_from_traps_and_mines"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "踩中【捕熊陷阱】的敌人受到陷阱或地雷的击中伤害提高 %1%%% ",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "踩中【捕熊陷阱】的敌人受到陷阱或地雷的击中伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bear_trap_movement_speed_+%_final": {
+      "stats": ["bear_trap_movement_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "总移动速度额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "总移动速度额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "blade_vortex_critical_strike_multiplier_+_per_blade": {
+      "stats": ["blade_vortex_critical_strike_multiplier_+_per_blade"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【飞刃风暴】的每片刀刃 %1$+d%% 攻击和法术暴击伤害加成",
+          "formatters": []
+        }
+      ]
+    },
+    "bladefall_number_of_volleys": {
+      "stats": ["bladefall_number_of_volleys"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "【虚空刀雨】会额外发射一波飞刃",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "【虚空刀雨】会额外发射 %1% 波飞刃",
+          "formatters": []
+        }
+      ]
+    },
     "bleed_damage_+%_per_endurance_charge": {
       "stats": ["bleed_damage_+%_per_endurance_charge"],
       "translations": [
@@ -51627,12 +52456,12 @@
         }
       ]
     },
-    "burning_damage_+%_per_enemy_shocked_recently": {
-      "stats": ["burning_damage_+%_per_enemy_shocked_recently"],
+    "burning_damage_+%_per_non_shocked_enemy_shocked_recently": {
+      "stats": ["burning_damage_+%_per_non_shocked_enemy_shocked_recently"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "近期内你每感电 1 个敌人，则燃烧伤害提高 %1%%%",
+          "text": "近期内你每感电 1 个未被感电的敌人，则燃烧伤害提高 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -51642,7 +52471,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "近期内你每感电 1 个敌人，则燃烧伤害降低 %1%%%",
+          "text": "近期内你每感电 1 个未被感电的敌人，则燃烧伤害降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -51707,6 +52536,16 @@
         {
           "matchers": ["#"],
           "text": "若力量高于敏捷，则无法被点燃",
+          "formatters": []
+        }
+      ]
+    },
+    "cannot_be_inflicted_by_corrupted_blood": {
+      "stats": ["cannot_be_inflicted_by_corrupted_blood"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "【腐化之血】无法施加于你",
           "formatters": []
         }
       ]
@@ -51995,6 +52834,35 @@
         }
       ]
     },
+    "cast_speed_+%_per_corpse_consumed_recently": {
+      "stats": ["cast_speed_+%_per_corpse_consumed_recently"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每消耗 1 具灵柩后的短时间内，施法速度提高 %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "每消耗 1 具灵柩后的短时间内，施法速度降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
+            }
+          ]
+        }
+      ]
+    },
     "cat_aspect_reserves_no_mana": {
       "stats": ["cat_aspect_reserves_no_mana"],
       "translations": [
@@ -52070,7 +52938,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "【刀刃乱舞】层数达到上限时，有 %1%%% 几率躲避攻击",
+          "text": "【刀刃乱舞】层数达到上限时，有 %1%%% 几率躲避攻击击中",
           "formatters": []
         }
       ]
@@ -52082,7 +52950,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "拥有能量护盾时有 %1%%% 几率躲避攻击和法术伤害",
+          "text": "拥有能量护盾时有 %1%%% 几率躲避攻击和法术击中",
           "formatters": []
         }
       ]
@@ -52092,7 +52960,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "受到【优雅】影响时，有 %1%%% 几率躲避攻击",
+          "text": "受到【优雅】影响时，有 %1%%% 几率躲避攻击击中",
           "formatters": []
         }
       ]
@@ -52102,7 +52970,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你的副手未装备武器时，有 %1%%% 几率躲避攻击",
+          "text": "你的副手未装备武器时，有 %1%%% 几率躲避攻击击中",
           "formatters": []
         }
       ]
@@ -52112,7 +52980,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "受到【迅捷】影响时，有 %1%%% 几率躲避法术",
+          "text": "受到【迅捷】影响时，有 %1%%% 几率躲避法术击中",
           "formatters": []
         }
       ]
@@ -52256,6 +53124,21 @@
         {
           "matchers": ["#"],
           "text": "击中被 1 层蜘蛛网影响的敌人时，有 %1%%% 几率获得 1 个暴击球",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_gain_power_charge_on_rare_or_unique_enemy_hit_%": {
+      "stats": ["chance_to_gain_power_charge_on_rare_or_unique_enemy_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "击中稀有或传奇敌人时，有 %1%%% 几率获得 1 个暴击球",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "击中稀有或传奇敌人时，会获得 1 个暴击球",
           "formatters": []
         }
       ]
@@ -52457,11 +53340,31 @@
         {
           "matchers": ["#"],
           "text":
-            "近期内你若完成过【蓄力疾风闪】的吟唱施放，则有 %1%%% 几率躲避攻击",
+            "近期内你若完成过【蓄力疾风闪】的吟唱施放，则有 %1%%% 几率躲避攻击击中",
           "formatters": [
             {
               "id": "reminderstring",
               "arg": "ReminderTextRecently"
+            }
+          ]
+        }
+      ]
+    },
+    "charged_dash_movement_speed_+%_final": {
+      "stats": ["charged_dash_movement_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【蓄力疾风闪】的总移动速度额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【蓄力疾风闪】的总移动速度额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
             }
           ]
         }
@@ -53000,6 +53903,26 @@
         }
       ]
     },
+    "critical_strike_chance_+%_vs_shocked_enemies": {
+      "stats": ["critical_strike_chance_+%_vs_shocked_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "对感电目标的暴击率提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "对感电目标的暴击率降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "critical_strike_chance_increased_by_lightning_resistance": {
       "stats": ["critical_strike_chance_increased_by_lightning_resistance"],
       "translations": [
@@ -53022,6 +53945,26 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextUncappedResist"
+            }
+          ]
+        }
+      ]
+    },
+    "critical_strike_chance_+%_during_any_flask_effect": {
+      "stats": ["critical_strike_chance_+%_during_any_flask_effect"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "药剂持续期间，暴击几率提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "药剂持续期间，暴击几率降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
             }
           ]
         }
@@ -53127,6 +54070,16 @@
               "arg": "ReminderTextRecently"
             }
           ]
+        }
+      ]
+    },
+    "critical_strike_multiplier_+_during_any_flask_effect": {
+      "stats": ["critical_strike_multiplier_+_during_any_flask_effect"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "药剂持续期间，%1$+d%% 攻击和法术暴击伤害加成",
+          "formatters": []
         }
       ]
     },
@@ -53656,12 +54609,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "在消耗 200 点魔力后的 4 秒内，伤害提高 %1%%%",
+          "text": "在总计消耗 200 点魔力后的 4 秒内，伤害提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "在消耗 200 点魔力后的 4 秒内，伤害降低 %1%%%",
+          "text": "在总计消耗 200 点魔力后的 4 秒内，伤害降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -53890,12 +54843,25 @@
         }
       ]
     },
+    "dodge_attacks_and_spell_chance_%_per_500_maximum_mana_up_to_20": {
+      "stats": [
+        "dodge_attacks_and_spell_chance_%_per_500_maximum_mana_up_to_20"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "最大魔力每有 500 点，则有 %1%%% 几率不被攻击和法术击中，最多 20%%",
+          "formatters": []
+        }
+      ]
+    },
     "dodge_attacks_and_spells_%_chance_if_have_been_hit_recently": {
       "stats": ["dodge_attacks_and_spells_%_chance_if_have_been_hit_recently"],
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "近期内你若受到伤害，则有 %1%%% 几率躲避攻击和法术",
+          "text": "近期内你若受到伤害，则有 %1%%% 几率躲避攻击和法术击中",
           "formatters": [
             {
               "id": "reminderstring",
@@ -53905,7 +54871,7 @@
         },
         {
           "matchers": [[100, "#"]],
-          "text": "近期内你若受到伤害，则躲避攻击和法术",
+          "text": "近期内你若受到伤害，则躲避攻击和法术击中",
           "formatters": [
             {
               "id": "reminderstring",
@@ -53920,7 +54886,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "近期内你若有过格挡，则有 %1%%% 几率躲避攻击",
+          "text": "近期内你若有过格挡，则有 %1%%% 几率躲避攻击击中",
           "formatters": [
             {
               "id": "reminderstring",
@@ -53930,12 +54896,57 @@
         }
       ]
     },
+    "dodge_attacks_chance_%_while_moving": {
+      "stats": ["dodge_attacks_chance_%_while_moving"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "移动时有 %1%%% 几率不被攻击击中",
+          "formatters": []
+        }
+      ]
+    },
     "dodge_chance_%_while_holding_shield": {
       "stats": ["dodge_chance_%_while_holding_shield"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "持盾牌时有 %1%%% 几率躲避攻击",
+          "text": "持盾牌时有 %1%%% 几率躲避攻击击中",
+          "formatters": []
+        }
+      ]
+    },
+    "dodge_spells_chance_%_while_moving": {
+      "stats": ["dodge_spells_chance_%_while_moving"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "移动时有 %1%%% 几率不被法术击中",
+          "formatters": []
+        }
+      ]
+    },
+    "double_slash_minimum_added_physical_damage_vs_bleeding_enemies": {
+      "stats": [
+        "double_slash_minimum_added_physical_damage_vs_bleeding_enemies",
+        "double_slash_maximum_added_physical_damage_vs_bleeding_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "【破空斩】对流血敌人附加 %1% - %2% 基础物理伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "double_strike_chance_to_deal_double_damage_%_vs_bleeding_enemies": {
+      "stats": [
+        "double_strike_chance_to_deal_double_damage_%_vs_bleeding_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【双重打击】有 %1%%% 几率对流血敌人造成双倍伤害",
           "formatters": []
         }
       ]
@@ -54186,6 +55197,36 @@
         }
       ]
     },
+    "elemental_hit_cannot_roll_cold_damage": {
+      "stats": ["elemental_hit_cannot_roll_cold_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "【元素打击】无法选择冰冷",
+          "formatters": []
+        }
+      ]
+    },
+    "elemental_hit_cannot_roll_fire_damage": {
+      "stats": ["elemental_hit_cannot_roll_fire_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "【元素打击】无法选择火焰",
+          "formatters": []
+        }
+      ]
+    },
+    "elemental_hit_cannot_roll_lightning_damage": {
+      "stats": ["elemental_hit_cannot_roll_lightning_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "【元素打击】无法选择闪电",
+          "formatters": []
+        }
+      ]
+    },
     "elemental_penetration_%_if_you_have_a_power_charge": {
       "stats": ["elemental_penetration_%_if_you_have_a_power_charge"],
       "translations": [
@@ -54275,6 +55316,26 @@
           "text":
             "每隔 14 秒：\\n获得持续 4 秒的冰缓汇流\\n获得持续 4 秒的感电汇流\\n获得持续 4 秒的点燃汇流\\n获得 2 秒的冰缓，感电，点燃汇流",
           "formatters": []
+        }
+      ]
+    },
+    "elementalist_ignite_damage_+%_final": {
+      "stats": ["elementalist_ignite_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "点燃总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "点燃总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -54522,6 +55583,22 @@
         }
       ]
     },
+    "energy_shield_regeneration_rate_per_minute_per_poison_stack": {
+      "stats": ["energy_shield_regeneration_rate_per_minute_per_poison_stack"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "你身上的每层中毒状态使你每秒回复 %1% 能量护盾，最多可有 250 秒",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "energy_shield_regeneration_rate_per_minute_%_while_affected_by_discipline": {
       "stats": [
         "energy_shield_regeneration_rate_per_minute_%_while_affected_by_discipline"
@@ -54560,6 +55637,21 @@
         {
           "matchers": ["#"],
           "text": "【虚空匕首】额外增加 %1% 个投射物",
+          "formatters": []
+        }
+      ]
+    },
+    "ethereal_knives_projectile_base_number_of_targets_to_pierce": {
+      "stats": ["ethereal_knives_projectile_base_number_of_targets_to_pierce"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "【虚空匕首】穿透 1 个额外目标",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "【虚空匕首】穿透 %1% 个额外目标",
           "formatters": []
         }
       ]
@@ -54669,6 +55761,36 @@
         {
           "matchers": [["#", -1]],
           "text": "移动时闪避值降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "expanding_fire_cone_additional_maximum_number_of_stages": {
+      "stats": ["expanding_fire_cone_additional_maximum_number_of_stages"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "【燃火烧尽】最多 %1$+d 阶",
+          "formatters": []
+        }
+      ]
+    },
+    "expanding_fire_cone_area_of_effect_+%": {
+      "stats": ["expanding_fire_cone_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【燃火烧尽】范围效果扩大 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【燃火烧尽】范围效果缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -55002,18 +56124,153 @@
         }
       ]
     },
+    "fire_trap_burning_ground_duration_+%": {
+      "stats": ["fire_trap_burning_ground_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【火焰陷阱】造成的燃烧地面持续时间延长 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【火焰陷阱】造成的燃烧地面持续时间缩短 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "fire_trap_number_of_additional_traps_to_throw": {
       "stats": ["fire_trap_number_of_additional_traps_to_throw"],
       "translations": [
         {
           "matchers": [1],
-          "text": "火焰陷阱会扔出额外 1 个陷阱",
+          "text": "火焰陷阱会扔出最多额外 1 个陷阱",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text": "火焰陷阱会扔出额外 %1% 个陷阱",
+          "text": "火焰陷阱会扔出最多额外 %1% 个陷阱",
           "formatters": []
+        }
+      ]
+    },
+    "flamethrower_tower_trap_cast_speed_+%": {
+      "stats": ["flamethrower_tower_trap_cast_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【掷火陷阱】的施法速度提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【掷火陷阱】的施法速度降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "flamethrower_tower_trap_cooldown_speed_+%": {
+      "stats": ["flamethrower_tower_trap_cooldown_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【掷火陷阱】的冷却回复速度提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【掷火陷阱】的冷却回复速度降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "flamethrower_tower_trap_damage_+%": {
+      "stats": ["flamethrower_tower_trap_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【掷火陷阱】的伤害提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【掷火陷阱】的伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "flamethrower_tower_trap_duration_+%": {
+      "stats": ["flamethrower_tower_trap_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【掷火陷阱】的技能效果持续时间延长 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【掷火陷阱】的技能效果持续时间缩短 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "flamethrower_tower_trap_number_of_additional_flamethrowers": {
+      "stats": ["flamethrower_tower_trap_number_of_additional_flamethrowers"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "【掷火陷阱】会额外喷出一道烈焰",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "【掷火陷阱】会额外喷出 %1% 道烈焰",
+          "formatters": []
+        }
+      ]
+    },
+    "flamethrower_trap_damage_+%_final_vs_burning_enemies": {
+      "stats": ["flamethrower_trap_damage_+%_final_vs_burning_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "对燃烧的敌人的总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "对燃烧的敌人的总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -55166,6 +56423,26 @@
         }
       ]
     },
+    "frost_bomb_buff_duration_+%": {
+      "stats": ["frost_bomb_buff_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【霜害】技能会使减益效果的持续时间延长 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【霜害】技能会使减益效果的持续时间延长 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "frostbolt_number_of_additional_projectiles": {
       "stats": ["frostbolt_number_of_additional_projectiles"],
       "translations": [
@@ -55281,7 +56558,7 @@
         {
           "matchers": ["#"],
           "text":
-            "当你总计消耗超过 800 点魔力时，获得 %1$+d%% 攻击和法术基础暴击率，持续 2 秒",
+            "当你总计消耗超过 800 点魔力后，获得 %1$+d%% 攻击和法术基础暴击率，持续 2 秒",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -55492,6 +56769,21 @@
         }
       ]
     },
+    "gain_onslaught_while_not_on_low_mana": {
+      "stats": ["gain_onslaught_while_not_on_low_mana"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "低魔时获得【猛攻】",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
     "gain_onslaught_while_on_low_life": {
       "stats": ["gain_onslaught_while_on_low_life"],
       "translations": [
@@ -55605,6 +56897,21 @@
         }
       ]
     },
+    "gain_power_charge_on_vaal_skill_use_%": {
+      "stats": ["gain_power_charge_on_vaal_skill_use_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "你使用瓦尔技能时有 %1%%% 几率获得 1 个暴击球",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "你使用瓦尔技能时获得 1 个暴击球",
+          "formatters": []
+        }
+      ]
+    },
     "gain_random_charge_on_block": {
       "stats": ["gain_random_charge_on_block"],
       "translations": [
@@ -55622,6 +56929,21 @@
           "matchers": ["#"],
           "text": "当你静止时，每秒获得 1 个狂怒球，耐力球或暴击球",
           "formatters": []
+        }
+      ]
+    },
+    "gain_soul_eater_for_x_ms_on_vaal_skill_use": {
+      "stats": ["gain_soul_eater_for_x_ms_on_vaal_skill_use"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "当你使用瓦尔技能时，获得噬魂者 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -55764,6 +57086,16 @@
         }
       ]
     },
+    "global_evasion_rating_+_while_moving": {
+      "stats": ["global_evasion_rating_+_while_moving"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "移动时 %1$+d 点最大闪避值",
+          "formatters": []
+        }
+      ]
+    },
     "global_minimum_added_cold_damage_vs_chilled_or_frozen_enemies": {
       "stats": [
         "global_minimum_added_cold_damage_vs_chilled_or_frozen_enemies",
@@ -55812,6 +57144,29 @@
         {
           "matchers": ["#", "#"],
           "text": "对被感电敌人附加 %1% - %2% 基础闪电伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "global_minimum_added_physical_damage_vs_bleeding_enemies": {
+      "stats": [
+        "global_minimum_added_physical_damage_vs_bleeding_enemies",
+        "global_maximum_added_physical_damage_vs_bleeding_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "对流血敌人附加 %1% - %2% 基础物理伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "global_physical_damage_reduction_rating_while_moving": {
+      "stats": ["global_physical_damage_reduction_rating_while_moving"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "移动时 %1$+d 点最大护甲",
           "formatters": []
         }
       ]
@@ -56277,6 +57632,118 @@
         }
       ]
     },
+    "ice_siphon_trap_chill_effect_+%": {
+      "stats": ["ice_siphon_trap_chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【虹吸陷阱】的冰缓效果提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【虹吸陷阱】的冰缓效果降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ice_siphon_trap_damage_+%": {
+      "stats": ["ice_siphon_trap_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【虹吸陷阱】的伤害提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【虹吸陷阱】的伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ice_siphon_trap_damage_taken_+%_per_beam": {
+      "stats": ["ice_siphon_trap_damage_taken_+%_per_beam"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "【虹吸陷阱】的光线连接到你，每有一条其他光线，都会使你承受的伤害提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "【虹吸陷阱】的光线连接到你，每有一条其他光线，都会使你承受的伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ice_siphon_trap_duration_+%": {
+      "stats": ["ice_siphon_trap_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【虹吸陷阱】的技能效果持续时间延长 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【虹吸陷阱】的技能效果持续时间缩短 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ice_trap_cold_resistance_penetration_%": {
+      "stats": ["ice_trap_cold_resistance_penetration_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "【冰冻陷阱】的伤害穿透 %1%%% 冰霜抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "ignite_damage_+%_vs_chilled_enemies": {
+      "stats": ["ignite_damage_+%_vs_chilled_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "对冰缓敌人造成的点燃伤害提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "对冰缓敌人造成的点燃伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "ignite_duration_-%": {
       "stats": ["ignite_duration_-%"],
       "translations": [
@@ -56294,6 +57761,36 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "ignores_enemy_cold_resistance": {
+      "stats": ["ignores_enemy_cold_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "击中无视敌人的冰霜抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "ignores_enemy_fire_resistance": {
+      "stats": ["ignores_enemy_fire_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "击中无视敌人的火焰抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "ignores_enemy_lightning_resistance": {
+      "stats": ["ignores_enemy_lightning_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "击中无视敌人的闪电抗性",
+          "formatters": []
         }
       ]
     },
@@ -56694,6 +58191,21 @@
         }
       ]
     },
+    "life_gain_per_target_if_have_used_a_vaal_skill_recently": {
+      "stats": ["life_gain_per_target_if_have_used_a_vaal_skill_recently"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "近期内你若使用过瓦尔技能，则击中每个敌人回复 %1% 生命",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
+            }
+          ]
+        }
+      ]
+    },
     "life_leech_applies_to_energy_shield_on_full_life": {
       "stats": ["life_leech_applies_to_energy_shield_on_full_life"],
       "translations": [
@@ -57037,6 +58549,23 @@
         }
       ]
     },
+    "life_regeneration_rate_per_minute_%_per_500_maximum_energy_shield": {
+      "stats": [
+        "life_regeneration_rate_per_minute_%_per_500_maximum_energy_shield"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每有 500 层能量护盾可每秒回复 %1%%% 生命",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "life_regeneration_rate_per_minute_%_per_mine_detonated_recently_up_to_20%": {
       "stats": [
         "life_regeneration_rate_per_minute_%_per_mine_detonated_recently_up_to_20%"
@@ -57216,6 +58745,131 @@
         {
           "matchers": [["#", -1]],
           "text": "【电能释放】每击中 1 个敌人，范围缩小 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_tower_trap_additional_number_of_beams": {
+      "stats": ["lightning_tower_trap_additional_number_of_beams"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "【电塔陷阱】会攻击一片额外区域",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "【电塔陷阱】会攻击 %1% 片额外区域",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_tower_trap_cast_speed_+%": {
+      "stats": ["lightning_tower_trap_cast_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【电塔陷阱】的施法速度提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【电塔陷阱】的施法速度降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_tower_trap_cooldown_speed_+%": {
+      "stats": ["lightning_tower_trap_cooldown_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【电塔陷阱】的冷却回复速度提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【电塔陷阱】的冷却回复速度降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_tower_trap_damage_+%": {
+      "stats": ["lightning_tower_trap_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【电塔陷阱】的伤害提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【电塔陷阱】的伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_tower_trap_duration_+%": {
+      "stats": ["lightning_tower_trap_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【电塔陷阱】的技能效果持续时间延长 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【电塔陷阱】的技能效果持续时间缩短 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_trap_lightning_resistance_penetration_%": {
+      "stats": ["lightning_trap_lightning_resistance_penetration_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "【闪电陷阱】的伤害穿透 %1%%% 闪电抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_trap_shock_effect_+%": {
+      "stats": ["lightning_trap_shock_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "闪电陷阱的感电效果提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "闪电陷阱的感电效果降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -57468,7 +59122,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "总计消耗 200 点魔力可以获得 1 个暴击球",
+          "text": "总计消耗 200 点魔力后可以获得 1 个暴击球",
           "formatters": []
         }
       ]
@@ -57528,165 +59182,6 @@
         }
       ]
     },
-    "local_display_socketed_attacks_additional_critical_strike_chance": {
-      "stats": [
-        "local_display_socketed_attacks_additional_critical_strike_chance"
-      ],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "插槽内的攻击技能获得 %1$+d%% 基础暴击率",
-          "formatters": [
-            {
-              "id": "divide_by_one_hundred",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "local_display_socketed_attacks_critical_strike_multiplier_+": {
-      "stats": ["local_display_socketed_attacks_critical_strike_multiplier_+"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "插槽内的攻击技能获得 %1$+d%% 暴击伤害加成",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_socketed_movement_skills_have_no_mana_cost": {
-      "stats": ["local_display_socketed_movement_skills_have_no_mana_cost"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "插槽内的移动技能不消耗魔力",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_socketed_spells_additional_critical_strike_chance": {
-      "stats": [
-        "local_display_socketed_spells_additional_critical_strike_chance"
-      ],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "插槽内的法术获得 %1$+d%% 法术基础暴击率",
-          "formatters": [
-            {
-              "id": "divide_by_one_hundred",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "local_display_socketed_spells_critical_strike_multiplier_+": {
-      "stats": ["local_display_socketed_spells_critical_strike_multiplier_+"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "插槽内的法术获得 %1$+d%% 暴击伤害加成",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_commandment_of_inferno_on_crit_%": {
-      "stats": ["local_display_trigger_commandment_of_inferno_on_crit_%"],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text": "暴击时有 %1%%% 几率触发【炼狱之诫】",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text": "暴击时触发【炼狱之诫】",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_level_20_animate_guardian_weapon_on_guardian_kill_%_chance": {
-      "stats": [
-        "local_display_trigger_level_20_animate_guardian_weapon_on_guardian_kill_%_chance"
-      ],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text":
-            "当幻化守卫击败一个敌人时，有 %1%%% 几率触发 20 级的Animate Guardian’s Weapon",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text":
-            "当幻化守卫击败一个敌人时，触发 20 级的Animate Guardian’s Weapon",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_level_20_animate_guardian_weapon_on_weapon_kill_%_chance": {
-      "stats": [
-        "local_display_trigger_level_20_animate_guardian_weapon_on_weapon_kill_%_chance"
-      ],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text":
-            "当幻化武器击败一个敌人时，有 %1%%% 几率触发 18 级的Animate Guardian’s Weapon",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text":
-            "当幻化武器击败一个敌人时，触发 18 级的Animate Guardian’s Weapon",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_level_x_icicle_nova_on_kill_vs_frozen_enemy": {
-      "stats": [
-        "local_display_trigger_level_x_icicle_nova_on_kill_vs_frozen_enemy"
-      ],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "你击败被冻结的敌人时触发 %1% 级的【爆环冰刺】",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_temporal_anomaly_when_hit_%_chance": {
-      "stats": ["local_display_trigger_temporal_anomaly_when_hit_%_chance"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "被击中时有 %1%%% 几率触发 20 级的【时间异动】",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_tentacle_smash_on_kill_%_chance": {
-      "stats": ["local_display_trigger_tentacle_smash_on_kill_%_chance"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "击败敌人时有 %1%%% 几率触发 20 级的【藤蔓抽击】",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_void_sphere_on_kill_%_chance": {
-      "stats": ["local_display_trigger_void_sphere_on_kill_%_chance"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "击败敌人时有 %1%%% 几率触发 20 级的【召唤异动奇点】",
-          "formatters": []
-        }
-      ]
-    },
     "local_evasion_rating_and_energy_shield": {
       "stats": ["local_evasion_rating_and_energy_shield"],
       "translations": [
@@ -57707,6 +59202,26 @@
         }
       ]
     },
+    "local_flask_gain_x_vaal_souls_on_use": {
+      "stats": ["local_flask_gain_x_vaal_souls_on_use"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "使用时获得 %1% 个瓦尔之灵",
+          "formatters": []
+        }
+      ]
+    },
+    "local_flask_no_mana_recovery_during_effect": {
+      "stats": ["local_flask_no_mana_recovery_during_effect"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "药剂持续期间无法获得魔力",
+          "formatters": []
+        }
+      ]
+    },
     "local_flask_number_of_additional_projectiles_during_flask_effect": {
       "stats": [
         "local_flask_number_of_additional_projectiles_during_flask_effect"
@@ -57721,6 +59236,31 @@
           "matchers": [[2, "#"]],
           "text": "药剂持续期间，技能可以额外发射 %1% 个投射物",
           "formatters": []
+        }
+      ]
+    },
+    "local_flask_vaal_souls_gained_per_minute_during_effect": {
+      "stats": ["local_flask_vaal_souls_gained_per_minute_during_effect"],
+      "translations": [
+        {
+          "matchers": [["#", 60]],
+          "text": "药剂持续期间，每秒获得 %1% 个瓦尔之灵",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": [[61, "#"]],
+          "text": "药剂持续期间，每秒获得 %1% 个瓦尔之灵",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -58017,7 +59557,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "范围内提高冰霜抗性的天赋也会以 %1%%% 的比例提高攻击躲避率",
+          "text":
+            "范围内提高冰霜抗性的天赋也会以 %1%%% 的比例提高躲避攻击击中几率",
           "formatters": []
         }
       ]
@@ -58061,6 +59602,45 @@
           "matchers": [1],
           "text":
             "若范围内含有 40 点敏捷，\\n双持打击时副手武器对周围敌人造成扩散伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "local_unique_jewel_elemental_hit_cannot_roll_cold_damage_with_40_int_+_str_in_radius": {
+      "stats": [
+        "local_unique_jewel_elemental_hit_cannot_roll_cold_damage_with_40_int_+_str_in_radius"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "范围内配置的力量和智慧总计 40 点时，【元素打击】无法选择冰霜元素",
+          "formatters": []
+        }
+      ]
+    },
+    "local_unique_jewel_elemental_hit_cannot_roll_fire_damage_with_40_int_+_dex_in_radius": {
+      "stats": [
+        "local_unique_jewel_elemental_hit_cannot_roll_fire_damage_with_40_int_+_dex_in_radius"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "范围内配置的智慧和敏捷总计 40 点时，【元素打击】无法选择火焰元素",
+          "formatters": []
+        }
+      ]
+    },
+    "local_unique_jewel_elemental_hit_cannot_roll_lightning_damage_with_40_dex_+_str_in_radius": {
+      "stats": [
+        "local_unique_jewel_elemental_hit_cannot_roll_lightning_damage_with_40_dex_+_str_in_radius"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "范围内配置的智慧和力量总计 40 点时，【元素打击】无法选择闪电元素",
           "formatters": []
         }
       ]
@@ -58119,12 +59699,13 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "若范围内含有 40 点敏捷，【火焰陷阱】会扔出 1 个额外陷阱",
+          "text": "若范围内含有 40 点敏捷，【火焰陷阱】会扔出最多 1 个额外陷阱",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text": "若范围内含有 40 点敏捷，【火焰陷阱】会扔出 %1% 个额外陷阱",
+          "text":
+            "若范围内含有 40 点敏捷，【火焰陷阱】会扔出最多 %1% 个额外陷阱",
           "formatters": []
         }
       ]
@@ -58614,18 +60195,48 @@
         }
       ]
     },
+    "maim_effect_+%": {
+      "stats": ["maim_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "瘫痪效果提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "瘫痪效果降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "maim_on_hit_%": {
       "stats": ["maim_on_hit_%"],
       "translations": [
         {
           "matchers": [[1, 99]],
           "text": "攻击击中时有 %1%%% 几率造成瘫痪",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[100, "#"]],
           "text": "攻击击中造成瘫痪",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -58643,6 +60254,36 @@
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mana_degeneration_per_minute": {
+      "stats": ["mana_degeneration_per_minute"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每秒失去 %1% 魔力",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mana_degeneration_per_minute_%": {
+      "stats": ["mana_degeneration_per_minute_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每秒失去 %1%%% 最大魔力",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
               "arg": 1
             }
           ]
@@ -59204,6 +60845,16 @@
         {
           "matchers": ["#"],
           "text": "该区域会出现 %1% 个额外神秘木桶堆",
+          "formatters": []
+        }
+      ]
+    },
+    "map_area_contains_x_additional_clusters_of_explosive_eggs": {
+      "stats": ["map_area_contains_x_additional_clusters_of_explosive_eggs"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "区域长满了腐蚀性的植物",
           "formatters": []
         }
       ]
@@ -59974,7 +61625,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "获得神殿效果时，玩家获得 %1%%% 躲避几率",
+          "text": "获得神殿效果时，玩家获得 %1%%% 几率躲避攻击击中",
           "formatters": []
         }
       ]
@@ -61391,6 +63042,21 @@
         }
       ]
     },
+    "map_non_unique_monster_life_regeneration_rate_per_minute_%": {
+      "stats": ["map_non_unique_monster_life_regeneration_rate_per_minute_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "此区域的非传奇怪物每秒回复 %1%%% 最大生命",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "map_normal_items_drop_as_magic": {
       "stats": ["map_normal_items_drop_as_magic"],
       "translations": [
@@ -61542,6 +63208,16 @@
         {
           "matchers": ["#"],
           "text": "该区域会出现许多蜘蛛",
+          "formatters": []
+        }
+      ]
+    },
+    "map_packs_are_vaal": {
+      "stats": ["map_packs_are_vaal"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "区域内有许多【瓦尔生物】",
           "formatters": []
         }
       ]
@@ -61849,7 +63525,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "玩家有 %1%%% 几率躲避法术伤害",
+          "text": "玩家有 %1%%% 几率躲避法术击中",
           "formatters": []
         }
       ]
@@ -62630,6 +64306,16 @@
         }
       ]
     },
+    "map_spawn_incursion_encounters": {
+      "stats": ["map_spawn_incursion_encounters"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "该区域会出现时空入侵",
+          "formatters": []
+        }
+      ]
+    },
     "map_storm_area_of_effect_+%": {
       "stats": ["map_storm_area_of_effect_+%"],
       "translations": [
@@ -62927,6 +64613,26 @@
           "matchers": ["#"],
           "text": "每 10 点智慧附加 %1% 最大基础闪电伤害",
           "formatters": []
+        }
+      ]
+    },
+    "maximum_life_+%_per_equipped_corrupted_item": {
+      "stats": ["maximum_life_+%_per_equipped_corrupted_item"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每装备 1 个被腐化的物品，最大生命提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "每装备 1 个被腐化的物品，最大生命降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -63271,6 +64977,19 @@
         {
           "matchers": ["#", "#"],
           "text": "每 10 点力量可以为攻击附加 %1% - %2% 基础火焰伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "minimum_added_fire_damage_to_hits_vs_blinded_enemies": {
+      "stats": [
+        "minimum_added_fire_damage_to_hits_vs_blinded_enemies",
+        "maximum_added_fire_damage_to_hits_vs_blinded_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "该武器击中致盲敌人时，附加 %1% - %2% 基础火焰伤害",
           "formatters": []
         }
       ]
@@ -63834,6 +65553,35 @@
         }
       ]
     },
+    "movement_speed_+%_if_have_used_a_vaal_skill_recently": {
+      "stats": ["movement_speed_+%_if_have_used_a_vaal_skill_recently"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "近期内你若使用过瓦尔技能，则移动速度提高 %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "近期内你若使用过瓦尔技能，则移动速度降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
+            }
+          ]
+        }
+      ]
+    },
     "movement_speed_+%_per_chest_opened_recently": {
       "stats": ["movement_speed_+%_per_chest_opened_recently"],
       "translations": [
@@ -64194,6 +65942,21 @@
         }
       ]
     },
+    "number_of_additional_traps_to_throw": {
+      "stats": ["number_of_additional_traps_to_throw"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "投掷陷阱的技能会投掷最多 1 个额外陷阱",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "投掷陷阱的技能会投掷最多 %1% 个额外陷阱",
+          "formatters": []
+        }
+      ]
+    },
     "number_of_animated_weapons_allowed": {
       "stats": ["number_of_animated_weapons_allowed"],
       "translations": [
@@ -64290,6 +66053,16 @@
         }
       ]
     },
+    "orb_of_storms_cast_speed_+%": {
+      "stats": ["orb_of_storms_cast_speed_+%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "【风暴漩涡】的施法速度提高 %1%%%",
+          "formatters": []
+        }
+      ]
+    },
     "override_maximum_damage_resistance_%": {
       "stats": ["override_maximum_damage_resistance_%"],
       "translations": [
@@ -64306,6 +66079,17 @@
         {
           "matchers": ["#"],
           "text": "该区域掉落的普兰德斯金币量翻倍",
+          "formatters": []
+        }
+      ]
+    },
+    "%_chance_to_gain_random_charge_on_trap_triggered_by_an_enemy": {
+      "stats": ["%_chance_to_gain_random_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "当你的任何陷阱被敌人触发时，有 %1%%% 的几率获得 1 个耐力球、狂怒球或暴击球",
           "formatters": []
         }
       ]
@@ -64360,6 +66144,81 @@
               "arg": "ReminderTextIntimidate"
             }
           ]
+        }
+      ]
+    },
+    "phys_cascade_trap_cooldown_speed_+%": {
+      "stats": ["phys_cascade_trap_cooldown_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【震波陷阱】的冷却回复速度提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【震波陷阱】的冷却回复速度降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "phys_cascade_trap_damage_+%": {
+      "stats": ["phys_cascade_trap_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【震波陷阱】的伤害提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【震波陷阱】的伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "phys_cascade_trap_duration_+%": {
+      "stats": ["phys_cascade_trap_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【震波陷阱】的技能效果持续时间延长 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【震波陷阱】的技能效果持续时间缩短 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "phys_cascade_trap_number_of_additional_cascades": {
+      "stats": ["phys_cascade_trap_number_of_additional_cascades"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "【震波陷阱】会额外释放一股震荡波",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "【震波陷阱】会额外释放 %1% 股震荡波",
+          "formatters": []
         }
       ]
     },
@@ -64676,7 +66535,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "近期每附加一层中毒效果，中毒持续时间便延长 %1%%%",
+          "text": "近期你每造成一层中毒效果，中毒持续时间便延长 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -64686,7 +66545,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "近期每附加一层中毒效果，中毒持续时间便缩短 %1%%%",
+          "text": "近期你每造成一层中毒效果，中毒持续时间便缩短 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -64751,12 +66610,47 @@
         }
       ]
     },
+    "poison_time_passed_+%": {
+      "stats": ["poison_time_passed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你身上的中毒效果消失速度加快 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你身上的中毒效果消失速度减慢 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "power_charge_on_kill_percent_chance_while_holding_shield": {
       "stats": ["power_charge_on_kill_percent_chance_while_holding_shield"],
       "translations": [
         {
           "matchers": [[1, "#"]],
           "text": "持盾牌时击败敌人有 %1%%% 几率获得暴击球",
+          "formatters": []
+        }
+      ]
+    },
+    "power_siphon_number_of_additional_projectiles": {
+      "stats": ["power_siphon_number_of_additional_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "【力量抽取】可以额外发射 １个投射物",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "【力量抽取】可以额外发射 %1% 个投射物",
           "formatters": []
         }
       ]
@@ -64823,6 +66717,16 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "projectile_damage_+%_per_chain": {
+      "stats": ["projectile_damage_+%_per_chain"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每连锁弹射 1 个敌人，投射物伤害便提高 %1%%%",
+          "formatters": []
         }
       ]
     },
@@ -65052,6 +66956,16 @@
         {
           "matchers": ["#"],
           "text": "【愤怒狂灵】击败被点燃的敌人后会刷新自身持续时间。",
+          "formatters": []
+        }
+      ]
+    },
+    "rain_of_arrows_additional_sequence_chance_%": {
+      "stats": ["rain_of_arrows_additional_sequence_chance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "【箭雨】有 %1%%% 的几率额外发射一串箭矢",
           "formatters": []
         }
       ]
@@ -65436,16 +67350,6 @@
               "arg": 1
             }
           ]
-        },
-        {
-          "matchers": [["#", -100]],
-          "text": "不会被感电影响",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextUnaffectedBy"
-            }
-          ]
         }
       ]
     },
@@ -65491,6 +67395,61 @@
         {
           "matchers": [100],
           "text": "【流星射击】的锥形范围内会造成双倍伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "shrapnel_trap_area_of_effect_+%": {
+      "stats": ["shrapnel_trap_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【爆炸陷阱】范围效果扩大 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【爆炸陷阱】范围效果缩小 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "shrapnel_trap_damage_+%": {
+      "stats": ["shrapnel_trap_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "【爆炸陷阱】的伤害提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "【爆炸陷阱】的伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "shrapnel_trap_number_of_additional_secondary_explosions": {
+      "stats": ["shrapnel_trap_number_of_additional_secondary_explosions"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "【爆炸陷阱】会额外造成一次小型爆炸",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "【爆炸陷阱】会额外造成 %1% 次小型爆炸",
           "formatters": []
         }
       ]
@@ -66265,6 +68224,48 @@
         }
       ]
     },
+    "summoned_skeletons_cover_in_ash_on_hit_%": {
+      "stats": ["summoned_skeletons_cover_in_ash_on_hit_%"],
+      "translations": [
+        {
+          "matchers": [["#", 99]],
+          "text": "异灵魔侍被击中时有 %1%%% 几率让敌人受到【灰烬缠身】",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextCoveredInAsh"
+            }
+          ]
+        },
+        {
+          "matchers": [100],
+          "text": "异灵魔侍被击中时让敌人受到【灰烬缠身】",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextCoveredInAsh"
+            }
+          ]
+        }
+      ]
+    },
+    "summoned_skeletons_fire_damage_%_of_maximum_life_taken_per_minute": {
+      "stats": [
+        "summoned_skeletons_fire_damage_%_of_maximum_life_taken_per_minute"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "异灵魔侍每秒将其最大生命的 %1%%% 转化为火焰伤害",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "summoned_skeletons_hits_cant_be_evaded": {
       "stats": ["summoned_skeletons_hits_cant_be_evaded"],
       "translations": [
@@ -66526,6 +68527,26 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "trap_throwing_speed_+%_per_frenzy_charge": {
+      "stats": ["trap_throwing_speed_+%_per_frenzy_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每个狂怒球可使陷阱投掷速度提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "每个狂怒球可使陷阱投掷速度降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
             }
           ]
         }
@@ -67161,6 +69182,24 @@
         }
       ]
     },
+    "you_and_nearby_allies_life_regeneration_rate_per_minute_%_if_corpse_consumed_recently": {
+      "stats": [
+        "you_and_nearby_allies_life_regeneration_rate_per_minute_%_if_corpse_consumed_recently"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "近期内你每吞噬过 1 个灵柩，你和周围队友每秒回复 %1%%% 最大生命",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
+            }
+          ]
+        }
+      ]
+    },
     "you_and_totem_life_regeneration_rate_per_minute_%_per_active_totem": {
       "stats": [
         "you_and_totem_life_regeneration_rate_per_minute_%_per_active_totem"
@@ -67379,16 +69418,6 @@
         {
           "matchers": ["#"],
           "text": "【复苏的魔卫】打出重击攻击时，伤害提高 %1%%%",
-          "formatters": []
-        }
-      ]
-    },
-    "active_skill_base_radius_+": {
-      "stats": ["active_skill_base_radius_+"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "%1$+d 范围",
           "formatters": []
         }
       ]
@@ -67814,6 +69843,21 @@
         }
       ]
     },
+    "summoned_skeletons_have_avatar_of_fire": {
+      "stats": ["summoned_skeletons_have_avatar_of_fire"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "异灵魔侍获得【火之化身】",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKeystoneAvatarOfFire"
+            }
+          ]
+        }
+      ]
+    },
     "gain_crimson_dance_if_have_dealt_critical_strike_recently": {
       "stats": ["gain_crimson_dance_if_have_dealt_critical_strike_recently"],
       "translations": [
@@ -67918,6 +69962,25 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextKeystoneIronReflexes"
+            }
+          ]
+        }
+      ]
+    },
+    "you_have_zealots_oath_if_you_havent_been_hit_recently": {
+      "stats": ["you_have_zealots_oath_if_you_havent_been_hit_recently"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "近期内你若没有被击中，则获得【狂热誓言】",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKeystoneZealotsOath"
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
             }
           ]
         }

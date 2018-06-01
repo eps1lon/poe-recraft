@@ -9,7 +9,7 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Приспешники бросают дополнительную ловушку",
+          "text": "Приспешники бросают 1 дополнительную ловушку",
           "formatters": []
         },
         {
@@ -99,12 +99,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Скорость сотворения чар приспешниками на %1%%% выше",
+          "text": "Скорость сотворения чар приспешниками на %1%%% больше",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Скорость сотворения чар приспешниками на %1%%% ниже",
+          "text": "Скорость сотворения чар приспешниками на %1%%% меньше",
           "formatters": [
             {
               "id": "negate",
@@ -1937,12 +1937,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Скорость атаки ближнего боя приспешников на %1%%% выше",
+          "text": "Скорость атаки ближнего боя приспешников на %1%%% больше",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Скорость атаки ближнего боя приспешников на %1%%% ниже",
+          "text": "Скорость атаки ближнего боя приспешников на %1%%% меньше",
           "formatters": [
             {
               "id": "negate",
@@ -2316,12 +2316,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Приспешники имеют скорость атаки снарядами на %1%%% выше",
+          "text": "Приспешники имеют на %1%%% больше скорости атаки снарядами",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Приспешники имеют скорость атаки снарядами на %1%%% ниже",
+          "text": "Приспешники имеют на %1%%% меньше скорости атаки снарядами",
           "formatters": [
             {
               "id": "negate",
@@ -2752,12 +2752,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Приспешники имеют на %1%%% больше добавленного урона",
+          "text": "Приспешники имеют на %1%%% больше дополнительного урона",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Приспешники имеют на %1%%% меньше добавленного урона",
+          "text": "Приспешники имеют на %1%%% меньше дополнительного урона",
           "formatters": [
             {
               "id": "negate",
@@ -2877,6 +2877,23 @@
         }
       ]
     },
+    "ghost_chance": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% шанс призвать фантома, когда приспешники не-фантомы наносят смертельный удар",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Призывает фантома, когда приспешники не-фантомы наносят смертельный удар",
+          "formatters": []
+        }
+      ]
+    },
     "decay_on_hit": {
       "stats": ["deal_chaos_damage_per_second_for_10_seconds_on_hit"],
       "translations": [
@@ -2898,6 +2915,17 @@
         }
       ]
     },
+    "ignites_apply_fire_res": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Враги, подожжённые приспешниками, имеют %1$+d%% к сопротивлению огню",
+          "formatters": []
+        }
+      ]
+    },
     "maim_chance": {
       "stats": ["maim_on_hit_%"],
       "translations": [
@@ -2910,7 +2938,7 @@
         {
           "matchers": [[100, "#"]],
           "text":
-            "Атаки приспешников всегда накладывают увечья при нанесении удара",
+            "Атаки приспешников всегда накладывают увечье при нанесении удара",
           "formatters": []
         }
       ]
@@ -2924,7 +2952,7 @@
         {
           "matchers": ["#", "#"],
           "text":
-            "Приспешники имеют от %1% до %2% добавленного урона от холода за заряд ярости",
+            "Приспешники имеют от %1% до %2% дополнительного урона от холода за заряд ярости",
           "formatters": []
         }
       ]
@@ -2986,6 +3014,40 @@
               "arg": "ReminderTextNonDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "frenzy_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Это умение и приспешники имеют %1%%% шанс получить заряд ярости, если враг вызвал срабатывание вашей ловушки",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Это умение и приспешники получают заряд ярости, если враг вызвал срабатывание вашей ловушки",
+          "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Это умение и приспешники имеют %1%%% шанс получить заряд энергии, если враг вызвал срабатывание вашей ловушки",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Это умение и приспешники получают заряд энергии, если враг вызвал срабатывание вашей ловушки",
+          "formatters": []
         }
       ]
     },
@@ -3055,6 +3117,28 @@
         }
       ]
     },
+    "hypothermia_cold_damage": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Приспешники наносят на %1%%% больше постепенного урона от холода",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Приспешники наносят на %1%%% меньше постепенного урона от холода",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "maim_phys_damage": {
       "stats": ["support_maim_chance_physical_damage_+%_final"],
       "translations": [
@@ -3099,14 +3183,14 @@
     },
     "added_fire_against_burning": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
           "matchers": ["#", "#"],
           "text":
-            "Приспешники наносят от %1% до %2% дополнительного урона от огня атаками по горящим врагам",
+            "Приспешники наносят от %1% до %2% дополнительного урона от огня по горящим врагам",
           "formatters": []
         }
       ]
@@ -3161,6 +3245,28 @@
         {
           "matchers": [["#", -1]],
           "text": "Приспешники наносят на %1%%% меньше урона снарядами",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "power_charge_on_crit_damage": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Приспешники наносят на %1%%% больше урона за заряд энергии",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Приспешники наносят на %1%%% меньше урона за заряд энергии",
           "formatters": [
             {
               "id": "negate",
@@ -3234,6 +3340,46 @@
               "arg": 3
             }
           ]
+        }
+      ]
+    },
+    "ailment_damage_incr": {
+      "stats": ["support_unbound_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Приспешники наносят на %1%%% больше урона от состояний",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Приспешники наносят на %1%%% меньше урона от состояний",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "trap_crit_per_power_charge": {
+      "stats": ["trap_critical_strike_multiplier_+_per_power_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Это умение и умения приспешников имеют %1$+d%% к множителю критического удара за заряд энергии при использовании в ловушках",
+          "formatters": []
         }
       ]
     }

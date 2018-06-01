@@ -197,41 +197,28 @@
         }
       ]
     },
-    "elemental_hit_fire_damage": {
+    "attack_added_cold": {
       "stats": [
-        "attack_minimum_base_fire_damage_for_elemental_hit",
-        "attack_maximum_base_fire_damage_for_elemental_hit"
+        "attack_minimum_added_cold_damage",
+        "attack_maximum_added_cold_damage"
       ],
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "Pode causar %1% a %2% de Dano Base de Fogo",
+          "text": "Adiciona %1% a %2% de Dano de Gelo em Ataques",
           "formatters": []
         }
       ]
     },
-    "elemental_hit_cold_damage": {
+    "attack_added_lightning": {
       "stats": [
-        "attack_minimum_base_cold_damage_for_elemental_hit",
-        "attack_maximum_base_cold_damage_for_elemental_hit"
+        "attack_minimum_added_lightning_damage",
+        "attack_maximum_added_lightning_damage"
       ],
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "Pode causar %1% a %2% de Dano Base de Gelo",
-          "formatters": []
-        }
-      ]
-    },
-    "elemental_hit_lightning_damage": {
-      "stats": [
-        "attack_minimum_base_lightning_damage_for_elemental_hit",
-        "attack_maximum_base_lightning_damage_for_elemental_hit"
-      ],
-      "translations": [
-        {
-          "matchers": ["#", "#"],
-          "text": "Pode causar %1% a %2% de Dano Base de Raio",
+          "text": "Adiciona %1% a %2% de Dano de Raio em Ataques",
           "formatters": []
         }
       ]
@@ -296,22 +283,6 @@
           "matchers": [[1, "#"], [2, "#"]],
           "text":
             "Planta %2% Minas Remotas que usam essa Habilidade quando detonadas",
-          "formatters": []
-        }
-      ]
-    },
-    "trap": {
-      "stats": ["is_trap", "number_of_traps_to_throw"],
-      "translations": [
-        {
-          "matchers": [[1, "#"], 1],
-          "text": "Lança uma Armadilha que usa essa Habilidade quando Ativadas",
-          "formatters": []
-        },
-        {
-          "matchers": [[1, "#"], [2, "#"]],
-          "text":
-            "Lança %2% Armadilhas que usam essa Habilidade quando Ativadas",
           "formatters": []
         }
       ]
@@ -408,82 +379,6 @@
           "matchers": ["#"],
           "text":
             "Transfere %1%%% do Dano sofrido de cada inimigo próximo para o alvo",
-          "formatters": []
-        }
-      ]
-    },
-    "number_of_projectiles": {
-      "stats": [
-        "total_number_of_projectiles_to_fire",
-        "total_number_of_arrows_to_fire",
-        "power_siphon_fire_at_all_targets",
-        "base_number_of_projectiles_in_spiral_nova",
-        "projectile_spiral_nova_angle"
-      ],
-      "translations": [
-        {
-          "matchers": [1, 0, 0, 0, "#"],
-          "text": "Dispara %1% Projétil",
-          "formatters": []
-        },
-        {
-          "matchers": [[2, "#"], 0, 0, 0, "#"],
-          "text": "Dispara %1% Projéteis",
-          "formatters": []
-        },
-        {
-          "matchers": ["#", 1, 0, 0, "#"],
-          "text": "Dispara %2% Flecha",
-          "formatters": []
-        },
-        {
-          "matchers": ["#", [2, "#"], 0, 0, "#"],
-          "text": "Dispara %2% Flechas",
-          "formatters": []
-        },
-        {
-          "matchers": [1, 0, 0, [1, "#"], 0],
-          "text": "Dispara %1% Projétil em uma direção aleatória",
-          "formatters": []
-        },
-        {
-          "matchers": [[2, "#"], 0, 0, [1, "#"], 0],
-          "text": "Dispara %1% Projéteis em uma direção aleatória",
-          "formatters": []
-        },
-        {
-          "matchers": [1, 0, 0, [1, "#"], "#"],
-          "text": "Dispara %1% Projétil",
-          "formatters": []
-        },
-        {
-          "matchers": [[2, "#"], 0, 0, [1, "#"], "#"],
-          "text": "Dispara %1% Projéteis em espiral",
-          "formatters": []
-        },
-        {
-          "matchers": ["#", 1, 0, [1, "#"], 0],
-          "text": "Dispara %2% Flecha em uma direção aleatória",
-          "formatters": []
-        },
-        {
-          "matchers": ["#", [2, "#"], 0, [1, "#"], 0],
-          "text": "Dispara %2% Flechas em uma direção aleatória",
-          "formatters": []
-        },
-        {
-          "matchers": ["#", 1, 0, [1, "#"], "#"],
-          "text": "Dispara %2% Flecha",
-          "formatters": []
-        },
-        {
-          "matchers": ["#", [2, "#"], 0, [1, "#"], "#"],
-          "text": "Dispara %2% Flechas em espiral",
-          "formatters": []
-        },
-        {
-          "matchers": ["#", "#", "#", "#", "#"],
-          "text": "Dispara Projéteis em todos os Inimigos próximos",
           "formatters": []
         }
       ]
@@ -871,6 +766,16 @@
               "arg": "ReminderTextStunThreshold"
             }
           ]
+        }
+      ]
+    },
+    "radius_add": {
+      "stats": ["active_skill_base_radius_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d de alcance",
+          "formatters": []
         }
       ]
     },
@@ -2426,26 +2331,6 @@
         }
       ]
     },
-    "righteous_fire_spell_damage_incr": {
-      "stats": ["righteous_fire_spell_damage_+%_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% mais Dano Mágico",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1%%% menos Dano Mágico",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "spell_damage_incr": {
       "stats": ["spell_damage_+%"],
       "translations": [
@@ -3091,26 +2976,6 @@
         {
           "matchers": [["#", -1]],
           "text": "Frequência de Acerto reduzida em %1%%% para cada lâmina",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "blade_vortex_damage_per_blade": {
-      "stats": ["blade_vortex_damage_+%_per_blade_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% mais Dano com Acertos por lâmina",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1%%% menos Dano com Acertos por lâmina",
           "formatters": [
             {
               "id": "negate",
@@ -3968,17 +3833,6 @@
         }
       ]
     },
-    "reduce_dodge": {
-      "stats": ["reduce_enemy_dodge_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Chance de Esquiva Inimiga reduzida em %1%%% contra essa Habilidade",
-          "formatters": []
-        }
-      ]
-    },
     "flame_whip_damage_incr": {
       "stats": ["flame_whip_damage_+%_final_vs_burning_enemies"],
       "translations": [
@@ -4109,19 +3963,6 @@
         }
       ]
     },
-    "attack_added_cold": {
-      "stats": [
-        "attack_minimum_added_cold_damage",
-        "attack_maximum_added_cold_damage"
-      ],
-      "translations": [
-        {
-          "matchers": ["#", "#"],
-          "text": "Adiciona %1% a %2% de Dano de Gelo em Ataques",
-          "formatters": []
-        }
-      ]
-    },
     "herald_of_ash_burning_damage": {
       "stats": ["herald_of_ash_burning_damage_+%_final"],
       "translations": [
@@ -4181,19 +4022,6 @@
         {
           "matchers": ["#", "#"],
           "text": "Adiciona %1% a %2% de Dano de Raio a Magias",
-          "formatters": []
-        }
-      ]
-    },
-    "attack_added_lightning": {
-      "stats": [
-        "attack_minimum_added_lightning_damage",
-        "attack_maximum_added_lightning_damage"
-      ],
-      "translations": [
-        {
-          "matchers": ["#", "#"],
-          "text": "Adiciona %1% a %2% de Dano de Raio em Ataques",
           "formatters": []
         }
       ]
@@ -5696,26 +5524,6 @@
         }
       ]
     },
-    "charged_dash_damage": {
-      "stats": ["charged_dash_damage_+%_maximum"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% mais Dano com Acertos na Distância Máxima do Avanço",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1%%% menos Dano com Acertos na Distância Máxima do Avanço",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "cremation_max_geysers": {
       "stats": ["corpse_erruption_maximum_number_of_geyers"],
       "translations": [
@@ -5723,6 +5531,26 @@
           "matchers": [[1, "#"]],
           "text": "Máximo de %1% Gêiseres por vez",
           "formatters": []
+        }
+      ]
+    },
+    "crit_chance_per_power_charge": {
+      "stats": ["critical_strike_chance_+%_per_power_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Chance de Crítico aumentada em %1%%% por Carga de Poder",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Chance de Crítico reduzida em %1%%% por Carga de Poder",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -5896,12 +5724,22 @@
         {
           "matchers": [[1, 99]],
           "text": "%1%%% de chance de Mutilar ao Acertar",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[100, "#"]],
           "text": "Mutila ao Acertar",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -6005,6 +5843,40 @@
         {
           "matchers": [[2, "#"]],
           "text": "Pode ter até %1% Efígies Convocadas por vez",
+          "formatters": []
+        }
+      ]
+    },
+    "frenzy_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% de chance de receber uma Carga de Frenesi quando sua Armadilha for ativada por um Inimigo",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Receba uma Carga de Frenesi quando sua Armadilha for ativada por um Inimigo",
+          "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% de chance de receber uma Carga do Poder quando sua Armadilha for ativada por um Inimigo",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Receba uma Carga do Poder quando sua Armadilha for ativada por um Inimigo",
           "formatters": []
         }
       ]

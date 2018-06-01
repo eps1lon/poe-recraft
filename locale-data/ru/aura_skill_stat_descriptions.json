@@ -345,7 +345,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% шанс увернуться от атак",
+          "text": "%1%%% шанс уворота от ударов атаками",
           "formatters": []
         }
       ]
@@ -355,7 +355,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% шанс увернуться от урона от чар",
+          "text": "%1%%% шанс уворота от ударов чарами",
           "formatters": []
         }
       ]
@@ -415,6 +415,66 @@
         }
       ]
     },
+    "immune_to_chill": {
+      "stats": ["base_immune_to_chill"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "У вас и ближайших союзников иммунитет к охлаждению",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_freeze": {
+      "stats": ["base_immune_to_freeze"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "У вас и ближайших союзников иммунитет к заморозке",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_ignite": {
+      "stats": ["base_immune_to_ignite"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "У вас и ближайших союзников иммунитет к поджогу",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_shock": {
+      "stats": ["base_immune_to_shock"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "У вас и ближайших союзников иммунитет к шоку",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_damage_taken": {
+      "stats": ["cold_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% увеличение получаемого урона от холода",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% уменьшение получаемого урона от холода",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "energy_shield_recharge_rate": {
       "stats": ["energy_shield_recharge_rate_+%"],
       "translations": [
@@ -428,6 +488,76 @@
           "matchers": [["#", -1]],
           "text":
             "%1%%% снижение скорости перезарядки энергетического щита у вас и ближайших союзников",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "fire_damage_taken": {
+      "stats": ["fire_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% увеличение получаемого урона от огня",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% уменьшение получаемого урона от огня",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hits_ignore_cold_res": {
+      "stats": ["hits_ignore_my_cold_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Удары игнорируют сопротивление холоду ближайших врагов",
+          "formatters": []
+        }
+      ]
+    },
+    "hits_ignore_fire_res": {
+      "stats": ["hits_ignore_my_fire_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Удары игнорируют сопротивление огню ближайших врагов",
+          "formatters": []
+        }
+      ]
+    },
+    "hits_ignore_lightning_res": {
+      "stats": ["hits_ignore_my_lightning_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Удары игнорируют сопротивление молнии ближайших врагов",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_damage_taken": {
+      "stats": ["lightning_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% увеличение получаемого урона от молнии",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% уменьшение получаемого урона от молнии",
           "formatters": [
             {
               "id": "negate",

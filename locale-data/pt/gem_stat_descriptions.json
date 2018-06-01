@@ -569,21 +569,6 @@
         }
       ]
     },
-    "number_of_additional_traps_to_throw": {
-      "stats": ["number_of_additional_traps_to_throw"],
-      "translations": [
-        {
-          "matchers": [1],
-          "text": "Habilidades Suportadas arremessam uma Armadilha adicional",
-          "formatters": []
-        },
-        {
-          "matchers": ["#"],
-          "text": "Habilidades Suportadas arremessam %1% Armadilhas adicionais",
-          "formatters": []
-        }
-      ]
-    },
     "is_totem": {
       "stats": ["is_totem"],
       "translations": [
@@ -3374,12 +3359,22 @@
           "matchers": [[1, 99]],
           "text":
             "Habilidades Suportadas têm %1%%% de chance de Mutilar ao Acertar",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[100, "#"]],
           "text": "Habilidades Suportadas sempre Mutilam ao Acertar",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -3882,17 +3877,6 @@
         }
       ]
     },
-    "reduce_enemy_dodge_%": {
-      "stats": ["reduce_enemy_dodge_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Habilidades Suportadas têm %1%%% de chance de Esquiva Inimiga reduzida",
-          "formatters": []
-        }
-      ]
-    },
     "shock_duration_+%": {
       "stats": ["shock_duration_+%"],
       "translations": [
@@ -4165,10 +4149,10 @@
         }
       ]
     },
-    "support_minimum_added_fire_damage_vs_burning_enemies": {
+    "global_minimum_added_fire_damage_vs_burning_enemies": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {

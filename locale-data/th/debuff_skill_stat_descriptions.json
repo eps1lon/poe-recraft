@@ -33,6 +33,130 @@
           ]
         }
       ]
+    },
+    "ice_siphon_trap_max_targets": {
+      "stats": ["ice_siphon_trap_max_beam_targets"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ปล่อยบีมใส่ศัตรูใกล้สุด %1% ตัว",
+          "formatters": []
+        }
+      ]
+    },
+    "life_regen_with_at_least_one_enemy": {
+      "stats": [
+        "skill_life_regeneration_per_minute_with_at_least_1_affected_enemy"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ฟื้นฟูชีวิต %1% แต้มต่อวินาทีถ้ามีศัตรูตัวใดได้รับผล",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mana_regen_with_at_least_one_enemy": {
+      "stats": [
+        "skill_mana_regeneration_per_minute_with_at_least_1_affected_enemy"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ฟื้นฟูมานา %1% แต้มต่อวินาทีถ้ามีศัตรูตัวใดได้รับผล",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "life_regen_per_enemy": {
+      "stats": ["skill_life_regeneration_per_minute_per_affected_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ฟื้นฟูชีวิต %1% แต้มต่อวินาทีต่อศัตรูที่ได้รับผลแต่ละตัว",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mana_regen_per_enemy": {
+      "stats": ["skill_mana_regeneration_per_minute_per_affected_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ฟื้นฟูมานา %1% แต้มต่อวินาทีต่อศัตรูที่ได้รับผลแต่ละตัว",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_taken_incr_per_enemy": {
+      "stats": ["skill_damage_taken_+%_per_affected_enemy"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มความเสียหายที่ได้รับ %1%%% ต่อศัตรูที่ได้รับผลแต่ละตัว",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดความเสียหายที่ได้รับ %1%%% ต่อศัตรูที่ได้รับผลแต่ละตัว",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chaos_res": {
+      "stats": ["base_chaos_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ศัตรูได้รับค่าต้านทานธาตุเคออสเพิ่มขึ้น %1$+d%%",
+          "formatters": []
+        }
+      ]
+    },
+    "trap_and_mine_damage_taken": {
+      "stats": ["bear_trap_damage_taken_+%_from_traps_and_mines"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ศัตรูโดนกับดักหรือกับระเบิดแรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ศัตรูโดนกับดักหรือกับระเบิดเบาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
     }
   }
 }

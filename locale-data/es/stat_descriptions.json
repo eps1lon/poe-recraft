@@ -252,7 +252,17 @@
       "translations": [
         {
           "matchers": [100],
-          "text": "Las Magnitudes de los Modificadores Implícitos se duplican",
+          "text": "Las magnitudes de los Modificadores Implícitos se duplican",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextImplicitMod"
+            }
+          ]
+        },
+        {
+          "matchers": [200],
+          "text": "Las magnitudes de los Modificadores Implícitos se triplican",
           "formatters": [
             {
               "id": "reminderstring",
@@ -262,8 +272,7 @@
         },
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Magnitudes de los Modificadores Implícitos aumentadas un %1%%%",
+          "text": "Magnitudes de Modificadores Implícitos aumentadas un %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -273,8 +282,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Magnitudes de los Modificadores Implícitos reducidas un %1%%%",
+          "text": "Magnitudes de Modificadores Implícitos reducidas un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -551,6 +559,26 @@
         }
       ]
     },
+    "local_socketed_duration_gem_level_+": {
+      "stats": ["local_socketed_duration_gem_level_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d al Nivel de las Gemas de Duración Engarzadas",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_area_of_effect_gem_level_+": {
+      "stats": ["local_socketed_area_of_effect_gem_level_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d al Nivel de las Gemas de AdE Engarzadas",
+          "formatters": []
+        }
+      ]
+    },
     "local_socketed_projectile_gem_level_+": {
       "stats": ["local_socketed_projectile_gem_level_+"],
       "translations": [
@@ -627,6 +655,26 @@
         {
           "matchers": ["#"],
           "text": "%1$+d al Nivel de las Gemas de Maldición Engarzadas",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_trap_gem_level_+": {
+      "stats": ["local_socketed_trap_gem_level_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d al Nivel de las Gemas de Trampas Engarzadas",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_trap_and_mine_gem_level_+": {
+      "stats": ["local_socketed_trap_and_mine_gem_level_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d al Nivel de las Gemas de Trampas o Minas Engarzadas",
           "formatters": []
         }
       ]
@@ -922,8 +970,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Las Gemas Engarzadas son Asistidas por Probabilidad de Quemar Nivel %1%",
+          "text": "Las Gemas Engarzadas son Asistidas por Combustión Nivel %1%",
           "formatters": []
         }
       ]
@@ -1053,6 +1100,19 @@
           "matchers": ["#"],
           "text":
             "Las Gemas Engarzadas son Asistidas por Penetración de Fuego Nivel %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_socketed_gems_supported_by_level_x_frenzy_power_on_trap_trigger": {
+      "stats": [
+        "local_display_socketed_gems_supported_by_level_x_frenzy_power_on_trap_trigger"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Las Gemas Engarzadas son Asistidas por Trampas Cargadas Nivel %1%",
           "formatters": []
         }
       ]
@@ -2395,6 +2455,35 @@
         }
       ]
     },
+    "local_display_socketed_attacks_additional_critical_strike_chance": {
+      "stats": [
+        "local_display_socketed_attacks_additional_critical_strike_chance"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los Ataques Engarzados tienen %1$+d%% a la Probabilidad de Golpe Crítico",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "local_display_socketed_attacks_critical_strike_multiplier_+": {
+      "stats": ["local_display_socketed_attacks_critical_strike_multiplier_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los Ataques Engarzados tienen %1$+d%% al Multiplicador de Golpe Crítico",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_socketed_gems_attack_and_cast_speed_+%_final": {
       "stats": ["local_display_socketed_gems_attack_and_cast_speed_+%_final"],
       "translations": [
@@ -2461,6 +2550,46 @@
           "matchers": ["#"],
           "text":
             "Las Gemas Engarzadas ganan %1%%% del Daño Físico como Daño Extra de Rayo",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_socketed_movement_skills_have_no_mana_cost": {
+      "stats": ["local_display_socketed_movement_skills_have_no_mana_cost"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Las Habilidades de Movimiento Engarzadas no tienen Coste de Maná",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_socketed_spells_additional_critical_strike_chance": {
+      "stats": [
+        "local_display_socketed_spells_additional_critical_strike_chance"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los Hechizos Engarzados tienen %1$+d%% a la Probabilidad de Golpe Crítico",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "local_display_socketed_spells_critical_strike_multiplier_+": {
+      "stats": ["local_display_socketed_spells_critical_strike_multiplier_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los Hechizos Engarzados tienen %1$+d%% al Multiplicador de Golpe Crítico",
           "formatters": []
         }
       ]
@@ -2742,6 +2871,16 @@
         }
       ]
     },
+    "local_display_grants_level_x_despair": {
+      "stats": ["local_display_grants_level_x_despair"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Otorga Desesperación Nivel %1%",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_grants_skill_purity_of_cold_level": {
       "stats": ["local_display_grants_skill_purity_of_cold_level"],
       "translations": [
@@ -2863,6 +3002,16 @@
         {
           "matchers": ["#"],
           "text": "Otorga la Habilidad Celeridad Nivel %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_has_additional_implicit_mod": {
+      "stats": ["local_display_has_additional_implicit_mod"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Tiene un Mod. Implícito adicional",
           "formatters": []
         }
       ]
@@ -3295,6 +3444,36 @@
         }
       ]
     },
+    "local_display_grants_skill_vaal_impurity_of_fire_level": {
+      "stats": ["local_display_grants_skill_vaal_impurity_of_fire_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Otorga Impureza de Fuego Vaal Nivel %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_grants_skill_vaal_impurity_of_ice_level": {
+      "stats": ["local_display_grants_skill_vaal_impurity_of_ice_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Otorga Impureza de Hielo Vaal Nivel %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_grants_skill_vaal_impurity_of_lightning_level": {
+      "stats": ["local_display_grants_skill_vaal_impurity_of_lightning_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Otorga Impureza de Rayo Vaal Nivel %1%",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_trigger_level_X_darktongue_kiss_on_curse": {
       "stats": ["local_display_trigger_level_X_darktongue_kiss_on_curse"],
       "translations": [
@@ -3476,12 +3655,66 @@
         }
       ]
     },
+    "local_display_trigger_commandment_of_inferno_on_crit_%": {
+      "stats": ["local_display_trigger_commandment_of_inferno_on_crit_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de probabilidad de Activar Mandamiento de Infierno con cada Golpe Crítico",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Activa Mandamiento de Infierno con cada Golpe Crítico",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_trigger_death_walk_on_equip_level": {
       "stats": ["local_display_trigger_death_walk_on_equip_level"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "Activa Caminata de Muerte Nivel %1% cuando es Equipado",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_level_20_animate_guardian_weapon_on_guardian_kill_%_chance": {
+      "stats": [
+        "local_display_trigger_level_20_animate_guardian_weapon_on_guardian_kill_%_chance"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de probabilidad de Activar Animar Arma Guardiana Nivel 20 cuando Guardián Animado Mata a un Enemigo",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Activa Animar Arma Guardiana Nivel 20 cuando Guardián Animado Mata a un Enemigo",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_level_20_animate_guardian_weapon_on_weapon_kill_%_chance": {
+      "stats": [
+        "local_display_trigger_level_20_animate_guardian_weapon_on_weapon_kill_%_chance"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de probabilidad de Activar Animar Arma Guardiana Nivel 18 cuando Arma Animada Mata a un Enemigo",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Activa Animar Arma Guardiana Nivel 18 cuando Arma Animada Mata a un Enemigo",
           "formatters": []
         }
       ]
@@ -3527,6 +3760,19 @@
         }
       ]
     },
+    "local_display_trigger_level_x_icicle_nova_on_kill_vs_frozen_enemy": {
+      "stats": [
+        "local_display_trigger_level_x_icicle_nova_on_kill_vs_frozen_enemy"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Activa Explosión de Carámbanos Nivel %1% cuando Matas un Enemigo Congelado",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_trigger_level_x_intimidating_cry_when_you_lose_cats_stealth": {
       "stats": [
         "local_display_trigger_level_x_intimidating_cry_when_you_lose_cats_stealth"
@@ -3564,6 +3810,19 @@
         }
       ]
     },
+    "local_display_trigger_level_x_summon_phantasm_on_corpse_consume": {
+      "stats": [
+        "local_display_trigger_level_x_summon_phantasm_on_corpse_consume"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Activa Invocar Fantasma Nivel %1% cuando Consumes un Cadáver",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_trigger_level_x_void_shot_on_arrow_fire_while_you_have_void_arrow": {
       "stats": [
         "local_display_trigger_level_x_void_shot_on_arrow_fire_while_you_have_void_arrow"
@@ -3573,6 +3832,39 @@
           "matchers": ["#"],
           "text":
             "Consume una Carga de Vacío para Activar Disparo de Vacío Nivel %1% cuando disparas Flechas",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_temporal_anomaly_when_hit_%_chance": {
+      "stats": ["local_display_trigger_temporal_anomaly_when_hit_%_chance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% de probabilidad de Activar Anomalía Temporal Nivel 20 cuando eres Golpeado",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_tentacle_smash_on_kill_%_chance": {
+      "stats": ["local_display_trigger_tentacle_smash_on_kill_%_chance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% de probabilidad de Activar Latigazo de Tentáculos Nivel 20 al Matar",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_void_sphere_on_kill_%_chance": {
+      "stats": ["local_display_trigger_void_sphere_on_kill_%_chance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% de probabilidad de Activar Invocar Anomalía Volátil Nivel 20 al Matar",
           "formatters": []
         }
       ]
@@ -3823,13 +4115,14 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Un Gusano Retorcido Enemigo escapa del Frasco cuando se usa",
+          "text":
+            "Los Gusanos Retorcidos de un Enemigo escapan del Frasco cuando lo usas\\nLos Gusanos Retorcidos son destruidos por los Golpes",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
           "text":
-            "%1% Gusanos Retorcidos Enemigos escapan del Frasco cuando se usa",
+            "%1% Gusanos Retorcidos de un Enemigo escapan del Frasco cuando lo usas\\nLos Gusanos Retorcidos son destruidos por los Golpes",
           "formatters": []
         }
       ]
@@ -7460,12 +7753,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Precisión aumentada un %1%%%",
+          "text": "Índice Global de Precisión aumentado un %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Precisión reducida un %1%%%",
+          "text": "Índice Global de Precisión reducido un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -10109,26 +10402,6 @@
         }
       ]
     },
-    "curse_effect_on_self_+%": {
-      "stats": ["curse_effect_on_self_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Efectos de Maldiciones sobre ti aumentados un %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Efectos de Maldiciones sobre ti reducidos un %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "temporal_chains_effeciveness_+%": {
       "stats": ["temporal_chains_effeciveness_+%"],
       "translations": [
@@ -11916,26 +12189,6 @@
         }
       ]
     },
-    "self_curse_duration_+%": {
-      "stats": ["self_curse_duration_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Duración de Maldiciones sobre ti aumentada un %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Duración de Maldiciones sobre ti reducida un %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "taunt_duration_+%": {
       "stats": ["taunt_duration_+%"],
       "translations": [
@@ -13632,7 +13885,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Probabilidad de Esquivar del Enemigo reducida un %1%%%",
+          "text":
+            "Los enemigos tienen su probabilidad de Esquivar tus Golpes reducida un %1%%%",
           "formatters": []
         }
       ]
@@ -15519,6 +15773,66 @@
         {
           "matchers": [[1, "#"]],
           "text": "Duración aumentada un %1%%% por cada 10 de Fuerza",
+          "formatters": []
+        }
+      ]
+    },
+    "gain_no_maximum_life_from_strength": {
+      "stats": ["gain_no_maximum_life_from_strength"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "La Fuerza no otorga bonificación a la Vida Máxima",
+          "formatters": []
+        }
+      ]
+    },
+    "gain_no_maximum_mana_from_intelligence": {
+      "stats": ["gain_no_maximum_mana_from_intelligence"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "La Inteligencia no otorga bonificación al Maná Máximo",
+          "formatters": []
+        }
+      ]
+    },
+    "X_accuracy_per_2_intelligence": {
+      "stats": ["X_accuracy_per_2_intelligence"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d de Precisión por cada 2 de Inteligencia",
+          "formatters": []
+        }
+      ]
+    },
+    "X_life_per_4_dexterity": {
+      "stats": ["X_life_per_4_dexterity"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d de Vida por cada 4 de Destreza",
+          "formatters": []
+        }
+      ]
+    },
+    "X_mana_per_4_strength": {
+      "stats": ["X_mana_per_4_strength"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d de Maná por cada 4 de Fuerza",
+          "formatters": []
+        }
+      ]
+    },
+    "x_to_maximum_life_per_2_intelligence": {
+      "stats": ["x_to_maximum_life_per_2_intelligence"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d a la Vida Máxima por cada 2 de Inteligencia",
           "formatters": []
         }
       ]
@@ -17505,7 +17819,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% de probabilidad de Esquivar Ataques",
+          "text": "%1%%% de probabilidad de Esquivar Golpes de Ataques",
           "formatters": []
         }
       ]
@@ -17515,7 +17829,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% de probabilidad de Esquivar el Daño de Hechizos",
+          "text": "%1%%% de probabilidad de Esquivar Golpes de Hechizos",
           "formatters": []
         }
       ]
@@ -17577,6 +17891,46 @@
           "matchers": ["#"],
           "text": "Puedes tener %1$+d Maldiciones adicionales",
           "formatters": []
+        }
+      ]
+    },
+    "curse_effect_on_self_+%": {
+      "stats": ["curse_effect_on_self_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Efectos de Maldiciones sobre ti aumentados un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Efectos de Maldiciones sobre ti reducidos un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "self_curse_duration_+%": {
+      "stats": ["self_curse_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Duración de Maldiciones sobre ti aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Duración de Maldiciones sobre ti reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -18149,12 +18503,13 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% de probabilidad adicional de Esquivar Ataques",
+          "text":
+            "%1%%% de probabilidad adicional de Esquivar Golpes de Ataque",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1$+d%% de probabilidad de Esquivar Ataques",
+          "text": "%1$+d%% a la probabilidad de Esquivar Golpes de Ataque",
           "formatters": []
         }
       ]
@@ -18165,7 +18520,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% de probabilidad adicional de Esquivar el Daño de Hechizos",
+            "%1%%% de probabilidad adicional de Esquivar Golpes de Hechizos",
           "formatters": []
         }
       ]
@@ -20448,6 +20803,17 @@
         }
       ]
     },
+    "bleeding_damage_on_self_converted_to_chaos": {
+      "stats": ["bleeding_damage_on_self_converted_to_chaos"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Recibes Daño de Caos en lugar de Daño Físico cuando tienes Sangrado",
+          "formatters": []
+        }
+      ]
+    },
     "physical_damage_taken_%_as_chaos": {
       "stats": ["physical_damage_taken_%_as_chaos"],
       "translations": [
@@ -21217,7 +21583,7 @@
         {
           "matchers": ["#"],
           "text":
-            "%1%%% de probabilidad de Esquivar Ataques mientras estés Traspasando",
+            "%1%%% de probabilidad de Esquivar Golpes de Ataques mientras Traspasas",
           "formatters": []
         }
       ]
@@ -21401,6 +21767,26 @@
         {
           "matchers": ["#"],
           "text": "Maldice Enemigos con Congelación Nivel %1% con cada Golpe",
+          "formatters": []
+        }
+      ]
+    },
+    "curse_on_hit_level_despair": {
+      "stats": ["curse_on_hit_level_despair"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Maldice Enemigos con Desesperación Nivel %1% al Golpear",
+          "formatters": []
+        }
+      ]
+    },
+    "curse_on_hit_level_enfeeble": {
+      "stats": ["curse_on_hit_level_enfeeble"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Maldice Enemigos con Debilidad Nivel %1% al Golpear",
           "formatters": []
         }
       ]
@@ -21693,7 +22079,7 @@
         {
           "matchers": ["#"],
           "text":
-            "%1%%% de probabilidad de Esquivar Ataques por cada Carga de Frenesí",
+            "%1%%% de probabilidad de Esquivar Golpes de Ataque por cada Carga de Frenesí",
           "formatters": []
         }
       ]
@@ -25290,8 +25676,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "No se Aplica Recuperación de Vida durante el efecto del Frasco",
+          "text": "No puedes ganar Vida durante el efecto",
           "formatters": []
         }
       ]
@@ -26440,6 +26825,16 @@
         {
           "matchers": ["#"],
           "text": "Tu Daño de Hielo no puede Escarchar",
+          "formatters": []
+        }
+      ]
+    },
+    "chaos_damage_can_ignite_chill_and_shock": {
+      "stats": ["chaos_damage_can_ignite_chill_and_shock"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "El Daño de Caos puede Quemar, Escarchar y Electrocutar",
           "formatters": []
         }
       ]
@@ -28073,45 +28468,45 @@
         }
       ]
     },
-    "curse_on_block_level_X_vulnerability": {
-      "stats": ["curse_on_block_level_X_vulnerability"],
+    "curse_on_block_level_5_vulnerability": {
+      "stats": ["curse_on_block_level_5_vulnerability"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Maldice Enemigos con Vulnerabilidad Nivel %1% al Bloquear",
+          "text": "Maldice Enemigos con Vulnerabilidad Nivel 5 al Bloquear",
           "formatters": []
         }
       ]
     },
-    "curse_on_melee_block_level_X_punishment": {
-      "stats": ["curse_on_melee_block_level_X_punishment"],
+    "curse_on_melee_block_level_15_punishment": {
+      "stats": ["curse_on_melee_block_level_15_punishment"],
       "translations": [
         {
           "matchers": ["#"],
           "text":
-            "Aplica Castigo Nivel %1% al Bloquear un Ataque Cuerpo a Cuerpo e ignora el Límite de Maldiciones",
+            "Aplica Castigo Nivel 15 al Bloquear un Ataque Cuerpo a Cuerpo, ignorando el Límite de Maldiciones",
           "formatters": []
         }
       ]
     },
-    "curse_on_projectile_block_level_X_temporal_chains": {
-      "stats": ["curse_on_projectile_block_level_X_temporal_chains"],
+    "curse_on_projectile_block_level_15_temporal_chains": {
+      "stats": ["curse_on_projectile_block_level_15_temporal_chains"],
       "translations": [
         {
           "matchers": ["#"],
           "text":
-            "Aplica Cadenas Temporales Nivel %1% al Bloquear un Ataque de Proyectiles e ignora el Límite de Maldiciones",
+            "Aplica Cadenas Temporales Nivel 15 al Bloquear un Ataque de Proyectil, ignorando el Límite de Maldiciones",
           "formatters": []
         }
       ]
     },
-    "curse_on_spell_block_level_X_elemental_weakness": {
-      "stats": ["curse_on_spell_block_level_X_elemental_weakness"],
+    "curse_on_spell_block_level_15_elemental_weakness": {
+      "stats": ["curse_on_spell_block_level_15_elemental_weakness"],
       "translations": [
         {
           "matchers": ["#"],
           "text":
-            "Aplica Debilidad Elemental Nivel %1% al Bloquear un Hechizo e ignora el Límite de Maldiciones",
+            "Aplica Debilidad Elemental Nivel 15 al Bloquear un Hechizo, ignorando el Límite de Maldiciones",
           "formatters": []
         }
       ]
@@ -29063,7 +29458,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Los Esbirros tienen %1%%% de probabilidad de Esquivar Ataques",
+            "Los Esbirros tienen %1%%% de probabilidad de Esquivar Golpes de Ataque",
           "formatters": []
         }
       ]
@@ -29160,6 +29555,45 @@
           "matchers": ["#"],
           "text":
             "Los Modificadores de Tipo Cuerpo a Cuerpo y Arma Cuerpo a Cuerpo dentro del radio se Transforman en Modificadores de Arco",
+          "formatters": []
+        }
+      ]
+    },
+    "local_unique_jewel_X_dexterity_per_1_dexterity_allocated_in_radius": {
+      "stats": [
+        "local_unique_jewel_X_dexterity_per_1_dexterity_allocated_in_radius"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1% de Destreza por cada 1 de Destreza de Habilidades Pasivas Asignadas dentro del Radio",
+          "formatters": []
+        }
+      ]
+    },
+    "local_unique_jewel_X_intelligence_per_1_intelligence_allocated_in_radius": {
+      "stats": [
+        "local_unique_jewel_X_intelligence_per_1_intelligence_allocated_in_radius"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1% de Inteligencia por cada 1 de Inteligencia de Habilidades Pasivas Asignadas dentro del Radio",
+          "formatters": []
+        }
+      ]
+    },
+    "local_unique_jewel_X_strength_per_1_strength_allocated_in_radius": {
+      "stats": [
+        "local_unique_jewel_X_strength_per_1_strength_allocated_in_radius"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1% de Fuerza por cada 1 de Fuerza de Habilidades Pasivas Asignadas dentro del Radio",
           "formatters": []
         }
       ]
@@ -29364,7 +29798,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% de probabilidad de Esquivar Daño de Hechizos mientras tengas el Escudo de Energía Lleno",
+            "%1%%% de probabilidad de Esquivar Golpes de Hechizos si tienes el Escudo de Energía Lleno",
           "formatters": []
         }
       ]
@@ -29979,12 +30413,60 @@
         }
       ]
     },
+    "enemy_extra_damage_rolls_while_affected_by_vulnerability": {
+      "stats": ["enemy_extra_damage_rolls_while_affected_by_vulnerability"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los Enemigos son Afortunados al Dañarte mientras estás Maldito con Vulnerabilidad",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLucky"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Los Enemigos son Desafortunados al Dañarte mientras estás Maldito con Vulnerabilidad",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextUnlucky"
+            }
+          ]
+        }
+      ]
+    },
     "start_at_zero_energy_shield": {
       "stats": ["start_at_zero_energy_shield"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "Tu Escudo de Energía comienza en cero",
+          "formatters": []
+        }
+      ]
+    },
+    "no_energy_shield_recovery": {
+      "stats": ["no_energy_shield_recovery"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "No puedes ganar Escudo de Energía",
+          "formatters": []
+        }
+      ]
+    },
+    "you_count_as_low_life_while_affected_by_vulnerability": {
+      "stats": ["you_count_as_low_life_while_affected_by_vulnerability"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Si estás Maldito con Vulnerabilidad, cuenta como que tienes la Vida Baja",
           "formatters": []
         }
       ]
@@ -30001,6 +30483,16 @@
           "matchers": ["#"],
           "text":
             "%1%%% de probabilidad de ser maldecido con Castigo Nivel 10 al Matar",
+          "formatters": []
+        }
+      ]
+    },
+    "self_cursed_with_level_x_vulnerability": {
+      "stats": ["self_cursed_with_level_x_vulnerability"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Estás Maldito con Vulnerabilidad de Nivel %1%",
           "formatters": []
         }
       ]
@@ -30379,6 +30871,61 @@
         }
       ]
     },
+    "local_unique_jewel_additional_physical_damage_reduction_%_per_10_str_allocated_in_radius": {
+      "stats": [
+        "local_unique_jewel_additional_physical_damage_reduction_%_per_10_str_allocated_in_radius"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% de Reducción de Daño Físico adicional por cada 10 de Fuerza de Habilidades Pasivas Asignadas dentro del Radio",
+          "formatters": []
+        }
+      ]
+    },
+    "local_unique_jewel_energy_shield_regeneration_rate_per_minute_%_per_10_int_allocated_in_radius": {
+      "stats": [
+        "local_unique_jewel_energy_shield_regeneration_rate_per_minute_%_per_10_int_allocated_in_radius"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% de Escudo de Energía Regenerada Por Segundo por cada 10 de Inteligencia de Habilidades Pasivas Asignadas dentro del Radio",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "local_unique_jewel_movement_speed_+%_per_10_dex_allocated_in_radius": {
+      "stats": [
+        "local_unique_jewel_movement_speed_+%_per_10_dex_allocated_in_radius"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Velocidad de Movimiento aumentada un %1%%% por cada 10 de Destreza de Habilidades Pasivas Asignadas dentro del Radio",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Velocidad de Movimiento reducida un %1%%% por cada 10 de Destreza de Habilidades Pasivas Asignadas dentro del Radio",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "local_unique_jewel_projectile_damage_+1%_per_x_dex_in_radius": {
       "stats": ["local_unique_jewel_projectile_damage_+1%_per_x_dex_in_radius"],
       "translations": [
@@ -30425,6 +30972,45 @@
           "matchers": ["#"],
           "text":
             "Flecha Dividida dispara una flecha adicional con %1$d de Destreza por Pasivas dentro del Radio",
+          "formatters": []
+        }
+      ]
+    },
+    "local_unique_jewel_accuracy_rating_+_per_10_int_unallocated_in_radius": {
+      "stats": [
+        "local_unique_jewel_accuracy_rating_+_per_10_int_unallocated_in_radius"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1$+d a la Precisión por cada 10 de Inteligencia de Habilidades Pasivas sin Asignar dentro del Radio",
+          "formatters": []
+        }
+      ]
+    },
+    "local_unique_jewel_critical_strike_multiplier_+_per_10_str_unallocated_in_radius": {
+      "stats": [
+        "local_unique_jewel_critical_strike_multiplier_+_per_10_str_unallocated_in_radius"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1$+d al Multiplicador de Golpe Crítico por cada 10 de Fuerza de Habilidades Pasivas sin Asignar dentro del Radio",
+          "formatters": []
+        }
+      ]
+    },
+    "local_unique_jewel_maximum_mana_+_per_10_dex_unallocated_in_radius": {
+      "stats": [
+        "local_unique_jewel_maximum_mana_+_per_10_dex_unallocated_in_radius"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1$+d al Maná Máximo por cada 10 de Destreza de Habilidades Pasivas sin Asignar dentro del Radio",
           "formatters": []
         }
       ]
@@ -31250,6 +31836,21 @@
         }
       ]
     },
+    "trap_throw_skills_have_blood_magic": {
+      "stats": ["trap_throw_skills_have_blood_magic"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Las Habilidades que lanzan Trampas tienen Magia de Sangre",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBloodMagicCosts"
+            }
+          ]
+        }
+      ]
+    },
     "armour_and_evasion_on_low_life_+%": {
       "stats": ["armour_and_evasion_on_low_life_+%"],
       "translations": [
@@ -31786,7 +32387,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% de probabilidad de Esquivar el Daño de Hechizos si \\nrecibiste Daño de Hechizos Recientemente",
+            "%1%%% de probabilidad de Esquivar Golpes de Hechizos si has\\nrecibido Daño de Hechizos Recientemente",
           "formatters": [
             {
               "id": "reminderstring",
@@ -31951,7 +32552,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% de Probabilidad de Esquivar si recibiste un Golpe Crítico Recientemente",
+            "%1%%% de probabilidad de Esquivar Golpes de Ataque si has recibido un Golpe Crítico Recientemente",
           "formatters": [
             {
               "id": "reminderstring",
@@ -32172,7 +32773,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Con al menos 40 de Inteligencia dentro del Radio, Ruptura de Hielo\\ntiene %1%%% de probabilidad de otorgar una Carga de Poder al Matar",
+            "Con al menos 40 de Inteligencia dentro del Radio, Ruptura de Hielo\\ntiene %1%%% de probabilidad de otorgar una Carga de Poder mediante un Golpe Mortal",
           "formatters": []
         }
       ]
@@ -32183,7 +32784,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Ruptura de Hielo tiene %1%%% de probabilidad de otorgar una Carga de Poder al Matar",
+            "Ruptura de Hielo tiene %1%%% de probabilidad de otorgar una Carga de Poder mediante un Golpe Mortal",
           "formatters": []
         }
       ]
@@ -32733,12 +33334,14 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Daño recibido de Trampas y Minas aumentado un %1%%%",
+          "text":
+            "Daño recibido de Golpes de Trampas o Minas aumentado un %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Daño recibido de Trampas y Minas reducido un %1%%%",
+          "text":
+            "Daño recibido de Golpes de Trampas o Minas reducido un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -32755,13 +33358,23 @@
           "matchers": [[1, 99]],
           "text":
             "%1%%% de probabilidad de que los Ataques Lisien con cada Golpe contra Enemigos Envenenados",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[99, 100]],
           "text":
             "Los Ataques siempre Lisian con cada Golpe contra Enemigos Envenenados",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -33264,13 +33877,23 @@
           "matchers": [[1, 99]],
           "text":
             "%1%%% de probabilidad que los Ataques Lisien con cada Golpe contra Enemigos con Sangrado",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[100, "#"]],
           "text":
             "Los Ataques Lisian con cada Golpe contra Enemigos con Sangrado",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -34074,12 +34697,112 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Efecto del Aura de Rabia aumentado un %1%%%",
+          "text": "Rabia tiene Efecto de Aura aumentado un %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Efecto del Aura de Rabia reducido un %1%%%",
+          "text": "Rabia tiene Efecto de Aura reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "wrath_aura_effect_+%": {
+      "stats": ["wrath_aura_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Cólera tiene Efecto de Aura aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Cólera tiene Efecto de Aura reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "grace_aura_effect_+%": {
+      "stats": ["grace_aura_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Gracia tiene Efecto de Aura aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Gracia tiene Efecto de Aura reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hatred_aura_effect_+%": {
+      "stats": ["hatred_aura_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Odio tiene Efecto de Aura aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Odio tiene Efecto de Aura reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "determination_aura_effect_+%": {
+      "stats": ["determination_aura_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Determinación tiene Efecto de Aura aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Determinación tiene Efecto de Aura reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "discipline_aura_effect_+%": {
+      "stats": ["discipline_aura_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Disciplina tiene Efecto de Aura aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Disciplina tiene Efecto de Aura reducido un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -34095,6 +34818,16 @@
         {
           "matchers": [[1, "#"]],
           "text": "No puede ser Envenenado",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_be_poisoned_%": {
+      "stats": ["chance_to_be_poisoned_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1$+d%% a la probabilidad de ser Envenenado",
           "formatters": []
         }
       ]
@@ -35164,7 +35897,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Réplica inflige %1%%% más Daño",
+          "text": "Cada réplica inflige %1%%% más Daño",
           "formatters": []
         }
       ]
@@ -35576,7 +36309,7 @@
         {
           "matchers": ["#"],
           "text":
-            "%1%%% de probabilidad de Esquivar Daño de Hechizos mientras estés Traspasando",
+            "%1%%% de probabilidad de Esquivar Golpes de Hechizos mientras Traspasas",
           "formatters": []
         }
       ]
@@ -35731,12 +36464,14 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Área de Efecto para Trampas aumentada un %1%%%",
+          "text":
+            "Las Habilidades usadas por Trampas tienen Área de Efecto aumentada un %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Área de Efecto para Trampas reducida un %1%%%",
+          "text":
+            "Las Habilidades usadas por Trampas tienen Área de Efecto reducida un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -40813,7 +41548,12 @@
         {
           "matchers": ["#"],
           "text": "Juramento del Fanático durante el efecto de Frasco",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKeystoneZealotsOath"
+            }
+          ]
         }
       ]
     },
@@ -42255,19 +42995,10 @@
       "stats": ["charged_dash_area_of_effect_radius_+_of_final_explosion"],
       "translations": [
         {
-          "matchers": [[1, "#"]],
-          "text": "%1$+d de Radio del Área final del Daño de Embestida Cargada",
+          "matchers": ["#"],
+          "text":
+            "Embestida Cargada tiene %1$+d al Radio del Área de Daño final de cada oleada",
           "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1$+d de Radio del Área final del Daño de Embestida Cargada",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -47891,7 +48622,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% de probabilidad de Esquivar Daño de Hechizos si recibiste Daño de Ataque Recientemente",
+            "%1%%% de probabilidad de Esquivar Golpes de Hechizos si has recibido Daño de Ataque Recientemente",
           "formatters": [
             {
               "id": "reminderstring",
@@ -47907,7 +48638,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% de probabilidad de Esquivar si recibiste Daño de Hechizos Recientemente",
+            "%1%%% de probabilidad de Esquivar Golpes de Ataques si has recibido Daño de Hechizos Recientemente",
           "formatters": [
             {
               "id": "reminderstring",
@@ -48796,7 +49527,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "No te pueden infligir Sangrado",
+          "text": "No puedes sufrir Sangrado",
           "formatters": []
         }
       ]
@@ -48806,12 +49537,12 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "%1%%% de probabilidad de evitar Sangrado",
+          "text": "%1%%% probabilidad de evitar Sangrado",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "No te pueden infligir Sangrado",
+          "text": "No puedes sufrir Sangrado",
           "formatters": []
         }
       ]
@@ -51040,12 +51771,182 @@
         }
       ]
     },
-    "X_accuracy_per_2_intelligence": {
-      "stats": ["X_accuracy_per_2_intelligence"],
+    "local_physical_damage_%_to_convert_to_a_random_element": {
+      "stats": ["local_physical_damage_%_to_convert_to_a_random_element"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% del Daño Físico de los Golpes con este Arma se Convierte a un Elemento Aleatorio",
+          "formatters": []
+        }
+      ]
+    },
+    "local_hits_always_inflict_elemental_ailments": {
+      "stats": ["local_hits_always_inflict_elemental_ailments"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d de Precisión por cada 2 de Inteligencia",
+          "text":
+            "Los Golpes con esta Arma siempre infligen Achaques Elementales",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextElementalStatusAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "local_hit_damage_+%_vs_ignited_enemies": {
+      "stats": ["local_hit_damage_+%_vs_ignited_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los Golpes con esta Arma infligen Daño Aumentado un %1%%% a los Enemigos Quemados",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Los Golpes con esta Arma infligen Daño Reducido un %1%%% a los Enemigos Quemados",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "local_hit_damage_+%_vs_frozen_enemies": {
+      "stats": ["local_hit_damage_+%_vs_frozen_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los Golpes con esta Arma infligen Daño Aumentado un %1%%% a los Enemigos Congelados",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Los Golpes con esta Arma infligen Daño Reducido un %1%%% a los Enemigos Congelados",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "local_hit_damage_+%_vs_shocked_enemies": {
+      "stats": ["local_hit_damage_+%_vs_shocked_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los Golpes con esta Arma infligen Daño Aumentado un %1%%% a los Enemigos Electrocutados",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Los Golpes con esta Arma infligen Daño Reducido un %1%%% a los Enemigos Electrocutados",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "life_regeneration_per_minute_if_you_have_at_least_500_maximum_energy_shield": {
+      "stats": [
+        "life_regeneration_per_minute_if_you_have_at_least_500_maximum_energy_shield"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1% de Vida Regenerada por Segundo si tienes al menos 500 de Escudo de Energía Máximo",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "life_regeneration_per_minute_if_you_have_at_least_1000_maximum_energy_shield": {
+      "stats": [
+        "life_regeneration_per_minute_if_you_have_at_least_1000_maximum_energy_shield"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1% de Vida Regenerada por Segundo si tienes al menos 1000 de Escudo de Energía Máximo",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "life_regeneration_per_minute_if_you_have_at_least_1500_maximum_energy_shield": {
+      "stats": [
+        "life_regeneration_per_minute_if_you_have_at_least_1500_maximum_energy_shield"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1% de Vida Regenerada por Segundo si tienes al menos 1500 de Escudo de Energía Máximo",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "area_of_effect_+%_per_25_rampage_stacks": {
+      "stats": ["area_of_effect_+%_per_25_rampage_stacks"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Área de Efecto aumentada un %1%%% por cada 25 Muertes por Desenfreno",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Área de Efecto reducida un %1%%% por cada 25 Muertes por Desenfreno",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "add_frenzy_charge_every_50_rampage_stacks": {
+      "stats": ["add_frenzy_charge_every_50_rampage_stacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Gana una Carga de Frenesí por cada 50 Muertes por Desenfreno",
           "formatters": []
         }
       ]
@@ -51071,26 +51972,6 @@
         {
           "matchers": ["#"],
           "text": "%1$+d de Armadura por cada Tótem activo",
-          "formatters": []
-        }
-      ]
-    },
-    "X_life_per_4_dexterity": {
-      "stats": ["X_life_per_4_dexterity"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "%1$+d de Vida por cada 4 de Destreza",
-          "formatters": []
-        }
-      ]
-    },
-    "X_mana_per_4_strength": {
-      "stats": ["X_mana_per_4_strength"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "%1$+d de Maná por cada 4 de Fuerza",
           "formatters": []
         }
       ]
@@ -51173,17 +52054,6 @@
           "matchers": ["#"],
           "text":
             "%1$+d a Precisión mientras tengas el Máximo de Cargas de Frenesí",
-          "formatters": []
-        }
-      ]
-    },
-    "add_frenzy_charge_every_50_rampage_stacks": {
-      "stats": ["add_frenzy_charge_every_50_rampage_stacks"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Ganas una Carga de Frenesí por cada 50 Muertes por Desenfreno",
           "formatters": []
         }
       ]
@@ -51328,6 +52198,17 @@
         }
       ]
     },
+    "additional_maximum_all_resistances_%_while_poisoned": {
+      "stats": ["additional_maximum_all_resistances_%_while_poisoned"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1$+d%% a todas las Resistencias máximas mientras estás Envenenado",
+          "formatters": []
+        }
+      ]
+    },
     "additional_maximum_all_resistances_%_with_no_endurance_charges": {
       "stats": [
         "additional_maximum_all_resistances_%_with_no_endurance_charges"
@@ -51438,6 +52319,17 @@
         }
       ]
     },
+    "additive_cast_speed_modifiers_apply_to_trap_throwing_speed": {
+      "stats": ["additive_cast_speed_modifiers_apply_to_trap_throwing_speed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los Aumentos y Reducciones a la Velocidad de Lanzamiento de Hechizos también se Aplican a la Velocidad de Lanzamiento de Trampas",
+          "formatters": []
+        }
+      ]
+    },
     "ailment_damage_+%_per_equipped_elder_item": {
       "stats": ["ailment_damage_+%_per_equipped_elder_item"],
       "translations": [
@@ -51457,6 +52349,17 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "all_resistances_%_per_equipped_corrupted_item": {
+      "stats": ["all_resistances_%_per_equipped_corrupted_item"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1$+d%% a todas las Resistencias por cada Ítem Corrupto Equipado",
+          "formatters": []
         }
       ]
     },
@@ -51530,7 +52433,7 @@
           "formatters": [
             {
               "id": "reminderstring",
-              "arg": "ReminderTextCoveredInAsh"
+              "arg": "ReminderTextCoveredInAshNoDuration"
             }
           ]
         }
@@ -51559,6 +52462,17 @@
               "arg": "ReminderTextCoveredInAsh"
             }
           ]
+        }
+      ]
+    },
+    "arc_damage_+%_per_chain": {
+      "stats": ["arc_damage_+%_per_chain"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Arco inflige Daño Aumentado un %1%%% por cada vez que se haya Encadenado",
+          "formatters": []
         }
       ]
     },
@@ -51600,6 +52514,26 @@
         {
           "matchers": [["#", -1]],
           "text": "Daño en Área reducido un %1%%% por cada 12 de Fuerza",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "area_damage_taken_from_hits_+%": {
+      "stats": ["area_damage_taken_from_hits_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Daño de Área recibido por Golpes aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Daño de Área recibido por Golpes reducido un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -51662,28 +52596,6 @@
         }
       ]
     },
-    "area_of_effect_+%_per_25_rampage_stacks": {
-      "stats": ["area_of_effect_+%_per_25_rampage_stacks"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Área de Efecto aumentada un %1%%% por cada 25 Muertes por Desenfreno",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "Área de Efecto reducida un %1%%% por cada 25 Muertes por Desenfreno",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "area_of_effect_+%_per_50_strength": {
       "stats": ["area_of_effect_+%_per_50_strength"],
       "translations": [
@@ -51719,6 +52631,37 @@
             {
               "id": "negate",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "area_of_effect_+%_per_enemy_killed_recently": {
+      "stats": ["area_of_effect_+%_per_enemy_killed_recently"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Área de Efecto aumentada un %1%%% por cada Enemigo matado recientemente, hasta 50%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Área de Efecto reducida un %1%%% por cada Enemigo matado recientemente",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
             }
           ]
         }
@@ -53025,6 +53968,21 @@
         }
       ]
     },
+    "ball_lightning_number_of_additional_projectiles": {
+      "stats": ["ball_lightning_number_of_additional_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Bola de Rayos dispara un Proyectil adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Bola de Rayos dispara %1% Proyectiles adicionales",
+          "formatters": []
+        }
+      ]
+    },
     "base_ailment_damage_+%": {
       "stats": ["base_ailment_damage_+%"],
       "translations": [
@@ -53215,6 +54173,96 @@
           "matchers": ["#"],
           "text":
             "%1%%% del Daño Físico se Convierte a Daño de Rayo mientras estés afectado por Cólera",
+          "formatters": []
+        }
+      ]
+    },
+    "bear_trap_additional_damage_taken_+%_from_traps_and_mines": {
+      "stats": ["bear_trap_additional_damage_taken_+%_from_traps_and_mines"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los Enemigos afectados por Trampa de Oso reciben Daño Aumentado un %1%%% de Golpes de Trampas y Minas",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Los Enemigos afectados por Trampa de Oso reciben Daño Reducido un %1%%% de Golpes de Trampas y Minas",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bear_trap_damage_taken_+%_from_traps_and_mines": {
+      "stats": ["bear_trap_damage_taken_+%_from_traps_and_mines"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los Enemigos afectados por Trampa de Oso reciben Daño Aumentado un %1%%% de Golpes de Trampas y Minas",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Los Enemigos afectados por Trampa de Oso reciben Daño Reducido un %1%%% de Golpes de Trampas y Minas",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bear_trap_movement_speed_+%_final": {
+      "stats": ["bear_trap_movement_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% más Velocidad de Movimento",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% menos Velocidad de Movimento",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "blade_vortex_critical_strike_multiplier_+_per_blade": {
+      "stats": ["blade_vortex_critical_strike_multiplier_+_per_blade"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Caída de Filos tiene %1$+d%% al Multiplicador de Golpe Crítico por cada cuchilla",
+          "formatters": []
+        }
+      ]
+    },
+    "bladefall_number_of_volleys": {
+      "stats": ["bladefall_number_of_volleys"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Caída de Filos tiene un Aluvión adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Caída de Filos tiene %1% Aluviones adicionales",
           "formatters": []
         }
       ]
@@ -53538,13 +54586,13 @@
         }
       ]
     },
-    "burning_damage_+%_per_enemy_shocked_recently": {
-      "stats": ["burning_damage_+%_per_enemy_shocked_recently"],
+    "burning_damage_+%_per_non_shocked_enemy_shocked_recently": {
+      "stats": ["burning_damage_+%_per_non_shocked_enemy_shocked_recently"],
       "translations": [
         {
           "matchers": [[1, "#"]],
           "text":
-            "Daño de Incendio aumentado un %1%%% por cada Enemigo que hayas Electrocutado Recientemente",
+            "Daño de Incendio aumentado un %1%%% por cada vez que hayas Electrocutado un enemigo que no haya estado Electrocutado Recientemente.",
           "formatters": [
             {
               "id": "reminderstring",
@@ -53555,7 +54603,7 @@
         {
           "matchers": [["#", -1]],
           "text":
-            "Daño de Incendio reducido un %1%%% por cada Enemigo que hayas Electrocutado Recientemente",
+            "Daño de Incendio reducido un %1%%% por cada vez que hayas Electrocutado un enemigo que no haya estado Electrocutado Recientemente.",
           "formatters": [
             {
               "id": "negate",
@@ -53624,6 +54672,16 @@
           "matchers": ["#"],
           "text":
             "No puedes ser Quemado si la Fuerza es más alta que la Destreza",
+          "formatters": []
+        }
+      ]
+    },
+    "cannot_be_inflicted_by_corrupted_blood": {
+      "stats": ["cannot_be_inflicted_by_corrupted_blood"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "No puedes sufrir Sangre Corrupta",
           "formatters": []
         }
       ]
@@ -53925,6 +54983,37 @@
         }
       ]
     },
+    "cast_speed_+%_per_corpse_consumed_recently": {
+      "stats": ["cast_speed_+%_per_corpse_consumed_recently"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Velocidad de Lanzamiento de Hechizos aumentada un %1%%% por cada Cadáver Consumido Recientemente",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Velocidad de Lanzamiento de Hechizos reducida un %1%%% por cada Cadáver Consumido Recientemente",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
+            }
+          ]
+        }
+      ]
+    },
     "cat_aspect_reserves_no_mana": {
       "stats": ["cat_aspect_reserves_no_mana"],
       "translations": [
@@ -54004,7 +55093,7 @@
         {
           "matchers": ["#"],
           "text":
-            "%1%%% de probabilidad de Esquivar Ataques mientras tengas el Máximo de fases de Aluvión de Filos",
+            "%1%%% de probabilidad de Esquivar Golpes por Ataques mientras tengas fase máxima de Aluvión de Filos",
           "formatters": []
         }
       ]
@@ -54017,7 +55106,7 @@
         {
           "matchers": ["#"],
           "text":
-            "%1%%% de probabilidad de Esquivar Ataques y Daño de Hechizos mientras tengas Escudo de Energía",
+            "%1%%% de probabilidad de Esquivar Golpes por Ataques y por Hechizos mientras tengas Escudo de Energía",
           "formatters": []
         }
       ]
@@ -54028,7 +55117,7 @@
         {
           "matchers": ["#"],
           "text":
-            "%1%%% de probabilidad de Esquivar Ataques mientras estés afectado por Gracia",
+            "%1%%% de probabilidad de Esquivar Golpes por Ataques mientras estás afectado por Gracia",
           "formatters": []
         }
       ]
@@ -54039,7 +55128,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% de probabilidad de Esquivar Ataques mientras tu Mano Secundaria está vacía",
+            "%1%%% de probabilidad de Esquivar Golpes por Ataques mientras tu Mano Secundaria está vacía",
           "formatters": []
         }
       ]
@@ -54050,7 +55139,7 @@
         {
           "matchers": ["#"],
           "text":
-            "%1%%% de probabilidad de Esquivar Hechizos mientras estés afectado por Celeridad",
+            "%1%%% de probabilidad de Esquivar Golpes por Hechizos mientras estás afectado por Celeridad",
           "formatters": []
         }
       ]
@@ -54203,6 +55292,23 @@
           "matchers": ["#"],
           "text":
             "%1%%% de probabilidad de ganar una Carga de Poder al golpear a un Enemigo afectado por Telaraña",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_gain_power_charge_on_rare_or_unique_enemy_hit_%": {
+      "stats": ["chance_to_gain_power_charge_on_rare_or_unique_enemy_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de probabilidad de ganar una Carga de Poder cuando Golpeas a un Enemigo Raro o Único",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Gana una Carga de Poder cuando Golpeas a un Enemigo Raro o Único",
           "formatters": []
         }
       ]
@@ -54410,11 +55516,26 @@
         {
           "matchers": ["#"],
           "text":
-            "%1%%% de probabilidad de Esquivar Ataques si terminaste de Canalizar Embestida Cargada Recientemente",
+            "%1%%% de probabilidad de Esquivar Golpes por Ataques si has terminado de Canalizar Embestida Cargada Recientemente",
+          "formatters": []
+        }
+      ]
+    },
+    "charged_dash_movement_speed_+%_final": {
+      "stats": ["charged_dash_movement_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Embestida Cargada tiene %1%%% más Velocidad de Movimiento",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Embestida Cargada tiene %1%%% menos Velocidad de Movimiento",
           "formatters": [
             {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
+              "id": "negate",
+              "arg": 1
             }
           ]
         }
@@ -54851,6 +55972,17 @@
         }
       ]
     },
+    "cold_snap_uses_and_gains_power_charges_instead_of_frenzy": {
+      "stats": ["cold_snap_uses_and_gains_power_charges_instead_of_frenzy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Ruptura de Hielo otorga Cargas de Poder en lugar de Cargas de Frenesí cuando algún Enemigo muere dentro de su Área\\nEl Tiempo de Recarga de Ruptura de Hielo se puede ignorar con Cargas de Poder en lugar de Cargas de Frenesí",
+          "formatters": []
+        }
+      ]
+    },
     "corpse_erruption_base_maximum_number_of_geyers": {
       "stats": ["corpse_erruption_base_maximum_number_of_geyers"],
       "translations": [
@@ -54980,6 +56112,28 @@
         }
       ]
     },
+    "critical_strike_chance_+%_vs_shocked_enemies": {
+      "stats": ["critical_strike_chance_+%_vs_shocked_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Probabilidad de Golpe Crítico aumentada un %1%%% contra Enemigos Electrocutados",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Probabilidad de Golpe Crítico reducida un %1%%% contra Enemigos Electrocutados",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "critical_strike_chance_increased_by_lightning_resistance": {
       "stats": ["critical_strike_chance_increased_by_lightning_resistance"],
       "translations": [
@@ -55004,6 +56158,28 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextUncappedResist"
+            }
+          ]
+        }
+      ]
+    },
+    "critical_strike_chance_+%_during_any_flask_effect": {
+      "stats": ["critical_strike_chance_+%_during_any_flask_effect"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Probabilidad de Golpe Crítico aumentada un %1%%% durante cualquier Efecto de Frasco",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Probabilidad de Golpe Crítico reducida un %1%%% durante cualquier Efecto de Frasco",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
             }
           ]
         }
@@ -55116,6 +56292,17 @@
               "arg": "ReminderTextRecently"
             }
           ]
+        }
+      ]
+    },
+    "critical_strike_multiplier_+_during_any_flask_effect": {
+      "stats": ["critical_strike_multiplier_+_during_any_flask_effect"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1$+d%% al Mutiplicador de Golpe Crítico durante cualquier Efecto de Frasco",
+          "formatters": []
         }
       ]
     },
@@ -55674,13 +56861,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Daño recibido aumentado un %1%%% durante 4 segundos después de gastar 200 puntos de Maná",
+            "Daño Recibido aumentado un %1%%% por 4 segundos después de gastar un total de 200 de Maná",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Daño recibido reducido un %1%%% durante 4 segundos después de gastar 200 puntos de Maná",
+            "Daño Recibido reducido un %1%%% por 4 segundos después de gastar un total de 200 de Maná",
           "formatters": [
             {
               "id": "negate",
@@ -55773,6 +56960,28 @@
           "matchers": ["#"],
           "text": "No infliges Daño que no sea Elemental",
           "formatters": []
+        }
+      ]
+    },
+    "debuff_time_passed_-%_while_affected_by_haste": {
+      "stats": ["debuff_time_passed_-%_while_affected_by_haste"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Las Penalidades sobre ti expiran %1%%% más lento mientras estás afectado por Celeridad",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Las Penalidades sobre ti expiran %1%%% más rápido mientras estás afectado por Celeridad",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -55894,13 +57103,26 @@
         }
       ]
     },
+    "dodge_attacks_and_spell_chance_%_per_500_maximum_mana_up_to_20": {
+      "stats": [
+        "dodge_attacks_and_spell_chance_%_per_500_maximum_mana_up_to_20"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% de probabilidad de esquivar golpes de Ataques y Hechizos por cada 50 de Maná Máximo, hasta 20%%",
+          "formatters": []
+        }
+      ]
+    },
     "dodge_attacks_and_spells_%_chance_if_have_been_hit_recently": {
       "stats": ["dodge_attacks_and_spells_%_chance_if_have_been_hit_recently"],
       "translations": [
         {
           "matchers": [[1, 99]],
           "text":
-            "%1%%% de probabilidad de Esquivar Ataques y Hechizos si\\nfuiste Golpeado Recientemente",
+            "%1%%% de probabilidad de Esquivar Golpes por Ataques y por Hechizos si\\nfuiste Golpeado Recientemente",
           "formatters": [
             {
               "id": "reminderstring",
@@ -55911,7 +57133,7 @@
         {
           "matchers": [[100, "#"]],
           "text":
-            "Esquivas Ataques y Hechizos si\\nfuiste Golpeado Recientemente",
+            "Esquiva todos los Golpes por Ataques y por Hechizos si\\nfuiste Golpeado Recientemente",
           "formatters": [
             {
               "id": "reminderstring",
@@ -55927,7 +57149,7 @@
         {
           "matchers": ["#"],
           "text":
-            "%1%%% de probabilidad de Esquivar Ataques si Bloqueaste Recientemente",
+            "%1%%% de probabilidad de Esquivar Golpes por Ataques si has Bloqueado Recientemente",
           "formatters": [
             {
               "id": "reminderstring",
@@ -55937,13 +57159,62 @@
         }
       ]
     },
+    "dodge_attacks_chance_%_while_moving": {
+      "stats": ["dodge_attacks_chance_%_while_moving"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% de probabilidad de Esquivar Golpes por Ataques mientras estás en movimiento",
+          "formatters": []
+        }
+      ]
+    },
     "dodge_chance_%_while_holding_shield": {
       "stats": ["dodge_chance_%_while_holding_shield"],
       "translations": [
         {
           "matchers": ["#"],
           "text":
-            "%1%%% de probabilidad de Esquivar Ataques mientras portas un Escudo",
+            "%1%%% de probabilidad de Esquivar Golpes por Ataques mientras portas un Escudo",
+          "formatters": []
+        }
+      ]
+    },
+    "dodge_spells_chance_%_while_moving": {
+      "stats": ["dodge_spells_chance_%_while_moving"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% de probabilidad de Esquivar Golpes por Hechizos mientras estás en movimiento",
+          "formatters": []
+        }
+      ]
+    },
+    "double_slash_minimum_added_physical_damage_vs_bleeding_enemies": {
+      "stats": [
+        "double_slash_minimum_added_physical_damage_vs_bleeding_enemies",
+        "double_slash_maximum_added_physical_damage_vs_bleeding_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Lacerar inflige %1% a %2% de Daño Físico agregado contra Enemigos con Sangrado",
+          "formatters": []
+        }
+      ]
+    },
+    "double_strike_chance_to_deal_double_damage_%_vs_bleeding_enemies": {
+      "stats": [
+        "double_strike_chance_to_deal_double_damage_%_vs_bleeding_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Golpe Doble tiene %1%%% de probabilidad de infligir Daño Doble a los Enemigos con Sangrado",
           "formatters": []
         }
       ]
@@ -56209,6 +57480,36 @@
         }
       ]
     },
+    "elemental_hit_cannot_roll_cold_damage": {
+      "stats": ["elemental_hit_cannot_roll_cold_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Golpe Elemental no puede elegir Hielo",
+          "formatters": []
+        }
+      ]
+    },
+    "elemental_hit_cannot_roll_fire_damage": {
+      "stats": ["elemental_hit_cannot_roll_fire_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Golpe Elemental no puede elegir Fuego",
+          "formatters": []
+        }
+      ]
+    },
+    "elemental_hit_cannot_roll_lightning_damage": {
+      "stats": ["elemental_hit_cannot_roll_lightning_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Golpe Elemental no puede elegir Rayo",
+          "formatters": []
+        }
+      ]
+    },
     "elemental_penetration_%_if_you_have_a_power_charge": {
       "stats": ["elemental_penetration_%_if_you_have_a_power_charge"],
       "translations": [
@@ -56301,6 +57602,26 @@
           "text":
             "Cada 14 segundos:\\nGana Confluencia Escarchadora durante 4 segundos\\nGana Confluencia Electrocutante durante 4 segundos\\nGana Confluencia Quemante durante 4 segundos\\nGana Confluencia Escarchadora, Electrocutante y Quemante durante 2 segundos",
           "formatters": []
+        }
+      ]
+    },
+    "elementalist_ignite_damage_+%_final": {
+      "stats": ["elementalist_ignite_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% más Daño con Quemadura",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% menos Daño con Quemadura",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -56562,6 +57883,22 @@
         }
       ]
     },
+    "energy_shield_regeneration_rate_per_minute_per_poison_stack": {
+      "stats": ["energy_shield_regeneration_rate_per_minute_per_poison_stack"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1% del Escudo de Energía Regenerado por segundo por cada Veneno en ti, hasta 250 por segundo",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "energy_shield_regeneration_rate_per_minute_%_while_affected_by_discipline": {
       "stats": [
         "energy_shield_regeneration_rate_per_minute_%_while_affected_by_discipline"
@@ -56601,6 +57938,21 @@
         {
           "matchers": ["#"],
           "text": "Cuchillos Etéreos dispara %1% Proyectiles adicionales",
+          "formatters": []
+        }
+      ]
+    },
+    "ethereal_knives_projectile_base_number_of_targets_to_pierce": {
+      "stats": ["ethereal_knives_projectile_base_number_of_targets_to_pierce"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Cuchillos Etéreos perfora un objetivo adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Cuchillos Etéreos perfora %1% objetivos adicionales",
           "formatters": []
         }
       ]
@@ -56712,6 +58064,36 @@
         {
           "matchers": [["#", -1]],
           "text": "Evasión reducida un %1%%% mientras estés en movimiento",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "expanding_fire_cone_additional_maximum_number_of_stages": {
+      "stats": ["expanding_fire_cone_additional_maximum_number_of_stages"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Incinerar tiene %1$+d a las fases máximas",
+          "formatters": []
+        }
+      ]
+    },
+    "expanding_fire_cone_area_of_effect_+%": {
+      "stats": ["expanding_fire_cone_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Incinerar tiene Área de Efecto aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Incinerar tiene Área de Efecto reducida un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -57065,18 +58447,161 @@
         }
       ]
     },
+    "fire_trap_burning_ground_duration_+%": {
+      "stats": ["fire_trap_burning_ground_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Duración de Suelo Incendiado de Trampa de Fuego aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Duración de Suelo Incendiado de Trampa de Fuego reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "fire_trap_number_of_additional_traps_to_throw": {
       "stats": ["fire_trap_number_of_additional_traps_to_throw"],
       "translations": [
         {
           "matchers": [1],
-          "text": "Trampa de Fuego lanza una Trampa adicional",
+          "text": "Trampa de Fuego lanza hasta 1 Trampa adicional",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text": "Trampa de Fuego lanza %1% Trampas adicionales",
+          "text": "Trampa de Fuego lanza hasta %1% Trampas adicionales",
           "formatters": []
+        }
+      ]
+    },
+    "flamethrower_tower_trap_cast_speed_+%": {
+      "stats": ["flamethrower_tower_trap_cast_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Trampa de Lanzallamas tiene Velocidad de Lanzamiento de Hechizos aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Trampa de Lanzallamas tiene Velocidad de Lanzamiento de Hechizos reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "flamethrower_tower_trap_cooldown_speed_+%": {
+      "stats": ["flamethrower_tower_trap_cooldown_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Trampa de Lanzallamas tiene Velocidad de Recuperación de Tiempos de Recarga aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Trampa de Lanzallamas tiene Velocidad de Recuperación de Tiempos de Recarga reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "flamethrower_tower_trap_damage_+%": {
+      "stats": ["flamethrower_tower_trap_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Trampa de Lanzallamas inflige Daño aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Trampa de Lanzallamas inflige Daño reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "flamethrower_tower_trap_duration_+%": {
+      "stats": ["flamethrower_tower_trap_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Trampa de Lanzallamas tiene Duración de Efecto de Habilidad aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Trampa de Lanzallamas tiene Duración de Efecto de Habilidad reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "flamethrower_tower_trap_number_of_additional_flamethrowers": {
+      "stats": ["flamethrower_tower_trap_number_of_additional_flamethrowers"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Trampa de Lanzallamas tiene una Llama adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Trampa de Lanzallamas tiene %1% Llamas adicionales",
+          "formatters": []
+        }
+      ]
+    },
+    "flamethrower_trap_damage_+%_final_vs_burning_enemies": {
+      "stats": ["flamethrower_trap_damage_+%_final_vs_burning_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% más Daño contra Enemigos Incendiados",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% menos Daño contra Enemigos Incendiados",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -57239,6 +58764,28 @@
         }
       ]
     },
+    "frost_bomb_buff_duration_+%": {
+      "stats": ["frost_bomb_buff_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Bomba de Escarcha tiene la Duración de la Penalidad aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Bomba de Escarcha tiene la Duración de la Penalidad reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "frostbolt_number_of_additional_projectiles": {
       "stats": ["frostbolt_number_of_additional_projectiles"],
       "translations": [
@@ -57273,6 +58820,23 @@
           "matchers": [[1, "#"]],
           "text":
             "Cuando matas a un Monstruo Raro, %1%%% de probabilidad de ganar uno de sus modificadores por 10 segundos",
+          "formatters": []
+        }
+      ]
+    },
+    "gain_X_frenzy_charges_after_spending_200_mana": {
+      "stats": ["gain_X_frenzy_charges_after_spending_200_mana"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text":
+            "Gana una Carga de Frenesí después de Gastar un total de 200 de Maná",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Gana %1% Cargas de Frenesí después de Gastar un total de 200 de Maná",
           "formatters": []
         }
       ]
@@ -57580,6 +59144,21 @@
         }
       ]
     },
+    "gain_onslaught_while_not_on_low_mana": {
+      "stats": ["gain_onslaught_while_not_on_low_mana"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Tienes Fervor mientras no tienes Maná Bajo",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
     "gain_onslaught_while_on_low_life": {
       "stats": ["gain_onslaught_while_on_low_life"],
       "translations": [
@@ -57696,6 +59275,22 @@
         }
       ]
     },
+    "gain_power_charge_on_vaal_skill_use_%": {
+      "stats": ["gain_power_charge_on_vaal_skill_use_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de probabilidad de ganar una Carga de Poder cuando usas una Habilidad Vaal",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "ganas una Carga de Poder cuando usas una Habilidad Vaal",
+          "formatters": []
+        }
+      ]
+    },
     "gain_random_charge_on_block": {
       "stats": ["gain_random_charge_on_block"],
       "translations": [
@@ -57715,6 +59310,22 @@
           "text":
             "Gana una Carga de Frenesí, de Aguante o de Poder una vez por segundo mientras estés Inmóvil",
           "formatters": []
+        }
+      ]
+    },
+    "gain_soul_eater_for_x_ms_on_vaal_skill_use": {
+      "stats": ["gain_soul_eater_for_x_ms_on_vaal_skill_use"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Gana Devorador de Almas por %1% segundos cuando usas una Habilidad Vaal",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -57866,6 +59477,16 @@
         }
       ]
     },
+    "global_evasion_rating_+_while_moving": {
+      "stats": ["global_evasion_rating_+_while_moving"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d al Índice de Evasión Global al estar en movimiento",
+          "formatters": []
+        }
+      ]
+    },
     "global_minimum_added_cold_damage_vs_chilled_or_frozen_enemies": {
       "stats": [
         "global_minimum_added_cold_damage_vs_chilled_or_frozen_enemies",
@@ -57917,6 +59538,30 @@
           "matchers": ["#", "#"],
           "text":
             "Agrega %1% a %2% de Daño de Rayo contra Enemigos Electrocutados",
+          "formatters": []
+        }
+      ]
+    },
+    "global_minimum_added_physical_damage_vs_bleeding_enemies": {
+      "stats": [
+        "global_minimum_added_physical_damage_vs_bleeding_enemies",
+        "global_maximum_added_physical_damage_vs_bleeding_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Agrega %1% a %2% de Daño Físico contra Enemigos con Sangrado",
+          "formatters": []
+        }
+      ]
+    },
+    "global_physical_damage_reduction_rating_while_moving": {
+      "stats": ["global_physical_damage_reduction_rating_while_moving"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d al Índice de Armadura Global al estar en movimiento",
           "formatters": []
         }
       ]
@@ -58397,6 +60042,125 @@
         }
       ]
     },
+    "ice_siphon_trap_chill_effect_+%": {
+      "stats": ["ice_siphon_trap_chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Trampa de Absorción tiene Efecto de Escarchamiento aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Trampa de Absorción tiene Efecto de Escarchamiento reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ice_siphon_trap_damage_+%": {
+      "stats": ["ice_siphon_trap_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Trampa de Absorción inflige %1%%% Daño aumentado",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Trampa de Absorción inflige %1%%% Daño reducido",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ice_siphon_trap_damage_taken_+%_per_beam": {
+      "stats": ["ice_siphon_trap_damage_taken_+%_per_beam"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "El haz de la Trampa de Absorción en ti te otorga %1%%% Daño recibido aumentado por cada uno de los otros haces",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "El haz de la Trampa de Absorción en ti te otorga %1%%% Daño recibido reducido por cada uno de los otros haces",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ice_siphon_trap_duration_+%": {
+      "stats": ["ice_siphon_trap_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Trampa de Aborsción tiene Duración de Efecto de Habilidad aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Trampa de Aborsción tiene Duración de Efecto de Habilidad reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ice_trap_cold_resistance_penetration_%": {
+      "stats": ["ice_trap_cold_resistance_penetration_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "El Daño de Trampa de Hielo Penetra %1%%% de Resistencia al Hielo",
+          "formatters": []
+        }
+      ]
+    },
+    "ignite_damage_+%_vs_chilled_enemies": {
+      "stats": ["ignite_damage_+%_vs_chilled_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Daño con Quemadura contra Enemigos Escarchados aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Daño con Quemadura contra Enemigos Escarchados reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "ignite_duration_-%": {
       "stats": ["ignite_duration_-%"],
       "translations": [
@@ -58414,6 +60178,36 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "ignores_enemy_cold_resistance": {
+      "stats": ["ignores_enemy_cold_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Los Golpes ignoran la Resistencia al Hielo de los Enemigos",
+          "formatters": []
+        }
+      ]
+    },
+    "ignores_enemy_fire_resistance": {
+      "stats": ["ignores_enemy_fire_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Los Golpes ignoran la Resistencia al Fuego de los Enemigos",
+          "formatters": []
+        }
+      ]
+    },
+    "ignores_enemy_lightning_resistance": {
+      "stats": ["ignores_enemy_lightning_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Los Golpes ignoran la Resistencia al Rayo de los Enemigos",
+          "formatters": []
         }
       ]
     },
@@ -58495,6 +60289,17 @@
           "matchers": ["#"],
           "text":
             "Inmune a Electrocución mientras estés afectado por Pureza de Rayo",
+          "formatters": []
+        }
+      ]
+    },
+    "infernal_blow_explosion_damage_%_of_total_per_stack": {
+      "stats": ["infernal_blow_explosion_damage_%_of_total_per_stack"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Las explosiones más grandes de Embate Infernal infligen un %1%%% adicional de Daño de Ataque Base por cada Penalidad",
           "formatters": []
         }
       ]
@@ -58843,6 +60648,22 @@
           "text":
             "%1$+d de Vida ganada por cada Enemigo Golpeado mientras estés afectado por Vitalidad",
           "formatters": []
+        }
+      ]
+    },
+    "life_gain_per_target_if_have_used_a_vaal_skill_recently": {
+      "stats": ["life_gain_per_target_if_have_used_a_vaal_skill_recently"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1% Vida ganada por cada Enemigo Golpeado si has usado una Habilidad Vaal Recientemente",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
+            }
+          ]
         }
       ]
     },
@@ -59205,6 +61026,24 @@
         }
       ]
     },
+    "life_regeneration_rate_per_minute_%_per_500_maximum_energy_shield": {
+      "stats": [
+        "life_regeneration_rate_per_minute_%_per_500_maximum_energy_shield"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% de Vida Regenerada por segundo por cada 500 de Escudo de Energía Máximo",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "life_regeneration_rate_per_minute_%_per_mine_detonated_recently_up_to_20%": {
       "stats": [
         "life_regeneration_rate_per_minute_%_per_mine_detonated_recently_up_to_20%"
@@ -59395,6 +61234,139 @@
           "matchers": [["#", -1]],
           "text":
             "Centellas tiene Área de Efecto reducida un %1%%% por cada Enemigo Golpeado",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_tower_trap_additional_number_of_beams": {
+      "stats": ["lightning_tower_trap_additional_number_of_beams"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Trampa de Pararrayos golpea un área adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Trampa de Pararrayos golpea %1% áreas adicionales",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_tower_trap_cast_speed_+%": {
+      "stats": ["lightning_tower_trap_cast_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Trampa de Pararrayos tiene Velocidad de Lanzamiento de Hechizos aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Trampa de Pararrayos tiene Velocidad de Lanzamiento de Hechizos reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_tower_trap_cooldown_speed_+%": {
+      "stats": ["lightning_tower_trap_cooldown_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Trampa de Pararrayos tiene Velocidad de Recuperación de Tiempo de Recarga aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Trampa de Pararrayos tiene Velocidad de Recuperación de Tiempo de Recarga reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_tower_trap_damage_+%": {
+      "stats": ["lightning_tower_trap_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Trampa de Pararrayos inflige Daño aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Trampa de Pararrayos inflige Daño reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_tower_trap_duration_+%": {
+      "stats": ["lightning_tower_trap_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Trampa de Pararrayos tiene Duración de Efecto de Habilidad aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Trampa de Pararrayos tiene Duración de Efecto de Habilidad reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_trap_lightning_resistance_penetration_%": {
+      "stats": ["lightning_trap_lightning_resistance_penetration_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "El Daño de Trampa de Rayo Penetra %1%%% de Resistencia al Rayo",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_trap_shock_effect_+%": {
+      "stats": ["lightning_trap_shock_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Efecto de Electrocución de Trampa de Rayo aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Efecto de Electrocución de Trampa de Rayo reducido un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -59726,175 +61698,6 @@
         }
       ]
     },
-    "local_display_socketed_attacks_additional_critical_strike_chance": {
-      "stats": [
-        "local_display_socketed_attacks_additional_critical_strike_chance"
-      ],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Los Ataques Engarzados tienen %1$+d%% a la Probabilidad de Golpe Crítico",
-          "formatters": [
-            {
-              "id": "divide_by_one_hundred",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "local_display_socketed_attacks_critical_strike_multiplier_+": {
-      "stats": ["local_display_socketed_attacks_critical_strike_multiplier_+"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Los Ataques Engarzados tienen %1$+d%% al Multiplicador de Golpe Crítico",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_socketed_movement_skills_have_no_mana_cost": {
-      "stats": ["local_display_socketed_movement_skills_have_no_mana_cost"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Las Habilidades de Movimiento Engarzadas no tienen Coste de Maná",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_socketed_spells_additional_critical_strike_chance": {
-      "stats": [
-        "local_display_socketed_spells_additional_critical_strike_chance"
-      ],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Los Hechizos Engarzados tienen %1$+d%% a la Probabilidad de Golpe Crítico",
-          "formatters": [
-            {
-              "id": "divide_by_one_hundred",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "local_display_socketed_spells_critical_strike_multiplier_+": {
-      "stats": ["local_display_socketed_spells_critical_strike_multiplier_+"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Los Hechizos Engarzados tienen %1$+d%% al Multiplicador de Golpe Crítico",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_commandment_of_inferno_on_crit_%": {
-      "stats": ["local_display_trigger_commandment_of_inferno_on_crit_%"],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text":
-            "%1%%% de probabilidad de Activar Mandamiento de Infierno con cada Golpe Crítico",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text": "Activa Mandamiento de Infierno con cada Golpe Crítico",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_level_20_animate_guardian_weapon_on_guardian_kill_%_chance": {
-      "stats": [
-        "local_display_trigger_level_20_animate_guardian_weapon_on_guardian_kill_%_chance"
-      ],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text":
-            "%1%%% de probabilidad de Activar Animar Arma Guardiana Nivel 20 cuando Guardián Animado Mata a un Enemigo",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text":
-            "Activa Animar Arma Guardiana Nivel 20 cuando Guardián Animado Mata a un Enemigo",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_level_20_animate_guardian_weapon_on_weapon_kill_%_chance": {
-      "stats": [
-        "local_display_trigger_level_20_animate_guardian_weapon_on_weapon_kill_%_chance"
-      ],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text":
-            "%1%%% de probabilidad de Activar Animar Arma Guardiana Nivel 18 cuando Arma Animada Mata a un Enemigo",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text":
-            "Activa Animar Arma Guardiana Nivel 18 cuando Arma Animada Mata a un Enemigo",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_level_x_icicle_nova_on_kill_vs_frozen_enemy": {
-      "stats": [
-        "local_display_trigger_level_x_icicle_nova_on_kill_vs_frozen_enemy"
-      ],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Activa Explosión de Carámbanos Nivel %1% cuando Matas un Enemigo Congelado",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_temporal_anomaly_when_hit_%_chance": {
-      "stats": ["local_display_trigger_temporal_anomaly_when_hit_%_chance"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de probabilidad de Activar Anomalía Temporal Nivel 20 cuando eres Golpeado",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_tentacle_smash_on_kill_%_chance": {
-      "stats": ["local_display_trigger_tentacle_smash_on_kill_%_chance"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de probabilidad de Activar Latigazo de Tentáculos Nivel 20 al Matar",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_void_sphere_on_kill_%_chance": {
-      "stats": ["local_display_trigger_void_sphere_on_kill_%_chance"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de probabilidad de Activar Invocar Anomalía Volátil Nivel 20 al Matar",
-          "formatters": []
-        }
-      ]
-    },
     "local_evasion_rating_and_energy_shield": {
       "stats": ["local_evasion_rating_and_energy_shield"],
       "translations": [
@@ -59916,6 +61719,26 @@
         }
       ]
     },
+    "local_flask_gain_x_vaal_souls_on_use": {
+      "stats": ["local_flask_gain_x_vaal_souls_on_use"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ganas %1% Alamas Vaal cuando se usa",
+          "formatters": []
+        }
+      ]
+    },
+    "local_flask_no_mana_recovery_during_effect": {
+      "stats": ["local_flask_no_mana_recovery_during_effect"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "No puedes ganar Maná durante el efecto",
+          "formatters": []
+        }
+      ]
+    },
     "local_flask_number_of_additional_projectiles_during_flask_effect": {
       "stats": [
         "local_flask_number_of_additional_projectiles_during_flask_effect"
@@ -59932,6 +61755,31 @@
           "text":
             "Las Habilidades disparan %1% Proyectiles adicionales durante el Efecto del Frasco",
           "formatters": []
+        }
+      ]
+    },
+    "local_flask_vaal_souls_gained_per_minute_during_effect": {
+      "stats": ["local_flask_vaal_souls_gained_per_minute_during_effect"],
+      "translations": [
+        {
+          "matchers": [["#", 60]],
+          "text": "Gana %1% Alma Vaal Por Segundo durante el efecto",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": [[61, "#"]],
+          "text": "Gana %1% Almas Vaal Por Segundo durante el efecto",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -60183,6 +62031,113 @@
         }
       ]
     },
+    "local_unique_flask_vaal_skill_damage_+%_during_flask_effect": {
+      "stats": ["local_unique_flask_vaal_skill_damage_+%_during_flask_effect"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Las Habilidades Vaal infligen Daño aumentado un %1%%% durante el efecto",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Las Habilidades Vaal infligen Daño reducido un %1%%% durante el efecto",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "local_unique_flask_vaal_skill_damage_+%_final_during_flask_effect": {
+      "stats": [
+        "local_unique_flask_vaal_skill_damage_+%_final_during_flask_effect"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Las Habilidades Vaal infligen %1%%% más Daño durante el efecto",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Las Habilidades Vaal infligen %1%%% menos Daño durante el efecto",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "local_unique_flask_vaal_skill_does_not_apply_soul_gain_prevention_during_flask_effect": {
+      "stats": [
+        "local_unique_flask_vaal_skill_does_not_apply_soul_gain_prevention_during_flask_effect"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Las Habilidades Vaal usadas durante el efecto no aplican Prevención de Obtención de Alma",
+          "formatters": []
+        }
+      ]
+    },
+    "local_unique_flask_vaal_skill_soul_cost_+%_during_flask_effect": {
+      "stats": [
+        "local_unique_flask_vaal_skill_soul_cost_+%_during_flask_effect"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Las Habilidades Vaal tienen Coste de Almas aumentado un %1%%% durante el efecto",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Las Habilidades Vaal tienen Coste de Almas reducido un %1%%% durante el efecto",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "local_unique_flask_vaal_skill_soul_gain_preventation_duration_+%_during_flask_effect": {
+      "stats": [
+        "local_unique_flask_vaal_skill_soul_gain_preventation_duration_+%_during_flask_effect"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Las Habilidades Vaal usadas durante el efecto tienen la Duración de Prevención de Obtención de Alma aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Las Habilidades Vaal usadas durante el efecto tienen la Duración de Prevención de Obtención de Alma reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "local_unique_jewel_blight_hinder_duration_+%_with_40_int_in_radius": {
       "stats": [
         "local_unique_jewel_blight_hinder_duration_+%_with_40_int_in_radius"
@@ -60261,6 +62216,19 @@
         }
       ]
     },
+    "local_unique_jewel_cold_snap_uses_gains_power_charges_instead_of_frenzy_with_40_int_in_radius": {
+      "stats": [
+        "local_unique_jewel_cold_snap_uses_gains_power_charges_instead_of_frenzy_with_40_int_in_radius"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Con al menos 40 de Inteligencia dentro del Radio, Ruptura de Hielo otorga Cargas de Poder en lugar de Cargas de Frenesí cuando los Enemigos mueren en su Área\\nCon al menos 40 de Inteligencia dentro del Radio, el Tiempo de Recarga de Ruptura de Hielo puede ser ignorado con Cargas de Poder en lugar de Cargas de Frenesí",
+          "formatters": []
+        }
+      ]
+    },
     "local_unique_jewel_dual_strike_main_hand_deals_double_damage_%_with_40_dex_in_radius": {
       "stats": [
         "local_unique_jewel_dual_strike_main_hand_deals_double_damage_%_with_40_dex_in_radius"
@@ -60289,6 +62257,45 @@
           "matchers": [1],
           "text":
             "Con al menos 40 de Destreza dentro del Radio, Golpe Dual inflige Daño Colateral de Mano Secundaria\\na objetivos cercanos",
+          "formatters": []
+        }
+      ]
+    },
+    "local_unique_jewel_elemental_hit_cannot_roll_cold_damage_with_40_int_+_str_in_radius": {
+      "stats": [
+        "local_unique_jewel_elemental_hit_cannot_roll_cold_damage_with_40_int_+_str_in_radius"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Con 40 de Fuerza e Inteligencia total dentro del Radio, Golpe Elemental no puede elegir Hielo",
+          "formatters": []
+        }
+      ]
+    },
+    "local_unique_jewel_elemental_hit_cannot_roll_fire_damage_with_40_int_+_dex_in_radius": {
+      "stats": [
+        "local_unique_jewel_elemental_hit_cannot_roll_fire_damage_with_40_int_+_dex_in_radius"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Con 40 de Inteligencia y Destreza total dentro del Radio, Golpe Elemental no puede elegir Fuego",
+          "formatters": []
+        }
+      ]
+    },
+    "local_unique_jewel_elemental_hit_cannot_roll_lightning_damage_with_40_dex_+_str_in_radius": {
+      "stats": [
+        "local_unique_jewel_elemental_hit_cannot_roll_lightning_damage_with_40_dex_+_str_in_radius"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Con 40 de Destreza y Fuerza total dentro del Radio, Golpe Elemental no puede elegir Rayo",
           "formatters": []
         }
       ]
@@ -60351,13 +62358,13 @@
         {
           "matchers": [1],
           "text":
-            "Con al menos 40 de Destreza dentro del Radio, Trampa de Fuego lanza una Trampa adicional",
+            "Con al menos 40 de Destreza dentro del Radio, Trampa de Fuego lanza hasta una Trampa adicional",
           "formatters": []
         },
         {
           "matchers": ["#"],
           "text":
-            "Con al menos 40 de Destreza dentro del Radio, Trampa de Fuego lanza %1% Trampas adicionales",
+            "Con al menos 40 de Destreza dentro del Radio, Trampa de Fuego lanza hasta %1% Trampas adicionales",
           "formatters": []
         }
       ]
@@ -60804,6 +62811,19 @@
         }
       ]
     },
+    "local_unique_soul_ripper_flask_cannot_gain_flask_charges_during_flask_effect": {
+      "stats": [
+        "local_unique_soul_ripper_flask_cannot_gain_flask_charges_during_flask_effect"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "No gana ninguna Carga durante el efecto de cualquier Frasco de Arranca Espíritus",
+          "formatters": []
+        }
+      ]
+    },
     "lose_all_charges_on_starting_movement": {
       "stats": ["lose_all_charges_on_starting_movement"],
       "translations": [
@@ -60874,6 +62894,26 @@
         }
       ]
     },
+    "maim_effect_+%": {
+      "stats": ["maim_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Área de Efecto de Mutilar aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Área de Efecto de Mutilar reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "maim_on_hit_%": {
       "stats": ["maim_on_hit_%"],
       "translations": [
@@ -60881,12 +62921,22 @@
           "matchers": [[1, 99]],
           "text":
             "Los Ataques tienen %1%%% de probabilidad de Lisiar con cada Golpe",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[100, "#"]],
           "text": "Los Ataques siempre Lisian con cada Golpe",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -60906,6 +62956,36 @@
           "formatters": [
             {
               "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mana_degeneration_per_minute": {
+      "stats": ["mana_degeneration_per_minute"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Pierdes %1% de Maná por Segundo",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mana_degeneration_per_minute_%": {
+      "stats": ["mana_degeneration_per_minute_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Pierdes %1%%% de Maná máximo por Segundo",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
               "arg": 1
             }
           ]
@@ -61483,6 +63563,16 @@
           "matchers": ["#"],
           "text":
             "El Área contiene %1% Grupos de Barriles Misteriosos adicionales",
+          "formatters": []
+        }
+      ]
+    },
+    "map_area_contains_x_additional_clusters_of_explosive_eggs": {
+      "stats": ["map_area_contains_x_additional_clusters_of_explosive_eggs"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "El Área está Desbordada con Plantas Cáusticas",
           "formatters": []
         }
       ]
@@ -62284,7 +64374,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Los jugadores ganan %1%%% de Probabilidad de Esquivar mientras estén bajo los Efectos de un Santuario",
+            "Los Jugadores ganan %1%%% de probabilidad de Esquivar Golpes de Ataques mientras están afectados por un Efecto de Santuario",
           "formatters": []
         }
       ]
@@ -63775,6 +65865,22 @@
         }
       ]
     },
+    "map_non_unique_monster_life_regeneration_rate_per_minute_%": {
+      "stats": ["map_non_unique_monster_life_regeneration_rate_per_minute_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los Monstruos que no son Únicos en esta Área Regeneran un %1%%% de Vida Máxima por segundo",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "map_normal_items_drop_as_magic": {
       "stats": ["map_normal_items_drop_as_magic"],
       "translations": [
@@ -63928,6 +66034,16 @@
         {
           "matchers": ["#"],
           "text": "El Área está habitada por Arañas",
+          "formatters": []
+        }
+      ]
+    },
+    "map_packs_are_vaal": {
+      "stats": ["map_packs_are_vaal"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "El Área está habitada por los Vaal",
           "formatters": []
         }
       ]
@@ -64254,7 +66370,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Los jugadores tienen %1%%% de probabilidad de Esquivar Daño de Hechizos",
+            "Los Jugadores tienen %1%%% de probabilidad de Esquivar Golpes por Hechizos",
           "formatters": []
         }
       ]
@@ -65083,6 +67199,16 @@
         }
       ]
     },
+    "map_spawn_incursion_encounters": {
+      "stats": ["map_spawn_incursion_encounters"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Las Áreas contienen Incursiones Temporales",
+          "formatters": []
+        }
+      ]
+    },
     "map_storm_area_of_effect_+%": {
       "stats": ["map_storm_area_of_effect_+%"],
       "translations": [
@@ -65401,6 +67527,50 @@
           "text":
             "Agrega %1% de Daño de Rayo máximo por cada 10 de Inteligencia",
           "formatters": []
+        }
+      ]
+    },
+    "maximum_es_+%_per_equipped_corrupted_item": {
+      "stats": ["maximum_es_+%_per_equipped_corrupted_item"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Escudo de Energía Máximo aumentado un %1%%% por cada Ítem Corrupto equipado",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Escudo de Energía Máximo reducido un %1%%% por cada Ítem Corrupto equipado",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "maximum_life_+%_per_equipped_corrupted_item": {
+      "stats": ["maximum_life_+%_per_equipped_corrupted_item"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Vida Máxima aumentada un %1%%% por cada Ítem Corrupto equipado",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Vida Máxima reducida un %1%%% por cada Ítem Corrupto equipado",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -66381,6 +68551,37 @@
         }
       ]
     },
+    "movement_speed_+%_if_have_used_a_vaal_skill_recently": {
+      "stats": ["movement_speed_+%_if_have_used_a_vaal_skill_recently"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Velocidad de Movimiento aumentada un %1%%% si has usado una Habilidad Vaal Recientemente",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Velocidad de Movimiento reducida un %1%%% si has usado una Habilidad Vaal Recientemente",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
+            }
+          ]
+        }
+      ]
+    },
     "movement_speed_+%_per_chest_opened_recently": {
       "stats": ["movement_speed_+%_per_chest_opened_recently"],
       "translations": [
@@ -66777,13 +68978,13 @@
         {
           "matchers": [1],
           "text":
-            "Las Habilidades que Lanzan Trampas lanzan una Trampa adicional",
+            "Las Habilidades que Lanzan Trampas lanzan hasta 1 Trampa adicional",
           "formatters": []
         },
         {
           "matchers": ["#"],
           "text":
-            "Las Habilidades que Lanzan Trampas lanzan %1% Trampas adicionales",
+            "Las Habilidades que Lanzan Trampas lanzan hasta %1% Trampas adicionales",
           "formatters": []
         }
       ]
@@ -66888,6 +69089,17 @@
         }
       ]
     },
+    "orb_of_storms_cast_speed_+%": {
+      "stats": ["orb_of_storms_cast_speed_+%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Orbe de Tormentas tiene Velocidad de Lanzamiento de Hechizos aumentada un %1%%%",
+          "formatters": []
+        }
+      ]
+    },
     "override_maximum_damage_resistance_%": {
       "stats": ["override_maximum_damage_resistance_%"],
       "translations": [
@@ -66905,6 +69117,17 @@
           "matchers": ["#"],
           "text":
             "El número de Monedas Perandus arrojadas en esta Área está Duplicada",
+          "formatters": []
+        }
+      ]
+    },
+    "%_chance_to_gain_random_charge_on_trap_triggered_by_an_enemy": {
+      "stats": ["%_chance_to_gain_random_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% de probabilidad de ganar una Carga de Aguante, Frenesí o Poder cuando alguna\\nde tus trampas sean Activadas por un Enemigo",
           "formatters": []
         }
       ]
@@ -66961,6 +69184,85 @@
               "arg": "ReminderTextIntimidate"
             }
           ]
+        }
+      ]
+    },
+    "phys_cascade_trap_cooldown_speed_+%": {
+      "stats": ["phys_cascade_trap_cooldown_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Trampa Sísmica tiene Velocidad de Recuperación de Tiempo de Recarga aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Trampa Sísmica tiene Velocidad de Recuperación de Tiempo de Recarga reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "phys_cascade_trap_damage_+%": {
+      "stats": ["phys_cascade_trap_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Trampa Sísmica inflige Daño aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Trampa Sísmica inflige Daño reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "phys_cascade_trap_duration_+%": {
+      "stats": ["phys_cascade_trap_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Trampa Sísmica tiene Duración de Efecto de Habilidad aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Trampa Sísmica tiene Duración de Efecto de Habilidad reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "phys_cascade_trap_number_of_additional_cascades": {
+      "stats": ["phys_cascade_trap_number_of_additional_cascades"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Trampa Sísmica libera una Ola adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Trampa Sísmica libera %1% Olas adicionales",
+          "formatters": []
         }
       ]
     },
@@ -67373,6 +69675,26 @@
         }
       ]
     },
+    "poison_time_passed_+%": {
+      "stats": ["poison_time_passed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Los Venenos expiran un %1%%% más rápido en ti",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Los Venenos expiran un %1%%% más lento en ti",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "power_charge_on_kill_percent_chance_while_holding_shield": {
       "stats": ["power_charge_on_kill_percent_chance_while_holding_shield"],
       "translations": [
@@ -67380,6 +69702,21 @@
           "matchers": [[1, "#"]],
           "text":
             "%1%%% de probabilidad de ganar una Carga de Poder al Matar mientras portes un Escudo",
+          "formatters": []
+        }
+      ]
+    },
+    "power_siphon_number_of_additional_projectiles": {
+      "stats": ["power_siphon_number_of_additional_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Robo de Poder dispara un Proyectil adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Robo de Poder dispara %1% Proyectiles adicionales",
           "formatters": []
         }
       ]
@@ -67451,6 +69788,17 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "projectile_damage_+%_per_chain": {
+      "stats": ["projectile_damage_+%_per_chain"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los Proyectiles infligen Daño aumentado un %1%%% por cada vez que se hayan Encadenado",
+          "formatters": []
         }
       ]
     },
@@ -67686,6 +70034,28 @@
           "matchers": ["#"],
           "text":
             "Los Espíritus Encolerizados renuevan su Duración cuando Matan a un Enemigo Quemado",
+          "formatters": []
+        }
+      ]
+    },
+    "rain_of_arrows_additional_sequence_chance_%": {
+      "stats": ["rain_of_arrows_additional_sequence_chance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Lluvia de Flechas tiene %1%%% de probabilidad de disparar una secuencia de flechas adicional",
+          "formatters": []
+        }
+      ]
+    },
+    "rain_of_arrows_rain_of_arrows_additional_sequence_chance_%": {
+      "stats": ["rain_of_arrows_rain_of_arrows_additional_sequence_chance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Lluvia de Flechas tiene %1%%% de probabilidad de disparar una secuencia de flechas adicional",
           "formatters": []
         }
       ]
@@ -68077,26 +70447,16 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Efecto de Electrocución sobre ti aumentado un %1%%%",
+          "text": "Efecto de Electrocución aumentado un %1%%% en ti",
           "formatters": []
         },
         {
           "matchers": [[-99, -1]],
-          "text": "Efecto de Electrocución sobre ti reducido un %1%%%",
+          "text": "Efecto de Electrocución reducido un %1%%% en ti",
           "formatters": [
             {
               "id": "negate",
               "arg": 1
-            }
-          ]
-        },
-        {
-          "matchers": [["#", -100]],
-          "text": "No afectado por Electrocución",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextUnaffectedBy"
             }
           ]
         }
@@ -68145,6 +70505,61 @@
         {
           "matchers": [100],
           "text": "El cono de Disparo de Metralla inflige Daño Doble",
+          "formatters": []
+        }
+      ]
+    },
+    "shrapnel_trap_area_of_effect_+%": {
+      "stats": ["shrapnel_trap_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Trampa Explosiva tiene Área de Efecto aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Trampa Explosiva tiene Área de Efecto reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "shrapnel_trap_damage_+%": {
+      "stats": ["shrapnel_trap_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Trampa Explosiva inflige Daño aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Trampa Explosiva inflige Daño reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "shrapnel_trap_number_of_additional_secondary_explosions": {
+      "stats": ["shrapnel_trap_number_of_additional_secondary_explosions"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Trampa Explosiva causa una explosión pequeña adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Trampa Explosiva causa %1% explosiones pequeñas adicionales",
           "formatters": []
         }
       ]
@@ -68811,6 +71226,21 @@
         }
       ]
     },
+    "storm_burst_number_of_additional_projectiles": {
+      "stats": ["storm_burst_number_of_additional_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Estallido de Tormenta dispara un Proyectil adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Estallido de Tormenta dispara %1% Proyectiles adicionales",
+          "formatters": []
+        }
+      ]
+    },
     "strength_damage_bonus_grants_melee_physical_damage_+3%_per_10_strength_instead": {
       "stats": [
         "strength_damage_bonus_grants_melee_physical_damage_+3%_per_10_strength_instead"
@@ -68957,6 +71387,51 @@
         }
       ]
     },
+    "summoned_skeletons_cover_in_ash_on_hit_%": {
+      "stats": ["summoned_skeletons_cover_in_ash_on_hit_%"],
+      "translations": [
+        {
+          "matchers": [["#", 99]],
+          "text":
+            "Los Esqueletos Invocados tienen %1%%% de probabilidad de Cubrir Enemigos con Cenizas cuando Golpean",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextCoveredInAsh"
+            }
+          ]
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Los Esqueletos Invocados Cubren a los Enemigos con Cenizas cuando Golpean",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextCoveredInAsh"
+            }
+          ]
+        }
+      ]
+    },
+    "summoned_skeletons_fire_damage_%_of_maximum_life_taken_per_minute": {
+      "stats": [
+        "summoned_skeletons_fire_damage_%_of_maximum_life_taken_per_minute"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los Esqueletos Invocados reciben %1%%% de su Vida Máxima por segunda como Daño de Fuego",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "summoned_skeletons_hits_cant_be_evaded": {
       "stats": ["summoned_skeletons_hits_cant_be_evaded"],
       "translations": [
@@ -68989,6 +71464,20 @@
         }
       ]
     },
+    "global_minimum_added_fire_damage_vs_burning_enemies": {
+      "stats": [
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "%1% a %2% de Daño de Fuego agregado contra Enemigos Incendiados",
+          "formatters": []
+        }
+      ]
+    },
     "support_mirage_archer_base_duration": {
       "stats": ["support_mirage_archer_base_duration"],
       "translations": [
@@ -68998,6 +71487,26 @@
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "tailwind_effect_on_self_+%": {
+      "stats": ["tailwind_effect_on_self_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Efecto de Viento a Favor aumentado un %1%%% en ti",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Efecto de Viento a Favor reducido un %1%%% en ti",
+          "formatters": [
+            {
+              "id": "negate",
               "arg": 1
             }
           ]
@@ -69203,6 +71712,28 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "trap_throwing_speed_+%_per_frenzy_charge": {
+      "stats": ["trap_throwing_speed_+%_per_frenzy_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Velocidad de Lanzamiento de Trampas aumentado un %1%%% por cada Carga de Frenesí",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Velocidad de Lanzamiento de Trampas reducido un %1%%% por cada Carga de Frenesí",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
             }
           ]
         }
@@ -69765,6 +72296,28 @@
         }
       ]
     },
+    "vortex_area_of_effect_+%_when_cast_on_frostbolt": {
+      "stats": ["vortex_area_of_effect_+%_when_cast_on_frostbolt"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "El Vórtice tiene Área de Efecto aumentada un %1%%% cuando se Lanza en Descarga de Escarcha",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "El Vórtice tiene Área de Efecto reducida un %1%%% cuando se Lanza en Descarga de Escarcha",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "warcries_knock_back_enemies": {
       "stats": ["warcries_knock_back_enemies"],
       "translations": [
@@ -69847,6 +72400,24 @@
           "matchers": ["#"],
           "text":
             "Tú y tus Aliados cercanos tienen %1%%% de probabilidad de\\nBloquear Hechizos si Lanzaste un Hechizo Recientemente",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
+            }
+          ]
+        }
+      ]
+    },
+    "you_and_nearby_allies_life_regeneration_rate_per_minute_%_if_corpse_consumed_recently": {
+      "stats": [
+        "you_and_nearby_allies_life_regeneration_rate_per_minute_%_if_corpse_consumed_recently"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Tú y tus aliados Cercanos regeneran un %1%%% de Vida máxima por segundo si has Consumido un Cadáver Recientemente",
           "formatters": [
             {
               "id": "reminderstring",
@@ -70081,16 +72652,6 @@
           "matchers": ["#"],
           "text":
             "El Ataque de Impacto de los Zombis Levantados inflige Daño aumentado un %1%%%",
-          "formatters": []
-        }
-      ]
-    },
-    "active_skill_base_radius_+": {
-      "stats": ["active_skill_base_radius_+"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "%1$+d al radio",
           "formatters": []
         }
       ]
@@ -70516,6 +73077,21 @@
         }
       ]
     },
+    "summoned_skeletons_have_avatar_of_fire": {
+      "stats": ["summoned_skeletons_have_avatar_of_fire"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Los Esqueletos Invocados tienen Avatar de Fuego",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKeystoneAvatarOfFire"
+            }
+          ]
+        }
+      ]
+    },
     "gain_crimson_dance_if_have_dealt_critical_strike_recently": {
       "stats": ["gain_crimson_dance_if_have_dealt_critical_strike_recently"],
       "translations": [
@@ -70623,6 +73199,26 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextKeystoneIronReflexes"
+            }
+          ]
+        }
+      ]
+    },
+    "you_have_zealots_oath_if_you_havent_been_hit_recently": {
+      "stats": ["you_have_zealots_oath_if_you_havent_been_hit_recently"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Tienes Juramento del Fanático si no te han golpeado recientemente",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKeystoneZealotsOath"
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextRecently"
             }
           ]
         }

@@ -429,7 +429,7 @@
   },
   "flask_utility_critical_strike_chance": {
     "name": "Diamantfläschchen",
-    "description": "Eure kritischen Treffer sind glückbringend."
+    "description": "Eure kritischen Treffer sind 'Günstig'."
   },
   "flask_utility_resist_fire": {
     "name": "Rubinfläschchen",
@@ -593,7 +593,7 @@
   "vaal_aura_energy_shield": {
     "name": "Aura der Vaal-Disziplin",
     "description":
-      "Gewährt einen Energieschild und verhindert, dass sich das Aufladen des Schildes durch erlittenen Schaden verzögert."
+      "Verhindert, dass sich das Aufladen des Energieschildes durch erlittenen Schaden verzögert."
   },
   "vaal_aura_speed": {
     "name": "Aura der Vaal-Hast",
@@ -602,8 +602,15 @@
   },
   "beartrap_debuff": {
     "name": "Bärenfalle",
-    "description": "Eine Bärenfalle macht Euch bewegungsunfähig."
+    "description":
+      "Eine Bärenfalle macht Euch bewegungsunfähig und Ihr erleidet erhöhten Schaden durch Fallen und Minen."
   },
+  "beartrap_debuff_slow": {
+    "name": "Bärenfalle",
+    "description":
+      "Eure Bewegungsgeschwindigkeit wird verlangsamt und Ihr erleidet erhöhten Schaden durch Fallen und Minen."
+  },
+  "beartrap_debuff_damage_taken": { "name": "", "description": "" },
   "trap_convert_buff": {
     "name": "Bekehrt",
     "description":
@@ -1031,7 +1038,7 @@
   "soul_eater": {
     "name": "Seelenfresser",
     "description":
-      "Ihr verfügt über erhöhte Angriffsgeschwindigkeit, Zaubergeschwindigkeit, physische Schadensminderung, Elementarwiderstände und Charaktergröße."
+      "Ihr verfügt über erhöhte Angriffsgeschwindigkeit, Zaubergeschwindigkeit und Charaktergröße."
   },
   "frostwall_epk": { "name": "", "description": "" },
   "nemesis_stealth_mode": { "name": "", "description": "" },
@@ -1225,7 +1232,6 @@
   "display_bodyguard_effect": { "name": "", "description": "" },
   "mission_relic_praying": { "name": "", "description": "" },
   "mission_beast_corrupted": { "name": "", "description": "" },
-  "mission_monster_target": { "name": "", "description": "" },
   "dex_mission_enable_pointers": { "name": "", "description": "" },
   "stun_display_buff": { "name": "", "description": "" },
   "visual_display_buff": { "name": "", "description": "" },
@@ -3033,17 +3039,17 @@
   "aegis_cold_persist_value": { "name": "", "description": "" },
   "aegis_elemental_persist_value": { "name": "", "description": "" },
   "fire_impurity_buff": {
-    "name": "Unreinheit des Feuers",
+    "name": "Vaal-Unreinheit des Feuers",
     "description":
       "Gewährt Immunität gegen Entzünden und verringert den erlittenen Feuerschaden."
   },
   "cold_impurity_buff": {
-    "name": "Unreinheit des Eises",
+    "name": "Vaal-Unreinheit des Eises",
     "description":
-      "Gewährt Immunität gegen Einfrieren und verringert den erlittenen Kälteschaden."
+      "Gewährt Immunität gegen Einfrieren und Unterkühlen und verringert den erlittenen Kälteschaden."
   },
   "lightning_impurity_buff": {
-    "name": "Unreinheit des Blitzes",
+    "name": "Vaal-Unreinheit des Blitzes",
     "description":
       "Gewährt Immunität gegen Schock und verringert den erlittenen Blitzschaden."
   },
@@ -3238,7 +3244,7 @@
   "crab_aspect_stacking_buff": {
     "name": "Aspekt des Krebses",
     "description":
-      "Aspekt der Krabbe gewährt Euch zusätzliche physische Schadensminderung pro Krabenbarierre."
+      "Aspekt der Krabbe gewährt Euch zusätzliche physische Schadensminderung pro Krebsbarriere."
   },
   "fire_projectile_retaliation": {
     "name": "Feuerprojektil",
@@ -3250,7 +3256,11 @@
     "description": ""
   },
   "physical_projectile_retaliation_charging": { "name": "", "description": "" },
-  "master_buff_treasure_hunter": { "name": "", "description": "" },
+  "master_buff_treasure_hunter": {
+    "name": "Baleks Geschenk",
+    "description":
+      "Ihr verfügt über erhöhte Menge und Seltenheit gefundener Gegenstände."
+  },
   "godmode_ghost": { "name": "", "description": "" },
   "best_crab_roar": {
     "name": "Craiceanns Folter",
@@ -3285,6 +3295,10 @@
       "Ihr erleidet Chaosschaden über Zeit und verfügt über verringerte Bewegungsgeschwindigkeit."
   },
   "lightning_clone_retaliation": {
+    "name": "Blitzklon-Gegenschlag",
+    "description": ""
+  },
+  "lightning_clone_retaliation_large": {
     "name": "Blitzklon-Gegenschlag",
     "description": ""
   },
@@ -3324,6 +3338,7 @@
   "capture_monster_captured": { "name": "", "description": "" },
   "capture_monster_disappearing": { "name": "", "description": "" },
   "cold_beam_retaliation": { "name": "", "description": "" },
+  "cold_beam_retaliation_large": { "name": "", "description": "" },
   "juggernaut_phys_damage_prevented_as_life_regen": {
     "name": "",
     "description": ""
@@ -3414,5 +3429,114 @@
     "name": "Tod",
     "description":
       "Du stirbst, da du dich außerhalb der aktiven Royale-Kampfzone befindest. Folge der Markierung unter deinem Charakter."
+  },
+  "cold_snap_degen": { "name": "Blitzeis", "description": "" },
+  "vaal_cold_snap_degen": { "name": "Vaal-Blitzeis", "description": "" },
+  "disable_vaal_souls": { "name": "", "description": "" },
+  "ice_siphon_trap_debuff": {
+    "name": "Entkräftungsfalle",
+    "description":
+      "Ihr erleidet Kälteschaden über Zeit durch eine Entkräftungsfalle."
+  },
+  "ice_siphon_trap_regen_buff": {
+    "name": "Entkräftungsfalle",
+    "description":
+      "Ihr regeneriert Leben und Mana durch eine Entkräftungsfalle."
+  },
+  "keystone_vaal_attack_cooldown": { "name": "", "description": "" },
+  "keystone_vaal_spell_cooldown": { "name": "", "description": "" },
+  "soul_regeneration": { "name": "", "description": "" },
+  "charged_dash_damage": {
+    "name": "Geladener Sprint",
+    "description":
+      "Euer 'Geladener Sprint' hat mehr Schaden, sobald er ausgelöst wird."
+  },
+  "ignore_enemy_fire_resistance": {
+    "name": "Unreinheit des Feuers",
+    "description": "Treffer ignorieren Euren Feuerwiderstand."
+  },
+  "ignore_enemy_cold_resistance": {
+    "name": "Unreinheit des Eises",
+    "description": "Treffer ignorieren Euren Kältewiderstand."
+  },
+  "ignore_enemy_lightning_resistance": {
+    "name": "Unreinheit des Blitzes",
+    "description": "Treffer ignorieren Euren Blitzwiderstand."
+  },
+  "physical_projectile_retaliation_large": {
+    "name": "Physischer Projektilgegenschlag",
+    "description": ""
+  },
+  "infernal_blow_new_debuff": {
+    "name": "Höllenschlag",
+    "description":
+      "Ihr explodiert bei Tod und verursacht Feuerschaden basierend auf Eurem maximalem Leben. Wenn diese Schwächung Ladungen hat, verursacht sie Angriffsschaden in einem Bereich um Euch herum, sobald sie ausläuft oder 6 Ladungen hat."
+  },
+  "infernal_blow_debuff_visual2": { "name": "", "description": "" },
+  "infernal_blow_debuff_visual3": { "name": "", "description": "" },
+  "life_regen_aura_from_corpse_consumption": { "name": "", "description": "" },
+  "vaal_lightning_strike_debuff": { "name": "", "description": "" },
+  "cannot_gain_souls": { "name": "", "description": "" },
+  "cannot_gain_vaal_souls_at_life_thresholds": {
+    "name": "",
+    "description": ""
+  },
+  "fire_resistance_from_ignite": { "name": "", "description": "" },
+  "unique_flask_no_recovery_and_soul_gain": { "name": "", "description": "" },
+  "number_of_enemies_killed_recently": { "name": "", "description": "" },
+  "have_used_a_vaal_skill_recently": { "name": "", "description": "" },
+  "ground_vaal_cold_snap": { "name": "WIP", "description": "WIP" },
+  "architect_healing_totem_buff": { "name": "", "description": "" },
+  "number_of_frostbolts_destroyed_recently": { "name": "", "description": "" },
+  "elemental_hit_last_damage_type": { "name": "", "description": "" },
+  "architect_ground_blood": {
+    "name": "Kochendes Blut",
+    "description": "Ihr erleidet physischen Schaden über Zeit."
+  },
+  "vaal_righteous_fire_duration_aura": {
+    "name": "Vaal-Sühnendes Feuer",
+    "description":
+      "Ihr erleidet Brandschaden, da Ihr Euch in der Nähe eines Gegners mit Vaal-Sühnendem Feuer befindet."
+  },
+  "vaal_novasoul_immune": { "name": "", "description": "" },
+  "burning_damage_per_shocked_enemy": { "name": "", "description": "" },
+  "incursion_demon_sacrifice_buff": { "name": "", "description": "" },
+  "arc_enhanced_behaviour": {
+    "name": "Günstiger Lichtbogen",
+    "description": "Euer Schaden mit Lichtbogen ist 'Günstig'."
+  },
+  "incursion_construct_enrage": { "name": "", "description": "" },
+  "cold_snap_expanding_chilled_ground": {
+    "name": "Unterkühlter Boden",
+    "description":
+      "Eure Aktionen werden verlangsamt, solange Ihr auf unterkühltem Boden steht."
+  },
+  "vaal_earthquake_display_buff": {
+    "name": "Vaal-Erdbeben",
+    "description": "Mit jedem Schritt zittert die Erde."
+  },
+  "vaal_earthquake_stationary": { "name": "", "description": "" },
+  "master_buff_alva": {
+    "name": "Alvas Geschenk",
+    "description":
+      "Ihr verfügt über erhöhte Menge und Seltenheit gefundener Gegenstände."
+  },
+  "unique_flask_soul_catcher": { "name": "Seelenfänger", "description": "" },
+  "unique_flask_soul_ripper": { "name": "Seelenschlitzer", "description": "" },
+  "vaal_righteous_fire_duration": {
+    "name": "Vaal-Sühnendes Feuer",
+    "description": "Ihr verursacht mehr Zauberschaden."
+  },
+  "cannot_recover_life": { "name": "", "description": "" },
+  "omnitect_thrusters": {
+    "name": "Omnitektenantrieb",
+    "description":
+      "Ihr erleidet mehr Schaden durch den Antrieb des Omnitekten, je länger Ihr daruntersteht."
+  },
+  "omnitect_turret_damage_buff": { "name": "", "description": "" },
+  "omnitect_cone_debuff": {
+    "name": "Lightning Exposure",
+    "description":
+      "You have less Movement Speed and take increased Lightning Damage"
   }
 }

@@ -9,12 +9,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "召唤生物可投掷 1 个额外陷阱",
+          "text": "召唤生物可投掷最多 1 个额外陷阱",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text": "召唤生物可投掷 %1% 个额外陷阱",
+          "text": "召唤生物可投掷最多 %1% 个额外陷阱",
           "formatters": []
         }
       ]
@@ -2903,6 +2903,16 @@
         }
       ]
     },
+    "ignites_apply_fire_res": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被召唤生物点燃的敌人，其火焰抗性提高 %1$+d%%",
+          "formatters": []
+        }
+      ]
+    },
     "maim_chance": {
       "stats": ["maim_on_hit_%"],
       "translations": [
@@ -2987,6 +2997,38 @@
         }
       ]
     },
+    "frenzy_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "当你的陷阱被敌人触发时，此技能和召唤生物有 %1%%% 的机会获得 1 个狂怒球",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text": "当你的陷阱被敌人触发时，此技能和召唤生物获得 1 个狂怒球",
+          "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "当你的陷阱被敌人触发时，此技能和召唤生物有 %1%%% 的机会获得 1 个暴击球",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text": "当你的陷阱被敌人触发时，此技能和召唤生物获得 1 个暴击球",
+          "formatters": []
+        }
+      ]
+    },
     "base_pierce_num": {
       "stats": ["projectile_base_number_of_targets_to_pierce"],
       "translations": [
@@ -3051,6 +3093,26 @@
         }
       ]
     },
+    "hypothermia_cold_damage": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召唤生物造成的持续性冰霜总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召唤生物造成的持续性冰霜总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "maim_phys_damage": {
       "stats": ["support_maim_chance_physical_damage_+%_final"],
       "translations": [
@@ -3093,8 +3155,8 @@
     },
     "added_fire_against_burning": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
@@ -3150,6 +3212,28 @@
         {
           "matchers": [["#", -1]],
           "text": "召唤生物造成的投射物总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "power_charge_on_crit_damage": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每个暴击球可使召唤生物的总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "每个暴击球可使召唤生物的总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3222,6 +3306,46 @@
               "arg": 3
             }
           ]
+        }
+      ]
+    },
+    "ailment_damage_incr": {
+      "stats": ["support_unbound_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召唤生物对冰缓、冰冻、点燃和感电状态的总伤害额外提高 %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召唤生物对冰缓、冰冻、点燃和感电状态的总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "trap_crit_per_power_charge": {
+      "stats": ["trap_critical_strike_multiplier_+_per_power_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "使用陷阱时，每个暴击球可使该技能和召唤生物的技能获得 %1$+d%% 暴击伤害加成",
+          "formatters": []
         }
       ]
     }

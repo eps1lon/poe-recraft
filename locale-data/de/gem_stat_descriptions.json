@@ -598,12 +598,13 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Unterstützte Fertigkeiten werfen eine zusätzliche Falle",
+          "text": "Unterstützte Fertigkeiten werfen bis zu 1 zusätzliche Falle",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text": "Unterstützte Fertigkeiten werfen %1% zusätzliche Fallen",
+          "text":
+            "Unterstützte Fertigkeiten werfen bis zu %1% zusätzliche Fallen",
           "formatters": []
         }
       ]
@@ -896,6 +897,28 @@
         {
           "matchers": ["#"],
           "text": "Unterstützte Fertigkeiten gabeln sich auf",
+          "formatters": []
+        }
+      ]
+    },
+    "projectiles_return": {
+      "stats": ["projectiles_return", "projectiles_return_if_no_hit_object"],
+      "translations": [
+        {
+          "matchers": ["#", 0],
+          "text":
+            "Projektile von unterstützten Fertigkeiten kehren nach Treffer zurück",
+          "formatters": []
+        },
+        {
+          "matchers": [0, "#"],
+          "text":
+            "Projektile von unterstützten Fertigkeiten kehren nach Flugende zurück",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#"],
+          "text": "Projektile von unterstützten Fertigkeiten kehren zurück",
           "formatters": []
         }
       ]
@@ -2068,7 +2091,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Erhaltet 'Arkane Woge', wenn Ihr mit unterstützten Fertigkeiten %1% Mana verbraucht",
+            "Erhaltet 'Arkane Woge' nach dem Verbrauch von %1% Mana mit unterstützten Fertigkeiten",
           "formatters": []
         }
       ]
@@ -3357,6 +3380,17 @@
         }
       ]
     },
+    "ignites_apply_fire_resistance_+": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Durch unterstützte Fertigkeiten entzündete Gegner haben %1$+d%% zu Feuerwiderstand",
+          "formatters": []
+        }
+      ]
+    },
     "knockback_distance_+%": {
       "stats": ["knockback_distance_+%"],
       "translations": [
@@ -3454,12 +3488,22 @@
           "matchers": [[1, 99]],
           "text":
             "Unterstützte Angriffe haben %1%%% Chance auf Verstümmeln bei Treffer",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[100, "#"]],
           "text": "Unterstützte Angriffe verstümmeln immer bei Treffer",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -3891,6 +3935,40 @@
         }
       ]
     },
+    "%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy": {
+      "stats": ["%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Unterstützte Fertigkeiten haben %1%%% Chance, eine Raserei-Ladung zu gewähren, wenn Eure Falle durch einen Gegner ausgelöst wird",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Unterstützte Fertigkeiten gewähren eine Raserei-Ladung, wenn Eure Falle durch einen Gegner ausgelöst wird",
+          "formatters": []
+        }
+      ]
+    },
+    "%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy": {
+      "stats": ["%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Unterstützte Fertigkeiten haben %1%%% Chance, eine Energie-Ladung zu gewähren, wenn Eure Falle durch einen Gegner ausgelöst wird",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Unterstützte Fertigkeiten gewähren eine Energie-Ladung, wenn Eure Falle durch einen Gegner ausgelöst wird",
+          "formatters": []
+        }
+      ]
+    },
     "physical_damage_%_to_add_as_fire": {
       "stats": ["physical_damage_%_to_add_as_fire"],
       "translations": [
@@ -3985,7 +4063,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Unterstützte Fertigkeiten gewähren Gegnern %1%%% verringerte Chance auf Entgehen",
+            "Gegner haben %1%%% verringerte Chance, Treffern von unterstützten Fertigkeiten zu entgehen",
           "formatters": []
         }
       ]
@@ -4194,6 +4272,28 @@
         }
       ]
     },
+    "support_hypothermia_cold_damage_over_time_+%_final": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Unterstützte Fertigkeiten verursachen %1%%% mehr Kälteschaden über Zeit",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Unterstützte Fertigkeiten verursachen %1%%% weniger Kälteschaden über Zeit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_hypothermia_damage_+%_vs_chilled_enemies_final": {
       "stats": ["support_hypothermia_damage_+%_vs_chilled_enemies_final"],
       "translations": [
@@ -4269,10 +4369,10 @@
         }
       ]
     },
-    "support_minimum_added_fire_damage_vs_burning_enemies": {
+    "global_minimum_added_fire_damage_vs_burning_enemies": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
@@ -4469,6 +4569,30 @@
           "matchers": [["#", -1]],
           "text":
             "Unterstützte Fertigkeiten verursachen %1%%% weniger Projektilschaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_power_charge_on_crit_damage_+%_final_per_power_charge": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Unterstützte Fertigkeiten verursachen %1%%% mehr Schaden pro Energie-Ladung",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Unterstützte Fertigkeiten verursachen %1%%% weniger Schaden pro Energie-Ladung",
           "formatters": [
             {
               "id": "negate",
@@ -4740,6 +4864,17 @@
         }
       ]
     },
+    "trap_critical_strike_multiplier_+_per_power_charge": {
+      "stats": ["trap_critical_strike_multiplier_+_per_power_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Unterstützte Fertigkeiten haben %1$+d%% zu Multiplikator für kritische Treffer pro Energie-Ladung, wenn sie von Fallen benutzt werden",
+          "formatters": []
+        }
+      ]
+    },
     "trap_damage_+%": {
       "stats": ["trap_damage_+%"],
       "translations": [
@@ -4775,6 +4910,28 @@
           "matchers": [["#", -1]],
           "text":
             "Unterstützte Fertigkeiten haben %1%%% verringerte Fallen-Wurfgeschwindigkeit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "trap_throwing_speed_+%_per_frenzy_charge": {
+      "stats": ["trap_throwing_speed_+%_per_frenzy_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Unterstützte Fertigkeiten haben %1%%% erhöhte Fallen-Wurfgeschwindigkeit pro Raserei-Ladung",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Unterstützte Fertigkeiten haben %1%%% verringerte Fallen-Wurfgeschwindigkeit pro Raserei-Ladung",
           "formatters": [
             {
               "id": "negate",

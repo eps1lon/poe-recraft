@@ -334,7 +334,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Les Recharges de votre Bouclier d'énergie et de ceux de vos Alliés ne sont pas retardées par les Dégâts",
+            "Les Recharges de votre Bouclier d'énergie et de ceux de vos Alliés proches ne sont pas retardées par les Dégâts",
           "formatters": []
         }
       ]
@@ -365,7 +365,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% de chances d'Esquiver les Dégâts des Sorts",
+          "text": "%1%%% de chances d'Esquiver les Sorts",
           "formatters": []
         }
       ]
@@ -426,6 +426,69 @@
         }
       ]
     },
+    "immune_to_chill": {
+      "stats": ["base_immune_to_chill"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Vous et les Alliés à proximité êtes Immunisés à la Frigorification",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_freeze": {
+      "stats": ["base_immune_to_freeze"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Vous et vos Alliés proches êtes Immunisés au Gel",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_ignite": {
+      "stats": ["base_immune_to_ignite"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Vous et les Alliés à proximité êtes Immunisés à l'Embrasement",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_shock": {
+      "stats": ["base_immune_to_shock"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Vous et les Alliés à proximité êtes Immunisés à l'Électrocution",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_damage_taken": {
+      "stats": ["cold_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% d'Augmentation des Dégâts de froid subis",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de Réduction des Dégâts de froid subis",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "energy_shield_recharge_rate": {
       "stats": ["energy_shield_recharge_rate_+%"],
       "translations": [
@@ -439,6 +502,79 @@
           "matchers": [["#", -1]],
           "text":
             "Vous et les Alliés à proximité avez %1%%% de Réduction du Taux de recharge du Bouclier d'énergie",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "fire_damage_taken": {
+      "stats": ["fire_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% d'Augmentation des Dégâts de feu subis",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de Réduction des Dégâts de feu subis",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hits_ignore_cold_res": {
+      "stats": ["hits_ignore_my_cold_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "La Résistance au froid des Ennemis à proximité est ignorée au Toucher",
+          "formatters": []
+        }
+      ]
+    },
+    "hits_ignore_fire_res": {
+      "stats": ["hits_ignore_my_fire_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "La Résistance au feu des Ennemis à proximité est ignorée au Toucher",
+          "formatters": []
+        }
+      ]
+    },
+    "hits_ignore_lightning_res": {
+      "stats": ["hits_ignore_my_lightning_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "La Résistance à la foudre des Ennemis à proximité est ignorée au Toucher",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_damage_taken": {
+      "stats": ["lightning_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% d'Augmentation des Dégâts de foudre subis",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de Réduction des Dégâts de foudre subis",
           "formatters": [
             {
               "id": "negate",

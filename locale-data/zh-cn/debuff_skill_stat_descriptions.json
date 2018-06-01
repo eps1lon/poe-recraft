@@ -33,6 +33,130 @@
           ]
         }
       ]
+    },
+    "ice_siphon_trap_max_targets": {
+      "stats": ["ice_siphon_trap_max_beam_targets"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "向最近的 %1% 个敌人发射光线",
+          "formatters": []
+        }
+      ]
+    },
+    "life_regen_with_at_least_one_enemy": {
+      "stats": [
+        "skill_life_regeneration_per_minute_with_at_least_1_affected_enemy"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "若有任何敌人受到影响，会使玩家获得 %1% 每秒生命回复",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mana_regen_with_at_least_one_enemy": {
+      "stats": [
+        "skill_mana_regeneration_per_minute_with_at_least_1_affected_enemy"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "若有任何敌人受到影响，会使玩家获得 %1% 每秒魔力回复",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "life_regen_per_enemy": {
+      "stats": ["skill_life_regeneration_per_minute_per_affected_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每个受到影响的敌人会使玩家获得 %1% 每秒生命回复",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mana_regen_per_enemy": {
+      "stats": ["skill_mana_regeneration_per_minute_per_affected_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每个受到影响的敌人会使玩家获得 %1% 每秒魔力回复",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_taken_incr_per_enemy": {
+      "stats": ["skill_damage_taken_+%_per_affected_enemy"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每个受到影响的敌人会使玩家承受的伤害提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "每个受到影响的敌人会使玩家承受的伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chaos_res": {
+      "stats": ["base_chaos_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "敌人获得 %1$+d%% 混沌抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "trap_and_mine_damage_taken": {
+      "stats": ["bear_trap_damage_taken_+%_from_traps_and_mines"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "敌人受到陷阱或地雷的击中伤害提高 %1%%% ",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "敌人受到陷阱或地雷的击中伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
     }
   }
 }

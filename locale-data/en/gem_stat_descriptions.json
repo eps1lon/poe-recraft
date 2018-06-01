@@ -572,12 +572,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Supported Skills throw an additional Trap",
+          "text": "Supported Skills throw up to 1 additional Trap",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text": "Supported Skills throw %1% additional Traps",
+          "text": "Supported Skills throw up to %1% additional Traps",
           "formatters": []
         }
       ]
@@ -1994,7 +1994,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Gain Arcane Surge when you Spend %1% Mana with Supported Skills",
+            "Gain Arcane Surge after Spending a total of %1% Mana with Supported Skills",
           "formatters": []
         }
       ]
@@ -3238,6 +3238,17 @@
         }
       ]
     },
+    "ignites_apply_fire_resistance_+": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Enemies Ignited by Supported Skills have %1$+d%% to Fire Resistance",
+          "formatters": []
+        }
+      ]
+    },
     "knockback_distance_+%": {
       "stats": ["knockback_distance_+%"],
       "translations": [
@@ -3328,12 +3339,22 @@
         {
           "matchers": [[1, 99]],
           "text": "Supported Attacks have %1%%% chance to Maim on Hit",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[100, "#"]],
           "text": "Supported Attacks always Maim on Hit",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -3746,6 +3767,40 @@
         }
       ]
     },
+    "%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy": {
+      "stats": ["%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Supported Skills have %1%%% chance to gain a Frenzy Charge when your Trap is triggered by an Enemy",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Supported Skills gain a Frenzy Charge when your Trap is triggered by an Enemy",
+          "formatters": []
+        }
+      ]
+    },
+    "%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy": {
+      "stats": ["%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Supported Skills have %1%%% chance to gain a Power Charge when your Trap is triggered by an Enemy",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Supported Skills gain a Power Charge when your Trap is triggered by an Enemy",
+          "formatters": []
+        }
+      ]
+    },
     "physical_damage_%_to_add_as_fire": {
       "stats": ["physical_damage_%_to_add_as_fire"],
       "translations": [
@@ -3835,7 +3890,8 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Supported Skills have %1%%% reduced Enemy chance to Dodge",
+          "text":
+            "Enemies have %1%%% reduced chance to Dodge Hits from Supported Skills",
           "formatters": []
         }
       ]
@@ -4036,6 +4092,26 @@
         }
       ]
     },
+    "support_hypothermia_cold_damage_over_time_+%_final": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Supported Skills deal %1%%% more Cold Damage Over Time",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Supported Skills deal %1%%% less Cold Damage Over Time",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_hypothermia_damage_+%_vs_chilled_enemies_final": {
       "stats": ["support_hypothermia_damage_+%_vs_chilled_enemies_final"],
       "translations": [
@@ -4109,10 +4185,10 @@
         }
       ]
     },
-    "support_minimum_added_fire_damage_vs_burning_enemies": {
+    "global_minimum_added_fire_damage_vs_burning_enemies": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
@@ -4299,6 +4375,28 @@
         {
           "matchers": [["#", -1]],
           "text": "Supported Skills deal %1%%% less Projectile Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_power_charge_on_crit_damage_+%_final_per_power_charge": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Supported Skills deal %1%%% more Damage per Power Charge",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Supported Skills deal %1%%% less Damage per Power Charge",
           "formatters": [
             {
               "id": "negate",
@@ -4557,6 +4655,17 @@
         }
       ]
     },
+    "trap_critical_strike_multiplier_+_per_power_charge": {
+      "stats": ["trap_critical_strike_multiplier_+_per_power_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Supported Skills have %1$+d%% to Critical Strike Multiplier per Power Charge when used by Traps",
+          "formatters": []
+        }
+      ]
+    },
     "trap_damage_+%": {
       "stats": ["trap_damage_+%"],
       "translations": [
@@ -4588,6 +4697,28 @@
         {
           "matchers": [["#", -1]],
           "text": "Supported Skills have %1%%% reduced Trap Throwing Speed",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "trap_throwing_speed_+%_per_frenzy_charge": {
+      "stats": ["trap_throwing_speed_+%_per_frenzy_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Supported Skills have %1%%% increased Trap Throwing Speed per Frenzy Charge",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Supported Skills have %1%%% reduced Trap Throwing Speed per Frenzy Charge",
           "formatters": [
             {
               "id": "negate",

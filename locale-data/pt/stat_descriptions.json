@@ -247,45 +247,6 @@
         }
       ]
     },
-    "local_implicit_stat_magnitude_+%": {
-      "stats": ["local_implicit_stat_magnitude_+%"],
-      "translations": [
-        {
-          "matchers": [100],
-          "text": "Magnitudes dos Modificadores Implícitos são dobradas",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextImplicitMod"
-            }
-          ]
-        },
-        {
-          "matchers": [[1, "#"]],
-          "text": "Magnitudes dos Modificadores Implícitos aumentadas em %1%%%",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextImplicitMod"
-            }
-          ]
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Magnitudes dos Modificadores Implícitos reduzidas em %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            },
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextImplicitMod"
-            }
-          ]
-        }
-      ]
-    },
     "local_has_no_sockets": {
       "stats": ["local_has_no_sockets"],
       "translations": [
@@ -848,19 +809,6 @@
           "matchers": ["#"],
           "text":
             "Gemas Encaixadas são Suportadas por Chance de Sangrar Nível %1%",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_socketed_gems_supported_by_level_x_chance_to_ignite": {
-      "stats": [
-        "local_display_socketed_gems_supported_by_level_x_chance_to_ignite"
-      ],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Gemas Encaixadas são Suportadas por Chance de Incendiar Nível %1%",
           "formatters": []
         }
       ]
@@ -2292,6 +2240,33 @@
         }
       ]
     },
+    "local_display_socketed_attacks_additional_critical_strike_chance": {
+      "stats": [
+        "local_display_socketed_attacks_additional_critical_strike_chance"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ataques Encaixados têm %1$+d%% de Chance de Crítico",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "local_display_socketed_attacks_critical_strike_multiplier_+": {
+      "stats": ["local_display_socketed_attacks_critical_strike_multiplier_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ataques Encaixados têm %1$+d%% de Multiplicador de Crítico",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_socketed_gems_attack_and_cast_speed_+%_final": {
       "stats": ["local_display_socketed_gems_attack_and_cast_speed_+%_final"],
       "translations": [
@@ -2357,6 +2332,43 @@
           "matchers": ["#"],
           "text":
             "Gemas Encaixadas ganham %1%%% de Dano Físico como Dano Extra de Raio",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_socketed_movement_skills_have_no_mana_cost": {
+      "stats": ["local_display_socketed_movement_skills_have_no_mana_cost"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Habilidades de Movimento Encaixadas não têm Custo de Mana",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_socketed_spells_additional_critical_strike_chance": {
+      "stats": [
+        "local_display_socketed_spells_additional_critical_strike_chance"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Magias Encaixadas têm %1$+d%% de Chance de Crítico",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "local_display_socketed_spells_critical_strike_multiplier_+": {
+      "stats": ["local_display_socketed_spells_critical_strike_multiplier_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Magias Encaixadas têm %1$+d%% de Multiplicador de Crítico",
           "formatters": []
         }
       ]
@@ -3555,22 +3567,6 @@
         {
           "matchers": ["#"],
           "text": "Dissipa Ardencia",
-          "formatters": []
-        }
-      ]
-    },
-    "local_number_of_bloodworms_to_spawn_on_flask_use": {
-      "stats": ["local_number_of_bloodworms_to_spawn_on_flask_use"],
-      "translations": [
-        {
-          "matchers": [1],
-          "text": "Um Verme Retorcido Inimigo escapa do Frasco quando usado",
-          "formatters": []
-        },
-        {
-          "matchers": [[2, "#"]],
-          "text":
-            "%1% Vermes Retorcidos Inimigos escapam do Frasco quando usado",
           "formatters": []
         }
       ]
@@ -7054,26 +7050,6 @@
         }
       ]
     },
-    "accuracy_rating_+%": {
-      "stats": ["accuracy_rating_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Precisão aumentada em %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Precisão reduzida em %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "accuracy_rating_while_dual_wielding_+%": {
       "stats": ["accuracy_rating_while_dual_wielding_+%"],
       "translations": [
@@ -9627,26 +9603,6 @@
         }
       ]
     },
-    "curse_effect_on_self_+%": {
-      "stats": ["curse_effect_on_self_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Efeitos de Maldições em Você aumentados em %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Efeitos de Maldições em Você reduzidos em %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "temporal_chains_effeciveness_+%": {
       "stats": ["temporal_chains_effeciveness_+%"],
       "translations": [
@@ -11383,26 +11339,6 @@
         }
       ]
     },
-    "self_curse_duration_+%": {
-      "stats": ["self_curse_duration_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Duração das Maldições em você aumentada em %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Duração das Maldições em você reduzida em %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "taunt_duration_+%": {
       "stats": ["taunt_duration_+%"],
       "translations": [
@@ -13048,16 +12984,6 @@
         {
           "matchers": [[1, "#"]],
           "text": "Chance de Inimigos Bloquearem reduzida em %1%%%",
-          "formatters": []
-        }
-      ]
-    },
-    "reduce_enemy_dodge_%": {
-      "stats": ["reduce_enemy_dodge_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Chance de Inimigos Esquivarem reduzida em %1%%%",
           "formatters": []
         }
       ]
@@ -14950,6 +14876,36 @@
         {
           "matchers": [[1, "#"]],
           "text": "Duração aumentada em %1%%% para cada 10 de Força",
+          "formatters": []
+        }
+      ]
+    },
+    "X_accuracy_per_2_intelligence": {
+      "stats": ["X_accuracy_per_2_intelligence"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d de Precisão a cada 2 de Inteligência",
+          "formatters": []
+        }
+      ]
+    },
+    "X_life_per_4_dexterity": {
+      "stats": ["X_life_per_4_dexterity"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d de Vida a cada 4 de Destreza",
+          "formatters": []
+        }
+      ]
+    },
+    "X_mana_per_4_strength": {
+      "stats": ["X_mana_per_4_strength"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d de Mana a cada 4 de Força",
           "formatters": []
         }
       ]
@@ -16901,26 +16857,6 @@
         }
       ]
     },
-    "base_chance_to_dodge_%": {
-      "stats": ["base_chance_to_dodge_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% de chance de se Esquivar de Ataques",
-          "formatters": []
-        }
-      ]
-    },
-    "base_chance_to_dodge_spells_%": {
-      "stats": ["base_chance_to_dodge_spells_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% de chance de se Esquivar de Dano Mágico",
-          "formatters": []
-        }
-      ]
-    },
     "no_physical_damage_reduction_rating": {
       "stats": ["no_physical_damage_reduction_rating"],
       "translations": [
@@ -16978,6 +16914,46 @@
           "matchers": [[1, "#"]],
           "text": "Você pode receber %1$+d Maldioções adicionais",
           "formatters": []
+        }
+      ]
+    },
+    "curse_effect_on_self_+%": {
+      "stats": ["curse_effect_on_self_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Efeitos de Maldições em Você aumentados em %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Efeitos de Maldições em Você reduzidos em %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "self_curse_duration_+%": {
+      "stats": ["self_curse_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Duração das Maldições em você aumentada em %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Duração das Maldições em você reduzida em %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -17538,31 +17514,6 @@
               "arg": 1
             }
           ]
-        }
-      ]
-    },
-    "acrobatics_additional_chance_to_dodge_%": {
-      "stats": ["acrobatics_additional_chance_to_dodge_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% de chance adicional de Esquivar de Ataques",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1$+d%% de chance de Esquivar de Ataques",
-          "formatters": []
-        }
-      ]
-    },
-    "phase_acrobatics_additional_chance_to_dodge_spells_%": {
-      "stats": ["phase_acrobatics_additional_chance_to_dodge_spells_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% de chance adicional de se Esquivar de Dano Mágico ",
-          "formatters": []
         }
       ]
     },
@@ -20445,17 +20396,6 @@
         }
       ]
     },
-    "chance_to_dodge_attacks_%_while_phasing": {
-      "stats": ["chance_to_dodge_attacks_%_while_phasing"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chance de Esquivar de Ataques enquanto Trespassando",
-          "formatters": []
-        }
-      ]
-    },
     "item_found_rarity_+%_while_phasing": {
       "stats": ["item_found_rarity_+%_while_phasing"],
       "translations": [
@@ -20892,17 +20832,6 @@
               "arg": 1
             }
           ]
-        }
-      ]
-    },
-    "chance_to_dodge_%_per_frenzy_charge": {
-      "stats": ["chance_to_dodge_%_per_frenzy_charge"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chance de se Esquivar de Ataques por Carga de Frenesi",
-          "formatters": []
         }
       ]
     },
@@ -24497,16 +24426,6 @@
         }
       ]
     },
-    "local_unique_flask_cannot_recover_life_while_healing": {
-      "stats": ["local_unique_flask_cannot_recover_life_while_healing"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Não Aplica Regeneração de Vida durante o efeito do Frasco",
-          "formatters": []
-        }
-      ]
-    },
     "local_unique_flask_recover_%_maximum_life_when_effect_reaches_duration": {
       "stats": [
         "local_unique_flask_recover_%_maximum_life_when_effect_reaches_duration"
@@ -27251,50 +27170,6 @@
         }
       ]
     },
-    "curse_on_block_level_X_vulnerability": {
-      "stats": ["curse_on_block_level_X_vulnerability"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Amaldiçoa Inimigos com Vulnerabilidade nível %1% ao Bloquear",
-          "formatters": []
-        }
-      ]
-    },
-    "curse_on_melee_block_level_X_punishment": {
-      "stats": ["curse_on_melee_block_level_X_punishment"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Aplica Punição nível %1% ao Bloquear um Ataque Corpo a Corpo, ignorando o Limite de Maldições",
-          "formatters": []
-        }
-      ]
-    },
-    "curse_on_projectile_block_level_X_temporal_chains": {
-      "stats": ["curse_on_projectile_block_level_X_temporal_chains"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Aplica Grilhões Temporais nível %1% ao Bloquear um Ataque de Projétil, ignorando o Limite de Maldições",
-          "formatters": []
-        }
-      ]
-    },
-    "curse_on_spell_block_level_X_elemental_weakness": {
-      "stats": ["curse_on_spell_block_level_X_elemental_weakness"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Aplica Fraqueza Elemental nível %1% ao Bloquear uma Magia, ignorando o Limite de Maldições",
-          "formatters": []
-        }
-      ]
-    },
     "display_map_has_oxygen": {
       "stats": ["display_map_has_oxygen"],
       "translations": [
@@ -28496,17 +28371,6 @@
         {
           "matchers": [[2, "#"]],
           "text": "Totens atiram %1% Projéteis adicionais",
-          "formatters": []
-        }
-      ]
-    },
-    "chance_to_dodge_spells_%_while_es_full": {
-      "stats": ["chance_to_dodge_spells_%_while_es_full"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% de chance de Esquivar de Dano Mágico enquanto com Escudo de Energia Cheio",
           "formatters": []
         }
       ]
@@ -30778,22 +30642,6 @@
         }
       ]
     },
-    "enchantment_boots_spell_dodge_when_hit_by_spells_%": {
-      "stats": ["enchantment_boots_spell_dodge_when_hit_by_spells_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% de chance de Esquivar de Dano Mágico se você\\nsofreu Dano Mágico Recentemente",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
-        }
-      ]
-    },
     "enchantment_boots_attack_and_cast_speed_+%_for_4_seconds_on_kill": {
       "stats": [
         "enchantment_boots_attack_and_cast_speed_+%_for_4_seconds_on_kill"
@@ -30935,22 +30783,6 @@
           "matchers": [[1, "#"]],
           "text":
             "%1%%% de chance de Congelar, Eletrizar e Incendiar se você não causou um Crítico Recentemente",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
-        }
-      ]
-    },
-    "enchantment_boots_dodge_chance_when_critically_hit_%": {
-      "stats": ["enchantment_boots_dodge_chance_when_critically_hit_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% de Chance de Esquivar se você não sofreu um Golpe Crítico Recentemente",
           "formatters": [
             {
               "id": "reminderstring",
@@ -31160,30 +30992,6 @@
               "arg": 1
             }
           ]
-        }
-      ]
-    },
-    "local_unique_jewel_cold_snap_gain_power_charge_on_kill_%_with_50_int_in_radius": {
-      "stats": [
-        "local_unique_jewel_cold_snap_gain_power_charge_on_kill_%_with_50_int_in_radius"
-      ],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Com pelo menos 40 de Inteligência Alocada em alcance, Estalo Gelado\\ntem %1%%% de chance de conceder uma Carga de Poder ao Abater",
-          "formatters": []
-        }
-      ]
-    },
-    "cold_snap_gain_power_charge_on_kill_%": {
-      "stats": ["cold_snap_gain_power_charge_on_kill_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Estalo Gelado tem %1%%% de chance de conceder uma Carga do Poder ao Abater",
-          "formatters": []
         }
       ]
     },
@@ -31724,26 +31532,6 @@
         }
       ]
     },
-    "damage_taken_from_traps_and_mines_+%": {
-      "stats": ["damage_taken_from_traps_and_mines_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Dano Sofrido de Armadilhas e Minas aumentado em %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Dano Sofrido de Armadilhas e Minas reduzido em %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "maim_on_hit_%_vs_poisoned_enemies": {
       "stats": ["maim_on_hit_%_vs_poisoned_enemies"],
       "translations": [
@@ -31751,12 +31539,22 @@
           "matchers": [[1, 99]],
           "text":
             "%1%%% de chance de Ataques Mutilarem ao Acertar Inimigos Envenenados",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[99, 100]],
           "text": "Ataques sempre Mutilam ao Acertar Inimigos Envenenados",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -32228,12 +32026,22 @@
           "matchers": [[1, 99]],
           "text":
             "%1%%% de chance de Ataques Mutilarem ao Acertar Inimigos Sangrando",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[100, "#"]],
           "text": "Ataques Mutilam ao Acertar Inimigos Sangrando",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -32981,26 +32789,6 @@
           "matchers": [[100, "#"]],
           "text": "Flecha Ardente espalha Piche caso não Incendeie um Inimigo",
           "formatters": []
-        }
-      ]
-    },
-    "anger_aura_effect_+%": {
-      "stats": ["anger_aura_effect_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Efeito da Aura de Cólera aumentado em %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Efeito da Aura de Cólera reduzido em %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -34455,17 +34243,6 @@
         }
       ]
     },
-    "chance_to_dodge_spells_%_while_phased": {
-      "stats": ["chance_to_dodge_spells_%_while_phased"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chance de Esquivar de Dano Mágico enquanto Trespassando",
-          "formatters": []
-        }
-      ]
-    },
     "additional_critical_strike_chance_per_power_charge_permyriad": {
       "stats": ["additional_critical_strike_chance_per_power_charge_permyriad"],
       "translations": [
@@ -34608,26 +34385,6 @@
           "matchers": ["#"],
           "text": "Frascos recebem %1% Cargas a cada 3 segundos",
           "formatters": []
-        }
-      ]
-    },
-    "trap_skill_area_of_effect_+%": {
-      "stats": ["trap_skill_area_of_effect_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Área de Efeito de Armadilhas aumentada em %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Área de Efeito de Armadilhas reduzida em %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -39472,7 +39229,12 @@
         {
           "matchers": ["#"],
           "text": "Juramento do Zelote durante o efeito do Frasco",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKeystoneZealotsOath"
+            }
+          ]
         }
       ]
     },
@@ -40902,26 +40664,6 @@
         {
           "matchers": [["#", -1]],
           "text": "Área de Efeito de Totem de Onda de Choque reduzida em %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "charged_dash_area_of_effect_radius_+_of_final_explosion": {
-      "stats": ["charged_dash_area_of_effect_radius_+_of_final_explosion"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1$+d de Alcance da Área de Dano final do Avanço Fantasma",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1$+d de Alcance da Área de Dano final do Avanço Fantasma",
           "formatters": [
             {
               "id": "negate",
@@ -46329,40 +46071,6 @@
         }
       ]
     },
-    "spell_dodge_chance_+%_if_you_have_taken_attack_damage_recently": {
-      "stats": [
-        "spell_dodge_chance_+%_if_you_have_taken_attack_damage_recently"
-      ],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% de chance de Esquivar de Dano Mágico se você sofreu Dano de Ataque Recentemente",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
-        }
-      ]
-    },
-    "dodge_chance_+%_if_you_have_taken_spell_damage_recently": {
-      "stats": ["dodge_chance_+%_if_you_have_taken_spell_damage_recently"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% de chance de Esquivar se você sofreu Dano Mágico Recentemente",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
-        }
-      ]
-    },
     "quantity_of_items_dropped_by_maimed_enemies_+%": {
       "stats": ["quantity_of_items_dropped_by_maimed_enemies_+%"],
       "translations": [
@@ -47186,31 +46894,6 @@
         {
           "matchers": ["#"],
           "text": "Você é Imune a Sangramento",
-          "formatters": []
-        }
-      ]
-    },
-    "base_cannot_gain_bleeding": {
-      "stats": ["base_cannot_gain_bleeding"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Não pode ser infligido com Sangramento",
-          "formatters": []
-        }
-      ]
-    },
-    "base_avoid_bleed_%": {
-      "stats": ["base_avoid_bleed_%"],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text": "%1%%% de chance de Evitar Sangramento",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text": "Não pode ser infligido com Sangramento",
           "formatters": []
         }
       ]
@@ -48937,16 +48620,6 @@
         }
       ]
     },
-    "X_accuracy_per_2_intelligence": {
-      "stats": ["X_accuracy_per_2_intelligence"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "%1$+d de Precisão a cada 2 de Inteligência",
-          "formatters": []
-        }
-      ]
-    },
     "X_armour_if_you_have_blocked_recently": {
       "stats": ["X_armour_if_you_have_blocked_recently"],
       "translations": [
@@ -48968,26 +48641,6 @@
         {
           "matchers": ["#"],
           "text": "%1$+d de Armadura por Totem ativo",
-          "formatters": []
-        }
-      ]
-    },
-    "X_life_per_4_dexterity": {
-      "stats": ["X_life_per_4_dexterity"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "%1$+d de Vida a cada 4 de Destreza",
-          "formatters": []
-        }
-      ]
-    },
-    "X_mana_per_4_strength": {
-      "stats": ["X_mana_per_4_strength"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "%1$+d de Mana a cada 4 de Força",
           "formatters": []
         }
       ]
@@ -49304,7 +48957,7 @@
           "formatters": [
             {
               "id": "reminderstring",
-              "arg": "ReminderTextCoveredInAsh"
+              "arg": "ReminderTextCoveredInAshNoDuration"
             }
           ]
         }
@@ -51231,50 +50884,6 @@
         }
       ]
     },
-    "chance_to_dodge_%_at_max_charged_attack_stacks": {
-      "stats": ["chance_to_dodge_%_at_max_charged_attack_stacks"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chance de Esquivar de Ataques no estágio Máximo da Rajada de Lâminas",
-          "formatters": []
-        }
-      ]
-    },
-    "chance_to_dodge_attacks_%_while_affected_by_grace": {
-      "stats": ["chance_to_dodge_attacks_%_while_affected_by_grace"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chance de Esquivar de Ataques enquanto afetado por Graça",
-          "formatters": []
-        }
-      ]
-    },
-    "chance_to_dodge_attacks_%_while_off_hand_is_empty": {
-      "stats": ["chance_to_dodge_attacks_%_while_off_hand_is_empty"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% de chance de Esquivar de Ataques enquanto sua Mão Secundária estier vazia",
-          "formatters": []
-        }
-      ]
-    },
-    "chance_to_dodge_spells_%_while_affected_by_haste": {
-      "stats": ["chance_to_dodge_spells_%_while_affected_by_haste"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chance de Esquivar de Magias enquanto afetado por Ímpeto",
-          "formatters": []
-        }
-      ]
-    },
     "chance_to_evade_attacks_%": {
       "stats": ["chance_to_evade_attacks_%"],
       "translations": [
@@ -51562,24 +51171,6 @@
           "text":
             "Você e Aliados afetados por suas Auras têm %1$+d%% de Resistência a Caos",
           "formatters": []
-        }
-      ]
-    },
-    "charged_dash_chance_to_dodge_%_if_finished_channelling_recently": {
-      "stats": [
-        "charged_dash_chance_to_dodge_%_if_finished_channelling_recently"
-      ],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chance de Esquivar de Ataques se você terminou de Canalizar o Avanço Fantasma Recentemente",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
         }
       ]
     },
@@ -52601,60 +52192,6 @@
         }
       ]
     },
-    "dodge_attacks_and_spells_%_chance_if_have_been_hit_recently": {
-      "stats": ["dodge_attacks_and_spells_%_chance_if_have_been_hit_recently"],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text":
-            "%1%%% de chance de Esquivar de Ataques e Magias se você foi Acertado Recentemente",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text":
-            "Esquiva de Ataques e Magias se você foi Acertado Recentemente",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
-        }
-      ]
-    },
-    "dodge_attacks_chance_%_if_you_have_blocked_recently": {
-      "stats": ["dodge_attacks_chance_%_if_you_have_blocked_recently"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chance de Esquivar de Ataques se você Bloqueou Recentemente",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
-        }
-      ]
-    },
-    "dodge_chance_%_while_holding_shield": {
-      "stats": ["dodge_chance_%_while_holding_shield"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chance de Esquivar de Ataques enquanto segurar um Escudo",
-          "formatters": []
-        }
-      ]
-    },
     "dual_strike_main_hand_deals_double_damage_%": {
       "stats": ["dual_strike_main_hand_deals_double_damage_%"],
       "translations": [
@@ -53498,21 +53035,6 @@
               "arg": "ReminderTextPoison"
             }
           ]
-        }
-      ]
-    },
-    "fire_trap_number_of_additional_traps_to_throw": {
-      "stats": ["fire_trap_number_of_additional_traps_to_throw"],
-      "translations": [
-        {
-          "matchers": [1],
-          "text": "Armadilha de Fogo lança uma Armadilha adicional",
-          "formatters": []
-        },
-        {
-          "matchers": ["#"],
-          "text": "Armadilha de Fogo lança %1% Armadilhas adicionais",
-          "formatters": []
         }
       ]
     },
@@ -55465,70 +54987,6 @@
         }
       ]
     },
-    "local_display_socketed_attacks_additional_critical_strike_chance": {
-      "stats": [
-        "local_display_socketed_attacks_additional_critical_strike_chance"
-      ],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Ataques Encaixados têm %1$+d%% de Chance de Crítico",
-          "formatters": [
-            {
-              "id": "divide_by_one_hundred",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "local_display_socketed_attacks_critical_strike_multiplier_+": {
-      "stats": ["local_display_socketed_attacks_critical_strike_multiplier_+"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Ataques Encaixados têm %1$+d%% de Multiplicador de Crítico",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_socketed_movement_skills_have_no_mana_cost": {
-      "stats": ["local_display_socketed_movement_skills_have_no_mana_cost"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Habilidades de Movimento Encaixadas não têm Custo de Mana",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_socketed_spells_additional_critical_strike_chance": {
-      "stats": [
-        "local_display_socketed_spells_additional_critical_strike_chance"
-      ],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Magias Encaixadas têm %1$+d%% de Chance de Crítico",
-          "formatters": [
-            {
-              "id": "divide_by_one_hundred",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "local_display_socketed_spells_critical_strike_multiplier_+": {
-      "stats": ["local_display_socketed_spells_critical_strike_multiplier_+"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Magias Encaixadas têm %1$+d%% de Multiplicador de Crítico",
-          "formatters": []
-        }
-      ]
-    },
     "local_evasion_rating_and_energy_shield": {
       "stats": ["local_evasion_rating_and_energy_shield"],
       "translations": [
@@ -55940,25 +55398,6 @@
           "matchers": ["#"],
           "text":
             "Passivas fornecendo Resistência a Fogo ou todas Resistências Elementais em Alcance\\ntambém concedem uma chance igual de ganhar uma Carga de Tolerância ao Abater",
-          "formatters": []
-        }
-      ]
-    },
-    "local_unique_jewel_fire_trap_number_of_additional_traps_to_throw_with_40_dex_in_radius": {
-      "stats": [
-        "local_unique_jewel_fire_trap_number_of_additional_traps_to_throw_with_40_dex_in_radius"
-      ],
-      "translations": [
-        {
-          "matchers": [1],
-          "text":
-            "Com ao menos 40 de Destreza em Alcance, Armadilha de Fogo lança uma Armadilha adicional",
-          "formatters": []
-        },
-        {
-          "matchers": ["#"],
-          "text":
-            "Com ao menos 40 de Destreza em Alcance, Armadilha de Fogo lança %1% Armadilhas adicionais",
           "formatters": []
         }
       ]
@@ -56443,12 +55882,22 @@
         {
           "matchers": [[1, 99]],
           "text": "Ataques têm %1%%% de chance de Mutilar ao Acertar",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[100, "#"]],
           "text": "Ataques sempre Mutilam ao Acertar",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -57735,17 +57184,6 @@
         {
           "matchers": ["#"],
           "text": "Monstros de Cofres são Enfurecidos",
-          "formatters": []
-        }
-      ]
-    },
-    "map_player_dodge_chance_%_during_shrine_effect": {
-      "stats": ["map_player_dodge_chance_%_during_shrine_effect"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Jogadores ganham %1%%% de Chance de Esquiva enquanto sob Efeito de um Altar",
           "formatters": []
         }
       ]
@@ -59673,16 +59111,6 @@
           "matchers": ["#"],
           "text":
             "Duração dos Efeitos de Altares aumentada em %1%%% nos Jogadores",
-          "formatters": []
-        }
-      ]
-    },
-    "map_players_additional_spell_dodge_%": {
-      "stats": ["map_players_additional_spell_dodge_%"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Jogadores têm %1%%% de chance de Esquivar de Dano Mágico",
           "formatters": []
         }
       ]
@@ -62107,33 +61535,6 @@
         }
       ]
     },
-    "poison_duration_+%_per_poison_applied_recently": {
-      "stats": ["poison_duration_+%_per_poison_applied_recently"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% de aumento da Duração do Envenenamento por Envenenamento aplicado Recentemente",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "%1%%% de redução da Duração do Envenenamento por Envenenamento aplicado Recentemente",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
-        }
-      ]
-    },
     "poison_duration_+%_per_power_charge": {
       "stats": ["poison_duration_+%_per_power_charge"],
       "translations": [
@@ -62726,36 +62127,6 @@
             {
               "id": "negate",
               "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "shocked_effect_on_self_+%": {
-      "stats": ["shocked_effect_on_self_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Efeito de Eletrização em você aumentado em %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [[-99, -1]],
-          "text": "Efeito de Eletrização em você reduzido em %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        },
-        {
-          "matchers": [["#", -100]],
-          "text": "Não afetado por Eletrização",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextUnaffectedBy"
             }
           ]
         }
@@ -63902,16 +63273,6 @@
           "matchers": ["#"],
           "text":
             "Golpe de Impacto de Zumbis Evocados causam Dano aumentado em %1%%%",
-          "formatters": []
-        }
-      ]
-    },
-    "active_skill_base_radius_+": {
-      "stats": ["active_skill_base_radius_+"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "%1$+d de alcance",
           "formatters": []
         }
       ]

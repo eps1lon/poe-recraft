@@ -453,12 +453,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "輔助的投射物技能有 %1%%% 更多暴擊機率",
+          "text": "輔助的投射物技能有 %1%%% 更多暴擊率",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "輔助的投射物技能有 %1%%% 較少暴擊機率",
+          "text": "輔助的投射物技能有 %1%%% 較少暴擊率",
           "formatters": []
         }
       ]
@@ -559,12 +559,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "輔助的陷阱技能投擲 1 個額外陷阱",
+          "text": "被輔助的技能投擲至多 1 個額外陷阱",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text": "輔助的陷阱技能投擲 %1% 個額外陷阱",
+          "text": "被輔助的技能投擲至多 %1% 個額外陷阱",
           "formatters": []
         }
       ]
@@ -835,6 +835,26 @@
         {
           "matchers": ["#"],
           "text": "輔助的技能分裂",
+          "formatters": []
+        }
+      ]
+    },
+    "projectiles_return": {
+      "stats": ["projectiles_return", "projectiles_return_if_no_hit_object"],
+      "translations": [
+        {
+          "matchers": ["#", 0],
+          "text": "被輔助技能的投射物擊中目標後會返回你身邊",
+          "formatters": []
+        },
+        {
+          "matchers": [0, "#"],
+          "text": "被輔助技能的投射物在到達最遠距離時返回你身邊",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#"],
+          "text": "被輔助技能的投射物會返回你身邊",
           "formatters": []
         }
       ]
@@ -1923,7 +1943,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "被輔助的技能消耗 %1% 魔力時獲得秘能波動",
+          "text": "使用被輔助的技能消耗總 %1% 魔力後獲得秘能波動",
           "formatters": []
         }
       ]
@@ -2161,7 +2181,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "輔助的技能增加 %1$+d%% 暴擊機率",
+          "text": "輔助的技能增加 %1$+d%% 暴擊率",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -3132,6 +3152,16 @@
         }
       ]
     },
+    "ignites_apply_fire_resistance_+": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被輔助技能點燃的敵人 %1$+d%% 火焰抗性",
+          "formatters": []
+        }
+      ]
+    },
     "knockback_distance_+%": {
       "stats": ["knockback_distance_+%"],
       "translations": [
@@ -3221,12 +3251,22 @@
         {
           "matchers": [[1, 99]],
           "text": "被輔助的攻擊擊中時有 %1%%% 機率造成癱瘓",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[100, "#"]],
           "text": "被輔助的攻擊擊中時造成癱瘓",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -3629,6 +3669,38 @@
         }
       ]
     },
+    "%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy": {
+      "stats": ["%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "當你的陷阱被敵人觸發時，被輔助的技能有 %1%%% 機率獲得 1 顆狂怒球",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text": "當你的陷阱被敵人觸發時，被輔助的技能獲得 1 顆狂怒球",
+          "formatters": []
+        }
+      ]
+    },
+    "%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy": {
+      "stats": ["%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "當你的陷阱被敵人觸發時，被輔助的技能有 %1%%% 機率獲得 1 顆暴擊球",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text": "當你的陷阱被敵人觸發時，被輔助的技能獲得 1 顆暴擊球",
+          "formatters": []
+        }
+      ]
+    },
     "physical_damage_%_to_add_as_fire": {
       "stats": ["physical_damage_%_to_add_as_fire"],
       "translations": [
@@ -3714,7 +3786,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被輔助的技能減少 %1%%% 敵人躲避機率",
+          "text": "敵人對被輔助的技能減少 %1%%% 機率躲避擊中",
           "formatters": []
         }
       ]
@@ -3909,6 +3981,26 @@
         }
       ]
     },
+    "support_hypothermia_cold_damage_over_time_+%_final": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被輔助的技能造成 %1%%% 更多冰冷持續傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被輔助的技能造成 %1%%% 更少冰冷持續傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_hypothermia_damage_+%_vs_chilled_enemies_final": {
       "stats": ["support_hypothermia_damage_+%_vs_chilled_enemies_final"],
       "translations": [
@@ -3978,10 +4070,10 @@
         }
       ]
     },
-    "support_minimum_added_fire_damage_vs_burning_enemies": {
+    "global_minimum_added_fire_damage_vs_burning_enemies": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
@@ -4161,6 +4253,28 @@
         {
           "matchers": [["#", -1]],
           "text": "被輔助的技能造成 %1%%% 更少投射物傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_power_charge_on_crit_damage_+%_final_per_power_charge": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每顆暴擊球使被輔助的技能造成 %1%%% 更多傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "每顆暴擊球使被輔助的技能造成 %1%%% 更少傷害",
           "formatters": [
             {
               "id": "negate",
@@ -4415,6 +4529,16 @@
         }
       ]
     },
+    "trap_critical_strike_multiplier_+_per_power_charge": {
+      "stats": ["trap_critical_strike_multiplier_+_per_power_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "使用陷阱時每顆暴擊球使被輔助的技能 %1$+d%% 暴擊加成",
+          "formatters": []
+        }
+      ]
+    },
     "trap_damage_+%": {
       "stats": ["trap_damage_+%"],
       "translations": [
@@ -4446,6 +4570,26 @@
         {
           "matchers": [["#", -1]],
           "text": "被輔助的技能減少 %1%%% 陷阱投擲速度",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "trap_throwing_speed_+%_per_frenzy_charge": {
+      "stats": ["trap_throwing_speed_+%_per_frenzy_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每顆狂怒球使被輔助的技能增加 %1%%% 陷阱投擲速度",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "每顆狂怒球使被輔助的技能減少 %1%%% 陷阱投擲速度",
           "formatters": [
             {
               "id": "negate",

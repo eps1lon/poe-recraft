@@ -26,7 +26,7 @@
         {
           "matchers": ["#", "#"],
           "text":
-            "От %1% до %2% добавленного физического урона за каждые 15 брони или уклонения на щите",
+            "От %1% до %2% дополнительного физического урона за каждые 15 брони или уклонения на щите",
           "formatters": []
         }
       ]
@@ -1408,6 +1408,21 @@
         }
       ]
     },
+    "lightning_tower_trap_base_interval_duration_ms": {
+      "stats": ["lightning_tower_trap_base_interval_duration_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Наносит удары каждые %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "mana_leech_from_any_damage_permyriad": {
       "stats": ["mana_leech_from_any_damage_permyriad"],
       "translations": [
@@ -1628,7 +1643,7 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Бросает дополнительных ловушек: %1%",
+          "text": "Бросает 1 дополнительную ловушку",
           "formatters": []
         },
         {
@@ -1650,6 +1665,46 @@
           "matchers": [[1, "#"]],
           "text": "Может призвать оживлённых оружий за один раз: %1%",
           "formatters": []
+        }
+      ]
+    },
+    "orb_of_storms_base_bolt_frequency_ms": {
+      "stats": ["orb_of_storms_base_bolt_frequency_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Наносит удар каждую %1% секунду",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Наносит удар каждые %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "phys_cascade_trap_base_interval_duration_ms": {
+      "stats": ["phys_cascade_trap_base_interval_duration_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Выпускает волны каждые %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -1715,6 +1770,21 @@
         }
       ]
     },
+    "projectile_base_number_of_targets_to_pierce": {
+      "stats": ["projectile_base_number_of_targets_to_pierce"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Снаряды пронзают дополнительную цель",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Снаряды пронзают дополнительных целей: %1%",
+          "formatters": []
+        }
+      ]
+    },
     "projectile_damage_+%": {
       "stats": ["projectile_damage_+%"],
       "translations": [
@@ -1771,6 +1841,21 @@
         {
           "matchers": ["#", "#"],
           "text": "Снаряды возвращаются к вам",
+          "formatters": []
+        }
+      ]
+    },
+    "rain_of_arrows_additional_sequences": {
+      "stats": ["rain_of_arrows_additional_sequences"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Выпускает дополнительную очередь стрел",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Выпускает дополнительных очередей стрел: %1%",
           "formatters": []
         }
       ]
@@ -1987,6 +2072,31 @@
           "matchers": [[1, "#"]],
           "text": "Создает трупы %1% уровня",
           "formatters": []
+        }
+      ]
+    },
+    "vaal_storm_call_base_delay_ms": {
+      "stats": ["vaal_storm_call_base_delay_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Поражает врага каждую %1% секунду",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Поражает врага каждые %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
         }
       ]
     },

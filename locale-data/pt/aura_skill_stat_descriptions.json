@@ -336,26 +336,6 @@
         }
       ]
     },
-    "dodge_chance": {
-      "stats": ["base_chance_to_dodge_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% de Chance de Esquivar de Ataques",
-          "formatters": []
-        }
-      ]
-    },
-    "spell_dodge_chance": {
-      "stats": ["base_chance_to_dodge_spells_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% de Chance de Esquivar de Dano Mágico",
-          "formatters": []
-        }
-      ]
-    },
     "base_elemental_damage_heals": {
       "stats": ["base_elemental_damage_heals"],
       "translations": [
@@ -411,6 +391,26 @@
         }
       ]
     },
+    "cold_damage_taken": {
+      "stats": ["cold_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Dano de Gelo sofrido aumentado em %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Dano de Gelo sofrido reduzido em %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "energy_shield_recharge_rate": {
       "stats": ["energy_shield_recharge_rate_+%"],
       "translations": [
@@ -424,6 +424,46 @@
           "matchers": [["#", -1]],
           "text":
             "Você e Aliados próximos ganham %1%%% de Velocidade de Recarga de Escudo de Energia reduzida",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "fire_damage_taken": {
+      "stats": ["fire_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Dano de Fogo recebido aumentado em %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Dano de Fogo recebido reduzido em %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_damage_taken": {
+      "stats": ["lightning_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Dano de Raio sofrido aumentado em %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Dano de Raio sofrido reduzido em %1%%%",
           "formatters": [
             {
               "id": "negate",
