@@ -4,7 +4,7 @@
 [![devDependencies Status](https://david-dm.org/eps1lon/poe-mods/dev-status.svg)](https://david-dm.org/eps1lon/poe-mods?type=dev)
 [![Greenkeeper badge](https://badges.greenkeeper.io/eps1lon/poe-mods.svg)](https://greenkeeper.io/)
 
-Emulates interaction of Mods with Items, Atlas etc. in Path of Exile@`3.2.0`.
+Emulates interaction of Mods with Items, Atlas etc. in Path of Exile@`3.3.0`.
 
 # Install
 
