@@ -32966,7 +32966,7 @@
         {
           "matchers": [[99, 100]],
           "text":
-            "Атаки всегда накладывают увечья при нанесении удара по отравленным врагам",
+            "Атаки всегда накладывают увечье при нанесении удара по отравленным врагам",
           "formatters": [
             {
               "id": "reminderstring",
@@ -33487,7 +33487,7 @@
         {
           "matchers": [[100, "#"]],
           "text":
-            "Атаки всегда накладывают увечья при нанесении удара по истекающим кровью врагам",
+            "Атаки всегда накладывают увечье при нанесении удара по истекающим кровью врагам",
           "formatters": [
             {
               "id": "reminderstring",
@@ -42542,6 +42542,17 @@
         }
       ]
     },
+    "charged_dash_area_of_effect_radius_+_of_final_explosion": {
+      "stats": ["charged_dash_area_of_effect_radius_+_of_final_explosion"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1$+d к радиусу последней области действия каждой волны Заряженного рывка",
+          "formatters": []
+        }
+      ]
+    },
     "cleave_attack_speed_+%": {
       "stats": ["cleave_attack_speed_+%"],
       "translations": [
@@ -47525,7 +47536,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Атаки этим оружием накладывают увечья при нанесении удара",
+          "text": "Атаки этим оружием накладывают увечье при нанесении удара",
           "formatters": [
             {
               "id": "reminderstring",
@@ -53375,6 +53386,21 @@
         }
       ]
     },
+    "ball_lightning_number_of_additional_projectiles": {
+      "stats": ["ball_lightning_number_of_additional_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Шаровая молния выпускает дополнительный снаряд",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Шаровая молния выпускает дополнительных снарядов: %1%",
+          "formatters": []
+        }
+      ]
+    },
     "base_ailment_damage_+%": {
       "stats": ["base_ailment_damage_+%"],
       "translations": [
@@ -55350,6 +55376,17 @@
               "arg": "ReminderTextPoison"
             }
           ]
+        }
+      ]
+    },
+    "cold_snap_uses_and_gains_power_charges_instead_of_frenzy": {
+      "stats": ["cold_snap_uses_and_gains_power_charges_instead_of_frenzy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Укус стужи дарует заряды энергии вместо зарядов ярости при смерти врага в области действия этого умения\\nДля мгновенной перезарядки Укуса стужи можно использовать заряды энергии вместо зарядов ярости",
+          "formatters": []
         }
       ]
     },
@@ -59647,6 +59684,19 @@
         }
       ]
     },
+    "infernal_blow_infernal_blow_explosion_damage_%_of_total_per_stack": {
+      "stats": [
+        "infernal_blow_infernal_blow_explosion_damage_%_of_total_per_stack"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Отрицательный эффект Удара преисподней дополнительно наносит %1%%% урона за каждый заряд",
+          "formatters": []
+        }
+      ]
+    },
     "item_found_quantity_+%_per_chest_opened_recently": {
       "stats": ["item_found_quantity_+%_per_chest_opened_recently"],
       "translations": [
@@ -60774,7 +60824,7 @@
         {
           "matchers": ["#"],
           "text":
-            "С размещённым в гнезде самоцветом Пытливого глаза, на 4 секунды накладывает увечья на врагов при нанесении удара атаками",
+            "С размещённым в гнезде самоцветом Пытливого глаза, на 4 секунды накладывает увечье на врагов при нанесении удара атаками",
           "formatters": [
             {
               "id": "reminderstring",
@@ -61166,7 +61216,7 @@
         },
         {
           "matchers": [[100, "#"]],
-          "text": "Накладывает увечья при нанесении удара",
+          "text": "Накладывает увечье при нанесении удара",
           "formatters": [
             {
               "id": "reminderstring",
@@ -61350,6 +61400,52 @@
           "text":
             "Дарует проклятие Отчаяния %1% уровня во время действия эффекта флакона",
           "formatters": []
+        }
+      ]
+    },
+    "local_unique_flask_vaal_skill_damage_+%_during_flask_effect": {
+      "stats": ["local_unique_flask_vaal_skill_damage_+%_during_flask_effect"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Умения ваал наносят увеличенный на %1%%% урон во время действия эффекта",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Умения ваал наносят уменьшенный на %1%%% урон во время действия эффекта",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "local_unique_flask_vaal_skill_damage_+%_final_during_flask_effect": {
+      "stats": [
+        "local_unique_flask_vaal_skill_damage_+%_final_during_flask_effect"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Умения ваал наносят на %1%%% больше урона во время действия эффекта",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Умения ваал наносят на %1%%% меньше урона во время действия эффекта",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -62204,7 +62300,7 @@
         },
         {
           "matchers": [[100, "#"]],
-          "text": "Атаки всегда накладывают увечья при нанесении удара",
+          "text": "Атаки всегда накладывают увечье при нанесении удара",
           "formatters": [
             {
               "id": "reminderstring",

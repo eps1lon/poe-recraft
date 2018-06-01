@@ -20,6 +20,20 @@
         }
       ]
     },
+    "vrf_loss": {
+      "stats": [
+        "vaal_righteous_fire_life_and_es_%_to_lose_on_use",
+        "vaal_righteous_fire_life_and_es_%_as_damage_per_second"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Отнимает %1%%% от вашего здоровья и энергетического щита\\nНаносит %2%%% от отнятого здоровья и энергетического щита в виде урона от огня в секунду",
+          "formatters": []
+        }
+      ]
+    },
     "cast_speed_incr_skill_granted": {
       "stats": ["cast_speed_+%_granted_from_skill"],
       "translations": [
@@ -2530,6 +2544,46 @@
         }
       ]
     },
+    "righteous_fire_spell_damage_incr": {
+      "stats": ["righteous_fire_spell_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Дарует на %1%%% больше урона от чар",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Дарует на %1%%% меньше урона от чар",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "vaal_righteous_fire_spell_damage_incr": {
+      "stats": ["vaal_righteous_fire_spell_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Дарует на %1%%% больше урона от чар",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Дарует на %1%%% меньше урона от чар",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "spell_damage_incr": {
       "stats": ["spell_damage_+%"],
       "translations": [
@@ -3158,6 +3212,26 @@
         {
           "matchers": [["#", -1]],
           "text": "%1%%% уменьшение частоты ударов за каждый клинок",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "blade_vortex_damage_per_blade": {
+      "stats": ["blade_vortex_damage_+%_per_blade_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "На %1%%% больше урона за каждый клинок",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "На %1%%% меньше урона за каждый клинок",
           "formatters": [
             {
               "id": "negate",
@@ -3867,8 +3941,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "На %1%%% больше урона от ударов и состояний за каждую стадию",
+          "text": "На %1%%% больше урона от чар за каждую стадию",
           "formatters": [
             {
               "id": "reminderstring",
@@ -3878,8 +3951,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "На %1%%% меньше урона от ударов и состояний за каждую стадию",
+          "text": "На %1%%% меньше урона от чар за каждую стадию",
           "formatters": [
             {
               "id": "negate",
@@ -6086,6 +6158,63 @@
         }
       ]
     },
+    "cold_snap_frenzy_chance": {
+      "stats": [
+        "chance_to_gain_frenzy_charge_on_killing_enemy_affected_by_cold_snap_ground_%",
+        "vaal_cold_snap_gain_frenzy_charge_every_second_if_enemy_in_aura",
+        "active_skill_cooldown_bypass_type_override_to_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99], 0, 0],
+          "text":
+            "%1%%% шанс даровать заряд ярости при смерти врага в области действия этого умения",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, 99], "#", 0],
+          "text":
+            "%1%%% шанс даровать заряд ярости при смерти врага в области действия этого умения\\nКаждую секунду дарует заряд ярости, если в области действия этого умения находится враг",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"], 0, 0],
+          "text":
+            "Дарует заряд ярости при смерти врага в области действия этого умения",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"], "#", 0],
+          "text":
+            "Дарует заряд ярости при смерти врага в области действия этого умения\\nКаждую секунду дарует заряд ярости, если в области действия этого умения находится враг",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, 99], 0, "#"],
+          "text":
+            "%1%%% шанс даровать заряд энергии при смерти врага в области действия этого умения",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, 99], "#", "#"],
+          "text":
+            "%1%%% шанс даровать заряд энергии при смерти врага в области действия этого умения\\nКаждую секунду дарует заряд энергии, если в области действия этого умения находится враг",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"], 0, "#"],
+          "text":
+            "Дарует заряд энергии при смерти врага в области действия этого умения",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"], "#", "#"],
+          "text":
+            "Дарует заряд энергии при смерти врага в области действия этого умения\\nКаждую секунду дарует заряд энергии, если в области действия этого умения находится вра",
+          "formatters": []
+        }
+      ]
+    },
     "power_charge_vs_rare_or_unique": {
       "stats": ["chance_to_gain_power_charge_on_rare_or_unique_enemy_hit_%"],
       "translations": [
@@ -6180,6 +6309,43 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "charged_dash_damage_when_stopped_moving": {
+      "stats": ["charged_dash_channelling_damage_at_full_stacks_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Наносит на %1%%% больше урона при поддержании, если иллюзия завершила передвижение",
+          "formatters": []
+        }
+      ]
+    },
+    "charged_dash_final_wave_damage_per_stage": {
+      "stats": ["charged_dash_damage_+%_final_per_stack"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Финальная волна наносит %1%%% урона за каждую стадию",
+          "formatters": []
+        }
+      ]
+    },
+    "charged_dash_built_in_move_speed": {
+      "stats": ["charged_dash_skill_inherent_movement_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Скорость иллюзии составляет %1%%% от вашей скорости передвижения",
+          "formatters": [
+            {
+              "id": "multiplicative_damage_modifier",
+              "arg": 1
             }
           ]
         }
@@ -6566,7 +6732,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Накладывает увечья при нанесении удара",
+          "text": "Накладывает увечье при нанесении удара",
           "formatters": [
             {
               "id": "reminderstring",
@@ -6643,6 +6809,16 @@
           "matchers": ["#"],
           "text":
             "Враги, подожжённые этим умением, имеют %1$+d%% к сопротивлению огню",
+          "formatters": []
+        }
+      ]
+    },
+    "infernal_blow_damage": {
+      "stats": ["infernal_blow_explosion_damage_%_of_total_per_stack"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Отрицательный эффект наносит %1%%% от урона за каждый заряд",
           "formatters": []
         }
       ]
@@ -6759,7 +6935,7 @@
         },
         {
           "matchers": [[100, "#"]],
-          "text": "Накладывает увечья при нанесении удара",
+          "text": "Накладывает увечье при нанесении удара",
           "formatters": [
             {
               "id": "reminderstring",
@@ -7584,6 +7760,16 @@
         }
       ]
     },
+    "vaal_earthquake_max_aftershocks": {
+      "stats": ["vaal_earthquake_maximum_aftershocks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Может создать %1% ударных волн(-ы)",
+          "formatters": []
+        }
+      ]
+    },
     "vaal_flameblast_radius": {
       "stats": ["vaal_flameblast_radius_+_per_stage"],
       "translations": [
@@ -7591,6 +7777,31 @@
           "matchers": ["#"],
           "text": "%1$+d к радиусу за каждую стадию",
           "formatters": []
+        }
+      ]
+    },
+    "vaal_storm_call_delay": {
+      "stats": ["vaal_storm_call_delay_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Поражает врага каждую %1% секунду",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Поражает врага каждые %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
         }
       ]
     },

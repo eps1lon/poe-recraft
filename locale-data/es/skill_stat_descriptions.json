@@ -20,6 +20,20 @@
         }
       ]
     },
+    "vrf_loss": {
+      "stats": [
+        "vaal_righteous_fire_life_and_es_%_to_lose_on_use",
+        "vaal_righteous_fire_life_and_es_%_as_damage_per_second"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Sacrifica %1%%% de tu Vida y Escudo de Energía\\nInflige %2%%% de la Vida y el Escudo de Energía sacrificado como Daño de Fuego por segundo",
+          "formatters": []
+        }
+      ]
+    },
     "cast_speed_incr_skill_granted": {
       "stats": ["cast_speed_+%_granted_from_skill"],
       "translations": [
@@ -2554,6 +2568,46 @@
           "formatters": [
             {
               "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "righteous_fire_spell_damage_incr": {
+      "stats": ["righteous_fire_spell_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Otorga %1%%% más Daño de Hechizos",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Otorga %1%%% menos Daño de Hechizos",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "vaal_righteous_fire_spell_damage_incr": {
+      "stats": ["vaal_righteous_fire_spell_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Otorga %1%%% más Daño de Hechizos",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Otorga %1%%% menos Daño de Hechizos",
+          "formatters": [
+            {
+              "id": "negate",
               "arg": 1
             }
           ]
@@ -5191,12 +5245,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Réplica inflige %1%%% más Daño",
+          "text": "Cada réplica inflige %1%%% más Daño",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Réplica inflige %1%%% menos Daño",
+          "text": "Cada réplica inflige %1%%% menos Daño",
           "formatters": [
             {
               "id": "negate",
@@ -5301,12 +5355,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% más Daño por cada Salva",
+          "text": "%1%%% más Daño por cada Aluvión",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% menos Daño por cada Salva",
+          "text": "%1%%% menos Daño por cada Aluvión",
           "formatters": [
             {
               "id": "negate",
@@ -6212,6 +6266,42 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "charged_dash_damage_when_stopped_moving": {
+      "stats": ["charged_dash_channelling_damage_at_full_stacks_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Inflige %1%%% más Daño mientras canalizas si el Espejismo ha terminado de moverse",
+          "formatters": []
+        }
+      ]
+    },
+    "charged_dash_final_wave_damage_per_stage": {
+      "stats": ["charged_dash_damage_+%_final_per_stack"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "La oleada final inflige %1%%% de Daño por fase",
+          "formatters": []
+        }
+      ]
+    },
+    "charged_dash_built_in_move_speed": {
+      "stats": ["charged_dash_skill_inherent_movement_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "La ilusión se mueve al %1%%% de tu Velocidad de Movimiento",
+          "formatters": [
+            {
+              "id": "multiplicative_damage_modifier",
+              "arg": 1
             }
           ]
         }
@@ -7626,6 +7716,31 @@
           "matchers": ["#"],
           "text": "%1$+d al Radio por cada Fase",
           "formatters": []
+        }
+      ]
+    },
+    "vaal_storm_call_delay": {
+      "stats": ["vaal_storm_call_delay_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Golpea a un Enemigo cada %1% segundo",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Golpea a un Enemigo cada %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
         }
       ]
     },

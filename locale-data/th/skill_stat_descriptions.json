@@ -20,6 +20,20 @@
         }
       ]
     },
+    "vrf_loss": {
+      "stats": [
+        "vaal_righteous_fire_life_and_es_%_to_lose_on_use",
+        "vaal_righteous_fire_life_and_es_%_as_damage_per_second"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "สละ %1%%% ของพลังชีวิตและเกราะพลังงาน\\nและใช้ %2%%% ของพลังชีวิตและเกราะพลังงานที่สละไปเป็นค่าโจมตีธาตุไฟต่อวินาที",
+          "formatters": []
+        }
+      ]
+    },
     "cast_speed_incr_skill_granted": {
       "stats": ["cast_speed_+%_granted_from_skill"],
       "translations": [
@@ -2488,6 +2502,46 @@
           "formatters": [
             {
               "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "righteous_fire_spell_damage_incr": {
+      "stats": ["righteous_fire_spell_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มค่าโจมตีคาถาให้อีก %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดค่าโจมตีคาถาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "vaal_righteous_fire_spell_damage_incr": {
+      "stats": ["vaal_righteous_fire_spell_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มค่าโจมตีคาถาให้อีก %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดค่าโจมตีคาถาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
               "arg": 1
             }
           ]
@@ -6057,6 +6111,42 @@
         }
       ]
     },
+    "charged_dash_damage_when_stopped_moving": {
+      "stats": ["charged_dash_channelling_damage_at_full_stacks_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "โจมตีขณะแชนเนลแรงขึ้น %1%%% หากเงาจำแลงเดินเสร็จ",
+          "formatters": []
+        }
+      ]
+    },
+    "charged_dash_final_wave_damage_per_stage": {
+      "stats": ["charged_dash_damage_+%_final_per_stack"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คลื่นสุดท้ายจะแรงเท่ากับ %1%%% ของความเสียหายต่อระดับ",
+          "formatters": []
+        }
+      ]
+    },
+    "charged_dash_built_in_move_speed": {
+      "stats": ["charged_dash_skill_inherent_movement_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "เงาจำแลงเคลื่อนไหวเร็วเท่ากับ %1%%% ของความเร็วเคลื่อนที่ของผู้เล่น",
+          "formatters": [
+            {
+              "id": "multiplicative_damage_modifier",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "chilled_ground_magnitude_override": {
       "stats": ["chilled_ground_base_magnitude_override"],
       "translations": [
@@ -7446,6 +7536,31 @@
           "matchers": ["#"],
           "text": "เพิ่ม %1$+d ให้รัศมีในแต่ละระดับ",
           "formatters": []
+        }
+      ]
+    },
+    "vaal_storm_call_delay": {
+      "stats": ["vaal_storm_call_delay_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "โจมตีศัตรูทุกๆ %1% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "โจมตีศัตรูทุกๆ %1% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
         }
       ]
     },

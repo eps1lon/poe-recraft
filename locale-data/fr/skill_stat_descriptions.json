@@ -20,6 +20,20 @@
         }
       ]
     },
+    "vrf_loss": {
+      "stats": [
+        "vaal_righteous_fire_life_and_es_%_to_lose_on_use",
+        "vaal_righteous_fire_life_and_es_%_as_damage_per_second"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Sacrifie %1%%% de votre Vie et Bouclier d'énergie\\nInflige %2%%% du total de Vie et de Bouclier d'énergie sacrifiés sous forme de Dégâts de feu par seconde",
+          "formatters": []
+        }
+      ]
+    },
     "cast_speed_incr_skill_granted": {
       "stats": ["cast_speed_+%_granted_from_skill"],
       "translations": [
@@ -215,6 +229,19 @@
           "matchers": ["#", "#"],
           "text":
             "Inflige %1% à %2% Dégâts de froid de base par Charge de frénésie",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_added_fire": {
+      "stats": [
+        "attack_minimum_added_fire_damage",
+        "attack_maximum_added_fire_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Ajoute %1% à %2% Dégâts de feu aux Attaques",
           "formatters": []
         }
       ]
@@ -430,6 +457,93 @@
           "matchers": ["#"],
           "text":
             "Transfère %1%%% des Dégâts subis pour chaque Ennemi à proximité de la cible",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_projectiles": {
+      "stats": [
+        "total_number_of_projectiles_to_fire",
+        "total_number_of_arrows_to_fire",
+        "power_siphon_fire_at_all_targets",
+        "base_number_of_projectiles_in_spiral_nova",
+        "projectile_spiral_nova_angle",
+        "rain_of_arrows_sequences_to_fire"
+      ],
+      "translations": [
+        {
+          "matchers": [1, 0, 0, 0, "#", 0],
+          "text": "Tire %1% Projectile",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"], 0, 0, 0, "#", 0],
+          "text": "Tire %1% Projectiles",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", 1, 0, 0, "#", 0],
+          "text": "Tire %2% Flèche",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", [2, "#"], 0, 0, "#", 0],
+          "text": "Tire %2% Flèches",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", [2, "#"], 0, 0, "#", 1],
+          "text": "Tire 1 salve de %2% Flèches",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", [2, "#"], 0, 0, "#", [2, "#"]],
+          "text": "Tire %6% salve de %2% Flèches",
+          "formatters": []
+        },
+        {
+          "matchers": [1, 0, 0, [1, "#"], 0, 0],
+          "text": "Tire %1% Projectile dans une direction aléatoire",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"], 0, 0, [1, "#"], 0, 0],
+          "text": "Tire %1% Projectiles dans des directions aléatoires",
+          "formatters": []
+        },
+        {
+          "matchers": [1, 0, 0, [1, "#"], "#", 0],
+          "text": "Tire %1% Projectile",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"], 0, 0, [1, "#"], "#", 0],
+          "text": "Tire %1% Projectiles en spirale",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", 1, 0, [1, "#"], 0, 0],
+          "text": "Tire %2% Flèche dans une direction aléatoire",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", [2, "#"], 0, [1, "#"], 0, 0],
+          "text": "Tire %2% Flèches dans des directions aléatoires",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", 1, 0, [1, "#"], "#", 0],
+          "text": "Tire %2% Flèche",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", [2, "#"], 0, [1, "#"], "#", 0],
+          "text": "Tire %2% Flèches en spirale",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", "#", "#", "#", 0],
+          "text": "Tire Projectiles sur tous les Ennemis à proximité",
           "formatters": []
         }
       ]
@@ -2469,6 +2583,46 @@
         }
       ]
     },
+    "righteous_fire_spell_damage_incr": {
+      "stats": ["righteous_fire_spell_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Octroie %1%%% Davantage de Dégâts de Sorts",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Octroie %1%%% de Perte de Dégâts de Sorts",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "vaal_righteous_fire_spell_damage_incr": {
+      "stats": ["vaal_righteous_fire_spell_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Octroie %1%%% Davantage de Dégâts de Sorts",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Octroie %1%%% de Perte de Dégâts de Sorts",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "spell_damage_incr": {
       "stats": ["spell_damage_+%"],
       "translations": [
@@ -3126,6 +3280,26 @@
           "matchers": [["#", -1]],
           "text":
             "%1%%% de Réduction de la Fréquence de Touche pour chaque lame",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "blade_vortex_damage_per_blade": {
+      "stats": ["blade_vortex_damage_+%_per_blade_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% Davantage de Dégâts pour chaque lame",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de Perte de Dégâts pour chaque lame",
           "formatters": [
             {
               "id": "negate",
@@ -4338,6 +4512,17 @@
         {
           "matchers": ["#", "#"],
           "text": "Ajoute %1% à %2% Dégâts de foudre aux Sorts",
+          "formatters": []
+        }
+      ]
+    },
+    "elemental_hit_damage_turnoff": {
+      "stats": ["elemental_hit_no_physical_chaos_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Inflige uniquement des Dégâts de l'élément choisi\\nN'inflige pas de Dégâts des autres types de Dégâts",
           "formatters": []
         }
       ]
@@ -5756,14 +5941,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% Davantage de Dégâts par nombre de fois que le rayon a Ricoché",
+          "text": "%1%%% Davantage de Dégâts par Ricochet effectué",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% de Perte de Dégâts par nombre de fois que le rayon a Ricoché",
+          "text": "%1%%% de Perte de Dégâts par Ricochet effectué",
           "formatters": []
         }
       ]
@@ -5778,6 +5961,28 @@
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "area_of_effect_incr_when_cast_on_frostbolt": {
+      "stats": ["area_of_effect_+%_when_cast_on_frostbolt"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% d'Augmentation de Zone d'effet lorsque le sort est Lancé sur Sphère de givre",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% de Réduction de Zone d'effet lorsque le sort est Lancé sur Sphère de givre",
+          "formatters": [
+            {
+              "id": "negate",
               "arg": 1
             }
           ]
@@ -6035,6 +6240,80 @@
         }
       ]
     },
+    "cold_snap_frenzy_chance": {
+      "stats": [
+        "chance_to_gain_frenzy_charge_on_killing_enemy_affected_by_cold_snap_ground_%",
+        "vaal_cold_snap_gain_frenzy_charge_every_second_if_enemy_in_aura",
+        "active_skill_cooldown_bypass_type_override_to_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99], 0, 0],
+          "text":
+            "%1%%% de chances de gagner une Charge de frénésie lorsqu'un Ennemi meurt pendant qu'il est dans la Zone d'effet de cette Aptitude",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, 99], "#", 0],
+          "text":
+            "%1%%% de chances de gagner une Charge de frénésie lorsqu'un Ennemi meurt pendant qu'il est dans la Zone d'effet de cette Aptitude\\nChaque seconde, vous gagnez une Charge de frénésie si un Ennemi est dans la Zone d'effet de cette Aptitude",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"], 0, 0],
+          "text":
+            "Vous gagnez une Charge de frénésie lorsqu'un Ennemi meurt pendant qu'il est dans la Zone d'effet de cette Aptitude",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"], "#", 0],
+          "text":
+            "Vous gagnez une Charge de frénésie lorsqu'un Ennemi meurt pendant qu'il est dans la Zone d'effet de cette Aptitude\\nChaque seconde, vous gagnez une Charge de frénésie si un Ennemi est dans la Zone d'effet de cette Aptitude",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, 99], 0, "#"],
+          "text":
+            "%1%%% de chances de gagner une Charge de pouvoir lorsqu'un Ennemi meurt pendant qu'il est dans la Zone d'effet de cette Aptitude",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, 99], "#", "#"],
+          "text":
+            "%1%%% de chances de gagner une Charge de pouvoir lorsqu'un Ennemi meurt pendant qu'il est dans la Zone d'effet de cette Aptitude\\nChaque seconde, vous gagnez une Charge de pouvoir si un Ennemi est dans la Zone d'effet de cette Aptitude",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"], 0, "#"],
+          "text":
+            "Vous gagnez une Charge de pouvoir lorsqu'un Ennemi meurt pendant qu'il est dans la Zone d'effet de cette Aptitude",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"], "#", "#"],
+          "text":
+            "Vous gagnez une Charge de pouvoir lorsqu'un Ennemi meurt pendant qu'il est dans la Zone d'effet de cette Aptitude\\nChaque seconde, vous gagnez une Charge de pouvoir si un Ennemi est dans la Zone d'effet de cette Aptitude",
+          "formatters": []
+        }
+      ]
+    },
+    "power_charge_vs_rare_or_unique": {
+      "stats": ["chance_to_gain_power_charge_on_rare_or_unique_enemy_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chances de gagner une Charge de pouvoir lorsque le Projectile Touche un Ennemi Rare ou Unique",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Vous gagnez une Charge de pouvoir lorsque le Projectile Touche un Ennemi Rare ou Unique",
+          "formatters": []
+        }
+      ]
+    },
     "ghost_chance": {
       "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
       "translations": [
@@ -6112,6 +6391,43 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "charged_dash_damage_when_stopped_moving": {
+      "stats": ["charged_dash_channelling_damage_at_full_stacks_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Inflige %1%%% Davantage de Dégâts pendant la Canalisation si le Mirage a fini son déplacement",
+          "formatters": []
+        }
+      ]
+    },
+    "charged_dash_final_wave_damage_per_stage": {
+      "stats": ["charged_dash_damage_+%_final_per_stack"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "La vague finale inflige %1%%% des Dégâts par palier",
+          "formatters": []
+        }
+      ]
+    },
+    "charged_dash_built_in_move_speed": {
+      "stats": ["charged_dash_skill_inherent_movement_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "L'Illusion se déplace à %1%%% de votre Vitesse de déplacement",
+          "formatters": [
+            {
+              "id": "multiplicative_damage_modifier",
+              "arg": 1
             }
           ]
         }
@@ -6197,13 +6513,24 @@
         }
       ]
     },
+    "crit_multi_per_power_charge": {
+      "stats": ["critical_strike_multiplier_+_per_power_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1$+d%% au Multiplicateur de coup critique par Charge de pouvoir",
+          "formatters": []
+        }
+      ]
+    },
     "damage_per_chain": {
       "stats": ["damage_+%_per_chain"],
       "translations": [
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% d'Augmentation de Dégâts par nombre de fois que cette Aptitude a Ricoché",
+            "%1%%% d'Augmentation de Dégâts par Ricochet que cette Aptitude a effectué",
           "formatters": []
         }
       ]
@@ -6266,6 +6593,30 @@
           "matchers": ["#"],
           "text":
             "Les Monstres de la Brèche n'octroient pas d'Expérience et ne cèdent pas d'Objets",
+          "formatters": []
+        }
+      ]
+    },
+    "elemental_hit_aoe_vs_associated_element": {
+      "stats": [
+        "elemental_hit_area_of_effect_+100%_final_vs_enemy_with_associated_ailment"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "80%% Davantage de Rayon de Zone d'effet contre les Ennemis affectés par une Altération de l'élément choisi",
+          "formatters": []
+        }
+      ]
+    },
+    "elemental_hit_damage_per_ailment": {
+      "stats": ["elemental_hit_damage_+10%_final_per_enemy_elemental_ailment"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "10%% Davantage de Dégâts par Altération élémentaire affectant l'Ennemi",
           "formatters": []
         }
       ]
@@ -6462,6 +6813,21 @@
         }
       ]
     },
+    "always_maim": {
+      "stats": ["global_maim_on_hit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Mutile au Toucher",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
+        }
+      ]
+    },
     "added_phys_vs_bleeding": {
       "stats": [
         "global_minimum_added_physical_damage_vs_bleeding_enemies",
@@ -6532,6 +6898,16 @@
           "matchers": ["#"],
           "text":
             "Les Ennemis Embrasés par cette Aptitude ont %1$+d%% de Résistance au feu",
+          "formatters": []
+        }
+      ]
+    },
+    "infernal_blow_damage": {
+      "stats": ["infernal_blow_explosion_damage_%_of_total_per_stack"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "L'Effet néfaste inflige %1%%% de Dégâts par cumul",
           "formatters": []
         }
       ]
@@ -6608,6 +6984,26 @@
             {
               "id": "milliseconds_to_seconds",
               "arg": 2
+            }
+          ]
+        }
+      ]
+    },
+    "maim_effect": {
+      "stats": ["maim_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% d'Augmentation de l'Effet de la Mutilation",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de Réduction de l'Effet de la Mutilation",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
             }
           ]
         }
@@ -6862,6 +7258,17 @@
           "matchers": ["#"],
           "text":
             "Octroie une Réduction supplémentaire des Dégâts physiques de %1%%% par Barrière du Crabe",
+          "formatters": []
+        }
+      ]
+    },
+    "rain_of_arrows_additional_chance": {
+      "stats": ["rain_of_arrows_additional_sequence_chance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% de chances de tirer une salve de flèches supplémentaire",
           "formatters": []
         }
       ]
@@ -7449,6 +7856,51 @@
           "matchers": ["#"],
           "text": "Génère 10 lames",
           "formatters": []
+        }
+      ]
+    },
+    "vaal_earthquake_max_aftershocks": {
+      "stats": ["vaal_earthquake_maximum_aftershocks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "L'effet qui dure prend fin après %1% Répliques",
+          "formatters": []
+        }
+      ]
+    },
+    "vaal_flameblast_radius": {
+      "stats": ["vaal_flameblast_radius_+_per_stage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d au Rayon par palier",
+          "formatters": []
+        }
+      ]
+    },
+    "vaal_storm_call_delay": {
+      "stats": ["vaal_storm_call_delay_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Foudroie un Ennemi toutes les %1% seconde",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Foudroie un Ennemi toutes les %1% secondes",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
         }
       ]
     },

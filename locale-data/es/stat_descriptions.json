@@ -35897,7 +35897,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Réplica inflige %1%%% más Daño",
+          "text": "Cada réplica inflige %1%%% más Daño",
           "formatters": []
         }
       ]
@@ -42988,6 +42988,17 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "charged_dash_area_of_effect_radius_+_of_final_explosion": {
+      "stats": ["charged_dash_area_of_effect_radius_+_of_final_explosion"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Embestida Cargada tiene %1$+d al Radio del Área de Daño final de cada oleada",
+          "formatters": []
         }
       ]
     },
@@ -53957,6 +53968,21 @@
         }
       ]
     },
+    "ball_lightning_number_of_additional_projectiles": {
+      "stats": ["ball_lightning_number_of_additional_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Bola de Rayos dispara un Proyectil adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Bola de Rayos dispara %1% Proyectiles adicionales",
+          "formatters": []
+        }
+      ]
+    },
     "base_ailment_damage_+%": {
       "stats": ["base_ailment_damage_+%"],
       "translations": [
@@ -54231,12 +54257,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Caída de Filos tiene una Salva adicional",
+          "text": "Caída de Filos tiene un Aluvión adicional",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
-          "text": "Caída de Filos tiene %1% Salvas adicionales",
+          "text": "Caída de Filos tiene %1% Aluviones adicionales",
           "formatters": []
         }
       ]
@@ -55943,6 +55969,17 @@
               "arg": "ReminderTextPoison"
             }
           ]
+        }
+      ]
+    },
+    "cold_snap_uses_and_gains_power_charges_instead_of_frenzy": {
+      "stats": ["cold_snap_uses_and_gains_power_charges_instead_of_frenzy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Ruptura de Hielo otorga Cargas de Poder en lugar de Cargas de Frenesí cuando algún Enemigo muere dentro de su Área\\nEl Tiempo de Recarga de Ruptura de Hielo se puede ignorar con Cargas de Poder en lugar de Cargas de Frenesí",
+          "formatters": []
         }
       ]
     },
@@ -61991,6 +62028,52 @@
           "text":
             "Otorga el Aura de Maldición de Desesperación Nivel %1% durante el Efecto del Frasco",
           "formatters": []
+        }
+      ]
+    },
+    "local_unique_flask_vaal_skill_damage_+%_during_flask_effect": {
+      "stats": ["local_unique_flask_vaal_skill_damage_+%_during_flask_effect"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Las Habilidades Vaal infligen Daño aumentado un %1%%% durante el efecto",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Las Habilidades Vaal infligen Daño reducido un %1%%% durante el efecto",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "local_unique_flask_vaal_skill_damage_+%_final_during_flask_effect": {
+      "stats": [
+        "local_unique_flask_vaal_skill_damage_+%_final_during_flask_effect"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Las Habilidades Vaal infligen %1%%% más Daño durante el efecto",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Las Habilidades Vaal infligen %1%%% menos Daño durante el efecto",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },

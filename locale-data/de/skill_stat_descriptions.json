@@ -20,6 +20,20 @@
         }
       ]
     },
+    "vrf_loss": {
+      "stats": [
+        "vaal_righteous_fire_life_and_es_%_to_lose_on_use",
+        "vaal_righteous_fire_life_and_es_%_as_damage_per_second"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Opfert %1%%% Eures Lebens und Energieschilds\\nVerursacht %2%%% des geopferten Lebens und Energieschilds als Feuerschaden pro Sekunde",
+          "formatters": []
+        }
+      ]
+    },
     "cast_speed_incr_skill_granted": {
       "stats": ["cast_speed_+%_granted_from_skill"],
       "translations": [
@@ -2532,6 +2546,46 @@
         }
       ]
     },
+    "righteous_fire_spell_damage_incr": {
+      "stats": ["righteous_fire_spell_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Gewährt %1%%% mehr Zauerschaden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Gewährt %1%%% weniger Zauerschaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "vaal_righteous_fire_spell_damage_incr": {
+      "stats": ["vaal_righteous_fire_spell_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Gewährt %1%%% mehr Zauerschaden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Gewährt %1%%% weniger Zauerschaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "spell_damage_incr": {
       "stats": ["spell_damage_+%"],
       "translations": [
@@ -3180,6 +3234,26 @@
         {
           "matchers": [["#", -1]],
           "text": "%1%%% verringerte Trefferrate für jede Klinge",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "blade_vortex_damage_per_blade": {
+      "stats": ["blade_vortex_damage_+%_per_blade_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% mehr Schaden für jede Klinge",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% weniger Schaden für jede Klinge",
           "formatters": [
             {
               "id": "negate",
@@ -6078,6 +6152,63 @@
         }
       ]
     },
+    "cold_snap_frenzy_chance": {
+      "stats": [
+        "chance_to_gain_frenzy_charge_on_killing_enemy_affected_by_cold_snap_ground_%",
+        "vaal_cold_snap_gain_frenzy_charge_every_second_if_enemy_in_aura",
+        "active_skill_cooldown_bypass_type_override_to_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99], 0, 0],
+          "text":
+            "%1%%% Chance auf eine Raserei-Ladung, wenn ein Gegner im Bereich dieser Fertigkeit stirbt",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, 99], "#", 0],
+          "text":
+            "Gewährt eine Raserei-Ladung, wenn ein Gegner im Bereich dieser Fertigkeit stirbt\\nErhaltet jede Sekunde eine Raserei-Ladung, wenn ein Gegner im Bereich dieser Fertigkeit stirbt",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"], 0, 0],
+          "text":
+            "%1%%% Chance auf eine Energie-Ladung, wenn ein Gegner im Bereich dieser Fertigkeit stirbt",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"], "#", 0],
+          "text":
+            "Gewährt eine Energie-Ladung, wenn ein Gegner im Bereich dieser Fertigkeit stirbt\\nErhaltet jede Sekunde eine Raserei-Ladung, wenn ein Gegner im Bereich dieser Fertigkeit stirbt",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, 99], 0, "#"],
+          "text":
+            "%1%%% Chance auf eine Energie-Ladung, wenn ein Gegner im Bereich dieser Fertigkeit stirbt",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, 99], "#", "#"],
+          "text":
+            "Gewährt eine Energie-Ladung, wenn ein Gegner im Bereich dieser Fertigkeit stirbt\\nErhaltet jede Sekunde eine Energie-Ladung, wenn ein Gegner im Bereich dieser Fertigkeit stirbt",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"], 0, "#"],
+          "text":
+            "%1%%% Chance auf eine Energie-Ladung, wenn ein Gegner im Bereich dieser Fertigkeit stirbt",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"], "#", "#"],
+          "text":
+            "Gewährt eine Energie-Ladung, wenn ein Gegner stirbt, wenn ein Gegner im Bereich dieser Fertigkeit stirbt\\nErhaltet jede Sekunde eine Energie-Ladung, wenn ein Gegner im Bereich dieser Fertigkeit stirbt",
+          "formatters": []
+        }
+      ]
+    },
     "power_charge_vs_rare_or_unique": {
       "stats": ["chance_to_gain_power_charge_on_rare_or_unique_enemy_hit_%"],
       "translations": [
@@ -6174,6 +6305,38 @@
               "arg": "ReminderTextDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "charged_dash_damage_when_stopped_moving": {
+      "stats": ["charged_dash_channelling_damage_at_full_stacks_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Verursacht %1%%% mehr Schaden während des Kanalisierens, sobald die Illusion sich nicht mehr fortbewegt",
+          "formatters": []
+        }
+      ]
+    },
+    "charged_dash_final_wave_damage_per_stage": {
+      "stats": ["charged_dash_damage_+%_final_per_stack"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Letzte Welle verursacht %1%%% des Schadens pro Phase",
+          "formatters": []
+        }
+      ]
+    },
+    "charged_dash_built_in_move_speed": {
+      "stats": ["charged_dash_skill_inherent_movement_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Illusion bewegt sich mit %1%%% Eurer Bewegungsgeschwindigkeit",
+          "formatters": []
         }
       ]
     },
@@ -6635,6 +6798,16 @@
           "matchers": ["#"],
           "text":
             "Durch diese Fertigkeit entzündete Gegner haben %1$+d%% zu Feuerwiderstand",
+          "formatters": []
+        }
+      ]
+    },
+    "infernal_blow_damage": {
+      "stats": ["infernal_blow_explosion_damage_%_of_total_per_stack"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Schwächung verursacht %1%%% des Schadens pro Ladung",
           "formatters": []
         }
       ]
@@ -7583,6 +7756,16 @@
         }
       ]
     },
+    "vaal_earthquake_max_aftershocks": {
+      "stats": ["vaal_earthquake_maximum_aftershocks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Anhaltende Wirkung endet nach %1% Nachbeben",
+          "formatters": []
+        }
+      ]
+    },
     "vaal_flameblast_radius": {
       "stats": ["vaal_flameblast_radius_+_per_stage"],
       "translations": [
@@ -7590,6 +7773,31 @@
           "matchers": ["#"],
           "text": "%1$+d zum Radius für jede Phase",
           "formatters": []
+        }
+      ]
+    },
+    "vaal_storm_call_delay": {
+      "stats": ["vaal_storm_call_delay_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Trifft einen Gegner jede %1% Sekunde",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Trifft einen Gegner alle %1% Sekunden",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
         }
       ]
     },

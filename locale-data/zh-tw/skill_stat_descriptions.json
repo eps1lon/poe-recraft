@@ -3165,6 +3165,26 @@
         }
       ]
     },
+    "blade_vortex_damage_per_blade": {
+      "stats": ["blade_vortex_damage_+%_per_blade_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每把飛刃有 %1%%% 更多傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "每把飛刃有 %1%%% 更少傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "blade_vortex_ailment_damage_per_blade": {
       "stats": ["blade_vortex_ailment_damage_+%_per_blade_final"],
       "translations": [
@@ -5988,6 +6008,59 @@
         }
       ]
     },
+    "cold_snap_frenzy_chance": {
+      "stats": [
+        "chance_to_gain_frenzy_charge_on_killing_enemy_affected_by_cold_snap_ground_%",
+        "vaal_cold_snap_gain_frenzy_charge_every_second_if_enemy_in_aura",
+        "active_skill_cooldown_bypass_type_override_to_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99], 0, 0],
+          "text": "當敵人死於此技能的光環時，有 %1%%% 機率獲得 1 顆狂怒球",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, 99], "#", 0],
+          "text":
+            "當敵人死於此技能的光環時，有 %1%%% 機率獲得 1 顆狂怒球\\n若敵人在此技能光環內，每秒獲得 1 顆狂怒球",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"], 0, 0],
+          "text": "當敵人死於此技能的光環時，獲得 1 顆狂怒球",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"], "#", 0],
+          "text":
+            "當敵人死於此技能的光環時，獲得 1 顆狂怒球\\n若敵人在此技能光環內，每秒獲得 1 顆狂怒球",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, 99], 0, "#"],
+          "text": "當敵人死於此技能的光環時，有 %1%%% 機率獲得 1 顆暴擊球",
+          "formatters": []
+        },
+        {
+          "matchers": [[1, 99], "#", "#"],
+          "text":
+            "當敵人死於此技能的光環時，有 %1%%% 機率獲得 1 顆暴擊球\\n若敵人在此技能光環內，每秒獲得 1 顆暴擊球",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"], 0, "#"],
+          "text": "當敵人死於此技能的光環時，獲得 1 顆暴擊球",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"], "#", "#"],
+          "text":
+            "當敵人死於此技能的光環時，獲得 1 顆暴擊球\\n若敵人在此技能光環內，每秒獲得 1 顆暴擊球",
+          "formatters": []
+        }
+      ]
+    },
     "power_charge_vs_rare_or_unique": {
       "stats": ["chance_to_gain_power_charge_on_rare_or_unique_enemy_hit_%"],
       "translations": [
@@ -6553,6 +6626,16 @@
         {
           "matchers": ["#"],
           "text": "被此技能點燃的敵人 %1$+d%% 火焰抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "infernal_blow_damage": {
+      "stats": ["infernal_blow_explosion_damage_%_of_total_per_stack"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "減益效果每個充能造成 %1%%% 的傷害",
           "formatters": []
         }
       ]
@@ -7463,6 +7546,16 @@
         {
           "matchers": ["#"],
           "text": "有 10 把飛刃",
+          "formatters": []
+        }
+      ]
+    },
+    "vaal_earthquake_max_aftershocks": {
+      "stats": ["vaal_earthquake_maximum_aftershocks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "持續效果在 %1% 次餘震後結束",
           "formatters": []
         }
       ]
