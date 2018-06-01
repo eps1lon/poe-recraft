@@ -602,12 +602,13 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Las Habilidades Asistidas lanzan una Trampa adicional",
+          "text": "Las Habilidades Asistidas lanzan hasta 1 Trampa adicional",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text": "Las Habilidades Asistidas lanzan %1% Trampas adicionales",
+          "text":
+            "Las Habilidades Asistidas lanzan hasta %1% Trampas adicionales",
           "formatters": []
         }
       ]
@@ -907,6 +908,28 @@
         {
           "matchers": ["#"],
           "text": "Las Habilidades Asistidas se Bifurcan",
+          "formatters": []
+        }
+      ]
+    },
+    "projectiles_return": {
+      "stats": ["projectiles_return", "projectiles_return_if_no_hit_object"],
+      "translations": [
+        {
+          "matchers": ["#", 0],
+          "text":
+            "Los Proyectiles de las Habilidades Asistidas Regresan a ti después de golpear a sus objetivos",
+          "formatters": []
+        },
+        {
+          "matchers": [0, "#"],
+          "text":
+            "Los Proyectiles de las Habilidades Asistidas Regresan a ti al final de su trayectoria",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#"],
+          "text": "Los Proyectiles de las Habilidades Asistidas Regresan a ti",
           "formatters": []
         }
       ]
@@ -2063,7 +2086,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Gana Sobrecarga Arcana cuando gastas %1% de Maná con Habilidades Asistidas",
+            "Ganas Sobrecarga Arcana después de gastar un total de %1% Maná con Habilidades Asistidas",
           "formatters": []
         }
       ]
@@ -3356,6 +3379,17 @@
         }
       ]
     },
+    "ignites_apply_fire_resistance_+": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los Enemigos Quemados por las Habilidades Asistidas tienen %1$+d%% a la Resistencia al Fuego",
+          "formatters": []
+        }
+      ]
+    },
     "knockback_distance_+%": {
       "stats": ["knockback_distance_+%"],
       "translations": [
@@ -3453,12 +3487,22 @@
           "matchers": [[1, 99]],
           "text":
             "Los Ataques Asistidos tienen %1%%% de probabilidad de Lisiar con cada Golpe",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[100, "#"]],
           "text": "Los Ataques Asistidos siempre Lisian con cada Golpe",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -3891,6 +3935,40 @@
         }
       ]
     },
+    "%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy": {
+      "stats": ["%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Las Habilidades Asistidas tienen %1%%% de probabilidad de ganar una Carga de Frenesí cuando tu Trampa es activada por un Enemigo",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Las Habilidades Asistidas ganan una Carga de Frenesí cuando tu Trampa es activada por un Enemigo",
+          "formatters": []
+        }
+      ]
+    },
+    "%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy": {
+      "stats": ["%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Las Habilidades Asistidas tienen %1%%% de probabilidad de ganar una Carga de Poder cuando tu Trampa es activada por un Enemigo",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Las Habilidades Asistidas ganan una Carga de Poder cuando tu Trampa es activada por un Enemigo",
+          "formatters": []
+        }
+      ]
+    },
     "physical_damage_%_to_add_as_fire": {
       "stats": ["physical_damage_%_to_add_as_fire"],
       "translations": [
@@ -3985,7 +4063,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Las Habilidades Asistidas tienen %1%%% de probabilidad reducida de Esquivar del Enemigo",
+            "Los Enemigos tienen probabilidad de Esquivar Golpes de las Habilidades Asistidas reducida un %1%%%",
           "formatters": []
         }
       ]
@@ -4193,6 +4271,28 @@
         }
       ]
     },
+    "support_hypothermia_cold_damage_over_time_+%_final": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Las Habilidades Asistidas infligen %1%%% más Daño de Hielo Degenerativo",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Las Habilidades Asistidas infligen %1%%% menos Daño de Hielo Degenerativo",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_hypothermia_damage_+%_vs_chilled_enemies_final": {
       "stats": ["support_hypothermia_damage_+%_vs_chilled_enemies_final"],
       "translations": [
@@ -4267,10 +4367,10 @@
         }
       ]
     },
-    "support_minimum_added_fire_damage_vs_burning_enemies": {
+    "global_minimum_added_fire_damage_vs_burning_enemies": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
@@ -4467,6 +4567,30 @@
           "matchers": [["#", -1]],
           "text":
             "Las Habilidades Asistidas infligen %1%%% menos Daño de Proyectiles",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_power_charge_on_crit_damage_+%_final_per_power_charge": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Las Habilidades Asistidas infligen %1%%% más Daño por cada Carga de Poder",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Las Habilidades Asistidas infligen %1%%% menos Daño por cada Carga de Poder",
           "formatters": [
             {
               "id": "negate",
@@ -4737,6 +4861,17 @@
         }
       ]
     },
+    "trap_critical_strike_multiplier_+_per_power_charge": {
+      "stats": ["trap_critical_strike_multiplier_+_per_power_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Las Habilidades Asistidas tienen %1$+d%% al Multiplicador de Golpe Crítico por cada Carga de Poder cuando son usadas por Trampas",
+          "formatters": []
+        }
+      ]
+    },
     "trap_damage_+%": {
       "stats": ["trap_damage_+%"],
       "translations": [
@@ -4772,6 +4907,28 @@
           "matchers": [["#", -1]],
           "text":
             "Las Habilidades Asistidas tienen Velocidad de Lanzamiento de Trampas reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "trap_throwing_speed_+%_per_frenzy_charge": {
+      "stats": ["trap_throwing_speed_+%_per_frenzy_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Las Habilidades Asistidas tienen Velocidad de Lanzamiento de Trampas aumentada un %1%%% por cada Carga de Frenesí",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Las Habilidades Asistidas tienen Velocidad de Lanzamiento de Trampas reducida un %1%%% por cada Carga de Frenesí",
           "formatters": [
             {
               "id": "negate",

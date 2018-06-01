@@ -215,41 +215,41 @@
         }
       ]
     },
-    "elemental_hit_fire_damage": {
+    "attack_added_fire": {
       "stats": [
-        "attack_minimum_base_fire_damage_for_elemental_hit",
-        "attack_maximum_base_fire_damage_for_elemental_hit"
+        "attack_minimum_added_fire_damage",
+        "attack_maximum_added_fire_damage"
       ],
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "สามารถสร้างพื้นฐานความเสียหายไฟ %1% ถึง %2%",
+          "text": "เพิ่มค่าโจมตีธาตุไฟ %1% ถึง %2% แต้มให้การโจมตี",
           "formatters": []
         }
       ]
     },
-    "elemental_hit_cold_damage": {
+    "attack_added_cold": {
       "stats": [
-        "attack_minimum_base_cold_damage_for_elemental_hit",
-        "attack_maximum_base_cold_damage_for_elemental_hit"
+        "attack_minimum_added_cold_damage",
+        "attack_maximum_added_cold_damage"
       ],
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "สามารถสร้างพื้นฐานความเสียหายน้ำแข็ง %1% ถึง %2%",
+          "text": "เพิ่มความเสียหายน้ำแข็งเมื่อโจมตี %1% ถึง %2%",
           "formatters": []
         }
       ]
     },
-    "elemental_hit_lightning_damage": {
+    "attack_added_lightning": {
       "stats": [
-        "attack_minimum_base_lightning_damage_for_elemental_hit",
-        "attack_maximum_base_lightning_damage_for_elemental_hit"
+        "attack_minimum_added_lightning_damage",
+        "attack_maximum_added_lightning_damage"
       ],
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "สามารถสร้างพื้นฐานความเสียหายสายฟ้า %1% ถึง %2%",
+          "text": "เพิ่มความเสียหายสายฟ้าเมื่อโจมตี %1% ถึง %2%",
           "formatters": []
         }
       ]
@@ -299,6 +299,16 @@
         }
       ]
     },
+    "light_raidus_is_area": {
+      "stats": ["light_radius_increases_apply_to_area_of_effect"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ค่าเพิ่มหรือลดแสงสว่างจะมีผลกับ AOE ของสกิลนี้ด้วย",
+          "formatters": []
+        }
+      ]
+    },
     "mine": {
       "stats": ["is_remote_mine", "number_of_mines_to_place"],
       "translations": [
@@ -319,12 +329,12 @@
       "translations": [
         {
           "matchers": [[1, "#"], 1],
-          "text": "โยนกับดักที่ใช้ด้วยสกิลนี้ิเมื่อกับดักทำงาน",
+          "text": "วางกับดัก 1 อันที่จะใช้สกิลนี้หากทำงาน",
           "formatters": []
         },
         {
           "matchers": [[1, "#"], [2, "#"]],
-          "text": "โยน %2% กับดักที่ใช้ด้วยสกิลนี้ิเมื่อกับดักทำงาน",
+          "text": "วางกับดัก %1% อันที่จะใช้สกิลนี้หากทำงาน",
           "formatters": []
         }
       ]
@@ -425,72 +435,83 @@
         "total_number_of_arrows_to_fire",
         "power_siphon_fire_at_all_targets",
         "base_number_of_projectiles_in_spiral_nova",
-        "projectile_spiral_nova_angle"
+        "projectile_spiral_nova_angle",
+        "rain_of_arrows_sequences_to_fire"
       ],
       "translations": [
         {
-          "matchers": [1, 0, 0, 0, "#"],
-          "text": "ไฟ %1% Projectile",
+          "matchers": [1, 0, 0, 0, "#", 0],
+          "text": "ยิงอาวุธปล่อย %1% ลูก",
           "formatters": []
         },
         {
-          "matchers": [[2, "#"], 0, 0, 0, "#"],
-          "text": "ไฟ %1% Projectiles",
+          "matchers": [[2, "#"], 0, 0, 0, "#", 0],
+          "text": "ยิงอาวุธปล่อย %1% ลูก",
           "formatters": []
         },
         {
-          "matchers": ["#", 1, 0, 0, "#"],
-          "text": "ไฟ %2% Arrow",
+          "matchers": ["#", 1, 0, 0, "#", 0],
+          "text": "ยิงธนู %2% ดอก",
           "formatters": []
         },
         {
-          "matchers": ["#", [2, "#"], 0, 0, "#"],
-          "text": "ไฟ %2% Arrows",
+          "matchers": ["#", [2, "#"], 0, 0, "#", 0],
+          "text": "ยิงธนู %2% ดอก",
           "formatters": []
         },
         {
-          "matchers": [1, 0, 0, [1, "#"], 0],
-          "text": "ไฟ %1% Projectile สุ่มทิศทางออกไป",
+          "matchers": ["#", [2, "#"], 0, 0, "#", 1],
+          "text": "ยิงธนู 1 ชุดๆ ละ %2% ดอก",
           "formatters": []
         },
         {
-          "matchers": [[2, "#"], 0, 0, [1, "#"], 0],
-          "text": "ไฟ %1% Projectiles สุ่มทิศทางออกไป",
+          "matchers": ["#", [2, "#"], 0, 0, "#", [2, "#"]],
+          "text": "ยิงธนู %6% ชุดๆ ละ %2% ดอก",
           "formatters": []
         },
         {
-          "matchers": [1, 0, 0, [1, "#"], "#"],
-          "text": "ไฟ %1% Projectile",
+          "matchers": [1, 0, 0, [1, "#"], 0, 0],
+          "text": "ยิงอาวุธปล่อย %1% ลูกแบบสุ่มทิศทาง",
           "formatters": []
         },
         {
-          "matchers": [[2, "#"], 0, 0, [1, "#"], "#"],
-          "text": "ไฟ %1% Projectiles วนออกไป",
+          "matchers": [[2, "#"], 0, 0, [1, "#"], 0, 0],
+          "text": "ยิงอาวุธปล่อย %1% ลูกแบบสุ่มทิศทาง",
           "formatters": []
         },
         {
-          "matchers": ["#", 1, 0, [1, "#"], 0],
-          "text": "ไฟ %2% Arrow สุ่มทิศทางออกไป",
+          "matchers": [1, 0, 0, [1, "#"], "#", 0],
+          "text": "ยิงอาวุธปล่อย %1% ลูก",
           "formatters": []
         },
         {
-          "matchers": ["#", [2, "#"], 0, [1, "#"], 0],
-          "text": "ไฟ %2% Arrows สุ่มทิศทางออกไป",
+          "matchers": [[2, "#"], 0, 0, [1, "#"], "#", 0],
+          "text": "ยิงอาวุธปล่อย %1% ลูกเป็นเกลียว",
           "formatters": []
         },
         {
-          "matchers": ["#", 1, 0, [1, "#"], "#"],
-          "text": "ไฟ %2% Arrow",
+          "matchers": ["#", 1, 0, [1, "#"], 0, 0],
+          "text": "ยิงธนู %2% ดอกแบบสุ่มทิศทาง",
           "formatters": []
         },
         {
-          "matchers": ["#", [2, "#"], 0, [1, "#"], "#"],
-          "text": "ไฟ %2% Arrows วนออกไป",
+          "matchers": ["#", [2, "#"], 0, [1, "#"], 0, 0],
+          "text": "ยิงธนู %2% ดอกแบบสุ่มทิศทาง",
           "formatters": []
         },
         {
-          "matchers": ["#", "#", "#", "#", "#"],
-          "text": "ทุกไฟ Projectile ที่อยู่ใกล้ศัตรู",
+          "matchers": ["#", 1, 0, [1, "#"], "#", 0],
+          "text": "ยิงธนู %2% ดอก",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", [2, "#"], 0, [1, "#"], "#", 0],
+          "text": "ยิงธนู %2% ดอกเป็นเกลียว",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#", "#", "#", "#", 0],
+          "text": "ยิงใส่ศัตรูที่อยู่ใกล้ทุกตัว",
           "formatters": []
         }
       ]
@@ -870,6 +891,16 @@
         }
       ]
     },
+    "radius_add": {
+      "stats": ["active_skill_base_radius_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "เพิ่มรัศมี %1$+d",
+          "formatters": []
+        }
+      ]
+    },
     "area_of_effect_incr": {
       "stats": ["base_skill_area_of_effect_+%"],
       "translations": [
@@ -1026,6 +1057,36 @@
         {
           "matchers": [[1, "#"]],
           "text": "บัฟอันดับรองคงอยู่ %1% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "skill_duration": {
+      "stats": ["skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ระยะเวลาของสกิลนี้คือ %1% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "secondary_skill_duration": {
+      "stats": ["secondary_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ระยะเวลาที่สองของสกิลนี้คือ %1% วินาที",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -1689,6 +1750,26 @@
         {
           "matchers": [["#", -1]],
           "text": "ลดความเสียหายจากมิเนียนลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "doubles_have_move_speed": {
+      "stats": ["doubles_have_movement_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ร่างจำแลงจะเดินได้เร็วขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ร่างจำแลงจะเดินได้ช้าลง %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2413,26 +2494,6 @@
         }
       ]
     },
-    "righteous_fire_spell_damage_incr": {
-      "stats": ["righteous_fire_spell_damage_+%_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "เพิ่มความเสียหายทางเวทย์มากขึ้น %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "ลดความเสียหายทางเวทย์น้อยลง %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "spell_damage_incr": {
       "stats": ["spell_damage_+%"],
       "translations": [
@@ -3070,37 +3131,6 @@
         }
       ]
     },
-    "blade_vortex_damage_per_blade": {
-      "stats": ["blade_vortex_damage_+%_per_blade_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "เพิ่มความเสียหาย %1%%%  ด้วยการโจมตีและการเจ็บด้วยดาบแต่ละครั้ง",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextDamagingAilments"
-            }
-          ]
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "ลดความเสียหาย %1%%%  ด้วยการโจมตีและการเจ็บด้วยดาบแต่ละครั้ง",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            },
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextDamagingAilments"
-            }
-          ]
-        }
-      ]
-    },
     "blade_vortex_ailment_damage_per_blade": {
       "stats": ["blade_vortex_ailment_damage_+%_per_blade_final"],
       "translations": [
@@ -3458,6 +3488,21 @@
         }
       ]
     },
+    "attack_on_kill": {
+      "stats": ["attack_trigger_on_kill_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "มีโอกาส %1%%% ที่การโจมตีนี้จะทำงานหากสังหารศัตรูได้",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "การโจมตีนี้จะทำงานหากสังหารศัตรูได้",
+          "formatters": []
+        }
+      ]
+    },
     "cast_on_attack": {
       "stats": ["cast_on_attack_use_%"],
       "translations": [
@@ -3626,6 +3671,23 @@
         }
       ]
     },
+    "cast_on_avian_buff": {
+      "stats": ["cast_on_gain_avians_flight_or_avians_might_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "มีโอกาส %1%%% ที่คาถานี้จะทำงานหากผู้เล่นได้ Avian's Might หรือ Avian's Flight",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "คาถานี้จะทำงานหากผู้เล่นได้ Avian's Might หรือ Avian's Flight",
+          "formatters": []
+        }
+      ]
+    },
     "cast_on_hit": {
       "stats": ["cast_on_hit_%"],
       "translations": [
@@ -3637,6 +3699,32 @@
         {
           "matchers": [[100, "#"]],
           "text": "ถ้าโจมตีศัตรูโดนจะใช้เวทย์นี้ด้วย",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_hit_if_cursed": {
+      "stats": ["cast_on_hit_if_cursed_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "มีโอกาส %1%%% ที่คาถานี้จะทำงานหากผู้เล่นโจมตีโดนศัตรูขณะโดนคำสาปอยู่",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "คาถานี้จะทำงานหากผู้เล่นโจมตีโดนศัตรูขณะโดนคำสาปอยู่",
+          "formatters": []
+        }
+      ]
+    },
+    "cast_on_lose_cats_stealth": {
+      "stats": ["cast_on_lose_cats_stealth"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "คาถานี้จะทำงานหากผู้เล่นเสีย Cat's Stealth",
           "formatters": []
         }
       ]
@@ -3987,7 +4075,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "โอกาสการหลบของศัตรูลดลงที่มีต่อสกิลนี้ %1%%%",
+          "text": "ศัตรูจะมีโอกาสหลบสกิลโจมตีนี้ได้น้อยลง %1%%%",
           "formatters": []
         }
       ]
@@ -4036,6 +4124,16 @@
               "arg": "ReminderTextDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "never_freeze": {
+      "stats": ["never_freeze"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "จะไม่ติดสถานะแช่แข็ง",
+          "formatters": []
         }
       ]
     },
@@ -4124,19 +4222,6 @@
         }
       ]
     },
-    "attack_added_cold": {
-      "stats": [
-        "attack_minimum_added_cold_damage",
-        "attack_maximum_added_cold_damage"
-      ],
-      "translations": [
-        {
-          "matchers": ["#", "#"],
-          "text": "เพิ่มความเสียหายน้ำแข็งเมื่อโจมตี %1% ถึง %2%",
-          "formatters": []
-        }
-      ]
-    },
     "herald_of_ash_burning_damage": {
       "stats": ["herald_of_ash_burning_damage_+%_final"],
       "translations": [
@@ -4220,15 +4305,13 @@
         }
       ]
     },
-    "attack_added_lightning": {
-      "stats": [
-        "attack_minimum_added_lightning_damage",
-        "attack_maximum_added_lightning_damage"
-      ],
+    "elemental_hit_damage_turnoff": {
+      "stats": ["elemental_hit_no_physical_chaos_damage"],
       "translations": [
         {
-          "matchers": ["#", "#"],
-          "text": "เพิ่มความเสียหายสายฟ้าเมื่อโจมตี %1% ถึง %2%",
+          "matchers": ["#"],
+          "text":
+            "โจมตีด้วยธาตุที่เลือกเท่านั้น\\nจะไม่มีความเสียหายจากธาตุอื่น",
           "formatters": []
         }
       ]
@@ -4569,6 +4652,26 @@
         {
           "matchers": [["#", -1]],
           "text": "ลดความเสียหายลง %1%%% ต่อศัตรูที่อยู่ใกล้ๆ 100 ตัว",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "intimidating_cry_attack_speed": {
+      "stats": ["intimidating_cry_attack_speed_+%_per_100_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "โจมตีเร็วขึ้น %1%%% ต่อศัตรูใกล้เคียงทุกๆ ร้อยตัว",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "โจมตีช้าลง %1%%% ต่อศัตรูใกล้เคียงทุกๆ ร้อยตัว",
           "formatters": [
             {
               "id": "negate",
@@ -5267,6 +5370,26 @@
         }
       ]
     },
+    "ground_slam_close_damage": {
+      "stats": ["groundslam_damage_to_close_targets_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "โจมตีศัตรูที่อยู่ใกล้ๆ ได้แรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "โจมตีศัตรูที่อยู่ใกล้ๆ ได้เบาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "active_skill_projectile_dot_incr": {
       "stats": ["active_skill_damage_over_time_from_projectile_hits_+%_final"],
       "translations": [
@@ -5294,7 +5417,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "ได้ Arcane Surge หากผู้เล่นใช้มานาไป %1% ด้วยคาถานี้",
+          "text": "ได้ Arcane Surge หลังจากใช้มานาไป %1% แต้มด้วยคาถานี้",
           "formatters": []
         }
       ]
@@ -5481,6 +5604,26 @@
         }
       ]
     },
+    "ignite_damage_final": {
+      "stats": ["active_skill_ignite_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ใช้ Ignite จุดไฟศัตรูได้แรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ใช้ Ignite จุดไฟศัตรูได้เบาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "aegis_value": {
       "stats": [
         "aegis_unique_shield_max_value",
@@ -5507,6 +5650,36 @@
         }
       ]
     },
+    "arc_damage_per_remaining_chain": {
+      "stats": ["arc_damage_+%_final_for_each_remaining_chain"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เชนที่เหลืออยู่แรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "เชนที่เหลืออยู่เบาลง %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "arc_damage_per_chain": {
+      "stats": ["arc_damage_+%_final_per_chain"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "โจมตีได้แรงขึ้น %1%%% ต่อทุกๆ ครั้งที่เชนบีมได้",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "โจมตีได้เบาลง %1%%% ต่อทุกๆ ครั้งที่เชนบีมได้",
+          "formatters": []
+        }
+      ]
+    },
     "arctic_armour_chill_when_hit_duration": {
       "stats": ["arctic_armour_chill_when_hit_duration"],
       "translations": [
@@ -5517,6 +5690,26 @@
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "area_of_effect_incr_when_cast_on_frostbolt": {
+      "stats": ["area_of_effect_+%_when_cast_on_frostbolt"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่ม AOE %1%%% เมื่อร่ายบน Frostbolt",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลด AOE %1%%% เมื่อร่ายบน Frostbolt",
+          "formatters": [
+            {
+              "id": "negate",
               "arg": 1
             }
           ]
@@ -5594,6 +5787,26 @@
         }
       ]
     },
+    "blade_vortex_crit_chance_per_blade": {
+      "stats": ["blade_vortex_critical_strike_chance_+%_per_blade"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "โอกาสติดคริติคอลมากขึ้น %1%%% ต่อใบมีดแต่ละใบ",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "โอกาสติดคริติคอลน้อยลง %1%%% ต่อใบมีดแต่ละใบ",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "blade_vortex_hit_rate": {
       "stats": ["blade_vortex_hit_rate_ms"],
       "translations": [
@@ -5611,6 +5824,26 @@
           "matchers": [["#", -1]],
           "text": "โจมตีไม่เคยโดนศัตรู",
           "formatters": []
+        }
+      ]
+    },
+    "bladefall_crit_chance_per_stage": {
+      "stats": ["bladefall_critical_strike_chance_+%_per_stage"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มีโอกาสติดคริติคอลต่อชุดมากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "มีโอกาสติดคริติคอลต่อชุดลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -5718,6 +5951,49 @@
         }
       ]
     },
+    "double_damage_chance_vs_bleed": {
+      "stats": ["chance_to_deal_double_damage_%_vs_bleeding_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "มีโอกาส %1%%% ที่ค่าโจมตีจะเป็นสองเท่าใส่ศัตรูที่ติดสถานะเลือดไหลอยู่",
+          "formatters": []
+        }
+      ]
+    },
+    "power_charge_vs_rare_or_unique": {
+      "stats": ["chance_to_gain_power_charge_on_rare_or_unique_enemy_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "มีโอกาส %1%%% ที่จะได้ Power Charge หากผู้เล่นโจมตีโดนศัตรูระดับแรร์หรือยูนิค",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "ได้ Power Charge หากผู้เล่นโจมตีโดนศัตรูระดับแรร์หรือยูนิค",
+          "formatters": []
+        }
+      ]
+    },
+    "ghost_chance": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "มีโอกาส %1%%% ที่จะเสก Phantasm ออกมาหากใช้สกิลนี้จัดการศัตรูได้",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "เสก Phantasm ออกมาหากใช้สกิลนี้จัดการศัตรูได้",
+          "formatters": []
+        }
+      ]
+    },
     "trigger_on_animate_guardian_kill": {
       "stats": ["chance_to_trigger_on_animate_guardian_kill_%"],
       "translations": [
@@ -5781,21 +6057,17 @@
         }
       ]
     },
-    "charged_dash_damage": {
-      "stats": ["charged_dash_damage_+%_maximum"],
+    "chilled_ground_magnitude_override": {
+      "stats": ["chilled_ground_base_magnitude_override"],
       "translations": [
         {
-          "matchers": [[1, "#"]],
-          "text": "ตีแรงขึ้น %1%%% ที่สุดระยะการแดช",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "ตีเบาลง %1%%% ที่สุดระยะการแดช",
+          "matchers": ["#"],
+          "text":
+            "พื้นที่แช่เย็น (Chilled Ground) ของสกิลนี้จะมีเอฟเฟคสโลว์ตั้งต้นเท่ากับ %1%%%",
           "formatters": [
             {
-              "id": "negate",
-              "arg": 1
+              "id": "reminderstring",
+              "arg": "ReminderTextChilledGround"
             }
           ]
         }
@@ -5807,6 +6079,76 @@
         {
           "matchers": [[1, "#"]],
           "text": "มีบ่อเกเซอร์ได้สูงสุด %1% บ่อ",
+          "formatters": []
+        }
+      ]
+    },
+    "crit_chance_vs_shocked_enemies": {
+      "stats": ["critical_strike_chance_+%_vs_shocked_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มโอกาสติดคริติคอลใส่ศัตรูที่ติดสถานะไฟช็อต %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดโอกาสติดคริติคอลใส่ศัตรูที่ติดสถานะไฟช็อต %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "crit_chance_per_power_charge": {
+      "stats": ["critical_strike_chance_+%_per_power_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มโอกาสโจมตีคริติคอลขึ้น %1%%% ต่อ Power Charge",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดโอกาสโจมตีคริติคอลลง %1%%% ต่อ Power Charge",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "crit_multi_per_blade": {
+      "stats": ["critical_strike_multiplier_+_per_blade"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1$+d%% ให้กับตัวคูณคริติคอลต่อใบมีดแต่ละอัน",
+          "formatters": []
+        }
+      ]
+    },
+    "crit_multi_per_power_charge": {
+      "stats": ["critical_strike_multiplier_+_per_power_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d%% ให้กับตัวคูณคริติคอลต่อ Power Charge",
+          "formatters": []
+        }
+      ]
+    },
+    "damage_per_chain": {
+      "stats": ["damage_+%_per_chain"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มค่าโจมตี %1%%% ต่อทุกครั้งที่เชนสกิลนี้ได้",
           "formatters": []
         }
       ]
@@ -5872,6 +6214,110 @@
         }
       ]
     },
+    "elemental_hit_aoe_vs_associated_element": {
+      "stats": [
+        "elemental_hit_area_of_effect_+100%_final_vs_enemy_with_associated_ailment"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "เพิ่มรัศมีอีก 80%% เมื่อใช้กับศัตรูที่ติดสถานะเจ็บป่วยจากธาตุที่เลือก",
+          "formatters": []
+        }
+      ]
+    },
+    "elemental_hit_damage_per_ailment": {
+      "stats": ["elemental_hit_damage_+10%_final_per_enemy_elemental_ailment"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "โจมตีศัตรูได้แรงขึ้น 10%% ต่อสถานะเจ็บป่วยแต่ละตัวที่ศัตรูมี",
+          "formatters": []
+        }
+      ]
+    },
+    "endurance_charge_slam_extra_damage": {
+      "stats": ["endurance_charge_slam_damage_+%_final_with_endurance_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "โจมตีได้แรงขึ้น %1%%% หากผู้เล่นมี Endurance Charge",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "โจมตีได้เบาลง %1%%% หากผู้เล่นมี Endurance Charge",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "expanding_fire_cone_angle_per_stage": {
+      "stats": ["expanding_fire_cone_angle_+%_per_stage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "เพิ่มมุมกรวยไฟต่อระดับอีก %1%%%, โดยได้สูงสุด 300%%",
+          "formatters": []
+        }
+      ]
+    },
+    "expanding_fire_cone_always_ignite": {
+      "stats": ["expanding_fire_cone_final_wave_always_ignite"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "คลื่นสุดท้ายจะทำศัตรูติดไฟเสมอ",
+          "formatters": []
+        }
+      ]
+    },
+    "expanding_fire_cone_stages": {
+      "stats": ["expanding_fire_cone_maximum_number_of_stages"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ระดับสูงสุดอยู่ที่ %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "expanding_fire_cone_radius_per_stage": {
+      "stats": ["expanding_fire_cone_radius_+_per_stage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "เพิ่มรัศมีต่อระดับอีก %1$+d โดยได้สูงสุดถึง  +15",
+          "formatters": []
+        }
+      ]
+    },
+    "expanding_fire_cone_release_hit": {
+      "stats": ["expanding_fire_cone_release_hit_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คลื่นสุดท้ายแรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "คลื่นสุดท้ายเบาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "fire_beam_add_damage": {
       "stats": ["fire_beam_additional_stack_damage_+%_final"],
       "translations": [
@@ -5928,6 +6374,105 @@
         }
       ]
     },
+    "flameblast_ignite_chance": {
+      "stats": ["flameblast_ignite_chance_+%_per_stage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "แต่ละระดับจะมีโอกาสติดไฟมากขึ้น %1$+d%%",
+          "formatters": []
+        }
+      ]
+    },
+    "flamethrower_tower_trap_rotation": {
+      "stats": ["flamethrower_tower_trap_display_cast_speed_affects_rotation"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ตัวโมดิฟายความเร็วร่ายคาถาจะใช้กับความเร็วของไฟด้วย",
+          "formatters": []
+        }
+      ]
+    },
+    "flamethrower_tower_trap_flames": {
+      "stats": ["flamethrower_tower_trap_number_of_flamethrowers"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "พ่นไฟได้ %1% จุด",
+          "formatters": []
+        }
+      ]
+    },
+    "flamethrower_trap_damage_against_burn": {
+      "stats": ["flamethrower_trap_damage_+%_final_vs_burning_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "โจมตีศัตรูที่ติดไฟอยู่ได้แรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "โจมตีศัตรูที่ติดไฟอยู่ได้เบาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "always_maim": {
+      "stats": ["global_maim_on_hit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ติดสถานะพิการ (Maim) เมื่อโดน",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
+        }
+      ]
+    },
+    "added_phys_vs_bleeding": {
+      "stats": [
+        "global_minimum_added_physical_damage_vs_bleeding_enemies",
+        "global_maximum_added_physical_damage_vs_bleeding_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "เพิ่มค่าโจมตีกายภาพใส่ศัตรูที่ติดสถานะเลือดไหลอยู่อีก %1% ถึง %2%",
+          "formatters": []
+        }
+      ]
+    },
+    "expanding_fire_cone_release_ignite": {
+      "stats": ["grant_expanding_fire_cone_release_ignite_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คลื่นสุดท้ายจะทำศัตรูติดไฟได้รุนแรงขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "คลื่นสุดท้ายจะทำศัตรูติดไฟได้เบาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "herald_of_ash_burning_percent": {
       "stats": ["herald_of_ash_burning_%_overkill_damage_per_minute"],
       "translations": [
@@ -5938,6 +6483,50 @@
           "formatters": [
             {
               "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hinder_damage_taken": {
+      "stats": ["hinder_enemy_chaos_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "ศัตรูที่โดนขัดขวาง (Hinder) จะรับความเสียหายธาตุเคออสมากขึ้น %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "ignites_apply_fire_res": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "ศัตรูที่ติดไฟเพราะสกิลนี้จะมีค่าป้องกันธาตุไฟมากขึ้น %1$+d%%",
+          "formatters": []
+        }
+      ]
+    },
+    "lacerate_damage_vs_bleeding": {
+      "stats": ["lacerate_hit_and_ailment_damage_+%_final_vs_bleeding_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "การโจมตีและความเสียหายจากสเตตัสเจ็บป่วยจะแรงขึ้น %1%%% ในศัตรูที่ติดสถานะเลือดไหลอยู่",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "การโจมตีและความเสียหายจากสเตตัสเจ็บป่วยจะเบาลง %1%%% ในศัตรูที่ติดสถานะเลือดไหลอยู่",
+          "formatters": [
+            {
+              "id": "negate",
               "arg": 1
             }
           ]
@@ -5976,17 +6565,80 @@
         }
       ]
     },
+    "lightning_tower_trap_number_of_beams": {
+      "stats": [
+        "lightning_tower_trap_number_of_beams",
+        "lightning_tower_trap_interval_duration_ms"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", 0],
+          "text": "โจมตีพื้นที่ %1% แห่ง",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#"],
+          "text": "โจมตีพื้นที่ %1% แห่ง ทุกๆ %2% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 2
+            }
+          ]
+        }
+      ]
+    },
+    "maim_effect": {
+      "stats": ["maim_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Maim มีเอฟเฟคมากขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Maim มีเอฟเฟคน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "maim_chance": {
       "stats": ["maim_on_hit_%"],
       "translations": [
         {
           "matchers": [[1, 99]],
           "text": "มีโอกาสให้ติดสถานะ Maim %1%%% หากโจมตีโดน",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[100, "#"]],
           "text": "ถ้าโจมตีโดนศัตรูจะติดสถานะ Maim ด้วย",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
+        }
+      ]
+    },
+    "max_crab_barriers": {
+      "stats": ["max_crab_aspect_stacks"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ผู้เล่นมี Crab Barrier ได้สูงุสด %1% อัน",
           "formatters": []
         }
       ]
@@ -6105,12 +6757,112 @@
         }
       ]
     },
+    "orb_of_storms_bolt_frequency": {
+      "stats": ["orb_of_storms_bolt_frequency_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "โจมตีทุกๆ %1% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "โจมตีทุกๆ %1% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "frenzy_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% โอกาสที่จะได้รับค่า Frenzy Charge เมื่อกับดักของคุณจะถูกทำให้ทำงานโดยศัตรู",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "ได้รับค่า Frenzy Charge เมื่อกับดักของคุณจะถูกทำให้ทำงานโดยศัตรู",
+          "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "โอกาส %1%%% ที่จะได้รับ Power Charge เมื่อกับดักทำงาน",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text": "ได้รับ Power Charge เมื่อกับดักทำงาน",
+          "formatters": []
+        }
+      ]
+    },
+    "petrification_statue_action_speed": {
+      "stats": ["petrification_statue_target_action_speed_-%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ศัตรูช้าลง %1%%% ทุกๆ 0.3 วินาที",
+          "formatters": []
+        }
+      ]
+    },
+    "phys_cascade_trap_number_of_cascades": {
+      "stats": [
+        "phys_cascade_trap_number_of_cascades",
+        "phys_cascade_trap_interval_duration_ms"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", 0],
+          "text": "ปล่อยคลื่น %1% ลูก",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#"],
+          "text": "ปล่อยคลื่น %1% ลูกทุกๆ %2% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 2
+            }
+          ]
+        }
+      ]
+    },
     "phys_reduction_per_crab_barrier": {
       "stats": ["physical_damage_reduction_%_per_crab_aspect_stack"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "ได้ตัวช่วยลดความเสียหายอีก %1%%% ต่อ Crab Barrier",
+          "formatters": []
+        }
+      ]
+    },
+    "rain_of_arrows_additional_chance": {
+      "stats": ["rain_of_arrows_additional_sequence_chance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "มีโอกาส %1%%% ที่จะยิงธนูได้อีกชุด",
           "formatters": []
         }
       ]
@@ -6165,6 +6917,16 @@
         }
       ]
     },
+    "shrapnel_trap_secondary_explosions": {
+      "stats": ["shrapnel_trap_number_of_secondary_explosions"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "จะเกิดระเบิดย่อยๆ อีก %1% ครั้ง",
+          "formatters": []
+        }
+      ]
+    },
     "can_have_mirage_archer": {
       "stats": ["skill_can_own_mirage_archers"],
       "translations": [
@@ -6172,6 +6934,26 @@
           "matchers": ["#"],
           "text": "สามารถเสก Mirage Archer ได้ 1 ตัวในขณะหนึ่ง",
           "formatters": []
+        }
+      ]
+    },
+    "skill_movement_speed": {
+      "stats": ["skill_code_movement_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เคลื่อนที่เร็วขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "เคลื่อนที่ช้าลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -6371,6 +7153,19 @@
         }
       ]
     },
+    "added_fire_against_burning": {
+      "stats": [
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "เพิ่มความเสียหายธาตุไฟใส่ศัตรูที่ติดไฟอยู่อีก %1% ถึง %2%",
+          "formatters": []
+        }
+      ]
+    },
     "minion_totem_resistance_support_damage": {
       "stats": ["support_minion_totem_resistance_elemental_damage_+%_final"],
       "translations": [
@@ -6440,6 +7235,28 @@
           "matchers": [[2, "#"]],
           "text": "ยิงอาวุธออกจาก %1% จุดข้างตัวผู้เล่น",
           "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_crit_damage": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "โจมตีได้แรงขึ้น %1%%% ต่อ Power Charge",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "โจมตีได้เบาลง %1%%% ต่อ Power Charge",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -6549,6 +7366,37 @@
         }
       ]
     },
+    "trap_crit_per_power_charge": {
+      "stats": ["trap_critical_strike_multiplier_+_per_power_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "เพิ่มตัวคูณคริติคอล %1$+d%% ต่อ Power Charge หากใช้ผ่านกับดัก",
+          "formatters": []
+        }
+      ]
+    },
+    "trap_throwing_speed_per_frenzy": {
+      "stats": ["trap_throwing_speed_+%_per_frenzy_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "วางกับดักเร็วขึ้น %1%%% ต่อ Frenzy Charge",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "วางกับดักช้าลง %1%%% ต่อ Frenzy Charge",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "trigger_on_frozen_kill": {
       "stats": ["trigger_on_kill_vs_frozen_enemy_%"],
       "translations": [
@@ -6578,6 +7426,56 @@
           "matchers": [[100, "#"]],
           "text": "ใช้ Void Charge เพื่อให้สกิลนี้ทำงานขณะที่ยิงธนู",
           "formatters": []
+        }
+      ]
+    },
+    "vaal_blade_vortex_has_ten_blades": {
+      "stats": ["vaal_blade_vortex_has_10_spinning_blades"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "มีใบมีด 10 ใบ",
+          "formatters": []
+        }
+      ]
+    },
+    "vaal_flameblast_radius": {
+      "stats": ["vaal_flameblast_radius_+_per_stage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "เพิ่ม %1$+d ให้รัศมีในแต่ละระดับ",
+          "formatters": []
+        }
+      ]
+    },
+    "bladefall_volleys": {
+      "stats": ["virtual_bladefall_number_of_volleys"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "1 ชุด",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "%1% ชุด",
+          "formatters": []
+        }
+      ]
+    },
+    "spider_aspect_interval": {
+      "stats": ["virtual_spider_aspect_web_interval_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ทำศัตรูติด Spider's Webs และ Hinder ทุกๆ %1% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
         }
       ]
     }

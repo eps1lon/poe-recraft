@@ -344,7 +344,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% de Probabilidad de Esquivar Ataques",
+          "text": "%1%%% de probabilidad de Esquivar Golpes de Ataque",
           "formatters": []
         }
       ]
@@ -354,7 +354,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% de Probabilidad de Esquivar Daño de Hechizos",
+          "text": "%1%%% de probabilidad de Esquivar Golpes de Hechizos",
           "formatters": []
         }
       ]
@@ -415,6 +415,66 @@
         }
       ]
     },
+    "immune_to_chill": {
+      "stats": ["base_immune_to_chill"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Tú y tus aliados cercanos son Inmunes al Escarchamiento",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_freeze": {
+      "stats": ["base_immune_to_freeze"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Tú y tus aliados cercanos son Inmunes a Congelamiento",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_ignite": {
+      "stats": ["base_immune_to_ignite"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Tú y tus aliados cercanos son Inmunes a Quemadura",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_shock": {
+      "stats": ["base_immune_to_shock"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Tú y tus aliados cercanos son Inmunes a Electrocución",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_damage_taken": {
+      "stats": ["cold_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Daño de Hielo recibido aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Daño de Hielo recibido reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "energy_shield_recharge_rate": {
       "stats": ["energy_shield_recharge_rate_+%"],
       "translations": [
@@ -428,6 +488,79 @@
           "matchers": [["#", -1]],
           "text":
             "Tú y tus aliados cercanos ganan velocidad de Recarga de Escudo de Energía reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "fire_damage_taken": {
+      "stats": ["fire_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Daño de Fuego recibido aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Daño de Fuego recibido reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hits_ignore_cold_res": {
+      "stats": ["hits_ignore_my_cold_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los Golpes ignoran la Resistencia al Hielo de los enemigos cercanos",
+          "formatters": []
+        }
+      ]
+    },
+    "hits_ignore_fire_res": {
+      "stats": ["hits_ignore_my_fire_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los Golpes ignoran la Resistencia al Fuego de los enemigos cercanos",
+          "formatters": []
+        }
+      ]
+    },
+    "hits_ignore_lightning_res": {
+      "stats": ["hits_ignore_my_lightning_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los Golpes ignoran la Resistencia al Rayo de los enemigos cercanos",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_damage_taken": {
+      "stats": ["lightning_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Daño de Rayo recibido aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Daño de Rayo recibido reducido un %1%%%",
           "formatters": [
             {
               "id": "negate",

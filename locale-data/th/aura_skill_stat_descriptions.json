@@ -341,7 +341,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "โอกาสในการหลบหลีกการโจมตี %1%%%",
+          "text": "มีโอกาสหลบการโจมตี %1%%%",
           "formatters": []
         }
       ]
@@ -351,7 +351,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "โอกาสในการหลบความเสียหายจากเวท %1%%%",
+          "text": "มีโอกาสหลบคาถา %1%%%",
           "formatters": []
         }
       ]
@@ -410,6 +410,66 @@
         }
       ]
     },
+    "immune_to_chill": {
+      "stats": ["base_immune_to_chill"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ผู้เล่นและเพื่อนใกล้เคียงจะไม่มีโอกาสติดสถานะแช่เย็น",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_freeze": {
+      "stats": ["base_immune_to_freeze"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ผู้เล่นและเพื่อนใกล้ตัวจะป้องกันสถานะแช่แข็งได้",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_ignite": {
+      "stats": ["base_immune_to_ignite"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ผู้เล่นและเพื่อนใกล้ตัวจะป้องกันสถานะติดไฟได้",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_shock": {
+      "stats": ["base_immune_to_shock"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ผู้เล่นและเพื่อนใกล้ตัวจะป้องกันสถานะไฟช็อตได้",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_damage_taken": {
+      "stats": ["cold_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ได้รับความเสียหายน้ำแข็งเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ได้รับความเสียหายน้ำแข็งลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "energy_shield_recharge_rate": {
       "stats": ["energy_shield_recharge_rate_+%"],
       "translations": [
@@ -421,6 +481,76 @@
         {
           "matchers": [["#", -1]],
           "text": "คุณและเพื่อนจะมีอัตราฟื้นฟูเกราะพลังงานน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "fire_damage_taken": {
+      "stats": ["fire_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "รับความเสียหายทางไฟเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "รับความเสียหายทางไฟลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hits_ignore_cold_res": {
+      "stats": ["hits_ignore_my_cold_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "การโจมตีจะทะลุผ่านค่าป้องกันธาตุน้ำแข็งของศัตรูที่อยู่ใกล้ๆ",
+          "formatters": []
+        }
+      ]
+    },
+    "hits_ignore_fire_res": {
+      "stats": ["hits_ignore_my_fire_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "การโจมตีจะทะลุผ่านค่าป้องกันธาตุไฟของศัตรูที่อยู่ใกล้ๆ",
+          "formatters": []
+        }
+      ]
+    },
+    "hits_ignore_lightning_res": {
+      "stats": ["hits_ignore_my_lightning_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "การโจมตีจะทะลุผ่านค่าป้องกันธาตุไฟฟ้าของศัตรูที่อยู่ใกล้ๆ",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_damage_taken": {
+      "stats": ["lightning_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ได้รับความเสียหายสายฟ้าเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ได้รับความเสียหายสายฟ้าลดลง %1%%%",
           "formatters": [
             {
               "id": "negate",

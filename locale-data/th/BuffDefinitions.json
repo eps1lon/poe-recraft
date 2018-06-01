@@ -563,7 +563,7 @@
   "vaal_aura_energy_shield": {
     "name": "Vaal Discipline Aura",
     "description":
-      "ให้โล่พลังงานและป้องกันไม่ให้การชาร์จซ้ำโล่พลังงานหน่วงจากความเสียหาย"
+      "โล่พลังงานจะชาร์จคืนได้โดยไม่สนว่าจะถูกโจมตีขัดจังหวะหรือไม่"
   },
   "vaal_aura_speed": {
     "name": "Vaal Haste Aura",
@@ -571,9 +571,16 @@
       "ให้ความเร็วการร่าย ความเร็วการโจมตี และความเร็วการเคลื่อนที่เพิ่มขึ้น"
   },
   "beartrap_debuff": {
-    "name": "Beartrap",
-    "description": "คุณถูกจับให้อยู่กับที่ด้วยแบร์แทรป"
+    "name": "Bear Trap",
+    "description":
+      "ผู้เล่นติดกับดัก Bear Trap ไปไหนไม่ได้ แล้วจะเจ็บจากกับดักแล้วกับระเบิดมากขึ้น"
   },
+  "beartrap_debuff_slow": {
+    "name": "Bear Trap",
+    "description":
+      "ผู้เล่นเดินได้ช้าลง และจะได้รับบาดเจ็บจากกับดักและกับระเบิดมากขึ้น"
+  },
+  "beartrap_debuff_damage_taken": { "name": "", "description": "" },
   "trap_convert_buff": {
     "name": "Converted",
     "description": "คุณถูกเปลี่ยนให้ไปอยู่อีกทีมชั่วคราว"
@@ -959,8 +966,7 @@
   "soul_eater_aura": { "name": "Soul Eater", "description": "Soul Eater" },
   "soul_eater": {
     "name": "Soul Eater",
-    "description":
-      "คุณได้รับความเร็วในการโจมตีและความเร็วในการร่ายเวทย์เพิ่มขึ้น ความเสียหายที่รับจากการโจมตีกายภาพลดลง ความต้านทานธาตุและขนาดเพิ่มขึ้น"
+    "description": "ผู้เล่นโจมตีและร่ายคาถาได้เร็วขึ้น ตัวใหญ่ขึ้นด้วย"
   },
   "frostwall_epk": { "name": "", "description": "" },
   "nemesis_stealth_mode": { "name": "", "description": "" },
@@ -1128,7 +1134,7 @@
   "herald_of_ash": {
     "name": "Herald Of Ash",
     "description":
-      "คุณสร้างความเสียหายจากไฟเพิ่มเติม และการฆ่าศัตรูจะนำความเสียหายส่วนเกินไปใช้เป็นการลุกไหม้ศัตรูที่อยู่ใกล้"
+      "ผู้เล่นโจมตีเป็นธาตุไฟเพิ่มอีก และการสังหารศัตรูจะทำให้ความเสียหายจากการติดไฟกระจายใส่ศัตรูรอบตัว คิดเป็นความเสียหายที่เหลือจากการทำ Overkill"
   },
   "herald_of_ice": {
     "name": "Herald Of Ice",
@@ -1150,7 +1156,6 @@
   "display_bodyguard_effect": { "name": "", "description": "" },
   "mission_relic_praying": { "name": "", "description": "" },
   "mission_beast_corrupted": { "name": "", "description": "" },
-  "mission_monster_target": { "name": "", "description": "" },
   "dex_mission_enable_pointers": { "name": "", "description": "" },
   "stun_display_buff": { "name": "", "description": "" },
   "visual_display_buff": { "name": "", "description": "" },
@@ -2948,15 +2953,16 @@
   "aegis_cold_persist_value": { "name": "", "description": "" },
   "aegis_elemental_persist_value": { "name": "", "description": "" },
   "fire_impurity_buff": {
-    "name": "Impurity of Fire",
+    "name": "Vaal Impurity of Fire",
     "description": "ผู้เล่นจะไม่ติดไฟและได้รับความเสียหายธาตุไฟน้อยลง"
   },
   "cold_impurity_buff": {
-    "name": "Impurity of Ice",
-    "description": "ผู้เล่นจะไม่โดนแช่แข็งและได้รับความเสียหายธาตุน้ำแข็งน้อยลง"
+    "name": "Vaal Impurity of Ice",
+    "description":
+      "ผู้เล่นจะไม่โดนแช่แข็งและแช่เย็นและได้รับความเสียหายธาตุน้ำแข็งน้อยลง"
   },
   "lightning_impurity_buff": {
-    "name": "Impurity of Lightning",
+    "name": "Vaal Impurity of Lightning",
     "description":
       "ผู้เล่นจะไม่ติดสถานะไฟช็อตและได้รับความเสียหายธาตุไฟฟ้าน้อยลง"
   },
@@ -3155,7 +3161,10 @@
     "description": ""
   },
   "physical_projectile_retaliation_charging": { "name": "", "description": "" },
-  "master_buff_treasure_hunter": { "name": "", "description": "" },
+  "master_buff_treasure_hunter": {
+    "name": "Balek's Gift",
+    "description": "ผู้เล่นจะเจอไอเท็มที่มีระดับความหายากสูงขึ้นได้มากขึ้น"
+  },
   "godmode_ghost": { "name": "", "description": "" },
   "best_crab_roar": {
     "name": "Craiceann's Torment",
@@ -3187,6 +3196,10 @@
     "description": "ผู้เล่นรับความเสียหายธาตุเคออสตามเวลาและจะเดินได้ช้าลง"
   },
   "lightning_clone_retaliation": {
+    "name": "Lightning Clone Retaliation",
+    "description": ""
+  },
+  "lightning_clone_retaliation_large": {
     "name": "Lightning Clone Retaliation",
     "description": ""
   },
@@ -3226,6 +3239,7 @@
   "capture_monster_captured": { "name": "", "description": "" },
   "capture_monster_disappearing": { "name": "", "description": "" },
   "cold_beam_retaliation": { "name": "", "description": "" },
+  "cold_beam_retaliation_large": { "name": "", "description": "" },
   "juggernaut_phys_damage_prevented_as_life_regen": {
     "name": "",
     "description": ""
@@ -3311,5 +3325,110 @@
     "name": "Death",
     "description":
       "ผู้เล่นจะตายถ้าอยู่นอกโซน Royale Combat นานไป ให้เดินตามลูกศรใต้ตัวละครเพื่อกลับไปยังโซน"
+  },
+  "cold_snap_degen": { "name": "Cold Snap", "description": "" },
+  "vaal_cold_snap_degen": { "name": "Vaal Cold Snap", "description": "" },
+  "disable_vaal_souls": { "name": "", "description": "" },
+  "ice_siphon_trap_debuff": {
+    "name": "Siphoning Trap",
+    "description":
+      "ผู้เล่นกำลังรับความเสียหายธาตุน้ำแข็งตามเวลาจาก Siphoning Trap"
+  },
+  "ice_siphon_trap_regen_buff": {
+    "name": "Siphoning Trap",
+    "description": "ผู้เล่นกำลังฟื้นฟูพลังชีวิตและมานาผ่าน Siphoning Trap"
+  },
+  "keystone_vaal_attack_cooldown": { "name": "", "description": "" },
+  "keystone_vaal_spell_cooldown": { "name": "", "description": "" },
+  "soul_regeneration": { "name": "", "description": "" },
+  "charged_dash_damage": {
+    "name": "Charged Dash",
+    "description": "Charged Dash ของผู้เล่นจะแรงขึ้นหากหยุดแชนเนล"
+  },
+  "ignore_enemy_fire_resistance": {
+    "name": "Impurity of Fire",
+    "description": "การโจมตีที่โดนจะทะลุผ่านค่าป้องกันไฟของผู้เล่น"
+  },
+  "ignore_enemy_cold_resistance": {
+    "name": "Impurity of Ice",
+    "description": "การโจมตีที่โดนจะทะลุผ่านค่าป้องกันน้ำแข็งของผู้เล่น"
+  },
+  "ignore_enemy_lightning_resistance": {
+    "name": "Impurity of Lightning",
+    "description": "การโจมตีที่โดนจะทะลุผ่านค่าป้องกันไฟฟ้าของผู้เล่น"
+  },
+  "physical_projectile_retaliation_large": {
+    "name": "Physical Projectile Retaliation",
+    "description": ""
+  },
+  "infernal_blow_new_debuff": {
+    "name": "Infernal Blow",
+    "description":
+      "ถ้าผู้เล่นตายตัวจะระเบิดสร้างความเสียหายธาตุไฟตามค่าพลังชีวิตสูงสุด ถ้าดีบัฟนี้มีชาร์จด้วยจะสร้างความเสียหายในพื้นที่รอบตัวผู้เล่น หากชาร์จหมด หรือมี 6 ชาร์จ"
+  },
+  "infernal_blow_debuff_visual2": { "name": "", "description": "" },
+  "infernal_blow_debuff_visual3": { "name": "", "description": "" },
+  "life_regen_aura_from_corpse_consumption": { "name": "", "description": "" },
+  "vaal_lightning_strike_debuff": { "name": "", "description": "" },
+  "cannot_gain_souls": { "name": "", "description": "" },
+  "cannot_gain_vaal_souls_at_life_thresholds": {
+    "name": "",
+    "description": ""
+  },
+  "fire_resistance_from_ignite": { "name": "", "description": "" },
+  "unique_flask_no_recovery_and_soul_gain": { "name": "", "description": "" },
+  "number_of_enemies_killed_recently": { "name": "", "description": "" },
+  "have_used_a_vaal_skill_recently": { "name": "", "description": "" },
+  "ground_vaal_cold_snap": { "name": "WIP", "description": "WIP" },
+  "architect_healing_totem_buff": { "name": "", "description": "" },
+  "number_of_frostbolts_destroyed_recently": { "name": "", "description": "" },
+  "elemental_hit_last_damage_type": { "name": "", "description": "" },
+  "architect_ground_blood": {
+    "name": "Boiling Blood",
+    "description": "ผู้เล่นรับความเสียหายกายภาพตามเวลา"
+  },
+  "vaal_righteous_fire_duration_aura": {
+    "name": "Righteous Fire",
+    "description": "ผู้เล่นรับบาดเจ็บจากการอยู่ใกล้ศัตรูที่ใช้ Righteous Fire"
+  },
+  "vaal_novasoul_immune": { "name": "", "description": "" },
+  "burning_damage_per_shocked_enemy": { "name": "", "description": "" },
+  "incursion_demon_sacrifice_buff": { "name": "", "description": "" },
+  "arc_enhanced_behaviour": {
+    "name": "Lucky Arc",
+    "description": "Arc Damage ของผู้เล่นจะถือว่าเป็นโชคดี (Lucky)"
+  },
+  "incursion_construct_enrage": { "name": "", "description": "" },
+  "cold_snap_expanding_chilled_ground": {
+    "name": "Chilled Ground",
+    "description": "ผู้เล่นจะทำอะไรได้ช้าลงเมื่ออยู่บนพื้นน้ำแข็ง"
+  },
+  "vaal_earthquake_display_buff": {
+    "name": "Vaal Earthquake",
+    "description": "ทุกอย่างก้าวทำโลกสะเทือน"
+  },
+  "vaal_earthquake_stationary": { "name": "", "description": "" },
+  "master_buff_alva": {
+    "name": "Alva's Gift",
+    "description": "ผู้เล่นจะเจอไอเท็มที่มีระดับความหายากสูงขึ้นได้มากขึ้น"
+  },
+  "unique_flask_soul_catcher": { "name": "Soul Catcher", "description": "" },
+  "unique_flask_soul_ripper": { "name": "Soul Ripper", "description": "" },
+  "vaal_righteous_fire_duration": {
+    "name": "Righteous Fire",
+    "description":
+      "ผู้เล่นรับความเสียหายจากการติดไฟ และโจมตีเป็นธาตุไฟใส่ศัตรูรอบๆ และร่ายคาถาได้แรงขึ้นด้วย"
+  },
+  "cannot_recover_life": { "name": "", "description": "" },
+  "omnitect_thrusters": {
+    "name": "Omnitect's Thruster",
+    "description":
+      "ผู้เล่นได้รับบาดเจ็บจากไอพ่นของ Omnitect มากขึ้นหากอยู่ข้างใต้นาน"
+  },
+  "omnitect_turret_damage_buff": { "name": "", "description": "" },
+  "omnitect_cone_debuff": {
+    "name": "Lightning Exposure",
+    "description":
+      "You have less Movement Speed and take increased Lightning Damage"
   }
 }

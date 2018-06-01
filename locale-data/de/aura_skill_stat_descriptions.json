@@ -347,7 +347,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% Chance auf Entgehen von Angriffen",
+          "text": "%1%%% Chance, Angriffstreffern zu entgehen",
           "formatters": []
         }
       ]
@@ -357,7 +357,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% Chance auf Entgehen von Zauberschaden",
+          "text": "%1%%% Chance, Zaubertreffern zu entgehen",
           "formatters": []
         }
       ]
@@ -418,6 +418,66 @@
         }
       ]
     },
+    "immune_to_chill": {
+      "stats": ["base_immune_to_chill"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ihr und Verbündete im Umkreis sind immun gegen Unterkühlen",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_freeze": {
+      "stats": ["base_immune_to_freeze"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ihr und Verbündete im Umkreis sind immun gegen Einfrieren",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_ignite": {
+      "stats": ["base_immune_to_ignite"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ihr und Verbündete im Umkreis sind immun gegen Entzünden",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_shock": {
+      "stats": ["base_immune_to_shock"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ihr und Verbündete im Umkreis sind immun gegen Schock",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_damage_taken": {
+      "stats": ["cold_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% erhöhter erlittener Kälteschaden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verringerter erlittener Kälteschaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "energy_shield_recharge_rate": {
       "stats": ["energy_shield_recharge_rate_+%"],
       "translations": [
@@ -432,6 +492,79 @@
           "text":
             "Ihr und Verbündete im Umkreis erhalten %1%%% verringerte Energieschild-Wiederaufladungsrate",
           "formatters": []
+        }
+      ]
+    },
+    "fire_damage_taken": {
+      "stats": ["fire_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% erhöhter erlittener Feuerschaden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verringerter erlittener Feuerschaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hits_ignore_cold_res": {
+      "stats": ["hits_ignore_my_cold_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Treffer ignorieren den Kältewiderstand von Gegnern im Umkreis",
+          "formatters": []
+        }
+      ]
+    },
+    "hits_ignore_fire_res": {
+      "stats": ["hits_ignore_my_fire_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Treffer ignorieren den Feuerwiderstand von Gegnern im Umkreis",
+          "formatters": []
+        }
+      ]
+    },
+    "hits_ignore_lightning_res": {
+      "stats": ["hits_ignore_my_lightning_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Treffer ignorieren den Blitzwiderstand von Gegnern im Umkreis",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_damage_taken": {
+      "stats": ["lightning_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% erhöhter erlittener Blitzschaden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verringerter erlittener Blitzschaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     }

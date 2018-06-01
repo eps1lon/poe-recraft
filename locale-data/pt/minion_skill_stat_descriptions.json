@@ -4,21 +4,6 @@
     "hasIdentifiers": false
   },
   "data": {
-    "num_additional_traps": {
-      "stats": ["number_of_additional_traps_to_throw"],
-      "translations": [
-        {
-          "matchers": [1],
-          "text": "Lacaios Lançam uma Armadilha adicional",
-          "formatters": []
-        },
-        {
-          "matchers": ["#"],
-          "text": "Lacaios Lançam %1% Armadilhas adicionais",
-          "formatters": []
-        }
-      ]
-    },
     "num_additional_mines": {
       "stats": ["number_of_additional_mines_to_place"],
       "translations": [
@@ -3096,8 +3081,8 @@
     },
     "added_fire_against_burning": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
@@ -3205,6 +3190,35 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
+    "ailment_damage_incr": {
+      "stats": ["support_unbound_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Lacaios causam %1%%% mais Dano de Afecções",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Lacaios causam %1%%% menos Dano de Afecções",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
             }
           ]
         }

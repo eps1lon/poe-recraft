@@ -12,12 +12,22 @@
   "ground_slam": {
     "displayedname": "Fracas tellurique",
     "description":
-      "Le personnage frappe le sol avec son arme principale, projetant droit devant lui une vague qui endommage les ennemis avec des chances d'étourdissement accrues. Fonctionne uniquement avec les bâtons ou les masses."
+      "Le personnage frappe le sol devant lui avec son arme principale, projetant vers l'avant une vague qui endommage les ennemis avec des chances augmentées de les étourdir. La vague inflige davantage de dégâts aux ennemis proches. Fonctionne uniquement avec les bâtons, haches ou masses."
   },
   "vaal_ground_slam": {
     "displayedname": "Fracas tellurique vaal",
     "description":
       "Le personnage frappe le sol avec son arme principale, projetant une vague dans toutes les directions qui endommage les ennemis. Fonctionne uniquement avec les bâtons ou les masses."
+  },
+  "distance_scaled_ground_slam": {
+    "displayedname": "Fracas tellurique",
+    "description":
+      "Le personnage frappe le sol devant lui avec son arme principale, projetant vers l'avant une vague qui endommage les ennemis avec une augmentation des chances d'étourdissement. La vague inflige davantage de dégâts aux ennemis proches. Fonctionne uniquement avec les bâtons, haches ou masses."
+  },
+  "vaal_ground_slam_spiked": {
+    "displayedname": "Fracas tellurique vaal",
+    "description":
+      "Le personnage frappe le sol devant lui avec son arme principale, projetant dans toutes les directions une vague qui endommage et étourdit les ennemis. La vague inflige davantage de dégâts aux ennemis proches. Fonctionne uniquement avec les bâtons, haches ou masses."
   },
   "cleave": {
     "displayedname": "Taillade",
@@ -27,12 +37,12 @@
   "shield_charge": {
     "displayedname": "Charge au bouclier",
     "description":
-      "Une charge qui percute un ennemi avec le bouclier du personnage. L'ennemi est également repoussé et étourdi. Les ennemis sur le trajet sont projetés sur le côté. Les dégâts et l'étourdissement sont proportionnels à la distance parcourue. Ne peut être modifiée par Multifrappe."
+      "Une charge qui percute un ennemi avec le bouclier du personnage. L'ennemi est également repoussé et étourdi. Les ennemis sur votre chemin sont projetés sur le côté. Les dégâts et l'étourdissement sont proportionnels à la distance parcourue. Ne peut être modifié par Multifrappe."
   },
   "new_shield_charge": {
     "displayedname": "Charge au bouclier",
     "description":
-      "Une charge sur un ennemi ou un emplacement ciblé, projetant au loin les ennemis sur votre chemin et infligeant de façon répétée des dégâts dans une petite zone face à vous. Vous infligez des dégâts dans une zone plus grande lorsque vous atteignez la cible. Les dégâts et les chances d'étourdissement sont accrues proportionnellement à la distance parcourue."
+      "Une charge sur un ennemi ou un emplacement ciblé, repoussant les ennemis sur votre chemin et infligeant de façon répétée des dégâts dans une petite zone face à vous. Vous infligez des dégâts dans une zone plus grande lorsque vous atteignez la cible. Les dégâts et les chances d'étourdissement augmentent proportionnellement à la distance parcourue. Ne peut être modifié par Multifrappe."
   },
   "enduring_cry": {
     "displayedname": "Cri d'endurance",
@@ -53,13 +63,18 @@
   "leap_slam": {
     "displayedname": "Bond percutant",
     "description":
-      "Un bond dans les airs qui endommage les ennemis (et repousse certains d'entre eux) avec votre arme principale à l'atterrissage. Les ennemis sur lesquels vous atterrissez directement sont projetés sur le côté. Fonctionne uniquement avec les haches, masses, épées ou bâtons. Ne peut être modifiée par Multifrappe."
+      "Un bond dans les airs qui endommage les ennemis (et repousse certains d'entre eux) avec votre arme principale à l'atterrissage. Les ennemis sur lesquels vous atterrissez directement sont projetés sur le côté. Fonctionne uniquement avec les haches, masses, épées ou bâtons. Ne peut être modifié par Multifrappe."
   },
   "leap_slam_behind": { "displayedname": "Bond percutant", "description": "" },
   "double_strike": {
     "displayedname": "Double frappe",
     "description":
       "Deux attaques rapides sur l'ennemi ciblé avec l'arme de mêlée principale."
+  },
+  "vaal_double_strike_two": {
+    "displayedname": "Double frappe vaal",
+    "description":
+      "Deux attaques rapides sur l'ennemi ciblé avec l'arme de mêlée principale, chacune invoquant temporairement votre double qui attaque en continu les monstres de cette façon."
   },
   "vaal_double_strike": {
     "displayedname": "Double frappe vaal",
@@ -69,7 +84,7 @@
   "elemental_hit": {
     "displayedname": "Frappe élémentaire",
     "description":
-      "Une attaque normale (avec n'importe quelle arme) qui ajoute des dégâts d'un élément au hasard."
+      "Une attaque qui choisit un élément au hasard à chaque fois qu'elle frappe et ne peut infliger que des dégâts de cet élément-là. Si l'attaque touche un ennemi, elle inflige également des dégâts de zone autour de lui. Si l'ennemi souffre d'une altération correspondant à l'élément choisi, le rayon de la zone d'effet est plus important. Frappe élémentaire évite de choisir le même élément deux fois d'affilée."
   },
   "immortal_call": {
     "displayedname": "Clameur d'immortalité",
@@ -89,7 +104,7 @@
   "blade_flurry": {
     "displayedname": "Lames tourbillonnantes",
     "description":
-      "Un plongeon à travers les ennemis, qui inflige des dégâts d'arme. Fonctionne uniquement avec les dagues,  griffes ou épées à une main. Ne peut être modifiée par Multifrappe."
+      "Un plongeon à travers les ennemis, qui inflige des dégâts d'arme. Fonctionne uniquement avec les dagues,  griffes ou épées à une main. Ne peut être modifié par Multifrappe."
   },
   "frenzy": {
     "displayedname": "Frénésie",
@@ -110,7 +125,12 @@
   "detonate_dead": {
     "displayedname": "Explosion cadavérique",
     "description":
-      "Un sort qui cible un cadavre en infligeant des dégâts de sorts aux ennemis situés autour, avant de faire exploser le cadavre en infligeant des dégâts de feu. L'explosion n'est pas affectée par les modificateurs aux dégâts des sorts et ne peut être renvoyée."
+      "Un sort qui cible un cadavre en infligeant des dégâts de sorts aux ennemis situés autour, avant de le faire exploser et d'infliger des dégâts de feu. L'explosion n'est pas affectée par les modificateurs aux dégâts des sorts et ne peut être renvoyée."
+  },
+  "repeating_vaal_detonate_dead": {
+    "displayedname": "Explosion cadavérique vaal",
+    "description":
+      "Un marqueur qui cible un cadavre en infligeant des dégâts de sorts aux ennemis situés autour, avant de le faire exploser et d'infliger des dégâts de feu. L'explosion n'est pas affectée par les modificateurs aux dégâts des sorts et ne peut être renvoyée. Le marqueur cible continuellement d'autres cadavres dans sa zone d'effet, à intervalles de plus en plus lentes, jusqu'à ce qu'il n'y en ait plus ou qu'il ait détruit 22 cadavres."
   },
   "vaal_detonate_dead": {
     "displayedname": "Explosion cadavérique vaal",
@@ -143,14 +163,24 @@
       "Un tir multiple qui envoie plusieurs flèches sur différentes cibles."
   },
   "cold_snap": {
-    "displayedname": "Congélation",
+    "displayedname": "Vague de froid",
     "description":
       "Un sort qui fait jaillir des cristaux de glace du sol à l'emplacement ciblé. Les monstres touchés subissent des dégâts et sont gelés. Le temps de recharge peut être ignoré en dépensant une charge de pouvoir."
   },
   "vaal_cold_snap": {
-    "displayedname": "Congélation vaal",
+    "displayedname": "Vague de froid vaal",
     "description":
       "Un sort qui s'étend autour du lanceur en faisant jaillir des cristaux de glace du sol, endommageant les ennemis et laissant le sol gelé."
+  },
+  "new_cold_snap": {
+    "displayedname": "Vague de froid",
+    "description":
+      "Une rafale glaciale qui souffle dans la zone ciblée et endommage les ennemis. Elle crée également une zone de sol frigorifiant en expansion et inflige aux ennemis des dégâts de froid sur la durée. Les ennemis qui meurent en étant dans cette zone ont une chance de vous octroyer une Charge de frénésie. Le temps de recharge peut être ignoré au prix d'une Charge de frénésie."
+  },
+  "new_vaal_cold_snap": {
+    "displayedname": "Vague de froid vaal",
+    "description":
+      "Une rafale de froid qui glace l'air autour de vous et endommage les ennemis. Elle grandit peu à peu, frigorifiant les ennemis et leur infligeant des dégâts de froid sur la durée. Quand un ennemi meurt dans cette zone, vous gagnez une Charge de frénésie. De plus, la simple présence d'un ennemi dans cette zone vous octroie des Charges de frénésie de manière passive."
   },
   "ice_nova": {
     "displayedname": "Nova de glace",
@@ -179,12 +209,12 @@
   "arc": {
     "displayedname": "Arc électrique",
     "description":
-      "Un arc électrique qui part du lanceur jusqu'à l'ennemi ciblé puis ricoche sur des cibles supplémentaires."
+      "Un arc électrique qui s'étire du lanceur jusqu'à l'ennemi ciblé puis ricoche sur des cibles supplémentaires. Chaque ricochet de l'arc électrique principal ricoche également sur un ennemi secondaire, mais cet arc électrique secondaire ne peut pas ricocher à son tour."
   },
   "vaal_arc": {
     "displayedname": "Arc électrique vaal",
     "description":
-      "Un arc électrique qui part du lanceur jusqu'à l'ennemi ciblé puis ricoche sur beaucoup de cibles supplémentaires."
+      "Un arc électrique foudroyant qui s'étire du lanceur jusqu'à l'ennemi ciblé puis ricoche sur des cibles supplémentaires. À chaque ricochet, l'arc électrique se divise en deux afin de ricocher sur un deuxième ennemi, mais aucun ennemi ne peut être touché deux fois par un même rayon. Octroie également un effet bénéfique qui rend Favorables vos dégâts d'Arc électrique pendant une courte durée."
   },
   "raise_zombie": {
     "displayedname": "Réanimation en Zombie",
@@ -194,17 +224,22 @@
   "righteous_fire": {
     "displayedname": "Feu purificateur",
     "description":
-      "Un sort qui vous enveloppe dans du feu magique qui brûle rapidement aussi bien les ennemis à proximité que vous-même. Vos dégâts des sorts sont substantiellement augmentés durant cet effet. L'effet s'arrête lorsque votre total de vie atteint 1."
+      "Un sort qui vous enveloppe dans du feu magique qui brûle rapidement aussi bien les ennemis à proximité que vous-même. Vos dégâts des sorts sont considérablement améliorés pendant cet effet. L'effet s'arrête lorsque votre total de vie atteint 1."
+  },
+  "vaal_righteous_fire_duration": {
+    "displayedname": "Feu purificateur vaal",
+    "description":
+      "Sacrifie une partie de votre Vie et Bouclier d'énergie pour vous engloutir dans une enveloppe de feu magique temporaire qui brûle rapidement les ennemis à proximité. Vos dégâts des sorts sont considérablement améliorés pendant cet effet."
   },
   "vaal_righteous_fire": {
     "displayedname": "Feu purificateur vaal",
     "description":
-      "Un souffle incandescent retire votre bouclier d'énergie et ne vous laisse qu'un point de vie. Le souffle explose en s'étendant, infligeant aux ennemis à proximité des dégâts de feu basés sur le bouclier d'énergie et la vie ainsi perdus."
+      "Un souffle ardent retire votre bouclier d'énergie et ne vous laisse qu'un point de vie. Le souffle explose en s'étendant, infligeant aux ennemis à proximité des dégâts de feu basés sur le bouclier d'énergie et la vie ainsi perdus."
   },
   "fire_weapon": {
     "displayedname": "Arme enflammée",
     "description":
-      "Une infusion qui ajoute des dégâts de feu à l'arme du joueur pour une courte durée."
+      "Une imprégnation qui ajoute des dégâts de feu à l'arme du joueur pour une courte durée."
   },
   "damage_infusion": {
     "displayedname": "Infusion de Dégâts",
@@ -268,17 +303,22 @@
   "infernal_blow": {
     "displayedname": "Coup infernal",
     "description":
-      "Une attaque de mêlée qui convertit une partie de vos dégâts physiques en dégâts de feu. Si l'ennemi meurt rapidement après avoir été touché, il explose en infligeant des dégâts de feu à tous les ennemis à proximité. Les dégâts de cette explosion ne peuvent être reflétés. Fonctionne uniquement avec une épée, une hache, une masse, un bâton ou à mains nues."
+      "Une attaque de mêlée qui convertit une partie de vos dégâts physiques en dégâts de feu. Si l'ennemi meurt rapidement après avoir été touché, il explose en infligeant des dégâts de feu à tous les ennemis à proximité. Les dégâts de cette explosion ne peuvent être reflétés. Fonctionne uniquement avec les épées, haches, masses, bâtons ou à mains nues."
+  },
+  "infernal_blow_new": {
+    "displayedname": "Coup infernal",
+    "description":
+      "Une attaque de mêlée qui convertit une partie de vos dégâts physiques en dégâts de feu et applique une charge d'un effet néfaste pendant une courte durée, ainsi qu'un effet néfaste secondaire aux autres ennemis éventuellement touchés. Si un ennemi affecté par l'un ou l'autre de ces effets néfaste meurt, il explosera et infligera des dégâts de feu aux ennemis à proximité. Les dégâts de cette explosion ne peuvent pas être renvoyés. Si la charge arrive à la fin de sa durée, ou si vous cumulez 6 charges, l'effet néfaste sera retiré et infligera une partie de vos dégâts d'attaque à la cible et en zone. Fonctionne uniquement avec les épées, haches, masses, bâtons ou à mains nues."
   },
   "glacial_hammer": {
     "displayedname": "Marteau de glace",
     "description":
-      "Une attaque de mêlée qui convertit une partie de vos dégâts physiques en dégâts de froid. Si l'ennemi est gelé et est en deça d'un tiers de sa vie, le Marteau de glace le brise au toucher. Ne fonctionne qu'avec une masse ou un bâton."
+      "Une attaque de mêlée qui convertit une partie de vos dégâts physiques en dégâts de froid. Si l'ennemi est gelé et est en dessous d'un tiers de sa vie, le Marteau de glace le fracasse au toucher. Ne fonctionne qu'avec une masse ou un bâton."
   },
   "vaal_glacial_hammer": {
     "displayedname": "Marteau de glace vaal",
     "description":
-      "Une attaque de mêlée qui convertit une partie de vos dégâts physiques en dégâts de froid. Si l'ennemi est gelé et est en deça d'un tiers de sa vie, le Marteau de glace le brise au toucher. Ne fonctionne qu'avec une masse ou un bâton."
+      "Une attaque de mêlée qui convertit une partie de vos dégâts physiques en dégâts de froid et crée un cercle de glace qui vous enferme avec l'ennemi touché. Ne fonctionne qu'avec une masse ou un bâton."
   },
   "frost_wall": {
     "displayedname": "Mur de glace",
@@ -289,7 +329,7 @@
   "freezing_pulse": {
     "displayedname": "Pulsation glaciale",
     "description":
-      "Un projectile glacé qui a une chance de geler les ennemis qu'il traverse. Le projectile s'estompe rapidement, réduisant les dégâts et les chances de geler jusqu'à ce que sa durée se termine, le dissipant complètement."
+      "Un projectile glacé qui a une chance de geler les ennemis qu'il traverse. Le projectile s'estompe rapidement, réduisant les dégâts et les chances de geler jusqu'à ce qu'il se dissipe complètement."
   },
   "shock_nova": {
     "displayedname": "Nova d'éléctricité",
@@ -414,6 +454,16 @@
     "description":
       "Une multitude de flèches est tirée dans les airs, s'abattant sur la cible après une courte durée. Les ennemis touchés par les flèches sont cloués sur place, incapables de se déplacer pendant quelques instants."
   },
+  "expanding_rain_of_arrows": {
+    "displayedname": "Pluie de flèches",
+    "description":
+      "Un tir qui envoie un grand nombre de flèches dans les airs, avant de les faire s'abattre après un court délai à l'endroit ciblé. La pluie de flèches s'abat en premier à l'endroit ciblé, avant de se propager dans toutes les directions à la fois. Chaque flèche inflige des dégâts de zone. S'il y a des cibles à portée, la moitié des flèches s'abat directement sur elles."
+  },
+  "vaal_expanding_rain_of_arrows": {
+    "displayedname": "Pluie de flèches vaal",
+    "description":
+      "Un tir qui envoie un grand nombre de flèches dans les airs, avant de les faire s'abattre après un court délai à l'endroit ciblé à plusieurs reprises. Chaque pluie de flèches s'abat en premier à l'endroit ciblé, avant de se propager dans toutes les directions à la fois. Chaque flèche inflige des dégâts de zone. S'il y a des cibles à portée, la moitié des flèches s'abat directement sur elles."
+  },
   "fire_storm": {
     "displayedname": "Tempête de feu",
     "description":
@@ -429,6 +479,11 @@
     "displayedname": "Frappe foudroyante",
     "description":
       "Imprègne votre arme de mêlée d'énergie électrique lorsque vous frappez. Convertit une partie de vos dégâts physiques en dégâts de foudre et libère des projectiles de foudre derrière la cible touchée, afin d'atteindre des ennemis plus éloignés. Les projectiles ne peuvent rater si l'attaque de mêlée a touché sa cible."
+  },
+  "vaal_new_lightning_strike": {
+    "displayedname": "Frappe foudroyante vaal",
+    "description":
+      "Imprègne votre arme de mêlée d'énergie électrique lorsque vous frappez. Convertit une partie de vos dégâts physiques en dégâts de foudre et insuffle l'énergie accumulée dans un orbe qui se fixe à l'ennemi touché, ou s'écrase au sol si vous ne frappez personne. À intervalles réguliers, l'orbe enverra des projectiles en direction des ennemis à proximité, et blessera par la même occasion l'ennemi auquel il est fixé."
   },
   "vaal_lightning_strike": {
     "displayedname": "Frappe foudroyante de Vaal",
@@ -457,7 +512,7 @@
   "power_siphon": {
     "displayedname": "Siphon de pouvoir",
     "description":
-      "Une attaque à la baguette qui inflige des dégâts accrus et vous octroie une charge de pouvoir si un ennemi est tué par l'attaque, ou peu de temps après."
+      "Une attaque à la baguette qui envoie des projectiles sur les ennemis situés devant vous ou sur vos flancs, infligeant des dégâts accrus et vous octroyant une charge de pouvoir si un ennemi est tué par l'attaque ou peu de temps après."
   },
   "vaal_power_siphon": {
     "displayedname": "Siphon de pouvoir vaal",
@@ -592,7 +647,8 @@
   },
   "trap_beartrap": {
     "displayedname": "Piège à ours",
-    "description": "Un piège qui endommage et immobilise un seul ennemi."
+    "description":
+      "Un piège qui endommage et immobilise un seul ennemi pour une durée proportionnelle aux dégâts infligés. À la fin de l'immobilisation, l'ennemi reçoit un effet néfaste temporaire qui réduit sa vitesse de déplacement et qui s'estompe au fil du temps. Cet effet néfaste augmente également les dégâts que l'ennemi subit de la part des pièges et des mines."
   },
   "mine_freeze": {
     "displayedname": "Mine de gel",
@@ -713,10 +769,15 @@
     "description":
       "Un torrent de feu se déverse en continu depuis votre main. Plus le sort est canalisé longtemps, plus les flammes grossissent et infligent de dégâts."
   },
+  "expanding_fire_cone": {
+    "displayedname": "Incinération",
+    "description":
+      "Un torrent de feu qui déferle depuis votre main et inflige des dégâts de façon répétée. Plus vous maintenez le sort, plus les flammes s'étendront vers l'avant et sur les côtés. Lorsque vous cessez la canalisation, vous libérez une vague qui inflige des dégâts de feu sur une grande zone et applique un puissant Embrasement."
+  },
   "cyclone": {
     "displayedname": "Cyclone",
     "description":
-      "Une attaque qui endommage les ennemis autour de vous, puis vous permet d'atteindre l'emplacement ciblé tout en exécutant une série d'attaques tourbillonnantes. Ne peut être modifiée par Multifrappe ou Impitoyabilité."
+      "Une attaque qui endommage les ennemis autour de vous, puis vous permet d'atteindre l'emplacement ciblé tout en exécutant une série d'attaques tourbillonnantes. Ne peut être modifiée par Impitoyabilité ou Multifrappe."
   },
   "vaal_cyclone": {
     "displayedname": "Cyclone vaal",
@@ -767,7 +828,7 @@
   "vaal_lightning_projectile_trap": {
     "displayedname": "Piège de foudre vaal",
     "description":
-      "Un piège qui envoie des projectiles à travers l'ennemi qui l'a déclenché dans toutes les directions. Les projectiles infligent des dégâts de foudre à toutes les cibles touchées et laissent une traînée de sol électrifié derrière eux."
+      "Un piège qui envoie des projectiles à travers l'ennemi qui l'a déclenché dans toutes les directions. Les projectiles infligent des dégâts de foudre et laissent une traînée de sol électrocutant derrière eux."
   },
   "smoke_mine": {
     "displayedname": "Mine fumigène",
@@ -779,18 +840,18 @@
   "animate_armour": {
     "displayedname": "Animation de gardien",
     "description":
-      "Un sort qui anime une arme de mêlée ou une armure, l'associant à un gardien invisible qui combat à vos côtés. Animer de multiple objets les associe au même gardien. Les armes non identifiées ne peuvent être animées."
+      "Un sort qui anime une arme de mêlée ou une armure, l'associant à un gardien invisible qui combat à vos côtés. Le fait d'animer plusieurs objets les associe au même gardien. Les armes non identifiées ne peuvent être animées."
   },
   "dominus_blood_rain": { "displayedname": "", "description": "" },
   "thrown_weapon": {
     "displayedname": "Lancer spectral",
     "description":
-      "Une copie spectrale d'une arme de mêlée. L'arme est lancée sous forme de projectile tournoyant qui revient à vous, frappant les ennemis sur son trajet."
+      "Une réplique spectrale de votre arme de mêlée. L'arme est lancée sous forme de projectile tournoyant qui revient à vous, frappant les ennemis sur son passage"
   },
   "vaal_thrown_weapon": {
     "displayedname": "Lancer spectral vaal",
     "description":
-      "Une copie spectrale d'une arme de mêlée, destinée à être lancée. L'arme décrit une trajectoire en spirale qui s'éloigne de vous, frappant les ennemis sur son trajet."
+      "Une réplique spectrale de votre arme de mêlée, destinée à être lancée. L'arme s'éloigne de vous en décrivant une trajectoire en spirale, frappant les ennemis sur son passage."
   },
   "dominus_grab": { "displayedname": "", "description": "" },
   "dominus_death_teleport": { "displayedname": "", "description": "" },
@@ -842,27 +903,32 @@
   "vaal_storm_call": {
     "displayedname": "Foudroiement vaal",
     "description":
-      "Un sort qui place un marqueur à un emplacement. Tant qu'il perdure, la foudre frappe aléatoirement les ennemis à côtés de lui, les endommageant. Après une courte durée, un grand éclair de foudre frappe le marqueur, infligeant des dégâts aux alentours. Lorsque cela survient, un éclair frappe également tous les autres marqueurs générés par cette aptitude."
+      "Un sort qui dépose un marqueur à un emplacement. La foudre s'abat aléatoirement sur les ennemis à proximité pendant toute la durée, infligeant des dégâts de zone. Les modificateurs à la durée de l'aptitude affecteront la fréquence à laquelle la foudre s'abat. Lorsque la durée du marqueur s'achève, un immense éclair de foudre frappe le marqueur, infligeant des dégâts aux alentours."
   },
   "charged_blast": {
     "displayedname": "Conflagration",
     "description":
-      "Une conflagration canalisée qui gagne en intensité. Les dégâts et la zone d'effet de la conflagration sont proportionnels à la durée de la canalisation. La conflagration survient après l'utilisation d'une autre aptitude ou après une courte période sans incantation."
+      "Une explosion canalisée qui gagne en intensité. Les dégâts et la zone d'effet de la conflagration sont proportionnels à la durée de la canalisation. La conflagration survient après l'utilisation d'une autre aptitude ou après une courte période sans incantation."
   },
   "flameblast": {
     "displayedname": "Conflagration",
     "description":
-      "Une conflagration canalisée qui gagne en intensité et explose lorsque vous cessez d'utiliser cette aptitude. Les dégâts et la zone d'effet de la conflagration sont proportionnels à la durée de la canalisation."
+      "Une explosion canalisée qui gagne en intensité et explose lorsque vous cessez d'utiliser cette aptitude. Ce sort a 10 paliers, atteints à mesure que vous canalisez. Les dégâts et la zone d'effet de la conflagration sont proportionnels au nombre de paliers atteints."
+  },
+  "repeating_vaal_charged_blast": {
+    "displayedname": "Conflagration vaal",
+    "description":
+      "Un sort permettant de cibler une zone avec une conflagration qui n'a pas besoin d'être canalisée. Cette conflagration peut avoir jusqu'à 15 paliers, paliers qui sont atteints d'autant plus vite que votre vitesse d'incantation est importante. Tous les 5 paliers, la conflagration libère une explosion, à chaque fois plus puissante. À mesure que le sort accumule les paliers, la zone d'effet rétrécit mais les dégâts deviennent plus importants."
   },
   "vaal_charged_blast": {
     "displayedname": "Conflagration vaal",
     "description":
-      "Une conflagration qui gagne en intensité à l'emplacement ciblé à une vitesse dépendant de votre vitesse d'incantation. La conflagration survient après 10 gains d'intensité."
+      "Une explosion qui gagne en intensité à l'emplacement ciblé. La rapidité du gain d'intensité dépend de la vitesse d'incantation. La conflagration survient après 10 gains d'intensité."
   },
   "vaal_charged_blast_triggerable": {
     "displayedname": "Conflagration vaal",
     "description":
-      "Une conflagration qui gagne en intensité à l'emplacement ciblé. La vitesse du gain d'intensité dépend de la vitesse d'incantation. La conflagration survient après 10 gains d'intensité."
+      "Une explosion qui gagne en intensité à l'emplacement ciblé. La rapidité du gain d'intensité dépend de la vitesse d'incantation. La conflagration survient après 10 gains d'intensité."
   },
   "seawitch_lightning_beam": { "displayedname": "", "description": "" },
   "root_spider_ambush": { "displayedname": "", "description": "" },
@@ -905,6 +971,10 @@
     "displayedname": "Offrance de chair",
     "description":
       "Un sort qui consomme un cadavre afin d'améliorer temporairement la vitesse de vos créatures. L'aptitude consomme également les autres cadavres à proximité, augmentant sa durée pour chaque cadavre ainsi consommé."
+  },
+  "vaal_flesh_offering": {
+    "displayedname": "Offrande de chair vaal",
+    "description": ""
   },
   "bone_offering": {
     "displayedname": "Offrande d'os",
@@ -1163,7 +1233,7 @@
   "static_strike": {
     "displayedname": "Frappe électrique",
     "description":
-      "Une attaque avec une arme de mêlée qui vous permet d'accumuler de l'énergie statique. A l'expiration d'un court délai, cette énergie se libère, endommageant les ennemis autour de vous."
+      "Une attaque avec une arme de mêlée qui vous permet d'accumuler de l'énergie statique. Après un court laps de temps, cette énergie se libère et endommage les ennemis autour de vous. Cette décharge ne peut pas être évitée ou esquivée."
   },
   "living_bomb": { "displayedname": "", "description": "" },
   "word_of_tempest_on_hit": {
@@ -1220,7 +1290,7 @@
   "ice_crash": {
     "displayedname": "Fracas de glace",
     "description":
-      "Une frappe au sol avec votre arme principale qui endommage les ennemis dans une zone autour de l'impact en trois étapes. Les ennemis subissent légèrement moins de dégâts lors de la deuxième et troisième étape. Fonctionne avec les épées, masses, haches, bâtons et à mains nues. Ne peut être modifiée par Multifrappe."
+      "Une frappe au sol avec votre arme principale qui endommage les ennemis dans une zone autour de l'impact en trois étapes. Les ennemis subissent légèrement moins de dégâts lors de la deuxième et troisième étape. Fonctionne avec les épées, masses, haches, bâtons et à mains nues."
   },
   "death_explode": { "displayedname": "", "description": "" },
   "miner_throw_spawn": { "displayedname": "", "description": "" },
@@ -1233,7 +1303,7 @@
       "Un sort qui lance un anneau de foudre autour de vous, suivi par une nova de foudre plus grande. Chaque effet touche les ennemis situés dans sa zone avec des dégâts de foudre."
   },
   "flame_dash": {
-    "displayedname": "Irruption incandescente",
+    "displayedname": "Irruption enflammée",
     "description":
       "Une téléportation vers un emplacement qui endommage les ennemis et laisse une traînée de sol brûlant derrière vous."
   },
@@ -1378,7 +1448,7 @@
   "bladefall": {
     "displayedname": "Averse de lames",
     "description":
-      "Une pluie d'armes éthérées tombant du ciel, infligeant des dégâts aux ennemis en une séquence de cinq salves, chacune plus large mais infligeant moins de dégâts que la précédente. Les ennemis peuvent être touchés plusieurs fois là où les salves se chevauchent."
+      "Une pluie d'armes éthérées tombant du ciel qui infligent des dégâts aux ennemis en une séquence de plusieurs salves de plus en plus larges, mais de moins en moins endommageantes. Les ennemis peuvent être touchés plusieurs fois là où les salves se chevauchent."
   },
   "labyrinth_boss_rain_of_blades": {
     "displayedname": "Pluie de lames",
@@ -1389,10 +1459,15 @@
     "description":
       "Un sort qui fait tournoyer une lame éthérée autour de vous pendant une certaine durée, endommageant de manière répétée les ennemis qu'elle traverse."
   },
+  "vaal_blade_vortex": {
+    "displayedname": "Vortex de lames vaal",
+    "description":
+      "Un sort qui crée un vortex de lames éthérées se déplaçant de manière indépendante pendant une certaine durée. Le vortex se dirige vers les ennemis à proximité, infligeant de manière répétée des dégâts à ceux qu'il traverse."
+  },
   "frost_bomb": {
     "displayedname": "Bombe de givre",
     "description":
-      "Un sort qui crée un cristal duquel émane des pulsations de froid pendant une certaine durée. Chaque pulsation applique un effet néfaste aux ennemis à proximité qui réduit leur résistance au froid et leur régénération de vie. Lorsque la durée prend fin, le cristal exploses, infligeant d'importants dégâts de froid aux ennemis autour de lui."
+      "Un sort qui crée un cristal duquel émanent des pulsations de froid pendant une certaine durée. Chaque pulsation applique un effet néfaste aux ennemis à proximité qui réduit leur résistance au froid et leur régénération de vie. Lorsque la durée prend fin, le cristal exploses, infligeant d'importants dégâts de froid aux ennemis autour de lui."
   },
   "word_of_flames": {
     "displayedname": "Mot des flammes",
@@ -1418,7 +1493,7 @@
   "orb_of_storms": {
     "displayedname": "Orbe des orages",
     "description":
-      "Un sort qui crée un orbe électrique qui libère fréquemment des arcs électriques sur un ennemi à proximité. Utiliser une Aptitude de foudre en étant à l'intérieur du nuage de l'orbe libère des arcs électriques supplémentaires. Relancer cette Aptitude remplace l'orbe précédent par un nouveau. Vous ne pouvez lancer ce sort que vous-même, directement."
+      "Un sort qui crée un orbe de foudre qui libère fréquemment des arcs électriques sur un ennemi à proximité. Les modificateurs à la vitesse d'incantation réduiront le délai entre chaque décharge électrique. Utiliser une Aptitude de foudre en étant à l'intérieur du nuage de l'orbe libère des arcs électriques supplémentaires. Relancer cette Aptitude remplace l'orbe précédent par un nouveau. Vous ne pouvez lancer ce sort que vous-même, directement."
   },
   "lb_retractable_trap": { "displayedname": "", "description": "" },
   "word_of_the_grave_on_kill": {
@@ -1560,7 +1635,17 @@
   "earthquake": {
     "displayedname": "Séisme",
     "description":
-      "Une frappe au sol avec une hache, une masse ou un bâton qui inflige des dégâts de zone tout en fissurant le sol. Après une courte durée, le sol ainsi fissuré explose en une puissante réplique. Les Séismes crées avant que le premier n'ait explosé ne génèrent pas de répliques."
+      "Une frappe au sol avec une hache, une masse ou un bâton qui inflige des dégâts de zone tout en fissurant le sol. Après une courte durée, le sol ainsi fissuré explose en une puissante réplique sismique. Les Séismes crées avant que le premier n'ait explosé ne génèrent pas de répliques."
+  },
+  "vaal_earthquake": {
+    "displayedname": "Séisme vaal",
+    "description":
+      "Une frappe au sol avec une hache, une masse ou un bâton qui inflige des dégâts de zone tout en fissurant le sol en de multiples endroits. Après une courte durée, chaque emplacement ainsi fissuré explose en une série de trois puissantes répliques sismiques."
+  },
+  "vaal_earthquake_footstep": {
+    "displayedname": "Séisme vaal",
+    "description":
+      "Une frappe au sol avec une hache, une masse ou un bâton qui inflige des dégâts de zone et fissure le sol. Après une courte durée, cette fissure libère une puissante réplique sismique. Pendant quelques temps, vous endommagerez les ennemis autour de vous à chacun de vos pas, fissurant à nouveau le sol si les fissures précédentes ont éclaté. Cet effet prend fin après un certain nombre de répliques. "
   },
   "earthquake_triggerable": { "displayedname": "", "description": "" },
   "animated_weapon_explosive": { "displayedname": "", "description": "" },
@@ -1577,12 +1662,12 @@
   "wither_channel": {
     "displayedname": "Flétrissement",
     "description":
-      "Un sort qui inflige un effet débilitant aux ennemis dans une zone, Entravant leur déplacement et appliquant un effet néfaste cumulatif qui augmente les Dégâts de chaos qu'ils subissent. Cet effet peut se cumuler jusqu'à 15 fois."
+      "Un sort qui inflige un effet débilitant aux ennemis dans une zone qui entrave leur déplacement et applique un effet néfaste cumulatif augmentant les Dégâts de chaos qu'ils subissent. Cet effet peut se cumuler jusqu'à 15 fois."
   },
   "essence_drain": {
     "displayedname": "Drain d'essence",
     "description":
-      "Un projectile qui applique un effet néfaste de dégâts sur la durée au toucher. Vous recevez un soin équivalent à une partie des dégâts de l'effet néfaste. L'effet néfaste est propagé par Contagion."
+      "Un projectile qui applique un effet néfaste de dégâts sur la durée au toucher. Vous recevez un soin équivalent à une partie des dégâts de l'effet néfaste. L'effet néfaste est propagé par Contagion. Les Pièges et les Mines ne peuvent pas utiliser cette aptitude."
   },
   "word_of_inferno_on_kill": {
     "displayedname": "Mot du brasier",
@@ -1699,7 +1784,7 @@
   "totem_melee": {
     "displayedname": "Protecteur ancestral",
     "description":
-      "Un Totem d'un ancêtre qui attaque les ennemis avec des attaques de mêlée tant que vous vous tenez à ses côtés. Être proche de lui vous octroie davantage de vitesse d'attaque."
+      "Un totem d'Ancêtre qui attaque les ennemis avec des attaques de mêlée tant que vous vous tenez à ses côtés. Être proche de lui vous octroie davantage de vitesse d'attaque."
   },
   "storm_cloud_lightning_warp": {
     "displayedname": "Téléportation foudroyante du nuage orageux",
@@ -1786,7 +1871,12 @@
   "blight_channel": {
     "displayedname": "Fléau",
     "description":
-      "Un sort qui applique un effet néfaste aux ennemis situés devant vous, leur infligeant des dégâts de chaos sur la durée. Les ennemis qui ne sont pas déjà affectés par Fléau sont également Entravés pour une durée secondaire plus courte, ce qui ralentit leur déplacement. Une canalisation maintenue ajoute des couches de dégâts à l'effet néfaste, chacune avec sa propre durée."
+      "Un sort qui applique un effet néfaste aux ennemis situés devant vous, leur infligeant des dégâts de chaos sur la durée. Les ennemis qui ne sont pas déjà affectés par Fléau sont également Entravés pendant un laps de temps secondaire, plus court, ce qui ralentit leur déplacement. Une canalisation maintenue ajoute des couches de dégâts à l'effet néfaste, chacune avec sa propre durée."
+  },
+  "vaal_blight": {
+    "displayedname": "Fléau vaal",
+    "description":
+      "Un sort qui applique un puissant effet néfaste aux ennemis alentours, puis inflige deux couches de dégâts supplémentaires dans une zone plus étendue, dont la taille augmente considérablement à chaque fois. Les Ennemis sont également fortement Entravés pendant une durée secondaire plus courte, ce qui ralentit leur déplacement."
   },
   "blight": { "displayedname": "", "description": "" },
   "riptide": { "displayedname": "Contre-courant", "description": "" },
@@ -1885,12 +1975,16 @@
   "ancestor_totem_slam": {
     "displayedname": "Chef de guerre ancestral",
     "description":
-      "Une invocation d'Ancêtre Totem qui attaque les ennemis avec une puissante frappe à une main tant que vous restez proche de lui. Se trouver à proximité de lui vous octroie davantage de dégâts de mêlée."
+      "Une invocation de totem d'Ancêtre qui attaque les ennemis avec une puissante frappe à une main tant que vous restez proche de lui. Se trouver à proximité de lui vous octroie davantage de dégâts de mêlée."
+  },
+  "vaal_ancestral_warchief": {
+    "displayedname": "Chef de guerre ancestral vaal",
+    "description": ""
   },
   "double_slash": {
     "displayedname": "Lacération",
     "description":
-      "Une attaque tranchante en deux temps projetant des vagues de force qui endommagent les ennemis qu'elles touchent. Les ennemis situés entre les deux vagues peuvent être touchés par les deux. Si vous maniez deux armes, vous attaquez avec votre main principale puis secondaire. Fonctionne uniquement avec les haches ou les épées."
+      "Une attaque tranchante en deux temps projetant des vagues de force qui endommagent les ennemis qu'elles touchent. Les ennemis situés entre les deux vagues peuvent être touchés par chacune d'entre elles. Si vous maniez deux armes, vous attaquez avec votre main principale puis secondaire. Fonctionne uniquement avec les haches ou les épées."
   },
   "walking_double_slash": { "displayedname": "", "description": "" },
   "elemental_projectiles": {
@@ -2040,6 +2134,7 @@
   "restore": { "displayedname": "", "description": "" },
   "change_to_stance1": { "displayedname": "", "description": "" },
   "change_to_stance2": { "displayedname": "", "description": "" },
+  "change_to_stance3": { "displayedname": "", "description": "" },
   "atlas_growing_maelstrom": { "displayedname": "", "description": "" },
   "atlas_spider_web": { "displayedname": "", "description": "" },
   "cover_in_spiders": { "displayedname": "", "description": "" },
@@ -2204,7 +2299,7 @@
   "storm_burst": {
     "displayedname": "Éclats de foudre",
     "description":
-      "Libère un flux de projectiles tant que vous canalisez ce sort qui transpercent les ennemis en leur infligeant des dégâts de foudre. Lorsque vous cessez de canaliser, les projectiles explosent, infligeant des dégâts significatifs dans une zone autour d'eux. Les projectiles supplémentaires sont ajoutés de manière consécutive."
+      "Un flux de projectiles qui se libère de vos mains tant que vous canalisez ce sort, transperçant les ennemis en leur infligeant des dégâts de foudre. Lorsque vous cessez de les canaliser, les projectiles explosent, infligeant des dégâts importants dans une zone autour d'eux. Les projectiles supplémentaires sont ajoutés de manière consécutive."
   },
   "avarius_delayed_blast": { "displayedname": "", "description": "" },
   "summon_skeletons_channelled": {
@@ -2262,6 +2357,11 @@
     "description":
       "Une canalisation qui projette un mirage ayant votre vitesse de déplacement dans la direction à laquelle vous faites face. Lorsque la canalisation cesse, vous êtes téléporté(e) jusqu'au mirage en infligeant à multiples reprises des dégâts de zone le long du trajet. Vous déplacer plus loin applique un bons aux dégâts et permet d'infliger des dégâts dans des zones plus grandes. Une vitesse d'attaque élevée et une vitesse de déplacement faible contribuent toutes deux à infliger des dégâts plus fréquemment le long du trajet."
   },
+  "charged_dash_aim": {
+    "displayedname": "Charge fulgurante",
+    "description":
+      "Une canalisation qui projette une illusion de vous que vous pouvez diriger. Vous gagnez des paliers pendant le déplacement de l'illusion, jusqu'à ce qu'elle atteigne la distance maximale possible. Des pulsations infligeant des dégâts de zone sont libérées le long du trajet, à une fréquence dépendant de votre vitesse d'attaque. Lorsque la canalisation prend fin, vous êtes téléporté(e) jusqu'à l'illusion, infligeant une vague de dégâts finale."
+  },
   "chaos_degen_aura_unique": {
     "displayedname": "Aura de mort",
     "description":
@@ -2294,9 +2394,9 @@
   "delayed_skill_trigger": { "displayedname": "", "description": "" },
   "trigger_charge": { "displayedname": "", "description": "" },
   "player_lightning_slam": {
-    "displayedname": "Toucher divin",
+    "displayedname": "Toucher de Doryani",
     "description":
-      "Le personnage frappe le sol devant lui avec son poing, avec une vitesse d'attaque réduite mais davantage de dégâts. Cette attaque inflige des Dégâts de foudre aux ennemis dans une grande zone avec une chance de les Électrocuter. Ne peut être utilisé en maniant une arme. Ne fonctionne pas avec Multifrappe."
+      "Le personnage frappe le sol devant lui avec son poing. Sa vitesse d'attaque réduite mais il inflige davantage de dégâts. Cette attaque inflige des Dégâts de foudre aux ennemis dans une grande zone et ont des chances de les Électrocuter. Ne peut être utilisé en maniant une arme."
   },
   "player_fire_chasm": { "displayedname": "", "description": "" },
   "empty_action_spell": { "displayedname": "", "description": "" },
@@ -2460,14 +2560,20 @@
       "Une invocation d'Égide protecteur qui subit à votre place les dégâts élémentaires au toucher, jusqu'à être épuisé. Si vous ne subissez pas de dégâts élémentaires au toucher pendant un court délai, l'Égide élémentaire est restauré à sa valeur maximale."
   },
   "abyss_teleport_strike": { "displayedname": "", "description": "" },
-  "fire_impurity": { "displayedname": "Impureté du feu", "description": "" },
+  "fire_impurity": {
+    "displayedname": "Impureté du feu vaal",
+    "description":
+      "Une aura qui réduit les dégâts de feu subis et octroie une immunité à l'embrasement, affectant le lanceur et ses alliés. L'aura permet également d'ignorer au toucher la résistance au feu des ennemis à proximité."
+  },
   "cold_impurity": {
-    "displayedname": "Impureté de la glace",
-    "description": ""
+    "displayedname": "Impureté de la glace vaal",
+    "description":
+      "Une aura qui réduit les dégâts de froid subis et octroie une immunité au gel et à la frigorification, affectant le lanceur et ses alliés. L'aura permet également d'ignorer au toucher la résistance au froid des ennemis à proximité."
   },
   "lightning_impurity": {
-    "displayedname": "Impureté de la foudre",
-    "description": ""
+    "displayedname": "Impureté de la foudre vaal",
+    "description":
+      "Une aura qui réduit les dégâts de foudre subis et octroie une immunité à l'électrocution, affectant le lanceur et ses alliés. L'aura permet également d'ignorer au toucher la résistance à la foudre des ennemis à proximité."
   },
   "curse_pillar": {
     "displayedname": "Invocation d'Effigie de Doedre",
@@ -2487,6 +2593,7 @@
   "beam_orb": { "displayedname": "", "description": "" },
   "geometry_attack": { "displayedname": "", "description": "" },
   "geometry_spell": { "displayedname": "", "description": "" },
+  "geometry_thruster": { "displayedname": "", "description": "" },
   "elder_clone_shot": { "displayedname": "", "description": "" },
   "death_walk": {
     "displayedname": "Marche mortuaire",
@@ -2596,6 +2703,7 @@
     "description":
       "Tire un projectile qui tourbillonne de manière imprévisible et se déplace aléatoirement pendant une certaine durée, infligeant des dégâts aux ennemis de façon répétée avec lesquels il entre en contact."
   },
+  "master_grant_buff": { "displayedname": "", "description": "" },
   "monster_fading_projectile_spell": { "displayedname": "", "description": "" },
   "empty_action_attack": { "displayedname": "", "description": "" },
   "empty_action_attack_2": { "displayedname": "", "description": "" },
@@ -2628,5 +2736,51 @@
   "blinding_aura": {
     "displayedname": "Aura aveuglante",
     "description": "Une aura qui aveugle les ennemis dans un certain rayon."
-  }
+  },
+  "shrapnel_trap": {
+    "displayedname": "Piège explosif",
+    "description":
+      "Un piège qui, lorsqu'il est déclenché, provoque une grande explosion qui inflige des dégâts de sort dans une zone. Après cette première explosion, un certain nombre d'explosions secondaires plus petites se produisent en une succession rapide autour de cette zone."
+  },
+  "lightning_tower_trap": {
+    "displayedname": "Piège pic de foudre",
+    "description":
+      "Un piège qui, lorsqu'il est déclenché, foudroie à de multiples reprises des zones situées autour de lui pendant une certaine durée, infligeant des dégâts de foudre. Les modificateurs affectant la vitesse d'incantation affectent la fréquence à laquelle ce piège foudroie tout autour de lui. Le piège a des chances accrues d'infliger des coups critiques aux ennemis Électrocutés."
+  },
+  "lightning_tower_trap_triggerable": {
+    "displayedname": "",
+    "description": ""
+  },
+  "flamethrower_trap": {
+    "displayedname": "Piège lance-flammes",
+    "description":
+      "Un piège qui crache des flammes autour de lui lorsqu'il est déclenché. Le piège tourne ensuite sur lui-même, déplaçant les flammes de manière circulaire en infligeant des dégâts de manière répétée. Les ennemis qui brûlent subissent davantage de dégâts."
+  },
+  "ice_siphon_trap": {
+    "displayedname": "Piège siphonnant",
+    "description":
+      "Un piège qui envoie un effet néfaste sous forme de rayons débilitants en direction d'un certain nombre d'ennemis à proximité, pendant une certaine durée. Ces rayons frigorifient les ennemis tout en leur infligeant des dégâts de froid sur la durée. Le piège envoie également un rayon dans votre direction qui vous octroie de la régénération de vie et de mana en fonction du nombre de rayons débilitants qui affectent les ennemis."
+  },
+  "phys_cascade_trap": {
+    "displayedname": "Piège sismique",
+    "description":
+      "Un piège qui, une fois déclenché, libère de manière répétée et pendant une certaine durée des ondes de choc. Chaque onde de choc se déplace en ligne droite, infligeant des dégâts en une série de petites éruptions le long de son trajet, et s'achève par une éruption plus importante. Les modificateurs affectant la vitesse d'incantation affectent la fréquence avec laquelle les ondes de choc sont libérées."
+  },
+  "expanding_pulse": { "displayedname": "", "description": "" },
+  "trigger_beam": { "displayedname": "", "description": "" },
+  "multi_trigger_beam": { "displayedname": "", "description": "" },
+  "delayed_spell_projectile": { "displayedname": "", "description": "" },
+  "channelled_ground_laser": { "displayedname": "", "description": "" },
+  "architect_healing_beam": { "displayedname": "", "description": "" },
+  "monster_tornado": { "displayedname": "", "description": "" },
+  "architect_combo_stomp": { "displayedname": "", "description": "" },
+  "architect_blood_explosion": { "displayedname": "", "description": "" },
+  "architect_blood_beam": { "displayedname": "", "description": "" },
+  "translate_rotate": { "displayedname": "", "description": "" },
+  "translate_rotate_no_translate": { "displayedname": "", "description": "" },
+  "translate_rotate_to_middle": { "displayedname": "", "description": "" },
+  "translate_rotate_fast": { "displayedname": "", "description": "" },
+  "translate_rotate_slow": { "displayedname": "", "description": "" },
+  "frontal_flamethrower": { "displayedname": "", "description": "" },
+  "frontal_damage_wave": { "displayedname": "", "description": "" }
 }

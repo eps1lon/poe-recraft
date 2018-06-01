@@ -1350,6 +1350,23 @@
         }
       ]
     },
+    "ghost_chance": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de probabilidad de Invocar un Fantasma cuando esta Habilidad o Esbirros que no sean Fantasmas inflijan un Golpe Mortal",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Invoca un Fantasma cuando esta Habilidad o Esbirros que no sean Fantasmas inflijan un Golpe Mortal",
+          "formatters": []
+        }
+      ]
+    },
     "support_ruthless_count": {
       "stats": ["support_ruthless_big_hit_max_count"],
       "translations": [
@@ -1503,6 +1520,17 @@
         }
       ]
     },
+    "ignites_apply_fire_res": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los Enemigos Quemados por este Ataque o por Esbirros tienen %1$+d%% a la Resistencia al Fuego",
+          "formatters": []
+        }
+      ]
+    },
     "maim_chance": {
       "stats": ["maim_on_hit_%"],
       "translations": [
@@ -1551,6 +1579,28 @@
         }
       ]
     },
+    "hypothermia_cold_damage": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Este Ataque y los Esbirros infligen %1%%% más Daño de Hielo Degenerativo",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Este Ataque y los Esbirros infligen %1%%% menos Daño de Hielo Degenerativo",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "maimed_phys_damage_taken_incr": {
       "stats": ["support_maimed_enemies_physical_damage_taken_+%"],
       "translations": [
@@ -1575,8 +1625,8 @@
     },
     "added_fire_against_burning": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
@@ -1584,6 +1634,30 @@
           "text":
             "Este Ataque y los Esbirros infligen %1% a %2% de Daño de Fuego agregado a Enemigos Incendiados",
           "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_crit_damage": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Este Ataque y los Esbirros infligen %1%%% más Daño por cada Carga de Poder",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Este Ataque y los Esbirros infligen %1%%% menos Daño por cada Carga de Poder",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     }

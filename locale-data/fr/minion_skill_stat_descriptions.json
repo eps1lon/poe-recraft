@@ -9,12 +9,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Les Créatures jettent un Piège supplémentaire",
+          "text": "Les Créatures Jettent jusqu'à 1 Piège supplémentaire",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text": "Les Créatures jettent %1% Pièges supplémentaires",
+          "text": "Les Créatures Jettent jusqu'à %1% Pièges supplémentaires",
           "formatters": []
         }
       ]
@@ -2968,6 +2968,23 @@
         }
       ]
     },
+    "ghost_chance": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chances d'Invoquer une Apparition lorsque vos Créatures\\n(autres que des Apparitions) infligent un Coup mortel",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Invoque une Apparition lorsque vos Créatures\\n(autres que des Apparitions) infligent un Coup mortel",
+          "formatters": []
+        }
+      ]
+    },
     "decay_on_hit": {
       "stats": ["deal_chaos_damage_per_second_for_10_seconds_on_hit"],
       "translations": [
@@ -2985,6 +3002,17 @@
         {
           "matchers": ["#"],
           "text": "Les Créatures n'infligent pas de Dégâts élémentaires",
+          "formatters": []
+        }
+      ]
+    },
+    "ignites_apply_fire_res": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Ennemis Embrasés par les Créatures ont %1$+d%% de Résistance au feu",
           "formatters": []
         }
       ]
@@ -3079,6 +3107,40 @@
         }
       ]
     },
+    "frenzy_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Cette Aptitude et les Créatures ont %1%%% de chances d'octroyer une Charge de frénésie lorsque votre Piège est déclenché par un Ennemi",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Cette Aptitude et les Créatures octroient une Charge de frénésie lorsque votre Piège est déclenché par un Ennemi",
+          "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Cette Aptitude et les Créatures ont %1%%% de chances de gagner une\\nCharge de pouvoir lorsque votre Piège est déclenché par un Ennemy",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Cette Aptitude et les Créatures gagnent une Charge de pouvoir lorsque\\nvotre Piège est déclenché par un Ennemi",
+          "formatters": []
+        }
+      ]
+    },
     "base_pierce_num": {
       "stats": ["projectile_base_number_of_targets_to_pierce"],
       "translations": [
@@ -3147,6 +3209,28 @@
         }
       ]
     },
+    "hypothermia_cold_damage": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Créatures ont %1%%% Davantage de Dégâts de froid sur la durée",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Les Créatures ont %1%%% de Perte de Dégâts de froid sur la durée",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "maim_phys_damage": {
       "stats": ["support_maim_chance_physical_damage_+%_final"],
       "translations": [
@@ -3191,8 +3275,8 @@
     },
     "added_fire_against_burning": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
@@ -3253,6 +3337,30 @@
         {
           "matchers": [["#", -1]],
           "text": "Les Créatures ont %1%%% de Perte de Dégâts des Projectiles",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "power_charge_on_crit_damage": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Créatures ont %1%%% Davantage de Dégâts par Charge de pouvoir",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Les Créatures ont %1%%% de Perte de Dégâts par Charge de pouvoir",
           "formatters": [
             {
               "id": "negate",
@@ -3326,6 +3434,48 @@
               "arg": 3
             }
           ]
+        }
+      ]
+    },
+    "ailment_damage_incr": {
+      "stats": ["support_unbound_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Créatures ont %1%%% Davantage de Dégâts avec les Altérations",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Les Créatures ont %1%%% de Perte de Dégâts avec les Altérations",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "trap_crit_per_power_charge": {
+      "stats": ["trap_critical_strike_multiplier_+_per_power_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Cette Aptitude et les Aptitudes des Créatures ont %1$+d%% au Multiplicateur de\\ncoup critique par Charge de pouvoir lorsqu'elles sont utilisées par des Pièges",
+          "formatters": []
         }
       ]
     }

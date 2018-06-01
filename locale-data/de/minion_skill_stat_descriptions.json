@@ -9,12 +9,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Kreaturen werfen eine zusätzliche Falle",
+          "text": "Kreaturen werfen bis zu 1 zusätzliche Falle",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text": "Kreaturen werfen %1% zusätzliche Fallen",
+          "text": "Kreaturen werfen bis zu %1% zusätzliche Fallen",
           "formatters": []
         }
       ]
@@ -2936,6 +2936,23 @@
         }
       ]
     },
+    "ghost_chance": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% Chance, ein Phantasma zu beschwören, wenn Kreaturen (Phantasmen ausgenommen) einen tödlichen Schlag verursachen",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Beschwört ein Phantasma, wenn Kreaturen (Phantasmen ausgenommen) einen tödlichen Schlag verursachen",
+          "formatters": []
+        }
+      ]
+    },
     "decay_on_hit": {
       "stats": ["deal_chaos_damage_per_second_for_10_seconds_on_hit"],
       "translations": [
@@ -2953,6 +2970,17 @@
         {
           "matchers": ["#"],
           "text": "Kreaturen verursachen keinen Elementarschaden",
+          "formatters": []
+        }
+      ]
+    },
+    "ignites_apply_fire_res": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Durch Kreaturen entzündete Gegner haben %1$+d%% zu Feuerwiderstand",
           "formatters": []
         }
       ]
@@ -2982,7 +3010,7 @@
         {
           "matchers": ["#", "#"],
           "text":
-            "Kreaturen erhalten %1% bis %2% zusätzlichen Kälteschaden pro Raserei-Ladung",
+            "Kreaturen verursachen %1% bis %2% zusätzlichen Kälteschaden pro Raserei-Ladung",
           "formatters": []
         }
       ]
@@ -3044,6 +3072,40 @@
               "arg": "ReminderTextNonDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "frenzy_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Diese Fertigkeit und Kreaturen haben %1%%% Chance eine Raserei-Ladung zu gewähren, wenn Eure Falle durch einen Gegner ausgelöst wird",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Diese Fertigkeit und Kreaturen gewähren eine Raserei-Ladung, wenn Eure Falle durch einen Gegner ausgelöst wird",
+          "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Diese Fertigkeit und Kreaturen haben %1%%% Chance eine Energie-Ladung zu gewähren, wenn Eure Falle durch einen Gegner ausgelöst wird",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Diese Fertigkeit und Kreaturen gewähren eine Energie-Ladung, wenn Eure Falle durch einen Gegner ausgelöst wird",
+          "formatters": []
         }
       ]
     },
@@ -3113,6 +3175,26 @@
         }
       ]
     },
+    "hypothermia_cold_damage": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Kreaturen verursachen %1%%% mehr Kälteschaden über Zeit",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Kreaturen verursachen %1%%% weniger Kälteschaden über Zeit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "maim_phys_damage": {
       "stats": ["support_maim_chance_physical_damage_+%_final"],
       "translations": [
@@ -3159,14 +3241,14 @@
     },
     "added_fire_against_burning": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
           "matchers": ["#", "#"],
           "text":
-            "Kreaturen haben %1% bis %2% zusätzlichen Feuerschaden gegen brennende Gegner",
+            "Kreaturen fügen %1% bis %2% zusätzlichen Feuerschaden gegen brennende Gegner hinzu",
           "formatters": []
         }
       ]
@@ -3221,6 +3303,29 @@
         {
           "matchers": [["#", -1]],
           "text": "Kreaturen verursachen %1%%% weniger Projektilschaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "power_charge_on_crit_damage": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Kreaturen verursachen %1%%% mehr Schaden pro Energie-Ladung",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Kreaturen verursachen %1%%% weniger Schaden pro Energie-Ladung",
           "formatters": [
             {
               "id": "negate",
@@ -3294,6 +3399,48 @@
               "arg": 3
             }
           ]
+        }
+      ]
+    },
+    "ailment_damage_incr": {
+      "stats": ["support_unbound_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Kreaturen verursachen %1%%% mehr Schaden mit Beeinträchtigungen",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Kreaturen verursachen %1%%% weniger Schaden mit Beeinträchtigungen",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "trap_crit_per_power_charge": {
+      "stats": ["trap_critical_strike_multiplier_+_per_power_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Diese Fertigkeit und Fertigkeiten von Kreaturen haben %1$+d%% zu Multiplikator für kritische Treffer pro Energie-Ladung, wenn sie von Fallen benutzt werden",
+          "formatters": []
         }
       ]
     }

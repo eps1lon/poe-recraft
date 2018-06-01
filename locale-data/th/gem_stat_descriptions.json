@@ -572,12 +572,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "สกิลสนับสนุนจะสร้างกับดักได้มากขึ้น 1 ชิ้น",
+          "text": "สกิลที่ได้รับซัพจะโยนกับดักเพิ่มอีก 1 อัน",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text": "สกิลสนับสนุนจะสร้างกับดักได้มากขึ้น %1% ชิ้น",
+          "text": "สกิลที่ได้รับซัพจะโยนกับดักเพิ่มอีก %1% อัน",
           "formatters": []
         }
       ]
@@ -859,6 +859,28 @@
         {
           "matchers": ["#"],
           "text": "สกิลที่ได้รับซัพแบ่งตัว",
+          "formatters": []
+        }
+      ]
+    },
+    "projectiles_return": {
+      "stats": ["projectiles_return", "projectiles_return_if_no_hit_object"],
+      "translations": [
+        {
+          "matchers": ["#", 0],
+          "text":
+            "อาวุธปล่อยจากสกิลที่ได้รับซัพจะกลับมาหาผู้เล่นหลังจากปล่อยไปโดนศัตรูแล้ว",
+          "formatters": []
+        },
+        {
+          "matchers": [0, "#"],
+          "text":
+            "อาวุธปล่อยจากสกิลที่ได้รับซัพจะกลับมาหาผู้เล่นหลังจากสุดระยะบิน",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#"],
+          "text": "อาวุธปล่อยจากสกิลที่ได้รับซัพจะกลับมาหาผู้เล่น",
           "formatters": []
         }
       ]
@@ -1965,7 +1987,8 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "ได้ Arcane Surge หากใช้มานาไป %1% ด้วยสกิลที่ได้รับซัพ",
+          "text":
+            "ได้ Arcane Surge หลังจากใช้มานาไป %1% แต้มด้วยสกิลที่ได้รับซัพ",
           "formatters": []
         }
       ]
@@ -3194,6 +3217,17 @@
         }
       ]
     },
+    "ignites_apply_fire_resistance_+": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "ศัตรูที่โดนสกิลของผู้เล่นที่ได้รับซัพจนติดไฟ จะมีค่าป้องกันธาตุไฟเพิ่มขึ้น %1$+d%%",
+          "formatters": []
+        }
+      ]
+    },
     "knockback_distance_+%": {
       "stats": ["knockback_distance_+%"],
       "translations": [
@@ -3283,12 +3317,22 @@
         {
           "matchers": [[1, 99]],
           "text": "การโจมตีสนับสนุนมีโอกาส %1%%% เมื่อ Maim โจมตี ",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[100, "#"]],
           "text": "การโจมตีสนับสนุน Maimโจมตีโดนเสมอ ",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -3698,6 +3742,40 @@
         }
       ]
     },
+    "%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy": {
+      "stats": ["%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "สกิลที่ได้รับซัพจะมีโอกาส %1%%% ที่จะได้ Frenzy Charge หากศัตรูเดินมาติดกับดักของผู้เล่น",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "สกิลที่ได้รับซัพจะได้ Frenzy Charge หากศัตรูเดินมาติดกับดักของผู้เล่น",
+          "formatters": []
+        }
+      ]
+    },
+    "%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy": {
+      "stats": ["%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "สกิลที่ได้รับซัพจะมีโอกาส %1%%% ที่จะได้ Power Charge หากศัตรูเดินมาติดกับดักของผู้เล่น",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "สกิลที่ได้รับซัพจะได้ Power Charge หากศัตรูเดินมาติดกับดักของผู้เล่น",
+          "formatters": []
+        }
+      ]
+    },
     "physical_damage_%_to_add_as_fire": {
       "stats": ["physical_damage_%_to_add_as_fire"],
       "translations": [
@@ -3785,7 +3863,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "สกิลที่ได้รับซัพจะลดโอกาสหลบหลีกของข้าศึก %1%%%",
+          "text": "ศัตรูจะมีโอกาสหลบสกิลที่ได้รับซัพน้อยลง %1%%%",
           "formatters": []
         }
       ]
@@ -3984,6 +4062,27 @@
         }
       ]
     },
+    "support_hypothermia_cold_damage_over_time_+%_final": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "สกิลที่ได้รับซัพจะมีค่าโจมตีธาตุน้ำแข็งเพิ่มอีก %1%%% ตามเวลา",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สกิลที่ได้รับซัพจะมีค่าโจมตีธาตุน้ำแข็งลดลง %1%%% ตามเวลา",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_hypothermia_damage_+%_vs_chilled_enemies_final": {
       "stats": ["support_hypothermia_damage_+%_vs_chilled_enemies_final"],
       "translations": [
@@ -4057,10 +4156,10 @@
         }
       ]
     },
-    "support_minimum_added_fire_damage_vs_burning_enemies": {
+    "global_minimum_added_fire_damage_vs_burning_enemies": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
@@ -4245,6 +4344,28 @@
         {
           "matchers": [["#", -1]],
           "text": "สกิลที่ได้รับซัพจะลดพลังโจมตีระยะไกลอีก %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_power_charge_on_crit_damage_+%_final_per_power_charge": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "สกิลที่ได้รับซัพจะแรงขึ้น %1%%%  ต่อ Power Charge แต่ละอัน",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "สกิลที่ได้รับซัพจะเบาลง %1%%%  ต่อ Power Charge แต่ละอัน",
           "formatters": [
             {
               "id": "negate",
@@ -4508,6 +4629,17 @@
         }
       ]
     },
+    "trap_critical_strike_multiplier_+_per_power_charge": {
+      "stats": ["trap_critical_strike_multiplier_+_per_power_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "สกิลที่ได้รับซัพจะเพิ่มตัวคูณคริติคอลอีก %1$+d%% ต่อ Power Charge แต่ละอันหากใช้ผ่านกับดัก",
+          "formatters": []
+        }
+      ]
+    },
     "trap_damage_+%": {
       "stats": ["trap_damage_+%"],
       "translations": [
@@ -4539,6 +4671,28 @@
         {
           "matchers": [["#", -1]],
           "text": "สกิลที่ได้รับซัพจะโยนกับดักช้าลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "trap_throwing_speed_+%_per_frenzy_charge": {
+      "stats": ["trap_throwing_speed_+%_per_frenzy_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "สกิลที่ได้รับซัพจะวางกับดักได้เร็วขึ้น %1%%% ต่อ Frenzy Charge แต่ละอัน",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "สกิลที่ได้รับซัพจะวางกับดักได้ช้าลง %1%%% ต่อ Frenzy Charge แต่ละอัน",
           "formatters": [
             {
               "id": "negate",

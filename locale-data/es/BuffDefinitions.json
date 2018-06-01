@@ -599,7 +599,7 @@
   "vaal_aura_energy_shield": {
     "name": "Aura de Disciplina Vaal",
     "description":
-      "Otorga Escudo de Energía y previene que la Recarga de Escudo de Energía sea retrasada por Daño"
+      "Previene que la Recarga de Escudo de Energía sea retrasada por Daño"
   },
   "vaal_aura_speed": {
     "name": "Aure de Celeridad Vaal",
@@ -608,8 +608,15 @@
   },
   "beartrap_debuff": {
     "name": "Trampa de Oso",
-    "description": "Estás immovilizado por una Trampa de Oso"
+    "description":
+      "Estás immovilizado por una Trampa de Oso y recibes daño aumentado de Trampas y Minas."
   },
+  "beartrap_debuff_slow": {
+    "name": "Trampa de Oso",
+    "description":
+      "Tu Velocidad de Movimiento está reducida y recibes daño aumentado de Trampas y Minas."
+  },
+  "beartrap_debuff_damage_taken": { "name": "", "description": "" },
   "trap_convert_buff": {
     "name": "Convertido",
     "description": "Fuiste convertido temporalmente a otro equipo"
@@ -1031,7 +1038,7 @@
   "soul_eater": {
     "name": "Devorador de Almas",
     "description":
-      "Tienes velocidad de Ataque y de Lanzamiento de Hechizos, Reducción de Daño Físico, Resistencias Elementales y Tamaño del personaje aumentados."
+      "Tienes velocidad de Ataque y de Lanzamiento de Hechizos  y Tamaño del personaje aumentados."
   },
   "frostwall_epk": { "name": "", "description": "" },
   "nemesis_stealth_mode": { "name": "", "description": "" },
@@ -1218,7 +1225,6 @@
   "display_bodyguard_effect": { "name": "", "description": "" },
   "mission_relic_praying": { "name": "", "description": "" },
   "mission_beast_corrupted": { "name": "", "description": "" },
-  "mission_monster_target": { "name": "", "description": "" },
   "dex_mission_enable_pointers": { "name": "", "description": "" },
   "stun_display_buff": { "name": "", "description": "" },
   "visual_display_buff": { "name": "", "description": "" },
@@ -2946,17 +2952,17 @@
   "aegis_cold_persist_value": { "name": "", "description": "" },
   "aegis_elemental_persist_value": { "name": "", "description": "" },
   "fire_impurity_buff": {
-    "name": "Impureza de Fuego",
+    "name": "Impureza de Fuego Vaal",
     "description":
       "Otorga inmunidad a Quemadura y reduce el Daño de Fuego recibido."
   },
   "cold_impurity_buff": {
-    "name": "Impureza de Hielo",
+    "name": "Impureza de Hielo Vaal",
     "description":
-      "Otorga inmunidad a Congelamiento y reduce el Daño de Hielo recibido."
+      "Otorga inmunidad a Congelamiento y Escharchamiento, y reduce el Daño de Hielo recibido."
   },
   "lightning_impurity_buff": {
-    "name": "Impureza de Rayo",
+    "name": "Impureza de Rayo Vaal",
     "description":
       "Otorga inmunidad a Electrocución y reduce el Daño de Rayo recibido."
   },
@@ -3161,7 +3167,11 @@
     "description": ""
   },
   "physical_projectile_retaliation_charging": { "name": "", "description": "" },
-  "master_buff_treasure_hunter": { "name": "", "description": "" },
+  "master_buff_treasure_hunter": {
+    "name": "El Regalo de Balek",
+    "description":
+      "La Cantidad y Rareza de los Ítems que encuentras está aumentada."
+  },
   "godmode_ghost": { "name": "", "description": "" },
   "best_crab_roar": {
     "name": "El Tormento de Craiceann",
@@ -3196,6 +3206,10 @@
       "Recibes Daño Degenerativo de Caos y tienes Velocidad de Movimiento reducida"
   },
   "lightning_clone_retaliation": {
+    "name": "Represalia de Clon de Rayo",
+    "description": ""
+  },
+  "lightning_clone_retaliation_large": {
     "name": "Represalia de Clon de Rayo",
     "description": ""
   },
@@ -3235,6 +3249,7 @@
   "capture_monster_captured": { "name": "", "description": "" },
   "capture_monster_disappearing": { "name": "", "description": "" },
   "cold_beam_retaliation": { "name": "", "description": "" },
+  "cold_beam_retaliation_large": { "name": "", "description": "" },
   "juggernaut_phys_damage_prevented_as_life_regen": {
     "name": "",
     "description": ""
@@ -3325,5 +3340,121 @@
     "name": "Muerte",
     "description":
       "Estás muriendo por estar fuera de la zona de combate Royale activa. Sigue el puntero debajo de tu personaje."
+  },
+  "cold_snap_degen": { "name": "Ruptura de Hielo", "description": "" },
+  "vaal_cold_snap_degen": {
+    "name": "Ruptura de Hielo Vaal",
+    "description": ""
+  },
+  "disable_vaal_souls": { "name": "", "description": "" },
+  "ice_siphon_trap_debuff": {
+    "name": "Trampa de Absorción",
+    "description":
+      "Recibes Daño Degenerativo de Hielo desde una Trampa de Absorción"
+  },
+  "ice_siphon_trap_regen_buff": {
+    "name": "Trampa de Absorción",
+    "description": "Regeneras Vida y Maná desde una Trampa de Absorción"
+  },
+  "keystone_vaal_attack_cooldown": { "name": "", "description": "" },
+  "keystone_vaal_spell_cooldown": { "name": "", "description": "" },
+  "soul_regeneration": { "name": "", "description": "" },
+  "charged_dash_damage": {
+    "name": "Embestida Cargada",
+    "description": "Tu Embestida Cargada tiene más Daño cuando se libera."
+  },
+  "ignore_enemy_fire_resistance": {
+    "name": "Impureza de Fuego",
+    "description": "Los Golpes ignoran tu Resitencia al Fuego"
+  },
+  "ignore_enemy_cold_resistance": {
+    "name": "Impureza de Hielo",
+    "description": "Los Golpes ignoran tu Resitencia al Hielo"
+  },
+  "ignore_enemy_lightning_resistance": {
+    "name": "Impureza de Rayo",
+    "description": "Los Golpes ignoran tu Resitencia al Rayo"
+  },
+  "physical_projectile_retaliation_large": {
+    "name": "Represalia de Proyectil Físico",
+    "description": ""
+  },
+  "infernal_blow_new_debuff": {
+    "name": "Embate Infernal",
+    "description":
+      "Explotarás si mueres, e infligirás daño de fuego basado en tu vida máxima. Si esta penalidad tiene cargas, infligirá daño de ataque en un área a tu alrededor cuando expire o tenga 6 cargas."
+  },
+  "infernal_blow_debuff_visual2": { "name": "", "description": "" },
+  "infernal_blow_debuff_visual3": { "name": "", "description": "" },
+  "life_regen_aura_from_corpse_consumption": { "name": "", "description": "" },
+  "vaal_lightning_strike_debuff": { "name": "", "description": "" },
+  "cannot_gain_souls": { "name": "", "description": "" },
+  "cannot_gain_vaal_souls_at_life_thresholds": {
+    "name": "",
+    "description": ""
+  },
+  "fire_resistance_from_ignite": { "name": "", "description": "" },
+  "unique_flask_no_recovery_and_soul_gain": { "name": "", "description": "" },
+  "number_of_enemies_killed_recently": { "name": "", "description": "" },
+  "have_used_a_vaal_skill_recently": { "name": "", "description": "" },
+  "ground_vaal_cold_snap": { "name": "WIP", "description": "WIP" },
+  "architect_healing_totem_buff": { "name": "", "description": "" },
+  "number_of_frostbolts_destroyed_recently": { "name": "", "description": "" },
+  "elemental_hit_last_damage_type": { "name": "", "description": "" },
+  "architect_ground_blood": {
+    "name": "Sangre Hirviendo",
+    "description": "Recibes Daño Físico Degenerativo"
+  },
+  "vaal_righteous_fire_duration_aura": {
+    "name": "Fuego Justo Vaal",
+    "description":
+      "Recibes daño de incendio por estar cerca de un enemigo que usa Fuego Justo Vaal"
+  },
+  "vaal_novasoul_immune": { "name": "", "description": "" },
+  "burning_damage_per_shocked_enemy": { "name": "", "description": "" },
+  "incursion_demon_sacrifice_buff": { "name": "", "description": "" },
+  "arc_enhanced_behaviour": {
+    "name": "Arco Eléctrico Afortunado",
+    "description": "Tu Daño de Arco Eléctrico es Afortunado"
+  },
+  "incursion_construct_enrage": { "name": "", "description": "" },
+  "cold_snap_expanding_chilled_ground": {
+    "name": "Suelo Escarchado",
+    "description":
+      "Tus acciones son más lentas mientras estés parado sobre suelo escarchado"
+  },
+  "vaal_earthquake_display_buff": {
+    "name": "Terremoto Vaal",
+    "description": "Con cada paso, la tierra tiembla"
+  },
+  "vaal_earthquake_stationary": { "name": "", "description": "" },
+  "master_buff_alva": {
+    "name": "El Regalo de Alva",
+    "description":
+      "La Cantidad y Rareza de los Ítems que encuentras está aumentada"
+  },
+  "unique_flask_soul_catcher": {
+    "name": "Atrapa Espíritus",
+    "description": ""
+  },
+  "unique_flask_soul_ripper": {
+    "name": "Arranca Espíritus",
+    "description": ""
+  },
+  "vaal_righteous_fire_duration": {
+    "name": "Fuego Justo Vaal",
+    "description": "Infliges más daño de hechizos."
+  },
+  "cannot_recover_life": { "name": "", "description": "" },
+  "omnitect_thrusters": {
+    "name": "Propulsor del Omnitecto",
+    "description":
+      "Recibes más daño del propulsor del Omnitecto cuanto más tiempo permanezcas debajo de él."
+  },
+  "omnitect_turret_damage_buff": { "name": "", "description": "" },
+  "omnitect_cone_debuff": {
+    "name": "Lightning Exposure",
+    "description":
+      "You have less Movement Speed and take increased Lightning Damage"
   }
 }

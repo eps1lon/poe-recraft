@@ -254,7 +254,17 @@
       "translations": [
         {
           "matchers": [100],
-          "text": "L'amplitude des Modificateurs Implicites est doublée",
+          "text": "L'amplitude des Modificateurs implicites est doublée",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextImplicitMod"
+            }
+          ]
+        },
+        {
+          "matchers": [200],
+          "text": "L'amplitude des Modificateurs implicites est triplée",
           "formatters": [
             {
               "id": "reminderstring",
@@ -265,7 +275,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% d'Augmentation de l'amplitude des Modificateurs Implicites",
+            "%1%%% d'Augmentation de l'amplitude des Modificateurs implicites",
           "formatters": [
             {
               "id": "reminderstring",
@@ -276,7 +286,7 @@
         {
           "matchers": [["#", -1]],
           "text":
-            "%1%%% de Réduction de l'amplitude des Modificateurs Implicites",
+            "1%%% de Réduction de l'amplitude des Modificateurs implicites",
           "formatters": [
             {
               "id": "negate",
@@ -553,6 +563,26 @@
         }
       ]
     },
+    "local_socketed_duration_gem_level_+": {
+      "stats": ["local_socketed_duration_gem_level_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d au Niveau des Gemmes à Durée Enchâssées",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_area_of_effect_gem_level_+": {
+      "stats": ["local_socketed_area_of_effect_gem_level_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d au Niveau des Gemmes de Zone Enchâssées",
+          "formatters": []
+        }
+      ]
+    },
     "local_socketed_projectile_gem_level_+": {
       "stats": ["local_socketed_projectile_gem_level_+"],
       "translations": [
@@ -629,6 +659,16 @@
         {
           "matchers": ["#"],
           "text": "%1$+d au Niveau des Gemmes de Malédiction enchâssées",
+          "formatters": []
+        }
+      ]
+    },
+    "local_socketed_trap_and_mine_gem_level_+": {
+      "stats": ["local_socketed_trap_and_mine_gem_level_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d au Niveau des Gemmes de Piège et de Mine Enchâssées",
           "formatters": []
         }
       ]
@@ -926,7 +966,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Les Gemmes Enchâssées sont modifiées par Chances d'Embrasement (Niveau %1%)",
+            "Les Gemmes Enchâssées sont modifiées par Combustion (Niveau %1%)",
           "formatters": []
         }
       ]
@@ -1060,6 +1100,19 @@
           "matchers": ["#"],
           "text":
             "Les Gemmes Enchâssées sont modifiées par Pénétration du feu (Niveau %1%)",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_socketed_gems_supported_by_level_x_frenzy_power_on_trap_trigger": {
+      "stats": [
+        "local_display_socketed_gems_supported_by_level_x_frenzy_power_on_trap_trigger"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Gemmes Enchâssées sont modifiées par Pièges galvanisants (Niveau %1%)",
           "formatters": []
         }
       ]
@@ -2415,6 +2468,35 @@
         }
       ]
     },
+    "local_display_socketed_attacks_additional_critical_strike_chance": {
+      "stats": [
+        "local_display_socketed_attacks_additional_critical_strike_chance"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Attaques Enchâssées ont %1$+d%% aux Chances de coup critique",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "local_display_socketed_attacks_critical_strike_multiplier_+": {
+      "stats": ["local_display_socketed_attacks_critical_strike_multiplier_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Attaques Enchâssées ont %1$+d%% au Multiplicateur de coup critique",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_socketed_gems_attack_and_cast_speed_+%_final": {
       "stats": ["local_display_socketed_gems_attack_and_cast_speed_+%_final"],
       "translations": [
@@ -2482,6 +2564,46 @@
           "matchers": ["#"],
           "text":
             "Les Gemmes Enchâssées Rajoutent %1%%% des Dégâts physiques sous forme de Dégâts de foudre",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_socketed_movement_skills_have_no_mana_cost": {
+      "stats": ["local_display_socketed_movement_skills_have_no_mana_cost"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Les Gemmes de déplacement Enchâssées n'ont pas de Coût en Mana",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_socketed_spells_additional_critical_strike_chance": {
+      "stats": [
+        "local_display_socketed_spells_additional_critical_strike_chance"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Sorts Enchâssés ont %1$+d%% aux Chances de coup critique",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "local_display_socketed_spells_critical_strike_multiplier_+": {
+      "stats": ["local_display_socketed_spells_critical_strike_multiplier_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Sorts Enchâssés ont %1$+d%% au Multiplicateur de coup critique",
           "formatters": []
         }
       ]
@@ -2766,6 +2888,16 @@
         }
       ]
     },
+    "local_display_grants_level_x_despair": {
+      "stats": ["local_display_grants_level_x_despair"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Octroie l'Aptitude Désespoir (Niveau %1%)",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_grants_skill_purity_of_cold_level": {
       "stats": ["local_display_grants_skill_purity_of_cold_level"],
       "translations": [
@@ -2889,6 +3021,16 @@
         {
           "matchers": ["#"],
           "text": "Octroie l'Aptitude Hâte (Niveau %1%)",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_has_additional_implicit_mod": {
+      "stats": ["local_display_has_additional_implicit_mod"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Possède un Modificateur Implicite supplémentaire",
           "formatters": []
         }
       ]
@@ -3324,6 +3466,36 @@
         }
       ]
     },
+    "local_display_grants_skill_vaal_impurity_of_fire_level": {
+      "stats": ["local_display_grants_skill_vaal_impurity_of_fire_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Octroie l'Aptitude Impureté du feu vaal (Niveau %1%)",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_grants_skill_vaal_impurity_of_ice_level": {
+      "stats": ["local_display_grants_skill_vaal_impurity_of_ice_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Octroie l'Aptitude Impureté de la glace vaal (Niveau %1%)",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_grants_skill_vaal_impurity_of_lightning_level": {
+      "stats": ["local_display_grants_skill_vaal_impurity_of_lightning_level"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Octroie l'Aptitude Impureté de la foudre vaal (Niveau %1%)",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_trigger_level_X_darktongue_kiss_on_curse": {
       "stats": ["local_display_trigger_level_X_darktongue_kiss_on_curse"],
       "translations": [
@@ -3507,12 +3679,66 @@
         }
       ]
     },
+    "local_display_trigger_commandment_of_inferno_on_crit_%": {
+      "stats": ["local_display_trigger_commandment_of_inferno_on_crit_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chances de Déclencher Commandement du brasier sur un Coup critique",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Déclenche Commandement du brasier sur un Coup critique",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_trigger_death_walk_on_equip_level": {
       "stats": ["local_display_trigger_death_walk_on_equip_level"],
       "translations": [
         {
           "matchers": ["#"],
           "text": "Équiper l'objet déclenche Marche de la mort (Niveau %1%)",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_level_20_animate_guardian_weapon_on_guardian_kill_%_chance": {
+      "stats": [
+        "local_display_trigger_level_20_animate_guardian_weapon_on_guardian_kill_%_chance"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chances de Déclencher Arme du Gardien animé (Niveau 20) lorsque le Gardien animé Tue un Ennemi",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Déclenche Arme du Gardien animé (Niveau 20) lorsque le Gardien animé Tue un Ennemi",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_level_20_animate_guardian_weapon_on_weapon_kill_%_chance": {
+      "stats": [
+        "local_display_trigger_level_20_animate_guardian_weapon_on_weapon_kill_%_chance"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chances de Déclencher Arme du Gardien animé (Niveau 18) lorsqu'une Arme animée Tue un Ennemi",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Déclenche Arme du Gardien animé (Niveau 18) lorsqu'une Arme animée Tue un Ennemi",
           "formatters": []
         }
       ]
@@ -3558,6 +3784,19 @@
         }
       ]
     },
+    "local_display_trigger_level_x_icicle_nova_on_kill_vs_frozen_enemy": {
+      "stats": [
+        "local_display_trigger_level_x_icicle_nova_on_kill_vs_frozen_enemy"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Déclenche Salve de stalactites (Niveau %1%) lorsque vous Tuez un Ennemi Gelé",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_trigger_level_x_intimidating_cry_when_you_lose_cats_stealth": {
       "stats": [
         "local_display_trigger_level_x_intimidating_cry_when_you_lose_cats_stealth"
@@ -3595,6 +3834,19 @@
         }
       ]
     },
+    "local_display_trigger_level_x_summon_phantasm_on_corpse_consume": {
+      "stats": [
+        "local_display_trigger_level_x_summon_phantasm_on_corpse_consume"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Octroie l'Aptitude Invocation d'Apparition (Niveau %1%) lorsque vous consommez un Cadavre",
+          "formatters": []
+        }
+      ]
+    },
     "local_display_trigger_level_x_void_shot_on_arrow_fire_while_you_have_void_arrow": {
       "stats": [
         "local_display_trigger_level_x_void_shot_on_arrow_fire_while_you_have_void_arrow"
@@ -3604,6 +3856,39 @@
           "matchers": ["#"],
           "text":
             "Consomme une Charge du Néant afin de déclencher Tir du Néant (Niveau %1%) lorsque vous tirez des Flèches",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_temporal_anomaly_when_hit_%_chance": {
+      "stats": ["local_display_trigger_temporal_anomaly_when_hit_%_chance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% de chances de déclencher Anomalie temporelle (Niveau 20) en étant Touché(e)",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_tentacle_smash_on_kill_%_chance": {
+      "stats": ["local_display_trigger_tentacle_smash_on_kill_%_chance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% de chances de Déclencher Fouet tentaculaire (Niveau 20) en Tuant",
+          "formatters": []
+        }
+      ]
+    },
+    "local_display_trigger_void_sphere_on_kill_%_chance": {
+      "stats": ["local_display_trigger_void_sphere_on_kill_%_chance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "%1%%% de chances de déclencher Invocation d'Anomalie instable (Niveau 20) en Tuant",
           "formatters": []
         }
       ]
@@ -3855,13 +4140,13 @@
         {
           "matchers": [1],
           "text":
-            "Un Ver tortillant ennemi s'échappe du Flacon à l'utilisation",
+            "Un Ver gigotant ennemi s'échappe du Flacon à l'utilisation\\nLes Vers gigotants sont détruits au Toucher",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
           "text":
-            "%1% Vers tortillants ennemis s'échappent du Flacon à l'utilisation",
+            "%1% Vers gigotants ennemis s'échappent du Flacon à l'utilisation\\nLes Vers gigotants sont détruits au Toucher",
           "formatters": []
         }
       ]
@@ -7507,12 +7792,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% d'Augmentation du Score de Précision",
+          "text": "%1%%% d'Augmentation du Score de Précision Global",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% de Réduction du Score de Précision",
+          "text": "%1%%% de Réduction du Score de Précision Global",
           "formatters": [
             {
               "id": "negate",
@@ -10203,26 +10488,6 @@
         }
       ]
     },
-    "curse_effect_on_self_+%": {
-      "stats": ["curse_effect_on_self_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% d'Augmentation de l'Effet des Malédictions sur vous",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1%%% de Réduction de l'Effet des Malédictions sur vous",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "temporal_chains_effeciveness_+%": {
       "stats": ["temporal_chains_effeciveness_+%"],
       "translations": [
@@ -12019,26 +12284,6 @@
         }
       ]
     },
-    "self_curse_duration_+%": {
-      "stats": ["self_curse_duration_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% d'Augmentation de la Durée des Malédictions sur vous",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1%%% de Réduction de la Durée des Malédictions sur vous",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "taunt_duration_+%": {
       "stats": ["taunt_duration_+%"],
       "translations": [
@@ -13753,7 +13998,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% de Réduction des chances d'Esquive de l'Ennemi",
+          "text": "Les Ennemis ont %1%%% de Réduction des chances d'Esquiver",
           "formatters": []
         }
       ]
@@ -15676,6 +15921,36 @@
         {
           "matchers": [[1, "#"]],
           "text": "%1%%% d'Augmentation de Durée tous les 10 de Force",
+          "formatters": []
+        }
+      ]
+    },
+    "X_accuracy_per_2_intelligence": {
+      "stats": ["X_accuracy_per_2_intelligence"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d de Score de Précision tous les 2 d'Intelligence",
+          "formatters": []
+        }
+      ]
+    },
+    "X_life_per_4_dexterity": {
+      "stats": ["X_life_per_4_dexterity"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d de Vie tous les 4 de Dextérité",
+          "formatters": []
+        }
+      ]
+    },
+    "X_mana_per_4_strength": {
+      "stats": ["X_mana_per_4_strength"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d de Mana tous les 4 de Force",
           "formatters": []
         }
       ]
@@ -17669,7 +17944,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% de chances d'Esquiver les Attaques",
+          "text": "%1%%% de chances d'Esquiver les Attaques qui Touchent",
           "formatters": []
         }
       ]
@@ -17679,7 +17954,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% de chances d'Esquiver les Dégâts des Sorts",
+          "text": "%1%%% de chances d'Esquiver les Sorts qui Touchent",
           "formatters": []
         }
       ]
@@ -17742,6 +18017,46 @@
           "text":
             "Vous pouvez avoir %1$+d Malédictions supplémentaires sur vous",
           "formatters": []
+        }
+      ]
+    },
+    "curse_effect_on_self_+%": {
+      "stats": ["curse_effect_on_self_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% d'Augmentation de l'Effet des Malédictions sur vous",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de Réduction de l'Effet des Malédictions sur vous",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "self_curse_duration_+%": {
+      "stats": ["self_curse_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% d'Augmentation de la Durée des Malédictions sur vous",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de Réduction de la Durée des Malédictions sur vous",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -18312,12 +18627,13 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% de chances supplémentaires d'Esquiver les Attaques",
+          "text":
+            "%1%%% de chances additionnelles d'Esquiver les Attaques qui Touchent",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1$+d%% de chances d'Esquiver les Attaques",
+          "text": "%1$+d%% de chances d'Esquiver les Attaques qui Touchent",
           "formatters": []
         }
       ]
@@ -18328,7 +18644,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "%1%%% de chance supplémentaire d'Esquiver les Dégâts des Sorts",
+            "%1%%% de chances supplémentaires d'Esquiver les Sorts qui Touchent",
           "formatters": []
         }
       ]
@@ -20644,6 +20960,17 @@
         }
       ]
     },
+    "bleeding_damage_on_self_converted_to_chaos": {
+      "stats": ["bleeding_damage_on_self_converted_to_chaos"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Le Saignement vous inflige désormais des Dégâts de chaos au lieu de vous infliger des Dégâts physiques",
+          "formatters": []
+        }
+      ]
+    },
     "physical_damage_taken_%_as_chaos": {
       "stats": ["physical_damage_taken_%_as_chaos"],
       "translations": [
@@ -21420,7 +21747,7 @@
         {
           "matchers": ["#"],
           "text":
-            "%1%%% de chances d'Esquiver les Attaques pendant le Déphasage",
+            "%1%%% de chances d'Esquiver les Attaques qui Touchent pendant le Déphasage",
           "formatters": []
         }
       ]
@@ -21607,6 +21934,27 @@
           "matchers": ["#"],
           "text":
             "Infligez au Toucher la Malédiction Frilosité (Niveau %1%) aux Ennemis",
+          "formatters": []
+        }
+      ]
+    },
+    "curse_on_hit_level_despair": {
+      "stats": ["curse_on_hit_level_despair"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Maudit les Ennemis au Toucher avec Désespoir (Niveau %1%)",
+          "formatters": []
+        }
+      ]
+    },
+    "curse_on_hit_level_enfeeble": {
+      "stats": ["curse_on_hit_level_enfeeble"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Maudit les Ennemis au Toucher avec Affaiblissement (Niveau %1%)",
           "formatters": []
         }
       ]
@@ -21898,7 +22246,7 @@
         {
           "matchers": ["#"],
           "text":
-            "%1%%% de chance d'Esquiver les Attaques par Charge de frénésie",
+            "%1%%% de chances par Charge de frénésie d'Esquiver les Attaques qui Touchent",
           "formatters": []
         }
       ]
@@ -25509,8 +25857,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "La Récupération de Vie ne s'applique pas pendant l'Effet du Flacon",
+          "text": "Vous ne pouvez pas gagner de Vie pendant l'effet",
           "formatters": []
         }
       ]
@@ -26668,6 +27015,17 @@
         {
           "matchers": ["#"],
           "text": "Vos Dégâts de froid ne peuvent plus Geler",
+          "formatters": []
+        }
+      ]
+    },
+    "chaos_damage_can_ignite_chill_and_shock": {
+      "stats": ["chaos_damage_can_ignite_chill_and_shock"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Les Dégâts de chaos peuvent Embraser, Frigorifier et Électrocuter",
           "formatters": []
         }
       ]
@@ -28321,50 +28679,6 @@
         }
       ]
     },
-    "curse_on_block_level_X_vulnerability": {
-      "stats": ["curse_on_block_level_X_vulnerability"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Infligez aux Ennemis la Malédiction Fragilité (Niveau %1%) en Bloquant",
-          "formatters": []
-        }
-      ]
-    },
-    "curse_on_melee_block_level_X_punishment": {
-      "stats": ["curse_on_melee_block_level_X_punishment"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Applique Châtiment (Niveau %1%) en Bloquant une Attaque de mêlée, sans tenir compte du nombre limite de Malédictions",
-          "formatters": []
-        }
-      ]
-    },
-    "curse_on_projectile_block_level_X_temporal_chains": {
-      "stats": ["curse_on_projectile_block_level_X_temporal_chains"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Applique Chaînes temporelles (Niveau %1%) en Bloquant une Attaque à Projectiles, sans tenir compte du nombre limite de Malédictions",
-          "formatters": []
-        }
-      ]
-    },
-    "curse_on_spell_block_level_X_elemental_weakness": {
-      "stats": ["curse_on_spell_block_level_X_elemental_weakness"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Applique Vulnérabilité aux éléments (Niveau %1%) en Bloquant un Sort, sans tenir compte du nombre limite de Malédictions",
-          "formatters": []
-        }
-      ]
-    },
     "display_map_has_oxygen": {
       "stats": ["display_map_has_oxygen"],
       "translations": [
@@ -29312,16 +29626,6 @@
         }
       ]
     },
-    "minion_chance_to_dodge_%": {
-      "stats": ["minion_chance_to_dodge_%"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Les Créatures ont %1%%% de chances d'Esquiver les Attaques",
-          "formatters": []
-        }
-      ]
-    },
     "local_unique_jewel_with_4_notables_gain_X_random_rare_monster_mods_on_kill": {
       "stats": [
         "local_unique_jewel_with_4_notables_gain_X_random_rare_monster_mods_on_kill"
@@ -29608,17 +29912,6 @@
         {
           "matchers": [[2, "#"]],
           "text": "Les Totems tirent %1% Projectiles supplémentaires",
-          "formatters": []
-        }
-      ]
-    },
-    "chance_to_dodge_spells_%_while_es_full": {
-      "stats": ["chance_to_dodge_spells_%_while_es_full"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% de chances d'Esquiver les Dégâts des Sorts tant que votre Bouclier d'énergie est Plein",
           "formatters": []
         }
       ]
@@ -32047,22 +32340,6 @@
         }
       ]
     },
-    "enchantment_boots_spell_dodge_when_hit_by_spells_%": {
-      "stats": ["enchantment_boots_spell_dodge_when_hit_by_spells_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% de chances d'Esquiver les Dégâts des Sorts si vous avez\\nsubi des Dégâts des Sorts Récemment",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
-        }
-      ]
-    },
     "enchantment_boots_attack_and_cast_speed_+%_for_4_seconds_on_kill": {
       "stats": [
         "enchantment_boots_attack_and_cast_speed_+%_for_4_seconds_on_kill"
@@ -32213,22 +32490,6 @@
         }
       ]
     },
-    "enchantment_boots_dodge_chance_when_critically_hit_%": {
-      "stats": ["enchantment_boots_dodge_chance_when_critically_hit_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% de chances d'Esquive si vous avez subi un Coup critique Récemment",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
-        }
-      ]
-    },
     "local_unique_jewel_with_50_int_in_radius_summon_X_melee_skeletons_as_mage_skeletons": {
       "stats": [
         "local_unique_jewel_with_50_int_in_radius_summon_X_melee_skeletons_as_mage_skeletons"
@@ -32272,7 +32533,7 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Frappe du vigilant octroie Renforcement à vous et à vos Alliés pendant %1% secondes",
+            "Frappe du vigilant octroie Renforcement à vous et à vos Alliés à proximité pendant %1% secondes",
           "formatters": []
         }
       ]
@@ -32431,30 +32692,6 @@
               "arg": 1
             }
           ]
-        }
-      ]
-    },
-    "local_unique_jewel_cold_snap_gain_power_charge_on_kill_%_with_50_int_in_radius": {
-      "stats": [
-        "local_unique_jewel_cold_snap_gain_power_charge_on_kill_%_with_50_int_in_radius"
-      ],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Avec au moins 40 d'Intelligence dans le Rayon, Congélation\\na %1%%% de chances d'octroyer une Charge de pouvoir en Tuant",
-          "formatters": []
-        }
-      ]
-    },
-    "cold_snap_gain_power_charge_on_kill_%": {
-      "stats": ["cold_snap_gain_power_charge_on_kill_%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Congélation a %1%%% de chances d'octroyer une Charge de pouvoir en Tuant",
-          "formatters": []
         }
       ]
     },
@@ -33004,28 +33241,6 @@
         }
       ]
     },
-    "damage_taken_from_traps_and_mines_+%": {
-      "stats": ["damage_taken_from_traps_and_mines_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% d'Augmentation des Dégâts subis de la part des Pièges et Mines",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "%1%%% de Réduction des Dégâts subis de la part des Pièges et Mines",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "maim_on_hit_%_vs_poisoned_enemies": {
       "stats": ["maim_on_hit_%_vs_poisoned_enemies"],
       "translations": [
@@ -33033,13 +33248,23 @@
           "matchers": [[1, 99]],
           "text":
             "%1%%% de chances pour les Attaques de Mutiler au Toucher les Ennemis Empoisonnés",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[99, 100]],
           "text":
             "Les Attaques Mutilent toujours au Toucher les Ennemis Empoisonnés",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -33545,12 +33770,22 @@
           "matchers": [[1, 99]],
           "text":
             "%1%%% de chances pour les Attaques de Mutiler au Toucher les Ennemis qui Saignent",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[100, "#"]],
           "text": "Les Attaques Mutilent au Toucher les Ennemis qui Saignent",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -34356,26 +34591,6 @@
         }
       ]
     },
-    "anger_aura_effect_+%": {
-      "stats": ["anger_aura_effect_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% d'Augmentation de l'Effet de l'Aura Colère",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1%%% de Réduction de l'Effet de l'Aura Colère",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "cannot_be_poisoned": {
       "stats": ["cannot_be_poisoned"],
       "translations": [
@@ -34577,12 +34792,13 @@
         {
           "matchers": [[1, 99]],
           "text":
-            "%1%%% de chances d'octroyer une Charge de pouvoir aux Alliés proches en Tuant",
+            "%1%%% de chances d'octroyer une Charge de pouvoir aux Alliés à proximité en Tuant",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "Octroie une Charge de pouvoir aux Alliés proches en Tuant",
+          "text":
+            "Octroie une Charge de pouvoir aux Alliés à proximité en Tuant",
           "formatters": []
         }
       ]
@@ -34593,12 +34809,13 @@
         {
           "matchers": [[1, 99]],
           "text":
-            "%1%%% de chances d'octroyer une Charge de frénésie aux Alliés proches en Tuant",
+            "%1%%% de chances d'octroyer une Charge de frénésie aux Alliés à proximité en Tuant",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "Octroie une Charge de frénésie aux Alliés proches en Tuant",
+          "text":
+            "Octroie une Charge de frénésie aux Alliés à proximité en Tuant",
           "formatters": []
         }
       ]
@@ -35794,7 +36011,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Les Défenses du Bouclier sont également octroyées aux Alliés proches",
+            "Les Défenses du Bouclier sont également octroyées aux Alliés à proximité",
           "formatters": [
             {
               "id": "reminderstring",
@@ -35863,17 +36080,6 @@
               "arg": "ReminderTextElementalStatusAilments"
             }
           ]
-        }
-      ]
-    },
-    "chance_to_dodge_spells_%_while_phased": {
-      "stats": ["chance_to_dodge_spells_%_while_phased"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chances d'Esquiver les Dégâts des Sorts pendant le Déphasage",
-          "formatters": []
         }
       ]
     },
@@ -36019,26 +36225,6 @@
           "matchers": ["#"],
           "text": "Les Flacons gagnent %1% charges toutes les 3 secondes",
           "formatters": []
-        }
-      ]
-    },
-    "trap_skill_area_of_effect_+%": {
-      "stats": ["trap_skill_area_of_effect_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% d'Augmentation de la Zone d'effet des Pièges",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1%%% de Réduction de la Zone d'effet des Pièges",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -41105,7 +41291,12 @@
         {
           "matchers": ["#"],
           "text": "Serment du zélote pendant l'effet du Flacon",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKeystoneZealotsOath"
+            }
+          ]
         }
       ]
     },
@@ -42556,28 +42747,6 @@
         {
           "matchers": [["#", -1]],
           "text": "%1%%% de Réduction de la Zone d'effet de Totem sismique",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "charged_dash_area_of_effect_radius_+_of_final_explosion": {
-      "stats": ["charged_dash_area_of_effect_radius_+_of_final_explosion"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1$+d au Rayon de la Zone de Dégâts finale de Charge fulgurante",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "%1$+d au Rayon de la Zone de Dégâts finale de Charge fulgurante",
           "formatters": [
             {
               "id": "negate",
@@ -46973,13 +47142,13 @@
         {
           "matchers": [[1, "#"]],
           "text":
-            "Vous et vos Alliés à proximité avez %1%%% d'Augmentation des Dégâts tant que vous avez Renforcement",
+            "Vous et les Alliés à proximité avez %1%%% d'Augmentation des Dégâts tant que vous avez Renforcement",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
           "text":
-            "Vous et vos Alliés à proximité avez %1%%% de Réduction des Dégâts tant que vous avez Renforcement",
+            "Vous et les Alliés à proximité avez %1%%% de Réduction des Dégâts tant que vous avez Renforcement",
           "formatters": [
             {
               "id": "negate",
@@ -48283,40 +48452,6 @@
         }
       ]
     },
-    "spell_dodge_chance_+%_if_you_have_taken_attack_damage_recently": {
-      "stats": [
-        "spell_dodge_chance_+%_if_you_have_taken_attack_damage_recently"
-      ],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% de chances d'Esquiver les Dégâts des Sorts si vous avez subi des Dégâts d'Attaque Récemment",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
-        }
-      ]
-    },
-    "dodge_chance_+%_if_you_have_taken_spell_damage_recently": {
-      "stats": ["dodge_chance_+%_if_you_have_taken_spell_damage_recently"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% de chances d'Esquiver si vous avez subi des Dégâts des Sorts Récemment",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
-        }
-      ]
-    },
     "quantity_of_items_dropped_by_maimed_enemies_+%": {
       "stats": ["quantity_of_items_dropped_by_maimed_enemies_+%"],
       "translations": [
@@ -49190,31 +49325,6 @@
         {
           "matchers": ["#"],
           "text": "Vous êtes immunisé(e) au Saignement",
-          "formatters": []
-        }
-      ]
-    },
-    "base_cannot_gain_bleeding": {
-      "stats": ["base_cannot_gain_bleeding"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Vous ne pouvez subir de Saignement",
-          "formatters": []
-        }
-      ]
-    },
-    "base_avoid_bleed_%": {
-      "stats": ["base_avoid_bleed_%"],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text": "%1%%% de chances de ne pas subir le Saignement",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text": "Ne peut subir de Saignement",
           "formatters": []
         }
       ]
@@ -51452,13 +51562,25 @@
         }
       ]
     },
-    "X_accuracy_per_2_intelligence": {
-      "stats": ["X_accuracy_per_2_intelligence"],
+    "area_of_effect_+%_per_25_rampage_stacks": {
+      "stats": ["area_of_effect_+%_per_25_rampage_stacks"],
       "translations": [
         {
-          "matchers": ["#"],
-          "text": "%1$+d de Score de Précision tous les 2 d'Intelligence",
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% d'Augmentation de Zone d'effet tous les 25 de Score de Carnage",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% de Réduction de Zone d'effet tous les 25 de Score de Carnage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -51483,26 +51605,6 @@
         {
           "matchers": ["#"],
           "text": "%1$+d d'Armure par Totem actif",
-          "formatters": []
-        }
-      ]
-    },
-    "X_life_per_4_dexterity": {
-      "stats": ["X_life_per_4_dexterity"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "%1$+d de Vie tous les 4 de Dextérité",
-          "formatters": []
-        }
-      ]
-    },
-    "X_mana_per_4_strength": {
-      "stats": ["X_mana_per_4_strength"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "%1$+d de Mana tous les 4 de Force",
           "formatters": []
         }
       ]
@@ -51587,17 +51689,6 @@
           "matchers": ["#"],
           "text":
             "%1$+d au Score de Précision tant que vous êtes au maximum de Charges de frénésie",
-          "formatters": []
-        }
-      ]
-    },
-    "add_frenzy_charge_every_50_rampage_stacks": {
-      "stats": ["add_frenzy_charge_every_50_rampage_stacks"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Tous les 50 de Score de Carnage, vous gagnez une Charge de frénésie",
           "formatters": []
         }
       ]
@@ -51949,7 +52040,7 @@
           "formatters": [
             {
               "id": "reminderstring",
-              "arg": "ReminderTextCoveredInAsh"
+              "arg": "ReminderTextCoveredInAshNoDuration"
             }
           ]
         }
@@ -52077,28 +52168,6 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextRecently"
-            }
-          ]
-        }
-      ]
-    },
-    "area_of_effect_+%_per_25_rampage_stacks": {
-      "stats": ["area_of_effect_+%_per_25_rampage_stacks"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% d'Augmentation de Zone d'effet tous les 25 de Score de Carnage",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "%1%%% de Réduction de Zone d'effet tous les 25 de Score de Carnage",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
             }
           ]
         }
@@ -53643,6 +53712,26 @@
         }
       ]
     },
+    "bear_trap_movement_speed_+%_final": {
+      "stats": ["bear_trap_movement_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% Davantage de Vitesse de déplacement",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de Perte de Vitesse de déplacement",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "bleed_damage_+%_per_endurance_charge": {
       "stats": ["bleed_damage_+%_per_endurance_charge"],
       "translations": [
@@ -53962,37 +54051,6 @@
           "text":
             "Flèche incendiaire peut infliger %1% Embrasements supplémentaires à l'Ennemi",
           "formatters": []
-        }
-      ]
-    },
-    "burning_damage_+%_per_enemy_shocked_recently": {
-      "stats": ["burning_damage_+%_per_enemy_shocked_recently"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% d'Augmentation des Dégâts de brûlure pour chaque\\nEnnemi que vous avez Électrocuté Récemment",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "%1%%% de Réduction des Dégâts de brûlure pour chaque\\nEnnemi que vous avez Électrocuté Récemment",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            },
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
         }
       ]
     },
@@ -54430,63 +54488,6 @@
         }
       ]
     },
-    "chance_to_dodge_%_at_max_charged_attack_stacks": {
-      "stats": ["chance_to_dodge_%_at_max_charged_attack_stacks"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chances d'Esquiver les Attaques au seuil maximal de Déluge de lames",
-          "formatters": []
-        }
-      ]
-    },
-    "chance_to_dodge_attacks_and_spells_%_while_you_have_energy_shield": {
-      "stats": [
-        "chance_to_dodge_attacks_and_spells_%_while_you_have_energy_shield"
-      ],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chances d'Esquiver les Attaques et les Sorts tant que vous avez du Bouclier d'énergie",
-          "formatters": []
-        }
-      ]
-    },
-    "chance_to_dodge_attacks_%_while_affected_by_grace": {
-      "stats": ["chance_to_dodge_attacks_%_while_affected_by_grace"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chances d'Esquiver les Attaques tant que vous êtes affecté(e) par Grâce",
-          "formatters": []
-        }
-      ]
-    },
-    "chance_to_dodge_attacks_%_while_off_hand_is_empty": {
-      "stats": ["chance_to_dodge_attacks_%_while_off_hand_is_empty"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% de chances d'Esquiver les Attaques tant que votre main secondaire est vide",
-          "formatters": []
-        }
-      ]
-    },
-    "chance_to_dodge_spells_%_while_affected_by_haste": {
-      "stats": ["chance_to_dodge_spells_%_while_affected_by_haste"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chances d'Esquiver les Sorts tant que vous êtes affecté(e) par Hâte",
-          "formatters": []
-        }
-      ]
-    },
     "chance_to_evade_attacks_%": {
       "stats": ["chance_to_evade_attacks_%"],
       "translations": [
@@ -54635,6 +54636,23 @@
           "matchers": ["#"],
           "text":
             "%1%%% de chances de gagner une Charge de pouvoir en Touchant un Ennemi affecté par une Toile d'araignée",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_gain_power_charge_on_rare_or_unique_enemy_hit_%": {
+      "stats": ["chance_to_gain_power_charge_on_rare_or_unique_enemy_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de chances de gagner une Charge de pouvoir lorsque vous Touchez un Ennemi Rare ou Unique",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Vous gagnez une Charge de pouvoir lorsque vous Touchez un Ennemi Rare ou Unique",
           "formatters": []
         }
       ]
@@ -54836,24 +54854,6 @@
           "text":
             "Vous et les Alliés affectés par vos Auras avez %1$+d%% à la Résistance au chaos",
           "formatters": []
-        }
-      ]
-    },
-    "charged_dash_chance_to_dodge_%_if_finished_channelling_recently": {
-      "stats": [
-        "charged_dash_chance_to_dodge_%_if_finished_channelling_recently"
-      ],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chances d'Esquiver les Attaques si vous avez fini la Canalisation de Charge fulgurante Récemment",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
         }
       ]
     },
@@ -55420,6 +55420,28 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextConsecratedGround"
+            }
+          ]
+        }
+      ]
+    },
+    "critical_strike_chance_+%_vs_shocked_enemies": {
+      "stats": ["critical_strike_chance_+%_vs_shocked_enemies"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% d'Augmentation des Chances de coup critique contre les Ennemis Électrocutés",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% de Réduction des Chances de coup critique contre les Ennemis Électrocutés",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
             }
           ]
         }
@@ -56130,28 +56152,6 @@
         }
       ]
     },
-    "damage_taken_+%_for_4_seconds_after_spending_200_mana": {
-      "stats": ["damage_taken_+%_for_4_seconds_after_spending_200_mana"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% d'Augmentation des Dégâts subis pendant 4 secondes après avoir dépensé 200 de Mana",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "%1%%% de Réduction des Dégâts subis pendant 4 secondes après avoir dépensé 200 de Mana",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "damage_taken_goes_to_mana_over_4_seconds_%_while_affected_by_clarity": {
       "stats": [
         "damage_taken_goes_to_mana_over_4_seconds_%_while_affected_by_clarity"
@@ -56355,60 +56355,6 @@
         {
           "matchers": ["#"],
           "text": "La Zone est habitée par des fanatiques de Solaris",
-          "formatters": []
-        }
-      ]
-    },
-    "dodge_attacks_and_spells_%_chance_if_have_been_hit_recently": {
-      "stats": ["dodge_attacks_and_spells_%_chance_if_have_been_hit_recently"],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text":
-            "%1%%% de chances d'Esquiver les Attaques et les Sorts\\nSi vous avez été Touché(e) Récemment",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text":
-            "Esquivez les Attaques et les Sorts\\nSi vous avez été Touché(e) Récemment",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
-        }
-      ]
-    },
-    "dodge_attacks_chance_%_if_you_have_blocked_recently": {
-      "stats": ["dodge_attacks_chance_%_if_you_have_blocked_recently"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chances d'Esquiver les Attaques si vous avez Bloqué Récemment",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextRecently"
-            }
-          ]
-        }
-      ]
-    },
-    "dodge_chance_%_while_holding_shield": {
-      "stats": ["dodge_chance_%_while_holding_shield"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chances d'Esquiver les Attaques lorsque vous tenez un bouclier",
           "formatters": []
         }
       ]
@@ -57551,18 +57497,23 @@
         }
       ]
     },
-    "fire_trap_number_of_additional_traps_to_throw": {
-      "stats": ["fire_trap_number_of_additional_traps_to_throw"],
+    "flamethrower_trap_damage_+%_final_vs_burning_enemies": {
+      "stats": ["flamethrower_trap_damage_+%_final_vs_burning_enemies"],
       "translations": [
         {
-          "matchers": [1],
-          "text": "Piège incendiaire jette un Piège supplémentaire",
+          "matchers": [[1, "#"]],
+          "text": "%1%%% Davantage de Dégâts contre les Ennemis qui Brûlent",
           "formatters": []
         },
         {
-          "matchers": ["#"],
-          "text": "Piège incendiaire jette %1% Pièges supplémentaires",
-          "formatters": []
+          "matchers": [["#", -1]],
+          "text": "%1%%% de Perte de Dégâts contre les Ennemis qui Brûlent",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -58408,6 +58359,20 @@
           "matchers": ["#", "#"],
           "text":
             "Ajoute %1% à %2% Dégâts de foudre contre les Ennemis Électrocutés",
+          "formatters": []
+        }
+      ]
+    },
+    "global_minimum_added_physical_damage_vs_bleeding_enemies": {
+      "stats": [
+        "global_minimum_added_physical_damage_vs_bleeding_enemies",
+        "global_maximum_added_physical_damage_vs_bleeding_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "Ajoute %1% à %2% Dégâts physiques contre les Ennemis qui Saignent",
           "formatters": []
         }
       ]
@@ -60229,175 +60194,6 @@
         }
       ]
     },
-    "local_display_socketed_attacks_additional_critical_strike_chance": {
-      "stats": [
-        "local_display_socketed_attacks_additional_critical_strike_chance"
-      ],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Les Attaques Enchâssées ont %1$+d%% aux Chances de coup critique",
-          "formatters": [
-            {
-              "id": "divide_by_one_hundred",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "local_display_socketed_attacks_critical_strike_multiplier_+": {
-      "stats": ["local_display_socketed_attacks_critical_strike_multiplier_+"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Les Attaques Enchâssées ont %1$+d%% au Multiplicateur de coup critique",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_socketed_movement_skills_have_no_mana_cost": {
-      "stats": ["local_display_socketed_movement_skills_have_no_mana_cost"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Les Gemmes de déplacement Enchâssées n'ont pas de Coût en Mana",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_socketed_spells_additional_critical_strike_chance": {
-      "stats": [
-        "local_display_socketed_spells_additional_critical_strike_chance"
-      ],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Les Sorts Enchâssés ont %1$+d%% aux Chances de coup critique",
-          "formatters": [
-            {
-              "id": "divide_by_one_hundred",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "local_display_socketed_spells_critical_strike_multiplier_+": {
-      "stats": ["local_display_socketed_spells_critical_strike_multiplier_+"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Les Sorts Enchâssés ont %1$+d%% au Multiplicateur de coup critique",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_commandment_of_inferno_on_crit_%": {
-      "stats": ["local_display_trigger_commandment_of_inferno_on_crit_%"],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text":
-            "%1%%% de chances de Déclencher Commandement du brasier sur un Coup critique",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text": "Déclenche Commandement du brasier sur un Coup critique",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_level_20_animate_guardian_weapon_on_guardian_kill_%_chance": {
-      "stats": [
-        "local_display_trigger_level_20_animate_guardian_weapon_on_guardian_kill_%_chance"
-      ],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text":
-            "%1%%% de chances de Déclencher Arme du Gardien animé (Niveau 20) lorsque le Gardien animé Tue un Ennemi",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text":
-            "Déclenche Arme du Gardien animé (Niveau 20) lorsque le Gardien animé Tue un Ennemi",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_level_20_animate_guardian_weapon_on_weapon_kill_%_chance": {
-      "stats": [
-        "local_display_trigger_level_20_animate_guardian_weapon_on_weapon_kill_%_chance"
-      ],
-      "translations": [
-        {
-          "matchers": [[1, 99]],
-          "text":
-            "%1%%% de chances de Déclencher Arme du Gardien animé (Niveau 18) lorsqu'une Arme animée Tue un Ennemi",
-          "formatters": []
-        },
-        {
-          "matchers": [[100, "#"]],
-          "text":
-            "Déclenche Arme du Gardien animé (Niveau 18) lorsqu'une Arme animée Tue un Ennemi",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_level_x_icicle_nova_on_kill_vs_frozen_enemy": {
-      "stats": [
-        "local_display_trigger_level_x_icicle_nova_on_kill_vs_frozen_enemy"
-      ],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Déclenche Salve de stalactites (Niveau %1%) lorsque vous Tuez un Ennemi Gelé",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_temporal_anomaly_when_hit_%_chance": {
-      "stats": ["local_display_trigger_temporal_anomaly_when_hit_%_chance"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chances de déclencher Anomalie temporelle (Niveau 20) en étant Touché(e)",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_tentacle_smash_on_kill_%_chance": {
-      "stats": ["local_display_trigger_tentacle_smash_on_kill_%_chance"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chances de Déclencher Fouet tentaculaire (Niveau 20) en Tuant",
-          "formatters": []
-        }
-      ]
-    },
-    "local_display_trigger_void_sphere_on_kill_%_chance": {
-      "stats": ["local_display_trigger_void_sphere_on_kill_%_chance"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "%1%%% de chances de déclencher Invocation d'Anomalie instable (Niveau 20) en Tuant",
-          "formatters": []
-        }
-      ]
-    },
     "local_evasion_rating_and_energy_shield": {
       "stats": ["local_evasion_rating_and_energy_shield"],
       "translations": [
@@ -60842,25 +60638,6 @@
           "matchers": ["#"],
           "text":
             "Les passifs dans le Rayon qui octroient de la Résistance au feu ou à tous les éléments\\nOctroient aussi des chances équivalentes de gagner une Charge d'endurance en Tuant",
-          "formatters": []
-        }
-      ]
-    },
-    "local_unique_jewel_fire_trap_number_of_additional_traps_to_throw_with_40_dex_in_radius": {
-      "stats": [
-        "local_unique_jewel_fire_trap_number_of_additional_traps_to_throw_with_40_dex_in_radius"
-      ],
-      "translations": [
-        {
-          "matchers": [1],
-          "text":
-            "Avec au moins 40 de Dextérité dans le Rayon, Piège incendiaire jette un Piège supplémentaire",
-          "formatters": []
-        },
-        {
-          "matchers": ["#"],
-          "text":
-            "Avec au moins 40 de Dextérité dans le Rayon, Piège incendiaire jette %1% Pièges supplémentaires",
           "formatters": []
         }
       ]
@@ -61382,12 +61159,22 @@
         {
           "matchers": [[1, 99]],
           "text": "Les Attaques ont %1%%% de chances de Mutiler au Toucher",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         },
         {
           "matchers": [[100, "#"]],
           "text": "Les Attaques Mutilent toujours au Toucher",
-          "formatters": []
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextMaim"
+            }
+          ]
         }
       ]
     },
@@ -62782,7 +62569,7 @@
         {
           "matchers": ["#"],
           "text":
-            "Les joueurs gagnent %1%%% de chances d'Esquive tant qu'ils sont sous l'Effet d'un Autel",
+            "Les Joueurs ont %1%%% de chances d'Esquiver les Attaques en étant sous l'Effet d'un Autel",
           "formatters": []
         }
       ]
@@ -64746,17 +64533,6 @@
           "matchers": ["#"],
           "text":
             "%1%%% d'Augmentation de la Durée des Effets des Autels sur les joueurs",
-          "formatters": []
-        }
-      ]
-    },
-    "map_players_additional_spell_dodge_%": {
-      "stats": ["map_players_additional_spell_dodge_%"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text":
-            "Les joueurs ont %1%%% de chances d'Esquiver les Dégâts des Sorts",
           "formatters": []
         }
       ]
@@ -67285,13 +67061,13 @@
         {
           "matchers": [1],
           "text":
-            "Les Aptitudes permettant de Jeter des Pièges jettent un Piège supplémentaire",
+            "Les Aptitudes de Pièges permettent de jeter jusqu'à 1 Piège supplémentaire",
           "formatters": []
         },
         {
           "matchers": ["#"],
           "text":
-            "Les Aptitudes permettant de Jeter des Pièges jettent %1% Pièges supplémentaires",
+            "Les Aptitudes de Pièges permettent de jeter jusqu'à %1% Pièges supplémentaires",
           "formatters": []
         }
       ]
@@ -68589,36 +68365,6 @@
         }
       ]
     },
-    "shocked_effect_on_self_+%": {
-      "stats": ["shocked_effect_on_self_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% d'Augmentation de l'Effet de l'Électrocution sur vous",
-          "formatters": []
-        },
-        {
-          "matchers": [[-99, -1]],
-          "text": "%1%%% de Réduction de l'Effet de l'Électrocution sur vous",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        },
-        {
-          "matchers": [["#", -100]],
-          "text": "Vous êtes Insensible à l'Électrocution",
-          "formatters": [
-            {
-              "id": "reminderstring",
-              "arg": "ReminderTextUnaffectedBy"
-            }
-          ]
-        }
-      ]
-    },
     "shocked_enemies_explode_for_%_life_as_lightning_damage": {
       "stats": ["shocked_enemies_explode_for_%_life_as_lightning_damage"],
       "translations": [
@@ -69519,6 +69265,20 @@
         }
       ]
     },
+    "global_minimum_added_fire_damage_vs_burning_enemies": {
+      "stats": [
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text":
+            "%1% à %2% Dégâts de feu supplémentaires contre les Ennemis qui Brûlent",
+          "formatters": []
+        }
+      ]
+    },
     "support_mirage_archer_base_duration": {
       "stats": ["support_mirage_archer_base_duration"],
       "translations": [
@@ -69734,6 +69494,28 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "trap_throwing_speed_+%_per_frenzy_charge": {
+      "stats": ["trap_throwing_speed_+%_per_frenzy_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "%1%%% d'Augmentation de la Vitesse de jet des Pièges par Charge de frénésie",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "%1%%% de Réduction de la Vitesse de jet des Pièges par Charge de frénésie",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
             }
           ]
         }
@@ -70620,16 +70402,6 @@
           "matchers": ["#"],
           "text":
             "L'attaque à Percussion des Zombies Réanimés a %1%%% d'Augmentation de Dégâts",
-          "formatters": []
-        }
-      ]
-    },
-    "active_skill_base_radius_+": {
-      "stats": ["active_skill_base_radius_+"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "%1$+d au Rayon",
           "formatters": []
         }
       ]

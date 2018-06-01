@@ -9,12 +9,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Minions Throw an additional Trap",
+          "text": "Minions Throw up to 1 additional Trap",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text": "Minions Throw %1% additional Traps",
+          "text": "Minions Throw up to %1% additional Traps",
           "formatters": []
         }
       ]
@@ -2928,6 +2928,16 @@
         }
       ]
     },
+    "ignites_apply_fire_res": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Enemies Ignited by Minions have %1$+d%% to Fire Resistance",
+          "formatters": []
+        }
+      ]
+    },
     "maim_chance": {
       "stats": ["maim_on_hit_%"],
       "translations": [
@@ -3015,6 +3025,40 @@
         }
       ]
     },
+    "frenzy_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "This Skill and Minions have %1%%% chance to gain a Frenzy Charge when your Trap is triggered by an Enemy",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "This Skill and Minions have gain a Frenzy Charge when your Trap is triggered by an Enemy",
+          "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "This Skill and Minions have %1%%% chance to gain a Power Charge when your Trap is triggered by an Enemy",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "This Skill and Minions gain a Power Charge when your Trap is triggered by an Enemy",
+          "formatters": []
+        }
+      ]
+    },
     "base_pierce_num": {
       "stats": ["projectile_base_number_of_targets_to_pierce"],
       "translations": [
@@ -3081,6 +3125,26 @@
         }
       ]
     },
+    "hypothermia_cold_damage": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Cold Damage Over Time",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Cold Damage Over Time",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "maim_phys_damage": {
       "stats": ["support_maim_chance_physical_damage_+%_final"],
       "translations": [
@@ -3125,8 +3189,8 @@
     },
     "added_fire_against_burning": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
@@ -3187,6 +3251,28 @@
         {
           "matchers": [["#", -1]],
           "text": "Minions deal %1%%% less Projectile Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "power_charge_on_crit_damage": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Damage per Power Charge",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Damage per Power Charge",
           "formatters": [
             {
               "id": "negate",
@@ -3260,6 +3346,46 @@
               "arg": 3
             }
           ]
+        }
+      ]
+    },
+    "ailment_damage_incr": {
+      "stats": ["support_unbound_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Minions deal %1%%% more Damage with Ailments",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Minions deal %1%%% less Damage with Ailments",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "trap_crit_per_power_charge": {
+      "stats": ["trap_critical_strike_multiplier_+_per_power_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "This Skill and Minions' Skills have %1$+d%% to Critical Strike Multiplier per Power Charge when used by Traps",
+          "formatters": []
         }
       ]
     }

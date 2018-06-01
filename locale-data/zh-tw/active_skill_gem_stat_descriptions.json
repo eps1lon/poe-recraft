@@ -25,7 +25,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "護盾上每 15 點護甲或閃避值附加 %1% 至 %2% 物理傷害",
+          "text": "盾牌上每 15 點護甲或閃避值附加 %1% 至 %2% 物理傷害",
           "formatters": []
         }
       ]
@@ -1387,6 +1387,21 @@
         }
       ]
     },
+    "lightning_tower_trap_base_interval_duration_ms": {
+      "stats": ["lightning_tower_trap_base_interval_duration_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每 0.3 秒落雷",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "mana_leech_from_any_damage_permyriad": {
       "stats": ["mana_leech_from_any_damage_permyriad"],
       "translations": [
@@ -1594,8 +1609,13 @@
       "stats": ["number_of_additional_traps_allowed"],
       "translations": [
         {
+          "matchers": [1],
+          "text": "同時間最多能放置額外 %1% 個陷阱",
+          "formatters": []
+        },
+        {
           "matchers": ["#"],
-          "text": "同時間最多能擁有額外 %1% 個陷阱",
+          "text": "同時間最多能放置額外 %1% 個陷阱",
           "formatters": []
         }
       ]
@@ -1605,12 +1625,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "投擲 %1% 個額外陷阱",
+          "text": "投擲至多 1 個額外陷阱",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text": "投擲 %1% 個額外陷阱",
+          "text": "投擲至多 %1% 個額外陷阱",
           "formatters": []
         }
       ]
@@ -1627,6 +1647,46 @@
           "matchers": [[1, "#"]],
           "text": "最多同時召喚 %1% 幻化武器",
           "formatters": []
+        }
+      ]
+    },
+    "orb_of_storms_base_bolt_frequency_ms": {
+      "stats": ["orb_of_storms_base_bolt_frequency_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "每 %1% 秒落雷",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "每 %1% 秒落雷",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "phys_cascade_trap_base_interval_duration_ms": {
+      "stats": ["phys_cascade_trap_base_interval_duration_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每 %1% 秒釋放衝擊波",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -1690,6 +1750,21 @@
         }
       ]
     },
+    "projectile_base_number_of_targets_to_pierce": {
+      "stats": ["projectile_base_number_of_targets_to_pierce"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "投射物穿透 1 個額外目標",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "投射物穿透 %1% 個額外目標",
+          "formatters": []
+        }
+      ]
+    },
     "projectile_damage_+%": {
       "stats": ["projectile_damage_+%"],
       "translations": [
@@ -1746,6 +1821,21 @@
         {
           "matchers": ["#", "#"],
           "text": "投射物會返還",
+          "formatters": []
+        }
+      ]
+    },
+    "rain_of_arrows_additional_sequences": {
+      "stats": ["rain_of_arrows_additional_sequences"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "發射 1 次額外連續箭矢",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "發射 %1% 次額外連續箭矢",
           "formatters": []
         }
       ]
@@ -1962,6 +2052,31 @@
           "matchers": [[1, "#"]],
           "text": "創造等級 %1% 的屍體",
           "formatters": []
+        }
+      ]
+    },
+    "vaal_storm_call_base_delay_ms": {
+      "stats": ["vaal_storm_call_base_delay_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "每 %1% 秒落雷 1 個敵人",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "每 %1% 秒落雷 1 個敵人",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
         }
       ]
     },

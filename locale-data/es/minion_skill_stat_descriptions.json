@@ -9,12 +9,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text": "Los Esbirros Lanzan una Trampa adicional",
+          "text": "Los Esbirros Lanzan hasta 1 Trampa Adicional",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text": "Los Esbirros Lanzan %1% Trampas adicionales",
+          "text": "Los Esbirros Lanzan hasta %1% Trampas Adicionales",
           "formatters": []
         }
       ]
@@ -2960,6 +2960,23 @@
         }
       ]
     },
+    "ghost_chance": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text":
+            "%1%%% de probabilidad de Invocar un Fantasma cuando Esbirros que no son Fantasmas infligen un Golpe Mortal",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text":
+            "Invoca un Fantasma cuando Esbirros que no son Fantasmas infligen un Golpe Mortal",
+          "formatters": []
+        }
+      ]
+    },
     "decay_on_hit": {
       "stats": ["deal_chaos_damage_per_second_for_10_seconds_on_hit"],
       "translations": [
@@ -2977,6 +2994,17 @@
         {
           "matchers": ["#"],
           "text": "Los Esbirros no infligen Daño Elemental",
+          "formatters": []
+        }
+      ]
+    },
+    "ignites_apply_fire_res": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Los Enemigos Quemados por Esbirros tienen %1$+d%% a la Resistencia al Fuego",
           "formatters": []
         }
       ]
@@ -3071,6 +3099,40 @@
         }
       ]
     },
+    "frenzy_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Esta Habilidad y los Esbirros tienen %1%%% de probabilidad de ganar una Carga de Frenesí cuando tu Trampa es activada por un Enemigo",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Esta Habilidad y los Esbirros generan una Carga de Frenesí cuando tu Trampa es activada por un Enemigo",
+          "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Esta Habilidad y los Esbirros tienen %1%%% de probabilidad de ganar una Carga de Poder cuando tu Trampa es activada por un Enemigo",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text":
+            "Esta Habilidad y los Esbirros generan una Carga de Poder cuando tu Trampa es activada por un Enemigo",
+          "formatters": []
+        }
+      ]
+    },
     "base_pierce_num": {
       "stats": ["projectile_base_number_of_targets_to_pierce"],
       "translations": [
@@ -3139,6 +3201,27 @@
         }
       ]
     },
+    "hypothermia_cold_damage": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Los Esbirros infligen %1%%% más Daño de Hielo Degenerativo",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Los Esbirros infligen %1%%% menos Daño de Hielo Degenerativo",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "maim_phys_damage": {
       "stats": ["support_maim_chance_physical_damage_+%_final"],
       "translations": [
@@ -3183,8 +3266,8 @@
     },
     "added_fire_against_burning": {
       "stats": [
-        "support_minimum_added_fire_damage_vs_burning_enemies",
-        "support_maximum_added_fire_damage_vs_burning_enemies"
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
       ],
       "translations": [
         {
@@ -3245,6 +3328,30 @@
         {
           "matchers": [["#", -1]],
           "text": "Los Esbirros infligen %1%%% menos Daño de Proyectiles",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "power_charge_on_crit_damage": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text":
+            "Los Esbirros infligen %1%%% más Daño por cada Carga de Poder",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text":
+            "Los Esbirros infligen %1%%% menos Daño por cada Carga de Poder",
           "formatters": [
             {
               "id": "negate",
@@ -3318,6 +3425,46 @@
               "arg": 3
             }
           ]
+        }
+      ]
+    },
+    "ailment_damage_incr": {
+      "stats": ["support_unbound_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Los Esbirros infligen %1%%% más Daño con Achaques",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Los Esbirros infligen %1%%% menos Daño con Achaques",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "trap_crit_per_power_charge": {
+      "stats": ["trap_critical_strike_multiplier_+_per_power_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text":
+            "Esta Habilidad y las Habilidades de los Esbirros tienen %1$+d%% al Multiplicador de Golpe Crítico por cada Carga de Poder cuando se usan con Trampas",
+          "formatters": []
         }
       ]
     }
