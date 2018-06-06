@@ -27,6 +27,7 @@ export {
 export {
   BestiaryAspectMods,
   ElderMods,
+  IncursionTempleMods,
   MasterSignatureMods,
   ShapedMods,
   WarbandsMods,

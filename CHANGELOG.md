@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.11.0...HEAD)
+### Added
+- `IncursionTempleMods` for mods that can spawn on items from chests in T3
+  Temples. ([#69](https://github.com/eps1lon/poe-mods/pull/69))
 
 ## [1.11.0](https://github.com/eps1lon/poe-mods/compare/v1.10.0...v1.11.0) (2018-06-31)
 ### Added

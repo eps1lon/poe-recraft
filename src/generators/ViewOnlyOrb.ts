@@ -2,6 +2,8 @@ import Orb from './Orb';
 import Item from '../containers/item';
 import { Flags } from '../util';
 
+export { SpawnableFlags, SpawnableFlag } from './Orb';
+
 export interface ApplicableFlags extends Flags {
   not_applicable: boolean;
 }

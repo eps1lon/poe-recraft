@@ -69,18 +69,27 @@ export default abstract class Orb<C extends Container<any>> extends Generator<
       no_matching_tags: false,
       spawnweight_zero: false,
     };
-    const spawnweight = mod.spawnweightPropsFor(container);
+    const spawnweight = this.spawnweightFor(mod, container);
 
     if (spawnweight == null) {
       // at first glance this shouldn't be happening
       // since every mod seems to have a spawnweight for the default
       // tag which every equipment seems to have
       spawnable_flags.no_matching_tags = true;
-    } else if (spawnweight.value <= 0) {
+    } else if (spawnweight <= 0) {
       spawnable_flags.spawnweight_zero = true;
     }
 
     return spawnable_flags;
+  }
+
+  public spawnweightFor(mod: Mod, container: C): number | undefined {
+    const props = mod.spawnweightPropsFor(container);
+    if (props == null) {
+      return undefined;
+    } else {
+      return props.value;
+    }
   }
 
   public modsFor(
@@ -91,7 +100,7 @@ export default abstract class Orb<C extends Container<any>> extends Generator<
     this.getAvailableMods().forEach(mod => {
       const applicable_flags = this.isModApplicableTo(mod, container);
       const spawnable_flags = this.isModSpawnableOn(mod, container);
-      const spawnweight = mod.spawnweightFor(container);
+      const spawnweight = this.spawnweightFor(mod, container);
 
       const is_applicable = !anySet(applicable_flags, whitelist);
 
