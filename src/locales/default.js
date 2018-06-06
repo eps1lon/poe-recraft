@@ -1,5 +1,6 @@
 export const messages = {
   generators: {
-    showcase: 'all'
+    showcase: 'all',
+    incursion: 'Incursion'
   }
 };

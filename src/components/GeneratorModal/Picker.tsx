@@ -33,6 +33,9 @@ const GeneratorPicker: SFC<Props> = props => {
           <Orb key={orb_id} id={orb_id} onClick={props.onChange} />
         ))}
       </div>
+      <div key="leagues" className="group leagues">
+        <Button onClick={() => props.onChange('incursion')}>Incursion</Button>
+      </div>
     </>
   );
 };
