@@ -11,3 +11,6 @@ export { default as requiredLocaleDatas } from './requiredLocaleDatas';
 export { default as formatValueRange } from './localize/formatValueRange';
 export { formatValue } from './localize/formatValues';
 export { default as inflectionIdentifier } from './util/inflectionIdentifier';
+
+import * as LocaleData from './types/LocaleData';
+export { LocaleData };
