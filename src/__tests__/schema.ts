@@ -3,6 +3,9 @@
 import * as schema from '../schema';
 
 describe.skip('type definitions matching json files in data', () => {
+  // be aware that this causes some issues on optional properties and
+  // and inferred never[]
+  // @see d8535fa8361e706cfafa8b567b49806062e5b1e4
   type DeepExactify<T, X extends T> = T & {
     [K in keyof X]: K extends keyof T ? DeepExactify<T[K], X[K]> : never
   }
@@ -19,12 +22,12 @@ describe.skip('type definitions matching json files in data', () => {
 
   test('essences', async () => {
     const json = await import('../../data/essences.json');
-    const checked: DeepExactify<schema.Essences, typeof json> = json;
+    const checked: schema.Essences = json;
   });
 
   test('items', async () => {
     const json = await import('../../data/items.json');
-    const checked: DeepExactify<schema.Items, typeof json> = json;
+    const checked: schema.Items = json;
   });
 
   test('mods', async () => {
