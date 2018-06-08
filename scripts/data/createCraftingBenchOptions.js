@@ -2,6 +2,7 @@ const path = require('path');
 const createFromApi = require('./createFromApi');
 const createItems = require('./createItems');
 const createMods = require('./createMods');
+const { nullToUndefined } = require('./util');
 
 module.exports = {
   run: createCraftingbenchoptions,
@@ -29,6 +30,7 @@ function formatCraftingbenchoption(option) {
     cost_base_item_types,
     item_classes,
     mod,
+    mods_key,
     // keep
     ...props
   } = option;
@@ -64,7 +66,8 @@ function formatCraftingbenchoption(option) {
   return {
     ...props,
     costs,
-    mod: mod === null ? null : createMods.format(mod),
+    mod: mod == null ? undefined : createMods.format(mod),
     item_classes: formatted_item_classes,
+    mods_key: nullToUndefined(mods_key),
   };
 }

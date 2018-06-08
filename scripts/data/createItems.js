@@ -1,6 +1,7 @@
 const path = require('path');
 const createFromApi = require('./createFromApi');
 const createMods = require('./createMods');
+const { nullToUndefined } = require('./util');
 
 module.exports = { run: createItems, format: formatItem };
 
@@ -27,8 +28,12 @@ function formatItem(item) {
     item_class,
     implicit_mods,
     tags,
-    component_attribute_requirements: [component_attribute_requirement = null],
-    component_armour: [component_armour = null],
+    component_attribute_requirements: [
+      component_attribute_requirement = undefined,
+    ],
+    component_armour: [component_armour = undefined],
+    shield_type,
+    weapon_type,
     // keep
     ...props
   } = item;
@@ -42,8 +47,12 @@ function formatItem(item) {
 
   return {
     ...props,
-    component_attribute_requirement,
-    component_armour,
+    shield_type: nullToUndefined(shield_type),
+    weapon_type: nullToUndefined(weapon_type),
+    component_attribute_requirement: nullToUndefined(
+      component_attribute_requirement,
+    ),
+    component_armour: nullToUndefined(component_armour),
     implicit_mods: formatted_implicits,
     item_class: item_class.id,
     tags: formatted_tags,
