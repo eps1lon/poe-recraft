@@ -66,7 +66,7 @@ export function buildGeneratorFactory(generator: string) {
       return buildAlchemy;
     case 'annullment':
       return buildAnnullment;
-    case 'augment':
+    case 'augmentation':
       return buildAugment;
     case 'alteration':
       return buildAlteration;
