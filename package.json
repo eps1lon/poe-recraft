@@ -26,12 +26,13 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "format:check": "prettier --list-different \"src/**/*.ts\"",
     "format:data": "prettier --write \"data/**/*.json\"",
-    "lint": "tslint --project tsconfig.json",
+    "lint": "tslint --project tsconfig.json src/**/*.ts",
     "prepublishOnly": "npm run build",
     "test": "jest --watch",
     "test:check": "jest --ci",
     "test:ci": "jest --ci --coverage --runInBand",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "test:typings": "tsc -p tsconfig.test.json --noEmit"
   },
   "repository": {
     "type": "git",
@@ -63,7 +64,7 @@
     "tslint-config-prettier": "^1.7.0",
     "tslint-eslint-rules": "^5.1.0",
     "typedoc": "^0.11.1",
-    "typescript": "^2.7.1"
+    "typescript": "^2.9.0"
   },
   "dependencies": {
     "lodash": "^4.17.10",

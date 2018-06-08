@@ -1,3 +1,13 @@
+// data/* typings
+// every interface has a corresponding json file.
+// json files in subdirectories have the same typing as their parent json
+export type Atlas = AtlasNodeProps[];
+export type CraftingBenchOptions = CraftingBenchOptionsProps[];
+export type Essences = EssenceProps[];
+export type Items = BaseItemTypeProps[];
+export type Mods = ModProps[];
+
+// helper
 export type Tag = string;
 
 export interface ModTypeProps {
