@@ -10,9 +10,14 @@ import { SocketColor, SocketGroup, SocketId, Socket } from './types';
 
 export interface Sockets<T> {
   /**
+   * @deprecated use maxSockets() instead
    * @returns the maximum amount of sockets
    */
   max(): number;
+  /**
+   * @returns the maximum amount of sockets
+   */
+  maxSockets(): number;
   /**
    * @returns current amount of sockets
    */
@@ -70,9 +75,23 @@ export default class ItemSockets
     };
   }
 
-  // TODO: what about Corroded Blades or other similar 1x4 Items. Confirm
-  // that they also only can have max 4 sockets like Rods or act like small_Staff
+  /**
+   * @deprecated
+   */
   public max(): number {
+    console.warn(
+      'poe-mods DEPRECATION: use Sockets.maxSockets() instead of Sockets.max()',
+    );
+    return this.maxSockets();
+  }
+
+  /**
+   * calculates the maximum amount of sockets possible on this item
+   *
+   * TODO: what about Corroded Blades or other similar 1x4 Items. Confirm
+   * that they also only can have max 4 sockets like Rods or act like small_Staff
+   */
+  public maxSockets(): number {
     const by_stats = this.maxOverride();
 
     // tags take priority
@@ -84,7 +103,6 @@ export default class ItemSockets
         this.maxByLevel(),
         this.maxByMetaData(),
       );
-      false;
     }
   }
 
@@ -161,7 +179,7 @@ export default class ItemSockets
       force = false,
     } = options;
 
-    const max_count = this.max();
+    const max_count = this.maxSockets();
     if (!force && n > max_count) {
       throw new SocketOverflow(max_count);
     }
