@@ -1,4 +1,5 @@
 import { createTables } from '../../../../../__fixtures__/util';
+import { SocketColor } from '../types';
 
 const tables = createTables();
 const { items } = tables;
@@ -18,6 +19,16 @@ describe('socketing', () => {
     expect(removed.sockets.count()).toBe(2);
     expect(removed.sockets.colors().toString()).toEqual('w,w');
   });
+  it('can create sockets with a custom builder', () => {
+    const added = item.sockets.socket(5, {
+      newSocket: (_, index) => {
+        return {
+          color: index % 2 ? SocketColor.blue : SocketColor.abyss,
+        };
+      },
+    });
+    expect(added.sockets.toString()).toEqual('a b a b a');
+  });
   it('throws if it should add sockets beyond limit', () => {
     expect(() => item.sockets.socket(7)).toThrow(
       "This item can't have more than 6 sockets",
@@ -36,6 +47,15 @@ describe('socketing', () => {
     const added = linked.sockets.socket(6);
     expect(added.sockets.toString()).toEqual('w-w-w w w w');
   });
+  it('can clear links if specified', () => {
+    // pre
+    const socketed = item.sockets.socket(3);
+    const linked = socketed.sockets.link(0, 2);
+    expect(linked.sockets.toString()).toEqual('w-w-w');
+    // post
+    const added = linked.sockets.socket(6, { keep_links: false });
+    expect(added.sockets.toString()).toEqual('w w w w w w');
+  });
   it('cuts of links when removing', () => {
     // pre
     const socketed = item.sockets.socket(6);
@@ -47,6 +67,12 @@ describe('socketing', () => {
     // and they are not "saved" inbetween
     const added = removed.sockets.socket(6);
     expect(added.sockets.toString()).toEqual('w-w-w w w w');
+  });
+  it('changes reference equality if and only if the amounf of sockets changes', () => {
+    const socketed = item.sockets.socket(4);
+    expect(item).not.toBe(socketed);
+    // same amount of sockets
+    expect(socketed).toBe(socketed.sockets.socket(4));
   });
 });
 
@@ -106,9 +132,48 @@ describe('links', () => {
     const linked2_post2 = linked2.sockets.link(1, 4);
     expect(linked2_post2.sockets.toString()).toEqual('w-w-w-w-w-w');
   });
+
+  it('can recognize the size of the biggest linked group', () => {
+    // pre
+    const socketed = item.sockets.socket(6);
+    expect(socketed.sockets.maxLinks()).toBe(0);
+    // post1
+    const linked1 = socketed.sockets.link(0, 1, 2, 3, 4, 5);
+    expect(linked1.sockets.maxLinks()).toBe(2);
+    // post2
+    const linked2 = socketed.sockets.link(0, 3);
+    expect(linked2.sockets.maxLinks()).toBe(4);
+    // post2
+    const linked3 = socketed.sockets.link(0, 1, 2, 5);
+    expect(linked3.sockets.maxLinks()).toBe(4);
+    // post3
+    const linked4 = socketed.sockets.link(0, 5);
+    expect(linked4.sockets.maxLinks()).toBe(6);
+  });
+
+  it('changes reference equality if and only if the links changes', () => {
+    const socketed = item.sockets.socket(4);
+    const linked = socketed.sockets.link(0, 2);
+    expect(linked).not.toBe(socketed);
+    // same links
+    expect(linked).toBe(linked.sockets.link(0, 2));
+    expect(linked).toBe(linked.sockets.link(1, 2));
+    expect(linked).toBe(linked.sockets.link());
+  });
 });
 
-describe('max()', () => {
+describe('maxSockets()', () => {
+  test('max() is deprecated', () => {
+    global.console.warn = jest.fn();
+
+    // deprecated method
+    item.sockets.max();
+
+    expect(console.warn).toBeCalledWith(
+      'poe-mods DEPRECATION: use Sockets.maxSockets() instead of Sockets.max()',
+    );
+  });
+
   it('should have no more than 4 on boots, gloves, helmets', () => {
     expect(items.fromName('Bone Helmet').sockets.maxSockets()).toBe(4);
     expect(items.fromName('Iron Gauntlets').sockets.maxSockets()).toBe(4);
@@ -153,4 +218,28 @@ describe('max()', () => {
   it('should have not have any currently', () => {
     expect(items.fromName('Judgement Staff').sockets.any()).toBe(false);
   });
+});
+
+it('serializes including socket groups', () => {
+  // pre
+  const socketed = item.sockets.socket(6);
+  expect(socketed.sockets.toJson()).toEqual([
+    { color: 'w', group: -1 },
+    { color: 'w', group: -1 },
+    { color: 'w', group: -1 },
+    { color: 'w', group: -1 },
+    { color: 'w', group: -1 },
+    { color: 'w', group: -1 },
+  ]);
+
+  // post
+  const linked = socketed.sockets.link(0, 1, 2, 3, 4, 5);
+  expect(linked.sockets.toJson()).toEqual([
+    { color: 'w', group: 0 },
+    { color: 'w', group: 0 },
+    { color: 'w', group: 1 },
+    { color: 'w', group: 1 },
+    { color: 'w', group: 2 },
+    { color: 'w', group: 2 },
+  ]);
 });

@@ -45,12 +45,13 @@ export interface Sockets<T> {
    */
   socket(n: number, options?: Partial<SocketOptions>): T;
   colors(): SocketColor[];
+  toJson(): Array<Socket & { group: number }>;
 }
 
 export interface Builder {
   sockets: Socket[];
   groups: SocketGroup[];
-};
+}
 
 /**
  * WIP item component for sockets
@@ -111,7 +112,12 @@ export default class ItemSockets
   }
 
   public maxLinks(): number {
-    return Math.max(...this.groups.map(g => g.length));
+    // Math.max of empty array returns -inf
+    if (this.groups.length === 0) {
+      return 0;
+    } else {
+      return Math.max(...this.groups.map(g => g.length));
+    }
   }
 
   public isLinked(a: SocketId, b: SocketId): boolean {
@@ -190,12 +196,16 @@ export default class ItemSockets
         return builder;
       } else {
         const new_sockets = Array.from({ length: n }).map((_, index) => {
-          return builder.sockets.sockets[index] || newSocket(this.parent);
+          return (
+            builder.sockets.sockets[index] || newSocket(this.parent, index)
+          );
         });
         // slice socket indices away that are beyond the new count
-        const new_groups = builder.sockets.groups
-          .map(group => group.filter((_, index) => index < n))
-          .filter(group => group.length > 0);
+        const new_groups = keep_links
+          ? builder.sockets.groups
+              .map(group => group.filter((_, index) => index < n))
+              .filter(group => group.length > 0)
+          : [];
 
         return {
           ...builder,
@@ -221,12 +231,8 @@ export default class ItemSockets
    *
    * each char represents a color shorthand, dashes means the adjacent sockets
    * are linked, whitespace instead means no link
-   *
-   * @param options
    */
-  public toString(options: Partial<{ flat: boolean }> = {}) {
-    const { flat = true } = options;
-
+  public toString(): string {
     return this.sockets
       .map((socket, index) => {
         // last socket?

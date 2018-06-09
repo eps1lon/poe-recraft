@@ -4,6 +4,6 @@ import { Socket } from './types';
 
 export interface SocketOptions {
   keep_links: boolean;
-  newSocket: (item: Item) => Socket;
+  newSocket: (item: Item, index: number) => Socket;
   force: boolean;
 }
