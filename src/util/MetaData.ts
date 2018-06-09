@@ -1,7 +1,6 @@
 import { Tag } from '../schema';
-
-import meta_datas from './meta_data';
-
+// import meta_datas from './meta_data.json' does not work with --module ES6
+const meta_datas: MetaDataMap = require('./meta_data.json');
 export interface MetaDataProps {
   extends: string;
   inheritance: string[];
