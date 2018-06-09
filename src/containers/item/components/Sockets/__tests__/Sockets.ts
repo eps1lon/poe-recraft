@@ -162,6 +162,33 @@ describe('links', () => {
   });
 });
 
+describe('coloring', () => {
+  const socketed = item.sockets.socket(6);
+  it('throws if the specified socket index does not exist', () => {
+    expect(() => socketed.sockets.color(SocketColor.green, 0, 1, 7)).toThrow(
+      'Tried to color a socket that does not exist.',
+    );
+  });
+  it('allows changing colors', () => {
+    const colored = socketed.sockets.color(SocketColor.green, 2, 3);
+    expect(socketed.sockets.toString()).toEqual('w w w w w w');
+    expect(colored.sockets.toString()).toEqual('w w g g w w');
+  });
+  it('allows changing colors in batches', () => {
+    const colored = socketed.sockets.colorBatch(
+      { sockets: [0, 1], color: SocketColor.green },
+      { sockets: [2, 3], color: SocketColor.red },
+    );
+    expect(colored.sockets.toString()).toEqual('g g r r w w');
+  });
+  it('changes referentiell equality if and only if the color changes', () => {
+    const colored = socketed.sockets.color(SocketColor.blue, 0);
+    expect(colored).not.toBe(socketed);
+    expect(colored.sockets.color(SocketColor.blue, 0)).toBe(colored);
+    expect(colored.sockets.color(SocketColor.white, 1)).toBe(colored);
+  });
+});
+
 describe('maxSockets()', () => {
   test('max() is deprecated', () => {
     global.console.warn = jest.fn();

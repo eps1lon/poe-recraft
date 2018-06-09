@@ -15,4 +15,10 @@ export class LinkNonExistingSockets extends BaseError {
   }
 }
 
+export class ColorNonExistingSocket extends BaseError {
+  constructor() {
+    super('Tried to color a socket that does not exist.');
+  }
+}
+
 export class ArgumentError extends BaseError {}

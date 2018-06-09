@@ -4,8 +4,9 @@ import {
   ArgumentError,
   SocketOverflow,
   LinkNonExistingSockets,
+  ColorNonExistingSocket,
 } from './errors';
-import { SocketOptions } from './options';
+import { SocketOptions, ColorBatch } from './options';
 import { SocketColor, SocketGroup, SocketId, Socket } from './types';
 
 export interface Sockets<T> {
@@ -45,6 +46,8 @@ export interface Sockets<T> {
    */
   socket(n: number, options?: Partial<SocketOptions>): T;
   colors(): SocketColor[];
+  color(color: SocketColor, ...sockets: SocketId[]): T;
+  colorBatch(...batch: ColorBatch[]): T;
   toJson(): Array<Socket & { group: number }>;
 }
 
@@ -220,6 +223,45 @@ export default class ItemSockets
 
   public colors(): SocketColor[] {
     return this.sockets.map(({ color }) => color);
+  }
+
+  public color(color: SocketColor, ...indices: SocketId[]): Item {
+    return this.colorBatch({ color, sockets: indices });
+  }
+
+  public colorBatch(...batches: ColorBatch[]): Item {
+    return this.parent.withMutations(builder => {
+      let changed = false;
+
+      const new_sockets = batches.reduce((acc, batch) => {
+        return batch.sockets.reduce((acc_batch, socket_index) => {
+          if (acc[socket_index] === undefined) {
+            throw new ColorNonExistingSocket();
+          } else if (acc_batch[socket_index].color !== batch.color) {
+            // flat clone to create new reference
+            acc_batch[socket_index] = {
+              ...acc_batch[socket_index],
+              color: batch.color,
+            };
+            changed = true;
+          }
+          return acc_batch;
+        }, acc);
+      }, builder.sockets.sockets.slice());
+
+      if (!changed) {
+        return builder;
+      } else {
+        return {
+          ...builder,
+          sockets: {
+            ...builder.sockets,
+            // copy array
+            sockets: new_sockets,
+          },
+        };
+      }
+    });
   }
 
   public any(): boolean {
