@@ -47,7 +47,7 @@ export interface Sockets<T> {
   colors(): SocketColor[];
 }
 
-export type Builder = {
+export interface Builder {
   sockets: Socket[];
   groups: SocketGroup[];
 };
