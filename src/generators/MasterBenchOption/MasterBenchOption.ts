@@ -1,14 +1,14 @@
-import Item from '../containers/item/Item';
-import { CraftingBenchOptionsProps } from '../schema';
+import Item from '../../containers/item/Item';
+import { CraftingBenchOptionsProps } from '../../schema';
 
-import { Flags, anySet } from '../util/Flags';
-import { filterUndefined } from '../util/ts';
-import { metaMods as META_MODs, Mod } from '../mods';
+import { Flags, anySet } from '../../util/Flags';
+import { filterUndefined } from '../../util/ts';
+import { metaMods as META_MODs, Mod } from '../../mods';
 
 import Generator, {
   ModApplicableFlags as BaseModApplicableFlags,
   GeneratorDetails,
-} from './Generator';
+} from '../Generator';
 
 export interface ModApplicableFlags extends BaseModApplicableFlags {
   no_multimod: boolean;
