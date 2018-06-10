@@ -72,7 +72,7 @@ export default class MasterBenchOption extends Generator<Mod, Item> {
   }
 
   /**
-   * every item is welcome
+   * Can accept only certain itemclasses
    */
   public applicableTo(item: Item): ApplicableFlags {
     const applicable_flags = {
@@ -81,6 +81,8 @@ export default class MasterBenchOption extends Generator<Mod, Item> {
     const { item_classes } = this.props;
 
     applicable_flags.wrong_itemclass =
+      // no item classes means every item is welcome
+      item_classes.length > 0 &&
       item_classes.find(
         item_class => item_class === item.baseitem.item_class,
       ) === undefined;
