@@ -86,7 +86,7 @@ describe('multimod', () => {
       no_multimod: false,
       wrong_domain: false,
     });
-    expect(bench.applicableTo(craftable_greaves)).toEqual({
+    expect(bench.applicableTo(craftable_greaves)).toMatchObject({
       wrong_itemclass: false,
     });
 
@@ -103,7 +103,9 @@ describe('multimod', () => {
       no_multimod: true,
       wrong_domain: false,
     });
-    expect(bench.applicableTo(craftable_greaves.addMod(craftedLife))).toEqual({
+    expect(
+      bench.applicableTo(craftable_greaves.addMod(craftedLife)),
+    ).toMatchObject({
       wrong_itemclass: false,
     });
 
@@ -124,7 +126,7 @@ describe('multimod', () => {
       bench.applicableTo(
         craftable_greaves.addMod(multimod).addMod(craftedLife),
       ),
-    ).toEqual({ wrong_itemclass: false });
+    ).toMatchObject({ wrong_itemclass: false });
   });
 });
 
