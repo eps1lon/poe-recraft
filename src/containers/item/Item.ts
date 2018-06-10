@@ -111,7 +111,10 @@ export default class Item implements Container<Mod> {
       /**
        * the sockets of the item
        */
-      sockets: 0,
+      sockets: {
+        sockets: [],
+        groups: [],
+      },
     });
   }
 
@@ -128,7 +131,7 @@ export default class Item implements Container<Mod> {
   public properties: Properties & Component<Item, any>;
   public rarity: Rarity<Item> & Component<Item, RarityBuilder>;
   public requirements: Requirements & Component<Item, RequirementsBuilder>;
-  public sockets: Sockets & Component<Item, SocketsBuilder>;
+  public sockets: Sockets<Item> & Component<Item, SocketsBuilder>;
 
   /**
    * Use Item#build

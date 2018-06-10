@@ -14,6 +14,17 @@ export default class ValueRange {
     return min === 0 && max === 0;
   }
 
+  /**
+   * compares the max value of two value ranges
+   * @param a
+   * @param b
+   */
+  public static cmpMax(a: ValueRangeLike, b: ValueRangeLike): number {
+    const a_max = Math.max(...tuple(a));
+    const b_max = Math.max(...tuple(b));
+    return a_max - b_max;
+  }
+
   public min: number;
   public max: number;
 
