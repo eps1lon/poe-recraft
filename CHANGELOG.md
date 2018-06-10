@@ -13,6 +13,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
   These files were always supposed to match interfaces in `schema`. Every
   json file has a corresponding type in `schema` e.g. ´data/items.json` is of 
   type `schema.Items`. ([#72](https://github.com/eps1lon/poe-mods/pull/72))
+### Fixed
+- Fixed master meta mods not being applicable to items.
+  ([#77](https://github.com/eps1lon/poe-mods/pull/77))
 
 ## [1.11.0](https://github.com/eps1lon/poe-mods/compare/v1.10.0...v1.11.0) (2018-06-31)
 ### Added
