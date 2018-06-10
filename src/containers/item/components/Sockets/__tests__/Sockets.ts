@@ -181,6 +181,34 @@ describe('coloring', () => {
     );
     expect(colored.sockets.toString()).toEqual('g g r r w w');
   });
+  describe('mapColors()', () => {
+    it('allows changing colors with a mapped function', () => {
+      // at least 2 blue
+      const colored = socketed.sockets.mapColors((socket, index) => {
+        if (index <= 1) {
+          return {
+            color: SocketColor.blue,
+          };
+        } else {
+          return socket;
+        }
+      });
+      expect(colored).not.toBe(socketed);
+      expect(colored.sockets.toString()).toEqual('b b w w w w');
+    });
+    it('keeps referntial equality with identity function', () => {
+      const colored = socketed.sockets.mapColors(s => s);
+      expect(colored).toBe(socketed);
+      expect(colored.sockets.toString()).toEqual('w w w w w w');
+    });
+    it('keeps referntial equality with same color', () => {
+      // this is a new object the shallowly equal
+      const colored = socketed.sockets.mapColors(s => ({ color: s.color }));
+      expect(colored).toBe(socketed);
+      expect(colored.sockets.toString()).toEqual('w w w w w w');
+    });
+  });
+
   it('changes referentiell equality if and only if the color changes', () => {
     const colored = socketed.sockets.color(SocketColor.blue, 0);
     expect(colored).not.toBe(socketed);

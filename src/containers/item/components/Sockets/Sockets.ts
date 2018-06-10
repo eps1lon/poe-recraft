@@ -48,6 +48,7 @@ export interface Sockets<T> {
   colors(): SocketColor[];
   color(color: SocketColor, ...sockets: SocketId[]): T;
   colorBatch(...batch: ColorBatch[]): T;
+  mapColors(fn: (socket: Socket, index: SocketId, item: T) => Socket): T;
   toJson(): Array<Socket & { group: number }>;
 }
 
@@ -57,7 +58,7 @@ export interface Builder {
 }
 
 /**
- * WIP item component for sockets
+ * item component for sockets
  */
 export default class ItemSockets
   implements Sockets<Item>, Component<Item, Builder> {
@@ -230,24 +231,47 @@ export default class ItemSockets
   }
 
   public colorBatch(...batches: ColorBatch[]): Item {
+    if (this.batchesHaveNonExistingSockets(batches)) {
+      throw new ColorNonExistingSocket();
+    }
+    // SocketId => NewSocketColor
+    const colors = batches.reduce((acc, batch) => {
+      return batch.sockets.reduce((acc_batch, socket_index) => {
+        return acc_batch.set(socket_index, batch.color);
+      }, acc);
+    }, new Map<SocketId, SocketColor>());
+
+    return this.mapColors((socket, index) => {
+      const new_color = colors.get(index);
+      // dont recolor this
+      if (new_color === undefined) {
+        return socket;
+      } else {
+        return {
+          ...socket,
+          color: new_color,
+        };
+      }
+    });
+  }
+
+  /**
+   *
+   * @param fn if fn returns a referentially equal Socket no new item is returned
+   */
+  public mapColors(
+    fn: (socket: Socket, index: number, item: Item) => Socket,
+  ): Item {
     return this.parent.withMutations(builder => {
       let changed = false;
 
-      const new_sockets = batches.reduce((acc, batch) => {
-        return batch.sockets.reduce((acc_batch, socket_index) => {
-          if (acc[socket_index] === undefined) {
-            throw new ColorNonExistingSocket();
-          } else if (acc_batch[socket_index].color !== batch.color) {
-            // flat clone to create new reference
-            acc_batch[socket_index] = {
-              ...acc_batch[socket_index],
-              color: batch.color,
-            };
-            changed = true;
-          }
-          return acc_batch;
-        }, acc);
-      }, builder.sockets.sockets.slice());
+      const new_sockets = builder.sockets.sockets.map((socket, index) => {
+        const new_socket = fn(socket, index, this.parent);
+        if (new_socket.color !== socket.color) {
+          changed = true;
+        }
+        return new_socket;
+      });
 
       if (!changed) {
         return builder;
@@ -362,6 +386,16 @@ export default class ItemSockets
     }
 
     return undefined;
+  }
+
+  /**
+   * true if some batch tries to color an index that is out of bounds
+   * @param batches
+   */
+  private batchesHaveNonExistingSockets(batches: ColorBatch[]) {
+    return batches.some(batch =>
+      batch.sockets.some(index => this.sockets[index] === undefined),
+    );
   }
 }
 
