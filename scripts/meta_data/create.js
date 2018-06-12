@@ -14,7 +14,7 @@ const writeFile = promisify(fs.writeFile);
 const file_encoding = 'utf16le';
 // extract via pypoe_ui MetaData/Items
 const meta_data_dir = '/home/eps1lon/Development/src/ggpk/3.3.0/'; // path.join(process.cwd(), process.argv[2]);
-const out_dir = path.join(__dirname, '../../src/util/meta_data.json');
+const out_dir = path.join(__dirname, '../../src/util/MetaData/data.json');
 
 const property_whitelist = ['extends', 'inheritance', 'tags'];
 
