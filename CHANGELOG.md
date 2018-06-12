@@ -18,6 +18,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Fixed
 - Fixed master meta mods not being applicable to items.
   ([#77](https://github.com/eps1lon/poe-mods/pull/77))
+### Changed
+- Browser build should be used via `unpkg`. Using the `dist/` directly from github
+  was a bad idea to begin with. ([#81](https://github.com/eps1lon/poe-i18n/issues/81))
 
 ## [1.11.0](https://github.com/eps1lon/poe-mods/compare/v1.10.0...v1.11.0) (2018-06-31)
 ### Added
