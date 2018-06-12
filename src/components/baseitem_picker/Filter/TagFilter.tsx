@@ -13,8 +13,8 @@ const default_props = {
 };
 
 // attr1_attr2_..._attrN_armour
-const defenceTagDefaultMessage = (tag: string) => {
-  const requirements = tag.replace(/_armour$/, '').split('_');
+const defenceTagDefaultMessage = (tag2: string) => {
+  const requirements = tag2.replace(/_armour$/, '').split('_');
   return requirements.map(attr => attr.toLocaleUpperCase()).join('/');
 };
 
