@@ -9,7 +9,8 @@ import {
   Regal,
   Scouring,
   Transmute,
-  IncursionTempleMods
+  IncursionTempleMods,
+  Vaal
 } from 'poe-mods';
 import { createSelector } from 'reselect';
 
@@ -59,6 +60,10 @@ const buildIncursion = createSelector(
   (state: { poe: State }) => getMods(state),
   mods => IncursionTempleMods.build(mods)
 );
+const buildVaal = createSelector(
+  (state: { poe: State }) => getMods(state),
+  mods => Vaal.build(mods)
+);
 
 export function buildGeneratorFactory(generator: string) {
   switch (generator) {
@@ -84,6 +89,8 @@ export function buildGeneratorFactory(generator: string) {
       return buildTransmute;
     case 'incursion':
       return buildIncursion;
+    case 'vaal':
+      return buildVaal;
     default:
       throw new Error(generator);
   }

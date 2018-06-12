@@ -28,6 +28,7 @@ const GeneratorPicker: SFC<Props> = props => {
           'alchemy',
           'chaos',
           'scouring',
+          'vaal',
           'annullment'
         ].map(orb_id => (
           <Orb key={orb_id} id={orb_id} onClick={props.onChange} />
