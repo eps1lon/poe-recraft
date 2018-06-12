@@ -1,6 +1,6 @@
 import { Popup as ItemPopup, Rarity } from 'poe-components-item';
 import { formatStats, Fallback } from 'poe-i18n';
-import { Container, Item, ArmourProperties } from 'poe-mods';
+import { Container, Item, ArmourProperties, WeaponProperties } from 'poe-mods';
 
 import { namei18n } from '../../util/item';
 
