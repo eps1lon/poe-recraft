@@ -7,6 +7,7 @@ import {
   MinMaxValue,
   AugmentableValue,
 } from '../../../util/value';
+import { ExclusifyUnion } from '../../../util/types';
 
 export type Item = AbstractItem & ItemProperties;
 
@@ -46,11 +47,9 @@ export enum Rarity {
   unique,
 }
 
-export type ItemProperties =
-  | ShieldProperties
-  | ArmourProperties
-  | WeaponProperties
-  | NoProperties;
+export type ItemProperties = ExclusifyUnion<
+  ShieldProperties | ArmourProperties | WeaponProperties | NoProperties
+>;
 
 export interface AbstractProperties {
   quality?: number;
@@ -79,10 +78,10 @@ export function isShieldProperties(
 
 export interface WeaponProperties extends AbstractProperties {
   physical_damage?: AugmentableValue<MinMaxValue>;
-  cold_damage?: RollableValue;
-  fire_damage?: RollableValue;
-  lightning_damage?: RollableValue;
-  chaos_damage?: RollableValue;
+  cold_damage?: MinMaxValue;
+  fire_damage?: MinMaxValue;
+  lightning_damage?: MinMaxValue;
+  chaos_damage?: MinMaxValue;
   // attacks per 100s
   aps?: AugmentableValue<RollableValue>;
   /**

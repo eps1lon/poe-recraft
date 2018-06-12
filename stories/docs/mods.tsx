@@ -61,11 +61,16 @@ const snapshotProperties = (item: Item) => {
       ...properties.defences(),
     };
   } else if (properties instanceof WeaponProperties) {
+    const physical_damage = properties.physical_damage();
     const cold_damage = properties.cold_damage();
 
     return {
       ...base_properties,
-      physical_damage: properties.physical_damage(),
+      physical_damage: {
+        augmented:
+          physical_damage.min.augmented || physical_damage.max.augmented,
+        value: [physical_damage.min.value, physical_damage.max.value],
+      },
       cold_damage: [cold_damage.min.value, cold_damage.max.value],
       aps: properties.attack_speed(),
     };

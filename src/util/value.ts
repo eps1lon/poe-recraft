@@ -1,8 +1,12 @@
 // (1 to 2)-(3 to 4)
-export type MinMaxValue = RollableValue | [RollableValue, RollableValue];
+/**
+ * actually a tuple but for easier type inference we use array
+ * @see @link{https://github.com/Microsoft/TypeScript/issues/20899}
+ */
+export type MinMaxValue = RollableValue | RollableValue[];
 export type RollableValue = SingleValue | ValueRange;
 export type SingleValue = number;
-export type ValueRange = [SingleValue, SingleValue];
+export type ValueRange = SingleValue[];
 export interface AugmentableValue<V extends MinMaxValue = MinMaxValue> {
   value: V;
   augmented?: boolean;
