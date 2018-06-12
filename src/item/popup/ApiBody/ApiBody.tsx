@@ -3,6 +3,7 @@ import * as React from 'react';
 import { isMod } from '../../../mod/poe';
 import { Intersperse } from '../../../util/react';
 import Separator from '../Separator';
+import Corrupted from './Corrupted';
 import Properties from './Properties';
 import Requirements from './Requirements';
 import Stats from './Stats';
@@ -16,6 +17,7 @@ export interface Props {
     enchantmentMods?: React.ReactNode[];
     explicitMods?: React.ReactNode[];
     craftedMods?: React.ReactNode[];
+    corrupted?: boolean;
   };
 }
 
@@ -30,6 +32,7 @@ export default class Body extends React.PureComponent<Props> {
       enchantmentMods = [],
       explicitMods = [],
       craftedMods = [],
+      corrupted = false,
     } = item;
 
     return (
@@ -65,6 +68,7 @@ export default class Body extends React.PureComponent<Props> {
             </Stats>
           )}
         </Intersperse>
+        {corrupted && <Corrupted />}
       </section>
     );
   }

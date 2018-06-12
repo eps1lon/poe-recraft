@@ -36,6 +36,7 @@ export interface AbstractItem {
   suffix?: string;
   elder?: boolean;
   shaper?: boolean;
+  corrupted?: boolean;
 }
 
 export enum Rarity {

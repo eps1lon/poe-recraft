@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased](https://github.com/eps1lon/poe-components-item/compare/v0.1.0...HEAD)
 
 ## [Unreleased](https://github.com/eps1lon/poe-components-item/compare/v0.0.1...v0.1.0)
+### Added
+* `Corrupted` display
 ### Fixed
 * missing `themes/` dir
 ### Changed

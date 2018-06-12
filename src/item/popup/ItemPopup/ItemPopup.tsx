@@ -63,7 +63,7 @@ export default class ItemPopup extends React.PureComponent<Props> {
 
   private toApiProps(item: props.Item): ApiProps['item'] {
     return {
-      corrupted: false, // TODO
+      corrupted: item.corrupted,
       name: item.name,
       typeLine: this.typeLine(item),
       frameType: this.frameType(item),

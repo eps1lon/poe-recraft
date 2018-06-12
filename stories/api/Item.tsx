@@ -37,6 +37,7 @@ storiesOf('api/item', module).add('shaped', () => (
         '18% increased Stun and Block Recovery',
         'Adds 5 to 89 Lightning Damage to Spells',
       ],
+      corrupted: true,
     }}
   />
 ));

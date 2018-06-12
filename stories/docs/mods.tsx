@@ -46,7 +46,8 @@ const dagger: Item = items
   .addMod(mods.fromId('LocalIncreasedPhysicalDamagePercent7'))
   .addMod(mods.fromId('LocalAddedColdDamage1'))
   .addMod(mods.fromId('LocalIncreasedAttackSpeed8'))
-  .addMod(mods.fromId('LocalCriticalStrikeChance5'));
+  .addMod(mods.fromId('LocalCriticalStrikeChance5'))
+  .setProperty('corrupted', true);
 
 const snapshotProperties = (item: Item) => {
   const { properties } = item;
@@ -80,7 +81,7 @@ const snapshotRequirements = (item: Item) => {
     level,
     dexterity: dex,
     intelligence: int,
-    strength: str
+    strength: str,
   };
 };
 
@@ -129,6 +130,7 @@ const snapShotItem = (item: Item, format: Format): Popup['props']['item'] => {
     rarity,
     ...properties,
     requirements: snapshotRequirements(item),
+    corrupted: item.props.corrupted,
   };
 };
 
