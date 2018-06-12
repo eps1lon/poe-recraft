@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { format, Format } from 'poe-i18n';
 // 'poe-components-item'
 import { ApiPopup } from '../../src/';
 

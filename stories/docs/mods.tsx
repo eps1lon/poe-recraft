@@ -8,7 +8,7 @@ import {
   createMods,
   Container,
 } from 'poe-mods';
-import { format, Format } from 'poe-i18n';
+import { Format } from 'poe-i18n';
 // 'poe-components-item'
 import { Popup, Rarity } from '../../src/';
 
@@ -132,6 +132,7 @@ const snapShotItem = (item: Item, format: Format): Popup['props']['item'] => {
   };
 };
 
+const format = new Format();
 format.configure({ datas: i18n.datas });
 
 storiesOf('poe-mods integration', module)
