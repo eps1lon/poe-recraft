@@ -44,7 +44,8 @@ export default function snapshotItem(
     explicitStats: statsTranslated(item.affixes, descriptions),
     rarity,
     ...properties,
-    requirements: snapshotRequirements(item)
+    requirements: snapshotRequirements(item),
+    corrupted: item.props.corrupted,
   };
 }
 
@@ -59,9 +60,32 @@ function snapshotProperties(item: Item) {
       ...base_properties,
       ...properties.defences()
     };
+  } else if (properties instanceof WeaponProperties) {
+    return {
+      ...base_properties,
+      ...snapshotWeaponProperties(properties)
+    };
   } else {
     return base_properties;
   }
+}
+
+function snapshotWeaponProperties(properties: WeaponProperties) {
+  const cold_damage = properties.cold_damage();
+  const fire_damage = properties.fire_damage();
+  const lightning_damage = properties.lightning_damage();
+  const chaos_damage = properties.chaos_damage();
+
+  return {
+    physical_damage: properties.physical_damage(),
+    cold_damage: [cold_damage.min.value, cold_damage.max.value],
+    fire_damage: [fire_damage.min.value, fire_damage.max.value],
+    lightning_damage: [lightning_damage.min.value, lightning_damage.max.value],
+    chaos_damage: [chaos_damage.min.value, chaos_damage.max.value],
+    aps: properties.attack_speed(),
+    crit: properties.crit(),
+    range: properties.weapon_range()
+  };
 }
 
 function snapshotRequirements(item: Item) {
