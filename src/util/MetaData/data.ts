@@ -1,0 +1,1671 @@
+import { MetaDataMap } from './types';
+const meta_data: MetaDataMap = {
+  AbstractAmulet: {
+    extends: 'Equipment',
+    inheritance: ['Item', 'Equipment', 'AbstractAmulet'],
+    tags: ['default', 'amulet'],
+  },
+  AbstractSocketableAmulet: {
+    extends: 'AbstractAmulet',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractAmulet',
+      'AbstractSocketableAmulet',
+    ],
+    tags: ['default', 'amulet'],
+  },
+  Talisman1_1: {
+    extends: 'AbstractSocketableAmulet',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractAmulet',
+      'AbstractSocketableAmulet',
+      'Talisman1_1',
+    ],
+    tags: ['default', 'amulet'],
+  },
+  Talisman4: {
+    extends: 'AbstractSocketableAmulet',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractAmulet',
+      'AbstractSocketableAmulet',
+      'Talisman4',
+    ],
+    tags: ['default', 'amulet'],
+  },
+  AbstractArmour: {
+    extends: 'Equipment',
+    inheritance: ['Item', 'Equipment', 'AbstractArmour'],
+    tags: ['default', 'armour'],
+  },
+  AbstractBodyArmour: {
+    extends: 'AbstractArmour',
+    inheritance: ['Item', 'Equipment', 'AbstractArmour', 'AbstractBodyArmour'],
+    tags: ['default', 'armour', 'body_armour'],
+  },
+  AbstractBoots: {
+    extends: 'AbstractArmour',
+    inheritance: ['Item', 'Equipment', 'AbstractArmour', 'AbstractBoots'],
+    tags: ['default', 'armour', 'boots'],
+  },
+  AbstractGloves: {
+    extends: 'AbstractArmour',
+    inheritance: ['Item', 'Equipment', 'AbstractArmour', 'AbstractGloves'],
+    tags: ['default', 'armour', 'gloves'],
+  },
+  AbstractHelmet: {
+    extends: 'AbstractArmour',
+    inheritance: ['Item', 'Equipment', 'AbstractArmour', 'AbstractHelmet'],
+    tags: ['default', 'armour', 'helmet'],
+  },
+  AbstractShield: {
+    extends: 'AbstractArmour',
+    inheritance: ['Item', 'Equipment', 'AbstractArmour', 'AbstractShield'],
+    tags: ['default', 'armour', 'shield'],
+  },
+  AbstractBelt: {
+    extends: 'Equipment',
+    inheritance: ['Item', 'Equipment', 'AbstractBelt'],
+    tags: ['default', 'belt'],
+  },
+  AbstractSocketableBelt: {
+    extends: 'AbstractBelt',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractBelt',
+      'AbstractSocketableBelt',
+    ],
+    tags: ['default', 'belt'],
+  },
+  BeltAbyss: {
+    extends: 'AbstractSocketableBelt',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractBelt',
+      'AbstractSocketableBelt',
+      'BeltAbyss',
+    ],
+    tags: ['default', 'belt'],
+  },
+  Leaguestone: {
+    extends: 'Item',
+    inheritance: ['Item', 'Leaguestone'],
+    tags: ['default'],
+  },
+  MysteryLeaguestone: {
+    extends: 'StackableCurrency',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'StackableCurrency',
+      'MysteryLeaguestone',
+    ],
+    tags: ['default', 'currency'],
+  },
+  AbstractCurrency: {
+    extends: 'Item',
+    inheritance: ['Item', 'AbstractCurrency'],
+    tags: ['default'],
+  },
+  AbstractMicrotransaction: {
+    extends: 'AbstractCurrency',
+    inheritance: ['Item', 'AbstractCurrency', 'AbstractMicrotransaction'],
+    tags: ['default'],
+  },
+  CurrencyImprint: {
+    extends: 'StackableCurrency',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'StackableCurrency',
+      'CurrencyImprint',
+    ],
+    tags: ['default', 'currency'],
+  },
+  CurrencyItemisedCapturedMonster: {
+    extends: 'StackableCurrency',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'StackableCurrency',
+      'CurrencyItemisedCapturedMonster',
+    ],
+    tags: ['default', 'currency'],
+  },
+  CurrencyItemisedProphecy: {
+    extends: 'StackableCurrency',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'StackableCurrency',
+      'CurrencyItemisedProphecy',
+    ],
+    tags: ['default', 'currency'],
+  },
+  StackableCurrency: {
+    extends: 'AbstractCurrency',
+    inheritance: ['Item', 'AbstractCurrency', 'StackableCurrency'],
+    tags: ['default', 'currency'],
+  },
+  AbstractDivinationCard: {
+    extends: 'Item',
+    inheritance: ['Item', 'AbstractDivinationCard'],
+    tags: ['default', 'divination_card'],
+  },
+  Equipment: {
+    extends: 'Item',
+    inheritance: ['Item', 'Equipment'],
+    tags: ['default'],
+  },
+  AbstractFlask: {
+    extends: 'Item',
+    inheritance: ['Item', 'AbstractFlask'],
+    tags: ['default', 'flask'],
+  },
+  AbstractHybridFlask: {
+    extends: 'AbstractFlask',
+    inheritance: ['Item', 'AbstractFlask', 'AbstractHybridFlask'],
+    tags: ['default', 'flask', 'hybrid_flask'],
+  },
+  AbstractLifeFlask: {
+    extends: 'AbstractFlask',
+    inheritance: ['Item', 'AbstractFlask', 'AbstractLifeFlask'],
+    tags: ['default', 'flask', 'life_flask'],
+  },
+  AbstractManaFlask: {
+    extends: 'AbstractFlask',
+    inheritance: ['Item', 'AbstractFlask', 'AbstractManaFlask'],
+    tags: ['default', 'flask', 'mana_flask'],
+  },
+  AbstractUtilityFlask: {
+    extends: 'AbstractFlask',
+    inheritance: ['Item', 'AbstractFlask', 'AbstractUtilityFlask'],
+    tags: ['default', 'flask', 'utility_flask'],
+  },
+  CriticalUtilityFlask: {
+    extends: 'AbstractUtilityFlask',
+    inheritance: [
+      'Item',
+      'AbstractFlask',
+      'AbstractUtilityFlask',
+      'CriticalUtilityFlask',
+    ],
+    tags: ['default', 'flask', 'utility_flask', 'critical_utility_flask'],
+  },
+  FlaskUtility1: {
+    extends: 'AbstractUtilityFlask',
+    inheritance: [
+      'Item',
+      'AbstractFlask',
+      'AbstractUtilityFlask',
+      'FlaskUtility1',
+    ],
+    tags: ['default', 'flask', 'utility_flask'],
+  },
+  AbstractSkillGem: {
+    extends: 'Item',
+    inheritance: ['Item', 'AbstractSkillGem'],
+    tags: ['default', 'gem'],
+  },
+  ActiveSkillGem: {
+    extends: 'AbstractSkillGem',
+    inheritance: ['Item', 'AbstractSkillGem', 'ActiveSkillGem'],
+    tags: ['default', 'gem'],
+  },
+  SupportSkillGem: {
+    extends: 'AbstractSkillGem',
+    inheritance: ['Item', 'AbstractSkillGem', 'SupportSkillGem'],
+    tags: ['default', 'gem', 'support_gem'],
+  },
+  AbstractHideoutDoodad: {
+    extends: 'Item',
+    inheritance: ['Item', 'AbstractHideoutDoodad'],
+    tags: ['default'],
+  },
+  IncursionBomb: {
+    extends: 'AbstractLabyrinthItem',
+    inheritance: ['Item', 'AbstractLabyrinthItem', 'IncursionBomb'],
+    tags: ['default'],
+  },
+  IncursionKey: {
+    extends: 'AbstractLabyrinthItem',
+    inheritance: ['Item', 'AbstractLabyrinthItem', 'IncursionKey'],
+    tags: ['default'],
+  },
+  Item: {
+    extends: 'nothing',
+    inheritance: ['Item'],
+    tags: ['default'],
+  },
+  AbstractAbyssJewel: {
+    extends: 'Item',
+    inheritance: ['Item', 'AbstractAbyssJewel'],
+    tags: ['default'],
+  },
+  AbstractJewel: {
+    extends: 'Item',
+    inheritance: ['Item', 'AbstractJewel'],
+    tags: ['default'],
+  },
+  AbstractLabyrinthItem: {
+    extends: 'Item',
+    inheritance: ['Item', 'AbstractLabyrinthItem'],
+    tags: ['default'],
+  },
+  BronzeKey: {
+    extends: 'AbstractLabyrinthItem',
+    inheritance: ['Item', 'AbstractLabyrinthItem', 'BronzeKey'],
+    tags: ['default'],
+  },
+  GoldenKey: {
+    extends: 'AbstractLabyrinthItem',
+    inheritance: ['Item', 'AbstractLabyrinthItem', 'GoldenKey'],
+    tags: ['default'],
+  },
+  LabyrinthTrinket: {
+    extends: 'AbstractLabyrinthItem',
+    inheritance: ['Item', 'AbstractLabyrinthItem', 'LabyrinthTrinket'],
+    tags: ['default'],
+  },
+  OfferingToTheGoddess: {
+    extends: 'Item',
+    inheritance: ['Item', 'OfferingToTheGoddess'],
+    tags: ['default'],
+  },
+  SilverKey: {
+    extends: 'AbstractLabyrinthItem',
+    inheritance: ['Item', 'AbstractLabyrinthItem', 'SilverKey'],
+    tags: ['default'],
+  },
+  AbstractMapFragment: {
+    extends: 'AbstractMiscMapItem',
+    inheritance: ['Item', 'AbstractMiscMapItem', 'AbstractMapFragment'],
+    tags: ['default'],
+  },
+  AbstractMiscMapItem: {
+    extends: 'Item',
+    inheritance: ['Item', 'AbstractMiscMapItem'],
+    tags: ['default'],
+  },
+  BreachFragmentChaos: {
+    extends: 'AbstractMiscMapItem',
+    inheritance: ['Item', 'AbstractMiscMapItem', 'BreachFragmentChaos'],
+    tags: ['default'],
+  },
+  BreachFragmentCold: {
+    extends: 'AbstractMiscMapItem',
+    inheritance: ['Item', 'AbstractMiscMapItem', 'BreachFragmentCold'],
+    tags: ['default'],
+  },
+  BreachFragmentFire: {
+    extends: 'AbstractMiscMapItem',
+    inheritance: ['Item', 'AbstractMiscMapItem', 'BreachFragmentFire'],
+    tags: ['default'],
+  },
+  BreachFragmentLightning: {
+    extends: 'AbstractMiscMapItem',
+    inheritance: ['Item', 'AbstractMiscMapItem', 'BreachFragmentLightning'],
+    tags: ['default'],
+  },
+  BreachFragmentPhysical: {
+    extends: 'AbstractMiscMapItem',
+    inheritance: ['Item', 'AbstractMiscMapItem', 'BreachFragmentPhysical'],
+    tags: ['default'],
+  },
+  ClassicVaultKey: {
+    extends: 'AbstractMiscMapItem',
+    inheritance: ['Item', 'AbstractMiscMapItem', 'ClassicVaultKey'],
+    tags: ['default'],
+  },
+  FragmentPantheonFlask: {
+    extends: 'AbstractMiscMapItem',
+    inheritance: ['Item', 'AbstractMiscMapItem', 'FragmentPantheonFlask'],
+    tags: ['default'],
+  },
+  AbstractMap: {
+    extends: 'Equipment',
+    inheritance: ['Item', 'Equipment', 'AbstractMap'],
+    tags: ['default', 'map'],
+  },
+  MysteryBox1x1: {
+    extends: 'StackableCurrency',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'StackableCurrency',
+      'MysteryBox1x1',
+    ],
+    tags: ['default', 'currency'],
+  },
+  MysteryBox1x2: {
+    extends: 'StackableCurrency',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'StackableCurrency',
+      'MysteryBox1x2',
+    ],
+    tags: ['default', 'currency'],
+  },
+  MysteryBox1x3: {
+    extends: 'StackableCurrency',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'StackableCurrency',
+      'MysteryBox1x3',
+    ],
+    tags: ['default', 'currency'],
+  },
+  MysteryBox1x4: {
+    extends: 'StackableCurrency',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'StackableCurrency',
+      'MysteryBox1x4',
+    ],
+    tags: ['default', 'currency'],
+  },
+  MysteryBox2x1: {
+    extends: 'StackableCurrency',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'StackableCurrency',
+      'MysteryBox2x1',
+    ],
+    tags: ['default', 'currency'],
+  },
+  MysteryBox2x2: {
+    extends: 'StackableCurrency',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'StackableCurrency',
+      'MysteryBox2x2',
+    ],
+    tags: ['default', 'currency'],
+  },
+  MysteryBox2x3: {
+    extends: 'StackableCurrency',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'StackableCurrency',
+      'MysteryBox2x3',
+    ],
+    tags: ['default', 'currency'],
+  },
+  MysteryBox2x4: {
+    extends: 'StackableCurrency',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'StackableCurrency',
+      'MysteryBox2x4',
+    ],
+    tags: ['default', 'currency'],
+  },
+  MysteryBox3x2: {
+    extends: 'StackableCurrency',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'StackableCurrency',
+      'MysteryBox3x2',
+    ],
+    tags: ['default', 'currency'],
+  },
+  MysteryBox3x3: {
+    extends: 'StackableCurrency',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'StackableCurrency',
+      'MysteryBox3x3',
+    ],
+    tags: ['default', 'currency'],
+  },
+  MysteryBoxCarnage: {
+    extends: 'AbstractMicrotransaction',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'AbstractMicrotransaction',
+      'MysteryBoxCarnage',
+    ],
+    tags: ['default'],
+  },
+  MysteryBoxChaosVsOrder: {
+    extends: 'AbstractMicrotransaction',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'AbstractMicrotransaction',
+      'MysteryBoxChaosVsOrder',
+    ],
+    tags: ['default'],
+  },
+  MysteryBoxClassic: {
+    extends: 'AbstractMicrotransaction',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'AbstractMicrotransaction',
+      'MysteryBoxClassic',
+    ],
+    tags: ['default'],
+  },
+  MysteryBoxDarkness: {
+    extends: 'AbstractMicrotransaction',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'AbstractMicrotransaction',
+      'MysteryBoxDarkness',
+    ],
+    tags: ['default'],
+  },
+  MysteryBoxEmber: {
+    extends: 'AbstractMicrotransaction',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'AbstractMicrotransaction',
+      'MysteryBoxEmber',
+    ],
+    tags: ['default'],
+  },
+  MysteryBoxFireAndIce: {
+    extends: 'AbstractMicrotransaction',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'AbstractMicrotransaction',
+      'MysteryBoxFireAndIce',
+    ],
+    tags: ['default'],
+  },
+  MysteryBoxLightChaos: {
+    extends: 'AbstractMicrotransaction',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'AbstractMicrotransaction',
+      'MysteryBoxLightChaos',
+    ],
+    tags: ['default'],
+  },
+  MysteryBoxRadiant: {
+    extends: 'AbstractMicrotransaction',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'AbstractMicrotransaction',
+      'MysteryBoxRadiant',
+    ],
+    tags: ['default'],
+  },
+  MysteryBoxSinAndInnocence: {
+    extends: 'AbstractMicrotransaction',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'AbstractMicrotransaction',
+      'MysteryBoxSinAndInnocence',
+    ],
+    tags: ['default'],
+  },
+  MysteryBoxSolaris: {
+    extends: 'AbstractMicrotransaction',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'AbstractMicrotransaction',
+      'MysteryBoxSolaris',
+    ],
+    tags: ['default'],
+  },
+  MysteryBoxStormcaller: {
+    extends: 'AbstractMicrotransaction',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'AbstractMicrotransaction',
+      'MysteryBoxStormcaller',
+    ],
+    tags: ['default'],
+  },
+  MysteryBoxStPatty: {
+    extends: 'AbstractMicrotransaction',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'AbstractMicrotransaction',
+      'MysteryBoxStPatty',
+    ],
+    tags: ['default'],
+  },
+  AbstactPantheonSoul: {
+    extends: 'Item',
+    inheritance: ['Item', 'AbstactPantheonSoul'],
+    tags: ['default'],
+  },
+  AbstractQuestItem: {
+    extends: 'Item',
+    inheritance: ['Item', 'AbstractQuestItem'],
+    tags: ['default'],
+  },
+  AvariusStaff: {
+    extends: 'Item',
+    inheritance: ['Item', 'AvariusStaff'],
+    tags: ['default'],
+  },
+  'Book-a10q3': {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'Book-a10q3'],
+    tags: ['default'],
+  },
+  'Book-a10q4': {
+    extends: 'AbstractPassiveRespecBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveRespecBook',
+      'Book-a10q4',
+    ],
+    tags: ['default'],
+  },
+  'Book-a10q6': {
+    extends: 'AbstractPassiveSkillBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillBook',
+      'Book-a10q6',
+    ],
+    tags: ['default'],
+  },
+  Potion: {
+    extends: 'Item',
+    inheritance: ['Item', 'Potion'],
+    tags: ['default'],
+  },
+  Teardrop: {
+    extends: 'Item',
+    inheritance: ['Item', 'Teardrop'],
+    tags: ['default'],
+  },
+  'Book-a4q6': {
+    extends: 'AbstractPassiveSkillAnd2RespecsBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillAnd2RespecsBook',
+      'Book-a4q6',
+    ],
+    tags: ['default'],
+  },
+  DaressoGem: {
+    extends: 'Item',
+    inheritance: ['Item', 'DaressoGem'],
+    tags: ['default'],
+  },
+  KaomGem: {
+    extends: 'Item',
+    inheritance: ['Item', 'KaomGem'],
+    tags: ['default'],
+  },
+  Organ1: {
+    extends: 'Item',
+    inheritance: ['Item', 'Organ1'],
+    tags: ['default'],
+  },
+  Organ2: {
+    extends: 'Item',
+    inheritance: ['Item', 'Organ2'],
+    tags: ['default'],
+  },
+  Organ3: {
+    extends: 'Item',
+    inheritance: ['Item', 'Organ3'],
+    tags: ['default'],
+  },
+  RedBanner: {
+    extends: 'Item',
+    inheritance: ['Item', 'RedBanner'],
+    tags: ['default'],
+  },
+  'Book-a5q3': {
+    extends: 'AbstractPassiveSkillBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillBook',
+      'Book-a5q3',
+    ],
+    tags: ['default'],
+  },
+  'Book-a5q7': {
+    extends: 'AbstractPassiveSkillAnd2RespecsBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillAnd2RespecsBook',
+      'Book-a5q7',
+    ],
+    tags: ['default'],
+  },
+  KitavaKey: {
+    extends: 'Item',
+    inheritance: ['Item', 'KitavaKey'],
+    tags: ['default'],
+  },
+  Miasmeter: {
+    extends: 'Item',
+    inheritance: ['Item', 'Miasmeter'],
+    tags: ['default'],
+  },
+  TemplarCourtKey: {
+    extends: 'Item',
+    inheritance: ['Item', 'TemplarCourtKey'],
+    tags: ['default'],
+  },
+  Torment1: {
+    extends: 'Item',
+    inheritance: ['Item', 'Torment1'],
+    tags: ['default'],
+  },
+  Torment2: {
+    extends: 'Item',
+    inheritance: ['Item', 'Torment2'],
+    tags: ['default'],
+  },
+  Torment3: {
+    extends: 'Item',
+    inheritance: ['Item', 'Torment3'],
+    tags: ['default'],
+  },
+  BestelsManuscript: {
+    extends: 'Item',
+    inheritance: ['Item', 'BestelsManuscript'],
+    tags: ['default'],
+  },
+  BlackFlag: {
+    extends: 'Item',
+    inheritance: ['Item', 'BlackFlag'],
+    tags: ['default'],
+  },
+  'Book-a6q3': {
+    extends: 'AbstractPassiveSkillBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillBook',
+      'Book-a6q3',
+    ],
+    tags: ['default'],
+  },
+  'Book-a6q4': {
+    extends: 'AbstractPassiveRespecBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveRespecBook',
+      'Book-a6q4',
+    ],
+    tags: ['default'],
+  },
+  'Book-a6q6': {
+    extends: 'AbstractPassiveSkillBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillBook',
+      'Book-a6q6',
+    ],
+    tags: ['default'],
+  },
+  'Book-a6q7': {
+    extends: 'AbstractPassiveSkillBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillBook',
+      'Book-a6q7',
+    ],
+    tags: ['default'],
+  },
+  KaruiEye: {
+    extends: 'Item',
+    inheritance: ['Item', 'KaruiEye'],
+    tags: ['default'],
+  },
+  BlackVenom: {
+    extends: 'Item',
+    inheritance: ['Item', 'BlackVenom'],
+    tags: ['default'],
+  },
+  'Book-a7q1': {
+    extends: 'AbstractPassiveSkillBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillBook',
+      'Book-a7q1',
+    ],
+    tags: ['default'],
+  },
+  'Book-a7q6': {
+    extends: 'AbstractPassiveSkillAnd2RespecsBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillAnd2RespecsBook',
+      'Book-a7q6',
+    ],
+    tags: ['default'],
+  },
+  'Book-a7q9': {
+    extends: 'AbstractPassiveSkillBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillBook',
+      'Book-a7q9',
+    ],
+    tags: ['default'],
+  },
+  Firefly1: {
+    extends: 'Item',
+    inheritance: ['Item', 'Firefly1'],
+    tags: ['default'],
+  },
+  Firefly2: {
+    extends: 'Item',
+    inheritance: ['Item', 'Firefly2'],
+    tags: ['default'],
+  },
+  Firefly3: {
+    extends: 'Item',
+    inheritance: ['Item', 'Firefly3'],
+    tags: ['default'],
+  },
+  Firefly4: {
+    extends: 'Item',
+    inheritance: ['Item', 'Firefly4'],
+    tags: ['default'],
+  },
+  Firefly5: {
+    extends: 'Item',
+    inheritance: ['Item', 'Firefly5'],
+    tags: ['default'],
+  },
+  Firefly6: {
+    extends: 'Item',
+    inheritance: ['Item', 'Firefly6'],
+    tags: ['default'],
+  },
+  Firefly7: {
+    extends: 'Item',
+    inheritance: ['Item', 'Firefly7'],
+    tags: ['default'],
+  },
+  GreustNecklace: {
+    extends: 'Item',
+    inheritance: ['Item', 'GreustNecklace'],
+    tags: ['default'],
+  },
+  KisharaStar: {
+    extends: 'Item',
+    inheritance: ['Item', 'KisharaStar'],
+    tags: ['default'],
+  },
+  MaligaroMap: {
+    extends: 'Item',
+    inheritance: ['Item', 'MaligaroMap'],
+    tags: ['default'],
+  },
+  ObsidianKey: {
+    extends: 'Item',
+    inheritance: ['Item', 'ObsidianKey'],
+    tags: ['default'],
+  },
+  SilverLocket: {
+    extends: 'Item',
+    inheritance: ['Item', 'SilverLocket'],
+    tags: ['default'],
+  },
+  AnkhOfEternity: {
+    extends: 'Item',
+    inheritance: ['Item', 'AnkhOfEternity'],
+    tags: ['default'],
+  },
+  'Book-a8q4': {
+    extends: 'AbstractPassiveSkillBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillBook',
+      'Book-a8q4',
+    ],
+    tags: ['default'],
+  },
+  'Book-a8q6': {
+    extends: 'AbstractPassiveSkillAnd2RespecsBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillAnd2RespecsBook',
+      'Book-a8q6',
+    ],
+    tags: ['default'],
+  },
+  'Book-a8q7': {
+    extends: 'AbstractPassiveSkillBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillBook',
+      'Book-a8q7',
+    ],
+    tags: ['default'],
+  },
+  LunarisOrb: {
+    extends: 'Item',
+    inheritance: ['Item', 'LunarisOrb'],
+    tags: ['default'],
+  },
+  SolarisOrb: {
+    extends: 'Item',
+    inheritance: ['Item', 'SolarisOrb'],
+    tags: ['default'],
+  },
+  WingsOfVastiri: {
+    extends: 'Item',
+    inheritance: ['Item', 'WingsOfVastiri'],
+    tags: ['default'],
+  },
+  'Book-a9q2': {
+    extends: 'AbstractPassiveSkillBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillBook',
+      'Book-a9q2',
+    ],
+    tags: ['default'],
+  },
+  'Book-a9q4': {
+    extends: 'AbstractPassiveRespecBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveRespecBook',
+      'Book-a9q4',
+    ],
+    tags: ['default'],
+  },
+  'Book-a9q5': {
+    extends: 'AbstractPassiveSkillBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillBook',
+      'Book-a9q5',
+    ],
+    tags: ['default'],
+  },
+  BottledStorm: {
+    extends: 'Item',
+    inheritance: ['Item', 'BottledStorm'],
+    tags: ['default'],
+  },
+  Calendar: {
+    extends: 'Item',
+    inheritance: ['Item', 'Calendar'],
+    tags: ['default'],
+  },
+  Ingredient1: {
+    extends: 'Item',
+    inheritance: ['Item', 'Ingredient1'],
+    tags: ['default'],
+  },
+  Ingredient2: {
+    extends: 'Item',
+    inheritance: ['Item', 'Ingredient2'],
+    tags: ['default'],
+  },
+  SekhemaFeather: {
+    extends: 'Item',
+    inheritance: ['Item', 'SekhemaFeather'],
+    tags: ['default'],
+  },
+  StormSword: {
+    extends: 'Item',
+    inheritance: ['Item', 'StormSword'],
+    tags: ['default'],
+  },
+  AllFlameLantern1: {
+    extends: 'Item',
+    inheritance: ['Item', 'AllFlameLantern1'],
+    tags: ['default'],
+  },
+  CombinedAmulet: {
+    extends: 'Item',
+    inheritance: ['Item', 'CombinedAmulet'],
+    tags: ['default'],
+  },
+  DexAmulet: {
+    extends: 'Item',
+    inheritance: ['Item', 'DexAmulet'],
+    tags: ['default'],
+  },
+  IntAmulet: {
+    extends: 'Item',
+    inheritance: ['Item', 'IntAmulet'],
+    tags: ['default'],
+  },
+  StrAmulet: {
+    extends: 'Item',
+    inheritance: ['Item', 'StrAmulet'],
+    tags: ['default'],
+  },
+  Bust1: {
+    extends: 'Item',
+    inheritance: ['Item', 'Bust1'],
+    tags: ['default'],
+  },
+  Bust2: {
+    extends: 'Item',
+    inheritance: ['Item', 'Bust2'],
+    tags: ['default'],
+  },
+  Bust3: {
+    extends: 'Item',
+    inheritance: ['Item', 'Bust3'],
+    tags: ['default'],
+  },
+  Decanter: {
+    extends: 'Item',
+    inheritance: ['Item', 'Decanter'],
+    tags: ['default'],
+  },
+  Fruit: {
+    extends: 'Item',
+    inheritance: ['Item', 'Fruit'],
+    tags: ['default'],
+  },
+  Glyph1: {
+    extends: 'Item',
+    inheritance: ['Item', 'Glyph1'],
+    tags: ['default'],
+  },
+  Glyph2: {
+    extends: 'Item',
+    inheritance: ['Item', 'Glyph2'],
+    tags: ['default'],
+  },
+  Glyph3: {
+    extends: 'Item',
+    inheritance: ['Item', 'Glyph3'],
+    tags: ['default'],
+  },
+  GoldenHand: {
+    extends: 'Item',
+    inheritance: ['Item', 'GoldenHand'],
+    tags: ['default'],
+  },
+  Page1: {
+    extends: 'Item',
+    inheritance: ['Item', 'Page1'],
+    tags: ['default'],
+  },
+  Page2: {
+    extends: 'Item',
+    inheritance: ['Item', 'Page2'],
+    tags: ['default'],
+  },
+  Page3: {
+    extends: 'Item',
+    inheritance: ['Item', 'Page3'],
+    tags: ['default'],
+  },
+  Page4: {
+    extends: 'Item',
+    inheritance: ['Item', 'Page4'],
+    tags: ['default'],
+  },
+  InfernalTalc: {
+    extends: 'Item',
+    inheritance: ['Item', 'InfernalTalc'],
+    tags: ['default'],
+  },
+  MapUpgradeTier1_1: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier1_1'],
+    tags: ['default'],
+  },
+  MapUpgradeTier10_1: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier10_1'],
+    tags: ['default'],
+  },
+  MapUpgradeTier10_2: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier10_2'],
+    tags: ['default'],
+  },
+  MapUpgradeTier10_3: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier10_3'],
+    tags: ['default'],
+  },
+  MapUpgradeTier2_1: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier2_1'],
+    tags: ['default'],
+  },
+  MapUpgradeTier3_1: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier3_1'],
+    tags: ['default'],
+  },
+  MapUpgradeTier4_1: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier4_1'],
+    tags: ['default'],
+  },
+  MapUpgradeTier5_1: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier5_1'],
+    tags: ['default'],
+  },
+  MapUpgradeTier6_1: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier6_1'],
+    tags: ['default'],
+  },
+  MapUpgradeTier7_1: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier7_1'],
+    tags: ['default'],
+  },
+  MapUpgradeTier8_1: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier8_1'],
+    tags: ['default'],
+  },
+  MapUpgradeTier8_2: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier8_2'],
+    tags: ['default'],
+  },
+  MapUpgradeTier9_1: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier9_1'],
+    tags: ['default'],
+  },
+  MapUpgradeTier9_2: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier9_2'],
+    tags: ['default'],
+  },
+  MapUpgradeTier9_3: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTier9_3'],
+    tags: ['default'],
+  },
+  MapUpgradeTierTo16: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'MapUpgradeTierTo16'],
+    tags: ['default'],
+  },
+  MedicineSet1: {
+    extends: 'Item',
+    inheritance: ['Item', 'MedicineSet1'],
+    tags: ['default'],
+  },
+  PoisonSkillGem: {
+    extends: 'Item',
+    inheritance: ['Item', 'PoisonSkillGem'],
+    tags: ['default'],
+  },
+  PoisonSpear: {
+    extends: 'Item',
+    inheritance: ['Item', 'PoisonSpear'],
+    tags: ['default'],
+  },
+  RibbonSpool: {
+    extends: 'Item',
+    inheritance: ['Item', 'RibbonSpool'],
+    tags: ['default'],
+  },
+  SewerKeys: {
+    extends: 'Item',
+    inheritance: ['Item', 'SewerKeys'],
+    tags: ['default'],
+  },
+  ShaperKey: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'ShaperKey'],
+    tags: ['default'],
+  },
+  ShaperMemoryFragment1_1: {
+    extends: 'Item',
+    inheritance: ['Item', 'ShaperMemoryFragment1_1'],
+    tags: ['default'],
+  },
+  ShaperMemoryFragment10_1: {
+    extends: 'Item',
+    inheritance: ['Item', 'ShaperMemoryFragment10_1'],
+    tags: ['default'],
+  },
+  ShaperMemoryFragment10_2: {
+    extends: 'Item',
+    inheritance: ['Item', 'ShaperMemoryFragment10_2'],
+    tags: ['default'],
+  },
+  ShaperMemoryFragment10_3: {
+    extends: 'Item',
+    inheritance: ['Item', 'ShaperMemoryFragment10_3'],
+    tags: ['default'],
+  },
+  ShaperMemoryFragment2_1: {
+    extends: 'Item',
+    inheritance: ['Item', 'ShaperMemoryFragment2_1'],
+    tags: ['default'],
+  },
+  ShaperMemoryFragment3_1: {
+    extends: 'Item',
+    inheritance: ['Item', 'ShaperMemoryFragment3_1'],
+    tags: ['default'],
+  },
+  ShaperMemoryFragment4_1: {
+    extends: 'Item',
+    inheritance: ['Item', 'ShaperMemoryFragment4_1'],
+    tags: ['default'],
+  },
+  ShaperMemoryFragment5_1: {
+    extends: 'Item',
+    inheritance: ['Item', 'ShaperMemoryFragment5_1'],
+    tags: ['default'],
+  },
+  ShaperMemoryFragment6_1: {
+    extends: 'Item',
+    inheritance: ['Item', 'ShaperMemoryFragment6_1'],
+    tags: ['default'],
+  },
+  ShaperMemoryFragment7_1: {
+    extends: 'Item',
+    inheritance: ['Item', 'ShaperMemoryFragment7_1'],
+    tags: ['default'],
+  },
+  ShaperMemoryFragment8_1: {
+    extends: 'Item',
+    inheritance: ['Item', 'ShaperMemoryFragment8_1'],
+    tags: ['default'],
+  },
+  ShaperMemoryFragment8_2: {
+    extends: 'Item',
+    inheritance: ['Item', 'ShaperMemoryFragment8_2'],
+    tags: ['default'],
+  },
+  ShaperMemoryFragment9_1: {
+    extends: 'Item',
+    inheritance: ['Item', 'ShaperMemoryFragment9_1'],
+    tags: ['default'],
+  },
+  ShaperMemoryFragment9_2: {
+    extends: 'Item',
+    inheritance: ['Item', 'ShaperMemoryFragment9_2'],
+    tags: ['default'],
+  },
+  ShaperMemoryFragment9_3: {
+    extends: 'Item',
+    inheritance: ['Item', 'ShaperMemoryFragment9_3'],
+    tags: ['default'],
+  },
+  AbstractPassiveRespecBook: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'AbstractPassiveRespecBook'],
+    tags: ['default'],
+  },
+  AbstractPassiveSkillAnd2RespecsBook: {
+    extends: 'AbstractQuestItem',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillAnd2RespecsBook',
+    ],
+    tags: ['default'],
+  },
+  AbstractPassiveSkillBook: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'AbstractPassiveSkillBook'],
+    tags: ['default'],
+  },
+  BanditRespecAlira: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'BanditRespecAlira'],
+    tags: ['default'],
+  },
+  BanditRespecEramir: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'BanditRespecEramir'],
+    tags: ['default'],
+  },
+  BanditRespecKraityn: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'BanditRespecKraityn'],
+    tags: ['default'],
+  },
+  BanditRespecOak: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'BanditRespecOak'],
+    tags: ['default'],
+  },
+  'Book-a1q6': {
+    extends: 'AbstractPassiveSkillBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillBook',
+      'Book-a1q6',
+    ],
+    tags: ['default'],
+  },
+  'Book-a1q7': {
+    extends: 'AbstractPassiveSkillBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillBook',
+      'Book-a1q7',
+    ],
+    tags: ['default'],
+  },
+  'Book-a1q8': {
+    extends: 'AbstractPassiveRespecBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveRespecBook',
+      'Book-a1q8',
+    ],
+    tags: ['default'],
+  },
+  'Book-a1q9': {
+    extends: 'AbstractPassiveSkillBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillBook',
+      'Book-a1q9',
+    ],
+    tags: ['default'],
+  },
+  'Book-a2q5': {
+    extends: 'AbstractPassiveRespecBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveRespecBook',
+      'Book-a2q5',
+    ],
+    tags: ['default'],
+  },
+  'Book-a3q11v0': {
+    extends: 'AbstractPassiveSkillBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillBook',
+      'Book-a3q11v0',
+    ],
+    tags: ['default'],
+  },
+  'Book-a3q11v1': {
+    extends: 'AbstractPassiveSkillAnd2RespecsBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillAnd2RespecsBook',
+      'Book-a3q11v1',
+    ],
+    tags: ['default'],
+  },
+  'Book-a3q11v2': {
+    extends: 'AbstractPassiveSkillAnd2RespecsBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillAnd2RespecsBook',
+      'Book-a3q11v2',
+    ],
+    tags: ['default'],
+  },
+  'Book-a3q9': {
+    extends: 'AbstractPassiveSkillBook',
+    inheritance: [
+      'Item',
+      'AbstractQuestItem',
+      'AbstractPassiveSkillBook',
+      'Book-a3q9',
+    ],
+    tags: ['default'],
+  },
+  DelevelBook: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'DelevelBook'],
+    tags: ['default'],
+  },
+  Descent2_1: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'Descent2_1'],
+    tags: ['default'],
+  },
+  Descent2_2: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'Descent2_2'],
+    tags: ['default'],
+  },
+  Descent2_3: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'Descent2_3'],
+    tags: ['default'],
+  },
+  Descent2_4: {
+    extends: 'AbstractQuestItem',
+    inheritance: ['Item', 'AbstractQuestItem', 'Descent2_4'],
+    tags: ['default'],
+  },
+  SpikeSealKey: {
+    extends: 'Item',
+    inheritance: ['Item', 'SpikeSealKey'],
+    tags: ['default'],
+  },
+  SulphiteFlask: {
+    extends: 'Item',
+    inheritance: ['Item', 'SulphiteFlask'],
+    tags: ['default'],
+  },
+  TolmanBracelet: {
+    extends: 'Item',
+    inheritance: ['Item', 'TolmanBracelet'],
+    tags: ['default'],
+  },
+  TowerKey: {
+    extends: 'Item',
+    inheritance: ['Item', 'TowerKey'],
+    tags: ['default'],
+  },
+  AbstractQuiver: {
+    extends: 'Equipment',
+    inheritance: ['Item', 'Equipment', 'AbstractQuiver'],
+    tags: ['default', 'quiver'],
+  },
+  AbstractRelic: {
+    extends: 'Equipment',
+    inheritance: ['Item', 'Equipment', 'AbstractRelic'],
+    tags: ['default', 'relic'],
+  },
+  AbstractLargeRelic: {
+    extends: 'AbstractRelic',
+    inheritance: ['Item', 'Equipment', 'AbstractRelic', 'AbstractLargeRelic'],
+    tags: ['default', 'relic'],
+  },
+  AbstractMediumRelic: {
+    extends: 'AbstractRelic',
+    inheritance: ['Item', 'Equipment', 'AbstractRelic', 'AbstractMediumRelic'],
+    tags: ['default', 'relic'],
+  },
+  AbstractSmallRelic: {
+    extends: 'AbstractRelic',
+    inheritance: ['Item', 'Equipment', 'AbstractRelic', 'AbstractSmallRelic'],
+    tags: ['default', 'relic'],
+  },
+  AbstractRing: {
+    extends: 'Equipment',
+    inheritance: ['Item', 'Equipment', 'AbstractRing'],
+    tags: ['default', 'ring'],
+  },
+  AbstractSocketableRing: {
+    extends: 'AbstractRing',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractRing',
+      'AbstractSocketableRing',
+    ],
+    tags: ['default', 'ring'],
+  },
+  Ring15: {
+    extends: 'AbstractSocketableRing',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractRing',
+      'AbstractSocketableRing',
+      'Ring15',
+    ],
+    tags: ['default', 'ring'],
+  },
+  AbstractUniqueFragment: {
+    extends: 'Item',
+    inheritance: ['Item', 'AbstractUniqueFragment'],
+    tags: ['default'],
+  },
+  AbstractWeapon: {
+    extends: 'Equipment',
+    inheritance: ['Item', 'Equipment', 'AbstractWeapon'],
+    tags: ['default', 'weapon'],
+  },
+  AbstractOneHandWeapon: {
+    extends: 'AbstractWeapon',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractWeapon',
+      'AbstractOneHandWeapon',
+    ],
+    tags: ['default', 'weapon', 'onehand'],
+  },
+  AbstractClaw: {
+    extends: 'AbstractOneHandWeapon',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractWeapon',
+      'AbstractOneHandWeapon',
+      'AbstractClaw',
+    ],
+    tags: ['default', 'weapon', 'onehand', 'claw', 'one_hand_weapon'],
+  },
+  AbstractDagger: {
+    extends: 'AbstractOneHandWeapon',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractWeapon',
+      'AbstractOneHandWeapon',
+      'AbstractDagger',
+    ],
+    tags: ['default', 'weapon', 'onehand', 'dagger', 'one_hand_weapon'],
+  },
+  AbstractOneHandAxe: {
+    extends: 'AbstractOneHandWeapon',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractWeapon',
+      'AbstractOneHandWeapon',
+      'AbstractOneHandAxe',
+    ],
+    tags: ['default', 'weapon', 'onehand', 'axe', 'one_hand_weapon'],
+  },
+  AbstractOneHandMace: {
+    extends: 'AbstractOneHandWeapon',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractWeapon',
+      'AbstractOneHandWeapon',
+      'AbstractOneHandMace',
+    ],
+    tags: ['default', 'weapon', 'onehand', 'mace', 'one_hand_weapon'],
+  },
+  AbstractSceptre: {
+    extends: 'AbstractOneHandWeapon',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractWeapon',
+      'AbstractOneHandWeapon',
+      'AbstractSceptre',
+    ],
+    tags: ['default', 'weapon', 'onehand', 'sceptre', 'one_hand_weapon'],
+  },
+  AbstractOneHandSword: {
+    extends: 'AbstractOneHandWeapon',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractWeapon',
+      'AbstractOneHandWeapon',
+      'AbstractOneHandSword',
+    ],
+    tags: ['default', 'weapon', 'onehand', 'sword', 'one_hand_weapon'],
+  },
+  AbstractOneHandSwordThrusting: {
+    extends: 'AbstractOneHandSword',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractWeapon',
+      'AbstractOneHandWeapon',
+      'AbstractOneHandSword',
+      'AbstractOneHandSwordThrusting',
+    ],
+    tags: ['default', 'weapon', 'onehand', 'sword', 'one_hand_weapon'],
+  },
+  AbstractWand: {
+    extends: 'AbstractOneHandWeapon',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractWeapon',
+      'AbstractOneHandWeapon',
+      'AbstractWand',
+    ],
+    tags: ['default', 'weapon', 'onehand', 'wand', 'ranged', 'one_hand_weapon'],
+  },
+  AbstractTwoHandWeapon: {
+    extends: 'AbstractWeapon',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractWeapon',
+      'AbstractTwoHandWeapon',
+    ],
+    tags: ['default', 'weapon', 'twohand'],
+  },
+  AbstractBow: {
+    extends: 'AbstractTwoHandWeapon',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractWeapon',
+      'AbstractTwoHandWeapon',
+      'AbstractBow',
+    ],
+    tags: ['default', 'weapon', 'twohand', 'bow', 'ranged', 'two_hand_weapon'],
+  },
+  AbstractFishingRod: {
+    extends: 'AbstractTwoHandWeapon',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractWeapon',
+      'AbstractTwoHandWeapon',
+      'AbstractFishingRod',
+    ],
+    tags: ['default', 'twohand', 'fishing_rod'],
+  },
+  AbstractStaff: {
+    extends: 'AbstractTwoHandWeapon',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractWeapon',
+      'AbstractTwoHandWeapon',
+      'AbstractStaff',
+    ],
+    tags: ['default', 'weapon', 'twohand', 'staff', 'two_hand_weapon'],
+  },
+  Staff1: {
+    extends: 'AbstractStaff',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractWeapon',
+      'AbstractTwoHandWeapon',
+      'AbstractStaff',
+      'Staff1',
+    ],
+    tags: ['default', 'weapon', 'twohand', 'staff', 'two_hand_weapon'],
+  },
+  AbstractTwoHandAxe: {
+    extends: 'AbstractTwoHandWeapon',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractWeapon',
+      'AbstractTwoHandWeapon',
+      'AbstractTwoHandAxe',
+    ],
+    tags: ['default', 'weapon', 'twohand', 'axe', 'two_hand_weapon'],
+  },
+  AbstractTwoHandMace: {
+    extends: 'AbstractTwoHandWeapon',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractWeapon',
+      'AbstractTwoHandWeapon',
+      'AbstractTwoHandMace',
+    ],
+    tags: ['default', 'weapon', 'twohand', 'mace', 'two_hand_weapon'],
+  },
+  AbstractTwoHandSword: {
+    extends: 'AbstractTwoHandWeapon',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractWeapon',
+      'AbstractTwoHandWeapon',
+      'AbstractTwoHandSword',
+    ],
+    tags: ['default', 'weapon', 'twohand', 'sword', 'two_hand_weapon'],
+  },
+  TwoHandSword1: {
+    extends: 'AbstractTwoHandSword',
+    inheritance: [
+      'Item',
+      'Equipment',
+      'AbstractWeapon',
+      'AbstractTwoHandWeapon',
+      'AbstractTwoHandSword',
+      'TwoHandSword1',
+    ],
+    tags: ['default', 'weapon', 'twohand', 'sword', 'two_hand_weapon'],
+  },
+};
+export default meta_data;

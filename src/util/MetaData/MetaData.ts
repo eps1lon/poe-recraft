@@ -1,16 +1,5 @@
-import { Tag } from '../schema';
-// import meta_datas from './meta_data.json' does not work with --module ES6
-// tslint:disable-next-line: no-var-requires
-const meta_datas: MetaDataMap = require('./meta_data.json');
-export interface MetaDataProps {
-  extends: string;
-  inheritance: string[];
-  tags: Tag[];
-}
-
-export interface MetaDataMap {
-  [key: string]: MetaDataProps;
-}
+import meta_datas from './data';
+import { MetaDataProps } from './types';
 
 /**
  * class Metadata
