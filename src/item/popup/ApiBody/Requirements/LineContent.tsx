@@ -3,7 +3,7 @@ import * as React from 'react';
 import { intersperse } from '../../../../util/react';
 
 export interface Props {
-  name: string;
+  name: React.ReactNode;
   values: Value[];
   displayMode: DisplayMode;
   type?: number;

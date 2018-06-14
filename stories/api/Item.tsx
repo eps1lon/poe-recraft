@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 
 import { ApiPopup } from '../../src/item/popup';
 
-const Story: React.SFC<ApiPopup['props']> = props => {
+const Story: React.SFC<PropsType<typeof ApiPopup>> = props => {
   return <ApiPopup {...props} />;
 };
 

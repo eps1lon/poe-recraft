@@ -105,21 +105,8 @@ const statsTranslated = (container: Container<any>, format: Format) => {
  *
  * @param item {Item}
  */
-const snapShotItem = (item: Item, format: Format): Popup['props']['item'] => {
-  let rarity: Rarity;
-  if (item.rarity.isNormal()) {
-    rarity = Rarity.normal;
-  } else if (item.rarity.isNormal()) {
-    rarity = Rarity.normal;
-  } else if (item.rarity.isMagic()) {
-    rarity = Rarity.magic;
-  } else if (item.rarity.isRare()) {
-    rarity = Rarity.rare;
-  } else if (item.rarity.isUnique()) {
-    rarity = Rarity.unique;
-  } else {
-    throw new Error('unrecognized rarity');
-  }
+const snapShotItem = (item: Item, format: Format): PropsType<typeof Popup>['item'] => {
+  const rarity = item.rarity.toString();
 
   const properties = snapshotProperties(item);
 
@@ -132,7 +119,7 @@ const snapShotItem = (item: Item, format: Format): Popup['props']['item'] => {
     shaper: item.isSHaperItem(),
     implicitStats: statsTranslated(item.implicits, format),
     explicitStats: statsTranslated(item.affixes, format),
-    rarity,
+    rarity: rarity === 'showcase' ? 'unique' : rarity,
     ...properties,
     requirements: snapshotRequirements(item),
     corrupted: item.props.corrupted,

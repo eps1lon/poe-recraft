@@ -11,9 +11,16 @@ import { ExclusifyUnion } from '../../../util/types';
 
 export type Item = AbstractItem & ItemProperties;
 
+/**
+ * if base.id is provided the component tries to translate
+ * the basename according to the provided messages
+ * for magic items this means that you have to set `prefix` and `suffix`
+ * to the respective mod id to provide full i18n support
+ */
 export interface AbstractItem {
   base: {
-    name: string;
+    id?: string;
+    name?: string;
   };
   // only required for rare and unique items
   name?: string;
@@ -32,7 +39,7 @@ export interface AbstractItem {
   implicitStats?: ReactNode[];
   utilityStats?: ReactNode[];
   // in case only stats are given and the item is magic we need to know
-  // the name of the prefix/suffix mod
+  // the id of the prefix/suffix mod
   prefix?: string;
   suffix?: string;
   elder?: boolean;
@@ -40,12 +47,7 @@ export interface AbstractItem {
   corrupted?: boolean;
 }
 
-export enum Rarity {
-  normal,
-  magic,
-  rare,
-  unique,
-}
+export type Rarity = 'normal' | 'magic' | 'rare' | 'unique';
 
 export type ItemProperties = ExclusifyUnion<
   ShieldProperties | ArmourProperties | WeaponProperties | NoProperties

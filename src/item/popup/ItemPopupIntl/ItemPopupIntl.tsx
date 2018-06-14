@@ -1,11 +1,12 @@
 import * as classnames from 'classnames';
 import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Omit } from 'utility-types';
 
 import * as props from './props';
-import ApiPopup from '../ApiPopup';
+import TypeLineIntl from './TypeLineIntl';
+import ApiPopupIntl from '../ApiPopupIntl';
 import FrameType from '../../FrameType';
-import { Mod, isMod } from '../../../mod/poe';
 import {
   minMaxToString,
   rollableToString,
@@ -14,7 +15,7 @@ import {
 } from '../../../util/value';
 import { round, asPercentString } from '../../../util/number';
 
-export type ApiProps = ApiPopup['props'];
+export type ApiProps = PropsType<typeof ApiPopupIntl>;
 
 // requirements below that threshold will not be displayed
 const MIN_ATTRIBUTE_REQUIREMENTS = 14;
@@ -33,13 +34,18 @@ export type Props = Omit<ApiProps, 'item'> & {
  * our own interface aims at properties that only displays what is displayed.
  * See also Model vs. View
  */
-export default class ItemPopup extends React.PureComponent<Props> {
+export default class ItemPopupIntl extends React.PureComponent<Props> {
   public static assertValidProps(
     item: props.Item,
     onError: (err: string) => void,
   ) {
-    if (item.name === undefined && item.rarity === props.Rarity.rare) {
+    if (item.name === undefined && item.rarity === 'rare') {
       onError('rare items need a name in addition to the name of the baseitem');
+    }
+    if (item.base.name === undefined && item.base.id === undefined) {
+      onError(
+        'You either have to provide an explicit basename or the id of the baseitem to enable i18n.',
+      );
     }
 
     if (item.elder && item.shaper) {
@@ -51,14 +57,14 @@ export default class ItemPopup extends React.PureComponent<Props> {
     super(props);
 
     if (process.env.NODE_ENV !== 'production') {
-      ItemPopup.assertValidProps(props.item, console.warn);
+      ItemPopupIntl.assertValidProps(props.item, console.warn);
     }
   }
 
   public render() {
     const { item, ...props } = this.props;
 
-    return <ApiPopup item={this.toApiProps(item)} {...props} />;
+    return <ApiPopupIntl item={this.toApiProps(item)} {...props} />;
   }
 
   private toApiProps(item: props.Item): ApiProps['item'] {
@@ -91,7 +97,9 @@ export default class ItemPopup extends React.PureComponent<Props> {
 
     if (valueNotZero(quality)) {
       properties.push({
-        name: 'Quality',
+        name: (
+          <FormattedMessage id="poe.popup.quality" defaultMessage="Quality" />
+        ),
         values: [[`${quality}%`, 1]],
         displayMode: 0,
       });
@@ -110,10 +118,24 @@ export default class ItemPopup extends React.PureComponent<Props> {
     armour: props.ArmourProperties,
   ): ApiProps['item']['properties'] {
     const properties: ApiProps['item']['properties'] = [];
-    const defences: Array<['armour' | 'energy_shield' | 'evasion', string]> = [
-      ['armour', 'armour'],
-      ['energy_shield', 'energy shield'],
-      ['evasion', 'evasion'],
+    const defences: Array<
+      ['armour' | 'energy_shield' | 'evasion', React.ReactNode]
+    > = [
+      [
+        'armour',
+        <FormattedMessage id="poe.popup.armour" defaultMessage="armour" />,
+      ],
+      [
+        'energy_shield',
+        <FormattedMessage
+          id="poe.popup.energy_shield"
+          defaultMessage="energy shield"
+        />,
+      ],
+      [
+        'evasion',
+        <FormattedMessage id="poe.popup.evasion" defaultMessage="evasion" />,
+      ],
     ];
 
     defences.forEach(([key, human]) => {
@@ -131,7 +153,9 @@ export default class ItemPopup extends React.PureComponent<Props> {
       const { block } = armour;
       if (augmentableNotZero(block)) {
         properties.push({
-          name: 'Block',
+          name: (
+            <FormattedMessage id="poe.popup.block" defaultMessage="Block" />
+          ),
           values: [
             [`${rollableToString(block.value)}%`, block.augmented ? 1 : 0],
           ],
@@ -161,7 +185,12 @@ export default class ItemPopup extends React.PureComponent<Props> {
     // Physical Damage
     if (augmentableNotZero(physical_damage)) {
       properties.push({
-        name: 'Physical Damage',
+        name: (
+          <FormattedMessage
+            id="poe.popup.physical_damage"
+            defaultMessage="Physical Damage"
+          />
+        ),
         values: [
           [
             minMaxToString(physical_damage.value),
@@ -185,7 +214,12 @@ export default class ItemPopup extends React.PureComponent<Props> {
     }
     if (elemental_damage.length > 0) {
       properties.push({
-        name: 'Elemental Damage',
+        name: (
+          <FormattedMessage
+            id="poe.popup.elemental_damage"
+            defaultMessage="Elemental Damage"
+          />
+        ),
         values: elemental_damage,
         displayMode: 0,
       });
@@ -194,7 +228,12 @@ export default class ItemPopup extends React.PureComponent<Props> {
     // Chaos Damage
     if (valueNotZero(chaos_damage)) {
       properties.push({
-        name: 'Chaos Damage',
+        name: (
+          <FormattedMessage
+            id="poe.popup.chaos_damage"
+            defaultMessage="Chaos Damage"
+          />
+        ),
         values: [[minMaxToString(chaos_damage), 7]],
         displayMode: 0,
       });
@@ -203,7 +242,7 @@ export default class ItemPopup extends React.PureComponent<Props> {
     // Range
     if (augmentableNotZero(range)) {
       properties.push({
-        name: 'Range',
+        name: <FormattedMessage id="poe.popup.range" defaultMessage="Range" />,
         values: [[rollableToString(range.value), range.augmented ? 1 : 0]],
         displayMode: 0,
       });
@@ -212,7 +251,12 @@ export default class ItemPopup extends React.PureComponent<Props> {
     // Crit
     if (augmentableNotZero(crit)) {
       properties.push({
-        name: 'Critical Strike Chance',
+        name: (
+          <FormattedMessage
+            id="poe.popup.crit"
+            defaultMessage="Critical Strike Chance"
+          />
+        ),
         values: [
           [
             rollableToString(crit.value, n => asPercentString(n, 2)),
@@ -226,7 +270,12 @@ export default class ItemPopup extends React.PureComponent<Props> {
     // APS
     if (augmentableNotZero(aps)) {
       properties.push({
-        name: 'Attacks per Second',
+        name: (
+          <FormattedMessage
+            id="poe.popup.aps"
+            defaultMessage="Attacks per Second"
+          />
+        ),
         values: [
           [
             `${rollableToString(aps.value, n => (n / 100).toFixed(2))}`,
@@ -251,7 +300,7 @@ export default class ItemPopup extends React.PureComponent<Props> {
 
     if (augmentableNotZero(level)) {
       requirements.push({
-        name: 'Level',
+        name: <FormattedMessage id="poe.popup.requirements.level" defaultMessage="Level" />,
         values: [[rollableToString(level.value), level.augmented ? 1 : 0]],
         displayMode: 0,
       });
@@ -262,7 +311,12 @@ export default class ItemPopup extends React.PureComponent<Props> {
       dexterity.value > MIN_ATTRIBUTE_REQUIREMENTS
     ) {
       requirements.push({
-        name: 'Dex',
+        name: (
+          <FormattedMessage
+            id="poe.popup.requirements.dex"
+            defaultMessage="Dex"
+          />
+        ),
         values: [
           [rollableToString(dexterity.value), dexterity.augmented ? 1 : 0],
         ],
@@ -275,7 +329,12 @@ export default class ItemPopup extends React.PureComponent<Props> {
       intelligence.value > MIN_ATTRIBUTE_REQUIREMENTS
     ) {
       requirements.push({
-        name: 'Int',
+        name: (
+          <FormattedMessage
+            id="poe.popup.requirements.int"
+            defaultMessage="Int"
+          />
+        ),
         values: [
           [
             rollableToString(intelligence.value),
@@ -291,7 +350,12 @@ export default class ItemPopup extends React.PureComponent<Props> {
       strength.value > MIN_ATTRIBUTE_REQUIREMENTS
     ) {
       requirements.push({
-        name: 'Str',
+        name: (
+          <FormattedMessage
+            id="poe.popup.requirements.str"
+            defaultMessage="Str"
+          />
+        ),
         values: [
           [rollableToString(strength.value), strength.augmented ? 1 : 0],
         ],
@@ -303,24 +367,29 @@ export default class ItemPopup extends React.PureComponent<Props> {
   }
 
   private typeLine(item: props.Item): ApiProps['item']['typeLine'] {
-    if (item.rarity === props.Rarity.magic) {
-      return [item.prefix, item.base.name, item.suffix]
-        .filter(s => typeof s === 'string' && s.length > 0)
-        .join(' ');
-    } else {
-      return item.base.name;
+    const { id, name } = item.base;
+    const { prefix, suffix } = item;
+    if (id != null) {
+      return (
+        <TypeLineIntl
+          item_id={id}
+          rarity={item.rarity}
+          prefix_id={prefix}
+          suffix_id={suffix}
+        />
+      );
     }
   }
 
   private frameType(item: props.Item): FrameType {
     switch (item.rarity) {
-      case props.Rarity.normal:
+      case 'normal':
         return FrameType.normal;
-      case props.Rarity.magic:
+      case 'magic':
         return FrameType.magic;
-      case props.Rarity.rare:
+      case 'rare':
         return FrameType.rare;
-      case props.Rarity.unique:
+      case 'unique':
         return FrameType.unique;
     }
     throw new Error('could not determine frameType from item');

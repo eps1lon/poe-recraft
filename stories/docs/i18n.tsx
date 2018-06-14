@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { formatStats, Fallback } from 'poe-i18n';
 // 'poe-components-item'
-import { Popup, Rarity } from '../../src/';
+import { Popup } from '../../src/';
 
 // tslint:disable-next-line: no-var-requires
 const base_item_types = require('poe-i18n/locale-data/en/BaseItemTypes.json');
@@ -40,7 +40,7 @@ storiesOf('i18n integration', module).add('Helmet', () => (
           base_item_types['Metadata/Items/Armours/Helmets/HelmetInt11'].name,
       },
       name: 'Mind Brow',
-      rarity: Rarity.rare,
+      rarity: 'rare',
       energy_shield: {
         value: 200,
         augmented: true,

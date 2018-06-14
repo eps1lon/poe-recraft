@@ -6,7 +6,7 @@ import FrameType from '../../FrameType';
 export interface Props {
   item: {
     name?: string;
-    typeLine: string;
+    typeLine: React.ReactNode;
     frameType: FrameType;
     elder?: boolean;
     shaper?: boolean;

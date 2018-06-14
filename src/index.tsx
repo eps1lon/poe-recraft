@@ -1,2 +1,2 @@
-export { Popup, Rarity, ApiPopup } from './item';
+export { Popup, PopupIntl, Rarity, ApiPopup, ApiPopupIntl } from './item';
 export { Type as ModType } from './mod';

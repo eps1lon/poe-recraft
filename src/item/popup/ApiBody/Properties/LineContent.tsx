@@ -4,7 +4,7 @@ import * as reactStringReplace from 'react-string-replace';
 import { intersperse } from '../../../../util/react';
 
 export interface Props {
-  name: string;
+  name: React.ReactNode;
   values: Value[];
   displayMode: DisplayMode;
   type?: number;

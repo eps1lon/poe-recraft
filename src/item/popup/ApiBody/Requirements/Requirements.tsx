@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import LineContent from './LineContent';
 import { Intersperse } from '../../../../util/react';
@@ -15,7 +16,7 @@ export default class Lines extends React.PureComponent<Props> {
     return (
       <div className="requirements">
         <span className="lc">
-          Requires{' '}
+          <FormattedMessage id="poe.popup.requires" defaultMessage="Requires" />{' '}
           <Intersperse renderSeparator={commaSeparator}>
             {requirements.map((line, index) => (
               <LineContent key={index} {...line} />

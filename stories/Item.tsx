@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { Popup, Rarity } from '../src';
+import { Popup } from '../src';
 
 storiesOf('item', module)
   .add('shaped', () => (
@@ -11,7 +11,7 @@ storiesOf('item', module)
           name: 'Hubris Circlet',
         },
         name: 'Mind Brow',
-        rarity: Rarity.rare,
+        rarity: 'rare',
         energy_shield: {
           value: 200,
           augmented: true,
@@ -45,7 +45,7 @@ storiesOf('item', module)
         base: {
           name: 'Hubris Circlet',
         },
-        rarity: Rarity.normal,
+        rarity: 'normal',
         energy_shield: {
           value: 200,
           augmented: false,

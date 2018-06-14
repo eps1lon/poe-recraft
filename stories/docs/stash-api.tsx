@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 // 'poe-components-item'
 import { ApiPopup } from '../../src/';
 
-export type Item = ApiPopup['props']['item'];
+export type Item = PropsType<typeof ApiPopup>['item'];
 
 export interface StashApi {
   next_change_id: string;
@@ -227,7 +227,7 @@ interface HedgedItemState {
 /**
  * error boundary for item
  */
-class HedgedItem extends React.PureComponent<ApiPopup['props']> {
+class HedgedItem extends React.PureComponent<PropsType<typeof ApiPopup>> {
   state: HedgedItemState = {
     threw: false,
   };
@@ -268,6 +268,10 @@ function removeInflectionIdentifierOnItem(item: Item): Item {
   };
 }
 
-function removeInflectionIdentifier(s: string): string {
-  return s.replace(/<<SET:\w+>>/gi, '');
+function removeInflectionIdentifier(s: React.ReactNode): React.ReactNode {
+  if (typeof s === 'string') {
+    return s.replace(/<<SET:\w+>>/gi, '');
+  } else {
+    return s;
+  }
 }

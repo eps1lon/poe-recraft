@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 
-import Component, { Rarity } from '../ItemPopup';
+import Component from '../ItemPopup';
 
 it('should display Mind Brow Hubris Circlet', () => {
   expect(
@@ -13,7 +13,7 @@ it('should display Mind Brow Hubris Circlet', () => {
               name: 'Hubris Circlet',
             },
             name: 'Mind Brow',
-            rarity: Rarity.rare,
+            rarity: 'rare',
             energy_shield: {
               value: 200,
               augmented: true,
@@ -54,7 +54,7 @@ it('should display Noble Axe', () => {
             base: {
               name: 'Noble Axe',
             },
-            rarity: Rarity.normal,
+            rarity: 'normal',
             requirements: {
               level: {
                 value: 65,
