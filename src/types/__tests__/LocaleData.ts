@@ -30,6 +30,10 @@ describe.skip('type definitions matching json files in locale-data', () => {
     const json = await import('../../../locale-data/en/ActiveSkills.json');
     const checked: Exactify<LocaleData.ActiveSkills, typeof json> = json;
   });
+  test('api_messages', async () => {
+    const json = await import('../../../locale-data/de/api_messages.json');
+    const checked: Exactify<LocaleData.api_messages, typeof json> = json;
+  });
   test('BaseItemTypes', async () => {
     const json = await import('../../../locale-data/en/BaseItemTypes.json');
     const checked: Exactify<LocaleData.BaseItemTypes, typeof json> = json;
