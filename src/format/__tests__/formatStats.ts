@@ -110,9 +110,9 @@ it('should translate collections of stats', () => {
 
 // they are save in the .txt with `no_description id`
 it('should return the id with a hint for no_desc stats', () => {
-  expect(
-    formatStats([{ id: 'item_drop_slots', value: 3 }], { datas })
-  ).toEqual(['item_drop_slots (hidden)']);
+  expect(formatStats([{ id: 'item_drop_slots', value: 3 }], { datas })).toEqual(
+    ['item_drop_slots (hidden)']
+  );
 });
 
 it('should translate production bug 1', () => {

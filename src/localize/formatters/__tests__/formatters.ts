@@ -1,8 +1,4 @@
-import factory, {
-  formatters,
-  inverseFactory,
-  regexpFactory
-} from '../';
+import factory, { formatters, inverseFactory, regexpFactory } from '../';
 
 it('should throw if the specified formatter doesnt exist', () => {
   expect(() => factory('foobar')).toThrowError("'foobar' not found");

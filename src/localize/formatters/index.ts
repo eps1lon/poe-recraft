@@ -1,14 +1,8 @@
 import { isRange, StatValue } from '../../types/StatValue';
 import Formatter from './Formatter';
+import mod_value_to_item_class from './mod_value_to_item_class';
+import per_minute_to_per_second from './per_minute_to_per_second';
 import { NUMBER } from './regexp_util';
-import { default as mod_value_to_item_class } from './mod_value_to_item_class';
-import { default as per_minute_to_per_second } from './per_minute_to_per_second';
-
-const f: Formatter = {
-  format: n => `${n}`,
-  inverse: s => +s,
-  regexp: NUMBER
-};
 
 /*
  * rule of thumb: is the formatter self explanatory and only need
