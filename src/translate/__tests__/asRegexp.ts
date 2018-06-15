@@ -1,5 +1,4 @@
 import { Translation } from '../../types/StatDescription';
-import NamedGroupsRegexp from '../../util/NamedGroupsRegexp';
 import asRegexp from '../asRegexp';
 import printf from '../printf';
 

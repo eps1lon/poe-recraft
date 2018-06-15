@@ -1,3 +1,4 @@
+// tslint:disable:no-unused-variable
 import * as LocaleData from '../LocaleData';
 
 // we only want to check typings so we dont actually run this test
@@ -5,15 +6,14 @@ import * as LocaleData from '../LocaleData';
 describe.skip('type definitions matching json files in locale-data', () => {
   /**
    * courtesy of https://github.com/Microsoft/TypeScript/issues/12936#issuecomment-368244671
-   * 
+   *
    * allows an exact match between T and X
    * usually assiging X to T would be fine because X extends T
-   * but we want to make sure in our type definitions that we caught all possible 
+   * but we want to make sure in our type definitions that we caught all possible
    * fields.
    */
-  type Exactify<T, X extends T> = T & {
-      [K in keyof X]: K extends keyof T ? Exactify<T[K], X[K]> : never
-  }
+  type Exactify<T, X extends T> = T &
+    { [K in keyof X]: K extends keyof T ? Exactify<T[K], X[K]> : never };
 
   // eps1lon: going with dynamic here so that ts-jest does not transpile
   // and require the hole json despite no test actually runs here
@@ -44,7 +44,10 @@ describe.skip('type definitions matching json files in locale-data', () => {
   });
   test('CharacterStartStates', async () => {
     const json = await import('../../../locale-data/en/CharacterStartStates.json');
-    const checked: Exactify<LocaleData.CharacterStartStates, typeof json> = json;
+    const checked: Exactify<
+      LocaleData.CharacterStartStates,
+      typeof json
+    > = json;
   });
   test('Chests', async () => {
     const json = await import('../../../locale-data/en/Chests.json');
@@ -56,7 +59,10 @@ describe.skip('type definitions matching json files in locale-data', () => {
   });
   test('CraftingBenchOptions', async () => {
     const json = await import('../../../locale-data/en/CraftingBenchOptions.json');
-    const checked: Exactify<LocaleData.CraftingBenchOptions, typeof json> = json;
+    const checked: Exactify<
+      LocaleData.CraftingBenchOptions,
+      typeof json
+    > = json;
   });
   test('CurrencyItems', async () => {
     const json = await import('../../../locale-data/en/CurrencyItems.json');
@@ -136,7 +142,10 @@ describe.skip('type definitions matching json files in locale-data', () => {
   });
   test('WarbandsPackMonsters', async () => {
     const json = await import('../../../locale-data/en/WarbandsPackMonsters.json');
-    const checked: Exactify<LocaleData.WarbandsPackMonsters, typeof json> = json;
+    const checked: Exactify<
+      LocaleData.WarbandsPackMonsters,
+      typeof json
+    > = json;
   });
   test('WorldAreas', async () => {
     const json = await import('../../../locale-data/en/WorldAreas.json');

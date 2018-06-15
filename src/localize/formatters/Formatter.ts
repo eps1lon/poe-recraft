@@ -3,8 +3,12 @@
  */
 export default interface Formatter {
   /**
-   * 
-   * @param n 
+   * RegExp to match the value in the formatted string
+   */
+  regexp: string;
+  /**
+   *
+   * @param n
    */
   format(n: number): string;
   /**
@@ -12,8 +16,4 @@ export default interface Formatter {
    * @param s returnval from #format()
    */
   inverse(s: string): number;
-  /**
-   * RegExp to match the value in the formatted string
-   */
-  regexp: string;
 }
