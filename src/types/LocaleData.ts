@@ -5,6 +5,7 @@
  *
  * The definitions are tested against the imported json
  */
+// tslint:disable:class-name
 
 export interface AchievementItems {
   [id: string]: {
@@ -24,6 +25,37 @@ export interface ActiveSkills {
     displayedname: string;
     description: string;
   };
+}
+
+export interface api_messages {
+  Armour: string;
+  'Attacks per Second': string;
+  Bow: string;
+  'Chaos Damage': string;
+  Claw: string;
+  Corrupted: string;
+  'Critical Strike Chance': string;
+  Dagger: string;
+  Dex: string;
+  'Elemental Damage': string;
+  'Energy Shield': string;
+  'Evasion Rating': string;
+  Int: string;
+  Level: string;
+  Mirrored: string;
+  'One Handed Axe': string;
+  'One Handed Mace': string;
+  'One Handed Sword': string;
+  'Physical Damage': string;
+  Requires: string;
+  Staff: string;
+  Str: string;
+  'Two Handed Axe': string;
+  'Two Handed Mace': string;
+  'Two Handed Sword': string;
+  Unidentified: string;
+  Wand: string;
+  'Weapon Range': string;
 }
 
 export interface Ascendancy {
