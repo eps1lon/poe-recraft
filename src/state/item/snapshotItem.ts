@@ -1,8 +1,7 @@
-import { Popup as ItemPopup, Rarity } from 'poe-components-item';
+import { PopupIntl as ItemPopup, Rarity } from 'poe-components-item';
 import { formatStats, Fallback } from 'poe-i18n';
 import { Container, Item, ArmourProperties, WeaponProperties } from 'poe-mods';
-
-import { namei18n } from '../../util/item';
+import { propOrUndefined } from '../../util/typesafe';
 
 /**
  * creates a "dumb" object with view relevant properties from item
@@ -14,28 +13,35 @@ export default function snapshotItem(
   item: Item,
   descriptions: {},
   messages: {}
-): ItemPopup['props']['item'] {
+): PropsType<typeof ItemPopup>['item'] {
   let rarity: Rarity;
   if (item.rarity.isNormal()) {
-    rarity = Rarity.normal;
-  } else if (item.rarity.isNormal()) {
-    rarity = Rarity.normal;
+    rarity = 'normal';
   } else if (item.rarity.isMagic()) {
-    rarity = Rarity.magic;
+    rarity = 'magic';
   } else if (item.rarity.isRare()) {
-    rarity = Rarity.rare;
+    rarity = 'rare';
   } else if (item.rarity.isUnique()) {
-    rarity = Rarity.unique;
+    rarity = 'unique';
   } else {
     throw new Error('unrecognized rarity');
   }
 
   const properties = snapshotProperties(item);
   const [typeLineOrName, typeLine] = item.name.lines();
+  // for magic items there can only be at most one prefix/suffix
+  const prefix = propOrUndefined(
+    item.affixes.getPrefixes().map(({ props }) => props)[0],
+    'id'
+  );
+  const suffix = propOrUndefined(
+    item.affixes.getSuffixes().map(({ props }) => props)[0],
+    'id'
+  );
 
   return {
     base: {
-      name: namei18n(item, messages)
+      id: item.baseitem.id
     },
     name: typeLine !== undefined ? typeLineOrName : undefined,
     elder: item.isElderItem(),
@@ -46,6 +52,8 @@ export default function snapshotItem(
     ...properties,
     requirements: snapshotRequirements(item),
     corrupted: item.props.corrupted,
+    prefix,
+    suffix
   };
 }
 
@@ -71,13 +79,17 @@ function snapshotProperties(item: Item) {
 }
 
 function snapshotWeaponProperties(properties: WeaponProperties) {
+  const physical_damage = properties.physical_damage();
   const cold_damage = properties.cold_damage();
   const fire_damage = properties.fire_damage();
   const lightning_damage = properties.lightning_damage();
   const chaos_damage = properties.chaos_damage();
 
   return {
-    physical_damage: properties.physical_damage(),
+    physical_damage: {
+      augmented: physical_damage.min.augmented || physical_damage.max.augmented,
+      value: [physical_damage.min.value, physical_damage.max.value]
+    },
     cold_damage: [cold_damage.min.value, cold_damage.max.value],
     fire_damage: [fire_damage.min.value, fire_damage.max.value],
     lightning_damage: [lightning_damage.min.value, lightning_damage.max.value],

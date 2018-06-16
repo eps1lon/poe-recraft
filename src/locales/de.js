@@ -1,5 +1,8 @@
 export { default as locale_data } from 'react-intl/locale-data/de';
 export {
+  default as api_messages
+} from 'poe-i18n/locale-data/de/api_messages.json';
+export {
   default as baseitemtypes
 } from 'poe-i18n/locale-data/de/BaseItemTypes.json';
 export {
