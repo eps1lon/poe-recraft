@@ -365,7 +365,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
   }
 
   private typeLine(item: ItemProps.Item): ApiProps['item']['typeLine'] {
-    const { id } = item.base;
+    const { id, name } = item.base;
     const { prefix, suffix } = item;
     if (id != null) {
       return (
@@ -376,6 +376,8 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
           suffix_id={suffix}
         />
       );
+    } else {
+      return name;
     }
   }
 
