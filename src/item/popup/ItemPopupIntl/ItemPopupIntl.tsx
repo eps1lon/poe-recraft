@@ -98,7 +98,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
     if (valueNotZero(quality)) {
       properties.push({
         name: (
-          <FormattedMessage id="poe.popup.quality" defaultMessage="Quality" />
+          <FormattedMessage id="poe.api.Quality" defaultMessage="Quality" />
         ),
         values: [[`${quality}%`, 1]],
         displayMode: 0,
@@ -123,18 +123,18 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
     > = [
       [
         'armour',
-        <FormattedMessage id="poe.popup.armour" defaultMessage="armour" />,
+        <FormattedMessage id="poe.api.Armour" defaultMessage="armour" />,
       ],
       [
         'energy_shield',
         <FormattedMessage
-          id="poe.popup.energy_shield"
+          id="poe.api.Energy Shield"
           defaultMessage="energy shield"
         />,
       ],
       [
         'evasion',
-        <FormattedMessage id="poe.popup.evasion" defaultMessage="evasion" />,
+        <FormattedMessage id="poe.api.Evasion" defaultMessage="evasion" />,
       ],
     ];
 
@@ -153,9 +153,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
       const { block } = armour;
       if (augmentableNotZero(block)) {
         properties.push({
-          name: (
-            <FormattedMessage id="poe.popup.block" defaultMessage="Block" />
-          ),
+          name: <FormattedMessage id="poe.api.Block" defaultMessage="Block" />,
           values: [
             [`${rollableToString(block.value)}%`, block.augmented ? 1 : 0],
           ],
@@ -187,7 +185,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
       properties.push({
         name: (
           <FormattedMessage
-            id="poe.popup.physical_damage"
+            id="poe.api.Physical Damage"
             defaultMessage="Physical Damage"
           />
         ),
@@ -216,7 +214,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
       properties.push({
         name: (
           <FormattedMessage
-            id="poe.popup.elemental_damage"
+            id="poe.api.Elemental Damage"
             defaultMessage="Elemental Damage"
           />
         ),
@@ -230,7 +228,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
       properties.push({
         name: (
           <FormattedMessage
-            id="poe.popup.chaos_damage"
+            id="poe.api.Chaos Damage"
             defaultMessage="Chaos Damage"
           />
         ),
@@ -242,7 +240,12 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
     // Range
     if (augmentableNotZero(range)) {
       properties.push({
-        name: <FormattedMessage id="poe.popup.range" defaultMessage="Range" />,
+        name: (
+          <FormattedMessage
+            id="poe.api.Weapon Range"
+            defaultMessage="Weapon Range"
+          />
+        ),
         values: [[rollableToString(range.value), range.augmented ? 1 : 0]],
         displayMode: 0,
       });
@@ -253,7 +256,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
       properties.push({
         name: (
           <FormattedMessage
-            id="poe.popup.crit"
+            id="poe.api.Critical Strike Chance"
             defaultMessage="Critical Strike Chance"
           />
         ),
@@ -272,7 +275,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
       properties.push({
         name: (
           <FormattedMessage
-            id="poe.popup.aps"
+            id="poe.api.Attacks per Second"
             defaultMessage="Attacks per Second"
           />
         ),
@@ -300,7 +303,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
 
     if (augmentableNotZero(level)) {
       requirements.push({
-        name: <FormattedMessage id="poe.popup.requirements.level" defaultMessage="Level" />,
+        name: <FormattedMessage id="poe.api.Level" defaultMessage="Level" />,
         values: [[rollableToString(level.value), level.augmented ? 1 : 0]],
         displayMode: 0,
       });
@@ -311,12 +314,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
       dexterity.value > MIN_ATTRIBUTE_REQUIREMENTS
     ) {
       requirements.push({
-        name: (
-          <FormattedMessage
-            id="poe.popup.requirements.dex"
-            defaultMessage="Dex"
-          />
-        ),
+        name: <FormattedMessage id="poe.api.Dex" defaultMessage="Dex" />,
         values: [
           [rollableToString(dexterity.value), dexterity.augmented ? 1 : 0],
         ],
@@ -329,12 +327,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
       intelligence.value > MIN_ATTRIBUTE_REQUIREMENTS
     ) {
       requirements.push({
-        name: (
-          <FormattedMessage
-            id="poe.popup.requirements.int"
-            defaultMessage="Int"
-          />
-        ),
+        name: <FormattedMessage id="poe.api.Int" defaultMessage="Int" />,
         values: [
           [
             rollableToString(intelligence.value),
@@ -350,12 +343,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
       strength.value > MIN_ATTRIBUTE_REQUIREMENTS
     ) {
       requirements.push({
-        name: (
-          <FormattedMessage
-            id="poe.popup.requirements.str"
-            defaultMessage="Str"
-          />
-        ),
+        name: <FormattedMessage id="poe.api.Str" defaultMessage="Str" />,
         values: [
           [rollableToString(strength.value), strength.augmented ? 1 : 0],
         ],

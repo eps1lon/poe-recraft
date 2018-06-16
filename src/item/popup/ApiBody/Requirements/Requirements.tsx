@@ -16,7 +16,7 @@ export default class Lines extends React.PureComponent<Props> {
     return (
       <div className="requirements">
         <span className="lc">
-          <FormattedMessage id="poe.popup.requires" defaultMessage="Requires" />{' '}
+          <FormattedMessage id="poe.api.Requires" defaultMessage="Requires" />{' '}
           <Intersperse renderSeparator={commaSeparator}>
             {requirements.map((line, index) => (
               <LineContent key={index} {...line} />

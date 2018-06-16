@@ -13,21 +13,21 @@ export interface Messages extends ApiPopupMessages {
   // poe.baseitemtypes.{id}.name
   // poe.baseitemtypes.{id}.inflection?
   // poe.mods.{id}.name
-  'poe.popup.quality': string;
-  'poe.popup.armour': string;
-  'poe.popup.energy_shield': string;
-  'poe.popup.evasion': string;
-  'poe.popup.block': string;
-  'poe.popup.physical_damage': string;
-  'poe.popup.elemental_damage': string;
-  'poe.popup.chaos_damage': string;
-  'poe.popup.range': string;
-  'poe.popup.crit': string;
-  'poe.popup.aps': string;
-  'poe.popup.requirements.level': string;
-  'poe.popup.requirements.dex': string;
-  'poe.popup.requirements.int': string;
-  'poe.popup.requirements.str': string;
+  'poe.api.Quality': string;
+  'poe.api.Armour': string;
+  'poe.api.Energy Shield': string;
+  'poe.api.Evasion': string;
+  'poe.api.Block': string;
+  'poe.api.Physical Damage': string;
+  'poe.api.Elemental Damage': string;
+  'poe.api.Chaos Damage': string;
+  'poe.api.Weapon Range': string;
+  'poe.api.Critical Strike Chance': string;
+  'poe.api.Attacks per Second': string;
+  'poe.api.Level': string;
+  'poe.api.Dex': string;
+  'poe.api.Int': string;
+  'poe.api.Str': string;
 }
 export type Props = PropsType<typeof ItemPopupIntl>;
 

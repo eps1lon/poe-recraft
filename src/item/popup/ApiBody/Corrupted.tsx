@@ -9,7 +9,7 @@ export default class Stats extends React.PureComponent<Props> {
       <div className="unmet">
         <span className="lc">
           <FormattedMessage
-            id="poe.popup.corrupted"
+            id="poe.api.Corrupted"
             defaultMessage="Corrupted"
           />
         </span>
