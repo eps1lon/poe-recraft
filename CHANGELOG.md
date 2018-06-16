@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased](https://github.com/eps1lon/poe-i18n/compare/v0.10.0...HEAD)
+### Added
+- `locale-data/*/api_messages` for de, es, fr, pt, ru and th. These messages contain
+  translations relevant to item responses from the official GGG API. English 
+  translations are unnecessary because keys = values. The chinese translations
+  are not available because there exists no chinese API. ([#57](https://github.com/eps1lon/poe-i18n/pull/57))
+### Changed
+- Update to `typescript@~2.9.2`.
 
 ## [0.10.0](https://github.com/eps1lon/poe-i18n/compare/v0.9.1...v0.10.0) (2018-06-31)
 ### Added
