@@ -16,7 +16,7 @@ export interface Stash {
 
 storiesOf('ApiPopup', module).add('with public stash API', () => <Story />);
 
-type StoryProps = {};
+interface StoryProps {}
 enum LoadState {
   null,
   requested,
@@ -43,82 +43,7 @@ class Story extends React.PureComponent<StoryProps, StoryState> {
     };
   }
 
-  onIdInputChange = ({ target }: { target: HTMLInputElement }) => {
-    this.setApiId(target.value);
-  };
-
-  onStashIndexChange = ({ target }: { target: HTMLInputElement }) => {
-    // start with first stash when we reach end
-    this.setState({ active_stash_index: +target.value % this.stashCount() });
-  };
-
-  onItemIndexChange = ({ target }: { target: HTMLInputElement }) => {
-    // start with first item when we reach end
-    this.setState({ active_item_index: +target.value % this.itemCount() });
-  };
-
-  onNextItemClick = () => {
-    const { response } = this.state;
-    if (response === undefined) {
-      return;
-    }
-
-    // move stash_index and item_index pointer to next stash with item
-    const active_stash = this.activeStash();
-    const { active_item_index, active_stash_index } = this.state;
-    const has_more_items =
-      active_stash !== undefined &&
-      active_item_index + 1 < active_stash.items.length;
-
-    if (has_more_items) {
-      this.setState({ active_item_index: active_item_index + 1 });
-    } else {
-      // no more items in this stash so find the next stash with at least one
-      // item and move the pointers to that stash
-      const offset = active_stash_index + 1;
-      const stash_with_item = response.stashes
-        .slice(offset)
-        .findIndex(stash => stash.items.length > 0);
-
-      this.setState({
-        active_stash_index: offset + stash_with_item,
-        active_item_index: 0,
-      });
-    }
-  };
-
-  onNextChangeIdClick = () => {
-    const { response } = this.state;
-    if (response === undefined) {
-      this.setApiId('0');
-    } else {
-      this.setApiId(response.next_change_id);
-    }
-  };
-
-  setApiId(api_id: string) {
-    // only fetch if new id is requested
-    if (api_id !== this.state.api_id) {
-      this.setState({
-        loading: LoadState.requested,
-        api_id,
-        active_item_index: -1,
-        active_stash_index: -1,
-      });
-      fetch(apiUrl(api_id), {
-        headers: new Headers({
-          'X-REQUESTED-WITH': 'poe-react-item',
-        }),
-      })
-        .then(res => res.json())
-        .then((response: StashApi) =>
-          this.setState({ loading: LoadState.finished, response }),
-        )
-        .catch(() => this.setState({ loading: LoadState.failed }));
-    }
-  }
-
-  render() {
+  public render() {
     const item = this.activeItem();
 
     return (
@@ -184,7 +109,82 @@ class Story extends React.PureComponent<StoryProps, StoryState> {
     );
   }
 
-  stashCount(): number {
+  private onIdInputChange = ({ target }: { target: HTMLInputElement }) => {
+    this.setApiId(target.value);
+  };
+
+  private onStashIndexChange = ({ target }: { target: HTMLInputElement }) => {
+    // start with first stash when we reach end
+    this.setState({ active_stash_index: +target.value % this.stashCount() });
+  };
+
+  private onItemIndexChange = ({ target }: { target: HTMLInputElement }) => {
+    // start with first item when we reach end
+    this.setState({ active_item_index: +target.value % this.itemCount() });
+  };
+
+  private onNextItemClick = () => {
+    const { response } = this.state;
+    if (response === undefined) {
+      return;
+    }
+
+    // move stash_index and item_index pointer to next stash with item
+    const active_stash = this.activeStash();
+    const { active_item_index, active_stash_index } = this.state;
+    const has_more_items =
+      active_stash !== undefined &&
+      active_item_index + 1 < active_stash.items.length;
+
+    if (has_more_items) {
+      this.setState({ active_item_index: active_item_index + 1 });
+    } else {
+      // no more items in this stash so find the next stash with at least one
+      // item and move the pointers to that stash
+      const offset = active_stash_index + 1;
+      const stash_with_item = response.stashes
+        .slice(offset)
+        .findIndex(stash => stash.items.length > 0);
+
+      this.setState({
+        active_stash_index: offset + stash_with_item,
+        active_item_index: 0,
+      });
+    }
+  };
+
+  private onNextChangeIdClick = () => {
+    const { response } = this.state;
+    if (response === undefined) {
+      this.setApiId('0');
+    } else {
+      this.setApiId(response.next_change_id);
+    }
+  };
+
+  private setApiId(api_id: string) {
+    // only fetch if new id is requested
+    if (api_id !== this.state.api_id) {
+      this.setState({
+        loading: LoadState.requested,
+        api_id,
+        active_item_index: -1,
+        active_stash_index: -1,
+      });
+      fetch(apiUrl(api_id), {
+        headers: new Headers({
+          'X-REQUESTED-WITH': 'poe-react-item',
+        }),
+      })
+        .then(res => res.json())
+        .then((response: StashApi) =>
+          this.setState({ loading: LoadState.finished, response }),
+        )
+        .catch(() => this.setState({ loading: LoadState.failed }));
+    }
+  }
+
+  private stashCount(): number {
     const { response } = this.state;
     if (response === undefined) {
       return 0;
@@ -193,7 +193,7 @@ class Story extends React.PureComponent<StoryProps, StoryState> {
     }
   }
 
-  activeStash(): Stash | undefined {
+  private activeStash(): Stash | undefined {
     const { response } = this.state;
     if (response === undefined) {
       return undefined;
@@ -202,7 +202,7 @@ class Story extends React.PureComponent<StoryProps, StoryState> {
     }
   }
 
-  itemCount(): number {
+  private itemCount(): number {
     const stash = this.activeStash();
     if (stash === undefined) {
       return 0;
@@ -211,7 +211,7 @@ class Story extends React.PureComponent<StoryProps, StoryState> {
     }
   }
 
-  activeItem(): Item | undefined {
+  private activeItem(): Item | undefined {
     const stash = this.activeStash();
     if (stash === undefined) {
       return undefined;
@@ -228,15 +228,15 @@ interface HedgedItemState {
  * error boundary for item
  */
 class HedgedItem extends React.PureComponent<PropsType<typeof ApiPopup>> {
-  state: HedgedItemState = {
+  public state: HedgedItemState = {
     threw: false,
   };
 
-  componentDidCatch() {
+  public componentDidCatch() {
     this.setState({ threw: true });
   }
 
-  render() {
+  public render() {
     if (this.state.threw) {
       return <div>Render failed</div>;
     } else {

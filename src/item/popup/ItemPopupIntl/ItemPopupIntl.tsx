@@ -1,9 +1,8 @@
-import * as classnames from 'classnames';
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Omit } from 'utility-types';
 
-import * as props from './props';
+import * as ItemProps from './props';
 import TypeLineIntl from './TypeLineIntl';
 import ApiPopupIntl from '../ApiPopupIntl';
 import FrameType from '../../FrameType';
@@ -13,7 +12,7 @@ import {
   augmentableNotZero,
   valueNotZero,
 } from '../../../util/value';
-import { round, asPercentString } from '../../../util/number';
+import { asPercentString } from '../../../util/number';
 
 export type ApiProps = PropsType<typeof ApiPopupIntl>;
 
@@ -22,7 +21,7 @@ const MIN_ATTRIBUTE_REQUIREMENTS = 14;
 
 // otherwise ts merges item props => Props.item = ApiProps.item & props.Item
 export type Props = Omit<ApiProps, 'item'> & {
-  item: props.Item;
+  item: ItemProps.Item;
 };
 
 /**
@@ -36,7 +35,7 @@ export type Props = Omit<ApiProps, 'item'> & {
  */
 export default class ItemPopupIntl extends React.PureComponent<Props> {
   public static assertValidProps(
-    item: props.Item,
+    item: ItemProps.Item,
     onError: (err: string) => void,
   ) {
     if (item.name === undefined && item.rarity === 'rare') {
@@ -67,7 +66,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
     return <ApiPopupIntl item={this.toApiProps(item)} {...props} />;
   }
 
-  private toApiProps(item: props.Item): ApiProps['item'] {
+  private toApiProps(item: ItemProps.Item): ApiProps['item'] {
     return {
       corrupted: item.corrupted,
       name: item.name,
@@ -87,11 +86,11 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
     };
   }
 
-  private apiCategory(item: props.Item): ApiProps['item']['category'] {
+  private apiCategory(item: ItemProps.Item): ApiProps['item']['category'] {
     return {}; // TODO: requires extendet baseitem interface
   }
 
-  private apiProperties(item: props.Item): ApiProps['item']['properties'] {
+  private apiProperties(item: ItemProps.Item): ApiProps['item']['properties'] {
     const properties: ApiProps['item']['properties'] = [];
     const { quality } = item;
 
@@ -105,9 +104,9 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
       });
     }
 
-    if (props.isArmourProperties(item)) {
+    if (ItemProps.isArmourProperties(item)) {
       properties.push(...(this.apiArmourProperties(item) || []));
-    } else if (props.isWeaponProperties(item)) {
+    } else if (ItemProps.isWeaponProperties(item)) {
       properties.push(...(this.apiWeaponProperties(item) || []));
     }
 
@@ -115,7 +114,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
   }
 
   private apiArmourProperties(
-    armour: props.ArmourProperties,
+    armour: ItemProps.ArmourProperties,
   ): ApiProps['item']['properties'] {
     const properties: ApiProps['item']['properties'] = [];
     const defences: Array<
@@ -123,18 +122,27 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
     > = [
       [
         'armour',
-        <FormattedMessage id="poe.api.Armour" defaultMessage="armour" />,
+        <FormattedMessage
+          key="msg"
+          id="poe.api.Armour"
+          defaultMessage="armour"
+        />,
       ],
       [
         'energy_shield',
         <FormattedMessage
+          key="msg"
           id="poe.api.Energy Shield"
           defaultMessage="energy shield"
         />,
       ],
       [
         'evasion',
-        <FormattedMessage id="poe.api.Evasion" defaultMessage="evasion" />,
+        <FormattedMessage
+          key="msg"
+          id="poe.api.Evasion"
+          defaultMessage="evasion"
+        />,
       ],
     ];
 
@@ -149,7 +157,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
       }
     });
 
-    if (props.isShieldProperties(armour)) {
+    if (ItemProps.isShieldProperties(armour)) {
       const { block } = armour;
       if (augmentableNotZero(block)) {
         properties.push({
@@ -166,7 +174,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
   }
 
   private apiWeaponProperties(
-    weapon: props.WeaponProperties,
+    weapon: ItemProps.WeaponProperties,
   ): ApiProps['item']['properties'] {
     const properties: ApiProps['item']['properties'] = [];
     const {
@@ -200,7 +208,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
     }
 
     // Elemental Damage
-    const elemental_damage: [string, number][] = [];
+    const elemental_damage: Array<[string, number]> = [];
     if (valueNotZero(fire_damage)) {
       elemental_damage.push([minMaxToString(fire_damage), 4]);
     }
@@ -292,7 +300,9 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
     return properties;
   }
 
-  private apiRequirements(item: props.Item): ApiProps['item']['requirements'] {
+  private apiRequirements(
+    item: ItemProps.Item,
+  ): ApiProps['item']['requirements'] {
     const { requirements: item_requirements } = item;
     if (item_requirements === undefined) {
       return [];
@@ -354,8 +364,8 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
     return requirements;
   }
 
-  private typeLine(item: props.Item): ApiProps['item']['typeLine'] {
-    const { id, name } = item.base;
+  private typeLine(item: ItemProps.Item): ApiProps['item']['typeLine'] {
+    const { id } = item.base;
     const { prefix, suffix } = item;
     if (id != null) {
       return (
@@ -369,7 +379,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
     }
   }
 
-  private frameType(item: props.Item): FrameType {
+  private frameType(item: ItemProps.Item): FrameType {
     switch (item.rarity) {
       case 'normal':
         return FrameType.normal;

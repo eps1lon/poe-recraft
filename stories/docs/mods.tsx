@@ -10,7 +10,7 @@ import {
 } from 'poe-mods';
 import { Format } from 'poe-i18n';
 // 'poe-components-item'
-import { Popup, Rarity } from '../../src/';
+import { Popup } from '../../src/';
 
 // tslint:disable: no-var-requires
 const items = createItems(require('poe-mods/data/items/equipment.json'));
@@ -105,7 +105,10 @@ const statsTranslated = (container: Container<any>, format: Format) => {
  *
  * @param item {Item}
  */
-const snapShotItem = (item: Item, format: Format): PropsType<typeof Popup>['item'] => {
+const snapShotItem = (
+  item: Item,
+  format: Format,
+): PropsType<typeof Popup>['item'] => {
   const rarity = item.rarity.toString();
 
   const properties = snapshotProperties(item);
@@ -126,9 +129,9 @@ const snapShotItem = (item: Item, format: Format): PropsType<typeof Popup>['item
   };
 };
 
-const format = new Format();
-format.configure({ datas: i18n.datas });
+const global_format = new Format();
+global_format.configure({ datas: i18n.datas });
 
 storiesOf('poe-mods integration', module)
-  .add('Helmet', () => <Popup item={snapShotItem(helmet, format)} />)
-  .add('Weapon', () => <Popup item={snapShotItem(dagger, format)} />);
+  .add('Helmet', () => <Popup item={snapShotItem(helmet, global_format)} />)
+  .add('Weapon', () => <Popup item={snapShotItem(dagger, global_format)} />);

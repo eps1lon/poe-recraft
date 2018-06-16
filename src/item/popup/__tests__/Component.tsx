@@ -64,8 +64,8 @@ it('should display Noble Axe', () => {
               },
             },
             aps: {
-              value: 130
-            }
+              value: 130,
+            },
           }}
         />,
       )

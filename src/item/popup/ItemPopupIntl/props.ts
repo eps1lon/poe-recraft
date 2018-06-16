@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 
 import { Mod } from '../../../mod/poe';
 import {
-  SingleValue,
   RollableValue,
   MinMaxValue,
   AugmentableValue,

@@ -5,7 +5,7 @@ export interface Props {
 }
 
 export default class Stats extends React.PureComponent<Props> {
-  render() {
+  public render() {
     const { className, children } = this.props;
 
     if (!Array.isArray(children)) {

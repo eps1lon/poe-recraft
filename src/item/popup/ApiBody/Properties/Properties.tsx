@@ -3,13 +3,13 @@ import * as React from 'react';
 import LineContent from './LineContent';
 
 export interface Props {
-  properties: LineContent['props'][];
+  properties: Array<LineContent['props']>;
 }
 
 export default class Properties extends React.PureComponent<Props> {
-  render() {
+  public render() {
     const { properties } = this.props;
-    return this.props.properties
+    return properties
       .sort((a, b) => (a.type || 0) - (b.type || 0))
       .map((line, index) => (
         <div key={index} className="displayProperty">

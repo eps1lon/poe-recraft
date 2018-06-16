@@ -5,13 +5,13 @@ import LineContent from './LineContent';
 import { Intersperse } from '../../../../util/react';
 
 export interface Props {
-  requirements: LineContent['props'][];
+  requirements: Array<LineContent['props']>;
 }
 
 const commaSeparator = () => ', ';
 
 export default class Lines extends React.PureComponent<Props> {
-  render() {
+  public render() {
     const { requirements } = this.props;
     return (
       <div className="requirements">

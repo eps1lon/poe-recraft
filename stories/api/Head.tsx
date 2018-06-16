@@ -13,11 +13,11 @@ const Story: React.SFC<{ item: Head['props']['item'] }> = ({ item }) => {
   );
 };
 
-const rare_item = { 
-  name: 'Gale Salvation', 
+const rare_item = {
+  name: 'Gale Salvation',
   typeLine: 'Vaal Regalia',
-  frameType: FrameType.rare
- }
+  frameType: FrameType.rare,
+};
 
 storiesOf('api/head', module)
   .add('normal', () => (
@@ -36,15 +36,13 @@ storiesOf('api/head', module)
       }}
     />
   ))
-  .add('rare', () => (
-    <Story item={rare_item} />
-  ))
+  .add('rare', () => <Story item={rare_item} />)
   .add('unique', () => (
     <Story
       item={{
         name: 'Sidhebreath',
         typeLine: 'Paua Amulet',
-        frameType: FrameType.unique
+        frameType: FrameType.unique,
       }}
     />
   ))

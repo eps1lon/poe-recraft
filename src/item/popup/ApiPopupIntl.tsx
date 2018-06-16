@@ -27,7 +27,7 @@ export interface ItemProps {
 
 export interface LineContent {
   name: React.ReactNode;
-  values: [string, number][];
+  values: Array<[string, number]>;
   displayMode: number;
   type?: number;
 }
@@ -58,7 +58,7 @@ export default class ApiPopupIntl extends React.PureComponent<Props, State> {
     max_description_width: 365.11156186613,
   };
 
-  static getDerivedStateFromProps(next_props: Props, prevState: State) {
+  public static getDerivedStateFromProps(next_props: Props, prevState: State) {
     // prev_props hack
     if (next_props === prevState.props) {
       return null;
@@ -167,7 +167,7 @@ function outerWidth(element: HTMLElement) {
 
   return (
     width +
-    parseInt(style.marginLeft || '0') +
-    parseInt(style.marginRight || '0')
+    parseInt(style.marginLeft || '0', 10) +
+    parseInt(style.marginRight || '0', 10)
   );
 }

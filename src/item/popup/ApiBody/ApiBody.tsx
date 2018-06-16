@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { isMod } from '../../../mod/poe';
 import { Intersperse } from '../../../util/react';
 import Separator from '../Separator';
 import Corrupted from './Corrupted';
