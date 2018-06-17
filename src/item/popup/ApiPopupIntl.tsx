@@ -5,6 +5,7 @@ import FrameType from '../FrameType';
 
 import Head from './ApiHead';
 import Body from './ApiBody';
+import { Extended } from './ApiBody/Stats';
 
 export interface ItemProps {
   // only required for rare and unique items
@@ -34,6 +35,7 @@ export interface LineContent {
 
 export interface Props {
   classname?: string;
+  extended?: Extended;
   item: ItemProps;
   width?: number;
 }

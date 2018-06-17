@@ -5,7 +5,8 @@ import Separator from '../Separator';
 import Corrupted from './Corrupted';
 import Properties from './Properties';
 import Requirements from './Requirements';
-import Stats from './Stats';
+import { nonEmptyStats } from './Stats';
+import { Extended } from './Stats';
 
 export interface Props {
   item: {
@@ -18,11 +19,12 @@ export interface Props {
     craftedMods?: React.ReactNode[];
     corrupted?: boolean;
   };
+  extended?: Extended;
 }
 
 export default class Body extends React.PureComponent<Props> {
   public render() {
-    const { item } = this.props;
+    const { item, extended } = this.props;
     const {
       properties = [],
       requirements = [],
@@ -41,31 +43,11 @@ export default class Body extends React.PureComponent<Props> {
           {requirements.length > 0 && (
             <Requirements key="requirements" requirements={requirements} />
           )}
-          {utilityMods.length > 0 && (
-            <Stats key="utilityMods" className="utilityMod">
-              {utilityMods}
-            </Stats>
-          )}
-          {implicitMods.length > 0 && (
-            <Stats key="implicitMods" className="implicitMod">
-              {implicitMods}
-            </Stats>
-          )}
-          {enchantmentMods.length > 0 && (
-            <Stats key="enchantmentMods" className="enchantmentMod">
-              {enchantmentMods}
-            </Stats>
-          )}
-          {explicitMods.length > 0 && (
-            <Stats key="explicitMods" className="explicitMod">
-              {explicitMods}
-            </Stats>
-          )}
-          {craftedMods.length > 0 && (
-            <Stats key="craftedMods" className="craftedMod">
-              {craftedMods}
-            </Stats>
-          )}
+          {nonEmptyStats(explicitMods, {
+            className: 'explicitMod',
+            group: 'explicit',
+            extended,
+          })}
         </Intersperse>
         {corrupted && <Corrupted />}
       </section>

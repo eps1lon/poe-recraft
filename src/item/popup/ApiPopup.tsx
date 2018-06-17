@@ -10,6 +10,7 @@ import withIntlProvider from './withIntlProvider';
 export interface Messages {
   'poe.api.Corrupted': string;
   'poe.api.Requires': string;
+  "poe.api.{Range1} to {Range2}": string; 
 }
 export type Props = PropsType<typeof ApiPopupIntl>;
 

@@ -22,6 +22,10 @@
   min-width: 262.88032px;
   max-width: 742.39351px;
 
+  &.extended {
+    width: 742px;
+  }
+
   .separator {
     height: 7.91075px;
     background-position: center;
@@ -263,6 +267,34 @@
     }
     .unmet {
       color: $unmet_color;
+    }
+
+    /* extended */
+    .lc {
+      &.s {
+        position: relative;
+      }
+
+      .prefix {
+        color: $prefix_color;
+      }
+
+      .suffix {
+        color: $suffix_color;
+      }
+
+      &.l, &.r {
+        position: absolute;
+        user-select: none;
+      }
+
+      &.l {
+        left: 0px;
+      }
+
+      &.r {
+        right: 0px;
+      }
     }
   }
 }

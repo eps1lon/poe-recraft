@@ -4,7 +4,7 @@ export interface Props {
   className: string;
 }
 
-export default class Stats extends React.PureComponent<Props> {
+export default class SimpleStats extends React.PureComponent<Props> {
   public render() {
     const { className, children } = this.props;
 
