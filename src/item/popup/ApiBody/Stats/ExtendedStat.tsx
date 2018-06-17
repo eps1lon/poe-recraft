@@ -10,16 +10,32 @@ export interface Props {
   group: ModGroup;
   index: number;
   showInfo: boolean;
+  onMouseOver?: (index: number) => void;
+  onMouseOut?: () => void;
 }
 
+const noop = () => {};
+
 export default class ExtendedStat extends React.PureComponent<Props> {
+  public handleMouseOut = () => (this.props.onMouseOut || noop)();
+  public handleMouseOver = () =>
+    (this.props.onMouseOver || noop)(this.props.index);
+
   public render() {
-    const { extended, className, ...props } = this.props;
+    const {
+      className,
+      showInfo,
+      onMouseOut = noop,
+      onMouseOver = noop,
+    } = this.props;
     const stat_mods = this.statMods();
-    const showInfo = true; // DEBUG
 
     return (
-      <div className={className}>
+      <div
+        className={className}
+        onMouseOut={this.handleMouseOut}
+        onMouseOver={this.handleMouseOver}
+      >
         <span className="lc l">
           <ExtendedStatValues showInfo={showInfo} mods={stat_mods} />
         </span>

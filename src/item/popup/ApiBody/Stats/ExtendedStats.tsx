@@ -18,6 +18,10 @@ export default class ExtendedStats extends React.PureComponent<Props, State> {
     hovered_stat: -1,
   };
 
+  public handleMouseOver = (index: number) =>
+    this.setState({ hovered_stat: index });
+  public handleMouseOut = () => this.setState({ hovered_stat: -1 });
+
   public render() {
     const { className, children, extended, group } = this.props;
 
@@ -33,6 +37,8 @@ export default class ExtendedStats extends React.PureComponent<Props, State> {
         group={group}
         index={index}
         showInfo={this.isHovered(index)}
+        onMouseOut={this.handleMouseOut}
+        onMouseOver={this.handleMouseOver}
       >
         {stat}
       </ExtendedStat>
