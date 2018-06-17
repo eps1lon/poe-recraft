@@ -51,7 +51,8 @@ a translation for 0 and another one for 1-5.
   type Options = {
     datas: StatsLocaleDatas,
     fallback: Fallback | ((id: string, stat: Stat) => string | null),
-    start_file: keyof StatsLocaleDatas
+    start_file: keyof StatsLocaleDatas,
+    range_message: string;
   }
   ```
   - options.fallback: fallback strategy if a description for a stat was not found.
@@ -97,6 +98,8 @@ a translation for 0 and another one for 1-5.
   ```
   - options.start_file: The description file which has top priority
     when searching for a translation. Default: `stat_descriptions`
+  - options.range_message: A string conforming to ICU message syntax that is
+    used to format value ranges. default: "({min}–{max})"
 
 ## formatStats.configure(options: Options)
 Set the default options for option properties that are not provided

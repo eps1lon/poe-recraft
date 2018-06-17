@@ -28,6 +28,7 @@ export interface ActiveSkills {
 }
 
 export interface api_messages {
+  '{RANGE1} to {RANGE2}': string;
   Armour: string;
   'Attacks per Second': string;
   Bow: string;

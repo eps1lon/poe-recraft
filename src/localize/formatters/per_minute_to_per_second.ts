@@ -11,7 +11,8 @@ import { NUMBER } from './regexp_util';
 const per_minute_to_per_second: Formatter = {
   format: n => `${Math.round(n / 60)}`,
   inverse: s => +s * 60,
-  regexp: NUMBER
+  regexp: NUMBER,
+  negates: false
 };
 
 export default per_minute_to_per_second;

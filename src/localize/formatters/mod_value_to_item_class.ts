@@ -28,7 +28,8 @@ export const item_classes = [
 const formatter: Formatter = {
   format: n => item_classes[n % item_classes.length],
   inverse: item_class => item_classes.indexOf(item_class),
-  regexp: '.+?'
+  regexp: '.+?',
+  negates: false
 };
 
 export default formatter;

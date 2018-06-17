@@ -6,9 +6,10 @@ export type Params = Array<number | [number, number]>;
 export default function printf(
   text: string,
   params: Params,
-  formatters: Formatter[] = []
+  formatters: Formatter[] = [],
+  range_message = '({min}–{max})'
 ): string {
-  const prepared = formatValues(params, { formatters });
+  const prepared = formatValues(params, { formatters, message: range_message });
 
   return prepared
     .reduce(

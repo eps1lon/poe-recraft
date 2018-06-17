@@ -1,4 +1,5 @@
 import translate, { NO_DESCRIPTION, Stat } from '../translate';
+import { ICUMessageSyntax } from '../types/intl';
 import {
   Description,
   Descriptions,
@@ -10,6 +11,7 @@ import { isZero } from '../types/StatValue';
 
 // arg types
 export { Stat } from '../translate';
+export const DEFAULT_RANGE_MESSAGE = '({min}–{max})';
 export type Options = {
   datas: StatLocaleDatas;
   fallback: Fallback | FallbackCallback;
@@ -19,6 +21,11 @@ export type Options = {
     stat: Stat,
     n: number
   ) => Translation['formatters'];
+  /**
+   * if a stat value is rollable (i.e. has a min and max value)
+   * default: {DEFAULT_RANGE_MESSAGE}
+   */
+  range_message: ICUMessageSyntax;
 };
 // return type
 export type TranslatedStats = string[];
@@ -40,18 +47,21 @@ const initial_options: Options = {
   datas: {},
   fallback: Fallback.throw,
   start_file: 'stat_descriptions',
-  getFormatters: t => t.formatters
+  getFormatters: t => t.formatters,
+  range_message: DEFAULT_RANGE_MESSAGE
 };
 
 const formatStats = (
   stats: Stat[],
   options: Partial<Options> = {}
 ): TranslatedStats => {
-  const { datas, fallback, start_file, getFormatters } = Object.assign(
-    {},
-    initial_options,
-    options
-  );
+  const {
+    datas,
+    fallback,
+    start_file,
+    getFormatters,
+    range_message
+  } = Object.assign({}, initial_options, options);
 
   // translated lines
   const lines: string[] = [];
@@ -68,7 +78,8 @@ const formatStats = (
     for (const descriptionFinder of createDescriptionFindStrategies(data)) {
       lines.push(
         ...formatWithFinder(untranslated, descriptionFinder, {
-          getFormatters
+          getFormatters,
+          range_message
         })
       );
     }
@@ -109,13 +120,17 @@ interface FormatWithFinderOptions {
     stat: Stat,
     n: number
   ) => Translation['formatters'];
+  range_message: ICUMessageSyntax;
 }
 function formatWithFinder(
   stats: Map<string, Stat>,
   find: (stat: Stat) => Description | undefined,
   options: Partial<FormatWithFinderOptions> = {}
 ): string[] {
-  const { getFormatters = (t: Translation) => t.formatters } = options;
+  const {
+    getFormatters = (t: Translation) => t.formatters,
+    range_message = DEFAULT_RANGE_MESSAGE
+  } = options;
   const lines: string[] = [];
   const translated: Set<string> = new Set();
 
@@ -127,8 +142,11 @@ function formatWithFinder(
     const description = find(stat);
 
     if (description !== undefined) {
-      const translation = translate(description, stats, (t: Translation, n) =>
-        getFormatters(t, stat, n)
+      const translation = translate(
+        description,
+        stats,
+        (t: Translation, n) => getFormatters(t, stat, n),
+        range_message
       );
 
       if (translation === undefined) {
