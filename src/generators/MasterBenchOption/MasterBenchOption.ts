@@ -17,11 +17,30 @@ export type ModApplicableFlag = keyof BaseModApplicableFlags;
 
 export interface ApplicableFlags extends Flags {
   wrong_itemclass: boolean;
+  /**
+   * only relevant to "X Sockets"
+   */
   socket_limit_exceeded: boolean;
+  /**
+   * only relevant to "X Sockets"
+   */
   sockets_unmodified: boolean;
+  /**
+   * only relevant to "X Links"
+   */
   not_enough_sockets: boolean;
+  /**
+   * only relevant to "X Links"
+   */
   links_unmodified: boolean;
+  /**
+   * only relevant to "Remove crafted mot"
+   */
   no_crafted_mod: boolean;
+  /**
+   * only relevant to options that add mods
+   */
+  mod_not_applicable: boolean;
 }
 export type ApplicableFlag = keyof ApplicableFlags;
 
@@ -101,6 +120,11 @@ export default class MasterBenchOption extends Generator<Mod, Item> {
       this.isRemoveCraftedModOption() &&
       !item.mods.some(mod => mod.isMasterMod());
 
+    const designated_mod = this.mod;
+    const mod_not_applicable =
+      designated_mod != null &&
+      anySet(this.isModApplicableTo(designated_mod, item));
+
     return {
       wrong_itemclass,
       socket_limit_exceeded,
@@ -108,6 +132,7 @@ export default class MasterBenchOption extends Generator<Mod, Item> {
       not_enough_sockets,
       links_unmodified,
       no_crafted_mod,
+      mod_not_applicable,
     };
   }
 
@@ -150,8 +175,11 @@ export default class MasterBenchOption extends Generator<Mod, Item> {
    * remember that this doesn't check if the passed mod is the mod of this option
    */
   public isModApplicableTo(mod: Mod, item: Item): ModApplicableFlags {
+    const simulated_item = item.rarity.isNormal()
+      ? item.rarity.set('magic')
+      : item;
     const applicable_flags = {
-      ...super.isModApplicableTo(mod, item),
+      ...super.isModApplicableTo(mod, simulated_item),
       no_multimod: false,
     };
 
@@ -205,12 +233,7 @@ export default class MasterBenchOption extends Generator<Mod, Item> {
       ? item.rarity.set('magic')
       : item;
 
-    if (this.isModApplicableTo(mod, crafted_item)) {
-      return crafted_item.addMod(mod);
-    }
-
-    // nothing changed
-    return item;
+    return crafted_item.addMod(mod);
   }
 
   private applySocketChangeTo(item: Item): Item {

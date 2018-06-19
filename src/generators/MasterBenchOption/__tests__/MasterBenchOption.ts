@@ -35,8 +35,11 @@ it('should apply the chosen option', () => {
 it('should return the same item if it cant apply', () => {
   const jewel = items.fromName('Viridian Jewel').rarity.set('magic');
   const haku_life = options.fromPrimary(1);
-
   expect(haku_life.applyTo(jewel)).toBe(jewel);
+
+  const haku_armour = options.fromPrimary(4);
+  const boots = haku_armour.applyTo(items.fromName('Iron Greaves'));
+  expect(haku_life.applyTo(boots)).toBe(boots);
 });
 
 describe('remove crafted mod', () => {
@@ -104,11 +107,11 @@ describe('applicable mods', () => {
     });
   });
 
-  it('should not be applicable to white items', () => {
+  it('should be applicable to white items', () => {
     expect(bench.isModApplicableTo(craftedLife, greaves)).toEqual({
       above_lld_level: false,
       already_present: false,
-      domain_full: true,
+      domain_full: false,
       lower_ilvl: false,
       no_multimod: false,
       wrong_domain: false,
