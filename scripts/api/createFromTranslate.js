@@ -4,7 +4,7 @@ const path = require('path');
 const { URL } = require('url');
 const { promisify } = require('util');
 
-const { LOCALES, TMP_DIR } = require('./config');
+const { LOCALES, TMP_DIR, TRANSLATE_FILE_VERSION } = require('./config');
 const { mergeAllMessages } = require('./util');
 
 const mkdirp = promisify(require('mkdirp'));
@@ -12,7 +12,13 @@ const rimraf = promisify(require('rimraf'));
 
 const MESSAGES_BASE_URL = 'https://web.poecdn.com/js/';
 
-const MESSAGE_KEYS = ['Corrupted', 'Mirrored', 'Unidentified', 'Requires'];
+const MESSAGE_KEYS = [
+  'Corrupted',
+  'Mirrored',
+  'Unidentified',
+  'Requires',
+  '{RANGE1} to {RANGE2}'
+];
 
 createCleanTmp()
   .then(async tmp_dir => {
@@ -80,5 +86,8 @@ function messagesPath(locale, tmp_dir) {
 }
 
 function messagesUrl(locale) {
-  return new URL(`translate.${locale}.js`, MESSAGES_BASE_URL);
+  const url = new URL(`translate.${locale}.js`, MESSAGES_BASE_URL);
+  url.search = `v=${TRANSLATE_FILE_VERSION}`;
+
+  return url;
 }

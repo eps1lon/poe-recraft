@@ -3,6 +3,14 @@
  */
 export default interface Formatter {
   /**
+   * if the formatter changes the display sign
+   *
+   * this is useful if we want to display a range
+   * passing [-10, -5] to negate would result in ['10', '5'] and result in
+   * "10–5" so if negates is true we would need to rearange it to [max, min]
+   */
+  negates: boolean;
+  /**
    * RegExp to match the value in the formatted string
    */
   regexp: string;

@@ -49,23 +49,6 @@ it('should match all the formats', () => {
   expect(factory('mod_value_to_item_class')(1)).toBe('Rings');
 });
 
-it('should support ranges', () => {
-  expect(factory('negate')([-20, -10])).toBe('(10 - 20)');
-  expect(factory('per_minute_to_per_second_0dp')([120, 240])).toBe('(2 - 4)');
-});
-
-it('should not display as range if min == max', () => {
-  expect(factory('id')([-10, -10])).toBe('-10');
-  expect(factory('id')([-10, -11])).toBe('(-10 - -11)');
-});
-
-it('orders range values', () => {
-  expect(factory('negate')([-30, -15])).toEqual('(15 - 30)');
-  expect(factory('negate')([-15, -30])).toEqual('(15 - 30)');
-  expect(factory('id')([15, 30])).toEqual('(15 - 30)');
-  expect(factory('id')([30, 15])).toEqual('(15 - 30)');
-});
-
 describe('regxp', () => {
   it('should match the output of format', () => {
     const values = [15, 0, -3];

@@ -19,7 +19,8 @@ export default function translate(
   getFormatters: (
     t: Translation,
     count: number
-  ) => Translation['formatters'] = t => t.formatters
+  ) => Translation['formatters'] = t => t.formatters,
+  range_message = '({min}–{max})'
 ): string | undefined {
   const { stats, no_description, translations } = description;
 
@@ -52,7 +53,8 @@ export default function translate(
     return printf(
       translation.text,
       required_stats.map(({ value }) => value),
-      getFormatters(translation, required_stats.length)
+      getFormatters(translation, required_stats.length),
+      range_message
     );
   }
 }

@@ -259,8 +259,8 @@ it('should support ranges for given stats', () => {
       { datas }
     ).sort()
   ).toEqual([
-    '(12 - 15)% chance to Freeze',
-    'Adds (1 - 3) to (13 - 18) Physical Damage to Attacks'
+    '(12–15)% chance to Freeze',
+    'Adds (1–3) to (13–18) Physical Damage to Attacks'
   ]);
 });
 
@@ -306,8 +306,8 @@ describe('expensive test cases', () => {
         }
       )
     ).toEqual([
-      '(7 - 10)% chance to Freeze',
-      'Adds (13 - 16) to (33 - 36) Cold Damage against Chilled or Frozen Enemies'
+      '(7–10)% chance to Freeze',
+      'Adds (13–16) to (33–36) Cold Damage against Chilled or Frozen Enemies'
     ]);
   });
 });

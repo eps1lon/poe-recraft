@@ -1,3 +1,4 @@
+// e.g. (5–10) with en dash for number range
 export type StatValue = number | Range;
 export type Range = [number, number];
 
