@@ -5,6 +5,9 @@ import { CraftingBenchOptionsProps } from '../schema';
 import { Mod } from '../mods';
 import { GeneratorDetails } from '../generators/Generator';
 
+/**
+ * the primary of the option in data/craftingbenchoptions
+ */
 export type OptionId = number;
 
 /**
@@ -24,11 +27,8 @@ export default class MasterBench {
       throw new Error(`no options found for '${String(master_primary)}'`);
     }
 
-    // TODO allow customactions
     return new MasterBench(
-      options
-        .filter(({ mod }) => mod != null)
-        .map(option => new MasterBenchOption(option)),
+      options.map(option => new MasterBenchOption(option)),
     );
   }
 
