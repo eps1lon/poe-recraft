@@ -39,6 +39,8 @@ export {
   ArmourProperties,
   ShieldProperties,
   WeaponProperties,
+  // GGGApiSerializer, WIP
+  SemanticSerializer,
 } from './containers';
 export { Mod } from './mods';
 

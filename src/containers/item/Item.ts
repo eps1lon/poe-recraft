@@ -75,13 +75,17 @@ const shallowEqual = (a: { [key: string]: any }, b: { [key: string]: any }) => {
  * an Item in Path of Exile
  */
 export default class Item implements Container<Mod> {
+  public static buildMetaData(baseitem: BaseItemTypeProps): MetaData {
+    const clazz = String(baseitem.inherits_from.split(/[\\/]/).pop());
+    return MetaData.build(clazz);
+  }
+
   /**
    * creates a new item from the baseitem
    * @param baseitem
    */
   public static build(baseitem: BaseItemTypeProps): Item {
-    const clazz = String(baseitem.inherits_from.split(/[\\/]/).pop());
-    const meta_data = MetaData.build(clazz);
+    const meta_data = Item.buildMetaData(baseitem);
 
     const implicits = baseitem.implicit_mods.map(
       mod_props => new Mod(mod_props),

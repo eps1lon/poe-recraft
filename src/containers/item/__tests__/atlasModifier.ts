@@ -1,4 +1,5 @@
 import atlasModifier, {
+  fromFlags,
   AtlasModifierTag,
   AtlasModifier,
   elderTag,
@@ -15,6 +16,20 @@ it('extracts the atlas modifier from tags', () => {
   );
 
   expect(atlasModifier({ tags: ['elder_item'] })).toEqual(AtlasModifier.ELDER);
+});
+
+it('extracts the atlas modifier from a flags object', () => {
+  expect(fromFlags({})).toEqual(AtlasModifier.NONE);
+  expect(fromFlags({ elder: true })).toEqual(AtlasModifier.ELDER);
+  expect(fromFlags({ elder: true, shaper: false })).toEqual(
+    AtlasModifier.ELDER,
+  );
+  expect(fromFlags({ shaper: true, elder: false })).toEqual(
+    AtlasModifier.SHAPER,
+  );
+  expect(() => fromFlags({ elder: true, shaper: true })).toThrow(
+    'Item can only be shaper or elder item not both.',
+  );
 });
 
 it('throws if both are set', () => {

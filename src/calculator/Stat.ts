@@ -16,6 +16,10 @@ export default class Stat {
         : new ValueRange([values[0], values[1]]);
   }
 
+  public get id(): string {
+    return this.props.id;
+  }
+
   public add(other: ValueRange) {
     return new Stat(this.props, this.values.add(other));
   }

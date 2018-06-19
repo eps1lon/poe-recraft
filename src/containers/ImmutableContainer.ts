@@ -1,8 +1,19 @@
+import { mapValues } from 'lodash';
+
 import { Tag } from '../schema';
 import Mod from '../mods/Mod';
 import Stat from '../calculator/Stat';
 
 import Container from './Container';
+
+/**
+ * represents all the stats provided from the mods within the container
+ * grouped by the stat id and their values added
+ */
+export interface StatWithModIndices {
+  stat: Stat;
+  mod_indices: number[];
+}
 
 export interface Builder<T extends Mod> {
   mods: T[];
@@ -146,26 +157,11 @@ export default abstract class ImmutableContainer<
    * mods can have multiple stats so we sum their values grouped by stat id
    */
   public stats(): { [key: string]: Stat } {
-    return this.mods.reduce((stats: { [key: string]: Stat }, mod: Mod) => {
-      // flattened
-      return mod.statsJoined().reduce((joined, stat) => {
-        const { id } = stat.props;
-        const existing = joined[id];
+    return mapValues(this.statsExtendeMap(), ({ stat }) => stat);
+  }
 
-        // group by stat.Id
-        if (existing instanceof Stat) {
-          return {
-            ...joined,
-            [id]: existing.add(stat.values),
-          };
-        } else {
-          return {
-            ...joined,
-            [id]: stat,
-          };
-        }
-      }, stats);
-    }, {});
+  public statsExtended(): StatWithModIndices[] {
+    return Object.values(this.statsExtendeMap());
   }
 
   public abstract maxModsOfType(mod: T): number;
@@ -173,4 +169,36 @@ export default abstract class ImmutableContainer<
   public abstract inDomainOf(mod_domain: number): boolean;
 
   public abstract level(): number;
+
+  private statsExtendeMap(): { [key: string]: StatWithModIndices } {
+    interface StatWithModIndicesMap {
+      [key: string]: StatWithModIndices;
+    }
+    return this.mods.reduce((stats: StatWithModIndicesMap, mod: Mod, index) => {
+      // flattened
+      return mod.statsJoined().reduce((joined, stat) => {
+        const { id } = stat.props;
+        const existing = joined[id];
+
+        // group by stat.Id
+        if (existing && existing.stat instanceof Stat) {
+          return {
+            ...joined,
+            [id]: {
+              stat: existing.stat.add(stat.values),
+              mod_indices: existing.mod_indices.concat(index),
+            },
+          };
+        } else {
+          return {
+            ...joined,
+            [id]: {
+              stat,
+              mod_indices: [index],
+            },
+          };
+        }
+      }, stats);
+    }, {});
+  }
 }
