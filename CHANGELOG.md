@@ -15,6 +15,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
   type `schema.Items`. ([#72](https://github.com/eps1lon/poe-mods/pull/72))
 - Complete socketing, linking and coloring capability to Item.Sockets.
   ([#74](https://github.com/eps1lon/poe-mods/pull/74))
+- `MasterBenchOption` now supports sockets, links, remove crafted Mod etc. This
+  changed the behavior of `MasterBenchOption.isModApplicableTo()`. It returns
+  now truthy flags for white items because it assumes that the rarity is upgraded.
+
+  `MasterBench` no has all options. Zana's "Fortune favours the brave" is still
+  not supported.
+  ([#79](https://github.com/eps1lon/poe-mods/pull/79))
 ### Fixed
 - Fixed master meta mods not being applicable to items.
   ([#77](https://github.com/eps1lon/poe-mods/pull/77))
