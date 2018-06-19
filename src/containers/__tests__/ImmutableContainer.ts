@@ -105,3 +105,26 @@ it('should sum its stats grouped by stat id considering affixes/implicits', () =
     ['local_accuracy_rating', { min: 8, max: 30 }],
   ]);
 });
+
+it('should keep the information of the originating mods within stats', () => {
+  const container = new TestImmutableContainer([]);
+  const with_hybrid_and_ipd = container
+    .addMod(mods.fromId('LocalIncreasedPhysicalDamagePercent7'))
+    .addMod(
+      mods.fromId('LocalIncreasedPhysicalDamagePercentAndAccuracyRating2'),
+    );
+
+  const with_hybrid_and_ipd_stats = with_hybrid_and_ipd.statsExtended();
+  expect(with_hybrid_and_ipd_stats[0]).toMatchObject({
+    stat: {
+      id: 'local_physical_damage_+%',
+    },
+    mod_indices: [0, 1],
+  });
+  expect(with_hybrid_and_ipd_stats[1]).toMatchObject({
+    stat: {
+      id: 'local_accuracy_rating',
+    },
+    mod_indices: [1],
+  });
+});

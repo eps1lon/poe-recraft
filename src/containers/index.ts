@@ -7,4 +7,6 @@ export {
   ArmourProperties,
   ShieldProperties,
   WeaponProperties,
+  // GGGApiSerializer, WIP
+  SemanticSerializer,
 } from './item';

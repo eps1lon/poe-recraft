@@ -70,9 +70,29 @@ export default function atlasModifier(baseitem: {
     throw new Error('Item can only be shaper or elder item not both.');
   }
 
-  if (has_elder_tag) {
+  return fromFlags({ elder: has_elder_tag, shaper: has_shaper_tag });
+}
+
+/**
+ * returns an AtlasModifier according to what flag is set
+ * e.g. elder: true returns AtlasModifier.ELDER
+ * throws if flags are inconsistent
+ * @param param0
+ */
+export function fromFlags({
+  elder,
+  shaper,
+}: {
+  elder?: boolean;
+  shaper?: boolean;
+}): AtlasModifier {
+  if (elder && shaper) {
+    throw new Error('Item can only be shaper or elder item not both.');
+  }
+
+  if (elder) {
     return AtlasModifier.ELDER;
-  } else if (has_shaper_tag) {
+  } else if (shaper) {
     return AtlasModifier.SHAPER;
   } else {
     return AtlasModifier.NONE;
