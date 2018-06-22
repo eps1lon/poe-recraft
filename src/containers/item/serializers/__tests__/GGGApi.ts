@@ -1,6 +1,4 @@
-import { formatValue, formatStats } from 'poe-i18n';
-// tslint:disable-next-line: no-var-requires
-const formatMessage = require('poe-i18n/dist/cjs/format/message');
+import { formatValue, formatStats, formatMessage } from 'poe-i18n';
 
 import { serialize, I18n, Stat } from '../GGGApi';
 import item_fixtures from '../__fixtures__/items';
