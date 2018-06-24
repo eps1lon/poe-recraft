@@ -1,24 +1,23 @@
+import { formatValue } from 'poe-i18n';
+import { InjectedIntlProps } from 'react-intl';
 // (1 to 2)-(3 to 4)
-/**
- * actually a tuple but for easier type inference we use array
- * @see @link{https://github.com/Microsoft/TypeScript/issues/20899}
- */
-export type MinMaxValue = RollableValue | RollableValue[];
+export type MinMaxValue = [RollableValue, RollableValue];
 export type RollableValue = SingleValue | ValueRange;
 export type SingleValue = number;
-export type ValueRange = SingleValue[];
-export interface AugmentableValue<V extends MinMaxValue = MinMaxValue> {
+export type ValueRange = [SingleValue, SingleValue];
+export type MinMaxValueLike = MinMaxValue | SingleValue;
+export interface AugmentableValue<V extends MinMaxValueLike = MinMaxValueLike> {
   value: V;
   augmented?: boolean;
 }
 
-export function augmentableNotZero(
-  augmentable: AugmentableValue | undefined,
-): augmentable is AugmentableValue {
+export function augmentableNotZero<T extends MinMaxValueLike>(
+  augmentable: AugmentableValue<T> | undefined,
+): augmentable is AugmentableValue<T> {
   return augmentable !== undefined && valueNotZero(augmentable.value);
 }
 
-export function valueNotZero<T extends MinMaxValue>(
+export function valueNotZero<T extends MinMaxValueLike>(
   value: T | undefined,
 ): value is T {
   return Array.isArray(value)
@@ -26,27 +25,22 @@ export function valueNotZero<T extends MinMaxValue>(
     : value !== undefined && value !== 0;
 }
 
-// support valuerange up to depth=2
-// (2-3)-(4-5)
-// first depth is for stats with min max
-// second for rollable stat values
+export const ROLLABLE_VALUE_MESSAGE = `({min}–{max})`;
+export const MIN_MAX_VALUE_SHORT_MESSAGE = `{min}–{max}`;
+
+type FormatMessage = InjectedIntlProps['intl']['formatMessage'];
 export function minMaxToString(
   value: MinMaxValue,
-  format?: (n: number) => string,
+  formatMessage: FormatMessage,
 ): string {
-  return Array.isArray(value)
-    ? `${rollableToString(value[0], format)}-${rollableToString(
-        value[1],
-        format,
-      )}`
-    : `${value}`;
-}
-
-export function rollableToString(
-  value: RollableValue,
-  format: (n: number) => string = n => n.toString(),
-): string {
-  return Array.isArray(value)
-    ? `(${format(value[0])} - ${format(value[1])})`
-    : `${format(value)}`;
+  return formatMessage(
+    {
+      id: 'poe.api.{RANGE1} to {RANGE2}',
+      defaultMessage: '{RANGE1} to {RANGE2}',
+    },
+    {
+      RANGE1: formatValue(value[0], { message: ROLLABLE_VALUE_MESSAGE }),
+      RANGE2: formatValue(value[1], { message: ROLLABLE_VALUE_MESSAGE }),
+    },
+  );
 }

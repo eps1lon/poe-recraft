@@ -1,5 +1,6 @@
+import { formatValue } from 'poe-i18n';
 import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl';
 import { Omit } from 'utility-types';
 
 import * as ItemProps from './props';
@@ -8,9 +9,9 @@ import ApiPopupIntl from '../ApiPopupIntl';
 import FrameType from '../../FrameType';
 import {
   minMaxToString,
-  rollableToString,
-  augmentableNotZero,
   valueNotZero,
+  augmentableNotZero,
+  ROLLABLE_VALUE_MESSAGE,
 } from '../../../util/value';
 import { asPercentString } from '../../../util/number';
 
@@ -33,7 +34,7 @@ export type Props = Omit<ApiProps, 'item'> & {
  * our own interface aims at properties that only displays what is displayed.
  * See also Model vs. View
  */
-export default class ItemPopupIntl extends React.PureComponent<Props> {
+class ItemPopupIntl extends React.PureComponent<Props & InjectedIntlProps> {
   public static assertValidProps(
     item: ItemProps.Item,
     onError: (err: string) => void,
@@ -52,7 +53,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
     }
   }
 
-  constructor(props: Props) {
+  constructor(props: Props & InjectedIntlProps) {
     super(props);
 
     if (process.env.NODE_ENV !== 'production') {
@@ -151,7 +152,12 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
       if (augmentableNotZero(prop)) {
         properties.push({
           name: human,
-          values: [[rollableToString(prop.value), prop.augmented ? 1 : 0]],
+          values: [
+            [
+              formatValue(prop.value, { message: ROLLABLE_VALUE_MESSAGE }),
+              prop.augmented ? 1 : 0,
+            ],
+          ],
           displayMode: 0,
         });
       }
@@ -163,7 +169,12 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
         properties.push({
           name: <FormattedMessage id="poe.api.Block" defaultMessage="Block" />,
           values: [
-            [`${rollableToString(block.value)}%`, block.augmented ? 1 : 0],
+            [
+              formatValue(block.value, {
+                message: `${ROLLABLE_VALUE_MESSAGE}%`,
+              }),
+              block.augmented ? 1 : 0,
+            ],
           ],
           displayMode: 0,
         });
@@ -176,6 +187,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
   private apiWeaponProperties(
     weapon: ItemProps.WeaponProperties,
   ): ApiProps['item']['properties'] {
+    const { intl: { formatMessage } } = this.props;
     const properties: ApiProps['item']['properties'] = [];
     const {
       physical_damage,
@@ -199,7 +211,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
         ),
         values: [
           [
-            minMaxToString(physical_damage.value),
+            minMaxToString(physical_damage.value, formatMessage),
             physical_damage.augmented ? 1 : 0,
           ],
         ],
@@ -210,13 +222,16 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
     // Elemental Damage
     const elemental_damage: Array<[string, number]> = [];
     if (valueNotZero(fire_damage)) {
-      elemental_damage.push([minMaxToString(fire_damage), 4]);
+      elemental_damage.push([minMaxToString(fire_damage, formatMessage), 4]);
     }
     if (valueNotZero(cold_damage)) {
-      elemental_damage.push([minMaxToString(cold_damage), 5]);
+      elemental_damage.push([minMaxToString(cold_damage, formatMessage), 5]);
     }
     if (valueNotZero(lightning_damage)) {
-      elemental_damage.push([minMaxToString(lightning_damage), 6]);
+      elemental_damage.push([
+        minMaxToString(lightning_damage, formatMessage),
+        6,
+      ]);
     }
     if (elemental_damage.length > 0) {
       properties.push({
@@ -240,7 +255,7 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
             defaultMessage="Chaos Damage"
           />
         ),
-        values: [[minMaxToString(chaos_damage), 7]],
+        values: [[minMaxToString(chaos_damage, formatMessage), 7]],
         displayMode: 0,
       });
     }
@@ -254,7 +269,14 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
             defaultMessage="Weapon Range"
           />
         ),
-        values: [[rollableToString(range.value), range.augmented ? 1 : 0]],
+        values: [
+          [
+            formatValue(range.value, {
+              message: ROLLABLE_VALUE_MESSAGE,
+            }),
+            range.augmented ? 1 : 0,
+          ],
+        ],
         displayMode: 0,
       });
     }
@@ -270,7 +292,13 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
         ),
         values: [
           [
-            rollableToString(crit.value, n => asPercentString(n, 2)),
+            formatValue(crit.value, {
+              message: ROLLABLE_VALUE_MESSAGE,
+              formatter: {
+                id: 'divide_by_one_hundred_2dp',
+                arg: 1,
+              },
+            }),
             crit.augmented ? 1 : 0,
           ],
         ],
@@ -289,7 +317,13 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
         ),
         values: [
           [
-            `${rollableToString(aps.value, n => (n / 100).toFixed(2))}`,
+            formatValue(aps.value, {
+              message: ROLLABLE_VALUE_MESSAGE,
+              formatter: {
+                id: 'divide_by_one_hundred_2dp',
+                arg: 1,
+              },
+            }),
             aps.augmented ? 1 : 0,
           ],
         ],
@@ -314,7 +348,14 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
     if (augmentableNotZero(level)) {
       requirements.push({
         name: <FormattedMessage id="poe.api.Level" defaultMessage="Level" />,
-        values: [[rollableToString(level.value), level.augmented ? 1 : 0]],
+        values: [
+          [
+            formatValue(level.value, {
+              message: ROLLABLE_VALUE_MESSAGE,
+            }),
+            level.augmented ? 1 : 0,
+          ],
+        ],
         displayMode: 0,
       });
     }
@@ -326,7 +367,12 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
       requirements.push({
         name: <FormattedMessage id="poe.api.Dex" defaultMessage="Dex" />,
         values: [
-          [rollableToString(dexterity.value), dexterity.augmented ? 1 : 0],
+          [
+            formatValue(dexterity.value, {
+              message: ROLLABLE_VALUE_MESSAGE,
+            }),
+            dexterity.augmented ? 1 : 0,
+          ],
         ],
         displayMode: 1,
       });
@@ -340,7 +386,9 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
         name: <FormattedMessage id="poe.api.Int" defaultMessage="Int" />,
         values: [
           [
-            rollableToString(intelligence.value),
+            formatValue(intelligence.value, {
+              message: ROLLABLE_VALUE_MESSAGE,
+            }),
             intelligence.augmented ? 1 : 0,
           ],
         ],
@@ -355,7 +403,12 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
       requirements.push({
         name: <FormattedMessage id="poe.api.Str" defaultMessage="Str" />,
         values: [
-          [rollableToString(strength.value), strength.augmented ? 1 : 0],
+          [
+            formatValue(strength.value, {
+              message: ROLLABLE_VALUE_MESSAGE,
+            }),
+            strength.augmented ? 1 : 0,
+          ],
         ],
         displayMode: 1,
       });
@@ -395,3 +448,5 @@ export default class ItemPopupIntl extends React.PureComponent<Props> {
     throw new Error('could not determine frameType from item');
   }
 }
+
+export default injectIntl(ItemPopupIntl);
