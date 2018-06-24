@@ -5,34 +5,44 @@ import { InjectedIntlProps, injectIntl } from 'react-intl';
 
 import { Mod, isPrefix, isSuffix } from './Extended';
 import { Intersperse } from '../../../../util/react';
+import { stat } from 'fs-extra';
 
 export interface Props {
   mods: Mod[];
   showInfo: boolean;
+  stat_id: string;
 }
 
 class ExtendedStatValues extends React.PureComponent<
   Props & InjectedIntlProps
 > {
   public render() {
-    const { intl, mods, showInfo } = this.props;
+    const { intl, mods, showInfo, stat_id } = this.props;
 
     return (
       <Intersperse renderSeparator={() => ' + '}>
-        {mods.map(mod => (
-          <span
-            className={classnames({
-              suffix: isSuffix(mod),
-              prefix: isPrefix(mod),
-            })}
-          >
-            {mod.tier}
-            {showInfo &&
-              ` ${magnitudesToString(mod.magnitudes, {
-                formatMessage: intl.formatMessage,
-              })}`}
-          </span>
-        ))}
+        {mods.map(mod => {
+          // consider only the mod magnitudes that are relevant for this stat
+          // e.g. hybdrid mod have multiple magnitudes but for different stats
+          // but damage mods have 2 magnitudes for min and max range
+          const magnitudes = mod.magnitudes.filter(
+            ({ hash }) => hash === stat_id,
+          );
+          return (
+            <span
+              className={classnames({
+                suffix: isSuffix(mod),
+                prefix: isPrefix(mod),
+              })}
+            >
+              {mod.tier}
+              {showInfo &&
+                ` ${magnitudesToString(magnitudes, {
+                  formatMessage: intl.formatMessage,
+                })}`}
+            </span>
+          );
+        })}
       </Intersperse>
     );
   }

@@ -3,6 +3,7 @@ import * as React from 'react';
 import Extended, { Mod, ModGroup, Hash } from './Extended';
 import ExtendedStatValues from './ExtendedStatValues';
 import ExtendedStatNames from './ExtendedStatNames';
+import { stat } from 'fs';
 
 export interface Props {
   className: string;
@@ -29,6 +30,7 @@ export default class ExtendedStat extends React.PureComponent<Props> {
       onMouseOver = noop,
     } = this.props;
     const stat_mods = this.statMods();
+    const stat_id = this.statHash();
 
     return (
       <div
@@ -37,7 +39,11 @@ export default class ExtendedStat extends React.PureComponent<Props> {
         onMouseOver={this.handleMouseOver}
       >
         <span className="lc l">
-          <ExtendedStatValues showInfo={showInfo} mods={stat_mods} />
+          <ExtendedStatValues
+            showInfo={showInfo}
+            mods={stat_mods}
+            stat_id={stat_id}
+          />
         </span>
         <span className="lc s">{this.props.children}</span>
         {showInfo && (
@@ -93,5 +99,24 @@ export default class ExtendedStat extends React.PureComponent<Props> {
       }
       return mod;
     });
+  }
+
+  /**
+   * the stat_hash for this stat
+   */
+  private statHash(): string {
+    const hashes = this.props.extended.hashes[this.props.group];
+    if (hashes == null) {
+      console.warn(`extended '${this.props.group}' hashes not set`);
+      return '';
+    }
+
+    const stat = hashes[this.props.index];
+    if (stat == null) {
+      console.warn(`no hash set for stat ${this.props.index}`);
+      return '';
+    }
+
+    return stat[0];
   }
 }
