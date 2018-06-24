@@ -22,6 +22,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
   `MasterBench` no has all options. Zana's "Fortune favours the brave" is still
   not supported.
   ([#79](https://github.com/eps1lon/poe-mods/pull/79))
+- `SemanticSerializer` for items which aims at providing a relativley flat 
+  property tree for given items. It can serialize and deserialize.
+  ([#83](https://github.com/eps1lon/poe-mods/pull/83))
 ### Fixed
 - Fixed master meta mods not being applicable to items.
   ([#77](https://github.com/eps1lon/poe-mods/pull/77))
