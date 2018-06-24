@@ -12,13 +12,13 @@ const rootEl = document.getElementById('root');
 
 let render = () => {
   // tslint:disable-next-line: whitespace
-  type ComponentType = import('./containers/Root').ComponentType;
-  const RootAppComponent: ComponentType = require('./containers/Root').default;
+  type ComponentType = import('./components/Root').ComponentType;
+  const RootAppComponent: ComponentType = require('./components/Root').default;
   ReactDOM.render(<RootAppComponent store={store} version="0.2.0" />, rootEl);
 };
 
 if (module.hot) {
-  module.hot.accept('./containers/Root', () => {
+  module.hot.accept('./components/Root', () => {
     setTimeout(render);
   });
 }
