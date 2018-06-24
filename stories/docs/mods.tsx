@@ -7,10 +7,13 @@ import {
   createItems,
   createMods,
   Container,
+  SemanticItemSerializer,
+  Mod,
 } from 'poe-mods';
 import { Format } from 'poe-i18n';
 // 'poe-components-item'
 import { Popup } from '../../src/';
+import { ImmutableContainer } from 'poe-mods/dist/cjs/containers';
 
 // tslint:disable: no-var-requires
 const items = createItems(require('poe-mods/data/items/equipment.json'));
@@ -18,11 +21,8 @@ const mods = createMods([
   ...require('poe-mods/data/mods/prefixes.json'),
   ...require('poe-mods/data/mods/suffixes.json'),
 ]);
-const i18n = {
-  base_item_types: require('poe-i18n/locale-data/en/BaseItemTypes.json'),
-  datas: {
-    stat_descriptions: require('poe-i18n/locale-data/en/stat_descriptions.json'),
-  },
+const i18n_descriptions = {
+  stat_descriptions: require('poe-i18n/locale-data/en/stat_descriptions.json'),
 };
 
 const base_helmet: Item = items.fromId(
@@ -31,6 +31,7 @@ const base_helmet: Item = items.fromId(
 const helmet = base_helmet.rarity
   .set('rare')
   .asShaperItem()
+  .properties.setQuality(5)
   .addMod(mods.fromId('IncreasedLife0'))
   .addMod(mods.fromId('LocalIncreasedEnergyShield2'))
   .addMod(mods.fromId('LocalIncreasedEnergyShieldPercentAndStunRecovery3'))
@@ -69,25 +70,21 @@ const snapshotProperties = (item: Item) => {
       physical_damage: {
         augmented:
           physical_damage.min.augmented || physical_damage.max.augmented,
-        value: [physical_damage.min.value, physical_damage.max.value],
+        value: asTuple2Unsafe([
+          physical_damage.min.value,
+          physical_damage.max.value,
+        ]),
       },
-      cold_damage: [cold_damage.min.value, cold_damage.max.value],
+      cold_damage: asTuple2Unsafe([
+        cold_damage.min.value,
+        cold_damage.max.value,
+      ]),
       aps: properties.attack_speed(),
+      crit: properties.crit(),
     };
   } else {
     return base_properties;
   }
-};
-
-const snapshotRequirements = (item: Item) => {
-  const { level, dex, int, str } = item.requirements.list();
-
-  return {
-    level,
-    dexterity: dex,
-    intelligence: int,
-    strength: str,
-  };
 };
 
 const statsTranslated = (container: Container<any>, format: Format) => {
@@ -109,29 +106,105 @@ const snapShotItem = (
   item: Item,
   format: Format,
 ): PropsType<typeof Popup>['item'] => {
-  const rarity = item.rarity.toString();
-
-  const properties = snapshotProperties(item);
+  const {
+    rarity,
+    base,
+    corrupted,
+    elder,
+    shaper,
+    requirements,
+    name,
+  } = SemanticItemSerializer.serialize(item);
 
   return {
+    rarity: rarity === 'showcase' ? 'rare' : rarity,
     base: {
-      name: i18n.base_item_types[item.baseitem.id].name,
+      name: base.name,
     },
-    name: item.name.lines()[1],
-    elder: item.isElderItem(),
-    shaper: item.isSHaperItem(),
+    name,
+    elder,
+    shaper,
+    corrupted,
+    requirements,
     implicitStats: statsTranslated(item.implicits, format),
     explicitStats: statsTranslated(item.affixes, format),
-    rarity: rarity === 'showcase' ? 'unique' : rarity,
-    ...properties,
-    requirements: snapshotRequirements(item),
-    corrupted: item.props.corrupted,
+    ...snapshotProperties(item),
+  };
+};
+
+const getTier = (mod: Mod): number => {
+  const tier_match = mod.props.id.match(/(\d+)$/);
+  console.log(mod.props.id, tier_match);
+  if (tier_match == null) {
+    return 1;
+  } else {
+    return +tier_match[1];
+  }
+};
+
+const getTierText = (mod: Mod): string => {
+  let prefix = '';
+  if (mod.isPrefix()) {
+    prefix = 'P';
+  } else if (mod.isSuffix()) {
+    prefix = 'S';
+  }
+
+  return `${prefix}${getTier(mod)}`;
+};
+
+const getExtendedModGroup = (container: ImmutableContainer<Mod, any>) => {
+  const mods = container.mods;
+  const stats = container.statsExtended();
+
+  return {
+    mods: mods.map(mod => {
+      const tier = getTierText(mod);
+      return {
+        magnitudes: mod.statsJoined().map(stat => {
+          return {
+            hash: stat.id,
+            min: stat.values.min,
+            max: stat.values.max,
+          };
+        }),
+        name: mod.props.name,
+        tier,
+      };
+    }),
+    hashes: stats.map(({ stat: { id }, mod_indices }) => {
+      return [id, mod_indices] as [string, number[]];
+    }),
+  };
+};
+
+const getExtended = (item: Item): PropsType<typeof Popup>['extended'] => {
+  const { mods, hashes } = getExtendedModGroup(item.affixes);
+
+  return {
+    mods: { explicit: mods },
+    hashes: { explicit: hashes },
   };
 };
 
 const global_format = new Format();
-global_format.configure({ datas: i18n.datas });
+global_format.configure({ datas: i18n_descriptions });
 
 storiesOf('poe-mods integration', module)
-  .add('Helmet', () => <Popup item={snapShotItem(helmet, global_format)} />)
+  .add('Helmet', () => (
+    <Popup
+      item={snapShotItem(helmet, global_format)}
+      extended={getExtended(helmet)}
+      width={500}
+    />
+  ))
   .add('Weapon', () => <Popup item={snapShotItem(dagger, global_format)} />);
+
+/**
+ * typecast array to tuple with no runtime checks
+ * identity function!
+ * @param list
+ */
+function asTuple2Unsafe<T>(list: T[]): [T, T] {
+  return list as [T, T];
+}
