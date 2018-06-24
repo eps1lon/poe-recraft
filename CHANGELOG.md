@@ -4,7 +4,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/eps1lon/poe-react-item/compare/v0.3.0...HEAD)
+## [Unreleased](https://github.com/eps1lon/poe-react-item/compare/v0.4.0...HEAD)
+
+## [0.4.0](https://github.com/eps1lon/poe-react-item/compare/v0.3.0...v0.4.0) (2018-06-23)
+### Added
+- `extended` prop for `ApiPopup` and `ItemPopup` which has the same shape as 
+  the official trade API and displays tiers and ranges for stats
+
+### Changed
+- Use consistent display of value ranges (i.e. use en-dash for ranges).
+
+### Fixed
+- Providing a name for the base item did not actually use this value as a fallback.
+  It now correctly checks first for the id and tries i18n and then considers
+  the name property.
 
 ## [0.3.0](https://github.com/eps1lon/poe-react-item/compare/v0.2.1...v0.3.0) (2018-06-16)
 ### Added
