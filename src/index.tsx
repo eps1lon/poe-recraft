@@ -11,8 +11,10 @@ export type Dispatch = Store['dispatch'];
 const rootEl = document.getElementById('root');
 
 let render = () => {
-  const RootAppComponent = require('./containers/Root').default;
-  ReactDOM.render(<RootAppComponent store={store} />, rootEl);
+  // tslint:disable-next-line: whitespace
+  type ComponentType = import('./containers/Root').ComponentType;
+  const RootAppComponent: ComponentType = require('./containers/Root').default;
+  ReactDOM.render(<RootAppComponent store={store} version="0.2.0" />, rootEl);
 };
 
 if (module.hot) {

@@ -43,4 +43,15 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Root);
+const ControlledRoot = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Root);
+/**
+ * we need to export the type separately for import() type syntax
+ * using typeof import("Root") will cause "no call signature"
+ * but using import("Root").ControlledRoot will work. Despite resolving this would lead to
+ * and equivalent statement?!
+ */
+export type ComponentType = typeof ControlledRoot;
+export default ControlledRoot;
