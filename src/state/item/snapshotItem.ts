@@ -88,12 +88,21 @@ function snapshotWeaponProperties(properties: WeaponProperties) {
   return {
     physical_damage: {
       augmented: physical_damage.min.augmented || physical_damage.max.augmented,
-      value: [physical_damage.min.value, physical_damage.max.value]
+      value: unsafeAsTuple([
+        physical_damage.min.value,
+        physical_damage.max.value
+      ])
     },
-    cold_damage: [cold_damage.min.value, cold_damage.max.value],
-    fire_damage: [fire_damage.min.value, fire_damage.max.value],
-    lightning_damage: [lightning_damage.min.value, lightning_damage.max.value],
-    chaos_damage: [chaos_damage.min.value, chaos_damage.max.value],
+    cold_damage: unsafeAsTuple([cold_damage.min.value, cold_damage.max.value]),
+    fire_damage: unsafeAsTuple([fire_damage.min.value, fire_damage.max.value]),
+    lightning_damage: unsafeAsTuple([
+      lightning_damage.min.value,
+      lightning_damage.max.value
+    ]),
+    chaos_damage: unsafeAsTuple([
+      chaos_damage.min.value,
+      chaos_damage.max.value
+    ]),
     aps: properties.attack_speed(),
     crit: properties.crit(),
     range: properties.weapon_range()
@@ -121,4 +130,15 @@ function statsTranslated(container: Container<any>, descriptions: {}) {
     }),
     { datas: descriptions, fallback: Fallback.id }
   );
+}
+
+/**
+ * identity function
+ * typecasts an array to a tuple
+ * no checks at runtime so be sure to only pass explicitly i.e.
+ * unsafeAsTuple([1, 2])
+ * @param list
+ */
+function unsafeAsTuple<T>(list: T[]): [T, T] {
+  return list as [T, T];
 }
