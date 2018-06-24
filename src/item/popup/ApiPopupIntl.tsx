@@ -113,7 +113,7 @@ export default class ApiPopupIntl extends React.PureComponent<Props, State> {
   }
 
   public render() {
-    const { classname, item } = this.props;
+    const { classname, extended, item } = this.props;
     const { width } = this.state;
     const style = {
       width: width === undefined ? 'auto' : width,
@@ -128,7 +128,7 @@ export default class ApiPopupIntl extends React.PureComponent<Props, State> {
         ref={this.ref}
       >
         <Head item={item} />
-        <Body item={item} />
+        <Body item={item} extended={extended} />
       </div>
     );
   }
@@ -155,6 +155,10 @@ export default class ApiPopupIntl extends React.PureComponent<Props, State> {
       );
       this.setState({ width });
     }
+  }
+
+  private hasExtendedModView() {
+    return this.props.extended != null;
   }
 }
 
