@@ -15,8 +15,8 @@ let render = () => {
   ReactDOM.render(<RootAppComponent store={store} />, rootEl);
 };
 
-if ((module as any).hot) {
-  (module as any).hot.accept('./containers/Root', () => {
+if (module.hot) {
+  module.hot.accept('./containers/Root', () => {
     setTimeout(render);
   });
 }
