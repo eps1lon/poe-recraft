@@ -38,5 +38,51 @@ storiesOf('api/item', module).add('shaped', () => (
       ],
       corrupted: true,
     }}
+    extended={{
+      hashes: {
+        explicit: [
+          ['stat0', [0]],
+          ['stat1', [1]],
+          ['stat2', [2]],
+          ['stat3', [3]],
+          ['stat4', [4]],
+          ['stat5', [5]],
+        ],
+      },
+      mods: {
+        explicit: [
+          {
+            name: 'Hale',
+            tier: 'P1',
+            magnitudes: [{ min: 3, max: 9, hash: 'stat0' }],
+          },
+          {
+            name: 'Glimmering',
+            tier: 'P2',
+            magnitudes: [{ min: 6, max: 11, hash: 'stat1' }],
+          },
+          {
+            name: "Boggart's",
+            tier: 'P3',
+            magnitudes: [{ min: 21, max: 26, hash: 'stat2' }, { min: 10, max: 11, hash: 'stat0' }],
+          },
+          {
+            name: 'Hale',
+            tier: 'P8',
+            magnitudes: [{ min: 3, max: 9, hash: 'stat0' }],
+          },
+          {
+            name: 'Hale',
+            tier: 'P8',
+            magnitudes: [{ min: 3, max: 9, hash: 'stat0' }],
+          },
+          {
+            name: 'Hale',
+            tier: 'P8',
+            magnitudes: [{ min: 3, max: 9, hash: 'stat0' }],
+          },
+        ],
+      },
+    }}
   />
 ));
