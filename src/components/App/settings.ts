@@ -13,7 +13,7 @@ export const SUPPORTED_LOCALES = [
 ];
 
 // version of the game client for which data is provided in public/data
-export const GAME_VERSION = '3.3.0';
+export const GAME_VERSION = 'steam@3.3.0';
 
 // available itemclasses grouped by community convention
 export const ITEMCLASSES_GROUPED = [

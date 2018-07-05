@@ -1,6 +1,7 @@
 import React, { SFC } from 'react';
-import { Nav, NavItem } from 'reactstrap';
+import { Nav, NavItem, NavLink } from 'reactstrap';
 
+import About from 'components/App/About';
 import ApplyGenerator from 'containers/ApplyGenerator';
 import AvailableMods from 'containers/AvailableMods';
 import BaseItemModal from 'containers/baseitem_picker/Modal';
@@ -14,24 +15,20 @@ import * as settings from './settings';
 import './index.css';
 
 export type Props = {
-  version: string;
-};
-
-const default_props = {
-  version: settings.GAME_VERSION
+  app_version: string;
+  game_version: string;
 };
 
 // @ts-ignore: jsx array elements not supported
 const AppUI: SFC<Props> = props => {
-  const { version } = props;
+  const { game_version, app_version } = props;
 
   return [
     <header key="header">
-      <a href="">Path of Exile Mod Repository</a>
-      <span id="client">
-        (Patch: <em id="game_version">{version}</em>)
-      </span>
       <Nav tabs={true}>
+        <NavItem>
+          <NavLink href="">Home</NavLink>
+        </NavItem>
         <ItemclassPicker groups={settings.ITEMCLASSES_GROUPED} />
         <NavItem>
           <BaseItemModal />
@@ -42,6 +39,7 @@ const AppUI: SFC<Props> = props => {
         <NavItem>
           <ApplyGenerator />
         </NavItem>
+        <About game_version={game_version} app_version={app_version} />
         <LanguagePicker locales={settings.SUPPORTED_LOCALES} />
       </Nav>
     </header>,
@@ -51,7 +49,5 @@ const AppUI: SFC<Props> = props => {
     </div>
   ];
 };
-
-AppUI.defaultProps = default_props;
 
 export default AppUI;

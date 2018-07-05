@@ -2,12 +2,13 @@ import React, { PureComponent } from 'react';
 import { IntlProvider } from 'react-intl';
 
 import AppUI from './AppUI';
+import { GAME_VERSION } from './settings';
 
 export type Props = {
   locale: string;
   messages: { [key: string]: any };
-  version: string;
   init: () => void;
+  version: string;
 };
 
 class App extends PureComponent<Props> {
@@ -24,7 +25,7 @@ class App extends PureComponent<Props> {
 
     return (
       <IntlProvider key={key} locale={locale} messages={messages}>
-        <AppUI {...{ version }} />
+        <AppUI {...{ app_version: version, game_version: GAME_VERSION }} />
       </IntlProvider>
     );
   }
