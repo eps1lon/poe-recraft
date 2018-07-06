@@ -12,7 +12,7 @@ export function* combineLatest(
   options: Partial<CombineLatestOptions> = {}
 ) {
   const { break_out = false } = options;
-  let actions: { [key: string]: any } = {};
+  const actions: { [key: string]: any } = {};
 
   const invariant: typeof pendingActions = break_out
     ? pendingActions

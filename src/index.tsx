@@ -10,7 +10,7 @@ export type Dispatch = Store['dispatch'];
 
 const rootEl = document.getElementById('root');
 
-let render = () => {
+const render = () => {
   // tslint:disable-next-line: whitespace
   type ComponentType = import('./components/Root').ComponentType;
   const RootAppComponent: ComponentType = require('./components/Root').default;
