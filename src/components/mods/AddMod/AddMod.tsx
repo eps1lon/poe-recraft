@@ -9,13 +9,13 @@ export interface Props {
 }
 
 export default class AddMod extends React.PureComponent<Props> {
-  onClick = () => this.props.onClick(this.props.mod);
-
-  render() {
+  public render() {
     return (
-      <button className="add-mod" onClick={this.onClick}>
+      <button className="add-mod" onClick={this.handleClick}>
         +
       </button>
     );
   }
+
+  private handleClick = () => this.props.onClick(this.props.mod);
 }

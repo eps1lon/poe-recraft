@@ -10,11 +10,11 @@ export interface Props {
 }
 
 export default class Tags extends React.PureComponent<Props> {
-  static default_props = {};
+  public static default_props = {};
 
   private add_tag: HTMLSelectElement | null = null;
 
-  render() {
+  public render() {
     const { props } = this;
 
     return (

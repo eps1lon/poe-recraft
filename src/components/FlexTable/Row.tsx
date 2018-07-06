@@ -11,7 +11,7 @@ export interface Props<T> {
 }
 
 export default class Row<T> extends React.PureComponent<Props<T>> {
-  render() {
+  public render() {
     const { className, columns, data } = this.props;
     return (
       <div className={classnames('flex-table-row', className)}>

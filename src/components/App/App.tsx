@@ -12,11 +12,11 @@ export interface Props {
 }
 
 class App extends PureComponent<Props> {
-  componentDidMount() {
+  public componentDidMount() {
     this.props.init();
   }
 
-  render() {
+  public render() {
     const { locale, messages, version } = this.props;
     // some key that tells react to rerender
     // injectIntl intl didnt provide the api that was documented so

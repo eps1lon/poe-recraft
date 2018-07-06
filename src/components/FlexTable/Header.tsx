@@ -14,7 +14,7 @@ export default class Header<T> extends React.PureComponent<Props<T>> {
     onHeaderClick: () => undefined
   };
 
-  render() {
+  public render() {
     const { columns, onHeaderClick } = this.props as Props<T> &
       typeof Header.defaultProps;
     return (

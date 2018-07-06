@@ -35,7 +35,7 @@ export default class AtlasModifiers extends Component<Props, State> {
     this.state = { is_modifieable: props.is_modifieable };
   }
 
-  componentDidCatch() {
+  public componentDidCatch() {
     // assume as*Item threw
     this.setState({ is_modifieable: false });
   }

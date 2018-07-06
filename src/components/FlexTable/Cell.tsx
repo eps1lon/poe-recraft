@@ -8,7 +8,7 @@ export interface Props<T> {
 }
 
 export default class Cell<T> extends React.PureComponent<Props<T>> {
-  render() {
+  public render() {
     const { className, data, renderItem } = this.props;
     return (
       <div className={classnames('flex-table-cell', className)}>

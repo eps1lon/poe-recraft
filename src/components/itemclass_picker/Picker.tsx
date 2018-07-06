@@ -17,7 +17,7 @@ export interface State {
 }
 
 export default class ItemClassGroup extends PureComponent<Props, State> {
-  toggle = (name: string) => () => {
+  public toggle = (name: string) => () => {
     this.setState({
       expanded: {
         ...this.state.expanded,
@@ -36,7 +36,7 @@ export default class ItemClassGroup extends PureComponent<Props, State> {
     };
   }
 
-  render() {
+  public render() {
     const { active, groups } = this.props;
     const { expanded } = this.state;
 

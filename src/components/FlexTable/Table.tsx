@@ -25,7 +25,7 @@ export default class Table<T> extends React.PureComponent<Props<T>, State> {
     };
   }
 
-  render() {
+  public render() {
     const { columns, data, getTrProps } = this.props;
     const { sortColumn, sortOrder } = this.state;
 
