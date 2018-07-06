@@ -92,10 +92,10 @@ export interface CraftingBenchOptionsProps {
       short_name: string;
     };
   };
-  costs: {
+  costs: Array<{
     amount: number;
     base_item_type: BaseItemTypeProps;
-  }[];
+  }>;
   mod: ModProps | undefined;
   item_classes: ItemClassProps[];
 }

@@ -6,7 +6,7 @@ import Cell from './Cell';
 
 export interface Props<T> {
   className?: string;
-  columns: Column<T>[];
+  columns: Array<Column<T>>;
   data: T;
 }
 

@@ -5,7 +5,7 @@ import { Column } from './props';
 import Cell from './Cell';
 
 export interface Props<T> {
-  columns: Column<T>[];
+  columns: Array<Column<T>>;
   onHeaderClick?: (col: Column<T>, index: number) => any;
 }
 

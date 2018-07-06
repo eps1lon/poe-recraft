@@ -9,7 +9,7 @@ export type WithSpawnchance<T extends Object> = T & {
  */
 export function withSpawnchance<T extends { spawnweight?: number }>(
   items: T[]
-): WithSpawnchance<T>[] {
+): Array<WithSpawnchance<T>> {
   let max_weight = Number.NEGATIVE_INFINITY;
   const spawnweight_sum = items.reduce((sum, { spawnweight }) => {
     if (spawnweight !== undefined) {

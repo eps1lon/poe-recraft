@@ -6,7 +6,7 @@ import Header from './Header';
 import Row, { Props as RowProps } from './Row';
 
 export interface Props<T> {
-  columns: Column<T>[];
+  columns: Array<Column<T>>;
   data: T[];
   getTrProps: (data: T) => Partial<Pick<RowProps<T>, 'className'>>;
 }
