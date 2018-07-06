@@ -2,9 +2,9 @@ import { combineReducers } from 'redux';
 
 import expanded, { ExpandedState } from './expanded';
 
-export type State = {
+export interface State {
   expanded: ExpandedState;
-};
+}
 
 const gui = combineReducers({ expanded });
 

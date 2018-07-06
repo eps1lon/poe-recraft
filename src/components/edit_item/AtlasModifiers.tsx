@@ -2,18 +2,18 @@ import classnames from 'classnames';
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 
-export type Props = {
+export interface Props {
   is_modifieable: boolean;
   is_shaped: boolean;
   is_elder: boolean;
   onShape: () => any;
   onElder: () => any;
   onNone: () => any;
-};
+}
 
-export type State = {
+export interface State {
   is_modifieable: boolean;
-};
+}
 
 const default_props = {
   onElder: () => {},

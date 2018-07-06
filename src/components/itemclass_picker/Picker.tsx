@@ -3,18 +3,18 @@ import { Dropdown, DropdownToggle } from 'reactstrap';
 
 import GroupDropdown from './GroupDropdown';
 
-export type Props = {
+export interface Props {
   active: string | undefined;
   groups: Array<{
     human: string;
     name: string;
     classes: string[];
   }>;
-};
+}
 
-export type State = {
+export interface State {
   expanded: { [key: string]: boolean };
-};
+}
 
 export default class ItemClassGroup extends PureComponent<Props, State> {
   toggle = (name: string) => () => {

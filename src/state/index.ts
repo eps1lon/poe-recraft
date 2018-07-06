@@ -6,13 +6,13 @@ import gui, { GuiState } from './gui/';
 import i18n, { I18nState } from './i18n';
 import poe, { PoeState } from './poe';
 
-export type State = {
+export interface State {
   baseitemfilter: BaseitemFilterState;
   craft: CraftState;
   gui: GuiState;
   i18n: I18nState;
   poe: PoeState;
-};
+}
 
 export default combineReducers({
   baseitemfilter,

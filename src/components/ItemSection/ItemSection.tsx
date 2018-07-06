@@ -7,10 +7,10 @@ import Generators from 'containers/ItemSection/Generators';
 import 'poe-components-item/themes/poe.css';
 import './style.css';
 
-export type Props = {
+export interface Props {
   item?: PropsType<typeof ItemPopup>['item'] | undefined;
   display_generators?: boolean;
-};
+}
 
 const ItemSection: SFC<Props> = props => {
   const { display_generators, item } = props;

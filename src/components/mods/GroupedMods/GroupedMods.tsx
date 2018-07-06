@@ -8,13 +8,13 @@ import CorrectGroup from 'containers/i18n/CorrectGroup';
 import { GeneratorDetails } from '../ModsTable';
 import './style.css';
 
-export type Props = {
+export interface Props {
   className: string;
   groups: Map<string, { details: GeneratorDetails[]; disabled: boolean }>;
   options?: {};
   isExpanded: (id: string) => boolean;
   onGroupClick: (id: string) => any;
-};
+}
 
 const default_props = {
   isExpanded: () => false,

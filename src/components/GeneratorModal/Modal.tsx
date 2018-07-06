@@ -8,13 +8,13 @@ import './style.css';
 
 type GeneratorId = string;
 
-export type Props = {
+export interface Props {
   active: GeneratorId;
   is_open: boolean;
   loading: boolean;
   onChange: (id: GeneratorId) => any;
   onToggle: () => any;
-};
+}
 
 const default_props = {
   onChange: () => {},

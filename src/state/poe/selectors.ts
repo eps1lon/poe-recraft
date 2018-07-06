@@ -7,9 +7,9 @@ import { isRequested } from '../redux-api-middleware-reducer';
 
 export { generators };
 
-type State = {
+interface State {
   poe: PoeState;
-};
+}
 
 export function apiEndpoint(endpoint: string): (state: State) => string {
   return (state: State) => `./${endpoint}`;

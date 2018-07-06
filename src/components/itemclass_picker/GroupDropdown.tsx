@@ -3,9 +3,9 @@ import { DropdownMenu } from 'reactstrap';
 
 import ItemClass from 'containers/itemclass_picker/ItemClass';
 
-export type Props = {
+export interface Props {
   classes: string[];
-};
+}
 
 const GroupDropdown: SFC<Props> = props => {
   const { classes } = props;

@@ -4,9 +4,9 @@ import RaritySwitcher from 'containers/RaritySwitcher';
 import AtlasModifiers from 'containers/edit_item/AtlasModifiers';
 import Tags from 'containers/edit_item/Tags';
 
-export type Props = {
+export interface Props {
   onToggle: () => void;
-};
+}
 
 const default_props = {
   onToggle: () => {}

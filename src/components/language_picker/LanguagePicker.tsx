@@ -9,11 +9,11 @@ import {
 import './style.css';
 import LocaleIcon from './LocaleIcon';
 
-export type Props = {
+export interface Props {
   active_locale: string;
   locales: string[];
   onChange: (locale: string) => any;
-};
+}
 
 const default_props = {
   onChange: () => {}

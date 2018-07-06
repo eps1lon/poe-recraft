@@ -3,11 +3,11 @@ import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import Body from './Body';
 
-export type Props = {
+export interface Props {
   is_open: boolean;
   onChange: () => any;
   onToggle: () => any;
-};
+}
 
 const default_props = {
   onChange: () => {},

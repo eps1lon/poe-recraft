@@ -14,10 +14,10 @@ import * as settings from './settings';
 
 import './index.css';
 
-export type Props = {
+export interface Props {
   app_version: string;
   game_version: string;
-};
+}
 
 // @ts-ignore: jsx array elements not supported
 const AppUI: SFC<Props> = props => {

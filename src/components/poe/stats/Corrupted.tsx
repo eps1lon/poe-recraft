@@ -1,8 +1,6 @@
 import React, { SFC } from 'react';
 
-export type Props = {};
-
-const Corrupted: SFC<Props> = props => {
+const Corrupted: SFC = () => {
   return <span className="text-corrupted">Corrupted</span>;
 };
 

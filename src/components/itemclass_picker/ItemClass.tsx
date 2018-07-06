@@ -2,12 +2,12 @@ import React, { SFC } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { DropdownItem } from 'reactstrap';
 
-export type Props = {
+export interface Props {
   active: string;
   id: string;
   name: string;
   onClick: (primary: string) => any;
-};
+}
 
 const ItemClassGroup: SFC<Props> = props => {
   const { active, name, onClick, id } = props;

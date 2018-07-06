@@ -1,11 +1,11 @@
 import { Mod } from 'poe-mods';
 import React, { SFC } from 'react';
 
-export type Props = {
+export interface Props {
   className: string;
   mods: Mod[];
   onRemoveMod: (mod: Mod) => any;
-};
+}
 
 // TODO remove handle
 // TODO translate mod

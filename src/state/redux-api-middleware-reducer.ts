@@ -21,19 +21,19 @@ export function isFailed(state: State<any>) {
   return state.loading_state === LoadingState.failed;
 }
 
-export type RequestAction<T> = {
+export interface RequestAction<T> {
   type: T;
-};
-export type SuccessAction<T, P> = {
+}
+export interface SuccessAction<T, P> {
   type: T;
   payload: P;
-};
+}
 export const createIsSuccessAction = <S, T>(success: S | any) => (
   action: RsaaAction<any, S, any, any>
 ): action is SuccessAction<S, T> => action.type === success;
-export type FailureAction<T> = {
+export interface FailureAction<T> {
   type: T;
-};
+}
 export type RsaaAction<R, S, F, P> =
   | RequestAction<R>
   | SuccessAction<S, P>

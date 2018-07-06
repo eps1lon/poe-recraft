@@ -1,9 +1,9 @@
 import React, { SFC } from 'react';
 
 // TODO acceppt only number and format accordingly
-export type Props = {
+export interface Props {
   value: string;
-};
+}
 
 const Value: SFC<Props> = ({ value }) => {
   return <span className="text-value">{value}</span>;

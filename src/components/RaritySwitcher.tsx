@@ -2,12 +2,12 @@ import React, { SFC, SyntheticEvent } from 'react';
 
 type RarityId = string;
 
-export type Props = {
+export interface Props {
   available: RarityId[];
   id: string;
   selected: RarityId | undefined;
   onChange: (rarity: RarityId) => any;
-};
+}
 
 const default_props = {
   onChange: () => {}

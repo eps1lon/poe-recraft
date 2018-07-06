@@ -7,18 +7,18 @@ import { State } from 'state';
 import { falseFlags } from 'util/flags';
 import { withSpawnchance } from 'util/spawnweight';
 
-export type GeneratorDetails = {
+export interface GeneratorDetails {
   mod: Mod;
   applicable?: Flags;
   spawnable?: Flags;
   spawnweight?: number;
-};
+}
 
-export type AvailableMods = {
+export interface AvailableMods {
   prefixes: GeneratorDetails[];
   suffixes: GeneratorDetails[];
   implicits: GeneratorDetails[];
-};
+}
 
 const availableMods = (
   item?: Item,

@@ -5,10 +5,10 @@ import { BaseItemTypeProps } from '../poe/schema';
 import { PoeState } from '../poe';
 import { checkCnf } from 'util/predicate';
 
-export type BaseitemFilter = {
+export interface BaseitemFilter {
   item_class: string;
   tags: string[][];
-};
+}
 
 export const makeFilterItems = () =>
   createSelector(

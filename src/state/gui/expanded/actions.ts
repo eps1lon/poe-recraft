@@ -18,9 +18,9 @@ export type Action =
   | ToggleBaseItemModalAction
   | ToggleEditItemModalAction;
 
-export type ReactTableExpanded = {
+export interface ReactTableExpanded {
   [key: number]: ReactTableExpanded | boolean;
-};
+}
 
 export type CollapseAction = Action<Type.COLLAPSE, GuiIdent>;
 export const collapse = (component: GuiIdent): CollapseAction => ({

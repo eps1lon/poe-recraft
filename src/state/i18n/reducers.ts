@@ -11,13 +11,13 @@ import {
   SetMessagesAction
 } from './actions';
 
-export type State = {
+export interface State {
   locale: string;
   descriptions: {};
   messages: {
     [key: string]: string;
   };
-};
+}
 
 const initial: State = {
   locale: 'en',

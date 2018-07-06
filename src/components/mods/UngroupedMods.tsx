@@ -10,14 +10,14 @@ import { GeneratorDetails } from './ModsTable';
 import Table from '../FlexTable';
 import Stats from '../poe/Stats';
 
-export type Props = {
+export interface Props {
   className?: string;
   details: GeneratorDetails[];
   options?: Partial<{
     exclude: string[];
   }>;
   onAddMod: (mod: Mod) => any;
-};
+}
 
 const renderSpawnweight = (spawnweight?: number) =>
   String(spawnweight || 'none');

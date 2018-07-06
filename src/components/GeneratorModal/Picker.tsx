@@ -3,10 +3,10 @@ import { Button } from 'reactstrap';
 
 import Orb from './Orb';
 
-export type Props = {
+export interface Props {
   active: string;
   onChange: (generator: string) => void;
-};
+}
 
 const default_props = {
   onChange: () => {}

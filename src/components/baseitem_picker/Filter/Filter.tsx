@@ -9,11 +9,11 @@ export interface BaseitemFilter {
   tags: string[][];
 }
 
-export type Props = {
+export interface Props {
   item_class: string;
   tags: string[][];
   onChange?: (filter: BaseitemFilter) => any;
-};
+}
 
 const classes_with_defence_groups = [
   'Helmet',

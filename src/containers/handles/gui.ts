@@ -2,9 +2,9 @@ import { Dispatch } from 'redux';
 
 import { gui_actions } from 'state/gui';
 
-export type ExpandedHandles = {
+export interface ExpandedHandles {
   onCollapse: (id: gui_actions.GuiIdent) => any;
-};
+}
 export const expanded = (dispatch: Dispatch): ExpandedHandles => {
   return {
     onCollapse: (ident: gui_actions.GuiIdent) =>

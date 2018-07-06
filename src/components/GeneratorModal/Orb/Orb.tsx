@@ -4,10 +4,10 @@ import { Button, UncontrolledTooltip } from 'reactstrap';
 import orbs from './orbs';
 import { FormattedGenerator } from 'components/i18n';
 
-export type Props = {
+export interface Props {
   id: string;
   onClick: (orb_id: string) => void;
-};
+}
 
 const default_props = {
   onClick: () => {}

@@ -4,12 +4,12 @@ import { IntlProvider } from 'react-intl';
 import AppUI from './AppUI';
 import { GAME_VERSION } from './settings';
 
-export type Props = {
+export interface Props {
   locale: string;
   messages: { [key: string]: any };
   init: () => void;
   version: string;
-};
+}
 
 class App extends PureComponent<Props> {
   componentDidMount() {

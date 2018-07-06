@@ -5,11 +5,11 @@ import { Button } from 'reactstrap';
 import { BaseItemTypeProps } from 'state/poe/schema';
 import './style.css';
 
-export type Props = {
+export interface Props {
   active?: BaseItemTypeProps | undefined;
   baseitems: BaseItemTypeProps[];
   onChange?: (item: BaseItemTypeProps) => any;
-};
+}
 
 export default class Picker extends React.PureComponent<Props> {
   public static defaultProps = {

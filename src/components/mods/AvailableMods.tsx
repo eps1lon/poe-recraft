@@ -6,11 +6,11 @@ import { GeneratorDetails } from './ModsTable';
 
 import ModsTable from 'containers/mods/ModsTable';
 
-export type Props = {
+export interface Props {
   implicits: GeneratorDetails[];
   prefixes: GeneratorDetails[];
   suffixes: GeneratorDetails[];
-};
+}
 
 const AvailableMods: SFC<Props> = ({ prefixes, suffixes, implicits }) => {
   return (

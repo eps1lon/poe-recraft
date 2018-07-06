@@ -6,21 +6,21 @@ import { Button } from 'reactstrap';
 import GroupedMods from 'containers/mods/GroupedMods';
 import UngroupedMods from 'containers/mods/UngroupedMods';
 
-type Options = {
+interface Options {
   grouped?: boolean;
   exclude?: string[];
-};
+}
 
-export type GeneratorDetails = {
+export interface GeneratorDetails {
   mod: Mod;
   applicable?: Flags;
   spawnable?: Flags;
   spawnweight?: number;
   spawnchance?: number;
   relative_weight?: number;
-};
+}
 
-export type Props = {
+export interface Props {
   className: string;
   expanded: boolean;
   group_expanded: boolean;
@@ -29,7 +29,7 @@ export type Props = {
   options: Options;
   onGroupToggle: (group: string) => void;
   onToggle: (group: string, show: boolean) => void;
-};
+}
 
 const defaultProps = {
   expanded: true,

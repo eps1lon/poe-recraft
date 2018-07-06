@@ -7,13 +7,13 @@ import App from 'components/App';
 import { State } from 'state';
 import { Dispatch, Store } from '../';
 
-export type Props = {
+export interface Props {
   locale: string;
   messages: { [key: string]: any };
   version: string;
   init: () => void;
   store: Store;
-};
+}
 
 const Root: SFC<Props> = ({ locale, messages, store, init, version }) => {
   return (

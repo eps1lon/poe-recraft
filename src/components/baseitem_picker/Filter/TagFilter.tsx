@@ -2,11 +2,11 @@ import React, { SFC } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Button } from 'reactstrap';
 
-export type Props = {
+export interface Props {
   className?: string;
   tag: string;
   onClick: (tag: string) => any;
-};
+}
 
 const default_props = {
   onClick: () => {}

@@ -1,13 +1,13 @@
 import React, { SFC } from 'react';
 import { Button } from 'reactstrap';
 
-export type Props = {
+export interface Props {
   addable: string[];
   removable: string[];
   current: string[];
   addTag: (tag: string) => any;
   removeTag: (tag: string) => any;
-};
+}
 
 export default class Tags extends React.PureComponent<Props> {
   static default_props = {};

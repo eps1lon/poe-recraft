@@ -4,10 +4,10 @@ import { Provider } from 'react-redux';
 import App from 'containers/App';
 import { Dispatch, Store } from '../';
 
-export type Props = {
+export interface Props {
   version: string;
   store: Store;
-};
+}
 
 const Root: SFC<Props> = ({ store, version }) => {
   return (

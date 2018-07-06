@@ -8,12 +8,12 @@ import Picker from 'containers/baseitem_picker/Picker';
 import { BaseItemTypeProps } from 'state/poe/schema';
 import './style.css';
 
-export type Props = {
+export interface Props {
   active: BaseItemTypeProps | undefined;
   is_open: boolean;
   loading: boolean;
   onToggle: () => any;
-};
+}
 
 const default_props = {
   onToggle: () => {}

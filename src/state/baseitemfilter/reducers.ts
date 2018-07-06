@@ -2,10 +2,10 @@ import { Reducer } from 'redux';
 
 import { Action, Types } from './actions';
 
-export type State = {
+export interface State {
   item_class: string;
   tags: string[][];
-};
+}
 
 const initial: State = {
   item_class: 'Boots',

@@ -2,9 +2,9 @@ import React, { SFC } from 'react';
 
 import locales from './locales';
 
-export type Props = {
+export interface Props {
   code: string;
-};
+}
 
 const default_props = {};
 

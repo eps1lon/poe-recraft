@@ -1,7 +1,9 @@
 import { propOrUndefined } from '../typesafe';
 
 describe('propOrUndefined', () => {
-  type Obj = { foo?: number };
+  interface Obj {
+    foo?: number;
+  }
   const obj1: Obj = { foo: 1 };
   const obj2: Obj = {};
 

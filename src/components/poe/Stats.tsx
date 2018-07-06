@@ -3,11 +3,11 @@ import { Stat } from 'poe-mods';
 import React, { SFC } from 'react';
 import injectDescriptions from 'containers/injectDescriptions';
 
-type Props = {
+export interface Props {
   className: string;
   descriptions: {};
   stats: Stat[];
-};
+}
 
 // @ts-ignore: jsx array elements not supported
 const Stats: SFC<Props> = ({ className, stats, descriptions }) => {

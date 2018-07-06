@@ -1,14 +1,14 @@
 import React, { SFC } from 'react';
 import { UncontrolledTooltip } from 'reactstrap';
 
-type Flags = {
+interface Flags {
   [key: string]: boolean;
-};
+}
 
-type Props = {
+interface Props {
   id: string;
   flags: Array<Flags | undefined>;
-};
+}
 
 const FlagsTooltip = (props: Props) => {
   const titles = props.flags

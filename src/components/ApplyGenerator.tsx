@@ -6,11 +6,11 @@ import { anySet } from '../util/flags';
 
 type GeneratorId = string;
 
-export type Props = {
+export interface Props {
   active: GeneratorId;
   applicableTo: { [key: string]: boolean };
   onClick: () => any;
-};
+}
 
 const default_props = {
   onClick: () => {}

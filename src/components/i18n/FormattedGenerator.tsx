@@ -1,10 +1,10 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-export type Props = {
+export interface Props {
   id: string;
   children?: (name: string | JSX.Element) => React.ReactNode;
-};
+}
 
 const FormattedModName: React.SFC<Props> = props => {
   const { children } = props;
