@@ -67,7 +67,7 @@
     "deploy": "gh-pages -d build",
     "eject": "react-scripts-ts eject",
     "format": "prettier \"--write src/**/*.ts\"",
-    "lint": "tslint -p tsconfig.json",
+    "lint": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\"",
     "prepush": "prettier --list-different \"--write src/**/*.ts\" && cross-env CI=true yarn test",
     "start-js": "react-scripts-ts start",
     "start": "npm-run-all -p watch-css start-js",
