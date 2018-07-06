@@ -1,4 +1,4 @@
-export type WithSpawnchance<T extends Object> = T & {
+export type WithSpawnchance<T extends object> = T & {
   spawnchance?: number;
   relative_weight?: number;
 };
