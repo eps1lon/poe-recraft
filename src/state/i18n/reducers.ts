@@ -1,15 +1,6 @@
 import flatten from 'flat';
 
-import {
-  Type,
-  Action,
-  setDescriptions,
-  SetDescriptionsAction,
-  setLocale,
-  SetLocaleAction,
-  setMessages,
-  SetMessagesAction
-} from './actions';
+import * as actions from './actions';
 
 export interface State {
   locale: string;
@@ -25,20 +16,23 @@ const initial: State = {
   messages: {}
 };
 
-export default function reducer(state: State = initial, action: Action): State {
+export default function reducer(
+  state: State = initial,
+  action: actions.Action
+): State {
   switch (action.type) {
-    case Type.SET_DESCRIPTIONS:
+    case actions.Type.SET_DESCRIPTIONS:
       return setDescriptionsHandle(state, action);
-    case Type.SET_LOCALE:
+    case actions.Type.SET_LOCALE:
       return setLocaleHandle(state, action);
-    case Type.SET_MESSAGES:
+    case actions.Type.SET_MESSAGES:
       return setMessagesHandle(state, action);
     default:
       return state;
   }
 }
 
-function setLocaleHandle(state: State, action: SetLocaleAction): State {
+function setLocaleHandle(state: State, action: actions.SetLocaleAction): State {
   return {
     ...state,
     locale: action.payload
@@ -47,7 +41,7 @@ function setLocaleHandle(state: State, action: SetLocaleAction): State {
 
 function setDescriptionsHandle(
   state: State,
-  action: SetDescriptionsAction
+  action: actions.SetDescriptionsAction
 ): State {
   return {
     ...state,
@@ -55,7 +49,10 @@ function setDescriptionsHandle(
   };
 }
 
-function setMessagesHandle(state: State, action: SetMessagesAction): State {
+function setMessagesHandle(
+  state: State,
+  action: actions.SetMessagesAction
+): State {
   return {
     ...state,
     messages: flatten(action.payload)

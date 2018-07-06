@@ -1,13 +1,14 @@
 import React, { SFC } from 'react';
 import {
-  UncontrolledDropdown,
   DropdownItem,
   DropdownMenu,
-  DropdownToggle
+  DropdownToggle,
+  UncontrolledDropdown
 } from 'reactstrap';
 
-import './style.css';
 import LocaleIcon from './LocaleIcon';
+
+import './style.css';
 
 export interface Props {
   active_locale: string;

@@ -1,28 +1,7 @@
 import { Item } from 'poe-mods';
 import { Reducer } from 'redux';
 
-import {
-  Type,
-  Action,
-  AddModAction,
-  addMod,
-  RemoveModAction,
-  removeMod,
-  SetItemAction,
-  setItem,
-  SetRarityAction,
-  setRarity,
-  AddTagAction,
-  addTag,
-  RemoveTagAction,
-  removeTag,
-  AsElderItemAction,
-  asElderItem,
-  AsShaperItemAction,
-  asShaperItem,
-  RemoveAtlasModifierAction,
-  removeAtlasModifier
-} from './actions';
+import * as actions from './actions';
 
 export interface State {
   item: Item | undefined;
@@ -32,43 +11,43 @@ export const initial: State = {
   item: undefined
 };
 
-const reducer: Reducer<State, Action> = (
+const reducer: Reducer<State, actions.Action> = (
   state: State = initial,
-  action: Action
+  action: actions.Action
 ): State => {
   switch (action.type) {
-    case Type.SET_ITEM:
+    case actions.Type.SET_ITEM:
       return setItemHandle(state, action);
-    case Type.SET_RARITY:
+    case actions.Type.SET_RARITY:
       return setRarityHandle(state, action);
-    case Type.ADD_MOD:
+    case actions.Type.ADD_MOD:
       return addModHandle(state, action);
-    case Type.REMOVE_MOD:
+    case actions.Type.REMOVE_MOD:
       return removeModHandle(state, action);
-    case Type.ADD_TAG:
+    case actions.Type.ADD_TAG:
       return addTagHandle(state, action);
-    case Type.REMOVE_TAG:
+    case actions.Type.REMOVE_TAG:
       return removeTagHandle(state, action);
-    case Type.AS_ELDER_ITEM:
-      return asElderItemHandle(state, action);
-    case Type.AS_SHAPER_ITEM:
-      return asShaperItemHandle(state, action);
-    case Type.REMOVE_ATLAS_MODIFIER:
-      return removeAtlasModifierHandle(state, action);
+    case actions.Type.AS_ELDER_ITEM:
+      return asElderItemHandle(state);
+    case actions.Type.AS_SHAPER_ITEM:
+      return asShaperItemHandle(state);
+    case actions.Type.REMOVE_ATLAS_MODIFIER:
+      return removeAtlasModifierHandle(state);
     default:
       return state;
   }
 };
 export default reducer;
 
-function setItemHandle(state: State, action: SetItemAction): State {
+function setItemHandle(state: State, action: actions.SetItemAction): State {
   return {
     ...state,
     item: Item.build(action.payload)
   };
 }
 
-function addModHandle(state: State, action: AddModAction): State {
+function addModHandle(state: State, action: actions.AddModAction): State {
   const { payload: mod } = action;
   const { item } = state;
 
@@ -92,7 +71,7 @@ function addModHandle(state: State, action: AddModAction): State {
 
 function removeModHandle(
   state: State,
-  { payload: mod }: RemoveModAction
+  { payload: mod }: actions.RemoveModAction
 ): State {
   const { item } = state;
 
@@ -106,7 +85,7 @@ function removeModHandle(
   }
 }
 
-function setRarityHandle(state: State, action: SetRarityAction): State {
+function setRarityHandle(state: State, action: actions.SetRarityAction): State {
   const { item } = state;
 
   if (item != null) {
@@ -119,7 +98,7 @@ function setRarityHandle(state: State, action: SetRarityAction): State {
   }
 }
 
-function addTagHandle(state: State, action: AddTagAction): State {
+function addTagHandle(state: State, action: actions.AddTagAction): State {
   const { item } = state;
 
   if (item != null) {
@@ -138,7 +117,7 @@ function addTagHandle(state: State, action: AddTagAction): State {
   }
 }
 
-function removeTagHandle(state: State, action: RemoveTagAction): State {
+function removeTagHandle(state: State, action: actions.RemoveTagAction): State {
   const { item } = state;
 
   if (item != null) {
@@ -157,7 +136,7 @@ function removeTagHandle(state: State, action: RemoveTagAction): State {
   }
 }
 
-function asElderItemHandle(state: State, action: AsElderItemAction): State {
+function asElderItemHandle(state: State): State {
   const { item } = state;
 
   if (item != null) {
@@ -170,7 +149,7 @@ function asElderItemHandle(state: State, action: AsElderItemAction): State {
   }
 }
 
-function asShaperItemHandle(state: State, action: AsShaperItemAction): State {
+function asShaperItemHandle(state: State): State {
   const { item } = state;
 
   if (item != null) {
@@ -183,10 +162,7 @@ function asShaperItemHandle(state: State, action: AsShaperItemAction): State {
   }
 }
 
-function removeAtlasModifierHandle(
-  state: State,
-  action: RemoveAtlasModifierAction
-): State {
+function removeAtlasModifierHandle(state: State): State {
   const { item } = state;
 
   if (item != null) {

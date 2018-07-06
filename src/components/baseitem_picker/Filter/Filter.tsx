@@ -2,6 +2,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import TagFilter from './TagFilter';
+
 import './style.css';
 
 export interface BaseitemFilter {

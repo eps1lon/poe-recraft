@@ -1,8 +1,8 @@
-import * as React from 'react';
 import classnames from 'classnames';
+import * as React from 'react';
 
-import { Column } from './props';
 import Cell from './Cell';
+import { Column } from './props';
 
 export interface Props<T> {
   className?: string;

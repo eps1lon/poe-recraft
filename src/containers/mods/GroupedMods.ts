@@ -2,10 +2,10 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { createSelector } from 'reselect';
 
-import { State } from 'state';
-import { gui_actions } from 'state/gui';
 import GroupedMods from 'components/mods/GroupedMods';
 import { GeneratorDetails } from 'components/mods/ModsTable';
+import { State } from 'state';
+import { gui_actions } from 'state/gui';
 import { disabled } from 'util/flags';
 
 const groupSelector = createSelector(

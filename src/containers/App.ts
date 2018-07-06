@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 
-import { i18n_actions } from 'state/i18n';
-import { poe_actions } from 'state/poe';
 import App from 'components/App';
 import { State } from 'state';
+import { i18n_actions } from 'state/i18n';
+import { poe_actions } from 'state/poe';
 import { Dispatch } from '../';
 
 const mapStateToProps = (state: State) => {

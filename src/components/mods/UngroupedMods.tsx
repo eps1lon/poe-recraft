@@ -4,11 +4,11 @@ import React, { SFC } from 'react';
 
 import FormattedModName from 'containers/i18n/FormattedModName';
 import { disabled } from 'util/flags';
-import FlagsTooltip from './FlagsTooltip';
-import AddMod from './AddMod';
-import { GeneratorDetails } from './ModsTable';
 import Table from '../FlexTable';
 import Stats from '../poe/Stats';
+import AddMod from './AddMod';
+import FlagsTooltip from './FlagsTooltip';
+import { GeneratorDetails } from './ModsTable';
 
 export interface Props {
   className?: string;

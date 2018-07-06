@@ -1,6 +1,6 @@
+import classnames from 'classnames';
 import * as React from 'react';
 import { CSSTransition } from 'react-transition-group';
-import classnames from 'classnames';
 
 import './style.css';
 

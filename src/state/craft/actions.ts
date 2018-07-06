@@ -1,4 +1,4 @@
-import { Generator, Mod, Item } from 'poe-mods';
+import { Generator, Item, Mod } from 'poe-mods';
 import { Action, NullableAction } from 'util/redux';
 
 export enum Type {

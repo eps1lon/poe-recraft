@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 
 import { State } from '../';
-import { BaseItemTypeProps, TagProps } from '../poe/schema';
 import { makeFilterItems } from '../baseitemfilter/selectors';
+import { BaseItemTypeProps, TagProps } from '../poe/schema';
 
 const filterItems = makeFilterItems();
 

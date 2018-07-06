@@ -1,9 +1,9 @@
+import classnames from 'classnames';
 import { Mod } from 'poe-mods';
 import React, { SFC } from 'react';
-import classnames from 'classnames';
 
-import UngroupedMods from 'containers/mods/UngroupedMods';
 import CorrectGroup from 'containers/i18n/CorrectGroup';
+import UngroupedMods from 'containers/mods/UngroupedMods';
 
 import { GeneratorDetails } from '../ModsTable';
 import './style.css';

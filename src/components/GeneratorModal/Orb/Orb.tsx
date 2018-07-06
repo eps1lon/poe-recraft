@@ -1,8 +1,8 @@
 import React, { SFC } from 'react';
 import { Button, UncontrolledTooltip } from 'reactstrap';
 
-import orbs from './orbs';
 import { FormattedGenerator } from 'components/i18n';
+import orbs from './orbs';
 
 export interface Props {
   id: string;

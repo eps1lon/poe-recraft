@@ -1,5 +1,5 @@
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 
 import RaritySwitcher, { Props } from 'components/RaritySwitcher';
 import { State } from 'state';
@@ -20,5 +20,8 @@ const mapDispatchToProps = (dispatch: Dispatch, own_props: Props) => {
   };
 };
 
-// @ts-ignore: broken react-redux typings
-export default connect(mapStateToProps, mapDispatchToProps)(RaritySwitcher);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+  // @ts-ignore: broken react-redux typings
+)(RaritySwitcher);

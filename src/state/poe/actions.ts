@@ -1,15 +1,15 @@
 import { RSAA, RSAAction } from 'redux-api-middleware';
 
 import { Action } from 'util/redux';
-import { apiEndpoint } from './selectors';
 import {
   BaseItemTypeProps,
   CraftingBenchOptionsProps,
-  ModProps,
-  TagProps,
   EssenceProps,
-  NormalizedEssenceProps
+  ModProps,
+  NormalizedEssenceProps,
+  TagProps
 } from './schema';
+import { apiEndpoint } from './selectors';
 
 export enum Type {
   ITEMS_REQUEST = 'POE/ITEMS_REQUEST',

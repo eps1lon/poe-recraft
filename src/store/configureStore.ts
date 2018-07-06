@@ -1,21 +1,21 @@
 import {
-  createStore,
+  AnyAction,
   applyMiddleware,
   compose,
-  Store as ReduxStore,
+  createStore,
   DeepPartial,
-  AnyAction
+  Store as ReduxStore
 } from 'redux';
-import createSagaMiddleware from 'redux-saga';
 import {
   apiMiddleware,
-  RSAAction,
   ApiMiddleware,
-  RSAA
+  RSAA,
+  RSAAction
 } from 'redux-api-middleware';
+import createSagaMiddleware from 'redux-saga';
 
-import createLogger from './createLogger';
 import rootReducer, { State } from '../state';
+import createLogger from './createLogger';
 
 import SagaManager from 'sagas/SagaManager';
 

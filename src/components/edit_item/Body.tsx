@@ -1,8 +1,8 @@
 import React, { SFC } from 'react';
 
-import RaritySwitcher from 'containers/RaritySwitcher';
 import AtlasModifiers from 'containers/edit_item/AtlasModifiers';
 import Tags from 'containers/edit_item/Tags';
+import RaritySwitcher from 'containers/RaritySwitcher';
 
 export interface Props {
   onToggle: () => void;

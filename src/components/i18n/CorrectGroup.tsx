@@ -1,6 +1,6 @@
-import * as React from 'react';
 import { groupMods } from 'poe-i18n';
 import { Mod } from 'poe-mods';
+import * as React from 'react';
 
 export interface Props {
   descriptions: {};

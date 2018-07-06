@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
 
-import { State } from './reducers';
-import { BaseItemTypeProps } from '../poe/schema';
-import { PoeState } from '../poe';
 import { checkCnf } from 'util/predicate';
+import { PoeState } from '../poe';
+import { BaseItemTypeProps } from '../poe/schema';
+import { State } from './reducers';
 
 export interface BaseitemFilter {
   item_class: string;

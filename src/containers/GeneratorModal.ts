@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
+import GeneratorModal from 'components/GeneratorModal';
+import { State } from 'state';
 import { craftActions } from 'state/craft';
 import { activeGenerator } from 'state/craft/selectors';
 import { gui_actions } from 'state/gui';
 import { poe_selectors } from 'state/poe';
-import { State } from 'state';
-import GeneratorModal from 'components/GeneratorModal';
 
 const mapStateToProps = (state: State) => {
   return {
@@ -27,4 +27,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(GeneratorModal);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GeneratorModal);

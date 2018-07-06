@@ -1,15 +1,15 @@
 import {
-  ItemShowcase,
   Alchemy,
   Alteration,
   Annulment,
   Augment,
   Chaos,
   Exalted,
+  IncursionTempleMods,
+  ItemShowcase,
   Regal,
   Scouring,
   Transmute,
-  IncursionTempleMods,
   Vaal
 } from 'poe-mods';
 import { createSelector } from 'reselect';

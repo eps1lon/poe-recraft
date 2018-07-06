@@ -1,6 +1,7 @@
 import { formatStats } from 'poe-i18n';
 import { Stat } from 'poe-mods';
 import React, { SFC } from 'react';
+
 import injectDescriptions from 'containers/injectDescriptions';
 
 export interface Props {

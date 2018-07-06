@@ -1,8 +1,8 @@
-import * as React from 'react';
 import * as classnames from 'classnames';
+import * as React from 'react';
 
-import { Column } from './props';
 import Header from './Header';
+import { Column } from './props';
 import Row, { Props as RowProps } from './Row';
 
 export interface Props<T> {

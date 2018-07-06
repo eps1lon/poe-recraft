@@ -3,7 +3,7 @@
 // See https://github.com/yelouafi/redux-saga/issues/22#issuecomment-218737951 for discussion.
 import { Dispatch } from 'redux';
 import { SagaMiddleware } from 'redux-saga';
-import { take, fork, cancel } from 'redux-saga/effects';
+import { cancel, fork, take } from 'redux-saga/effects';
 
 import rootSaga from './rootSaga';
 

@@ -1,4 +1,4 @@
-
+import cn from './cn.svg';
 import de from './de.svg';
 import en from './en.svg';
 import es from './es.svg';
@@ -7,7 +7,6 @@ import pt from './pt.svg';
 import ru from './ru.svg';
 import th from './th.svg';
 import tw from './tw.svg';
-import cn from './cn.svg';
 
 export default {
   de: { name: 'Deutsch', icon: de },
@@ -19,5 +18,9 @@ export default {
   th: { name: 'ภาษาไทย', icon: th },
   'zh-tw': { name: '汉语', icon: tw }, // traditional
   'zh-cn': { name: '漢語', icon: cn } // simplified
-} as { [key: string]: { name: string; icon: string 
-} };
+} as {
+  [key: string]: {
+    name: string;
+    icon: string;
+  };
+};

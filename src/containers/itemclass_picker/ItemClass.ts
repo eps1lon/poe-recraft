@@ -1,9 +1,9 @@
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 
-import { baseitem_filter_actions } from 'state/baseitemfilter';
 import ItemClass, { Props } from 'components/itemclass_picker/ItemClass';
 import { State } from 'state';
+import { baseitem_filter_actions } from 'state/baseitemfilter';
 import { activeItemClass } from 'state/baseitemfilter/selectors';
 import { ItemClassProps } from 'state/poe/schema';
 
@@ -19,5 +19,8 @@ const mapDispatchToProps = (dispatch: Dispatch, props: Props) => {
   };
 };
 
-// @ts-ignore: react-redux typings are broken atm :(
-export default connect(mapStateToProps, mapDispatchToProps)(ItemClass);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+  // @ts-ignore: react-redux typings are broken atm :(
+)(ItemClass);

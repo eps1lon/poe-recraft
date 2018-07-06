@@ -1,9 +1,10 @@
 import React, { SFC } from 'react';
-import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
 
-import GeneratorPicker from './Picker';
-import { FormattedGenerator } from 'components/i18n';
 import FillLoading from 'components/FillLoading';
+import { FormattedGenerator } from 'components/i18n';
+import GeneratorPicker from './Picker';
+
 import './style.css';
 
 type GeneratorId = string;

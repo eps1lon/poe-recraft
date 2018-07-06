@@ -1,8 +1,8 @@
 import React, { SFC } from 'react';
 import { Button } from 'reactstrap';
 
-import { FormattedGenerator } from './i18n';
 import { anySet } from '../util/flags';
+import { FormattedGenerator } from './i18n';
 
 type GeneratorId = string;
 

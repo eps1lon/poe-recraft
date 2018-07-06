@@ -1,8 +1,8 @@
 import { all, fork, put, select, take } from 'redux-saga/effects';
 
-import { combineLatest } from './util';
 import { craftActions } from 'state/craft';
-import { poe_selectors, poe_actions } from 'state/poe';
+import { poe_actions, poe_selectors } from 'state/poe';
+import { combineLatest } from './util';
 
 function* initShowcase() {
   yield combineLatest(

@@ -1,88 +1,70 @@
-import {
-  Action,
-  Type,
-  collapse,
-  CollapseAction,
-  expand,
-  ExpandAction,
-  toggle,
-  ToggleAction,
-  toggleGeneratorModal,
-  ToggleGeneratorModalAction,
-  toggleBaseItemModal,
-  ToggleBaseItemModalAction,
-  toggleEditItemModal,
-  ToggleEditItemModalAction,
-  ReactTableExpanded,
-  GuiIdent
-} from './actions';
-import { handleActions } from 'util/redux';
+import * as actions from './actions';
 
-export type State = Map<GuiIdent, boolean>;
+export type State = Map<actions.GuiIdent, boolean>;
 
 const initial: State = new Map().set('implicits', false);
 
-export default function(state: State = initial, action: Action) {
+export default function(state: State = initial, action: actions.Action) {
   switch (action.type) {
-    case Type.COLLAPSE:
+    case actions.Type.COLLAPSE:
       return collapseHandle(state, action);
-    case Type.EXPAND:
+    case actions.Type.EXPAND:
       return expandHandle(state, action);
-    case Type.TOGGLE:
+    case actions.Type.TOGGLE:
       return toggleHandle(state, action);
-    case Type.TOGGLE_BASEITEM_MODAL:
-      return toggleBaseItemModalHandle(state, action);
-    case Type.TOGGLE_EDITITEM_MODAL:
-      return toggleEditItemModalHandle(state, action);
-    case Type.TOGGLE_GENERATOR_MODAL:
-      return toggleGeneratorModalHandle(state, action);
+    case actions.Type.TOGGLE_BASEITEM_MODAL:
+      return toggleBaseItemModalHandle(state);
+    case actions.Type.TOGGLE_EDITITEM_MODAL:
+      return toggleEditItemModalHandle(state);
+    case actions.Type.TOGGLE_GENERATOR_MODAL:
+      return toggleGeneratorModalHandle(state);
     default:
       return state;
   }
 }
 
-function collapseHandle(state: State = initial, action: CollapseAction): State {
+function collapseHandle(
+  state: State = initial,
+  action: actions.CollapseAction
+): State {
   const { payload: ident } = action;
 
   return new Map(state).set(ident, false);
 }
 
-function expandHandle(state: State = initial, action: ExpandAction): State {
+function expandHandle(
+  state: State = initial,
+  action: actions.ExpandAction
+): State {
   const { payload: ident } = action;
 
   return new Map(state).set(ident, true);
 }
 
-function toggleHandle(state: State = initial, action: ToggleAction): State {
+function toggleHandle(
+  state: State = initial,
+  action: actions.ToggleAction
+): State {
   const { payload: ident } = action;
 
   return new Map(state).set(ident, !Boolean(state.get(ident)));
 }
 
-function toggleGeneratorModalHandle(
-  state: State,
-  action: ToggleGeneratorModalAction
-): State {
+function toggleGeneratorModalHandle(state: State): State {
   return new Map(state).set(
     'generator-modal',
     !Boolean(state.get('generator-modal'))
   );
 }
 
-function toggleBaseItemModalHandle(
-  state: State,
-  action: ToggleBaseItemModalAction
-): State {
+function toggleBaseItemModalHandle(state: State): State {
   return new Map(state).set(
     'baseitem-modal',
     !Boolean(state.get('baseitem-modal'))
   );
 }
 
-function toggleEditItemModalHandle(
-  state: State,
-  action: ToggleEditItemModalAction
-): State {
+function toggleEditItemModalHandle(state: State): State {
   return new Map(state).set(
     'edititem-modal',
     !Boolean(state.get('edititem-modal'))

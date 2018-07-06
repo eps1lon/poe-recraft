@@ -1,10 +1,10 @@
 import React, { SFC } from 'react';
 import { connect, Provider } from 'react-redux';
 
-import { i18n_actions } from 'state/i18n';
-import { poe_actions } from 'state/poe';
 import App from 'components/App';
 import { State } from 'state';
+import { i18n_actions } from 'state/i18n';
+import { poe_actions } from 'state/poe';
 import { Dispatch, Store } from '../';
 
 export interface Props {

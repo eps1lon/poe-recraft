@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import { craftActions, craft_selectors } from 'state/craft';
 import ApplyGenerator from 'components/ApplyGenerator';
 import { State } from 'state';
+import { craft_selectors, craftActions } from 'state/craft';
 
 const mapStateToProps = (state: State) => {
   return {
@@ -18,4 +18,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ApplyGenerator);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ApplyGenerator);

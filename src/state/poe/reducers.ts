@@ -1,16 +1,17 @@
 import { combineReducers, Reducer } from 'redux';
+
+import createApiReducer, {
+  State as ApiState
+} from '../redux-api-middleware-reducer';
 import { Type } from './actions';
 import {
   BaseItemTypeProps,
   CraftingBenchOptionsProps,
+  ModId,
   ModProps,
-  TagProps,
   NormalizedEssenceProps,
-  ModId
+  TagProps
 } from './schema';
-import createApiReducer, {
-  State as ApiState
-} from '../redux-api-middleware-reducer';
 
 export interface State {
   benchoptions: ApiState<CraftingBenchOptionsProps[]>;

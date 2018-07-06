@@ -1,8 +1,8 @@
 import { all, fork, put, select, take } from 'redux-saga/effects';
 
-import { combineLatest } from './util';
 import { baseitem_filter_actions } from 'state/baseitemfilter';
 import { item_actions, item_selectors } from 'state/item';
+import { combineLatest } from './util';
 
 function* setDefaultItem() {
   const item = yield select(item_selectors.defaultItem);

@@ -1,6 +1,6 @@
 import React, { SFC } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
 
 import FillLoading from 'components/FillLoading';
 import Filter from 'containers/baseitem_picker/Filter';

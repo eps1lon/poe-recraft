@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
+import Filter from 'components/baseitem_picker/Filter';
+import { State } from 'state';
 import { baseitem_filter_actions } from 'state/baseitemfilter';
 import { BaseitemFilter } from 'state/baseitemfilter/selectors';
-import { State } from 'state';
-import Filter from 'components/baseitem_picker/Filter';
 
 const mapStateToProps = (state: State) => {
   return {
@@ -24,5 +24,8 @@ const mapDispatchToProps = (dispatch: Dispatch, own_props: Filter['props']) => {
   };
 };
 
-// @ts-ignore
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+  // @ts-ignore
+)(Filter);

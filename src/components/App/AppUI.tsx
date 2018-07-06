@@ -6,9 +6,9 @@ import ApplyGenerator from 'containers/ApplyGenerator';
 import AvailableMods from 'containers/AvailableMods';
 import BaseItemModal from 'containers/baseitem_picker/Modal';
 import GeneratorModal from 'containers/GeneratorModal';
-import LanguagePicker from 'containers/LanguagePicker';
-import ItemSection from 'containers/ItemSection';
 import ItemclassPicker from 'containers/itemclass_picker/Picker';
+import ItemSection from 'containers/ItemSection';
+import LanguagePicker from 'containers/LanguagePicker';
 
 import * as settings from './settings';
 
