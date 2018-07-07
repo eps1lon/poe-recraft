@@ -14,7 +14,7 @@ export default class Level extends PureComponent<Props> {
 
     return (
       <>
-        <label htmlFor={id}>Elder</label>
+        <label htmlFor={id}>Item Level: </label>
         <input
           id={id}
           type="number"
