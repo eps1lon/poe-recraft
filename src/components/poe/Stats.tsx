@@ -10,7 +10,6 @@ export interface Props {
   stats: Stat[];
 }
 
-// @ts-ignore: jsx array elements not supported
 const Stats: SFC<Props> = ({ className, stats, descriptions }) => {
   const stats_i18n = stats.map(stat => ({
     id: stat.props.id,
@@ -23,25 +22,33 @@ const Stats: SFC<Props> = ({ className, stats, descriptions }) => {
   };
 
   try {
-    return formatStats(stats_i18n, options).map((translation, i) => {
-      return (
-        <div key={i} className={className}>
-          {translation}
-        </div>
-      );
-    });
+    return (
+      <>
+        {formatStats(stats_i18n, options).map((translation, i) => {
+          return (
+            <div key={i} className={className}>
+              {translation}
+            </div>
+          );
+        })}
+      </>
+    );
   } catch (err) {
     if (process.env.NODE_ENV !== 'production') {
       console.warn(err.message, stats);
     }
 
-    return stats.map(stat => {
-      return (
-        <div key={stat.props.id} className={className}>
-          {stat.props.id}
-        </div>
-      );
-    });
+    return (
+      <>
+        {stats.map(stat => {
+          return (
+            <div key={stat.props.id} className={className}>
+              {stat.props.id}
+            </div>
+          );
+        })}
+      </>
+    );
   }
 };
 

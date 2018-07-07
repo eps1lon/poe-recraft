@@ -1,14 +1,13 @@
 import React, { ReactNode, SFC } from 'react';
 
 // text nodes dont need keys
-// @ts-ignore: strings also not supported by typing
-export const CommaSeparator: SFC<string> = key => ', ';
+export const renderCommaSeparator = () => ', ';
 
 export const LineBreak: SFC<string> = key => <br key={key} />;
 
 export function intersperse(
   elements: ReactNode[],
-  renderSeparator: (key: string) => ReactNode = CommaSeparator
+  renderSeparator: (key: string) => ReactNode = renderCommaSeparator
 ) {
   if (elements.length === 0) {
     return [];
