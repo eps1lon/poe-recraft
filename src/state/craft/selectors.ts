@@ -4,7 +4,7 @@ import { createSelector } from 'reselect';
 
 import { orbs } from 'components/GeneratorModal/Orb';
 import { State } from 'state';
-import { falseFlags } from 'util/flags';
+import { falseFlags, isDisabled } from 'util/flags';
 import { withSpawnchance } from 'util/spawnweight';
 
 export interface GeneratorDetails {
@@ -37,10 +37,14 @@ const availableMods = (
     implicits = details.filter(({ mod }) => mod.implicitCandidate());
   }
 
+  const options = {
+    filter: (details: GeneratorDetails) => !isDisabled(details)
+  };
+
   return {
-    prefixes: withSpawnchance(prefixes),
-    suffixes: withSpawnchance(suffixes),
-    implicits: withSpawnchance(implicits)
+    prefixes: withSpawnchance(prefixes, options),
+    suffixes: withSpawnchance(suffixes, options),
+    implicits: withSpawnchance(implicits, options)
   };
 };
 
