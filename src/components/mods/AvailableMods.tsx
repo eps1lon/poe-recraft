@@ -12,25 +12,20 @@ export interface Props {
   suffixes: GeneratorDetails[];
 }
 
+const implicits_table_exclude = ['name'];
+
 const AvailableMods: SFC<Props> = ({ prefixes, suffixes, implicits }) => {
   return (
     <section id="available_mods">
       <ModsTable
         className="implicits"
         details={implicits}
-        options={{ grouped: false, exclude: ['name'] }}
+        grouped={false}
+        exclude={implicits_table_exclude}
       />
       <div id="affixes">
-        <ModsTable
-          className="prefixes"
-          details={prefixes}
-          options={{ grouped: true }}
-        />
-        <ModsTable
-          className="suffixes"
-          details={suffixes}
-          options={{ grouped: true }}
-        />
+        <ModsTable className="prefixes" details={prefixes} grouped={true} />
+        <ModsTable className="suffixes" details={suffixes} grouped={true} />
       </div>
     </section>
   );

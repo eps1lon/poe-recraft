@@ -11,7 +11,6 @@ import './style.css';
 export interface Props {
   className: string;
   details: GeneratorDetails[];
-  options?: {};
   isExpanded: (id: string) => boolean;
   onGroupClick: (id: string) => void;
 }

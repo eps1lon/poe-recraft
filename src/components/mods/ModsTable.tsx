@@ -6,11 +6,6 @@ import { Button } from 'reactstrap';
 import GroupedMods from 'containers/mods/GroupedMods';
 import UngroupedMods from 'containers/mods/UngroupedMods';
 
-interface Options {
-  grouped?: boolean;
-  exclude?: string[];
-}
-
 export interface GeneratorDetails {
   mod: Mod;
   applicable?: Flags;
@@ -26,7 +21,8 @@ export interface Props {
   group_expanded: boolean;
   human?: string;
   details: GeneratorDetails[];
-  options: Options;
+  grouped?: boolean;
+  exclude?: string[];
   onGroupToggle: (group: string) => void;
   onToggle: (group: string, show: boolean) => void;
 }
@@ -48,9 +44,9 @@ const ModsTable: SFC<Props> = props => {
     details,
     onGroupToggle,
     onToggle,
-    options
+    grouped = false,
+    exclude = []
   } = props;
-  const { grouped = false, exclude = [] } = options;
 
   const onCaptionClick = () => onToggle(className, expanded);
   const handleGroupToggle = (event: SyntheticEvent<HTMLButtonElement>) => {
@@ -78,7 +74,7 @@ const ModsTable: SFC<Props> = props => {
         )}
       </h4>
       {expanded && (
-        <Mods className={className} details={details} options={{ exclude }} />
+        <Mods className={className} details={details} exclude={exclude} />
       )}
     </div>
   );

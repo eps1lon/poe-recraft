@@ -13,9 +13,7 @@ import { GeneratorDetails } from './ModsTable';
 export interface Props {
   className?: string;
   details: GeneratorDetails[];
-  options?: Partial<{
-    exclude: string[];
-  }>;
+  exclude?: string[];
   onAddMod: (mod: Mod) => void;
 }
 
@@ -24,8 +22,7 @@ const renderSpawnweight = (spawnweight?: number) =>
 
 export default class UngroupedMods extends PureComponent<Props> {
   public render() {
-    const { details: all_details, options = {} } = this.props;
-    const { exclude = [] } = options;
+    const { details: all_details, exclude = [] } = this.props;
 
     const columns = this.getColumns();
 
