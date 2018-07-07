@@ -31,6 +31,10 @@ export default class GeneratorPicker extends PureComponent<Props> {
             'annullment'
           ].map(orb_id => <Orb key={orb_id} id={orb_id} onClick={onChange} />)}
         </div>
+        <div key="misc" className="group misc">
+          <Button onClick={this.handleElderClick}>Elder Mods</Button>
+          <Button onClick={this.handleShapedClick}>Shaped Mods</Button>
+        </div>
         <div key="leagues" className="group leagues">
           <Button onClick={this.handleIncursionClick}>Incursion</Button>
         </div>
@@ -38,10 +42,8 @@ export default class GeneratorPicker extends PureComponent<Props> {
     );
   }
 
-  private handleShowcaseClick = () => {
-    this.props.onChange('showcase');
-  };
-  private handleIncursionClick = () => {
-    this.props.onChange('incursion');
-  };
+  private handleShowcaseClick = () => this.props.onChange('showcase');
+  private handleIncursionClick = () => this.props.onChange('incursion');
+  private handleElderClick = () => this.props.onChange('elder');
+  private handleShapedClick = () => this.props.onChange('shaped');
 }

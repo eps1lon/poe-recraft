@@ -4,11 +4,13 @@ import {
   Annulment,
   Augment,
   Chaos,
+  ElderMods,
   Exalted,
   IncursionTempleMods,
   ItemShowcase,
   Regal,
   Scouring,
+  ShapedMods,
   Transmute,
   Vaal
 } from 'poe-mods';
@@ -25,6 +27,7 @@ export const buildShowcase = createSelector(
   }
 );
 
+// orbs
 const buildAlchemy = createSelector(getMods, mods => Alchemy.build(mods));
 const buildAnnullment = () => new Annulment();
 const buildAugment = createSelector(getMods, mods => Augment.build(mods));
@@ -34,10 +37,13 @@ const buildExalted = createSelector(getMods, mods => Exalted.build(mods));
 const buildRegal = createSelector(getMods, mods => Regal.build(mods));
 const buildScouring = () => new Scouring();
 const buildTransmute = createSelector(getMods, mods => Transmute.build(mods));
+const buildVaal = createSelector(getMods, mods => Vaal.build(mods));
+// misc
 const buildIncursion = createSelector(getMods, mods =>
   IncursionTempleMods.build(mods)
 );
-const buildVaal = createSelector(getMods, mods => Vaal.build(mods));
+const buildElderMods = createSelector(getMods, mods => ElderMods.build(mods));
+const buildShapedMods = createSelector(getMods, mods => ShapedMods.build(mods));
 
 export function buildGeneratorFactory(generator: string) {
   switch (generator) {
@@ -65,6 +71,10 @@ export function buildGeneratorFactory(generator: string) {
       return buildIncursion;
     case 'vaal':
       return buildVaal;
+    case 'elder':
+      return buildElderMods;
+    case 'shaped':
+      return buildShapedMods;
     default:
       throw new Error(generator);
   }
