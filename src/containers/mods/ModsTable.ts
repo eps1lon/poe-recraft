@@ -5,9 +5,13 @@ import ModsTable, { Props } from 'components/mods/ModsTable';
 import { State } from 'state';
 import { gui_actions } from 'state/actions';
 
-const mapStateToProps = (state: State, props: Pick<Props, 'className'>) => {
+type StateProps = Pick<Props, 'expanded' | 'group_expanded'>;
+const mapStateToProps = (
+  state: State,
+  props: Pick<Props, 'className'>
+): StateProps => {
   return {
-    expanded: Boolean(state.gui.expanded.get(props.className)),
+    expanded: state.gui.expanded.get(props.className),
     group_expanded: Boolean(state.gui.expanded.get(`${props.className}-group`))
   };
 };

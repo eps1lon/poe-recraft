@@ -22,10 +22,21 @@ const AvailableMods: SFC<Props> = ({ prefixes, suffixes, implicits }) => {
         details={implicits}
         grouped={false}
         exclude={implicits_table_exclude}
+        defaultExpanded={false}
       />
       <div id="affixes">
-        <ModsTable className="prefixes" details={prefixes} grouped={true} />
-        <ModsTable className="suffixes" details={suffixes} grouped={true} />
+        <ModsTable
+          className="prefixes"
+          details={prefixes}
+          grouped={true}
+          defaultExpanded={true}
+        />
+        <ModsTable
+          className="suffixes"
+          details={suffixes}
+          grouped={true}
+          defaultExpanded={true}
+        />
       </div>
     </section>
   );
