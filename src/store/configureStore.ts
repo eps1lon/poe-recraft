@@ -49,12 +49,12 @@ export default function configureStore(initialState: DeepPartial<State> = {}) {
 
   if (__DEV__) {
     // Hot reload reducers (requires Webpack or Browserify HMR to be enabled)
-    if ((module as any).hot) {
-      (module as any).hot.accept('../state', () =>
+    if (module.hot) {
+      module.hot.accept('../state', () =>
         store.replaceReducer(require('../state').default)
       );
 
-      (module as any).hot.accept('../sagas/SagaManager', () => {
+      module.hot.accept('../sagas/SagaManager', () => {
         SagaManager.cancelSagas(store);
         require('../sagas/SagaManager').default.startSagas(sagaMiddleware);
       });

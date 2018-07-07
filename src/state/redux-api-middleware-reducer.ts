@@ -11,13 +11,13 @@ export interface State<T> {
   data: T;
 }
 
-export function isRequested(state: State<any>) {
+export function isRequested<T>(state: State<T>) {
   return state.loading_state === LoadingState.requested;
 }
-export function isSucceeded(state: State<any>) {
+export function isSucceeded<T>(state: State<T>) {
   return state.loading_state === LoadingState.succeeded;
 }
-export function isFailed(state: State<any>) {
+export function isFailed<T>(state: State<T>) {
   return state.loading_state === LoadingState.failed;
 }
 
