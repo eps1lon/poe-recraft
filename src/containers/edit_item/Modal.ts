@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 
 import Modal, { Props } from 'components/edit_item/Modal';
 import { State } from 'state';
-import { gui_actions } from 'state/gui';
+import { gui_actions } from 'state/actions';
 
 const mapStateToProps = (state: State): Partial<Props> => {
   return {

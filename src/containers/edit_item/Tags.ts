@@ -3,8 +3,9 @@ import { Dispatch } from 'redux';
 
 import Tags, { Props } from 'components/edit_item/Tags';
 import { State } from 'state';
-import { item_actions, item_selectors } from 'state/item';
+import { item_actions } from 'state/actions';
 import { TagProps } from 'state/poe/schema';
+import { item_selectors } from 'state/selectors';
 
 const editableTags = item_selectors.editableTagsSelector();
 

@@ -3,15 +3,13 @@ import { Dispatch } from 'redux';
 
 import GeneratorModal from 'components/GeneratorModal';
 import { State } from 'state';
-import { craftActions } from 'state/craft';
-import { activeGenerator } from 'state/craft/selectors';
-import { gui_actions } from 'state/gui';
-import { poe_selectors } from 'state/poe';
+import { craft_actions, gui_actions } from 'state/actions';
+import { craft_selectors, poe_selectors } from 'state/selectors';
 import { PartialProps } from 'types/react';
 
 const mapStateToProps = (state: State) => {
   return {
-    active: activeGenerator(state),
+    active: craft_selectors.activeGenerator(state),
     loading:
       poe_selectors.isBenchsLoading(state) ||
       poe_selectors.isModsLoading(state),
@@ -26,7 +24,7 @@ type DispatchProps = PartialProps<
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => {
   return {
     onChange: (generator: string) =>
-      dispatch(craftActions.useGenerator(generator)),
+      dispatch(craft_actions.useGenerator(generator)),
     onToggle: () =>
       dispatch(gui_actions.expanded_actions.toggleGeneratorModal())
   };

@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 
 import Filter from 'components/baseitem_picker/Filter';
 import { State } from 'state';
-import { baseitem_filter_actions } from 'state/baseitemfilter';
+import { actions } from 'state/baseitemfilter';
 import { BaseitemFilter } from 'state/baseitemfilter/selectors';
 
 const mapStateToProps = (state: State) => {
@@ -22,7 +22,7 @@ const mapDispatchToProps = (
     onChange: (filter: BaseitemFilter) => {
       const { onChange } = own_props;
       if (onChange === undefined || onChange(filter)) {
-        dispatch(baseitem_filter_actions.setFilter(filter));
+        dispatch(actions.setFilter(filter));
       }
     }
   };

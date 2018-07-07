@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 
 import { LanguagePicker } from 'components/language_picker/';
 import { State } from 'state';
-import { i18n_actions } from 'state/i18n';
+import { i18n_actions } from 'state/actions';
 import { PartialProps } from 'types/react';
 
 const mapStateToProps = (state: State) => {

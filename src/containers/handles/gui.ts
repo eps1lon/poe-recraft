@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 
-import { gui_actions } from 'state/gui';
+import { gui_actions } from 'state/actions';
 
 export interface ExpandedHandles {
   onCollapse: (id: gui_actions.GuiIdent) => void;

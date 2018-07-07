@@ -1,7 +1,7 @@
 import { Mod } from 'poe-mods';
 import { Dispatch } from 'redux';
 
-import { item_actions } from 'state/item';
+import { item_actions } from 'state/actions';
 
 export interface ModHandles {
   onAddMod: (mod: Mod) => void;

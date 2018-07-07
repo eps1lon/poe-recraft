@@ -1,27 +1,27 @@
 import { all, fork, put, select, take } from 'redux-saga/effects';
 
-import { craftActions } from 'state/craft';
-import { poe_actions, poe_selectors } from 'state/poe';
+import { craft_actions, poe_actions } from 'state/actions';
+import { poe_selectors } from 'state/selectors';
 import { combineLatest } from './util';
 
 function* initShowcase() {
   yield combineLatest(
     [poe_actions.Type.MODS_SUCCESS, poe_actions.Type.BENCHS_SUCCESS],
     function*() {
-      yield put(craftActions.useGenerator('showcase'));
+      yield put(craft_actions.useGenerator('showcase'));
     }
   );
 }
 
 function* buildGenerators() {
   while (true) {
-    const action = yield take(craftActions.Type.USE_GENERATOR);
+    const action = yield take(craft_actions.Type.USE_GENERATOR);
 
     const generator = yield select(
       poe_selectors.generators.buildGeneratorFactory(action.payload)
     );
 
-    yield put(craftActions.setGenerator(generator));
+    yield put(craft_actions.setGenerator(generator));
   }
 }
 

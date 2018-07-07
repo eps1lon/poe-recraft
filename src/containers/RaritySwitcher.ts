@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 
 import RaritySwitcher, { Props } from 'components/RaritySwitcher';
 import { State } from 'state';
-import { item_actions } from 'state/item';
+import { item_actions } from 'state/actions';
 
 const mapStateToProps = (state: State) => {
   return {

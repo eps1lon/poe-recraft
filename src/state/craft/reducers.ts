@@ -2,9 +2,9 @@ import { Generator } from 'poe-mods';
 import { Reducer } from 'redux';
 
 import itemReducer, {
-  initial_item_state,
-  item_actions,
-  ItemState
+  actions as item_actions,
+  initial_state as initial_item_state,
+  State as ItemState
 } from '../item';
 import * as actions from './actions';
 

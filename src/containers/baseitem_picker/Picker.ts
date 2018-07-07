@@ -3,17 +3,16 @@ import { Dispatch } from 'redux';
 
 import Picker from 'components/baseitem_picker/Picker';
 import { State } from 'state';
-import { makeFilterItems } from 'state/baseitemfilter/selectors';
-import { item_actions } from 'state/item';
-import { activeBaseitem } from 'state/item/selectors';
+import { item_actions } from 'state/actions';
 import { BaseItemTypeProps } from 'state/poe/schema';
+import { baseitemfilter_selectors, item_selectors } from 'state/selectors';
 
-const baseitemsSelector = makeFilterItems();
+const baseitemsSelector = baseitemfilter_selectors.makeFilterItems();
 
 type StateProps = Pick<Picker['props'], 'active' | 'baseitems'>;
 const mapStateToProps = (state: State): StateProps => {
   return {
-    active: activeBaseitem(state),
+    active: item_selectors.activeBaseitem(state),
     baseitems: baseitemsSelector(state)
   };
 };

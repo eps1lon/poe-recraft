@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 
 import ModsTable, { Props } from 'components/mods/ModsTable';
 import { State } from 'state';
-import { gui_actions } from 'state/gui';
+import { gui_actions } from 'state/actions';
 
 const mapStateToProps = (state: State, props: Pick<Props, 'className'>) => {
   return {

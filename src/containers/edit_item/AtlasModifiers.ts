@@ -4,7 +4,7 @@ import { createSelector } from 'reselect';
 
 import AtlasModifiers, { Props } from 'components/edit_item/AtlasModifiers';
 import { State } from 'state';
-import { item_actions } from 'state/item';
+import { item_actions } from 'state/actions';
 import { PartialProps } from 'types/react';
 
 const mapStateToProps = createSelector(

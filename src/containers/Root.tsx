@@ -3,8 +3,7 @@ import { connect, Provider } from 'react-redux';
 
 import App from 'components/App';
 import { State } from 'state';
-import { i18n_actions } from 'state/i18n';
-import { poe_actions } from 'state/poe';
+import { i18n_actions, poe_actions } from 'state/actions';
 import { Dispatch, Store } from '../';
 
 export interface Props {

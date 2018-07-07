@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 
 import Picker from 'components/GeneratorModal/Picker';
 import { State } from 'state';
-import { craftActions } from 'state/craft';
+import { actions } from 'state/craft';
 import { activeGenerator } from 'state/craft/selectors';
 
 const mapStateToProps = (state: State) => {
@@ -15,10 +15,13 @@ const mapStateToProps = (state: State) => {
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     onChange: (generator: string) => {
-      dispatch(craftActions.useGenerator(generator));
-      dispatch(craftActions.applyGenerator());
+      dispatch(actions.useGenerator(generator));
+      dispatch(actions.applyGenerator());
     }
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Picker);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Picker);

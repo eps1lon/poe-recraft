@@ -1,9 +1,6 @@
-import * as item_actions from './actions';
-import reducer, {
-  initial as initial_item_state,
-  State as ItemState
-} from './reducers';
-import * as item_selectors from './selectors';
+import * as actions from './actions';
+import reducer, { initial as initial_state, State } from './reducers';
+import * as selectors from './selectors';
 
-export { item_actions, item_selectors, ItemState, initial_item_state };
+export { actions, selectors, State, initial_state };
 export default reducer;

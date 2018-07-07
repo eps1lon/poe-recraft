@@ -5,7 +5,7 @@ import { createSelector } from 'reselect';
 
 import GroupedMods from 'components/mods/GroupedMods';
 import { State } from 'state';
-import { gui_actions } from 'state/gui';
+import { gui_actions } from 'state/actions';
 import { PartialProps } from 'types/react';
 
 type StateProps = PartialProps<typeof GroupedMods, 'isExpanded'>;
