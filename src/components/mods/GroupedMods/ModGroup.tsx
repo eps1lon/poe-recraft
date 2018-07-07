@@ -9,6 +9,7 @@ export interface Props {
   className: string;
   details: GeneratorDetails[];
   disabled: boolean;
+  exclude?: string[];
   group: string;
   isExpanded: (id: string) => boolean;
   onGroupClick: (id: string) => void;
@@ -16,7 +17,14 @@ export interface Props {
 
 export default class ModGroup extends PureComponent<Props> {
   public render() {
-    const { className, details, disabled, group, isExpanded } = this.props;
+    const {
+      className,
+      details,
+      disabled,
+      exclude,
+      group,
+      isExpanded
+    } = this.props;
 
     const mods = details.map(({ mod }) => mod);
 
@@ -29,7 +37,11 @@ export default class ModGroup extends PureComponent<Props> {
           <CorrectGroup mods={mods} />
         </h5>
         {isExpanded(group) && (
-          <UngroupedMods className={className} details={details} />
+          <UngroupedMods
+            className={className}
+            details={details}
+            exclude={exclude}
+          />
         )}
       </>
     );

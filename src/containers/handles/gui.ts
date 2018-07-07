@@ -1,13 +1,14 @@
 import { Dispatch } from 'redux';
 
 import { gui_actions } from 'state/actions';
+import { GuiIdent } from 'state/gui';
 
 export interface ExpandedHandles {
-  onCollapse: (id: gui_actions.GuiIdent) => void;
+  onCollapse: (id: GuiIdent) => void;
 }
 export const expanded = (dispatch: Dispatch): ExpandedHandles => {
   return {
-    onCollapse: (ident: gui_actions.GuiIdent) =>
+    onCollapse: (ident: GuiIdent) =>
       dispatch(gui_actions.expanded_actions.collapse(ident))
   };
 };

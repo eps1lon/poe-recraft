@@ -1,6 +1,7 @@
+import { GuiIdent } from '../types';
 import * as actions from './actions';
 
-export type State = Map<actions.GuiIdent, boolean>;
+export type State = Map<GuiIdent, boolean>;
 
 const initial: State = new Map().set('implicits', false);
 

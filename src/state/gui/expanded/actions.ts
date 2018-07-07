@@ -1,5 +1,5 @@
 import { Action, NullableAction } from 'util/redux';
-export type GuiIdent = string;
+import { GuiIdent } from '../types';
 
 export enum Type {
   COLLAPSE = 'COLLAPSE',

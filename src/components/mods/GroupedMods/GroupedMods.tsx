@@ -11,6 +11,7 @@ import './style.css';
 export interface Props {
   className: string;
   details: GeneratorDetails[];
+  exclude?: string[];
   isExpanded: (id: string) => boolean;
   onGroupClick: (id: string) => void;
 }
@@ -40,7 +41,7 @@ export default class GroupedMods extends PureComponent<Props> {
   );
 
   public render() {
-    const { className, onGroupClick, isExpanded } = this.props;
+    const { className, exclude, onGroupClick, isExpanded } = this.props;
     const groups = this.getGroups(this.props);
 
     return (
@@ -53,6 +54,7 @@ export default class GroupedMods extends PureComponent<Props> {
                 className={className}
                 details={details}
                 disabled={disabled}
+                exclude={exclude}
                 group={group}
                 isExpanded={isExpanded}
                 onGroupClick={onGroupClick}

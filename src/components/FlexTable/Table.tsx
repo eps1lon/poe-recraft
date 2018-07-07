@@ -8,25 +8,20 @@ export interface Props<T> {
   columns: Array<Column<T>>;
   data: T[];
   getTrProps: (data: T) => Partial<Pick<RowProps<T>, 'className'>>;
+  sortColumn?: number;
+  sortOrder?: 'asc' | 'desc';
+  onSortChange: (index: number, newOrder: 'asc' | 'desc') => void;
 }
 
-export interface State {
-  sortColumn: number;
-  sortOrder: 'asc' | 'desc';
-}
-
-export default class Table<T> extends React.PureComponent<Props<T>, State> {
-  constructor(props: Props<T>) {
-    super(props);
-    this.state = {
-      sortColumn: props.columns.findIndex(({ sortBy }) => sortBy !== undefined),
-      sortOrder: 'desc'
-    };
-  }
-
+export default class Table<T> extends React.PureComponent<Props<T>> {
   public render() {
-    const { columns, data, getTrProps } = this.props;
-    const { sortColumn, sortOrder } = this.state;
+    const {
+      columns,
+      data,
+      getTrProps,
+      sortColumn = -1,
+      sortOrder = 'asc'
+    } = this.props;
 
     let sorted_data = data;
     if (columns[sortColumn] !== undefined) {
@@ -47,11 +42,9 @@ export default class Table<T> extends React.PureComponent<Props<T>, State> {
   }
 
   private handleHeaderClick = (index: number) => {
-    const { sortOrder } = this.state;
-    this.setState({
-      sortColumn: index,
-      sortOrder: invertOrder(sortOrder)
-    });
+    const { onSortChange, sortOrder = 'asc' } = this.props;
+
+    onSortChange(index, invertOrder(sortOrder));
   };
 }
 

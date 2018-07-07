@@ -11,10 +11,13 @@ import FlagsTooltip from './FlagsTooltip';
 import { GeneratorDetails } from './ModsTable';
 
 export interface Props {
-  className?: string;
+  className: string;
   details: GeneratorDetails[];
   exclude?: string[];
   onAddMod: (mod: Mod) => void;
+  sortColumn?: number;
+  sortOrder?: 'asc' | 'desc';
+  onSortChange: (index: number, newOrder: 'asc' | 'desc') => void;
 }
 
 const renderSpawnweight = (spawnweight?: number) =>
@@ -22,7 +25,13 @@ const renderSpawnweight = (spawnweight?: number) =>
 
 export default class UngroupedMods extends PureComponent<Props> {
   public render() {
-    const { details: all_details, exclude = [] } = this.props;
+    const {
+      details: all_details,
+      exclude = [],
+      sortColumn,
+      sortOrder,
+      onSortChange
+    } = this.props;
 
     const columns = this.getColumns();
 
@@ -31,6 +40,9 @@ export default class UngroupedMods extends PureComponent<Props> {
         data={all_details}
         columns={columns.filter(({ id }) => !exclude.includes(id))}
         getTrProps={this.getTrProps}
+        sortColumn={sortColumn}
+        sortOrder={sortOrder}
+        onSortChange={onSortChange}
       />
     );
   }
