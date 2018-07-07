@@ -30,6 +30,8 @@ const reducer: Reducer<State, actions.Action> = (
       return asShaperItemHandle(state);
     case actions.Type.REMOVE_ATLAS_MODIFIER:
       return removeAtlasModifierHandle(state);
+    case actions.Type.SET_LEVEL:
+      return setLevelHandle(state, action);
     default:
       return state;
   }
@@ -128,4 +130,27 @@ function removeAtlasModifierHandle(item: State): State {
   } else {
     return item;
   }
+}
+
+function setLevelHandle(item: State, action: actions.SetLevelAction): State {
+  if (item == null) {
+    return item;
+  }
+  const level = action.payload;
+  if (Number.isNaN(level)) {
+    if (process.env.NODE_ENV) {
+      console.warn('tried to set itemlevel to NaN');
+    }
+    return item;
+  }
+
+  return item.withMutations(builder => {
+    return {
+      ...builder,
+      props: {
+        ...builder.props,
+        item_level: action.payload
+      }
+    };
+  });
 }

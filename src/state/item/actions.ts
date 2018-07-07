@@ -12,7 +12,8 @@ export enum Type {
   REMOVE_TAG = 'ITEM/REMOVE_TAG',
   AS_ELDER_ITEM = 'ITEM/AS_ELDER_ITEM',
   AS_SHAPER_ITEM = 'ITEM/AS_SHAPER_ITEM',
-  REMOVE_ATLAS_MODIFIER = 'ITEM/REMOVE_ATLAS_MODIFIER'
+  REMOVE_ATLAS_MODIFIER = 'ITEM/REMOVE_ATLAS_MODIFIER',
+  SET_LEVEL = 'ITEM/SET_LEVEL'
 }
 
 export type Action =
@@ -24,7 +25,8 @@ export type Action =
   | RemoveTagAction
   | AsElderItemAction
   | AsShaperItemAction
-  | RemoveAtlasModifierAction;
+  | RemoveAtlasModifierAction
+  | SetLevelAction;
 
 export type SetItemAction = Action<Type.SET_ITEM, BaseItemTypeProps>;
 export const setItem = (item: BaseItemTypeProps): SetItemAction => ({
@@ -82,4 +84,10 @@ export type RemoveAtlasModifierAction = NullableAction<
 >;
 export const removeAtlasModifier = (): RemoveAtlasModifierAction => ({
   type: Type.REMOVE_ATLAS_MODIFIER
+});
+
+export type SetLevelAction = Action<Type.SET_LEVEL, number>;
+export const setLevel = (level: number): SetLevelAction => ({
+  type: Type.SET_LEVEL,
+  payload: level
 });

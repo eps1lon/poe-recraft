@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect';
+import { createSelector, Selector } from 'reselect';
 
 import { State } from '../';
 import { makeFilterItems } from '../baseitemfilter/selectors';
@@ -20,6 +20,17 @@ export function defaultItem(state: State): BaseItemTypeProps {
 export function activeBaseitem(state: State): BaseItemTypeProps | undefined {
   return state.craft.item != null ? state.craft.item.baseitem : undefined;
 }
+
+export const level: Selector<State, number> = createSelector(
+  state => state.craft.item,
+  item => {
+    if (item == null) {
+      return 0;
+    } else {
+      return item.level();
+    }
+  }
+);
 
 export function getTags(state: State): TagProps[] {
   return state.craft.item != null ? state.craft.item.getTags() : [];

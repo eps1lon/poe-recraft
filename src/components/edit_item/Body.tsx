@@ -1,6 +1,7 @@
 import React, { SFC } from 'react';
 
 import AtlasModifiers from 'containers/edit_item/AtlasModifiers';
+import Level from 'containers/edit_item/Level';
 import Tags from 'containers/edit_item/Tags';
 import RaritySwitcher from 'containers/RaritySwitcher';
 
@@ -22,6 +23,9 @@ const Body: SFC<Props> = props => {
           available={['normal', 'magic', 'rare']}
           onChange={props.onToggle}
         />
+      </div>
+      <div className="item-level">
+        <Level />
       </div>
       <div className="atlas-modifier">
         <AtlasModifiers />
