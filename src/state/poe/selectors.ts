@@ -1,11 +1,8 @@
 import { createSelector } from 'reselect';
 
 import { isRequested } from '../redux-api-middleware-reducer';
-import * as generators from './generators';
 import { State as PoeState } from './reducers';
 import { ModProps } from './schema';
-
-export { generators };
 
 interface State {
   poe: PoeState;

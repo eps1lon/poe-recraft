@@ -14,56 +14,30 @@ import {
 } from 'poe-mods';
 import { createSelector } from 'reselect';
 
-import { State } from './reducers';
 import { getEssences, getMods } from './selectors';
 
 export const buildShowcase = createSelector(
-  (state: { poe: State }) => getMods(state),
-  (state: { poe: State }) => state.poe.benchoptions.data,
-  (state: { poe: State }) => getEssences(state),
+  getMods,
+  state => state.poe.benchoptions.data,
+  getEssences,
   (mods, options, essences) => {
     return new ItemShowcase(mods, options, essences);
   }
 );
 
-const buildAlchemy = createSelector(
-  (state: { poe: State }) => getMods(state),
-  mods => Alchemy.build(mods)
-);
+const buildAlchemy = createSelector(getMods, mods => Alchemy.build(mods));
 const buildAnnullment = () => new Annulment();
-const buildAugment = createSelector(
-  (state: { poe: State }) => getMods(state),
-  mods => Augment.build(mods)
-);
-const buildAlteration = createSelector(
-  (state: { poe: State }) => getMods(state),
-  mods => Alteration.build(mods)
-);
-const buildChaos = createSelector(
-  (state: { poe: State }) => getMods(state),
-  mods => Chaos.build(mods)
-);
-const buildExalted = createSelector(
-  (state: { poe: State }) => getMods(state),
-  mods => Exalted.build(mods)
-);
-const buildRegal = createSelector(
-  (state: { poe: State }) => getMods(state),
-  mods => Regal.build(mods)
-);
+const buildAugment = createSelector(getMods, mods => Augment.build(mods));
+const buildAlteration = createSelector(getMods, mods => Alteration.build(mods));
+const buildChaos = createSelector(getMods, mods => Chaos.build(mods));
+const buildExalted = createSelector(getMods, mods => Exalted.build(mods));
+const buildRegal = createSelector(getMods, mods => Regal.build(mods));
 const buildScouring = () => new Scouring();
-const buildTransmute = createSelector(
-  (state: { poe: State }) => getMods(state),
-  mods => Transmute.build(mods)
+const buildTransmute = createSelector(getMods, mods => Transmute.build(mods));
+const buildIncursion = createSelector(getMods, mods =>
+  IncursionTempleMods.build(mods)
 );
-const buildIncursion = createSelector(
-  (state: { poe: State }) => getMods(state),
-  mods => IncursionTempleMods.build(mods)
-);
-const buildVaal = createSelector(
-  (state: { poe: State }) => getMods(state),
-  mods => Vaal.build(mods)
-);
+const buildVaal = createSelector(getMods, mods => Vaal.build(mods));
 
 export function buildGeneratorFactory(generator: string) {
   switch (generator) {

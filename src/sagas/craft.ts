@@ -1,7 +1,7 @@
 import { all, fork, put, select, take } from 'redux-saga/effects';
 
 import { craft_actions, poe_actions } from 'state/actions';
-import { poe_selectors } from 'state/selectors';
+import { poe_generators } from 'state/selectors';
 import { combineLatest } from './util';
 
 function* initShowcase() {
@@ -18,7 +18,7 @@ function* buildGenerators() {
     const action = yield take(craft_actions.Type.USE_GENERATOR);
 
     const generator = yield select(
-      poe_selectors.generators.buildGeneratorFactory(action.payload)
+      poe_generators.buildGeneratorFactory(action.payload)
     );
 
     yield put(craft_actions.setGenerator(generator));
