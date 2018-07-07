@@ -25,7 +25,6 @@ export const ITEMCLASSES_GROUPED = [
       'Dagger',
       'Sceptre',
       'Bow',
-      'Quiver',
       'Wand',
       'Staff',
       'One Hand Axe',
@@ -44,7 +43,7 @@ export const ITEMCLASSES_GROUPED = [
   },
   {
     name: 'equipment',
-    human: 'Jewelry',
-    classes: ['Amulet', 'Ring', 'Belt', 'Jewel', 'AbyssJewel']
+    human: 'Accessories',
+    classes: ['Amulet', 'Ring', 'Belt', 'Jewel', 'AbyssJewel', 'Quiver']
   }
 ];
