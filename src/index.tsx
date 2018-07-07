@@ -11,7 +11,6 @@ export type Dispatch = Store['dispatch'];
 const rootEl = document.getElementById('root');
 
 const render = () => {
-  // tslint:disable-next-line: whitespace
   type ComponentType = import('./components/Root').ComponentType;
   const RootAppComponent: ComponentType = require('./components/Root').default;
   ReactDOM.render(<RootAppComponent store={store} version="0.2.0" />, rootEl);

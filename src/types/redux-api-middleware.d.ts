@@ -1,8 +1,8 @@
 // source: https://raw.githubusercontent.com/mosen/commandment/master/ui/src/typings/redux-api-middleware.d.ts
 // related: agraboso/redux-api-middleware#93
-// tslint:disable
+// tslint:disable: max-classes-per-file
 declare module 'redux-api-middleware' {
-  import { Middleware, Action, AnyAction, Dispatch } from 'redux';
+  import { Action, AnyAction, Dispatch, Middleware } from 'redux';
 
   /**
    * Symbol key that carries API call info interpreted by this Redux middleware.
@@ -23,11 +23,11 @@ declare module 'redux-api-middleware' {
    * @param {array} validationErrors - an array of validation errors
    */
   export class InvalidRSAA {
-    constructor(validationErrors: Array<string>);
+    public name: string;
+    public message: string;
+    public validationErrors: string[];
 
-    name: string;
-    message: string;
-    validationErrors: Array<string>;
+    constructor(validationErrors: string[]);
   }
 
   /**
@@ -38,10 +38,10 @@ declare module 'redux-api-middleware' {
    * @param {string} message - the error message
    */
   export class InternalError {
-    constructor(message: string);
+    public name: string;
+    public message: string;
 
-    name: string;
-    message: string;
+    constructor(message: string);
   }
 
   /**
@@ -52,10 +52,10 @@ declare module 'redux-api-middleware' {
    * @param {string} message - the error message
    */
   export class RequestError {
-    constructor(message: string);
+    public name: string;
+    public message: string;
 
-    name: string;
-    message: string;
+    constructor(message: string);
   }
 
   /**
@@ -69,13 +69,13 @@ declare module 'redux-api-middleware' {
    *  'Content-Type' header signals a JSON response
    */
   export class ApiError {
-    constructor(status: number, statusText: string, response: any);
+    public name: string;
+    public message: string;
+    public status: number;
+    public statusText: string;
+    public response?: any;
 
-    name: string;
-    message: string;
-    status: number;
-    statusText: string;
-    response?: any;
+    constructor(status: number, statusText: string, response: any);
   }
 
   //// VALIDATION
@@ -102,7 +102,7 @@ declare module 'redux-api-middleware' {
    * Checks an action against the RSAA definition, returning a (possibly empty)
    * array of validation errors.
    */
-  function validateRSAA(action: object): Array<string>;
+  function validateRSAA(action: object): string[];
 
   /**
    * Is the given action a valid RSAA?

@@ -28,8 +28,6 @@ export default class ItemClassGroup extends PureComponent<Props, State> {
         [name]: !Boolean(this.state.expanded[name])
       }
     });
-    // prettier tslint contradiction
-    // tslint:disable: semicolon
   };
 
   public render() {
