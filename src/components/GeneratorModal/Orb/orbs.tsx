@@ -4,7 +4,6 @@ import annullment from './assets/annullment.png';
 import armourers from './assets/armourers.png';
 import augmentation from './assets/augmentation.png';
 import blessed from './assets/blessed.png';
-import chance from './assets/chance.png';
 import chaos from './assets/chaos.png';
 import chromatic from './assets/chromatic.png';
 import divine from './assets/divine.png';

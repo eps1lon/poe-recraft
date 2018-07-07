@@ -1,6 +1,4 @@
-import classnames from 'classnames';
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
 
 export interface Props {
   is_modifieable: boolean;
@@ -14,12 +12,6 @@ export interface Props {
 export interface State {
   is_modifieable: boolean;
 }
-
-const default_props = {
-  onElder: () => {},
-  onShape: () => {},
-  onNone: () => {}
-};
 
 export default class AtlasModifiers extends Component<Props, State> {
   public static default_props = {

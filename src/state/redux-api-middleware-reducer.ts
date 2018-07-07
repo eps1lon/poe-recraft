@@ -1,4 +1,4 @@
-import { Action, Reducer } from 'redux';
+import { Reducer } from 'redux';
 
 export enum LoadingState {
   requested,

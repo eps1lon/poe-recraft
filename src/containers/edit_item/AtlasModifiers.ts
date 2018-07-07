@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { createSelector } from 'reselect';
 
-import AtlasModifiers, { Props } from 'components/edit_item/AtlasModifiers';
+import AtlasModifiers from 'components/edit_item/AtlasModifiers';
 import { State } from 'state';
 import { item_actions } from 'state/actions';
 import { PartialProps } from 'types/react';

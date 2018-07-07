@@ -10,7 +10,7 @@ interface Props {
   flags: Array<Flags | undefined>;
 }
 
-const FlagsTooltip = (props: Props) => {
+const FlagsTooltip: SFC<Props> = props => {
   const titles = props.flags
     .map(flags => {
       if (flags != null) {

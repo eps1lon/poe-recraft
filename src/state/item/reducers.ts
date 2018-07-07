@@ -36,7 +36,7 @@ const reducer: Reducer<State, actions.Action> = (
 };
 export default reducer;
 
-function setItemHandle(state: State, action: actions.SetItemAction): State {
+function setItemHandle(_: State, action: actions.SetItemAction): State {
   return Item.build(action.payload);
 }
 

@@ -17,7 +17,7 @@ export default class Tags extends PureComponent<Props> {
   private add_tag: HTMLSelectElement | null = null;
 
   public render() {
-    const { addable, addTag, current, removable, removeTag } = this.props;
+    const { addable, current, removable, removeTag } = this.props;
 
     return (
       <fieldset>

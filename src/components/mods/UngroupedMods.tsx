@@ -24,7 +24,7 @@ const renderSpawnweight = (spawnweight?: number) =>
 
 export default class UngroupedMods extends PureComponent<Props> {
   public render() {
-    const { className = '', details: all_details, options = {} } = this.props;
+    const { details: all_details, options = {} } = this.props;
     const { exclude = [] } = options;
 
     const columns = this.getColumns();

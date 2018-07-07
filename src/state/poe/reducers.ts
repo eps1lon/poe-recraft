@@ -7,7 +7,6 @@ import { Type } from './actions';
 import {
   BaseItemTypeProps,
   CraftingBenchOptionsProps,
-  ModId,
   ModProps,
   NormalizedEssenceProps,
   TagProps

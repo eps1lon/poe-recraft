@@ -2,7 +2,7 @@ import React, { SFC } from 'react';
 import { Provider } from 'react-redux';
 
 import App from 'containers/App';
-import { Dispatch, Store } from '../';
+import { Store } from '../';
 
 export interface Props {
   version: string;

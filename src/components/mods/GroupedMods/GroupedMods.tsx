@@ -1,10 +1,6 @@
-import classnames from 'classnames';
-import { Mod } from 'poe-mods';
 import React, { PureComponent } from 'react';
 import { createSelector } from 'reselect';
 
-import CorrectGroup from 'containers/i18n/CorrectGroup';
-import UngroupedMods from 'containers/mods/UngroupedMods';
 import { isDisabled } from 'util/flags';
 
 import { GeneratorDetails } from '../ModsTable';
@@ -53,8 +49,6 @@ export default class GroupedMods extends PureComponent<Props> {
       <>
         {Array.from(groups.entries()).map(
           ([group, { details, disabled }], key) => {
-            const mods = details.map(({ mod }) => mod);
-
             return (
               <ModGroup
                 key={key}

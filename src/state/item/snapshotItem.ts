@@ -12,8 +12,7 @@ import { propOrUndefined } from '../../util/typesafe';
  */
 export default function snapshotItem(
   item: Item,
-  descriptions: {},
-  messages: {}
+  descriptions: {}
 ): PropsType<typeof ItemPopup>['item'] {
   let rarity: Rarity;
   if (item.rarity.isNormal()) {

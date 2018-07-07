@@ -1,6 +1,5 @@
-import React, { SFC } from 'react';
+import React, { PureComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Button } from 'reactstrap';
 
 import { BaseItemTypeProps } from 'state/poe/schema';
 import BaseItem from './BaseItem';
@@ -13,7 +12,7 @@ export interface Props {
   onChange?: (item: BaseItemTypeProps) => void;
 }
 
-export default class Picker extends React.PureComponent<Props> {
+export default class Picker extends PureComponent<Props> {
   public static defaultProps = {
     onChange: () => {}
   };

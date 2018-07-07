@@ -1,14 +1,5 @@
 import { RSAA, RSAAction } from 'redux-api-middleware';
 
-import { Action } from 'util/redux';
-import {
-  BaseItemTypeProps,
-  CraftingBenchOptionsProps,
-  EssenceProps,
-  ModProps,
-  NormalizedEssenceProps,
-  TagProps
-} from './schema';
 import { apiEndpoint } from './selectors';
 
 export enum Type {

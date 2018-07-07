@@ -1,7 +1,5 @@
-import { ComponentType, SFC } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { createSelector } from 'reselect';
 
 import GroupedMods from 'components/mods/GroupedMods';
 import { State } from 'state';

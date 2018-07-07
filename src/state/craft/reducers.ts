@@ -1,4 +1,3 @@
-import { Generator } from 'poe-mods';
 import { Reducer } from 'redux';
 
 import itemReducer, {

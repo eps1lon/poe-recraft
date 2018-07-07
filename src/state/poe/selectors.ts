@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 import { isRequested } from '../redux-api-middleware-reducer';
 import * as generators from './generators';
 import { State as PoeState } from './reducers';
-import { EssenceProps, ModProps } from './schema';
+import { ModProps } from './schema';
 
 export { generators };
 
@@ -12,7 +12,7 @@ interface State {
 }
 
 export function apiEndpoint(endpoint: string): (state: State) => string {
-  return (state: State) => `./${endpoint}`;
+  return (_: State) => `./${endpoint}`;
 }
 
 export const getMods: (state: State) => ModProps[] = createSelector(

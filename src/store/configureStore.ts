@@ -1,17 +1,5 @@
-import {
-  AnyAction,
-  applyMiddleware,
-  compose,
-  createStore,
-  DeepPartial,
-  Store as ReduxStore
-} from 'redux';
-import {
-  apiMiddleware,
-  ApiMiddleware,
-  RSAA,
-  RSAAction
-} from 'redux-api-middleware';
+import { applyMiddleware, createStore, DeepPartial } from 'redux';
+import { apiMiddleware, ApiMiddleware } from 'redux-api-middleware';
 import createSagaMiddleware from 'redux-saga';
 
 import rootReducer, { State } from '../state';

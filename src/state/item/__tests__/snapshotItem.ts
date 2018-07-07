@@ -2,9 +2,6 @@
 import { createItems, createMods } from 'poe-mods';
 import snapshotItem from '../snapshotItem';
 
-const messages = {
-  baseitemtypes: require('poe-i18n/locale-data/en/BaseItemTypes.json')
-};
 const descriptions = {
   stat_descriptions: require('poe-i18n/locale-data/en/stat_descriptions.json')
 };
@@ -19,7 +16,5 @@ it('matches weapons', () => {
     .addMod(mods.fromId('LocalIncreasedAttackSpeed6'))
     .addMod(mods.fromId('LocalAddedChaosDamage1'))
     .setProperty('corrupted', true);
-  expect(snapshotItem(weapon, descriptions, messages)).toMatchSnapshot(
-    'weapon'
-  );
+  expect(snapshotItem(weapon, descriptions)).toMatchSnapshot('weapon');
 });

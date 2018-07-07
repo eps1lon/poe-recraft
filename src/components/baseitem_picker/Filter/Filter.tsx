@@ -34,7 +34,7 @@ const defence_combinations = [
 
 export default class Filter extends React.PureComponent<Props> {
   public static defaultProps = {
-    onChange: (filter: BaseitemFilter) => {}
+    onChange: () => {}
   };
 
   public render() {
