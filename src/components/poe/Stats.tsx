@@ -31,7 +31,10 @@ const Stats: SFC<Props> = ({ className, stats, descriptions }) => {
       );
     });
   } catch (err) {
-    console.warn(err.message, stats);
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn(err.message, stats);
+    }
+
     return stats.map(stat => {
       return (
         <div key={stat.props.id} className={className}>
