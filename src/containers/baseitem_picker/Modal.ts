@@ -6,6 +6,7 @@ import { State } from 'state';
 import { gui_actions } from 'state/gui';
 import { activeBaseitem } from 'state/item/selectors';
 import { poe_selectors } from 'state/poe';
+import { PartialProps } from 'types/react';
 
 const mapStateToProps = (state: State) => {
   return {
@@ -15,10 +16,14 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+type DispatchProps = PartialProps<typeof Modal, 'onToggle'>;
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => {
   return {
     onToggle: () => dispatch(gui_actions.expanded_actions.toggleBaseItemModal())
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Modal);

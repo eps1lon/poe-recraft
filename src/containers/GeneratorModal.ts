@@ -7,6 +7,7 @@ import { craftActions } from 'state/craft';
 import { activeGenerator } from 'state/craft/selectors';
 import { gui_actions } from 'state/gui';
 import { poe_selectors } from 'state/poe';
+import { PartialProps } from 'types/react';
 
 const mapStateToProps = (state: State) => {
   return {
@@ -18,7 +19,11 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+type DispatchProps = PartialProps<
+  typeof GeneratorModal,
+  'onChange' | 'onToggle'
+>;
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => {
   return {
     onChange: (generator: string) =>
       dispatch(craftActions.useGenerator(generator)),

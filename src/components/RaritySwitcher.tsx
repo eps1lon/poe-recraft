@@ -6,7 +6,7 @@ export interface Props {
   available: RarityId[];
   id: string;
   selected: RarityId | undefined;
-  onChange: (rarity: RarityId) => any;
+  onChange: (rarity: RarityId) => void;
 }
 
 export default class RaritySwitch extends PureComponent<Props> {

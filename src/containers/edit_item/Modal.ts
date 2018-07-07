@@ -11,10 +11,14 @@ const mapStateToProps = (state: State): Partial<Props> => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+type DispatchProps = Pick<Props, 'onToggle'>;
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => {
   return {
     onToggle: () => dispatch(gui_actions.expanded_actions.toggleEditItemModal())
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Modal);

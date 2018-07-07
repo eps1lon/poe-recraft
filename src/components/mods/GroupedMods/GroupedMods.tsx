@@ -17,7 +17,7 @@ export interface Props {
   details: GeneratorDetails[];
   options?: {};
   isExpanded: (id: string) => boolean;
-  onGroupClick: (id: string) => any;
+  onGroupClick: (id: string) => void;
 }
 
 // TODO spawnchance, flags, mod#t

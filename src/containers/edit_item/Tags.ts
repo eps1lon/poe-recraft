@@ -13,11 +13,15 @@ const mapStateToProps = (state: State) => {
   return { addable, current, removable };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+type DispatchProps = Pick<Props, 'addTag' | 'removeTag'>;
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => {
   return {
     addTag: (tag: TagProps) => dispatch(item_actions.addTag(tag)),
     removeTag: (tag: TagProps) => dispatch(item_actions.removeTag(tag))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tags);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Tags);

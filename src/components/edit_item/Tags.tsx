@@ -7,8 +7,8 @@ export interface Props {
   addable: string[];
   removable: string[];
   current: string[];
-  addTag: (tag: string) => any;
-  removeTag: (tag: string) => any;
+  addTag: (tag: string) => void;
+  removeTag: (tag: string) => void;
 }
 
 export default class Tags extends PureComponent<Props> {

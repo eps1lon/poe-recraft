@@ -16,7 +16,7 @@ export interface Props {
   options?: Partial<{
     exclude: string[];
   }>;
-  onAddMod: (mod: Mod) => any;
+  onAddMod: (mod: Mod) => void;
 }
 
 const renderSpawnweight = (spawnweight?: number) =>

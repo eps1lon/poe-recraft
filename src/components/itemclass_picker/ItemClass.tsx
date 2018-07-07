@@ -6,7 +6,7 @@ export interface Props {
   active: string;
   id: string;
   name: string;
-  onClick: (primary: string) => any;
+  onClick: (primary: string) => void;
 }
 
 export default class ItemClassGroup extends PureComponent<Props> {

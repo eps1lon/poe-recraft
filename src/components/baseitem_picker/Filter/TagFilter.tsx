@@ -5,7 +5,7 @@ import { Button } from 'reactstrap';
 export interface Props {
   className?: string;
   tag: string;
-  onClick: (tag: string) => any;
+  onClick: (tag: string) => void;
 }
 
 // attr1_attr2_..._attrN_armour

@@ -9,7 +9,7 @@ type GeneratorId = string;
 export interface Props {
   active: GeneratorId;
   applicableTo: { [key: string]: boolean };
-  onClick: () => any;
+  onClick: () => void;
 }
 
 const default_props = {

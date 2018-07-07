@@ -4,6 +4,7 @@ import { Dispatch } from 'redux';
 import ApplyGenerator from 'components/ApplyGenerator';
 import { State } from 'state';
 import { craft_selectors, craftActions } from 'state/craft';
+import { PartialProps } from 'types/react';
 
 const mapStateToProps = (state: State) => {
   return {
@@ -12,7 +13,8 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+type DispatchProps = PartialProps<typeof ApplyGenerator, 'onClick'>;
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => {
   return {
     onClick: () => dispatch(craftActions.applyGenerator())
   };

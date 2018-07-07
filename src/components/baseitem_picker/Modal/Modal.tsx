@@ -12,7 +12,7 @@ export interface Props {
   active: BaseItemTypeProps | undefined;
   is_open: boolean;
   loading: boolean;
-  onToggle: () => any;
+  onToggle: () => void;
 }
 
 const default_props = {

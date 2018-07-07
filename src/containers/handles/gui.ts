@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { gui_actions } from 'state/gui';
 
 export interface ExpandedHandles {
-  onCollapse: (id: gui_actions.GuiIdent) => any;
+  onCollapse: (id: gui_actions.GuiIdent) => void;
 }
 export const expanded = (dispatch: Dispatch): ExpandedHandles => {
   return {

@@ -10,7 +10,7 @@ import './style.css';
 export interface Props {
   active?: BaseItemTypeProps | undefined;
   baseitems: BaseItemTypeProps[];
-  onChange?: (item: BaseItemTypeProps) => any;
+  onChange?: (item: BaseItemTypeProps) => void;
 }
 
 export default class Picker extends React.PureComponent<Props> {

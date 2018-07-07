@@ -6,9 +6,9 @@ export interface Props {
   is_modifieable: boolean;
   is_shaped: boolean;
   is_elder: boolean;
-  onShape: () => any;
-  onElder: () => any;
-  onNone: () => any;
+  onShape: () => void;
+  onElder: () => void;
+  onNone: () => void;
 }
 
 export interface State {

@@ -9,7 +9,7 @@ import './style.css';
 export interface Props {
   active_locale: string;
   locales: string[];
-  onChange: (locale: string) => any;
+  onChange: (locale: string) => void;
 }
 
 const default_props = {

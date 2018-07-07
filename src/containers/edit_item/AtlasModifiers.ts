@@ -5,6 +5,7 @@ import { createSelector } from 'reselect';
 import AtlasModifiers, { Props } from 'components/edit_item/AtlasModifiers';
 import { State } from 'state';
 import { item_actions } from 'state/item';
+import { PartialProps } from 'types/react';
 
 const mapStateToProps = createSelector(
   (state: State) => state.craft.item,
@@ -26,7 +27,11 @@ const mapStateToProps = createSelector(
   }
 );
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+type DispatchProps = PartialProps<
+  typeof AtlasModifiers,
+  'onElder' | 'onNone' | 'onShape'
+>;
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => {
   return {
     onElder: () => dispatch(item_actions.asElderItem()),
     onShape: () => dispatch(item_actions.asShaperItem()),
@@ -34,4 +39,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AtlasModifiers);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AtlasModifiers);

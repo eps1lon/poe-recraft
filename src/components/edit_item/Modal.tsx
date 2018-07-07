@@ -5,8 +5,8 @@ import Body from './Body';
 
 export interface Props {
   is_open: boolean;
-  onChange: () => any;
-  onToggle: () => any;
+  onChange: () => void;
+  onToggle: () => void;
 }
 
 const default_props = {

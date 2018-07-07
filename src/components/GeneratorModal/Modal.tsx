@@ -13,8 +13,8 @@ export interface Props {
   active: GeneratorId;
   is_open: boolean;
   loading: boolean;
-  onChange: (id: GeneratorId) => any;
-  onToggle: () => any;
+  onChange: (id: GeneratorId) => void;
+  onToggle: () => void;
 }
 
 const default_props = {

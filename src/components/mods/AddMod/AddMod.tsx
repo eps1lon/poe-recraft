@@ -5,7 +5,7 @@ import * as React from 'react';
 
 export interface Props {
   mod: Mod;
-  onClick: (mod: Mod) => any;
+  onClick: (mod: Mod) => void;
 }
 
 export default class AddMod extends React.PureComponent<Props> {

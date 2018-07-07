@@ -13,7 +13,7 @@ export interface BaseitemFilter {
 export interface Props {
   item_class: string;
   tags: string[][];
-  onChange?: (filter: BaseitemFilter) => any;
+  onChange?: (filter: BaseitemFilter) => void;
 }
 
 const classes_with_defence_groups = [
