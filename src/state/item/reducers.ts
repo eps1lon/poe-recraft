@@ -3,13 +3,9 @@ import { Reducer } from 'redux';
 
 import * as actions from './actions';
 
-export interface State {
-  item: Item | undefined;
-}
+export type State = Item | undefined;
 
-export const initial: State = {
-  item: undefined
-};
+export const initial: State = undefined;
 
 const reducer: Reducer<State, actions.Action> = (
   state: State = initial,
@@ -41,15 +37,12 @@ const reducer: Reducer<State, actions.Action> = (
 export default reducer;
 
 function setItemHandle(state: State, action: actions.SetItemAction): State {
-  return {
-    ...state,
-    item: Item.build(action.payload)
-  };
+  return Item.build(action.payload);
 }
 
 function addModHandle(state: State, action: actions.AddModAction): State {
   const { payload: mod } = action;
-  const { item } = state;
+  const item = state;
 
   if (item != null) {
     let crafted = item.addMod(mod);
@@ -60,117 +53,79 @@ function addModHandle(state: State, action: actions.AddModAction): State {
       crafted = crafted.rarity.upgrade().addMod(mod);
     }
 
-    return {
-      ...state,
-      item: crafted
-    };
+    return crafted;
   } else {
     return state;
   }
 }
 
 function removeModHandle(
-  state: State,
+  item: State,
   { payload: mod }: actions.RemoveModAction
 ): State {
-  const { item } = state;
-
   if (item != null) {
-    return {
-      ...state,
-      item: item.removeMod(mod)
-    };
+    return item.removeMod(mod);
   } else {
-    return state;
+    return item;
   }
 }
 
-function setRarityHandle(state: State, action: actions.SetRarityAction): State {
-  const { item } = state;
-
+function setRarityHandle(item: State, action: actions.SetRarityAction): State {
   if (item != null) {
-    return {
-      ...state,
-      item: item.rarity.set(action.payload)
-    };
+    return item.rarity.set(action.payload);
   } else {
-    return state;
+    return item;
   }
 }
 
-function addTagHandle(state: State, action: actions.AddTagAction): State {
-  const { item } = state;
-
+function addTagHandle(item: State, action: actions.AddTagAction): State {
   if (item != null) {
-    return {
-      ...state,
-      item: item.withMutations(props => ({
-        ...props,
-        baseitem: {
-          ...props.baseitem,
-          tags: [...props.baseitem.tags, action.payload]
-        }
-      }))
-    };
+    return item.withMutations(props => ({
+      ...props,
+      baseitem: {
+        ...props.baseitem,
+        tags: [...props.baseitem.tags, action.payload]
+      }
+    }));
   } else {
-    return state;
+    return item;
   }
 }
 
-function removeTagHandle(state: State, action: actions.RemoveTagAction): State {
-  const { item } = state;
-
+function removeTagHandle(item: State, action: actions.RemoveTagAction): State {
   if (item != null) {
-    return {
-      ...state,
-      item: item.withMutations(props => ({
-        ...props,
-        baseitem: {
-          ...props.baseitem,
-          tags: props.baseitem.tags.filter(tag => tag !== action.payload)
-        }
-      }))
-    };
+    return item.withMutations(props => ({
+      ...props,
+      baseitem: {
+        ...props.baseitem,
+        tags: props.baseitem.tags.filter(tag => tag !== action.payload)
+      }
+    }));
   } else {
-    return state;
+    return item;
   }
 }
 
-function asElderItemHandle(state: State): State {
-  const { item } = state;
-
+function asElderItemHandle(item: State): State {
   if (item != null) {
-    return {
-      ...state,
-      item: item.asElderItem()
-    };
+    return item.asElderItem();
   } else {
-    return state;
+    return item;
   }
 }
 
-function asShaperItemHandle(state: State): State {
-  const { item } = state;
-
+function asShaperItemHandle(item: State): State {
   if (item != null) {
-    return {
-      ...state,
-      item: item.asShaperItem()
-    };
+    return item.asShaperItem();
   } else {
-    return state;
+    return item;
   }
 }
 
-function removeAtlasModifierHandle(state: State): State {
-  const { item } = state;
-
+function removeAtlasModifierHandle(item: State): State {
   if (item != null) {
-    return {
-      ...state,
-      item: item.removeAtlasModifier()
-    };
+    return item.removeAtlasModifier();
   } else {
-    return state;
+    return item;
   }
 }

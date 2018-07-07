@@ -1,11 +1,15 @@
 import { Generator } from 'poe-mods';
-import reduceReducers from 'reduce-reducers';
 import { Reducer } from 'redux';
 
-import item, { initial_item_state, ItemState } from '../item';
+import itemReducer, {
+  initial_item_state,
+  item_actions,
+  ItemState
+} from '../item';
 import * as actions from './actions';
 
-export interface State extends ItemState {
+export interface State {
+  item: ItemState;
   mod_generator: actions.DefaultGenerator | undefined;
   mod_generator_id: string | undefined;
 }
@@ -13,15 +17,12 @@ export interface State extends ItemState {
 const initial: State = {
   mod_generator: undefined,
   mod_generator_id: '',
-  // we need to spread the initial here because only the
-  // 1st reducer in reduce-reducer gets undefined
-  // every subsequent reducer has the 1st initial state
-  ...initial_item_state
+  item: initial_item_state
 };
 
 const reducer: Reducer<State, actions.Action> = (
   state: State = initial,
-  action: actions.Action
+  action: actions.Action | item_actions.Action
 ) => {
   switch (action.type) {
     case actions.Type.APPLY_GENERATOR:
@@ -31,6 +32,14 @@ const reducer: Reducer<State, actions.Action> = (
     case actions.Type.USE_GENERATOR:
       return useGeneratorHandle(state, action);
     default:
+      const newItem = itemReducer(state.item, action);
+      if (newItem !== state.item) {
+        return {
+          ...state,
+          item: newItem
+        };
+      }
+
       return state;
   }
 };
@@ -66,6 +75,4 @@ function useGeneratorHandle(
   };
 }
 
-// @ts-ignore
-// ts does not recognize that CraftState extends ItemState
-export default reduceReducers(reducer, item);
+export default reducer;
