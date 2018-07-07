@@ -34,7 +34,6 @@ const defaultProps = {
   onGroupToggle: () => {} // noop
 };
 
-// TODO sortable
 const ModsTable: SFC<Props> = props => {
   const { className } = props;
   const {

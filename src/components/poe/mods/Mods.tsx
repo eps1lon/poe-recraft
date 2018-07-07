@@ -9,9 +9,6 @@ export interface Props {
   onRemoveMod: (mod: PoeMod) => void;
 }
 
-// TODO remove handle
-// TODO translate mod
-// TODO mod.serialize.klass
 const Mods: SFC<Props> = ({ className, mods, onRemoveMod }) => {
   return (
     <ul className={`mods ${className}`}>

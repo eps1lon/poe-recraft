@@ -15,7 +15,6 @@ export interface Props {
   onGroupClick: (id: string) => void;
 }
 
-// TODO spawnchance, flags, mod#t
 export default class GroupedMods extends PureComponent<Props> {
   private getGroups = createSelector(
     (props: { details: GeneratorDetails[] }) => props.details,
