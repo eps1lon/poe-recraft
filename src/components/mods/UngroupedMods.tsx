@@ -119,8 +119,8 @@ export default class UngroupedMods extends PureComponent<Props> {
         className: 'spawn-chance',
         renderHeader: () => 'Chance',
         id: 'chance',
-        sortBy: ({ spawnweight }: GeneratorDetails) =>
-          spawnweight === undefined ? 0 : spawnweight
+        sortBy: ({ relative_weight }: GeneratorDetails) =>
+          relative_weight == null ? 0 : relative_weight
       },
       {
         className: 'add-mod',
