@@ -1,6 +1,6 @@
-import React, { SFC, SyntheticEvent } from 'react';
+import React, { PureComponent, SyntheticEvent } from 'react';
 
-type RarityId = string;
+import { isRarityId, RarityId } from 'types/poe';
 
 export interface Props {
   available: RarityId[];
@@ -9,27 +9,27 @@ export interface Props {
   onChange: (rarity: RarityId) => any;
 }
 
-const default_props = {
-  onChange: () => {}
-};
+export default class RaritySwitch extends PureComponent<Props> {
+  public render() {
+    const { available, id, selected } = this.props;
 
-const RaritySwitcher: SFC<Props> = props => {
-  const { available, selected, onChange } = props;
+    return (
+      <select id={id} onChange={this.handleChange} value={selected}>
+        {available.map(rarity => (
+          <option key={rarity} value={rarity}>
+            {rarity}
+          </option>
+        ))}
+      </select>
+    );
+  }
 
-  const handleChange = (event: SyntheticEvent<HTMLSelectElement>) =>
-    onChange(event.currentTarget.value);
-
-  return (
-    <select id={props.id} onChange={handleChange} value={selected}>
-      {available.map(rarity => (
-        <option key={rarity} value={rarity}>
-          {rarity}
-        </option>
-      ))}
-    </select>
-  );
-};
-
-RaritySwitcher.defaultProps = default_props;
-
-export default RaritySwitcher;
+  private handleChange = (event: SyntheticEvent<HTMLSelectElement>) => {
+    const rarity = event.currentTarget.value;
+    if (isRarityId(rarity)) {
+      this.props.onChange(rarity);
+    } else if (process.env.NODE_ENV !== 'production') {
+      console.warn(`'${rarity}' is not a valid RarityId`);
+    }
+  };
+}

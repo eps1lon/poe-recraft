@@ -3,7 +3,7 @@ import { Mod } from 'poe-mods';
 import React, { PureComponent } from 'react';
 
 import FormattedModName from 'containers/i18n/FormattedModName';
-import { disabled } from 'util/flags';
+import { isDisabled } from 'util/flags';
 import Table from '../FlexTable';
 import Stats from '../poe/Stats';
 import AddMod from './AddMod';
@@ -119,7 +119,7 @@ export default class UngroupedMods extends PureComponent<Props> {
         renderHeader: () => '',
         renderCell: details => {
           return (
-            !disabled(details) && (
+            !isDisabled(details) && (
               <AddMod mod={details.mod} onClick={onAddMod} />
             )
           );
@@ -130,7 +130,7 @@ export default class UngroupedMods extends PureComponent<Props> {
 
   private getTrProps(data: GeneratorDetails) {
     return {
-      className: classNames({ disabled: disabled(data) })
+      className: classNames({ disabled: isDisabled(data) })
     };
   }
 }

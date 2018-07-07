@@ -11,7 +11,11 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch, own_props: Props) => {
+type DispatchProps = Pick<Props, 'onChange'>;
+const mapDispatchToProps = (
+  dispatch: Dispatch,
+  own_props: Pick<Props, 'onChange'>
+): DispatchProps => {
   return {
     onChange: (id: 'normal' | 'magic' | 'rare') => {
       dispatch(item_actions.setRarity(id));
@@ -23,5 +27,4 @@ const mapDispatchToProps = (dispatch: Dispatch, own_props: Props) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-  // @ts-ignore: broken react-redux typings
 )(RaritySwitcher);

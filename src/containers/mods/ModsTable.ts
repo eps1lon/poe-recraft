@@ -5,14 +5,15 @@ import ModsTable, { Props } from 'components/mods/ModsTable';
 import { State } from 'state';
 import { gui_actions } from 'state/gui';
 
-const mapStateToProps = (state: State, props: Props) => {
+const mapStateToProps = (state: State, props: Pick<Props, 'className'>) => {
   return {
     expanded: Boolean(state.gui.expanded.get(props.className)),
     group_expanded: Boolean(state.gui.expanded.get(`${props.className}-group`))
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+type DispatchProps = Pick<Props, 'onToggle' | 'onGroupToggle'>;
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => {
   return {
     onToggle: (class_name: string, is_expanded: boolean) =>
       is_expanded
@@ -23,5 +24,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   };
 };
 
-// @ts-ignore: broken react-redux typings
-export default connect(mapStateToProps, mapDispatchToProps)(ModsTable);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ModsTable);

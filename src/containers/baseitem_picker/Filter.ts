@@ -13,7 +13,11 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch, own_props: Filter['props']) => {
+type DispatchProps = Pick<Filter['props'], 'onChange'>;
+const mapDispatchToProps = (
+  dispatch: Dispatch,
+  own_props: Pick<Filter['props'], 'onChange'>
+): DispatchProps => {
   return {
     onChange: (filter: BaseitemFilter) => {
       const { onChange } = own_props;
@@ -27,5 +31,4 @@ const mapDispatchToProps = (dispatch: Dispatch, own_props: Filter['props']) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-  // @ts-ignore
 )(Filter);

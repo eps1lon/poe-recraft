@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import { createSelector, Selector } from 'reselect';
 
-import ItemSection from 'components/ItemSection';
+import ItemSection, { Props } from 'components/ItemSection';
 import { State } from 'state';
 import snapshotItem from 'state/item/snapshotItem';
 
-const mapStateToProps = createSelector(
+type StateProps = Pick<Props, 'item'>;
+const mapStateToProps: Selector<State, StateProps> = createSelector(
   (state: State) => state.craft.item,
   (state: State) => state.i18n.descriptions,
   (state: State) => state.i18n.messages,
@@ -18,6 +19,4 @@ const mapStateToProps = createSelector(
   }
 );
 
-// @ts-ignore: cannot assign undefined to item but Props in ItemSeciont
-// explicitly allows for undefined
 export default connect(mapStateToProps)(ItemSection);

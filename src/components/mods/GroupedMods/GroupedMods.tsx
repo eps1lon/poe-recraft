@@ -1,9 +1,11 @@
 import classnames from 'classnames';
 import { Mod } from 'poe-mods';
-import React, { SFC } from 'react';
+import React, { PureComponent } from 'react';
+import { createSelector } from 'reselect';
 
 import CorrectGroup from 'containers/i18n/CorrectGroup';
 import UngroupedMods from 'containers/mods/UngroupedMods';
+import { isDisabled } from 'util/flags';
 
 import { GeneratorDetails } from '../ModsTable';
 import ModGroup from './ModGroup';
@@ -12,45 +14,61 @@ import './style.css';
 
 export interface Props {
   className: string;
-  groups: Map<string, { details: GeneratorDetails[]; disabled: boolean }>;
+  details: GeneratorDetails[];
   options?: {};
   isExpanded: (id: string) => boolean;
   onGroupClick: (id: string) => any;
 }
 
-const default_props = {
-  isExpanded: () => false,
-  options: {},
-  onGroupClick: () => undefined
-};
-
 // TODO spawnchance, flags, mod#t
-const GroupedMods: SFC<Props> = props => {
-  const { className, groups, onGroupClick, isExpanded } = props;
+export default class GroupedMods extends PureComponent<Props> {
+  private getGroups = createSelector(
+    (props: { details: GeneratorDetails[] }) => props.details,
+    details => {
+      const all_groups = details.reduce((groups, detail) => {
+        const group = detail.mod.props.correct_group;
 
-  return (
-    <>
-      {Array.from(groups.entries()).map(
-        ([group, { details, disabled }], key) => {
-          const mods = details.map(({ mod }) => mod);
-
-          return (
-            <ModGroup
-              key={key}
-              className={className}
-              details={details}
-              disabled={disabled}
-              group={group}
-              isExpanded={isExpanded}
-              onGroupClick={onGroupClick}
-            />
-          );
+        if (!groups.has(group)) {
+          groups.set(group, { details: [], disabled: false });
+          // ts: groups.get(group) !== undefined
         }
-      )}
-    </>
+        groups.get(group)!.details.push(detail);
+
+        return groups;
+      }, new Map<string, { details: GeneratorDetails[]; disabled: boolean }>());
+
+      for (const group of all_groups.values()) {
+        group.disabled = group.details.every(detail => isDisabled(detail));
+      }
+
+      return all_groups;
+    }
   );
-};
 
-GroupedMods.defaultProps = default_props;
+  public render() {
+    const { className, onGroupClick, isExpanded } = this.props;
+    const groups = this.getGroups(this.props);
 
-export default GroupedMods;
+    return (
+      <>
+        {Array.from(groups.entries()).map(
+          ([group, { details, disabled }], key) => {
+            const mods = details.map(({ mod }) => mod);
+
+            return (
+              <ModGroup
+                key={key}
+                className={className}
+                details={details}
+                disabled={disabled}
+                group={group}
+                isExpanded={isExpanded}
+                onGroupClick={onGroupClick}
+              />
+            );
+          }
+        )}
+      </>
+    );
+  }
+}

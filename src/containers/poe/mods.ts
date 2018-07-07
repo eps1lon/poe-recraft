@@ -1,7 +1,13 @@
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 
 import { Mods as ModsComponent } from 'components/poe/mods/';
+import { PartialProps } from 'types/react';
 import modHandles from '../handles/mod';
 
-// @ts-ignore: broken react-redux typings
-export const Mods = connect(null, modHandles)(ModsComponent);
+type DispatchProps = PartialProps<typeof ModsComponent, 'onRemoveMod'>;
+
+export const Mods = connect(
+  null,
+  modHandles as (dispatch: Dispatch) => DispatchProps
+)(ModsComponent);

@@ -4,10 +4,10 @@ import { Dispatch } from 'redux';
 import { item_actions } from 'state/item';
 
 export interface ModHandles {
-  onAddMod: (mod: Mod) => any;
-  onRemoveMod: (mod: Mod) => any;
+  onAddMod: (mod: Mod) => void;
+  onRemoveMod: (mod: Mod) => void;
 }
-export const modHandles = (dispatch: Dispatch) => {
+export const modHandles = (dispatch: Dispatch): ModHandles => {
   return {
     onAddMod: (mod: Mod) => dispatch(item_actions.addMod(mod)),
     onRemoveMod: (mod: Mod) => dispatch(item_actions.removeMod(mod))

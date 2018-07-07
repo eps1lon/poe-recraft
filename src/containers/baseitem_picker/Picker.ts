@@ -10,14 +10,19 @@ import { BaseItemTypeProps } from 'state/poe/schema';
 
 const baseitemsSelector = makeFilterItems();
 
-const mapStateToProps = (state: State) => {
+type StateProps = Pick<Picker['props'], 'active' | 'baseitems'>;
+const mapStateToProps = (state: State): StateProps => {
   return {
     active: activeBaseitem(state),
     baseitems: baseitemsSelector(state)
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch, own_props: Picker['props']) => {
+type DispatchProps = Pick<Picker['props'], 'onChange'>;
+const mapDispatchToProps = (
+  dispatch: Dispatch,
+  own_props: Pick<Picker['props'], 'onChange'>
+): DispatchProps => {
   return {
     onChange: (item: BaseItemTypeProps) => {
       const { onChange } = own_props;
@@ -28,5 +33,7 @@ const mapDispatchToProps = (dispatch: Dispatch, own_props: Picker['props']) => {
   };
 };
 
-// @ts-ignore
-export default connect(mapStateToProps, mapDispatchToProps)(Picker);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Picker);

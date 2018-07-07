@@ -1,51 +1,28 @@
+import { ComponentType, SFC } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { createSelector } from 'reselect';
 
 import GroupedMods from 'components/mods/GroupedMods';
-import { GeneratorDetails } from 'components/mods/ModsTable';
 import { State } from 'state';
 import { gui_actions } from 'state/gui';
-import { disabled } from 'util/flags';
+import { PartialProps } from 'types/react';
 
-const groupSelector = createSelector(
-  (props: { details: GeneratorDetails[] }) => props.details,
-  details => {
-    const all_groups = details.reduce((groups, detail) => {
-      const group = detail.mod.props.correct_group;
-
-      if (!groups.has(group)) {
-        groups.set(group, { details: [], disabled: false });
-        // ts: groups.get(group) !== undefined
-      }
-      groups.get(group)!.details.push(detail);
-
-      return groups;
-    }, new Map<string, { details: GeneratorDetails[]; disabled: boolean }>());
-
-    for (const group of all_groups.values()) {
-      group.disabled = group.details.every(detail => disabled(detail));
-    }
-
-    return all_groups;
-  }
-);
-
-const mapStateToProps = (
-  state: State,
-  props: { className: string; details: GeneratorDetails[] }
-) => {
+type StateProps = PartialProps<typeof GroupedMods, 'isExpanded'>;
+type OwnStateProps = PartialProps<typeof GroupedMods, 'className'>;
+const mapStateToProps = (state: State, props: OwnStateProps): StateProps => {
   return {
     isExpanded: (group: string) =>
-      Boolean(state.gui.expanded.get(`${props.className}.${group}`)),
-    groups: groupSelector(props)
+      Boolean(state.gui.expanded.get(`${props.className}.${group}`))
   };
 };
 
+type DispatchProps = PartialProps<typeof GroupedMods, 'onGroupClick'>;
+type OwnDispatchProps = PartialProps<typeof GroupedMods, 'className'>;
 const mapDispatchToProps = (
   dispatch: Dispatch,
-  props: { className: string }
-) => {
+  props: OwnDispatchProps
+): DispatchProps => {
   return {
     onGroupClick: (group: string) =>
       dispatch(
@@ -57,5 +34,4 @@ const mapDispatchToProps = (
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-  // @ts-ignore
 )(GroupedMods);
