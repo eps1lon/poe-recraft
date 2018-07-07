@@ -40,8 +40,8 @@ describe('async actions', () => {
     const success = dispatched[1];
     expect(success).toEqual({
       meta: undefined,
-      type: 'POE/ITEMS_SUCCESS',
-      payload: []
+      payload: [],
+      type: 'POE/ITEMS_SUCCESS'
     });
   });
 });
