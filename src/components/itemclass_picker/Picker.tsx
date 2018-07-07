@@ -17,6 +17,10 @@ export interface State {
 }
 
 export default class ItemClassGroup extends PureComponent<Props, State> {
+  public state: State = {
+    expanded: {}
+  };
+
   public toggle = (name: string) => () => {
     this.setState({
       expanded: {
@@ -27,14 +31,6 @@ export default class ItemClassGroup extends PureComponent<Props, State> {
     // prettier tslint contradiction
     // tslint:disable: semicolon
   };
-
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      expanded: {}
-    };
-  }
 
   public render() {
     const { active, groups } = this.props;
