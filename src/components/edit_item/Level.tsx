@@ -26,7 +26,11 @@ export default class Level extends PureComponent<Props> {
   }
 
   private handleLevelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = +event.currentTarget.valueAsNumber;
-    this.props.onChange(value);
+    const value = event.currentTarget.valueAsNumber;
+    if (Number.isNaN(value)) {
+      this.props.onChange(0);
+    } else {
+      this.props.onChange(value);
+    }
   };
 }
