@@ -14,10 +14,11 @@ export interface State {
   poe: PoeState;
 }
 
-export default combineReducers({
+const reducer: Reducer<State> = combineReducers({
   baseitemfilter,
   craft,
   gui,
   i18n,
   poe
-}) as Reducer<State>;
+});
+export default reducer;

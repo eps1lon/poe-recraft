@@ -21,7 +21,7 @@ export interface State {
   tags: ApiState<TagProps[]>;
 }
 
-export default combineReducers({
+const reducer: Reducer<State> = combineReducers({
   benchoptions: createApiReducer(
     [Type.BENCHS_REQUEST, Type.BENCHS_SUCCESS, Type.BENCHS_FAILURE],
     [],
@@ -55,4 +55,6 @@ export default combineReducers({
     [],
     (tags: TagProps[]) => tags
   )
-}) as Reducer<State>;
+});
+
+export default reducer;
