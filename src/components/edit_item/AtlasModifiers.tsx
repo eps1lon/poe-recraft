@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 export interface Props {
   is_modifieable: boolean;
@@ -13,7 +13,7 @@ export interface State {
   is_modifieable: boolean;
 }
 
-export default class AtlasModifiers extends Component<Props, State> {
+export default class AtlasModifiers extends PureComponent<Props, State> {
   public static default_props = {
     onElder: () => {},
     onShape: () => {},

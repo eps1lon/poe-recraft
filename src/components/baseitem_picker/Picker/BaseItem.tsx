@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Button } from 'reactstrap';
 
@@ -9,7 +9,7 @@ export interface Props {
   onClick: (baseitem: BaseItemTypeProps) => void;
 }
 
-export default class BaseItem extends Component<Props> {
+export default class BaseItem extends PureComponent<Props> {
   public render() {
     const { baseitem } = this.props;
 
