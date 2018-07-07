@@ -7,6 +7,10 @@ import { gui_actions } from 'state/actions';
 import { gui_selectors } from 'state/selectors';
 import modHandles from '../handles/mod';
 
+const sort_by_ilvl_desc = {
+  by: 0,
+  order: 'desc' as 'asc' | 'desc'
+};
 const guiIdent = ({ className }: { className: string }) =>
   `UngroupedMods.${className}`;
 
@@ -16,7 +20,8 @@ const mapStateToProps = (
   own_props: Pick<Props, 'className'>
 ): StateProps => {
   const { by, order } = gui_selectors.sort_selectors.getSorting(
-    guiIdent(own_props)
+    guiIdent(own_props),
+    sort_by_ilvl_desc
   )(state);
 
   return { sortColumn: +by, sortOrder: order };
