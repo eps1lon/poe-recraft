@@ -15,11 +15,12 @@ export default class Row<T> extends React.PureComponent<Props<T>> {
     const { className, columns, data } = this.props;
     return (
       <div className={classnames('flex-table-row', className)}>
-        {columns.map(col => (
+        {columns.map((col, index) => (
           <Cell
             key={col.id}
             className={col.className}
             data={data}
+            index={index}
             renderItem={col.renderCell}
           />
         ))}

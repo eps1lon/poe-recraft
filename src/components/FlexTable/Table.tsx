@@ -39,21 +39,21 @@ export default class Table<T> extends React.PureComponent<Props<T>, State> {
 
     return (
       <div className="flex-table">
-        <Header
-          columns={columns}
-          onHeaderClick={(_, i) =>
-            this.setState({
-              sortColumn: i,
-              sortOrder: invertOrder(sortOrder)
-            })
-          }
-        />
+        <Header columns={columns} onHeaderClick={this.handleHeaderClick} />
         {sorted_data.map((row, i) => (
           <Row key={i} data={row} columns={columns} {...getTrProps(row)} />
         ))}
       </div>
     );
   }
+
+  private handleHeaderClick = (index: number) => {
+    const { sortOrder } = this.state;
+    this.setState({
+      sortColumn: index,
+      sortOrder: invertOrder(sortOrder)
+    });
+  };
 }
 
 function invertOrder(order: 'asc' | 'desc'): 'asc' | 'desc' {

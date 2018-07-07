@@ -1,11 +1,7 @@
 import React, { SFC } from 'react';
-import {
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  UncontrolledDropdown
-} from 'reactstrap';
+import { DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
 
+import Locale from './Locale';
 import LocaleIcon from './LocaleIcon';
 
 import './style.css';
@@ -31,13 +27,12 @@ const LanguagePicker: SFC<Props> = props => {
       <DropdownMenu>
         {locales.map(locale => {
           return (
-            <DropdownItem
+            <Locale
               key={locale}
               active={active_locale === locale}
-              onClick={() => onChange(locale)}
-            >
-              <LocaleIcon code={locale} />
-            </DropdownItem>
+              locale={locale}
+              onClick={onChange}
+            />
           );
         })}
       </DropdownMenu>

@@ -3,6 +3,8 @@ import { FormattedMessage } from 'react-intl';
 import { Button } from 'reactstrap';
 
 import { BaseItemTypeProps } from 'state/poe/schema';
+import BaseItem from './BaseItem';
+
 import './style.css';
 
 export interface Props {
@@ -13,11 +15,11 @@ export interface Props {
 
 export default class Picker extends React.PureComponent<Props> {
   public static defaultProps = {
-    onChange: (item: BaseItemTypeProps) => {}
+    onChange: () => {}
   };
 
   public render() {
-    const props = this.props as Props & typeof Picker.defaultProps;
+    const { baseitems, onChange = Picker.defaultProps.onChange } = this.props;
 
     return (
       <>
@@ -29,17 +31,13 @@ export default class Picker extends React.PureComponent<Props> {
           />
         </h4>
         <div key="items" className="baseitem-picker">
-          {props.baseitems.map(baseitem => {
+          {baseitems.map(baseitem => {
             return (
-              <Button
-                className="baseitem"
+              <BaseItem
                 key={baseitem.id}
-                onClick={() => props.onChange(baseitem)}
-              >
-                <FormattedMessage
-                  id={`poe.baseitemtypes.${baseitem.id}.name`}
-                />
-              </Button>
+                baseitem={baseitem}
+                onClick={onChange}
+              />
             );
           })}
         </div>

@@ -1,10 +1,12 @@
-import { Mod } from 'poe-mods';
+import { Mod as PoeMod } from 'poe-mods';
 import React, { SFC } from 'react';
+
+import Mod from './Mod';
 
 export interface Props {
   className: string;
-  mods: Mod[];
-  onRemoveMod: (mod: Mod) => any;
+  mods: PoeMod[];
+  onRemoveMod: (mod: PoeMod) => void;
 }
 
 // TODO remove handle
@@ -14,21 +16,7 @@ const Mods: SFC<Props> = ({ className, mods, onRemoveMod }) => {
   return (
     <ul className={`mods ${className}`}>
       {mods.map(mod => {
-        // TODO stays empty?
-        const stats: any[] = [];
-
-        return (
-          <li
-            key={mod.props.id}
-            className={`mod mod-type-${String(mod.modType())}`}
-          >
-            <em className="name">{mod.props.name}</em>
-            <button className="remove_mod" onClick={() => onRemoveMod(mod)}>
-              Remove
-            </button>
-            <ul className="stats">{stats}</ul>
-          </li>
-        );
+        return <Mod key={mod.props.id} mod={mod} onRemoveClick={onRemoveMod} />;
       })}
     </ul>
   );

@@ -6,12 +6,12 @@ import { Column } from './props';
 
 export interface Props<T> {
   columns: Array<Column<T>>;
-  onHeaderClick?: (col: Column<T>, index: number) => any;
+  onHeaderClick?: (index: number) => void;
 }
 
 export default class Header<T> extends React.PureComponent<Props<T>> {
   public static defaultProps = {
-    onHeaderClick: () => undefined
+    onHeaderClick: () => {}
   };
 
   public render() {
@@ -20,13 +20,14 @@ export default class Header<T> extends React.PureComponent<Props<T>> {
     return (
       <div className="flex-table-head flex-table-row">
         {columns.map((col, index) => (
-          <div
+          <Cell
             key={col.id}
-            onClick={() => onHeaderClick(col, index)}
-            className={classnames('flex-table-cell', col.className)}
-          >
-            {col.renderHeader()}
-          </div>
+            className={col.className}
+            data={undefined}
+            index={index}
+            onClick={onHeaderClick}
+            renderItem={col.renderHeader}
+          />
         ))}
       </div>
     );

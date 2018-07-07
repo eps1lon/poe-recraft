@@ -53,9 +53,7 @@ export default class AtlasModifiers extends Component<Props, State> {
         type="checkbox"
         checked={props.is_elder}
         disabled={!props.is_modifieable}
-        onChange={event =>
-          event.target.checked ? props.onElder() : props.onNone()
-        }
+        onChange={this.handleElderChange}
       />,
       <label key="label-shaper" htmlFor="atlas-modifier-as-shaper">
         Shaped
@@ -66,10 +64,16 @@ export default class AtlasModifiers extends Component<Props, State> {
         type="checkbox"
         checked={props.is_shaped}
         disabled={!props.is_modifieable}
-        onChange={event =>
-          event.target.checked ? props.onShape() : props.onNone()
-        }
+        onChange={this.handleShapedChange}
       />
     ];
   }
+
+  private handleElderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.target.checked ? this.props.onElder() : this.props.onNone();
+  };
+
+  private handleShapedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.target.checked ? this.props.onShape() : this.props.onNone();
+  };
 }

@@ -6,6 +6,8 @@ import CorrectGroup from 'containers/i18n/CorrectGroup';
 import UngroupedMods from 'containers/mods/UngroupedMods';
 
 import { GeneratorDetails } from '../ModsTable';
+import ModGroup from './ModGroup';
+
 import './style.css';
 
 export interface Props {
@@ -33,17 +35,15 @@ const GroupedMods: SFC<Props> = props => {
           const mods = details.map(({ mod }) => mod);
 
           return (
-            <React.Fragment key={key}>
-              <h5
-                className={classnames('correct-group', { disabled })}
-                onClick={() => onGroupClick(group)}
-              >
-                <CorrectGroup mods={mods} />
-              </h5>
-              {isExpanded(group) && (
-                <UngroupedMods className={className} details={details} />
-              )}
-            </React.Fragment>
+            <ModGroup
+              key={key}
+              className={className}
+              details={details}
+              disabled={disabled}
+              group={group}
+              isExpanded={isExpanded}
+              onGroupClick={onGroupClick}
+            />
           );
         }
       )}

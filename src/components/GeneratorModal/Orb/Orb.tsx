@@ -1,4 +1,4 @@
-import React, { SFC } from 'react';
+import React, { PureComponent } from 'react';
 import { Button, UncontrolledTooltip } from 'reactstrap';
 
 import { FormattedGenerator } from 'components/i18n';
@@ -9,41 +9,38 @@ export interface Props {
   onClick: (orb_id: string) => void;
 }
 
-const default_props = {
-  onClick: () => {}
-};
+export default class Orb extends PureComponent<Props> {
+  public render() {
+    const { id } = this.props;
+    const orb = orbs[id];
 
-const Orb: SFC<Props> = ({ id, onClick }) => {
-  const orb = orbs[id];
+    if (orb === undefined) {
+      throw new Error(`unsupported orb '${id}'`);
+    }
 
-  if (orb === undefined) {
-    throw new Error(`unsupported orb '${id}'`);
+    return (
+      <FormattedGenerator id={orb.id}>
+        {(name: string | JSX.Element) => {
+          const dom_id = `generator-orb-${id}`;
+          return (
+            <>
+              <Button onClick={this.handleClick} id={dom_id}>
+                <img
+                  width="40"
+                  height="40"
+                  src={orb.icon}
+                  alt={name.toString()}
+                />
+              </Button>
+              <UncontrolledTooltip placement="top" target={dom_id}>
+                {name}
+              </UncontrolledTooltip>
+            </>
+          );
+        }}
+      </FormattedGenerator>
+    );
   }
 
-  return (
-    <FormattedGenerator id={orb.id}>
-      {(name: string | JSX.Element) => {
-        const dom_id = `generator-orb-${id}`;
-        return (
-          <>
-            <Button onClick={() => onClick(id)} id={dom_id}>
-              <img
-                width="40"
-                height="40"
-                src={orb.icon}
-                alt={name.toString()}
-              />
-            </Button>
-            <UncontrolledTooltip placement="top" target={dom_id}>
-              {name}
-            </UncontrolledTooltip>
-          </>
-        );
-      }}
-    </FormattedGenerator>
-  );
-};
-
-Orb.defaultProps = default_props;
-
-export default Orb;
+  private handleClick = () => this.props.onClick(this.props.id);
+}

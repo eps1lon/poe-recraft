@@ -54,12 +54,7 @@ export default class Filter extends React.PureComponent<Props> {
                 key={tag}
                 className="tag"
                 tag={tag}
-                onClick={clicked_tag =>
-                  props.onChange({
-                    item_class: props.item_class,
-                    tags: [[clicked_tag]]
-                  })
-                }
+                onClick={this.handleTagFilterClick}
               />
             ))}
           </div>
@@ -68,4 +63,12 @@ export default class Filter extends React.PureComponent<Props> {
     }
     return null;
   }
+
+  private handleTagFilterClick = (clicked_tag: string) => {
+    const { item_class, onChange = Filter.defaultProps.onChange } = this.props;
+    onChange({
+      item_class,
+      tags: [[clicked_tag]]
+    });
+  };
 }

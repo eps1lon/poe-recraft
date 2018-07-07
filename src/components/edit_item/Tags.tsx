@@ -1,5 +1,7 @@
-import React, { SFC } from 'react';
+import React, { PureComponent } from 'react';
 import { Button } from 'reactstrap';
+
+import RemoveTag from './RemoveTag';
 
 export interface Props {
   addable: string[];
@@ -9,27 +11,24 @@ export interface Props {
   removeTag: (tag: string) => any;
 }
 
-export default class Tags extends React.PureComponent<Props> {
+export default class Tags extends PureComponent<Props> {
   public static default_props = {};
 
   private add_tag: HTMLSelectElement | null = null;
 
   public render() {
-    const { props } = this;
+    const { addable, addTag, current, removable, removeTag } = this.props;
 
     return (
       <fieldset>
         <legend>Tags</legend>
         <ul className="item tags">
-          {props.current.map(tag => <li key={tag}>{tag}</li>)}
+          {current.map(tag => <li key={tag}>{tag}</li>)}
         </ul>
 
         <ul className="item tags changeable">
-          {props.removable.map(tag => (
-            <li key={tag}>
-              {tag}
-              <Button onClick={() => props.removeTag(tag)}>X</Button>
-            </li>
+          {removable.map(tag => (
+            <RemoveTag key={tag} tag={tag} onClick={removeTag} />
           ))}
         </ul>
         <label htmlFor="edit-item-add-tag">Add tag</label>
@@ -37,20 +36,20 @@ export default class Tags extends React.PureComponent<Props> {
           id="edit-item-add-tag"
           ref={add_tag => (this.add_tag = add_tag)}
         >
-          {props.addable.map((tag, index) => (
+          {addable.map((tag, index) => (
             <option key={tag} value={index}>
               {tag}
             </option>
           ))}
         </select>
-        <Button
-          onClick={() => {
-            props.addTag(props.addable[this.add_tag ? +this.add_tag.value : 0]);
-          }}
-        >
-          Add
-        </Button>
+        <Button onClick={this.handleAddClick}>Add</Button>
       </fieldset>
     );
   }
+
+  private handleAddClick = () => {
+    this.props.addTag(
+      this.props.addable[this.add_tag ? +this.add_tag.value : 0]
+    );
+  };
 }
