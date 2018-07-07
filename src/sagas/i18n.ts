@@ -2,7 +2,7 @@ import { addLocaleData } from 'react-intl';
 import { all, call, fork, put, take } from 'redux-saga/effects';
 
 import { i18n_actions } from 'state/i18n';
-const { messages: default_messages } = require('../locales/default');
+import { messages as default_messages } from '../locales/default';
 
 const requireLocaleData = (locale: string) => {
   return import(/* webpackChunkName: "i18n/[request]" */ `../locales/${locale}`);
