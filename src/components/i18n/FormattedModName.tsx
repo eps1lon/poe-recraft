@@ -12,7 +12,7 @@ const FormattedModName: SFC<Props> = ({ mod, inflection }) => {
     <FormattedMessage
       id={`poe.mods.${mod.props.id}.name`}
       values={{ inflection }}
-      defaultMessage={mod.props.name}
+      defaultMessage={mod.props.name || mod.props.id}
     />
   );
 };
