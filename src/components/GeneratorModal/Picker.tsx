@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Button } from 'reactstrap';
 
-import Orb from './Orb';
+import Orb from '../Orb';
 
 export interface Props {
   active: string;

@@ -1,20 +1,12 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import Picker from 'components/GeneratorModal/Picker';
-import { State } from 'state';
+import Picker from 'components/ItemSection/Generators';
 import { actions } from 'state/craft';
-import { activeGenerator } from 'state/craft/selectors';
-
-const mapStateToProps = (state: State) => {
-  return {
-    active: activeGenerator(state)
-  };
-};
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    onChange: (generator: string) => {
+    onClick: (generator: string) => {
       dispatch(actions.useGenerator(generator));
       dispatch(actions.applyGenerator());
     }
@@ -22,6 +14,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
 };
 
 export default connect(
-  mapStateToProps,
+  undefined,
   mapDispatchToProps
 )(Picker);
