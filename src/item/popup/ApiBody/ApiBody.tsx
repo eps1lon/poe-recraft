@@ -43,8 +43,18 @@ export default class Body extends React.PureComponent<Props> {
           {requirements.length > 0 && (
             <Requirements key="requirements" requirements={requirements} />
           )}
+          {nonEmptyStats(implicitMods, {
+            className: 'implicitMod',
+            group: 'implicit',
+            extended,
+          })}
           {nonEmptyStats(explicitMods, {
             className: 'explicitMod',
+            group: 'explicit',
+            extended,
+          })}
+          {nonEmptyStats(craftedMods, {
+            className: 'craftedMod',
             group: 'explicit',
             extended,
           })}
