@@ -2,7 +2,7 @@ import { inflectionIdentifier } from 'poe-i18n';
 import { Flags, Generator, Item, Mod } from 'poe-mods';
 import { createSelector } from 'reselect';
 
-import { orbs } from 'components/GeneratorModal/Orb';
+import { orbs } from 'components/Orb';
 import { State } from 'state';
 import { falseFlags, isDisabled } from 'util/flags';
 import { withSpawnchance } from 'util/spawnweight';
