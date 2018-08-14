@@ -153,11 +153,11 @@ const getTierText = (mod: Mod): string => {
 };
 
 const getExtendedModGroup = (container: ImmutableContainer<Mod, any>) => {
-  const mods = container.mods;
+  const containerMods = container.mods;
   const stats = container.statsExtended();
 
   return {
-    mods: mods.map(mod => {
+    mods: containerMods.map(mod => {
       const tier = getTierText(mod);
       return {
         magnitudes: mod.statsJoined().map(stat => {
@@ -178,10 +178,10 @@ const getExtendedModGroup = (container: ImmutableContainer<Mod, any>) => {
 };
 
 const getExtended = (item: Item): PropsType<typeof Popup>['extended'] => {
-  const { mods, hashes } = getExtendedModGroup(item.affixes);
+  const { mods: itemMods, hashes } = getExtendedModGroup(item.affixes);
 
   return {
-    mods: { explicit: mods },
+    mods: { explicit: itemMods },
     hashes: { explicit: hashes },
   };
 };

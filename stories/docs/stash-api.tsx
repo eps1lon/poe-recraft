@@ -83,7 +83,7 @@ class Story extends React.PureComponent<StoryProps, StoryState> {
           <strong>Loading: </strong>
           <em>{LoadState[this.state.loading]}</em>
         </p>
-        {item && <ApiPopup item={prepareItem(item)} />}
+        {item && <HedgedItem item={prepareItem(item)} />}
         <details>
           <summary>Raw Item Data</summary>
           <p style={{ whiteSpace: 'pre-line' }}>

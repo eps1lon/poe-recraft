@@ -5,7 +5,7 @@ import { InjectedIntlProps, injectIntl } from 'react-intl';
 
 import { Mod, isPrefix, isSuffix } from './Extended';
 import { Intersperse } from '../../../../util/react';
-import { stat } from 'fs-extra';
+import { warn } from '../../../../util';
 
 export interface Props {
   mods: Mod[];
@@ -20,7 +20,7 @@ class ExtendedStatValues extends React.PureComponent<
     const { intl, mods, showInfo, stat_id } = this.props;
 
     return (
-      <Intersperse renderSeparator={() => ' + '}>
+      <Intersperse renderSeparator={ModSeparator}>
         {mods.map(mod => {
           // consider only the mod magnitudes that are relevant for this stat
           // e.g. hybdrid mod have multiple magnitudes but for different stats
@@ -30,6 +30,7 @@ class ExtendedStatValues extends React.PureComponent<
           );
           return (
             <span
+              key={mod.name}
               className={classnames({
                 suffix: isSuffix(mod),
                 prefix: isPrefix(mod),
@@ -57,8 +58,8 @@ function magnitudesToString(
   options: MagnitudesToStringOptions,
 ): string {
   const { formatMessage } = options;
-  if (magnitudes.length > 2) {
-    console.warn("don't know how to display 3 magnitudes and more");
+  if (magnitudes.length > 2 && process.env.NODE_ENV !== "production") {
+    warn("don't know how to display 3 magnitudes and more");
   }
   if (magnitudes.length >= 2) {
     return formatMessage(
@@ -78,4 +79,8 @@ function magnitudesToString(
 
 function rangeToString({ min, max }: { min: number; max: number }): string {
   return formatValue([min, max], { message: '({min}–{max})' });
+}
+
+function ModSeparator() {
+  return ' + ';
 }

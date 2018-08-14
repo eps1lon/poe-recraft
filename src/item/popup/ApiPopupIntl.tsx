@@ -6,6 +6,7 @@ import FrameType from '../FrameType';
 import Head from './ApiHead';
 import Body from './ApiBody';
 import { Extended } from './ApiBody/Stats';
+import { warn } from '../../util';
 
 export interface ItemProps {
   // only required for rare and unique items
@@ -87,7 +88,7 @@ export default class ApiPopupIntl extends React.PureComponent<Props, State> {
     super(props);
 
     if (process.env.NODE_ENV !== 'production') {
-      ApiPopupIntl.assertValidProps(props.item, console.warn);
+      ApiPopupIntl.assertValidProps(props.item, warn);
     }
 
     this.ref = React.createRef();
@@ -155,10 +156,6 @@ export default class ApiPopupIntl extends React.PureComponent<Props, State> {
       );
       this.setState({ width });
     }
-  }
-
-  private hasExtendedModView() {
-    return this.props.extended != null;
   }
 }
 

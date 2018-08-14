@@ -13,7 +13,7 @@ import {
   augmentableNotZero,
   ROLLABLE_VALUE_MESSAGE,
 } from '../../../util/value';
-import { asPercentString } from '../../../util/number';
+import { warn } from '../../../util';
 
 export type ApiProps = PropsType<typeof ApiPopupIntl>;
 
@@ -57,7 +57,7 @@ class ItemPopupIntl extends React.PureComponent<Props & InjectedIntlProps> {
     super(props);
 
     if (process.env.NODE_ENV !== 'production') {
-      ItemPopupIntl.assertValidProps(props.item, console.warn);
+      ItemPopupIntl.assertValidProps(props.item, warn);
     }
   }
 

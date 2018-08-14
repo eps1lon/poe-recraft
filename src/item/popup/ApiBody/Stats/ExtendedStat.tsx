@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import Extended, { Mod, ModGroup, Hash } from './Extended';
+import Extended, { Mod, ModGroup } from './Extended';
 import ExtendedStatValues from './ExtendedStatValues';
 import ExtendedStatNames from './ExtendedStatNames';
-import { stat } from 'fs';
+import { warn } from '../../../../util';
 
 export interface Props {
   className: string;
@@ -15,6 +15,8 @@ export interface Props {
   onMouseOut?: () => void;
 }
 
+// allow empty for noop
+// tslint:disable-next-line: no-empty
 const noop = () => {};
 
 export default class ExtendedStat extends React.PureComponent<Props> {
@@ -23,12 +25,7 @@ export default class ExtendedStat extends React.PureComponent<Props> {
     (this.props.onMouseOver || noop)(this.props.index);
 
   public render() {
-    const {
-      className,
-      showInfo,
-      onMouseOut = noop,
-      onMouseOver = noop,
-    } = this.props;
+    const { className, showInfo } = this.props;
     const stat_mods = this.statMods();
     const stat_id = this.statHash();
 
@@ -58,7 +55,7 @@ export default class ExtendedStat extends React.PureComponent<Props> {
   private mods(): Mod[] {
     const mods = this.props.extended.mods[this.props.group];
     if (mods == null) {
-      console.warn(`extended '${this.props.group}' mods not set`);
+      warn(`extended '${this.props.group}' mods not set`);
       return [];
     } else {
       return mods;
@@ -68,13 +65,13 @@ export default class ExtendedStat extends React.PureComponent<Props> {
   private modIndices(): number[] {
     const hashes = this.props.extended.hashes[this.props.group];
     if (hashes == null) {
-      console.warn(`extended '${this.props.group}' hashes not set`);
+      warn(`extended '${this.props.group}' hashes not set`);
       return [];
     }
 
     const hash = hashes[this.props.index];
     if (hash == null) {
-      console.warn(
+      warn(
         `hash not set for group '${this.props.group}' at index ${
           this.props.index
         }`,
@@ -95,7 +92,7 @@ export default class ExtendedStat extends React.PureComponent<Props> {
     return mod_indices.map(index => {
       const mod = mods[index];
       if (mod == null) {
-        console.warn(`stat is referencing non existent mod`);
+        warn(`stat is referencing non existent mod`);
       }
       return mod;
     });
@@ -107,13 +104,13 @@ export default class ExtendedStat extends React.PureComponent<Props> {
   private statHash(): string {
     const hashes = this.props.extended.hashes[this.props.group];
     if (hashes == null) {
-      console.warn(`extended '${this.props.group}' hashes not set`);
+      warn(`extended '${this.props.group}' hashes not set`);
       return '';
     }
 
     const stat = hashes[this.props.index];
     if (stat == null) {
-      console.warn(`no hash set for stat ${this.props.index}`);
+      warn(`no hash set for stat ${this.props.index}`);
       return '';
     }
 

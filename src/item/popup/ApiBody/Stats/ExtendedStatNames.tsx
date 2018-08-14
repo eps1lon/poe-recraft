@@ -13,7 +13,7 @@ export default class ExtendedStatName extends React.PureComponent<Props> {
     const { mods } = this.props;
 
     return (
-      <Intersperse renderSeparator={() => ' + '}>
+      <Intersperse renderSeparator={ModSeparator}>
         {mods.map(mod => (
           <span
             className={classnames({
@@ -27,4 +27,8 @@ export default class ExtendedStatName extends React.PureComponent<Props> {
       </Intersperse>
     );
   }
+}
+
+function ModSeparator() {
+  return ' + ';
 }
