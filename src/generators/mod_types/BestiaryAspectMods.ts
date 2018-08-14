@@ -12,10 +12,10 @@ export default class BestiaryAspectMods extends ViewOnlyOrb {
    * list of mod ids that can be crafted with Spirit Beasts
    */
   public static readonly ASPECT_MODS: Set<Mod['props']['id']> = new Set([
-    'GrantsCatAspect1',
-    'GrantsBirdAspect1_',
-    'GrantsSpiderAspect1',
-    'GrantsCrabAspect1_',
+    'GrantsCatAspectCrafted',
+    'GrantsBirdAspectCrafted',
+    'GrantsSpiderAspectCrafted',
+    'GrantsCrabAspectCrafted',
   ]);
 
   public static build(mods: ModProps[]): BestiaryAspectMods {
