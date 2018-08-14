@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 
 ## [Unreleased](https://github.com/eps1lon/poe-mods/compare/v1.12.0...HEAD)
+### Fixed
+- `BestiaryMods` being considered implicts. ([#85](https://github.com/eps1lon/poe-mods/pull/85))
 
 ## [1.12.0](https://github.com/eps1lon/poe-mods/compare/v1.11.0...v1.12.0) (2018-06-24)
 ### Added

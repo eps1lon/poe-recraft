@@ -7,10 +7,13 @@ it('ignores internal spawnweights', () => {
   const item = items.fromName('Iron Greaves');
   const generator = BestiaryAspectMods.build(mods.all());
 
-  expect(generator.modsFor(item).length).toBeGreaterThan(0);
+  const bestiaryMods = generator.modsFor(item, ['domain_full']);
+
+  expect(bestiaryMods.length).toBeGreaterThan(0);
   expect(
-    generator
-      .modsFor(item, ['domain_full'])
-      .map(({ mod, ...details }) => ({ mod: mod.props.id, ...details })),
+    bestiaryMods.map(({ mod, ...details }) => ({
+      mod: mod.props.id,
+      ...details,
+    })),
   ).toMatchSnapshot();
 });
