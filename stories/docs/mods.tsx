@@ -7,7 +7,7 @@ import {
   createItems,
   createMods,
   Container,
-  SemanticItemSerializer,
+  SemanticSerializer as SemanticItemSerializer,
   Mod,
 } from 'poe-mods';
 import { Format } from 'poe-i18n';
@@ -134,7 +134,6 @@ const snapShotItem = (
 
 const getTier = (mod: Mod): number => {
   const tier_match = mod.props.id.match(/(\d+)$/);
-  console.log(mod.props.id, tier_match);
   if (tier_match == null) {
     return 1;
   } else {

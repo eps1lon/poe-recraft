@@ -6,7 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased](https://github.com/eps1lon/poe-react-item/compare/v0.4.1...HEAD)
 ### Fixed
-- Implicits not being displayed in any `Popup`.
+- Implicits, utility mods and Enchantments not being displayed in any `Popup`.
+- Mod groups not being separated correctly.
 
 ## [0.4.1](https://github.com/eps1lon/poe-react-item/compare/v0.4.0...v0.4.1) (2018-06-23)
 ### Fixed

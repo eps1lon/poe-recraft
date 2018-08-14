@@ -5,8 +5,7 @@ import Separator from '../Separator';
 import Corrupted from './Corrupted';
 import Properties from './Properties';
 import Requirements from './Requirements';
-import { nonEmptyStats } from './Stats';
-import { Extended } from './Stats';
+import Stats, { Extended } from './Stats';
 
 export interface Props {
   item: {
@@ -36,6 +35,11 @@ export default class Body extends React.PureComponent<Props> {
       corrupted = false,
     } = item;
 
+    const shouldDisplayImplicits =
+      implicitMods.length || enchantmentMods.length;
+    const shouldDisplayExplicits =
+      explicitMods.length || utilityMods.length || craftedMods.length;
+
     return (
       <section className="body">
         <Intersperse renderSeparator={separator}>
@@ -43,21 +47,49 @@ export default class Body extends React.PureComponent<Props> {
           {requirements.length > 0 && (
             <Requirements key="requirements" requirements={requirements} />
           )}
-          {nonEmptyStats(implicitMods, {
-            className: 'implicitMod',
-            group: 'implicit',
-            extended,
-          })}
-          {nonEmptyStats(explicitMods, {
-            className: 'explicitMod',
-            group: 'explicit',
-            extended,
-          })}
-          {nonEmptyStats(craftedMods, {
-            className: 'craftedMod',
-            group: 'explicit',
-            extended,
-          })}
+          {shouldDisplayImplicits && (
+            <>
+              <Stats
+                className="implicitMod"
+                extended={extended}
+                group="implicit"
+              >
+                {implicitMods}
+              </Stats>
+              <Stats
+                className="enchantmentMod"
+                extended={extended}
+                group="implicit"
+              >
+                {enchantmentMods}
+              </Stats>
+            </>
+          )}
+          {shouldDisplayExplicits && (
+            <>
+              <Stats
+                className="explicitMod"
+                extended={extended}
+                group="explicit"
+              >
+                {explicitMods}
+              </Stats>
+              <Stats
+                className="utilityMod"
+                extended={extended}
+                group="explicit"
+              >
+                {utilityMods}
+              </Stats>
+              <Stats
+                className="craftedMod"
+                extended={extended}
+                group="explicit"
+              >
+                {craftedMods}
+              </Stats>
+            </>
+          )}
         </Intersperse>
         {corrupted && <Corrupted />}
       </section>
