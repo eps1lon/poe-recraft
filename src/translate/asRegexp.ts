@@ -1,4 +1,4 @@
-import * as escapeStringRegexp from 'escape-string-regexp';
+import escapeStringRegexp from 'escape-string-regexp';
 
 import { regexpFactory } from '../localize/formatters';
 import { Translation, UnaryFormatter } from '../types/StatDescription';
