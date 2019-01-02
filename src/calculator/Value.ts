@@ -45,12 +45,14 @@ export default class Value {
       this.range,
       this.classification,
       this.modifiers.concat(
-        stats.filter(stat => this.augmentableBy(stat)).map(stat => {
-          return {
-            stat,
-            type: applications[stat.props.id].type,
-          };
-        }),
+        stats
+          .filter(stat => this.augmentableBy(stat))
+          .map(stat => {
+            return {
+              stat,
+              type: applications[stat.props.id].type,
+            };
+          }),
       ),
     );
   }
@@ -62,11 +64,10 @@ export default class Value {
       applications[stat.props.id].classification.length > 0 &&
       // applications[stat.props.id].classification is in DNF
       // [a, b, [c, d]] => a || b || (c && d)
-      applications[stat.props.id].classification.some(
-        clause =>
-          Array.isArray(clause)
-            ? clause.every(term => this.classification.includes(term))
-            : this.classification.includes(clause),
+      applications[stat.props.id].classification.some(clause =>
+        Array.isArray(clause)
+          ? clause.every(term => this.classification.includes(term))
+          : this.classification.includes(clause),
       )
     );
   }

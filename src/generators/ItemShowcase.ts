@@ -86,9 +86,11 @@ export default class ItemShowcase extends Generator<Mod, Item> {
             return undefined;
           }
         })
-        .filter((mod): mod is Mod => {
-          return mod !== undefined;
-        })
+        .filter(
+          (mod): mod is Mod => {
+            return mod !== undefined;
+          },
+        )
         .map(mod => ({ mod })),
     ];
 

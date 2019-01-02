@@ -33,9 +33,9 @@ export default class WarbandsMods extends ViewOnlyOrb {
    * mapping from Warband factions to the item classes they can drop
    */
   public static readonly FACTION_ITEM_CLASSES: {
-    [// filter functions for each faction that check if a given item can
+    // filter functions for each faction that check if a given item can
     // be dropped from that faction
-    faction in Faction]: (item: Item) => boolean
+    [faction in Faction]: (item: Item) => boolean
   } = {
     brinerot: item => item.baseitem.item_class === 'Gloves',
     mutewind: item => item.baseitem.item_class === 'Boots',
