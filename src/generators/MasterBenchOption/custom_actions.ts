@@ -15,7 +15,7 @@ export enum CustomAction {
    * i.e. apply the thing that is defined in its props
    * e.g. a mod, sockets, colors, links
    */
-  ApplySelf = 3,
+  ApplySelf = 7,
 }
 /**
  * {CraftingBenchOptionsProps.crafting_bench_custom_action} is of type

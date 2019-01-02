@@ -21,18 +21,20 @@ it('should throw if the specified master key was not found', () => {
 
 it('should apply an option', () => {
   const greaves = items.fromName('Iron Greaves');
-  const haku = MasterBench.build(craftingbenchoptions.all(), 6);
+  const helena = MasterBench.build(craftingbenchoptions.all(), 3);
 
   expect(
-    haku.applyOptionTo(greaves, 1).affixes.mods.map(({ props: { id } }) => id),
-  ).toContain('StrMasterLifeCrafted1');
+    helena
+      .applyOptionTo(greaves, 74)
+      .affixes.mods.map(({ props: { id } }) => id),
+  ).toContain('HelenaMasterIncreasedLife1');
 });
 
 it('throw if the option was not found', () => {
   const greaves = items.fromName('Iron Greaves');
-  const haku = MasterBench.build(craftingbenchoptions.all(), 6);
+  const helena = MasterBench.build(craftingbenchoptions.all(), 3);
 
-  expect(() => haku.applyOptionTo(greaves, 213324234)).toThrowError(
+  expect(() => helena.applyOptionTo(greaves, 213324234)).toThrowError(
     "option '213324234' not found",
   );
 });

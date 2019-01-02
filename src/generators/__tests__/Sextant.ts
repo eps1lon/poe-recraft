@@ -77,16 +77,16 @@ describe('sextant blocking', () => {
     };
 
     // this is the map on which we wanna block
-    const dunes_index = getNodeIndex('MapWorldsLavaChamber');
+    const dunes_index = getNodeIndex('MapWorldsSpiderLair');
 
     // this is how we achieve it
-    const oasis_index = getNodeIndex('MapWorldsAshenWood');
+    const oasis_index = getNodeIndex('MapWorldsPort');
     const invasion_mod = getMod('MapAtlasContainsAdditionalRandomBoss');
 
-    const arid_index = getNodeIndex('MapWorldsOvergrownRuin');
+    const arid_index = getNodeIndex('MapWorldsDesert');
     const onslaught_mod = getMod('MapAtlasOnslaughtWhenHitAndOnslaughtEffect');
 
-    const dungeon_index = getNodeIndex('MapWorldsMausoleum');
+    const dungeon_index = getNodeIndex('MapWorldsStrand');
     const turbo_mod = getMod('MapAtlasMoveAttackCastSpeed');
 
     // pre

@@ -133,14 +133,14 @@ export default class Essence extends ItemOrb {
    * @returns true if the essence can reforge (i.e. reroll) the item
    */
   public reforges(): boolean {
-    return this.props.tier > 5;
+    return this.props.level > 5;
   }
 
   /**
    * @returns true if the essence is the best of its type
    */
   public isTopTier(): boolean {
-    return this.props.tier === 7;
+    return this.props.level === 7;
   }
 
   /**

@@ -13,7 +13,7 @@ const writeFile = promisify(fs.writeFile);
 
 const file_encoding = 'utf16le';
 // extract via pypoe_ui MetaData/Items
-const meta_data_dir = '/home/eps1lon/Development/src/ggpk/3.3.0/'; // path.join(process.cwd(), process.argv[2]);
+const meta_data_dir = path.resolve(process.cwd(), process.argv[2]);
 const out_dir = path.join(__dirname, '../../src/util/MetaData/data.json');
 
 const property_whitelist = ['extends', 'inheritance', 'tags'];
@@ -53,7 +53,7 @@ glob(path.join(meta_data_dir, 'Items/**/*.ot'))
       for (const key of Object.keys(class_data)) {
         // remove property so that json stringify does not include those
         if (!property_whitelist.includes(key)) {
-          class_data[key] = undefined
+          class_data[key] = undefined;
         }
       }
     }

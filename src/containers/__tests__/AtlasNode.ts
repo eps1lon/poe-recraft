@@ -41,7 +41,7 @@ it('should build', () => {
 it('should know sextant ranges', () => {
   const dunes = fromWorldAreaId('MapWorldsDunes', atlas_nodes);
   const far_map = fromWorldAreaId('MapWorldsThicket', atlas_nodes);
-  const close_map = fromWorldAreaId('MapWorldsPrecinct', atlas_nodes);
+  const close_map = fromWorldAreaId('MapWorldsOrchard', atlas_nodes);
 
   expect(dunes.isInSextantRange(close_map)).toBe(true);
   expect(close_map.isInSextantRange(dunes)).toBe(true);
@@ -53,7 +53,7 @@ it('should know sextant ranges', () => {
 it('should collect maps in range', () => {
   const dunes = fromWorldAreaId('MapWorldsDunes', atlas_nodes);
   const dunes_unique = fromWorldAreaId('MapWorldsDunesUnique', atlas_nodes);
-  const precinct = fromWorldAreaId('MapWorldsPrecinct', atlas_nodes);
+  const orchard = fromWorldAreaId('MapWorldsOrchard', atlas_nodes);
   const peninsula = fromWorldAreaId('MapWorldsPeninsula', atlas_nodes);
   const strand = fromWorldAreaId('MapWorldsStrand', atlas_nodes);
   const villa = fromWorldAreaId('MapWorldsVilla', atlas_nodes);
@@ -61,14 +61,14 @@ it('should collect maps in range', () => {
   const affected = dunes.inSextantRange([
     dunes,
     dunes_unique,
-    precinct,
+    orchard,
     peninsula,
     strand,
     villa,
   ]);
 
   expect(affected).toHaveLength(3);
-  expect(affected).toEqual([dunes, dunes_unique, precinct]);
+  expect(affected).toEqual([dunes, dunes_unique, orchard]);
 });
 
 it('should be able to incrementally get maps in range', () => {
@@ -83,19 +83,14 @@ it('should be able to incrementally get maps in range', () => {
       .inSextantRange(atlas, 1)
       .map(ids)
       .sort(),
-  ).toEqual(['MapWorldsDunes', 'MapWorldsDunesUnique', 'MapWorldsPrecinct']);
+  ).toMatchSnapshot();
 
   expect(
     dunes
       .inSextantRange(atlas, 2)
       .map(ids)
       .sort(),
-  ).toEqual([
-    'MapWorldsDunes',
-    'MapWorldsDunesUnique',
-    'MapWorldsPrecinct',
-    'MapWorldsPromenade',
-  ]);
+  ).toMatchSnapshot();
 });
 
 it('should consider its area level', () => {

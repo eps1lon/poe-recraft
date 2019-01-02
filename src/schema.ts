@@ -143,28 +143,21 @@ export interface BaseItemTypeProps {
 
 export interface CraftingBenchOptionsProps {
   primary: number;
-  master_level: number;
+  required_level: number;
   name: string;
   crafting_bench_custom_action: number;
   sockets: number;
   socket_colours: string;
   links: number;
   item_quantity: number;
-  npc_master_key: number;
   mods_key?: number;
-  npc_master: {
-    row: number;
-    npc: {
-      name: string;
-      short_name: string;
-    };
-  };
   costs: Array<{
     amount: number;
     base_item_type: BaseItemTypeProps;
   }>;
   mod?: ModProps;
   item_classes: string[];
+  npc_master_key: number;
 }
 
 export interface WorldAreaProps {
@@ -186,7 +179,7 @@ export interface AtlasNodeProps {
 
 export interface EssenceProps {
   primary: number;
-  tier: number;
+  level: number;
   base_item_type: BaseItemTypeProps;
   essence_type: {
     id: string;

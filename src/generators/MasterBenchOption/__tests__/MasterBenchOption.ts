@@ -7,7 +7,7 @@ import { SocketColor } from '../../../containers/item/components/Sockets/types';
 const { craftingbenchoptions: options, items } = createTables();
 
 it('should build with master mods', () => {
-  const haku_life = options.fromPrimary(1);
+  const haku_life = options.fromPrimary(74);
 
   expect(haku_life).toBeInstanceOf(MasterBenchOption);
   expect(haku_life.mod).toBeInstanceOf(Mod);
@@ -22,22 +22,22 @@ it('should build with no mods on custom actions', () => {
 });
 
 it('should apply the chosen option', () => {
-  const haku_life = options.fromPrimary(1);
+  const haku_life = options.fromPrimary(74);
   const greaves = items.fromName('Iron Greaves');
 
   const crafted = haku_life.applyTo(greaves);
 
   expect(crafted).not.toBe(greaves);
   expect(crafted.rarity.toString()).toBe('magic');
-  expect(crafted.mods[0].props.name).toEqual('Stalwart');
+  expect(crafted.mods[0].props.name).toEqual('Upgraded');
 });
 
 it('should return the same item if it cant apply', () => {
   const jewel = items.fromName('Viridian Jewel').rarity.set('magic');
-  const haku_life = options.fromPrimary(1);
+  const haku_life = options.fromPrimary(74);
   expect(haku_life.applyTo(jewel)).toBe(jewel);
 
-  const haku_armour = options.fromPrimary(4);
+  const haku_armour = options.fromPrimary(191);
   const boots = haku_armour.applyTo(items.fromName('Iron Greaves'));
   expect(haku_life.applyTo(boots)).toBe(boots);
 });
@@ -45,13 +45,13 @@ it('should return the same item if it cant apply', () => {
 describe('remove crafted mod', () => {
   it('is only applicable if the item has a master mod', () => {
     const greaves = items.fromName('Iron Greaves');
-    const remove_mod = options.fromPrimary(0);
+    const remove_mod = options.fromPrimary(81);
     // pre
     expect(remove_mod.applicableTo(greaves)).toMatchObject({
       no_crafted_mod: true,
     });
     // post
-    const haku_life = options.fromPrimary(1);
+    const haku_life = options.fromPrimary(74);
     const crafted = greaves.addMod(haku_life.mod!);
     expect(remove_mod.applicableTo(crafted)).toMatchObject({
       no_crafted_mod: false,
@@ -59,12 +59,12 @@ describe('remove crafted mod', () => {
   });
   it('can remove crafted mods', () => {
     const greaves = items.fromName('Iron Greaves');
-    const haku_life = options.fromPrimary(1);
+    const haku_life = options.fromPrimary(74);
     // pre
     const crafted = haku_life.applyTo(greaves);
     expect(crafted.hasMod(haku_life.mod!)).toBe(true);
     // post
-    const remove_mod = options.fromPrimary(0);
+    const remove_mod = options.fromPrimary(81);
     const removed = remove_mod.applyTo(crafted);
     expect(removed).not.toBe(crafted);
     expect(removed.hasMod(haku_life.mod!)).toBe(false);
@@ -72,7 +72,7 @@ describe('remove crafted mod', () => {
 });
 
 describe('applicable mods', () => {
-  const bench = options.fromPrimary(1);
+  const bench = options.fromPrimary(74);
   const greaves = items.fromName('Iron Greaves');
 
   const craftedLife = bench.mods[0];
@@ -146,14 +146,14 @@ describe('Artisian (Vorici) bench', () => {
   describe('socket change', () => {
     it('is only applicable if the item can have that many sockets', () => {
       const boots = items.fromName('Iron Greaves');
-      const six_socket = options.fromPrimary(96);
+      const six_socket = options.fromPrimary(4);
       expect(six_socket.applicableTo(boots)).toMatchObject({
         socket_limit_exceeded: true,
       });
     });
     it('is only applicable if the number of sockets changes', () => {
       const boots = items.fromName('Iron Greaves').sockets.socket(4);
-      const four_socket = options.fromPrimary(94);
+      const four_socket = options.fromPrimary(2);
       expect(four_socket.applicableTo(boots)).toMatchObject({
         sockets_unmodified: true,
       });
@@ -165,7 +165,7 @@ describe('Artisian (Vorici) bench', () => {
       const linked = socketed.sockets.link(0, 2);
       expect(linked.sockets.toString()).toEqual('w-w-w w');
       // post
-      const six_socket = options.fromPrimary(96);
+      const six_socket = options.fromPrimary(4);
       const crafted = six_socket.applyTo(linked);
       expect(crafted).not.toBe(linked);
       expect(crafted.sockets.toString()).toEqual('w-w-w w b b');
@@ -175,7 +175,7 @@ describe('Artisian (Vorici) bench', () => {
     it('is only applicable if the item has enough sockets', () => {
       const boots = items.fromName('Iron Greaves');
       const socketed = boots.sockets.socket(2);
-      const four_link = options.fromPrimary(99);
+      const four_link = options.fromPrimary(7);
       expect(four_link.applicableTo(socketed)).toMatchObject({
         not_enough_sockets: true,
       });
@@ -184,7 +184,7 @@ describe('Artisian (Vorici) bench', () => {
       const boots = items.fromName('Iron Greaves');
       const socketed = boots.sockets.socket(4);
       const linked = socketed.sockets.link(0, 3);
-      const four_link = options.fromPrimary(99);
+      const four_link = options.fromPrimary(7);
       expect(four_link.applicableTo(linked)).toMatchObject({
         links_unmodified: true,
       });
@@ -197,7 +197,7 @@ describe('Artisian (Vorici) bench', () => {
       const linked = colored.sockets.link(0, 1);
       expect(linked.sockets.toString()).toEqual('b-w b w');
       // post
-      const four_link = options.fromPrimary(99);
+      const four_link = options.fromPrimary(7);
       const crafted = four_link.applyTo(linked);
       expect(crafted.sockets.toString()).toEqual('b-w-b-w');
     });
@@ -206,7 +206,7 @@ describe('Artisian (Vorici) bench', () => {
     it('can not be applied if the items has not enough sockets', () => {
       const boots = items.fromName('Iron Greaves');
       const socketed = boots.sockets.socket(2);
-      const color_rrb = options.fromPrimary(116);
+      const color_rrb = options.fromPrimary(23);
       expect(color_rrb.applicableTo(socketed)).toMatchObject({
         not_enough_sockets: true,
       });
@@ -228,7 +228,7 @@ describe('Artisian (Vorici) bench', () => {
       // pre
       expect(colored.sockets.toString()).toEqual('r b r b');
       // post
-      const color_ggb = options.fromPrimary(118);
+      const color_ggb = options.fromPrimary(25);
       const crafted = color_ggb.applyTo(colored);
       expect(crafted).not.toBe(colored);
       expect(crafted.sockets.toString()).toBe('g g b r');

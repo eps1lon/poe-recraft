@@ -153,6 +153,11 @@ const meta_data: MetaDataMap = {
     inheritance: ['Item', 'AbstractCurrency', 'StackableCurrency'],
     tags: ['default', 'currency'],
   },
+  DelveSocketableCurrency: {
+    extends: 'Item',
+    inheritance: ['Item', 'DelveSocketableCurrency'],
+    tags: ['default'],
+  },
   AbstractDivinationCard: {
     extends: 'Item',
     inheritance: ['Item', 'AbstractDivinationCard'],
@@ -281,6 +286,11 @@ const meta_data: MetaDataMap = {
   SilverKey: {
     extends: 'AbstractLabyrinthItem',
     inheritance: ['Item', 'AbstractLabyrinthItem', 'SilverKey'],
+    tags: ['default'],
+  },
+  '340VaultKey': {
+    extends: 'AbstractMiscMapItem',
+    inheritance: ['Item', 'AbstractMiscMapItem', '340VaultKey'],
     tags: ['default'],
   },
   AbstractMapFragment: {
@@ -433,6 +443,16 @@ const meta_data: MetaDataMap = {
     ],
     tags: ['default', 'currency'],
   },
+  MysteryBoxApocalypse: {
+    extends: 'AbstractMicrotransaction',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'AbstractMicrotransaction',
+      'MysteryBoxApocalypse',
+    ],
+    tags: ['default'],
+  },
   MysteryBoxCarnage: {
     extends: 'AbstractMicrotransaction',
     inheritance: [
@@ -500,6 +520,16 @@ const meta_data: MetaDataMap = {
       'AbstractCurrency',
       'AbstractMicrotransaction',
       'MysteryBoxLightChaos',
+    ],
+    tags: ['default'],
+  },
+  MysteryBoxOriathan: {
+    extends: 'AbstractMicrotransaction',
+    inheritance: [
+      'Item',
+      'AbstractCurrency',
+      'AbstractMicrotransaction',
+      'MysteryBoxOriathan',
     ],
     tags: ['default'],
   },

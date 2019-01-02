@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const { Item, Mod } = require('../lib/');
+const { Item, Mod } = require('../dist/cjs');
 
 const all_filters = {
   // [file: string]: Filters[]

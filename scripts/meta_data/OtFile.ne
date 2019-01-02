@@ -110,10 +110,13 @@ AttributeRequirementsDex ->
 Sockets ->
   Fascade["Sockets", SocketsProps]
   {% entry('sockets') %}
-SocketsProps -> SocketsInfo
+SocketsProps -> SocketsInfo | SocketsLockWhenFull
 SocketsInfo ->
   FascadeProp["socket_info", StringLiteral] 
   {% entry('info') %}
+SocketsLockWhenFull ->
+  FascadeProp["lock_sockets_when_full", Boolean] 
+  {% entry('lock_when_full') %}
   
 Quality ->
   Fascade["Quality", QualityProp]
@@ -197,13 +200,17 @@ ImprintProp -> NoProp
 Usable ->
   Fascade["Usable", UsableProp]
   {% entry('usable') %}
-UsableProp -> UsableType | UsableAction
+UsableProp -> UsableType | UsableAction | UsableWhenSocketsLocked
 UsableType ->
   FascadeProp["use_type", StringLiteral] 
   {% entry('type') %}
 UsableAction ->
   FascadeProp["action", StringLiteral] 
   {% entry('action') %}
+UsableWhenSocketsLocked ->
+  FascadeProp["usable_when_sockets_locked", Boolean] 
+  {% entry('usable_when_sockets_locked') %}
+
 
 Stack ->
   Fascade["Stack", StackProp]

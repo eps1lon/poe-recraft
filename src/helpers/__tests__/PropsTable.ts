@@ -10,7 +10,7 @@ it('should find props', () => {
 
   expect(table.find(props => props.primary === 3)).toBeDefined();
   expect(table.find(() => false)).toBeUndefined();
-  expect(table.find(props => props.master_level === 3)).toEqual(
+  expect(table.find(props => props.required_level === 72)).toEqual(
     expect.any(Object),
   );
 });
