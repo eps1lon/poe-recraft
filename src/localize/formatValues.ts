@@ -43,9 +43,8 @@ export function formatValues(
     }
   });
 
-  return formatted.map(
-    value =>
-      typeof value === 'string' ? value : formatValue(value, { message })
+  return formatted.map(value =>
+    typeof value === 'string' ? value : formatValue(value, { message })
   );
 }
 
