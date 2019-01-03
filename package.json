@@ -8,6 +8,10 @@
     "url": "https://github.com/eps1lon/poe-recraft.git",
     "type": "git"
   },
+  "scripts": {
+    "bootstrap": "yarn workspace poe-mods build && yarn workspace poe-i18n build && yarn workspace poe-components-item build",
+    "postinstall": "yarn bootstrap"
+  },
   "workspaces": [
     "packages/*"
   ]
