@@ -19,27 +19,27 @@ export default {
       'weapon_fire_damage_range',
       'weapon_cold_damage_range',
       'weapon_lightning_damage_range',
-      'weapon_chaos_damage_range'
+      'weapon_chaos_damage_range',
     ],
     spell_damage: [
       'spell_physical_damage_range',
       'spell_fire_damage_range',
       'spell_cold_damage_range',
       'spell_lightning_damage_range',
-      'spell_chaos_damage_range'
+      'spell_chaos_damage_range',
     ],
     secondary_damage: [
       'secondary_physical_damage_range',
       'secondary_fire_damage_range',
       'secondary_cold_damage_range',
       'secondary_lightning_damage_range',
-      'secondary_chaos_damage_range'
+      'secondary_chaos_damage_range',
     ],
     supports_all: [
       'blood_magic',
       'support_arcane_surge_duration',
       'support_arcane_surge_chance',
-      'support_arcane_surge_damage'
+      'support_arcane_surge_damage',
     ],
     supports_attack: [
       'attack_speed_incr',
@@ -72,7 +72,7 @@ export default {
       'added_fire_against_burning',
       'maim_phys_damage',
       'brutality_phys_damage',
-      'chance_to_bleed_damage_incr'
+      'chance_to_bleed_damage_incr',
     ],
     supports_spell: [
       'number_of_totems',
@@ -85,7 +85,7 @@ export default {
       'cast_speed_incr_on_low_life',
       'multicast_cast_speed_incr',
       'multicast',
-      'cooldown_incr'
+      'cooldown_incr',
     ],
     supports_triggerable_spell: ['triggered_cannot_cast'],
     supports_totem: [
@@ -105,12 +105,12 @@ export default {
       'summon_lightning_resist',
       'totem_cast_speed',
       'totem_attack_speed',
-      'totem_summon_speed_incr'
+      'totem_summon_speed_incr',
     ],
     supports_is_totem: [
       'summon_fire_resist',
       'summon_cold_resist',
-      'summon_lightning_resist'
+      'summon_lightning_resist',
     ],
     supports_trap: [
       'trap',
@@ -121,7 +121,7 @@ export default {
       'multithrow_damage',
       'trap_throw_speed_incr',
       'trap_mine_damage',
-      'trap_throw_random'
+      'trap_throw_random',
     ],
     supports_trappable: [
       'trap',
@@ -133,14 +133,14 @@ export default {
       'multithrow_damage',
       'trap_throw_speed_incr',
       'trap_mine_damage',
-      'trap_throw_random'
+      'trap_throw_random',
     ],
     supports_mine: [
       'mine',
       'mine_duration',
       'mine_radius',
       'num_mines',
-      'mine_laying_speed_incr'
+      'mine_laying_speed_incr',
     ],
     supports_mineable: [
       'mine',
@@ -148,13 +148,13 @@ export default {
       'mine_radius',
       'num_mines',
       'disable_melee',
-      'mine_laying_speed_incr'
+      'mine_laying_speed_incr',
     ],
     supports_channelling: ['cast_while_channelling'],
     supports_variable_duration: [
       'skill_duration_incr',
       'skill_and_damaging_ailment_duration_incr',
-      'support_less_duration'
+      'support_less_duration',
     ],
     supports_damage: [
       'life_leech_from_any',
@@ -222,12 +222,12 @@ export default {
       'support_innervate_buff_duration',
       'support_innervate_damage',
       'maimed_phys_damage_taken_incr',
-      'ailment_damage_incr'
+      'ailment_damage_incr',
     ],
     supports_burning: ['burn_damage'],
     supports_damage_over_time: [
       'killed_monster_dropped_item_rarity_incr',
-      'killed_monster_dropped_item_quantity_incr'
+      'killed_monster_dropped_item_quantity_incr',
     ],
     supports_projectile: [
       'number_of_projectiles',
@@ -239,24 +239,24 @@ export default {
       'fork',
       'return',
       'support_projectile_attack_phys_incr',
-      'support_projectile_speed_incr'
+      'support_projectile_speed_incr',
     ],
     supports_curse: [
       'cannot_cast_curses',
       'curse_effect',
       'curse_effect_vs_players',
       'curse_area',
-      'curse_aura'
+      'curse_aura',
     ],
     supports_area: [
       'area_of_effect_incr',
       'area_of_effect_incr_while_dead',
-      'concentrated_area_of_effect'
+      'concentrated_area_of_effect',
     ],
     supports_aura: [
       'area_of_effect_incr',
       'aura_area_of_effect_incr',
-      'aura_effect_incr'
+      'aura_effect_incr',
     ],
     supports_minions: [
       'minion_damage_incr',
@@ -267,7 +267,7 @@ export default {
       'summon_cold_resist',
       'summon_lightning_resist',
       'burn_damage',
-      'mana_cost_reduc'
+      'mana_cost_reduc',
     ],
     supports_minions_not_life: [
       'minion_damage_incr',
@@ -277,7 +277,7 @@ export default {
       'summon_cold_resist',
       'summon_lightning_resist',
       'burn_damage',
-      'mana_cost_reduc'
+      'mana_cost_reduc',
     ],
     supports_minion_damage: [
       'active_skill_minion_added_damage_final',
@@ -374,7 +374,7 @@ export default {
       'support_innervate_buff',
       'support_innervate_buff_duration',
       'support_innervate_damage',
-      'ailment_damage_incr'
+      'ailment_damage_incr',
     ],
     supports_minions_attack: [
       'life_gain_per_target',
@@ -399,7 +399,7 @@ export default {
       'bleeding_chance',
       'maim_chance',
       'added_fire_against_burning',
-      'maimed_phys_damage_taken_incr'
+      'maimed_phys_damage_taken_incr',
     ],
     supports_minions_do_anything: [
       'cast_speed_incr',
@@ -438,17 +438,17 @@ export default {
       'cannot_inflict_ailments',
       'elemental_focus_damage',
       'cluster_trap_damage_incr',
-      'minefield_damage'
-    ]
+      'minefield_damage',
+    ],
   },
   skills: {
     detonate_mines: {
       filter: [],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     melee: {
       filter: ['$weapon_damage'],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     abyssal_cry: {
       filter: [
@@ -462,9 +462,9 @@ export default {
         'movement_speed_incr',
         'movement_speed_incr_per_enemy',
         'buff_duration',
-        'no_reflect'
+        'no_reflect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     ancestor_totem_slam: {
       filter: [
@@ -483,9 +483,9 @@ export default {
         'melee_range',
         'attack_speed_more',
         'ancestor_totem_grants_melee_damage',
-        'ancestor_totem_grants_melee_damage_incr'
+        'ancestor_totem_grants_melee_damage_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     anger: {
       filter: [
@@ -496,9 +496,9 @@ export default {
         '$supports_aura',
         'area_of_effect_incr',
         'attack_added_fire',
-        'spell_added_fire_damage'
+        'spell_added_fire_damage',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     envy: {
       filter: [
@@ -509,9 +509,9 @@ export default {
         '$supports_aura',
         'area_of_effect_incr',
         'attack_added_chaos',
-        'spell_added_chaos_damage'
+        'spell_added_chaos_damage',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     animate_armour: {
       filter: [
@@ -526,9 +526,9 @@ export default {
         '$supports_minions_attack',
         'movement_speed_incr',
         'item_level_req',
-        'display_minion_life'
+        'display_minion_life',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     animate_weapon: {
       filter: [
@@ -544,9 +544,9 @@ export default {
         'item_level_req',
         'movement_speed_incr',
         'minion_duration',
-        'number_of_animated_weapons'
+        'number_of_animated_weapons',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     arc: {
       filter: [
@@ -561,9 +561,9 @@ export default {
         'shock_chance',
         'shock_effect',
         'chain_num',
-        'split_num'
+        'split_num',
       ],
-      start_file: 'beam_skill_stat_descriptions'
+      start_file: 'beam_skill_stat_descriptions',
     },
     vaal_arc: {
       filter: [
@@ -576,9 +576,9 @@ export default {
         '$supports_damage',
         'shock_chance',
         'shock_duration',
-        'chain_num'
+        'chain_num',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     arctic_armour: {
       filter: [
@@ -590,9 +590,9 @@ export default {
         'phys_damage_taken_plus',
         'fire_damage_taken_plus',
         'movement_speed_incr',
-        'skill_duration'
+        'skill_duration',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     new_arctic_armour: {
       filter: [
@@ -603,9 +603,9 @@ export default {
         'arctic_armour_fire_damage',
         'arctic_armour_chill_when_hit_duration',
         'skill_duration',
-        'skill_buff_effect'
+        'skill_buff_effect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     arctic_breath: {
       filter: [
@@ -620,9 +620,9 @@ export default {
         '$supports_projectile',
         '$supports_area',
         'skill_duration',
-        'area_of_effect_incr'
+        'area_of_effect_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     assassins_mark: {
       filter: [
@@ -640,9 +640,9 @@ export default {
         'chance_to_grant_power_charge_on_death',
         'chance_to_take_critical_strike',
         'life_granted_when_killed',
-        'mana_granted_when_killed'
+        'mana_granted_when_killed',
       ],
-      start_file: 'curse_skill_stat_descriptions'
+      start_file: 'curse_skill_stat_descriptions',
     },
     aura_accuracy_and_crits: {
       filter: [
@@ -653,9 +653,9 @@ export default {
         '$supports_aura',
         'area_of_effect_incr',
         'accuracy_rating_incr',
-        'critical_strike_chance_incr'
+        'critical_strike_chance_incr',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     aura_damage: {
       filter: [
@@ -665,9 +665,9 @@ export default {
         '$supports_area',
         '$supports_aura',
         'area_of_effect_incr',
-        'physical_damage_incr'
+        'physical_damage_incr',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     ball_lightning: {
       filter: [
@@ -680,9 +680,9 @@ export default {
         '$supports_area',
         '$supports_totem',
         '$supports_trappable',
-        '$supports_mineable'
+        '$supports_mineable',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     backstab: {
       filter: [
@@ -691,9 +691,9 @@ export default {
         '$supports_attack',
         '$supports_damage',
         'backstab_damage',
-        'attack_speed_incr'
+        'attack_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     barrage: {
       filter: [
@@ -706,9 +706,9 @@ export default {
         '$supports_mineable',
         '$supports_projectile',
         'number_of_arrows',
-        'attack_speed_more'
+        'attack_speed_more',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     blade_flurry: {
       filter: [
@@ -716,9 +716,9 @@ export default {
         '$supports_all',
         '$supports_attack',
         '$supports_damage',
-        'attack_speed_incr'
+        'attack_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     new_new_blade_vortex: {
       filter: [
@@ -734,9 +734,9 @@ export default {
         'blade_vortex_damage_per_blade',
         'blade_vortex_ailment_damage_per_blade',
         'blade_vortex_rate_per_blade',
-        'blade_vortex_hit_rate'
+        'blade_vortex_hit_rate',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     bladefall: {
       filter: [
@@ -750,9 +750,9 @@ export default {
         '$supports_mineable',
         '$supports_area',
         'area_of_effect_incr',
-        'bladefall_damage_per_volley'
+        'bladefall_damage_per_volley',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     blast_rain: {
       filter: [
@@ -766,9 +766,9 @@ export default {
         '$supports_area',
         'area_of_effect_incr',
         'projectile_speed_incr',
-        'blast_rain_number'
+        'blast_rain_number',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     blight_channel: {
       filter: [
@@ -786,9 +786,9 @@ export default {
         'movement_speed_incr',
         'area_of_effect_incr',
         'blight_max_stacks',
-        'spell_damage_over_time'
+        'spell_damage_over_time',
       ],
-      start_file: 'debuff_skill_stat_descriptions'
+      start_file: 'debuff_skill_stat_descriptions',
     },
     blink_arrow: {
       filter: [
@@ -804,9 +804,9 @@ export default {
         'skill_duration',
         'arrow_speed',
         'display_minion_life',
-        'projectile_speed_incr'
+        'projectile_speed_incr',
       ],
-      start_file: 'minion_attack_skill_stat_descriptions'
+      start_file: 'minion_attack_skill_stat_descriptions',
     },
     blood_rage: {
       filter: [
@@ -819,9 +819,9 @@ export default {
         'physical_damage_percent_of_life_per_minute',
         'physical_damage_percent_of_energy_shield_per_minute',
         'frenzy_on_kill_chance',
-        'buff_duration'
+        'buff_duration',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     bone_offering: {
       filter: [
@@ -835,9 +835,9 @@ export default {
         'skill_duration',
         'base_block',
         'base_spell_block',
-        'recover_life_on_block'
+        'recover_life_on_block',
       ],
-      start_file: 'offering_skill_stat_descriptions'
+      start_file: 'offering_skill_stat_descriptions',
     },
     burning_arrow: {
       filter: [
@@ -851,9 +851,9 @@ export default {
         '$supports_projectile',
         'burn_chance',
         'burn_duration',
-        'burn_damage'
+        'burn_damage',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_burning_arrow: {
       filter: [
@@ -867,9 +867,9 @@ export default {
         '$supports_projectile',
         'burn_chance',
         'burn_duration',
-        'burn_damage'
+        'burn_damage',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     caustic_arrow: {
       filter: [
@@ -886,9 +886,9 @@ export default {
         'projectile_damage_over_time',
         'chaos_skill_dot_area_damage_per_minute',
         'skill_duration',
-        'area_of_effect_incr'
+        'area_of_effect_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     chaos_degen_aura_unique: {
       filter: [
@@ -898,9 +898,9 @@ export default {
         '$supports_area',
         '$supports_aura',
         'cast_on_equip',
-        'chaos_skill_dot_area_damage_per_minute'
+        'chaos_skill_dot_area_damage_per_minute',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     charged_attack_channel: {
       filter: [
@@ -911,9 +911,9 @@ export default {
         '$supports_channelling',
         '$supports_area',
         'charged_attack_damage_stages',
-        'area_of_effect_incr'
+        'area_of_effect_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     clarity: {
       filter: [
@@ -923,9 +923,9 @@ export default {
         '$supports_area',
         '$supports_aura',
         'area_of_effect_incr',
-        'mana_regen'
+        'mana_regen',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     vaal_clarity: {
       filter: [
@@ -936,9 +936,9 @@ export default {
         '$supports_aura',
         'area_of_effect_incr',
         'no_mana_cost',
-        'buff_duration'
+        'buff_duration',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     cleave: {
       filter: [
@@ -947,9 +947,9 @@ export default {
         '$supports_attack',
         '$supports_damage',
         '$supports_area',
-        'attack_speed_incr'
+        'attack_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     cold_snap: {
       filter: [
@@ -965,9 +965,9 @@ export default {
         'freeze_chance',
         'chill_duration',
         'freeze_duration',
-        'chill_effect'
+        'chill_effect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_cold_snap: {
       filter: [
@@ -982,9 +982,9 @@ export default {
         'skill_duration',
         'freeze_chance',
         'chill_duration',
-        'freeze_duration'
+        'freeze_duration',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     cold_weakness: {
       filter: [
@@ -1000,9 +1000,9 @@ export default {
         'area_of_effect_incr',
         'cold_resist',
         'chance_to_be_frozen',
-        'self_freeze_duration'
+        'self_freeze_duration',
       ],
-      start_file: 'curse_skill_stat_descriptions'
+      start_file: 'curse_skill_stat_descriptions',
     },
     consecrate: {
       filter: [
@@ -1012,9 +1012,9 @@ export default {
         '$supports_area',
         'cast_this_spell_on_crit',
         'skill_duration',
-        'life_regen_per_minute_percent'
+        'life_regen_per_minute_percent',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     triggered_consecrate: 'consecrate',
     contagion: {
@@ -1029,9 +1029,9 @@ export default {
         '$supports_mineable',
         'chaos_skill_dot_damage_per_minute',
         'buff_duration',
-        'spell_damage_over_time'
+        'spell_damage_over_time',
       ],
-      start_file: 'debuff_skill_stat_descriptions'
+      start_file: 'debuff_skill_stat_descriptions',
     },
     conversion_strike: {
       filter: [
@@ -1045,9 +1045,9 @@ export default {
         '$supports_minions_do_anything',
         'minion_duration',
         'minion_damage_final',
-        'minion_life_final'
+        'minion_life_final',
       ],
-      start_file: 'minion_attack_skill_stat_descriptions'
+      start_file: 'minion_attack_skill_stat_descriptions',
     },
     convocation: {
       filter: [
@@ -1056,9 +1056,9 @@ export default {
         '$supports_triggerable_spell',
         'skill_duration',
         'life_regen_per_minute',
-        'skill_buff_effect'
+        'skill_buff_effect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     create_lesser_shrine: {
       filter: [
@@ -1066,9 +1066,9 @@ export default {
         '$supports_spell',
         '$supports_triggerable_spell',
         'cast_on_kill',
-        'skill_duration'
+        'skill_duration',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     cyclone: {
       filter: [
@@ -1082,9 +1082,9 @@ export default {
         'cyclone_first_hit_damage',
         'cyclone_movement_speed_incr',
         'cyclone_first_hit_damage',
-        'melee_range'
+        'melee_range',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_cyclone: {
       filter: [
@@ -1095,9 +1095,9 @@ export default {
         '$supports_area',
         'attack_speed_incr',
         'area_of_effect_incr',
-        'skill_duration'
+        'skill_duration',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     damage_infusion: {
       filter: [
@@ -1108,9 +1108,9 @@ export default {
         '$supports_trappable',
         '$supports_mineable',
         '$supports_area',
-        'damage_infusion'
+        'damage_infusion',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     dark_pact: {
       filter: [
@@ -1126,9 +1126,9 @@ export default {
         'skeletal_chains_aoe_health_percent',
         'skeletal_chains_target_self',
         'skeletal_chains_damage',
-        'skeletal_chains_radius'
+        'skeletal_chains_radius',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     determination: {
       filter: [
@@ -1139,9 +1139,9 @@ export default {
         '$supports_aura',
         'area_of_effect_incr',
         'base_armour',
-        'determination_armour_incr'
+        'determination_armour_incr',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     detonate_dead: {
       filter: [
@@ -1156,9 +1156,9 @@ export default {
         '$supports_area',
         'corpse_life_percentage',
         'cast_speed_incr',
-        'no_reflect'
+        'no_reflect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_detonate_dead: {
       filter: [
@@ -1172,9 +1172,9 @@ export default {
         '$supports_area',
         'corpse_life_percentage',
         'cast_speed_incr',
-        'no_reflect'
+        'no_reflect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     desecrate: {
       filter: [
@@ -1189,9 +1189,9 @@ export default {
         'chaos_skill_dot_area_damage_per_minute',
         'skill_duration',
         'desecrate_num_corpses',
-        'desecrate_corpse_level'
+        'desecrate_corpse_level',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     discharge: {
       filter: [
@@ -1207,9 +1207,9 @@ export default {
         'area_of_effect_incr',
         'lightning_damage_per_power_charge_range',
         'fire_damage_per_endurance_charge_range',
-        'cold_damage_per_frenzy_charge_range'
+        'cold_damage_per_frenzy_charge_range',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     discipline: {
       filter: [
@@ -1219,9 +1219,9 @@ export default {
         '$supports_area',
         '$supports_aura',
         'area_of_effect_incr',
-        'base_energy_shield'
+        'base_energy_shield',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     vaal_discipline: {
       filter: [
@@ -1233,9 +1233,9 @@ export default {
         'area_of_effect_incr',
         'base_energy_shield',
         'energy_shield_no_delay',
-        'buff_duration'
+        'buff_duration',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     double_slash: {
       filter: [
@@ -1245,9 +1245,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         'attack_speed_more',
-        'area_of_effect_incr'
+        'area_of_effect_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     double_strike: {
       filter: [
@@ -1255,9 +1255,9 @@ export default {
         '$supports_attack',
         '$supports_all',
         '$supports_damage',
-        'attack_speed_incr'
+        'attack_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_double_strike: {
       filter: [
@@ -1266,9 +1266,9 @@ export default {
         '$supports_all',
         '$supports_damage',
         'attack_speed_incr',
-        'skill_duration'
+        'skill_duration',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     dual_strike: {
       filter: [
@@ -1276,9 +1276,9 @@ export default {
         '$supports_all',
         '$supports_attack',
         '$supports_damage',
-        'attack_speed_incr'
+        'attack_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     earthquake: {
       filter: [
@@ -1288,9 +1288,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         'skill_duration',
-        'earthquake_aftershock_damage'
+        'earthquake_aftershock_damage',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     elemental_hit: {
       filter: [
@@ -1305,9 +1305,9 @@ export default {
         'elemental_hit_fire_damage',
         'elemental_hit_cold_damage',
         'elemental_hit_lightning_damage',
-        'elemental_status_chance'
+        'elemental_status_chance',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     elemental_projectiles: {
       filter: [
@@ -1322,9 +1322,9 @@ export default {
         '$supports_area',
         'area_of_effect_incr',
         'chain_num',
-        'split_num'
+        'split_num',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     elemental_weakness: {
       filter: [
@@ -1341,9 +1341,9 @@ export default {
         'elemental_resist',
         'chance_to_be_shocked',
         'chance_to_be_frozen',
-        'chance_to_be_ignited'
+        'chance_to_be_ignited',
       ],
-      start_file: 'curse_skill_stat_descriptions'
+      start_file: 'curse_skill_stat_descriptions',
     },
     enduring_cry: {
       filter: [
@@ -1356,9 +1356,9 @@ export default {
         'area_of_effect_incr',
         'life_regen_per_minute',
         'buff_duration',
-        'skill_buff_effect'
+        'skill_buff_effect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     enfeeble: {
       filter: [
@@ -1375,9 +1375,9 @@ export default {
         'accuracy_rating_incr',
         'critical_strike_chance_incr',
         'enfeeble_damage_scale',
-        'critical_strike_multiplier_incr'
+        'critical_strike_multiplier_incr',
       ],
-      start_file: 'curse_skill_stat_descriptions'
+      start_file: 'curse_skill_stat_descriptions',
     },
     essence_drain: {
       filter: [
@@ -1394,9 +1394,9 @@ export default {
         'chaos_skill_dot_damage_per_minute',
         'buff_duration',
         'spell_damage_over_time',
-        'siphon_life_gain'
+        'siphon_life_gain',
       ],
-      start_file: 'debuff_skill_stat_descriptions'
+      start_file: 'debuff_skill_stat_descriptions',
     },
     explosive_arrow: {
       filter: [
@@ -1412,9 +1412,9 @@ export default {
         'fuse_arrow_orb_damage',
         'fuse_arrow_explosion_radius',
         'burn_chance',
-        'number_of_arrows'
+        'number_of_arrows',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     fire_beam: {
       filter: [
@@ -1432,9 +1432,9 @@ export default {
         'fire_skill_dot_damage_per_minute',
         'fire_beam_max_stacks',
         'fire_beam_length_incr',
-        'spell_damage_over_time'
+        'spell_damage_over_time',
       ],
-      start_file: 'debuff_skill_stat_descriptions'
+      start_file: 'debuff_skill_stat_descriptions',
     },
     fire_nova: {
       filter: [
@@ -1445,9 +1445,9 @@ export default {
         '$supports_mine',
         '$supports_damage',
         '$supports_area',
-        'fire_nova_damage'
+        'fire_nova_damage',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     fireball: {
       filter: [
@@ -1461,9 +1461,9 @@ export default {
         '$supports_damage',
         '$supports_projectile',
         '$supports_area',
-        'burn_chance'
+        'burn_chance',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_fireball: {
       filter: [
@@ -1476,9 +1476,9 @@ export default {
         '$supports_damage',
         '$supports_projectile',
         '$supports_area',
-        'burn_chance'
+        'burn_chance',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     fire_burst: {
       filter: [
@@ -1487,9 +1487,9 @@ export default {
         '$supports_spell',
         '$supports_triggerable_spell',
         '$supports_damage',
-        '$supports_area'
+        '$supports_area',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     breach_bone_nova_triggered: {
       filter: [
@@ -1499,9 +1499,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         '$supports_projectile',
-        'attack_on_kill_bleeding_enemy'
+        'attack_on_kill_bleeding_enemy',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     fire_mortar: {
       filter: [
@@ -1515,9 +1515,9 @@ export default {
         '$supports_damage',
         '$supports_projectile',
         '$supports_area',
-        'burn_chance'
+        'burn_chance',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     fire_storm: {
       filter: [
@@ -1531,9 +1531,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         'skill_duration',
-        'fire_storm_delay'
+        'fire_storm_delay',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     fire_weakness: {
       filter: [
@@ -1549,9 +1549,9 @@ export default {
         'area_of_effect_incr',
         'fire_resist',
         'chance_to_be_ignited',
-        'self_burn_duration'
+        'self_burn_duration',
       ],
-      start_file: 'curse_skill_stat_descriptions'
+      start_file: 'curse_skill_stat_descriptions',
     },
     flameblast: {
       filter: [
@@ -1566,9 +1566,9 @@ export default {
         '$supports_area',
         'charged_blast_damage_per_stack',
         'charged_blast_ailment_damage_per_stack',
-        'area_of_effect_incr'
+        'area_of_effect_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_charged_blast: {
       filter: [
@@ -1582,9 +1582,9 @@ export default {
         '$supports_area',
         'charged_blast_damage_per_stack',
         'charged_blast_ailment_damage_per_stack',
-        'area_of_effect_incr'
+        'area_of_effect_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     flame_dash: {
       filter: [
@@ -1598,9 +1598,9 @@ export default {
         '$supports_mineable',
         '$supports_area',
         'skill_duration',
-        'fire_skill_dot_area_damage_per_minute'
+        'fire_skill_dot_area_damage_per_minute',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     flame_whip: {
       filter: [
@@ -1616,9 +1616,9 @@ export default {
         'flame_whip_damage_incr',
         'never_ignite',
         'cast_speed_incr',
-        'damage_vs_burning'
+        'damage_vs_burning',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     flesh_offering: {
       filter: [
@@ -1632,9 +1632,9 @@ export default {
         'skill_duration',
         'attack_speed_incr',
         'haste_cast_speed_incr',
-        'movement_speed_incr'
+        'movement_speed_incr',
       ],
-      start_file: 'offering_skill_stat_descriptions'
+      start_file: 'offering_skill_stat_descriptions',
     },
     flicker_strike: {
       filter: [
@@ -1644,9 +1644,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         'attack_speed_incr',
-        'attack_speed_per_frenzy_charge'
+        'attack_speed_per_frenzy_charge',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     freezing_pulse: {
       filter: [
@@ -1659,9 +1659,9 @@ export default {
         '$supports_mineable',
         '$supports_damage',
         '$supports_projectile',
-        'projectile_speed_incr'
+        'projectile_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     frenzy: {
       filter: [
@@ -1674,9 +1674,9 @@ export default {
         '$supports_damage',
         '$supports_projectile',
         'attack_speed_per_frenzy_charge',
-        'attack_speed_incr'
+        'attack_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     frost_blades: {
       filter: [
@@ -1687,9 +1687,9 @@ export default {
         '$supports_projectile',
         'melee_weapon_range',
         'active_skill_projectile_damage_incr',
-        'active_skill_projectile_dot_incr'
+        'active_skill_projectile_dot_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     frost_bolt: {
       filter: [
@@ -1701,9 +1701,9 @@ export default {
         '$supports_trappable',
         '$supports_mineable',
         '$supports_damage',
-        '$supports_projectile'
+        '$supports_projectile',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     frost_bolt_nova: {
       filter: [
@@ -1719,9 +1719,9 @@ export default {
         'skill_duration',
         'spell_damage_over_time',
         'cold_skill_dot_area_damage_per_minute',
-        'active_skill_if_used_through_frostbolt_damage'
+        'active_skill_if_used_through_frostbolt_damage',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     frost_bomb: {
       filter: [
@@ -1737,9 +1737,9 @@ export default {
         'skill_duration',
         'secondary_buff_duration',
         'life_regen_incr',
-        'cold_resist'
+        'cold_resist',
       ],
-      start_file: 'debuff_skill_stat_descriptions'
+      start_file: 'debuff_skill_stat_descriptions',
     },
     frost_wall: {
       filter: [
@@ -1753,9 +1753,9 @@ export default {
         '$supports_damage',
         'skill_duration',
         'wall_delay',
-        'wall_length'
+        'wall_length',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     glacial_cascade: {
       filter: [
@@ -1767,9 +1767,9 @@ export default {
         '$supports_area',
         '$supports_totem',
         '$supports_trappable',
-        '$supports_mineable'
+        '$supports_mineable',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     glacial_hammer: {
       filter: [
@@ -1779,9 +1779,9 @@ export default {
         '$supports_damage',
         'freeze_chance',
         'chill_duration',
-        'chill_effect'
+        'chill_effect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_glacial_hammer: {
       filter: [
@@ -1791,9 +1791,9 @@ export default {
         '$supports_damage',
         'freeze_chance',
         'chill_duration',
-        'skill_duration'
+        'skill_duration',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     grace: {
       filter: [
@@ -1804,9 +1804,9 @@ export default {
         '$supports_aura',
         'area_of_effect_incr',
         'grace_evasion_incr',
-        'base_evasion'
+        'base_evasion',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     vaal_grace: {
       filter: [
@@ -1818,9 +1818,9 @@ export default {
         'area_of_effect_incr',
         'dodge_chance',
         'spell_dodge_chance',
-        'buff_duration'
+        'buff_duration',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     ground_slam: {
       filter: [
@@ -1830,9 +1830,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         'stun_threshold_reduction_incr',
-        'stun_duration_incr'
+        'stun_duration_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_ground_slam: {
       filter: [
@@ -1842,9 +1842,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         'knockback',
-        'stun'
+        'stun',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     haste: {
       filter: [
@@ -1856,9 +1856,9 @@ export default {
         'area_of_effect_incr',
         'movement_speed_incr',
         'attack_speed_incr',
-        'haste_cast_speed_incr'
+        'haste_cast_speed_incr',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     vaal_haste: {
       filter: [
@@ -1871,9 +1871,9 @@ export default {
         'movement_speed_incr',
         'attack_speed_incr',
         'haste_cast_speed_incr',
-        'buff_duration'
+        'buff_duration',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     hatred: {
       filter: [
@@ -1883,9 +1883,9 @@ export default {
         '$supports_area',
         '$supports_aura',
         'area_of_effect_incr',
-        'physical_damage_to_add_as_cold'
+        'physical_damage_to_add_as_cold',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     heavy_strike: {
       filter: [
@@ -1895,9 +1895,9 @@ export default {
         '$supports_damage',
         'knockback',
         'stun_threshold_reduction_incr',
-        'stun_duration_incr'
+        'stun_duration_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_heavy_strike: {
       filter: [
@@ -1905,9 +1905,9 @@ export default {
         '$supports_all',
         '$supports_attack',
         '$supports_damage',
-        'attack_speed_incr'
+        'attack_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     herald_of_ash: {
       filter: [
@@ -1919,9 +1919,9 @@ export default {
         'physical_damage_to_add_as_fire',
         'herald_of_ash_fire_damage_incr',
         'herald_of_ash_burning_damage',
-        'buff_duration'
+        'buff_duration',
       ],
-      start_file: 'debuff_skill_stat_descriptions'
+      start_file: 'debuff_skill_stat_descriptions',
     },
     herald_of_ice: {
       filter: [
@@ -1933,9 +1933,9 @@ export default {
         'spell_added_cold',
         'attack_added_cold',
         'herald_of_ice_cold_damage_incr',
-        'no_reflect'
+        'no_reflect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     herald_of_thunder: {
       filter: [
@@ -1946,9 +1946,9 @@ export default {
         '$supports_area',
         'spell_added_lightning',
         'attack_added_lightning',
-        'herald_of_thunder_lightning_damage_incr'
+        'herald_of_thunder_lightning_damage_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     ice_crash: {
       filter: [
@@ -1960,9 +1960,9 @@ export default {
         'base_physical_damage_to_convert_to_cold',
         'ice_crash_second_hit_damage',
         'ice_crash_third_hit_damage',
-        'area_of_effect_incr'
+        'area_of_effect_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     ice_nova: {
       filter: [
@@ -1976,9 +1976,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         'area_of_effect_incr',
-        'active_skill_if_used_through_frostbolt_damage'
+        'active_skill_if_used_through_frostbolt_damage',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_ice_nova: {
       filter: [
@@ -1992,9 +1992,9 @@ export default {
         '$supports_area',
         'area_of_effect_incr',
         'ice_nova_repeat_count',
-        'ice_nova_repeat_size'
+        'ice_nova_repeat_size',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     ice_shot: {
       filter: [
@@ -2007,9 +2007,9 @@ export default {
         '$supports_mineable',
         '$supports_area',
         '$supports_projectile',
-        'skill_duration'
+        'skill_duration',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     ice_spear: {
       filter: [
@@ -2025,9 +2025,9 @@ export default {
         'chill_duration',
         'chill_effect',
         'projectile_speed_incr',
-        'ice_spear_crit_bonus'
+        'ice_spear_crit_bonus',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     ice_storm: {
       filter: [
@@ -2043,9 +2043,9 @@ export default {
         'skill_duration',
         'fire_storm_delay',
         'ice_storm_ground_ice',
-        'cold_damage_per_int'
+        'cold_damage_per_int',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     immortal_call: {
       filter: [
@@ -2057,9 +2057,9 @@ export default {
         '$supports_mineable',
         'buff_duration',
         'buff_duration_incr_per_endurance',
-        'cast_speed_incr'
+        'cast_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_immortal_call: {
       filter: [
@@ -2070,9 +2070,9 @@ export default {
         '$supports_mineable',
         'buff_duration',
         'buff_duration_incr_per_endurance',
-        'cast_speed_incr'
+        'cast_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     incinerate_channel: {
       filter: [
@@ -2085,9 +2085,9 @@ export default {
         '$supports_projectile',
         'flamethrower_damage_incr',
         'incinerate_damage_incr',
-        'projectile_speed_incr'
+        'projectile_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     infernal_blow: {
       filter: [
@@ -2097,9 +2097,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         'corpse_life_percentage',
-        'area_of_effect_incr'
+        'area_of_effect_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     infernal_swarm: {
       filter: [
@@ -2111,9 +2111,9 @@ export default {
         '$supports_area',
         'chain_num',
         'burn_chance',
-        'burn_damage'
+        'burn_damage',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     inspiring_cry: {
       filter: [
@@ -2127,9 +2127,9 @@ export default {
         'inspiring_cry_damage',
         'damage_incr',
         'mana_regen',
-        'skill_buff_effect'
+        'skill_buff_effect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     kinetic_blast: {
       filter: [
@@ -2142,9 +2142,9 @@ export default {
         '$supports_totem',
         '$supports_trappable',
         '$supports_mineable',
-        'cluster_burst_spawn_amount'
+        'cluster_burst_spawn_amount',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     leap_slam: {
       filter: [
@@ -2153,9 +2153,9 @@ export default {
         '$supports_attack',
         '$supports_damage',
         '$supports_area',
-        'knockback'
+        'knockback',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     lightning_arrow: {
       filter: [
@@ -2169,9 +2169,9 @@ export default {
         '$supports_projectile',
         '$supports_area',
         'lighnting_arrow_targets',
-        'shock_chance'
+        'shock_chance',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     lightning_projectile_trap: {
       filter: [
@@ -2184,9 +2184,9 @@ export default {
         '$supports_projectile',
         'projectile_speed_incr',
         'shock_chance',
-        'shock_effect'
+        'shock_effect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_lightning_projectile_trap: {
       filter: [
@@ -2200,9 +2200,9 @@ export default {
         'skill_duration',
         'projectile_speed_incr',
         'lightning_trap_shocking_ground',
-        'shocked_ground_stat_override'
+        'shocked_ground_stat_override',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     player_lightning_slam: {
       filter: [
@@ -2211,9 +2211,9 @@ export default {
         '$supports_attack',
         '$supports_damage',
         '$supports_area',
-        'shock_chance'
+        'shock_chance',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     lightning_strike: {
       filter: [
@@ -2223,9 +2223,9 @@ export default {
         '$supports_damage',
         '$supports_projectile',
         'active_skill_projectile_damage_incr',
-        'active_skill_projectile_dot_incr'
+        'active_skill_projectile_dot_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_lightning_strike: {
       filter: [
@@ -2234,9 +2234,9 @@ export default {
         '$supports_attack',
         '$supports_damage',
         'vaal_lightning_strike_beam_damage',
-        'skill_duration'
+        'skill_duration',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     lightning_tendrils: {
       filter: [
@@ -2246,9 +2246,9 @@ export default {
         '$supports_triggerable_spell',
         '$supports_damage',
         '$supports_area',
-        '$supports_totem'
+        '$supports_totem',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     lightning_weakness: {
       filter: [
@@ -2264,9 +2264,9 @@ export default {
         'area_of_effect_incr',
         'lightning_resist',
         'chance_to_be_shocked',
-        'self_shock_duration'
+        'self_shock_duration',
       ],
-      start_file: 'curse_skill_stat_descriptions'
+      start_file: 'curse_skill_stat_descriptions',
     },
     merveil_warp: {
       filter: [
@@ -2274,9 +2274,9 @@ export default {
         '$supports_spell',
         '$supports_triggerable_spell',
         '$supports_area',
-        'skill_duration'
+        'skill_duration',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     mine_freeze: {
       filter: [
@@ -2289,9 +2289,9 @@ export default {
         'freeze_duration',
         'freeze_chance',
         'freeze_mine_damage_incr',
-        'freeze_mine_cold_resist_debuff'
+        'freeze_mine_cold_resist_debuff',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     mirror_arrow: {
       filter: [
@@ -2307,9 +2307,9 @@ export default {
         'skill_duration',
         'arrow_speed',
         'display_minion_life',
-        'projectile_speed_incr'
+        'projectile_speed_incr',
       ],
-      start_file: 'minion_attack_skill_stat_descriptions'
+      start_file: 'minion_attack_skill_stat_descriptions',
     },
     molten_shell: {
       filter: [
@@ -2326,9 +2326,9 @@ export default {
         'base_armour',
         'buff_duration',
         'area_of_effect_incr',
-        'skill_buff_effect'
+        'skill_buff_effect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_molten_shell: {
       filter: [
@@ -2344,9 +2344,9 @@ export default {
         'base_armour',
         'buff_duration',
         'area_of_effect_incr',
-        'skill_buff_effect'
+        'skill_buff_effect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     molten_burst: {
       filter: [
@@ -2356,9 +2356,9 @@ export default {
         '$supports_damage',
         '$supports_projectile',
         '$supports_area',
-        'attack_on_melee_hit'
+        'attack_on_melee_hit',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     molten_strike: {
       filter: [
@@ -2369,9 +2369,9 @@ export default {
         '$supports_projectile',
         '$supports_area',
         'active_skill_projectile_damage_incr',
-        'active_skill_projectile_dot_incr'
+        'active_skill_projectile_dot_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     phase_run: {
       filter: [
@@ -2383,9 +2383,9 @@ export default {
         'monster_response_time',
         'buff_duration',
         'phase_run_melee_physical_damage_incr_final',
-        'melee_physical_damage_incr'
+        'melee_physical_damage_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     new_phase_run: {
       filter: [
@@ -2399,9 +2399,9 @@ export default {
         'phase_run_melee_physical_damage_incr_final',
         'skill_duration_incr_per_frenzy',
         'phasing',
-        'enemy_ai_weight'
+        'enemy_ai_weight',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     orb_of_storms: {
       filter: [
@@ -2416,9 +2416,9 @@ export default {
         '$supports_area',
         'chain_num',
         'skill_duration',
-        'chain_num'
+        'chain_num',
       ],
-      start_file: 'beam_skill_stat_descriptions'
+      start_file: 'beam_skill_stat_descriptions',
     },
     poachers_mark: {
       filter: [
@@ -2436,9 +2436,9 @@ export default {
         'monster_flask_charges_incr',
         'life_granted_when_hit',
         'mana_granted_when_hit',
-        'chance_to_grant_frenzy_charge_on_death'
+        'chance_to_grant_frenzy_charge_on_death',
       ],
-      start_file: 'curse_skill_stat_descriptions'
+      start_file: 'curse_skill_stat_descriptions',
     },
     power_siphon: {
       filter: [
@@ -2450,9 +2450,9 @@ export default {
         '$supports_trappable',
         '$supports_mineable',
         '$supports_projectile',
-        'culling_strike'
+        'culling_strike',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_power_siphon: {
       filter: [
@@ -2464,9 +2464,9 @@ export default {
         '$supports_trap',
         '$supports_mine',
         '$supports_projectile',
-        'culling_strike'
+        'culling_strike',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     projectile_weakness: {
       filter: [
@@ -2482,9 +2482,9 @@ export default {
         'area_of_effect_incr',
         'be_pierced',
         'chance_to_be_knocked_back',
-        'projectile_damage_taken_incr'
+        'projectile_damage_taken_incr',
       ],
-      start_file: 'curse_skill_stat_descriptions'
+      start_file: 'curse_skill_stat_descriptions',
     },
     puncture: {
       filter: [
@@ -2498,9 +2498,9 @@ export default {
         '$supports_mineable',
         '$supports_projectile',
         'bleeding_skill_duration',
-        'bleeding_chance'
+        'bleeding_chance',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     punishment: {
       filter: [
@@ -2517,9 +2517,9 @@ export default {
         'punishment_normal',
         'punishment_magic',
         'punishment_rare',
-        'punishment_unique'
+        'punishment_unique',
       ],
-      start_file: 'curse_skill_stat_descriptions'
+      start_file: 'curse_skill_stat_descriptions',
     },
     new_punishment: {
       filter: [
@@ -2535,9 +2535,9 @@ export default {
         'newpunishment_attack_speed',
         'newpunishment_applied_buff_duration',
         'curse_duration',
-        'area_of_effect_incr'
+        'area_of_effect_incr',
       ],
-      start_file: 'curse_skill_stat_descriptions'
+      start_file: 'curse_skill_stat_descriptions',
     },
     purity: {
       filter: [
@@ -2547,9 +2547,9 @@ export default {
         '$supports_area',
         '$supports_aura',
         'area_of_effect_incr',
-        'elemental_resist'
+        'elemental_resist',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     fire_resist_aura: {
       filter: [
@@ -2560,9 +2560,9 @@ export default {
         '$supports_aura',
         'area_of_effect_incr',
         'fire_resist',
-        'max_fire_resist'
+        'max_fire_resist',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     cold_resist_aura: {
       filter: [
@@ -2573,9 +2573,9 @@ export default {
         '$supports_aura',
         'area_of_effect_incr',
         'cold_resist',
-        'max_cold_resist'
+        'max_cold_resist',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     lightning_resist_aura: {
       filter: [
@@ -2586,9 +2586,9 @@ export default {
         '$supports_aura',
         'area_of_effect_incr',
         'lightning_resist',
-        'max_lightning_resist'
+        'max_lightning_resist',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     quake_slam: {
       filter: [
@@ -2598,9 +2598,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         'skill_duration',
-        'quake_slam_aftershock_damage'
+        'quake_slam_aftershock_damage',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     rain_of_arrows: {
       filter: [
@@ -2613,9 +2613,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         'area_of_effect_incr',
-        'projectile_speed_incr'
+        'projectile_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_rain_of_arrows: {
       filter: [
@@ -2629,9 +2629,9 @@ export default {
         '$supports_area',
         'area_of_effect_incr',
         'projectile_speed_incr',
-        'buff_duration'
+        'buff_duration',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     raise_spectre: {
       filter: [
@@ -2652,9 +2652,9 @@ export default {
         'movement_velocity_cap',
         'minion_energy_shield_final',
         'minion_movement_speed_incr',
-        'minion_elemental_resist'
+        'minion_elemental_resist',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     raise_zombie: {
       filter: [
@@ -2670,9 +2670,9 @@ export default {
         'number_of_zombies',
         'display_minion_life',
         'minion_movement_speed_incr',
-        'minion_damage_final'
+        'minion_damage_final',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     repeating_shockwave: {
       filter: [
@@ -2684,9 +2684,9 @@ export default {
         '$supports_area',
         'cannot_knockback',
         'cast_on_equip',
-        'burn_chance'
+        'burn_chance',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     reave: {
       filter: [
@@ -2696,9 +2696,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         'reave_area_incr',
-        'attack_speed_incr'
+        'attack_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_reave: {
       filter: [
@@ -2708,9 +2708,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         'reave_area_incr',
-        'attack_speed_incr'
+        'attack_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     reckoning: {
       filter: [
@@ -2718,9 +2718,9 @@ export default {
         '$supports_all',
         '$supports_attack',
         '$supports_damage',
-        '$supports_area'
+        '$supports_area',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     righteous_fire: {
       filter: [
@@ -2737,9 +2737,9 @@ export default {
         'righteous_fire_damage_to_nearby_from_es',
         'righteous_fire_spell_damage_incr',
         'spell_damage_incr',
-        'burn_damage'
+        'burn_damage',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_righteous_fire: {
       filter: [
@@ -2751,18 +2751,18 @@ export default {
         '$supports_trappable',
         '$supports_mineable',
         '$supports_area',
-        'no_reflect'
+        'no_reflect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     riposte: {
       filter: [
         '$weapon_damage',
         '$supports_all',
         '$supports_attack',
-        '$supports_damage'
+        '$supports_damage',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     searing_bond: {
       filter: [
@@ -2777,9 +2777,9 @@ export default {
         'totem_range',
         'num_totems',
         'totem_life_incr',
-        'fire_skill_dot_damage_per_minute'
+        'fire_skill_dot_damage_per_minute',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     shadow_projectiles: {
       filter: [
@@ -2792,9 +2792,9 @@ export default {
         '$supports_mineable',
         '$supports_damage',
         '$supports_projectile',
-        'projectile_speed_incr'
+        'projectile_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     shield_charge: {
       filter: [
@@ -2805,9 +2805,9 @@ export default {
         'shield_charge_damage',
         'shield_charge_stun_threshold',
         'shield_charge_stun',
-        'movement_speed_incr'
+        'movement_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     charged_dash: {
       filter: [
@@ -2816,9 +2816,9 @@ export default {
         '$supports_attack',
         '$supports_damage',
         '$supports_area',
-        'charged_dash_damage'
+        'charged_dash_damage',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     new_shield_charge: {
       filter: [
@@ -2829,9 +2829,9 @@ export default {
         '$supports_area',
         'shield_charge_damage',
         'shield_charge_stun_threshold',
-        'movement_speed_incr'
+        'movement_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     shock_ground: {
       filter: [
@@ -2840,9 +2840,9 @@ export default {
         '$supports_triggerable_spell',
         '$supports_area',
         'skill_duration',
-        'cast_when_hit'
+        'cast_when_hit',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     shock_nova: {
       filter: [
@@ -2857,9 +2857,9 @@ export default {
         '$supports_area',
         'shock_chance',
         'shock_duration',
-        'shock_nova_ring_damage'
+        'shock_nova_ring_damage',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     new_shock_nova: {
       filter: [
@@ -2874,9 +2874,9 @@ export default {
         '$supports_area',
         'newshocknova_first_ring_damage',
         'shock_chance',
-        'shock_duration'
+        'shock_duration',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     shrapnel_shot: {
       filter: [
@@ -2891,9 +2891,9 @@ export default {
         '$supports_area',
         'number_of_arrows',
         'arrow_pierce_chance',
-        'area_of_effect_incr'
+        'area_of_effect_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     siege_ballista: {
       filter: [
@@ -2911,9 +2911,9 @@ export default {
         'num_totems',
         'totem_summon_speed_incr',
         'pierce_chance',
-        'number_of_arrows'
+        'number_of_arrows',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     smoke_mine: {
       filter: [
@@ -2921,9 +2921,9 @@ export default {
         '$supports_spell',
         '$supports_area',
         '$supports_mine',
-        'skill_duration'
+        'skill_duration',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     snipe: {
       filter: [
@@ -2936,9 +2936,9 @@ export default {
         '$supports_mineable',
         '$supports_projectile',
         'attack_speed_per_frenzy_charge',
-        'arrow_pierce_chance'
+        'arrow_pierce_chance',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     spark: {
       filter: [
@@ -2953,9 +2953,9 @@ export default {
         '$supports_projectile',
         'skill_duration',
         'number_of_projectiles',
-        'projectile_speed_incr'
+        'projectile_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_spark: {
       filter: [
@@ -2969,9 +2969,9 @@ export default {
         '$supports_projectile',
         'skill_duration',
         'number_of_projectiles',
-        'projectile_speed_incr'
+        'projectile_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     split_arrow: {
       filter: [
@@ -2984,9 +2984,9 @@ export default {
         '$supports_mineable',
         '$supports_projectile',
         'number_of_arrows',
-        'attack_speed_incr'
+        'attack_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     spirit_offering: {
       filter: [
@@ -3000,9 +3000,9 @@ export default {
         'skill_duration',
         'spirit_offering_life_as_es_per_corpse',
         'physical_damage_to_add_as_chaos',
-        'elemental_resist'
+        'elemental_resist',
       ],
-      start_file: 'offering_skill_stat_descriptions'
+      start_file: 'offering_skill_stat_descriptions',
     },
     static_strike: {
       filter: [
@@ -3014,9 +3014,9 @@ export default {
         'skill_duration',
         'static_strike_damage',
         'shock_chance',
-        'shock_effect'
+        'shock_effect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     storm_burst: {
       filter: [
@@ -3030,9 +3030,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         '$supports_projectile',
-        'active_skill_area_damage_incr'
+        'active_skill_area_damage_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     storm_call: {
       filter: [
@@ -3046,9 +3046,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         'skill_duration',
-        'shock_effect'
+        'shock_effect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_storm_call: {
       filter: [
@@ -3060,9 +3060,9 @@ export default {
         '$supports_mineable',
         '$supports_damage',
         '$supports_area',
-        'skill_duration'
+        'skill_duration',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     storm_cascade_player: {
       filter: [
@@ -3075,9 +3075,9 @@ export default {
         '$supports_totem',
         '$supports_trappable',
         '$supports_mineable',
-        'cast_on_attack'
+        'cast_on_attack',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     summon_beastial_rhoa: {
       filter: [
@@ -3091,9 +3091,9 @@ export default {
         '$supports_trappable',
         '$supports_mineable',
         'number_of_beasts',
-        'display_minion_life'
+        'display_minion_life',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     summon_beastial_snake: {
       filter: [
@@ -3107,9 +3107,9 @@ export default {
         '$supports_trappable',
         '$supports_mineable',
         'number_of_beasts',
-        'display_minion_life'
+        'display_minion_life',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     summon_beastial_ursa: {
       filter: [
@@ -3123,9 +3123,9 @@ export default {
         '$supports_trappable',
         '$supports_mineable',
         'number_of_beasts',
-        'display_minion_life'
+        'display_minion_life',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     summon_chaos_elemental: {
       filter: [
@@ -3142,9 +3142,9 @@ export default {
         'display_minion_life',
         'minion_damage_final',
         'golem_grants_phys_reduction',
-        'number_of_golems'
+        'number_of_golems',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     summon_essence_spirits: {
       filter: [
@@ -3154,9 +3154,9 @@ export default {
         '$supports_minions_not_life',
         '$supports_minion_damage',
         '$supports_minions_attack',
-        'minion_damage_final'
+        'minion_damage_final',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     summon_fire_elemental: {
       filter: [
@@ -3173,9 +3173,9 @@ export default {
         'display_minion_life',
         'minion_damage_final',
         'golem_grants_damage',
-        'number_of_golems'
+        'number_of_golems',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     summon_harbinger_of_the_arcane: {
       filter: [
@@ -3186,9 +3186,9 @@ export default {
         '$supports_trappable',
         '$supports_mineable',
         '$supports_minions_not_life',
-        'display_one_harbinger_allowed'
+        'display_one_harbinger_allowed',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     summon_harbinger_of_time: {
       filter: [
@@ -3199,9 +3199,9 @@ export default {
         '$supports_trappable',
         '$supports_mineable',
         '$supports_minions_not_life',
-        'display_one_harbinger_allowed'
+        'display_one_harbinger_allowed',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     summon_harbinger_of_focus: {
       filter: [
@@ -3212,9 +3212,9 @@ export default {
         '$supports_trappable',
         '$supports_mineable',
         '$supports_minions_not_life',
-        'display_one_harbinger_allowed'
+        'display_one_harbinger_allowed',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     summon_harbinger_of_directons: {
       filter: [
@@ -3225,9 +3225,9 @@ export default {
         '$supports_trappable',
         '$supports_mineable',
         '$supports_minions_not_life',
-        'display_one_harbinger_allowed'
+        'display_one_harbinger_allowed',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     summon_harbinger_of_storms: {
       filter: [
@@ -3238,9 +3238,9 @@ export default {
         '$supports_trappable',
         '$supports_mineable',
         '$supports_minions_not_life',
-        'display_one_harbinger_allowed'
+        'display_one_harbinger_allowed',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     summon_harbinger_of_brutality: {
       filter: [
@@ -3251,9 +3251,9 @@ export default {
         '$supports_trappable',
         '$supports_mineable',
         '$supports_minions_not_life',
-        'display_one_harbinger_allowed'
+        'display_one_harbinger_allowed',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     summon_ice_elemental: {
       filter: [
@@ -3271,9 +3271,9 @@ export default {
         'minion_damage_final',
         'golem_grants_accuracy',
         'golem_grants_crit_chance',
-        'number_of_golems'
+        'number_of_golems',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     summon_lightning_golem: {
       filter: [
@@ -3289,9 +3289,9 @@ export default {
         'display_minion_life',
         'minion_damage_incr',
         'golem_grants_attack_and_cast_speed',
-        'number_of_golems'
+        'number_of_golems',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     summon_raging_spirit: {
       filter: [
@@ -3306,9 +3306,9 @@ export default {
         '$supports_minions_attack',
         'number_of_raging_spirits',
         'minion_duration',
-        'minion_added_damage'
+        'minion_added_damage',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     summon_rigwalds_pack: {
       filter: [
@@ -3323,9 +3323,9 @@ export default {
         '$supports_minions_attack',
         'number_of_wolves_allowed',
         'generic_minion_duration',
-        'display_minion_life'
+        'display_minion_life',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     summon_rock_golem: {
       filter: [
@@ -3343,9 +3343,9 @@ export default {
         'minion_damage_final',
         'minion_damage_incr',
         'golem_grants_life_regen',
-        'number_of_golems'
+        'number_of_golems',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     summon_skeletons: {
       filter: [
@@ -3363,9 +3363,9 @@ export default {
         'minion_duration',
         'unused_identifier_elemental_damage_final',
         'display_minion_life',
-        'minion_added_damage'
+        'minion_added_damage',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     vaal_summon_skeletons: {
       filter: [
@@ -3385,9 +3385,9 @@ export default {
         'number_of_skeletons_allowed',
         'minion_duration',
         'display_minion_life',
-        'minion_added_damage'
+        'minion_added_damage',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     sunder: {
       filter: [
@@ -3397,9 +3397,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         'area_of_effect_incr',
-        'sunder_explosion_damage'
+        'sunder_explosion_damage',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     sweep: {
       filter: [
@@ -3410,9 +3410,9 @@ export default {
         '$supports_area',
         'attack_speed_more',
         'knockback',
-        'area_of_effect_incr'
+        'area_of_effect_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     teleport_ball: {
       filter: [
@@ -3426,9 +3426,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         '$supports_variable_duration',
-        'cast_speed_incr'
+        'cast_speed_incr',
       ],
-      start_file: 'variable_duration_skill_stat_descriptions'
+      start_file: 'variable_duration_skill_stat_descriptions',
     },
     vaal_lightning_warp: {
       filter: [
@@ -3442,9 +3442,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         '$supports_variable_duration',
-        'cast_speed_incr'
+        'cast_speed_incr',
       ],
-      start_file: 'variable_duration_skill_stat_descriptions'
+      start_file: 'variable_duration_skill_stat_descriptions',
     },
     tempest_shield: {
       filter: [
@@ -3454,9 +3454,9 @@ export default {
         '$supports_damage',
         'shield_block',
         'chain_num',
-        'buff_duration'
+        'buff_duration',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     temporal_chains: {
       filter: [
@@ -3471,9 +3471,9 @@ export default {
         'curse_duration',
         'area_of_effect_incr',
         'action_speed_reduction',
-        'buff_time_passed_reduction'
+        'buff_time_passed_reduction',
       ],
-      start_file: 'curse_skill_stat_descriptions'
+      start_file: 'curse_skill_stat_descriptions',
     },
     thrown_weapon: {
       filter: [
@@ -3482,9 +3482,9 @@ export default {
         '$supports_attack',
         '$supports_damage',
         '$supports_projectile',
-        'attack_speed_incr'
+        'attack_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_thrown_weapon: {
       filter: [
@@ -3493,9 +3493,9 @@ export default {
         '$supports_attack',
         '$supports_damage',
         '$supports_projectile',
-        'attack_speed_incr'
+        'attack_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     tornado_shot: {
       filter: [
@@ -3506,9 +3506,9 @@ export default {
         '$supports_projectile',
         '$supports_totem',
         '$supports_trappable',
-        '$supports_mineable'
+        '$supports_mineable',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     totem_consume_corpse: {
       filter: [
@@ -3523,9 +3523,9 @@ export default {
         'num_totems',
         'corpse_consumption_life',
         'corpse_consumption_mana',
-        'totem_life_incr'
+        'totem_life_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     totem_earthquake: {
       filter: [
@@ -3542,9 +3542,9 @@ export default {
         'totem_range',
         'num_totems',
         'knockback',
-        'totem_life_incr'
+        'totem_life_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     totem_fire_spray: {
       filter: [
@@ -3560,9 +3560,9 @@ export default {
         'totem_duration',
         'totem_range',
         'num_totems',
-        'totem_life_incr'
+        'totem_life_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     totem_life_regen: {
       filter: [
@@ -3578,9 +3578,9 @@ export default {
         'totem_range',
         'num_totems',
         'life_regen_per_minute',
-        'aura_area_of_effect_incr'
+        'aura_area_of_effect_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     totem_melee: {
       filter: [
@@ -3597,9 +3597,9 @@ export default {
         'totem_life_incr',
         'melee_range',
         'ancestor_totem_grants_attack_speed',
-        'ancestor_totem_grants_attack_speed_incr'
+        'ancestor_totem_grants_attack_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     totem_taunt: {
       filter: [
@@ -3614,9 +3614,9 @@ export default {
         'totem_range',
         'num_totems',
         'totem_life_incr',
-        'totems_cannot_evade'
+        'totems_cannot_evade',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     town_portal: {
       filter: [
@@ -3626,9 +3626,9 @@ export default {
         '$supports_totem',
         '$supports_trappable',
         '$supports_mineable',
-        'cast_speed_incr'
+        'cast_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vaal_breach: {
       filter: [
@@ -3638,9 +3638,9 @@ export default {
         '$supports_trappable',
         '$supports_mineable',
         'cast_speed_incr',
-        'display_vaal_breach_no_drops_xp'
+        'display_vaal_breach_no_drops_xp',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     trap_beartrap: {
       filter: [
@@ -3650,9 +3650,9 @@ export default {
         '$supports_damage',
         '$supports_mineable',
         '$supports_trap',
-        'movement_speed_incr'
+        'movement_speed_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     trap_convert: {
       filter: [
@@ -3660,9 +3660,9 @@ export default {
         '$supports_spell',
         '$supports_mineable',
         '$supports_trap',
-        'skill_duration'
+        'skill_duration',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     trap_ground_fire: {
       filter: [
@@ -3676,9 +3676,9 @@ export default {
         '$supports_trap',
         'skill_duration',
         'fire_skill_dot_area_damage_per_minute',
-        'burn_damage'
+        'burn_damage',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     trap_ice: {
       filter: [
@@ -3689,9 +3689,9 @@ export default {
         '$supports_area',
         '$supports_mineable',
         '$supports_trap',
-        'area_of_effect_incr'
+        'area_of_effect_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     triggered_lightning_spell: {
       filter: [
@@ -3702,9 +3702,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         'area_of_effect_incr',
-        'cast_this_spell_on_crit'
+        'cast_this_spell_on_crit',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     triggered_summon_spider: {
       filter: [
@@ -3720,9 +3720,9 @@ export default {
         'cast_on_kill_target_self',
         'skill_duration',
         'number_of_spiders',
-        'display_minions_level_is_corpse_level'
+        'display_minions_level_is_corpse_level',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     unique_animate_weapon: {
       filter: [
@@ -3738,9 +3738,9 @@ export default {
         'attack_speed_incr',
         'attack_damage_incr',
         'cast_on_rampage',
-        'minion_movement_speed_incr'
+        'minion_movement_speed_incr',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     vaal_aura_elemental_damage_healing: {
       filter: [
@@ -3750,9 +3750,9 @@ export default {
         '$supports_area',
         '$supports_aura',
         'base_elemental_damage_heals',
-        'buff_duration'
+        'buff_duration',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     vengeance: {
       filter: [
@@ -3760,9 +3760,9 @@ export default {
         '$supports_all',
         '$supports_attack',
         '$supports_damage',
-        '$supports_area'
+        '$supports_area',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     vigilant_strike: {
       filter: [
@@ -3770,9 +3770,9 @@ export default {
         '$supports_all',
         '$supports_attack',
         '$supports_damage',
-        'fortify_duration_incr'
+        'fortify_duration_incr',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     viper_strike: {
       filter: [
@@ -3783,9 +3783,9 @@ export default {
         '$supports_damage_over_time',
         'poison_chance',
         'poison_skill_duration',
-        'attack_speed_incr'
+        'attack_speed_incr',
       ],
-      start_file: 'debuff_skill_stat_descriptions'
+      start_file: 'debuff_skill_stat_descriptions',
     },
     vitality: {
       filter: [
@@ -3795,9 +3795,9 @@ export default {
         '$supports_area',
         '$supports_aura',
         'area_of_effect_incr',
-        'life_regen_per_minute_percent'
+        'life_regen_per_minute_percent',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     void_gaze: {
       filter: [
@@ -3807,9 +3807,9 @@ export default {
         '$supports_area',
         'buff_duration',
         'cast_on_skill_use',
-        'chaos_res'
+        'chaos_res',
       ],
-      start_file: 'debuff_skill_stat_descriptions'
+      start_file: 'debuff_skill_stat_descriptions',
     },
     vulnerability: {
       filter: [
@@ -3824,9 +3824,9 @@ export default {
         'curse_duration',
         'area_of_effect_incr',
         'physical_damage_taken_incr',
-        'degen_effect_incr'
+        'degen_effect_incr',
       ],
-      start_file: 'curse_skill_stat_descriptions'
+      start_file: 'curse_skill_stat_descriptions',
     },
     warlords_mark: {
       filter: [
@@ -3843,9 +3843,9 @@ export default {
         'stun_recovery_incr',
         'life_leeched_when_hit',
         'mana_leeched_when_hit',
-        'chance_to_grant_endurance_charge_on_death'
+        'chance_to_grant_endurance_charge_on_death',
       ],
-      start_file: 'curse_skill_stat_descriptions'
+      start_file: 'curse_skill_stat_descriptions',
     },
     wild_strike: {
       filter: [
@@ -3854,9 +3854,9 @@ export default {
         '$supports_attack',
         '$supports_area',
         '$supports_projectile',
-        'wild_strike_damage_convert'
+        'wild_strike_damage_convert',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     wither_channel: {
       filter: [
@@ -3870,9 +3870,9 @@ export default {
         'buff_duration',
         'area_of_effect_incr',
         'chaos_damage_taken_incr',
-        'movement_speed_incr'
+        'movement_speed_incr',
       ],
-      start_file: 'debuff_skill_stat_descriptions'
+      start_file: 'debuff_skill_stat_descriptions',
     },
     wrath: {
       filter: [
@@ -3883,9 +3883,9 @@ export default {
         '$supports_aura',
         'area_of_effect_incr',
         'attack_added_lightning',
-        'wrath_spell_lightning_damage'
+        'wrath_spell_lightning_damage',
       ],
-      start_file: 'aura_skill_stat_descriptions'
+      start_file: 'aura_skill_stat_descriptions',
     },
     word_of_blades: {
       filter: [
@@ -3898,9 +3898,9 @@ export default {
         'number_of_projectiles',
         'chain_num',
         'cast_on_hit',
-        'no_reflect'
+        'no_reflect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     edict_of_blades: 'word_of_blades',
     decree_of_blades: 'word_of_blades',
@@ -3913,9 +3913,9 @@ export default {
         '$supports_triggerable_spell',
         '$supports_damage',
         'cast_on_hit',
-        'no_reflect'
+        'no_reflect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     edict_of_flames: 'word_of_flames',
     decree_of_flames: 'word_of_flames',
@@ -3929,9 +3929,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         'attack_on_hit',
-        'no_reflect'
+        'no_reflect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     edict_of_force_on_hit: 'word_of_force_on_hit',
     decree_of_force_on_hit: 'word_of_force_on_hit',
@@ -3946,9 +3946,9 @@ export default {
         '$supports_projectile',
         'number_of_projectiles',
         'cast_on_hit',
-        'no_reflect'
+        'no_reflect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     edict_of_frost: 'word_of_frost',
     decree_of_frost: 'word_of_frost',
@@ -3962,9 +3962,9 @@ export default {
         '$supports_projectile',
         'number_of_projectiles',
         'attack_on_hit',
-        'no_reflect'
+        'no_reflect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     edict_of_fury_on_hit: 'word_of_fury_on_hit',
     decree_of_fury_on_hit: 'word_of_fury_on_hit',
@@ -3978,9 +3978,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         'cast_on_kill_target_self',
-        'no_reflect'
+        'no_reflect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     edict_of_inferno_on_kill: 'word_of_inferno_on_kill',
     decree_of_inferno_on_kill: 'word_of_inferno_on_kill',
@@ -3994,9 +3994,9 @@ export default {
         '$supports_area',
         'skill_duration',
         'counterattack_on_hit',
-        'no_reflect'
+        'no_reflect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     edict_of_ire_when_hit: 'word_of_ire_when_hit',
     decree_of_ire_when_hit: 'word_of_ire_when_hit',
@@ -4011,9 +4011,9 @@ export default {
         'skill_duration',
         'life_regen_per_minute_percent',
         'counterattack_when_crit',
-        'no_reflect'
+        'no_reflect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     edict_of_light_when_critically_hit: 'word_of_light_when_critically_hit',
     decree_of_light_when_critically_hit: 'word_of_light_when_critically_hit',
@@ -4030,9 +4030,9 @@ export default {
         'minion_duration',
         'cast_when_hit',
         'display_minion_life',
-        'minion_damage_final'
+        'minion_damage_final',
       ],
-      start_file: 'minion_skill_stat_descriptions'
+      start_file: 'minion_skill_stat_descriptions',
     },
     edict_of_reflection_when_hit: 'word_of_reflection_when_hit',
     decree_of_reflection_when_hit: 'word_of_reflection_when_hit',
@@ -4047,9 +4047,9 @@ export default {
         'number_of_projectiles',
         'projectile_ground_effect_duration',
         'counterattack_on_hit',
-        'no_reflect'
+        'no_reflect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     edict_of_spite_when_hit: 'word_of_spite_when_hit',
     decree_of_spite_when_hit: 'word_of_spite_when_hit',
@@ -4064,9 +4064,9 @@ export default {
         '$supports_area',
         'skill_duration',
         'cast_on_kill_target_self',
-        'no_reflect'
+        'no_reflect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     edict_of_tempest_on_hit: 'word_of_tempest_on_hit',
     decree_of_tempest_on_hit: 'word_of_tempest_on_hit',
@@ -4085,9 +4085,9 @@ export default {
         'number_of_raging_spirits',
         'minion_duration',
         'display_minion_life',
-        'minion_damage_final'
+        'minion_damage_final',
       ],
-      start_file: 'minion_spell_skill_stat_descriptions'
+      start_file: 'minion_spell_skill_stat_descriptions',
     },
     edict_of_the_grave_on_kill: 'word_of_the_grave_on_kill',
     decree_of_the_grave_on_kill: 'word_of_the_grave_on_kill',
@@ -4101,9 +4101,9 @@ export default {
         '$supports_damage',
         '$supports_area',
         'cast_on_kill_target_self',
-        'no_reflect'
+        'no_reflect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     edict_of_thunder_on_kill: 'word_of_thunder_on_kill',
     decree_of_thunder_on_kill: 'word_of_thunder_on_kill',
@@ -4116,9 +4116,9 @@ export default {
         '$supports_damage',
         'attack_speed_incr',
         'skill_duration',
-        'no_reflect'
+        'no_reflect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     edict_of_war_on_kill: 'word_of_war_on_kill',
     decree_of_war_on_kill: 'word_of_war_on_kill',
@@ -4133,12 +4133,12 @@ export default {
         '$supports_projectile',
         '$supports_area',
         'cast_when_hit',
-        'no_reflect'
+        'no_reflect',
       ],
-      start_file: 'skill_stat_descriptions'
+      start_file: 'skill_stat_descriptions',
     },
     edict_of_winter_when_hit: 'word_of_winter_when_hit',
     decree_of_winter_when_hit: 'word_of_winter_when_hit',
-    commandment_of_winter_when_hit: 'word_of_winter_when_hit'
-  }
+    commandment_of_winter_when_hit: 'word_of_winter_when_hit',
+  },
 } as SkillMeta;

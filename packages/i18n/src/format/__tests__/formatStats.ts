@@ -5,22 +5,22 @@ import formatStats, { Fallback, Stat } from '../stats';
 
 it('should throw if the values dont match', () => {
   expect(() =>
-    formatStats([{ id: 'weapon_physical_damage_+%', value: -1 }], { datas })
+    formatStats([{ id: 'weapon_physical_damage_+%', value: -1 }], { datas }),
   ).toThrowError(
-    "matching translation not found for 'weapon_physical_damage_+%'"
+    "matching translation not found for 'weapon_physical_damage_+%'",
   );
 });
 
 it('should translate single stat line', () => {
   expect(
-    formatStats([{ id: 'weapon_physical_damage_+%', value: 25 }], { datas })
+    formatStats([{ id: 'weapon_physical_damage_+%', value: 25 }], { datas }),
   ).toEqual(['25% increased Physical Damage with Weapons']);
 });
 
 it('should fallback to deep search', () => {
   const stats = [
     { id: 'attack_minimum_added_physical_damage', value: 5 },
-    { id: 'attack_maximum_added_physical_damage', value: 13 }
+    { id: 'attack_maximum_added_physical_damage', value: 13 },
   ];
 
   const aliased_locale: StatLocaleData = {
@@ -29,21 +29,21 @@ it('should fallback to deep search', () => {
       aliased: {
         stats: [
           'attack_minimum_added_physical_damage',
-          'attack_maximum_added_physical_damage'
+          'attack_maximum_added_physical_damage',
         ],
         translations: [
           {
             matchers: ['#', '#'],
             text: 'Adds %1% to %2% Physical Damage to Attacks',
-            formatters: []
-          }
-        ]
-      }
-    }
+            formatters: [],
+          },
+        ],
+      },
+    },
   };
 
   expect(
-    formatStats(stats, { datas: { stat_descriptions: aliased_locale } })
+    formatStats(stats, { datas: { stat_descriptions: aliased_locale } }),
   ).toEqual(['Adds 5 to 13 Physical Damage to Attacks']);
 });
 
@@ -51,7 +51,7 @@ it('should throw if something was not translated', () => {
   const stats = [
     { id: 'weapon_physical_damage_+%', value: 25 },
     { id: 'attack_minimum_added_physical_damage', value: 5 },
-    { id: 'attack_maximum_added_physical_damage', value: 13 }
+    { id: 'attack_maximum_added_physical_damage', value: 13 },
   ];
 
   const aliased_locale: StatLocaleData = {
@@ -60,21 +60,21 @@ it('should throw if something was not translated', () => {
       aliased: {
         stats: [
           'attack_minimum_added_physical_damage',
-          'attack_maximum_added_physical_damage'
+          'attack_maximum_added_physical_damage',
         ],
         translations: [
           {
             matchers: ['#', '#'],
             text: 'Adds %1% to %2% Physical Damage to Attacks',
-            formatters: []
-          }
-        ]
-      }
-    }
+            formatters: [],
+          },
+        ],
+      },
+    },
   };
 
   expect(() =>
-    formatStats(stats, { datas: { stat_descriptions: aliased_locale } })
+    formatStats(stats, { datas: { stat_descriptions: aliased_locale } }),
   ).toThrowError('no descriptions found for weapon_physical_damage_+%');
 });
 
@@ -83,10 +83,10 @@ it('should translate douple stat lines', () => {
     formatStats(
       [
         { id: 'attack_minimum_added_physical_damage', value: 1 },
-        { id: 'attack_maximum_added_physical_damage', value: 56 }
+        { id: 'attack_maximum_added_physical_damage', value: 56 },
       ],
-      { datas }
-    )
+      { datas },
+    ),
   ).toEqual(['Adds 1 to 56 Physical Damage to Attacks']);
 });
 
@@ -97,9 +97,9 @@ it('should translate collections of stats', () => {
       { id: 'attack_maximum_added_physical_damage', value: 300 },
       { id: 'item_generation_cannot_change_suffixes', value: -3 },
       { id: 'attack_speed_+%_while_leeching', value: -5 },
-      { id: 'weapon_physical_damage_+%', value: 25 }
+      { id: 'weapon_physical_damage_+%', value: 25 },
     ],
-    { datas }
+    { datas },
   );
 
   expect(translated).toContain('5% reduced Attack Speed while Leeching');
@@ -111,7 +111,7 @@ it('should translate collections of stats', () => {
 // they are save in the .txt with `no_description id`
 it('should return the id with a hint for no_desc stats', () => {
   expect(formatStats([{ id: 'item_drop_slots', value: 3 }], { datas })).toEqual(
-    ['item_drop_slots (hidden)']
+    ['item_drop_slots (hidden)'],
   );
 });
 
@@ -124,15 +124,15 @@ it('should translate production bug 1', () => {
         { id: 'additional_strength', value: 51 },
         { id: 'base_life_regeneration_rate_per_minute', value: 241 },
         { id: 'base_maximum_life', value: 24 },
-        { id: 'local_base_physical_damage_reduction_rating', value: 24 }
+        { id: 'local_base_physical_damage_reduction_rating', value: 24 },
       ],
-      { datas }
-    ).sort()
+      { datas },
+    ).sort(),
   ).toEqual([
     '+24 to Armour',
     '+24 to maximum Life',
     '+51 to Strength',
-    '4 Life Regenerated per second'
+    '4 Life Regenerated per second',
   ]);
 });
 
@@ -144,18 +144,18 @@ it('should translate if not enough stats are provided by defaulting to 0', () =>
 
   expect(
     formatStats([{ id: 'attack_minimum_added_physical_damage', value: 1 }], {
-      datas
-    })
+      datas,
+    }),
   ).toEqual(['Adds 1 to 0 Physical Damage to Attacks']);
 
   expect(
-    formatStats([{ id: 'always_freeze', value: 1 }], { datas }).sort()
+    formatStats([{ id: 'always_freeze', value: 1 }], { datas }).sort(),
   ).toEqual(['Always Freezes Enemies on Hit']);
 
   expect(
     formatStats([{ id: 'base_chance_to_freeze_%', value: 12 }], {
-      datas
-    }).sort()
+      datas,
+    }).sort(),
   ).toEqual(['12% chance to Freeze']);
 });
 
@@ -163,8 +163,8 @@ it('should support id fallback', () => {
   expect(
     formatStats([{ id: 'from_armour_movement_speed_+%', value: -3 }], {
       datas,
-      fallback: Fallback.id
-    })
+      fallback: Fallback.id,
+    }),
   ).toEqual(['from_armour_movement_speed_+%']);
 });
 
@@ -172,8 +172,8 @@ it('should support skipping fallback', () => {
   expect(
     formatStats([{ id: 'from_armour_movement_speed_+%', value: -3 }], {
       datas,
-      fallback: Fallback.skip
-    })
+      fallback: Fallback.skip,
+    }),
   ).toEqual([]);
 });
 
@@ -184,8 +184,8 @@ describe('zero stats', () => {
     expect(
       formatStats(stats, {
         datas,
-        fallback: Fallback.throw
-      })
+        fallback: Fallback.throw,
+      }),
     ).toEqual([]);
   });
 
@@ -194,13 +194,13 @@ describe('zero stats', () => {
       formatStats(
         [
           { id: 'weapon_physical_damage_+%', value: 0 },
-          { id: 'local_energy_shield_+%', value: [0, 1] }
+          { id: 'local_energy_shield_+%', value: [0, 1] },
         ],
         {
           datas,
-          fallback: Fallback.throw
-        }
-      )
+          fallback: Fallback.throw,
+        },
+      ),
     ).toThrow("matching translation not found for 'local_energy_shield_+%'");
   });
 
@@ -208,8 +208,8 @@ describe('zero stats', () => {
     expect(
       formatStats([{ id: 'non_existing_zero', value: 0 }], {
         datas,
-        fallback: Fallback.throw
-      })
+        fallback: Fallback.throw,
+      }),
     ).toEqual([]);
   });
 
@@ -217,8 +217,8 @@ describe('zero stats', () => {
     expect(() =>
       formatStats([{ id: 'non_existing_zero', value: [0, 1] }], {
         datas,
-        fallback: Fallback.throw
-      })
+        fallback: Fallback.throw,
+      }),
     ).toThrow('no descriptions found for non_existing_zero');
   });
 });
@@ -227,8 +227,8 @@ it('should throw if we provide an unrecognize fallback', () => {
   expect(() =>
     formatStats([{ id: 'from_armour_movement_speed_+%', value: -3 }], {
       datas,
-      fallback: 345678
-    })
+      fallback: 345678,
+    }),
   ).toThrowError("unrecognized fallback type '345678'");
 });
 
@@ -237,14 +237,14 @@ it('should support custom fallback methods', () => {
     formatStats(
       [
         { id: 'from_armour_movement_speed_+%', value: -3 },
-        { id: 'dummy_stat_display_nothing', value: -3 }
+        { id: 'dummy_stat_display_nothing', value: -3 },
       ],
       {
         datas,
         fallback: (id: string, stat: Stat) =>
-          id === 'dummy_stat_display_nothing' ? null : id
-      }
-    )
+          id === 'dummy_stat_display_nothing' ? null : id,
+      },
+    ),
   ).toEqual(['from_armour_movement_speed_+%']);
 });
 
@@ -254,13 +254,13 @@ it('should support ranges for given stats', () => {
       [
         { id: 'base_chance_to_freeze_%', value: [12, 15] },
         { id: 'attack_minimum_added_physical_damage', value: [1, 3] },
-        { id: 'attack_maximum_added_physical_damage', value: [13, 18] }
+        { id: 'attack_maximum_added_physical_damage', value: [13, 18] },
       ],
-      { datas }
-    ).sort()
+      { datas },
+    ).sort(),
   ).toEqual([
     '(12–15)% chance to Freeze',
-    'Adds (1–3) to (13–18) Physical Damage to Attacks'
+    'Adds (1–3) to (13–18) Physical Damage to Attacks',
   ]);
 });
 
@@ -268,8 +268,8 @@ it('should have an option for which file to use', () => {
   expect(
     formatStats([{ id: 'weapon_physical_damage_+%', value: 25 }], {
       datas,
-      start_file: 'active_skill_gem_stat_descriptions'
-    })
+      start_file: 'active_skill_gem_stat_descriptions',
+    }),
   ).toEqual(['25% increased Physical Damage with Weapons on Active Skills']);
 });
 
@@ -277,14 +277,14 @@ it('should try each included file', () => {
   expect(
     formatStats([{ id: 'item_generation_cannot_change_suffixes', value: 1 }], {
       datas,
-      start_file: 'active_skill_gem_stat_descriptions'
-    })
+      start_file: 'active_skill_gem_stat_descriptions',
+    }),
   ).toEqual(['Suffixes Cannot Be Changed']);
 });
 
 describe('expensive test cases', () => {
   const full_datas = {
-    stat_descriptions: require('../../../locale-data/en/stat_descriptions.json') as StatLocaleData
+    stat_descriptions: require('../../../locale-data/en/stat_descriptions.json') as StatLocaleData,
   };
 
   it('translates ChanceToFreezeAddedDamageUber2', () => {
@@ -294,20 +294,20 @@ describe('expensive test cases', () => {
           { id: 'base_chance_to_freeze_%', value: [10, 7] },
           {
             id: 'global_minimum_added_cold_damage_vs_chilled_or_frozen_enemies',
-            value: [16, 13]
+            value: [16, 13],
           },
           {
             id: 'global_maximum_added_cold_damage_vs_chilled_or_frozen_enemies',
-            value: [36, 33]
-          }
+            value: [36, 33],
+          },
         ],
         {
-          datas: full_datas
-        }
-      )
+          datas: full_datas,
+        },
+      ),
     ).toEqual([
       '(7–10)% chance to Freeze',
-      'Adds (13–16) to (33–36) Cold Damage against Chilled or Frozen Enemies'
+      'Adds (13–16) to (33–36) Cold Damage against Chilled or Frozen Enemies',
     ]);
   });
 });

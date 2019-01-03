@@ -22,14 +22,14 @@ export const item_classes = [
   'Body Armours',
   'Helmets',
   'Shields',
-  'Sceptres'
+  'Sceptres',
 ];
 
 const formatter: Formatter = {
   format: n => item_classes[n % item_classes.length],
   inverse: item_class => item_classes.indexOf(item_class),
   regexp: '.+?',
-  negates: false
+  negates: false,
 };
 
 export default formatter;

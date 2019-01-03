@@ -15,5 +15,5 @@ export default Object.freeze({
   passive_skill_aura_stat_descriptions: 'passive_skill_stat_descriptions',
   passive_skill_stat_descriptions: 'stat_descriptions',
   skill_stat_descriptions: 'active_skill_gem_stat_descriptions',
-  variable_duration_skill_stat_descriptions: 'skill_stat_descriptions'
+  variable_duration_skill_stat_descriptions: 'skill_stat_descriptions',
 } as { [key: string]: string });

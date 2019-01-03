@@ -13,16 +13,16 @@ export enum Match {
   superset, // A \supseteq B
   partial_upper, // forall x in A and x in B: forall y in B and y not in A x >= y i.e. A overlaps the upper region of B
   partial_lower, // forall x in A and x in B: forall y in B and y not in A x <= y i.e. A overlaps the lower region of B
-  none // A \minus B = A
+  none, // A \minus B = A
 }
 
 // match value if for every value in values: value in (min, max)
 export function matchesTranslation(
   translation: Translation,
-  values: Value[]
+  values: Value[],
 ): boolean {
   return matches(values, translation.matchers).every(
-    matched => matched === Match.subset || matched === Match.exact
+    matched => matched === Match.subset || matched === Match.exact,
   );
 }
 
@@ -64,7 +64,7 @@ function rangeCast(value: Value): Range {
 
   return [
     lower === '#' ? Number.NEGATIVE_INFINITY : lower,
-    upper === '#' ? Number.POSITIVE_INFINITY : upper
+    upper === '#' ? Number.POSITIVE_INFINITY : upper,
   ];
 }
 

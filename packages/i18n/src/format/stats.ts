@@ -5,7 +5,7 @@ import {
   Descriptions,
   StatLocaleData,
   StatLocaleDatas,
-  Translation
+  Translation,
 } from '../types/StatDescription';
 import { isZero } from '../types/StatValue';
 
@@ -19,7 +19,7 @@ export type Options = {
   getFormatters: (
     t: Translation,
     stat: Stat,
-    n: number
+    n: number,
   ) => Translation['formatters'];
   /**
    * if a stat value is rollable (i.e. has a min and max value)
@@ -40,7 +40,7 @@ export class NoDescriptionFound extends Error {
 export enum Fallback {
   throw, // throw if no stat was found
   id,
-  skip
+  skip,
 }
 
 const initial_options: Options = {
@@ -48,26 +48,26 @@ const initial_options: Options = {
   fallback: Fallback.throw,
   start_file: 'stat_descriptions',
   getFormatters: t => t.formatters,
-  range_message: DEFAULT_RANGE_MESSAGE
+  range_message: DEFAULT_RANGE_MESSAGE,
 };
 
 const formatStats = (
   stats: Stat[],
-  options: Partial<Options> = {}
+  options: Partial<Options> = {},
 ): TranslatedStats => {
   const {
     datas,
     fallback,
     start_file,
     getFormatters,
-    range_message
+    range_message,
   } = Object.assign({}, initial_options, options);
 
   // translated lines
   const lines: string[] = [];
   // array of stat_ids for which hash lookup failed
   const untranslated: Map<string, Stat> = new Map(
-    stats.map((stat: Stat) => [stat.id, stat] as [string, Stat])
+    stats.map((stat: Stat) => [stat.id, stat] as [string, Stat]),
   );
 
   let description_file: StatLocaleData | undefined = datas[start_file];
@@ -79,8 +79,8 @@ const formatStats = (
       lines.push(
         ...formatWithFinder(untranslated, descriptionFinder, {
           getFormatters,
-          range_message
-        })
+          range_message,
+        }),
       );
     }
 
@@ -104,12 +104,12 @@ export default formatStats;
  * @param descriptions
  */
 export function createDescriptionFindStrategies(
-  descriptions: Descriptions
+  descriptions: Descriptions,
 ): Array<(stat: Stat) => Description | undefined> {
   return [
     ({ id }) => descriptions[id],
     ({ id }) =>
-      Object.values(descriptions).find(({ stats }) => stats.includes(id))
+      Object.values(descriptions).find(({ stats }) => stats.includes(id)),
   ];
 }
 
@@ -118,18 +118,18 @@ interface FormatWithFinderOptions {
   getFormatters: (
     t: Translation,
     stat: Stat,
-    n: number
+    n: number,
   ) => Translation['formatters'];
   range_message: ICUMessageSyntax;
 }
 function formatWithFinder(
   stats: Map<string, Stat>,
   find: (stat: Stat) => Description | undefined,
-  options: Partial<FormatWithFinderOptions> = {}
+  options: Partial<FormatWithFinderOptions> = {},
 ): string[] {
   const {
     getFormatters = (t: Translation) => t.formatters,
-    range_message = DEFAULT_RANGE_MESSAGE
+    range_message = DEFAULT_RANGE_MESSAGE,
   } = options;
   const lines: string[] = [];
   const translated: Set<string> = new Set();
@@ -146,12 +146,12 @@ function formatWithFinder(
         description,
         stats,
         (t: Translation, n) => getFormatters(t, stat, n),
-        range_message
+        range_message,
       );
 
       if (translation === undefined) {
         const requiredStatsAreZero = requiredStats(description, stats).every(
-          ({ value }) => isZero(value)
+          ({ value }) => isZero(value),
         );
 
         if (!requiredStatsAreZero) {
@@ -178,7 +178,7 @@ function formatWithFinder(
 
 function requiredStats(
   description: Description,
-  provided: Map<string, Stat>
+  provided: Map<string, Stat>,
 ): Stat[] {
   // intersect the required stat_ids from the desc with the provided
   return description.stats
@@ -189,7 +189,7 @@ function requiredStats(
       if (stat === undefined) {
         return {
           id: stat_id,
-          value: 0
+          value: 0,
         };
       } else {
         return stat;
@@ -200,10 +200,10 @@ function requiredStats(
 
 function formatWithFallback(
   stats: Map<string, Stat>,
-  fallback: Fallback | FallbackCallback
+  fallback: Fallback | FallbackCallback,
 ): string[] {
   const non_zero_stats = Array.from(stats.entries()).filter(
-    ([, stat]) => !isZero(stat.value)
+    ([, stat]) => !isZero(stat.value),
   );
   if (non_zero_stats.length === 0) {
     return [];

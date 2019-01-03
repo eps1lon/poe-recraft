@@ -25,7 +25,7 @@ export default class NamedGroupsRegexp {
 
         return named;
       },
-      {} as { [key: string]: string }
+      {} as { [key: string]: string },
     );
   }
 

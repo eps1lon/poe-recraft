@@ -46,12 +46,12 @@ it('matches with AND', () => {
   expect(matches([2, 0], [[0, 2], [1, 3]])).toEqual([Match.subset, Match.none]);
   expect(matches([2, 2], [[0, 2], [1, 3]])).toEqual([
     Match.subset,
-    Match.subset
+    Match.subset,
   ]);
 
   expect(matches([2, Number.POSITIVE_INFINITY], [[0, '#'], [5, '#']])).toEqual([
     Match.subset,
-    Match.subset
+    Match.subset,
   ]);
 });
 

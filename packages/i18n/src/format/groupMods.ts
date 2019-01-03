@@ -28,7 +28,7 @@ export type Options = {
  */
 export default function groupMod(
   mods: Stat[][],
-  options: Partial<Options> = {}
+  options: Partial<Options> = {},
 ): string {
   // default options
   const { resolveWordConflict = () => '*', ...format_stats_options } = options;
@@ -46,16 +46,16 @@ export default function groupMod(
 
 function groupStats(
   stats: Stat[],
-  options: Partial<FormatStatsOptions> = {}
+  options: Partial<FormatStatsOptions> = {},
 ): string {
   const lines = formatStats(stats, {
     ...options,
     getFormatters: (t, s, n) => {
       return Array.from({ length: n }, (_, i) => ({
         arg: i + 1,
-        id: 'placeholder'
+        id: 'placeholder',
       }));
-    }
+    },
   });
 
   // collapes value ranges into single placeholder
@@ -64,7 +64,7 @@ function groupStats(
 
 function collapseTable<T>(
   table: T[][],
-  resolveColumnConflict: (items: T[]) => T
+  resolveColumnConflict: (items: T[]) => T,
 ): T[] {
   if (table.length < 1) {
     return [];

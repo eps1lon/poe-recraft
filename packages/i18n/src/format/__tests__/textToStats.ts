@@ -8,28 +8,28 @@ it('should reverse formatStats', () => {
   const formatted_stats = formatStats(
     [
       { id: 'attack_minimum_added_physical_damage', value: 1 },
-      { id: 'attack_maximum_added_physical_damage', value: 56 }
+      { id: 'attack_maximum_added_physical_damage', value: 56 },
     ],
-    { datas }
+    { datas },
   );
 
   expect(textToStatsArray(formatted_stats[0], { datas })).toEqual([
     [
       { id: 'attack_minimum_added_physical_damage', value: 1 },
-      { id: 'attack_maximum_added_physical_damage', value: 56 }
-    ]
+      { id: 'attack_maximum_added_physical_damage', value: 56 },
+    ],
   ]);
 });
 
 it('can calculate the original value', () => {
   const formatted_stats = formatStats(
     [{ id: 'base_life_regeneration_rate_per_minute', value: 120 }],
-    { datas }
+    { datas },
   );
   // 120 => '2 Life Regenerated per second'
 
   expect(textToStatsArray(formatted_stats[0], { datas })).toEqual([
-    [{ id: 'base_life_regeneration_rate_per_minute', value: 120 }]
+    [{ id: 'base_life_regeneration_rate_per_minute', value: 120 }],
   ]);
 });
 
@@ -37,44 +37,44 @@ it('creates symbolic values for non matched stats', () => {
   const formatted_stats = formatStats(
     [
       { id: 'spell_minimum_base_fire_damage', value: 1 },
-      { id: 'spell_maximum_base_fire_damage', value: 56 }
+      { id: 'spell_maximum_base_fire_damage', value: 56 },
     ],
-    { datas }
+    { datas },
   );
 
   expect(textToStatsArray(formatted_stats[0], { datas })).toEqual([
     [
       { id: 'spell_minimum_base_fire_damage', value: 1 },
       { id: 'spell_maximum_base_fire_damage', value: 56 },
-      { id: 'spell_base_fire_damage_%_maximum_life', value: 0 }
-    ]
+      { id: 'spell_base_fire_damage_%_maximum_life', value: 0 },
+    ],
   ]);
 });
 
 it('only matches full stat lines', () => {
   const formatted_stats = formatStats(
     [{ id: 'movement_velocity_+1%_per_X_evasion_rating', value: 5 }],
-    { datas }
+    { datas },
   );
 
   expect(textToStatsArray(formatted_stats[0], { datas })).toEqual([
-    [{ id: 'movement_velocity_+1%_per_X_evasion_rating', value: 5 }]
+    [{ id: 'movement_velocity_+1%_per_X_evasion_rating', value: 5 }],
   ]);
 });
 
 it('considers the matchers', () => {
   const formatted_stats = formatStats(
     [{ id: 'local_socketed_gem_level_+', value: -5 }],
-    { datas }
+    { datas },
   );
 
   const possibilities = textToStatsArray(formatted_stats[0], { datas });
 
   expect(possibilities).not.toContainEqual([
-    { id: 'local_gem_level_+', value: -5 }
+    { id: 'local_gem_level_+', value: -5 },
   ]);
   expect(possibilities).toContainEqual([
-    { id: 'local_socketed_gem_level_+', value: -5 }
+    { id: 'local_socketed_gem_level_+', value: -5 },
   ]);
 });
 
@@ -90,11 +90,11 @@ it.skip('should reverse the locale-data (expensive test)', () => {
   };
 
   const full_datas = {
-    stat_descriptions: require('../../../locale-data/en/stat_descriptions.json') as StatLocaleData
+    stat_descriptions: require('../../../locale-data/en/stat_descriptions.json') as StatLocaleData,
   };
 
   for (const [description_id, description] of Object.entries(
-    full_datas.stat_descriptions.data
+    full_datas.stat_descriptions.data,
   )) {
     const random_stats_combinations = buildRandomStats(description);
     if (random_stats_combinations === null) {
@@ -116,11 +116,11 @@ it.skip('should reverse the locale-data (expensive test)', () => {
         `random_stats:${JSON.stringify(
           random_stats,
           undefined,
-          2
+          2,
         )} with \n stat_text: ${stat_text} has inverse \nextracted:${JSON.stringify(
           extracted,
           undefined,
-          2
+          2,
         )}`,
         () =>
           expect(
@@ -142,7 +142,7 @@ it.skip('should reverse the locale-data (expensive test)', () => {
                   }
                   return stat;
                 }),
-                { datas: full_datas }
+                { datas: full_datas },
               );
               try {
                 expect(reformatted).toEqual(formatted);
@@ -153,8 +153,8 @@ it.skip('should reverse the locale-data (expensive test)', () => {
               }
 
               return true;
-            })
-          ).toBe(true)
+            }),
+          ).toBe(true),
       );
     }
   }
@@ -164,7 +164,7 @@ describe('extractStatsSingle', () => {
   it('just returns the first value', () => {
     const text = 'Adds 1 to 56 Physical Damage to Attacks';
     expect(textToStatsArray(text, { datas })[0]).toEqual(
-      textToStatsFirst(text, { datas })
+      textToStatsFirst(text, { datas }),
     );
   });
 

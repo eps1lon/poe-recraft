@@ -7,7 +7,7 @@ export default function printf(
   text: string,
   params: Params,
   formatters: Formatter[] = [],
-  range_message = '({min}–{max})'
+  range_message = '({min}–{max})',
 ): string {
   const prepared = formatValues(params, { formatters, message: range_message });
 
@@ -17,7 +17,7 @@ export default function printf(
         formatted
           .replace(new RegExp(`%${i + 1}%`, 'g'), String(param))
           .replace(`%${i + 1}$+d`, `+${String(param)}`),
-      text
+      text,
     )
     .replace(/%%/g, '%');
 }

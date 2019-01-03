@@ -5,7 +5,7 @@ import {
   Descriptions,
   StatLocaleDatas,
   Translation,
-  UnaryFormatter
+  UnaryFormatter,
 } from '../types/StatDescription';
 import { deterministicValueForMatcher } from '../util/symbolicStats';
 import { getDescriptions } from './util';
@@ -26,7 +26,7 @@ export type Options = {
  */
 export default function* textToStats(
   text: string,
-  options: Partial<Options> = {}
+  options: Partial<Options> = {},
 ): IterableIterator<Stat[]> {
   const { datas = {}, start_file = 'stat_descriptions' } = options;
 
@@ -72,7 +72,7 @@ export default function* textToStats(
 
             return {
               id: stat_id,
-              value
+              value,
             };
           });
 
@@ -105,7 +105,7 @@ export function textToStatsArray(text: string, options: Partial<Options> = {}) {
  */
 export function textToStatsFirst(
   text: string,
-  options: Partial<Options> = {}
+  options: Partial<Options> = {},
 ): Stat[] {
   const { done, value } = textToStats(text, options).next();
 

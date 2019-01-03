@@ -16,7 +16,7 @@ it('should match all the formats', () => {
   expect(factory('negate')(4)).toBe('-4');
 
   expect(factory('divide_by_one_hundred_and_negate')(4).substr(0, 5)).toBe(
-    '-0.04'
+    '-0.04',
   );
 
   expect(factory('old_leech_percent')(10)).toBe('2');

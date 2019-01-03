@@ -6,16 +6,16 @@ it('returns the same string if no args are given', () => {
 
 it('is silent if params are provided but not needed in the string', () => {
   expect(formatMessage('identity', { foo: 1, bar: 'test' })).toEqual(
-    'identity'
+    'identity',
   );
 });
 
 it('throws if params appear in message but are not provided', () => {
   expect(() => formatMessage('foo is "{foo}"')).toThrow(
-    "Message required 'foo' to be present."
+    "Message required 'foo' to be present.",
   );
   expect(formatMessage('foo is "{foo}"', { foo: undefined })).toEqual(
-    'foo is "undefined"'
+    'foo is "undefined"',
   );
 });
 
@@ -24,8 +24,8 @@ it('fills in arguments with toString()', () => {
   expect(
     formatMessage('foo is "{foo}"', {
       foo: {
-        toString: () => 'called'
-      }
-    })
+        toString: () => 'called',
+      },
+    }),
   ).toEqual('foo is "called"');
 });

@@ -20,49 +20,49 @@ describe.skip('type definitions matching json files in locale-data', () => {
   // but with a static string so that the ts compiler can infer typings
   test('AchievementItems', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/AchievementItems.json');
     const checked: Exactify<LocaleData.AchievementItems, typeof json> = json;
   });
   test('Achievement', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/Achievements.json');
     const checked: Exactify<LocaleData.Achievements, typeof json> = json;
   });
   test('ActiveSkills', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/ActiveSkills.json');
     const checked: Exactify<LocaleData.ActiveSkills, typeof json> = json;
   });
   test('api_messages', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/de/api_messages.json');
     const checked: Exactify<LocaleData.api_messages, typeof json> = json;
   });
   test('BaseItemTypes', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/BaseItemTypes.json');
     const checked: Exactify<LocaleData.BaseItemTypes, typeof json> = json;
   });
   test('BuffDefinitions', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/BuffDefinitions.json');
     const checked: Exactify<LocaleData.BuffDefinitions, typeof json> = json;
   });
   test('Characters', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/Characters.json');
     const checked: Exactify<LocaleData.Characters, typeof json> = json;
   });
   test('CharacterStartStates', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/CharacterStartStates.json');
     const checked: Exactify<
       LocaleData.CharacterStartStates,
@@ -71,19 +71,19 @@ describe.skip('type definitions matching json files in locale-data', () => {
   });
   test('Chests', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/Chests.json');
     const checked: Exactify<LocaleData.Chests, typeof json> = json;
   });
   test('Commands', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/Commands.json');
     const checked: Exactify<LocaleData.Commands, typeof json> = json;
   });
   test('CraftingBenchOptions', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/CraftingBenchOptions.json');
     const checked: Exactify<
       LocaleData.CraftingBenchOptions,
@@ -92,43 +92,43 @@ describe.skip('type definitions matching json files in locale-data', () => {
   });
   test('CurrencyItems', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/CurrencyItems.json');
     const checked: Exactify<LocaleData.CurrencyItems, typeof json> = json;
   });
   test('DailyMissions', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/DailyMissions.json');
     const checked: Exactify<LocaleData.DailyMissions, typeof json> = json;
   });
   test('ItemClasses', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/ItemClasses.json');
     const checked: Exactify<LocaleData.ItemClasses, typeof json> = json;
   });
   test('ItemThemes', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/ItemThemes.json');
     const checked: Exactify<LocaleData.ItemThemes, typeof json> = json;
   });
   test('Labyrinths', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/Labyrinths.json');
     const checked: Exactify<LocaleData.Labyrinths, typeof json> = json;
   });
   test('LabyrinthSecrets', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/LabyrinthSecrets.json');
     const checked: Exactify<LocaleData.LabyrinthSecrets, typeof json> = json;
   });
   test('MapPins', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/MapPins.json');
     const checked: Exactify<LocaleData.MapPins, typeof json> = json;
   });
@@ -138,7 +138,7 @@ describe.skip('type definitions matching json files in locale-data', () => {
   });
   test('MonsterVarieties', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/MonsterVarieties.json');
     const checked: Exactify<LocaleData.MonsterVarieties, typeof json> = json;
   });
@@ -148,61 +148,61 @@ describe.skip('type definitions matching json files in locale-data', () => {
   });
   test('PantheonPanelLayout', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/PantheonPanelLayout.json');
     const checked: Exactify<LocaleData.PantheonPanelLayout, typeof json> = json;
   });
   test('PassiveSkills', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/PassiveSkills.json');
     const checked: Exactify<LocaleData.PassiveSkills, typeof json> = json;
   });
   test('Prophecies', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/Prophecies.json');
     const checked: Exactify<LocaleData.Prophecies, typeof json> = json;
   });
   test('Quest', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/Quest.json');
     const checked: Exactify<LocaleData.Quest, typeof json> = json;
   });
   test('Realms', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/Realms.json');
     const checked: Exactify<LocaleData.Realms, typeof json> = json;
   });
   test('ShopItem', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/ShopItem.json');
     const checked: Exactify<LocaleData.ShopItem, typeof json> = json;
   });
   test('ShopToken', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/ShopToken.json');
     const checked: Exactify<LocaleData.ShopToken, typeof json> = json;
   });
   test('Shrines', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/Shrines.json');
     const checked: Exactify<LocaleData.Shrines, typeof json> = json;
   });
   test('SkillGems', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/SkillGems.json');
     const checked: Exactify<LocaleData.SkillGems, typeof json> = json;
   });
   test('WarbandsPackMonsters', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/WarbandsPackMonsters.json');
     const checked: Exactify<
       LocaleData.WarbandsPackMonsters,
@@ -211,7 +211,7 @@ describe.skip('type definitions matching json files in locale-data', () => {
   });
   test('WorldAreas', async () => {
     const {
-      default: json
+      default: json,
     } = await import('../../../locale-data/en/WorldAreas.json');
     const checked: Exactify<LocaleData.WorldAreas, typeof json> = json;
   });

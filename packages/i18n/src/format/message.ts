@@ -11,7 +11,7 @@ export interface Arguments {
  */
 export default function formatMessage(
   message: ICUMessageSyntax,
-  args: Arguments = {}
+  args: Arguments = {},
 ) {
   return message.replace(/\{([^}]+)\}/g, (_: string, arg_name: string) => {
     if (args.hasOwnProperty(arg_name) === false) {

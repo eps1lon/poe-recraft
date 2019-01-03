@@ -3,12 +3,12 @@ import NamedGroupsRegexp from '../NamedGroupsRegexp';
 it('maps index based groups to named groups', () => {
   const regexp = new NamedGroupsRegexp(/([0-9]+) ([a-z]+)/, [
     'numbers',
-    'strings'
+    'strings',
   ]);
 
   expect(regexp.match('15 apples')).toEqual({
     numbers: '15',
-    strings: 'apples'
+    strings: 'apples',
   });
 });
 
@@ -19,7 +19,7 @@ it('throws if named grousp count doesnt match index based groups', () => {
   const overflow = new NamedGroupsRegexp(/([0-9]+) ([a-z]+)/, [
     'numbers',
     'strings',
-    'to_much'
+    'to_much',
   ]);
   expect(() => overflow.match('15 apples')).toThrow();
 });

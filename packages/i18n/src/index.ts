@@ -5,7 +5,7 @@ export { default as formatMessage } from './format/message';
 export {
   default as textToStats,
   textToStatsArray,
-  textToStatsFirst
+  textToStatsFirst,
 } from './format/textToStats';
 export { default as Format } from './Format';
 export { default as requiredLocaleDatas } from './requiredLocaleDatas';

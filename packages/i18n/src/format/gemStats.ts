@@ -11,14 +11,14 @@ export type Translation = string[];
 export default function formatGemStats(
   gem_id: GemId,
   stats: Stat[],
-  options: Partial<Options> = {}
+  options: Partial<Options> = {},
 ) {
   const filter = findSkill(gem_id);
 
   return formatStats(stats, {
     ...options,
     fallback: Fallback.skip,
-    start_file: filter.start_file
+    start_file: filter.start_file,
   });
 }
 
@@ -36,7 +36,7 @@ function findSkill(id: GemId): Skill {
     // most likely for supports
     return {
       filter: [],
-      start_file: 'gem_stat_descriptions'
+      start_file: 'gem_stat_descriptions',
     };
   } else if (typeof skill === 'string') {
     return findSkill(skill);

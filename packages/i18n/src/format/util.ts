@@ -1,12 +1,12 @@
 import {
   Descriptions,
   StatLocaleData,
-  StatLocaleDatas
+  StatLocaleDatas,
 } from '../types/StatDescription';
 
 export function* getDescriptions(
   datas: StatLocaleDatas,
-  start_file: string
+  start_file: string,
 ): IterableIterator<Descriptions> {
   let description_file: StatLocaleData | undefined = datas[start_file];
 

@@ -11,7 +11,7 @@ export interface FormatValuesOptions {
 
 export function formatValues(
   values: StatValue[],
-  options: Partial<FormatValuesOptions> = {}
+  options: Partial<FormatValuesOptions> = {},
 ): string[] {
   const { formatters, message } = options;
 
@@ -28,7 +28,7 @@ export function formatValues(
       if (target_param !== undefined) {
         formatted[+formatter.arg - 1] = formatValue(target_param, {
           formatter,
-          message
+          message,
         });
       } else {
         throw new Error(`no param given for formatter '${formatter.id}'`);
@@ -37,7 +37,7 @@ export function formatValues(
   });
 
   return formatted.map(value =>
-    typeof value === 'string' ? value : formatValue(value, { message })
+    typeof value === 'string' ? value : formatValue(value, { message }),
   );
 }
 
@@ -49,7 +49,7 @@ const DEFAULT_FORMATTER: UnaryFormatter = { id: 'id', arg: 1 };
 
 export function formatValue(
   value: StatValue,
-  options: Partial<FormatValueOptions> = {}
+  options: Partial<FormatValueOptions> = {},
 ): string {
   const { formatter = DEFAULT_FORMATTER, message = '{min}–{max}' } = options;
 
@@ -77,7 +77,7 @@ export function formatValue(
  */
 function valueOrder(
   [left, right]: [number, number],
-  negates: boolean
+  negates: boolean,
 ): [number, number] {
   if ((left < right && !negates) || (left > right && negates)) {
     return [left, right];

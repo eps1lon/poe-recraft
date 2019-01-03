@@ -1,28 +1,28 @@
 import {
   buildRandomStats,
-  deterministicValueForMatcher
+  deterministicValueForMatcher,
 } from '../symbolicStats';
 
 describe('deterministicValueForMatcher', () => {
   it('creates deterministic values', () => {
     expect(deterministicValueForMatcher('#')).toEqual(
-      deterministicValueForMatcher('#')
+      deterministicValueForMatcher('#'),
     );
 
     expect(deterministicValueForMatcher([5, '#'])).toEqual(
-      deterministicValueForMatcher([5, '#'])
+      deterministicValueForMatcher([5, '#']),
     );
 
     expect(deterministicValueForMatcher(['#', -5])).toEqual(
-      deterministicValueForMatcher(['#', -5])
+      deterministicValueForMatcher(['#', -5]),
     );
 
     expect(deterministicValueForMatcher([-9, -5])).toEqual(
-      deterministicValueForMatcher([-9, -5])
+      deterministicValueForMatcher([-9, -5]),
     );
 
     expect(deterministicValueForMatcher(['#', '#'])).toEqual(
-      deterministicValueForMatcher(['#', '#'])
+      deterministicValueForMatcher(['#', '#']),
     );
   });
 });
@@ -35,9 +35,9 @@ describe('buildRandomStats', () => {
         {
           text: '',
           formatters: [],
-          matchers: [5, '#', ['#', '#'], ['#', -5], [1, '#'], [10, 11]]
-        }
-      ]
+          matchers: [5, '#', ['#', '#'], ['#', -5], [1, '#'], [10, 11]],
+        },
+      ],
     });
 
     expect(random_stats_for_translations).not.toBe(null);
@@ -53,7 +53,7 @@ describe('buildRandomStats', () => {
 
   it('returns null if no_description is set', () => {
     expect(
-      buildRandomStats({ no_description: true, stats: [], translations: [] })
+      buildRandomStats({ no_description: true, stats: [], translations: [] }),
     ).toEqual(null);
   });
 });

@@ -34,7 +34,7 @@ export function buildRandomStats(description: Description) {
       return {
         id: stat_id,
         // division by 60 can produce nasty rounding errors
-        value: randomNumberForMatcher(matchers[i])
+        value: randomNumberForMatcher(matchers[i]),
       } as Stat;
     });
   });
@@ -43,7 +43,7 @@ export function buildRandomStats(description: Description) {
 function randomNumberForMatcher(
   matcher: Matcher,
   step: number = 1,
-  precision: number = 0
+  precision: number = 0,
 ): number {
   if (Array.isArray(matcher)) {
     const [min, max] = matcher;

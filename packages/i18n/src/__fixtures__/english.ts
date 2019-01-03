@@ -11,11 +11,11 @@ const english: StatLocaleDatas = {
             matchers: [[1, '#']],
             text:
               '%1%%% increased Physical Damage with Weapons on Active Skills',
-            formatters: []
-          }
-        ]
-      }
-    }
+            formatters: [],
+          },
+        ],
+      },
+    },
   },
   stat_descriptions: {
     meta: {},
@@ -26,9 +26,9 @@ const english: StatLocaleDatas = {
           {
             matchers: ['#'],
             text: '%1$+d to Level of Socketed Fire Gems',
-            formatters: []
-          }
-        ]
+            formatters: [],
+          },
+        ],
       },
       'local_socketed_cold_gem_level_+': {
         stats: ['local_socketed_cold_gem_level_+'],
@@ -36,9 +36,9 @@ const english: StatLocaleDatas = {
           {
             matchers: ['#'],
             text: '%1$+d to Level of Socketed Cold Gems',
-            formatters: []
-          }
-        ]
+            formatters: [],
+          },
+        ],
       },
       'local_energy_shield_+%': {
         stats: ['local_energy_shield_+%'],
@@ -46,7 +46,7 @@ const english: StatLocaleDatas = {
           {
             matchers: [[1, '#']],
             text: '%1%%% increased Energy Shield',
-            formatters: []
+            formatters: [],
           },
           {
             matchers: [['#', -1]],
@@ -54,11 +54,11 @@ const english: StatLocaleDatas = {
             formatters: [
               {
                 id: 'negate',
-                arg: 1
-              }
-            ]
-          }
-        ]
+                arg: 1,
+              },
+            ],
+          },
+        ],
       },
       'base_stun_recovery_+%': {
         stats: ['base_stun_recovery_+%'],
@@ -66,7 +66,7 @@ const english: StatLocaleDatas = {
           {
             matchers: [[1, '#']],
             text: '%1%%% increased Stun and Block Recovery',
-            formatters: []
+            formatters: [],
           },
           {
             matchers: [['#', -1]],
@@ -74,11 +74,11 @@ const english: StatLocaleDatas = {
             formatters: [
               {
                 id: 'negate',
-                arg: 1
-              }
-            ]
-          }
-        ]
+                arg: 1,
+              },
+            ],
+          },
+        ],
       },
       'local_socketed_gem_level_+': {
         stats: ['local_socketed_gem_level_+'],
@@ -86,9 +86,9 @@ const english: StatLocaleDatas = {
           {
             matchers: ['#'],
             text: '%1$+d to Level of Socketed Gems',
-            formatters: []
-          }
-        ]
+            formatters: [],
+          },
+        ],
       },
       'local_gem_level_+': {
         stats: ['local_gem_level_+'],
@@ -96,9 +96,9 @@ const english: StatLocaleDatas = {
           {
             matchers: [[1, '#']],
             text: '%1$+d to Level of Socketed Gems',
-            formatters: []
-          }
-        ]
+            formatters: [],
+          },
+        ],
       },
       'movement_velocity_+1%_per_X_evasion_rating': {
         stats: ['movement_velocity_+1%_per_X_evasion_rating'],
@@ -107,29 +107,29 @@ const english: StatLocaleDatas = {
             matchers: ['#'],
             text:
               '1%% increased Movement Speed per %1% Evasion Rating, up to 100%%',
-            formatters: []
-          }
-        ]
+            formatters: [],
+          },
+        ],
       },
       spell_minimum_base_fire_damage: {
         stats: [
           'spell_minimum_base_fire_damage',
           'spell_maximum_base_fire_damage',
-          'spell_base_fire_damage_%_maximum_life'
+          'spell_base_fire_damage_%_maximum_life',
         ],
         translations: [
           {
             matchers: ['#', '#', 0],
             text: 'Deals %1% to %2% Fire Damage',
-            formatters: []
+            formatters: [],
           },
           {
             matchers: ['#', '#', [1, '#']],
             text:
               'This Spell deals %1% to %2%, plus %3%%% of your maximum Life, as base Fire Damage',
-            formatters: []
-          }
-        ]
+            formatters: [],
+          },
+        ],
       },
       'weapon_physical_damage_+%': {
         stats: ['weapon_physical_damage_+%'],
@@ -137,22 +137,22 @@ const english: StatLocaleDatas = {
           {
             matchers: [[1, '#']],
             text: '%1%%% increased Physical Damage with Weapons',
-            formatters: []
-          }
-        ]
+            formatters: [],
+          },
+        ],
       },
       attack_minimum_added_physical_damage: {
         stats: [
           'attack_minimum_added_physical_damage',
-          'attack_maximum_added_physical_damage'
+          'attack_maximum_added_physical_damage',
         ],
         translations: [
           {
             matchers: ['#', '#'],
             text: 'Adds %1% to %2% Physical Damage to Attacks',
-            formatters: []
-          }
-        ]
+            formatters: [],
+          },
+        ],
       },
       item_generation_cannot_change_suffixes: {
         stats: ['item_generation_cannot_change_suffixes'],
@@ -160,9 +160,9 @@ const english: StatLocaleDatas = {
           {
             matchers: ['#'],
             text: 'Suffixes Cannot Be Changed',
-            formatters: []
-          }
-        ]
+            formatters: [],
+          },
+        ],
       },
       'attack_speed_+%_while_leeching': {
         stats: ['attack_speed_+%_while_leeching'],
@@ -170,7 +170,7 @@ const english: StatLocaleDatas = {
           {
             matchers: [[1, '#']],
             text: '%1%%% increased Attack Speed while Leeching',
-            formatters: []
+            formatters: [],
           },
           {
             matchers: [['#', -1]],
@@ -178,16 +178,16 @@ const english: StatLocaleDatas = {
             formatters: [
               {
                 id: 'negate',
-                arg: 1
-              }
-            ]
-          }
-        ]
+                arg: 1,
+              },
+            ],
+          },
+        ],
       },
       item_drop_slots: {
         stats: ['item_drop_slots'],
         translations: [],
-        no_description: true
+        no_description: true,
       },
       additional_strength: {
         stats: ['additional_strength'],
@@ -195,9 +195,9 @@ const english: StatLocaleDatas = {
           {
             matchers: ['#'],
             text: '%1$+d to Strength',
-            formatters: []
-          }
-        ]
+            formatters: [],
+          },
+        ],
       },
       local_base_physical_damage_reduction_rating: {
         stats: ['local_base_physical_damage_reduction_rating'],
@@ -205,9 +205,9 @@ const english: StatLocaleDatas = {
           {
             matchers: ['#'],
             text: '%1$+d to Armour',
-            formatters: []
-          }
-        ]
+            formatters: [],
+          },
+        ],
       },
       base_life_regeneration_rate_per_minute: {
         stats: ['base_life_regeneration_rate_per_minute'],
@@ -218,11 +218,11 @@ const english: StatLocaleDatas = {
             formatters: [
               {
                 id: 'per_minute_to_per_second',
-                arg: 1
-              }
-            ]
-          }
-        ]
+                arg: 1,
+              },
+            ],
+          },
+        ],
       },
       base_maximum_life: {
         stats: ['base_maximum_life'],
@@ -230,9 +230,9 @@ const english: StatLocaleDatas = {
           {
             matchers: ['#'],
             text: '%1$+d to maximum Life',
-            formatters: []
-          }
-        ]
+            formatters: [],
+          },
+        ],
       },
       'base_chance_to_freeze_%': {
         stats: ['base_chance_to_freeze_%', 'always_freeze'],
@@ -243,9 +243,9 @@ const english: StatLocaleDatas = {
             formatters: [
               {
                 id: 'reminderstring',
-                arg: 'ReminderTextFreeze'
-              }
-            ]
+                arg: 'ReminderTextFreeze',
+              },
+            ],
           },
           {
             matchers: [[100, '#'], 0],
@@ -253,9 +253,9 @@ const english: StatLocaleDatas = {
             formatters: [
               {
                 id: 'reminderstring',
-                arg: 'ReminderTextFreeze'
-              }
-            ]
+                arg: 'ReminderTextFreeze',
+              },
+            ],
           },
           {
             matchers: [[1, 99], 0],
@@ -263,14 +263,14 @@ const english: StatLocaleDatas = {
             formatters: [
               {
                 id: 'reminderstring',
-                arg: 'ReminderTextFreeze'
-              }
-            ]
-          }
-        ]
-      }
-    }
-  }
+                arg: 'ReminderTextFreeze',
+              },
+            ],
+          },
+        ],
+      },
+    },
+  },
 };
 
 export default english;

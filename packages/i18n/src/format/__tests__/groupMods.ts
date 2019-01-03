@@ -6,7 +6,7 @@ import { Fallback } from '../stats';
 
 it('merges multiple mods (mod = one ore more stats) into a single line', () => {
   expect(
-    groupMods([[{ id: 'weapon_physical_damage_+%', value: 25 }]], { datas })
+    groupMods([[{ id: 'weapon_physical_damage_+%', value: 25 }]], { datas }),
   ).toEqual('#% increased Physical Damage with Weapons');
 
   expect(
@@ -14,16 +14,16 @@ it('merges multiple mods (mod = one ore more stats) into a single line', () => {
       [
         [
           { id: 'attack_minimum_added_physical_damage', value: 1 },
-          { id: 'attack_maximum_added_physical_damage', value: 5 }
+          { id: 'attack_maximum_added_physical_damage', value: 5 },
         ],
 
         [
           { id: 'attack_minimum_added_physical_damage', value: 10 },
-          { id: 'attack_maximum_added_physical_damage', value: 20 }
-        ]
+          { id: 'attack_maximum_added_physical_damage', value: 20 },
+        ],
       ],
-      { datas }
-    )
+      { datas },
+    ),
   ).toEqual('Adds # to # Physical Damage to Attacks');
 });
 
@@ -33,13 +33,13 @@ it('merges multiple stats within a mod by "/"', () => {
       [
         [
           { id: 'local_energy_shield_+%', value: 5 },
-          { id: 'base_stun_recovery_+%', value: 10 }
-        ]
+          { id: 'base_stun_recovery_+%', value: 10 },
+        ],
       ],
-      { datas }
-    )
+      { datas },
+    ),
   ).toEqual(
-    '#% increased Energy Shield / #% increased Stun and Block Recovery'
+    '#% increased Energy Shield / #% increased Stun and Block Recovery',
   );
 });
 
@@ -49,10 +49,10 @@ it('its resolve conflict strategy can be configured', () => {
       [
         [{ id: 'local_socketed_fire_gem_level_+', value: 1 }],
 
-        [{ id: 'local_socketed_cold_gem_level_+', value: 10 }]
+        [{ id: 'local_socketed_cold_gem_level_+', value: 10 }],
       ],
-      { datas }
-    )
+      { datas },
+    ),
   ).toEqual('+# to Level of Socketed * Gems');
 });
 
@@ -62,7 +62,7 @@ it('returns an emtpy string if no mods were given', () => {
 
 it('merges multiple mods (mod = one ore more stats) into a single line', () => {
   expect(
-    groupMods([[{ id: 'weapon_physical_damage_+%', value: 25 }]], { datas })
+    groupMods([[{ id: 'weapon_physical_damage_+%', value: 25 }]], { datas }),
   ).toEqual('#% increased Physical Damage with Weapons');
 
   expect(
@@ -70,16 +70,16 @@ it('merges multiple mods (mod = one ore more stats) into a single line', () => {
       [
         [
           { id: 'attack_minimum_added_physical_damage', value: [1, 5] },
-          { id: 'attack_maximum_added_physical_damage', value: [10, 15] }
+          { id: 'attack_maximum_added_physical_damage', value: [10, 15] },
         ],
 
         [
           { id: 'attack_minimum_added_physical_damage', value: [6, 10] },
-          { id: 'attack_maximum_added_physical_damage', value: [16, 20] }
-        ]
+          { id: 'attack_maximum_added_physical_damage', value: [16, 20] },
+        ],
       ],
-      { datas }
-    )
+      { datas },
+    ),
   ).toEqual('Adds # to # Physical Damage to Attacks');
 });
 
@@ -91,7 +91,7 @@ describe('usage with poe-mods', () => {
 
       return {
         id: stat.id,
-        value: [+mod[key_min], +mod[key_max]] as [number, number]
+        value: [+mod[key_min], +mod[key_max]] as [number, number],
       };
     });
   const groupByCorrectGroup = (mods: Array<Mod['props']>) => {
@@ -105,18 +105,18 @@ describe('usage with poe-mods', () => {
   };
 
   const locale_data = {
-    stat_descriptions: require('../../../locale-data/en/stat_descriptions.json')
+    stat_descriptions: require('../../../locale-data/en/stat_descriptions.json'),
   };
 
   const options: Partial<Options> = {
     datas: locale_data,
-    fallback: Fallback.skip
+    fallback: Fallback.skip,
   };
 
   const prefixes = createMods(require('poe-mods/data/mods/prefixes.json'));
   // skip monster domain
   const prefix_groups = groupByCorrectGroup(
-    prefixes.all().filter(mod => mod.domain === 1)
+    prefixes.all().filter(mod => mod.domain === 1),
   );
   for (const [correct_group, mods] of prefix_groups.entries()) {
     it(`matches the snapshot of '${correct_group}'`, () => {
