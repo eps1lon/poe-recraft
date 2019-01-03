@@ -76,7 +76,7 @@ export interface BaseItemTypeProps {
 
 export interface CraftingBenchOptionsProps {
   primary: number;
-  master_level: number;
+  required_level: number;
   name: string;
   crafting_bench_custom_action: number;
   sockets: number;
@@ -118,7 +118,7 @@ export interface AtlasNodeProps {
 
 export interface NormalizedEssenceProps {
   primary: number;
-  tier: number;
+  level: number;
   base_item_type: BaseItemTypeProps;
   essence_type: {
     id: string;

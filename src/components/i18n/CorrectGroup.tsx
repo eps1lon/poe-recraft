@@ -1,4 +1,4 @@
-import { groupMods } from 'poe-i18n';
+import { Fallback, groupMods } from 'poe-i18n';
 import { Mod } from 'poe-mods';
 import * as React from 'react';
 
@@ -14,7 +14,7 @@ const CorrectGroup: React.SFC<Props> = ({ descriptions, mods }) => {
         .statsJoined()
         .map(stat => ({ id: stat.props.id, value: stat.values.valueOf() }))
     ),
-    { datas: descriptions }
+    { datas: descriptions, fallback: Fallback.skip }
   );
 
   // string not assignable to ReactElement so fallback to <em>
