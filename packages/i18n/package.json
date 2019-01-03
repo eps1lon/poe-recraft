@@ -1,0 +1,98 @@
+{
+  "name": "poe-i18n",
+  "version": "0.12.0",
+  "description": "i18n utility for Path of Exile",
+  "main": "dist/cjs/index.js",
+  "types": "dist/cjs/index.d.ts",
+  "module": "dist/esm/index.js",
+  "unpkg": "dist/umd/bundle.min.js",
+  "files": [
+    "dist",
+    "locale-data",
+    "src"
+  ],
+  "scripts": {
+    "build": "yarn run build:browser && yarn run build:commonjs && yarn run build:es",
+    "build:browser": "webpack --config ./config/webpack.umd.js",
+    "build:commonjs": "tsc --project ./tsconfig.build.json --module CommonJS --outDir dist/cjs",
+    "build:es": "tsc --project ./tsconfig.build.json --module ES6 --outDir dist/esm",
+    "build:check": "tsc --project ./tsconfig.build.json --noEmit --watch",
+    "clean": "rimraf coverage dist",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --list-different \"src/**/*.ts\"",
+    "generate-locale-data:clean": "rimraf \"locale-data/**/*.json\"",
+    "generate-locale-data-api": "node --harmony_async_iteration scripts/api/createFromApi && node scripts/api/createFromTranslate",
+    "postgenerate-locale-data-api": "prettier --write \"locale-data/**/api_messages.json\"",
+    "generate-locale-data": "yarn run parse-locale-data && yarn run process-locale-data",
+    "generate-skill-meta": "node scripts/generateSkillMeta",
+    "postgenerate-skill-meta": "prettier --write src/translate/skill_meta.json",
+    "parse-locale-data": "node scripts/generateLocaleData",
+    "process-locale-data": "node scripts/sieveUnprocessed",
+    "postprocess-locale-data": "prettier --write \"locale-data/**/*stat_descriptions.json\"",
+    "generate-dat-locale-data": "node scripts/generateDatLocaleData",
+    "postgenerate-dat-locale-data": "prettier --write \"locale-data/**/[A-Z]*.json\"",
+    "lint": "tslint --project tsconfig.json \"src/**/*.ts\"",
+    "compile-grammars": "node scripts/compileGrammars",
+    "compile-grammars:watch": "node scripts/watchGrammars",
+    "prepublishOnly": "yarn run build",
+    "test": "jest --watch",
+    "test:check": "jest",
+    "test:ci": "jest --ci --coverage --runInBand",
+    "test:coverage": "jest --coverage",
+    "test:typings": "tsc --project ./tsconfig.test.json --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eps1lon/poe-i18n.git"
+  },
+  "keywords": [
+    "poe",
+    "i18n"
+  ],
+  "author": "eps1lon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eps1lon/poe-i18n/issues"
+  },
+  "homepage": "https://github.com/eps1lon/poe-i18n#readme",
+  "devDependencies": {
+    "@types/escape-string-regexp": "1.0.0",
+    "@types/jest": "^23.0.0",
+    "@types/node": "^9.3.0",
+    "coveralls": "^3.0.0",
+    "dot-prop": "^4.2.0",
+    "greenkeeper-lockfile": "^1.15.1",
+    "jest": "^23.0.0",
+    "limiter": "^1.1.3",
+    "mkdirp": "^0.5.1",
+    "moo": "^0.5.0",
+    "nearley": "^2.11.0",
+    "poe-mods": "^1.8.0",
+    "prettier": "^1.15.3",
+    "rimraf": "^2.6.2",
+    "strip-bom": "^3.0.0",
+    "ts-jest": "^23.10.5",
+    "ts-loader": "^4.3.0",
+    "tslint": "^5.7.0",
+    "tslint-config-prettier": "^1.5.0",
+    "tslint-eslint-rules": "^5.0.0",
+    "typescript": "~2.9.2",
+    "webpack": "^4.10.1",
+    "webpack-cli": "^3.0.3"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js|ts)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ]
+  },
+  "dependencies": {
+    "escape-string-regexp": "^1.0.5"
+  }
+}

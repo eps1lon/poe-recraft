@@ -1,0 +1,194 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "soul_prevention_buff_duration": {
+      "stats": [
+        "modifiers_to_buff_effect_duration_also_affect_soul_prevention_duration"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Modificadores às Durações de Penalidades também se aplicam à Prevenção de Ganho de Almas das Habilidades",
+          "formatters": []
+        }
+      ]
+    },
+    "buff_duration": {
+      "stats": ["buff_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Penalidade Dura %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "secondary_buff_duration": {
+      "stats": ["secondary_buff_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Penalidade Secundária Dura %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ice_siphon_trap_max_targets": {
+      "stats": ["ice_siphon_trap_max_beam_targets"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Aplica raios à %1% Inimigos próximos",
+          "formatters": []
+        }
+      ]
+    },
+    "life_regen_with_at_least_one_enemy": {
+      "stats": [
+        "skill_life_regeneration_per_minute_with_at_least_1_affected_enemy"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Concede %1% de Regeneração de Vida por segundo caso um Inimigo esteja afetado",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mana_regen_with_at_least_one_enemy": {
+      "stats": [
+        "skill_mana_regeneration_per_minute_with_at_least_1_affected_enemy"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Concede %1% de Regeneração de Mana por segundo se qualquer Inimigo está afetado",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "life_regen_per_enemy": {
+      "stats": ["skill_life_regeneration_per_minute_per_affected_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Concede %1% de Regeneração de Vida por segundo para cada Inimigo afetado",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mana_regen_per_enemy": {
+      "stats": ["skill_mana_regeneration_per_minute_per_affected_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Concede %1% de Regeneração de Mana por segundo para cada Inimigo afetado",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_taken_incr_per_enemy": {
+      "stats": ["skill_damage_taken_+%_per_affected_enemy"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Concede %1%%% de aumento de Dano Recebido para cada Inimigo afetado",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Concede %1%%% de redução de Dano Recebido para cada Inimigo afetado",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chaos_res": {
+      "stats": ["base_chaos_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Inimigos ganham %1$+d%% de Resistência a Caos",
+          "formatters": []
+        }
+      ]
+    },
+    "trap_and_mine_damage_taken": {
+      "stats": ["bear_trap_damage_taken_+%_from_traps_and_mines"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Inimigos recebem %1%%% de aumento de Dano dos Acertos de Minas ou Armadilhas",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Inimigos recebem %1%%% de redução de Dano dos Acertos de Minas ou Armadilhas",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bear_trap_slow": {
+      "stats": ["bear_trap_movement_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Inimigos possuem %1%%% mais Velocidade de Movimento no início da Penalidade",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Inimigos possuem %1%%% menos Velocidade de Movimento no início da Penalidade",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

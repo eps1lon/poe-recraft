@@ -1,0 +1,168 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "blood_offering_life_loss": {
+      "stats": [
+        "blood_offering_%_of_life_to_lose",
+        "blood_offering_%_of_lost_life_to_regenerate_as_life_per_second"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Отнимает %1%%% от вашего здоровья\\nПриспешники регенерируют %2%%% от отнятого здоровья в секунду",
+          "formatters": []
+        }
+      ]
+    },
+    "blood_offering_life_regen_multi": {
+      "stats": ["blood_offering_life_regenerated_+%_final_per_corpse"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "За каждый поглощенный труп дарует приспешникам на %1%%% больше регенерации здоровья",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "За каждый поглощенный труп дарует приспешникам на %1%%% меньше регенерации здоровья",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_speed_incr_skill_granted": {
+      "stats": ["attack_speed_+%_granted_from_skill"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Повышает скорость атаки приспешников на %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Снижает скорость атаки приспешников на %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_incr": {
+      "stats": ["damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Дарует приспешникам %1%%% увеличение урона",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Дарует приспешникам %1%%% уменьшение урона",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cast_speed_incr_skill_granted": {
+      "stats": ["cast_speed_+%_granted_from_skill"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Дарует приспешникам %1%%% повышение скорости сотворения чар",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Дарует приспешникам %1%%% снижение скорости сотворения чар",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "movement_speed_incr": {
+      "stats": ["base_movement_velocity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Повышает скорость передвижения приспешников на %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Снижает скорость передвижения приспешников на %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_block": {
+      "stats": ["monster_base_block_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Дарует приспешникам %1$+d%% шанс блокировать урон от атак",
+          "formatters": []
+        }
+      ]
+    },
+    "base_spell_block": {
+      "stats": ["base_spell_block_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Дарует приспешникам %1$+d%% шанс блокировать урон от чар",
+          "formatters": []
+        }
+      ]
+    },
+    "recover_life_on_block": {
+      "stats": ["recover_X_life_on_block"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Приспешники восстанавливают %1% здоровья при блоке",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_to_add_as_chaos": {
+      "stats": ["physical_damage_%_to_add_as_chaos"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Приспешники наносят %1%%% от их физического урона в виде дополнительного урона хаосом",
+          "formatters": []
+        }
+      ]
+    },
+    "spirit_offering_life_as_es_per_corpse": {
+      "stats": [
+        "spirit_offering_life_%_added_as_base_maximum_energy_shield_per_corpse_consumed"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Приспешники получают %1%%% от их максимума здоровья в виде\\nдополнительного максимума энергетического щита за каждый поглощённый труп",
+          "formatters": []
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "base_number_of_sigils_allowed_per_target": {
+      "no_description": true,
+      "stats": [],
+      "translations": {}
+    },
+    "base_secondary_duration_identifier": {
+      "stats": ["base_secondary_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Se puede desprender por una duración total de %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_duration_identifier": {
+      "stats": ["base_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Se puede adherir por una duración total de %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "storm_brand_beam_num": {
+      "stats": ["conduit_sigil_number_of_beam_targets"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Envía un haz al enemigo marcado",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Envía haes a %1% enemigos, incluyendo al enemigo marcado",
+          "formatters": []
+        }
+      ]
+    },
+    "sigil_target_search_range_modifier": {
+      "stats": ["sigil_target_search_range_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Rango de adhesión aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Rango de adhesión reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "secondary_skill_duration": {
+      "stats": ["secondary_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Se puede desprender por una duración total de %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "sigil_attached_target_damage_final": {
+      "stats": ["sigil_attached_target_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Inflige %1%%% más Daño a los enemigos marcados",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Inflige %1%%% menos Daño a los enemigos marcados",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "sigil_activate_frequency": {
+      "stats": ["sigil_repeat_frequency_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Se activa cada %1% segundo mientras esté adherida",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Se activa cada %1% segundos mientras esté adherida",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,209 @@
+{
+  "meta": {
+    "include": "aura_skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "buff_duration": {
+      "stats": ["buff_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "El Estandarte dura %1% segundos después de ser plantado",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "banner_add_stage_on_impale": {
+      "stats": ["banner_add_stage_on_impale"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Gana 1 Fase cuando Empalas un enemigo mientras portas el Estandarte, hasta 5 por segundo",
+          "formatters": []
+        }
+      ]
+    },
+    "banner_add_stage_on_kill": {
+      "stats": ["banner_add_stage_on_kill"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Gana 1 Fase cuando Matas a un Enemigo mientras portas el Estandarte",
+          "formatters": []
+        }
+      ]
+    },
+    "banner_stage_duration": {
+      "stats": ["banner_additional_base_duration_per_stage_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "%1$+d segundo a la duración base del Estandarte plantado por cada Fase",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "%1$+d segundos a la duración base del Estandarte plantado por cada Fase",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "banner_stage_aoe": {
+      "stats": ["banner_area_of_effect_+%_per_stage"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Cuando se planta, Área de Efecto aumentada un %1%%% por cada Fase",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Cuando se planta, Área de Efecto reducida un %1%%% por cada Fase",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "banner_stage_aura_effect": {
+      "stats": ["banner_buff_effect_+%_per_stage"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Cuando se planta, efecto de Aura aumentado un %1%%% por cada Fase",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Cuando se planta, efecto de Aura reducido un %1%%% por cada Fase",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_duration_identifier": {
+      "stats": ["base_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Duración base de %1% segundos después de ser Plantado",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "war_banner_adrenaline": {
+      "stats": ["bloodstained_banner_adrenaline_duration_per_stage_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Gana Adrenalina por %1% segundo por cada Fase al Plantar el Estandarte",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextAdrenaline"
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Gana Adrenalina por %1% segundos por cada Fase al Plantar el Estandarte",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextAdrenaline"
+            }
+          ]
+        }
+      ]
+    },
+    "dread_banner_accuracy_final": {
+      "stats": ["puresteel_banner_accuracy_rating_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Los Enemigos cercanos tienen %1%%% más Precisión",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Los Enemigos cercanos tienen %1%%% menos Precisión",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "dread_banner_fortify": {
+      "stats": ["puresteel_banner_fortify_duration_per_stage_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Gana Fortificar por %1% segundo por cada Fase al Plantar el Estandarte",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Gana Fortificar por %1% segundos por cada Fase al Plantar el Estandarte",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

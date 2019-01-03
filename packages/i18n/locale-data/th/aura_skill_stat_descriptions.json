@@ -1,0 +1,605 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "physical_damage_incr": {
+      "stats": ["physical_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มความเสียหาย กายภาพ %1%%% ให้คุณและเพื่อนที่อยู่ใกล้",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดความเสียหาย กายภาพ %1%%% ให้คุณและเพื่อนที่อยู่ใกล้",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "movement_speed_incr": {
+      "stats": ["base_movement_velocity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะมีความเร็วในการเคลื่อนที่เพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะมีความเร็วในการเคลื่อนที่ลดลง %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_speed_incr_skill_granted": {
+      "stats": ["attack_speed_+%_granted_from_skill"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะมีความเร็วในการโจมตีเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะมีความเร็วในการโจมตีลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cast_speed_incr_skill_granted": {
+      "stats": ["cast_speed_+%_granted_from_skill"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะมีความเร็วในการร่ายเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะมีความเร็วในการร่ายลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_resist": {
+      "stats": ["base_resist_all_elements_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะได้รับความต้านทานธาตุเพิ่มขึ้น %1$+d%%",
+          "formatters": []
+        }
+      ]
+    },
+    "life_regen_per_minute_percent": {
+      "stats": ["life_regeneration_rate_per_minute_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะได้รับการฟื้นฟูพลังชีวิต %1%%% ต่อวินาที",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "accuracy_rating_incr": {
+      "stats": ["accuracy_rating_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะได้รับความแม่นยำเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะได้รับความแม่นยำลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "critical_strike_chance_incr": {
+      "stats": ["critical_strike_chance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มโอกาสคริติคอล %1%%% ให้คุณและเพื่อนที่อยู่ใกล้",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดโอกาสคริติคอล %1%%% ให้คุณและเพื่อนที่อยู่ใกล้",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_evasion": {
+      "stats": ["base_evasion_rating"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะได้รับอัตราการหลบหลีกเพิ่มขึ้น %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "grace_evasion_incr": {
+      "stats": ["grace_aura_evasion_rating_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะได้รับอัตราการหลบหลีกมากขึ้น %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "base_armour": {
+      "stats": ["base_physical_damage_reduction_rating"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะได้รับเกราะเพิ่มขึ้น %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "determination_armour_incr": {
+      "stats": ["determination_aura_armour_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะได้รับเกราะมากขึ้น %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "base_energy_shield": {
+      "stats": ["base_maximum_energy_shield"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คุณและเพื่อนที่อยุ่ใกล้ๆ จะได้รับโล่พลังงานเพิ่มขึ้น %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_resist": {
+      "stats": ["base_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะได้รับความต้านทานทางสายฟ้าเพิ่มขึ้น %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "fire_resist": {
+      "stats": ["base_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะได้รับความต้านทานทางไฟเพิ่มขึ้น %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_resist": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะได้รับความต้านทานทางน้ำแข็งเพิ่มขึ้น %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "max_fire_resist": {
+      "stats": ["base_maximum_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะได้รับความต้านทางไฟสูงสุดเพิ่มขึ้น %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "max_cold_resist": {
+      "stats": ["base_maximum_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะได้รับความต้านทางน้ำแข็งสูงสุดเพิ่มขึ้น %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "max_lightning_resist": {
+      "stats": ["base_maximum_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะได้รับความต้านทางสายฟ้าสูงสุดเพิ่มขึ้น %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_added_fire": {
+      "stats": [
+        "attack_minimum_added_fire_damage",
+        "attack_maximum_added_fire_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "เสริมความเสียหาย ไฟ %1% ถึง %2% ให้การโจมตีของคุณและเพื่อนที่อยู่ใกล้",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_added_lightning": {
+      "stats": [
+        "attack_minimum_added_lightning_damage",
+        "attack_maximum_added_lightning_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "เสริมความเสียหาย ไฟฟ้า %1% ถึง %2% ให้การโจมตีของคุณและเพื่อนที่อยู่ใกล้",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_to_add_as_cold": {
+      "stats": ["physical_damage_%_to_add_as_cold"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้จะสร้าง %1%%% ของความเสียหายกายภาพไปเป็นน้ำแข็ง",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_regen": {
+      "stats": ["base_mana_regeneration_rate_per_minute"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ จะฟื้นฟูมานาเป็น %1% ต่อวินาที",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "energy_shield_no_delay": {
+      "stats": ["energy_shield_recharge_not_delayed_by_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "การรีชาร์จของโล่พลังงาน ของคุณและเพื่อนที่อยู่ใกล้ๆจะไม่ช้าลงจากความเสียหาย",
+          "formatters": []
+        }
+      ]
+    },
+    "no_mana_cost": {
+      "stats": ["no_mana_cost"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ๆ สามารถใช้สกิลได้โดยไม่เสียมานา",
+          "formatters": []
+        }
+      ]
+    },
+    "dodge_chance": {
+      "stats": ["base_chance_to_dodge_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มีโอกาสหลีกเลี่ยงโจมตี %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "spell_dodge_chance": {
+      "stats": ["base_chance_to_dodge_spells_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "มีโอกาสหลีกเลี่ยงเวท %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "base_elemental_damage_heals": {
+      "stats": ["base_elemental_damage_heals"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "การรับความเสียหายธาตุจะกลายเป็นการฟื้นฟูพลังชีวิตแทน\\nคุณและเพื่อนที่อยู่ใกล้ไม่สามารถรับ Soul ได้",
+          "formatters": []
+        }
+      ]
+    },
+    "spell_added_fire_damage": {
+      "stats": [
+        "spell_minimum_added_fire_damage",
+        "spell_maximum_added_fire_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "เสริมความเสียหาย ไฟ %1% ถึง %2% ให้เวทย์ของคุณและเพื่อนที่อยู่ใกล้",
+          "formatters": []
+        }
+      ]
+    },
+    "wrath_spell_lightning_damage": {
+      "stats": ["wrath_aura_spell_lightning_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ผู้เล่นและเพื่อนใกล้เคียงจะใช้เวท Lighting ได้แรงขึ้นอีก  %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ผู้เล่นและเพื่อนใกล้เคียงจะใช้เวท Lighting ได้เบาลง %1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_added_chaos": {
+      "stats": [
+        "attack_minimum_added_chaos_damage",
+        "attack_maximum_added_chaos_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "เสริมความเสียหาย เคออส %1% ถึง %2% ให้การโจมตีของคุณและเพื่อนที่อยู่ใกล้",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_impale_chance": {
+      "stats": ["attacks_impale_on_hit_%_chance"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ มีโอกาส %1%%% ที่จะทิ่มแทงศัตรู ด้วยการโจมตี",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextImpale"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "คุณและเพื่อนที่อยู่ใกล้ ทิ่มแทงศัตรู ด้วยการโจมตี",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextImpale"
+            }
+          ]
+        }
+      ]
+    },
+    "immune_to_chill": {
+      "stats": ["base_immune_to_chill"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ผู้เล่นและเพื่อนใกล้เคียงจะไม่มีโอกาสติดสถานะแช่เย็น",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_freeze": {
+      "stats": ["base_immune_to_freeze"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ผู้เล่นและเพื่อนใกล้ตัวจะป้องกันสถานะแช่แข็งได้",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_ignite": {
+      "stats": ["base_immune_to_ignite"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ผู้เล่นและเพื่อนใกล้ตัวจะป้องกันสถานะติดไฟได้",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_shock": {
+      "stats": ["base_immune_to_shock"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ผู้เล่นและเพื่อนใกล้ตัวจะป้องกันสถานะไฟช็อตได้",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_damage_taken": {
+      "stats": ["cold_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ได้รับความเสียหายน้ำแข็งเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ได้รับความเสียหายน้ำแข็งลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "energy_shield_recharge_rate": {
+      "stats": ["energy_shield_recharge_rate_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "คุณและเพื่อนจะมีอัตราฟื้นฟูเกราะพลังงานเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "คุณและเพื่อนจะมีอัตราฟื้นฟูเกราะพลังงานน้อยลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "fire_damage_taken": {
+      "stats": ["fire_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "รับความเสียหายทางไฟเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "รับความเสียหายทางไฟลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hits_ignore_cold_res": {
+      "stats": ["hits_ignore_my_cold_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "การโจมตีจะทะลุผ่านค่าป้องกันธาตุน้ำแข็งของศัตรูที่อยู่ใกล้ๆ",
+          "formatters": []
+        }
+      ]
+    },
+    "hits_ignore_fire_res": {
+      "stats": ["hits_ignore_my_fire_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "การโจมตีจะทะลุผ่านค่าป้องกันธาตุไฟของศัตรูที่อยู่ใกล้ๆ",
+          "formatters": []
+        }
+      ]
+    },
+    "hits_ignore_lightning_res": {
+      "stats": ["hits_ignore_my_lightning_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "การโจมตีจะทะลุผ่านค่าป้องกันธาตุไฟฟ้าของศัตรูที่อยู่ใกล้ๆ",
+          "formatters": []
+        }
+      ]
+    },
+    "impale_effect": {
+      "stats": ["impale_debuff_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มผลของ ทิ่มแทง %1%%% ให้คุณและเพื่อนที่อยู่ใกล้",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดผลของ ทิ่มแทง %1%%% ให้คุณและเพื่อนที่อยู่ใกล้",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_damage_taken": {
+      "stats": ["lightning_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ได้รับความเสียหายสายฟ้าเพิ่มขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ได้รับความเสียหายสายฟ้าลดลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "physical_damage_taken_incr": {
+      "stats": ["physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ศัตรูที่อยู่ใกล้ ได้รับความเสียหาย กายภาพ เพิ่มขึ้น %1%%%",
+          "formatters": []
+        }
+      ]
+    }
+  }
+}

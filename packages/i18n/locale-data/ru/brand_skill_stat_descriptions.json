@@ -1,0 +1,138 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "base_number_of_sigils_allowed_per_target": {
+      "no_description": true,
+      "stats": [],
+      "translations": {}
+    },
+    "base_secondary_duration_identifier": {
+      "stats": ["base_secondary_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Может существовать без прикрепления в сумме %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_duration_identifier": {
+      "stats": ["base_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Может существовать прикреплённым в сумме %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "storm_brand_beam_num": {
+      "stats": ["conduit_sigil_number_of_beam_targets"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Посылает луч к заклейменному врагу",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Посылает лучи к %1% врагам, включая заклейменного врага",
+          "formatters": []
+        }
+      ]
+    },
+    "sigil_target_search_range_modifier": {
+      "stats": ["sigil_target_search_range_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% увеличение дальности прикрепления",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% уменьшение дальности прикрепления",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "secondary_skill_duration": {
+      "stats": ["secondary_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Может существовать без прикрепления в сумме %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "sigil_attached_target_damage_final": {
+      "stats": ["sigil_attached_target_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Наносит на %1%%% больше урона заклейменному врагу",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Наносит на %1%%% меньше урона заклейменному врагу",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "sigil_activate_frequency": {
+      "stats": ["sigil_repeat_frequency_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Активируется каждую %1% секунду, пока прикреплено",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Активируется каждые %1% секунды, пока прикреплено",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
