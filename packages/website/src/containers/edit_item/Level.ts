@@ -13,11 +13,11 @@ const mapStateToProps = (state: State) => {
 type DispatchProps = Pick<Level['props'], 'onChange'>;
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => {
   return {
-    onChange: (level: number) => dispatch(item_actions.setLevel(level))
+    onChange: (level: number) => dispatch(item_actions.setLevel(level)),
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Level);

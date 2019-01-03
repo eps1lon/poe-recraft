@@ -3,7 +3,7 @@ import { Reducer } from 'redux';
 import itemReducer, {
   actions as item_actions,
   initial_state as initial_item_state,
-  State as ItemState
+  State as ItemState,
 } from '../item';
 import * as actions from './actions';
 
@@ -16,12 +16,12 @@ export interface State {
 const initial: State = {
   mod_generator: undefined,
   mod_generator_id: '',
-  item: initial_item_state
+  item: initial_item_state,
 };
 
 const reducer: Reducer<State, actions.Action> = (
   state: State = initial,
-  action: actions.Action | item_actions.Action
+  action: actions.Action | item_actions.Action,
 ) => {
   switch (action.type) {
     case actions.Type.APPLY_GENERATOR:
@@ -35,7 +35,7 @@ const reducer: Reducer<State, actions.Action> = (
       if (newItem !== state.item) {
         return {
           ...state,
-          item: newItem
+          item: newItem,
         };
       }
 
@@ -45,11 +45,11 @@ const reducer: Reducer<State, actions.Action> = (
 
 function setGeneratorHandle(
   state: State,
-  action: actions.SetGeneratorAction
+  action: actions.SetGeneratorAction,
 ): State {
   return {
     ...state,
-    mod_generator: action.payload
+    mod_generator: action.payload,
   };
 }
 
@@ -57,7 +57,7 @@ function applyGeneratorHandle(state: State): State {
   if (state.mod_generator != null && state.item != null) {
     return {
       ...state,
-      item: state.mod_generator.applyTo(state.item)
+      item: state.mod_generator.applyTo(state.item),
     };
   } else {
     return state;
@@ -66,11 +66,11 @@ function applyGeneratorHandle(state: State): State {
 
 function useGeneratorHandle(
   state: State,
-  action: actions.UseGeneratorAction
+  action: actions.UseGeneratorAction,
 ): State {
   return {
     ...state,
-    mod_generator_id: action.payload
+    mod_generator_id: action.payload,
   };
 }
 

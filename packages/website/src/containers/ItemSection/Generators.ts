@@ -9,11 +9,11 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     onClick: (generator: string) => {
       dispatch(actions.useGenerator(generator));
       dispatch(actions.applyGenerator());
-    }
+    },
   };
 };
 
 export default connect(
   undefined,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Picker);

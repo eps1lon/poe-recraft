@@ -5,8 +5,8 @@ import { storiesOf } from '@storybook/react';
 import ExtendedStats from '../../src/item/popup/ApiBody/Stats/ExtendedStats';
 
 const messages = {
-  "poe.api.{Range1} to {Range2}": "{Range1} bis {Range2}"
-}
+  'poe.api.{Range1} to {Range2}': '{Range1} bis {Range2}',
+};
 const Story: React.SFC<ExtendedStats['props']> = props => {
   return (
     <IntlProvider locale="en" messages={messages}>

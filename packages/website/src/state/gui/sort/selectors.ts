@@ -9,12 +9,12 @@ interface PartialState {
 
 const genericDefaultSorting: Sorting = {
   by: -1,
-  order: 'asc'
+  order: 'asc',
 };
 
 export const getSorting = (
   ident: GuiIdent,
-  defaultSorting: Sorting = genericDefaultSorting
+  defaultSorting: Sorting = genericDefaultSorting,
 ) => (state: PartialState) => {
   return state.gui.sort.get(ident) || defaultSorting;
 };

@@ -187,7 +187,9 @@ class ItemPopupIntl extends React.PureComponent<Props & InjectedIntlProps> {
   private apiWeaponProperties(
     weapon: ItemProps.WeaponProperties,
   ): ApiProps['item']['properties'] {
-    const { intl: { formatMessage } } = this.props;
+    const {
+      intl: { formatMessage },
+    } = this.props;
     const properties: ApiProps['item']['properties'] = [];
     const {
       physical_damage,

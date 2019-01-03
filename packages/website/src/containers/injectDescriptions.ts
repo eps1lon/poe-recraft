@@ -4,7 +4,7 @@ import { State } from 'state';
 
 const mapStateToProps = (state: State) => {
   return {
-    descriptions: state.i18n.descriptions
+    descriptions: state.i18n.descriptions,
   };
 };
 

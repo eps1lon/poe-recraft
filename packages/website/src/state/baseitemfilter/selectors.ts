@@ -14,7 +14,7 @@ export const makeFilterItems = () =>
   createSelector(
     (state: { baseitemfilter: State; poe: PoeState }) => state.poe.items.data,
     (state: { baseitemfilter: State }) => state.baseitemfilter,
-    (items, filter) => items.filter(applyFilter(filter))
+    (items, filter) => items.filter(applyFilter(filter)),
   );
 
 export function activeItemClass(state: { baseitemfilter: State }): string {

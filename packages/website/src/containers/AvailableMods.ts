@@ -9,7 +9,7 @@ const whitelist = [
   'domain_full',
   'already_present',
   'no_multimod',
-  'above_lld_level'
+  'above_lld_level',
 ];
 
 const getAvailableMods = cachedAvailableMods(whitelist);
@@ -20,7 +20,7 @@ const mapStateToProps = (state: State) => {
   return {
     prefixes,
     suffixes,
-    implicits
+    implicits,
   };
 };
 

@@ -95,7 +95,7 @@ declare module 'redux-api-middleware' {
    * Is the given object a valid type descriptor?
    */
   export function isValidTypeDescriptor(
-    obj: object
+    obj: object,
   ): obj is TypeDescriptor<any>;
 
   /**
@@ -134,7 +134,7 @@ declare module 'redux-api-middleware' {
    *   and add defaults
    */
   export function normalizeTypeDescriptors(
-    types: RSAActionTypeTuple
+    types: RSAActionTypeTuple,
   ): RSAActionTypeTuple;
 
   export type HTTPVerb =

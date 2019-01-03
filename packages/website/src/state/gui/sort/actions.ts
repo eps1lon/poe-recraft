@@ -8,7 +8,7 @@ export type Action = SortAscending | SortDescending;
 
 export enum Type {
   ASC = 'GUI/SORT/ASC',
-  DESC = 'GUI/SORT/DESC'
+  DESC = 'GUI/SORT/DESC',
 }
 
 export interface SortPayload {
@@ -19,23 +19,23 @@ export interface SortPayload {
 export type SortAscending = Action<Type.ASC, SortPayload>;
 export const sortAsc = (
   component: GuiIdent,
-  by: SortByIdentifier
+  by: SortByIdentifier,
 ): SortAscending => ({
   type: Type.ASC,
   payload: {
     id: component,
-    by
-  }
+    by,
+  },
 });
 
 export type SortDescending = Action<Type.DESC, SortPayload>;
 export const sortDesc = (
   component: GuiIdent,
-  by: SortByIdentifier
+  by: SortByIdentifier,
 ): SortDescending => ({
   type: Type.DESC,
   payload: {
     id: component,
-    by
-  }
+    by,
+  },
 });

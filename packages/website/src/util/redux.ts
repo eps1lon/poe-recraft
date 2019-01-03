@@ -4,7 +4,7 @@
 export const createAction = <T, P, A1>(type: T, creator: (arg: A1) => P) => {
   return (arg: A1) => ({
     type,
-    payload: creator(arg)
+    payload: creator(arg),
   });
 };
 
@@ -34,7 +34,7 @@ export interface CommonReducerMap<S> {
 
 export function handleActions<S>(
   reducer_map: CommonReducerMap<S>,
-  initial: S
+  initial: S,
 ): Reducer<S> {
   return (state: S = initial, action: AnyAction) => {
     if (action.type in reducer_map) {

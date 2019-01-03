@@ -7,11 +7,11 @@ import { selectors } from 'state/baseitemfilter';
 const mapStateToProps = (state: State, props: { groups: Props['groups'] }) => {
   const active_item_class = selectors.activeItemClass(state);
   const active_group = props.groups.find(
-    group => group.classes.find(id => id === active_item_class) !== undefined
+    group => group.classes.find(id => id === active_item_class) !== undefined,
   );
 
   return {
-    active: active_group != null ? active_group.name : undefined
+    active: active_group != null ? active_group.name : undefined,
   };
 };
 

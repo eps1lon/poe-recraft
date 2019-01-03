@@ -13,7 +13,7 @@ const mapStateToProps = (state: State) => {
     loading:
       poe_selectors.isBenchsLoading(state) ||
       poe_selectors.isModsLoading(state),
-    is_open: state.gui.expanded.get('generator-modal')
+    is_open: state.gui.expanded.get('generator-modal'),
   };
 };
 
@@ -26,11 +26,11 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => {
     onChange: (generator: string) =>
       dispatch(craft_actions.useGenerator(generator)),
     onToggle: () =>
-      dispatch(gui_actions.expanded_actions.toggleGeneratorModal())
+      dispatch(gui_actions.expanded_actions.toggleGeneratorModal()),
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(GeneratorModal);

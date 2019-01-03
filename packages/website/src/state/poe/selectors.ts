@@ -14,7 +14,7 @@ export function apiEndpoint(endpoint: string): (state: State) => string {
 
 export const getMods: (state: State) => ModProps[] = createSelector(
   (state: State) => state.poe.mods.data,
-  (mods: { [key: string]: ModProps }) => Object.values(mods)
+  (mods: { [key: string]: ModProps }) => Object.values(mods),
 );
 
 export const getEssences = createSelector(
@@ -71,9 +71,9 @@ export const getEssences = createSelector(
         belt_mod: mods[essence.belt_mods_key!],
         amulet_mod: mods[essence.amulet_mods_key!],
         ring_mod: mods[essence.ring_mods_key!],
-        shield_mod: mods[essence.shield_mods_key!]
+        shield_mod: mods[essence.shield_mods_key!],
       };
-    })
+    }),
 );
 
 export const isBenchsLoading = (state: State) =>

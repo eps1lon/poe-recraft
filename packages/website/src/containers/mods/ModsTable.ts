@@ -8,11 +8,11 @@ import { gui_actions } from 'state/actions';
 type StateProps = Pick<Props, 'expanded' | 'group_expanded'>;
 const mapStateToProps = (
   state: State,
-  props: Pick<Props, 'className'>
+  props: Pick<Props, 'className'>,
 ): StateProps => {
   return {
     expanded: state.gui.expanded.get(props.className),
-    group_expanded: Boolean(state.gui.expanded.get(`${props.className}-group`))
+    group_expanded: Boolean(state.gui.expanded.get(`${props.className}-group`)),
   };
 };
 
@@ -24,11 +24,11 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => {
         ? dispatch(gui_actions.expanded_actions.collapse(class_name))
         : dispatch(gui_actions.expanded_actions.expand(class_name)),
     onGroupToggle: (class_name: string) =>
-      dispatch(gui_actions.expanded_actions.toggle(`${class_name}-group`))
+      dispatch(gui_actions.expanded_actions.toggle(`${class_name}-group`)),
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ModsTable);

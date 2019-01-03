@@ -10,25 +10,25 @@ export interface State {
 const initial: State = {
   item_class: 'Boots',
   // ccnf
-  tags: [['str_armour']]
+  tags: [['str_armour']],
 };
 
 const reducer: Reducer<State, Action> = (
   state: State = initial,
-  action: Action
+  action: Action,
 ): State => {
   switch (action.type) {
     case Types.SET_FILTER:
       return {
         ...state,
         item_class: action.payload.item_class,
-        tags: action.payload.tags
+        tags: action.payload.tags,
       };
     case Types.SET_ITEM_CLASS:
       return {
         ...state,
         item_class: action.payload,
-        tags: [] as string[][]
+        tags: [] as string[][],
       };
     default:
       return state;

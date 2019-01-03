@@ -8,21 +8,21 @@ import { activeItemClass } from 'state/baseitemfilter/selectors';
 
 const mapStateToProps = (state: State) => {
   return {
-    active: String(activeItemClass(state))
+    active: String(activeItemClass(state)),
   };
 };
 
 type DispatchProps = Pick<Props, 'onClick'>;
 const mapDispatchToProps = (
   dispatch: Dispatch,
-  props: Pick<Props, 'id'>
+  props: Pick<Props, 'id'>,
 ): DispatchProps => {
   return {
-    onClick: () => dispatch(actions.setItemClass(props))
+    onClick: () => dispatch(actions.setItemClass(props)),
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ItemClass);

@@ -7,18 +7,19 @@ import { gui_actions } from 'state/actions';
 
 const mapStateToProps = (state: State): Partial<Props> => {
   return {
-    is_open: state.gui.expanded.get('edititem-modal')
+    is_open: state.gui.expanded.get('edititem-modal'),
   };
 };
 
 type DispatchProps = Pick<Props, 'onToggle'>;
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => {
   return {
-    onToggle: () => dispatch(gui_actions.expanded_actions.toggleEditItemModal())
+    onToggle: () =>
+      dispatch(gui_actions.expanded_actions.toggleEditItemModal()),
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Modal);

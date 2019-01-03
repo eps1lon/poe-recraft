@@ -9,7 +9,7 @@ interface CombineLatestOptions {
 export function* combineLatest(
   actionTypes: string[],
   saga: (...args: any[]) => SagaIterator,
-  options: Partial<CombineLatestOptions> = {}
+  options: Partial<CombineLatestOptions> = {},
 ) {
   const { break_out = false } = options;
   const actions: { [key: string]: any } = {};
@@ -30,7 +30,7 @@ export function* combineLatest(
 
 function pendingActions(
   actions: { [key: string]: any },
-  actionTypes: string[]
+  actionTypes: string[],
 ) {
   return Object.keys(actions).length < actionTypes.length;
 }

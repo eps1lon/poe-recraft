@@ -13,7 +13,7 @@ const initial: State = new Map();
 
 export default function reducer(
   state: State = initial,
-  action: actions.Action
+  action: actions.Action,
 ): State {
   switch (action.type) {
     case actions.Type.ASC:

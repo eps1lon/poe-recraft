@@ -18,7 +18,7 @@ function* loadLocaleData() {
       messages = {},
       mods,
       stat_descriptions,
-      api_messages = {}
+      api_messages = {},
     } = yield call(requireLocaleData, locale);
 
     yield call(addLocaleData, locale_data);
@@ -26,8 +26,8 @@ function* loadLocaleData() {
       i18n_actions.setMessages({
         poe: { baseitemtypes, item_classes, mods, api: api_messages },
         ...default_messages,
-        ...messages
-      })
+        ...messages,
+      }),
     );
     yield put(i18n_actions.setDescriptions({ stat_descriptions }));
     // set last to trigger re-render

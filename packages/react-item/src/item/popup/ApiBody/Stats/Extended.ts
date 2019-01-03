@@ -1,7 +1,7 @@
 export default interface Extended {
   hashes: { [key in ModGroup]?: Hash[] };
   mods: { [key in ModGroup]?: Mod[] };
-};
+}
 
 export interface Mod {
   magnitudes: Stat[];

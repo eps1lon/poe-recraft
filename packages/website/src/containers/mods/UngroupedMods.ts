@@ -9,7 +9,7 @@ import modHandles from '../handles/mod';
 
 const sort_by_ilvl_desc = {
   by: 0,
-  order: 'desc' as 'asc' | 'desc'
+  order: 'desc' as 'asc' | 'desc',
 };
 const guiIdent = ({ className }: { className: string }) =>
   `UngroupedMods.${className}`;
@@ -17,11 +17,11 @@ const guiIdent = ({ className }: { className: string }) =>
 type StateProps = Pick<Props, 'sortColumn' | 'sortOrder'>;
 const mapStateToProps = (
   state: State,
-  own_props: Pick<Props, 'className'>
+  own_props: Pick<Props, 'className'>,
 ): StateProps => {
   const { by, order } = gui_selectors.sort_selectors.getSorting(
     guiIdent(own_props),
-    sort_by_ilvl_desc
+    sort_by_ilvl_desc,
   )(state);
 
   return { sortColumn: +by, sortOrder: order };
@@ -30,7 +30,7 @@ const mapStateToProps = (
 type DispatchProps = Pick<Props, 'onAddMod' | 'onSortChange'>;
 const mapDispatchToProps = (
   dispatch: Dispatch,
-  own_props: Pick<Props, 'className'>
+  own_props: Pick<Props, 'className'>,
 ): DispatchProps => {
   const { onAddMod } = modHandles(dispatch);
 
@@ -46,5 +46,5 @@ const mapDispatchToProps = (
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(UngroupedMods);

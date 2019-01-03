@@ -13,12 +13,12 @@ export interface State {
 const initial: State = {
   locale: 'en',
   descriptions: {},
-  messages: {}
+  messages: {},
 };
 
 export default function reducer(
   state: State = initial,
-  action: actions.Action
+  action: actions.Action,
 ): State {
   switch (action.type) {
     case actions.Type.SET_DESCRIPTIONS:
@@ -35,26 +35,26 @@ export default function reducer(
 function setLocaleHandle(state: State, action: actions.SetLocaleAction): State {
   return {
     ...state,
-    locale: action.payload
+    locale: action.payload,
   };
 }
 
 function setDescriptionsHandle(
   state: State,
-  action: actions.SetDescriptionsAction
+  action: actions.SetDescriptionsAction,
 ): State {
   return {
     ...state,
-    descriptions: action.payload
+    descriptions: action.payload,
   };
 }
 
 function setMessagesHandle(
   state: State,
-  action: actions.SetMessagesAction
+  action: actions.SetMessagesAction,
 ): State {
   return {
     ...state,
-    messages: flatten(action.payload)
+    messages: flatten(action.payload),
   };
 }

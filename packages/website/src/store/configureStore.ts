@@ -19,7 +19,7 @@ const sagaMiddleware = createSagaMiddleware();
 const middlewareEnhancer = applyMiddleware(
   apiMiddleware as ApiMiddleware,
   sagaMiddleware,
-  createLogger()
+  createLogger(),
 );
 
 const storeEnhancer = middlewareEnhancer;
@@ -39,7 +39,7 @@ export default function configureStore(initialState: DeepPartial<State> = {}) {
     // Hot reload reducers (requires Webpack or Browserify HMR to be enabled)
     if (module.hot) {
       module.hot.accept('../state', () =>
-        store.replaceReducer(require('../state').default)
+        store.replaceReducer(require('../state').default),
       );
 
       module.hot.accept('../sagas/SagaManager', () => {

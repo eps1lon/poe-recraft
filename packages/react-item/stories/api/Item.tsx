@@ -64,7 +64,10 @@ storiesOf('api/item', module).add('shaped', () => (
           {
             name: "Boggart's",
             tier: 'P3',
-            magnitudes: [{ min: 21, max: 26, hash: 'stat2' }, { min: 10, max: 11, hash: 'stat0' }],
+            magnitudes: [
+              { min: 21, max: 26, hash: 'stat2' },
+              { min: 10, max: 11, hash: 'stat0' },
+            ],
           },
           {
             name: 'Hale',

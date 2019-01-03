@@ -9,14 +9,14 @@ export interface ExpandedHandles {
 export const expanded = (dispatch: Dispatch): ExpandedHandles => {
   return {
     onCollapse: (ident: GuiIdent) =>
-      dispatch(gui_actions.expanded_actions.collapse(ident))
+      dispatch(gui_actions.expanded_actions.collapse(ident)),
   };
 };
 
 export type GuiHandles = ExpandedHandles;
 const gui = (dispatch: Dispatch): GuiHandles => {
   return {
-    ...expanded(dispatch)
+    ...expanded(dispatch),
   };
 };
 

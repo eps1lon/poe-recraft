@@ -13,14 +13,14 @@ type StateProps = Pick<Picker['props'], 'active' | 'baseitems'>;
 const mapStateToProps = (state: State): StateProps => {
   return {
     active: item_selectors.activeBaseitem(state),
-    baseitems: baseitemsSelector(state)
+    baseitems: baseitemsSelector(state),
   };
 };
 
 type DispatchProps = Pick<Picker['props'], 'onChange'>;
 const mapDispatchToProps = (
   dispatch: Dispatch,
-  own_props: Pick<Picker['props'], 'onChange'>
+  own_props: Pick<Picker['props'], 'onChange'>,
 ): DispatchProps => {
   return {
     onChange: (item: BaseItemTypeProps) => {
@@ -28,11 +28,11 @@ const mapDispatchToProps = (
       if (onChange === undefined || onChange(item)) {
         dispatch(item_actions.setItem(item));
       }
-    }
+    },
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Picker);

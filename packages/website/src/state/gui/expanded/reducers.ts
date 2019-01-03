@@ -26,7 +26,7 @@ export default function(state: State = initial, action: actions.Action) {
 
 function collapseHandle(
   state: State = initial,
-  action: actions.CollapseAction
+  action: actions.CollapseAction,
 ): State {
   const { payload: ident } = action;
 
@@ -35,7 +35,7 @@ function collapseHandle(
 
 function expandHandle(
   state: State = initial,
-  action: actions.ExpandAction
+  action: actions.ExpandAction,
 ): State {
   const { payload: ident } = action;
 
@@ -44,7 +44,7 @@ function expandHandle(
 
 function toggleHandle(
   state: State = initial,
-  action: actions.ToggleAction
+  action: actions.ToggleAction,
 ): State {
   const { payload: ident } = action;
 
@@ -54,20 +54,20 @@ function toggleHandle(
 function toggleGeneratorModalHandle(state: State): State {
   return new Map(state).set(
     'generator-modal',
-    !Boolean(state.get('generator-modal'))
+    !Boolean(state.get('generator-modal')),
   );
 }
 
 function toggleBaseItemModalHandle(state: State): State {
   return new Map(state).set(
     'baseitem-modal',
-    !Boolean(state.get('baseitem-modal'))
+    !Boolean(state.get('baseitem-modal')),
   );
 }
 
 function toggleEditItemModalHandle(state: State): State {
   return new Map(state).set(
     'edititem-modal',
-    !Boolean(state.get('edititem-modal'))
+    !Boolean(state.get('edititem-modal')),
   );
 }

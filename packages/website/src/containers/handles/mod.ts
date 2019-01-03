@@ -10,7 +10,7 @@ export interface ModHandles {
 export const modHandles = (dispatch: Dispatch): ModHandles => {
   return {
     onAddMod: (mod: Mod) => dispatch(item_actions.addMod(mod)),
-    onRemoveMod: (mod: Mod) => dispatch(item_actions.removeMod(mod))
+    onRemoveMod: (mod: Mod) => dispatch(item_actions.removeMod(mod)),
   };
 };
 

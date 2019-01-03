@@ -17,5 +17,5 @@ export {
   gui_actions,
   i18n_actions,
   item_actions,
-  poe_actions
+  poe_actions,
 };

@@ -11,7 +11,7 @@ type OwnStateProps = PartialProps<typeof GroupedMods, 'className'>;
 const mapStateToProps = (state: State, props: OwnStateProps): StateProps => {
   return {
     isExpanded: (group: string) =>
-      Boolean(state.gui.expanded.get(`${props.className}.${group}`))
+      Boolean(state.gui.expanded.get(`${props.className}.${group}`)),
   };
 };
 
@@ -19,17 +19,17 @@ type DispatchProps = PartialProps<typeof GroupedMods, 'onGroupClick'>;
 type OwnDispatchProps = PartialProps<typeof GroupedMods, 'className'>;
 const mapDispatchToProps = (
   dispatch: Dispatch,
-  props: OwnDispatchProps
+  props: OwnDispatchProps,
 ): DispatchProps => {
   return {
     onGroupClick: (group: string) =>
       dispatch(
-        gui_actions.expanded_actions.toggle(`${props.className}.${group}`)
-      )
+        gui_actions.expanded_actions.toggle(`${props.className}.${group}`),
+      ),
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(GroupedMods);

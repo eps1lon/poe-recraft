@@ -12,7 +12,7 @@ import { propOrUndefined } from '../../util/typesafe';
  */
 export default function snapshotItem(
   item: Item,
-  descriptions: {}
+  descriptions: {},
 ): PropsType<typeof ItemPopup>['item'] {
   let rarity: Rarity;
   if (item.rarity.isNormal()) {
@@ -32,16 +32,16 @@ export default function snapshotItem(
   // for magic items there can only be at most one prefix/suffix
   const prefix = propOrUndefined(
     item.affixes.getPrefixes().map(({ props }) => props)[0],
-    'id'
+    'id',
   );
   const suffix = propOrUndefined(
     item.affixes.getSuffixes().map(({ props }) => props)[0],
-    'id'
+    'id',
   );
 
   return {
     base: {
-      id: item.baseitem.id
+      id: item.baseitem.id,
     },
     name: typeLine !== undefined ? typeLineOrName : undefined,
     elder: item.isElderItem(),
@@ -53,25 +53,25 @@ export default function snapshotItem(
     requirements: snapshotRequirements(item),
     corrupted: item.props.corrupted,
     prefix,
-    suffix
+    suffix,
   };
 }
 
 function snapshotProperties(item: Item) {
   const { properties } = item;
   const base_properties = {
-    quality: properties.quality
+    quality: properties.quality,
   };
 
   if (properties instanceof ArmourProperties) {
     return {
       ...base_properties,
-      ...properties.defences()
+      ...properties.defences(),
     };
   } else if (properties instanceof WeaponProperties) {
     return {
       ...base_properties,
-      ...snapshotWeaponProperties(properties)
+      ...snapshotWeaponProperties(properties),
     };
   } else {
     return base_properties;
@@ -90,22 +90,22 @@ function snapshotWeaponProperties(properties: WeaponProperties) {
       augmented: physical_damage.min.augmented || physical_damage.max.augmented,
       value: unsafeAsTuple([
         physical_damage.min.value,
-        physical_damage.max.value
-      ])
+        physical_damage.max.value,
+      ]),
     },
     cold_damage: unsafeAsTuple([cold_damage.min.value, cold_damage.max.value]),
     fire_damage: unsafeAsTuple([fire_damage.min.value, fire_damage.max.value]),
     lightning_damage: unsafeAsTuple([
       lightning_damage.min.value,
-      lightning_damage.max.value
+      lightning_damage.max.value,
     ]),
     chaos_damage: unsafeAsTuple([
       chaos_damage.min.value,
-      chaos_damage.max.value
+      chaos_damage.max.value,
     ]),
     aps: properties.attack_speed(),
     crit: properties.crit(),
-    range: properties.weapon_range()
+    range: properties.weapon_range(),
   };
 }
 
@@ -116,7 +116,7 @@ function snapshotRequirements(item: Item) {
     level,
     dexterity: dex,
     intelligence: int,
-    strength: str
+    strength: str,
   };
 }
 
@@ -125,10 +125,10 @@ function statsTranslated(container: Container<any>, descriptions: {}) {
     Object.entries(container.stats()).map(([id, stat]) => {
       return {
         id,
-        value: stat.values.valueOf()
+        value: stat.values.valueOf(),
       };
     }),
-    { datas: descriptions, fallback: Fallback.id }
+    { datas: descriptions, fallback: Fallback.id },
   );
 }
 

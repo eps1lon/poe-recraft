@@ -17,7 +17,7 @@ export default {
   ru: { name: 'ру́сский язы́к', icon: ru },
   th: { name: 'ภาษาไทย', icon: th },
   'zh-tw': { name: '汉语', icon: tw }, // traditional
-  'zh-cn': { name: '漢語', icon: cn } // simplified
+  'zh-cn': { name: '漢語', icon: cn }, // simplified
 } as {
   [key: string]: {
     name: string;

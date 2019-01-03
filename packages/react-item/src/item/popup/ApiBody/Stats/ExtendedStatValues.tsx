@@ -58,7 +58,7 @@ function magnitudesToString(
   options: MagnitudesToStringOptions,
 ): string {
   const { formatMessage } = options;
-  if (magnitudes.length > 2 && process.env.NODE_ENV !== "production") {
+  if (magnitudes.length > 2 && process.env.NODE_ENV !== 'production') {
     warn("don't know how to display 3 magnitudes and more");
   }
   if (magnitudes.length >= 2) {

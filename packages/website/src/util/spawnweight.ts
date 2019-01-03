@@ -12,7 +12,7 @@ export interface WitSpawnchanceOptions<T> {
  */
 export function withSpawnchance<T extends { spawnweight?: number }>(
   items: T[],
-  options: Partial<WitSpawnchanceOptions<T>> = {}
+  options: Partial<WitSpawnchanceOptions<T>> = {},
 ): Array<WithSpawnchance<T>> {
   const { filter = filterNone } = options;
 
@@ -37,12 +37,12 @@ export function withSpawnchance<T extends { spawnweight?: number }>(
     } else if (!filter(item)) {
       return Object.assign({}, item, {
         spawnchance: 0,
-        relative_weight: 0
+        relative_weight: 0,
       });
     } else {
       return Object.assign({}, item, {
         spawnchance: spawnweight / spawnweight_sum,
-        relative_weight: spawnweight / max_weight
+        relative_weight: spawnweight / max_weight,
       });
     }
   });

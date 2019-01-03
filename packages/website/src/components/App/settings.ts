@@ -9,7 +9,7 @@ export const SUPPORTED_LOCALES = [
   'zh-tw', // traditional chinese
   'de',
   'es',
-  'fr'
+  'fr',
 ];
 
 // version of the game client for which data is provided in public/data
@@ -33,17 +33,17 @@ export const ITEMCLASSES_GROUPED = [
       'Two Hand Mace',
       'One Hand Sword',
       'Thrusting One Hand Sword',
-      'Two Hand Sword'
-    ]
+      'Two Hand Sword',
+    ],
   },
   {
     name: 'armours',
     human: 'Armour',
-    classes: ['Body Armour', 'Boots', 'Gloves', 'Helmet', 'Shield']
+    classes: ['Body Armour', 'Boots', 'Gloves', 'Helmet', 'Shield'],
   },
   {
     name: 'equipment',
     human: 'Accessories',
-    classes: ['Amulet', 'Ring', 'Belt', 'Jewel', 'AbyssJewel', 'Quiver']
-  }
+    classes: ['Amulet', 'Ring', 'Belt', 'Jewel', 'AbyssJewel', 'Quiver'],
+  },
 ];

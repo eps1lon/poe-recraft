@@ -12,7 +12,7 @@ import {
   Scouring,
   ShapedMods,
   Transmute,
-  Vaal
+  Vaal,
 } from 'poe-mods';
 import { createSelector } from 'reselect';
 
@@ -24,26 +24,57 @@ export const buildShowcase = createSelector(
   getEssences,
   (mods, options, essences) => {
     return new ItemShowcase(mods, options, essences);
-  }
+  },
 );
 
 // orbs
-const buildAlchemy = createSelector(getMods, mods => Alchemy.build(mods));
-const buildAnnullment = () => new Annulment();
-const buildAugment = createSelector(getMods, mods => Augment.build(mods));
-const buildAlteration = createSelector(getMods, mods => Alteration.build(mods));
-const buildChaos = createSelector(getMods, mods => Chaos.build(mods));
-const buildExalted = createSelector(getMods, mods => Exalted.build(mods));
-const buildRegal = createSelector(getMods, mods => Regal.build(mods));
-const buildScouring = () => new Scouring();
-const buildTransmute = createSelector(getMods, mods => Transmute.build(mods));
-const buildVaal = createSelector(getMods, mods => Vaal.build(mods));
-// misc
-const buildIncursion = createSelector(getMods, mods =>
-  IncursionTempleMods.build(mods)
+const buildAlchemy = createSelector(
+  getMods,
+  mods => Alchemy.build(mods),
 );
-const buildElderMods = createSelector(getMods, mods => ElderMods.build(mods));
-const buildShapedMods = createSelector(getMods, mods => ShapedMods.build(mods));
+const buildAnnullment = () => new Annulment();
+const buildAugment = createSelector(
+  getMods,
+  mods => Augment.build(mods),
+);
+const buildAlteration = createSelector(
+  getMods,
+  mods => Alteration.build(mods),
+);
+const buildChaos = createSelector(
+  getMods,
+  mods => Chaos.build(mods),
+);
+const buildExalted = createSelector(
+  getMods,
+  mods => Exalted.build(mods),
+);
+const buildRegal = createSelector(
+  getMods,
+  mods => Regal.build(mods),
+);
+const buildScouring = () => new Scouring();
+const buildTransmute = createSelector(
+  getMods,
+  mods => Transmute.build(mods),
+);
+const buildVaal = createSelector(
+  getMods,
+  mods => Vaal.build(mods),
+);
+// misc
+const buildIncursion = createSelector(
+  getMods,
+  mods => IncursionTempleMods.build(mods),
+);
+const buildElderMods = createSelector(
+  getMods,
+  mods => ElderMods.build(mods),
+);
+const buildShapedMods = createSelector(
+  getMods,
+  mods => ShapedMods.build(mods),
+);
 
 export function buildGeneratorFactory(generator: string) {
   switch (generator) {

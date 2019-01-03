@@ -11,18 +11,19 @@ const mapStateToProps = (state: State) => {
   return {
     active: item_selectors.activeBaseitem(state),
     loading: poe_selectors.isItemsLoading(state),
-    is_open: state.gui.expanded.get('baseitem-modal')
+    is_open: state.gui.expanded.get('baseitem-modal'),
   };
 };
 
 type DispatchProps = PartialProps<typeof Modal, 'onToggle'>;
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => {
   return {
-    onToggle: () => dispatch(gui_actions.expanded_actions.toggleBaseItemModal())
+    onToggle: () =>
+      dispatch(gui_actions.expanded_actions.toggleBaseItemModal()),
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Modal);

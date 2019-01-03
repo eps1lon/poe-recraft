@@ -8,7 +8,7 @@ import { Dispatch } from '../';
 const mapStateToProps = (state: State) => {
   return {
     locale: state.i18n.locale,
-    messages: state.i18n.messages
+    messages: state.i18n.messages,
   };
 };
 
@@ -21,11 +21,11 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       dispatch(poe_actions.getMods());
       dispatch(poe_actions.getTags());
       dispatch(poe_actions.getEssences());
-    }
+    },
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(App);

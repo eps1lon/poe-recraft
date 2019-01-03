@@ -10,18 +10,18 @@ import { PartialProps } from 'types/react';
 const mapStateToProps = (state: State) => {
   return {
     active: craft_selectors.activeGenerator(state),
-    applicableTo: craft_selectors.activeGeneratorApplicableTo(state)
+    applicableTo: craft_selectors.activeGeneratorApplicableTo(state),
   };
 };
 
 type DispatchProps = PartialProps<typeof ApplyGenerator, 'onClick'>;
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => {
   return {
-    onClick: () => dispatch(craft_actions.applyGenerator())
+    onClick: () => dispatch(craft_actions.applyGenerator()),
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ApplyGenerator);

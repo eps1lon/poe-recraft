@@ -15,7 +15,7 @@ const mapStateToProps: Selector<State, StateProps> = createSelector(
     } else {
       return { item: snapshotItem(item, descriptions) };
     }
-  }
+  },
 );
 
 export default connect(mapStateToProps)(ItemSection);

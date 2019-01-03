@@ -9,7 +9,7 @@ function* initShowcase() {
     [poe_actions.Type.MODS_SUCCESS, poe_actions.Type.BENCHS_SUCCESS],
     function*() {
       yield put(craft_actions.useGenerator('showcase'));
-    }
+    },
   );
 }
 
@@ -18,7 +18,7 @@ function* buildGenerators() {
     const action = yield take(craft_actions.Type.USE_GENERATOR);
 
     const generator = yield select(
-      poe_generators.buildGeneratorFactory(action.payload)
+      poe_generators.buildGeneratorFactory(action.payload),
     );
 
     yield put(craft_actions.setGenerator(generator));

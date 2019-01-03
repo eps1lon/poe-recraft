@@ -17,7 +17,7 @@ export enum Type {
   TAGS_FAILURE = 'POE/TAGS_FAILRE',
   ESSENCES_REQUEST = 'POE/ESSENCES_REQUEST',
   ESSENCES_SUCCESS = 'POE/ESSENCES_SUCCESS',
-  ESSENCES_FAILURE = 'POE/ESSENCES_FAILURE'
+  ESSENCES_FAILURE = 'POE/ESSENCES_FAILURE',
 }
 
 function getEndpoint(endpoint: string, name: string): RSAAction<any, any, any> {
@@ -26,9 +26,9 @@ function getEndpoint(endpoint: string, name: string): RSAAction<any, any, any> {
       endpoint: apiEndpoint(endpoint),
       method: 'GET',
       types: ['REQUEST', 'SUCCESS', 'FAILURE'].map(
-        type => `POE/${name}_${type}`
-      )
-    }
+        type => `POE/${name}_${type}`,
+      ),
+    },
   } as RSAAction<any, any, any>;
 }
 

@@ -9,5 +9,5 @@ type DispatchProps = PartialProps<typeof ModsComponent, 'onRemoveMod'>;
 
 export const Mods = connect(
   null,
-  modHandles as (dispatch: Dispatch) => DispatchProps
+  modHandles as (dispatch: Dispatch) => DispatchProps,
 )(ModsComponent);

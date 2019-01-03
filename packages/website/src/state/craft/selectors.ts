@@ -23,7 +23,7 @@ export interface AvailableMods {
 const availableMods = (
   item?: Item,
   generator?: Generator<Mod, Item>,
-  whitelist: string[] = []
+  whitelist: string[] = [],
 ): AvailableMods => {
   let prefixes: GeneratorDetails[] = [];
   let suffixes: GeneratorDetails[] = [];
@@ -38,26 +38,26 @@ const availableMods = (
   }
 
   const options = {
-    filter: (details: GeneratorDetails) => !isDisabled(details)
+    filter: (details: GeneratorDetails) => !isDisabled(details),
   };
 
   return {
     prefixes: withSpawnchance(prefixes, options),
     suffixes: withSpawnchance(suffixes, options),
-    implicits: withSpawnchance(implicits, options)
+    implicits: withSpawnchance(implicits, options),
   };
 };
 
 const whitelistedAvailableMods = (whitelist: string[]) => (
   item?: Item,
-  generator?: Generator<Mod, Item>
+  generator?: Generator<Mod, Item>,
 ) => availableMods(item, generator, whitelist);
 
 export const cachedAvailableMods = (whitelist: string[]) =>
   createSelector(
     (state: State) => state.craft.item,
     (state: State) => state.craft.mod_generator,
-    whitelistedAvailableMods(whitelist)
+    whitelistedAvailableMods(whitelist),
   );
 
 export const activeGenerator = (state: State) => {
@@ -77,7 +77,7 @@ export const baseitemInflection = (state: State) => {
 
   if (item != null) {
     return inflectionIdentifier({
-      inflection: messages[`poe.baseitemtypes.${item.baseitem.id}.inflection`]
+      inflection: messages[`poe.baseitemtypes.${item.baseitem.id}.inflection`],
     });
   } else {
     return inflectionIdentifier({});
@@ -93,5 +93,5 @@ export const activeGeneratorApplicableTo = createSelector(
     } else {
       return generator.applicableTo(item);
     }
-  }
+  },
 );

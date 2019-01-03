@@ -29,7 +29,7 @@ export const level: Selector<State, number> = createSelector(
     } else {
       return item.level();
     }
-  }
+  },
 );
 
 export function getTags(state: State): TagProps[] {
@@ -53,8 +53,8 @@ export function editableTagsSelector() {
       return {
         addable: diff(all, [...removable, ...current]),
         removable,
-        current: diff(current, removable)
+        current: diff(current, removable),
       };
-    }
+    },
   );
 }

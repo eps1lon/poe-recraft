@@ -4,7 +4,7 @@ import { BaseitemFilter } from './selectors';
 
 export enum Types {
   SET_FILTER = 'BASEITEMFILTER/SET_FILTER',
-  SET_ITEM_CLASS = 'BASEITEMFILTER/SET_ITEM_CLASS'
+  SET_ITEM_CLASS = 'BASEITEMFILTER/SET_ITEM_CLASS',
 }
 
 export type Action = SetItemClass | SetFilter;
@@ -15,7 +15,7 @@ export interface SetItemClass {
 }
 export const setItemClass = ({ id }: { id: string }) => ({
   type: Types.SET_ITEM_CLASS,
-  payload: id
+  payload: id,
 });
 
 export interface SetFilter {
@@ -24,5 +24,5 @@ export interface SetFilter {
 }
 export const setFilter = (filter: BaseitemFilter) => ({
   type: Types.SET_FILTER,
-  payload: filter
+  payload: filter,
 });

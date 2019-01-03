@@ -3,7 +3,7 @@ import { createItems, createMods } from 'poe-mods';
 import snapshotItem from '../snapshotItem';
 
 const descriptions = {
-  stat_descriptions: require('poe-i18n/locale-data/en/stat_descriptions.json')
+  stat_descriptions: require('poe-i18n/locale-data/en/stat_descriptions.json'),
 };
 const items = createItems(require('poe-mods/data/items.json'));
 const mods = createMods(require('poe-mods/data/mods.json'));

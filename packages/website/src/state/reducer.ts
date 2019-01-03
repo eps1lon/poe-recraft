@@ -19,6 +19,6 @@ const reducer: Reducer<State> = combineReducers({
   craft,
   gui,
   i18n,
-  poe
+  poe,
 });
 export default reducer;

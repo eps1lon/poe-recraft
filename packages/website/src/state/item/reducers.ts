@@ -9,7 +9,7 @@ export const initial: State = undefined;
 
 const reducer: Reducer<State, actions.Action> = (
   state: State = initial,
-  action: actions.Action
+  action: actions.Action,
 ): State => {
   switch (action.type) {
     case actions.Type.SET_ITEM:
@@ -63,7 +63,7 @@ function addModHandle(state: State, action: actions.AddModAction): State {
 
 function removeModHandle(
   item: State,
-  { payload: mod }: actions.RemoveModAction
+  { payload: mod }: actions.RemoveModAction,
 ): State {
   if (item != null) {
     return item.removeMod(mod);
@@ -86,8 +86,8 @@ function addTagHandle(item: State, action: actions.AddTagAction): State {
       ...props,
       baseitem: {
         ...props.baseitem,
-        tags: [...props.baseitem.tags, action.payload]
-      }
+        tags: [...props.baseitem.tags, action.payload],
+      },
     }));
   } else {
     return item;
@@ -100,8 +100,8 @@ function removeTagHandle(item: State, action: actions.RemoveTagAction): State {
       ...props,
       baseitem: {
         ...props.baseitem,
-        tags: props.baseitem.tags.filter(tag => tag !== action.payload)
-      }
+        tags: props.baseitem.tags.filter(tag => tag !== action.payload),
+      },
     }));
   } else {
     return item;
@@ -149,8 +149,8 @@ function setLevelHandle(item: State, action: actions.SetLevelAction): State {
       ...builder,
       props: {
         ...builder.props,
-        item_level: action.payload
-      }
+        item_level: action.payload,
+      },
     };
   });
 }

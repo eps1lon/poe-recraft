@@ -6,7 +6,7 @@ import { craft_selectors } from 'state/selectors';
 
 const mapStateToProsp = (state: State) => {
   return {
-    inflection: craft_selectors.baseitemInflection(state)
+    inflection: craft_selectors.baseitemInflection(state),
   };
 };
 

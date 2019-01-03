@@ -41,7 +41,7 @@ storiesOf('api/body', module)
     <Story
       item={{
         craftedMods: ['I was crafted'],
-        enchantmentMods: ["I was enchanted"],
+        enchantmentMods: ['I was enchanted'],
         explicitMods: ['I was there before'],
         requirements,
       }}
@@ -51,9 +51,9 @@ storiesOf('api/body', module)
     <Story
       item={{
         craftedMods: ['I was crafted'],
-        enchantmentMods: ["I was enchanted"],
+        enchantmentMods: ['I was enchanted'],
         explicitMods: ['I was there before'],
-        implicitMods: ["I am implicit"],
+        implicitMods: ['I am implicit'],
         requirements,
       }}
     />
@@ -62,10 +62,10 @@ storiesOf('api/body', module)
     <Story
       item={{
         craftedMods: ['I was crafted'],
-        enchantmentMods: ["I was enchanted"],
+        enchantmentMods: ['I was enchanted'],
         explicitMods: ['I was there before'],
-        implicitMods: ["I am implicit"],
-        utilityMods: ["I should not be here but they display me anyway"],
+        implicitMods: ['I am implicit'],
+        utilityMods: ['I should not be here but they display me anyway'],
         requirements,
       }}
     />
