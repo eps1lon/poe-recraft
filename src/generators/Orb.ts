@@ -4,13 +4,18 @@ import { Mod } from '../mods';
 import { Flags, anySet } from '../util/Flags';
 import { choose } from '../util/rng';
 
-import Generator, { GeneratorDetails } from './Generator';
+import Generator, {
+  GeneratorDetails,
+  ModApplicableFlag,
+  ModApplicableFlags,
+} from './Generator';
 
 export interface SpawnableFlags extends Flags {
   no_matching_tags: boolean;
   spawnweight_zero: boolean;
 }
 export type SpawnableFlag = keyof SpawnableFlags;
+export { ModApplicableFlag, ModApplicableFlags };
 
 /**
  * @abstract

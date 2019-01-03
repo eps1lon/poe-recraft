@@ -1,7 +1,8 @@
 import Item from '../../containers/item';
 import { Flags } from '../../util/Flags';
 
-import Orb from '../Orb';
+import Orb, { ModApplicableFlags } from '../Orb';
+import { Mod } from '../../mods';
 
 export interface ApplicableFlags extends Flags {
   corrupted: boolean;
@@ -28,5 +29,20 @@ export default abstract class ItemOrb extends Orb<Item> {
     }
 
     return applicable_flags;
+  }
+
+  /**
+   * master mods are not applicable via ItemOrb
+   *
+   * @param mod
+   * @param item
+   */
+  public isModApplicableTo(mod: Mod, item: Item): ModApplicableFlags {
+    const { wrong_domain, ...flags } = super.isModApplicableTo(mod, item);
+
+    return {
+      ...flags,
+      wrong_domain: wrong_domain || mod.props.domain === Mod.DOMAIN.MASTER,
+    };
   }
 }

@@ -5,9 +5,9 @@ import Mod from '../../mods/Mod';
 
 const { craftingbenchoptions, essences, items, mods } = createTables();
 
-// this is a non exhaustive lists of previously generated mods
+// this is a non exhaustive list of previously generated mods
 // this is mainly used to track changes in the behavior
-// this also fails when new mods are add or removed
+// this also fails when new mods are added or removed
 // so failing does not neccessarily mean that something is wrong
 
 const showcase = new ItemShowcase(
