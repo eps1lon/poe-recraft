@@ -1,0 +1,300 @@
+@import './poe/colors.scss';
+
+@font-face {
+  font-family: 'FontinSmallCaps';
+  src: url('./poe/font/fontin-smallcaps-webfont.woff') format('woff');
+}
+
+.poe-item {
+  // body
+  margin: 0;
+  font-weight: normal;
+  font-style: normal;
+  line-height: normal;
+  font-family: FontinSmallCaps, Verdana, Arial, Helvetica, sans-serif;
+  // html has 62.5%, body 1.3em
+  font-size: calc(1.3em * 0.625);
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  color: #7f7f7f;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  min-width: 262.88032px;
+  max-width: 742.39351px;
+
+  &.extended {
+    width: 742px;
+  }
+
+  .separator {
+    height: 7.91075px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .lc {
+    padding: 0px 6.08519px;
+  }
+
+  .lc, .descrText span, .secDescriptionText span {
+    display: inline-block;
+    padding: 0px 10px;
+  }
+
+  header {
+    height: 33px;
+    font-size: 19px;
+    line-height: 1em;
+
+    &.double-line {
+      height: 53px;
+
+      &.elder,
+      &.shaper {
+        .name-left:after,
+        .name-right:after {
+          height: 53px;
+        }
+      }
+
+      .name-left,
+      .name-right {
+        height: 53px;
+        width: 43px;
+      }
+    }
+
+    &.elder,
+    &.shaper {
+      .name-left:after,
+      .name-right:after {
+        width: 26px;
+        height: 33px;
+        content: ' ';
+        display: block;
+        top: 0px;
+        position: absolute;
+        background: none center no-repeat;
+      }
+
+      .name-left:after {
+        left: 2px;
+      }
+
+      .name-right:after {
+        right: 2px;
+      }
+    }
+
+    &.elder {
+      .name-left:after,
+      .name-right:after {
+        background-image: url(./poe/image/ElderItemSymbol.png);
+      }
+    }
+
+    &.shaper {
+      .name-left:after,
+      .name-right:after {
+        background-image: url(./poe/image/ShaperItemSymbol.png);
+      }
+    }
+
+    .name-left,
+    .name-right {
+      display: block;
+      position: absolute;
+      top: 0px;
+      width: 28px;
+      height: 33px;
+    }
+
+    .name-left {
+      left: 0px;
+    }
+
+    .name-right {
+      right: 0px;
+    }
+  }
+
+  &.normal {
+    header {
+      background-image: url(./poe/image/header-normal.png);
+
+      .name-left {
+        background-image: url(./poe/image/header-normal-name-left.png);
+      }
+      .name-right {
+        background-image: url(./poe/image/header-normal-name-right.png);
+      }
+
+      .item-name {
+        color: #c8c8c8;
+
+        .lc {
+          padding: 7.23428px 30px 7.23428px 30px;
+        }
+      }
+    }
+
+    .separator {
+      background-image: url(./poe/image/separator-normal.png);
+    }
+  }
+
+  &.magic {
+    header {
+      background-image: url(./poe/image/header-magic.png);
+
+      .name-left {
+        background-image: url(./poe/image/header-magic-name-left.png);
+      }
+      .name-right {
+        background-image: url(./poe/image/header-magic-name-right.png);
+      }
+
+      .item-name {
+        color: #8888ff;
+
+        .lc {
+          padding: 7.23428px 30px 7.23428px 30px;
+        }
+      }
+    }
+
+    .separator {
+      background-image: url(./poe/image/separator-magic.png);
+    }
+  }
+
+  &.rare {
+    header {
+      background-image: url(./poe/image/header-rare.png);
+
+      &.double-line {
+        background-image: url(./poe/image/header-rare-double.png);
+
+        .item-name .lc {
+          padding: 5.18323px 45px 2.59162px 45px;
+        }
+      }
+
+      .item-name {
+        color: #ffff77;
+
+        .lc {
+          padding: 7.23428px 30px 7.23428px 30px;
+        }
+      }
+
+      .name-left {
+        background-image: url(./poe/image/header-rare-name-left.png);
+      }
+      .name-right {
+        background-image: url(./poe/image/header-rare-name-right.png);
+      }
+    }
+
+    .separator {
+      background-image: url(./poe/image/separator-rare.png);
+    }
+  }
+
+  &.unique {
+    header {
+      background-image: url(./poe/image/header-unique.png);
+
+      &.double-line {
+        background-image: url(./poe/image/header-unique-double.png);
+
+        .item-name .lc {
+          padding: 5.18323px 45px 2.59162px 45px;
+        }
+      }
+
+      .item-name {
+        color: #af6025;
+
+        .lc {
+          padding: 7.23428px 30px 7.23428px 30px;
+        }
+      }
+
+      .name-left {
+        background-image: url(./poe/image/header-unique-name-left.png);
+      }
+      .name-right {
+        background-image: url(./poe/image/header-unique-name-right.png);
+      }
+    }
+
+    .separator {
+      background-image: url(./poe/image/separator-unique.png);
+    }
+  }
+
+  .body {
+    font-size: 110%;
+
+    .simple {
+      color: $property_default;
+    }
+
+    .augmented,
+    .explicitMod,
+    .implicitMod,
+    .utilityMod {
+      color: $property_augmented;
+    }
+    .chaos_damage {
+      color: $property_chaos_damage;
+    }
+    .cold_damage {
+      color: $property_cold_damage;
+    }
+    .fire_damage {
+      color: $property_fire_damage;
+    }
+    .lightning_damage {
+      color: $property_lightning_damage;
+    }
+    .craftedMod {
+      color: $crafted_color;
+    }
+    .enchantmentMod {
+      color: $enchant_color;
+    }
+    .unmet {
+      color: $unmet_color;
+    }
+
+    /* extended */
+    .lc {
+      &.s {
+        position: relative;
+      }
+
+      .prefix {
+        color: $prefix_color;
+      }
+
+      .suffix {
+        color: $suffix_color;
+      }
+
+      &.l, &.r {
+        position: absolute;
+        user-select: none;
+      }
+
+      &.l {
+        left: 0px;
+      }
+
+      &.r {
+        right: 0px;
+      }
+    }
+  }
+}

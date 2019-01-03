@@ -1,0 +1,103 @@
+{
+  "name": "poe-components-item",
+  "version": "0.4.1",
+  "description": "Components for items in Path of Exile",
+  "main": "dist/cjs/index.js",
+  "types": "dist/cjs/index.d.ts",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist/",
+    "src/",
+    "themes/"
+  ],
+  "scripts": {
+    "build": "yarn run build:clean && yarn run build:commonjs && yarn run build:es && yarn run build:css",
+    "build:clean": "rimraf dist",
+    "build:css": "node-sass themes/ --no-recursive -o themes",
+    "build:commonjs": "tsc --project ./tsconfig.build.json --module CommonJS --outDir dist/cjs",
+    "build:es": "tsc --project ./tsconfig.build.json --module ES6 --outDir dist/esm",
+    "build:check": "tsc --watch --noEmit",
+    "clean": "rimraf coverage && yarn run build:clean",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "docs:api": "typedoc src --excludePrivate --mode file --out docs/api",
+    "docs:build": "yarn run docs:api && yarn run docs:components:build",
+    "docs:components:build": "build-storybook -c .storybook/docs -o docs/",
+    "docs:components:watch": "start-storybook -p 9001 -c .storybook/docs",
+    "format": "prettier --write \"{src,stories}/**/*.{js,jsx,ts,tsx}\"",
+    "format:check": "prettier --list-different \"{src,stories}/**/*.{js,jsx,ts,tsx}\"",
+    "lint": "tslint --project tsconfig.json \"{src,stories}/**/*.{js,jsx,ts,tsx}\"",
+    "prepublishOnly": "yarn run build",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "test": "jest --watch",
+    "test:check": "jest --ci",
+    "test:ci": "jest --ci --coverage --runInBand",
+    "test:coverage": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eps1lon/poe-components-item.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eps1lon/poe-components-item/issues"
+  },
+  "author": "Sebastian Silbermann",
+  "license": "MIT",
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "jsx",
+      "tsx"
+    ]
+  },
+  "devDependencies": {
+    "@storybook/addon-info": "^3.3.14",
+    "@storybook/addon-storysource": "^3.4.0-alpha.8",
+    "@storybook/addons": "^3.3.15",
+    "@storybook/react": "^3.3.13",
+    "@types/classnames": "^2.2.3",
+    "@types/jest": "^22.1.2",
+    "@types/node": "^9.4.6",
+    "@types/react": "16.3.14",
+    "@types/react-intl": "^2.3.8",
+    "@types/react-test-renderer": "^16.0.1",
+    "@types/storybook__addon-info": "^3.2.2",
+    "@types/storybook__react": "^3.0.7",
+    "awesome-typescript-loader": "^3.4.1",
+    "babel-core": "^6.26.0",
+    "coveralls": "^3.0.0",
+    "css-loader": "^0.28.9",
+    "jest": "^22.2.2",
+    "node-sass": "^4.7.2",
+    "poe-mods": "^1.12.0",
+    "prettier": "^1.10.2",
+    "react": "16.3.2",
+    "react-docgen-typescript-loader": "^2.1.0",
+    "react-dom": "^16.3.2",
+    "react-test-renderer": "^16.2.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.20.1",
+    "ts-jest": "^22.0.4",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.7.0",
+    "tslint-eslint-rules": "^4.1.1",
+    "tslint-react": "^3.5.1",
+    "typedoc": "^0.10.0",
+    "typescript": "~2.9.2",
+    "webpack": "2.x.x"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "poe-i18n": "^0.12.0",
+    "react-intl": "^2.4.0",
+    "react-string-replace": "^0.4.1",
+    "utility-types": "^2.0.0"
+  },
+  "peerDependencies": {
+    "react": "^16.x.x"
+  }
+}
