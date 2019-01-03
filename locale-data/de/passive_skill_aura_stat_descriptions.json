@@ -8,14 +8,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Ihr und Verbündete im Umkreis verursachen %1%%% erhöhten Schaden",
+          "text": "Ihr und Verbündete im Umkreis verursachen %1%%% erhöhten Schaden",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Ihr und Verbündete im Umkreis verursachen %1%%% verringerten Schaden",
+          "text": "Ihr und Verbündete im Umkreis verursachen %1%%% verringerten Schaden",
           "formatters": [
             {
               "id": "negate",
@@ -30,35 +28,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Ihr und Verbündete im Umkreis haben %1%%% erhöhte Bewegungsgeschwindigkeit",
+          "text": "Ihr und Verbündete im Umkreis haben %1%%% erhöhte Bewegungsgeschwindigkeit",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Ihr und Verbündete im Umkreis verursachen %1%%% verringerte Bewegungsgeschwindigkeit",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "elemental_damage_taken_+%": {
-      "stats": ["elemental_damage_taken_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Gegner im Umkreis erleiden %1%%% erhöhten Elementarschaden",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "Gegner im Umkreis erleiden %1%%% verringerten Elementarschaden",
+          "text": "Ihr und Verbündete im Umkreis verursachen %1%%% verringerte Bewegungsgeschwindigkeit",
           "formatters": [
             {
               "id": "negate",
@@ -73,8 +48,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Gegner im Umkreis haben %1$+d%% Chance, durch Feuerschaden entzündet zu werden",
+          "text": "Gegner im Umkreis haben %1$+d%% Chance, durch Feuerschaden entzündet zu werden",
           "formatters": []
         }
       ]
@@ -84,8 +58,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Gegner im Umkreis haben %1$+d%% Chance, durch Kälteschaden eingefroren zu werden",
+          "text": "Gegner im Umkreis haben %1$+d%% Chance, durch Kälteschaden eingefroren zu werden",
           "formatters": []
         }
       ]
@@ -95,8 +68,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Gegner im Umkreis haben %1$+d%% Chance, durch Blitzschaden geschockt zu werden",
+          "text": "Gegner im Umkreis haben %1$+d%% Chance, durch Blitzschaden geschockt zu werden",
           "formatters": [
             {
               "id": "reminderstring",
@@ -116,14 +88,43 @@
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Gegner im Umkreis verursachen %1%%% weniger Elementarschaden",
+          "text": "Gegner im Umkreis verursachen %1%%% weniger Elementarschaden",
           "formatters": [
             {
               "id": "negate",
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "elemental_damage_taken_+%": {
+      "stats": ["elemental_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Gegner im Umkreis erleiden %1%%% erhöhten Elementarschaden",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Gegner im Umkreis erleiden %1%%% verringerten Elementarschaden",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_cold_damage_resistance_%": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Gegner im Umkreis haben %1$+d%% zu Kältewiderstand",
+          "formatters": []
         }
       ]
     },
@@ -134,6 +135,66 @@
           "matchers": ["#"],
           "text": "Gegner im Umkreis haben %1$+d%% zu Chaoswiderstand",
           "formatters": []
+        }
+      ]
+    },
+    "life_regeneration_rate_+%": {
+      "stats": ["life_regeneration_rate_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Gegner im Umkreis haben %1%%% erhöhte Lebensregenerations-Rate",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Gegner im Umkreis haben %1%%% verringerte Lebensregenerations-Rate",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hit_damage_+%_while_chilled": {
+      "stats": ["hit_damage_+%_while_chilled"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Unterkühlte Gegner im Umkreis verursachen %1%%% erhöhten Schaden mit Treffern",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Unterkühlte Gegner im Umkreis verursachen %1%%% verringerten Schaden mit Treffern",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_over_time_+%_while_hindered": {
+      "stats": ["damage_over_time_+%_while_hindered"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Gelähmte Gegner im Umkreis verursachen %1%%% erhöhten Schaden über Zeit",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Gelähmte Gegner im Umkreis verursachen %1%%% verringerten Schaden über Zeit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     }

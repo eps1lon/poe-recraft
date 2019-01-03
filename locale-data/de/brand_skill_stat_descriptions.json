@@ -1,0 +1,138 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "base_number_of_sigils_allowed_per_target": {
+      "no_description": true,
+      "stats": [],
+      "translations": {}
+    },
+    "base_secondary_duration_identifier": {
+      "stats": ["base_secondary_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Kann für eine Gesamtdauer von %1% Sekunden losgelöst sein",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_duration_identifier": {
+      "stats": ["base_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Kann für eine Gesamtdauer von %1% Sekunden angeheftet sein",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "storm_brand_beam_num": {
+      "stats": ["conduit_sigil_number_of_beam_targets"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Schickt Blitzschläge auf den gezeichneten Gegner",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Schickt Blitzschläge auf %1% Gegner, inklusive dem gezeichneten Gegner",
+          "formatters": []
+        }
+      ]
+    },
+    "sigil_target_search_range_modifier": {
+      "stats": ["sigil_target_search_range_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% erhöhte Anheftungsreichweite",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verringerte Anheftungsreichweite",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "secondary_skill_duration": {
+      "stats": ["secondary_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Kann für eine Gesamtdauer von %1% Sekunden losgelöst sein",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "sigil_attached_target_damage_final": {
+      "stats": ["sigil_attached_target_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Verursacht %1%%% mehr Schaden am gezeichneten Gegner",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Verursacht %1%%% weniger Schaden am gezeichneten Gegner",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "sigil_activate_frequency": {
+      "stats": ["sigil_repeat_frequency_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Löst jede %1% Sekunde aus, während es angeheftet ist",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Löst alle %1% Sekunden aus, während es angeheftet ist",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

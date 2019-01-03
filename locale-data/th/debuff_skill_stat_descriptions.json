@@ -4,6 +4,18 @@
     "hasIdentifiers": false
   },
   "data": {
+    "soul_prevention_buff_duration": {
+      "stats": [
+        "modifiers_to_buff_effect_duration_also_affect_soul_prevention_duration"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ม็อดที่ส่งผลต่อระยะเวลาดีบัฟ มีผลต่อ ระยะเวลาของสถานะห้ามเก็บ Soul ด้วย",
+          "formatters": []
+        }
+      ]
+    },
     "buff_duration": {
       "stats": ["buff_effect_duration"],
       "translations": [
@@ -149,6 +161,26 @@
         {
           "matchers": [["#", -1]],
           "text": "ศัตรูโดนกับดักหรือกับระเบิดเบาลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bear_trap_slow": {
+      "stats": ["bear_trap_movement_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ศัตรูเดินเร็วขึ้น %1%%% เมื่อเริ่มดีบัฟ",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ศัตรูเดินช้าลง %1%%% เมื่อเริ่มดีบัฟ",
           "formatters": [
             {
               "id": "negate",

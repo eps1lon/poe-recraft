@@ -25,8 +25,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text":
-            "เพิ่ม %1% ถึง %2% ให้ค่าโจมตีภายภาพต่อค่าป้องกันหรือค่าหลบหลีกของโล่ทุกๆ 15 แต้ม",
+          "text": "เพิ่ม %1% ถึง %2% ให้ค่าโจมตีภายภาพต่อค่าป้องกันหรือค่าหลบหลีกของโล่ทุกๆ 15 แต้ม",
           "formatters": []
         }
       ]
@@ -54,7 +53,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "เพิ่มความเสียหายกายภาพ %1% ถึง %2%",
+          "text": "เสริมความเสียหาย กายภาพ %1% ถึง %2%",
           "formatters": []
         }
       ]
@@ -67,7 +66,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "เพิ่มความเสียหายไฟ %1% ถึง %2%",
+          "text": "เสริมความเสียหาย ไฟ %1% ถึง %2%",
           "formatters": []
         }
       ]
@@ -80,7 +79,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "เพิ่มความเสียหายน้ำแข็ง %1% ถึง %2%",
+          "text": "เสริมความเสียหาย น้ำแข็ง %1% ถึง %2%",
           "formatters": []
         }
       ]
@@ -93,7 +92,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "เพิ่มความเสียหายสายฟ้า %1% ถึง %2%",
+          "text": "เสริมความเสียหาย ไฟฟ้า %1% ถึง %2%",
           "formatters": []
         }
       ]
@@ -106,8 +105,23 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "เพิ่มความเสียหายเคออส %1% ถึง %2%",
+          "text": "เสริมความเสียหาย เคออส %1% ถึง %2%",
           "formatters": []
+        }
+      ]
+    },
+    "active_skill_attack_damage_final_permyriad": {
+      "stats": ["active_skill_attack_damage_final_permyriad"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "สร้างความเสียหาย %1%%% ของพลังโจมตีพื้นฐาน",
+          "formatters": [
+            {
+              "id": "multiplicative_permyriad_damage_modifier",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -161,8 +175,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "เมื่อถืออาวุธคู่，สร้างความเสียหาย %1%%% รวมจากแต่ละข้างของอาวุธ",
+          "text": "เมื่อถืออาวุธคู่，สร้างความเสียหาย %1%%% รวมจากแต่ละข้างของอาวุธ",
           "formatters": [
             {
               "id": "multiplicative_damage_modifier",
@@ -187,17 +200,32 @@
         }
       ]
     },
+    "active_skill_minion_physical_damage_+%_final": {
+      "stats": ["active_skill_minion_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "มิเนียนสร้างความเสียหาย %1%%% ของความเสียหาย กายภาพ",
+          "formatters": [
+            {
+              "id": "multiplicative_damage_modifier",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "physical_damage_+%_per_frenzy_charge": {
       "stats": ["physical_damage_+%_per_frenzy_charge"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "เพิ่มความเสียหายกายภาพต่อ Frenzy Charge %1%%%",
+          "text": "เพิ่มความเสียหาย กายภาพ %1%%% ต่อหนึ่ง Frenzy Charge",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "ลดความเสียหายกายภาพต่อ Frenzy Charge %1%%%",
+          "text": "ลดความเสียหาย กายภาพ %1%%% ต่อหนึ่ง Frenzy Charge",
           "formatters": [
             {
               "id": "negate",
@@ -252,32 +280,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "เพิ่มออร่า Area of Effect %1%%%",
+          "text": "เพิ่มพื้นที่ส่งผลของออร่าขึ้น %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "ลดออร่า Area of Effect %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "buff_duration_+%": {
-      "stats": ["buff_duration_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "เพิ่มระยะเวลาของ Buff และ Debuff %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "ลดระยะเวลาของ Buff และ Debuff %1%%%",
+          "text": "ลดพื้นที่ส่งผลของออร่าลง %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -292,12 +300,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "การแสดงผลของออร่าเพิ่มขึ้น %1%%%",
+          "text": "เพิ่มผลของ ออร่า %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "การแสดงผลของออร่าลดลง %1%%%",
+          "text": "ลดผลของ ออร่า %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -322,6 +330,21 @@
         }
       ]
     },
+    "base_secondary_skill_effect_duration": {
+      "stats": ["base_secondary_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ระยะเวลาพื้นฐานระดับรองคือ %1% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "offering_skill_effect_duration_per_corpse": {
       "stats": ["offering_skill_effect_duration_per_corpse"],
       "translations": [
@@ -337,15 +360,35 @@
         }
       ]
     },
-    "base_buff_duration_ms_+_per_endurance_charge": {
-      "stats": ["base_buff_duration_ms_+_per_endurance_charge"],
+    "base_buff_duration_ms_+_per_removable_endurance_charge": {
+      "stats": ["base_buff_duration_ms_+_per_removable_endurance_charge"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "เพิ่มระยะเวลาต่อ %1% วินาทีต่อ Endurance Charge ",
+          "text": "ระยะเวลาของบัฟ %1$+d วินาที ต่อจำนวน Endurance Charge ที่เสียไป",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "buff_duration_+%": {
+      "stats": ["buff_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มระยะเวลาของ Buff และ Debuff %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดระยะเวลาของ Buff และ Debuff %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
               "arg": 1
             }
           ]
@@ -382,21 +425,6 @@
         }
       ]
     },
-    "active_skill_attack_damage_final_permyriad": {
-      "stats": ["active_skill_attack_damage_final_permyriad"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "สร้างความเสียหาย %1%%% ของพลังโจมตีพื้นฐาน",
-          "formatters": [
-            {
-              "id": "multiplicative_permyriad_damage_modifier",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "base_spell_repeat_count": {
       "stats": ["base_spell_repeat_count"],
       "translations": [
@@ -409,21 +437,6 @@
           "matchers": [[2, "#"]],
           "text": "ใช้เวทย์ซ้ำ %1% ครั้ง",
           "formatters": []
-        }
-      ]
-    },
-    "base_secondary_skill_effect_duration": {
-      "stats": ["base_secondary_skill_effect_duration"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "ระยะเวลาพื้นฐานระดับรองคือ %1% วินาที",
-          "formatters": [
-            {
-              "id": "milliseconds_to_seconds_2dp",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -442,12 +455,22 @@
         }
       ]
     },
+    "base_number_of_totems_allowed": {
+      "stats": ["base_number_of_totems_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "จำนวนโทเทมสูงสุด %1$+d",
+          "formatters": []
+        }
+      ]
+    },
     "accuracy_rating": {
       "stats": ["accuracy_rating"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "เพิ่มอัตราความแม่นยำขึ้น %1$+d",
+          "text": "ค่า ความแม่นยำ %1$+d",
           "formatters": []
         }
       ]
@@ -472,26 +495,6 @@
         }
       ]
     },
-    "active_skill_if_used_through_frostbolt_damage_+%_final": {
-      "stats": ["active_skill_if_used_through_frostbolt_damage_+%_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "ถ้าร่ายซ้ำต่อจาก Frostbolt จะเพิ่มความเสียหายอีก %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "ถ้าร่ายซ้ำต่อจาก Frostbolt จะลดความเสียหายลง %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "additional_base_critical_strike_chance": {
       "stats": ["additional_base_critical_strike_chance"],
       "translations": [
@@ -504,6 +507,33 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "additional_weapon_base_attack_time_ms": {
+      "stats": ["additional_weapon_base_attack_time_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ระยะเวลาโจมตี %1$+d วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp_if_required",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "additive_cast_speed_modifiers_apply_to_sigil_repeat_frequency": {
+      "stats": [
+        "additive_cast_speed_modifiers_apply_to_sigil_repeat_frequency"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ม็อดที่ส่งผลต่อ ความเร็วในการร่าย จะส่งผลต่อความถี่ในการทำงานของสกิลนี้ด้วย",
+          "formatters": []
         }
       ]
     },
@@ -532,12 +562,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "เพิ่ม Area of Effect %1%%%  ขณะเสียชีวิต",
+          "text": "เพิ่มพื้นที่ส่งผลขึ้น %1%%% ขณะตาย",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "ลด Area of Effect %1%%% ขณะเสียชีวิต",
+          "text": "ลดพื้นที่ส่งผลลง %1%%% ขณะตาย",
           "formatters": [
             {
               "id": "negate",
@@ -549,6 +579,26 @@
     },
     "attack_speed_+%": {
       "stats": ["attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มความเร็วในการโจมตีขึ้น %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดความเร็วในการโจมตีลง %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "attack_speed_+%_granted_from_skill": {
+      "stats": ["attack_speed_+%_granted_from_skill"],
       "translations": [
         {
           "matchers": [[1, "#"]],
@@ -692,7 +742,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "%1$+d%% ให้กับ Critical Strike Multiplier",
+          "text": "ตัวคูณคริติคอล %1$+d%%",
           "formatters": []
         }
       ]
@@ -797,12 +847,32 @@
         }
       ]
     },
+    "base_number_of_champions_of_light_allowed": {
+      "stats": ["base_number_of_champions_of_light_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "มี Sentinel of Purity ได้สูงสุด %1% ตัว",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_relics_allowed": {
+      "stats": ["base_number_of_relics_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "มี Holy Relic ได้สูงสุด %1% ตัว",
+          "formatters": []
+        }
+      ]
+    },
     "base_physical_damage_%_to_convert_to_lightning": {
       "stats": ["base_physical_damage_%_to_convert_to_lightning"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "เปลี่ยนความเสียหายทางกายภาพ %1%%% เป็นความเสียหายทางสายฟ้า",
+          "text": "เปลี่ยนความเสียหาย กายภาพ %1%%% เป็นความเสียหาย ไฟฟ้า",
           "formatters": []
         }
       ]
@@ -872,17 +942,32 @@
         }
       ]
     },
+    "base_sigil_repeat_frequency_ms": {
+      "stats": ["base_sigil_repeat_frequency_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ทำงานทุก %1% วินาที ขณะเกาะอยู่",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "base_skill_area_of_effect_+%": {
       "stats": ["base_skill_area_of_effect_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "เพิ่ม Area of Effect %1%%% ",
+          "text": "เพิ่มพื้นที่ส่งผลขึ้น %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "ลด Area of Effect %1%%% ",
+          "text": "ลดพื้นที่ส่งผลลง %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -897,12 +982,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "เพิ่มเวลาศัตรูติดมึน %1%%%",
+          "text": "เพิ่มระยะเวลา มึนงง ของศัตรู %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "ลดเวลาศัตรูติดมึน %1%%%",
+          "text": "ลดระยะเวลา มึนงง ของศัตรู %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -987,8 +1072,7 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text":
-            "โอกาส %1%%% ที่จะได้รับ Frenzy Charge เมื่อสังหารศัตรูที่ถูกแช่แข็ง",
+          "text": "โอกาส %1%%% ที่จะได้รับ Frenzy Charge เมื่อสังหารศัตรูที่ถูกแช่แข็ง",
           "formatters": []
         },
         {
@@ -1003,12 +1087,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "เพิ่มความเสียหายทางคาออสขึ้น %1%%%",
+          "text": "เพิ่มความเสียหาย เคออส %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "ลดความเสียหายทางคาออสลง %1%%%",
+          "text": "ลดความเสียหาย เคออส %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1063,8 +1147,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "ได้รับ %1%%% ของความเสียหายทางน้ำแข็งไปเป็นความเสียหายพิเศษทางไฟ",
+          "text": "สร้าง %1%%% ของความเสียหายน้ำแข็งไปเป็นไฟ",
           "formatters": []
         }
       ]
@@ -1074,12 +1157,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "เพิ่มความเสียหายทางน้ำแข็งขึ้น %1%%%",
+          "text": "เพิ่มความเสียหาย น้ำแข็ง %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "ลดความเสียหายทางน้ำแข็งลง %1%%%",
+          "text": "ลดความเสียหาย น้ำแข็ง %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1184,12 +1267,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "เพิ่มความเสียหายทางธาตุขึ้น %1%%%",
+          "text": "เพิ่มความเสียหาย ธาตุ %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "ลดความเสียหายทางธาตุลง %1%%%",
+          "text": "ลดความเสียหาย ธาตุ %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1204,7 +1287,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "เพิ่มความเสียหายทางไฟขึ้น %1%%%",
+          "text": "เพิ่มความเสียหาย ไฟ %1%%%",
           "formatters": []
         },
         {
@@ -1333,7 +1416,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "ดูด %1%%% ของความเสียหายไปเป็นพลังชีวิต",
+          "text": "ดูด %1%%% ของความเสียหายไปเป็น พลังชีวิต",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -1381,12 +1464,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "เพิ่มความเสียหายทางสายฟ้าขึ้น %1%%%",
+          "text": "เพิ่มความเสียหาย ไฟฟ้า %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "ลดความเสียหายทางสายฟ้าลง %1%%%",
+          "text": "ลดความเสียหาย ไฟฟ้า %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1416,7 +1499,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "ดูด %1%%% ของความเสียหายไปเป็นมานา",
+          "text": "ดูด %1%%% ของความเสียหายไปเป็น มานา",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -1464,14 +1547,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "เพิ่มความเสียหายประชิดขึ้น %1%%% เมื่อสู้กับศัตรูที่ติดสถานะเลือดออก",
+          "text": "เพิ่มความเสียหายประชิดขึ้น %1%%% เมื่อสู้กับศัตรูที่ติดสถานะเลือดออก",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "ลดความเสียหายประชิดลง %1%%% เมื่อสู้กับศัตรูที่ติดสถานะเลือดออก",
+          "text": "ลดความเสียหายประชิดลง %1%%% เมื่อสู้กับศัตรูที่ติดสถานะเลือดออก",
           "formatters": [
             {
               "id": "negate",
@@ -1486,12 +1567,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "เพิ่มความเสียหายทางกายภาพระยะประชิดขึ้น %1%%%",
+          "text": "เพิ่มความเสียหาย กายภาพ ประชิด %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "ลดความเสียหายทางกายภาพระยะประชิดลง %1%%%",
+          "text": "ลดความเสียหาย กายภาพ ประชิด %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1585,23 +1666,18 @@
       "stats": ["number_of_additional_projectiles"],
       "translations": [
         {
-          "matchers": [1],
-          "text": "ยิงอาวุธเพิ่มอีกลูก",
-          "formatters": []
-        },
-        {
-          "matchers": [[2, "#"]],
-          "text": "ยิงอาวุธเพิ่มอีก %1% ลูก",
+          "matchers": ["#"],
+          "text": "ยิงกระสุนเพิ่มขึ้น %1% ลูก",
           "formatters": []
         }
       ]
     },
-    "number_of_additional_projectiles_in_chain": {
-      "stats": ["number_of_additional_projectiles_in_chain"],
+    "number_of_chains": {
+      "stats": ["number_of_chains"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "เกิดภาวะลูกโซ่ %1$+d ครั้ง",
+          "text": "ชิ่ง %1$+d ครั้ง",
           "formatters": []
         }
       ]
@@ -1711,8 +1787,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "ได้รับ %1%%% ของความเสียหายทางกายภาพไปเป็นความเสียหายพิเศษทางไฟ",
+          "text": "สร้าง %1%%% ของความเสียหายกายภาพไปเป็นไฟ",
           "formatters": []
         }
       ]
@@ -1722,8 +1797,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "ได้รับ %1%%% ของความเสียหายทางกายภาพไปเป็นความเสียหายพิเศษทางสายฟ้า",
+          "text": "สร้าง %1%%% ของความเสียหายกายภาพไปเป็นไฟฟ้า",
           "formatters": []
         }
       ]
@@ -1733,12 +1807,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "เพิ่มความเสียหายทางกายภาพขึ้น %1%%%",
+          "text": "เพิ่มความเสียหาย กายภาพ %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "ลดความเสียหายทางกายภาพลง %1%%%",
+          "text": "ลดความเสียหาย กายภาพ %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1863,7 +1937,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "ลดโอกาสของศัตรูที่จะหลบได้ลง %1%%%",
+          "text": "ลดโอกาสหลีกเลี่ยงของศัตรูลง %1%%%",
           "formatters": []
         }
       ]
@@ -1923,7 +1997,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "เปลี่ยนความเสียหายทางกายภาพ %1%%% เป็นความเสียหายทางสายฟ้า",
+          "text": "เปลี่ยนความเสียหาย กายภาพ %1%%% เป็นความเสียหาย ไฟฟ้า",
           "formatters": []
         }
       ]
@@ -1933,18 +2007,28 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "เพิ่มความเสียหายทางเวทย์ขึ้น %1%%%",
+          "text": "เพิ่มความเสียหาย เวทย์ %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "ลดความเสียหายทางเวทย์ลง %1%%%",
+          "text": "ลดความเสียหาย เวทย์ %1%%%",
           "formatters": [
             {
               "id": "negate",
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "static_strike_number_of_beam_targets": {
+      "stats": ["static_strike_number_of_beam_targets"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ลำแสงมีเป้าหมายสูงสุด %1% เป้าหมาย",
+          "formatters": []
         }
       ]
     },

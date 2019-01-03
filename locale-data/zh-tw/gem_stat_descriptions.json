@@ -413,12 +413,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "輔助的技能增加 %1%%% 光環範圍",
+          "text": "輔助的技能增加 %1%%% 光環範圍效果",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "輔助的技能減少 %1%%% 光環範圍",
+          "text": "輔助的技能減少 %1%%% 光環範圍效果",
           "formatters": [
             {
               "id": "negate",
@@ -513,8 +513,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "被輔助的投射物攻擊非常近的的目標時造成 50%% 更多傷害，但在攻擊較遠的目標時造成較少傷害",
+          "text": "被輔助的投射物攻擊非常近的的目標時造成 50%% 更多傷害，但在攻擊較遠的目標時造成較少傷害",
           "formatters": []
         }
       ]
@@ -644,7 +643,17 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "同時間最多能擁有 %1% 個圖騰",
+          "text": "被輔助的技能 %1$+d 召喚圖騰最大數量",
+          "formatters": []
+        }
+      ]
+    },
+    "summon_2_totems": {
+      "stats": ["summon_2_totems"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被輔助的技能召喚 2 個圖騰，而不是 1 個",
           "formatters": []
         }
       ]
@@ -809,8 +818,8 @@
         }
       ]
     },
-    "number_of_additional_projectiles_in_chain": {
-      "stats": ["number_of_additional_projectiles_in_chain"],
+    "number_of_chains": {
+      "stats": ["number_of_chains"],
       "translations": [
         {
           "matchers": ["#"],
@@ -947,14 +956,12 @@
       "translations": [
         {
           "matchers": [[1, "#"], "#"],
-          "text":
-            "被輔助的技能依據敵人身上每層中毒造成 %1%%% 更多傷害，至多 %2%",
+          "text": "被輔助的技能依據敵人身上每層中毒造成 %1%%% 更多傷害，至多 %2%",
           "formatters": []
         },
         {
           "matchers": [["#", -1], "#"],
-          "text":
-            "被輔助的技能依據敵人身上每層中毒造成 %1%%% 更少傷害，至多 %2%",
+          "text": "被輔助的技能依據敵人身上每層中毒造成 %1%%% 更少傷害，至多 %2%",
           "formatters": [
             {
               "id": "negate",
@@ -1124,12 +1131,32 @@
         }
       ]
     },
+    "support_additional_totem_damage_+%_final": {
+      "stats": ["support_additional_totem_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被輔助的技能造成 %1%%% 更多傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被輔助的技能造成 %1%%% 更少傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_better_ailments_ailment_damage_+%_final": {
       "stats": ["support_better_ailments_ailment_damage_+%_final"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被輔助的技能對異常狀態敵人造成 %1%%% 更多傷害",
+          "text": "被輔助的技能對敵人造成 %1%%% 更多異常狀態傷害",
           "formatters": [
             {
               "id": "reminderstring",
@@ -1139,7 +1166,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text": "被輔助的技能對異常狀態敵人造成 %1%%% 更少傷害",
+          "text": "被輔助的技能對敵人造成 %1%%% 更少異常狀態傷害",
           "formatters": [
             {
               "id": "negate",
@@ -1606,8 +1633,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "當你被暈眩或格擋暈眩一擊時，有 %1%%% 機率觸發\\n被輔助的技能",
+          "text": "當你被暈眩或格擋暈眩一擊時，有 %1%%% 機率觸發\\n被輔助的技能",
           "formatters": []
         }
       ]
@@ -1908,6 +1934,31 @@
         }
       ]
     },
+    "withered_on_hit_chance_%": {
+      "stats": ["withered_on_hit_chance_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "被輔助的技能擊中有 %1%%% 機率造成凋零",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextWithered"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "被輔助的技能擊中造成凋零",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextWithered"
+            }
+          ]
+        }
+      ]
+    },
     "cannot_inflict_status_ailments": {
       "stats": ["cannot_inflict_status_ailments"],
       "translations": [
@@ -1957,8 +2008,7 @@
       "translations": [
         {
           "matchers": ["#", "#", "#"],
-          "text":
-            "秘能波動造成 %1%%% 更多法術傷害\\n秘能波動增加 %2%%% 施放速度\\n秘能波動給予 %3%%% 每秒最大魔力回復",
+          "text": "秘能波動造成 %1%%% 更多法術傷害\\n秘能波動增加 %2%%% 施放速度\\n秘能波動給予 %3%%% 每秒最大魔力回復",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -1988,6 +2038,64 @@
             {
               "id": "milliseconds_to_seconds",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_withered_base_duration_ms": {
+      "stats": ["support_withered_base_duration_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "凋零持續 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "凋零持續 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "active_skill_withered_base_duration_ms": {
+      "stats": ["active_skill_withered_base_duration_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "凋零持續 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextWithered"
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "凋零持續 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextWithered"
             }
           ]
         }
@@ -2093,8 +2201,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "殘暴之擊被技能輔助時，造成 %1%%% 更多近戰擊中時造成的流血傷害",
+          "text": "殘暴之擊被技能輔助時，造成 %1%%% 更多近戰擊中時造成的流血傷害",
           "formatters": []
         }
       ]
@@ -2119,15 +2226,147 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text":
-            "當被輔助的技能或被輔助的非幻影召喚物擊殺敵人時，有 %1%%% 機率召喚 1 個幻影",
+          "text": "當被輔助的技能或被輔助的非幻影召喚物擊殺敵人時，有 %1%%% 機率召喚 1 個幻影",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text":
-            "當被輔助的技能或被輔助的非幻影召喚物擊殺敵人時，召喚 1 個幻影",
+          "text": "當被輔助的技能或被輔助的非幻影召喚物擊殺敵人時，召喚 1 個幻影",
           "formatters": []
+        }
+      ]
+    },
+    "chill_effect_+%": {
+      "stats": ["chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被輔助的技能對敵人增加 %1%%% 冰緩效果",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被輔助的技能對敵人減少 %1%%% 冰緩效果",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chill_duration_+%": {
+      "stats": ["chill_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被輔助的技能增加 %1%%% 敵人冰緩時間",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被輔助的技能減少 %1%%% 敵人冰緩時間",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_chills_also_grant_cold_damage_taken_per_minute_+%": {
+      "stats": ["support_chills_also_grant_cold_damage_taken_per_minute_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被輔助技能冰緩的敵人，增加 %1%%% 承受冰冷持續傷害",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChill"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被輔助技能冰緩的敵人，減少 %1%%% 承受冰冷持續傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChill"
+            }
+          ]
+        }
+      ]
+    },
+    "support_chills_also_grant_cold_damage_taken_+%_equal_to_slow_amount": {
+      "stats": [
+        "support_chills_also_grant_cold_damage_taken_+%_equal_to_slow_amount"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被輔助技能冰緩的敵人，隨著冰緩效果而增加承受冰冷傷害",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChill"
+            }
+          ]
+        }
+      ]
+    },
+    "support_chilling_areas_also_grant_cold_damage_taken_per_minute_+%": {
+      "stats": [
+        "support_chilling_areas_also_grant_cold_damage_taken_per_minute_+%"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "敵人在被輔助技能製造的冰緩範圍內，增加 %1%%% 承受冰冷持續傷害",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChillingArea"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "敵人在被輔助技能製造的冰緩範圍內，減少 %1%%% 承受冰冷持續傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChillingArea"
+            }
+          ]
+        }
+      ]
+    },
+    "support_chilling_areas_also_grant_cold_damage_taken_+%_equal_to_slow_amount": {
+      "stats": [
+        "support_chilling_areas_also_grant_cold_damage_taken_+%_equal_to_slow_amount"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "敵人在被輔助技能製造的冰緩範圍內，隨著冰緩效果而增加承受冰冷傷害",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChillingArea"
+            }
+          ]
         }
       ]
     },
@@ -2203,6 +2442,18 @@
               "arg": "ReminderTextFreeze"
             }
           ]
+        }
+      ]
+    },
+    "apply_overpowered_on_enemy_block_reduced_block_and_spell_block_%": {
+      "stats": [
+        "apply_overpowered_on_enemy_block_reduced_block_and_spell_block_%"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "壓制造成 -%1%%% 格擋攻擊和法術傷害率",
+          "formatters": []
         }
       ]
     },
@@ -2553,6 +2804,16 @@
         }
       ]
     },
+    "base_skill_is_instant": {
+      "stats": ["base_skill_is_instant"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "立即使用被輔助的技能",
+          "formatters": []
+        }
+      ]
+    },
     "base_stun_duration_+%": {
       "stats": ["base_stun_duration_+%"],
       "translations": [
@@ -2701,7 +2962,8 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextFortify"
-            }
+            },
+            "canonical_line"
           ]
         }
       ]
@@ -2711,12 +2973,12 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text": "被輔助的技能擊殺冰凍的敵人時，有 %1%%% 機率獲得狂怒球",
+          "text": "被輔助的技能擊殺冰凍的敵人時，有 %1%%% 機率獲得 1 顆狂怒球",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text": "被輔助的技能擊殺冰凍的敵人時獲得狂怒球",
+          "text": "被輔助的技能擊殺冰凍的敵人時獲得 1 顆狂怒球",
           "formatters": []
         }
       ]
@@ -2732,46 +2994,6 @@
         {
           "matchers": [["#", -1]],
           "text": "被輔助的技能減少 %1%%% 混沌傷害",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "chill_duration_+%": {
-      "stats": ["chill_duration_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "被輔助的技能增加 %1%%% 敵人冰緩時間",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "被輔助的技能減少 %1%%% 敵人冰緩時間",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "chill_effect_+%": {
-      "stats": ["chill_effect_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "被輔助的技能對敵人增加 %1%%% 冰緩效果",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "被輔助的技能對敵人減少 %1%%% 冰緩效果",
           "formatters": [
             {
               "id": "negate",
@@ -2802,6 +3024,26 @@
         {
           "matchers": [["#", -1]],
           "text": "被輔助的技能減少 %1%%% 冰冷傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "curse_area_of_effect_+%": {
+      "stats": ["curse_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "增加 %1%%% 被輔助詛咒技能的範圍效果",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "減少 %1%%% 被輔助詛咒技能的範圍效",
           "formatters": [
             {
               "id": "negate",
@@ -2876,8 +3118,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "被輔助的技能擊中時造成腐化，每秒造成 %1% 混沌傷害，持續 8 秒",
+          "text": "被輔助的技能擊中時造成腐化，每秒造成 %1% 混沌傷害，持續 8 秒",
           "formatters": []
         }
       ]
@@ -2982,11 +3223,24 @@
       ]
     },
     "gain_endurance_charge_on_melee_stun": {
-      "stats": ["gain_endurance_charge_on_melee_stun"],
+      "stats": [
+        "gain_endurance_charge_on_melee_stun",
+        "gain_endurance_charge_on_melee_stun_%"
+      ],
       "translations": [
         {
-          "matchers": ["#"],
-          "text": "被輔助的技能使用近戰傷害暈眩敵人時，你會獲得一個耐力球",
+          "matchers": [0, [0, 99]],
+          "text": "當你使用被輔助的技能近戰擊中暈眩敵人時，有 %2%%% 機率獲得 1 顆耐力球",
+          "formatters": []
+        },
+        {
+          "matchers": [0, [100, "#"]],
+          "text": "當你使用被輔助的技能近戰擊中暈眩敵人時，獲得 1 顆耐力球",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#"],
+          "text": "當你使用被輔助的技能近戰擊中暈眩敵人時，獲得 1 顆耐力球",
           "formatters": []
         }
       ]
@@ -2996,8 +3250,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "被輔助的技能擊中時獲得 1 個瓦爾靈魂\\n你每 %1% 秒只能恢復 1 個靈魂",
+          "text": "被輔助的技能擊中時獲得 1 個瓦爾靈魂\\n你每 %1% 秒只能恢復 1 個靈魂",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -3373,12 +3626,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被輔助的技能有 %1%%% 更大近戰擴散範圍",
+          "text": "被輔助的技能有 %1%%% 更大近戰擴散範圍效果",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被輔助的技能有 %1%%% 較小近戰擴散範圍",
+          "text": "被輔助的技能有 %1%%% 較小近戰擴散範圍效果",
           "formatters": [
             {
               "id": "negate",
@@ -3546,12 +3799,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被輔助的非詛咒光環技能增加 %1%%% 效果",
+          "text": "被輔助的技能為非詛咒光環增加 %1%%% 效果",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被輔助的非詛咒光環技能減少 %1%%% 效果",
+          "text": "被輔助的技能為非詛咒光環減少 %1%%% 效果",
           "formatters": [
             {
               "id": "negate",
@@ -3674,8 +3927,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "當你的陷阱被敵人觸發時，被輔助的技能有 %1%%% 機率獲得 1 顆狂怒球",
+          "text": "當你的陷阱被敵人觸發時，被輔助的技能有 %1%%% 機率獲得 1 顆狂怒球",
           "formatters": []
         },
         {
@@ -3690,13 +3942,22 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "當你的陷阱被敵人觸發時，被輔助的技能有 %1%%% 機率獲得 1 顆暴擊球",
+          "text": "當你的陷阱被敵人觸發時，被輔助的技能有 %1%%% 機率獲得 1 顆暴擊球",
           "formatters": []
         },
         {
           "matchers": [100],
           "text": "當你的陷阱被敵人觸發時，被輔助的技能獲得 1 顆暴擊球",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_%_to_add_as_chaos": {
+      "stats": ["physical_damage_%_to_add_as_chaos"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被輔助的技能獲得 %1%%% 物理傷害的額外混沌傷害",
           "formatters": []
         }
       ]
@@ -3905,8 +4166,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "當你被輔助技能的箭矢擊中敵人時，召喚一個也會使用該技能的幻影射手",
+          "text": "當你被輔助技能的箭矢擊中敵人時，召喚一個也會使用該技能的幻影射手",
           "formatters": []
         }
       ]
@@ -3946,6 +4206,26 @@
         }
       ]
     },
+    "support_chaos_attacks_damage_+%_final": {
+      "stats": ["support_chaos_attacks_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被輔助的技能造成 %1%%% 更多混沌傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被輔助的技能造成 %1%%% 更少混沌傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_clustertrap_damage_+%_final": {
       "stats": ["support_clustertrap_damage_+%_final"],
       "translations": [
@@ -3975,6 +4255,26 @@
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_greater_volley_projectile_damage_+%_final": {
+      "stats": ["support_greater_volley_projectile_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被輔助的技能造成 %1%%% 更多投射物傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被輔助的技能造成 %1%%% 更少投射物傷害",
+          "formatters": [
+            {
+              "id": "negate",
               "arg": 1
             }
           ]
@@ -4055,12 +4355,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被輔助的技能造成 %1%%% 更多地雷傷害",
+          "text": "被輔助的技能造成 %1%%% 更多傷害",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被輔助的技能造成 %1%%% 更少地雷傷害",
+          "text": "被輔助的技能造成 %1%%% 更少傷害",
           "formatters": [
             {
               "id": "negate",
@@ -4183,6 +4483,25 @@
         }
       ]
     },
+    "support_overpowered_base_duration_ms": {
+      "stats": ["support_overpowered_base_duration_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "格擋時造成 %1% 秒壓制",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextOverpowered"
+            }
+          ]
+        }
+      ]
+    },
     "support_parallel_projectile_number_of_points_per_side": {
       "stats": ["support_parallel_projectile_number_of_points_per_side"],
       "translations": [
@@ -4218,6 +4537,72 @@
         }
       ]
     },
+    "support_phys_chaos_projectile_chaos_damage_over_time_+%_final": {
+      "stats": [
+        "support_phys_chaos_projectile_chaos_damage_over_time_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被輔助的技能造成 %1%%% 更多混沌持續傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被輔助的技能造成 %1%%% 更少混沌持續傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_phys_chaos_projectile_physical_damage_over_time_+%_final": {
+      "stats": [
+        "support_phys_chaos_projectile_physical_damage_over_time_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被輔助的技能造成 %1%%% 更多物理持續傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被輔助的技能造成 %1%%% 更少物理持續傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_phys_chaos_projectile_spell_physical_projectile_damage_+%_final": {
+      "stats": [
+        "support_phys_chaos_projectile_spell_physical_projectile_damage_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被輔助的技能造成 %1%%% 更多物理投射物法術傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被輔助的技能造成 %1%%% 更少物理投射物法術傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_phys_proj_attack_damage_bleeing_and_poison_damage_+%_final_from_projectile_hits": {
       "stats": [
         "support_phys_proj_attack_damage_bleeing_and_poison_damage_+%_final_from_projectile_hits"
@@ -4225,14 +4610,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "被輔助的攻擊技能造成 %1%%% 更多投射物擊中時造成的流血和中毒傷害",
+          "text": "被輔助的攻擊技能造成 %1%%% 更多投射物擊中時造成的流血和中毒傷害",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "被輔助的攻擊技能造成 %1%%% 更少投射物擊中時造成的流血和中毒傷害",
+          "text": "被輔助的攻擊技能造成 %1%%% 更少投射物擊中時造成的流血和中毒傷害",
           "formatters": [
             {
               "id": "negate",
@@ -4321,6 +4704,26 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "support_reduce_enemy_block_and_spell_block_%": {
+      "stats": ["support_reduce_enemy_block_and_spell_block_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "透過被輔助的技能，敵人 -%1%%% 格擋攻擊或法術傷害率",
+          "formatters": []
+        }
+      ]
+    },
+    "support_reduce_enemy_dodge_and_spell_dodge_%": {
+      "stats": ["support_reduce_enemy_dodge_and_spell_dodge_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "透過被輔助的技能，敵人 -%1%%% 機率躲避攻擊或法術擊中",
+          "formatters": []
         }
       ]
     },
@@ -4445,8 +4848,7 @@
       "translations": [
         {
           "matchers": ["#", "#", "#"],
-          "text":
-            "當使用被輔助的引導施放技能時，被擊中有 %1%%% 機率獲得暴擊球\\n當使用被輔助的引導施放技能時，減少承受 %2%%% 閃電傷害\\n當使用被輔助的引導施放技能時，減少承受 %3%%% 物裡傷害",
+          "text": "當使用被輔助的引導施放技能時，被擊中有 %1%%% 機率獲得暴擊球\\n當使用被輔助的引導施放技能時，減少承受 %2%%% 閃電傷害\\n當使用被輔助的引導施放技能時，減少承受 %3%%% 物裡傷害",
           "formatters": [
             {
               "id": "negate",

@@ -23,14 +23,7 @@ export function formatValues(
 
   formatters.forEach((formatter, i) => {
     if (typeof formatter !== 'string' && typeof formatter.arg === 'number') {
-      // base_chance_to_freeze% is the only exception
-      // see issues #25 and #33
-      const offset =
-        formatter.id === 'canonical_stat' &&
-        formatters.includes('canonical_line')
-          ? 0
-          : -1;
-      const target_param = values[+formatter.arg + offset];
+      const target_param = values[+formatter.arg - 1];
 
       if (target_param !== undefined) {
         formatted[+formatter.arg - 1] = formatValue(target_param, {

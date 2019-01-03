@@ -39,8 +39,8 @@
         }
       ]
     },
-    "attack_speed_incr": {
-      "stats": ["attack_speed_+%"],
+    "attack_speed_incr_skill_granted": {
+      "stats": ["attack_speed_+%_granted_from_skill"],
       "translations": [
         {
           "matchers": [[1, "#"]],
@@ -84,8 +84,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "You and nearby allies gain %1$+d%% to all Elemental Resistances",
+          "text": "You and nearby allies gain %1$+d%% to all Elemental Resistances",
           "formatters": []
         }
       ]
@@ -130,9 +129,18 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "You and nearby allies gain %1%%% increased Critical Strike Chance",
+          "text": "You and nearby allies gain %1%%% increased Critical Strike Chance",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "You and nearby allies gain %1%%% reduced Critical Strike Chance",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -191,8 +199,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "You and nearby allies gain %1%%% additional Lightning Resistance",
+          "text": "You and nearby allies gain %1%%% additional Lightning Resistance",
           "formatters": []
         }
       ]
@@ -222,8 +229,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "You and nearby allies gain %1%%% additional maximum Fire Resistance",
+          "text": "You and nearby allies gain %1%%% additional maximum Fire Resistance",
           "formatters": []
         }
       ]
@@ -233,8 +239,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "You and nearby allies gain %1%%% additional maximum Cold Resistance",
+          "text": "You and nearby allies gain %1%%% additional maximum Cold Resistance",
           "formatters": []
         }
       ]
@@ -244,8 +249,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "You and nearby allies gain %1%%% additional maximum Lightning Resistance",
+          "text": "You and nearby allies gain %1%%% additional maximum Lightning Resistance",
           "formatters": []
         }
       ]
@@ -258,8 +262,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text":
-            "You and nearby allies deal %1% to %2% additional Fire Damage with Attacks",
+          "text": "You and nearby allies deal %1% to %2% additional Fire Damage with Attacks",
           "formatters": []
         }
       ]
@@ -272,8 +275,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text":
-            "You and nearby allies deal %1% to %2% additional Lightning Damage with Attacks",
+          "text": "You and nearby allies deal %1% to %2% additional Lightning Damage with Attacks",
           "formatters": []
         }
       ]
@@ -283,8 +285,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "You and nearby allies gain %1%%% of Physical Damage as Extra Cold Damage",
+          "text": "You and nearby allies gain %1%%% of Physical Damage as Extra Cold Damage",
           "formatters": []
         }
       ]
@@ -309,8 +310,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Your and nearby allies' Energy Shield Recharges are not delayed by Damage",
+          "text": "Your and nearby allies' Energy Shield Recharges are not delayed by Damage",
           "formatters": []
         }
       ]
@@ -350,7 +350,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Taking Elemental Damage instead heals you and Nearby Allies",
+          "text": "Taking Elemental Damage instead heals you and Nearby Allies\\nYou and Nearby Allies cannot gain Vaal Souls",
           "formatters": []
         }
       ]
@@ -363,8 +363,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text":
-            "You and nearby allies deal %1% to %2% additional Fire Damage with Spells",
+          "text": "You and nearby allies deal %1% to %2% additional Fire Damage with Spells",
           "formatters": []
         }
       ]
@@ -374,14 +373,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "You and nearby allies deal %1%%% more Spell Lightning Damage",
+          "text": "You and nearby allies deal %1%%% more Spell Lightning Damage",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "You and nearby allies deal %1%%% less Spell Lightning Damage with Spells",
+          "text": "You and nearby allies deal %1%%% less Spell Lightning Damage with Spells",
           "formatters": []
         }
       ]
@@ -394,9 +391,33 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text":
-            "You and nearby allies deal %1% to %2% additional Chaos Damage with Attacks",
+          "text": "You and nearby allies deal %1% to %2% additional Chaos Damage with Attacks",
           "formatters": []
+        }
+      ]
+    },
+    "attack_impale_chance": {
+      "stats": ["attacks_impale_on_hit_%_chance"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "You and nearby Allies have %1%%% chance to Impale Enemies on Hit with Attacks",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextImpale"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "You and nearby Allies Impale Enemies on Hit with Attacks",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextImpale"
+            }
+          ]
         }
       ]
     },
@@ -465,14 +486,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "You and nearby Allies gain %1%%% increased Energy Shield Recharge rate",
+          "text": "You and nearby Allies gain %1%%% increased Energy Shield Recharge rate",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "You and nearby Allies gain %1%%% reduced Energy Shield Recharge rate",
+          "text": "You and nearby Allies gain %1%%% reduced Energy Shield Recharge rate",
           "formatters": [
             {
               "id": "negate",
@@ -532,6 +551,26 @@
         }
       ]
     },
+    "impale_effect": {
+      "stats": ["impale_debuff_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "You and nearby Allies have %1%%% increased Impale Effect",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "You and nearby Allies have %1%%% reduced Impale Effect",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "lightning_damage_taken": {
       "stats": ["lightning_damage_taken_+%"],
       "translations": [
@@ -549,6 +588,16 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "physical_damage_taken_incr": {
+      "stats": ["physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Nearby Enemies take %1%%% increased Physical Damage",
+          "formatters": []
         }
       ]
     }

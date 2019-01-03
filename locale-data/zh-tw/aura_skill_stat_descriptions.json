@@ -39,8 +39,8 @@
         }
       ]
     },
-    "attack_speed_incr": {
-      "stats": ["attack_speed_+%"],
+    "attack_speed_incr_skill_granted": {
+      "stats": ["attack_speed_+%_granted_from_skill"],
       "translations": [
         {
           "matchers": [[1, "#"]],
@@ -94,7 +94,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你與附近的隊友每秒回復 %1%%% 生命",
+          "text": "你與附近的友方每秒回復 %1%%% 生命",
           "formatters": [
             {
               "id": "per_minute_to_per_second_2dp",
@@ -129,8 +129,18 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你與附近的隊友獲得 %1%%% 暴擊率",
+          "text": "你和附近友方增加 %1%%% 暴擊率",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你和附近友方減少 %1%%% 暴擊率",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -340,7 +350,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "將承受的元素傷害轉為回復你與附近的隊友的生命",
+          "text": "你和附近友方承受元素傷害而不是回復生命\\n你和附近友方無法獲得瓦爾靈魂",
           "formatters": []
         }
       ]
@@ -383,6 +393,31 @@
           "matchers": ["#", "#"],
           "text": "你和周圍友軍的攻擊額外造成 %1% 至 %2% 混沌傷害",
           "formatters": []
+        }
+      ]
+    },
+    "attack_impale_chance": {
+      "stats": ["attacks_impale_on_hit_%_chance"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "你和附近友方攻擊擊中時，有 %1%%% 機率穿刺敵人",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextImpale"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "你和附近友方攻擊擊中時穿刺敵人",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextImpale"
+            }
+          ]
         }
       ]
     },
@@ -516,6 +551,26 @@
         }
       ]
     },
+    "impale_effect": {
+      "stats": ["impale_debuff_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你和附近友方增加 %1%%% 穿刺效果",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你和附近友方減少 %1%%% 穿刺效果",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "lightning_damage_taken": {
       "stats": ["lightning_damage_taken_+%"],
       "translations": [
@@ -533,6 +588,16 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "physical_damage_taken_incr": {
+      "stats": ["physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "附近敵人增加 %1%%% 承受物理傷害",
+          "formatters": []
         }
       ]
     }

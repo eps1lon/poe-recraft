@@ -25,8 +25,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text":
-            "Fügt %1% bis %2% physischen Schaden pro 15 Rüstung oder Ausweichwert auf dem Schild hinzu",
+          "text": "Fügt %1% bis %2% physischen Schaden pro 15 Rüstung oder Ausweichwert auf dem Schild hinzu",
           "formatters": []
         }
       ]
@@ -111,6 +110,21 @@
         }
       ]
     },
+    "active_skill_attack_damage_final_permyriad": {
+      "stats": ["active_skill_attack_damage_final_permyriad"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Verursacht %1%%% des Basisschadens",
+          "formatters": [
+            {
+              "id": "multiplicative_permyriad_damage_modifier",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "active_skill_damage_+%_final": {
       "stats": ["active_skill_damage_+%_final"],
       "translations": [
@@ -156,8 +170,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Verursacht %1%%% kombinierten Waffenschaden beim Tragen zweier Waffen",
+          "text": "Verursacht %1%%% kombinierten Waffenschaden beim Tragen zweier Waffen",
           "formatters": [
             {
               "id": "multiplicative_damage_modifier",
@@ -173,6 +186,21 @@
         {
           "matchers": ["#"],
           "text": "Kreaturen verursachen %1%%% des Schadens",
+          "formatters": [
+            {
+              "id": "multiplicative_damage_modifier",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "active_skill_minion_physical_damage_+%_final": {
+      "stats": ["active_skill_minion_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Kreaturen verursachen %1%%% des physischen Schadens",
           "formatters": [
             {
               "id": "multiplicative_damage_modifier",
@@ -282,37 +310,17 @@
         }
       ]
     },
-    "buff_duration_+%": {
-      "stats": ["buff_duration_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% verlängerte Stärkungs- und Schwächungseffektdauer",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1%%% verkürzte Stärkungs- und Schwächungseffektdauer",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "aura_effect_+%": {
       "stats": ["aura_effect_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Wirkung von Auren",
+          "text": "%1%%% erhöhte Aurawirkung",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerte Wirkung von Auren",
+          "text": "%1%%% verringerte Aurawirkung",
           "formatters": [
             {
               "id": "negate",
@@ -337,13 +345,12 @@
         }
       ]
     },
-    "offering_skill_effect_duration_per_corpse": {
-      "stats": ["offering_skill_effect_duration_per_corpse"],
+    "base_secondary_skill_effect_duration": {
+      "stats": ["base_secondary_skill_effect_duration"],
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Zusätzliche %1% Sekunden Basisdauer pro zusätzlich verbrauchter Leiche",
+          "text": "Die sekundäre Basisdauer beträgt %1% Sekunden",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -353,15 +360,50 @@
         }
       ]
     },
-    "base_buff_duration_ms_+_per_endurance_charge": {
-      "stats": ["base_buff_duration_ms_+_per_endurance_charge"],
+    "offering_skill_effect_duration_per_corpse": {
+      "stats": ["offering_skill_effect_duration_per_corpse"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Zusätzliche %1% Sekunden Basisdauer pro Widerstands-Ladung",
+          "text": "Zusätzliche %1% Sekunden Basisdauer pro zusätzlich verbrauchter Leiche",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_buff_duration_ms_+_per_removable_endurance_charge": {
+      "stats": ["base_buff_duration_ms_+_per_removable_endurance_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d Sekunden zur Stärkungsdauer pro verbrauchter Widerstands-Ladung",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "buff_duration_+%": {
+      "stats": ["buff_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% verlängerte Stärkungs- und Schwächungseffektdauer",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verkürzte Stärkungs- und Schwächungseffektdauer",
+          "formatters": [
+            {
+              "id": "negate",
               "arg": 1
             }
           ]
@@ -398,21 +440,6 @@
         }
       ]
     },
-    "active_skill_attack_damage_final_permyriad": {
-      "stats": ["active_skill_attack_damage_final_permyriad"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Verursacht %1%%% des Basisschadens",
-          "formatters": [
-            {
-              "id": "multiplicative_permyriad_damage_modifier",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "base_spell_repeat_count": {
       "stats": ["base_spell_repeat_count"],
       "translations": [
@@ -428,21 +455,6 @@
         }
       ]
     },
-    "base_secondary_skill_effect_duration": {
-      "stats": ["base_secondary_skill_effect_duration"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Die sekundäre Basisdauer beträgt %1% Sekunden",
-          "formatters": [
-            {
-              "id": "milliseconds_to_seconds_2dp",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "base_number_of_golems_allowed": {
       "stats": ["base_number_of_golems_allowed"],
       "translations": [
@@ -454,6 +466,16 @@
         {
           "matchers": [[2, "#"]],
           "text": "Erlaubt gleichzeitige Kontrolle von %1% Golems",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_totems_allowed": {
+      "stats": ["base_number_of_totems_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d zu maximaler Anzahl beschworener Totems",
           "formatters": []
         }
       ]
@@ -488,28 +510,6 @@
         }
       ]
     },
-    "active_skill_if_used_through_frostbolt_damage_+%_final": {
-      "stats": ["active_skill_if_used_through_frostbolt_damage_+%_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% mehr Schaden beim Zaubern ausgehend von einer Frostkugel",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "%1%%% weniger Schaden beim Zaubern ausgehend von einer Frostkugel",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "additional_base_critical_strike_chance": {
       "stats": ["additional_base_critical_strike_chance"],
       "translations": [
@@ -522,6 +522,33 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "additional_weapon_base_attack_time_ms": {
+      "stats": ["additional_weapon_base_attack_time_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d Sekunden zu Angriffszeit",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp_if_required",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "additive_cast_speed_modifiers_apply_to_sigil_repeat_frequency": {
+      "stats": [
+        "additive_cast_speed_modifiers_apply_to_sigil_repeat_frequency"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Erhöhungen und Verringerungen der Zaubergeschwindigkeit gelten auch für die Auslösefrequenz dieser Fertigkeit",
+          "formatters": []
         }
       ]
     },
@@ -567,6 +594,26 @@
     },
     "attack_speed_+%": {
       "stats": ["attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% erhöhte Angriffsgeschwindigkeit",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verringerte Angriffsgeschwindigkeit",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "attack_speed_+%_granted_from_skill": {
+      "stats": ["attack_speed_+%_granted_from_skill"],
       "translations": [
         {
           "matchers": [[1, "#"]],
@@ -755,14 +802,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% erhöhte Seltenheit fallen gelassener Gegenstände von getöteten Gegnern",
+          "text": "%1%%% erhöhte Seltenheit fallen gelassener Gegenstände von getöteten Gegnern",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% verringerte Seltenheit fallen gelassener Gegenstände von getöteten Gegnern",
+          "text": "%1%%% verringerte Seltenheit fallen gelassener Gegenstände von getöteten Gegnern",
           "formatters": [
             {
               "id": "negate",
@@ -777,8 +822,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Erhaltet %1$+d Leben für jeden durch Eure Angriffe getroffenen Gegner",
+          "text": "Erhaltet %1$+d Leben für jeden durch Eure Angriffe getroffenen Gegner",
           "formatters": []
         }
       ]
@@ -818,13 +862,42 @@
         }
       ]
     },
+    "base_number_of_champions_of_light_allowed": {
+      "stats": ["base_number_of_champions_of_light_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Beschwört maximal %1% Wächter der Reinheit",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Beschwört maximal %1% Wächter der Reinheit",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_relics_allowed": {
+      "stats": ["base_number_of_relics_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Beschwört maximal %1% Heiliges Relikt",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Beschwört maximal %1% Heilige Relikte",
+          "formatters": []
+        }
+      ]
+    },
     "base_physical_damage_%_to_convert_to_lightning": {
       "stats": ["base_physical_damage_%_to_convert_to_lightning"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% des physischen Schadens werden in Blitzschaden umgewandelt",
+          "text": "%1%%% des physischen Schadens werden in Blitzschaden umgewandelt",
           "formatters": []
         }
       ]
@@ -891,6 +964,21 @@
           "matchers": [[1, "#"]],
           "text": "Durchdringt %1%%% Blitzwiderstand",
           "formatters": []
+        }
+      ]
+    },
+    "base_sigil_repeat_frequency_ms": {
+      "stats": ["base_sigil_repeat_frequency_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Löst alle %1% Sekunden aus, während es angeheftet ist",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -1004,14 +1092,12 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text":
-            "%1%%% Chance, bei Tötung eines eingefrorenen Gegners eine Raserei-Ladung zu erhalten",
+          "text": "%1%%% Chance, bei Tötung eines eingefrorenen Gegners eine Raserei-Ladung zu erhalten",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text":
-            "Erhaltet eine Raserei-Ladung bei Tötung eines eingefrorenen Gegners",
+          "text": "Erhaltet eine Raserei-Ladung bei Tötung eines eingefrorenen Gegners",
           "formatters": []
         }
       ]
@@ -1486,14 +1572,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% erhöhter physischer Nahkampfschaden gegen blutende Gegner",
+          "text": "%1%%% erhöhter physischer Nahkampfschaden gegen blutende Gegner",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% verringerter physischer Nahkampfschaden gegen blutende Gegner",
+          "text": "%1%%% verringerter physischer Nahkampfschaden gegen blutende Gegner",
           "formatters": [
             {
               "id": "negate",
@@ -1588,12 +1672,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% erhöhte Aurenwirkung",
+          "text": "%1%%% erhöhte Aurawirkung",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% verringerte Aurenwirkung",
+          "text": "%1%%% verringerte Aurawirkung",
           "formatters": [
             {
               "id": "negate",
@@ -1618,8 +1702,8 @@
         }
       ]
     },
-    "number_of_additional_projectiles_in_chain": {
-      "stats": ["number_of_additional_projectiles_in_chain"],
+    "number_of_chains": {
+      "stats": ["number_of_chains"],
       "translations": [
         {
           "matchers": ["#"],
@@ -1633,14 +1717,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text":
-            "Erlaubt gleichzeitige Platzierung von %1% zusätzlichen Fernmine",
+          "text": "Erlaubt gleichzeitige Platzierung von %1% zusätzlichen Fernmine",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text":
-            "Erlaubt gleichzeitige Platzierung von %1% zusätzlichen Fernminen",
+          "text": "Erlaubt gleichzeitige Platzierung von %1% zusätzlichen Fernminen",
           "formatters": []
         }
       ]
@@ -1650,14 +1732,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text":
-            "Erlaubt gleichzeitige Platzierung von %1% zusätzlichen Falle",
+          "text": "Erlaubt gleichzeitige Platzierung von %1% zusätzlichen Falle",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text":
-            "Erlaubt gleichzeitige Platzierung von %1% zusätzlichen Fallen",
+          "text": "Erlaubt gleichzeitige Platzierung von %1% zusätzlichen Fallen",
           "formatters": []
         }
       ]
@@ -1737,8 +1817,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verursacht %1%%% des physischen Schadens als extra Feuerschaden",
+          "text": "Verursacht %1%%% des physischen Schadens als extra Feuerschaden",
           "formatters": []
         }
       ]
@@ -1748,8 +1827,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verursacht %1%%% des physischen Schadens als extra Blitzschaden",
+          "text": "Verursacht %1%%% des physischen Schadens als extra Blitzschaden",
           "formatters": []
         }
       ]
@@ -1949,8 +2027,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% des physischen Schadens werden in Blitzschaden umgewandelt",
+          "text": "%1%%% des physischen Schadens werden in Blitzschaden umgewandelt",
           "formatters": []
         }
       ]
@@ -1972,6 +2049,16 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "static_strike_number_of_beam_targets": {
+      "stats": ["static_strike_number_of_beam_targets"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1% maximale Blitzschlag-Ziele",
+          "formatters": []
         }
       ]
     },

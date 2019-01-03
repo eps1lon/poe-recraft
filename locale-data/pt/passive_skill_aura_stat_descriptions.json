@@ -28,34 +28,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Você e aliados próximos possuem aumento de %1%%% da Velocidade de Movimento",
+          "text": "Você e aliados próximos possuem aumento de %1%%% da Velocidade de Movimento",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Você e aliados próximos possuem redução de %1%%% da Velocidade de Movimento",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "elemental_damage_taken_+%": {
-      "stats": ["elemental_damage_taken_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Inimigos próximos Sofrem %1%%% de Dano Elemental aumentado",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Inimigos próximos Sofrem %1%%% de Dano Elemental reduzido",
+          "text": "Você e aliados próximos possuem redução de %1%%% da Velocidade de Movimento",
           "formatters": [
             {
               "id": "negate",
@@ -70,8 +48,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Inimigos próximos possuem %1$+d%% de chance de serem Incendiados por Dano de Fogo",
+          "text": "Inimigos próximos possuem %1$+d%% de chance de serem Incendiados por Dano de Fogo",
           "formatters": []
         }
       ]
@@ -81,8 +58,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Inimigos próximos possuem %1$+d%% de chance de serem Congelados por Dano de Gelo",
+          "text": "Inimigos próximos possuem %1$+d%% de chance de serem Congelados por Dano de Gelo",
           "formatters": []
         }
       ]
@@ -92,8 +68,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Inimigos próximos possuem %1$+d%% de chance de serem Eletrizados por Dano de Raio",
+          "text": "Inimigos próximos possuem %1$+d%% de chance de serem Eletrizados por Dano de Raio",
           "formatters": [
             {
               "id": "reminderstring",
@@ -123,6 +98,26 @@
         }
       ]
     },
+    "elemental_damage_taken_+%": {
+      "stats": ["elemental_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Inimigos próximos Sofrem %1%%% de Dano Elemental aumentado",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Inimigos próximos Sofrem %1%%% de Dano Elemental reduzido",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "base_chaos_damage_resistance_%": {
       "stats": ["base_chaos_damage_resistance_%"],
       "translations": [
@@ -130,6 +125,26 @@
           "matchers": ["#"],
           "text": "Inimigos próximos possuem %1$+d%% de Resistência a Caos",
           "formatters": []
+        }
+      ]
+    },
+    "life_regeneration_rate_+%": {
+      "stats": ["life_regeneration_rate_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Velocidade de Regeneração de Vida de Inimigos Próximos aumentada em %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Velocidade de Regeneração de Vida de Inimigos Próximos reduzida em %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     }

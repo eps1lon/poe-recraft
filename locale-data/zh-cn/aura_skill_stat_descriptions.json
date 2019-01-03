@@ -9,12 +9,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友的物理伤害提高 %1%%%",
+          "text": "你与周围友军的物理伤害提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "你与周围队友的物理伤害降低 %1%%%",
+          "text": "你与周围友军的物理伤害降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -29,27 +29,27 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友的移动速度提高 %1%%%",
+          "text": "你与周围友军的移动速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "你与周围队友的移动速度降低 %1%%%",
+          "text": "你与周围友军的移动速度降低 %1%%%",
           "formatters": []
         }
       ]
     },
-    "attack_speed_incr": {
-      "stats": ["attack_speed_+%"],
+    "attack_speed_incr_skill_granted": {
+      "stats": ["attack_speed_+%_granted_from_skill"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友的攻击速度提高 %1%%%",
+          "text": "你与周围友军的攻击速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "你与周围队友的攻击速度降低 %1%%%",
+          "text": "你与周围友军的攻击速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -64,12 +64,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友的施法速度提高 %1%%%",
+          "text": "你与周围友军的施法速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "你与周围队友的施法速度降低 %1%%%",
+          "text": "你与周围友军的施法速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -84,7 +84,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你与周围队友获得 %1$+d%% 火焰、冰霜、闪电抗性",
+          "text": "你与周围友军获得 %1$+d%% 火焰、冰霜、闪电抗性",
           "formatters": []
         }
       ]
@@ -94,7 +94,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你与周围队友每秒回复 %1%%% 生命",
+          "text": "你与周围友军每秒回复 %1%%% 生命",
           "formatters": [
             {
               "id": "per_minute_to_per_second_2dp",
@@ -109,12 +109,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友的命中值提高 %1%%%",
+          "text": "你与周围友军的命中值提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "你与周围队友的命中值降低 %1%%%",
+          "text": "你与周围友军的命中值降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -129,8 +129,18 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友的攻击和法术暴击率提高 %1%%% ",
+          "text": "你与周围友军的攻击和法术暴击率提高 %1%%%",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你与周围友军的攻击和法术暴击率降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -139,7 +149,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友的闪避值提高 %1%",
+          "text": "你与周围友军的闪避值提高 %1%",
           "formatters": []
         }
       ]
@@ -149,7 +159,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友的总闪避值额外提高 %1%%%",
+          "text": "你与周围友军的总闪避值额外提高 %1%%%",
           "formatters": []
         }
       ]
@@ -159,7 +169,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友的护甲提高 %1%",
+          "text": "你与周围友军的护甲提高 %1%",
           "formatters": []
         }
       ]
@@ -169,7 +179,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友的总护甲额外提高 %1%%% ",
+          "text": "你与周围友军的总护甲额外提高 %1%%% ",
           "formatters": []
         }
       ]
@@ -179,7 +189,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友的能量护盾提高 %1%",
+          "text": "你与周围友军的能量护盾提高 %1%",
           "formatters": []
         }
       ]
@@ -189,7 +199,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友的闪电抗性提高 %1%%%",
+          "text": "你与周围友军的闪电抗性提高 %1%%%",
           "formatters": []
         }
       ]
@@ -199,7 +209,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友的火焰抗性提高 %1%%%",
+          "text": "你与周围友军的火焰抗性提高 %1%%%",
           "formatters": []
         }
       ]
@@ -209,7 +219,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友的冰霜抗性提高 %1%%%",
+          "text": "你与周围友军的冰霜抗性提高 %1%%%",
           "formatters": []
         }
       ]
@@ -219,7 +229,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友的火焰抗性上限提高 %1%%%",
+          "text": "你与周围友军的火焰抗性上限提高 %1%%%",
           "formatters": []
         }
       ]
@@ -229,7 +239,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友的冰霜抗性上限提高 %1%%%",
+          "text": "你与周围友军的冰霜抗性上限提高 %1%%%",
           "formatters": []
         }
       ]
@@ -239,7 +249,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友的闪电抗性上限提高 %1%%%",
+          "text": "你与周围友军的闪电抗性上限提高 %1%%%",
           "formatters": []
         }
       ]
@@ -275,7 +285,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友额外获得 %1%%% 物理伤害，并转化为冰霜伤害",
+          "text": "你与周围友军额外获得 %1%%% 物理伤害，并转化为冰霜伤害",
           "formatters": []
         }
       ]
@@ -285,7 +295,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你与周围队友获得 %1% 魔力回复",
+          "text": "你与周围友军获得 %1% 魔力回复",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -300,7 +310,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你与周围队友不会因为承受伤害而延迟能量护盾回复的间隔时间",
+          "text": "你与周围友军不会因为承受伤害而延迟能量护盾回复的间隔时间",
           "formatters": []
         }
       ]
@@ -310,7 +320,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你与周围队友施放技能时不消耗魔力",
+          "text": "你与周围友军施放技能时不消耗魔力",
           "formatters": []
         }
       ]
@@ -340,7 +350,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "将承受的元素伤害转化为回复你与周围队友的生命",
+          "text": "将你与周围友军承受的元素伤害转化为回复生命\\n你与周围友军无法获得【瓦尔之灵】",
           "formatters": []
         }
       ]
@@ -363,12 +373,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友施放法术时造成的闪电总伤害额外提高 %1%%%",
+          "text": "你与周围友军施放法术时造成的闪电总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "你与周围队友施放法术时造成的闪电总伤害额外降低 %1%%%",
+          "text": "你与周围友军施放法术时造成的闪电总伤害额外降低 %1%%%",
           "formatters": []
         }
       ]
@@ -381,8 +391,33 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text": "你和你周围队友的攻击附加 %1% - %2% 基础混沌伤害",
+          "text": "你和你周围友军的攻击附加 %1% - %2% 基础混沌伤害",
           "formatters": []
+        }
+      ]
+    },
+    "attack_impale_chance": {
+      "stats": ["attacks_impale_on_hit_%_chance"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "你与周围友军攻击击中时有 %1%%% 几率穿刺敌人",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextImpale"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "你与周围友军攻击击中时穿刺敌人",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextImpale"
+            }
+          ]
         }
       ]
     },
@@ -391,7 +426,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你和周围队友免疫冰缓",
+          "text": "你和周围友军免疫冰缓",
           "formatters": []
         }
       ]
@@ -401,7 +436,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你和周围队友免疫冻结",
+          "text": "你和周围友军免疫冻结",
           "formatters": []
         }
       ]
@@ -411,7 +446,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你和周围队友免疫点燃",
+          "text": "你和周围友军免疫点燃",
           "formatters": []
         }
       ]
@@ -421,7 +456,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你和周围队友免疫感电",
+          "text": "你和周围友军免疫感电",
           "formatters": []
         }
       ]
@@ -451,12 +486,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你与周围队友的能量护盾回复速度提高 %1%%%",
+          "text": "你与周围友军的能量护盾回复速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "你与周围队友的能量护盾回复速度降低 %1%%%",
+          "text": "你与周围友军的能量护盾回复速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -516,6 +551,26 @@
         }
       ]
     },
+    "impale_effect": {
+      "stats": ["impale_debuff_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你和周围友军的穿刺效果提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你和周围友军的穿刺效果降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "lightning_damage_taken": {
       "stats": ["lightning_damage_taken_+%"],
       "translations": [
@@ -533,6 +588,16 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "physical_damage_taken_incr": {
+      "stats": ["physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "周围敌人受到的物理伤害提高 %1%%%",
+          "formatters": []
         }
       ]
     }

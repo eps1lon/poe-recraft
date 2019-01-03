@@ -29,21 +29,19 @@ export default function translate(
   }
 
   // intersect the required stat_ids from the desc with the provided
-  const required_stats = stats
-    .map(stat_id => {
-      const stat = provided.get(stat_id);
+  const required_stats = stats.map(stat_id => {
+    const stat = provided.get(stat_id);
 
-      // default the value to 0
-      if (stat === undefined) {
-        return {
-          id: stat_id,
-          value: 0
-        };
-      } else {
-        return stat;
-      }
-    })
-    .filter((stat: Stat | null): stat is Stat => stat !== null);
+    // default the value to 0
+    if (stat === undefined) {
+      return {
+        id: stat_id,
+        value: 0
+      };
+    } else {
+      return stat;
+    }
+  });
 
   const translation = matchingTranslation(translations, required_stats);
 

@@ -24,12 +24,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Los enemigos Malditos son %1%%% más rápidos",
+          "text": "Los enemigos malditos tienen %1%%% más Velocidad de Acción",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Los enemigos Malditos son %1%%% más lentos",
+          "text": "Los enemigos malditos tienen %1%%% menos Velocidad de Acción",
           "formatters": [
             {
               "id": "negate",
@@ -40,22 +40,24 @@
       ]
     },
     "buff_time_passed_reduction": {
-      "stats": ["buff_time_passed_-%"],
+      "stats": ["buff_time_passed_+%_other_than_temporal_chains"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Otros efectos sobre enemigos Malditos expiran %1%%% más lento",
+          "text": "Otros efectos sobre enemigos Malditos expiran %1%%% más rápido",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Otros efectos sobre enemigos Malditos expiran %1%%% más rápido",
+          "text": "Otros efectos sobre enemigos Malditos expiran %1%%% más lento",
           "formatters": [
             {
               "id": "negate",
               "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextSlowTimeEffects"
             }
           ]
         }
@@ -66,8 +68,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Los enemigos Malditos tienen %1$+d%% a las Resistencias Elementales",
+          "text": "Los enemigos Malditos tienen %1$+d%% a las Resistencias Elementales",
           "formatters": []
         }
       ]
@@ -77,8 +78,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Los enemigos Malditos tienen %1$+d%% a la Resistencia al Fuego",
+          "text": "Los enemigos Malditos tienen %1$+d%% a la Resistencia al Fuego",
           "formatters": []
         }
       ]
@@ -88,8 +88,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Los enemigos Malditos tienen %1$+d%% a la Resistencia al Hielo",
+          "text": "Los enemigos Malditos tienen %1$+d%% a la Resistencia al Hielo",
           "formatters": []
         }
       ]
@@ -99,8 +98,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Los enemigos Malditos tienen %1$+d%% a la Resistencia al Rayo",
+          "text": "Los enemigos Malditos tienen %1$+d%% a la Resistencia al Rayo",
           "formatters": []
         }
       ]
@@ -110,8 +108,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Los enemigos malditos tienen %1$+d%% a la Resistencia al Caos",
+          "text": "Los enemigos malditos tienen %1$+d%% a la Resistencia al Caos",
           "formatters": []
         }
       ]
@@ -121,8 +118,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los enemigos Malditos tienen %1$+d%% de probabilidad de ser Congelados por Daño de Hielo",
+          "text": "Los enemigos Malditos tienen %1$+d%% de probabilidad de ser Congelados por Daño de Hielo",
           "formatters": []
         }
       ]
@@ -132,8 +128,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los enemigos Malditos tienen %1$+d%% de probabilidad de ser Quemados por Daño de Fuego",
+          "text": "Los enemigos Malditos tienen %1$+d%% de probabilidad de ser Quemados por Daño de Fuego",
           "formatters": [
             {
               "id": "reminderstring",
@@ -148,8 +143,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los enemigos Malditos tienen %1$+d%% de probabilidad de ser Electrocutados por Daño de Rayo",
+          "text": "Los enemigos Malditos tienen %1$+d%% de probabilidad de ser Electrocutados por Daño de Rayo",
           "formatters": [
             {
               "id": "reminderstring",
@@ -164,8 +158,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los enemigos Malditos otorgan %1%%% Cargas de Frasco aumentadas",
+          "text": "Los enemigos Malditos otorgan %1%%% Cargas de Frasco aumentadas",
           "formatters": []
         }
       ]
@@ -175,8 +168,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los enemigos Malditos otorgan %1%%% de Absorción de Vida al ser Golpeados",
+          "text": "Los enemigos Malditos otorgan %1%%% de Absorción de Vida al ser Golpeados",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -195,8 +187,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los enemigos Malditos otorgan %1%%% de Absorción de Maná al ser Golpeados",
+          "text": "Los enemigos Malditos otorgan %1%%% de Absorción de Maná al ser Golpeados",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -215,8 +206,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los enemigos Malditos tienen %1%%% de probabilidad de otorgar un Carga de Aguante al morir",
+          "text": "Los enemigos Malditos tienen %1%%% de probabilidad de otorgar un Carga de Aguante al morir",
           "formatters": []
         }
       ]
@@ -226,8 +216,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los enemigos Malditos tienen %1%%% de probabilidad de otorgar un Carga de Frenesí al morir",
+          "text": "Los enemigos Malditos tienen %1%%% de probabilidad de otorgar un Carga de Frenesí al morir",
           "formatters": []
         }
       ]
@@ -237,8 +226,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los enemigos Malditos tienen %1%%% de probabilidad de otorgar un Carga de Poder al morir",
+          "text": "Los enemigos Malditos tienen %1%%% de probabilidad de otorgar un Carga de Poder al morir",
           "formatters": []
         }
       ]
@@ -248,8 +236,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Refleja %1%%% del Daño Físico infligido por los Enemigos Malditos Normales",
+          "text": "Refleja %1%%% del Daño Físico infligido por los Enemigos Malditos Normales",
           "formatters": []
         }
       ]
@@ -259,8 +246,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Refleja %1%%% del Daño Físico infligido por los Enemigos Malditos Mágicos",
+          "text": "Refleja %1%%% del Daño Físico infligido por los Enemigos Malditos Mágicos",
           "formatters": []
         }
       ]
@@ -270,8 +256,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Refleja %1%%% del Daño Físico infligido por los Enemigos Malditos Raros",
+          "text": "Refleja %1%%% del Daño Físico infligido por los Enemigos Malditos Raros",
           "formatters": []
         }
       ]
@@ -281,8 +266,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Refleja %1%%% del Daño Físico infligido por los Enemigos Malditos Únicos",
+          "text": "Refleja %1%%% del Daño Físico infligido por los Enemigos Malditos Únicos",
           "formatters": []
         }
       ]
@@ -312,14 +296,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los enemigos Malditos tienen Probabilidad de Golpe Crítico aumentada un %1%%%",
+          "text": "Los enemigos Malditos tienen Probabilidad de Golpe Crítico aumentada un %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Los enemigos Malditos tienen Probabilidad de Golpe Crítico reducida un %1%%%",
+          "text": "Los enemigos Malditos tienen Probabilidad de Golpe Crítico reducida un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -334,8 +316,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Los enemigos Malditos tienen %1$+d%% al Multiplicador de Golpe Crítico",
+          "text": "Los enemigos Malditos tienen %1$+d%% al Multiplicador de Golpe Crítico",
           "formatters": []
         }
       ]
@@ -365,8 +346,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los enemigos Malditos tienen %1%%% de probabilidad adicional de recibir un Golpe Crítico",
+          "text": "Los enemigos Malditos tienen %1%%% de probabilidad adicional de recibir un Golpe Crítico",
           "formatters": []
         }
       ]
@@ -376,14 +356,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los enemigos Malditos reciben Daño Extra de Golpes Críticos reducido un %1%%%",
+          "text": "Los enemigos Malditos reciben Daño Extra de Golpes Críticos reducido un %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Los enemigos Malditos reciben Daño Extra de Golpes Críticos aumentado un %1%%%",
+          "text": "Los enemigos Malditos reciben Daño Extra de Golpes Críticos aumentado un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -408,8 +386,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los Golpes a Enemigos Malditos tienen %1%%% de probabilidad adicional de Empujar",
+          "text": "Los Golpes a Enemigos Malditos tienen %1%%% de probabilidad adicional de Empujar",
           "formatters": [
             {
               "id": "reminderstring",
@@ -444,8 +421,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los enemigos Malditos reciben Daño aumentado un %1%%% de Golpes de Proyectiles",
+          "text": "Los enemigos Malditos reciben Daño aumentado un %1%%% de Golpes de Proyectiles",
           "formatters": []
         }
       ]
@@ -455,8 +431,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los enemigos Malditos tienen %1%%% de probabilidad adicional de ser Aturdidos",
+          "text": "Los enemigos Malditos tienen %1%%% de probabilidad adicional de ser Aturdidos",
           "formatters": []
         }
       ]
@@ -466,14 +441,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los enemigos Malditos tienen Recuperación del Aturdimiento y Bloqueo aumentadas un %1%%%",
+          "text": "Los enemigos Malditos tienen Recuperación del Aturdimiento y Bloqueo aumentadas un %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Los enemigos Malditos tienen Recuperación del Aturdimiento y Bloqueo reducidas un %1%%%",
+          "text": "Los enemigos Malditos tienen Recuperación del Aturdimiento y Bloqueo reducidas un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -488,8 +461,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los enemigos Malditos reciben Daño Físico aumentado un %1%%%",
+          "text": "Los enemigos Malditos reciben Daño Físico aumentado un %1%%%",
           "formatters": []
         }
       ]
@@ -499,8 +471,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los enemigos Malditos reciben Daño aumentado un %1%%% por efectos de Daño Degenerativo",
+          "text": "Los enemigos Malditos reciben Daño aumentado un %1%%% por efectos de Daño Degenerativo",
           "formatters": []
         }
       ]
@@ -510,14 +481,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "La Quemadura en enemigos Malditos tiene Duración reducida un %1%%%",
+          "text": "La Quemadura en enemigos Malditos tiene Duración reducida un %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "La Quemadura en enemigos Malditos tiene Duración aumentada un %1%%%",
+          "text": "La Quemadura en enemigos Malditos tiene Duración aumentada un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -532,14 +501,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "La Congelación en enemigos Malditos tiene Duración reducida un %1%%%",
+          "text": "La Congelación en enemigos Malditos tiene Duración reducida un %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "La Congelación en enemigos Malditos tiene Duración aumentada un %1%%%",
+          "text": "La Congelación en enemigos Malditos tiene Duración aumentada un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -554,14 +521,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "La Electrocución en enemigos Malditos tiene Duración reducida un %1%%%",
+          "text": "La Electrocución en enemigos Malditos tiene Duración reducida un %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "La Electrocución en enemigos Malditos tiene Duración aumentada un %1%%%",
+          "text": "La Electrocución en enemigos Malditos tiene Duración aumentada un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -586,8 +551,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Los enemigos Malditos otorgan %1% de Vida al ser Golpeados por Ataques",
+          "text": "Los enemigos Malditos otorgan %1% de Vida al ser Golpeados por Ataques",
           "formatters": []
         }
       ]
@@ -597,8 +561,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Los enemigos Malditos otorgan %1% de Maná al ser Golpeados por Ataques",
+          "text": "Los enemigos Malditos otorgan %1% de Maná al ser Golpeados por Ataques",
           "formatters": []
         }
       ]
@@ -658,8 +621,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los Enemigos malditos tienen %1%%% de probabilidad de ser Lisiados por 4 segundos cuando son Golpeados por Ataques",
+          "text": "Los Enemigos malditos tienen %1%%% de probabilidad de ser Lisiados por 4 segundos cuando son Golpeados por Ataques",
           "formatters": [
             {
               "id": "reminderstring",
@@ -677,8 +639,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text":
-            "Agrega %1% a %2% de Daño de Caos a los Golpes contra Enemigos Malditos",
+          "text": "Agrega %1% a %2% de Daño de Caos a los Golpes contra Enemigos Malditos",
           "formatters": []
         }
       ]
@@ -688,14 +649,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los enemigos malditos reciben Daño Físico aumentado un %1%%% por Daño degenerativo",
+          "text": "Los enemigos malditos reciben Daño Físico aumentado un %1%%% por Daño degenerativo",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Los enemigos malditos reciben Daño Físico aumentado un %1%%% por Daño degenerativo",
+          "text": "Los enemigos malditos reciben Daño Físico aumentado un %1%%% por Daño degenerativo",
           "formatters": []
         }
       ]

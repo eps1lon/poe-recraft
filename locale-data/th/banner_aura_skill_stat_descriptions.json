@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "include": "aura_skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "buff_duration": {
+      "stats": ["buff_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ธงจะอยู่ได้ %1% วินาทีเมื่อปัก",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "banner_add_stage_on_impale": {
+      "stats": ["banner_add_stage_on_impale"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ได้รับ 1 Stage ทุกครั้งที่คุณทิ่มแทงศัตรูขณะถือธง แต่ไม่เกิน 5 ครั้งต่อวินาที",
+          "formatters": []
+        }
+      ]
+    },
+    "banner_add_stage_on_kill": {
+      "stats": ["banner_add_stage_on_kill"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ได้รับ 1 Stage เมื่อคุณ สังหาร ศัตรูขณะถือธงอยู่",
+          "formatters": []
+        }
+      ]
+    },
+    "banner_stage_duration": {
+      "stats": ["banner_additional_base_duration_per_stage_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ระยะเวลาการปักธง %1$+d วินาที ต่อจำนวน Stage ที่มี",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "banner_stage_aoe": {
+      "stats": ["banner_area_of_effect_+%_per_stage"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มพื้นที่ส่งผล %1%%% ต่อหนึ่ง Stage ขณะปักไว้",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดพื้นที่ส่งผล %1%%% ต่อหนึ่ง Stage ขณะปักไว้",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "banner_stage_aura_effect": {
+      "stats": ["banner_buff_effect_+%_per_stage"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มผลของออร่า %1%%% ต่อหนึ่ง Stage ขณะปักไว้",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดผลของออร่า %1%%% ต่อหนึ่ง Stage ขณะปักไว้",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_duration_identifier": {
+      "stats": ["base_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ระยะเวลาตั้งต้น %1% วินาที เมื่อปัก",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "war_banner_adrenaline": {
+      "stats": ["bloodstained_banner_adrenaline_duration_per_stage_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ได้รับ Adrenaline เป็นเวลา %1% วินาที ตอจำนวน Stage ที่มีเมื่อปักธง",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextAdrenaline"
+            }
+          ]
+        }
+      ]
+    },
+    "dread_banner_accuracy_final": {
+      "stats": ["puresteel_banner_accuracy_rating_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่ม ความแม่นยำ อีก %1%%% ให้กับศัตรูที่อยู่ใกล้",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลด ความแม่นยำ อีก %1%%% ให้กับศัตรูที่อยู่ใกล้",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "dread_banner_fortify": {
+      "stats": ["puresteel_banner_fortify_duration_per_stage_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ได้รับ Fortify เป็นเวลา %1% วินาที ตอจำนวน Stage ที่มีเมื่อปักธง",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

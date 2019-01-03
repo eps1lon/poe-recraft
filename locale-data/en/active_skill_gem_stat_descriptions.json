@@ -25,8 +25,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text":
-            "%1% to %2% Added Physical Damage per 15 Armour or Evasion Rating on Shield",
+          "text": "%1% to %2% Added Physical Damage per 15 Armour or Evasion Rating on Shield",
           "formatters": []
         }
       ]
@@ -111,6 +110,21 @@
         }
       ]
     },
+    "active_skill_attack_damage_final_permyriad": {
+      "stats": ["active_skill_attack_damage_final_permyriad"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Deals %1%%% of Base Damage",
+          "formatters": [
+            {
+              "id": "multiplicative_permyriad_damage_modifier",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "active_skill_damage_+%_final": {
       "stats": ["active_skill_damage_+%_final"],
       "translations": [
@@ -161,8 +175,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "When Dual Wielding, Deals %1%%% Damage from each Weapon combined",
+          "text": "When Dual Wielding, Deals %1%%% Damage from each Weapon combined",
           "formatters": [
             {
               "id": "multiplicative_damage_modifier",
@@ -178,6 +191,21 @@
         {
           "matchers": ["#"],
           "text": "Minions deal %1%%% of Damage",
+          "formatters": [
+            {
+              "id": "multiplicative_damage_modifier",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "active_skill_minion_physical_damage_+%_final": {
+      "stats": ["active_skill_minion_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Minions deal %1%%% of Physical Damage",
           "formatters": [
             {
               "id": "multiplicative_damage_modifier",
@@ -287,37 +315,17 @@
         }
       ]
     },
-    "buff_duration_+%": {
-      "stats": ["buff_duration_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% increased Buff and Debuff Duration",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1%%% reduced Buff and Debuff Duration",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "aura_effect_+%": {
       "stats": ["aura_effect_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% increased effect of Auras",
+          "text": "%1%%% increased Aura effect",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% reduced effect of Auras",
+          "text": "%1%%% reduced Aura effect",
           "formatters": [
             {
               "id": "negate",
@@ -342,13 +350,12 @@
         }
       ]
     },
-    "offering_skill_effect_duration_per_corpse": {
-      "stats": ["offering_skill_effect_duration_per_corpse"],
+    "base_secondary_skill_effect_duration": {
+      "stats": ["base_secondary_skill_effect_duration"],
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Additional %1% seconds Base Duration per extra Corpse consumed",
+          "text": "Base secondary duration is %1% seconds",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -358,15 +365,50 @@
         }
       ]
     },
-    "base_buff_duration_ms_+_per_endurance_charge": {
-      "stats": ["base_buff_duration_ms_+_per_endurance_charge"],
+    "offering_skill_effect_duration_per_corpse": {
+      "stats": ["offering_skill_effect_duration_per_corpse"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Additional %1% seconds Base Duration per Endurance Charge",
+          "text": "Additional %1% seconds Base Duration per extra Corpse consumed",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_buff_duration_ms_+_per_removable_endurance_charge": {
+      "stats": ["base_buff_duration_ms_+_per_removable_endurance_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d seconds to Buff Duration per Endurance Charge removed",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "buff_duration_+%": {
+      "stats": ["buff_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% increased Buff and Debuff Duration",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% reduced Buff and Debuff Duration",
+          "formatters": [
+            {
+              "id": "negate",
               "arg": 1
             }
           ]
@@ -403,21 +445,6 @@
         }
       ]
     },
-    "active_skill_attack_damage_final_permyriad": {
-      "stats": ["active_skill_attack_damage_final_permyriad"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Deals %1%%% of Base Damage",
-          "formatters": [
-            {
-              "id": "multiplicative_permyriad_damage_modifier",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "base_spell_repeat_count": {
       "stats": ["base_spell_repeat_count"],
       "translations": [
@@ -433,21 +460,6 @@
         }
       ]
     },
-    "base_secondary_skill_effect_duration": {
-      "stats": ["base_secondary_skill_effect_duration"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Base secondary duration is %1% seconds",
-          "formatters": [
-            {
-              "id": "milliseconds_to_seconds_2dp",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "base_number_of_golems_allowed": {
       "stats": ["base_number_of_golems_allowed"],
       "translations": [
@@ -459,6 +471,16 @@
         {
           "matchers": [[2, "#"]],
           "text": "Can Summon up to %1% Golems at a time",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_totems_allowed": {
+      "stats": ["base_number_of_totems_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d to maximum number of Summoned Totems",
           "formatters": []
         }
       ]
@@ -493,26 +515,6 @@
         }
       ]
     },
-    "active_skill_if_used_through_frostbolt_damage_+%_final": {
-      "stats": ["active_skill_if_used_through_frostbolt_damage_+%_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% more Damage when Cast on Frostbolt",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1%%% less Damage when Cast on Frostbolt",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "additional_base_critical_strike_chance": {
       "stats": ["additional_base_critical_strike_chance"],
       "translations": [
@@ -525,6 +527,33 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "additional_weapon_base_attack_time_ms": {
+      "stats": ["additional_weapon_base_attack_time_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d seconds to Attack Time",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp_if_required",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "additive_cast_speed_modifiers_apply_to_sigil_repeat_frequency": {
+      "stats": [
+        "additive_cast_speed_modifiers_apply_to_sigil_repeat_frequency"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Increases and Reductions to Cast Speed also apply to this Skill's Activation frequency",
+          "formatters": []
         }
       ]
     },
@@ -570,6 +599,26 @@
     },
     "attack_speed_+%": {
       "stats": ["attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% increased Attack Speed",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% reduced Attack Speed",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "attack_speed_+%_granted_from_skill": {
+      "stats": ["attack_speed_+%_granted_from_skill"],
       "translations": [
         {
           "matchers": [[1, "#"]],
@@ -818,6 +867,36 @@
         }
       ]
     },
+    "base_number_of_champions_of_light_allowed": {
+      "stats": ["base_number_of_champions_of_light_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Maximum %1% Summoned Sentinel of Purity",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Maximum %1% Summoned Sentinels of Purity",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_relics_allowed": {
+      "stats": ["base_number_of_relics_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Maximum %1% Summoned Holy Relic",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Maximum %1% Summoned Holy Relics",
+          "formatters": []
+        }
+      ]
+    },
     "base_physical_damage_%_to_convert_to_lightning": {
       "stats": ["base_physical_damage_%_to_convert_to_lightning"],
       "translations": [
@@ -890,6 +969,21 @@
           "matchers": [[1, "#"]],
           "text": "Penetrates %1%%% Lightning Resistance",
           "formatters": []
+        }
+      ]
+    },
+    "base_sigil_repeat_frequency_ms": {
+      "stats": ["base_sigil_repeat_frequency_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Activates every %1% seconds while Attached",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -1008,8 +1102,7 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text":
-            "%1%%% chance to gain a Frenzy Charge on Killing a Frozen Enemy",
+          "text": "%1%%% chance to gain a Frenzy Charge on Killing a Frozen Enemy",
           "formatters": []
         },
         {
@@ -1614,8 +1707,8 @@
         }
       ]
     },
-    "number_of_additional_projectiles_in_chain": {
-      "stats": ["number_of_additional_projectiles_in_chain"],
+    "number_of_chains": {
+      "stats": ["number_of_chains"],
       "translations": [
         {
           "matchers": ["#"],
@@ -1961,6 +2054,16 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "static_strike_number_of_beam_targets": {
+      "stats": ["static_strike_number_of_beam_targets"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1% maximum Beam Targets",
+          "formatters": []
         }
       ]
     },

@@ -19,41 +19,25 @@
         }
       ]
     },
-    "action_speed_reduction": {
-      "stats": ["temporal_chains_action_speed_+%_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "被诅咒敌人的移动速度、攻击速度及施法速度提高 %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "被诅咒敌人的移动速度、攻击速度及施法速度降低 %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "buff_time_passed_reduction": {
-      "stats": ["buff_time_passed_-%"],
+      "stats": ["buff_time_passed_+%_other_than_temporal_chains"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人身上的增益与减益持续时间延长 %1%%%",
+          "text": "被诅咒敌人身上的增益与减益持续时间缩短 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被诅咒敌人身上的增益与减益持续时间缩短 %1%%%",
+          "text": "被诅咒敌人身上的增益与减益持续时间延长 %1%%%",
           "formatters": [
             {
               "id": "negate",
               "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextSlowTimeEffects"
             }
           ]
         }
@@ -517,12 +501,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被诅咒敌人的感电持续时间延长 %1%%%",
+          "text": "被诅咒敌人的感电持续时间缩短 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被诅咒敌人的感电持续时间缩短 %1%%%",
+          "text": "被诅咒敌人的感电持续时间延长 %1%%%",
           "formatters": [
             {
               "id": "negate",

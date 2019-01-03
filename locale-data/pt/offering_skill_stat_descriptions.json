@@ -12,14 +12,28 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text":
-            "Sacrifica %1%%% da sua Vida\\nLacaios Regeneram %2%%% da Vida Sacrificada por segundo",
+          "text": "Sacrifica %1%%% da sua Vida\\nLacaios Regeneram %2%%% da Vida Sacrificada por segundo",
           "formatters": []
         }
       ]
     },
-    "attack_speed_incr": {
-      "stats": ["attack_speed_+%"],
+    "blood_offering_life_regen_multi": {
+      "stats": ["blood_offering_life_regenerated_+%_final_per_corpse"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% mais Regeneração de Vida concedida aos Lacaios por Corpo consumido",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% menos Regeneração de Vida concedida aos Lacaios por Corpo consumido",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_speed_incr_skill_granted": {
+      "stats": ["attack_speed_+%_granted_from_skill"],
       "translations": [
         {
           "matchers": [[1, "#"]],
@@ -103,7 +117,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Concede aos Lacaios %1$+d%% de Chance de Bloquear Ataques",
+          "text": "Concede aos Lacaios %1$+d%% de Chance de Bloquear o Dano de Ataques",
           "formatters": []
         }
       ]
@@ -113,7 +127,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "Concede aos Lacaios %1$+d%% de Chance de Bloquear Magias",
+          "text": "Concede aos Lacaios %1$+d%% de Chance de Bloquear Dano Mágico",
           "formatters": []
         }
       ]
@@ -133,8 +147,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios ganham %1%%% do próprio Dano Físico como Dano Extra de Caos",
+          "text": "Lacaios ganham %1%%% do próprio Dano Físico como Dano Extra de Caos",
           "formatters": []
         }
       ]
@@ -146,8 +159,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Lacaios ganham %1%%% de suas Vidas Máximas como\\nEscudo de Energia Máximo Extra para cada cadáver consumido",
+          "text": "Lacaios ganham %1%%% de suas Vidas Máximas como\\nEscudo de Energia Máximo Extra para cada cadáver consumido",
           "formatters": []
         }
       ]

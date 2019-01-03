@@ -1,0 +1,209 @@
+{
+  "meta": {
+    "include": "aura_skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "buff_duration": {
+      "stats": ["buff_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "鬥旗在放置後持續 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "banner_add_stage_on_impale": {
+      "stats": ["banner_add_stage_on_impale"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "當你背著鬥旗穿刺敵人時獲得 1 層疊層，每秒至多 5 層",
+          "formatters": []
+        }
+      ]
+    },
+    "banner_add_stage_on_kill": {
+      "stats": ["banner_add_stage_on_kill"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "當你背著旗幟擊殺敵人時獲得 1 層疊層",
+          "formatters": []
+        }
+      ]
+    },
+    "banner_stage_duration": {
+      "stats": ["banner_additional_base_duration_per_stage_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "每層 %1$+d 秒基礎放置鬥旗持續時間",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "每層 %1$+d 秒基礎放置鬥旗持續時間",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "banner_stage_aoe": {
+      "stats": ["banner_area_of_effect_+%_per_stage"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "當放置時，每層疊層增加 %1%%% 範圍效果",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "當放置時，每層疊層減少 %1%%% 範圍效果",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "banner_stage_aura_effect": {
+      "stats": ["banner_buff_effect_+%_per_stage"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "當放置時，每層疊層增加 %1%%% 光環效果",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "當放置時，每層疊層減少 %1%%% 光環效果",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_duration_identifier": {
+      "stats": ["base_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "放置鬥旗後有 %1% 秒基礎持續時間",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "war_banner_adrenaline": {
+      "stats": ["bloodstained_banner_adrenaline_duration_per_stage_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "放置鬥旗時，每層獲得 %1% 秒腎上腺素",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextAdrenaline"
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "放置鬥旗時，每層獲得 %1% 秒腎上腺素",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextAdrenaline"
+            }
+          ]
+        }
+      ]
+    },
+    "dread_banner_accuracy_final": {
+      "stats": ["puresteel_banner_accuracy_rating_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "附近敵人有 %1%%% 更多命中率",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "附近敵人有 %1%%% 更少命中率",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "dread_banner_fortify": {
+      "stats": ["puresteel_banner_fortify_duration_per_stage_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "放置鬥旗時，每層獲得 %1% 秒護體",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "放置鬥旗時，每層獲得 %1% 秒護體",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -24,12 +24,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Cursed enemies are %1%%% faster",
+          "text": "Cursed Enemies have %1%%% more Action Speed",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Cursed enemies are %1%%% slower",
+          "text": "Cursed Enemies have %1%%% less Action Speed",
           "formatters": [
             {
               "id": "negate",
@@ -40,20 +40,24 @@
       ]
     },
     "buff_time_passed_reduction": {
-      "stats": ["buff_time_passed_-%"],
+      "stats": ["buff_time_passed_+%_other_than_temporal_chains"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Other effects on Cursed enemies expire %1%%% slower",
+          "text": "Other effects on Cursed enemies expire %1%%% faster",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Other effects on Cursed enemies expire %1%%% faster",
+          "text": "Other effects on Cursed enemies expire %1%%% slower",
           "formatters": [
             {
               "id": "negate",
               "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextSlowTimeEffects"
             }
           ]
         }
@@ -114,8 +118,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Cursed enemies have %1$+d%% chance to be Frozen by Cold Damage",
+          "text": "Cursed enemies have %1$+d%% chance to be Frozen by Cold Damage",
           "formatters": []
         }
       ]
@@ -125,8 +128,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Cursed enemies have %1$+d%% chance to be Ignited by Fire Damage",
+          "text": "Cursed enemies have %1$+d%% chance to be Ignited by Fire Damage",
           "formatters": [
             {
               "id": "reminderstring",
@@ -141,8 +143,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Cursed enemies have %1$+d%% chance to be Shocked by Lightning Damage",
+          "text": "Cursed enemies have %1$+d%% chance to be Shocked by Lightning Damage",
           "formatters": [
             {
               "id": "reminderstring",
@@ -205,8 +206,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Cursed enemies have a %1%%% chance to grant an Endurance Charge when slain",
+          "text": "Cursed enemies have a %1%%% chance to grant an Endurance Charge when slain",
           "formatters": []
         }
       ]
@@ -216,8 +216,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Cursed enemies have a %1%%% chance to grant a Frenzy Charge when slain",
+          "text": "Cursed enemies have a %1%%% chance to grant a Frenzy Charge when slain",
           "formatters": []
         }
       ]
@@ -227,8 +226,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Cursed enemies have a %1%%% chance to grant a Power Charge when slain",
+          "text": "Cursed enemies have a %1%%% chance to grant a Power Charge when slain",
           "formatters": []
         }
       ]
@@ -238,8 +236,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Reflects %1%%% of Physical Damage dealt by Cursed Normal Enemies",
+          "text": "Reflects %1%%% of Physical Damage dealt by Cursed Normal Enemies",
           "formatters": []
         }
       ]
@@ -249,8 +246,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Reflects %1%%% of Physical Damage dealt by Cursed Magic Enemies",
+          "text": "Reflects %1%%% of Physical Damage dealt by Cursed Magic Enemies",
           "formatters": []
         }
       ]
@@ -260,8 +256,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Reflects %1%%% of Physical Damage dealt by Cursed Rare Enemies",
+          "text": "Reflects %1%%% of Physical Damage dealt by Cursed Rare Enemies",
           "formatters": []
         }
       ]
@@ -271,8 +266,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Reflects %1%%% of Physical Damage dealt by Cursed Unique Enemies",
+          "text": "Reflects %1%%% of Physical Damage dealt by Cursed Unique Enemies",
           "formatters": []
         }
       ]
@@ -352,8 +346,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Cursed enemies have an additional %1%%% chance to receive a Critical Strike",
+          "text": "Cursed enemies have an additional %1%%% chance to receive a Critical Strike",
           "formatters": []
         }
       ]
@@ -363,14 +356,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Cursed enemies take %1%%% reduced Extra Damage from Critical Strikes",
+          "text": "Cursed enemies take %1%%% reduced Extra Damage from Critical Strikes",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Cursed enemies take %1%%% increased Extra Damage from Critical Strikes",
+          "text": "Cursed enemies take %1%%% increased Extra Damage from Critical Strikes",
           "formatters": [
             {
               "id": "negate",
@@ -395,8 +386,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Hits on Cursed Enemies have an additional %1%%% chance to Knockback",
+          "text": "Hits on Cursed Enemies have an additional %1%%% chance to Knockback",
           "formatters": [
             {
               "id": "reminderstring",
@@ -431,8 +421,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Cursed enemies take %1%%% increased Damage from Projectile Hits",
+          "text": "Cursed enemies take %1%%% increased Damage from Projectile Hits",
           "formatters": []
         }
       ]
@@ -442,8 +431,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Cursed enemies have an additional %1%%% chance to be Stunned",
+          "text": "Cursed enemies have an additional %1%%% chance to be Stunned",
           "formatters": []
         }
       ]
@@ -483,8 +471,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Cursed enemies take %1%%% increased Damage from Damage Over Time effects",
+          "text": "Cursed enemies take %1%%% increased Damage from Damage Over Time effects",
           "formatters": []
         }
       ]
@@ -634,8 +621,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Cursed Enemies have %1%%% chance to be Maimed for 4 seconds when Hit by Attacks",
+          "text": "Cursed Enemies have %1%%% chance to be Maimed for 4 seconds when Hit by Attacks",
           "formatters": [
             {
               "id": "reminderstring",
@@ -663,14 +649,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Cursed enemies take %1%%% increased Physical Damage from Damage over time",
+          "text": "Cursed enemies take %1%%% increased Physical Damage from Damage over time",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Cursed enemies take %1%%% increased Physical Damage from Damage over time",
+          "text": "Cursed enemies take %1%%% increased Physical Damage from Damage over time",
           "formatters": []
         }
       ]

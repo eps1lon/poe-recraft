@@ -4,6 +4,21 @@
     "hasIdentifiers": false
   },
   "data": {
+    "num_additional_traps": {
+      "stats": ["number_of_additional_traps_to_throw"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Lacaios Arremessam até 1 Armadilha adicional",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Lacaios Arremessam até %1% Armadilhas adicionais",
+          "formatters": []
+        }
+      ]
+    },
     "num_additional_mines": {
       "stats": ["number_of_additional_mines_to_place"],
       "translations": [
@@ -29,8 +44,7 @@
         },
         {
           "matchers": ["#"],
-          "text":
-            "Lacaios podem ter %1% Armadilhas adicionais plantadas por vez",
+          "text": "Lacaios podem ter %1% Armadilhas adicionais plantadas por vez",
           "formatters": []
         }
       ]
@@ -40,14 +54,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text":
-            "Lacaios podem ter uma Mina Remota adicional plantada por vez",
+          "text": "Lacaios podem ter uma Mina Remota adicional plantada por vez",
           "formatters": []
         },
         {
           "matchers": ["#"],
-          "text":
-            "Lacaios podem ter %1% Minas Remotas adicionais plantadas por vez",
+          "text": "Lacaios podem ter %1% Minas Remotas adicionais plantadas por vez",
           "formatters": []
         }
       ]
@@ -162,16 +174,6 @@
         }
       ]
     },
-    "critical_strike_chance_incr": {
-      "stats": ["critical_strike_chance_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Lacaios têm %1%%% de Chance Crítico aumentado",
-          "formatters": []
-        }
-      ]
-    },
     "critical_strike_multiplier_incr": {
       "stats": ["base_critical_strike_multiplier_+"],
       "translations": [
@@ -235,8 +237,7 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text":
-            "Lacaios têm %1%%% de chance adicional de Empurrar Inimigos ao Acertar",
+          "text": "Lacaios têm %1%%% de chance adicional de Empurrar Inimigos ao Acertar",
           "formatters": [
             {
               "id": "reminderstring",
@@ -276,8 +277,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios têm %1%%% do Ponto de Atordoamento Inimigo aumentado",
+          "text": "Lacaios têm %1%%% do Ponto de Atordoamento Inimigo aumentado",
           "formatters": [
             {
               "id": "reminderstring",
@@ -306,14 +306,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Raridade de Itens Derrubados por inimigos Mortos por Lacaios aumentada em %1%%%",
+          "text": "Raridade de Itens Derrubados por inimigos Mortos por Lacaios aumentada em %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Raridade de Itens Derrubados por inimigos Mortos por Lacaios reduzida em %1%%%",
+          "text": "Raridade de Itens Derrubados por inimigos Mortos por Lacaios reduzida em %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -328,14 +326,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Quantidade de Itens Derrubados por inimigos Mortos por Lacaios aumentada em %1%%%",
+          "text": "Quantidade de Itens Derrubados por inimigos Mortos por Lacaios aumentada em %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Quantidade de Itens Derrubados por inimigos Mortos por Lacaios reduzida em %1%%%",
+          "text": "Quantidade de Itens Derrubados por inimigos Mortos por Lacaios reduzida em %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -415,9 +411,48 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios possuem %1%%% de chance de fazer Monstros Fugirem ao serem Acertados",
+          "text": "Lacaios possuem %1%%% de chance de fazer Monstros Fugirem ao serem Acertados",
           "formatters": []
+        }
+      ]
+    },
+    "area_of_effect_incr": {
+      "stats": ["base_skill_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Lacaios possuem %1%%% de aumento da Área de Efeito",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Lacaios possuem %1%%% de redução da Área de Efeito",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "concentrated_area_of_effect": {
+      "stats": ["support_concentrated_effect_skill_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Lacaios possuem %1%%% mais Área de Efeito",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Lacaios possuem %1%%% menos Área de Efeito",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -559,14 +594,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios têm %1%%% de Duração de Atordoamento em inimigos aumentada",
+          "text": "Lacaios têm %1%%% de Duração de Atordoamento em inimigos aumentada",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios têm %1%%% de Duração de Atordoamento em inimigos reduzida",
+          "text": "Lacaios têm %1%%% de Duração de Atordoamento em inimigos reduzida",
           "formatters": []
         }
       ]
@@ -576,14 +609,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios têm %1%%% de Efeito de Resfriamento aumentado em Inimigos",
+          "text": "Lacaios têm %1%%% de Efeito de Resfriamento aumentado em Inimigos",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios têm %1%%% de Efeito de Resfriamento reduzido em Inimigos",
+          "text": "Lacaios têm %1%%% de Efeito de Resfriamento reduzido em Inimigos",
           "formatters": [
             {
               "id": "negate",
@@ -598,14 +629,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios têm %1%%% de Duração de Incendeio em inimigos aumentada",
+          "text": "Lacaios têm %1%%% de Duração de Incendeio em inimigos aumentada",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios têm %1%%% de Duração de Incendeio em inimigos reduzida",
+          "text": "Lacaios têm %1%%% de Duração de Incendeio em inimigos reduzida",
           "formatters": [
             {
               "id": "negate",
@@ -620,14 +649,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios têm %1%%% de Duração de Resfriamento em inimigos aumentada",
+          "text": "Lacaios têm %1%%% de Duração de Resfriamento em inimigos aumentada",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios têm %1%%% de Duração de Resfriamento em inimigos reduzida",
+          "text": "Lacaios têm %1%%% de Duração de Resfriamento em inimigos reduzida",
           "formatters": [
             {
               "id": "negate",
@@ -642,14 +669,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios têm %1%%% de Duração de Congelamento em inimigos aumentada",
+          "text": "Lacaios têm %1%%% de Duração de Congelamento em inimigos aumentada",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios têm %1%%% de Duração de Congelamento em inimigos reduzida",
+          "text": "Lacaios têm %1%%% de Duração de Congelamento em inimigos reduzida",
           "formatters": [
             {
               "id": "negate",
@@ -664,14 +689,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios têm %1%%% de Duração de Eletrização em inimigos aumentada",
+          "text": "Lacaios têm %1%%% de Duração de Eletrização em inimigos aumentada",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios têm %1%%% de Duração de Eletrização em inimigos reduzida",
+          "text": "Lacaios têm %1%%% de Duração de Eletrização em inimigos reduzida",
           "formatters": [
             {
               "id": "negate",
@@ -686,8 +709,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Afecções Elementais causadas por Lacaios também afetam outros inimigos próximos",
+          "text": "Afecções Elementais causadas por Lacaios também afetam outros inimigos próximos",
           "formatters": [
             {
               "id": "reminderstring",
@@ -702,8 +724,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Incêndios causados por Lacaios também afetam outros inimigos próximos",
+          "text": "Incêndios causados por Lacaios também afetam outros inimigos próximos",
           "formatters": []
         }
       ]
@@ -735,14 +756,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios causam %1%%% mais Dano com Sangramento e Veneno causados por Acertos Corpo a Corpo",
+          "text": "Lacaios causam %1%%% mais Dano com Sangramento e Veneno causados por Acertos Corpo a Corpo",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios causam %1%%% menos Dano com Sangramento e Veneno causados por Acertos Corpo a Corpo",
+          "text": "Lacaios causam %1%%% menos Dano com Sangramento e Veneno causados por Acertos Corpo a Corpo",
           "formatters": [
             {
               "id": "negate",
@@ -757,14 +776,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios causam %1%%% mais Dano com Habilidades de Ataque com Vida Cheia",
+          "text": "Lacaios causam %1%%% mais Dano com Habilidades de Ataque com Vida Cheia",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios causam %1%%% menos Dano com Habilidades de Ataque com Vida Cheia",
+          "text": "Lacaios causam %1%%% menos Dano com Habilidades de Ataque com Vida Cheia",
           "formatters": [
             {
               "id": "negate",
@@ -922,8 +939,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text":
-            "Ataques de Lacaios causam %1% a %2% de Dano Físico adicional",
+          "text": "Ataques de Lacaios causam %1% a %2% de Dano Físico adicional",
           "formatters": []
         }
       ]
@@ -972,14 +988,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios têm o Dano Físico com Ataques Corpo a Corpo aumentado em %1%%%",
+          "text": "Lacaios têm o Dano Físico com Ataques Corpo a Corpo aumentado em %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios têm o Dano Físico com Ataques Corpo a Corpo reduzido em %1%%%",
+          "text": "Lacaios têm o Dano Físico com Ataques Corpo a Corpo reduzido em %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -994,8 +1008,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios causam %1%%% do próprio Dano Físico como Dano de Fogo Extra",
+          "text": "Lacaios causam %1%%% do próprio Dano Físico como Dano de Fogo Extra",
           "formatters": []
         }
       ]
@@ -1005,8 +1018,17 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% do Dano de Gelo dos Lacaios convertido em Dano de Fogo",
+          "text": "%1%%% do Dano de Gelo dos Lacaios convertido em Dano de Fogo",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_to_add_as_chaos": {
+      "stats": ["physical_damage_%_to_add_as_chaos"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Lacaios causam %1%%% de seu Dano Físico como Dano de Caos Extra",
           "formatters": []
         }
       ]
@@ -1136,14 +1158,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios causam %1%%% mais Dano Elemental com Habilidades de Ataque",
+          "text": "Lacaios causam %1%%% mais Dano Elemental com Habilidades de Ataque",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios causam %1%%% menos Dano Elemental com Habilidades de Ataque",
+          "text": "Lacaios causam %1%%% menos Dano Elemental com Habilidades de Ataque",
           "formatters": [
             {
               "id": "negate",
@@ -1405,14 +1425,12 @@
       "translations": [
         {
           "matchers": [[1, "#"], "#"],
-          "text":
-            "Lacaios causam %1%%% mais Dano com Acertos por Veneno no Inimigo, até %2%",
+          "text": "Lacaios causam %1%%% mais Dano com Acertos por Veneno no Inimigo, até %2%",
           "formatters": []
         },
         {
           "matchers": [["#", -1], "#"],
-          "text":
-            "Lacaios causam %1%%% menos Dano com Acertos por Veneno no Inimigo, até %2%",
+          "text": "Lacaios causam %1%%% menos Dano com Acertos por Veneno no Inimigo, até %2%",
           "formatters": [
             {
               "id": "negate",
@@ -1702,21 +1720,6 @@
         }
       ]
     },
-    "number_of_converted_allowed": {
-      "stats": ["number_of_converted_allowed"],
-      "translations": [
-        {
-          "matchers": [1],
-          "text": "Pode ter %1% Inimigo Dominado por vez",
-          "formatters": []
-        },
-        {
-          "matchers": [[2, "#"]],
-          "text": "Pode ter até %1% Inimigos Dominados por vez",
-          "formatters": []
-        }
-      ]
-    },
     "culling_strike": {
       "stats": ["kill_enemy_on_hit_if_under_10%_life"],
       "translations": [
@@ -1817,16 +1820,6 @@
         }
       ]
     },
-    "chain_num": {
-      "stats": ["virtual_number_of_additional_projectiles_in_chain"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Projéteis de Lacaios Ricocheteiam %1$+d Vezes",
-          "formatters": []
-        }
-      ]
-    },
     "split_num": {
       "stats": ["projectile_number_to_split"],
       "translations": [
@@ -1838,7 +1831,7 @@
       ]
     },
     "fork": {
-      "stats": ["projectiles_fork"],
+      "stats": ["virtual_projectiles_fork"],
       "translations": [
         {
           "matchers": ["#"],
@@ -1852,8 +1845,7 @@
       "translations": [
         {
           "matchers": ["#", 0],
-          "text":
-            "Projéteis dos Lacaios Retornam para Eles ao acertar os alvos",
+          "text": "Projéteis dos Lacaios Retornam para Eles ao acertar os alvos",
           "formatters": []
         },
         {
@@ -1873,8 +1865,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Ataques Corpo a Corpo de alvo único dos Lacaios causam Dano Propagador a Alvos Próximos",
+          "text": "Ataques Corpo a Corpo de alvo único dos Lacaios causam Dano Propagador a Alvos Próximos",
           "formatters": []
         }
       ]
@@ -1884,8 +1875,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Ataques Corpo a Corpo dos Lacaios repetem %1% vezes adicionais",
+          "text": "Ataques Corpo a Corpo dos Lacaios repetem %1% vezes adicionais",
           "formatters": []
         }
       ]
@@ -1910,8 +1900,7 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text":
-            "Lacaios possuem %1%%% de chance de ganharem uma Carga de Poder em Acertos Críticos",
+          "text": "Lacaios possuem %1%%% de chance de ganharem uma Carga de Poder em Acertos Críticos",
           "formatters": []
         },
         {
@@ -1926,14 +1915,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios possuem %1%%% mais Velocidade de Ataque Corpo a Corpo",
+          "text": "Lacaios possuem %1%%% mais Velocidade de Ataque Corpo a Corpo",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios possuem %1%%% menos Velocidade de Ataque Corpo a Corpo",
+          "text": "Lacaios possuem %1%%% menos Velocidade de Ataque Corpo a Corpo",
           "formatters": [
             {
               "id": "negate",
@@ -2144,12 +2131,24 @@
       ]
     },
     "endurance_charge_on_stun": {
-      "stats": ["gain_endurance_charge_on_melee_stun"],
+      "stats": [
+        "gain_endurance_charge_on_melee_stun",
+        "gain_endurance_charge_on_melee_stun_%"
+      ],
       "translations": [
         {
-          "matchers": ["#"],
-          "text":
-            "Lacaios ganham uma Carga de Tolerância quando Atordoam um Inimigo com Dano Corpo a Corpo",
+          "matchers": [0, [0, 99]],
+          "text": "Lacaios possuem %2%%% de chance de receber uma Carga de Tolerância ao Atordoar um Inimigo com um Acerto Corpo a Corpo",
+          "formatters": []
+        },
+        {
+          "matchers": [0, [100, "#"]],
+          "text": "Lacaios recebem uma Carga de Tolerância ao Atordoar um Inimigo com um Acerto Corpo a Corpo",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#"],
+          "text": "Lacaios recebem uma Carga de Tolerância ao Atordoar um Inimigo com um Acerto Corpo a Corpo",
           "formatters": []
         }
       ]
@@ -2199,8 +2198,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios têm a Velocidade de Ataque aumentada em %1%%% quando em Vida Baixa",
+          "text": "Lacaios têm a Velocidade de Ataque aumentada em %1%%% quando em Vida Baixa",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2210,8 +2208,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios têm a Velocidade de Ataque reduzida em %1%%% quando em Vida Baixa",
+          "text": "Lacaios têm a Velocidade de Ataque reduzida em %1%%% quando em Vida Baixa",
           "formatters": [
             {
               "id": "negate",
@@ -2230,8 +2227,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios têm a Velocidade de Conjuração aumentada em %1%%% quando em Vida Baixa",
+          "text": "Lacaios têm a Velocidade de Conjuração aumentada em %1%%% quando em Vida Baixa",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2241,8 +2237,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios têm a Velocidade de Conjuração reduzida em %1%%% quando em Vida Baixa",
+          "text": "Lacaios têm a Velocidade de Conjuração reduzida em %1%%% quando em Vida Baixa",
           "formatters": [
             {
               "id": "negate",
@@ -2263,14 +2258,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Ataques de Lacaios causam %1%%% mais Dano com Sangramento e Veneno causados por Acertos de Projéteis",
+          "text": "Ataques de Lacaios causam %1%%% mais Dano com Sangramento e Veneno causados por Acertos de Projéteis",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Ataques de Lacaios causam %1%%% menos Dano com Sangramento e Veneno causados por Acertos de Projéteis",
+          "text": "Ataques de Lacaios causam %1%%% menos Dano com Sangramento e Veneno causados por Acertos de Projéteis",
           "formatters": [
             {
               "id": "negate",
@@ -2285,14 +2278,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios causam %1%%% mais Dano de Ataques de Projétil Físico",
+          "text": "Lacaios causam %1%%% mais Dano de Ataques de Projétil Físico",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios causam %1%%% menos Dano de Ataques de Projétil Físico",
+          "text": "Lacaios causam %1%%% menos Dano de Ataques de Projétil Físico",
           "formatters": [
             {
               "id": "negate",
@@ -2307,14 +2298,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios possuem %1%%% mais Velocidade de Ataques de Projétil",
+          "text": "Lacaios possuem %1%%% mais Velocidade de Ataques de Projétil",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios possuem %1%%% menos Velocidade de Ataques de Projétil",
+          "text": "Lacaios possuem %1%%% menos Velocidade de Ataques de Projétil",
           "formatters": [
             {
               "id": "negate",
@@ -2344,6 +2333,16 @@
         }
       ]
     },
+    "blood_magic": {
+      "stats": ["base_use_life_in_place_of_mana"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Essa Habilidade e Lacaios Gastam Vida ao invés de Mana",
+          "formatters": []
+        }
+      ]
+    },
     "bloodlust_damage": {
       "stats": [
         "support_bloodlust_melee_physical_damage_+%_final_vs_bleeding_enemies"
@@ -2351,14 +2350,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios causam %1%%% mais Dano Físico Corpo a Corpo contra Inimigos Sangrando",
+          "text": "Lacaios causam %1%%% mais Dano Físico Corpo a Corpo contra Inimigos Sangrando",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios causam %1%%% menos Dano Físico Corpo a Corpo contra Inimigos Sangrando",
+          "text": "Lacaios causam %1%%% menos Dano Físico Corpo a Corpo contra Inimigos Sangrando",
           "formatters": [
             {
               "id": "negate",
@@ -2373,14 +2370,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios têm o Dano Corpo a Corpo aumentado em %1%%% contra Inimigos Sangrando",
+          "text": "Lacaios têm o Dano Corpo a Corpo aumentado em %1%%% contra Inimigos Sangrando",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios têm o Dano Corpo a Corpo reduzido em %1%%% contra Inimigos Sangrando",
+          "text": "Lacaios têm o Dano Corpo a Corpo reduzido em %1%%% contra Inimigos Sangrando",
           "formatters": [
             {
               "id": "negate",
@@ -2395,8 +2390,7 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text":
-            "Lacaios têm %1%%% de chance de Fortificar em Acertos Corpo a Corpo",
+          "text": "Lacaios têm %1%%% de chance de Fortificar em Acertos Corpo a Corpo",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2441,8 +2435,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Lacaios possuem %1$d%% de chance de Congelar Inimigos Resfriados",
+          "text": "Lacaios possuem %1$d%% de chance de Congelar Inimigos Resfriados",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2457,8 +2450,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios causam %1%%% mais Dano com Acertos e Afecções contra Inimigos Resfriados",
+          "text": "Lacaios causam %1%%% mais Dano com Acertos e Afecções contra Inimigos Resfriados",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2468,8 +2460,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios causam %1%%% menos Dano com Acertos e Afecções contra Inimigos Resfriados",
+          "text": "Lacaios causam %1%%% menos Dano com Acertos e Afecções contra Inimigos Resfriados",
           "formatters": [
             {
               "id": "negate",
@@ -2548,12 +2539,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Lacaios causam %1%%% mais Dano de Mina Remota",
+          "text": "Lacaios causam %1%%% mais Dano",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Lacaios causam %1%%% menos Dano de Mina Remota",
+          "text": "Lacaios causam %1%%% mais Dano",
           "formatters": [
             {
               "id": "negate",
@@ -2683,8 +2674,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Cada terceiro uso de Ataques de Lacaios causa um Golpe Impiedoso com Acertos Corpo a Corpo",
+          "text": "Cada terceiro uso de Ataques de Lacaios causa um Golpe Impiedoso com Acertos Corpo a Corpo",
           "formatters": []
         }
       ]
@@ -2694,8 +2684,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Golpes Impiedosos de Lacaios causam %1%%% mais Dano Corpo a Corpo",
+          "text": "Golpes Impiedosos de Lacaios causam %1%%% mais Dano Corpo a Corpo",
           "formatters": []
         }
       ]
@@ -2707,8 +2696,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Golpes Impiedosos de Lacaios causam %1%%% mais Dano com Sangramento causado por Acertos Corpo a Corpo",
+          "text": "Golpes Impiedosos de Lacaios causam %1%%% mais Dano com Sangramento causado por Acertos Corpo a Corpo",
           "formatters": []
         }
       ]
@@ -2718,8 +2706,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Golpes Impiedosos de Lacaios têm uma Duração de Atordoamento base de %1% segundos",
+          "text": "Golpes Impiedosos de Lacaios têm uma Duração de Atordoamento base de %1% segundos",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -2749,13 +2736,22 @@
         }
       ]
     },
+    "additive_bow_damage_applies_to_minions": {
+      "stats": ["additive_modifiers_to_bow_damage_also_apply_to_minions"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Aumentos e Reduções ao Dano com Arcos também se aplicam aos Lacaios",
+          "formatters": []
+        }
+      ]
+    },
     "ailment_duration_incr": {
       "stats": ["base_all_ailment_duration_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios têm %1%%% de Duração de Afecções aumentada em Inimigos",
+          "text": "Lacaios têm %1%%% de Duração de Afecções aumentada em Inimigos",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2765,8 +2761,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios têm %1%%% de Duração de Afecções reduzida em Inimigos",
+          "text": "Lacaios têm %1%%% de Duração de Afecções reduzida em Inimigos",
           "formatters": [
             {
               "id": "negate",
@@ -2824,8 +2819,7 @@
       "translations": [
         {
           "matchers": [[1, 99], 0, 0],
-          "text":
-            "Ataques de Lacaios têm %1%%% de chance de causar Sangramento",
+          "text": "Ataques de Lacaios têm %1%%% de chance de causar Sangramento",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2860,13 +2854,27 @@
         }
       ]
     },
+    "ghost_chance": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "%1%%% de chance de Convocar um Fantasma quando Lacaios Não-Fantasmas causam um Golpe Mortal",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Convoca um Fantasma quando Lacaios Não-Fantasmas causam um Golpe Mortal",
+          "formatters": []
+        }
+      ]
+    },
     "decay_on_hit": {
       "stats": ["deal_chaos_damage_per_second_for_10_seconds_on_hit"],
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Lacaios infligem Podridão ao Acertar, causando %1% de Dano de Caos por segundo durante 8 segundos",
+          "text": "Lacaios infligem Podridão ao Acertar, causando %1% de Dano de Caos por segundo durante 8 segundos",
           "formatters": []
         }
       ]
@@ -2881,13 +2889,22 @@
         }
       ]
     },
+    "ignites_apply_fire_res": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Inimigos Incendiados por Lacaios possuem %1$+d%% de Resistência a Fogo",
+          "formatters": []
+        }
+      ]
+    },
     "maim_chance": {
       "stats": ["maim_on_hit_%"],
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text":
-            "Ataques de Lacaios têm %1%%% de chance de Mutilar ao Acertar",
+          "text": "Ataques de Lacaios têm %1%%% de chance de Mutilar ao Acertar",
           "formatters": []
         },
         {
@@ -2905,8 +2922,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text":
-            "Lacaios têm %1% a %2% de Dano de Gelo adicional por Carga de Frenesi",
+          "text": "Lacaios têm %1% a %2% de Dano de Gelo adicional por Carga de Frenesi",
           "formatters": []
         }
       ]
@@ -2918,14 +2934,12 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text":
-            "%1%%% de chance de ganhar um Abate de Fúria quando o Lacaio acertar um Inimigo Único",
+          "text": "%1%%% de chance de ganhar um Abate de Fúria quando o Lacaio acertar um Inimigo Único",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text":
-            "Ganha um Abate de Fúria quando o Lacaio acertar um Inimigo Único",
+          "text": "Ganha um Abate de Fúria quando o Lacaio acertar um Inimigo Único",
           "formatters": []
         }
       ]
@@ -2945,8 +2959,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios têm %1%%% do Efeito de Afecções não Danificantes aumentado em Inimigos",
+          "text": "Lacaios têm %1%%% do Efeito de Afecções não Danificantes aumentado em Inimigos",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2956,8 +2969,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios têm %1%%% do Efeito de Afecções não Danificantes reduzido em Inimigos",
+          "text": "Lacaios têm %1%%% do Efeito de Afecções não Danificantes reduzido em Inimigos",
           "formatters": [
             {
               "id": "negate",
@@ -2968,6 +2980,36 @@
               "arg": "ReminderTextNonDamagingAilments"
             }
           ]
+        }
+      ]
+    },
+    "frenzy_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_frenzy_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Essa Habilidade e Lacaios possuem %1%%% de chance de receber uma Carga de Frenesi quando sua Armadilha for ativada por um Inimigo",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text": "Essa Habilidade recebem uma Carga de Frenesi quando sua Armadilha for ativada por um Inimigo",
+          "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_trap_trig": {
+      "stats": ["%_chance_to_gain_power_charge_on_trap_triggered_by_an_enemy"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Essa Habilidade e Lacaios possuem %1%%% de chance de receber uma Carga de Poder quando sua Armadilha for ativada por um Inimigo ",
+          "formatters": []
+        },
+        {
+          "matchers": [100],
+          "text": "Essa Habilidade e Lacaios recebem uma Carga de Poder quando sua Armadilha for ativada por um Inimigo",
+          "formatters": []
         }
       ]
     },
@@ -2991,8 +3033,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios têm %1%%% de Duração aumentada de Habilidades e Afecções de Dano",
+          "text": "Lacaios têm %1%%% de Duração aumentada de Habilidades e Afecções de Dano",
           "formatters": [
             {
               "id": "reminderstring",
@@ -3002,8 +3043,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios têm %1%%% de Duração reduzida de Habilidades e Afecções de Dano",
+          "text": "Lacaios têm %1%%% de Duração reduzida de Habilidades e Afecções de Dano",
           "formatters": [
             {
               "id": "negate",
@@ -3028,6 +3068,26 @@
         {
           "matchers": [["#", -1]],
           "text": "Lacaios causam %1%%% menos Dano Físico",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hypothermia_cold_damage": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Lacaios causam %1%%% mais Dano de Gelo Degenerativo",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Lacaios causam %1%%% menos Dano de Gelo Degenerativo",
           "formatters": [
             {
               "id": "negate",
@@ -3062,14 +3122,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Inimigos Mutilados por Lacaios sofrem %1%%% de Dano Físico aumentado",
+          "text": "Inimigos Mutilados por Lacaios sofrem %1%%% de Dano Físico aumentado",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Inimigos Mutilados por Lacaios sofrem %1%%% de Dano Físico reduzido",
+          "text": "Inimigos Mutilados por Lacaios sofrem %1%%% de Dano Físico reduzido",
           "formatters": [
             {
               "id": "negate",
@@ -3087,8 +3145,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text":
-            "Lacaios têm %1% a %2% de Dano de Fogo adicional contra Inimigos Queimando",
+          "text": "Lacaios têm %1% a %2% de Dano de Fogo adicional contra Inimigos Queimando",
           "formatters": []
         }
       ]
@@ -3098,14 +3155,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Lacaios e Habilidades usados por Totens causam %1%%% mais Dano Elemental",
+          "text": "Lacaios e Habilidades usados por Totens causam %1%%% mais Dano Elemental",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Lacaios e Habilidades usados por Totens causam %1%%% menos Dano Elemental",
+          "text": "Lacaios e Habilidades usados por Totens causam %1%%% menos Dano Elemental",
           "formatters": [
             {
               "id": "negate",
@@ -3120,14 +3175,12 @@
       "translations": [
         {
           "matchers": [1],
-          "text":
-            "Lacaios também disparam Projéteis de até %1% ponto de cada lado deles",
+          "text": "Lacaios também disparam Projéteis de até %1% ponto de cada lado deles",
           "formatters": []
         },
         {
           "matchers": [[2, "#"]],
-          "text":
-            "Lacaios também disparam Projéteis de até %1% pontos de cada lado deles",
+          "text": "Lacaios também disparam Projéteis de até %1% pontos de cada lado deles",
           "formatters": []
         }
       ]
@@ -3143,6 +3196,28 @@
         {
           "matchers": [["#", -1]],
           "text": "Lacaios causam %1%%% menos Dano de Projéteis",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "power_charge_on_crit_damage": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Lacaios causam %1%%% mais Dano por Carga de Poder",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Lacaios causam %1%%% menos Dano por Carga de Poder",
           "formatters": [
             {
               "id": "negate",
@@ -3180,8 +3255,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text":
-            "Lacaios têm %1%%% de chance de ganhar Agressividade por %2% segundos ao\\ncausar um Golpe Fatal",
+          "text": "Lacaios têm %1%%% de chance de ganhar Agressividade por %2% segundos ao\\ncausar um Golpe Fatal",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -3190,6 +3264,29 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    },
+    "storm_barrier_power_charge": {
+      "stats": [
+        "support_storm_barrier_gain_power_charge_when_hit_%",
+        "support_storm_barrier_lightning_damage_taken_when_hit_+%_final",
+        "support_storm_barrier_physical_damage_taken_when_hit_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#", "#"],
+          "text": "Lacaios recebem %1%%% de chance de Receber uma Carga de Poder quando acertados enquanto Canalizando\\nLacaios recebem %2%%% menos Dano de Raio recebido de Acertos enquanto Canalizando\\nLacaios recebem %3%%% menos Dano Físico de Acertos enquanto Canalizando",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 2
+            },
+            {
+              "id": "negate",
+              "arg": 3
             }
           ]
         }
@@ -3219,6 +3316,61 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "withered_support_base_duration": {
+      "stats": ["support_withered_base_duration_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Definhamento causado por Lacaios possui uma duração base de %1% segundo",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Definhamento causado por Lacaios possui uma duração base de %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "trap_crit_per_power_charge": {
+      "stats": ["trap_critical_strike_multiplier_+_per_power_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Essa Habilidade e Habilidade de Lacaios possuem %1$+d%% de Multiplicador de Acerto Crítico por Carta de Poder quando usadas por Armadilhas",
+          "formatters": []
+        }
+      ]
+    },
+    "trap_throwing_speed_per_frenzy": {
+      "stats": ["trap_throwing_speed_+%_per_frenzy_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Essa Habilidade e Lacaios possuem %1%%%  de aumento da Velocidade de Arremesso das Armadilhas por Carga de Frenesi",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Essa Habilidade e Lacaios possuem %1%%%  de redução da Velocidade de Arremesso das Armadilhas por Carga de Frenesi",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
             }
           ]
         }

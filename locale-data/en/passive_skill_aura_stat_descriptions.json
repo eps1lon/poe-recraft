@@ -43,33 +43,12 @@
         }
       ]
     },
-    "elemental_damage_taken_+%": {
-      "stats": ["elemental_damage_taken_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Nearby Enemies Take %1%%% increased Elemental Damage",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Nearby Enemies Take %1%%% reduced Elemental Damage",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "chance_to_be_ignited_%": {
       "stats": ["chance_to_be_ignited_%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Nearby Enemies have %1$+d%% chance to be Ignited by Fire Damage",
+          "text": "Nearby Enemies have %1$+d%% chance to be Ignited by Fire Damage",
           "formatters": []
         }
       ]
@@ -79,8 +58,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Nearby Enemies have %1$+d%% chance to be Frozen by Cold Damage",
+          "text": "Nearby Enemies have %1$+d%% chance to be Frozen by Cold Damage",
           "formatters": []
         }
       ]
@@ -90,8 +68,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Nearby Enemies have %1$+d%% chance to be Shocked by Lightning Damage",
+          "text": "Nearby Enemies have %1$+d%% chance to be Shocked by Lightning Damage",
           "formatters": [
             {
               "id": "reminderstring",
@@ -121,6 +98,36 @@
         }
       ]
     },
+    "elemental_damage_taken_+%": {
+      "stats": ["elemental_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Nearby Enemies take %1%%% increased Elemental Damage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Nearby Enemies take %1%%% reduced Elemental Damage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_cold_damage_resistance_%": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Nearby Enemies have %1$+d%% to Cold Resistance",
+          "formatters": []
+        }
+      ]
+    },
     "base_chaos_damage_resistance_%": {
       "stats": ["base_chaos_damage_resistance_%"],
       "translations": [
@@ -128,6 +135,66 @@
           "matchers": ["#"],
           "text": "Nearby Enemies have %1$+d%% to Chaos Resistance",
           "formatters": []
+        }
+      ]
+    },
+    "life_regeneration_rate_+%": {
+      "stats": ["life_regeneration_rate_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Nearby Enemies have %1%%% increased Life Regeneration rate",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Nearby Enemies have %1%%% reduced Life Regeneration rate",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hit_damage_+%_while_chilled": {
+      "stats": ["hit_damage_+%_while_chilled"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Nearby Chilled Enemies deal %1%%% increased Damage with Hits",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Nearby Chilled Enemies deal %1%%% reduced Damage with Hits",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_over_time_+%_while_hindered": {
+      "stats": ["damage_over_time_+%_while_hindered"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Nearby Hindered Enemies deal %1%%% increased Damage over Time",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Nearby Hindered Enemies deal %1%%% reduced Damage over Time",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     }

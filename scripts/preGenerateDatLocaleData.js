@@ -70,7 +70,11 @@ if (distributor_codes === undefined) {
       --language "${language}"`;
 
     console.log(`exporting '${code}'...`);
-    await exec(cmd);
+    try {
+      await exec(cmd);
+    } catch (err) {
+      console.error(err);
+    }
     console.log('done');
   }
 })();

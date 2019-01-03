@@ -28,36 +28,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Tú y los Aliados cercanos tienen Velocidad de Movimiento aumentada un %1%%%",
+          "text": "Tú y los Aliados cercanos tienen Velocidad de Movimiento aumentada un %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Tú y los Aliados cercanos tienen Velocidad de Movimiento reducida un %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "elemental_damage_taken_+%": {
-      "stats": ["elemental_damage_taken_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Los Enemigos Cercanos reciben Daño Elemental aumentado un %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "Los Enemigos Cercanos reciben Daño Elemental reducido un %1%%%",
+          "text": "Tú y los Aliados cercanos tienen Velocidad de Movimiento reducida un %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -72,8 +48,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los Enemigos Cercanos tienen %1$+d%% de probabilidad de ser Quemados por Daño de Fuego",
+          "text": "Los Enemigos Cercanos tienen %1$+d%% de probabilidad de ser Quemados por Daño de Fuego",
           "formatters": []
         }
       ]
@@ -83,8 +58,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los Enemigos Cercanos tienen %1$+d%% de probabilidad de ser Congelados por Daño de Hielo",
+          "text": "Los Enemigos Cercanos tienen %1$+d%% de probabilidad de ser Congelados por Daño de Hielo",
           "formatters": []
         }
       ]
@@ -94,8 +68,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Los Enemigos Cercanos tienen %1$+d%% de probabilidad de ser Electrocutados por Daño de Rayo",
+          "text": "Los Enemigos Cercanos tienen %1$+d%% de probabilidad de ser Electrocutados por Daño de Rayo",
           "formatters": [
             {
               "id": "reminderstring",
@@ -125,6 +98,36 @@
         }
       ]
     },
+    "elemental_damage_taken_+%": {
+      "stats": ["elemental_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Los Enemigos Cercanos reciben Daño Elemental aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Los Enemigos Cercanos reciben Daño Elemental reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_cold_damage_resistance_%": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Los Enemigos cercanos tienen %1$+d%% a la Resistencia al Hielo",
+          "formatters": []
+        }
+      ]
+    },
     "base_chaos_damage_resistance_%": {
       "stats": ["base_chaos_damage_resistance_%"],
       "translations": [
@@ -132,6 +135,66 @@
           "matchers": ["#"],
           "text": "Los Enemigos Cercanos tienen %1$+d%% de Resistencia al Caos",
           "formatters": []
+        }
+      ]
+    },
+    "life_regeneration_rate_+%": {
+      "stats": ["life_regeneration_rate_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Los Enemigos Cercanos tienen Regeneración de Vida aumentada un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Los Enemigos Cercanos tienen Regeneración de Vida reducida un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hit_damage_+%_while_chilled": {
+      "stats": ["hit_damage_+%_while_chilled"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Los Enemigos cercanos Escarchados infligen Daño con Golpes aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Los Enemigos cercanos Escarchados infligen Daño con Golpes reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_over_time_+%_while_hindered": {
+      "stats": ["damage_over_time_+%_while_hindered"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Los Enemigos cercanos Entumecidos infligen Daño Degenerativo aumentado un %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Los Enemigos cercanos Entumecidos infligen Daño Degenerativo reducido un %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     }

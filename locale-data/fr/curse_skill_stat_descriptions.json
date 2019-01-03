@@ -24,12 +24,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Les Ennemis Maudits sont %1%%% plus rapides",
+          "text": "Les Ennemis Maudits ont %1%%% Davantage de Vitesse d'action",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Les Ennemis Maudits sont %1%%% plus lents",
+          "text": "Les Ennemis Maudits ont %1%%% de Perte de Vitesse d'action",
           "formatters": [
             {
               "id": "negate",
@@ -40,22 +40,24 @@
       ]
     },
     "buff_time_passed_reduction": {
-      "stats": ["buff_time_passed_-%"],
+      "stats": ["buff_time_passed_+%_other_than_temporal_chains"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les autres Effets sur les Ennemis Maudits expirent %1%%% plus lentement",
+          "text": "Les autres Effets sur les Ennemis Maudits expirent %1%%% plus rapidement",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Les autres Effets sur les Ennemis Maudits expirent %1%%% plus rapidement",
+          "text": "Les autres Effets sur les Ennemis Maudits expirent %1%%% plus lentement",
           "formatters": [
             {
               "id": "negate",
               "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextSlowTimeEffects"
             }
           ]
         }
@@ -66,8 +68,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Les Ennemis Maudits ont %1$+d%% aux Résistances élémentaires",
+          "text": "Les Ennemis Maudits ont %1$+d%% aux Résistances élémentaires",
           "formatters": []
         }
       ]
@@ -117,8 +118,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis Maudits ont %1$+d%% de chances d'être Gelés par les Dégâts de froid",
+          "text": "Les Ennemis Maudits ont %1$+d%% de chances d'être Gelés par les Dégâts de froid",
           "formatters": []
         }
       ]
@@ -128,8 +128,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis Maudits ont %1$+d%% de chances d'être Embrasés par les Dégâts de feu",
+          "text": "Les Ennemis Maudits ont %1$+d%% de chances d'être Embrasés par les Dégâts de feu",
           "formatters": [
             {
               "id": "reminderstring",
@@ -144,8 +143,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis Maudits ont %1$+d%% de chances d'être Électrocutés par les Dégâts de foudre",
+          "text": "Les Ennemis Maudits ont %1$+d%% de chances d'être Électrocutés par les Dégâts de foudre",
           "formatters": [
             {
               "id": "reminderstring",
@@ -160,8 +158,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% d'Augmentation des Charges de Flacon octroyées",
+          "text": "Les Ennemis Maudits ont %1%%% d'Augmentation des Charges de Flacon octroyées",
           "formatters": []
         }
       ]
@@ -171,8 +168,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Vous avez %1%%% de Drain de Vie au Toucher contre les Ennemis Maudits",
+          "text": "Vous avez %1%%% de Drain de Vie au Toucher contre les Ennemis Maudits",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -191,8 +187,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Vous avez %1%%% de Drain de Mana au Toucher contre les Ennemis Maudits",
+          "text": "Vous avez %1%%% de Drain de Mana au Toucher contre les Ennemis Maudits",
           "formatters": [
             {
               "id": "divide_by_one_hundred",
@@ -211,8 +206,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% de chances d'octroyer une Charge d'endurance lorsqu'ils sont Tués",
+          "text": "Les Ennemis Maudits ont %1%%% de chances d'octroyer une Charge d'endurance lorsqu'ils sont Tués",
           "formatters": []
         }
       ]
@@ -222,8 +216,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% de chances d'octroyer une Charge de frénésie lorsqu'ils sont Tués",
+          "text": "Les Ennemis Maudits ont %1%%% de chances d'octroyer une Charge de frénésie lorsqu'ils sont Tués",
           "formatters": []
         }
       ]
@@ -233,8 +226,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% de chances d'octroyer une Charge de pouvoir lorsqu'ils sont Tués",
+          "text": "Les Ennemis Maudits ont %1%%% de chances d'octroyer une Charge de pouvoir lorsqu'ils sont Tués",
           "formatters": []
         }
       ]
@@ -244,8 +236,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Renvoie %1%%% des Dégâts physiques infligés par les Ennemis Maudits Normaux",
+          "text": "Renvoie %1%%% des Dégâts physiques infligés par les Ennemis Maudits Normaux",
           "formatters": []
         }
       ]
@@ -255,8 +246,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Renvoie %1%%% des Dégâts physiques infligés par les Ennemis Maudits Magiques",
+          "text": "Renvoie %1%%% des Dégâts physiques infligés par les Ennemis Maudits Magiques",
           "formatters": []
         }
       ]
@@ -266,8 +256,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Renvoie %1%%% des Dégâts physiques infligés par les Ennemis Maudits Rares",
+          "text": "Renvoie %1%%% des Dégâts physiques infligés par les Ennemis Maudits Rares",
           "formatters": []
         }
       ]
@@ -277,8 +266,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Renvoie %1%%% des Dégâts physiques infligés par les Ennemis Maudits Uniques",
+          "text": "Renvoie %1%%% des Dégâts physiques infligés par les Ennemis Maudits Uniques",
           "formatters": []
         }
       ]
@@ -288,14 +276,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% d'Augmentation de leur Score de Précision",
+          "text": "Les Ennemis Maudits ont %1%%% d'Augmentation de leur Score de Précision",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% de Réduction de leur Score de Précision",
+          "text": "Les Ennemis Maudits ont %1%%% de Réduction de leur Score de Précision",
           "formatters": [
             {
               "id": "negate",
@@ -310,14 +296,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% d'Augmentation des Chances de coup critique",
+          "text": "Les Ennemis Maudits ont %1%%% d'Augmentation des Chances de coup critique",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% de Réduction des Chances de coup critique",
+          "text": "Les Ennemis Maudits ont %1%%% de Réduction des Chances de coup critique",
           "formatters": [
             {
               "id": "negate",
@@ -332,8 +316,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Les Ennemis Maudits ont %1$+d%% à leur Multiplicateur de coup critique",
+          "text": "Les Ennemis Maudits ont %1$+d%% à leur Multiplicateur de coup critique",
           "formatters": []
         }
       ]
@@ -363,8 +346,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% de chances supplémentaires de recevoir un Coup critique",
+          "text": "Les Ennemis Maudits ont %1%%% de chances supplémentaires de recevoir un Coup critique",
           "formatters": []
         }
       ]
@@ -374,14 +356,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% de Réduction des Dégâts supplémentaires découlant de Coups critiques",
+          "text": "Les Ennemis Maudits ont %1%%% de Réduction des Dégâts supplémentaires découlant de Coups critiques",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% d'Augmentation des Dégâts supplémentaires découlant de Coups critiques",
+          "text": "Les Ennemis Maudits ont %1%%% d'Augmentation des Dégâts supplémentaires découlant de Coups critiques",
           "formatters": [
             {
               "id": "negate",
@@ -406,8 +386,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% de chances supplémentaires de Repousser les Ennemis Maudits au Toucher",
+          "text": "%1%%% de chances supplémentaires de Repousser les Ennemis Maudits au Toucher",
           "formatters": [
             {
               "id": "reminderstring",
@@ -442,8 +421,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% d'Augmentation des Dégâts subis au Toucher de la part des Projectiles",
+          "text": "Les Ennemis Maudits ont %1%%% d'Augmentation des Dégâts subis au Toucher de la part des Projectiles",
           "formatters": []
         }
       ]
@@ -453,8 +431,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% de chances supplémentaires d'être Étourdis",
+          "text": "Les Ennemis Maudits ont %1%%% de chances supplémentaires d'être Étourdis",
           "formatters": []
         }
       ]
@@ -464,14 +441,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% d'Augmentation de la Récupération d'Étourdissement et de Blocage",
+          "text": "Les Ennemis Maudits ont %1%%% d'Augmentation de la Récupération d'Étourdissement et de Blocage",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% de Réduction de la Récupération d'Étourdissement et de Blocage",
+          "text": "Les Ennemis Maudits ont %1%%% de Réduction de la Récupération d'Étourdissement et de Blocage",
           "formatters": [
             {
               "id": "negate",
@@ -486,8 +461,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% d'Augmentation des Dégâts physiques subis",
+          "text": "Les Ennemis Maudits ont %1%%% d'Augmentation des Dégâts physiques subis",
           "formatters": []
         }
       ]
@@ -497,8 +471,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% d'Augmention des Dégâts sur la durée subis",
+          "text": "Les Ennemis Maudits ont %1%%% d'Augmention des Dégâts sur la durée subis",
           "formatters": []
         }
       ]
@@ -508,14 +481,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "L'Embrasement des Ennemis Maudits a %1%%% de Réduction de Durée",
+          "text": "L'Embrasement des Ennemis Maudits a %1%%% de Réduction de Durée",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "L'Embrasement des Ennemis Maudits a %1%%% d'Augmentation de Durée",
+          "text": "L'Embrasement des Ennemis Maudits a %1%%% d'Augmentation de Durée",
           "formatters": [
             {
               "id": "negate",
@@ -535,8 +506,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% d'Augmentation de Durée de Gel sur les Ennemis maudits",
+          "text": "%1%%% d'Augmentation de Durée de Gel sur les Ennemis maudits",
           "formatters": [
             {
               "id": "negate",
@@ -551,14 +521,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "L'Électrocution des Ennemis Maudits a %1%%% de Réduction de Durée",
+          "text": "L'Électrocution des Ennemis Maudits a %1%%% de Réduction de Durée",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "L'Électrocution des Ennemis Maudits a %1%%% d'Augmentation de Durée",
+          "text": "L'Électrocution des Ennemis Maudits a %1%%% d'Augmentation de Durée",
           "formatters": [
             {
               "id": "negate",
@@ -583,8 +551,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Les Ennemis Maudits octroient %1% de Vie lorsqu'ils sont Touchés par des Attaques",
+          "text": "Les Ennemis Maudits octroient %1% de Vie lorsqu'ils sont Touchés par des Attaques",
           "formatters": []
         }
       ]
@@ -594,8 +561,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Les Ennemis Maudits octroient %1% de Mana lorsqu'ils sont Touchés par des Attaques",
+          "text": "Les Ennemis Maudits octroient %1% de Mana lorsqu'ils sont Touchés par des Attaques",
           "formatters": []
         }
       ]
@@ -605,8 +571,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Les Ennemis Maudits octroient %1% de Vie lorsqu'ils sont Tués",
+          "text": "Les Ennemis Maudits octroient %1% de Vie lorsqu'ils sont Tués",
           "formatters": []
         }
       ]
@@ -616,8 +581,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Les Ennemis Maudits octroient %1% de Mana lorsqu'ils sont Tués",
+          "text": "Les Ennemis Maudits octroient %1% de Mana lorsqu'ils sont Tués",
           "formatters": []
         }
       ]
@@ -657,8 +621,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% de chances d'être Mutilés pendant 4 secondes lorsqu'ils sont Touchés par des Attaques",
+          "text": "Les Ennemis Maudits ont %1%%% de chances d'être Mutilés pendant 4 secondes lorsqu'ils sont Touchés par des Attaques",
           "formatters": [
             {
               "id": "reminderstring",
@@ -676,8 +639,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text":
-            "Ajoute %1% à %2% Dégâts de chaos au Toucher contre les Ennemis Maudits",
+          "text": "Ajoute %1% à %2% Dégâts de chaos au Toucher contre les Ennemis Maudits",
           "formatters": []
         }
       ]
@@ -687,14 +649,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% d'Augmentation des Dégâts physiques sur la durée subis",
+          "text": "Les Ennemis Maudits ont %1%%% d'Augmentation des Dégâts physiques sur la durée subis",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Les Ennemis Maudits ont %1%%% de Réduction des Dégâts physiques sur la durée subis",
+          "text": "Les Ennemis Maudits ont %1%%% de Réduction des Dégâts physiques sur la durée subis",
           "formatters": [
             {
               "id": "negate",

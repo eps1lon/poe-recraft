@@ -25,8 +25,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text":
-            "%1% à %2% Dégâts physiques supplémentaires tous les 15 de Score d'Armure ou d'Évasion du bouclier",
+          "text": "%1% à %2% Dégâts physiques supplémentaires tous les 15 de Score d'Armure ou d'Évasion du bouclier",
           "formatters": []
         }
       ]
@@ -36,8 +35,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Le temps d'attaque de base de la main secondaire est de %1% secondes",
+          "text": "Le temps d'attaque de base de la main secondaire est de %1% secondes",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -112,6 +110,21 @@
         }
       ]
     },
+    "active_skill_attack_damage_final_permyriad": {
+      "stats": ["active_skill_attack_damage_final_permyriad"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Inflige %1%%% des Dégâts de base",
+          "formatters": [
+            {
+              "id": "multiplicative_permyriad_damage_modifier",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "active_skill_damage_+%_final": {
       "stats": ["active_skill_damage_+%_final"],
       "translations": [
@@ -147,8 +160,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Lorsque vous maniez deux armes, inflige %1%%% des Dégâts de chacune des armes",
+          "text": "Lorsque vous maniez deux armes, inflige %1%%% des Dégâts de chacune des armes",
           "formatters": [
             {
               "id": "multiplicative_damage_modifier",
@@ -173,19 +185,32 @@
         }
       ]
     },
+    "active_skill_minion_physical_damage_+%_final": {
+      "stats": ["active_skill_minion_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Les Créatures infligent %1%%% de Dégâts physiques",
+          "formatters": [
+            {
+              "id": "multiplicative_damage_modifier",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "physical_damage_+%_per_frenzy_charge": {
       "stats": ["physical_damage_+%_per_frenzy_charge"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% d'Augmentation des Dégâts physiques par Charge de frénésie",
+          "text": "%1%%% d'Augmentation des Dégâts physiques par Charge de frénésie",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% de Réduction des Dégâts physiques par Charge de frénésie",
+          "text": "%1%%% de Réduction des Dégâts physiques par Charge de frénésie",
           "formatters": [
             {
               "id": "negate",
@@ -275,28 +300,6 @@
         }
       ]
     },
-    "buff_duration_+%": {
-      "stats": ["buff_duration_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% d'Augmentation de la Durée des Effets bénéfiques et néfastes",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "%1%%% de Réduction de la Durée des Effets bénéfiques et néfastes",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "aura_effect_+%": {
       "stats": ["aura_effect_+%"],
       "translations": [
@@ -332,13 +335,12 @@
         }
       ]
     },
-    "offering_skill_effect_duration_per_corpse": {
-      "stats": ["offering_skill_effect_duration_per_corpse"],
+    "base_secondary_skill_effect_duration": {
+      "stats": ["base_secondary_skill_effect_duration"],
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Ajoute %1% secondes à la Durée de base par Cadavre supplémentaire consommé",
+          "text": "La Durée secondaire de base est de %1% secondes",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -348,16 +350,50 @@
         }
       ]
     },
-    "base_buff_duration_ms_+_per_endurance_charge": {
-      "stats": ["base_buff_duration_ms_+_per_endurance_charge"],
+    "offering_skill_effect_duration_per_corpse": {
+      "stats": ["offering_skill_effect_duration_per_corpse"],
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Ajoute %1% secondes à la Durée de base par Charge d'endurance",
+          "text": "Ajoute %1% secondes à la Durée de base par Cadavre supplémentaire consommé",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_buff_duration_ms_+_per_removable_endurance_charge": {
+      "stats": ["base_buff_duration_ms_+_per_removable_endurance_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d secondes de Durée des Effets bénéfiques par Charge d'endurance retirée",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "buff_duration_+%": {
+      "stats": ["buff_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% d'Augmentation de la Durée des Effets bénéfiques et néfastes",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de Réduction de la Durée des Effets bénéfiques et néfastes",
+          "formatters": [
+            {
+              "id": "negate",
               "arg": 1
             }
           ]
@@ -394,21 +430,6 @@
         }
       ]
     },
-    "active_skill_attack_damage_final_permyriad": {
-      "stats": ["active_skill_attack_damage_final_permyriad"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Inflige %1%%% des Dégâts de base",
-          "formatters": [
-            {
-              "id": "multiplicative_permyriad_damage_modifier",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "base_spell_repeat_count": {
       "stats": ["base_spell_repeat_count"],
       "translations": [
@@ -424,21 +445,6 @@
         }
       ]
     },
-    "base_secondary_skill_effect_duration": {
-      "stats": ["base_secondary_skill_effect_duration"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "La Durée de base secondaire est de %1% secondes",
-          "formatters": [
-            {
-              "id": "milliseconds_to_seconds_2dp",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "base_number_of_golems_allowed": {
       "stats": ["base_number_of_golems_allowed"],
       "translations": [
@@ -450,6 +456,16 @@
         {
           "matchers": [[2, "#"]],
           "text": "Vous pouvez Invoquer jusqu'à %1% Golems à la fois",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_totems_allowed": {
+      "stats": ["base_number_of_totems_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d au nombre maximum de Totems Invoqués",
           "formatters": []
         }
       ]
@@ -484,27 +500,6 @@
         }
       ]
     },
-    "active_skill_if_used_through_frostbolt_damage_+%_final": {
-      "stats": ["active_skill_if_used_through_frostbolt_damage_+%_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% Davantage de Dégâts en étant Lancé sur Sphère de givre",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1%%% de Perte de Dégâts en étant Lancé sur Sphère de givre",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "additional_base_critical_strike_chance": {
       "stats": ["additional_base_critical_strike_chance"],
       "translations": [
@@ -517,6 +512,33 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "additional_weapon_base_attack_time_ms": {
+      "stats": ["additional_weapon_base_attack_time_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d secondes au Temps d'Attaque",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp_if_required",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "additive_cast_speed_modifiers_apply_to_sigil_repeat_frequency": {
+      "stats": [
+        "additive_cast_speed_modifiers_apply_to_sigil_repeat_frequency"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Les Augmentations et Réductions de Vitesse d'incantation s'appliquent également à la Fréquence d'activation de cette Aptitude",
+          "formatters": []
         }
       ]
     },
@@ -562,6 +584,26 @@
     },
     "attack_speed_+%": {
       "stats": ["attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% d'Augmentation de la Vitesse d'attaque",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de Réduction de la Vitesse d'attaque",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "attack_speed_+%_granted_from_skill": {
+      "stats": ["attack_speed_+%_granted_from_skill"],
       "translations": [
         {
           "matchers": [[1, "#"]],
@@ -750,14 +792,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% d'Augmentation de la Rareté des Objets cédés par les Ennemis Tués",
+          "text": "%1%%% d'Augmentation de la Rareté des Objets cédés par les Ennemis Tués",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% de Réduction de la Rareté des Objets cédés par les Ennemis Tués",
+          "text": "%1%%% de Réduction de la Rareté des Objets cédés par les Ennemis Tués",
           "formatters": [
             {
               "id": "negate",
@@ -772,8 +812,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1$+d de Vie gagnée pour chaque Ennemi Touché par vos Attaques",
+          "text": "%1$+d de Vie gagnée pour chaque Ennemi Touché par vos Attaques",
           "formatters": []
         }
       ]
@@ -813,13 +852,42 @@
         }
       ]
     },
+    "base_number_of_champions_of_light_allowed": {
+      "stats": ["base_number_of_champions_of_light_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Vous pouvez Invoquer au maximum %1% Sentinelle de pureté",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Vous pouvez Invoquer au maximum %1% Sentinelles pureté",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_relics_allowed": {
+      "stats": ["base_number_of_relics_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "%1% Relique sacrée Invoquée au maximum",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "%1% Reliques sacrées Invoquées au maximum",
+          "formatters": []
+        }
+      ]
+    },
     "base_physical_damage_%_to_convert_to_lightning": {
       "stats": ["base_physical_damage_%_to_convert_to_lightning"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% des Dégâts physiques sont Convertis en Dégâts de foudre",
+          "text": "%1%%% des Dégâts physiques sont Convertis en Dégâts de foudre",
           "formatters": []
         }
       ]
@@ -889,6 +957,21 @@
         }
       ]
     },
+    "base_sigil_repeat_frequency_ms": {
+      "stats": ["base_sigil_repeat_frequency_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "S'active toutes les %1% secondes tant qu'il est Lié",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "base_skill_area_of_effect_+%": {
       "stats": ["base_skill_area_of_effect_+%"],
       "translations": [
@@ -914,14 +997,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% d'Augmentation de la Durée de l'Étourdissement sur les Ennemis",
+          "text": "%1%%% d'Augmentation de la Durée de l'Étourdissement sur les Ennemis",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% de Réduction de la Durée de l'Étourdissement sur les Ennemis",
+          "text": "%1%%% de Réduction de la Durée de l'Étourdissement sur les Ennemis",
           "formatters": [
             {
               "id": "negate",
@@ -996,8 +1077,7 @@
         },
         {
           "matchers": [[1, 99]],
-          "text":
-            "%1%%% de chances de gagner Renforcement en Touchant en mêlée",
+          "text": "%1%%% de chances de gagner Renforcement en Touchant en mêlée",
           "formatters": [
             {
               "id": "reminderstring",
@@ -1012,8 +1092,7 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text":
-            "%1%%% de chances de gagner une Charge de frénésie en Tuant un Ennemi Gelé",
+          "text": "%1%%% de chances de gagner une Charge de frénésie en Tuant un Ennemi Gelé",
           "formatters": []
         },
         {
@@ -1048,14 +1127,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% d'Augmentation de la Durée de la Frigorification sur les Ennemis",
+          "text": "%1%%% d'Augmentation de la Durée de la Frigorification sur les Ennemis",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% de Réduction de la Durée de la Frigorification sur les Ennemis",
+          "text": "%1%%% de Réduction de la Durée de la Frigorification sur les Ennemis",
           "formatters": [
             {
               "id": "negate",
@@ -1070,14 +1147,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% d'Augmentation de l'Effet de la Frigorification sur les Ennemis",
+          "text": "%1%%% d'Augmentation de l'Effet de la Frigorification sur les Ennemis",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% de Réduction de l'Effet de la Frigorification sur les Ennemis",
+          "text": "%1%%% de Réduction de l'Effet de la Frigorification sur les Ennemis",
           "formatters": [
             {
               "id": "negate",
@@ -1092,8 +1167,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Rajoutez %1%%% des Dégâts de froid sous forme de Dégâts de feu",
+          "text": "Rajoutez %1%%% des Dégâts de froid sous forme de Dégâts de feu",
           "formatters": []
         }
       ]
@@ -1193,14 +1267,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% d'Augmentation des Dégâts au Toucher contre les Ennemis Gelés",
+          "text": "%1%%% d'Augmentation des Dégâts au Toucher contre les Ennemis Gelés",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% de Réduction des Dégâts au Toucher contre les Ennemis Gelés",
+          "text": "%1%%% de Réduction des Dégâts au Toucher contre les Ennemis Gelés",
           "formatters": [
             {
               "id": "negate",
@@ -1329,14 +1401,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% d'Augmentation de la Durée de l'Embrasement sur les Ennemis",
+          "text": "%1%%% d'Augmentation de la Durée de l'Embrasement sur les Ennemis",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% de Réduction de la Durée de l'Embrasement sur les Ennemis",
+          "text": "%1%%% de Réduction de la Durée de l'Embrasement sur les Ennemis",
           "formatters": [
             {
               "id": "negate",
@@ -1497,14 +1567,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% d'Augmentation des Dégâts de mêlée contre les Ennemis qui Saignent",
+          "text": "%1%%% d'Augmentation des Dégâts de mêlée contre les Ennemis qui Saignent",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% de Réduction des Dégâts de mêlée contre les Ennemis qui Saignent",
+          "text": "%1%%% de Réduction des Dégâts de mêlée contre les Ennemis qui Saignent",
           "formatters": [
             {
               "id": "negate",
@@ -1629,8 +1697,8 @@
         }
       ]
     },
-    "number_of_additional_projectiles_in_chain": {
-      "stats": ["number_of_additional_projectiles_in_chain"],
+    "number_of_chains": {
+      "stats": ["number_of_chains"],
       "translations": [
         {
           "matchers": ["#"],
@@ -1744,8 +1812,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Rajoutez %1%%% des Dégâts physiques sous forme de Dégâts de feu",
+          "text": "Rajoutez %1%%% des Dégâts physiques sous forme de Dégâts de feu",
           "formatters": []
         }
       ]
@@ -1755,8 +1822,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Rajoutez %1%%% des Dégâts physiques sous forme de Dégâts de foudre",
+          "text": "Rajoutez %1%%% des Dégâts physiques sous forme de Dégâts de foudre",
           "formatters": []
         }
       ]
@@ -1786,14 +1852,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% d'Augmentation de la Vitesse de récupération des Pièges disponibles",
+          "text": "%1%%% d'Augmentation de la Vitesse de récupération des Pièges disponibles",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% de Réduction de la Vitesse de récupération des Pièges disponibles",
+          "text": "%1%%% de Réduction de la Vitesse de récupération des Pièges disponibles",
           "formatters": [
             {
               "id": "negate",
@@ -1863,14 +1927,12 @@
       "translations": [
         {
           "matchers": ["#", 0],
-          "text":
-            "Les Projectiles reviennent à vous après avoir Touché leur cibles",
+          "text": "Les Projectiles reviennent à vous après avoir Touché leur cibles",
           "formatters": []
         },
         {
           "matchers": [0, "#"],
-          "text":
-            "Les Projectiles reviennent à vous à la fin de leurs trajectoires",
+          "text": "Les Projectiles reviennent à vous à la fin de leurs trajectoires",
           "formatters": []
         },
         {
@@ -1910,14 +1972,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% d'Augmentation de la Durée de l'Électrocution sur les Ennemis",
+          "text": "%1%%% d'Augmentation de la Durée de l'Électrocution sur les Ennemis",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% de Réduction de la Durée de l'Électrocution sur les Ennemis",
+          "text": "%1%%% de Réduction de la Durée de l'Électrocution sur les Ennemis",
           "formatters": [
             {
               "id": "negate",
@@ -1962,8 +2022,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% des Dégâts physiques sont Convertis en Dégâts de foudre",
+          "text": "%1%%% des Dégâts physiques sont Convertis en Dégâts de foudre",
           "formatters": []
         }
       ]
@@ -1985,6 +2044,16 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "static_strike_number_of_beam_targets": {
+      "stats": ["static_strike_number_of_beam_targets"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1% cibles au maximum pour les Rayons électriques",
+          "formatters": []
         }
       ]
     },

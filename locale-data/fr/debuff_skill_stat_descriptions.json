@@ -4,6 +4,18 @@
     "hasIdentifiers": false
   },
   "data": {
+    "soul_prevention_buff_duration": {
+      "stats": [
+        "modifiers_to_buff_effect_duration_also_affect_soul_prevention_duration"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Les Modificateurs à la Durée des Effets néfastes s'appliquent également à\\nl'Empêchement de gain d'Âmes de cette Aptitude",
+          "formatters": []
+        }
+      ]
+    },
     "buff_duration": {
       "stats": ["buff_effect_duration"],
       "translations": [
@@ -39,8 +51,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Envoie des Rayons débilitants sur les %1% Ennemis les plus proches",
+          "text": "Envoie des Rayons débilitants sur les %1% Ennemis les plus proches",
           "formatters": []
         }
       ]
@@ -52,8 +63,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Octroie %1% de Vie Régénérée par seconde si au moins un Ennemi est affecté",
+          "text": "Octroie %1% de Vie Régénérée par seconde si au moins un Ennemi est affecté",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -70,8 +80,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Octroie %1% de Mana Régénéré par seconde si au moins un Ennemi est affecté",
+          "text": "Octroie %1% de Mana Régénéré par seconde si au moins un Ennemi est affecté",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -86,8 +95,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Chaque ennemi affecté octroie %1% de Vie Régénérée par seconde",
+          "text": "Chaque ennemi affecté octroie %1% de Vie Régénérée par seconde",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -102,8 +110,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Chaque ennemi affecté octroie %1% de Mana Régénéré par seconde",
+          "text": "Chaque ennemi affecté octroie %1% de Mana Régénéré par seconde",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -118,14 +125,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Octroie %1%%% d'Augmentation des Dégâts subis pour chaque Ennemi affecté",
+          "text": "Octroie %1%%% d'Augmentation des Dégâts subis pour chaque Ennemi affecté",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Octroie %1%%% de Réduction des Dégâts subis pour chaque Ennemi affecté",
+          "text": "Octroie %1%%% de Réduction des Dégâts subis pour chaque Ennemi affecté",
           "formatters": [
             {
               "id": "negate",
@@ -150,14 +155,32 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis ont %1%%% d'Augmentation des Dégâts subis au Toucher de la part des Pièges et Mines",
+          "text": "Les Ennemis ont %1%%% d'Augmentation des Dégâts subis au Toucher de la part des Pièges et Mines",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Les Ennemis ont %1%%% de Réduction des Dégâts subis au Toucher de la part des Pièges et Mines",
+          "text": "Les Ennemis ont %1%%% de Réduction des Dégâts subis au Toucher de la part des Pièges et Mines",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bear_trap_slow": {
+      "stats": ["bear_trap_movement_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Les Ennemis ont %1%%% Davantage de Vitesse de déplacement lorsque l'Effet néfaste débute",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Les Ennemis ont %1%%% de Perte de Vitesse de déplacement lorsque l'Effet néfaste débute",
           "formatters": [
             {
               "id": "negate",

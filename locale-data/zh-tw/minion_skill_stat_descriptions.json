@@ -181,6 +181,16 @@
           "matchers": [[1, "#"]],
           "text": "召喚物增加 %1%%% 暴擊率",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召喚物減少 %1%%% 暴擊率",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -471,12 +481,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加召喚物光環技能 %1%%% 範圍",
+          "text": "增加召喚物光環技能 %1%%% 範圍效果",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "減少召換物光環技能 %1%%% 範圍",
+          "text": "減少召換物光環技能 %1%%% 範圍效果",
           "formatters": [
             {
               "id": "negate",
@@ -1028,6 +1038,16 @@
         }
       ]
     },
+    "physical_damage_to_add_as_chaos": {
+      "stats": ["physical_damage_%_to_add_as_chaos"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召喚物造成 %1%%% 他們物理傷害的額外混沌傷害",
+          "formatters": []
+        }
+      ]
+    },
     "physical_damage_to_add_as_lightning": {
       "stats": ["physical_damage_%_to_add_as_lightning"],
       "translations": [
@@ -1515,6 +1535,26 @@
         }
       ]
     },
+    "minion_physical_damage_final": {
+      "stats": ["active_skill_minion_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召喚物造成 %1%%% 更多物理傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召喚物造成 %1%%% 更少物理傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "number_of_zombies": {
       "stats": ["number_of_zombies_allowed"],
       "translations": [
@@ -1670,16 +1710,6 @@
         }
       ]
     },
-    "number_of_converted_allowed": {
-      "stats": ["number_of_converted_allowed"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "最多可同時擁有 %1% 個被支配的敵人",
-          "formatters": []
-        }
-      ]
-    },
     "culling_strike": {
       "stats": ["kill_enemy_on_hit_if_under_10%_life"],
       "translations": [
@@ -1781,11 +1811,11 @@
       ]
     },
     "chain_num": {
-      "stats": ["virtual_number_of_additional_projectiles_in_chain"],
+      "stats": ["virtual_number_of_chains"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "召喚物的投射物連鎖 %1$+d 次",
+          "text": "召喚物的技能連鎖 %1$+d 次",
           "formatters": []
         }
       ]
@@ -1801,7 +1831,7 @@
       ]
     },
     "fork": {
-      "stats": ["projectiles_fork"],
+      "stats": ["virtual_projectiles_fork"],
       "translations": [
         {
           "matchers": ["#"],
@@ -2096,11 +2126,24 @@
       ]
     },
     "endurance_charge_on_stun": {
-      "stats": ["gain_endurance_charge_on_melee_stun"],
+      "stats": [
+        "gain_endurance_charge_on_melee_stun",
+        "gain_endurance_charge_on_melee_stun_%"
+      ],
       "translations": [
         {
-          "matchers": ["#"],
-          "text": "當召喚物使用近戰傷害暈眩敵人時，獲得一個耐力球",
+          "matchers": [0, [0, 99]],
+          "text": "當召喚物用近戰擊中暈眩敵人時，有 %2%%% 機率獲得 1 顆耐力球",
+          "formatters": []
+        },
+        {
+          "matchers": [0, [100, "#"]],
+          "text": "當召喚物用近戰擊中暈眩敵人時，獲得 1 顆耐力球",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#"],
+          "text": "當召喚物用近戰擊中暈眩敵人時，獲得 1 顆耐力球",
           "formatters": []
         }
       ]
@@ -2491,12 +2534,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "召喚物造成 %1%%% 更多地雷傷害",
+          "text": "召喚物造成 %1%%% 更多傷害",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "召喚物造成 %1%%% 較少地雷傷害",
+          "text": "召喚物造成 %1%%% 更少傷害",
           "formatters": [
             {
               "id": "negate",
@@ -2611,12 +2654,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "召換物有 %1%%% 更多近戰擴散範圍",
+          "text": "召換物有 %1%%% 更多近戰擴散範圍效果",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "召換物有 %1%%% 較少近戰擴散範圍",
+          "text": "召換物有 %1%%% 較少近戰擴散範圍效果",
           "formatters": []
         }
       ]
@@ -2685,6 +2728,16 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "additive_bow_damage_applies_to_minions": {
+      "stats": ["additive_modifiers_to_bow_damage_also_apply_to_minions"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "增加和減少弓的傷害同時影響召喚物",
+          "formatters": []
         }
       ]
     },
@@ -2930,8 +2983,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "當你的陷阱被敵人觸發時，此技能和召喚物有 %1%%% 機率獲得 1 顆狂怒球",
+          "text": "當你的陷阱被敵人觸發時，此技能和召喚物有 %1%%% 機率獲得 1 顆狂怒球",
           "formatters": []
         },
         {
@@ -2946,8 +2998,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "當你的陷阱被敵人觸發時，此技能和召喚物有 %1%%% 機率獲得 1 顆暴擊球",
+          "text": "當你的陷阱被敵人觸發時，此技能和召喚物有 %1%%% 機率獲得 1 顆暴擊球",
           "formatters": []
         },
         {
@@ -3012,6 +3063,106 @@
         {
           "matchers": [["#", -1]],
           "text": "召喚物造成 %1%%% 更少物理傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_chilling_areas_incr_cold_dot_taken": {
+      "stats": [
+        "support_chilling_areas_also_grant_cold_damage_taken_per_minute_+%"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "敵人在召喚物技能製造的冰緩範圍內，增加 %1%%% 承受冰冷持續傷害",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChillingArea"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "敵人在召喚物技能製造的冰緩範圍內，減少 %1%%% 承受冰冷持續傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChillingArea"
+            }
+          ]
+        }
+      ]
+    },
+    "support_chilling_areas_incr_cold_damage_taken": {
+      "stats": [
+        "support_chilling_areas_also_grant_cold_damage_taken_+%_equal_to_slow_amount"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "敵人在召喚物技能製造的冰緩範圍內，隨著冰緩效果而增加承受冰冷傷害",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChillingArea"
+            }
+          ]
+        }
+      ]
+    },
+    "support_chills_incr_cold_dot_taken": {
+      "stats": ["support_chills_also_grant_cold_damage_taken_per_minute_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被召喚物冰緩的敵人，增加 %1%%% 承受冰冷持續傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被召喚物冰緩的敵人，減少 %1%%% 承受冰冷持續傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_chills_incr_cold_damage_taken": {
+      "stats": [
+        "support_chills_also_grant_cold_damage_taken_+%_equal_to_slow_amount"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被召喚物冰緩的敵人，隨著冰緩效果而增加承受冰冷傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "greater_volley_projectiles_damage_final": {
+      "stats": ["support_greater_volley_projectile_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召喚物造成 %1%%% 更多投射物傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召喚物造成 %1%%% 更少投射物傷害",
           "formatters": [
             {
               "id": "negate",
@@ -3114,6 +3265,25 @@
         }
       ]
     },
+    "support_overpowered_on_enemy_block_base_duration": {
+      "stats": ["support_overpowered_base_duration_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "當召喚物擊中被格擋時，他們造成壓制持續 %1% 秒的基礎持續時間",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextOverpowered"
+            }
+          ]
+        }
+      ]
+    },
     "support_parallel_projectiles": {
       "stats": ["support_parallel_projectile_number_of_points_per_side"],
       "translations": [
@@ -3171,6 +3341,26 @@
         }
       ]
     },
+    "support_reduced_block_chance": {
+      "stats": ["support_reduce_enemy_block_and_spell_block_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "敵人對此技能和召喚物 -%1%%% 格擋攻擊或法術傷害率",
+          "formatters": []
+        }
+      ]
+    },
+    "support_reduced_dodge_chance": {
+      "stats": ["support_reduce_enemy_dodge_and_spell_dodge_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "敵人對此技能和召喚物減少 -%1%%% 機率躲避攻擊或法術擊中",
+          "formatters": []
+        }
+      ]
+    },
     "support_less_duration": {
       "stats": ["support_reduced_duration_skill_effect_duration_+%_final"],
       "translations": [
@@ -3222,8 +3412,7 @@
       "translations": [
         {
           "matchers": ["#", "#", "#"],
-          "text":
-            "召喚物在引導施放時被擊中，有 %1%%% 機率獲得 1 顆暴擊球\\n召喚物使用引導施放技能時，減少承受 %2%%% 閃電傷害\\n召喚物使用引導施放技能時，減少承受 %3%%% 物理傷害",
+          "text": "召喚物在引導施放時被擊中，有 %1%%% 機率獲得 1 顆暴擊球\\n召喚物使用引導施放技能時，減少承受 %2%%% 閃電傷害\\n召喚物使用引導施放技能時，減少承受 %3%%% 物理傷害",
           "formatters": [
             {
               "id": "negate",
@@ -3266,14 +3455,58 @@
         }
       ]
     },
+    "withered_support_base_duration": {
+      "stats": ["support_withered_base_duration_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "召喚物造成的凋零有 %1% 秒基礎持續時間",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "召喚物造成的凋零有 %1% 秒基礎持續時間",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "trap_crit_per_power_charge": {
       "stats": ["trap_critical_strike_multiplier_+_per_power_charge"],
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "當被陷阱使用此技能和召喚物的技能時，每顆暴擊球 %1$+d%% 暴擊加成",
+          "text": "當被陷阱使用此技能和召喚物的技能時，每顆暴擊球 %1$+d%% 暴擊加成",
           "formatters": []
+        }
+      ]
+    },
+    "trap_throwing_speed_per_frenzy": {
+      "stats": ["trap_throwing_speed_+%_per_frenzy_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每顆狂怒球使此技能和召喚物增加 %1%%% 陷阱投擲速度",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "每顆狂怒球使此技能和召喚物減少 %1%%% 陷阱投擲速度",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     }

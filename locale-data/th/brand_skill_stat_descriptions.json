@@ -1,0 +1,128 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "base_number_of_sigils_allowed_per_target": {
+      "no_description": true,
+      "stats": [],
+      "translations": {}
+    },
+    "base_secondary_duration_identifier": {
+      "stats": ["base_secondary_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ระยะเวลาหยุดเกาะสูงสุด %1% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_duration_identifier": {
+      "stats": ["base_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ระยะเวลาเกาะสูงสุด %1% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "storm_brand_beam_num": {
+      "stats": ["conduit_sigil_number_of_beam_targets"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "ปล่อยลำแสงใส่เป้าหมายที่ถูกเกาะ",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "ปล่อยลำแสงใส่ศัตรู %1% ตัว รวมเป้าหมายที่ถูกเกาะ",
+          "formatters": []
+        }
+      ]
+    },
+    "sigil_target_search_range_modifier": {
+      "stats": ["sigil_target_search_range_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มระยะเกาะ %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดระยะเกาะ %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "secondary_skill_duration": {
+      "stats": ["secondary_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "ระยะเวลาหยุดเกาะสูงสุด %1% วินาที",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "sigil_attached_target_damage_final": {
+      "stats": ["sigil_attached_target_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "เพิ่มความเสียหาย อีก %1%%% ให้ศัตรูที่ถูกเกาะ",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "ลดความเสียหาย อีก %1%%% ให้ศัตรูที่ถูกเกาะ",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "sigil_activate_frequency": {
+      "stats": ["sigil_repeat_frequency_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "ทำงานทุก %1% วินาที ขณะเกาะอยู่",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

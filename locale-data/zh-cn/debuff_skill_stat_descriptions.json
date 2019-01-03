@@ -4,6 +4,18 @@
     "hasIdentifiers": false
   },
   "data": {
+    "soul_prevention_buff_duration": {
+      "stats": [
+        "modifiers_to_buff_effect_duration_also_affect_soul_prevention_duration"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "减益效果持续时间的加成也作用于此技能的【阻灵术】效果",
+          "formatters": []
+        }
+      ]
+    },
     "buff_duration": {
       "stats": ["buff_effect_duration"],
       "translations": [
@@ -149,6 +161,26 @@
         {
           "matchers": [["#", -1]],
           "text": "敌人受到陷阱或地雷的击中伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bear_trap_slow": {
+      "stats": ["bear_trap_movement_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "当该减益效果生效时，敌人的总移动速度额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "当该减益效果生效时，敌人的总移动速度额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",

@@ -113,7 +113,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "擊殺敵人獲得狂怒球",
+          "text": "擊殺敵人獲得 1 顆狂怒球",
           "formatters": []
         }
       ]
@@ -133,8 +133,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "50%% 物理、冰冷、閃電傷害轉換成火焰傷害。\\n除火焰傷害外不造成其他傷害",
+          "text": "50%% 物理、冰冷、閃電傷害轉換成火焰傷害。\\n除火焰傷害外不造成其他傷害",
           "formatters": []
         }
       ]
@@ -144,8 +143,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "優先使用能量護盾代替魔力消耗\\n能量護盾從生命護盾變成魔力護盾",
+          "text": "優先使用能量護盾代替魔力消耗\\n能量護盾從生命護盾變成魔力護盾\\n50%% 更少能量護盾回復速度",
           "formatters": []
         }
       ]
@@ -155,7 +153,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "你的技能無法造成傷害\\n同時間最多能擁有額外 1 個圖騰",
+          "text": "你的技能無法造成傷害\\n+1 召喚圖騰的最大上限",
           "formatters": []
         }
       ]
@@ -215,8 +213,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "30%% 機率躲避攻擊，50%% 較少護甲，30%% 較少能量護盾，30%% 較少機率格擋法術和攻擊",
+          "text": "30%% 機率躲避攻擊擊中。50%% 更少護甲，30%% 更少能量護盾，30%% 法術和攻擊傷害格擋率",
           "formatters": []
         }
       ]
@@ -256,8 +253,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "投射物攻擊非常近的目標時造成 50%% 更多傷害，但在攻擊較遠的目標時造成較少傷害",
+          "text": "投射物攻擊非常近的目標時造成 50%% 更多傷害，但在攻擊較遠的目標時造成較少傷害",
           "formatters": []
         }
       ]
@@ -277,8 +273,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "有 40%% 更多機率閃避敵人遠程攻擊\\n20%% 較少機率閃避敵人近戰攻擊",
+          "text": "有 40%% 更多機率閃避敵人遠程攻擊\\n20%% 較少機率閃避敵人近戰攻擊",
           "formatters": []
         }
       ]
@@ -308,8 +303,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "被你用元素傷害擊中的敵人暫時增加 25%% 該屬性的元素抗性，並減少 50%% 其他屬性的元素抗性",
+          "text": "被你用元素傷害擊中的敵人暫時增加 25%% 該屬性的元素抗性，並減少 50%% 其他屬性的元素抗性",
           "formatters": []
         }
       ]
@@ -339,8 +333,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "每秒生命偷取加倍。\\n最大生命偷取率加倍。\\n不再獲得生命回復效果。",
+          "text": "每秒生命偷取加倍。\\n最大生命偷取率加倍。\\n不再獲得生命回復效果。",
           "formatters": []
         }
       ]
@@ -389,19 +382,9 @@
       "stats": ["staff_block_%"],
       "translations": [
         {
-          "matchers": [[1, "#"]],
-          "text": "增加長杖 %1%%% 額外格擋率",
+          "matchers": ["#"],
+          "text": "持長杖時 %1$+d%% 攻擊傷害格擋率",
           "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "減少長杖 %1%%% 額外格擋率",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -499,19 +482,9 @@
       "stats": ["shield_block_%"],
       "translations": [
         {
-          "matchers": [[1, "#"]],
-          "text": "額外 %1%%% 盾格擋率",
+          "matchers": ["#"],
+          "text": "持盾時 %1$+d%% 攻擊傷害格擋率",
           "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "減少 %1%%% 盾格擋率",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -585,8 +558,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "如果 8 秒內有暴擊獲得 40%% 更多元素傷害\\n沒有暴擊加成\\n暴擊對異常狀態沒有傷害加成",
+          "text": "如果 8 秒內有暴擊獲得 40%% 更多元素傷害\\n沒有暴擊加成\\n暴擊對異常狀態沒有傷害加成",
           "formatters": []
         }
       ]
@@ -661,13 +633,71 @@
         }
       ]
     },
+    "every_1_second_nearby_enemies_withered_for_X_ms": {
+      "stats": ["every_1_second_nearby_enemies_withered_for_X_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每秒對附近敵人造成 %1% 秒凋零",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextWithered"
+            }
+          ]
+        }
+      ]
+    },
+    "every_4_seconds_33%_chance_freeze_chilled_unique_enemies_for_X_ms": {
+      "stats": [
+        "every_4_seconds_33%_chance_freeze_chilled_unique_enemies_for_X_ms"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每 4 秒有 33%% 機率冰凍 %1% 秒附近被冰緩的傳奇敵人",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreezeNonHit"
+            }
+          ]
+        }
+      ]
+    },
+    "every_4_seconds_freeze_chilled_non_unique_enemies_for_X_ms": {
+      "stats": ["every_4_seconds_freeze_chilled_non_unique_enemies_for_X_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "每 4 秒冰凍 %1% 秒附近被冰緩的非傳奇敵人",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreezeNonHit"
+            }
+          ]
+        }
+      ]
+    },
     "keystone_crimson_dance": {
       "stats": ["keystone_crimson_dance"],
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "你可以對敵人造成流血，至多 8 層\\n當敵人移動時你的流血無法造成額外傷害\\n50%% 更少流血傷害",
+          "text": "你可以對敵人造成流血，至多 8 層\\n當敵人移動時你的流血無法造成額外傷害\\n50%% 更少流血傷害",
           "formatters": []
         }
       ]
@@ -697,8 +727,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "暴擊加成的 30%% 效果同時影響暴擊所造成的異常狀態傷害加成\\n擊中傷害造成 30%% 較少傷害。",
+          "text": "暴擊加成的 30%% 效果同時影響暴擊所造成的異常狀態傷害加成\\n擊中傷害造成 30%% 較少傷害。",
           "formatters": [
             {
               "id": "reminderstring",
@@ -713,7 +742,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text": "生命偷取套用至能量護盾\\n50%% 更少能量護盾回復率",
+          "text": "生命偷取套用至能量護盾\\n50%% 更少能量護盾恢復速度",
           "formatters": []
         }
       ]

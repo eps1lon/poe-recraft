@@ -4,6 +4,47 @@
     "hasIdentifiers": false
   },
   "data": {
+    "off_hand_local_minimum_added_physical_damage": {
+      "stats": [
+        "off_hand_local_minimum_added_physical_damage",
+        "off_hand_local_maximum_added_physical_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "%1% a %2% de Dano Físico Base cmo a Mão Secundaria",
+          "formatters": []
+        }
+      ]
+    },
+    "off_hand_minimum_added_physical_damage_per_15_shield_armour_and_evasion_rating": {
+      "stats": [
+        "off_hand_minimum_added_physical_damage_per_15_shield_armour_and_evasion_rating",
+        "off_hand_maximum_added_physical_damage_per_15_shield_armour_and_evasion_rating"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "%1% a %2% de Dano Físico Adicional por cada 15 de Armadura ou Evasão no escudo",
+          "formatters": []
+        }
+      ]
+    },
+    "off_hand_base_weapon_attack_duration_ms": {
+      "stats": ["off_hand_base_weapon_attack_duration_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "O tempo base de Ataque é de %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "global_minimum_added_physical_damage": {
       "stats": [
         "global_minimum_added_physical_damage",
@@ -69,6 +110,21 @@
         }
       ]
     },
+    "active_skill_attack_damage_final_permyriad": {
+      "stats": ["active_skill_attack_damage_final_permyriad"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Causa %1%%% de Dano Base",
+          "formatters": [
+            {
+              "id": "multiplicative_permyriad_damage_modifier",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "active_skill_damage_+%_final": {
       "stats": ["active_skill_damage_+%_final"],
       "translations": [
@@ -119,8 +175,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Quando em Dupla Empunhadura, Causa %1%%% do Dano combinando cada Arma",
+          "text": "Quando em Dupla Empunhadura, Causa %1%%% do Dano combinando cada Arma",
           "formatters": [
             {
               "id": "multiplicative_damage_modifier",
@@ -245,46 +300,6 @@
         }
       ]
     },
-    "buff_duration_+%": {
-      "stats": ["buff_duration_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Duração de Bônus e Penalidades aumentada em %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Duração de Bônus e Penalidades reduzida em %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "aura_effect_+%": {
-      "stats": ["aura_effect_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "Efeito de Auras aumentado em %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "Efeito de Auras reduzido em %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "base_skill_effect_duration": {
       "stats": ["base_skill_effect_duration"],
       "translations": [
@@ -300,13 +315,12 @@
         }
       ]
     },
-    "offering_skill_effect_duration_per_corpse": {
-      "stats": ["offering_skill_effect_duration_per_corpse"],
+    "base_secondary_skill_effect_duration": {
+      "stats": ["base_secondary_skill_effect_duration"],
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "%1% segundos adicionais de Duração Base por Cadáver extra consumido",
+          "text": "Duração Base Secundária é de %1% segundos",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -316,16 +330,35 @@
         }
       ]
     },
-    "base_buff_duration_ms_+_per_endurance_charge": {
-      "stats": ["base_buff_duration_ms_+_per_endurance_charge"],
+    "offering_skill_effect_duration_per_corpse": {
+      "stats": ["offering_skill_effect_duration_per_corpse"],
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "%1% segundos adicionais de Duração Base por Carga de Tolerância",
+          "text": "%1% segundos adicionais de Duração Base por Cadáver extra consumido",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "buff_duration_+%": {
+      "stats": ["buff_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Duração de Bônus e Penalidades aumentada em %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Duração de Bônus e Penalidades reduzida em %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
               "arg": 1
             }
           ]
@@ -362,21 +395,6 @@
         }
       ]
     },
-    "active_skill_attack_damage_final_permyriad": {
-      "stats": ["active_skill_attack_damage_final_permyriad"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Causa %1%%% de Dano Base",
-          "formatters": [
-            {
-              "id": "multiplicative_permyriad_damage_modifier",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "base_spell_repeat_count": {
       "stats": ["base_spell_repeat_count"],
       "translations": [
@@ -389,21 +407,6 @@
           "matchers": [[2, "#"]],
           "text": "A Magia Repete %1% vezes",
           "formatters": []
-        }
-      ]
-    },
-    "base_secondary_skill_effect_duration": {
-      "stats": ["base_secondary_skill_effect_duration"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Duração Base Secundária é de %1% segundos",
-          "formatters": [
-            {
-              "id": "milliseconds_to_seconds_2dp",
-              "arg": 1
-            }
-          ]
         }
       ]
     },
@@ -443,26 +446,6 @@
         {
           "matchers": [["#", -1]],
           "text": "Precisão reduzida em %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "active_skill_if_used_through_frostbolt_damage_+%_final": {
-      "stats": ["active_skill_if_used_through_frostbolt_damage_+%_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "%1%%% mais Dano quando Conjurado com Disparo Congelante",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "%1%%% menos Dano quando Conjurado com Disparo Congelante",
           "formatters": [
             {
               "id": "negate",
@@ -529,6 +512,26 @@
     },
     "attack_speed_+%": {
       "stats": ["attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Velocidade de Ataque aumentada em %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Velocidade de Ataque reduzida em %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "attack_speed_+%_granted_from_skill": {
+      "stats": ["attack_speed_+%_granted_from_skill"],
       "translations": [
         {
           "matchers": [[1, "#"]],
@@ -717,14 +720,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Raridade dos Itens Derrubados por Inimigos Mortos aumentada em %1%%%",
+          "text": "Raridade dos Itens Derrubados por Inimigos Mortos aumentada em %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Raridade dos Itens Derrubados por Inimigos Mortos reduzida em %1%%%",
+          "text": "Raridade dos Itens Derrubados por Inimigos Mortos reduzida em %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -739,8 +740,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1$+d de Vida recebida para cada Inimigo acertado por seus Ataques",
+          "text": "%1$+d de Vida recebida para cada Inimigo acertado por seus Ataques",
           "formatters": []
         }
       ]
@@ -762,6 +762,51 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "base_number_of_additional_arrows": {
+      "stats": ["base_number_of_additional_arrows"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Dispara uma Flecha adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Dispara %1% Flechas adicionais",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_champions_of_light_allowed": {
+      "stats": ["base_number_of_champions_of_light_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Máximo de %1% Sentinela da Pureza Convocado",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Máximo de %1% Sentinelas da Pureza Convocados",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_relics_allowed": {
+      "stats": ["base_number_of_relics_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Máximo de %1% Relíquia Sagranda Convocada",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Máximo de %1% Relíquias Sagrandas Convocadas",
+          "formatters": []
         }
       ]
     },
@@ -955,8 +1000,7 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text":
-            "%1%%% de chance de receber uma Carga de Frenesi ao Abater um Inimigo Congelado",
+          "text": "%1%%% de chance de receber uma Carga de Frenesi ao Abater um Inimigo Congelado",
           "formatters": []
         },
         {
@@ -1131,14 +1175,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Dano com Acertos aumentado em %1%%% contra Inimigos Congelados",
+          "text": "Dano com Acertos aumentado em %1%%% contra Inimigos Congelados",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Dano com Acertos reduzido em %1%%% contra Inimigos Congelados",
+          "text": "Dano com Acertos reduzido em %1%%% contra Inimigos Congelados",
           "formatters": [
             {
               "id": "negate",
@@ -1370,6 +1412,21 @@
         }
       ]
     },
+    "lightning_tower_trap_base_interval_duration_ms": {
+      "stats": ["lightning_tower_trap_base_interval_duration_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Ataca a cada %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "mana_leech_from_any_damage_permyriad": {
       "stats": ["mana_leech_from_any_damage_permyriad"],
       "translations": [
@@ -1423,14 +1480,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Dano Corpo a Corpo contra Inimigos com Sangramento aumentado em %1%%%",
+          "text": "Dano Corpo a Corpo contra Inimigos com Sangramento aumentado em %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Dano Corpo a Corpo contra Inimigos com Sangramento reduzido em %1%%%",
+          "text": "Dano Corpo a Corpo contra Inimigos com Sangramento reduzido em %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1540,8 +1595,23 @@
         }
       ]
     },
-    "number_of_additional_projectiles_in_chain": {
-      "stats": ["number_of_additional_projectiles_in_chain"],
+    "number_of_additional_projectiles": {
+      "stats": ["number_of_additional_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Dispara un Projétil adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Dispara %1% Projéteis adicionais",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_chains": {
+      "stats": ["number_of_chains"],
       "translations": [
         {
           "matchers": ["#"],
@@ -1580,6 +1650,21 @@
         }
       ]
     },
+    "number_of_additional_traps_to_throw": {
+      "stats": ["number_of_additional_traps_to_throw"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Arremessa até 1 Armadilha adicional",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Arremessa até %1% Armadilhas adicionais",
+          "formatters": []
+        }
+      ]
+    },
     "number_of_animated_weapons_allowed": {
       "stats": ["number_of_animated_weapons_allowed"],
       "translations": [
@@ -1592,6 +1677,46 @@
           "matchers": [[1, "#"]],
           "text": "Pode convocar até %1% Armas Animadas por vez",
           "formatters": []
+        }
+      ]
+    },
+    "orb_of_storms_base_bolt_frequency_ms": {
+      "stats": ["orb_of_storms_base_bolt_frequency_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Ataca a cada %1% segundo",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Ataca a cada %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "phys_cascade_trap_base_interval_duration_ms": {
+      "stats": ["phys_cascade_trap_base_interval_duration_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Libera ondas a cada %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -1640,20 +1765,33 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Velocidade de Recuperação da Recarga para lançar Armadilhas aumentada em %1%%%",
+          "text": "Velocidade de Recuperação da Recarga para lançar Armadilhas aumentada em %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Velocidade de Recuperação da Recarga para lançar Armadilhas reduzida em %1%%%",
+          "text": "Velocidade de Recuperação da Recarga para lançar Armadilhas reduzida em %1%%%",
           "formatters": [
             {
               "id": "negate",
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "projectile_base_number_of_targets_to_pierce": {
+      "stats": ["projectile_base_number_of_targets_to_pierce"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Projéteis Perfuram um Alvo adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Projéteis Perfuram %1% Alvos adicionais",
+          "formatters": []
         }
       ]
     },
@@ -1713,6 +1851,21 @@
         {
           "matchers": ["#", "#"],
           "text": "Projéteis Retornam para Você",
+          "formatters": []
+        }
+      ]
+    },
+    "rain_of_arrows_additional_sequences": {
+      "stats": ["rain_of_arrows_additional_sequences"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Dispara uma sequência de flechas adicional",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Dispara %1% sequências de flechas adicionais",
           "formatters": []
         }
       ]
@@ -1807,6 +1960,16 @@
         }
       ]
     },
+    "static_strike_number_of_beam_targets": {
+      "stats": ["static_strike_number_of_beam_targets"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1% máximo de Alvos do Raio",
+          "formatters": []
+        }
+      ]
+    },
     "support_trap_damage_+%_final": {
       "stats": ["support_trap_damage_+%_final"],
       "translations": [
@@ -1824,6 +1987,21 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "tornado_shot_num_of_secondary_projectiles": {
+      "stats": ["tornado_shot_num_of_secondary_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Dispara %1% Projétil secundário",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Dispara %1% Projéteis secundários",
+          "formatters": []
         }
       ]
     },
@@ -1914,6 +2092,31 @@
           "matchers": [[1, "#"]],
           "text": "Cria Cadáveres com Nível %1%",
           "formatters": []
+        }
+      ]
+    },
+    "vaal_storm_call_base_delay_ms": {
+      "stats": ["vaal_storm_call_base_delay_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Ataca um Inimigo a cada %1% segundo",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Ataca um Inimigo a cada %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
         }
       ]
     },

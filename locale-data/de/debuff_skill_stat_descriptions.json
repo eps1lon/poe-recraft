@@ -4,6 +4,18 @@
     "hasIdentifiers": false
   },
   "data": {
+    "soul_prevention_buff_duration": {
+      "stats": [
+        "modifiers_to_buff_effect_duration_also_affect_soul_prevention_duration"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Modifikatoren für Schwächungsdauer beeinflussen auch die 'Kein Seelenerhalt'-Dauer dieser Fertigkeit",
+          "formatters": []
+        }
+      ]
+    },
     "buff_duration": {
       "stats": ["buff_effect_duration"],
       "translations": [
@@ -51,8 +63,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Gewährt %1% Lebensregeneration pro Sekunde, falls ein Gegner betroffen ist",
+          "text": "Gewährt %1% Lebensregeneration pro Sekunde, falls ein Gegner betroffen ist",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -69,8 +80,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Gewährt %1% Manaregeneration pro Sekunde, falls ein Gegner betroffen ist",
+          "text": "Gewährt %1% Manaregeneration pro Sekunde, falls ein Gegner betroffen ist",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -85,8 +95,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Gewährt %1% Lebensregeneration pro Sekunde für jeden betroffenen Gegner",
+          "text": "Gewährt %1% Lebensregeneration pro Sekunde für jeden betroffenen Gegner",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -101,8 +110,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Gewährt %1% Manaregeneration pro Sekunde für jeden betroffenen Gegner",
+          "text": "Gewährt %1% Manaregeneration pro Sekunde für jeden betroffenen Gegner",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -117,14 +125,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Gewährt %1%%% erhöhten erlittenen Schaden für jeden betroffenen Gegner",
+          "text": "Gewährt %1%%% erhöhten erlittenen Schaden für jeden betroffenen Gegner",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Gewährt  %1%%% verringerten erlittenen Schaden für jeden betroffenen Gegner",
+          "text": "Gewährt  %1%%% verringerten erlittenen Schaden für jeden betroffenen Gegner",
           "formatters": [
             {
               "id": "negate",
@@ -149,14 +155,32 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Gegner erleiden %1%%% erhöhten Schaden von Fallen- oder Minentreffern",
+          "text": "Gegner erleiden %1%%% erhöhten Schaden von Fallen- oder Minentreffern",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Gegner erleiden %1%%% verringerten Schaden von Fallen- oder Minentreffern",
+          "text": "Gegner erleiden %1%%% verringerten Schaden von Fallen- oder Minentreffern",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bear_trap_slow": {
+      "stats": ["bear_trap_movement_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Gegner haben %1%%% mehr Bewegungsgeschwindigkeit, sobald die Schwächung beginnt",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Gegner haben %1%%% weniger Bewegungsgeschwindigkeit, sobald die Schwächung beginnt",
           "formatters": [
             {
               "id": "negate",

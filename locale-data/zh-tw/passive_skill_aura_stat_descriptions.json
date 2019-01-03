@@ -43,26 +43,6 @@
         }
       ]
     },
-    "elemental_damage_taken_+%": {
-      "stats": ["elemental_damage_taken_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "周圍敵人增加 %1%%% 承受的元素傷害",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "周圍敵人減少 %1%%% 承受的元素傷害",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "chance_to_be_ignited_%": {
       "stats": ["chance_to_be_ignited_%"],
       "translations": [
@@ -118,6 +98,36 @@
         }
       ]
     },
+    "elemental_damage_taken_+%": {
+      "stats": ["elemental_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "周圍敵人增加 %1%%% 承受的元素傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "周圍敵人減少 %1%%% 承受的元素傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_cold_damage_resistance_%": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "附近敵人 %1$+d%% 冰冷抗性",
+          "formatters": []
+        }
+      ]
+    },
     "base_chaos_damage_resistance_%": {
       "stats": ["base_chaos_damage_resistance_%"],
       "translations": [
@@ -125,6 +135,66 @@
           "matchers": ["#"],
           "text": "周圍敵人 %1$+d%% 混沌抗性",
           "formatters": []
+        }
+      ]
+    },
+    "life_regeneration_rate_+%": {
+      "stats": ["life_regeneration_rate_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "周圍敵人增加 %1%%% 生命回復",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "周圍敵人減少 %1%%% 生命回復",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hit_damage_+%_while_chilled": {
+      "stats": ["hit_damage_+%_while_chilled"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "附近被冰緩的敵人增加 %1%%% 擊中傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "附近被冰緩的敵人減少 %1%%% 擊中傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_over_time_+%_while_hindered": {
+      "stats": ["damage_over_time_+%_while_hindered"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "附近被阻礙的敵人增加 %1%%% 持續傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "附近被阻礙的敵人減少 %1%%% 持續傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     }

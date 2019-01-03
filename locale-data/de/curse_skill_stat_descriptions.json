@@ -24,12 +24,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "Verfluchte Gegner sind %1%%% schneller",
+          "text": "Verfluchte Gegner haben %1%%% mehr Aktionsgeschwindigkeit",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "Verfluchte Gegner sind %1%%% langsamer",
+          "text": "Verfluchte Gegner haben %1%%% weniger Aktionsgeschwindigkeit",
           "formatters": [
             {
               "id": "negate",
@@ -40,22 +40,24 @@
       ]
     },
     "buff_time_passed_reduction": {
-      "stats": ["buff_time_passed_-%"],
+      "stats": ["buff_time_passed_+%_other_than_temporal_chains"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Andere Effekte klingen bei verfluchten Gegnern %1%%% langsamer ab",
+          "text": "Andere Effekte klingen bei verfluchten Gegnern %1%%% schneller ab",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Andere Effekte klingen bei verfluchten Gegnern %1%%% schneller ab",
+          "text": "Andere Effekte klingen bei verfluchten Gegnern %1%%% langsamer ab",
           "formatters": [
             {
               "id": "negate",
               "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextSlowTimeEffects"
             }
           ]
         }
@@ -116,8 +118,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verfluchte Gegner haben %1$+d%% Chance, durch Kälteschaden eingefroren zu werden",
+          "text": "Verfluchte Gegner haben %1$+d%% Chance, durch Kälteschaden eingefroren zu werden",
           "formatters": []
         }
       ]
@@ -127,8 +128,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verfluchte Gegner haben %1$+d%% Chance, durch Feuerschaden entzündet zu werden",
+          "text": "Verfluchte Gegner haben %1$+d%% Chance, durch Feuerschaden entzündet zu werden",
           "formatters": [
             {
               "id": "reminderstring",
@@ -143,8 +143,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verfluchte Gegner haben %1$+d%% Chance, durch Blitzschaden geschockt zu werden",
+          "text": "Verfluchte Gegner haben %1$+d%% Chance, durch Blitzschaden geschockt zu werden",
           "formatters": [
             {
               "id": "reminderstring",
@@ -159,8 +158,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verfluchte Gegner gewähren %1%%% erhöhte Fläschchenfüllungen",
+          "text": "Verfluchte Gegner gewähren %1%%% erhöhte Fläschchenfüllungen",
           "formatters": []
         }
       ]
@@ -208,8 +206,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verfluchte Gegner haben %1%%% Chance, bei Tötung eine Widerstands-Ladung zu gewähren",
+          "text": "Verfluchte Gegner haben %1%%% Chance, bei Tötung eine Widerstands-Ladung zu gewähren",
           "formatters": []
         }
       ]
@@ -219,8 +216,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verfluchte Gegner haben %1%%% Chance, bei Tötung eine Raserei-Ladung zu gewähren",
+          "text": "Verfluchte Gegner haben %1%%% Chance, bei Tötung eine Raserei-Ladung zu gewähren",
           "formatters": []
         }
       ]
@@ -230,8 +226,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verfluchte Gegner haben %1%%% Chance, bei Tötung eine Energie-Ladung zu gewähren",
+          "text": "Verfluchte Gegner haben %1%%% Chance, bei Tötung eine Energie-Ladung zu gewähren",
           "formatters": []
         }
       ]
@@ -241,8 +236,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Reflektiert %1%%% des physischen Schadens von verfluchten normalen Gegnern",
+          "text": "Reflektiert %1%%% des physischen Schadens von verfluchten normalen Gegnern",
           "formatters": []
         }
       ]
@@ -252,8 +246,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Reflektiert %1%%% des physischen Schadens von verfluchten magischen Gegnern",
+          "text": "Reflektiert %1%%% des physischen Schadens von verfluchten magischen Gegnern",
           "formatters": []
         }
       ]
@@ -263,8 +256,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Reflektiert %1%%% des physischen Schadens von verfluchten seltenen Gegnern",
+          "text": "Reflektiert %1%%% des physischen Schadens von verfluchten seltenen Gegnern",
           "formatters": []
         }
       ]
@@ -274,8 +266,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Reflektiert %1%%% des physischen Schadens von verfluchten einzigartigen Gegnern",
+          "text": "Reflektiert %1%%% des physischen Schadens von verfluchten einzigartigen Gegnern",
           "formatters": []
         }
       ]
@@ -305,14 +296,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verfluchte Gegner haben %1%%% erhöhte kritische Trefferchance",
+          "text": "Verfluchte Gegner haben %1%%% erhöhte kritische Trefferchance",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Verfluchte Gegner haben %1%%% verringerte kritische Trefferchance",
+          "text": "Verfluchte Gegner haben %1%%% verringerte kritische Trefferchance",
           "formatters": [
             {
               "id": "negate",
@@ -327,8 +316,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Verfluchte Gegner haben %1$+d%% zu Multiplikator für kritische Treffer",
+          "text": "Verfluchte Gegner haben %1$+d%% zu Multiplikator für kritische Treffer",
           "formatters": []
         }
       ]
@@ -358,8 +346,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verfluchte Gegner haben zusätzlich %1%%% Chance, einen kritischen Treffer zu erleiden",
+          "text": "Verfluchte Gegner haben zusätzlich %1%%% Chance, einen kritischen Treffer zu erleiden",
           "formatters": []
         }
       ]
@@ -369,14 +356,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verfluchte Gegner erleiden %1%%% verringerten extra Schaden von kritischen Treffern",
+          "text": "Verfluchte Gegner erleiden %1%%% verringerten extra Schaden von kritischen Treffern",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Verfluchte Gegner erleiden %1%%% erhöhten extra Schaden von kritischen Treffern",
+          "text": "Verfluchte Gegner erleiden %1%%% erhöhten extra Schaden von kritischen Treffern",
           "formatters": [
             {
               "id": "negate",
@@ -401,8 +386,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Treffer auf verfluchte Gegner haben zusätzlich %1%%% Chance auf Zurückstoßen",
+          "text": "Treffer auf verfluchte Gegner haben zusätzlich %1%%% Chance auf Zurückstoßen",
           "formatters": [
             {
               "id": "reminderstring",
@@ -437,8 +421,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verfluchte Gegner erleiden %1%%% erhöhten Schaden durch Projektiltreffer",
+          "text": "Verfluchte Gegner erleiden %1%%% erhöhten Schaden durch Projektiltreffer",
           "formatters": []
         }
       ]
@@ -448,8 +431,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verfluchte Gegner haben zusätzlich %1%%% Chance betäubt zu werden",
+          "text": "Verfluchte Gegner haben zusätzlich %1%%% Chance betäubt zu werden",
           "formatters": []
         }
       ]
@@ -459,14 +441,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verfluchte Gegner haben %1%%% beschleunigte Betäubungs- und Blockerholung",
+          "text": "Verfluchte Gegner haben %1%%% beschleunigte Betäubungs- und Blockerholung",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Verfluchte Gegner haben %1%%% verlangsamte Betäubungs- und Blockerholung",
+          "text": "Verfluchte Gegner haben %1%%% verlangsamte Betäubungs- und Blockerholung",
           "formatters": [
             {
               "id": "negate",
@@ -481,8 +461,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verfluchte Gegner erleiden %1%%% erhöhten physischen Schaden",
+          "text": "Verfluchte Gegner erleiden %1%%% erhöhten physischen Schaden",
           "formatters": []
         }
       ]
@@ -492,8 +471,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verfluchte Gegner erleiden %1%%% erhöhten Schaden von 'Schaden über Zeit'-Effekten",
+          "text": "Verfluchte Gegner erleiden %1%%% erhöhten Schaden von 'Schaden über Zeit'-Effekten",
           "formatters": []
         }
       ]
@@ -523,14 +501,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Einfrierungsdauer bei verfluchten Gegnern ist um %1%%% verkürzt",
+          "text": "Einfrierungsdauer bei verfluchten Gegnern ist um %1%%% verkürzt",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Einfrierungsdauer bei verfluchten Gegnern ist um %1%%% verlängert",
+          "text": "Einfrierungsdauer bei verfluchten Gegnern ist um %1%%% verlängert",
           "formatters": [
             {
               "id": "negate",
@@ -575,8 +551,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Bei Angriffen getroffene verfluchte Gegner gewähren %1% Leben",
+          "text": "Bei Angriffen getroffene verfluchte Gegner gewähren %1% Leben",
           "formatters": []
         }
       ]
@@ -586,8 +561,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Bei Angriffen getroffene verfluchte Gegner gewähren %1% Mana",
+          "text": "Bei Angriffen getroffene verfluchte Gegner gewähren %1% Mana",
           "formatters": []
         }
       ]
@@ -647,8 +621,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verfluchte Gegner haben %1%%% Chance, bei Treffer durch Angriffe für 4 Sekunden verstümmelt zu werden",
+          "text": "Verfluchte Gegner haben %1%%% Chance, bei Treffer durch Angriffe für 4 Sekunden verstümmelt zu werden",
           "formatters": [
             {
               "id": "reminderstring",
@@ -666,8 +639,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text":
-            "Fügt Treffern gegen verfluchte Gegner %1% bis %2% Chaosschaden hinzu",
+          "text": "Fügt Treffern gegen verfluchte Gegner %1% bis %2% Chaosschaden hinzu",
           "formatters": []
         }
       ]
@@ -677,14 +649,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Verfluchte Gegner erleiden %1%%% erhöhten physischen Schaden durch Schaden über Zeit",
+          "text": "Verfluchte Gegner erleiden %1%%% erhöhten physischen Schaden durch Schaden über Zeit",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Verfluchte Gegner erleiden %1%%% verringerten physischen Schaden durch Schaden über Zeit",
+          "text": "Verfluchte Gegner erleiden %1%%% verringerten physischen Schaden durch Schaden über Zeit",
           "formatters": []
         }
       ]

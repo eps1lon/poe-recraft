@@ -8,12 +8,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你和周围队友的伤害提高 %1%%%",
+          "text": "你和周围友军的伤害提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "你和周围队友的伤害降低 %1%%%",
+          "text": "你和周围友军的伤害降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -28,32 +28,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "你和周围队友的移动速度提高 %1%%%",
+          "text": "你和周围友军的移动速度提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "你和周围队友的移动速度降低 %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "elemental_damage_taken_+%": {
-      "stats": ["elemental_damage_taken_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "周围敌人受到的火焰、冰霜、闪电伤害提高 %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "周围敌人受到的火焰、冰霜、闪电伤害降低 %1%%%",
+          "text": "你和周围友军的移动速度降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -118,6 +98,36 @@
         }
       ]
     },
+    "elemental_damage_taken_+%": {
+      "stats": ["elemental_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "周围敌人受到的火焰、冰霜、闪电伤害提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "周围敌人受到的火焰、冰霜、闪电伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_cold_damage_resistance_%": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "周围敌人获得 %1$+d%% 冰霜抗性",
+          "formatters": []
+        }
+      ]
+    },
     "base_chaos_damage_resistance_%": {
       "stats": ["base_chaos_damage_resistance_%"],
       "translations": [
@@ -125,6 +135,66 @@
           "matchers": ["#"],
           "text": "周围敌人获得 %1$+d%% 混沌抗性",
           "formatters": []
+        }
+      ]
+    },
+    "life_regeneration_rate_+%": {
+      "stats": ["life_regeneration_rate_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "周围敌人的生命回复提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "周围敌人的生命回复降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hit_damage_+%_while_chilled": {
+      "stats": ["hit_damage_+%_while_chilled"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "周围被冰缓敌人打出的击中伤害提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "周围被冰缓敌人打出的击中伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_over_time_+%_while_hindered": {
+      "stats": ["damage_over_time_+%_while_hindered"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "周围被干扰的敌人造成的持续伤害提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "周围被干扰的敌人的持续伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     }

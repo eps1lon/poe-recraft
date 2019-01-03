@@ -1,0 +1,209 @@
+{
+  "meta": {
+    "include": "aura_skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "buff_duration": {
+      "stats": ["buff_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Les Étendards durent %1% secondes après avoir été déployés",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "banner_add_stage_on_impale": {
+      "stats": ["banner_add_stage_on_impale"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Gagne 1 Palier lorsque vous Empalez un Ennemi tout en portant l'Étendard, jusqu'à un maximum de 5 Paliers par seconde",
+          "formatters": []
+        }
+      ]
+    },
+    "banner_add_stage_on_kill": {
+      "stats": ["banner_add_stage_on_kill"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Vous gagnez 1 Palier lorsque vous Tuez un Ennemi tout en portant l'Étendard",
+          "formatters": []
+        }
+      ]
+    },
+    "banner_stage_duration": {
+      "stats": ["banner_additional_base_duration_per_stage_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "%1$+d seconde à la Durée de base de l'Étendard déployé par Palier",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "%1$+d secondes à la Durée de base de l'Étendard déployé par Palier",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "banner_stage_aoe": {
+      "stats": ["banner_area_of_effect_+%_per_stage"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Lorsqu'il est déployé, %1%%% d'Augmentation de Zone d'effet par Palier",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Lorsqu'il est déployé, %1%%% de Réduction de Zone d'effet par Palier",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "banner_stage_aura_effect": {
+      "stats": ["banner_buff_effect_+%_per_stage"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Lorsqu'il est déployé, %1%%% d'Augmentation de l'Effet de l'Aura par Palier",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Lorsqu'il est déployé, %1%%% de Réduction de l'Effet de l'Aura par Palier",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_duration_identifier": {
+      "stats": ["base_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "A une Durée de base de %1% secondes après avoir été déployé",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "war_banner_adrenaline": {
+      "stats": ["bloodstained_banner_adrenaline_duration_per_stage_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Vous gagnez Adrénaline pendant %1% secondes par Seuil en déployant l'Étendard",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextAdrenaline"
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Vous gagnez Adrénaline pendant %1% secondes par Seuil en déployant l'Étendard",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextAdrenaline"
+            }
+          ]
+        }
+      ]
+    },
+    "dread_banner_accuracy_final": {
+      "stats": ["puresteel_banner_accuracy_rating_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Les Ennemis à proximité ont %1%%% Davantage de Score de Précision",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Les Ennemis à proximité ont %1%%% de Perte de Score de Précision",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "dread_banner_fortify": {
+      "stats": ["puresteel_banner_fortify_duration_per_stage_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Vous gagnez Renforcement pendant %1% secondes par Seuil en déployant l'Étendard",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Vous gagnez Renforcement pendant %1% secondes par Seuil en déployant l'Étendard",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

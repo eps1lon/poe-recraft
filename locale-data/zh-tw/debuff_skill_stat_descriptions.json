@@ -4,6 +4,18 @@
     "hasIdentifiers": false
   },
   "data": {
+    "soul_prevention_buff_duration": {
+      "stats": [
+        "modifiers_to_buff_effect_duration_also_affect_soul_prevention_duration"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "減益效果詞綴同時影響此技能的停止獲得靈魂",
+          "formatters": []
+        }
+      ]
+    },
     "buff_duration": {
       "stats": ["buff_effect_duration"],
       "translations": [
@@ -149,6 +161,26 @@
         {
           "matchers": [["#", -1]],
           "text": "敵人減少 %1%%% 來自陷阱或地雷擊中的傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bear_trap_slow": {
+      "stats": ["bear_trap_movement_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "當減溢效果開始時，敵人有 %1%%% 更多移動速度",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "當減溢效果開始時，敵人有 %1%%% 更少移動速度",
           "formatters": [
             {
               "id": "negate",

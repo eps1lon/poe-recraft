@@ -25,8 +25,7 @@
       "translations": [
         {
           "matchers": ["#", "#"],
-          "text":
-            "От %1% до %2% дополнительного физического урона за каждые 15 брони или уклонения на щите",
+          "text": "От %1% до %2% дополнительного физического урона за каждые 15 брони или уклонения на щите",
           "formatters": []
         }
       ]
@@ -111,6 +110,21 @@
         }
       ]
     },
+    "active_skill_attack_damage_final_permyriad": {
+      "stats": ["active_skill_attack_damage_final_permyriad"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Наносит %1%%% от базового урона",
+          "formatters": [
+            {
+              "id": "multiplicative_permyriad_damage_modifier",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "active_skill_damage_+%_final": {
       "stats": ["active_skill_damage_+%_final"],
       "translations": [
@@ -161,8 +175,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Если экипировано парное оружие, наносит %1%%% урона от каждого",
+          "text": "Если экипировано парное оружие, наносит %1%%% урона от каждого",
           "formatters": [
             {
               "id": "multiplicative_damage_modifier",
@@ -178,6 +191,21 @@
         {
           "matchers": ["#"],
           "text": "Приспешники наносят %1%%% от урона",
+          "formatters": [
+            {
+              "id": "multiplicative_damage_modifier",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "active_skill_minion_physical_damage_+%_final": {
+      "stats": ["active_skill_minion_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Приспешники наносят %1%%% от физического урона",
           "formatters": [
             {
               "id": "multiplicative_damage_modifier",
@@ -267,39 +295,17 @@
         }
       ]
     },
-    "buff_duration_+%": {
-      "stats": ["buff_duration_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "%1%%% увеличение длительности положительных и отрицательных эффектов",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "%1%%% уменьшение длительности положительных и отрицательных эффектов",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "aura_effect_+%": {
       "stats": ["aura_effect_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "%1%%% усиление эффекта аур",
+          "text": "%1%%% усиление эффекта ауры",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "%1%%% ослабление эффекта аур",
+          "text": "%1%%% ослабление эффекта ауры",
           "formatters": [
             {
               "id": "negate",
@@ -324,13 +330,12 @@
         }
       ]
     },
-    "offering_skill_effect_duration_per_corpse": {
-      "stats": ["offering_skill_effect_duration_per_corpse"],
+    "base_secondary_skill_effect_duration": {
+      "stats": ["base_secondary_skill_effect_duration"],
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Дополнительно %1% секунд(-ы) базовой длительности за каждый дополнительный поглощенный труп",
+          "text": "Длительность вторичного эффекта: %1% секунд",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
@@ -340,16 +345,50 @@
         }
       ]
     },
-    "base_buff_duration_ms_+_per_endurance_charge": {
-      "stats": ["base_buff_duration_ms_+_per_endurance_charge"],
+    "offering_skill_effect_duration_per_corpse": {
+      "stats": ["offering_skill_effect_duration_per_corpse"],
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Дополнительно %1% секунд(-ы) базовой длительности за заряд выносливости",
+          "text": "Дополнительно %1% секунд(-ы) базовой длительности за каждый дополнительный поглощенный труп",
           "formatters": [
             {
               "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_buff_duration_ms_+_per_removable_endurance_charge": {
+      "stats": ["base_buff_duration_ms_+_per_removable_endurance_charge"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d секунд(-ы) к длительности положительного эффекта за каждый снятый заряд выносливости",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "buff_duration_+%": {
+      "stats": ["buff_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% увеличение длительности положительных и отрицательных эффектов",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% уменьшение длительности положительных и отрицательных эффектов",
+          "formatters": [
+            {
+              "id": "negate",
               "arg": 1
             }
           ]
@@ -386,21 +425,6 @@
         }
       ]
     },
-    "active_skill_attack_damage_final_permyriad": {
-      "stats": ["active_skill_attack_damage_final_permyriad"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Наносит %1%%% от базового урона",
-          "formatters": [
-            {
-              "id": "multiplicative_permyriad_damage_modifier",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "base_spell_repeat_count": {
       "stats": ["base_spell_repeat_count"],
       "translations": [
@@ -421,21 +445,6 @@
         }
       ]
     },
-    "base_secondary_skill_effect_duration": {
-      "stats": ["base_secondary_skill_effect_duration"],
-      "translations": [
-        {
-          "matchers": ["#"],
-          "text": "Длительность вторичного эффекта: %1% секунд",
-          "formatters": [
-            {
-              "id": "milliseconds_to_seconds_2dp",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "base_number_of_golems_allowed": {
       "stats": ["base_number_of_golems_allowed"],
       "translations": [
@@ -447,6 +456,16 @@
         {
           "matchers": [[2, "#"]],
           "text": "Можно призвать големов: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_totems_allowed": {
+      "stats": ["base_number_of_totems_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d к максимальному количеству установленных тотемов",
           "formatters": []
         }
       ]
@@ -481,26 +500,6 @@
         }
       ]
     },
-    "active_skill_if_used_through_frostbolt_damage_+%_final": {
-      "stats": ["active_skill_if_used_through_frostbolt_damage_+%_final"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "На %1%%% больше урона при использовании через Морозный шар",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "На %1%%% меньше урона при использовании через Морозный шар",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "additional_base_critical_strike_chance": {
       "stats": ["additional_base_critical_strike_chance"],
       "translations": [
@@ -513,6 +512,33 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "additional_weapon_base_attack_time_ms": {
+      "stats": ["additional_weapon_base_attack_time_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d секунд(-ы) ко времени атаки",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp_if_required",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "additive_cast_speed_modifiers_apply_to_sigil_repeat_frequency": {
+      "stats": [
+        "additive_cast_speed_modifiers_apply_to_sigil_repeat_frequency"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Повышения и снижения скорости сотворения чар также действуют на частоту активации этого умения",
+          "formatters": []
         }
       ]
     },
@@ -558,6 +584,26 @@
     },
     "attack_speed_+%": {
       "stats": ["attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% повышение скорости атаки",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% снижение скорости атаки",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "attack_speed_+%_granted_from_skill": {
+      "stats": ["attack_speed_+%_granted_from_skill"],
       "translations": [
         {
           "matchers": [[1, "#"]],
@@ -746,14 +792,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% повышение редкости предметов, выпадающих с врагов при смерти",
+          "text": "%1%%% повышение редкости предметов, выпадающих с врагов при смерти",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% снижение редкости предметов, выпадающих с врагов при смерти",
+          "text": "%1%%% снижение редкости предметов, выпадающих с врагов при смерти",
           "formatters": [
             {
               "id": "negate",
@@ -804,6 +848,36 @@
         {
           "matchers": [[2, "#"]],
           "text": "Выпускает %1% дополнительных стрел(-ы)",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_champions_of_light_allowed": {
+      "stats": ["base_number_of_champions_of_light_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Максимум призванных Стражей чистоты: %1%",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Максимум призванных Стражей чистоты: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_relics_allowed": {
+      "stats": ["base_number_of_relics_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Максимум призванных священных реликвий: %1%",
+          "formatters": []
+        },
+        {
+          "matchers": ["#"],
+          "text": "Максимум призванных священных реликвий: %1%",
           "formatters": []
         }
       ]
@@ -880,6 +954,21 @@
           "matchers": [[1, "#"]],
           "text": "Пробивает %1%%% сопротивления молнии",
           "formatters": []
+        }
+      ]
+    },
+    "base_sigil_repeat_frequency_ms": {
+      "stats": ["base_sigil_repeat_frequency_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Активируется каждые %1% секунды, пока прикреплено",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -983,8 +1072,7 @@
         },
         {
           "matchers": [[1, 99]],
-          "text":
-            "%1%%% шанс получить Укрепление при нанесении удара в ближнем бою",
+          "text": "%1%%% шанс получить Укрепление при нанесении удара в ближнем бою",
           "formatters": [
             {
               "id": "reminderstring",
@@ -999,8 +1087,7 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text":
-            "%1%%% шанс получить заряд ярости при убийстве замороженного врага",
+          "text": "%1%%% шанс получить заряд ярости при убийстве замороженного врага",
           "formatters": []
         },
         {
@@ -1075,8 +1162,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Дарует %1%%% урона от холода в виде дополнительного урона от огня",
+          "text": "Дарует %1%%% урона от холода в виде дополнительного урона от огня",
           "formatters": []
         }
       ]
@@ -1476,14 +1562,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "%1%%% увеличение урона в ближнем бою по истекающим кровью врагам",
+          "text": "%1%%% увеличение урона в ближнем бою по истекающим кровью врагам",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "%1%%% уменьшение урона в ближнем бою по истекающим кровью врагам",
+          "text": "%1%%% уменьшение урона в ближнем бою по истекающим кровью врагам",
           "formatters": [
             {
               "id": "negate",
@@ -1608,8 +1692,8 @@
         }
       ]
     },
-    "number_of_additional_projectiles_in_chain": {
-      "stats": ["number_of_additional_projectiles_in_chain"],
+    "number_of_chains": {
+      "stats": ["number_of_chains"],
       "translations": [
         {
           "matchers": ["#"],
@@ -1713,8 +1797,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Дарует %1%%% от физического урона в виде дополнительного урона от огня",
+          "text": "Дарует %1%%% от физического урона в виде дополнительного урона от огня",
           "formatters": []
         }
       ]
@@ -1724,8 +1807,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Дарует %1%%% от физического урона в виде дополнительного урона от молнии",
+          "text": "Дарует %1%%% от физического урона в виде дополнительного урона от молнии",
           "formatters": []
         }
       ]
@@ -1947,6 +2029,16 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "static_strike_number_of_beam_targets": {
+      "stats": ["static_strike_number_of_beam_targets"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Максимум целей луча: %1%",
+          "formatters": []
         }
       ]
     },

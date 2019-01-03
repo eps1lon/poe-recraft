@@ -24,12 +24,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被詛咒敵人增加 %1%%% 移動速度、攻擊速度、及施法速度",
+          "text": "被詛咒的敵人有 %1%%% 更多行動速度",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被詛咒敵人減少 %1%%% 移動速度、攻擊速度、及施法速度",
+          "text": "被詛咒的敵人有 %1%%% 更少行動速度",
           "formatters": [
             {
               "id": "negate",
@@ -40,20 +40,24 @@
       ]
     },
     "buff_time_passed_reduction": {
-      "stats": ["buff_time_passed_-%"],
+      "stats": ["buff_time_passed_+%_other_than_temporal_chains"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被詛咒敵人增加 %1%%% 身上增益與減益的持續時間",
+          "text": "被詛咒敵人減少 %1%%% 身上增益與減益的持續時間",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被詛咒敵人減少 %1%%% 身上增益與減益的持續時間",
+          "text": "被詛咒敵人增加 %1%%% 身上增益與減益的持續時間",
           "formatters": [
             {
               "id": "negate",
               "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextSlowTimeEffects"
             }
           ]
         }
@@ -587,12 +591,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "增加 %1%%% 詛咒範圍",
+          "text": "增加 %1%%% 詛咒範圍效果",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "減少 %1%%% 詛咒範圍",
+          "text": "減少 %1%%% 詛咒範圍效果",
           "formatters": [
             {
               "id": "negate",

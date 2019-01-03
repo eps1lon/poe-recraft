@@ -488,8 +488,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "被辅助技能会将冰缓、冰冻、点燃和感电状态扩散至范围 %1% 内的敌人",
+          "text": "被辅助技能会将冰缓、冰冻、点燃和感电状态扩散至范围 %1% 内的敌人",
           "formatters": [
             {
               "id": "reminderstring",
@@ -514,8 +513,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "被辅助技能的投射物攻击近距离目标时造成的总伤害最多额外提高 50%%，但攻击远距离目标时总伤害则会额外降低",
+          "text": "被辅助技能的投射物攻击近距离目标时造成的总伤害最多额外提高 50%%，但攻击远距离目标时总伤害则会额外降低",
           "formatters": []
         }
       ]
@@ -647,10 +645,15 @@
           "matchers": [1],
           "text": "最多可同时拥有 %1% 个图腾",
           "formatters": []
-        },
+        }
+      ]
+    },
+    "summon_2_totems": {
+      "stats": ["summon_2_totems"],
+      "translations": [
         {
           "matchers": ["#"],
-          "text": "最多可同时拥有 %1% 个图腾",
+          "text": "被辅助的技能召唤的图腾数量从一个增加为两个",
           "formatters": []
         }
       ]
@@ -825,8 +828,8 @@
         }
       ]
     },
-    "number_of_additional_projectiles_in_chain": {
-      "stats": ["number_of_additional_projectiles_in_chain"],
+    "number_of_chains": {
+      "stats": ["number_of_chains"],
       "translations": [
         {
           "matchers": ["#"],
@@ -963,14 +966,12 @@
       "translations": [
         {
           "matchers": [[1, "#"], "#"],
-          "text":
-            "被辅助技能击中中毒目标时，每层中毒效果造成的总伤害额外提高 %1%%%，最多 %2% 层中毒效果",
+          "text": "被辅助技能击中中毒目标时，每层中毒效果造成的总伤害额外提高 %1%%%，最多 %2% 层中毒效果",
           "formatters": []
         },
         {
           "matchers": [["#", -1], "#"],
-          "text":
-            "被辅助技能击中中毒目标时，每层中毒效果造成的总伤害额外降低 %1%%%，最多 %2% 层中毒效果",
+          "text": "被辅助技能击中中毒目标时，每层中毒效果造成的总伤害额外降低 %1%%%，最多 %2% 层中毒效果",
           "formatters": [
             {
               "id": "negate",
@@ -1140,13 +1141,32 @@
         }
       ]
     },
+    "support_additional_totem_damage_+%_final": {
+      "stats": ["support_additional_totem_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助技能造成的总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被辅助技能造成的总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_better_ailments_ailment_damage_+%_final": {
       "stats": ["support_better_ailments_ailment_damage_+%_final"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "被辅助技能对冰缓、冰冻、点燃和感电状态的总伤害额外提高 %1%%%",
+          "text": "被辅助技能对异常状态的总伤害额外提高 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -1156,8 +1176,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "被辅助技能对冰缓、冰冻、点燃和感电状态的总伤害额外降低 %1%%%",
+          "text": "被辅助技能对异常状态的总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1925,6 +1944,31 @@
         }
       ]
     },
+    "withered_on_hit_chance_%": {
+      "stats": ["withered_on_hit_chance_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "被辅助技能击中敌人后有 %1%%% 几率造成【死亡凋零】",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextWithered"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "被辅助技能击中敌人后造成【死亡凋零】",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextWithered"
+            }
+          ]
+        }
+      ]
+    },
     "cannot_inflict_status_ailments": {
       "stats": ["cannot_inflict_status_ailments"],
       "translations": [
@@ -1974,8 +2018,7 @@
       "translations": [
         {
           "matchers": ["#", "#", "#"],
-          "text":
-            "【秘术增强】会使法术总伤害额外提高 %1%%%\\n【秘术增强】会使施法速度额外提高 %2%%%\\n【秘术增强】会使你获得 %3%%% 每秒最大魔力回复",
+          "text": "【秘术增强】会使法术总伤害额外提高 %1%%%\\n【秘术增强】会使施法速度额外提高 %2%%%\\n【秘术增强】会使你获得 %3%%% 每秒最大魔力回复",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -2005,6 +2048,64 @@
             {
               "id": "milliseconds_to_seconds",
               "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_withered_base_duration_ms": {
+      "stats": ["support_withered_base_duration_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "【死亡凋零】持续 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "【死亡凋零】持续 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "active_skill_withered_base_duration_ms": {
+      "stats": ["active_skill_withered_base_duration_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "【死亡凋零】持续 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextWithered"
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "【死亡凋零】持续 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextWithered"
             }
           ]
         }
@@ -2110,8 +2211,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "被辅助技能会使【无情一击】在近战击中时的流血总伤害额外提高 %1%%% ",
+          "text": "被辅助技能会使【无情一击】在近战击中时的流血总伤害额外提高 %1%%% ",
           "formatters": []
         }
       ]
@@ -2136,15 +2236,53 @@
       "translations": [
         {
           "matchers": [[1, 99]],
-          "text":
-            "当被辅助技能、或被辅助技能召唤的非幻灵召唤生物击败敌人时，有 %1%%% 几率召唤 1 个幻灵",
+          "text": "当被辅助技能、或被辅助技能召唤的非幻灵召唤生物击败敌人时，有 %1%%% 几率召唤 1 个幻灵",
           "formatters": []
         },
         {
           "matchers": [[100, "#"]],
-          "text":
-            "当被辅助技能、或被辅助技能召唤的非幻灵召唤生物击败敌人时，召唤 1 个幻灵",
+          "text": "当被辅助技能、或被辅助技能召唤的非幻灵召唤生物击败敌人时，召唤 1 个幻灵",
           "formatters": []
+        }
+      ]
+    },
+    "chill_effect_+%": {
+      "stats": ["chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助技能对敌人冰缓的效果提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被辅助技能对敌人冰缓的效果降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chill_duration_+%": {
+      "stats": ["chill_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助技能对敌人冰缓的持续时间延长 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被辅助技能对敌人冰缓的持续时间缩短 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -2223,6 +2361,18 @@
         }
       ]
     },
+    "apply_overpowered_on_enemy_block_reduced_block_and_spell_block_%": {
+      "stats": [
+        "apply_overpowered_on_enemy_block_reduced_block_and_spell_block_%"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "【碾压】会使攻击伤害和法术伤害格挡几率 -%1%%%",
+          "formatters": []
+        }
+      ]
+    },
     "area_damage_+%": {
       "stats": ["area_damage_+%"],
       "translations": [
@@ -2281,8 +2431,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "被辅助技能会使敌人受到的冰缓、点燃、冰冻、流血、中毒和感电状态持续时间延长 %1%%%",
+          "text": "被辅助技能会使敌人受到的冰缓、点燃、冰冻、流血、中毒和感电状态持续时间延长 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2292,8 +2441,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "被辅助技能会使敌人受到的冰缓、点燃、冰冻、流血、中毒和感电状态持续时间缩短 %1%%%",
+          "text": "被辅助技能会使敌人受到的冰缓、点燃、冰冻、流血、中毒和感电状态持续时间缩短 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2572,6 +2720,16 @@
         }
       ]
     },
+    "base_skill_is_instant": {
+      "stats": ["base_skill_is_instant"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "被辅助技能立即施放",
+          "formatters": []
+        }
+      ]
+    },
     "base_stun_duration_+%": {
       "stats": ["base_stun_duration_+%"],
       "translations": [
@@ -2720,7 +2878,8 @@
             {
               "id": "reminderstring",
               "arg": "ReminderTextFortify"
-            }
+            },
+            "canonical_line"
           ]
         }
       ]
@@ -2760,46 +2919,6 @@
         }
       ]
     },
-    "chill_duration_+%": {
-      "stats": ["chill_duration_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "被辅助技能对敌人冰缓的持续时间延长 %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "被辅助技能对敌人冰缓的持续时间缩短 %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "chill_effect_+%": {
-      "stats": ["chill_effect_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text": "被辅助技能对敌人冰缓的效果提高 %1%%%",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text": "被辅助技能对敌人冰缓的效果降低 %1%%%",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
     "cold_damage_%_to_add_as_fire": {
       "stats": ["cold_damage_%_to_add_as_fire"],
       "translations": [
@@ -2821,6 +2940,26 @@
         {
           "matchers": [["#", -1]],
           "text": "被辅助技能造成的冰霜伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "curse_area_of_effect_+%": {
+      "stats": ["curse_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助诅咒技能的范围扩大 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被辅助诅咒技能的范围缩小 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2895,8 +3034,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "被辅助技能击中时附加腐蚀状态，每秒造成 %1% 混沌伤害，持续8秒",
+          "text": "被辅助技能击中时附加腐蚀状态，每秒造成 %1% 混沌伤害，持续8秒",
           "formatters": []
         }
       ]
@@ -3001,11 +3139,24 @@
       ]
     },
     "gain_endurance_charge_on_melee_stun": {
-      "stats": ["gain_endurance_charge_on_melee_stun"],
+      "stats": [
+        "gain_endurance_charge_on_melee_stun",
+        "gain_endurance_charge_on_melee_stun_%"
+      ],
       "translations": [
         {
-          "matchers": ["#"],
-          "text": "当你使用被辅助技能的近战伤害晕眩敌人时，获得 1 个耐力球",
+          "matchers": [0, [0, 99]],
+          "text": "当你使用被辅助技能近战命中并晕眩敌人时，有 %2%%% 的几率获得 1 个耐力球",
+          "formatters": []
+        },
+        {
+          "matchers": [0, [100, "#"]],
+          "text": "当你使用被辅助技能近战命中并晕眩敌人时，获得 1 个耐力球",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#"],
+          "text": "当你使用被辅助技能近战命中并晕眩敌人时，获得 1 个耐力球",
           "formatters": []
         }
       ]
@@ -3015,8 +3166,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "被辅助技能击中时获得 1 个瓦尔之灵\\n每 %1% 秒最多获得 1 个瓦尔之灵",
+          "text": "被辅助技能击中时获得 1 个瓦尔之灵\\n每 %1% 秒最多获得 1 个瓦尔之灵",
           "formatters": [
             {
               "id": "milliseconds_to_seconds",
@@ -3560,12 +3710,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助的非诅咒光环技能效果提高 %1%%%",
+          "text": "被辅助技能的非诅咒类光环效果提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助的非诅咒光环技能效果降低 %1%%%",
+          "text": "被辅助技能的非诅咒类光环效果降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3688,8 +3838,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "当你的陷阱被敌人触发时，被辅助技能有 %1%%% 的机会获得 1 个狂怒球",
+          "text": "当你的陷阱被敌人触发时，被辅助技能有 %1%%% 的机会获得 1 个狂怒球",
           "formatters": []
         },
         {
@@ -3704,13 +3853,22 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "当你的陷阱被敌人触发时，被辅助技能有 %1%%% 的几率获得 1 个暴击球",
+          "text": "当你的陷阱被敌人触发时，被辅助技能有 %1%%% 的几率获得 1 个暴击球",
           "formatters": []
         },
         {
           "matchers": [100],
           "text": "当你的陷阱被敌人触发时，被辅助技能获得 1 个暴击球",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_%_to_add_as_chaos": {
+      "stats": ["physical_damage_%_to_add_as_chaos"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助技能额外获得 %1%%% 物理伤害，并转化为混沌伤害",
           "formatters": []
         }
       ]
@@ -3919,8 +4077,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "当你用被辅助技能发射的箭矢击中敌人时，召唤 1 个会使用此技能的【幻影弓手】",
+          "text": "当你用被辅助技能发射的箭矢击中敌人时，召唤 1 个会使用此技能的【幻影弓手】",
           "formatters": []
         }
       ]
@@ -3960,6 +4117,26 @@
         }
       ]
     },
+    "support_chaos_attacks_damage_+%_final": {
+      "stats": ["support_chaos_attacks_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助技能造成的混沌总伤害额外提高 %1%%% ",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被辅助技能造成的混沌总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_clustertrap_damage_+%_final": {
       "stats": ["support_clustertrap_damage_+%_final"],
       "translations": [
@@ -3995,6 +4172,26 @@
         }
       ]
     },
+    "support_greater_volley_projectile_damage_+%_final": {
+      "stats": ["support_greater_volley_projectile_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助技能造成的投射物总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被辅助技能造成的投射物总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_hypothermia_cold_damage_over_time_+%_final": {
       "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
       "translations": [
@@ -4020,8 +4217,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "敌人被冰缓时，辅助技能的总伤害（击中和异常状态）额外提高 %1%%%",
+          "text": "敌人被冰缓时，辅助技能的总伤害（击中和异常状态）额外提高 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -4070,12 +4266,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "被辅助技能造成的地雷总伤害额外提高 %1%%%",
+          "text": "被辅助技能造成的总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "被辅助技能造成的地雷总伤害额外降低 %1%%%",
+          "text": "被辅助技能造成的总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4198,6 +4394,25 @@
         }
       ]
     },
+    "support_overpowered_base_duration_ms": {
+      "stats": ["support_overpowered_base_duration_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "格挡时，造成【碾压】，持续 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextOverpowered"
+            }
+          ]
+        }
+      ]
+    },
     "support_parallel_projectile_number_of_points_per_side": {
       "stats": ["support_parallel_projectile_number_of_points_per_side"],
       "translations": [
@@ -4233,6 +4448,72 @@
         }
       ]
     },
+    "support_phys_chaos_projectile_chaos_damage_over_time_+%_final": {
+      "stats": [
+        "support_phys_chaos_projectile_chaos_damage_over_time_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助技能造成的持续性混沌总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被辅助技能造成的持续性混沌总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_phys_chaos_projectile_physical_damage_over_time_+%_final": {
+      "stats": [
+        "support_phys_chaos_projectile_physical_damage_over_time_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助技能造成的持续性物理总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被辅助技能造成的持续性物理总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_phys_chaos_projectile_spell_physical_projectile_damage_+%_final": {
+      "stats": [
+        "support_phys_chaos_projectile_spell_physical_projectile_damage_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "被辅助的攻击技能额外提高 %1%%% 投射物法术总伤害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "被辅助的攻击技能额外降低 %1%%% 投射物法术总伤害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "support_phys_proj_attack_damage_bleeing_and_poison_damage_+%_final_from_projectile_hits": {
       "stats": [
         "support_phys_proj_attack_damage_bleeing_and_poison_damage_+%_final_from_projectile_hits"
@@ -4240,14 +4521,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "被辅助攻击技能的投射物击中造成的流血和中毒总伤害额外提高 %1%%%",
+          "text": "被辅助攻击技能的投射物击中造成的流血和中毒总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "被辅助攻击技能的投射物击中造成的流血和中毒总伤害额外降低 %1%%%",
+          "text": "被辅助攻击技能的投射物击中造成的流血和中毒总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -4336,6 +4615,26 @@
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "support_reduce_enemy_block_and_spell_block_%": {
+      "stats": ["support_reduce_enemy_block_and_spell_block_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "敌人格挡来自被辅助技能的攻击伤害或法术伤害的几率 -%1%%%",
+          "formatters": []
+        }
+      ]
+    },
+    "support_reduce_enemy_dodge_and_spell_dodge_%": {
+      "stats": ["support_reduce_enemy_dodge_and_spell_dodge_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "敌人躲避来自被辅助技能的攻击击中或法术击中的几率 -%1%%%",
+          "formatters": []
         }
       ]
     },
@@ -4460,8 +4759,7 @@
       "translations": [
         {
           "matchers": ["#", "#", "#"],
-          "text":
-            "被辅助技能在吟唱时，若你被击中，则有 %1%%% 几率获得暴击球\\n被辅助技能在吟唱时所承受的闪电伤害降低 %2%%%\\n被辅助技能在吟唱时所承受的物理伤害降低 %3%%%",
+          "text": "被辅助技能在吟唱时，若你被击中，则有 %1%%% 几率获得暴击球\\n被辅助技能在吟唱时所承受的闪电伤害降低 %2%%%\\n被辅助技能在吟唱时所承受的物理伤害降低 %3%%%",
           "formatters": [
             {
               "id": "negate",

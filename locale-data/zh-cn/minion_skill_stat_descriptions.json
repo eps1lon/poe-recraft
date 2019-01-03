@@ -181,6 +181,16 @@
           "matchers": [[1, "#"]],
           "text": "召唤生物的暴击率提高 %1%%%",
           "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召唤生物的暴击率降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     },
@@ -766,14 +776,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "召唤生物的近战攻击击中后，所造成的流血和中毒总伤害额外提高 %1%%%",
+          "text": "召唤生物的近战攻击击中后，所造成的流血和中毒总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "召唤生物的近战攻击击中后，所造成的流血和中毒总伤害额外降低 %1%%%",
+          "text": "召唤生物的近战攻击击中后，所造成的流血和中毒总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1031,6 +1039,16 @@
         {
           "matchers": [[1, "#"]],
           "text": "召唤生物的 %1%%% 冰霜伤害转化为火焰伤害",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_to_add_as_chaos": {
+      "stats": ["physical_damage_%_to_add_as_chaos"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召唤生物造成额外混沌伤害，其数值等同于物理伤害的 %1%%%",
           "formatters": []
         }
       ]
@@ -1427,14 +1445,12 @@
       "translations": [
         {
           "matchers": [[1, "#"], "#"],
-          "text":
-            "敌人每有一层中毒状态，召唤生物击中时的总伤害便额外提高 %1%%%，最多 %2%",
+          "text": "敌人每有一层中毒状态，召唤生物击中时的总伤害便额外提高 %1%%%，最多 %2%",
           "formatters": []
         },
         {
           "matchers": [["#", -1], "#"],
-          "text":
-            "敌人每有一层中毒状态，召唤生物击中时的总伤害便额外降低%1%%%，最多 %2%",
+          "text": "敌人每有一层中毒状态，召唤生物击中时的总伤害便额外降低%1%%%，最多 %2%",
           "formatters": [
             {
               "id": "negate",
@@ -1515,6 +1531,26 @@
         {
           "matchers": [["#", -1]],
           "text": "召唤生物造成的总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "minion_physical_damage_final": {
+      "stats": ["active_skill_minion_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召唤生物造成的物理总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召唤生物造成的物理总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -1724,21 +1760,6 @@
         }
       ]
     },
-    "number_of_converted_allowed": {
-      "stats": ["number_of_converted_allowed"],
-      "translations": [
-        {
-          "matchers": [1],
-          "text": "最多可同时拥有 %1% 个被支配的敌人",
-          "formatters": []
-        },
-        {
-          "matchers": [[2, "#"]],
-          "text": "最多可同时拥有 %1% 个被支配的敌人",
-          "formatters": []
-        }
-      ]
-    },
     "culling_strike": {
       "stats": ["kill_enemy_on_hit_if_under_10%_life"],
       "translations": [
@@ -1840,11 +1861,11 @@
       ]
     },
     "chain_num": {
-      "stats": ["virtual_number_of_additional_projectiles_in_chain"],
+      "stats": ["virtual_number_of_chains"],
       "translations": [
         {
           "matchers": ["#"],
-          "text": "召唤生物的投射物可以连锁弹射 %1$+d 次",
+          "text": "召唤生物的技能可以连锁弹射 %1$+d 次",
           "formatters": []
         }
       ]
@@ -1860,7 +1881,7 @@
       ]
     },
     "fork": {
-      "stats": ["projectiles_fork"],
+      "stats": ["virtual_projectiles_fork"],
       "translations": [
         {
           "matchers": ["#"],
@@ -2160,11 +2181,24 @@
       ]
     },
     "endurance_charge_on_stun": {
-      "stats": ["gain_endurance_charge_on_melee_stun"],
+      "stats": [
+        "gain_endurance_charge_on_melee_stun",
+        "gain_endurance_charge_on_melee_stun_%"
+      ],
       "translations": [
         {
-          "matchers": ["#"],
-          "text": "当召唤生物使用近战伤害晕眩敌人时，获得耐力球",
+          "matchers": [0, [0, 99]],
+          "text": "召唤生物近战命中并晕眩敌人时，有 %2%%% 的几率获得 1 个耐力球",
+          "formatters": []
+        },
+        {
+          "matchers": [0, [100, "#"]],
+          "text": "召唤生物近战命中并晕眩敌人时，获得 1 个耐力球",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#"],
+          "text": "召唤生物近战命中并晕眩敌人时，获得 1 个耐力球",
           "formatters": []
         }
       ]
@@ -2274,14 +2308,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "召唤生物的攻击技能在投射物击中后，所造成的流血和中毒总伤害额外提高 %1%%%",
+          "text": "召唤生物的攻击技能在投射物击中后，所造成的流血和中毒总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "召唤生物的攻击技能在投射物击中后，所造成的流血和中毒总伤害额外降低 %1%%%",
+          "text": "召唤生物的攻击技能在投射物击中后，所造成的流血和中毒总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2468,8 +2500,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "敌人被冰缓时，召唤生物的总伤害（击中和异常状态）额外提高 %1%%%",
+          "text": "敌人被冰缓时，召唤生物的总伤害（击中和异常状态）额外提高 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2479,8 +2510,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "敌人被冰缓时，召唤生物的总伤害（击中和异常状态）额外降低 %1%%%",
+          "text": "敌人被冰缓时，召唤生物的总伤害（击中和异常状态）额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2559,12 +2589,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text": "召唤生物造成的地雷总伤害额外提高 %1%%%",
+          "text": "召唤生物造成的总伤害额外提高 %1%%%",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text": "召唤生物造成的地雷总伤害额外降低 %1%%%",
+          "text": "召唤生物造成的总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2716,8 +2746,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "召唤生物的近战攻击击中时，所触发的【无情一击】会使流血总伤害额外提高 %1%%%",
+          "text": "召唤生物的近战攻击击中时，所触发的【无情一击】会使流血总伤害额外提高 %1%%%",
           "formatters": []
         }
       ]
@@ -2757,13 +2786,22 @@
         }
       ]
     },
+    "additive_bow_damage_applies_to_minions": {
+      "stats": ["additive_modifiers_to_bow_damage_also_apply_to_minions"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "弓箭的伤害提高和降低也同样作用于召唤生物",
+          "formatters": []
+        }
+      ]
+    },
     "ailment_duration_incr": {
       "stats": ["base_all_ailment_duration_+%"],
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "召唤生物会使敌人受到的冰缓、点燃、冰冻和感电状态持续时间延长 %1%%%",
+          "text": "召唤生物会使敌人受到的冰缓、点燃、冰冻和感电状态持续时间延长 %1%%%",
           "formatters": [
             {
               "id": "reminderstring",
@@ -2773,8 +2811,7 @@
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "召唤生物会使敌人受到的冰缓、点燃、冰冻和感电状态持续时间缩短 %1%%%",
+          "text": "召唤生物会使敌人受到的冰缓、点燃、冰冻和感电状态持续时间缩短 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -2887,8 +2924,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "召唤生物的攻击击中时附加腐蚀状态，每秒造成 %1% 混沌伤害，持续 8 秒",
+          "text": "召唤生物的攻击击中时附加腐蚀状态，每秒造成 %1% 混沌伤害，持续 8 秒",
           "formatters": []
         }
       ]
@@ -3002,8 +3038,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "当你的陷阱被敌人触发时，此技能和召唤生物有 %1%%% 的机会获得 1 个狂怒球",
+          "text": "当你的陷阱被敌人触发时，此技能和召唤生物有 %1%%% 的机会获得 1 个狂怒球",
           "formatters": []
         },
         {
@@ -3018,8 +3053,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "当你的陷阱被敌人触发时，此技能和召唤生物有 %1%%% 的机会获得 1 个暴击球",
+          "text": "当你的陷阱被敌人触发时，此技能和召唤生物有 %1%%% 的机会获得 1 个暴击球",
           "formatters": []
         },
         {
@@ -3084,6 +3118,57 @@
         {
           "matchers": [["#", -1]],
           "text": "召唤生物造成的物理总伤害额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_chilling_areas_incr_cold_dot_taken": {
+      "stats": [
+        "support_chilling_areas_also_grant_cold_damage_taken_per_minute_+%"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召唤生物造成的冰缓区域内的敌人，其受到的冰霜持续伤害提高 %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChillingArea"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召唤生物造成的冰缓区域内的敌人，其受到的冰霜持续伤害降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextChillingArea"
+            }
+          ]
+        }
+      ]
+    },
+    "greater_volley_projectiles_damage_final": {
+      "stats": ["support_greater_volley_projectile_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "召唤生物造成的投射物总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "召唤生物造成的投射物总伤害额外降低 %1%%%",
           "formatters": [
             {
               "id": "negate",
@@ -3294,8 +3379,7 @@
       "translations": [
         {
           "matchers": ["#", "#", "#"],
-          "text":
-            "吟唱时，召唤生物击中目标后有 %1%%% 几率获得暴击球\\n吟唱时，召唤生物击中目标后有 %2%%% 几率获得暴击球\\n吟唱时，召唤生物击中目标后有 %3%%% 几率获得暴击球",
+          "text": "吟唱时，召唤生物击中目标后有 %1%%% 几率获得暴击球\\n吟唱时，召唤生物击中目标后有 %2%%% 几率获得暴击球\\n吟唱时，召唤生物击中目标后有 %3%%% 几率获得暴击球",
           "formatters": [
             {
               "id": "negate",
@@ -3338,14 +3422,58 @@
         }
       ]
     },
+    "withered_support_base_duration": {
+      "stats": ["support_withered_base_duration_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "召唤生物造成的【死亡凋零】效果基础持续时间为 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "召唤生物造成的【死亡凋零】效果基础持续时间为 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
     "trap_crit_per_power_charge": {
       "stats": ["trap_critical_strike_multiplier_+_per_power_charge"],
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "使用陷阱时，每个暴击球可使该技能和召唤生物的技能获得 %1$+d%% 暴击伤害加成",
+          "text": "使用陷阱时，每个暴击球可使该技能和召唤生物的技能获得 %1$+d%% 暴击伤害加成",
           "formatters": []
+        }
+      ]
+    },
+    "trap_throwing_speed_per_frenzy": {
+      "stats": ["trap_throwing_speed_+%_per_frenzy_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "每个狂怒球可使此技能和召唤生物的陷阱投掷速度提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "每个狂怒球可使此技能和召唤生物的陷阱投掷速度降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     }

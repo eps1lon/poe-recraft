@@ -4,6 +4,18 @@
     "hasIdentifiers": false
   },
   "data": {
+    "soul_prevention_buff_duration": {
+      "stats": [
+        "modifiers_to_buff_effect_duration_also_affect_soul_prevention_duration"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Modifiers to Debuff Duration also apply to this Skill's Soul Gain Prevention",
+          "formatters": []
+        }
+      ]
+    },
     "buff_duration": {
       "stats": ["buff_effect_duration"],
       "translations": [
@@ -51,8 +63,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Grants %1% Life Regenerated per second if any Enemy is affected",
+          "text": "Grants %1% Life Regenerated per second if any Enemy is affected",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -69,8 +80,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Grants %1% Mana Regenerated per second if any Enemy is affected",
+          "text": "Grants %1% Mana Regenerated per second if any Enemy is affected",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -85,8 +95,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Grants %1% Life Regenerated per second for each affected Enemy",
+          "text": "Grants %1% Life Regenerated per second for each affected Enemy",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -101,8 +110,7 @@
       "translations": [
         {
           "matchers": ["#"],
-          "text":
-            "Grants %1% Mana Regenerated per second for each affected Enemy",
+          "text": "Grants %1% Mana Regenerated per second for each affected Enemy",
           "formatters": [
             {
               "id": "per_minute_to_per_second",
@@ -153,6 +161,26 @@
         {
           "matchers": [["#", -1]],
           "text": "Enemies take %1%%% reduced Damage from Trap or Mine Hits",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bear_trap_slow": {
+      "stats": ["bear_trap_movement_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Enemies have %1%%% more Movement Speed when the Debuff starts",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Enemies have %1%%% less Movement Speed when the Debuff starts",
           "formatters": [
             {
               "id": "negate",

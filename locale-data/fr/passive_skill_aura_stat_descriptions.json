@@ -8,14 +8,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Vous et les alliés proches avez %1%%% d'Augmentation de Dégâts",
+          "text": "Vous et les alliés proches avez %1%%% d'Augmentation de Dégâts",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Vous et les alliés proches avez %1%%% de Réduction de Dégâts",
+          "text": "Vous et les alliés proches avez %1%%% de Réduction de Dégâts",
           "formatters": [
             {
               "id": "negate",
@@ -30,36 +28,12 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Vous et les alliés proches avez %1%%% d'Augmentation de la Vitesse de déplacement",
+          "text": "Vous et les alliés proches avez %1%%% d'Augmentation de la Vitesse de déplacement",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Vous et les alliés proches avez %1%%% de Réduction de la Vitesse de déplacement",
-          "formatters": [
-            {
-              "id": "negate",
-              "arg": 1
-            }
-          ]
-        }
-      ]
-    },
-    "elemental_damage_taken_+%": {
-      "stats": ["elemental_damage_taken_+%"],
-      "translations": [
-        {
-          "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis proches ont %1%%% d'Augmentation des Dégâts élémentaires subis",
-          "formatters": []
-        },
-        {
-          "matchers": [["#", -1]],
-          "text":
-            "Les Ennemis proches ont %1%%% de Réduction des Dégâts élémentaires subis",
+          "text": "Vous et les alliés proches avez %1%%% de Réduction de la Vitesse de déplacement",
           "formatters": [
             {
               "id": "negate",
@@ -74,8 +48,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis proches ont %1$+d%% de chances d'être Embrasés par les Dégâts de feu",
+          "text": "Les Ennemis proches ont %1$+d%% de chances d'être Embrasés par les Dégâts de feu",
           "formatters": []
         }
       ]
@@ -85,8 +58,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis proches ont %1$+d%% de chances d'être Gelés par les Dégâts de froid",
+          "text": "Les Ennemis proches ont %1$+d%% de chances d'être Gelés par les Dégâts de froid",
           "formatters": []
         }
       ]
@@ -96,8 +68,7 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis proches ont %1$+d%% de chances d'être Électrocutés par les Dégâts de foudre",
+          "text": "Les Ennemis proches ont %1$+d%% de chances d'être Électrocutés par les Dégâts de foudre",
           "formatters": [
             {
               "id": "reminderstring",
@@ -112,20 +83,48 @@
       "translations": [
         {
           "matchers": [[1, "#"]],
-          "text":
-            "Les Ennemis proches ont %1%%% Davantage de Dégâts élémentaires",
+          "text": "Les Ennemis proches ont %1%%% Davantage de Dégâts élémentaires",
           "formatters": []
         },
         {
           "matchers": [["#", -1]],
-          "text":
-            "Les Ennemis proches ont %1%%% de Perte de Dégâts élémentaires",
+          "text": "Les Ennemis proches ont %1%%% de Perte de Dégâts élémentaires",
           "formatters": [
             {
               "id": "negate",
               "arg": 1
             }
           ]
+        }
+      ]
+    },
+    "elemental_damage_taken_+%": {
+      "stats": ["elemental_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Les Ennemis proches ont %1%%% d'Augmentation des Dégâts élémentaires subis",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Les Ennemis proches ont %1%%% de Réduction des Dégâts élémentaires subis",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_cold_damage_resistance_%": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Les Ennemis à proximité ont %1$+d%% à la Résistance au froid",
+          "formatters": []
         }
       ]
     },
@@ -136,6 +135,66 @@
           "matchers": ["#"],
           "text": "Les ennemis proches ont %1$+d%% de Résistance au chaos",
           "formatters": []
+        }
+      ]
+    },
+    "life_regeneration_rate_+%": {
+      "stats": ["life_regeneration_rate_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Les Ennemis proches ont %1%%% d'Augmentation de la Vitesse de Régénération de la vie",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Les Ennemis proches ont %1%%% de Réduction de la Vitesse de Régénération de la vie",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hit_damage_+%_while_chilled": {
+      "stats": ["hit_damage_+%_while_chilled"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Les Ennemis Frigorifiés à proximité ont %1%%% d'Augmentation des Dégâts au Toucher",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Les Ennemis Frigorifiés à proximité ont %1%%% de Réduction des Dégâts au Toucher",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_over_time_+%_while_hindered": {
+      "stats": ["damage_over_time_+%_while_hindered"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Les Ennemis Entravés à proximité ont %1%%% d'Augmentation des Dégâts sur la durée",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Les Ennemis Entravés à proximité ont %1%%% de Réduction des Dégâts sur la durée",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
         }
       ]
     }
