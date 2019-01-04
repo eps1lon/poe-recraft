@@ -50,7 +50,7 @@ function groupStats(
 ): string {
   const lines = formatStats(stats, {
     ...options,
-    getFormatters: (t, s, n) => {
+    getFormatters: (_t, _s, n) => {
       return Array.from({ length: n }, (_, i) => ({
         arg: i + 1,
         id: 'placeholder',

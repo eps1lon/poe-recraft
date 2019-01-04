@@ -9,7 +9,7 @@ export default function asRegexp(translation: Translation): NamedGroupsRegexp {
   const groups: string[] = [];
 
   const regexp = escapeStringRegexp(text)
-    .replace(/%(\d+)(\\\$\\\+d|%)/g, (match, arg, modifier) => {
+    .replace(/%(\d+)(\\\$\\\+d|%)/g, (_match, arg, modifier) => {
       groups.push(arg);
 
       const formatter = formatters

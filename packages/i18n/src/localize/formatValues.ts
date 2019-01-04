@@ -21,7 +21,7 @@ export function formatValues(
 
   const formatted: Array<StatValue | string> = [...values];
 
-  formatters.forEach((formatter, i) => {
+  formatters.forEach(formatter => {
     if (typeof formatter !== 'string' && typeof formatter.arg === 'number') {
       const target_param = values[+formatter.arg - 1];
 

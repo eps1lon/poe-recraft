@@ -1,12 +1,6 @@
 import { inverseFactory } from '../localize/formatters';
 import { asRegexp, matchesTranslation, Stat } from '../translate';
-import {
-  Description,
-  Descriptions,
-  StatLocaleDatas,
-  Translation,
-  UnaryFormatter,
-} from '../types/StatDescription';
+import { StatLocaleDatas, UnaryFormatter } from '../types/StatDescription';
 import { deterministicValueForMatcher } from '../util/symbolicStats';
 import { getDescriptions } from './util';
 
