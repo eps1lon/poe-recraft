@@ -26,8 +26,17 @@ const execGitCmd = args =>
     .toString()
     .split('\n');
 
+const findMergeBase = () => {
+  try {
+    return execGitCmd(['merge-base', 'HEAD', 'master']);
+  } catch (err) {
+    return execGitCmd(['merge-base', 'HEAD', process.env.TRAVIS_BRANCH]);
+  }
+};
+
 const listChangedFiles = () => {
-  const mergeBase = execGitCmd(['merge-base', 'HEAD', 'master']);
+  const mergeBase = findMergeBase();
+
   return new Set([
     ...execGitCmd(['diff', '--name-only', '--diff-filter=ACMRTUB', mergeBase]),
     ...execGitCmd(['ls-files', '--others', '--exclude-standard']),
