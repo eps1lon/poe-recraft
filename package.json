@@ -13,6 +13,7 @@
     "bootstrap:website": "yarn workspace poe-mods build && yarn workspace poe-i18n build && yarn workspace poe-components-item build",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls.js",
     "format": "yarn workspaces run format",
+    "postinstall": "yarn workspace poe-i18n build && yarn workspace poe-mods build",
     "test": "jest --watch",
     "test:ci": "jest --ci --coverage --runInBand"
   },
