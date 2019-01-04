@@ -18,7 +18,7 @@
     "build:es": "tsc --project ./tsconfig.build.json --module ES6 --outDir dist/esm",
     "build:check": "tsc --project ./tsconfig.build.json --noEmit --watch",
     "clean": "rimraf coverage dist",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "format": "recraft-format \"src/**/*.ts\"",
     "generate-locale-data:clean": "rimraf \"locale-data/**/*.json\"",
     "generate-locale-data-api": "node --harmony_async_iteration scripts/api/createFromApi && node scripts/api/createFromTranslate",
