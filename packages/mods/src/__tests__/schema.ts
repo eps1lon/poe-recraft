@@ -10,31 +10,33 @@ describe.skip('type definitions matching json files in data', () => {
     { [K in keyof X]: K extends keyof T ? DeepExactify<T[K], X[K]> : never };
 
   test('atlas', async () => {
-    const json = await import('../../data/atlas.json');
+    const { default: json } = await import('../../data/atlas.json');
     // tslint:disable-next-line: no-unused-variable
     const checked: DeepExactify<schema.Atlas, typeof json> = json;
   });
 
   test('craftingbenchoptions', async () => {
-    const json = await import('../../data/craftingbenchoptions.json');
+    const {
+      default: json,
+    } = await import('../../data/craftingbenchoptions.json');
     // tslint:disable-next-line: no-unused-variable
     const checked: schema.CraftingBenchOptions = json;
   });
 
   test('essences', async () => {
-    const json = await import('../../data/essences.json');
+    const { default: json } = await import('../../data/essences.json');
     // tslint:disable-next-line: no-unused-variable
     const checked: schema.Essences = json;
   });
 
   test('items', async () => {
-    const json = await import('../../data/items.json');
+    const { default: json } = await import('../../data/items.json');
     // tslint:disable-next-line: no-unused-variable
     const checked: schema.Items = json;
   });
 
   test('mods', async () => {
-    const json = await import('../../data/mods.json');
+    const { default: json } = await import('../../data/mods.json');
     // tslint:disable-next-line: no-unused-variable
     const checked: DeepExactify<schema.Mods, typeof json> = json;
   });

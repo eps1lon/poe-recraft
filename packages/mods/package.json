@@ -23,15 +23,10 @@
     "build:grammars": "nearleyc scripts/meta_data/OtFile.ne -o scripts/meta_data/OtFile.out.js",
     "postbuild:data": "yarn run format:data",
     "clean": "rimraf coverage docs && yarn run build:clean",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "format": "recraft-format \"src/**/*.ts\"",
     "format:data": "recraft-format \"data/**/*.json\"",
     "lint": "tslint --project tsconfig.json \"src/**/*.ts\"",
     "prepublishOnly": "yarn run build",
-    "test": "jest --watch",
-    "test:check": "jest --ci",
-    "test:ci": "jest --ci --coverage --runInBand",
-    "test:coverage": "jest --coverage",
     "test:typings": "tsc -p tsconfig.test.json --noEmit"
   },
   "repository": {
@@ -52,7 +47,6 @@
     "@types/jest": "^23.0.0",
     "@types/lodash": "^4.14.101",
     "@types/node": "^10.0.3",
-    "coveralls": "^3.0.0",
     "fetch-mock": "^7.0.2",
     "glob": "^7.1.2",
     "greenkeeper-lockfile": "^1.15.1",

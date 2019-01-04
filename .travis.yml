@@ -7,17 +7,15 @@ cache:
 script:
   # workspace root
   - yarn format check-changed
+  - yarn test:ci
+  - yarn coveralls
   # i18n
   - yarn workspace poe-i18n lint
-  - yarn workspace poe-i18n test:ci
   - yarn workspace poe-i18n test:typings
-  - yarn workspace poe-i18n coveralls
   - yarn workspace poe-i18n build
   # mods
   - yarn workspace poe-mods lint
-  - yarn workspace poe-mods test:ci
   - yarn workspace poe-mods test:typings
-  - yarn workspace poe-mods coveralls
   - yarn workspace poe-mods build
   # poe-components-item
   - yarn workspace poe-components-item lint
@@ -25,6 +23,4 @@ script:
   - yarn workspace poe-components-item build
   # recraft
   - yarn workspace recraft lint
-  - yarn workspace recraft test:ci
-  - yarn workspace recraft coveralls
   - yarn workspace recraft build
