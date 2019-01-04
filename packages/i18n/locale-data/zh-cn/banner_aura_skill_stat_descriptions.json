@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "include": "aura_skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "buff_duration": {
+      "stats": ["buff_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "放置之后，旗帜持续 %1% 秒",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "banner_add_stage_on_kill": {
+      "stats": ["banner_add_stage_on_kill"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "当持有旗帜时击败一名敌人，你便获得 1 阶",
+          "formatters": []
+        }
+      ]
+    },
+    "banner_stage_aoe": {
+      "stats": ["banner_area_of_effect_+%_per_stage"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "放置后，每阶可使范围效果扩大 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "放置后，每阶可使范围效果缩小 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "banner_stage_aura_effect": {
+      "stats": ["banner_buff_effect_+%_per_stage"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "放置后，每阶可使光环效果提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "放置后，每阶可使光环效果降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "dread_banner_accuracy_final": {
+      "stats": ["puresteel_banner_accuracy_rating_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "周围敌人的命中值提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "周围敌人的命中值降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

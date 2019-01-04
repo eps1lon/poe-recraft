@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "include": "minion_skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "cast_speed_incr": {
+      "stats": ["base_cast_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Ce Sort et les Créatures ont %1%%% d'Augmentation de la Vitesse d'incantation",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Ce Sort et les Créatures ont %1%%% de Réduction de la Vitesse d'incantation",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cast_speed_incr_on_low_life": {
+      "stats": ["cast_speed_+%_when_on_low_life"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Ce Sort et les Créatures ont %1%%% d'Augmentation de la Vitesse d'incantation lorsque leur Vie est Basse",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Ce Sort et les Créatures ont %1%%% de Réduction de la Vitesse d'incantation lorsque leur Vie est Basse",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        }
+      ]
+    },
+    "multicast_cast_speed_incr": {
+      "stats": ["support_multicast_cast_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Ce Sort et les Créatures ont %1%%% Davantage de Vitesse d'incantation",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Ce Sort et les Créatures ont %1%%% de Perte de Vitesse d'incantation",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

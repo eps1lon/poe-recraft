@@ -1,0 +1,610 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "physical_damage_incr": {
+      "stats": ["physical_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники получаете %1%%% увеличение физического урона",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Вы и ближайшие союзники получаете %1%%% уменьшение физического урона",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "movement_speed_incr": {
+      "stats": ["base_movement_velocity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники получаете %1%%% повышение скорости передвижения",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Вы и ближайшие союзники получаете %1%%% снижение скорости передвижения",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "attack_speed_incr_skill_granted": {
+      "stats": ["attack_speed_+%_granted_from_skill"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники получаете %1%%% повышение скорости атаки",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Вы и ближайшие союзники получаете %1%%% снижение скорости атаки",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cast_speed_incr_skill_granted": {
+      "stats": ["cast_speed_+%_granted_from_skill"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники получаете %1%%% повышение скорости сотворения чар",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Вы и ближайшие союзники получаете %1%%% снижение скорости сотворения чар",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_resist": {
+      "stats": ["base_resist_all_elements_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Вы и ближайшие союзники получаете %1$+d%% к сопротивлению всем стихиям",
+          "formatters": []
+        }
+      ]
+    },
+    "life_regen_per_minute_percent": {
+      "stats": ["life_regeneration_rate_per_minute_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Вы и ближайшие союзники регенерируете %1%%% здоровья в секунду",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "accuracy_rating_incr": {
+      "stats": ["accuracy_rating_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники получаете %1%%% повышение меткости",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Вы и ближайшие союзники получаете %1%%% снижение меткости",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "critical_strike_chance_incr": {
+      "stats": ["critical_strike_chance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники получаете %1%%% повышение шанса критического удара",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Вы и ближайшие союзники получаете %1%%% снижение шанса критического удара",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_evasion": {
+      "stats": ["base_evasion_rating"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники получаете %1% уклонения",
+          "formatters": []
+        }
+      ]
+    },
+    "grace_evasion_incr": {
+      "stats": ["grace_aura_evasion_rating_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники получаете на %1%%% больше уклонения",
+          "formatters": []
+        }
+      ]
+    },
+    "base_armour": {
+      "stats": ["base_physical_damage_reduction_rating"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники получаете %1% брони",
+          "formatters": []
+        }
+      ]
+    },
+    "determination_armour_incr": {
+      "stats": ["determination_aura_armour_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники получаете на %1%%% больше брони",
+          "formatters": []
+        }
+      ]
+    },
+    "base_energy_shield": {
+      "stats": ["base_maximum_energy_shield"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники получаете %1% энергетического щита",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_resist": {
+      "stats": ["base_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники получаете %1%%% сопротивления молнии",
+          "formatters": []
+        }
+      ]
+    },
+    "fire_resist": {
+      "stats": ["base_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники получаете %1%%% сопротивления огню",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_resist": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники получаете %1%%% сопротивления холоду",
+          "formatters": []
+        }
+      ]
+    },
+    "max_fire_resist": {
+      "stats": ["base_maximum_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники получаете %1%%% к максимальному сопротивлению огню",
+          "formatters": []
+        }
+      ]
+    },
+    "max_cold_resist": {
+      "stats": ["base_maximum_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники получаете %1%%% к максимальному сопротивлению холоду",
+          "formatters": []
+        }
+      ]
+    },
+    "max_lightning_resist": {
+      "stats": ["base_maximum_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники получаете %1%%% к максимальному сопротивлению молнии",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_added_fire": {
+      "stats": [
+        "attack_minimum_added_fire_damage",
+        "attack_maximum_added_fire_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Вы и ближайшие союзники наносите от %1% до %2% дополнительного урона от огня атаками",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_added_lightning": {
+      "stats": [
+        "attack_minimum_added_lightning_damage",
+        "attack_maximum_added_lightning_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Вы и ближайшие союзники наносите от %1% до %2% дополнительного урона от молнии атаками",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_to_add_as_cold": {
+      "stats": ["physical_damage_%_to_add_as_cold"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники наносите %1%%% физического урона в виде дополнительного урона от холода",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_regen": {
+      "stats": ["base_mana_regeneration_rate_per_minute"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Вы и ближайшие союзники регенерируете %1% маны в секунду",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "energy_shield_no_delay": {
+      "stats": ["energy_shield_recharge_not_delayed_by_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Восстановление вашего энергетического щита и ближайших союзников не откладывается с получением урона",
+          "formatters": []
+        }
+      ]
+    },
+    "no_mana_cost": {
+      "stats": ["no_mana_cost"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Умения для вас и ближайших союзников не стоят маны",
+          "formatters": []
+        }
+      ]
+    },
+    "dodge_chance": {
+      "stats": ["base_chance_to_dodge_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% шанс уворота от ударов атаками",
+          "formatters": []
+        }
+      ]
+    },
+    "spell_dodge_chance": {
+      "stats": ["base_chance_to_dodge_spells_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% шанс уворота от ударов чарами",
+          "formatters": []
+        }
+      ]
+    },
+    "base_elemental_damage_heals": {
+      "stats": ["base_elemental_damage_heals"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Получение урона от стихий исцеляет вас и ближайших союзников\\nВы и ближайшие союзники не можете получать души ваал",
+          "formatters": []
+        }
+      ]
+    },
+    "spell_added_fire_damage": {
+      "stats": [
+        "spell_minimum_added_fire_damage",
+        "spell_maximum_added_fire_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Вы и ближайшие союзники наносите от %1% до %2% дополнительного урона от огня чарами",
+          "formatters": []
+        }
+      ]
+    },
+    "wrath_spell_lightning_damage": {
+      "stats": ["wrath_aura_spell_lightning_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Вы и ближайшие союзники наносите на %1%%% больше урона от молнии чарами",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Вы и ближайшие союзники наносите на %1%%% меньше урона от молнии чарами",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_added_chaos": {
+      "stats": [
+        "attack_minimum_added_chaos_damage",
+        "attack_maximum_added_chaos_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Вы и ближайшие союзники наносите от %1% до %2% дополнительного урона хаосом атаками",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_impale_chance": {
+      "stats": ["attacks_impale_on_hit_%_chance"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "Вы и ближайшие союзники имеете %1%%% шанс наложить на врагов Прокол при нанесении удара атаками",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextImpale"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Вы и ближайшие союзники накладываете Прокол на врагов при нанесении удара атаками",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextImpale"
+            }
+          ]
+        }
+      ]
+    },
+    "immune_to_chill": {
+      "stats": ["base_immune_to_chill"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "У вас и ближайших союзников иммунитет к охлаждению",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_freeze": {
+      "stats": ["base_immune_to_freeze"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "У вас и ближайших союзников иммунитет к заморозке",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_ignite": {
+      "stats": ["base_immune_to_ignite"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "У вас и ближайших союзников иммунитет к поджогу",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_shock": {
+      "stats": ["base_immune_to_shock"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "У вас и ближайших союзников иммунитет к шоку",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_damage_taken": {
+      "stats": ["cold_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% увеличение получаемого урона от холода",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% уменьшение получаемого урона от холода",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "energy_shield_recharge_rate": {
+      "stats": ["energy_shield_recharge_rate_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% повышение скорости перезарядки энергетического щита у вас и ближайших союзников",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% снижение скорости перезарядки энергетического щита у вас и ближайших союзников",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "fire_damage_taken": {
+      "stats": ["fire_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% увеличение получаемого урона от огня",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% уменьшение получаемого урона от огня",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hits_ignore_cold_res": {
+      "stats": ["hits_ignore_my_cold_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Удары игнорируют сопротивление холоду ближайших врагов",
+          "formatters": []
+        }
+      ]
+    },
+    "hits_ignore_fire_res": {
+      "stats": ["hits_ignore_my_fire_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Удары игнорируют сопротивление огню ближайших врагов",
+          "formatters": []
+        }
+      ]
+    },
+    "hits_ignore_lightning_res": {
+      "stats": ["hits_ignore_my_lightning_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Удары игнорируют сопротивление молнии ближайших врагов",
+          "formatters": []
+        }
+      ]
+    },
+    "impale_effect": {
+      "stats": ["impale_debuff_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% усиление эффекта Прокола для вас и ваших союзников",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% ослабление эффекта Прокола для вас и ваших союзников",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_damage_taken": {
+      "stats": ["lightning_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% увеличение получаемого урона от молнии",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% уменьшение получаемого урона от молнии",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "physical_damage_taken_incr": {
+      "stats": ["physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Ближайшие враги получают увеличенный на %1%%% физический урон",
+          "formatters": []
+        }
+      ]
+    }
+  }
+}

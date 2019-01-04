@@ -1,0 +1,209 @@
+{
+  "meta": {
+    "include": "aura_skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "buff_duration": {
+      "stats": ["buff_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Banner lasts %1% seconds after being placed",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "banner_add_stage_on_impale": {
+      "stats": ["banner_add_stage_on_impale"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Gain 1 Stage when you Impale an Enemy while carrying the Banner, up to 5 per second",
+          "formatters": []
+        }
+      ]
+    },
+    "banner_add_stage_on_kill": {
+      "stats": ["banner_add_stage_on_kill"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Gain 1 Stage when you Kill an Enemy while carrying the Banner",
+          "formatters": []
+        }
+      ]
+    },
+    "banner_stage_duration": {
+      "stats": ["banner_additional_base_duration_per_stage_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "%1$+d second to Base Placed Banner Duration per Stage",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "%1$+d seconds to Base Placed Banner Duration per Stage",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "banner_stage_aoe": {
+      "stats": ["banner_area_of_effect_+%_per_stage"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "When placed, %1%%% increased Area of Effect per Stage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "When placed, %1%%% reduced Area of Effect per Stage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "banner_stage_aura_effect": {
+      "stats": ["banner_buff_effect_+%_per_stage"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "When placed, %1%%% increased Aura effect per Stage",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "When placed, %1%%% reduced Aura effect per Stage",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_duration_identifier": {
+      "stats": ["base_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Base Duration of %1% seconds after being Placed",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "war_banner_adrenaline": {
+      "stats": ["bloodstained_banner_adrenaline_duration_per_stage_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Gain Adrenaline for %1% second per Stage on Placing the Banner",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextAdrenaline"
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Gain Adrenaline for %1% seconds per Stage on Placing the Banner",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextAdrenaline"
+            }
+          ]
+        }
+      ]
+    },
+    "dread_banner_accuracy_final": {
+      "stats": ["puresteel_banner_accuracy_rating_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Nearby Enemies have %1%%% more Accuracy Rating",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Nearby Enemies have %1%%% less Accuracy Rating",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "dread_banner_fortify": {
+      "stats": ["puresteel_banner_fortify_duration_per_stage_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "Gain Fortify for %1% second per Stage on Placing the Banner",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "Gain Fortify for %1% seconds per Stage on Placing the Banner",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

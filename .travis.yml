@@ -1,0 +1,27 @@
+language: node_js
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.12.3
+  - export PATH=$HOME/.yarn/bin:$PATH
+cache:
+  yarn: true
+script:
+  # workspace root
+  - yarn format check-changed
+  - yarn bootstrap
+  - yarn test:ci
+  - yarn coveralls
+  # i18n
+  - yarn workspace poe-i18n lint
+  - yarn workspace poe-i18n test:typings
+  - yarn workspace poe-i18n build
+  # mods
+  - yarn workspace poe-mods lint
+  - yarn workspace poe-mods test:typings
+  - yarn workspace poe-mods build
+  # poe-components-item
+  - yarn workspace poe-components-item lint
+  # - yarn workspace poe-components-item test:ci
+  - yarn workspace poe-components-item build
+  # recraft
+  - yarn workspace website lint
+  - yarn workspace website build

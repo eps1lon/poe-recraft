@@ -1,0 +1,751 @@
+{
+  "meta": {
+    "include": "stat_descriptions"
+  },
+  "data": {
+    "damage_taken_+%_from_hits": {
+      "no_description": true,
+      "stats": [],
+      "translations": {}
+    },
+    "base_strength": {
+      "stats": ["base_strength"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d к силе",
+          "formatters": []
+        }
+      ]
+    },
+    "base_dexterity": {
+      "stats": ["base_dexterity"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d к ловкости",
+          "formatters": []
+        }
+      ]
+    },
+    "base_intelligence": {
+      "stats": ["base_intelligence"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d к интеллекту",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_regeneration_rate_per_minute_%": {
+      "stats": ["mana_regeneration_rate_per_minute_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Дополнительно регенерирует %1%%% маны в секунду",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "mana_regeneration_rate_per_minute_%_per_power_charge": {
+      "stats": ["mana_regeneration_rate_per_minute_%_per_power_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Дополнительно регенерирует %1%%% маны в секунду за заряд энергии",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "max_endurance_charges": {
+      "stats": ["max_endurance_charges"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d к максимуму зарядов выносливости",
+          "formatters": []
+        }
+      ]
+    },
+    "max_frenzy_charges": {
+      "stats": ["max_frenzy_charges"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d к максимуму зарядов ярости",
+          "formatters": []
+        }
+      ]
+    },
+    "max_power_charges": {
+      "stats": ["max_power_charges"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d к максимуму зарядов энергии",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_+%_per_frenzy_charge": {
+      "stats": ["physical_damage_+%_per_frenzy_charge"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% увеличение физического урона за заряд ярости",
+          "formatters": []
+        }
+      ]
+    },
+    "add_frenzy_charge_on_kill": {
+      "stats": ["add_frenzy_charge_on_kill"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Получение заряда ярости при убийстве",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_iron_reflexes": {
+      "stats": ["keystone_iron_reflexes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Всё уклонение становится броней. Ловкость не предоставляет бонусов к уклонению",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_avatar_of_fire": {
+      "stats": ["keystone_avatar_of_fire"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "50%% физического урона, урона от холода и молнии становятся уроном от огня\\nНаносит только урон от огня",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_eldritch_battery": {
+      "stats": ["keystone_eldritch_battery"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "На использование умений сначала расходуется энергетический щит вместо маны\\nЭнергетический щит защищает ману вместо здоровья\\nСкорость перезарядки энергетического щита на 50%% ниже",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_ancestral_bond": {
+      "stats": ["keystone_ancestral_bond"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Вы не можете самостоятельно наносить урон своими умениями\\n+1 к максимальному количеству установленных тотемов",
+          "formatters": []
+        }
+      ]
+    },
+    "convert_all_physical_damage_to_fire": {
+      "stats": ["convert_all_physical_damage_to_fire"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Весь физический урон становится уроном от огня",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_zombies_allowed": {
+      "stats": ["base_number_of_zombies_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d к максимальному числу зомби",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_spectres_allowed": {
+      "stats": ["base_number_of_spectres_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d к максимальному числу призраков",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_skeletons_allowed": {
+      "stats": ["base_number_of_skeletons_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d к максимальному числу скелетов",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_raging_spirits_allowed": {
+      "stats": ["base_number_of_raging_spirits_allowed"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d к максимальному числу неистовых духов",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_acrobatics": {
+      "stats": ["keystone_acrobatics"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "30%% шанс увернуться от ударов атаками. На 50%% меньше брони, на 30%% меньше энергетического щита, на 30%% меньше шанс блокировать урон от чар и атак",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_phase_acrobatics": {
+      "stats": ["keystone_phase_acrobatics"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "30%% шанс уворота от ударов чарами",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_pain_attunement": {
+      "stats": ["keystone_pain_attunement"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "На 30%% больше урона от чар при малом количестве здоровья",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_strong_bowman": {
+      "stats": ["keystone_strong_bowman"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Увеличение физического урона от силы применяется к атакам снарядами наравне с атаками ближнего боя",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_point_blank": {
+      "stats": ["keystone_point_blank"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Удары от атак снарядами наносят до 50%% больше урона целям в начале своего движения, нанося меньше урона удалённым целям",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_conduit": {
+      "stats": ["keystone_conduit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Делится зарядами энергии, выносливости и ярости с ближайшими членами группы",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_projectile_evasion": {
+      "stats": ["keystone_projectile_evasion"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "На 40%% больше шанс уклониться от атак снарядами\\nНа 20%% меньше шанс уклониться от атак в ближнем бою",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_blood_magic": {
+      "stats": ["keystone_blood_magic"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Удаляет всю ману. Для умений вместо маны используется здоровье",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_minion_instability": {
+      "stats": ["keystone_minion_instability"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Приспешники взрываются при малом количестве здоровья, нанося по области 33%% от своего максимума здоровья в виде урона от огня",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_elemental_equilibrium": {
+      "stats": ["keystone_elemental_equilibrium"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Враги, которым вы нанесли удар от стихии, временно получают +25%% сопротивления этой стихии и -50%% сопротивления остальным стихиям",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_chaos_inoculation": {
+      "stats": ["keystone_chaos_inoculation"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Максимальное количество здоровья становится равно 1, иммунитет к урону хаосом",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_vampirism": {
+      "stats": ["keystone_vampirism"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Похищение здоровья применяется моментально. Регенерация здоровья отменяется.",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_vaal_pact": {
+      "stats": ["keystone_vaal_pact"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Количество похищенного в секунду здоровья удвоено.\\nМаксимальная скорость похищения здоровья удвоена.\\nРегенерация здоровья отменяется.",
+          "formatters": []
+        }
+      ]
+    },
+    "regenerate_energy_shield_instead_of_life": {
+      "stats": ["regenerate_energy_shield_instead_of_life"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Вместо здоровья регенерируется энергетический щит",
+          "formatters": []
+        }
+      ]
+    },
+    "critical_strike_chance_+%": {
+      "stats": ["critical_strike_chance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% повышение шанса критического удара",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% снижение шанса критического удара",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_critical_strike_multiplier_+": {
+      "stats": ["base_critical_strike_multiplier_+"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1$+d%% к множителю критического удара",
+          "formatters": []
+        }
+      ]
+    },
+    "staff_block_%": {
+      "stats": ["staff_block_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d%% шанс блокировать урон от атак с посохом в руках",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_mana_shield": {
+      "stats": ["keystone_mana_shield"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "30%% от урона берется сначала из маны вместо здоровья",
+          "formatters": []
+        }
+      ]
+    },
+    "mortal_conviction_mana_reservation_+%_final": {
+      "stats": ["mortal_conviction_mana_reservation_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "На %1%%% больше объем удержанной маны",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "На %1%%% меньше объем удержанной маны",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "resolute_technique": {
+      "stats": ["resolute_technique"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "От ваших ударов нельзя уклониться\\nВы никогда не наносите критических ударов",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_unwavering_stance": {
+      "stats": ["keystone_unwavering_stance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Невозможно уклониться от вражеских атак\\nНевозможно получить оглушение",
+          "formatters": []
+        }
+      ]
+    },
+    "passive_can_be_allocated_without_connection": {
+      "stats": ["passive_can_be_allocated_without_connection"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Может быть выбрано без связи с остальным деревом",
+          "formatters": []
+        }
+      ]
+    },
+    "base_strength_and_dexterity": {
+      "stats": ["base_strength_and_dexterity"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d к силе и ловкости",
+          "formatters": []
+        }
+      ]
+    },
+    "base_strength_and_intelligence": {
+      "stats": ["base_strength_and_intelligence"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d к силе и интеллекту",
+          "formatters": []
+        }
+      ]
+    },
+    "base_dexterity_and_intelligence": {
+      "stats": ["base_dexterity_and_intelligence"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d к ловкости и интеллекту",
+          "formatters": []
+        }
+      ]
+    },
+    "shield_block_%": {
+      "stats": ["shield_block_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "%1$+d%% шанс блокировать урон от атак со щитом в руках",
+          "formatters": []
+        }
+      ]
+    },
+    "has_fortify": {
+      "stats": ["has_fortify"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "На вас наложен эффект Укрепление",
+          "formatters": []
+        }
+      ]
+    },
+    "global_chance_to_blind_on_hit_%": {
+      "stats": ["global_chance_to_blind_on_hit_%"],
+      "translations": [
+        {
+          "matchers": [["#", 99]],
+          "text": "%1%%% шанс ослепить врагов при нанесении удара",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBlind"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Ослеплят врагов при нанесении удара",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBlind"
+            }
+          ]
+        }
+      ]
+    },
+    "number_of_additional_projectiles": {
+      "stats": ["number_of_additional_projectiles"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Умения выпускают дополнительный снаряд",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Умения выпускают дополнительных снарядов: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "base_number_of_golems_allowed": {
+      "stats": ["base_number_of_golems_allowed"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Можно призвать %1% дополнительного голема",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Можно призвать дополнительных големов: %1%",
+          "formatters": []
+        }
+      ]
+    },
+    "keystone_elemental_overload": {
+      "stats": ["keystone_elemental_overload"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "На 40%% больше урона от стихий, если вы наносили критический удар за последние 8 секунд\\nОтсутствует множитель критического удара\\nОтсутствует множитель урона для состояний от критических ударов",
+          "formatters": []
+        }
+      ]
+    },
+    "display_can_take_character_start_point": {
+      "stats": ["display_can_take_character_start_point"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Можно выбрать пассивные умения из начальной точки Дикаря",
+          "formatters": []
+        },
+        {
+          "matchers": [2],
+          "text": "Можно выбрать пассивные умения из начальной точки Охотницы",
+          "formatters": []
+        },
+        {
+          "matchers": [3],
+          "text": "Можно выбрать пассивные умения из начальной точки Ведьмы",
+          "formatters": []
+        },
+        {
+          "matchers": [4],
+          "text": "Можно выбрать пассивные умения из начальной точки Гладиатора",
+          "formatters": []
+        },
+        {
+          "matchers": [5],
+          "text": "Можно выбрать пассивные умения из начальной точки Жреца",
+          "formatters": []
+        },
+        {
+          "matchers": [6],
+          "text": "Можно выбрать пассивные умения из начальной точки Бандита",
+          "formatters": []
+        }
+      ]
+    },
+    "consecrate_ground_on_kill_%_for_3_seconds": {
+      "stats": ["consecrate_ground_on_kill_%_for_3_seconds"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "%1%%% шанс на 8 секунд создать освященную землю при убийстве",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "На 8 секунд создает освященную землю при убийстве",
+          "formatters": []
+        }
+      ]
+    },
+    "chill_effect_+%": {
+      "stats": ["chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% усиление эффекта охлаждения",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% ослабление эффекта охлаждения",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "every_1_second_nearby_enemies_withered_for_X_ms": {
+      "stats": ["every_1_second_nearby_enemies_withered_for_X_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Каждую секунду накладывает Истощение на ближайших врагов на %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextWithered"
+            }
+          ]
+        }
+      ]
+    },
+    "every_4_seconds_33%_chance_freeze_chilled_unique_enemies_for_X_ms": {
+      "stats": [
+        "every_4_seconds_33%_chance_freeze_chilled_unique_enemies_for_X_ms"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Каждые 4 секунды имеет 33%% шанс наложить заморозку на ближайших охлажденных уникальных врагов на %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreezeNonHit"
+            }
+          ]
+        }
+      ]
+    },
+    "every_4_seconds_freeze_chilled_non_unique_enemies_for_X_ms": {
+      "stats": ["every_4_seconds_freeze_chilled_non_unique_enemies_for_X_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Каждые 4 секунды накладывает заморозку на ближайших охлажденных неуникальных врагов на %1% секунд(-ы)",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreezeNonHit"
+            }
+          ]
+        }
+      ]
+    },
+    "keystone_crimson_dance": {
+      "stats": ["keystone_crimson_dance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Вы можете наложить кровотечение на врага вплоть до 8 раз\\nНаложенное вами кровотечение не наносит дополнительный урон, пока враг передвигается\\nНа 50%% меньше урона от кровотечения",
+          "formatters": []
+        }
+      ]
+    },
+    "shock_effect_+%": {
+      "stats": ["shock_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% усиление эффекта шока",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% ослабление эффекта шока",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "keystone_ailment_crit": {
+      "stats": ["keystone_ailment_crit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Модификаторы множителя критического удара также применяются к модификаторам множителя урона для состояний, наложенных от критических ударов на 30%% от их значения\\nНа 30%% меньше урона от ударов",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "keystone_ghost_reaver": {
+      "stats": ["keystone_ghost_reaver"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Вместо здоровья похищается энергетический щит\\nСкорость перезарядки энергетического щита на 50%% ниже",
+          "formatters": []
+        }
+      ]
+    }
+  }
+}

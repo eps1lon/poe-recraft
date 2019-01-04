@@ -1,0 +1,168 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "blood_offering_life_loss": {
+      "stats": [
+        "blood_offering_%_of_life_to_lose",
+        "blood_offering_%_of_lost_life_to_regenerate_as_life_per_second"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Sacrifica %1%%% da sua Vida\\nLacaios Regeneram %2%%% da Vida Sacrificada por segundo",
+          "formatters": []
+        }
+      ]
+    },
+    "blood_offering_life_regen_multi": {
+      "stats": ["blood_offering_life_regenerated_+%_final_per_corpse"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% mais Regeneração de Vida concedida aos Lacaios por Corpo consumido",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% menos Regeneração de Vida concedida aos Lacaios por Corpo consumido",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_speed_incr_skill_granted": {
+      "stats": ["attack_speed_+%_granted_from_skill"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Aumenta a Velocidade de Ataque dos Lacaios em %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Reduz a Velocidade de Ataque dos Lacaios em %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "damage_incr": {
+      "stats": ["damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Concede %1%%% de Dano aumentado aos Lacaios",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Concede %1%%% de Dano reduzido aos Lacaios",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cast_speed_incr_skill_granted": {
+      "stats": ["cast_speed_+%_granted_from_skill"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Aumenta a Velocidade de Conjuração dos Lacaios em %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Reduz a Velocidade de Conjuração dos Lacaios em %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "movement_speed_incr": {
+      "stats": ["base_movement_velocity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Aumenta a Velocidade de Movimento dos Lacaios em %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Reduz a Velocidade de Movimento dos Lacaios em %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_block": {
+      "stats": ["monster_base_block_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Concede aos Lacaios %1$+d%% de Chance de Bloquear o Dano de Ataques",
+          "formatters": []
+        }
+      ]
+    },
+    "base_spell_block": {
+      "stats": ["base_spell_block_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Concede aos Lacaios %1$+d%% de Chance de Bloquear Dano Mágico",
+          "formatters": []
+        }
+      ]
+    },
+    "recover_life_on_block": {
+      "stats": ["recover_X_life_on_block"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Lacaios recuperam %1% de Vida quando Bloqueiam",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_to_add_as_chaos": {
+      "stats": ["physical_damage_%_to_add_as_chaos"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Lacaios ganham %1%%% do próprio Dano Físico como Dano Extra de Caos",
+          "formatters": []
+        }
+      ]
+    },
+    "spirit_offering_life_as_es_per_corpse": {
+      "stats": [
+        "spirit_offering_life_%_added_as_base_maximum_energy_shield_per_corpse_consumed"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Lacaios ganham %1%%% de suas Vidas Máximas como\\nEscudo de Energia Máximo Extra para cada cadáver consumido",
+          "formatters": []
+        }
+      ]
+    }
+  }
+}

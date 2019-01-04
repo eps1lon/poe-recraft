@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "include": "minion_skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "cast_speed_incr": {
+      "stats": ["base_cast_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "该法术与召唤生物的施法速度提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "该法术与召唤生物的施法速度降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cast_speed_incr_on_low_life": {
+      "stats": ["cast_speed_+%_when_on_low_life"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "当低血时，该法术与召唤生物的施法速度提高 %1%%%",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "当低血时，该法术与召唤生物的施法速度降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        }
+      ]
+    },
+    "multicast_cast_speed_incr": {
+      "stats": ["support_multicast_cast_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "该法术与召唤生物的总施法速度额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "该法术与召唤生物的总施法速度额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

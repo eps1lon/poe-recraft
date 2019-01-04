@@ -1,0 +1,118 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "base_number_of_sigils_allowed_per_target": {
+      "no_description": true,
+      "stats": [],
+      "translations": {}
+    },
+    "base_secondary_duration_identifier": {
+      "stats": ["base_secondary_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "解除附着后可获得总计 %1% 秒的持续时间",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_duration_identifier": {
+      "stats": ["base_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "附着后可获得总计 %1% 秒的持续时间",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "storm_brand_beam_num": {
+      "stats": ["conduit_sigil_number_of_beam_targets"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "向带有烙印的敌人发射光线",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "向 %1% 个敌人，包括带有烙印的敌人发射光线",
+          "formatters": []
+        }
+      ]
+    },
+    "secondary_skill_duration": {
+      "stats": ["secondary_skill_effect_duration"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "解除附着后可获得总计 %1% 秒的持续时间",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "sigil_attached_target_damage_final": {
+      "stats": ["sigil_attached_target_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "对带有烙印的敌人造成的总伤害额外提高 %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "对带有烙印的敌人造成的总伤害最多额外降低 %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "sigil_activate_frequency": {
+      "stats": ["sigil_repeat_frequency_ms"],
+      "translations": [
+        {
+          "matchers": [1000],
+          "text": "附着后每 %1% 秒激活一次",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        },
+        {
+          "matchers": ["#"],
+          "text": "附着后每 %1% 秒激活一次",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

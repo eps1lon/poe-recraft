@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "skill_and_damaging_ailment_duration_incr": {
+      "stats": ["skill_effect_and_damaging_ailment_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% verlängerte Dauer dieser Fertigkeit und schädlicher Beeinträchtigungen",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verkürzte Dauer dieser Fertigkeit und schädlicher Beeinträchtigungen",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "skill_duration_incr": {
+      "stats": ["skill_effect_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% verlängerte Dauer",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% verkürzte Dauer",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

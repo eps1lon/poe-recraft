@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "include": "minion_skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "cast_speed_incr": {
+      "stats": ["base_cast_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "This Spell and Minions have %1%%% increased Cast Speed",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "This Spell and Minions have %1%%% reduced Cast Speed",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cast_speed_incr_on_low_life": {
+      "stats": ["cast_speed_+%_when_on_low_life"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "This Spell and Minions have %1%%% increased Cast Speed when on Low Life",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "This Spell and Minions have %1%%% reduced Cast Speed when on Low Life",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        }
+      ]
+    },
+    "multicast_cast_speed_incr": {
+      "stats": ["support_multicast_cast_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "This Spell and Minions have %1%%% more Cast Speed",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "This Spell and Minions have %1%%% less Cast Speed",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

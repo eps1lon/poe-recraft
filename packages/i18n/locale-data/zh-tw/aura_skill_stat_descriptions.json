@@ -1,0 +1,605 @@
+{
+  "meta": {
+    "include": "skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "physical_damage_incr": {
+      "stats": ["physical_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你與附近的隊友獲得 %1%%% 物理傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你與附近的隊友減少 %1%%% 物理傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "movement_speed_incr": {
+      "stats": ["base_movement_velocity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你與附近的隊友獲得 %1%%% 移動速度",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你與附近的隊友減少 %1%%% 移動速度",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_speed_incr_skill_granted": {
+      "stats": ["attack_speed_+%_granted_from_skill"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你與附近的隊友獲得 %1%%% 攻擊速度",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你與附近的隊友減少 %1%%% 攻擊速度",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cast_speed_incr_skill_granted": {
+      "stats": ["cast_speed_+%_granted_from_skill"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你與附近的隊友獲得 %1%%% 施放速度",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你與附近的隊友減少 %1%%% 施放速度",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_resist": {
+      "stats": ["base_resist_all_elements_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你與附近的隊友獲得 %1$+d%% 全元素抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "life_regen_per_minute_percent": {
+      "stats": ["life_regeneration_rate_per_minute_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你與附近的友方每秒回復 %1%%% 生命",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second_2dp",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "accuracy_rating_incr": {
+      "stats": ["accuracy_rating_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你與附近的隊友獲得 %1%%% 命中值",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你與附近的隊友減少 %1%%% 命中值",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "critical_strike_chance_incr": {
+      "stats": ["critical_strike_chance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你和附近友方增加 %1%%% 暴擊率",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你和附近友方減少 %1%%% 暴擊率",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "base_evasion": {
+      "stats": ["base_evasion_rating"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你與附近的隊友獲得 %1% 額外閃避值",
+          "formatters": []
+        }
+      ]
+    },
+    "grace_evasion_incr": {
+      "stats": ["grace_aura_evasion_rating_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你與附近的隊友獲得 %1%%% 閃避值",
+          "formatters": []
+        }
+      ]
+    },
+    "base_armour": {
+      "stats": ["base_physical_damage_reduction_rating"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你與附近的隊友獲得 %1% 額外護甲",
+          "formatters": []
+        }
+      ]
+    },
+    "determination_armour_incr": {
+      "stats": ["determination_aura_armour_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你與附近的隊友獲得 %1%%% 護甲",
+          "formatters": []
+        }
+      ]
+    },
+    "base_energy_shield": {
+      "stats": ["base_maximum_energy_shield"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你與附近的隊友獲得 %1% 額外能量護盾",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_resist": {
+      "stats": ["base_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你與附近的隊友獲得 %1%%% 額外閃電抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "fire_resist": {
+      "stats": ["base_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你與附近的隊友獲得 %1%%% 額外火焰抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_resist": {
+      "stats": ["base_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你與附近的隊友獲得 %1%%% 額外冰冷抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "max_fire_resist": {
+      "stats": ["base_maximum_fire_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你與附近的隊友獲得 %1%%% 額外最大火焰抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "max_cold_resist": {
+      "stats": ["base_maximum_cold_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你與附近的隊友獲得 %1%%% 額外最大冰冷抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "max_lightning_resist": {
+      "stats": ["base_maximum_lightning_damage_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你與附近的隊友獲得 %1%%% 額外最大閃電抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_added_fire": {
+      "stats": [
+        "attack_minimum_added_fire_damage",
+        "attack_maximum_added_fire_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "你和周圍友軍的攻擊額外造成 %1% 至 %2% 火焰傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_added_lightning": {
+      "stats": [
+        "attack_minimum_added_lightning_damage",
+        "attack_maximum_added_lightning_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "你和周圍友軍的攻擊額外造成 %1% 至 %2% 閃電傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "physical_damage_to_add_as_cold": {
+      "stats": ["physical_damage_%_to_add_as_cold"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你和周圍友軍獲得等同 %1%%% 物理傷害的額外冰冷傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "mana_regen": {
+      "stats": ["base_mana_regeneration_rate_per_minute"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你與附近的隊友獲得每秒 %1% 魔力回復",
+          "formatters": [
+            {
+              "id": "per_minute_to_per_second",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "energy_shield_no_delay": {
+      "stats": ["energy_shield_recharge_not_delayed_by_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你與附近的隊友不會因為承受傷害而延遲能量護盾回復的間隔時間",
+          "formatters": []
+        }
+      ]
+    },
+    "no_mana_cost": {
+      "stats": ["no_mana_cost"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你與附近的隊友的技能施放不需魔力花費",
+          "formatters": []
+        }
+      ]
+    },
+    "dodge_chance": {
+      "stats": ["base_chance_to_dodge_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% 機率躲避攻擊擊中",
+          "formatters": []
+        }
+      ]
+    },
+    "spell_dodge_chance": {
+      "stats": ["base_chance_to_dodge_spells_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% 機率躲避法術擊中",
+          "formatters": []
+        }
+      ]
+    },
+    "base_elemental_damage_heals": {
+      "stats": ["base_elemental_damage_heals"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你和附近友方承受元素傷害而不是回復生命\\n你和附近友方無法獲得瓦爾靈魂",
+          "formatters": []
+        }
+      ]
+    },
+    "spell_added_fire_damage": {
+      "stats": [
+        "spell_minimum_added_fire_damage",
+        "spell_maximum_added_fire_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "你和周圍友軍的法術額外造成 %1% 至 %2% 火焰傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "wrath_spell_lightning_damage": {
+      "stats": ["wrath_aura_spell_lightning_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你和附近的隊友造成 %1%%% 更多閃電法術傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你和附近的隊友造成 %1%%% 更少閃電法術傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_added_chaos": {
+      "stats": [
+        "attack_minimum_added_chaos_damage",
+        "attack_maximum_added_chaos_damage"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "你和周圍友軍的攻擊額外造成 %1% 至 %2% 混沌傷害",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_impale_chance": {
+      "stats": ["attacks_impale_on_hit_%_chance"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "你和附近友方攻擊擊中時，有 %1%%% 機率穿刺敵人",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextImpale"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "你和附近友方攻擊擊中時穿刺敵人",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextImpale"
+            }
+          ]
+        }
+      ]
+    },
+    "immune_to_chill": {
+      "stats": ["base_immune_to_chill"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你和附近的隊友免疫冰緩",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_freeze": {
+      "stats": ["base_immune_to_freeze"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你和附近的隊友免疫冰凍",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_ignite": {
+      "stats": ["base_immune_to_ignite"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你和附近的隊友免疫點燃",
+          "formatters": []
+        }
+      ]
+    },
+    "immune_to_shock": {
+      "stats": ["base_immune_to_shock"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "你和附近的隊友免疫感電",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_damage_taken": {
+      "stats": ["cold_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "增加 %1%%% 承受的冰冷傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "減少 %1%%% 承受的冰冷傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "energy_shield_recharge_rate": {
+      "stats": ["energy_shield_recharge_rate_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你和附近的友軍獲得增加 %1%%% 能量護盾回復率",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你和附近的友軍獲得減少 %1%%% 能量護盾回復率",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "fire_damage_taken": {
+      "stats": ["fire_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "增加 %1%%% 承受的火焰傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "減少 %1%%% 承受的火焰傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hits_ignore_cold_res": {
+      "stats": ["hits_ignore_my_cold_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "擊中附近的敵人無視他們的冰冷抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "hits_ignore_fire_res": {
+      "stats": ["hits_ignore_my_fire_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "擊中附近的敵人無視他們的火焰抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "hits_ignore_lightning_res": {
+      "stats": ["hits_ignore_my_lightning_resistance"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "擊中附近的敵人無視他們的閃電抗性",
+          "formatters": []
+        }
+      ]
+    },
+    "impale_effect": {
+      "stats": ["impale_debuff_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "你和附近友方增加 %1%%% 穿刺效果",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "你和附近友方減少 %1%%% 穿刺效果",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "lightning_damage_taken": {
+      "stats": ["lightning_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "增加 %1%%% 承受的閃電傷害",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "減少 %1%%% 承受的閃電傷害",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "physical_damage_taken_incr": {
+      "stats": ["physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "附近敵人增加 %1%%% 承受物理傷害",
+          "formatters": []
+        }
+      ]
+    }
+  }
+}

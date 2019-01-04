@@ -1,0 +1,1621 @@
+{
+  "meta": {
+    "include": "minion_skill_stat_descriptions",
+    "hasIdentifiers": false
+  },
+  "data": {
+    "attack_speed_incr": {
+      "stats": ["attack_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem um aumento de %1%%% da Velocidade de Ataque",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios possuem uma redução de %1%%% da Velocidade de Ataque",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "accuracy_rating": {
+      "stats": ["accuracy_rating"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem um adicional de %1% de Precisão",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios possuem -%1% de Precisão",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "accuracy_rating_incr": {
+      "stats": ["accuracy_rating_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem um aumento de %1%%% de Precisão",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios possuem uma redução de %1%%% de Precisão",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "critical_strike_multiplier_incr": {
+      "stats": ["base_critical_strike_multiplier_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Esse Ataque e Lacaios têm %1$+d%% ao Multiplicador de Crítico",
+          "formatters": []
+        }
+      ]
+    },
+    "reduce_block": {
+      "stats": ["global_reduce_enemy_block_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Chance de Bloqueio Inimigo reduzido em %1%%% contra essa Habilidade e Lacaios",
+          "formatters": []
+        }
+      ]
+    },
+    "life_gain_per_target": {
+      "stats": ["life_gain_per_target"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios ganham %1% de Vida a cada inimigo Acertado",
+          "formatters": []
+        }
+      ]
+    },
+    "life_leech_from_any": {
+      "stats": ["life_leech_from_any_damage_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios Drenam %1%%% de Dano como Vida",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "mana_leech_from_any": {
+      "stats": ["mana_leech_from_any_damage_permyriad"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios Drenam %1%%% de Dano como Mana",
+          "formatters": [
+            {
+              "id": "divide_by_one_hundred",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextManaLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "knockback_chance": {
+      "stats": ["base_global_chance_to_knockback_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "Este ataque e lacaios possuem %1%%% de chance adicional de Empurrar Inimigos ao Acertar",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKnockback"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Este ataque e lacaios Empurram Inimigos ao Acertar",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextKnockback"
+            }
+          ]
+        }
+      ]
+    },
+    "knockback_distance": {
+      "stats": ["knockback_distance_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem um aumento de %1%%% da Distância do Empurrão",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios possuem uma redução de %1%%% da Distância do Empurrão",
+          "formatters": []
+        }
+      ]
+    },
+    "stun_threshold_reduction_incr": {
+      "stats": ["base_stun_threshold_reduction_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios têm uma redução de %1%%% do Ponto de Atordoamento Inimigo",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextStunThreshold"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Este Ataque e Lacaios têm um aumento de %1%%% do Ponto de Atordoamento Inimigo",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextStunThreshold"
+            }
+          ]
+        }
+      ]
+    },
+    "killed_monster_dropped_item_rarity_incr": {
+      "stats": ["killed_monster_dropped_item_rarity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% de aumento da Raridade de Itens Derrubados por inimigos Mortos por Lacaios ou Esse Ataque",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de redução da Raridade de Itens Derrubados por inimigos Mortos por Lacaios ou Esse Ataque",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "killed_monster_dropped_item_quantity_incr": {
+      "stats": ["killed_monster_dropped_item_quantity_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "%1%%% de aumento da Quantidade de Itens Derrubados por inimigos Mortos por Lacaios ou Esse Ataque",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "%1%%% de redução da Quantidade de Itens Derrubados por inimigos Mortos por Lacaios ou Esse Ataque",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "freeze_chance": {
+      "stats": ["base_chance_to_freeze_%", "always_freeze"],
+      "translations": [
+        {
+          "matchers": ["#", [1, "#"]],
+          "text": "Esse Ataque e Lacaios sempre Congelam Inimigos",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreeze"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"], 0],
+          "text": "Esse Ataque e Lacaios sempre Congelam Inimigos",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreeze"
+            }
+          ]
+        },
+        {
+          "matchers": [[1, 99], 0],
+          "text": "Esse Ataque e Lacaios possuem %1%%% de chance de Congelar inimigos",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreeze"
+            }
+          ]
+        }
+      ]
+    },
+    "shock_chance": {
+      "stats": ["base_chance_to_shock_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem %1%%% de chance de Eletrizarem inimigos",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextShock"
+            }
+          ]
+        }
+      ]
+    },
+    "burn_chance": {
+      "stats": ["base_chance_to_ignite_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem %1%%% de chance de Incendiar inimigos",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextIgnite"
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_flee": {
+      "stats": ["global_hit_causes_monster_flee_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem %1%%% de chance de fazer Monstros Fugirem quando acertados",
+          "formatters": []
+        }
+      ]
+    },
+    "life_leech_speed": {
+      "stats": ["life_leech_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios têm um aumento de %1%%% da velocidade de Dreno de Vida",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Este Ataque e Lacaios têm uma redução de %1%%% da velocidade de Dreno de Vida",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLifeLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "mana_leech_speed": {
+      "stats": ["mana_leech_speed_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios têm um aumento de %1%%% da velocidade de Dreno de Mana",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextManaLeech"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Este Ataque e Lacaios têm uma redução de %1%%% da velocidade de Dreno de Mana",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextManaLeech"
+            }
+          ]
+        }
+      ]
+    },
+    "stun_duration_incr": {
+      "stats": ["base_stun_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem um aumento de %1%%% da Duração de Atordoamento em inimigos",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios possuem uma redução de %1%%% da Duração de Atordoamento em inimigos",
+          "formatters": []
+        }
+      ]
+    },
+    "burn_duration": {
+      "stats": ["ignite_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem um aumento de %1%%% da Duração de Incendeio em Inimigos",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios possuem uma redução de %1%%% da Duração de Incendeio em Inimigos",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chill_effect": {
+      "stats": ["chill_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios têm %1%%% de Efeito de Resfriamento aumentado em Inimigos",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Este Ataque e Lacaios têm %1%%% de Efeito de Resfriamento reduzido em Inimigos",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chill_duration": {
+      "stats": ["chill_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem um aumento de %1%%% da Duração de Resfriamento em inimigos",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios possuem uma redução de %1%%% da Duração de Resfriamento em inimigos",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "freeze_duration": {
+      "stats": ["freeze_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem um aumento de %1%%% da Duração de Congelamento em inimigos",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios possuem uma redução de %1%%% da Duração de Congelamento em inimigos",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "shock_duration": {
+      "stats": ["shock_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem um aumento de %1%%% da Duração de Eletrização em inimigos",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios possuem uma redução de %1%%% da Duração de Eletrização em inimigos",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "elemental_status_aura": {
+      "stats": ["elemental_status_effect_aura_radius"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Afecções Elementais causadas por este Ataque ou Lacaios também afetam outros Inimigos próximos",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextElementalStatusAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "ignite_aura": {
+      "stats": ["support_ignite_proliferation_radius"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Incêndios causados por este Ataque ou Lacaios também afetam outros inimigos próximos",
+          "formatters": []
+        }
+      ]
+    },
+    "culling_strike": {
+      "stats": ["kill_enemy_on_hit_if_under_10%_life"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios possuem Golpe Abatedor",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextCullingStrike"
+            }
+          ]
+        }
+      ]
+    },
+    "point_blank": {
+      "stats": ["keystone_point_blank"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Esse Ataque e Lacaios possuem Queima Roupa",
+          "formatters": []
+        }
+      ]
+    },
+    "fire_penetration": {
+      "stats": ["base_reduce_enemy_fire_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios Penetram %1%%% da Resistência a Fogo",
+          "formatters": []
+        }
+      ]
+    },
+    "cold_penetration": {
+      "stats": ["base_reduce_enemy_cold_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios Penetram %1%%% da Resistência a Gelo",
+          "formatters": []
+        }
+      ]
+    },
+    "elemental_penetration": {
+      "stats": ["reduce_enemy_elemental_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios Penetram %1%%% das Resistências Elementais",
+          "formatters": []
+        }
+      ]
+    },
+    "lightning_penetration": {
+      "stats": ["base_reduce_enemy_lightning_resistance_%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios Penetram %1%%% da Resistência a Raio",
+          "formatters": []
+        }
+      ]
+    },
+    "chance_to_blind": {
+      "stats": ["global_chance_to_blind_on_hit_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Este Ataque e Lacaios têm %1%%% de chance de Cegar inimigos ao acertar",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBlind"
+            }
+          ]
+        }
+      ]
+    },
+    "blind_duration_incr": {
+      "stats": ["blind_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem um aumento de %1%%% da duração da Cegueira",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios possuem uma redução de %1%%% da duração da Cegueira",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "melee_splash": {
+      "stats": ["melee_splash"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Esse Ataque e ataques Corpo a Corpo de alvo único dos Lacaios causam Dano Propagador a Alvos Próximos",
+          "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_crit_chance": {
+      "stats": ["add_power_charge_on_critical_strike_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "Esse Ataque e Lacaios possuem %1%%% de chance de ganhar uma Carga de Poder em um Acerto Crítico",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Esse Ataque e Lacaios ganham uma Carga de Poder em um Acerto Crítico",
+          "formatters": []
+        }
+      ]
+    },
+    "multiple_attacks_speed": {
+      "stats": ["support_multiple_attacks_melee_attack_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem %1%%% mais Velocidade de Ataque Corpo a Corpo",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios possuem %1%%% menos Velocidade de Ataque Corpo a Corpo",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "area_of_effect_incr": {
+      "stats": ["base_skill_area_of_effect_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem um aumento de %1%%% da Área de Efeito",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios possuem uma redução de %1%%% da Área de Efeito",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "concentrated_area_of_effect": {
+      "stats": ["support_concentrated_effect_skill_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem %1%%% mais Área de Efeito",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios possuem %1%%% menos Área de Efeito",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "burn_damage": {
+      "stats": ["burn_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios têm um aumento de %1%%% de Dano Incendiário",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios têm uma redução de %1%%% de Dano Incendiário",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "endurance_charge_on_stun": {
+      "stats": [
+        "gain_endurance_charge_on_melee_stun",
+        "gain_endurance_charge_on_melee_stun_%"
+      ],
+      "translations": [
+        {
+          "matchers": [0, [0, 99]],
+          "text": "Esse Ataque e Lacaios possuem %1%%% de chance de receber uma Carga de Tolerância ao Atordoar Inimigos com Dano Corpo a Corpo",
+          "formatters": []
+        },
+        {
+          "matchers": [0, [100, "#"]],
+          "text": "Esse Ataque e Lacaios recebem uma Carga de Tolerância ao Atordoar Inimigos com Dano Corpo a Corpo",
+          "formatters": []
+        },
+        {
+          "matchers": ["#", "#"],
+          "text": "Esse Ataque e Lacaios recebem Cargas de Tolerância ao Atordoar Inimigos com Dano Corpo a Corpo",
+          "formatters": []
+        }
+      ]
+    },
+    "attack_speed_incr_on_low_life": {
+      "stats": ["attack_speed_+%_when_on_low_life"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios têm um aumento de %1%%% de Velocidade de Ataque quando em Vida Baixa",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Este Ataque e Lacaios têm uma redução de %1%%% de Velocidade de Ataque quando em Vida Baixa",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextLowLife"
+            }
+          ]
+        }
+      ]
+    },
+    "totem_attack_speed": {
+      "stats": ["support_attack_totem_attack_speed_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem %1%%% mais Velocidade de Ataque",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios possuem %1%%% menos Velocidade de Ataque",
+          "formatters": []
+        }
+      ]
+    },
+    "bloodlust_damage": {
+      "stats": [
+        "support_bloodlust_melee_physical_damage_+%_final_vs_bleeding_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios causam %1%%% mais Dano Físico Corpo a Corpo contra Inimigos Sangrando",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios causam %1%%% menos Dano Físico Corpo a Corpo contra Inimigos Sangrando",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bloodlust_damage_incr": {
+      "stats": ["melee_damage_vs_bleeding_enemies_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios têm o Dano Corpo a Corpo contra Inimigos Sangrando aumentado em %1%%%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios têm o Dano Corpo a Corpo contra Inimigos Sangrando reduzido em %1%%%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "chance_to_fortify_on_melee_hit": {
+      "stats": ["chance_to_fortify_on_melee_hit_+%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "Este Ataque e Lacaios têm %1%%% de chance de Fortificar em Acertos Corpo a Corpo",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Este Ataque e Lacaios ganham Fortificar em Acertos Corpo a Corpo",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFortify"
+            }
+          ]
+        }
+      ]
+    },
+    "freeze_chance_vs_chilled": {
+      "stats": ["additional_chance_to_freeze_chilled_enemies_%"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Esse Ataque e Lacaios possuem %1$d%% de chance de Congelarem Inimigos Resfriados",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextFreeze"
+            }
+          ]
+        }
+      ]
+    },
+    "hypothermia_damage": {
+      "stats": ["support_hypothermia_damage_+%_vs_chilled_enemies_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios causam %1%%% mais Dano com Acertos e Afecções contra Inimigos Resfriados",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Este Ataque e Lacaios causam %1%%% menos Dano com Acertos e Afecções contra Inimigos Resfriados",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "spirit_strike_damage": {
+      "stats": ["support_spirit_strike_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Essa Habilidade e Lacaios causam %1%%% mais Dano",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Essa Habilidade e Lacaios causam %1%%% menos Dano",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "trap_mine_damage": {
+      "stats": ["support_trap_and_mine_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios causam %1%%% mais Dano com Armadilhas e Minas",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios causam %1%%% menos Dano com Armadilhas e Minas",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_better_ailments_bonus": {
+      "stats": ["support_better_ailments_ailment_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios causam %1%%% mais Dano com Afecções",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Este Ataque e Lacaios causam %1%%% menos Dano com Afecções",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextDamagingAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "support_better_ailments_malus": {
+      "stats": ["support_better_ailments_hit_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios causam %1%%% mais Dano com Acertos",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Este Ataque e Lacaios causam %1%%% menos Dano com Acertos",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_chance_to_ignite_damage": {
+      "stats": ["support_chance_to_ignite_fire_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios causam %1%%% mais Dano de Fogo",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Este Ataque e Lacaios causam %1%%% menos Dano de Fogo",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "ignite_prolif_damage": {
+      "stats": ["support_ignite_prolif_ignite_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios causam %1%%% mais Dano com Incêndio",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Este Ataque e Lacaios causam %1%%% menos Dano com Incêndio",
+          "formatters": []
+        }
+      ]
+    },
+    "rapid_decay": {
+      "stats": ["support_rapid_decay_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios causam %1%%% mais Dano Degenerativo",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios causam %1%%% menos Dano Degenerativo",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_debilitate_hit_damage": {
+      "stats": [
+        "support_debilitate_hit_damage_+%_final_per_poison_stack",
+        "support_debilitate_hit_damage_max_poison_stacks"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"], "#"],
+          "text": "Este Ataque e Lacaios causam %1%%% mais Dano com Acertos por Veneno no Inimigo, até %2%",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1], "#"],
+          "text": "Este Ataque e Lacaios causam %1%%% menos Dano com Acertos por Veneno no Inimigo, até %2%",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_debilitate_poison_damage": {
+      "stats": ["support_debilitate_poison_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios causam %1%%% mais Dano com Veneno",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Este Ataque e Lacaios causam %1%%% menos Dano com Veneno",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_efficacy_dot": {
+      "stats": ["support_efficacy_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios causam %1%%% mais Dano Degenerativo",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Este Ataque e Lacaios causam %1%%% menos Dano Degenerativo",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_poison_poison_damage": {
+      "stats": ["support_poison_poison_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios causam %1%%% mais Dano com Veneno",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Este Ataque e Lacaios causam %1%%% menos Dano com Veneno",
+          "formatters": []
+        }
+      ]
+    },
+    "elemental_focus_damage": {
+      "stats": ["support_gem_elemental_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios causam %1%%% mais Dano Elemental",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios causam %1%%% menos Dano Elemental",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "cannot_inflict_ailments": {
+      "stats": ["cannot_inflict_status_ailments"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Este Ataque e Lacaios não podem infligir Afecções Elementais",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextElementalStatusAilments"
+            }
+          ]
+        }
+      ]
+    },
+    "damage_over_time_incr": {
+      "stats": ["damage_over_time_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem um aumento de %1%%% do Dano Degenerativo",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios possuem uma redução de %1%%% do Dano Degenerativo",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "poison_on_hit": {
+      "stats": ["global_poison_on_hit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Este Ataque e Lacaios Envenenam Inimigos ao Acertar",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        }
+      ]
+    },
+    "poison_damage": {
+      "stats": ["base_poison_damage_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios têm %1%%% de Dano com Veneno aumentado",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Este Ataque e Lacaios têm %1%%% de Dano com Veneno reduzido",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        }
+      ]
+    },
+    "poison_duration": {
+      "stats": ["base_poison_duration_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios possuem %1%%% da Duração do Veneno aumentada",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios possuem %1%%% da Duração do Veneno reduzida",
+          "formatters": []
+        }
+      ]
+    },
+    "melee_splash_radius": {
+      "stats": ["melee_splash_area_of_effect_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios têm %1%%% mais Área de Efeito de Dano Propagado",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Este Ataque e Lacaios têm %1%%% menos Área de Efeito de Dano Propagado",
+          "formatters": []
+        }
+      ]
+    },
+    "ghost_chance": {
+      "stats": ["chance_to_summon_support_ghost_on_killing_blow_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "%1%%% de chance de Convocar um Fantasma quando essa Habilidade, ou Lacaios não Fantasmas, causarem um Golpe Mortal",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Convoca um Fantasma quando essa Habilidade, ou Lacaios não Fantasmas, causarem um Golpe Mortal",
+          "formatters": []
+        }
+      ]
+    },
+    "num_normal_dominated": {
+      "stats": ["max_number_of_dominated_normal_monsters"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Máximo de %1% Sentinela do Domínio Normal Convocada",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Máximo de %1% Sentinelas do Domínio Normal Convocadas",
+          "formatters": []
+        }
+      ]
+    },
+    "num_magic_dominated": {
+      "stats": ["max_number_of_dominated_magic_monsters"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Máximo de %1% Sentinela do Domínio Mágico Convocado",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Máximo de %1% Sentinelas do Domínio Mágicos Convocados",
+          "formatters": []
+        }
+      ]
+    },
+    "num_rare_dominated": {
+      "stats": ["max_number_of_dominated_rare_monsters"],
+      "translations": [
+        {
+          "matchers": [1],
+          "text": "Máximo de %1% Sentinela do Domínio Raro Convocado",
+          "formatters": []
+        },
+        {
+          "matchers": [[2, "#"]],
+          "text": "Máximo de %1% Sentinelas do Domínio Raros Convocados",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_count": {
+      "stats": ["support_ruthless_big_hit_max_count"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Cada terceiro uso Deste Ataque ou Ataques de Lacaios causa um Golpe Impiedoso com Acertos Corpo a Corpo",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_damage": {
+      "stats": ["support_ruthless_big_hit_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Golpes Impiedosos deste Ataque ou Lacaios causam %1%%% mais Dano Corpo a Corpo",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_bleeding_damage": {
+      "stats": [
+        "support_ruthless_blow_bleeding_damage_from_melee_hits_+%_final"
+      ],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Golpes Impiedosos deste Ataque ou Lacaios causam %1%%% mais Dano com Sangramento causado por Acertos Corpo a Corpo",
+          "formatters": []
+        }
+      ]
+    },
+    "support_ruthless_stun": {
+      "stats": ["support_ruthless_big_hit_stun_base_duration_override_ms"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Golpes Impiedosos deste Ataque ou Lacaios têm uma Duração de Atordoamento base de %1% segundos",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "poison_chance": {
+      "stats": ["base_chance_to_poison_on_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "Este Ataque e Lacaios têm %1%%% de chance de Envenenar ao Acertar",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Este Ataque e Lacaios sempre Envenenam ao Acertar",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextPoison"
+            }
+          ]
+        }
+      ]
+    },
+    "deal_no_chaos": {
+      "stats": ["base_deal_no_chaos_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Este Ataque e Lacaios não causam Dano de Caos",
+          "formatters": []
+        }
+      ]
+    },
+    "bleeding_chance": {
+      "stats": [
+        "bleed_on_hit_with_attacks_%",
+        "global_bleed_on_hit",
+        "cannot_cause_bleeding"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, 99], 0, 0],
+          "text": "Este Ataque e Lacaios têm %1%%% de chance de causar Sangramento",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        },
+        {
+          "matchers": [[100, "#"], 0, 0],
+          "text": "Este Ataque e Lacaios causam Sangramento",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        },
+        {
+          "matchers": ["#", "#", 0],
+          "text": "Este Ataque e Lacaios causam Sangramento",
+          "formatters": [
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextBleeding"
+            }
+          ]
+        },
+        {
+          "matchers": ["#", "#", "#"],
+          "text": "Este Ataque e Lacaios não podem causar Sangramento",
+          "formatters": []
+        }
+      ]
+    },
+    "decay_on_hit": {
+      "stats": ["deal_chaos_damage_per_second_for_10_seconds_on_hit"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Este Ataque e Lacaios infligem Podridão ao Acertar, causando %1% de Dano de Caos por segundo durante 8 segundos",
+          "formatters": []
+        }
+      ]
+    },
+    "deal_no_elemental": {
+      "stats": ["deal_no_elemental_damage"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Este Ataque e Lacaios não causam Dano Elemental",
+          "formatters": []
+        }
+      ]
+    },
+    "dom_blow_unique_chance": {
+      "stats": ["dominating_blow_chance_to_summon_on_hitting_unqiue_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "%1%%% de Chance de Convocar um Sentinela do Domíniio Normal ao Acertar um Monstro Único",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Convoca um Sentinela do Domíniio Normal ao Acertar um Monstro Único",
+          "formatters": []
+        }
+      ]
+    },
+    "ignites_apply_fire_res": {
+      "stats": ["ignites_apply_fire_resistance_+"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Inimigos Incendiados por esse Ataque ou Lacaios possuem %1$+d%% de Resistência à Fogo",
+          "formatters": []
+        }
+      ]
+    },
+    "maim_chance": {
+      "stats": ["maim_on_hit_%"],
+      "translations": [
+        {
+          "matchers": [[1, 99]],
+          "text": "Este Ataque e Ataques de Lacaios têm %1%%% de chance de Mutilar ao Acertar",
+          "formatters": []
+        },
+        {
+          "matchers": [[100, "#"]],
+          "text": "Este Ataque e Ataques de Lacaios sempre Mutilam ao Acertar",
+          "formatters": []
+        }
+      ]
+    },
+    "number_of_spirit_strikes": {
+      "stats": ["melee_attack_number_of_spirit_strikes"],
+      "translations": [
+        {
+          "matchers": ["#"],
+          "text": "Essa Habilidade também mira em %1% dos Inimigos próximos",
+          "formatters": []
+        }
+      ]
+    },
+    "brutality_phys_damage": {
+      "stats": ["support_brutality_physical_damage_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Este Ataque e Lacaios causam %1%%% mais Dano Físico",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Este Ataque e Lacaios causam %1%%% menos Dano Físico",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "hypothermia_cold_damage": {
+      "stats": ["support_hypothermia_cold_damage_over_time_+%_final"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios causam %1%%% mais Dano de Gelo Degenerativo",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios causam %1%%% menos Dano de Gelo Degenerativo",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "maimed_phys_damage_taken_incr": {
+      "stats": ["support_maimed_enemies_physical_damage_taken_+%"],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Inimigos Mutilados por este Ataque e Lacaios sofrem %1%%% de Dano Físico aumentado",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Inimigos Mutilados por este Ataque e Lacaios sofrem %1%%% de Dano Físico reduzido",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "added_fire_against_burning": {
+      "stats": [
+        "global_minimum_added_fire_damage_vs_burning_enemies",
+        "global_maximum_added_fire_damage_vs_burning_enemies"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Este Ataque e Lacaios têm %1% a %2% de Dano de Fogo adicional contra Inimigos Queimando",
+          "formatters": []
+        }
+      ]
+    },
+    "power_charge_on_crit_damage": {
+      "stats": [
+        "support_power_charge_on_crit_damage_+%_final_per_power_charge"
+      ],
+      "translations": [
+        {
+          "matchers": [[1, "#"]],
+          "text": "Esse Ataque e Lacaios causam %1%%% mais Dano por Carga de Poder",
+          "formatters": []
+        },
+        {
+          "matchers": [["#", -1]],
+          "text": "Esse Ataque e Lacaios causam %1%%% menos Dano por Carga de Poder",
+          "formatters": [
+            {
+              "id": "negate",
+              "arg": 1
+            }
+          ]
+        }
+      ]
+    },
+    "support_scion_chance": {
+      "stats": [
+        "support_scion_onslaught_on_killing_blow_%_chance",
+        "support_scion_onslaught_on_killing_blow_duration_ms"
+      ],
+      "translations": [
+        {
+          "matchers": ["#", "#"],
+          "text": "Este Ataque e Lacaios têm %1%%% de chance de conceder Agressividade por %2% segundos ao\\ncausar um Golpe Fatal",
+          "formatters": [
+            {
+              "id": "milliseconds_to_seconds",
+              "arg": 2
+            },
+            {
+              "id": "reminderstring",
+              "arg": "ReminderTextOnslaught"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

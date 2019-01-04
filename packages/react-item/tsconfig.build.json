@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": ["**/__tests__/*"],
+  /* adding it to typeRoots wont work because its not included so we have to use this "hack" */
+  "include": ["src/@types"],
+  "files": ["src/index.tsx"],
+  "compilerOptions": {
+    "target": "es5",
+    "downlevelIteration": true,
+    "declaration": true
+  }
+}
