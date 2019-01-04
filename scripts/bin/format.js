@@ -16,7 +16,7 @@ const glob = require('glob');
 const prettier = require('prettier');
 const fs = require('fs');
 const listChangedFiles = require('../src/listChangedFiles');
-const prettierConfigPath = require.resolve('../.prettierrc');
+const prettierConfigPath = require.resolve('../../.prettierrc');
 
 const [pattern, mode = 'check'] = process.argv.slice(2);
 const shouldWrite = mode === 'write' || mode === 'write-changed';
