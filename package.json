@@ -9,11 +9,11 @@
     "type": "git"
   },
   "scripts": {
-    "bootstrap:mods": "yarn workspace poe-i18n build",
-    "bootstrap:website": "yarn workspace poe-mods build && yarn workspace poe-i18n build && yarn workspace poe-components-item build",
+    "bootstrap:mods": "yarn bootstrap && yarn workspace poe-i18n build:esm",
+    "bootstrap:website": "yarn bootstrap && yarn workspace poe-mods build:esm && yarn workspace poe-i18n build:esm && yarn workspace poe-components-item build:esm",
+    "bootstrap": "yarn workspace poe-mods build:cjs && yarn workspace poe-i18n build:cjs && yarn workspace poe-components-item build:cjs",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls.js",
     "format": "yarn workspaces run format",
-    "postinstall": "yarn workspace poe-i18n build && yarn workspace poe-mods build",
     "test": "jest --watch",
     "test:ci": "jest --ci --coverage --runInBand"
   },

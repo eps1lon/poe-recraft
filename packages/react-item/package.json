@@ -11,11 +11,11 @@
     "themes/"
   ],
   "scripts": {
-    "build": "yarn run build:clean && yarn run build:commonjs && yarn run build:es && yarn run build:css",
+    "build": "yarn run build:clean && yarn run build:cjs && yarn run build:esm && yarn run build:css",
     "build:clean": "rimraf dist",
     "build:css": "node-sass themes/ --no-recursive -o themes",
-    "build:commonjs": "tsc --project ./tsconfig.build.json --module CommonJS --outDir dist/cjs",
-    "build:es": "tsc --project ./tsconfig.build.json --module ES6 --outDir dist/esm",
+    "build:cjs": "tsc --project ./tsconfig.build.json --module CommonJS --outDir dist/cjs",
+    "build:esm": "tsc --project ./tsconfig.build.json --module ES6 --outDir dist/esm",
     "build:check": "tsc --watch --noEmit",
     "clean": "rimraf coverage && yarn run build:clean",
     "docs:api": "typedoc src --excludePrivate --mode file --out docs/api",
