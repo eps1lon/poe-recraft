@@ -1,5 +1,5 @@
 {
-  "name": "recraft",
+  "name": "website",
   "description": "dynamic craftable mods based on recent data mining",
   "homepage": ".",
   "version": "0.2.0",
@@ -57,7 +57,7 @@
   },
   "scripts": {
     "build": "npm run build:css && npm run build:js",
-    "build:css": "node-sass-chokidar --include-path ../../node_modules src/ -o src/",
+    "build:css": "node-sass-chokidar --include-path ../node_modules src/ -o src/",
     "build:js": "react-scripts-ts build",
     "build:clean": "rimraf build",
     "predeploy": "npm run build",
@@ -69,6 +69,6 @@
     "start-js": "react-scripts-ts start",
     "start": "npm-run-all -p watch-css start-js",
     "test": "react-scripts-ts test --env=jsdom",
-    "watch-css": "npm run build:css && node-sass-chokidar --include-path ../../node_modules src/ -o src/ --watch"
+    "watch-css": "npm run build:css && node-sass-chokidar --include-path ../node_modules src/ -o src/ --watch"
   }
 }
