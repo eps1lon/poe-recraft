@@ -38,8 +38,12 @@ const reducer: Reducer<State, actions.Action> = (
 };
 export default reducer;
 
-function setItemHandle(_: State, action: actions.SetItemAction): State {
-  return Item.build(action.payload);
+function setItemHandle(oldItem: State, action: actions.SetItemAction): State {
+  const newItem = Item.build(action.payload);
+  if (oldItem) {
+    return newItem.rarity.set(oldItem.rarity.toString());
+  }
+  return newItem;
 }
 
 function addModHandle(state: State, action: actions.AddModAction): State {

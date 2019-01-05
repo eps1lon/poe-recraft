@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased](https://github.com/eps1lon/poe-recraft/compare/v0.2.0...HEAD)
 
+### Changed
+
+- rarity is preserved when changing item classes
+
 ### Added
 
 - Changeable item level.
