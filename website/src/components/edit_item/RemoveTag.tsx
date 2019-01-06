@@ -1,5 +1,5 @@
+import { Button } from '@material-ui/core';
 import React, { PureComponent } from 'react';
-import { Button } from 'reactstrap';
 
 export interface Props {
   tag: string;

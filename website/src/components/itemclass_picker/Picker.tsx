@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { Dropdown, DropdownToggle } from 'reactstrap';
 
 import GroupDropdown from './GroupDropdown';
 
@@ -18,15 +17,15 @@ export interface State {
 
 export default class ItemClassGroup extends PureComponent<Props, State> {
   public state: State = {
-    expanded: {}
+    expanded: {},
   };
 
   public toggle = (name: string) => () => {
     this.setState({
       expanded: {
         ...this.state.expanded,
-        [name]: !Boolean(this.state.expanded[name])
-      }
+        [name]: !Boolean(this.state.expanded[name]),
+      },
     });
   };
 
@@ -51,4 +50,12 @@ export default class ItemClassGroup extends PureComponent<Props, State> {
       );
     });
   }
+}
+
+function DropdownToggle(props: any) {
+  return null;
+}
+
+function Dropdown(props: any) {
+  return null;
 }

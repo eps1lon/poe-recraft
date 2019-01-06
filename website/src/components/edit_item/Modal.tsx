@@ -1,37 +1,34 @@
-import React, { SFC } from 'react';
-import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import { Button, Dialog, DialogContent, DialogTitle } from '@material-ui/core';
+import React from 'react';
 
 import Body from './Body';
 
 export interface Props {
+  className?: string;
   is_open: boolean;
-  onChange: () => void;
   onToggle: () => void;
 }
 
 const default_props = {
-  onChange: () => {},
-  onToggle: () => {}
+  onToggle: () => {},
 };
 
-const EditModal: SFC<Props> = props => {
-  const toggle = props.onToggle;
+function EditModal(props: Props) {
+  const { className, onToggle } = props;
 
-  // set autofocus to false because
-  // FIXME: https://github.com/reactstrap/reactstrap/issues/532
   return (
-    <div className="edit-item">
-      <Button onClick={toggle}>Edit</Button>
+    <div className={className}>
+      <Button onClick={onToggle}>Edit</Button>
 
-      <Modal isOpen={props.is_open} toggle={toggle} autoFocus={false}>
-        <ModalHeader toggle={toggle}>Edit Item</ModalHeader>
-        <ModalBody>
-          <Body onToggle={toggle} />
-        </ModalBody>
-      </Modal>
+      <Dialog open={props.is_open} onClose={onToggle}>
+        <DialogTitle>Edit Item</DialogTitle>
+        <DialogContent>
+          <Body onToggle={onToggle} />
+        </DialogContent>
+      </Dialog>
     </div>
   );
-};
+}
 
 EditModal.defaultProps = default_props;
 

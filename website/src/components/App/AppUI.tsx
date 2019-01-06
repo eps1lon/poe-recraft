@@ -1,54 +1,58 @@
-import React, { SFC } from 'react';
-import { Nav, NavItem, NavLink } from 'reactstrap';
+import { CssBaseline } from '@material-ui/core';
+import { Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/styles';
+import React from 'react';
 
-import About from 'components/App/About';
-import ApplyGenerator from 'containers/ApplyGenerator';
-import AvailableMods from 'containers/AvailableMods';
-import BaseItemModal from 'containers/baseitem_picker/Modal';
-import GeneratorModal from 'containers/GeneratorModal';
-import ItemclassPicker from 'containers/itemclass_picker/Picker';
-import ItemSection from 'containers/ItemSection';
-import LanguagePicker from 'containers/LanguagePicker';
+import Body from 'components/Body';
+import Header from 'components/Header';
 
 import * as settings from './settings';
 
-import './index.css';
-
 export interface Props {
-  app_version: string;
-  game_version: string;
+  isDrawerOpen: boolean;
 }
 
-const AppUI: SFC<Props> = props => {
-  const { game_version, app_version } = props;
+const useClasses = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+    },
+    header: {
+      /* below nprogress */
+      zIndex: theme.zIndex.drawer + 1,
+    },
+    wizardProgress: {
+      backgroundColor: '#eee',
+      marginBottom: theme.spacing.unit * 2,
+    },
+  }),
+);
+
+function AppUI(props: Props) {
+  const { isDrawerOpen } = props;
+  const classes = useClasses();
 
   return (
-    <>
-      <header key="header">
-        <Nav tabs={true}>
-          <NavItem>
-            <NavLink href="">Home</NavLink>
-          </NavItem>
-          <ItemclassPicker groups={settings.ITEMCLASSES_GROUPED} />
-          <NavItem>
-            <BaseItemModal />
-          </NavItem>
-          <NavItem>
-            <GeneratorModal />
-          </NavItem>
-          <NavItem>
-            <ApplyGenerator />
-          </NavItem>
-          <About game_version={game_version} app_version={app_version} />
-          <LanguagePicker locales={settings.SUPPORTED_LOCALES} />
-        </Nav>
-      </header>,
-      <div key="content" id="content">
-        <ItemSection />
-        <AvailableMods />
-      </div>
-    </>
+    <div className={classes.root}>
+      <CssBaseline />
+      <Header locales={settings.SUPPORTED_LOCALES} />
+      <Body />
+      <Drawer itemClasses={settings.ITEMCLASSES_GROUPED} open={isDrawerOpen} />
+      <Notifications />
+    </div>
   );
-};
+}
+
+function Notifications() {
+  return null;
+}
+
+interface DrawerProps {
+  itemClasses: any[];
+  open: boolean;
+}
+function Drawer(props: DrawerProps) {
+  return null;
+}
 
 export default AppUI;

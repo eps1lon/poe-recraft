@@ -1,5 +1,6 @@
+import { createStyles, makeStyles } from '@material-ui/styles';
 import classnames from 'classnames';
-import React, { PureComponent } from 'react';
+import React from 'react';
 
 import CorrectGroup from 'containers/i18n/CorrectGroup';
 import UngroupedMods from 'containers/mods/UngroupedMods';
@@ -15,39 +16,57 @@ export interface Props {
   onGroupClick: (id: string) => void;
 }
 
-export default class ModGroup extends PureComponent<Props> {
-  public render() {
-    const {
-      className,
-      details,
-      disabled,
-      exclude,
-      group,
-      isExpanded
-    } = this.props;
+const styles = createStyles({
+  title: {
+    color: 'inherit',
+    cursor: 'pointer',
+    fontSize: '1.05em',
+    '&:hover': {
+      color: 'white',
+    },
+    '&:$disabled': {
+      textDecoration: 'line-through',
+    },
+  },
+  disabled: {},
+});
+const useClasses = makeStyles(styles);
 
-    const mods = details.map(({ mod }) => mod);
+function ModGroup(props: Props) {
+  const {
+    className,
+    details,
+    disabled,
+    exclude,
+    group,
+    isExpanded,
+    onGroupClick,
+  } = props;
 
-    return (
-      <>
-        <h5
-          className={classnames('correct-group', { disabled })}
-          onClick={this.handleClick}
-        >
-          <CorrectGroup mods={mods} />
-        </h5>
-        {isExpanded(group) && (
-          <UngroupedMods
-            className={className}
-            details={details}
-            exclude={exclude}
-          />
-        )}
-      </>
-    );
-  }
+  const classes = useClasses();
+  const mods = React.useMemo(() => details.map(({ mod }) => mod), [details]);
+  const handleClick = React.useCallback(() => onGroupClick(group), [
+    group,
+    onGroupClick,
+  ]);
 
-  private handleClick = () => {
-    this.props.onGroupClick(this.props.group);
-  };
+  return (
+    <>
+      <h5
+        className={classnames(classes.title, { [classes.disabled]: disabled })}
+        onClick={handleClick}
+      >
+        <CorrectGroup mods={mods} />
+      </h5>
+      {isExpanded(group) && (
+        <UngroupedMods
+          className={className}
+          details={details}
+          exclude={exclude}
+        />
+      )}
+    </>
+  );
 }
+
+export default React.memo(ModGroup);

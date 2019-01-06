@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { DropdownItem } from 'reactstrap';
 
 export interface Props {
   active: string;
@@ -26,4 +25,8 @@ export default class ItemClassGroup extends PureComponent<Props> {
   private handleClick = () => {
     this.props.onClick(this.props.id);
   };
+}
+
+function DropdownItem(props: any) {
+  return null;
 }

@@ -1,5 +1,5 @@
+import { Button } from '@material-ui/core';
 import React, { SFC } from 'react';
-import { Button } from 'reactstrap';
 
 import { anySet } from '../util/flags';
 import { FormattedGenerator } from './i18n';
@@ -13,15 +13,16 @@ export interface Props {
 }
 
 const default_props = {
-  onClick: () => {}
+  onClick: () => {},
 };
 
 const ApplyGenerator: SFC<Props> = props => {
   const is_applicable_to = !anySet(props.applicableTo);
   return (
     <Button
-      color={is_applicable_to ? 'secondary' : 'danger'}
+      disabled={!is_applicable_to}
       onClick={props.onClick}
+      variant="contained"
     >
       Use <FormattedGenerator id={props.active} />
     </Button>

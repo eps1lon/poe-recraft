@@ -6,8 +6,6 @@ import { isDisabled } from 'util/flags';
 import { GeneratorDetails } from '../ModsTable';
 import ModGroup from './ModGroup';
 
-import './style.css';
-
 export interface Props {
   className: string;
   details: GeneratorDetails[];
@@ -37,7 +35,7 @@ export default class GroupedMods extends PureComponent<Props> {
       }
 
       return all_groups;
-    }
+    },
   );
 
   public render() {
@@ -60,7 +58,7 @@ export default class GroupedMods extends PureComponent<Props> {
                 onGroupClick={onGroupClick}
               />
             );
-          }
+          },
         )}
       </>
     );

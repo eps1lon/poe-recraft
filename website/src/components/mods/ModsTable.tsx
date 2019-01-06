@@ -1,7 +1,7 @@
-import classnames from 'classnames';
+import { Button } from '@material-ui/core';
+import { createStyles, makeStyles } from '@material-ui/styles';
 import { Flags, Mod } from 'poe-mods';
-import React, { PureComponent, SyntheticEvent } from 'react';
-import { Button } from 'reactstrap';
+import React from 'react';
 
 import GroupedMods from 'containers/mods/GroupedMods';
 import UngroupedMods from 'containers/mods/UngroupedMods';
@@ -10,15 +10,28 @@ export interface Props {
   className: string;
   // if no expanded is passed (i.e. == null) then this value is considered as Boolean casted
   defaultExpanded?: boolean;
+  exclude: string[];
   expanded?: boolean;
   group_expanded: boolean;
   human?: string;
   details: GeneratorDetails[];
-  grouped?: boolean;
-  exclude?: string[];
+  grouped: boolean;
   onGroupToggle: (group: string) => void;
   onToggle: (group: string, show: boolean) => void;
 }
+
+const styles = createStyles({
+  title: {
+    color: 'inherit',
+    cursor: 'pointer',
+    fontSize: '1.3em',
+
+    '&:hover': {
+      color: 'white',
+    },
+  },
+});
+const useClasses = makeStyles(styles);
 
 export interface GeneratorDetails {
   mod: Mod;
@@ -29,63 +42,62 @@ export interface GeneratorDetails {
   relative_weight?: number;
 }
 
-export default class ModsTable extends PureComponent<Props> {
-  public render() {
-    const { className } = this.props;
-    const {
-      group_expanded,
-      human = className,
-      details,
-      grouped = false,
-      exclude = []
-    } = this.props;
+function ModsTable(props: Props) {
+  const { className } = props;
+  const {
+    defaultExpanded,
+    expanded: expandedProp,
+    group_expanded,
+    human = className,
+    details,
+    grouped,
+    exclude,
+    onGroupToggle,
+    onToggle,
+  } = props;
 
-    const expanded = this.isExpanded();
+  const classes = useClasses();
 
-    // Table componenent
-    const Mods = grouped && !group_expanded ? GroupedMods : UngroupedMods;
-
-    return (
-      <div className={classnames('mods-table', className)}>
-        <h4
-          id={`${className}-caption`}
-          aria-expanded={group_expanded}
-          aria-haspopup={true}
-          onClick={this.handleCaptionClick}
-        >
-          {human} /<span className="count">{details.length}</span>
-          {grouped && (
-            <Button onClick={this.handleGroupToggle}>
-              {group_expanded ? 'Grouped' : 'Ungrouped'}
-            </Button>
-          )}
-        </h4>
-        {expanded && (
-          <Mods className={className} details={details} exclude={exclude} />
-        )}
-      </div>
-    );
+  function handleCaptionClick() {
+    onToggle(className, expanded);
   }
 
-  private handleCaptionClick = () => {
-    const { className, onToggle } = this.props;
-    const expanded = this.isExpanded();
-
-    onToggle(className, expanded);
-  };
-
-  private handleGroupToggle = (event: SyntheticEvent<HTMLButtonElement>) => {
-    const { className, onGroupToggle } = this.props;
-
+  function handleGroupToggle(event: React.MouseEvent) {
     onGroupToggle(className);
     event.stopPropagation();
-  };
-
-  private isExpanded() {
-    const { defaultExpanded, expanded } = this.props;
-    if (expanded == null) {
-      return Boolean(defaultExpanded);
-    }
-    return expanded;
   }
+
+  const expanded =
+    expandedProp == null ? Boolean(defaultExpanded) : expandedProp;
+
+  // Table componenent
+  const Mods = grouped && !group_expanded ? GroupedMods : UngroupedMods;
+
+  return (
+    <div className={className}>
+      <h4
+        aria-expanded={group_expanded}
+        aria-haspopup={true}
+        className={classes.title}
+        onClick={handleCaptionClick}
+      >
+        {human} /<span>{details.length}</span>
+        {grouped && (
+          <Button onClick={handleGroupToggle}>
+            {group_expanded ? 'Grouped' : 'Ungrouped'}
+          </Button>
+        )}
+      </h4>
+      {expanded && (
+        <Mods className={className} details={details} exclude={exclude} />
+      )}
+    </div>
+  );
 }
+
+ModsTable.defaultProps = {
+  exclude: [],
+  grouped: false,
+};
+
+export default React.memo(ModsTable);

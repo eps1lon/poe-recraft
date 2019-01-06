@@ -1,3 +1,4 @@
+import { install } from '@material-ui/styles';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -22,5 +23,6 @@ if (module.hot) {
   });
 }
 
+install();
 render();
 registerServiceWorker();

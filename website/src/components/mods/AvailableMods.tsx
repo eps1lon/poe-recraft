@@ -1,6 +1,6 @@
-import React, { SFC } from 'react';
-
-import './AvailableMods.css';
+import { createStyles, makeStyles } from '@material-ui/styles';
+import classNames from 'classnames';
+import React from 'react';
 
 import { GeneratorDetails } from './ModsTable';
 
@@ -12,27 +12,54 @@ export interface Props {
   suffixes: GeneratorDetails[];
 }
 
+const styles = createStyles({
+  affixes: {
+    display: 'table-row',
+    width: '100%',
+  },
+  affixTable: {
+    width: '49%',
+    display: 'table-cell',
+    verticalAlign: 'top',
+  },
+  implicits: {},
+  prefixes: {
+    borderRight: '1px solid white',
+  },
+  root: {
+    display: 'table',
+    width: '100%',
+  },
+  suffixes: {
+    borderLeft: '1px solid white',
+  },
+});
+const useClasses = makeStyles(styles);
+
 const implicits_table_exclude = ['name'];
 
-const AvailableMods: SFC<Props> = ({ prefixes, suffixes, implicits }) => {
+function AvailableMods(props: Props) {
+  const { prefixes, suffixes, implicits } = props;
+  const classes = useClasses();
+
   return (
-    <section id="available_mods">
+    <section className={classes.root}>
       <ModsTable
-        className="implicits"
+        className={classes.implicits}
         details={implicits}
         grouped={false}
         exclude={implicits_table_exclude}
         defaultExpanded={false}
       />
-      <div id="affixes">
+      <div className={classes.affixes}>
         <ModsTable
-          className="prefixes"
+          className={classNames(classes.affixTable, classes.prefixes)}
           details={prefixes}
           grouped={true}
           defaultExpanded={true}
         />
         <ModsTable
-          className="suffixes"
+          className={classNames(classes.affixTable, classes.suffixes)}
           details={suffixes}
           grouped={true}
           defaultExpanded={true}
@@ -40,6 +67,6 @@ const AvailableMods: SFC<Props> = ({ prefixes, suffixes, implicits }) => {
       </div>
     </section>
   );
-};
+}
 
 export default AvailableMods;

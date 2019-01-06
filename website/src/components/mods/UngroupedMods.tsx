@@ -1,6 +1,8 @@
+import { createStyles, makeStyles } from '@material-ui/styles';
 import classNames from 'classnames';
+import { colors } from 'poe-components-item';
 import { Mod } from 'poe-mods';
-import React, { PureComponent } from 'react';
+import React from 'react';
 
 import FormattedModName from 'containers/i18n/FormattedModName';
 import { isDisabled } from 'util/flags';
@@ -20,126 +22,188 @@ export interface Props {
   onSortChange: (index: number, newOrder: 'asc' | 'desc') => void;
 }
 
-const renderSpawnweight = (spawnweight?: number) =>
-  String(spawnweight || 'none');
+const styles = createStyles({
+  disabled: {
+    textDecoration: 'line-through',
+  },
+  colIlvl: {
+    width: '2em',
+    textAlign: 'right',
+  },
+  colName: {},
+  colStats: {
+    flex: 1,
+  },
+  colSpanwChance: {
+    textAlign: 'right',
+    width: '4em',
+  },
+  colAddMod: {
+    width: '2em',
+  },
+  colorScale0: {
+    color: '#ff0000',
+  },
+  colorScale1: {
+    color: '#ff7f00',
+  },
+  colorScale2: {
+    color: '#ffff00',
+  },
+  colorScale3: {
+    color: '#7fff00',
+  },
+  colorScale4: {
+    color: '#00ff00',
+  },
+  enchantmentMod: {
+    color: colors.enchant_color,
+  },
+  masterMod: {
+    color: colors.crafted_color,
+  },
+  modStats: {
+    color: colors.mod_stats,
+  },
+  stats: {},
+});
+const useClasses = makeStyles(styles);
 
-export default class UngroupedMods extends PureComponent<Props> {
-  public render() {
-    const {
-      details: all_details,
-      exclude = [],
-      sortColumn,
-      sortOrder,
-      onSortChange
-    } = this.props;
-
-    const columns = this.getColumns();
-
-    return (
-      <Table
-        data={all_details}
-        columns={columns.filter(({ id }) => !exclude.includes(id))}
-        getTrProps={this.getTrProps}
-        sortColumn={sortColumn}
-        sortOrder={sortOrder}
-        onSortChange={onSortChange}
-      />
-    );
-  }
-
-  private getColumns(): Table<GeneratorDetails>['props']['columns'] {
-    const { onAddMod } = this.props;
-
-    return [
-      {
-        renderCell: (details: GeneratorDetails) => details.mod.props.level,
-        className: 'ilvl',
-        id: 'ilvl',
-        renderHeader: () => 'iLvl',
-        sortBy: (details: GeneratorDetails) => details.mod.props.level
-      },
-      {
-        renderCell: (details: GeneratorDetails) => {
-          const id = `${details.mod.props.id}-stats`;
-          const { mod } = details;
-
-          return (
-            <div>
-              <span
-                id={id}
-                className={classNames('mod-stats', {
-                  master: mod.isMasterMod(),
-                  enchantment: mod.isEnchantment()
-                })}
-              >
-                <Stats className="stats" stats={mod.statsJoined()} />
-              </span>
-              <FlagsTooltip
-                id={id}
-                flags={[details.applicable, details.spawnable]}
-              />
-            </div>
-          );
-        },
-        className: 'stats',
-        renderHeader: () => 'Stats',
-        id: 'stats'
-      },
-      {
-        renderCell: (details: GeneratorDetails) => (
-          <FormattedModName mod={details.mod} />
-        ),
-        className: 'name',
-        renderHeader: () => 'Name',
-        id: 'name'
-      },
-      {
-        renderCell: ({
-          spawnchance,
-          spawnweight,
-          relative_weight = 0
-        }: GeneratorDetails) => {
-          if (spawnchance !== undefined) {
-            return (
-              <span
-                title={renderSpawnweight(spawnweight)}
-                className={classNames(
-                  'color-scale',
-                  // scale 0..1 to from 0..4
-                  `scale-${Math.floor(relative_weight * 4)}`
-                )}
-              >
-                {(spawnchance * 100).toFixed(2)}%
-              </span>
-            );
-          } else {
-            return renderSpawnweight(spawnweight);
-          }
-        },
-        className: 'spawn-chance',
-        renderHeader: () => 'Chance',
-        id: 'chance',
-        sortBy: ({ relative_weight }: GeneratorDetails) =>
-          relative_weight == null ? 0 : relative_weight
-      },
-      {
-        className: 'add-mod',
-        id: 'add_mod',
-        renderHeader: () => '',
-        renderCell: details => {
-          return (
-            !isDisabled(details) && (
-              <AddMod mod={details.mod} onClick={onAddMod} />
-            )
-          );
-        }
-      }
-    ];
-  }
-
-  private getTrProps(data: GeneratorDetails) {
-    return {
-      className: classNames({ disabled: isDisabled(data) })
-    };
-  }
+function renderSpawnweight(spawnweight?: number) {
+  return String(spawnweight || 'none');
 }
+
+function UngroupedMods(props: Props) {
+  const {
+    details: all_details,
+    exclude = [],
+    sortColumn,
+    sortOrder,
+    onAddMod,
+    onSortChange,
+  } = props;
+
+  const classes = useClasses();
+  function getColorScaleClassName(relativeWeight: number): string {
+    // scale 0..1 to from 0..4
+    // @ts-ignore
+    return String(classes[`colorScale${Math.floor(relativeWeight * 4)}`]);
+  }
+
+  const allColumns = React.useMemo(
+    () => {
+      const columns: Table<GeneratorDetails>['props']['columns'] = [
+        {
+          renderCell: (details: GeneratorDetails) => details.mod.props.level,
+          className: classes.colIlvl,
+          id: 'ilvl',
+          renderHeader: () => 'iLvl',
+          sortBy: (details: GeneratorDetails) => details.mod.props.level,
+        },
+        {
+          renderCell: (details: GeneratorDetails) => {
+            const { mod } = details;
+
+            return (
+              <div>
+                <FlagsTooltip flags={[details.applicable, details.spawnable]}>
+                  <span
+                    className={classNames(classes.modStats, {
+                      [classes.masterMod]: mod.isMasterMod(),
+                      [classes.enchantmentMod]: mod.isEnchantment(),
+                    })}
+                  >
+                    <Stats
+                      className={classes.stats}
+                      stats={mod.statsJoined()}
+                    />
+                  </span>
+                </FlagsTooltip>
+              </div>
+            );
+          },
+          className: classes.colStats,
+          renderHeader: () => 'Stats',
+          id: 'stats',
+        },
+        {
+          renderCell: (details: GeneratorDetails) => (
+            <FormattedModName mod={details.mod} />
+          ),
+          className: classes.colName,
+          renderHeader: () => 'Name',
+          id: 'name',
+        },
+        {
+          renderCell: ({
+            spawnchance,
+            spawnweight,
+            relative_weight = 0,
+          }: GeneratorDetails) => {
+            if (spawnchance !== undefined) {
+              return (
+                <span
+                  title={renderSpawnweight(spawnweight)}
+                  className={getColorScaleClassName(relative_weight)}
+                >
+                  {(spawnchance * 100).toFixed(2)}%
+                </span>
+              );
+            } else {
+              return renderSpawnweight(spawnweight);
+            }
+          },
+          className: classes.colSpanwChance,
+          renderHeader: () => 'Chance',
+          id: 'chance',
+          sortBy: ({ relative_weight }: GeneratorDetails) =>
+            relative_weight == null ? 0 : relative_weight,
+        },
+        {
+          className: classes.colAddMod,
+          id: 'add_mod',
+          renderHeader: () => '',
+          renderCell: details => {
+            return (
+              !isDisabled(details) && (
+                <AddMod mod={details.mod} onClick={onAddMod} />
+              )
+            );
+          },
+        },
+      ];
+
+      return columns;
+    },
+    [onAddMod, ...Object.values(classes)],
+  );
+
+  const displayedColumns = React.useMemo(
+    () => {
+      return allColumns.filter(({ id }) => !exclude.includes(id));
+    },
+    [allColumns, exclude],
+  );
+
+  const getTrProps = React.useCallback(
+    (data: GeneratorDetails) => {
+      return {
+        className: classNames({ [classes.disabled]: isDisabled(data) }),
+      };
+    },
+    [classes.disabled],
+  );
+
+  return (
+    <Table
+      data={all_details}
+      columns={displayedColumns}
+      getTrProps={getTrProps}
+      sortColumn={sortColumn}
+      sortOrder={sortOrder}
+      onSortChange={onSortChange}
+    />
+  );
+}
+
+export default React.memo(UngroupedMods);
