@@ -3,7 +3,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { createStyles, makeStyles } from '@material-ui/styles';
 import React from 'react';
 
-import ApplyGenerator from 'containers/ApplyGenerator';
 import BaseItemModal from 'containers/baseitem_picker/Modal';
 import GeneratorModal from 'containers/GeneratorModal';
 import LanguagePicker from 'containers/LanguagePicker';
@@ -65,7 +64,6 @@ function Header(props: Props) {
         </Typography>
         <BaseItemModal />
         <GeneratorModal />
-        <ApplyGenerator />
         <LanguagePicker locales={locales} />
       </Toolbar>
     </AppBar>

@@ -20,7 +20,9 @@ const LanguagePicker: SFC<Props> = props => {
   const [anchor, setAnchor] = React.useState<null | HTMLElement>(null);
   const handleIconClick = React.useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
-      setAnchor(currentAnchor => (currentAnchor ? null : event.currentTarget));
+      const { currentTarget } = event;
+      // toggle between hide/show
+      setAnchor(currentAnchor => (currentAnchor ? null : currentTarget));
     },
     [],
   );
