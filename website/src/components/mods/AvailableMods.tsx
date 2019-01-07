@@ -48,6 +48,7 @@ function AvailableMods(props: Props) {
         className={classes.implicits}
         details={implicits}
         grouped={false}
+        human="Implicits"
         exclude={implicits_table_exclude}
         defaultExpanded={false}
       />
@@ -57,12 +58,14 @@ function AvailableMods(props: Props) {
           details={prefixes}
           grouped={true}
           defaultExpanded={true}
+          human="prefixes"
         />
         <ModsTable
           className={classNames(classes.affixTable, classes.suffixes)}
           details={suffixes}
           grouped={true}
           defaultExpanded={true}
+          human="suffixes"
         />
       </div>
     </section>
