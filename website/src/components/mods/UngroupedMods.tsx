@@ -6,7 +6,7 @@ import React from 'react';
 
 import FormattedModName from 'containers/i18n/FormattedModName';
 import { isDisabled } from 'util/flags';
-import Table from '../FlexTable';
+import Table, { Props as TableProps } from '../FlexTable';
 import Stats from '../poe/Stats';
 import AddMod from './AddMod';
 import FlagsTooltip from './FlagsTooltip';
@@ -83,7 +83,7 @@ function UngroupedMods(props: Props) {
     onSortChange,
   } = props;
 
-  const classes = useClasses();
+  const classes = useClasses(props);
   function getColorScaleClassName(relativeWeight: number): string {
     // scale 0..1 to from 0..4
     // @ts-ignore
@@ -92,7 +92,7 @@ function UngroupedMods(props: Props) {
 
   const allColumns = React.useMemo(
     () => {
-      const columns: Table<GeneratorDetails>['props']['columns'] = [
+      const columns: TableProps<GeneratorDetails>['columns'] = [
         {
           renderCell: (details: GeneratorDetails) => details.mod.props.level,
           className: classes.colIlvl,
@@ -197,8 +197,8 @@ function UngroupedMods(props: Props) {
   return (
     <Table
       data={all_details}
-      columns={displayedColumns}
-      getTrProps={getTrProps}
+      columns={displayedColumns as any}
+      getTrProps={getTrProps as any}
       sortColumn={sortColumn}
       sortOrder={sortOrder}
       onSortChange={onSortChange}

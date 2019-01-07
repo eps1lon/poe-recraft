@@ -23,8 +23,6 @@ const styles = createStyles({
 });
 const useClasses = makeStyles(styles);
 
-const default_props = {};
-
 function LocaleIcon(props: Props) {
   const { code } = props;
   const locale = locales[code];
@@ -41,7 +39,5 @@ function LocaleIcon(props: Props) {
     </span>
   );
 }
-
-LocaleIcon.defaultProps = default_props;
 
 export default LocaleIcon;

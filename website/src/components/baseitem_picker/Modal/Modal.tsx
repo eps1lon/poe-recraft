@@ -7,7 +7,6 @@ import FillLoading from 'components/FillLoading';
 import Filter from 'containers/baseitem_picker/Filter';
 import Picker from 'containers/baseitem_picker/Picker';
 import { BaseItemTypeProps } from 'state/poe/schema';
-import './style.css';
 
 export interface Props {
   active: BaseItemTypeProps | undefined;
@@ -25,10 +24,6 @@ const styles = createStyles({
   },
 });
 const useClasses = makeStyles(styles);
-
-const default_props = {
-  onToggle: () => {},
-};
 
 function BaseItemModal(props: Props) {
   const { active, loading, onToggle: toggle } = props;
@@ -64,7 +59,5 @@ function BaseItemModal(props: Props) {
     </div>
   );
 }
-
-BaseItemModal.defaultProps = default_props;
 
 export default BaseItemModal;

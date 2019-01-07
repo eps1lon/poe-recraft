@@ -23,7 +23,7 @@ const styles = createStyles({
 });
 const useClasses = makeStyles(styles);
 
-function Picker(props: Props) {
+const Picker: React.FunctionComponent<Props> = props => {
   const { baseitems, onChange } = props;
   const classes = useClasses();
 
@@ -50,7 +50,7 @@ function Picker(props: Props) {
       </div>
     </>
   );
-}
+};
 
 Picker.defaultProps = {
   onChange: () => {},

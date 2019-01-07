@@ -2,6 +2,7 @@ import { CssBaseline } from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles';
 import { createStyles, makeStyles } from '@material-ui/styles';
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Body from 'components/Body';
 import Header from 'components/Header';
@@ -52,7 +53,16 @@ interface DrawerProps {
   open: boolean;
 }
 function Drawer(props: DrawerProps) {
+  const { open } = props;
+  console.log(open);
   return null;
 }
 
-export default AppUI;
+type StateProps = Pick<Props, 'isDrawerOpen'>;
+const mapStateToProps = (): StateProps => {
+  return {
+    isDrawerOpen: false,
+  };
+};
+
+export default connect(mapStateToProps)(AppUI);

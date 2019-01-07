@@ -9,8 +9,8 @@ export interface Props<T> {
   columns: Array<Column<T>>;
   data: T[];
   getTrProps: (data: T) => Partial<Pick<RowProps<T>, 'className'>>;
-  sortColumn: number;
-  sortOrder: 'asc' | 'desc';
+  sortColumn?: number;
+  sortOrder?: 'asc' | 'desc';
   onSortChange: (index: number, newOrder: 'asc' | 'desc') => void;
 }
 
@@ -28,8 +28,8 @@ function Table<T>(props: Props<T>) {
     data,
     getTrProps,
     onSortChange,
-    sortColumn,
-    sortOrder,
+    sortColumn = -1,
+    sortOrder = 'asc',
   } = props;
 
   const classes = useClasses();
@@ -51,18 +51,13 @@ function Table<T>(props: Props<T>) {
 
   return (
     <div className={classes.root}>
-      <Header columns={columns} onHeaderClick={handleHeaderClick} />
+      <Header columns={columns as any} onHeaderClick={handleHeaderClick} />
       {sorted_data.map((row, i) => (
         <Row key={i} data={row} columns={columns as any} {...getTrProps(row)} />
       ))}
     </div>
   );
 }
-
-Table.defaultProps = {
-  sortColumn: -1,
-  sortOrder: 'asc',
-};
 
 export default React.memo(Table);
 

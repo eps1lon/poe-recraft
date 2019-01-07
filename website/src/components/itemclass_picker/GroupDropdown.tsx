@@ -18,6 +18,7 @@ const GroupDropdown: SFC<Props> = props => {
   );
 };
 
+// @ts-ignore: needs props to be considered a component
 function DropdownMenu(props: any) {
   return null;
 }

@@ -52,10 +52,12 @@ export default class ItemClassGroup extends PureComponent<Props, State> {
   }
 }
 
+// @ts-ignore
 function DropdownToggle(props: any) {
   return null;
 }
 
+// @ts-ignore
 function Dropdown(props: any) {
   return null;
 }

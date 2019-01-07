@@ -1,2 +1,1 @@
-import Picker from './Picker';
-export default Picker;
+export { default, Props } from './Picker';

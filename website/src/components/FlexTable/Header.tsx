@@ -44,8 +44,4 @@ function Header<T>(props: Props<T>) {
   );
 }
 
-Header.defaultProps = {
-  onHeaderClick: () => {},
-};
-
 export default React.memo(Header);

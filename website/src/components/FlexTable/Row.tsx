@@ -9,11 +9,6 @@ export interface Props<T> {
   className?: string;
   columns: Array<Column<T>>;
   data: T;
-  renderCell: (
-    column: Column<T>,
-    index: number,
-    columns: Array<Column<T>>,
-  ) => React.ReactNode;
 }
 
 const styles = createStyles({

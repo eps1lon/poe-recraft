@@ -29,7 +29,7 @@ const useClasses = makeStyles((theme: Theme) =>
   }),
 );
 
-function AppContent(props: Props) {
+function AppContent() {
   const classes = useClasses();
   return (
     <main className={classes.root}>

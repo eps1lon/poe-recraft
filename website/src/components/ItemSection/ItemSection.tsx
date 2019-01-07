@@ -6,10 +6,9 @@ import EditItem from 'containers/edit_item/Modal';
 import Generators from 'containers/ItemSection/Generators';
 
 import 'poe-components-item/themes/poe.css';
-import './style.css';
 
 export interface Props {
-  item?: PropsType<typeof ItemPopup>['item'] | undefined;
+  item?: PropsOf<typeof ItemPopup>['item'] | undefined;
   display_generators?: boolean;
 }
 

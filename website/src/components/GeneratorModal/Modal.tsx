@@ -1,6 +1,6 @@
 import { Button, Dialog, DialogContent, DialogTitle } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/styles';
-import React, { SFC } from 'react';
+import React from 'react';
 
 import FillLoading from 'components/FillLoading';
 import { FormattedGenerator } from 'components/i18n';
@@ -22,11 +22,6 @@ const styles = createStyles({
   },
 });
 const useClasses = makeStyles(styles);
-
-const default_props = {
-  onChange: () => {},
-  onToggle: () => {},
-};
 
 function GeneratorModal(props: Props) {
   const { onChange, onToggle: toggle } = props;
@@ -57,7 +52,5 @@ function GeneratorModal(props: Props) {
     </div>
   );
 }
-
-GeneratorModal.defaultProps = default_props;
 
 export default GeneratorModal;

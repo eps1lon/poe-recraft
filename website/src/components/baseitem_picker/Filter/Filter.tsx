@@ -12,7 +12,7 @@ export interface BaseitemFilter {
 export interface Props {
   item_class: string;
   tags: string[][];
-  onChange: (filter: BaseitemFilter) => void;
+  onChange?: (filter: BaseitemFilter) => void;
 }
 
 const styles = createStyles({
@@ -45,12 +45,16 @@ const defence_combinations = [
   'str_int_armour',
 ];
 
-function Filter(props: Props) {
+const Filter: React.SFC<Props> = (props: Props) => {
   const { item_class, onChange } = props;
   const classes = useClasses();
 
   const handleTagFilterClick = React.useCallback(
     (clicked_tag: string) => {
+      if (onChange == null) {
+        return;
+      }
+
       onChange({
         item_class,
         tags: [[clicked_tag]],
@@ -82,10 +86,6 @@ function Filter(props: Props) {
     );
   }
   return null;
-}
-
-Filter.defaultProps = {
-  onChange: () => {},
 };
 
 export default React.memo(Filter);

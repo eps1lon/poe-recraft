@@ -1,10 +1,8 @@
-import { IconButton, Menu, MenuItem, Tooltip } from '@material-ui/core';
+import { IconButton, Menu, Tooltip } from '@material-ui/core';
 import LanguageIcon from '@material-ui/icons/Language';
 import React, { SFC } from 'react';
 
 import Locale from './Locale';
-
-import './style.css';
 
 export interface Props {
   active_locale: string;

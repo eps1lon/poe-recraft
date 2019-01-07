@@ -13,10 +13,10 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-type DispatchProps = Pick<Filter['props'], 'onChange'>;
+type DispatchProps = Pick<PropsOf<typeof Filter>, 'onChange'>;
 const mapDispatchToProps = (
   dispatch: Dispatch,
-  own_props: Pick<Filter['props'], 'onChange'>,
+  own_props: Pick<PropsOf<typeof Filter>, 'onChange'>,
 ): DispatchProps => {
   return {
     onChange: (filter: BaseitemFilter) => {

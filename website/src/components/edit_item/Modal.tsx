@@ -9,11 +9,7 @@ export interface Props {
   onToggle: () => void;
 }
 
-const default_props = {
-  onToggle: () => {},
-};
-
-function EditModal(props: Props) {
+const EditModal: React.FunctionComponent<Props> = props => {
   const { className, onToggle } = props;
 
   return (
@@ -28,8 +24,10 @@ function EditModal(props: Props) {
       </Dialog>
     </div>
   );
-}
+};
 
-EditModal.defaultProps = default_props;
+EditModal.defaultProps = {
+  onToggle: () => {},
+};
 
 export default EditModal;

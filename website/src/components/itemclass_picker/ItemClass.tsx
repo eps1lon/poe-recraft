@@ -27,6 +27,7 @@ export default class ItemClassGroup extends PureComponent<Props> {
   };
 }
 
+// @ts-ignore
 function DropdownItem(props: any) {
   return null;
 }

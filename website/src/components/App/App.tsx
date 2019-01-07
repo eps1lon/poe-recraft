@@ -1,3 +1,5 @@
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import React, { PureComponent } from 'react';
 import { IntlProvider } from 'react-intl';
 
@@ -10,6 +12,8 @@ export interface Props {
   init: () => void;
   version: string;
 }
+
+const theme = createMuiTheme();
 
 class App extends PureComponent<Props> {
   public componentDidMount() {
@@ -25,7 +29,9 @@ class App extends PureComponent<Props> {
 
     return (
       <IntlProvider key={key} locale={locale} messages={messages}>
-        <AppUI {...{ app_version: version, game_version: GAME_VERSION }} />
+        <ThemeProvider theme={theme}>
+          <AppUI {...{ app_version: version, game_version: GAME_VERSION }} />
+        </ThemeProvider>
       </IntlProvider>
     );
   }

@@ -10,12 +10,12 @@ export interface Props {
   className: string;
   // if no expanded is passed (i.e. == null) then this value is considered as Boolean casted
   defaultExpanded?: boolean;
-  exclude: string[];
+  exclude?: string[];
   expanded?: boolean;
+  grouped?: boolean;
   group_expanded: boolean;
   human?: string;
   details: GeneratorDetails[];
-  grouped: boolean;
   onGroupToggle: (group: string) => void;
   onToggle: (group: string, show: boolean) => void;
 }
@@ -42,21 +42,26 @@ export interface GeneratorDetails {
   relative_weight?: number;
 }
 
+const defaultProps = {
+  exclude: [],
+  grouped: false,
+};
+
 function ModsTable(props: Props) {
   const { className } = props;
   const {
     defaultExpanded,
+    exclude = defaultProps.exclude,
     expanded: expandedProp,
     group_expanded,
     human = className,
     details,
-    grouped,
-    exclude,
+    grouped = defaultProps.grouped,
     onGroupToggle,
     onToggle,
   } = props;
 
-  const classes = useClasses();
+  const classes = useClasses(props);
 
   function handleCaptionClick() {
     onToggle(className, expanded);
@@ -94,10 +99,5 @@ function ModsTable(props: Props) {
     </div>
   );
 }
-
-ModsTable.defaultProps = {
-  exclude: [],
-  grouped: false,
-};
 
 export default React.memo(ModsTable);
