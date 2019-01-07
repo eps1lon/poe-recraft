@@ -1,5 +1,4 @@
 import { createStyles, makeStyles } from '@material-ui/styles';
-import classNames from 'classnames';
 import React from 'react';
 
 import { GeneratorDetails } from './ModsTable';
@@ -13,25 +12,19 @@ export interface Props {
 }
 
 const styles = createStyles({
-  affixes: {
-    display: 'table-row',
-    width: '100%',
+  affixes: {},
+  implicits: {
+    flex: '0 1 100%',
   },
-  affixTable: {
-    width: '49%',
-    display: 'table-cell',
-    verticalAlign: 'top',
-  },
-  implicits: {},
   prefixes: {
-    borderRight: '1px solid white',
+    flex: '1 0 50%',
   },
   root: {
-    display: 'table',
-    width: '100%',
+    display: 'flex',
+    flexFlow: 'row wrap',
   },
   suffixes: {
-    borderLeft: '1px solid white',
+    flexGrow: 1,
   },
 });
 const useClasses = makeStyles(styles);
@@ -52,22 +45,20 @@ function AvailableMods(props: Props) {
         exclude={implicits_table_exclude}
         defaultExpanded={false}
       />
-      <div className={classes.affixes}>
-        <ModsTable
-          className={classNames(classes.affixTable, classes.prefixes)}
-          details={prefixes}
-          grouped={true}
-          defaultExpanded={true}
-          human="prefixes"
-        />
-        <ModsTable
-          className={classNames(classes.affixTable, classes.suffixes)}
-          details={suffixes}
-          grouped={true}
-          defaultExpanded={true}
-          human="suffixes"
-        />
-      </div>
+      <ModsTable
+        className={classes.prefixes}
+        details={prefixes}
+        grouped={true}
+        defaultExpanded={true}
+        human="prefixes"
+      />
+      <ModsTable
+        className={classes.suffixes}
+        details={suffixes}
+        grouped={true}
+        defaultExpanded={true}
+        human="suffixes"
+      />
     </section>
   );
 }

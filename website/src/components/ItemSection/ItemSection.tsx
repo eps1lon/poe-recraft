@@ -1,3 +1,4 @@
+import { Paper } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/styles';
 import { PopupIntl as ItemPopup } from 'poe-components-item';
 import React, { SFC } from 'react';
@@ -15,7 +16,6 @@ export interface Props {
 const useClasses = makeStyles(
   createStyles({
     item: {
-      display: 'inline-block',
       position: 'relative',
     },
     editItem: {
@@ -34,7 +34,7 @@ const ItemSection: SFC<Props> = props => {
   const classes = useClasses();
 
   return (
-    <section className={classes.item}>
+    <Paper className={classes.item}>
       {item != null && <ItemPopup item={item} />}
       <EditItem className={classes.editItem} />
       {display_generators && (
@@ -42,7 +42,7 @@ const ItemSection: SFC<Props> = props => {
           <Generators />
         </div>
       )}
-    </section>
+    </Paper>
   );
 };
 

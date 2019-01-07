@@ -1,3 +1,4 @@
+import { Typography } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/styles';
 import classnames from 'classnames';
 import React from 'react';
@@ -18,12 +19,8 @@ export interface Props {
 
 const styles = createStyles({
   title: {
-    color: 'inherit',
     cursor: 'pointer',
-    fontSize: '1.05em',
-    '&:hover': {
-      color: 'white',
-    },
+    fontSize: "1.05em",
     '&:$disabled': {
       textDecoration: 'line-through',
     },
@@ -52,12 +49,13 @@ function ModGroup(props: Props) {
 
   return (
     <>
-      <h5
+      <Typography
         className={classnames(classes.title, { [classes.disabled]: disabled })}
         onClick={handleClick}
+        variant="h5"
       >
         <CorrectGroup mods={mods} />
-      </h5>
+      </Typography>
       {isExpanded(group) && (
         <UngroupedMods
           className={className}

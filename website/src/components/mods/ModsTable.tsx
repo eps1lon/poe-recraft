@@ -1,5 +1,6 @@
-import { Button } from '@material-ui/core';
+import { Button, Paper, Typography } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/styles';
+import classNames from 'classnames';
 import { Flags, Mod } from 'poe-mods';
 import React from 'react';
 
@@ -20,17 +21,17 @@ export interface Props {
   onToggle: (group: string, show: boolean) => void;
 }
 
-const styles = createStyles({
-  title: {
-    color: 'inherit',
-    cursor: 'pointer',
-    fontSize: '1.3em',
-
-    '&:hover': {
-      color: 'white',
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      marginTop: theme.spacing.unit,
+      padding: theme.spacing.unit * 2,
     },
-  },
-});
+    title: {
+      cursor: 'pointer',
+      fontSize: '1.3em',
+    },
+  });
 const useClasses = makeStyles(styles);
 
 export interface GeneratorDetails {
@@ -79,12 +80,13 @@ function ModsTable(props: Props) {
   const Mods = grouped && !group_expanded ? GroupedMods : UngroupedMods;
 
   return (
-    <div className={className}>
-      <h4
+    <Paper className={classNames(classes.root, className)}>
+      <Typography
         aria-expanded={group_expanded}
         aria-haspopup={true}
         className={classes.title}
         onClick={handleCaptionClick}
+        variant="h4"
       >
         {human} /<span>{details.length}</span>
         {grouped && (
@@ -92,11 +94,11 @@ function ModsTable(props: Props) {
             {group_expanded ? 'Grouped' : 'Ungrouped'}
           </Button>
         )}
-      </h4>
+      </Typography>
       {expanded && (
         <Mods className={className} details={details} exclude={exclude} />
       )}
-    </div>
+    </Paper>
   );
 }
 
