@@ -1,5 +1,4 @@
 import { Divider } from '@material-ui/core';
-import { Theme } from '@material-ui/core/styles';
 import { createStyles, makeStyles } from '@material-ui/styles';
 import React from 'react';
 

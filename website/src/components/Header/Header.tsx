@@ -1,5 +1,4 @@
 import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
-import { Theme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import { createStyles, makeStyles } from '@material-ui/styles';
 import React from 'react';

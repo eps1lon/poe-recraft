@@ -1,11 +1,10 @@
 import { CssBaseline } from '@material-ui/core';
-import { Theme } from '@material-ui/core/styles';
 import { createStyles, makeStyles } from '@material-ui/styles';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Body from 'components/Body';
-import Header from 'components/Header';
+import Body from '../Body';
+import Header from '../Header';
 
 import * as settings from './settings';
 
