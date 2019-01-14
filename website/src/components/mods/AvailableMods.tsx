@@ -24,16 +24,16 @@ const styles = createStyles({
     flexFlow: 'row wrap',
   },
   suffixes: {
-    flexGrow: 1,
+    flex: '1 0 50%',
   },
 });
-const useClasses = makeStyles(styles);
+const useClasses = makeStyles(styles, { name: 'AvailableMods' });
 
 const implicits_table_exclude = ['name'];
 
 function AvailableMods(props: Props) {
   const { prefixes, suffixes, implicits } = props;
-  const classes = useClasses();
+  const classes = useClasses({});
 
   return (
     <section className={classes.root}>

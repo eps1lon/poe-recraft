@@ -32,7 +32,7 @@ const styles = (theme: Theme) =>
       fontSize: '1.3em',
     },
   });
-const useClasses = makeStyles(styles);
+const useClasses = makeStyles(styles, { name: 'ModsTable' });
 
 export interface GeneratorDetails {
   mod: Mod;

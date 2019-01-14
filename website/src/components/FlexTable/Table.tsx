@@ -17,10 +17,9 @@ export interface Props<T> {
 const styles = createStyles({
   root: {
     marginLeft: 1,
-    backgroundColor: '#000001',
   },
 });
-const useClasses = makeStyles(styles);
+const useClasses = makeStyles(styles, { name: 'FlexTable' });
 
 function Table<T>(props: Props<T>) {
   const {
@@ -32,7 +31,7 @@ function Table<T>(props: Props<T>) {
     sortOrder = 'asc',
   } = props;
 
-  const classes = useClasses();
+  const classes = useClasses({});
 
   const handleHeaderClick = React.useCallback(
     (index: number) => {

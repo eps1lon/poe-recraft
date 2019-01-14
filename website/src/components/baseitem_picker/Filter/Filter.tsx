@@ -47,7 +47,7 @@ const defence_combinations = [
 
 const Filter: React.SFC<Props> = (props: Props) => {
   const { item_class, onChange } = props;
-  const classes = useClasses();
+  const classes = useClasses({});
 
   const handleTagFilterClick = React.useCallback(
     (clicked_tag: string) => {

@@ -67,7 +67,7 @@ const styles = createStyles({
   },
   stats: {},
 });
-const useClasses = makeStyles(styles);
+const useClasses = makeStyles(styles, { name: 'UngroupedMods' });
 
 function renderSpawnweight(spawnweight?: number) {
   return String(spawnweight || 'none');

@@ -26,7 +26,7 @@ const useClasses = makeStyles(styles);
 function GeneratorModal(props: Props) {
   const { onChange, onToggle: toggle } = props;
 
-  const classes = useClasses();
+  const classes = useClasses({});
 
   const handleChange = React.useCallback(
     (id: GeneratorId) => {

@@ -25,7 +25,7 @@ const useClasses = makeStyles(styles);
 
 const Picker: React.FunctionComponent<Props> = props => {
   const { baseitems, onChange } = props;
-  const classes = useClasses();
+  const classes = useClasses({});
 
   return (
     <>

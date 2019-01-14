@@ -24,7 +24,7 @@ export interface Props {
 function Generators(props: Props) {
   const { className, onClick } = props;
 
-  const classes = useClasses();
+  const classes = useClasses({});
   const orbClasses = React.useMemo(
     () => ({
       button: classes.orbButton,

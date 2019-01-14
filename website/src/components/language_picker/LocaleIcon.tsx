@@ -26,7 +26,7 @@ const useClasses = makeStyles(styles);
 function LocaleIcon(props: Props) {
   const { code } = props;
   const locale = locales[code];
-  const classes = useClasses();
+  const classes = useClasses({});
 
   if (locale === undefined) {
     throw new Error(`unsupported language '${code}'`);

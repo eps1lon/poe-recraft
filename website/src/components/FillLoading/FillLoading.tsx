@@ -36,7 +36,7 @@ const duration = 5000;
 
 function FillLoading(props: Props) {
   const { loading } = props;
-  const { root, ...transitionClasses } = useClasses();
+  const { root, ...transitionClasses } = useClasses({});
 
   return (
     <CSSTransition

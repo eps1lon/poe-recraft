@@ -31,7 +31,7 @@ const useClasses = makeStyles(
 
 const ItemSection: SFC<Props> = props => {
   const { display_generators, item } = props;
-  const classes = useClasses();
+  const classes = useClasses({});
 
   return (
     <Paper className={classes.item}>

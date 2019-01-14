@@ -24,7 +24,7 @@ const useClasses = makeStyles(styles);
 function Picker(props: Props) {
   const { onChange } = props;
 
-  const classes = useClasses();
+  const classes = useClasses({});
 
   const handleElderClick = React.useCallback(() => onChange('elder'), [
     onChange,

@@ -30,7 +30,7 @@ const useClasses = makeStyles((theme: Theme) =>
 
 function AppUI(props: Props) {
   const { isDrawerOpen } = props;
-  const classes = useClasses();
+  const classes = useClasses({});
 
   return (
     <div className={classes.root}>
@@ -53,6 +53,7 @@ interface DrawerProps {
 }
 function Drawer(props: DrawerProps) {
   const { open } = props;
+  /* tslint:disable:no-console */
   console.log(open);
   return null;
 }

@@ -13,20 +13,24 @@ export interface Props<T> {
 
 const styles = createStyles({
   root: {
+    backgroundColor: '#000',
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'nowrap',
+    marginBottom: 1,
     width: '95%',
   },
   cell: {
     flexGrow: 0,
+    paddingLeft: 1,
+    paddingRight: 1,
   },
 });
 const useClasses = makeStyles(styles);
 
 function Row<T>(props: Props<T>) {
   const { columns, data } = props;
-  const classes = useClasses();
+  const classes = useClasses({});
 
   return (
     <div className={classes.root}>

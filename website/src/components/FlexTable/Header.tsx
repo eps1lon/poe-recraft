@@ -9,24 +9,28 @@ export interface Props<T> {
   columns: Array<Column<T>>;
   onHeaderClick: (index: number) => void;
 }
-const styles = createStyles({
-  root: {
-    borderBottom: '1px solid grey',
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
-    width: '95%',
-  },
-  cell: {
-    flexGrow: 0,
-    fontWeight: 'bold',
-  },
-});
-const useClasses = makeStyles(styles);
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'nowrap',
+      marginBottom: 1,
+      width: '95%',
+    },
+    cell: {
+      ...theme.typography.subtitle1,
+      flexGrow: 0,
+      fontWeight: 'bold',
+      paddingLeft: 1,
+      paddingRight: 1,
+    },
+  });
+const useClasses = makeStyles(styles, { name: 'FlexTableHeader' });
 
 function Header<T>(props: Props<T>) {
   const { columns, onHeaderClick } = props;
-  const classes = useClasses();
+  const classes = useClasses({});
 
   return (
     <div className={classes.root}>

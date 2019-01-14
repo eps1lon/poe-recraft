@@ -40,7 +40,7 @@ function ModGroup(props: Props) {
     onGroupClick,
   } = props;
 
-  const classes = useClasses();
+  const classes = useClasses({});
   const mods = React.useMemo(() => details.map(({ mod }) => mod), [details]);
   const handleClick = React.useCallback(() => onGroupClick(group), [
     group,

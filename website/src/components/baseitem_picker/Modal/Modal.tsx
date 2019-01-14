@@ -27,7 +27,7 @@ const useClasses = makeStyles(styles);
 
 function BaseItemModal(props: Props) {
   const { active, loading, onToggle: toggle } = props;
-  const classes = useClasses();
+  const classes = useClasses({});
 
   return (
     <div className={classes.root}>

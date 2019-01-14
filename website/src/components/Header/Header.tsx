@@ -39,7 +39,7 @@ const useClasses = makeStyles((theme: Theme) =>
 
 function Header(props: Props) {
   const { locales, onDrawerClick } = props;
-  const classes = useClasses();
+  const classes = useClasses({});
 
   const title = 'Hello, World!';
 
