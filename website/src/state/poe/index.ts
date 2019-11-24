@@ -1,7 +1,8 @@
 import * as actions from './actions';
 import * as generators from './generators';
-import reducer, { State as PoeState } from './reducers';
+import reducer, { State } from './reducers';
 import * as selectors from './selectors';
 
-export { actions, generators, selectors, PoeState };
+export type PoeState = State;
+export { actions, generators, selectors };
 export default reducer;

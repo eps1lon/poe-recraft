@@ -1,7 +1,9 @@
 import * as actions from './actions';
-import reducer, { State as GuiState } from './reducers';
+import reducer, { State } from './reducers';
 import * as selectors from './selectors';
 import { GuiIdent } from './types';
 
-export { actions, GuiIdent, GuiState, selectors };
+export type GuiIdent = GuiIdent;
+export type GuiState = State;
+export { actions, selectors };
 export default reducer;

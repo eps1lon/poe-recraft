@@ -1,5 +1,6 @@
 import * as actions from './actions';
-import reducer, { State as I18nState } from './reducers';
+import reducer, { State } from './reducers';
 
-export { actions, I18nState };
+export type I18nState = State;
+export { actions };
 export default reducer;

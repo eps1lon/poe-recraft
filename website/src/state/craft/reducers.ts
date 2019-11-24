@@ -29,6 +29,7 @@ const reducer: Reducer<State, actions.Action> = (
     case actions.Type.SET_GENERATOR:
       return setGeneratorHandle(state, action);
     case actions.Type.USE_GENERATOR:
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       return useGeneratorHandle(state, action);
     default:
       const newItem = itemReducer(state.item, action);

@@ -1,5 +1,3 @@
-import { Action } from 'redux';
-
 import { BaseitemFilter } from './selectors';
 
 export enum Types {
