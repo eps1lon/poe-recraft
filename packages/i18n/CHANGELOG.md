@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased](https://github.com/eps1lon/poe-i18n/compare/v0.12.0...HEAD)
 ### Breaking
+- BREAKING: Use `typescript@3.2.x`
 - `base_chance_to_freeze` now uses correct arg number. Older descriptions without 
   the offset will not throw formatter not found. ([#75](https://github.com/eps1lon/poe-i18n/pull/75))
 ### Added

@@ -15,7 +15,7 @@ export default function withIntlProvider<P extends object, M extends object>(
     // using anything other that en without providing that (not used) locale data
     // results in messages being empty
     <IntlProvider locale="en" messages={messages}>
-      <Component {...props} />
+      <Component {...props as any} />
     </IntlProvider>
   );
 }
