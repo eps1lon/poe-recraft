@@ -27,3 +27,5 @@ export type ExclusifyUnion<U> = [U] extends [infer V]
     ? (V & { [P in Exclude<AllKeys<U>, keyof V>]?: never })
     : never
   : never;
+
+  export type PropsType<T> = T extends React.ComponentType<infer P> ? P : never;

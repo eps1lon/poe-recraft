@@ -7,6 +7,7 @@ import * as React from 'react';
 import ItemPopupIntl from './ItemPopupIntl';
 import { Messages as ApiPopupMessages } from './ApiPopup';
 import withIntlProvider from './withIntlProvider';
+import { PropsType } from '../../util/types';
 
 export { Rarity } from './ItemPopupIntl';
 export interface Messages extends ApiPopupMessages {
