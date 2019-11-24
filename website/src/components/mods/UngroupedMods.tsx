@@ -84,106 +84,105 @@ function UngroupedMods(props: Props) {
   } = props;
 
   const classes = useClasses(props);
-  function getColorScaleClassName(relativeWeight: number): string {
-    // scale 0..1 to from 0..4
-    // @ts-ignore
-    return String(classes[`colorScale${Math.floor(relativeWeight * 4)}`]);
-  }
 
-  const allColumns = React.useMemo(
-    () => {
-      const columns: TableProps<GeneratorDetails>['columns'] = [
-        {
-          renderCell: (details: GeneratorDetails) => details.mod.props.level,
-          className: classes.colIlvl,
-          id: 'ilvl',
-          renderHeader: () => 'iLvl',
-          sortBy: (details: GeneratorDetails) => details.mod.props.level,
-        },
-        {
-          renderCell: (details: GeneratorDetails) => {
-            const { mod } = details;
+  const allColumns = React.useMemo(() => {
+    function getColorScaleClassName(relativeWeight: number): string {
+      // scale 0..1 to from 0..4
+      // @ts-ignore
+      return String(classes[`colorScale${Math.floor(relativeWeight * 4)}`]);
+    }
 
-            return (
-              <div>
-                <FlagsTooltip flags={[details.applicable, details.spawnable]}>
-                  <span
-                    className={classNames(classes.modStats, {
-                      [classes.masterMod]: mod.isMasterMod(),
-                      [classes.enchantmentMod]: mod.isEnchantment(),
-                    })}
-                  >
-                    <Stats
-                      className={classes.stats}
-                      stats={mod.statsJoined()}
-                    />
-                  </span>
-                </FlagsTooltip>
-              </div>
-            );
-          },
-          className: classes.colStats,
-          renderHeader: () => 'Stats',
-          id: 'stats',
-        },
-        {
-          renderCell: (details: GeneratorDetails) => (
-            <FormattedModName mod={details.mod} />
-          ),
-          className: classes.colName,
-          renderHeader: () => 'Name',
-          id: 'name',
-        },
-        {
-          renderCell: ({
-            spawnchance,
-            spawnweight,
-            relative_weight = 0,
-          }: GeneratorDetails) => {
-            if (spawnchance !== undefined) {
-              return (
+    const columns: TableProps<GeneratorDetails>['columns'] = [
+      {
+        renderCell: (details: GeneratorDetails) => details.mod.props.level,
+        className: classes.colIlvl,
+        id: 'ilvl',
+        renderHeader: () => 'iLvl',
+        sortBy: (details: GeneratorDetails) => details.mod.props.level,
+      },
+      {
+        renderCell: (details: GeneratorDetails) => {
+          const { mod } = details;
+
+          return (
+            <div>
+              <FlagsTooltip flags={[details.applicable, details.spawnable]}>
                 <span
-                  title={renderSpawnweight(spawnweight)}
-                  className={getColorScaleClassName(relative_weight)}
+                  className={classNames(classes.modStats, {
+                    [classes.masterMod]: mod.isMasterMod(),
+                    [classes.enchantmentMod]: mod.isEnchantment(),
+                  })}
                 >
-                  {(spawnchance * 100).toFixed(2)}%
+                  <Stats className={classes.stats} stats={mod.statsJoined()} />
                 </span>
-              );
-            } else {
-              return renderSpawnweight(spawnweight);
-            }
-          },
-          className: classes.colSpanwChance,
-          renderHeader: () => 'Chance',
-          id: 'chance',
-          sortBy: ({ relative_weight }: GeneratorDetails) =>
-            relative_weight == null ? 0 : relative_weight,
+              </FlagsTooltip>
+            </div>
+          );
         },
-        {
-          className: classes.colAddMod,
-          id: 'add_mod',
-          renderHeader: () => '',
-          renderCell: details => {
+        className: classes.colStats,
+        renderHeader: () => 'Stats',
+        id: 'stats',
+      },
+      {
+        renderCell: (details: GeneratorDetails) => (
+          <FormattedModName mod={details.mod} />
+        ),
+        className: classes.colName,
+        renderHeader: () => 'Name',
+        id: 'name',
+      },
+      {
+        renderCell: ({
+          spawnchance,
+          spawnweight,
+          relative_weight = 0,
+        }: GeneratorDetails) => {
+          if (spawnchance !== undefined) {
             return (
-              !isDisabled(details) && (
-                <AddMod mod={details.mod} onClick={onAddMod} />
-              )
+              <span
+                title={renderSpawnweight(spawnweight)}
+                className={getColorScaleClassName(relative_weight)}
+              >
+                {(spawnchance * 100).toFixed(2)}%
+              </span>
             );
-          },
+          } else {
+            return renderSpawnweight(spawnweight);
+          }
         },
-      ];
+        className: classes.colSpanwChance,
+        renderHeader: () => 'Chance',
+        id: 'chance',
+        sortBy: ({ relative_weight }: GeneratorDetails) =>
+          relative_weight == null ? 0 : relative_weight,
+      },
+      {
+        className: classes.colAddMod,
+        id: 'add_mod',
+        renderHeader: () => '',
+        renderCell: details => {
+          return (
+            !isDisabled(details) && (
+              <AddMod mod={details.mod} onClick={onAddMod} />
+            )
+          );
+        },
+      },
+    ];
 
-      return columns;
-    },
-    [onAddMod, ...Object.values(classes)],
-  );
+    return columns;
+  }, [
+    onAddMod,
+    classes.colAddMod,
+    classes.colIlvl,
+    classes.colName,
+    classes.colSpanwChance,
+    classes.colStats,
+  ]);
 
-  const displayedColumns = React.useMemo(
-    () => {
-      return allColumns.filter(({ id }) => !exclude.includes(id));
-    },
-    [allColumns, exclude],
-  );
+  const displayedColumns = React.useMemo(() => {
+    return allColumns.filter(({ id }) => !exclude.includes(id));
+  }, [allColumns, exclude]);
 
   const getTrProps = React.useCallback(
     (data: GeneratorDetails) => {
