@@ -1,4 +1,4 @@
-import { createStyles, makeStyles } from '@material-ui/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import * as React from 'react';
 import { CSSTransition } from 'react-transition-group';
 

@@ -3,7 +3,7 @@ import {
   createStyles,
   ExtendableStyles,
   makeStyles,
-} from '@material-ui/styles';
+} from '@material-ui/core/styles';
 import React from 'react';
 
 import { FormattedGenerator } from 'components/i18n';

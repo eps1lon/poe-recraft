@@ -1,5 +1,5 @@
 import { Paper } from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { PopupIntl as ItemPopup } from 'poe-components-item';
 import React, { SFC } from 'react';
 

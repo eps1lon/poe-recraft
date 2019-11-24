@@ -1,5 +1,5 @@
 import { Button, Paper, Typography } from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { Flags, Mod } from 'poe-mods';
 import React from 'react';
@@ -24,8 +24,8 @@ export interface Props {
 const styles = (theme: Theme) =>
   createStyles({
     root: {
-      marginTop: theme.spacing.unit,
-      padding: theme.spacing.unit * 2,
+      marginTop: theme.spacing(1),
+      padding: theme.spacing(2),
     },
     title: {
       cursor: 'pointer',

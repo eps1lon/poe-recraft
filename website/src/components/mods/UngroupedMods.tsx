@@ -1,4 +1,4 @@
-import { createStyles, makeStyles } from '@material-ui/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { colors } from 'poe-components-item';
 import { Mod } from 'poe-mods';
@@ -171,14 +171,7 @@ function UngroupedMods(props: Props) {
     ];
 
     return columns;
-  }, [
-    onAddMod,
-    classes.colAddMod,
-    classes.colIlvl,
-    classes.colName,
-    classes.colSpanwChance,
-    classes.colStats,
-  ]);
+  }, [onAddMod, classes]);
 
   const displayedColumns = React.useMemo(() => {
     return allColumns.filter(({ id }) => !exclude.includes(id));

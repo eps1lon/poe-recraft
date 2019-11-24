@@ -1,5 +1,5 @@
 import { CssBaseline } from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -23,7 +23,7 @@ const useClasses = makeStyles((theme: Theme) =>
     },
     wizardProgress: {
       backgroundColor: '#eee',
-      marginBottom: theme.spacing.unit * 2,
+      marginBottom: theme.spacing(2),
     },
   }),
 );

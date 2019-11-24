@@ -1,5 +1,5 @@
 import { Button, Dialog, DialogContent, DialogTitle } from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 
 import FillLoading from 'components/FillLoading';

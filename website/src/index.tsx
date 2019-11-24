@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './bootstrap';
-
 import registerServiceWorker from 'registerServiceWorker';
 import configureStore from 'store/configureStore';
 

@@ -1,5 +1,5 @@
 import { Divider } from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 
 import AvailableMods from 'containers/AvailableMods';
@@ -14,15 +14,15 @@ const useClasses = makeStyles((theme: Theme) =>
       flex: '1 1 100%',
       maxWidth: '100%',
       margin: '0 auto',
-      paddingLeft: theme.spacing.unit * 2,
-      paddingRight: theme.spacing.unit * 2,
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(2),
       [theme.breakpoints.up('sm')]: {
-        paddingLeft: theme.spacing.unit * 4,
-        paddingRight: theme.spacing.unit * 4,
+        paddingLeft: theme.spacing(4),
+        paddingRight: theme.spacing(4),
       },
       [theme.breakpoints.up('lg')]: {
-        paddingLeft: theme.spacing.unit * 5,
-        paddingRight: theme.spacing.unit * 9,
+        paddingLeft: theme.spacing(5),
+        paddingRight: theme.spacing(9),
       },
     },
   }),
