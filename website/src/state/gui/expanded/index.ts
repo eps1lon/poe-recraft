@@ -1,5 +1,6 @@
 import * as expanded_actions from './actions';
-import reducer, { State as ExpandedState } from './reducers';
+import reducer, { State } from './reducers';
 
-export { expanded_actions, ExpandedState };
+export type ExpandedState = State;
+export { expanded_actions };
 export default reducer;
