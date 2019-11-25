@@ -35,7 +35,10 @@ function AppUI(props: Props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Header locales={settings.SUPPORTED_LOCALES} />
+      <Header
+        itemClassGroups={settings.ITEMCLASSES_GROUPED}
+        locales={settings.SUPPORTED_LOCALES}
+      />
       <Body />
       <Drawer itemClasses={settings.ITEMCLASSES_GROUPED} open={isDrawerOpen} />
       <Notifications />

@@ -1,13 +1,14 @@
-import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
 import React from 'react';
 
 import BaseItemModal from 'containers/baseitem_picker/Modal';
 import GeneratorModal from 'containers/GeneratorModal';
+import ItemClassPicker from 'containers/itemclass_picker/Picker';
 import LanguagePicker from 'containers/LanguagePicker';
 
 export interface Props {
+  itemClassGroups: any[];
   locales: string[];
   onDrawerClick: () => void;
 }
@@ -19,12 +20,10 @@ const useClasses = makeStyles((theme: Theme) =>
     },
     appBar: {
       color: theme.palette.type === 'dark' ? '#fff' : undefined,
-      backgroundColor: theme.palette.type === 'dark' ? theme.palette.background.default : undefined,  
-    },
-    drawerIcon: {
-      [theme.breakpoints.up('lg')]: {
-        display: 'none',
-      },
+      backgroundColor:
+        theme.palette.type === 'dark'
+          ? theme.palette.background.default
+          : undefined,
     },
     grow: {
       flexGrow: 1,
@@ -41,30 +40,13 @@ const useClasses = makeStyles((theme: Theme) =>
 );
 
 function Header(props: Props) {
-  const { locales, onDrawerClick } = props;
+  const { itemClassGroups, locales } = props;
   const classes = useClasses({});
-
-  const title = 'Hello, World!';
 
   return (
     <AppBar className={classes.appBar}>
       <Toolbar>
-        <IconButton
-          color="inherit"
-          aria-label="Open drawer"
-          onClick={onDrawerClick}
-          className={classes.drawerIcon}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography
-          className={classes.title}
-          variant="h6"
-          color="inherit"
-          noWrap
-        >
-          {title}
-        </Typography>
+        <ItemClassPicker groups={itemClassGroups} />
         <BaseItemModal />
         <GeneratorModal />
         <LanguagePicker locales={locales} />
