@@ -11,18 +11,18 @@ export interface AugmentableValue<V extends MinMaxValueLike = MinMaxValueLike> {
   augmented?: boolean;
 }
 
-export function augmentableNotZero<T extends MinMaxValueLike>(
-  augmentable: AugmentableValue<T> | undefined,
-): augmentable is AugmentableValue<T> {
-  return augmentable !== undefined && valueNotZero(augmentable.value);
-}
-
 export function valueNotZero<T extends MinMaxValueLike>(
   value: T | undefined,
 ): value is T {
   return Array.isArray(value)
     ? valueNotZero(value[0]) || valueNotZero(value[1])
     : value !== undefined && value !== 0;
+}
+
+export function augmentableNotZero<T extends MinMaxValueLike>(
+  augmentable: AugmentableValue<T> | undefined,
+): augmentable is AugmentableValue<T> {
+  return augmentable !== undefined && valueNotZero(augmentable.value);
 }
 
 export const ROLLABLE_VALUE_MESSAGE = `({min}–{max})`;

@@ -30,9 +30,9 @@ export default class ItemName
   implements Requirements, Component<Item, Builder> {
   public parent: Item;
 
-  public dex: number = 0;
-  public int: number = 0;
-  public str: number = 0;
+  public dex = 0;
+  public int = 0;
+  public str = 0;
 
   constructor(item: Item, builder: Builder) {
     this.parent = item;

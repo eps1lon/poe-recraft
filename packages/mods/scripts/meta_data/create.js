@@ -1,3 +1,4 @@
+/* eslint-env node */
 // parses *.ot files into MetaDataMap
 const fs = require('fs');
 const { Grammar, Parser } = require('nearley');

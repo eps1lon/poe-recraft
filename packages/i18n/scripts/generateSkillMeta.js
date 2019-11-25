@@ -1,3 +1,4 @@
+/* eslint-env node */
 // parse PoE MetaData *descriptions into consumeable format
 const { promisify } = require('util');
 const fs = require('fs');

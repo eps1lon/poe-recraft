@@ -1,3 +1,4 @@
+/* eslint-env node */
 const child_process = require('child_process');
 const { promisify } = require('util');
 

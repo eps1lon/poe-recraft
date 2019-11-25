@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/class-name-casing */
 /**
  * each interface represents a json file in locale-data/{locale}/{interface}.json
  *
@@ -5,7 +6,6 @@
  *
  * The definitions are tested against the imported json
  */
-// tslint:disable:class-name
 
 export interface AchievementItems {
   [id: string]: {

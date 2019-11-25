@@ -1,6 +1,5 @@
 // source: https://raw.githubusercontent.com/mosen/commandment/master/ui/src/typings/redux-api-middleware.d.ts
 // related: agraboso/redux-api-middleware#93
-// tslint:disable: max-classes-per-file
 declare module 'redux-api-middleware' {
   import { Action, AnyAction, Dispatch, Middleware } from 'redux';
 

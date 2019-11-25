@@ -1,3 +1,4 @@
+/* eslint-env node */
 // parse PoE MetaData *descriptions into consumeable format
 const { promisify } = require('util');
 const fs = require('fs');
@@ -41,6 +42,7 @@ readdir(txt_dir)
 
       // stream every description .* token into the parser
       // and transform it into a json output stream
+      let token;
       while ((token = regex.exec(text)) !== null) {
         const chunk = text.substring(chunk_start, token.index);
         const parser = new Parser(grammar);

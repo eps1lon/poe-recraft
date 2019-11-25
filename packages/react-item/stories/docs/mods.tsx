@@ -15,7 +15,6 @@ import { Format } from 'poe-i18n';
 import { Popup } from '../../src/';
 import { ImmutableContainer } from 'poe-mods/dist/cjs/containers';
 
-// tslint:disable: no-var-requires
 const items = createItems(require('poe-mods/data/items/equipment.json'));
 const mods = createMods([
   ...require('poe-mods/data/mods/prefixes.json'),

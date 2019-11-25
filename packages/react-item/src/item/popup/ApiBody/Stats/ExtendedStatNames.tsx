@@ -16,6 +16,7 @@ export default class ExtendedStatName extends React.PureComponent<Props> {
       <Intersperse renderSeparator={ModSeparator}>
         {mods.map(mod => (
           <span
+            key={mod.name}
             className={classnames({
               suffix: isSuffix(mod),
               prefix: isPrefix(mod),

@@ -1,3 +1,4 @@
+/* eslint-env node */
 const moo = require('moo');
 
 const createLexer = () =>
@@ -6,8 +7,8 @@ const createLexer = () =>
     text: /"[^"]+"/,
     number: /0|[1-9][0-9]*/,
     keyword: ['description', 'lang', 'no_description'],
-    stat_ident: /[a-z_\+\%]+/,
-    matcher: /[#0-9\|\- ]+/,
+    stat_ident: /[a-z_+%]+/,
+    matcher: /[#0-9|\- ]+/,
     NL: { match: /\r?\n/, lineBreaks: true },
     invalid: { error: true }
   });

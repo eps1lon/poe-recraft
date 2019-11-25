@@ -11,6 +11,7 @@ export interface WithMessages<M> {
 export default function withIntlProvider<P extends object, M extends object>(
   Component: React.ComponentType<P>,
 ): React.SFC<P & WithMessages<M>> {
+  // eslint-disable-next-line react/display-name
   return ({ messages, ...props }: WithMessages<M>) => (
     // using anything other that en without providing that (not used) locale data
     // results in messages being empty

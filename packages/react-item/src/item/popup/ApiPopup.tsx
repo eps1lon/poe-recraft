@@ -1,7 +1,6 @@
 // ts needs this for declarations otherwise "using private name React.*"
 // ts is only emitting this import for declaration files and stripping it
 // for regular files
-// tslint:disable-next-line: no-unused-variable
 import * as React from 'react';
 
 import ApiPopupIntl from './ApiPopupIntl';
