@@ -9,9 +9,9 @@ describe.skip('type definitions matching json files in data', () => {
   });
 
   test('craftingbenchoptions', async () => {
-    const {
-      default: json,
-    } = await import('../../data/craftingbenchoptions.json');
+    const { default: json } = await import(
+      '../../data/craftingbenchoptions.json'
+    );
     const checked: schema.CraftingBenchOptions = json;
   });
 

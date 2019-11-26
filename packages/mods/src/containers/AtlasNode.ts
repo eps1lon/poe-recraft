@@ -51,18 +51,21 @@ export default class AtlasNode extends ImmutableContainer<Mod, Builder> {
     // decrement depth
     /* eslint-disable no-loop-func */
     while (expand.length && depth >= 0) {
-      expand = expand.reduce((nodes, node) => {
-        in_range.add(node);
+      expand = expand.reduce(
+        (nodes, node) => {
+          in_range.add(node);
 
-        const new_nodes = atlas.filter(
-          new_node =>
-            node.isInSextantRange(new_node) &&
-            node !== new_node &&
-            !in_range.has(new_node),
-        );
+          const new_nodes = atlas.filter(
+            new_node =>
+              node.isInSextantRange(new_node) &&
+              node !== new_node &&
+              !in_range.has(new_node),
+          );
 
-        return nodes.concat(new_nodes);
-      }, [] as AtlasNode[]);
+          return nodes.concat(new_nodes);
+        },
+        [] as AtlasNode[],
+      );
 
       depth -= 1;
     }
@@ -115,13 +118,16 @@ export default class AtlasNode extends ImmutableContainer<Mod, Builder> {
   }
 
   public affectingMods(atlas: AtlasNode[]): Mod[] {
-    return atlas.reduce((mods, other) => {
-      if (this.isInSextantRange(other)) {
-        return mods.concat(other.mods);
-      } else {
-        return mods;
-      }
-    }, [] as Mod[]); // this.mods will be passed on atlas.reduce
+    return atlas.reduce(
+      (mods, other) => {
+        if (this.isInSextantRange(other)) {
+          return mods.concat(other.mods);
+        } else {
+          return mods;
+        }
+      },
+      [] as Mod[],
+    ); // this.mods will be passed on atlas.reduce
   }
 
   public activeMods(atlas: AtlasNode[]): Mod[] {

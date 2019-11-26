@@ -5,7 +5,9 @@ import { i18n_actions } from 'state/actions';
 import { messages as default_messages } from '../locales/default';
 
 const requireLocaleData = (locale: string) => {
-  return import(/* webpackChunkName: "i18n/[request]" */ `../locales/${locale}`);
+  return import(
+    /* webpackChunkName: "i18n/[request]" */ `../locales/${locale}`
+  );
 };
 
 function* loadLocaleData() {

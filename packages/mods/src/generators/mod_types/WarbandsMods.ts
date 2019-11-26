@@ -17,7 +17,7 @@ export default class WarbandsMods extends ViewOnlyOrb {
    * mapping from Warband factions to their mods
    */
   public static readonly FACTION_MODS: {
-    [faction in Faction]: Set<Mod['props']['id']>
+    [faction in Faction]: Set<Mod['props']['id']>;
   } = {
     brinerot: new Set(['DamageDuringFlaskEffectWarbands']),
     mutewind: new Set(['CannotBeFrozenWarbands']),
@@ -35,7 +35,7 @@ export default class WarbandsMods extends ViewOnlyOrb {
   public static readonly FACTION_ITEM_CLASSES: {
     // filter functions for each faction that check if a given item can
     // be dropped from that faction
-    [faction in Faction]: (item: Item) => boolean
+    [faction in Faction]: (item: Item) => boolean;
   } = {
     brinerot: item => item.baseitem.item_class === 'Gloves',
     mutewind: item => item.baseitem.item_class === 'Boots',

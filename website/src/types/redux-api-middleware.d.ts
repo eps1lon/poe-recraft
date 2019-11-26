@@ -125,7 +125,7 @@ declare module 'redux-api-middleware' {
   export type RSAActionTypeTuple = [
     string | symbol,
     string | symbol,
-    string | symbol
+    string | symbol,
   ];
 
   /**
