@@ -6,6 +6,8 @@ cache:
   yarn: true
 script:
   # workspace root
+  - yarn yarn-deduplicate
+  - git diff --exit-code
   - yarn format check-changed
   - yarn bootstrap
   - yarn lint
