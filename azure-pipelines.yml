@@ -1,0 +1,44 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '12.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    yarn
+    yarn yarn-deduplicate
+    git diff --exit-code
+  displayName: 'Install and verify lockfile'
+- script: |
+     yarn format check-changed
+  displayName: 'Check format'
+- script: |
+     yarn bootstrap
+  displayName: 'bootstrap'
+- script: |
+     yarn lint
+  displayName: 'Lint'
+- script: |
+     yarn test:ci
+  displayName: 'Test'
+- script: |
+     yarn workspace poe-i18n test:typings
+  displayName: 'Test poe-i18n typings'
+- script: |
+     yarn workspace poe-i18n build
+  displayName: 'Build poe-i18n'
+- script: |
+     yarn workspace poe-mods test:typings
+  displayName: 'Test poe-mods types'
+- script: |
+     yarn workspace poe-mods build
+  displayName: 'Build poe-mods'
+- script: |
+     yarn workspace poe-components-item build
+  displayName: 'Build poe-components-item'
