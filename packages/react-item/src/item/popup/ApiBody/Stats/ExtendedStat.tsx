@@ -71,9 +71,7 @@ export default class ExtendedStat extends React.PureComponent<Props> {
     const hash = hashes[this.props.index];
     if (hash == null) {
       warn(
-        `hash not set for group '${this.props.group}' at index ${
-          this.props.index
-        }`,
+        `hash not set for group '${this.props.group}' at index ${this.props.index}`,
       );
       return [];
     }

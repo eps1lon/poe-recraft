@@ -1,6 +1,8 @@
 # [WIP] Path of Exile Item React component librariy
 Includes various components related to items in Path of Exile
 
+[![Build Status](https://dev.azure.com/silbermannsebastian/poe-recraft/_apis/build/status/eps1lon.poe-recraft?branchName=master)](https://dev.azure.com/silbermannsebastian/poe-recraft/_build/latest?definitionId=7&branchName=master)
+
 # Install
 ```
 $ npm install poe-components-item
