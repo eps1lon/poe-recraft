@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import registerServiceWorker from './registerServiceWorker';
-import configureStore from './store/configureStore';
+import registerServiceWorker from 'registerServiceWorker';
+import configureStore from 'store/configureStore';
 
 const store = configureStore();
 export type Store = typeof store;
@@ -11,8 +11,8 @@ export type Dispatch = Store['dispatch'];
 const rootEl = document.getElementById('root');
 
 const render = () => {
-  type ComponentType = import('./components/Root').ComponentType;
-  const RootAppComponent: ComponentType = require('./components/Root').default;
+  type ComponentType = import('components/Root').ComponentType;
+  const RootAppComponent: ComponentType = require('components/Root').default;
   ReactDOM.render(<RootAppComponent store={store} version="0.2.0" />, rootEl);
 };
 

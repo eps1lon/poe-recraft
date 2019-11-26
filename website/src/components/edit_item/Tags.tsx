@@ -1,5 +1,5 @@
+import { Button } from '@material-ui/core';
 import React, { PureComponent } from 'react';
-import { Button } from 'reactstrap';
 
 import RemoveTag from './RemoveTag';
 
@@ -23,7 +23,9 @@ export default class Tags extends PureComponent<Props> {
       <fieldset>
         <legend>Tags</legend>
         <ul className="item tags">
-          {current.map(tag => <li key={tag}>{tag}</li>)}
+          {current.map(tag => (
+            <li key={tag}>{tag}</li>
+          ))}
         </ul>
 
         <ul className="item tags changeable">
@@ -49,7 +51,7 @@ export default class Tags extends PureComponent<Props> {
 
   private handleAddClick = () => {
     this.props.addTag(
-      this.props.addable[this.add_tag ? +this.add_tag.value : 0]
+      this.props.addable[this.add_tag ? +this.add_tag.value : 0],
     );
   };
 }

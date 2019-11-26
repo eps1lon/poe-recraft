@@ -6,6 +6,7 @@ import * as React from 'react';
 
 import ApiPopupIntl from './ApiPopupIntl';
 import withIntlProvider from './withIntlProvider';
+import { PropsType } from '../../util/types';
 
 export interface Messages {
   'poe.api.Corrupted': string;

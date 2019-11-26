@@ -1,11 +1,10 @@
-import React, { SFC } from 'react';
-import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import { Button, Dialog, DialogContent, DialogTitle } from '@material-ui/core';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import React from 'react';
 
 import FillLoading from 'components/FillLoading';
 import { FormattedGenerator } from 'components/i18n';
 import GeneratorPicker from './Picker';
-
-import './style.css';
 
 type GeneratorId = string;
 
@@ -17,37 +16,41 @@ export interface Props {
   onToggle: () => void;
 }
 
-const default_props = {
-  onChange: () => {},
-  onToggle: () => {}
-};
+const styles = createStyles({
+  root: {
+    position: 'relative',
+  },
+});
+const useClasses = makeStyles(styles);
 
-const GeneratorModal: SFC<Props> = props => {
-  const toggle = props.onToggle;
-  const onChange = (id: GeneratorId) => {
-    toggle();
-    props.onChange(id);
-  };
+function GeneratorModal(props: Props) {
+  const { onChange, onToggle: toggle } = props;
 
-  // set autofocus to false because
-  // FIXME: https://github.com/reactstrap/reactstrap/issues/532
+  const classes = useClasses({});
+
+  const handleChange = React.useCallback(
+    (id: GeneratorId) => {
+      toggle();
+      onChange(id);
+    },
+    [onChange, toggle],
+  );
+
   return (
-    <div className="generators wrapper">
+    <div className={classes.root}>
       <FillLoading loading={props.loading} />
       <Button onClick={toggle}>
         Generator: <FormattedGenerator id={props.active} />
       </Button>
 
-      <Modal isOpen={props.is_open} toggle={toggle} autoFocus={false}>
-        <ModalHeader toggle={toggle}>Pick a generator</ModalHeader>
-        <ModalBody className="generators">
-          <GeneratorPicker active={props.active} onChange={onChange} />
-        </ModalBody>
-      </Modal>
+      <Dialog open={props.is_open} onClose={toggle}>
+        <DialogTitle>Pick a generator</DialogTitle>
+        <DialogContent>
+          <GeneratorPicker active={props.active} onChange={handleChange} />
+        </DialogContent>
+      </Dialog>
     </div>
   );
-};
-
-GeneratorModal.defaultProps = default_props;
+}
 
 export default GeneratorModal;

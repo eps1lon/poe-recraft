@@ -14,6 +14,7 @@ import {
   ROLLABLE_VALUE_MESSAGE,
 } from '../../../util/value';
 import { warn } from '../../../util';
+import { PropsType } from '../../../util/types';
 
 export type ApiProps = PropsType<typeof ApiPopupIntl>;
 

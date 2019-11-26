@@ -1,5 +1,4 @@
 import React, { SFC } from 'react';
-import { DropdownMenu } from 'reactstrap';
 
 import ItemClass from 'containers/itemclass_picker/ItemClass';
 
@@ -12,9 +11,16 @@ const GroupDropdown: SFC<Props> = props => {
 
   return (
     <DropdownMenu>
-      {classes.map(id => <ItemClass key={id} id={id} name={id} />)}
+      {classes.map(id => (
+        <ItemClass key={id} id={id} name={id} />
+      ))}
     </DropdownMenu>
   );
 };
+
+// @ts-ignore: needs props to be considered a component
+function DropdownMenu(props: any) {
+  return null;
+}
 
 export default GroupDropdown;

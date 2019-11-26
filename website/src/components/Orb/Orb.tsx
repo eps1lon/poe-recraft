@@ -1,46 +1,62 @@
-import React, { PureComponent } from 'react';
-import { Button, UncontrolledTooltip } from 'reactstrap';
+import { Button, Tooltip } from '@material-ui/core';
+import {
+  createStyles,
+  ExtendableStyles,
+  makeStyles,
+} from '@material-ui/core/styles';
+import React from 'react';
 
 import { FormattedGenerator } from 'components/i18n';
 import orbs from './orbs';
 
-export interface Props {
+const styles = createStyles({
+  button: {},
+  icon: {},
+});
+
+const useClasses = makeStyles(styles);
+
+export interface Props extends ExtendableStyles<typeof styles> {
   id: string;
   onClick: (orb_id: string) => void;
 }
 
-export default class Orb extends PureComponent<Props> {
-  public render() {
-    const { id } = this.props;
-    const orb = orbs[id];
+function Orb(props: Props) {
+  const { id, onClick } = props;
+  const orb = orbs[id];
 
-    if (orb === undefined) {
-      throw new Error(`unsupported orb '${id}'`);
-    }
+  const classes = useClasses(props);
 
-    return (
-      <FormattedGenerator id={orb.id}>
-        {(name: string | JSX.Element) => {
-          const dom_id = `generator-orb-${id}`;
-          return (
-            <>
-              <Button onClick={this.handleClick} id={dom_id}>
-                <img
-                  width="40"
-                  height="40"
-                  src={orb.icon}
-                  alt={name.toString()}
-                />
-              </Button>
-              <UncontrolledTooltip placement="top" target={dom_id}>
-                {name}
-              </UncontrolledTooltip>
-            </>
-          );
-        }}
-      </FormattedGenerator>
-    );
+  const handleClick = React.useCallback(
+    () => {
+      onClick(id);
+    },
+    [id, onClick],
+  );
+
+  if (orb === undefined) {
+    throw new Error(`unsupported orb '${id}'`);
   }
 
-  private handleClick = () => this.props.onClick(this.props.id);
+  return (
+    <FormattedGenerator id={orb.id}>
+      {(name: string | JSX.Element) => {
+        return (
+          <Tooltip title={name}>
+            <Button className={classes.button} onClick={handleClick}>
+              <img
+                className={classes.icon}
+                width="40"
+                height="40"
+                src={orb.icon}
+                alt={name.toString()}
+              />
+            </Button>
+          </Tooltip>
+        );
+      }}
+    </FormattedGenerator>
+  );
 }
+
+export default React.memo(Orb);

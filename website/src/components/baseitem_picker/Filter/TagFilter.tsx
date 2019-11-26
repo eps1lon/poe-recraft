@@ -1,6 +1,6 @@
+import { Button } from '@material-ui/core';
 import React, { PureComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Button } from 'reactstrap';
 
 export interface Props {
   className?: string;

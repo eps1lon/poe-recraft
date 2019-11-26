@@ -13,7 +13,7 @@ import { propOrUndefined } from '../../util/typesafe';
 export default function snapshotItem(
   item: Item,
   descriptions: {},
-): PropsType<typeof ItemPopup>['item'] {
+): PropsOf<typeof ItemPopup>['item'] {
   let rarity: Rarity;
   if (item.rarity.isNormal()) {
     rarity = 'normal';

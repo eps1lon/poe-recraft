@@ -1,8 +1,10 @@
+import { ThemeProvider } from '@material-ui/core/styles';
 import React, { PureComponent } from 'react';
 import { IntlProvider } from 'react-intl';
 
 import AppUI from './AppUI';
 import { GAME_VERSION } from './settings';
+import theme from './theme';
 
 export interface Props {
   locale: string;
@@ -25,7 +27,9 @@ class App extends PureComponent<Props> {
 
     return (
       <IntlProvider key={key} locale={locale} messages={messages}>
-        <AppUI {...{ app_version: version, game_version: GAME_VERSION }} />
+        <ThemeProvider theme={theme}>
+          <AppUI {...{ app_version: version, game_version: GAME_VERSION }} />
+        </ThemeProvider>
       </IntlProvider>
     );
   }

@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import { DropdownItem } from 'reactstrap';
+import { MenuItem } from '@material-ui/core';
+import React from 'react';
 
 import LocaleIcon from './LocaleIcon';
 
@@ -9,17 +9,18 @@ export interface Props {
   onClick: (locale: string) => void;
 }
 
-export default class ModGroup extends PureComponent<Props> {
-  public render() {
-    const { active, locale } = this.props;
-    return (
-      <DropdownItem key={locale} active={active} onClick={this.handleClick}>
-        <LocaleIcon code={locale} />
-      </DropdownItem>
-    );
-  }
+function ModGroup(props: Props) {
+  const { active, locale, onClick } = props;
+  const handleClick = React.useCallback(() => onClick(locale), [
+    locale,
+    onClick,
+  ]);
 
-  private handleClick = () => {
-    this.props.onClick(this.props.locale);
-  };
+  return (
+    <MenuItem onClick={handleClick} selected={active}>
+      <LocaleIcon code={locale} />
+    </MenuItem>
+  );
 }
+
+export default React.memo(ModGroup);

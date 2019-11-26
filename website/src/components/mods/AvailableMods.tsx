@@ -1,6 +1,5 @@
-import React, { SFC } from 'react';
-
-import './AvailableMods.css';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import React from 'react';
 
 import { GeneratorDetails } from './ModsTable';
 
@@ -12,34 +11,56 @@ export interface Props {
   suffixes: GeneratorDetails[];
 }
 
+const styles = createStyles({
+  affixes: {},
+  implicits: {
+    flex: '0 1 100%',
+  },
+  prefixes: {
+    flex: '1 0 50%',
+  },
+  root: {
+    display: 'flex',
+    flexFlow: 'row wrap',
+  },
+  suffixes: {
+    flex: '1 0 50%',
+  },
+});
+const useClasses = makeStyles(styles, { name: 'AvailableMods' });
+
 const implicits_table_exclude = ['name'];
 
-const AvailableMods: SFC<Props> = ({ prefixes, suffixes, implicits }) => {
+function AvailableMods(props: Props) {
+  const { prefixes, suffixes, implicits } = props;
+  const classes = useClasses({});
+
   return (
-    <section id="available_mods">
+    <section className={classes.root}>
       <ModsTable
-        className="implicits"
+        className={classes.implicits}
         details={implicits}
         grouped={false}
+        human="Implicits"
         exclude={implicits_table_exclude}
         defaultExpanded={false}
       />
-      <div id="affixes">
-        <ModsTable
-          className="prefixes"
-          details={prefixes}
-          grouped={true}
-          defaultExpanded={true}
-        />
-        <ModsTable
-          className="suffixes"
-          details={suffixes}
-          grouped={true}
-          defaultExpanded={true}
-        />
-      </div>
+      <ModsTable
+        className={classes.prefixes}
+        details={prefixes}
+        grouped={true}
+        defaultExpanded={true}
+        human="prefixes"
+      />
+      <ModsTable
+        className={classes.suffixes}
+        details={suffixes}
+        grouped={true}
+        defaultExpanded={true}
+        human="suffixes"
+      />
     </section>
   );
-};
+}
 
 export default AvailableMods;

@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased](https://github.com/eps1lon/poe-react-item/compare/v0.4.1...HEAD)
+### Added
+- default poe colors as an alternative to `*.scss`. 
+  `import { colors } from "poe-components-item"`.
+
 ### Fixed
 - BREAKING: Use `typescript@3.2.x`
 - Implicits, utility mods and Enchantments not being displayed in any `Popup`.

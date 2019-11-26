@@ -1,1 +1,1 @@
-declare type PropsType<T> = T extends React.ComponentType<infer P> ? P : never;
+declare type PropsOf<T> = T extends React.ComponentType<infer P> ? P : never;

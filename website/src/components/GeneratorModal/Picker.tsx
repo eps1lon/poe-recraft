@@ -1,5 +1,6 @@
-import React, { PureComponent } from 'react';
-import { Button } from 'reactstrap';
+import { Button } from '@material-ui/core';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import React from 'react';
 
 import Orb from '../Orb';
 
@@ -8,42 +9,74 @@ export interface Props {
   onChange: (generator: string) => void;
 }
 
-export default class GeneratorPicker extends PureComponent<Props> {
-  public render() {
-    const { onChange } = this.props;
+const styles = createStyles({
+  group: {
+    display: 'flex',
+    flexFlow: 'row wrap',
+  },
+  groupAction: {
+    flexGrow: 0,
+    margin: 2,
+  },
+});
+const useClasses = makeStyles(styles);
 
-    return (
-      <>
-        <div key="default" className="group default">
-          <Button onClick={this.handleShowcaseClick}>All</Button>
-        </div>
-        <div key="orbs" className="group orbs">
-          {[
-            'transmute',
-            'augmentation',
-            'alteration',
-            'regal',
-            'exalted',
-            'alchemy',
-            'chaos',
-            'scouring',
-            'vaal',
-            'annullment'
-          ].map(orb_id => <Orb key={orb_id} id={orb_id} onClick={onChange} />)}
-        </div>
-        <div key="misc" className="group misc">
-          <Button onClick={this.handleElderClick}>Elder Mods</Button>
-          <Button onClick={this.handleShapedClick}>Shaped Mods</Button>
-        </div>
-        <div key="leagues" className="group leagues">
-          <Button onClick={this.handleIncursionClick}>Incursion</Button>
-        </div>
-      </>
-    );
-  }
+function Picker(props: Props) {
+  const { onChange } = props;
 
-  private handleShowcaseClick = () => this.props.onChange('showcase');
-  private handleIncursionClick = () => this.props.onChange('incursion');
-  private handleElderClick = () => this.props.onChange('elder');
-  private handleShapedClick = () => this.props.onChange('shaped');
+  const classes = useClasses({});
+
+  const handleElderClick = React.useCallback(() => onChange('elder'), [
+    onChange,
+  ]);
+  const handleIncursionClick = React.useCallback(() => onChange('incursion'), [
+    onChange,
+  ]);
+  const handleShapedClick = React.useCallback(() => onChange('shaped'), [
+    onChange,
+  ]);
+  const handleShowcaseClick = React.useCallback(() => onChange('showcase'), [
+    onChange,
+  ]);
+
+  return (
+    <>
+      <div key="default" className="group default">
+        <Button className={classes.groupAction} onClick={handleShowcaseClick}>
+          All
+        </Button>
+      </div>
+      <div key="orbs" className={classes.group}>
+        {[
+          'transmute',
+          'augmentation',
+          'alteration',
+          'regal',
+          'exalted',
+          'alchemy',
+          'chaos',
+          'scouring',
+          'vaal',
+          'annullment',
+        ].map(orb_id => (
+          <Orb key={orb_id} id={orb_id} onClick={onChange} />
+        ))}
+      </div>
+      <div key="misc" className={classes.group}>
+        <Button className={classes.group} onClick={handleElderClick}>
+          Elder Mods
+        </Button>
+        <Button className={classes.group} onClick={handleShapedClick}>
+          Shaped Mods
+        </Button>
+      </div>
+      <div key="leagues" className={classes.group}>
+        <Button className={classes.group} onClick={handleIncursionClick}>
+          Incursion
+        </Button>
+      </div>
+    </>
+  );
 }
+
+export default React.memo(Picker);

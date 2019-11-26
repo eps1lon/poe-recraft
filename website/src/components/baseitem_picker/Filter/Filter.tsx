@@ -1,9 +1,8 @@
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import TagFilter from './TagFilter';
-
-import './style.css';
 
 export interface BaseitemFilter {
   item_class: string;
@@ -16,12 +15,26 @@ export interface Props {
   onChange?: (filter: BaseitemFilter) => void;
 }
 
+const styles = createStyles({
+  filter: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  tag: {
+    fontSize: '80%',
+    margin: '0 2px',
+    flexBasis: 0,
+    flexGrow: 1,
+  },
+});
+const useClasses = makeStyles(styles);
+
 const classes_with_defence_groups = [
   'Helmet',
   'Boots',
   'Gloves',
   'Body Armour',
-  'Shield'
+  'Shield',
 ];
 const defence_combinations = [
   'str_armour',
@@ -29,46 +42,50 @@ const defence_combinations = [
   'dex_armour',
   'dex_int_armour',
   'int_armour',
-  'str_int_armour'
+  'str_int_armour',
 ];
 
-export default class Filter extends React.PureComponent<Props> {
-  public static defaultProps = {
-    onChange: () => {}
-  };
+const Filter: React.SFC<Props> = (props: Props) => {
+  const { item_class, onChange } = props;
+  const classes = useClasses({});
 
-  public render() {
-    const props = this.props as Props & typeof Filter.defaultProps;
-    if (classes_with_defence_groups.includes(props.item_class)) {
-      return (
-        <>
-          <h4>
-            <FormattedMessage
-              id="baseitem_defence_filter"
-              defaultMessage="filter by requirements"
+  const handleTagFilterClick = React.useCallback(
+    (clicked_tag: string) => {
+      if (onChange == null) {
+        return;
+      }
+
+      onChange({
+        item_class,
+        tags: [[clicked_tag]],
+      });
+    },
+    [item_class, onChange],
+  );
+
+  if (classes_with_defence_groups.includes(props.item_class)) {
+    return (
+      <>
+        <h4>
+          <FormattedMessage
+            id="baseitem_defence_filter"
+            defaultMessage="filter by requirements"
+          />
+        </h4>
+        <div className={classes.filter}>
+          {defence_combinations.map(tag => (
+            <TagFilter
+              key={tag}
+              className={classes.tag}
+              tag={tag}
+              onClick={handleTagFilterClick}
             />
-          </h4>
-          <div className="filter">
-            {defence_combinations.map(tag => (
-              <TagFilter
-                key={tag}
-                className="tag"
-                tag={tag}
-                onClick={this.handleTagFilterClick}
-              />
-            ))}
-          </div>
-        </>
-      );
-    }
-    return null;
+          ))}
+        </div>
+      </>
+    );
   }
+  return null;
+};
 
-  private handleTagFilterClick = (clicked_tag: string) => {
-    const { item_class, onChange = Filter.defaultProps.onChange } = this.props;
-    onChange({
-      item_class,
-      tags: [[clicked_tag]]
-    });
-  };
-}
+export default React.memo(Filter);

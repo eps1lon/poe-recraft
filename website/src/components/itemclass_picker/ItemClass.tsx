@@ -1,6 +1,6 @@
+import ListItem from '@material-ui/core/ListItem';
 import React, { PureComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { DropdownItem } from 'reactstrap';
 
 export interface Props {
   active: string;
@@ -26,4 +26,19 @@ export default class ItemClassGroup extends PureComponent<Props> {
   private handleClick = () => {
     this.props.onClick(this.props.id);
   };
+}
+
+interface DropdownItemProps {
+  active: boolean;
+  children: React.ReactElement<unknown>;
+  onClick: () => void;
+}
+
+function DropdownItem(props: DropdownItemProps) {
+  const { children, onClick } = props;
+  return (
+    <ListItem button onClick={onClick}>
+      {children}
+    </ListItem>
+  );
 }

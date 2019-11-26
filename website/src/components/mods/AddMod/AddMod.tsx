@@ -1,8 +1,6 @@
 import { Mod } from 'poe-mods';
 import * as React from 'react';
 
-// import './style.css';
-
 export interface Props {
   mod: Mod;
   onClick: (mod: Mod) => void;

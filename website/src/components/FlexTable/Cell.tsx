@@ -1,3 +1,4 @@
+import { Typography } from '@material-ui/core';
 import classnames from 'classnames';
 import * as React from 'react';
 
@@ -11,18 +12,18 @@ export interface Props<T> {
 
 export default class Cell<T> extends React.PureComponent<Props<T>> {
   public static defaultProps = {
-    onClick: () => {}
+    onClick: () => {},
   };
 
   public render() {
     const { className, data, renderItem } = this.props;
     return (
-      <div
+      <Typography
         className={classnames('flex-table-cell', className)}
         onClick={this.handleClick}
       >
         {renderItem(data)}
-      </div>
+      </Typography>
     );
   }
 

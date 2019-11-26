@@ -5,9 +5,10 @@ import Modal, { Props } from 'components/edit_item/Modal';
 import { State } from 'state';
 import { gui_actions } from 'state/actions';
 
-const mapStateToProps = (state: State): Partial<Props> => {
+type StateProps = Pick<Props, 'is_open'>;
+const mapStateToProps = (state: State): StateProps => {
   return {
-    is_open: state.gui.expanded.get('edititem-modal'),
+    is_open: Boolean(state.gui.expanded.get('edititem-modal')),
   };
 };
 

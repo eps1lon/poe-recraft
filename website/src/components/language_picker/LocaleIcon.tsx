@@ -1,4 +1,5 @@
-import React, { SFC } from 'react';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import React from 'react';
 
 import locales from './locales';
 
@@ -6,10 +7,26 @@ export interface Props {
   code: string;
 }
 
-const default_props = {};
+const styles = createStyles({
+  root: {
+    display: 'inline-block',
+    height: '1em',
+    '&:after': {
+      content: "' ' attr(title)",
+      fontSize: 18,
+      verticalAlign: 'middle',
+    },
+  },
+  icon: {
+    height: '100%',
+  },
+});
+const useClasses = makeStyles(styles);
 
-const LanguagePicker: SFC<Props> = ({ code }) => {
+function LocaleIcon(props: Props) {
+  const { code } = props;
   const locale = locales[code];
+  const classes = useClasses({});
 
   if (locale === undefined) {
     throw new Error(`unsupported language '${code}'`);
@@ -17,12 +34,10 @@ const LanguagePicker: SFC<Props> = ({ code }) => {
 
   return (
     // add span to support :before and :after
-    <span className="locale-icon" title={locale.name}>
-      <img src={locale.icon} alt={locale.name} />
+    <span className={classes.root} title={locale.name}>
+      <img className={classes.icon} src={locale.icon} alt={locale.name} />
     </span>
   );
-};
+}
 
-LanguagePicker.defaultProps = default_props;
-
-export default LanguagePicker;
+export default LocaleIcon;

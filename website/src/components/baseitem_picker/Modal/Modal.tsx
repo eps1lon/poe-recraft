@@ -1,12 +1,12 @@
-import React, { SFC } from 'react';
+import { Button, Dialog, DialogContent, DialogTitle } from '@material-ui/core';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
 
 import FillLoading from 'components/FillLoading';
 import Filter from 'containers/baseitem_picker/Filter';
 import Picker from 'containers/baseitem_picker/Picker';
 import { BaseItemTypeProps } from 'state/poe/schema';
-import './style.css';
 
 export interface Props {
   active: BaseItemTypeProps | undefined;
@@ -15,18 +15,22 @@ export interface Props {
   onToggle: () => void;
 }
 
-const default_props = {
-  onToggle: () => {}
-};
+const styles = createStyles({
+  root: {
+    position: 'relative',
+  },
+  title: {
+    textTransform: 'capitalize',
+  },
+});
+const useClasses = makeStyles(styles);
 
-const BaseItemModal: SFC<Props> = props => {
-  const { active, loading } = props;
-  const toggle = props.onToggle;
+function BaseItemModal(props: Props) {
+  const { active, loading, onToggle: toggle } = props;
+  const classes = useClasses({});
 
-  // set autofocus to false because
-  // FIXME: https://github.com/reactstrap/reactstrap/issues/532
   return (
-    <div className="baseitems wrapper">
+    <div className={classes.root}>
       <FillLoading loading={loading} />
       <Button onClick={toggle}>
         Baseitem:{' '}
@@ -40,27 +44,20 @@ const BaseItemModal: SFC<Props> = props => {
         )}
       </Button>
 
-      <Modal
-        className="baseitems"
-        isOpen={props.is_open}
-        toggle={toggle}
-        autoFocus={false}
-      >
-        <ModalHeader toggle={toggle}>
+      <Dialog className="baseitems" open={props.is_open} onClose={toggle}>
+        <DialogTitle className={classes.title}>
           <FormattedMessage
             id="baseitem_picker.modal_title"
             defaultMessage="Choose a baseitem"
           />
-        </ModalHeader>
-        <ModalBody>
+        </DialogTitle>
+        <DialogContent>
           <Filter />
           <Picker onChange={toggle} />
-        </ModalBody>
-      </Modal>
+        </DialogContent>
+      </Dialog>
     </div>
   );
-};
-
-BaseItemModal.defaultProps = default_props;
+}
 
 export default BaseItemModal;
