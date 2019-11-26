@@ -4,7 +4,7 @@
 [![npm version](https://badge.fury.io/js/poe-i18n.svg)](https://badge.fury.io/js/poe-i18n)
 [![dependencies Status](https://david-dm.org/eps1lon/poe-i18n/status.svg)](https://david-dm.org/eps1lon/poe-i18n)
 [![devDependencies Status](https://david-dm.org/eps1lon/poe-i18n/dev-status.svg)](https://david-dm.org/eps1lon/poe-i18n?type=dev)
-[![Greenkeeper badge](https://badges.greenkeeper.io/eps1lon/poe-i18n.svg)](https://greenkeeper.io/)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=eps1lon/poe-recraft)](https://dependabot.com)
 
 i18n utility for Path of Exile@`3.3.0` with minimal dependencies.
 

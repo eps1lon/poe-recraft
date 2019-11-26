@@ -4,7 +4,7 @@
 ![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/silbermannsebastian/poe-recraft/7)
 [![dependencies Status](https://david-dm.org/eps1lon/poe-mods/status.svg)](https://david-dm.org/eps1lon/poe-mods)
 [![devDependencies Status](https://david-dm.org/eps1lon/poe-mods/dev-status.svg)](https://david-dm.org/eps1lon/poe-mods?type=dev)
-[![Greenkeeper badge](https://badges.greenkeeper.io/eps1lon/poe-mods.svg)](https://greenkeeper.io/)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=eps1lon/poe-recraft)](https://dependabot.com)
 
 Emulates interaction of Mods with Items, Atlas etc. in Path of Exile@`3.3.0`.
 
