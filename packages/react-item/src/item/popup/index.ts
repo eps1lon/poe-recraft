@@ -1,7 +1,7 @@
-import Popup from './ItemPopup';
-
-export default Popup;
-export { default as PopupIntl } from './ItemPopupIntl';
-export { default as ApiPopup } from './ApiPopup';
-export { default as ApiPopupIntl } from './ApiPopupIntl';
-export { Rarity } from './ItemPopup';
+export { default as PopupIntl, Props as PopupIntlProps } from './ItemPopupIntl';
+export { default as ApiPopup, Props as ApiPopupProps } from './ApiPopup';
+export {
+  default as ApiPopupIntl,
+  Props as ApiPopupIntlProps,
+} from './ApiPopupIntl';
+export { default, Props as ItemPopupProps, Rarity } from './ItemPopup';

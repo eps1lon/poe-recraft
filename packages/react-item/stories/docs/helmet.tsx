@@ -2,11 +2,11 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 // 'poe-components-item'
-import { Popup } from '../../src/';
+import { Popup, PopupProps } from '../../src/';
 
 import '../../themes/poe.scss';
 
-export const helmet: PropsType<typeof Popup>['item'] = {
+export const helmet: PopupProps['item'] = {
   base: {
     name: 'Hubris Circlet',
   },
@@ -38,16 +38,18 @@ export const helmet: PropsType<typeof Popup>['item'] = {
   ],
 };
 
-storiesOf('ItemPopup', module).add(
-  'Helmet',
-  withInfo({
-    inline: true,
-    source: false,
-    text: `
-    [detailed Item type definition](api/globals.html#item)
-    `,
-  })(() => <Popup item={helmet} />),
-);
+storiesOf('ItemPopup', module)
+  .addDecorator(withInfo)
+  .addParameters({
+    info: {
+      inline: true,
+      source: false,
+      text: `
+  [detailed Item type definition](api/globals.html#item)
+  `,
+    },
+  })
+  .add('Helmet', (props: any) => <Popup item={helmet} />);
 storiesOf('ItemPopup', module).add('Helm', () => (
   <Popup
     messages={{

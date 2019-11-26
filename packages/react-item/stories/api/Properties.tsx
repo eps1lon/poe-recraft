@@ -1,4 +1,4 @@
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
@@ -50,7 +50,11 @@ storiesOf('api/properties', module)
         { name: 'Physical Damage', values: [['6', 1]], displayMode: 0 },
         {
           name: 'Elemental Damage',
-          values: [['10-13', 5], ['6', 4], ['1-400', 6]],
+          values: [
+            ['10-13', 5],
+            ['6', 4],
+            ['1-400', 6],
+          ],
           displayMode: 0,
         },
         { name: 'Critical Chance', values: [['7.50%', 1]], displayMode: 0 },

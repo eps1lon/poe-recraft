@@ -1,3 +1,2 @@
-import ItemPopupIntl from './ItemPopupIntl';
-export default ItemPopupIntl;
+export { default, Props } from './ItemPopupIntl';
 export { Rarity } from './props';

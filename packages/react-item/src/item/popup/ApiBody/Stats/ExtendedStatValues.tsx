@@ -1,4 +1,4 @@
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { formatValue } from 'poe-i18n';
 import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
