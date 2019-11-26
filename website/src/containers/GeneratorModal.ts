@@ -13,7 +13,7 @@ const mapStateToProps = (state: State) => {
     loading:
       poe_selectors.isBenchsLoading(state) ||
       poe_selectors.isModsLoading(state),
-    is_open: state.gui.expanded.get('generator-modal'),
+    is_open: Boolean(state.gui.expanded.get('generator-modal')),
   };
 };
 

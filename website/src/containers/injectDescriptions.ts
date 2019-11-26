@@ -8,5 +8,17 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-export default <T extends { descriptions: {} }>(component: ComponentType<T>) =>
-  connect(mapStateToProps)(component);
+export default <
+  C extends ComponentType<React.ComponentProps<C> & { descriptions: {} }>
+>(
+  component: C,
+) =>
+  connect(
+    mapStateToProps,
+    null,
+  )(component as any) as React.ComponentType<
+    Omit<
+      JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>,
+      'descriptions'
+    >
+  >;
