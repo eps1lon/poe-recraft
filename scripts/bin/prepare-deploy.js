@@ -15,12 +15,12 @@ main().catch(error => {
 
 async function main() {
   const tasks = new Listr([
+    { title: 'bootstrap', task: () => execa('yarn', ['bootstrap']) },
     {
-      title: 'bootstrap',
+      title: 'build:esm',
       task: () => {
         return new Listr(
           [
-            { title: 'actual', task: () => execa('yarn', ['bootstrap']) },
             {
               title: 'i18n',
               task: () => execa('yarn', ['workspace', 'poe-i18n', 'build:esm']),
