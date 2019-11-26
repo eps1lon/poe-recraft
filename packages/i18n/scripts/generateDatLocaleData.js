@@ -10,7 +10,7 @@ const { Grammar, Parser } = require('nearley');
  */
 
 const inflection_grammar = Grammar.fromCompiled(
-  require('../src/grammars/generated/inflection.js')
+  require('../grammars/generated/inflection.js')
 );
 
 // "In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code."

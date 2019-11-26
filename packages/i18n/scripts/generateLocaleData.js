@@ -7,7 +7,7 @@ const { Grammar, Parser } = require('nearley');
 const stripBom = require('strip-bom');
 
 const grammar = Grammar.fromCompiled(
-  require('../src/grammars/generated/stat_descriptions.js')
+  require('../grammars/generated/stat_descriptions.js')
 );
 
 const readdir = promisify(fs.readdir);

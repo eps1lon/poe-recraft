@@ -8,7 +8,7 @@ const exec = promisify(child_process.exec);
  * compiles nearley grammars so they can be used in js 
  */
 
-const grammar_dir = path.join(__dirname, '../src/grammars');
+const grammar_dir = path.join(__dirname, '../grammars');
 const grammar_ext = '.ne';
 
 const isGrammar = file => file.endsWith(grammar_ext);
