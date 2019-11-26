@@ -1,4 +1,4 @@
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import * as React from 'react';
 import { IntlProvider } from 'react-intl';
 import { storiesOf } from '@storybook/react';

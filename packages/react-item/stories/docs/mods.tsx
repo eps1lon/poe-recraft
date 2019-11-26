@@ -12,7 +12,7 @@ import {
 } from 'poe-mods';
 import { Format } from 'poe-i18n';
 // 'poe-components-item'
-import { Popup } from '../../src/';
+import { Popup, PopupProps } from '../../src/';
 import { ImmutableContainer } from 'poe-mods/dist/cjs/containers';
 
 const items = createItems(require('poe-mods/data/items/equipment.json'));
@@ -101,10 +101,7 @@ const statsTranslated = (container: Container<any>, format: Format) => {
  *
  * @param item {Item}
  */
-const snapShotItem = (
-  item: Item,
-  format: Format,
-): PropsType<typeof Popup>['item'] => {
+const snapShotItem = (item: Item, format: Format): PopupProps['item'] => {
   const {
     rarity,
     base,
@@ -176,7 +173,7 @@ const getExtendedModGroup = (container: ImmutableContainer<Mod, any>) => {
   };
 };
 
-const getExtended = (item: Item): PropsType<typeof Popup>['extended'] => {
+const getExtended = (item: Item): PopupProps['extended'] => {
   const { mods: itemMods, hashes } = getExtendedModGroup(item.affixes);
 
   return {

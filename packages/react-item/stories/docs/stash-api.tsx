@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 // 'poe-components-item'
-import { ApiPopup } from '../../src/';
+import { ApiPopup, ApiPopupProps } from '../../src/';
 
-export type Item = PropsType<typeof ApiPopup>['item'];
+export type Item = ApiPopupProps['item'];
 
 export interface StashApi {
   next_change_id: string;
@@ -227,7 +227,7 @@ interface HedgedItemState {
 /**
  * error boundary for item
  */
-class HedgedItem extends React.PureComponent<PropsType<typeof ApiPopup>> {
+class HedgedItem extends React.PureComponent<ApiPopupProps> {
   public state: HedgedItemState = {
     threw: false,
   };

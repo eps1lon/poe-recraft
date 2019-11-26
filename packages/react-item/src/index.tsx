@@ -1,3 +1,14 @@
 export { default as colors } from './colors';
-export { Popup, PopupIntl, Rarity, ApiPopup, ApiPopupIntl } from './item';
+export {
+  Popup,
+  PopupProps,
+  PopupIntl,
+  PopupIntlProps,
+  Rarity,
+  ApiPopup,
+  ApiPopupProps,
+  ApiPopupIntl,
+  ApiPopupIntlProps,
+} from './item';
 export { Type as ModType } from './mod';
+export { PropsType } from './util/types';

@@ -1,5 +1,5 @@
-import * as classnames from 'classnames';
-import * as React from 'react';
+import classnames from 'classnames';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import Head from '../../src/item/popup/ApiHead';
@@ -46,7 +46,9 @@ storiesOf('api/head', module)
       }}
     />
   ))
-  .add('shaped/elder', () => [
-    <Story key="shaped" item={{ ...rare_item, shaper: true }} />,
-    <Story key="elder" item={{ ...rare_item, elder: true }} />,
-  ]);
+  .add('shaped/elder', () => (
+    <React.Fragment>
+      <Story key="shaped" item={{ ...rare_item, shaper: true }} />
+      <Story key="elder" item={{ ...rare_item, elder: true }} />
+    </React.Fragment>
+  ));
