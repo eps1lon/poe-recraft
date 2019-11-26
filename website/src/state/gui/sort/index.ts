@@ -1,7 +1,7 @@
 import * as actions from './actions';
-import reducer, { State } from './reducer';
+import reducer, { State as StateType } from './reducer';
 import * as selectors from './selectors';
 
-export type State = State;
+export type State = StateType;
 export { actions, selectors };
 export default reducer;

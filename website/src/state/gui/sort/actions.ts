@@ -1,4 +1,4 @@
-import { Action } from 'util/redux';
+import { Action as ReduxAction } from 'util/redux';
 
 import { GuiIdent } from '../types';
 
@@ -16,7 +16,7 @@ export interface SortPayload {
   by: SortByIdentifier;
 }
 
-export type SortAscending = Action<Type.ASC, SortPayload>;
+export type SortAscending = ReduxAction<Type.ASC, SortPayload>;
 export const sortAsc = (
   component: GuiIdent,
   by: SortByIdentifier,
@@ -28,7 +28,7 @@ export const sortAsc = (
   },
 });
 
-export type SortDescending = Action<Type.DESC, SortPayload>;
+export type SortDescending = ReduxAction<Type.DESC, SortPayload>;
 export const sortDesc = (
   component: GuiIdent,
   by: SortByIdentifier,

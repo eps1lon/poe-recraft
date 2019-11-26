@@ -1,4 +1,4 @@
-import { Action, NullableAction } from 'util/redux';
+import { Action as ReduxAction, NullableAction } from 'util/redux';
 import { GuiIdent } from '../types';
 
 export enum Type {
@@ -22,19 +22,19 @@ export interface ReactTableExpanded {
   [key: number]: ReactTableExpanded | boolean;
 }
 
-export type CollapseAction = Action<Type.COLLAPSE, GuiIdent>;
+export type CollapseAction = ReduxAction<Type.COLLAPSE, GuiIdent>;
 export const collapse = (component: GuiIdent): CollapseAction => ({
   type: Type.COLLAPSE,
   payload: component,
 });
 
-export type ExpandAction = Action<Type.EXPAND, GuiIdent>;
+export type ExpandAction = ReduxAction<Type.EXPAND, GuiIdent>;
 export const expand = (component: GuiIdent): ExpandAction => ({
   type: Type.EXPAND,
   payload: component,
 });
 
-export type ToggleAction = Action<Type.TOGGLE, GuiIdent>;
+export type ToggleAction = ReduxAction<Type.TOGGLE, GuiIdent>;
 export const toggle = (component: GuiIdent): ToggleAction => ({
   type: Type.TOGGLE,
   payload: component,

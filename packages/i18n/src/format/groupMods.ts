@@ -77,7 +77,7 @@ function collapseTable<T>(
   for (let j = 0; j < column_count; ++j) {
     columns[j] = table.reduce((column, row) => {
       return column.add(row[j]);
-    }, new Set());
+    }, new Set<T>());
   }
 
   return columns.map(column => {
