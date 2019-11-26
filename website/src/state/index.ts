@@ -1,4 +1,4 @@
-import reducer, { State } from './reducer';
+import reducer, { State as StateType } from './reducer';
 
-export type State = State;
+export type State = StateType;
 export default reducer;

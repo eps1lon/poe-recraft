@@ -1,3 +1,3 @@
-import ItemSection, { Props } from './ItemSection';
+import ItemSection, { Props as PropsType } from './ItemSection';
 export default ItemSection;
-export type Props = Props;
+export type Props = PropsType;

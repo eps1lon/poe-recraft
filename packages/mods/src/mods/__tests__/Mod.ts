@@ -35,7 +35,7 @@ it('should fill in the value range for its stats', () => {
     ofBrute.statsJoined().find(stat => stat.props.id === 'additional_strength'),
   ).toMatchObject({
     values: { min: 8, max: 12 },
-  });
+  } as any);
 });
 
 it('should fallback to the default spawnweight if defined', () => {

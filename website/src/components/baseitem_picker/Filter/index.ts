@@ -1,4 +1,4 @@
-import Filter, { BaseitemFilter } from './Filter';
+import Filter, { BaseitemFilter as BaseitemFilterType } from './Filter';
 
-export type BaseitemFilter = BaseitemFilter;
+export type BaseitemFilter = BaseitemFilterType;
 export default Filter;

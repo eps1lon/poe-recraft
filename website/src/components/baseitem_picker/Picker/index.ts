@@ -1,3 +1,3 @@
-import { Props } from './Picker';
-export type Props = Props;
+import { Props as PropsType } from './Picker';
+export type Props = PropsType;
 export { default } from './Picker';

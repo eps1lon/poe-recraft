@@ -1,4 +1,4 @@
-import { Action } from 'util/redux';
+import { Action as ReduxAction } from 'util/redux';
 
 export enum Type {
   CHANGE = 'I18N/CHANGE',
@@ -13,25 +13,25 @@ export type Action =
   | SetDescriptionsAction
   | SetMessagesAction;
 
-export type ChangeLocaleAction = Action<Type.CHANGE, string>;
+export type ChangeLocaleAction = ReduxAction<Type.CHANGE, string>;
 export const changeLocale = (locale: string): ChangeLocaleAction => ({
   type: Type.CHANGE,
   payload: locale,
 });
 
-export type SetLocaleAction = Action<Type.SET_LOCALE, string>;
+export type SetLocaleAction = ReduxAction<Type.SET_LOCALE, string>;
 export const setLocale = (locale: string): SetLocaleAction => ({
   type: Type.SET_LOCALE,
   payload: locale,
 });
 
-export type SetDescriptionsAction = Action<Type.SET_DESCRIPTIONS, any>;
+export type SetDescriptionsAction = ReduxAction<Type.SET_DESCRIPTIONS, any>;
 export const setDescriptions = (descriptions: any): SetDescriptionsAction => ({
   type: Type.SET_DESCRIPTIONS,
   payload: descriptions,
 });
 
-export type SetMessagesAction = Action<Type.SET_MESSAGES, any>;
+export type SetMessagesAction = ReduxAction<Type.SET_MESSAGES, any>;
 export const setMessages = (messages: any): SetMessagesAction => ({
   type: Type.SET_MESSAGES,
   payload: messages,
