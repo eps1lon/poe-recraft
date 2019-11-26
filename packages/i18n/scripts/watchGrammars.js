@@ -3,7 +3,7 @@ const { exec } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-const grammar_dir = path.join(__dirname, '../src/grammars');
+const grammar_dir = path.join(__dirname, '../grammars');
 const grammar_ext = '.ne';
 
 const isGrammar = file => file.endsWith(grammar_ext);

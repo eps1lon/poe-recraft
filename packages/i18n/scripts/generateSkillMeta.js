@@ -10,7 +10,7 @@ const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 
 const grammar = Grammar.fromCompiled(
-  require('../src/grammars/generated/skillpopup_stat_filters.js')
+  require('../grammars/generated/skillpopup_stat_filters.js')
 );
 
 const txt_file = path.join(
