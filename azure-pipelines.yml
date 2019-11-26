@@ -42,3 +42,8 @@ steps:
 - script: |
      yarn workspace poe-components-item build
   displayName: 'Build poe-components-item'
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testRunner: JUnit
+    testResultsFiles: "$(System.DefaultWorkingDirectory)/junit.xml"

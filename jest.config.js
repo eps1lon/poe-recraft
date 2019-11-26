@@ -1,3 +1,4 @@
+/* eslint-env node */
 module.exports = {
   testURL: 'http://localhost/',
   transform: {
