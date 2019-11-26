@@ -6,7 +6,7 @@ const path = require('path');
 const stripBom = require('strip-bom');
 const { promisify } = require('util');
 
-const grammar = Grammar.fromCompiled(require('./OtFile.out.js'));
+const grammar = Grammar.fromCompiled(require('../../grammars/OtFile.out.js'));
 
 const glob = promisify(require('glob'));
 const readFile = promisify(fs.readFile);
