@@ -11,7 +11,7 @@ const mapStateToProps = (state: State) => {
   return {
     active: item_selectors.activeBaseitem(state),
     loading: poe_selectors.isItemsLoading(state),
-    is_open: state.gui.expanded.get('baseitem-modal'),
+    is_open: Boolean(state.gui.expanded.get('baseitem-modal')),
   };
 };
 
