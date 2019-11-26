@@ -5,7 +5,7 @@ import { isRarityId, RarityId } from 'types/poe';
 export interface Props {
   available: RarityId[];
   id: string;
-  selected: RarityId | undefined;
+  selected: RarityId | 'unique' | 'showcase' | undefined;
   onChange: (rarity: RarityId) => void;
 }
 
