@@ -56,7 +56,6 @@ interface DrawerProps {
 }
 function Drawer(props: DrawerProps) {
   const { open } = props;
-  /* tslint:disable:no-console */
   console.log(open);
   return null;
 }

@@ -42,8 +42,8 @@ export function buildRandomStats(description: Description) {
 
 function randomNumberForMatcher(
   matcher: Matcher,
-  step: number = 1,
-  precision: number = 0,
+  step = 1,
+  precision = 0,
 ): number {
   if (Array.isArray(matcher)) {
     const [min, max] = matcher;
@@ -73,7 +73,6 @@ interface Domain {
 }
 
 function randomNumber(domain: Partial<Domain> = {}): number {
-  // tslint:disable-next-line: no-bitwise
   const { min = 1 << 31, max = 2 ** 31 - 1, precision = 0, step = 1 } = domain;
   const range = Math.abs(max - min);
 

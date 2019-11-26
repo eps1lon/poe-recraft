@@ -1,3 +1,4 @@
+/* eslint-env node */
 // takes an unprocesses file and splits it into files for each language
 const { promisify } = require('util');
 const fs = require('fs');

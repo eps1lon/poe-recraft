@@ -160,8 +160,10 @@ export function regexpFactory(formatter_id: string): string {
   return regexp;
 }
 
+const hasOwnProperty = Object.prototype.hasOwnProperty;
+
 export function buildFormatter(formatter_id: string): Formatter {
-  if (!formatters.hasOwnProperty(formatter_id)) {
+  if (!hasOwnProperty.call(formatters, formatter_id)) {
     throw new Error(`'${formatter_id}' not found`);
   }
   return formatters[formatter_id];

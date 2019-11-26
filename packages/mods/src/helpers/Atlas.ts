@@ -88,7 +88,7 @@ export default class Atlas {
    * always returns a new copy
    */
   public reset(): this {
-    return this.withMutations(({ nodes, ...builder }) => {
+    return this.withMutations(builder => {
       return {
         ...builder,
         nodes: Atlas.buildLookupTable(

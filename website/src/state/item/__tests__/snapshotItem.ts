@@ -1,4 +1,3 @@
-// tslint:disable:no-var-requires
 import { createItems, createMods } from 'poe-mods';
 import snapshotItem from '../snapshotItem';
 

@@ -4,6 +4,8 @@ export interface Arguments {
   [key: string]: any;
 }
 
+const hasOwnProperty = Object.prototype.hasOwnProperty;
+
 /**
  *
  * @param message - conforming to ICU message syntax
@@ -14,7 +16,7 @@ export default function formatMessage(
   args: Arguments = {},
 ) {
   return message.replace(/\{([^}]+)\}/g, (_: string, arg_name: string) => {
-    if (args.hasOwnProperty(arg_name) === false) {
+    if (hasOwnProperty.call(args, arg_name) === false) {
       throw new Error(`Message required '${arg_name}' to be present.`);
     }
     return String(args[arg_name]);

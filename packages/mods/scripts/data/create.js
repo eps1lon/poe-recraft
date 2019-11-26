@@ -1,3 +1,4 @@
+/* eslint-env node */
 // used to generate files in data/
 const path = require('path');
 const createMods = require('./createMods');

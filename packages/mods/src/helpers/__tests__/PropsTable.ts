@@ -2,7 +2,6 @@ import MasterBenchOption from '../../generators/MasterBenchOption';
 
 import PropsTable from '../PropsTable';
 
-// tslint:disable: no-var-requires
 const all_options = require('../../../data/craftingbenchoptions.json');
 
 it('should find props', () => {

@@ -148,7 +148,6 @@ it.skip('should reverse the locale-data (expensive test)', () => {
                 expect(reformatted).toEqual(formatted);
               } catch (err) {
                 // continue testing most likely there are just rounding errors
-                // tslint:disable-next-line: no-console
                 console.warn(err);
               }
 

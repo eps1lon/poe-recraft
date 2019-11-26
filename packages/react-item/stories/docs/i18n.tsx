@@ -4,9 +4,7 @@ import { formatStats, Fallback } from 'poe-i18n';
 // 'poe-components-item'
 import { Popup } from '../../src/';
 
-// tslint:disable-next-line: no-var-requires
 const base_item_types = require('poe-i18n/locale-data/en/BaseItemTypes.json');
-// tslint:disable-next-line: no-var-requires
 const stat_descriptions = require('poe-i18n/locale-data/en/stat_descriptions.json');
 
 storiesOf('i18n integration', module).add('Helmet', () => (

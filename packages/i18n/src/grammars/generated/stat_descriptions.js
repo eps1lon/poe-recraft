@@ -1,3 +1,4 @@
+/* eslint-disable */
 // Generated automatically by nearley
 // http://github.com/Hardmath123/nearley
 (function () {

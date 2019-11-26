@@ -16,7 +16,6 @@ export interface Props {
 }
 
 // allow empty for noop
-// tslint:disable-next-line: no-empty
 const noop = () => {};
 
 export default class ExtendedStat extends React.PureComponent<Props> {

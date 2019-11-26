@@ -1,4 +1,3 @@
-// tslint:disable:no-unused-variable
 import * as LocaleData from '../LocaleData';
 
 // we only want to check typings so we dont actually run this test

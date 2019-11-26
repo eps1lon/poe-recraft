@@ -8,7 +8,7 @@ export function round(n: number): number {
 // base numbers are always integers
 // increases/reduction work on intermediate floats
 // display/calculations with those numbers is done by {round}
-export function asPercentString(n: number, precision: number = 0): string {
+export function asPercentString(n: number, precision = 0): string {
   if (precision < 1) {
     return n.toString();
   } else {

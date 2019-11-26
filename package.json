@@ -14,6 +14,7 @@
     "bootstrap": "yarn workspace poe-mods build:cjs && yarn workspace poe-i18n build:cjs && yarn workspace poe-components-item build:cjs",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "format": "yarn workspaces run format",
+    "lint": "eslint \"{packages,scripts,website}/*/{scripts,src}/**/*.{js,ts,tsx}\" ",
     "test": "jest --watch",
     "test:ci": "jest --ci --coverage --runInBand"
   },
@@ -24,5 +25,14 @@
   ],
   "devDependencies": {
     "coveralls": "^3.0.2"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.9.0",
+    "@typescript-eslint/parser": "^2.9.0",
+    "eslint": "^6.7.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "typescript": "~3.2.4"
   }
 }

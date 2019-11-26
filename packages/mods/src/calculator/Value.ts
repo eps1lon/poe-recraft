@@ -24,7 +24,7 @@ export default class Value {
   /**
    * if the value change since init
    */
-  public augmented: boolean = false;
+  public augmented = false;
 
   constructor(
     range: [number, number] | ValueRange,
@@ -77,7 +77,7 @@ export default class Value {
    *
    * in PoE all increase modifers get summed up to one big more modifier
    */
-  public compute(precision: number = 0): Value {
+  public compute(precision = 0): Value {
     const flat = this.modifiers
       .filter(({ type }) => type === 'flat')
       .reduce(
