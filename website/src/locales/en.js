@@ -1,4 +1,3 @@
-export { default as locale_data } from 'react-intl/locale-data/en';
 export {
   default as baseitemtypes
 } from 'poe-i18n/locale-data/en/BaseItemTypes.json';

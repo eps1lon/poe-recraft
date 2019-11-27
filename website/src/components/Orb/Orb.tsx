@@ -40,7 +40,7 @@ function Orb(props: Props) {
 
   return (
     <FormattedGenerator id={orb.id}>
-      {(name: string | JSX.Element) => {
+      {(name: React.ReactNode) => {
         return (
           <Tooltip title={name}>
             <Button className={classes.button} onClick={handleClick}>
@@ -49,7 +49,7 @@ function Orb(props: Props) {
                 width="40"
                 height="40"
                 src={orb.icon}
-                alt={name.toString()}
+                alt={String(name)}
               />
             </Button>
           </Tooltip>
