@@ -6,8 +6,11 @@ import {
   Chaos,
   ElderMods,
   Exalted,
+  Generator,
   IncursionTempleMods,
+  Item,
   ItemShowcase,
+  Mod,
   Regal,
   Scouring,
   ShapedMods,
@@ -16,6 +19,7 @@ import {
 } from 'poe-mods';
 import { createSelector } from 'reselect';
 
+import { State as PoeState } from './reducers';
 import { getEssences, getMods } from './selectors';
 
 export const buildShowcase = createSelector(
@@ -76,7 +80,9 @@ const buildShapedMods = createSelector(
   mods => ShapedMods.build(mods),
 );
 
-export function buildGeneratorFactory(generator: string) {
+export function buildGeneratorFactory(
+  generator: string,
+): (state: { poe: PoeState }) => Generator<Mod, Item> {
   switch (generator) {
     case 'alchemy':
       return buildAlchemy;
