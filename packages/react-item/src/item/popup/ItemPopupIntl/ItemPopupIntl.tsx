@@ -1,6 +1,10 @@
 import { formatValue } from 'poe-i18n';
 import * as React from 'react';
-import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl';
+import {
+  FormattedMessage,
+  injectIntl,
+  WrappedComponentProps,
+} from 'react-intl';
 import { Omit } from 'utility-types';
 
 import * as ItemProps from './props';
@@ -35,7 +39,7 @@ export type Props = Omit<ApiProps, 'item'> & {
  * our own interface aims at properties that only displays what is displayed.
  * See also Model vs. View
  */
-class ItemPopupIntl extends React.PureComponent<Props & InjectedIntlProps> {
+class ItemPopupIntl extends React.PureComponent<Props & WrappedComponentProps> {
   public static assertValidProps(
     item: ItemProps.Item,
     onError: (err: string) => void,
@@ -54,7 +58,7 @@ class ItemPopupIntl extends React.PureComponent<Props & InjectedIntlProps> {
     }
   }
 
-  constructor(props: Props & InjectedIntlProps) {
+  constructor(props: Props & WrappedComponentProps) {
     super(props);
 
     if (process.env.NODE_ENV !== 'production') {

@@ -1,5 +1,5 @@
 import { formatValue } from 'poe-i18n';
-import { InjectedIntlProps } from 'react-intl';
+import { WrappedComponentProps } from 'react-intl';
 // (1 to 2)-(3 to 4)
 export type MinMaxValue = [RollableValue, RollableValue];
 export type RollableValue = SingleValue | ValueRange;
@@ -28,7 +28,7 @@ export function augmentableNotZero<T extends MinMaxValueLike>(
 export const ROLLABLE_VALUE_MESSAGE = `({min}–{max})`;
 export const MIN_MAX_VALUE_SHORT_MESSAGE = `{min}–{max}`;
 
-type FormatMessage = InjectedIntlProps['intl']['formatMessage'];
+type FormatMessage = WrappedComponentProps['intl']['formatMessage'];
 export function minMaxToString(
   value: MinMaxValue,
   formatMessage: FormatMessage,

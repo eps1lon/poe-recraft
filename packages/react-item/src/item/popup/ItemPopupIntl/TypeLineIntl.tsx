@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { InjectedIntlProps, injectIntl } from 'react-intl';
+import { WrappedComponentProps, injectIntl } from 'react-intl';
 import { Rarity } from './props';
 
 export interface Props {
@@ -9,7 +9,7 @@ export interface Props {
   rarity: Rarity;
 }
 
-class TypeLineIntl extends React.PureComponent<Props & InjectedIntlProps> {
+class TypeLineIntl extends React.PureComponent<Props & WrappedComponentProps> {
   public render() {
     const { item_id, intl } = this.props;
     const basename = intl.formatMessage({
@@ -23,7 +23,9 @@ class TypeLineIntl extends React.PureComponent<Props & InjectedIntlProps> {
 
   private itemInflection(): string | undefined {
     const { item_id, intl } = this.props;
-    return intl.messages[`poe.baseitemtypes.${item_id}.inflection`];
+    return intl.formatMessage({
+      id: `poe.baseitemtypes.${item_id}.inflection`,
+    });
   }
 
   private prefix(): string | null {
@@ -34,7 +36,6 @@ class TypeLineIntl extends React.PureComponent<Props & InjectedIntlProps> {
 
     return this.props.intl.formatMessage(
       { id: `poe.mods.${prefix_id}.name` },
-
       {
         inflection: this.itemInflection(),
       },

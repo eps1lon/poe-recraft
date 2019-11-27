@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import { formatValue } from 'poe-i18n';
 import * as React from 'react';
-import { InjectedIntlProps, injectIntl } from 'react-intl';
+import { WrappedComponentProps, injectIntl } from 'react-intl';
 
 import { Mod, isPrefix, isSuffix } from './Extended';
 import { Intersperse } from '../../../../util/react';
@@ -14,7 +14,7 @@ export interface Props {
 }
 
 class ExtendedStatValues extends React.PureComponent<
-  Props & InjectedIntlProps
+  Props & WrappedComponentProps
 > {
   public render() {
     const { intl, mods, showInfo, stat_id } = this.props;
@@ -51,7 +51,7 @@ class ExtendedStatValues extends React.PureComponent<
 export default injectIntl(ExtendedStatValues);
 
 interface MagnitudesToStringOptions {
-  formatMessage: InjectedIntlProps['intl']['formatMessage'];
+  formatMessage: WrappedComponentProps['intl']['formatMessage'];
 }
 function magnitudesToString(
   magnitudes: Array<{ min: number; max: number }>,
