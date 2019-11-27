@@ -11,12 +11,14 @@ export interface WithMessages<M> {
 export default function withIntlProvider<
   P extends object,
   Messages extends IntlConfig['messages']
->(Component: React.ComponentType<P>): React.SFC<P & { messages?: Messages }> {
+>(
+  Component: React.ComponentType<P>,
+): React.SFC<P & { messages?: Partial<Messages> }> {
   // eslint-disable-next-line react/display-name
-  return ({ messages, ...props }: { messages?: IntlConfig['messages'] }) => (
+  return ({ messages, ...props }: { messages?: Partial<Messages> }) => (
     // using anything other that en without providing that (not used) locale data
     // results in messages being empty
-    <IntlProvider locale="en" messages={messages}>
+    <IntlProvider locale="en" messages={messages as Record<string, string>}>
       <Component {...(props as any)} />
     </IntlProvider>
   );

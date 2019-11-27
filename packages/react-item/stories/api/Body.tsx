@@ -8,7 +8,7 @@ import FrameType from '../../src/item/FrameType';
 
 const Story: React.SFC<{ item: Body['props']['item'] }> = ({ item }) => {
   return (
-    <IntlProvider>
+    <IntlProvider locale="en">
       <div className={classnames('poe-item', FrameType.rare)}>
         <Body item={item} />
       </div>
