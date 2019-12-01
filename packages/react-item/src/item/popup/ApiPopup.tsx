@@ -7,11 +7,11 @@ import ApiPopupIntl from './ApiPopupIntl';
 import withIntlProvider from './withIntlProvider';
 import { PropsType } from '../../util/types';
 
-export interface Messages {
-  'poe.api.Corrupted': string;
-  'poe.api.Requires': string;
-  'poe.api.{Range1} to {Range2}': string;
-}
+export type Messages = Record<
+  'poe.api.Corrupted' | 'poe.api.Requires' | 'poe.api.{Range1} to {Range2}',
+  string
+>;
+
 export type Props = PropsType<typeof ApiPopupIntl>;
 
 /**

@@ -1,4 +1,3 @@
-import { addLocaleData } from 'react-intl';
 import { all, call, fork, put, take } from 'redux-saga/effects';
 
 import { i18n_actions } from 'state/actions';
@@ -16,14 +15,12 @@ function* loadLocaleData() {
     const {
       baseitemtypes,
       item_classes,
-      locale_data,
       messages = {},
       mods,
       stat_descriptions,
       api_messages = {},
     } = yield call(requireLocaleData, locale);
 
-    yield call(addLocaleData, locale_data);
     yield put(
       i18n_actions.setMessages({
         poe: { baseitemtypes, item_classes, mods, api: api_messages },

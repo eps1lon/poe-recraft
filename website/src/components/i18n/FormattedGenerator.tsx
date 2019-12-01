@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 
 export interface Props {
   id: string;
-  children?: (name: string | JSX.Element) => React.ReactNode;
+  children?: (name: React.ReactNode) => React.ReactNode;
 }
 
 const FormattedModName: React.SFC<Props> = props => {

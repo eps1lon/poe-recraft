@@ -1,4 +1,3 @@
-export { default as locale_data } from 'react-intl/locale-data/es';
 export {
   default as api_messages
 } from 'poe-i18n/locale-data/es/api_messages.json';
